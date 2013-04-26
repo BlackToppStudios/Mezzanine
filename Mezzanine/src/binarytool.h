@@ -55,6 +55,10 @@ namespace Mezzanine
         /// This deletes the passed binary on destruction. to prevent this behavior set the Binary pointer to null.
         /// @n @n
         /// This is designed to be fairly minimalistic but passing by value causes the buffer to be copied.
+        /// @n @n
+        /// Where possible this class performs no speculative allocation unless explicitly requested to. In other
+        /// this should have allocated exactly as many bytes are indicated by the member Size, no more and no less.
+        /// This will tend to not allocate memory unless an operation on it is specified that it does so.
         class MEZZ_LIB BinaryBuffer
         {
             public:
@@ -68,27 +72,33 @@ namespace Mezzanine
                 /// @brief A pointer to the actual binary data.
                 Byte* Binary;
 
-                /// @brief Default constructor, set everything to zero.
+                /// @brief Default constructor, set everything to zero. Doesn't allocate anything
                 BinaryBuffer() :
                     Size(0),
                     Binary(NULL)
                     {}
 
-                /// @brief Copy constructor
+                /// @brief Copy constructor.
+                /// @details Allocates identical amount of memory as other buffer then copies it.
                 BinaryBuffer(const BinaryBuffer& Other);
 
                 /// @brief Base64 decoding Constructor
+                /// @details Performs exactly one allocation of the amount required to store the decoded base64,
+                /// Then starts filling it. If there is an error with the data as it is beign process the rest of the Buffer will
+                /// be filled with gibberish, and everything before the error will be properly decoded.
                 /// @param DataString A Base64 string to be decode and used as a binary buffer, or a string to be used a buffer if IsBase64 is false
                 /// @param IsBase64 Is the String passed Base64 encoded
                 explicit BinaryBuffer(const String& DataString, bool IsBase64 = true);
 
                 /// @brief Assignment Operator
-                /// @details This deletes the buffer if it is not null
+                /// @details This deletes the buffer if it is not null, and allocates a fresh one of
+                /// the size in RH, then copies it.
                 /// @param RH The item on the right hand side
                 /// @return A reference to the newly assigned binary buffer.
                 BinaryBuffer& operator= (const BinaryBuffer& RH);
 
                 /// @brief Verbose constructor, set everything custom on creation.
+                /// @details If passed a pointer this assumes ownship of that pointer, otherwise this allocates the amount of space requested.
                 /// @param BinaryPointer A pointer to the first byte in memory, if this is null the buffer is created. Ownership of this Pointer will be assumed.
                 /// @param PredeterminedSize The size to set on creation.
                 BinaryBuffer(Byte* BinaryPointer, Integer PredeterminedSize) :
@@ -96,7 +106,7 @@ namespace Mezzanine
                     Binary(BinaryPointer ? BinaryPointer : new Byte[PredeterminedSize])
                     {}
 
-                /// @brief Terse constructor, set a custom size and allocate a buffer (potentially filled with gibberish).
+                /// @brief Terse constructor, set a custom size and allocates space (filled with gibberish).
                 /// @param PredeterminedSize The size to set on creation.
                 explicit BinaryBuffer(Whole PredeterminedSize) :
                     Size(PredeterminedSize),
@@ -104,7 +114,7 @@ namespace Mezzanine
                     {}
 
                 /// @brief Virtual deconstructor calls @ref DeleteBuffer() to clean up whatever has been inserted here
-                /// @details IF you do not want the Buffer pointed to by the pointer Binary assign Binary to 0 and
+                /// @details If you do not want the Buffer pointed to by the pointer Binary assign Binary to 0 and
                 /// this deconstructor will delete with erase nothing.
                 virtual ~BinaryBuffer();
 
@@ -112,7 +122,7 @@ namespace Mezzanine
                 /// @param NewSize If you don't want to just clear the buffer, but rather want to set size to a value and set a new size, you can do that with this
                 void DeleteBuffer(Whole NewSize=0);
 
-                /// @brief This will create a buffer with size matching the this-Size and point this->Binary to that Buffer
+                /// @brief This will create a buffer with size matching the this->Size and point this->Binary to that Buffer
                 void CreateBuffer();
 
                 /// @brief Get the binary buffer as a base64 string
@@ -123,7 +133,7 @@ namespace Mezzanine
                 /// @return A String with the value stored in binary copied into it.
                 String ToString();
 
-                /// @brief This calls @ref DeleteBuffer then Decodes that passed and repopulates the Buffer
+                /// @brief This calls deallocates any space, allocates fresh space of the size requestedthen the Decodes the passed and repopulates the Buffer
                 /// @param EncodedBinaryData The Base64 string containing binary data.
                 void CreateFromBase64(const String &EncodedBinaryData);
 
@@ -132,6 +142,25 @@ namespace Mezzanine
                 /// @return A Reference to the specific Byte the Index passed refers to
                 /// @note When compiled as Debug this can throw a @ref MemoryOutOfBoundsException if the index is to high (or cast from a negative
                 Byte& operator[] (Whole Index);
+
+                /// @brief Append another group of arbitrary data onto this one.
+                /// @details Allocates space equal to the size of both buffers, Copies this Buffers data
+                /// into it, then copies the other buffers data, then deallocates any space this buffer
+                /// may have had allocated preivously.
+                /// @param OtherBuffer A pointer to a region of memory to be copied
+                /// @param ByteSize How big in bytes is the Buffer
+                void Concatenate(const Byte* OtherBuffer, Whole ByteSize);
+
+                /// @brief Concatenate another buffer onto this one
+                /// @details This calls @ref Concatenate(const Byte*, Whole)
+                /// @param BufferFromAnotherMother A buffer to copy and append onto this one.
+                void Concatenate(const BinaryBuffer BufferFromAnotherMother);
+
+                /// @details An easier way to call @ref Concatenate(const Byte*, Whole)
+                /// @param RH The other Buffer to copy/append.
+                /// @return A Reference to this buffer to allow operator chaining.
+                BinaryBuffer& operator+=(const BinaryBuffer& RH);
+
         };
 
         /// @brief Is a character a valid Base64 character

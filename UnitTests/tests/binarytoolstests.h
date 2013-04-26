@@ -466,6 +466,30 @@ class binarytoolstests : public UnitTestGroup
             }
 
 
+            if (RunAutomaticTests)
+            {
+                TestResult temp;
+
+                BinaryBuffer PartA(2);
+                BinaryBuffer PartB(2);
+                PartA[0]='a';
+                PartA[1]='s';
+                PartB[0]='d';
+                PartB[1]='f';
+
+                PartA+=PartB;
+
+                if( String("asdf") == PartA.ToString() )
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::Concatenation", temp);
+            }else{
+                AddTestResult("BinaryTools::Concatenation", Skipped);
+            }
+
+
+
         }
 };
 

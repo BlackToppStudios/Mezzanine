@@ -471,9 +471,7 @@ namespace Mezzanine
             { delete *Iter; }
         GameWindows.clear();
 
-        if(ExcludePrimary)
-            { }
-        else
+        if(!ExcludePrimary)
         {
             delete PrimaryGameWindow;
             PrimaryGameWindow = 0;

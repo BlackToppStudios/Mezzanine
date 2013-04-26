@@ -80,7 +80,7 @@ namespace Mezzanine
                 /// @param State The lua state as provide by lua_dump
                 /// @param Buffer A pointer to the compiled Lua chunk.
                 /// @param Size The Size of the Lua chunk in bytes
-                /// @param BinBuff A BinaryTools::BinaryBuffer
+                /// @param BinBuff A pointer to a BinaryTools::BinaryBuffer that will serve as the real output
                 int LuaScriptWriter(lua_State *State, const void* Buffer, size_t Size, void* BinBuff)
                 {
                     BinaryTools::BinaryBuffer* CompilingScript = reinterpret_cast<BinaryTools::BinaryBuffer*>(BinBuff);

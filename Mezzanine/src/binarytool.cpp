@@ -219,6 +219,28 @@ namespace Mezzanine
             return *(Binary+Index);
         }
 
+        void BinaryBuffer::Concatenate(const Byte* OtherBuffer, Whole ByteSize)
+        {
+            Whole NewSize = (this->Size + ByteSize) * sizeof(Byte);
+            Byte* TargetBuffer = new Byte[NewSize];
+
+            memcpy(TargetBuffer, this->Binary, this->Size);
+            memcpy(TargetBuffer+this->Size, OtherBuffer, ByteSize);
+
+            DeleteBuffer(NewSize);
+            this->Binary = TargetBuffer;
+        }
+
+        void BinaryBuffer::Concatenate(const BinaryBuffer BufferFromAnotherMother)
+            { Concatenate(BufferFromAnotherMother.Binary, BufferFromAnotherMother.Size); }
+
+
+        BinaryBuffer& BinaryBuffer::operator+=(const BinaryBuffer& RH)
+        {
+            Concatenate(RH);
+            return *this;
+        }
+
         // Code change to Match BTS naming conventions and formatting
         bool IsBase64(unsigned char Character)
             { return (isalnum(Character) || (Character == '+') || (Character == '/') || (Character == '=')); }
