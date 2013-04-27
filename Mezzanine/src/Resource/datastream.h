@@ -42,15 +42,165 @@
 
 #include "datatypes.h"
 
+#include <iostream>
+
 /// @file
-/// @brief Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream
-/// @todo Investigate how required these these stream implementations are
+/// @brief Declaration of DataStream
+/// @todo Investigate how required these stream implementations are
 
-
+//#define USENEWDATASTREAM
 namespace Mezzanine
 {
     namespace Resource
     {
+#ifdef USENEWDATASTREAM
+        /// @typedef StreamPos
+        /// @brief Convenience define for the stream position datatype.
+        typedef std::streampos StreamPos;
+        /// @typedef StreamOff
+        /// @brief Convenience define for the stream offset datatype.
+        typedef std::streamoff StreamOff;
+        /// @typedef StreamSize
+        /// @brief Convenience define for the stream size datatype.
+        typedef std::streamsize StreamSize;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief
+        /// @details
+        ///////////////////////////////////////
+        class StreamBase
+        {
+            public:
+                /// @enum StreamFlags
+                /// @brief This enum describes the flags that control certain behaviors of a stream.
+                /// @details It is important to note that not all of these flags are used by all streams.
+                enum StreamFlags
+                {
+                    SF_None         = 0,                     ///< Error/no special initialization.
+                    SF_Read         = std::ios_base::in,     ///< Permit read operations on the stream.
+                    SF_Write        = std::ios_base::out,    ///< Permit write operations on the stream.
+                    SF_Append       = std::ios_base::app,    ///< All write operations on the stream are done at the end of the stream.
+                    SF_AtEnd        = std::ios_base::ate,    ///< Moves the starting position of the stream to the end upon initialization.
+                    SF_Binary       = std::ios_base::binary, ///< Tell the stream that the file in question is Binary.
+                    SF_Truncate     = std::ios_base::trunc,  ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
+                };
+
+                /// @enum SeekOrigin
+                /// @brief An enum describing which position should be considered the origin for changing the current position in a stream.
+                enum SeekOrigin
+                {
+                    SO_Beginning = std::ios_base::beg,  ///< The beginning of the stream.
+                    SO_Current   = std::ios_base::cur,  ///< The current position for read/write operations in the stream.
+                    SO_End       = std::ios_base::end   ///< The end of the stream.
+                };
+            public:
+                /// @brief Class constructor.
+                StreamBase() {  }
+                /// @brief Class destructor.
+                virtual ~StreamBase() {  }
+        };//StreamBase
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief
+        /// @details
+        ///////////////////////////////////////
+        class IStream : virtual public StreamBase
+        {
+            public:
+                /// @brief Class constructor.
+                IStream() {  }
+                /// @brief Class destructor.
+                virtual ~IStream() {  }
+
+                /// @brief Reads from the stream and copies that data to a buffer.
+                /// @param Buffer The buffer to be populated with the read data.
+                /// @param Size The number of bytes to read from the stream.
+                /// @return Returns the number of bytes successfully read.
+                virtual size_t Read(Char8* Buffer, StreamSize Size) = 0;
+
+                /// @brief Sets the position of the read cursor explicitly.
+                /// @param Position The position to be set.
+                virtual void SetReadPosition(StreamPos Position) = 0;
+                /// @brief Sets the position of the read cursor.
+                /// @param Offset The number of bytes to move the read cursor back(if negative) or forward(if positive).
+                /// @param Origin The starting point to be considered for the offset.
+                virtual void SetReadPosition(StreamOff Offset, SeekOrigin Origin) = 0;
+                /// @brief Gets the current read position in this stream.
+                /// @return Returns a StreamPos representing the current read position.
+                virtual StreamPos GetReadPosition() = 0;
+        };//IStream
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief
+        /// @details
+        ///////////////////////////////////////
+        class OStream : virtual public StreamBase
+        {
+            public:
+                /// @brief Class constructor.
+                OStream() {  }
+                /// @brief Class destructor.
+                virtual ~OStream() {  }
+
+                /// @brief Writes data to the stream.
+                /// @param Buffer The memory buffer to write to this stream.
+                /// @param Size The size of the buffer being passed in.
+                /// @return Returns the number of bytes successfully written.
+                virtual size_t Write(const Char8* Buffer, StreamSize Size) = 0;
+
+                /// @brief Sets the position of the write cursor explicitly.
+                /// @param Position The position to be set.
+                virtual void SetWritePosition(StreamPos Position) = 0;
+                /// @brief Sets the position of the write cursor.
+                /// @param Offset The number of bytes to move the write cursor back(if negative) or forward(if positive).
+                /// @param Origin The starting point to be considered for the offset.
+                virtual void SetWritePosition(StreamOff Offset, SeekOrigin Origin) = 0;
+                /// @brief Gets the current write position in this stream.
+                /// @return Returns a StreamPos representing the current write position.
+                virtual StreamPos GetWritePosition() = 0;
+        };//OStream
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief
+        /// @details
+        ///////////////////////////////////////
+        class IOStream : public IStream, public OStream
+        {
+            public:
+                /// @brief Class constructor.
+                IOStream() {  }
+                /// @brief Class destructor.
+                virtual ~IOStream() {  }
+
+                /// @brief Advances the position in the stream.
+                /// @param Count The number of bytes to skip/advance in the stream from the current position.
+                virtual void Advance(const StreamOff Count);
+                /// @brief Sets the position of the read and write cursors explicitly.
+                /// @param Position The position to be set.
+                virtual void SetStreamPosition(StreamPos Position);
+                /// @brief Sets the position of the read and write cursors.
+                /// @param Offset The number of bytes to move the cursors back(if negative) or forward(if positive).
+                /// @param Origin The starting point to be considered for the offset.
+                virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin);
+                /// @brief Gets the current position in this stream.
+                /// @param Read Whether or not to get the Read position.  If false this will get the write position instead.
+                /// @return Returns a StreamPos representing the current position specified from the beginning of the stream.
+                virtual StreamPos GetStreamPosition(bool Read = true);
+        };//IOStream
+
+        /// @typedef DataStream
+        /// @brief Convenience define for compatibility.
+        typedef IOStream DataStream;
+#else //USENEWDATASTREAM
+        /// @typedef StreamPos
+        /// @brief Convenience define for the stream position datatype.
+        typedef Integer StreamPos;
+        /// @typedef StreamOff
+        /// @brief Convenience define for the stream offset datatype.
+        typedef Integer StreamOff;
+        /// @typedef StreamSize
+        /// @brief Convenience define for the stream size datatype.
+        typedef Integer StreamSize;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This represents a stream to a piece of data, usually a file.
         /// @details This is a base class that can be overriden to read from a variey of sources including
@@ -59,50 +209,52 @@ namespace Mezzanine
         class MEZZ_LIB DataStream
         {
             public:
-                /// @enum AccessMode
-                /// @brief This enum describes the type of access to the resource.
-                enum AccessMode
-                {
-                    DS_Read  = 1,
-                    DS_Write = 2
-                };
                 /// @enum StreamFlags
                 /// @brief This enum describes the flags that control certain behaviors of a stream.
                 /// @details It is important to note that not all of these flags are used by all streams.
                 enum StreamFlags
                 {
-                    SF_None         = 0,
-                    // Used by the File DataStreams
-                    SF_CreateOnFail = 1,  ///< In the event of a failure to find the file, create it.
-                    SF_Binary       = 2,  ///< Tell the stream that the file in question is Binary.
-                    SF_Truncate     = 4   ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
+                    SF_None         = 0,  ///< Error/no special initialization.
+                    SF_Read         = 1,  ///< Permit read operations on the stream.
+                    SF_Write        = 2,  ///< Permit write operations on the stream.
+                    SF_Append       = 4,  ///< All write operations on the stream are done at the end of the stream.
+                    SF_AtEnd        = 8,  ///< Moves the starting position of the stream to the end upon initialization.
+                    SF_Binary       = 16, ///< Tell the stream that the file in question is Binary.
+                    SF_Truncate     = 32  ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
+                };
+
+                /// @enum SeekOrigin
+                /// @brief An enum describing which position should be considered the origin for changing the current position in a stream.
+                enum SeekOrigin
+                {
+                    SO_Beginning = std::ios_base::beg,  ///< The beginning of the stream.
+                    SO_Current   = std::ios_base::cur,  ///< The current position for read/write operations in the stream.
+                    SO_End       = std::ios_base::end   ///< The end of the stream.
                 };
             protected:
                 /// @brief Name of the resource.  If this is a stream to a file, this should be the filename.
                 String ResourceName;
                 /// @brief The type of access this stream has to the resource.
-                AccessMode Access;
+                StreamFlags Flags;
                 /// @brief The size of the stream.
                 size_t Size;
             public:
                 /// @brief Class constructor.
-                /// @param Mode The access mode for the stream.
-                DataStream(const AccessMode& Mode = DS_Read);
+                /// @param Mode The flags to use when initializing the stream.
+                DataStream(const StreamFlags Mode = SF_Read);
                 /// @brief Named constructor.
                 /// @param Name The name of the stream.
-                /// @param Mode The access mode for the stream.
-                DataStream(const String& Name, const AccessMode& Mode = DS_Read);
+                /// @param Mode The flags to use when initializing the stream.
+                DataStream(const String& Name, const StreamFlags Mode = SF_Read);
                 /// @brief Class destructor.
                 virtual ~DataStream();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
+
                 /// @brief Gets the name of this resource.
                 /// @return Returns a const reference to a string containing the name of this resource if one was assigned.
                 ConstString& GetName() const;
-                /// @brief Gets the currently set access mode for this data stream.
-                /// @return Returns an enum value representing the current access mode for this data stream.
-                AccessMode GetAccessMode() const;
                 /// @brief Gets the size of the stream.
                 /// @return Returns the size of this stream in bytes.
                 size_t GetSize() const;
@@ -115,26 +267,7 @@ namespace Mezzanine
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Stream Access and Manipulation
-                /// @brief Gets the contents of the stream as a string.
-                /// @return Returns a string with the contents of the stream.
-                virtual String GetAsString();
-                /// @brief Reads a single line from a string.
-                //// @remarks This function should only be used if a file was opened in binary mode.
-                /// @param Buffer Pointer to the buffer to copy to.
-                /// @param MaxCount The maximum number of bytes to read.  Usually you want this to be your buffer size.
-                /// @param Delim The character that marks the end of a line.
-                /// @return Returns the number of bytes actually read, not including the Delimiter.
-                virtual size_t ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim = "\n");
-                /// @brief Gets the contents of the current line in the stream.
-                //// @remarks This function should only be used if a file was opened in binary mode.
-                /// @param Trim Whether or not to trim whitespaces on both sides of the string.
-                /// @return Returns a string containing characters from the current position in the stream to the end of the line.
-                virtual String GetLine(bool Trim = true);
-                /// @brief Moves the current position to the start of the next line.
-                //// @remarks This function should only be used if a file was opened in binary mode.
-                /// @param Delim The character that marks the end of a line.
-                /// @return Returns the number of bytes skipped.
-                virtual size_t SkipLine(const String& Delim = "\n");
+
                 /// @brief Reads data from the stream, copying to a buffer.
                 /// @param Buffer The buffer to place data from the stream.
                 /// @param Count The number of bytes to read from the stream.
@@ -145,191 +278,49 @@ namespace Mezzanine
                 /// @param Count The number of bytes to write from the buffer to the stream.
                 /// @return Returns the number of bytes written.
                 virtual size_t Write(const void* Buffer, const size_t& Count) = 0;
+
                 /// @brief Advances the position in the stream.
                 /// @param Count The number of bytes to skip/advance in the stream from the current position.
-                virtual void Skip(const Integer& Count) = 0;
-                /// @brief Sets the current position in the stream.
-                /// @param Position The position in the stream to be set as current.
-                virtual void Seek(const size_t& Position) = 0;
-                /// @brief Gets the offset of the current position from the start position.
-                /// @return Returns the number of bytes the current position is from the beginning of the stream.
-                virtual size_t Tell() = 0;
+                virtual void Advance(const StreamOff Count) = 0;
+                /// @brief Sets the position of the read and write cursors explicitly.
+                /// @param Position The position to be set.
+                virtual void SetStreamPosition(StreamPos Position) = 0;
+                /// @brief Sets the position of the read and write cursors.
+                /// @param Offset The number of bytes to move the cursors back(if negative) or forward(if positive).
+                /// @param Origin The starting point to be considered for the offset.
+                virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin) = 0;
+                /// @brief Gets the current position in this stream.
+                /// @param Read Whether or not to get the Read position.  If false this will get the write position instead.
+                /// @return Returns a StreamPos representing the current position specified from the beginning of the stream.
+                virtual StreamPos GetStreamPosition(bool Read = true) = 0;
                 /// @brief Gets whether or not the current position is at the end of the file/stream.
                 /// @return Returns true if the current position has reached the end of the stream, false otherwise.
                 virtual bool EoF() const = 0;
                 /// @brief Closes the stream to the resource.
                 virtual void Close() = 0;
-        };//DataStream
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This represents a stream to a buffer in memory.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB MemoryDataStream : public DataStream
-        {
-            protected:
-                bool FreeBuffer;
-                UInt8* BufferStart;
-                UInt8* BufferPos;
-                UInt8* BufferEnd;
-            public:
-                /// @brief Buffer creation constructor.
-                /// @param BufferSize The size of the buffer to be created.
-                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
-                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
-                MemoryDataStream(const size_t& BufferSize, bool FreeOnClose = true, bool ReadOnly = false);
-                /// @brief Named buffer creation constructor.
-                /// @param Name The name of the stream.
-                /// @param BufferSize The size of the buffer to be created.
-                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
-                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
-                MemoryDataStream(const String& Name, const size_t& BufferSize, bool FreeOnClose = true, bool ReadOnly = false);
-                /// @brief Pre-made buffer constructor.
-                /// @param Buffer The premade buffer to stream from.
-                /// @param BufferSize The size of the buffer to stream to/from.
-                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
-                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
-                MemoryDataStream(void* Buffer, const size_t& BufferSize, bool FreeOnClose = false, bool ReadOnly = false);
-                /// @brief Named pre-made buffer constructor.
-                /// @param Name The name of the stream.
-                /// @param Buffer The premade buffer to stream from.
-                /// @param BufferSize The size of the buffer to stream to/from.
-                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
-                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
-                MemoryDataStream(const String& Name, void* Buffer, const size_t& BufferSize, bool FreeOnClose = false, bool ReadOnly = false);
-                /// @brief Class destructor.
-                virtual ~MemoryDataStream();
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+                // Formatting Methods
 
-                /// @brief Gets a pointer to the start of the memory buffer used by this stream.
-                /// @return Returns a pointer to the start of the memory buffer.
-                UInt8* GetBufferStart() const;
-                /// @brief Gets a pointer to the current position in the memory buffer used by this stream.
-                /// @return Returns a pointer to the current position in the memory buffer.
-                UInt8* GetBufferPosition() const;
-                /// @brief Gets a pointer to the end of the memory buffer used by this stream.
-                /// @return Returns a pointer to the end of the memory buffer.
-                UInt8* GetBufferEnd() const;
-                /// @brief Sets whether or not you want this stream to free the memory buffer when it closes.
-                /// @param True if you want this stream to free the buffer when it closes, false if you want it preserved.
-                void SetFreeOnClose(bool FreeOnClose);
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Stream Access and Manipulation
-
-                /// @copydoc DataStream::ReadLine
+                /// @brief Gets the contents of the stream as a string.
+                /// @return Returns a string with the contents of the stream.
+                virtual String GetAsString();
+                /// @brief Reads a single line from a string.
+                /// @param Buffer Pointer to the buffer to copy to.
+                /// @param MaxCount The maximum number of bytes to read.  Usually you want this to be your buffer size.
+                /// @param Delim The character that marks the end of a line.
+                /// @return Returns the number of bytes actually read, not including the Delimiter.
                 virtual size_t ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim = "\n");
-                /// @copydoc DataStream::SkipLine
+                /// @brief Gets the contents of the current line in the stream.
+                /// @param Trim Whether or not to trim whitespaces on both sides of the string.
+                /// @return Returns a string containing characters from the current position in the stream to the end of the line.
+                virtual String GetLine(bool Trim = true);
+                /// @brief Moves the current position to the start of the next line.
+                /// @param Delim The character that marks the end of a line.
+                /// @return Returns the number of bytes skipped.
                 virtual size_t SkipLine(const String& Delim = "\n");
-                /// @copydoc DataStream::Read
-                virtual size_t Read(void* Buffer, const size_t& Count);
-                /// @copydoc DataStream::Write
-                virtual size_t Write(const void* Buffer, const size_t& Count);
-                /// @copydoc DataStream::Skip
-                virtual void Skip(const Integer& Count);
-                /// @copydoc DataStream::Seek
-                virtual void Seek(const size_t& Position);
-                /// @copydoc DataStream::Tell
-                virtual size_t Tell();
-                /// @copydoc DataStream::EoF
-                virtual bool EoF() const;
-                /// @copydoc DataStream::Close
-                virtual void Close();
-        };//MemoryDataStream
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This represents a stream to a file on disk using the C file API.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB FileHandleDataStream : public DataStream
-        {
-            protected:
-                FILE* FileHandle;
-            public:
-                /// @brief Class constructor.
-                /// @param Handle The handle to the file being streamed to/from.
-                /// @param Mode The access mode for the stream.
-                FileHandleDataStream(FILE* Handle, const DataStream::AccessMode& Mode = DataStream::DS_Read);
-                /// @brief Named constructor.
-                /// @param Name The name of the stream.
-                /// @param Handle The handle to the file being streamed to/from.
-                /// @param Mode The access mode for the stream.
-                FileHandleDataStream(const String& Name, FILE* Handle, const DataStream::AccessMode& Mode = DataStream::DS_Read);
-                /// @brief Self loading constructor.
-                /// @param Name The name of the file to be loaded.  This will also become the name of the stream.
-                /// @param Path The path to the file being loaded.
-                /// @param Flags Additional conditions to apply when opening the file.  See DataStream::StreamFlags enum for more information.
-                /// @param Mode The access mode for the stream.
-                FileHandleDataStream(const String& Name, const String& Path, const DataStream::StreamFlags& Flags = DataStream::SF_None, const DataStream::AccessMode& Mode = DataStream::DS_Read);
-                /// @brief Class destructor.
-                virtual ~FileHandleDataStream();
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Stream Access and Manipulation
-
-                /// @copydoc DataStream::Read
-                virtual size_t Read(void* Buffer, const size_t& Count);
-                /// @copydoc DataStream::Write
-                virtual size_t Write(const void* Buffer, const size_t& Count);
-                /// @copydoc DataStream::Skip
-                virtual void Skip(const Integer& Count);
-                /// @copydoc DataStream::Seek
-                virtual void Seek(const size_t& Position);
-                /// @copydoc DataStream::Tell
-                virtual size_t Tell();
-                /// @copydoc DataStream::EoF
-                virtual bool EoF() const;
-                /// @copydoc DataStream::Close
-                virtual void Close();
-        };//FileHandleDataStream
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This represents a stream to a file on disk using the C++ file stream API.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB FileStreamDataStream : public DataStream
-        {
-            protected:
-                std::fstream* FileStream;
-            public:
-                /// @brief Class constructor.
-                /// @param Stream The stream to the file being streamed to/from.
-                /// @param Mode The access mode for the stream.
-                FileStreamDataStream(std::fstream* Stream, const DataStream::AccessMode& Mode = DataStream::DS_Read);
-                /// @brief Named constructor.
-                /// @param Name The name of the stream.
-                /// @param Stream The stream to the file being streamed to/from.
-                /// @param Mode The access mode for the stream.
-                FileStreamDataStream(const String& Name, std::fstream* Stream, const DataStream::AccessMode& Mode = DataStream::DS_Read);
-                /// @brief Self loading constructor.
-                /// @param Name The name of the file to be loaded.  This will also become the name of the stream.
-                /// @param Path The path to the file being loaded.
-                /// @param Flags Additional conditions to apply when opening the file.  See DataStream::StreamFlags enum for more information.
-                /// @param Mode The access mode for the stream.
-                FileStreamDataStream(const String& Name, const String& Path, const DataStream::StreamFlags& Flags = DataStream::SF_None, const DataStream::AccessMode& Mode = DataStream::DS_Read);
-                /// @brief Class destructor.
-                virtual ~FileStreamDataStream();
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Stream Access and Manipulation
-
-                /// @copydoc DataStream::Read
-                virtual size_t Read(void* Buffer, const size_t& Count);
-                /// @copydoc DataStream::Write
-                virtual size_t Write(const void* Buffer, const size_t& Count);
-                /// @copydoc DataStream::Skip
-                virtual void Skip(const Integer& Count);
-                /// @copydoc DataStream::Seek
-                virtual void Seek(const size_t& Position);
-                /// @copydoc DataStream::Tell
-                virtual size_t Tell();
-                /// @copydoc DataStream::EoF
-                virtual bool EoF() const;
-                /// @copydoc DataStream::Close
-                virtual void Close();
-        };//FileStreamDataStream
+        };//DataStream
+#endif //USENEWDATASTREAM
     }//Resource
 }//Mezzanine
 
