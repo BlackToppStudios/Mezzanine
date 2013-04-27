@@ -47,16 +47,69 @@ namespace Mezzanine
 {
     namespace Audio
     {
+        /// @enum AudioBitConfig
+		/// @brief Used to describe the different bit configurations supported by this audio system.
+		enum AudioBitConfig
+		{
+		    ABC_8Bit_Mono,
+		    ABC_8Bit_Stereo,
+		    ABC_16Bit_Mono,
+		    ABC_16Bit_Stereo,
+		    ABC_24Bit_Mono,
+		    ABC_24Bit_Stereo
+		};
+
+        /// @enum AudioEncoding
+        /// @brief The encoding to use when reading or writing an audio buffer.
+        enum AudioEncoding
+        {
+            AE_RAW    = 1,  ///< Unknown or error condition.
+            AE_WAV    = 2,  ///< Used in .wav files.
+            AE_FLAC   = 3,  ///< Used in .flac files.
+            AE_VORBIS = 4,  ///< Used in .ogg files.
+            AE_MP3    = 5   ///< Used in .mp3 files.
+        };
+
+		/// @enum EffectType
+		/// @brief Used by the @ref iEffect class to describe what type of effect it is.
+        enum EffectType
+        {
+            ET_Null,
+            ET_EAX_Reverb,
+            ET_Reverb,
+            ET_Chorus,
+            ET_Distortion,
+            ET_Echo,
+            ET_Flanger,
+            ET_Frequency_Shifter,
+            ET_Vocal_Morpher,
+            ET_Pitch_Shifter,
+            ET_Ring_Modulator,
+            ET_Autowah,
+            ET_Compressor,
+            ET_Equalizer,
+            ET_Count
+        };
+
+		/// @enum FilterType
+		/// @brief Used by the @ref iFilter class to describe what type of filter it is.
+        enum FilterType
+        {
+            FT_Null,
+            FT_LowPass,
+            FT_HighPass,
+            FT_BandPass,
+            FT_Count
+        };
+
         /// @enum SoundType
-        /// @brief Used by the sound class to determine what type of sound it is.
-        /// @details Classifying what type of sound a sound instance is allows it to be affected by functions
-        /// that globally affect that pool.
+        /// @brief Used by the @ref iSound class to describe what type of sound it is.
         enum SoundType
         {
-            ST_Ambient,  ///< Environmental sounds.  Bird's chirping, water washing against rocks, etc.
-            ST_Dialog,   ///< Character sounds and speech.
-            ST_Effect,   ///< Various effects such as objects colliding, explosions, guns firing, etc.
-            ST_Music     ///< Self explanitory.  The game SoundTrack.
+            ST_Ambient = 1,  ///< Environmental sounds.  Bird's chirping, water washing against rocks, etc.
+            ST_Dialog  = 2,  ///< Character sounds and speech.
+            ST_Effect  = 3,  ///< Various effects such as objects colliding, explosions, guns firing, etc.
+            ST_Music   = 4   ///< Self explanitory.  The game SoundTrack.
         };
     }//audio
 }//Mezzanine
