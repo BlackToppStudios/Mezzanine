@@ -42,7 +42,7 @@
 
 #include "objectsettings.h"
 #include "resourcemanager.h"
-#include "Resource/datastream.h"
+#include "Resource/filestream.h"
 #include "stringtool.h"
 
 namespace Mezzanine
@@ -376,7 +376,8 @@ namespace Mezzanine
         // Open the stream and load the document
         try
         {
-            Resource::FileStreamDataStream SettingsStream(FileName,Path);
+            /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+            Resource::FileStream SettingsStream(FileName,Path);
             SettingsDoc.Load(SettingsStream);
         }
         catch( FileNotFoundException Ex )
@@ -423,7 +424,8 @@ namespace Mezzanine
         if(GroupNames.empty()) SaveSettingsToXML(RootNode);
         else SaveSettingsToXML(GroupNames,RootNode);
         // Open a stream to the saving file
-        Resource::FileStreamDataStream SettingsStream(FileName,Path,Resource::DataStream::SF_Truncate,Resource::DataStream::DS_Write);
+        /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+        Resource::FileStream SettingsStream(FileName,Path,Resource::DataStream::SF_Truncate | Resource::DataStream::SF_Write);
         SettingsDoc.Save(SettingsStream,"\t",XML::FormatIndent);
     }
 

@@ -241,7 +241,8 @@ namespace Mezzanine
 
         // Open and load the initializer doc.
         ResourceManager* ResourceMan = GetResourceManager();
-        Resource::FileStreamDataStream InitStream(InitializerFile,EngineDataPath);
+        /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+        Resource::FileStream InitStream(InitializerFile,EngineDataPath);
         XML::Document InitDoc;
         InitDoc.Load(InitStream);
 
@@ -327,7 +328,8 @@ namespace Mezzanine
         // Load additional resource groups
         /*if(!ResourceInit.empty())
         {
-            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
+            /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+            Resource::FileStream ResourceStream(ResourceInit,EngineDataPath);
             XML::Document ResourceDoc;
             ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.
@@ -377,7 +379,8 @@ namespace Mezzanine
         // Load additional resource groups
         if(!ResourceInit.empty())
         {
-            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
+            /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+            Resource::FileStream ResourceStream(ResourceInit,EngineDataPath);
             XML::Document ResourceDoc;
             ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.

@@ -59,7 +59,9 @@ namespace Mezzanine
 #include "Resource/assetgroup.h"
 #include "Resource/assethandler.h"
 #include "Resource/datastream.h"
+#include "Resource/filestream.h"
 #include "Resource/inputstream.h"
+#include "Resource/memorystream.h"
 #include "Resource/textsettingsfile.h"
 
 #endif
