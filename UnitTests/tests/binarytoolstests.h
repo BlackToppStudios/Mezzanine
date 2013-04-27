@@ -483,12 +483,60 @@ class binarytoolstests : public UnitTestGroup
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("BinaryTools::Concatenation", temp);
+                AddTestResult("BinaryTools::BinaryBuffer::Concatenation", temp);
             }else{
-                AddTestResult("BinaryTools::Concatenation", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::Concatenation", Skipped);
             }
 
+            if (RunAutomaticTests)
+            {
+                TestResult temp;
 
+                BinaryBuffer Blank1;
+                if( 0 == Blank1.Binary && 0 == Blank1.Size)
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::BlankDefaultConstruction", temp);
+
+                BinaryBuffer Blank2(Blank1);
+                if( 0 == Blank2.Binary && 0 == Blank2.Size)
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::BlankCopyConstruction", temp);
+
+                BinaryBuffer Blank3(4);
+                Blank3[0]='F';
+                Blank3[1]='u';
+                Blank3[2]='l';
+                Blank3[3]='l';
+                Blank3=Blank1;
+                if( 0 == Blank3.Binary && 0 == Blank3.Size)
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::BlankAssignment", temp);
+
+                temp=Failed;
+                try
+                {
+                    Blank3.CreateBuffer();
+                }catch(const InvalidStateException& e){
+                    temp=Success;
+                }
+                AddTestResult("BinaryTools::BinaryBuffer::BlankBufferCreation", temp);
+
+            }else{
+                AddTestResult("BinaryTools::BinaryBuffer::BlankDefaultConstruction", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::BlankCopyConstruction", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::BlankAssignment", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::BlankBufferCreation", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::", Skipped);
+            }
 
         }
 };

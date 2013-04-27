@@ -59,6 +59,10 @@ namespace Mezzanine
         /// Where possible this class performs no speculative allocation unless explicitly requested to. In other
         /// this should have allocated exactly as many bytes are indicated by the member Size, no more and no less.
         /// This will tend to not allocate memory unless an operation on it is specified that it does so.
+        /// @n @n
+        /// Whenever this needs to allocated memory it will use the Size member for determining the amount to allocate. If that
+        /// is 0 an InvalidStateException exception is thrown. Bounds checking, if performed, only occur
+        /// MEZZ_DEBUG is enabled.
         class MEZZ_LIB BinaryBuffer
         {
             public:
@@ -123,6 +127,7 @@ namespace Mezzanine
                 void DeleteBuffer(Whole NewSize=0);
 
                 /// @brief This will create a buffer with size matching the this->Size and point this->Binary to that Buffer
+                /// @warning This does not delete an old buffer, delete that before calling this.
                 void CreateBuffer();
 
                 /// @brief Get the binary buffer as a base64 string

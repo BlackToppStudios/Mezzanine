@@ -84,22 +84,22 @@ namespace Mezzanine
                 int LuaScriptWriter(lua_State *State, const void* Buffer, size_t Size, void* BinBuff)
                 {
                     BinaryTools::BinaryBuffer* CompilingScript = reinterpret_cast<BinaryTools::BinaryBuffer*>(BinBuff);
-                    CompilingScript->DeleteBuffer(Size);
-                    CompilingScript->CreateBuffer();
-                    memcpy(CompilingScript->Binary, Buffer, Size);
+                    CompilingScript->Concatenate(
+                                    (BinaryTools::BinaryBuffer::Byte*) Buffer,
+                                    Size
+                                );
                 }
             }
 
             void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
             {
-                // Need to do something here to initiate compile
+                ThrowFromLuaErrorCode(
+                    luaL_loadstring(this->State, ScriptToCompile->SourceCode.c_str())
+                );
 
                 ThrowFromLuaErrorCode(
                     lua_dump(this->State, LuaScriptWriter, &(ScriptToCompile->CompiledByteCode) )
                 );
-
-
-
             }
 
             void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)

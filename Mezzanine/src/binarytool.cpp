@@ -98,6 +98,9 @@ namespace Mezzanine
             /// @param Results A reference to a @ref BinaryBuffer with the Size set correctly and a Buffer Allocated, this will be the output.
             void Base64DecodeImpl(const String& EncodedString, BinaryBuffer& Results)
             {
+                if(Results.Binary==0 || Results.Size==0)
+                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Cannot encode an empty buffer."); }
+
                 String::const_iterator Progress = EncodedString.begin();
                 Whole Output = 0;
 
@@ -152,8 +155,13 @@ namespace Mezzanine
         BinaryBuffer::BinaryBuffer(const BinaryBuffer& Other)
         {
             this->Size = Other.Size;
-            this->Binary = new Byte[this->Size*sizeof(Byte)];
-            memcpy(this->Binary,Other.Binary,this->Size);
+            if(Other.Size && Other.Binary)
+            {
+                this->Binary = new Byte[this->Size*sizeof(Byte)];
+                memcpy(this->Binary,Other.Binary,this->Size);
+            }else{
+                this->Binary = 0;
+            }
         }
 
         BinaryBuffer::BinaryBuffer(const String& DataString, bool IsBase64)
@@ -176,8 +184,13 @@ namespace Mezzanine
             if (RH.Binary == this->Binary)
                 { MEZZ_EXCEPTION(Exception::INVALID_ASSIGNMENT, "Attempted a self assignment of a BinaryBuffer"); }
             DeleteBuffer(RH.Size);
-            CreateBuffer();
-            memcpy(this->Binary,RH.Binary,this->Size);
+            if(RH.Size && RH.Binary)
+            {
+                CreateBuffer();
+                memcpy(this->Binary,RH.Binary,this->Size);
+            }else{
+                this->Binary = 0;
+            }
             return *this;
         }
 
@@ -193,13 +206,32 @@ namespace Mezzanine
         }
 
         void BinaryBuffer::CreateBuffer()
-            { this->Binary = new Byte[this->Size*sizeof(Byte)]; }
+        {
+            if(Size)
+            {
+                this->Binary = new Byte[this->Size*sizeof(Byte)];
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Cannot create a 0 length Buffer.");
+            }
+        }
 
         String BinaryBuffer::ToBase64String()
-            { return Base64Encode((UInt8*)Binary,Size*sizeof(Byte)); }
+        {
+            if(!Size || !Binary)
+            {
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Cannot encode 0 length or missing buffer.");
+            }
+            return Base64Encode((UInt8*)Binary,Size*sizeof(Byte));
+        }
 
         String BinaryBuffer::ToString()
-            { return String((char*)(this->Binary),this->Size*sizeof(Byte)); }
+        {
+            if(!Size || !Binary)
+            {
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Cannot construct string from 0 length or missing buffer.");
+            }
+            return String((char*)(this->Binary),this->Size*sizeof(Byte));
+        }
 
         void BinaryBuffer::CreateFromBase64(const String& EncodedBinaryData)
         {

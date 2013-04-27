@@ -109,7 +109,10 @@ namespace Mezzanine
                 { return Args.at(ArgNumber); }
 
             void Lua51Script::SetSourceCode(const String& Code)
-                { SourceCode = Code; }
+            {
+                CompiledByteCode.DeleteBuffer();
+                SourceCode = Code;
+            }
 
             String Lua51Script::GetSourceCode() const
                 { return SourceCode; }
