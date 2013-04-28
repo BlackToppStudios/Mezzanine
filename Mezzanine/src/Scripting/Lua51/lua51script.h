@@ -135,11 +135,54 @@ namespace Mezzanine
 
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetAllReturns
                     virtual ArgumentSet GetAllReturns() const;
+
+
+
+                private:
+                    /// @brief This is the Counter that stores how many references exist
+                    Whole RefCount;
+
+                public:
+                    /// @brief Increase the reference count by one and return the updated count.
+                    /// @return The updated count;
+                    Whole IncrementReferenceCount()
+                        { return ++RefCount; }
+
+                    /// @brief Decrease the reference count by one and return the updated count.
+                    /// @return The updated count;
+                    Whole DecrementReferenceCount()
+                        { return --RefCount; }
+
+                    /// @brief Gets the actual pointer to the target.
+                    /// @return A Pointer of the targeted type to the object being managed.
+                    Lua51Script* GetReferenceCountPointer()
+                        { return this; }
+
+                    /// @brief Gets a reference to the reference counter, which on this is this
+                    /// @return A reference to this.
+                    Lua51Script& GetReferenceCountReference()
+                        { return *this; }
+
+                    /// @brief Get the current amount of references.
+                    /// @return A Whole with the current reference count
+                    Whole GetReferenceCount()
+                        { return RefCount; }
+
+
             };
-
-
         } // Lua
     } // Scripting
+
+    template <>
+    class ReferenceCountTraits <Scripting::Lua::Lua51Script>
+    {
+        public:
+            typedef Scripting::Lua::Lua51Script ManagedType;
+            typedef Scripting::Lua::Lua51Script * PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+    };
 } // Mezzanine
 
 
