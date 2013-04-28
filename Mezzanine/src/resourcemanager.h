@@ -94,7 +94,7 @@ namespace Mezzanine
             /// @details Standard manager constructor.
             /// @param EngineDataPath The directory for engine specific data.
             /// @param ArchiveType The name of the type of archive at this path.
-            ResourceManager(const String& EngineDataPath = ".", ArchiveType ArchiveType_ = FileSystem);
+            ResourceManager(const String& EngineDataPath = ".", ArchiveType ArchType = FileSystem);
 
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
@@ -165,8 +165,8 @@ namespace Mezzanine
             /// @param Type The kind of file system the location can be found in. @n
             /// Options are: filesystem, zip.
             /// @param Group The name of the group the resources at this location belong to.  If the group does not exist it will be created.
-            /// @param recursive Whether or not to search sub-directories.
-            void AddAssetLocation(const String& Location, ArchiveType Type, const String& Group, const bool recursive=false);
+            /// @param Recursive Whether or not to search sub-directories.
+            void AddAssetLocation(const String& Location, ArchiveType Type, const String& Group, const bool Recursive = false);
             /// @brief Creates an asset group.
             /// @param GroupName The name to be given to the created asset group.
             void CreateAssetGroup(const String& GroupName);

@@ -88,12 +88,12 @@ namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = 0;
 
-    ResourceManager::ResourceManager(const String& EngineDataPath, Mezzanine::ArchiveType ArchiveType_)
+    ResourceManager::ResourceManager(const String& EngineDataPath, Mezzanine::ArchiveType ArchType)
     {
         this->Priority = 60;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         EngineDataDir = EngineDataPath;
-        this->AddAssetLocation(EngineDataPath, ArchiveType_, "EngineData", false);
+        this->AddAssetLocation(EngineDataPath, ArchType, "EngineData", false);
     }
 
     ResourceManager::ResourceManager(XML::Node& XMLNode)
@@ -343,9 +343,9 @@ namespace Mezzanine
         ResourceGroups.push_back(Name);
     }
 
-    void ResourceManager::AddAssetLocation(const String& Location, ArchiveType Type, const String& Group, bool recursive)
+    void ResourceManager::AddAssetLocation(const String& Location, ArchiveType Type, const String& Group, bool Recursive)
     {
-        this->OgreResource->addResourceLocation(Location, GetStringFromArchiveType(Type), Group, recursive);
+        this->OgreResource->addResourceLocation(Location, GetStringFromArchiveType(Type), Group, Recursive);
         AddAssetGroupName(Group);
     }
 
