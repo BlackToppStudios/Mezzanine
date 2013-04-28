@@ -351,7 +351,7 @@ namespace Mezzanine
                 /// @param OutputFrequency Frequency of the output audio, -1 for the devices default.
                 /// @param EAXEffectSlots The number of effects per sound allowed to be applied.
                 /// @return Returns true if the device was initialized successfully.  False on a failure.
-                virtual bool InitializeDevice(ConstString& DeviceName, int OutputFrequency = -1, int EAXEffectSlots = 4) = 0;
+                virtual bool InitializeDevice(ConstString& DeviceName, Integer OutputFrequency = -1, Integer EAXEffectSlots = 4) = 0;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Decoder Management
@@ -360,27 +360,27 @@ namespace Mezzanine
                 /// @param ToBeAdded A pointer to the iDecoderFactory to be added.
                 void AddDecoderFactory(iDecoderFactory* ToBeAdded);
                 /// @brief Checks if a iDecoderFactory is already registered with this manager.
-                /// @param Format The file format supported by the iDecoderFactory to look for.
-                /// @return Returns true if a iDecoderFactory supporting that file format exists, false otherwise.
-                bool DecoderFactoryExists(const AudioFileFormat Format);
-                /// @brief Gets an iDecoderFactory by it's supported file format.
-                /// @param Format The file format supported by the iDecoderFactory to retrieve.
+                /// @param Format The encoding supported by the iDecoderFactory to look for.
+                /// @return Returns true if a iDecoderFactory supporting that encoding exists, false otherwise.
+                bool DecoderFactoryExists(const Encoding Format);
+                /// @brief Gets an iDecoderFactory by it's supported encoding.
+                /// @param Format The encoding supported by the iDecoderFactory to retrieve.
                 /// @return Returns a pointer to the specified iDecoderFactory.
-                iDecoderFactory* GetDecoderFactory(const AudioFileFormat Format);
+                iDecoderFactory* GetDecoderFactory(const Encoding Format);
                 /// @brief Removes (but does not destroy) an iDecoderFactory.
                 /// @param ToBeRemoved A pointer to the iDecoderFactory to be removed.
                 void RemoveDecoderFactory(iDecoderFactory* ToBeRemoved);
                 /// @brief Removes (but does not destroy) an iDecoderFactory.
-                /// @param Format The file format supported by the iDecoderFactory to remove.
-                void RemoveDecoderFactory(const AudioFileFormat Format);
+                /// @param Format The encoding supported by the iDecoderFactory to remove.
+                void RemoveDecoderFactory(const Encoding Format);
                 /// @brief Removes (but does not destroy) all registered iDecoderFactory instances.
                 void RemoveAllDecoderFactories();
                 /// @brief Destroy a registered iDecoderFactory.
                 /// @param ToBeDestroyed A pointer to the iDecoderFactory to be destroyed.
                 void DestroyDecoderFactory(iDecoderFactory* ToBeDestroyed);
                 /// @brief Destroy a registered iDecoderFactory.
-                /// @param Format The file format supported by the iDecoderFactory to be destroyed.
-                void DestroyDecoderFactory(const AudioFileFormat Format);
+                /// @param Format The encoding supported by the iDecoderFactory to be destroyed.
+                void DestroyDecoderFactory(const Encoding Format);
                 /// @brief Destroys all registered iDecoderFactory instances.
                 void DestroyAllDecoderFactories();
 
