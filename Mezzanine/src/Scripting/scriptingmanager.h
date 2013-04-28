@@ -123,7 +123,7 @@ namespace Mezzanine
                 /// @brief Comvert a string into a Script that is compiled and ready for use.
                 /// @param SourceToCompile A string containing source code in the target language.
                 /// @return The Script compiled and ready for use.
-                virtual CountedPtr<iScriptCompilable> Compile(String SourceToCompile) = 0;
+                virtual CountedPtr<iScriptCompilable> Compile(const String& SourceToCompile) = 0;
         };
 
     }// Scripting

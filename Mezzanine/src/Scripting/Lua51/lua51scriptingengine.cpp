@@ -131,27 +131,37 @@ namespace Mezzanine
             Lua51ScriptingEngine::~Lua51ScriptingEngine()
                 { lua_close(State); }
 
-            CountedPtr<iScript> Lua51ScriptingEngine::Execute(String ScriptSource)
+            CountedPtr<iScript> Lua51ScriptingEngine::Execute(const String& ScriptSource)
             {
-                ThrowFromLuaErrorCode(
-                    luaL_dostring(State,ScriptSource.c_str())
-                );
-                luaopen_base(State);
+                //CountedPtr<iScriptCompilable> Results = static_cast<CountedPtr<iScript> >(Compile(ScriptSource));
+                //Execute(Results);
+                //return Results;//CountedPtr<iScriptCompilable>
             }
 
             void Lua51ScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)
             {
-
+                //if there is a compiled script load it and call it
+                // otherwise use luaL-dostring
             }
 
             void Lua51ScriptingEngine::Compile(CountedPtr<iScriptCompilable> ScriptToCompile)
             {
-
+                Lua51Script* CompilationSource = dynamic_cast<Lua51Script*>(ScriptToCompile.get());
+                if(CompilationSource)
+                {
+                    Compile(CompilationSource);
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Something other than a Lua51 script was passed to the Lua51 scripting engine and could not be compiled.")
+                }
             }
 
-            CountedPtr<iScriptCompilable> Lua51ScriptingEngine::Compile(String SourceToCompile)
+            CountedPtr<iScriptCompilable> Lua51ScriptingEngine::Compile(const String& SourceToCompile)
             {
-
+                CountedPtr<iScriptCompilable> Results(
+                                new Lua51Script(SourceToCompile,this)
+                            );
+                Compile(Results);
+                return Results;
             }
 
             String Lua51ScriptingEngine::GetImplementationTypeName() const

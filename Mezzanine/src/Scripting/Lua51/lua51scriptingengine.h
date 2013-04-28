@@ -100,7 +100,7 @@ namespace Mezzanine
 
 
                 public:
-                    /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries opn a little easier.
+                    /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries open a little easier.
                     enum Lua51Libraries
                     {
                         BaseLib        = 1,      ///< Correlates to @ref Lua51ScriptingEngine::OpenBaseLibrary
@@ -122,13 +122,13 @@ namespace Mezzanine
 
                     virtual ~Lua51ScriptingEngine();
 
-                    virtual CountedPtr<iScript> Execute(String ScriptSource);
+                    virtual CountedPtr<iScript> Execute(const String& ScriptSource);
 
                     virtual void Execute(CountedPtr<iScript> ScriptToRun);
 
                     virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile);
 
-                    virtual CountedPtr<iScriptCompilable> Compile(String SourceToCompile);
+                    virtual CountedPtr<iScriptCompilable> Compile(const String& SourceToCompile);
 
                     /// @copydoc ManagerBase::GetImplementationTypeName()
                     virtual String GetImplementationTypeName() const;

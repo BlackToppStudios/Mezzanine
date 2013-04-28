@@ -82,7 +82,7 @@ namespace Mezzanine
                     /// @brief A set of the arguments being passed into the Lua script
                     ArgumentSet Args;
 
-                    /// @brief A set of all the values the Lua script returned teh last time it was executed.
+                    /// @brief A set of all the values the Lua script returned the last time it was executed.
                     ArgumentSet Returns;
 
                 public:

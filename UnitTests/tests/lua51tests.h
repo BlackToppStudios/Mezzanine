@@ -56,8 +56,8 @@ class lua51tests : public UnitTestGroup
             if (RunAutomaticTests)
             {
                 {
-                    Scripting::Lua::Lua51ScriptingEngine LuaSafe(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);
-                    Scripting::Lua::Lua51ScriptingEngine LuaEverything(Scripting::Lua::Lua51ScriptingEngine::AllLibs);
+                    //Scripting::Lua::Lua51ScriptingEngine LuaSafe(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);
+                    //Scripting::Lua::Lua51ScriptingEngine LuaEverything(Scripting::Lua::Lua51ScriptingEngine::AllLibs);
 
 
 
