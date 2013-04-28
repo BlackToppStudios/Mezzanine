@@ -1014,34 +1014,20 @@ namespace Mezzanine
 
     ManagerBase* Entresol::GetManager(const ManagerBase::ManagerType& ManagersToGet, short unsigned int WhichOne)
     {
-        #ifdef MEZZDEBUG
-        //this->LogStream << "Calling Entresol::GetManager(Type:"<<ManagersToGet<<") searching through "<<this->ManagerList.size()<<" Items.";
-        #endif
         if(this->ManagerList.empty())
         {
-            return 0;
+            return NULL;
         }else{
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
                 if( (*ManIter)->GetInterfaceType() == ManagersToGet )
                 {
-                    if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
-                    {
-                        #ifdef MEZZDEBUG
-                        //this->LogStream << " - Got:" << *ManIter;
-                        //this->Log();
-                        #endif
-                        return *ManIter;
-                    }else{
-                        --WhichOne;
-                    }
+                    if(0==WhichOne) return *ManIter; // we use our copy of WhichOne as a countdown to 0
+                    else --WhichOne;
                 }
             }
         }
-        #ifdef MEZZDEBUG
-        //this->LogStream << " - Got:Nothing" << endl;
-        #endif
-        return 0;
+        return NULL;
     }
 
     void Entresol::UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority_)
@@ -1079,72 +1065,72 @@ namespace Mezzanine
         }
     }
 
-    ActorManager* Entresol::GetActorManager(const short unsigned int &WhichOne)
+    ActorManager* Entresol::GetActorManager(const UInt16 WhichOne)
     {
         return dynamic_cast<ActorManager*> (this->GetManager(ManagerBase::ActorManager, WhichOne));
     }
 
-    AudioManager* Entresol::GetAudioManager(const short unsigned int &WhichOne)
+    AudioManager* Entresol::GetAudioManager(const UInt16 WhichOne)
     {
         return dynamic_cast<AudioManager*> (this->GetManager(ManagerBase::AudioManager, WhichOne));
     }
 
-    CameraManager* Entresol::GetCameraManager(const short unsigned int &WhichOne)
+    CameraManager* Entresol::GetCameraManager(const UInt16 WhichOne)
     {
         return dynamic_cast<CameraManager*> (this->GetManager(ManagerBase::CameraManager, WhichOne));
     }
 
-    CollisionShapeManager* Entresol::GetCollisionShapeManager(const short unsigned int &WhichOne)
+    CollisionShapeManager* Entresol::GetCollisionShapeManager(const UInt16 WhichOne)
     {
         return dynamic_cast<CollisionShapeManager*> (this->GetManager(ManagerBase::CollisionShapeManager, WhichOne));
     }
 
-    EventManager* Entresol::GetEventManager(const short unsigned int &WhichOne)
+    EventManager* Entresol::GetEventManager(const UInt16 WhichOne)
     {
         return dynamic_cast<EventManager*> (this->GetManager(ManagerBase::EventManager, WhichOne));
     }
 
-    GraphicsManager* Entresol::GetGraphicsManager(const short unsigned int &WhichOne)
+    GraphicsManager* Entresol::GetGraphicsManager(const UInt16 WhichOne)
     {
         return dynamic_cast<GraphicsManager*> (this->GetManager(ManagerBase::GraphicsManager, WhichOne));
     }
 
-    InputManager* Entresol::GetInputManager(const short unsigned int &WhichOne)
+    InputManager* Entresol::GetInputManager(const UInt16 WhichOne)
     {
         return dynamic_cast<InputManager*> (this->GetManager(ManagerBase::InputManager, WhichOne));
     }
 
-    MeshManager* Entresol::GetMeshManager(const short unsigned int &WhichOne)
+    MeshManager* Entresol::GetMeshManager(const UInt16 WhichOne)
     {
         return dynamic_cast<MeshManager*> (this->GetManager(ManagerBase::MeshManager, WhichOne));
     }
     #ifdef MEZZNETWORK
-    NetworkManager* Entresol::GetNetworkManager(const short unsigned int &WhichOne)
+    NetworkManager* Entresol::GetNetworkManager(const UInt16 WhichOne)
     {
         return dynamic_cast<NetworkManager*> (this->GetManager(ManagerBase::NetworkManager, WhichOne));
     }
     #endif
-    PhysicsManager* Entresol::GetPhysicsManager(const short unsigned int &WhichOne)
+    PhysicsManager* Entresol::GetPhysicsManager(const UInt16 WhichOne)
     {
         return dynamic_cast<PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));
     }
 
-    SceneManager* Entresol::GetSceneManager(const short unsigned int &WhichOne)
+    SceneManager* Entresol::GetSceneManager(const UInt16 WhichOne)
     {
         return dynamic_cast<SceneManager*> (this->GetManager(ManagerBase::SceneManager, WhichOne));
     }
 
-    ResourceManager* Entresol::GetResourceManager(const short unsigned int &WhichOne)
+    ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
     {
         return dynamic_cast<ResourceManager*> (this->GetManager(ManagerBase::ResourceManager, WhichOne));
     }
 
-    TimerManager* Entresol::GetTimerManager(const short unsigned int &WhichOne)
+    TimerManager* Entresol::GetTimerManager(const UInt16 WhichOne)
     {
         return dynamic_cast<TimerManager*> (this->GetManager(ManagerBase::TimerManager, WhichOne));
     }
 
-    UIManager* Entresol::GetUIManager(const short unsigned int &WhichOne)
+    UIManager* Entresol::GetUIManager(const UInt16 WhichOne)
     {
         return dynamic_cast<UIManager*> (this->GetManager(ManagerBase::UIManager, WhichOne));
     }

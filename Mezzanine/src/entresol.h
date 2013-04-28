@@ -643,72 +643,72 @@ namespace Mezzanine
             /// @brief This gets the ActorManager from the manager list.
             /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
             /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
-            ActorManager* GetActorManager(const short unsigned int &WhichOne=0);
+            ActorManager* GetActorManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the AudioManager from the manager list.
             /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.
             /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.
-            AudioManager* GetAudioManager(const short unsigned int &WhichOne=0);
+            AudioManager* GetAudioManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the CameraManager from the manager list.
             /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.
             /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
-            CameraManager* GetCameraManager(const short unsigned int &WhichOne=0);
+            CameraManager* GetCameraManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the CollisionShapeManager from the manager list.
             /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
             /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.
-            CollisionShapeManager* GetCollisionShapeManager(const short unsigned int &WhichOne=0);
+            CollisionShapeManager* GetCollisionShapeManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the EventManager from the manager list.
             /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
             /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
-            EventManager* GetEventManager(const short unsigned int &WhichOne=0);
+            EventManager* GetEventManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the GraphicsManager from the manager list.
             /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
             /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
-            GraphicsManager* GetGraphicsManager(const short unsigned int &WhichOne=0);
+            GraphicsManager* GetGraphicsManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the InputManager from the manager list.
             /// @param WhichOne If you have multiple InputManagers this will choose which one to return.
             /// @return This returns a pointer to a InputManager, or a NULL pointer if no matching manager exists.
-            InputManager* GetInputManager(const short unsigned int &WhichOne=0);
+            InputManager* GetInputManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the MeshManager from the manager list.
             /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.
             /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.
-            MeshManager* GetMeshManager(const short unsigned int &WhichOne=0);
+            MeshManager* GetMeshManager(const UInt16 WhichOne = 0);
 #ifdef MEZZNETWORK
             /// @brief This gets the NetworkManager from the manager list.
             /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.
             /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.
-            NetworkManager* GetNetworkManager(const short unsigned int &WhichOne=0);
+            NetworkManager* GetNetworkManager(const UInt16 WhichOne = 0);
 #endif
             /// @brief This gets the PhysicsManager from the manager list.
             /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.
             /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
-            PhysicsManager* GetPhysicsManager(const short unsigned int &WhichOne=0);
+            PhysicsManager* GetPhysicsManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the SceneManager from the manager list.
             /// @param WhichOne If you have multiple SceneManagers this will choose which one to return.
             /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
-            SceneManager* GetSceneManager(const short unsigned int &WhichOne=0);
+            SceneManager* GetSceneManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
             /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
-            ResourceManager* GetResourceManager(const short unsigned int &WhichOne=0);
+            ResourceManager* GetResourceManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the TimerManager from the manager list.
             /// @param WhichOne If you have multiple TimerManagers this will choose which one to return.
             /// @return This returns a pointer to a TimerManager, or a NULL pointer if no matching manager exists.
-            TimerManager* GetTimerManager(const short unsigned int &WhichOne=0);
+            TimerManager* GetTimerManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the UIManager from the manager list.
             /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
             /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.
-            UIManager* GetUIManager(const short unsigned int &WhichOne=0);
+            UIManager* GetUIManager(const UInt16 WhichOne = 0);
     };//Entresol
 }//Mezzanine
 #endif
