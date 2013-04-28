@@ -47,27 +47,27 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        /// @enum AudioBitConfig
+        /// @enum BitConfig
 		/// @brief Used to describe the different bit configurations supported by this audio system.
-		enum AudioBitConfig
+		enum BitConfig
 		{
-		    ABC_8Bit_Mono,
-		    ABC_8Bit_Stereo,
-		    ABC_16Bit_Mono,
-		    ABC_16Bit_Stereo,
-		    ABC_24Bit_Mono,
-		    ABC_24Bit_Stereo
+		    BC_8Bit_Mono,
+		    BC_8Bit_Stereo,
+		    BC_16Bit_Mono,
+		    BC_16Bit_Stereo,
+		    BC_24Bit_Mono,
+		    BC_24Bit_Stereo
 		};
 
-        /// @enum AudioEncoding
+        /// @enum Encoding
         /// @brief The encoding to use when reading or writing an audio buffer.
-        enum AudioEncoding
+        enum Encoding
         {
-            AE_RAW    = 1,  ///< Unknown or error condition.
-            AE_WAV    = 2,  ///< Used in .wav files.
-            AE_FLAC   = 3,  ///< Used in .flac files.
-            AE_VORBIS = 4,  ///< Used in .ogg files.
-            AE_MP3    = 5   ///< Used in .mp3 files.
+            Enc_RAW    = 1,  ///< Unknown or error condition.
+            Enc_WAV    = 2,  ///< Used in .wav files.
+            Enc_FLAC   = 3,  ///< Used in .flac files.
+            Enc_VORBIS = 4,  ///< Used in .ogg files.
+            Enc_MP3    = 5   ///< Used in .mp3 files.
         };
 
 		/// @enum EffectType
