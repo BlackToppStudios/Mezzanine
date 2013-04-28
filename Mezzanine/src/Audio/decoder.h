@@ -71,7 +71,7 @@ namespace Mezzanine
                 virtual bool IsSeekingSupported() = 0;
                 /// @brief Gets the Bit Configuration used to decode the audio stream.
                 /// @return Returns the Bit Configuration currently being used to decode this stream.
-                virtual AudioBitConfig GetBitConfiguration() const = 0;
+                virtual BitConfig GetBitConfiguration() const = 0;
                 /// @brief Gets the frequency used to decode the audio stream.
                 /// @return Returns the frequency (or sample rate) currently being used to decode this stream.
                 virtual UInt32 GetFrequency() const = 0;

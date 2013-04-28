@@ -55,9 +55,9 @@ namespace Mezzanine
         {
             public:
                 /// @brief Class constructor.
-                IFilter() {  }
+                iFilter() {  }
                 /// @brief Class destructor.
-                virtual ~IFilter() {  }
+                virtual ~iFilter() {  }
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility

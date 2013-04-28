@@ -81,13 +81,13 @@ namespace Mezzanine
                 /// @brief Gets the current velocity of this listener.
                 /// @return Returns a Vector3 containing the current velocity of this listener.
                 virtual Vector3 GetVelocity() const = 0;
+
                 /// @brief Sets the direction the listener is facing.
                 /// @param Dir The direction this listener is to face.
                 virtual void SetDirection(const Vector3& Dir) = 0;
                 /// @brief Gets the current direction this listener is facing.
                 /// @return Returns a Vector3 containing the direction this listener is facing.
                 virtual Vector3 GetDirection() const = 0;
-
                 /// @brief Sets which direction is to be considered "Up".
                 /// @note Default: (0,1,0).
                 /// @param Up The direction to be considered "Up".
@@ -95,6 +95,7 @@ namespace Mezzanine
                 /// @brief Gets the currently set direction that is considered "Up".
                 /// @return Returns a Vector3 containing the direction currently considered "Up" to this listener.
                 virtual Vector3 GetUpDirection() const = 0;
+
                 /// @brief Sets the modifier to use that will adjust the volume of all audio heard by this listener.
                 /// @param Vol The modifier to be set.  Range 0.0 to +Inf.
                 virtual void SetVolumeModifier(const Real Vol) = 0;

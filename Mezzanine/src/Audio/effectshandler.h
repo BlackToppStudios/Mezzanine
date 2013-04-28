@@ -34,6 +34,9 @@ namespace Mezzanine
                 /// @return Returns a pointer to the created Filter, or NULL if there was an error.
                 virtual iFilter* CreateFilter() = 0;
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
                 /// @brief Gets the max number of effects that can be run at the same time on this system.
                 /// @return Returns the max number of effects supported on this system.
                 virtual UInt32 GetMaxEffectsSupported() const = 0;

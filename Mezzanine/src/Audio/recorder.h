@@ -65,9 +65,9 @@ namespace Mezzanine
                 /// @brief Initializes the recording device with the current configuration.
                 /// @param DeviceName The name of the recording device to use when recording audio.  If left empty this will use the default device.
                 /// @param Frequency The frequency at which to record and store the audio data in Hz.
-                /// @param Config The bit configuration to record and store the audio data.  See enum @ref AudioBitConfig for more information.
+                /// @param Config The bit configuration to record and store the audio data.  See enum @ref BitConfig for more information.
                 /// @return Returns true if the device was successfully initialized, false if there was a problem.
-                virtual bool Initialize(const String& DeviceName = "", UInt32 Frequency = 22050, const AudioBitConfig Config = ABC_16Bit_Mono) = 0;
+                virtual bool Initialize(const String& DeviceName = "", UInt32 Frequency = 22050, const BitConfig Config = BC_16Bit_Mono) = 0;
                 /// @brief Shuts down and releases the recording device.
                 /// @note If you wish to reuse this recorder after it has been shut down, you will need to reinitialize it.
                 virtual void Shutdown() = 0;
@@ -119,12 +119,12 @@ namespace Mezzanine
                 virtual UInt32 GetFrequency() const = 0;
                 /// @brief Sets the bit configuration to use when recording data to the internal buffer.
                 /// @note If this recorder is already initialized, calling this method will re-initialize it and clear the recorded audio buffer in the process.
-                /// @param Config The bit configuration to record and store the audio data.  See enum @ref AudioBitConfig for more information.
+                /// @param Config The bit configuration to record and store the audio data.  See enum @ref BitConfig for more information.
                 /// @return Returns true if there were no errors in setting the bit configuration, false if there was a problem.
-                virtual bool SetBitConfiguration(const AudioBitConfig Config) = 0;
+                virtual bool SetBitConfiguration(const BitConfig Config) = 0;
                 /// @brief Gets the bit configuration for the audio captured by this recorder.
-                /// @return Returns an AudioBitConfig
-                virtual AudioBitConfig GetBitConfiguration() const = 0;
+                /// @return Returns an BitConfig representing the bit format for the audio recorded.
+                virtual BitConfig GetBitConfiguration() const = 0;
                 /// @brief Gets the size of a single sample of recorded audio data.
                 /// @return Returns a UInt32 representing the size of a sample from the recorder buffer.
                 virtual UInt32 GetSampleSize() const = 0;

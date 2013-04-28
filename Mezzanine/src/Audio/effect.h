@@ -65,7 +65,7 @@ namespace Mezzanine
 
                 /// @brief Gets whether or not this effect is ready for use.
                 /// @return Returns if this effect is ready to be used or if it has encountered a fatal error.
-                virtual bool isValid() const = 0;
+                virtual bool IsValid() const = 0;
 
                 /// @brief Sets the type of this effect.
                 /// @param EffType Type of effect to switch to.
