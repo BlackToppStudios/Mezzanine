@@ -292,20 +292,26 @@ namespace Mezzanine
             /// @return The managed object is returned by reference.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo& operator*() const throw()
-                { return _ReferenceCounter->GetReferenceCountReference(); }
+                { return static_cast<TypePointedTo&>(_ReferenceCounter->GetReferenceCountReference()); }
 
             /// @brief The Structure dereference operator.
             /// @return Makes it appear, syntactically, as though you are dereferencing the raw pointer.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo* operator->() const throw()
-                { return _ReferenceCounter->GetReferenceCountPointer(); }
+            {
+                return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer());
+            }
 
             /// @brief Get the raw pointer to the managed object.
             /// @return The raw pointer to the managed object or 0 if this pointer is invalid.
             /// @throw Nothing This member function does not throw exceptions.
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
             TypePointedTo* get() const throw()
-                { return _ReferenceCounter ? _ReferenceCounter->GetReferenceCountPointer() : 0; }
+            {
+                // The only way this cast should happen is when inheritance hierarchies get involved, and this should always
+                // cast towards more derived classes.
+                return static_cast<TypePointedTo*>( _ReferenceCounter ? _ReferenceCounter->GetReferenceCountPointer() : 0);
+            }
 
             /// @brief Is this the only pointer to the managed object
             /// @return True if use_count() == 1 or if the pointer is invalid

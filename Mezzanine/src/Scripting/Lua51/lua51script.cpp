@@ -77,12 +77,11 @@ namespace Mezzanine
                 Compiler->Compile(this);
             }
 
-            Lua51Script::Lua51Script() : RefCount(0)
+            Lua51Script::Lua51Script()
                 { }
 
             Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler)
-                : SourceCode(InitialSourceCode),
-                  RefCount(0)
+                : SourceCode(InitialSourceCode)
             {
                 if(Compiler)
                     { Compile(Compiler); }

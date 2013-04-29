@@ -140,7 +140,7 @@ namespace Mezzanine
 
                 /// @copydoc GetAsScriptCompilable
                 virtual iScriptCompilable* GetAsScriptCompilable() const
-                { return 0; }
+                    { return 0; }
 
                 ///////////////////////////////////////////////////////////////////////////////////////////////////
                 // Multiple return Detection Support
@@ -156,6 +156,44 @@ namespace Mezzanine
                 /// @return A null pointer if this conversion is invalid or a valid pointer to this as an @ref iScriptMultipleReturn if it is valid.
                 virtual iScriptMultipleReturn* GetAsiScriptMultipleReturn()
                     { return 0; }
+
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+                // Internal Reference count for CountedPtr
+
+            protected:
+                /// @brief This is the Counter that stores how many references exist
+                Whole RefCount;
+
+            public:
+                /// @brief default constructor
+                /// @details Initializes the internal reference counter.
+                iScript() : RefCount(0)
+                    {}
+
+                /// @brief Increase the reference count by one and return the updated count.
+                /// @return The updated count;
+                Whole IncrementReferenceCount()
+                    { return ++RefCount; }
+
+                /// @brief Decrease the reference count by one and return the updated count.
+                /// @return The updated count;
+                Whole DecrementReferenceCount()
+                    { return --RefCount; }
+
+                /// @brief Gets the actual pointer to the target.
+                /// @return A Pointer of the targeted type to the object being managed.
+                virtual iScript* GetReferenceCountPointer()
+                    { return this; }
+
+                /// @brief Gets a reference to the reference counter, which on this is this
+                /// @return A reference to this.
+                virtual iScript& GetReferenceCountReference()
+                    { return *this; }
+
+                /// @brief Get the current amount of references.
+                /// @return A Whole with the current reference count
+                Whole GetReferenceCount()
+                    { return RefCount; }
         }; // iScript
 
 
@@ -174,7 +212,7 @@ namespace Mezzanine
         /// @ref IsCompilable then its pointer can safely be cast to a ScriptCompilable pointer.
         /// @todo Add sample code of safe cast in ScriptCompilable, becuase that is kinda wierd.
         ///////////////////////////////////////
-        class MEZZ_LIB iScriptCompilable : public virtual iScript
+        class MEZZ_LIB iScriptCompilable : public iScript
         {
             public:
 
@@ -232,6 +270,41 @@ namespace Mezzanine
 
     }
 
+    /// @brief Marks IScript for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::iScript>
+    {
+        public:
+            typedef Scripting::iScript ManagedType;
+            typedef Scripting::iScript * PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+    };
+
+    /// @brief Marks iScriptCompilable for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::iScriptCompilable>
+    {
+        public:
+            typedef Scripting::iScriptCompilable ManagedType;
+            typedef Scripting::iScriptCompilable * PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+    };
+
+    /// @brief Marks iScriptMultipleReturn for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::iScriptMultipleReturn>
+    {
+        public:
+            typedef Scripting::iScriptMultipleReturn ManagedType;
+            typedef Scripting::iScriptMultipleReturn * PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+    };
 
 }//Mezzanine
 

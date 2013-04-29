@@ -81,7 +81,7 @@ namespace Mezzanine
                 /// @details In implementations it is expected that this will create a script
                 /// object, execute it and return it.
                 /// @return A Shared pointer to the created Script.
-                virtual CountedPtr<iScript> Execute(String ScriptSource) = 0;
+                virtual CountedPtr<iScript> Execute(const String& ScriptSource) = 0;
 
                 /// @brief Run the script.
                 /// @param ScriptToRun A shared ptr that points to a script to run.
