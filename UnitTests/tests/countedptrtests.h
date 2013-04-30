@@ -138,7 +138,72 @@ namespace Mezzanine
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
     };
+
+    class FooDerived1 : public virtual FooInternal
+    {
+        public:
+            int Value1;
+    };
+
+    class FooDerived2 : public virtual FooInternal
+    {
+        public:
+            int Value2;
+    };
+
+    class FooDiamond : public FooDerived1, public FooDerived2
+    {
+        public:
+            int ValueDiamond;
+    };
+
+    template <>
+    class ReferenceCountTraits <FooDerived1>
+    {
+        public:
+            typedef FooDerived1 ManagedType;
+            typedef FooDerived1* PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+    };
+
+    template <>
+    class ReferenceCountTraits <FooDerived2>
+    {
+        public:
+            typedef FooDerived2 ManagedType;
+            typedef FooDerived2* PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+    };
+
+    template <>
+    class ReferenceCountTraits <FooDiamond>
+    {
+        public:
+            typedef FooDiamond ManagedType;
+            typedef FooDiamond* PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+    };
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
 
 class countedptrtests : public UnitTestGroup
 {
@@ -438,6 +503,8 @@ class countedptrtests : public UnitTestGroup
                 AddTestResult("CountedPtr::External::get", Skipped);
                 AddTestResult("CountedPtr::Internal::get", Skipped);
             }
+
+
 // unremark this line to test the CountedPtr vs Shared_Ptr
 // need to enable c++11 in gcc I added "-std=c++11" to CMAKE_CXX_FLAGS
 //#define SHAREDPTRTEST
@@ -451,9 +518,7 @@ class countedptrtests : public UnitTestGroup
                 TestResult ResultS = NotApplicable;
 
                 {
-
-                    cout << "The objects being created all chenage a variable on destruction and have initializing, but otherwise trivial constructors. This is useful only for comparing the speeds of the point constructs on this platform, not for providing objective pointer dereferencing costs." << std::endl;
-
+                    cout << "The objects being created all change a variable on destruction and have initializing, but otherwise trivial constructors. This is useful only for comparing the speeds of the point constructs on this platform, not for providing objective pointer dereferencing costs." << std::endl;
 
                     MaxInt Begin;
                     MaxInt End;
@@ -595,6 +660,32 @@ class countedptrtests : public UnitTestGroup
                 //AddTestResult("CountedPtr::Internal::BenchmarkComplete", Skipped);
             }
 
+
+            if (RunAutomaticTests)
+            {
+
+                TestResult Result = NotApplicable;
+
+                /*
+                CountedPtr<Mezzanine::FooDiamond> DiamondPtr;
+                DiamondPtr->Value = 0;
+                DiamondPtr->Value1 = 1;
+                DiamondPtr->Value2 = 2;
+                DiamondPtr->ValueDiamond = 3;
+                // */
+
+
+                AddTestResult("CountedPtr::", Result);
+
+            }else{
+                AddTestResult("CountedPtr::", Skipped);
+                AddTestResult("CountedPtr::", Skipped);
+                AddTestResult("CountedPtr::", Skipped);
+                AddTestResult("CountedPtr::", Skipped);
+                AddTestResult("CountedPtr::", Skipped);
+                AddTestResult("CountedPtr::", Skipped);
+                AddTestResult("CountedPtr::", Skipped);
+            }
 
 
         }

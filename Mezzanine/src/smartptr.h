@@ -177,7 +177,7 @@ namespace Mezzanine
                 { return Target; }
     };
 
-    /// @brief Every class that does not implement its own reference count gets the default one.
+    /// @brief Every class that does not implement its own reference count gets this default one.
     /// @details The Default reference count is not thread-safe, and requires that every dereferencing
     /// of the smart pointer is actually a double dereference. The double dereference is caused because
     /// the reference counter has to store a native pointer to the managed object.
@@ -185,9 +185,16 @@ namespace Mezzanine
     class ReferenceCountTraits
     {
         public:
+            /// @brief This is type of the ReferenceCounter, The type of the class if reference counting is instrusive.
             typedef ReferenceCount<T> ManagedType;
+
+            /// @brief The type of the Pointer to the reference count, in case it is not ManageType*.
             typedef ReferenceCount<T>* PtrType;
 
+            /// @brief This will somehow return a pointer to the reference count
+            /// @param Target A pointer the freshly created object.
+            /// @return This will return a pointer to a valid reference counter.
+            /// @note The default implemetation call new with a matching delete in CounterPtr::~CountedPtr . If no allocations are required this may simply return the passed parameter.
             static PtrType ConstructionPointer(T* Target)
                 { return new ManagedType(Target); }
     };
@@ -292,26 +299,20 @@ namespace Mezzanine
             /// @return The managed object is returned by reference.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo& operator*() const throw()
-                { return static_cast<TypePointedTo&>(_ReferenceCounter->GetReferenceCountReference()); }
+                { return _ReferenceCounter->GetReferenceCountReference(); }
 
             /// @brief The Structure dereference operator.
             /// @return Makes it appear, syntactically, as though you are dereferencing the raw pointer.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo* operator->() const throw()
-            {
-                return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer());
-            }
+                { return _ReferenceCounter->GetReferenceCountPointer(); }
 
             /// @brief Get the raw pointer to the managed object.
             /// @return The raw pointer to the managed object or 0 if this pointer is invalid.
             /// @throw Nothing This member function does not throw exceptions.
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
             TypePointedTo* get() const throw()
-            {
-                // The only way this cast should happen is when inheritance hierarchies get involved, and this should always
-                // cast towards more derived classes.
-                return static_cast<TypePointedTo*>( _ReferenceCounter ? _ReferenceCounter->GetReferenceCountPointer() : 0);
-            }
+                { return static_cast<TypePointedTo*>(_ReferenceCounter ? _ReferenceCounter->GetReferenceCountPointer() : 0); }
 
             /// @brief Is this the only pointer to the managed object
             /// @return True if use_count() == 1 or if the pointer is invalid
@@ -328,6 +329,17 @@ namespace Mezzanine
             bool operator==(const CountedPtr& Other)
                 { return Other._ReferenceCounter == _ReferenceCounter; }
     };
+
+    ///
+    template <typename ReturnType, typename OriginType>
+    CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OriginType> Original)
+    {
+        OriginType* Temp = Original.get();
+        return CountedPtr<ReturnType> (
+                    dynamic_cast<ReturnType*>(Temp)
+        );
+    }
+
 
 } // \Mezzanine
 
