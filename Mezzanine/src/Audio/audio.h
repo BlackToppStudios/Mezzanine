@@ -67,6 +67,7 @@ namespace Mezzanine
 #include "Audio/playlist.h"
 #include "Audio/recorder.h"
 #include "Audio/sound.h"
+#include "Audio/soundscapemanager.h"
 #include "Audio/soundset.h"
 
 #endif
