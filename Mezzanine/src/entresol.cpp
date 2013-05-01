@@ -199,6 +199,8 @@ namespace Mezzanine
             { this->AddManager(new CollisionShapeManager()); }
         if(this->GetCameraManager()==0)
             { this->AddManager(new CameraManager()); }
+        if(this->GetSoundScapeManager()==0)
+            { this->AddManager(new SoundScapeManager()); }
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -1118,6 +1120,11 @@ namespace Mezzanine
     SceneManager* Entresol::GetSceneManager(const UInt16 WhichOne)
     {
         return dynamic_cast<SceneManager*> (this->GetManager(ManagerBase::SceneManager, WhichOne));
+    }
+
+    SoundScapeManager* Entresol::GetSoundScapeManager(const UInt16 WhichOne)
+    {
+        return dynamic_cast<SoundScapeManager*> (this->GetManager(ManagerBase::SoundScapeManager, WhichOne));
     }
 
     ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
