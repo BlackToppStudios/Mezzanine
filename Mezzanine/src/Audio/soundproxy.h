@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _audioaudioproxy_h
-#define _audioaudioproxy_h
+#ifndef _audiosoundproxy_h
+#define _audiosoundproxy_h
 
 #include "worldproxy.h"
 #include "Audio/sound.h"
@@ -51,14 +51,14 @@ namespace Mezzanine
         /// @brief This is a proxy class for representing a sound being played in 3D space.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB AudioProxy : public WorldProxy, public iSound
+        class MEZZ_LIB SoundProxy : public WorldProxy, public iSound
         {
             protected:
             public:
                 /// @brief Class constructor.
-                AudioProxy();
+                SoundProxy() {  }
                 /// @brief Class destructor.
-                virtual ~AudioProxy();
+                virtual ~SoundProxy() {  }
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
@@ -144,7 +144,7 @@ namespace Mezzanine
                 /// @brief Gets the doppler velocity vector.
                 /// @return Returns the override for the doppler velocity vector.
                 virtual Vector3 GetDopplerVelocity() const = 0;
-        };//AudioProxy
+        };//SoundProxy
     }//Audio
 }//Mezzanine
 
