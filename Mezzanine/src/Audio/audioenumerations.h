@@ -51,7 +51,7 @@ namespace Mezzanine
 		/// @brief Used to describe the different bit configurations supported by this audio system.
 		enum BitConfig
 		{
-		    BC_8Bit_Mono,
+		    BC_8Bit_Mono = 1,
 		    BC_8Bit_Stereo,
 		    BC_16Bit_Mono,
 		    BC_16Bit_Stereo,
@@ -67,7 +67,8 @@ namespace Mezzanine
             Enc_WAV    = 2,  ///< Used in .wav files.
             Enc_FLAC   = 3,  ///< Used in .flac files.
             Enc_VORBIS = 4,  ///< Used in .ogg files.
-            Enc_MP3    = 5   ///< Used in .mp3 files.
+            Enc_MP3    = 5,  ///< Used in .mp3 files.
+            Enc_SPEEX  = 6   ///< Used in .spx files.
         };
 
 		/// @enum EffectType
