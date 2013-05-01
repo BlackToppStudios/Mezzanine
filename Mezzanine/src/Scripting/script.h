@@ -211,6 +211,7 @@ namespace Mezzanine
         /// This class is designed for use with multiple inheritance. If a script returns true from
         /// @ref IsCompilable then its pointer can safely be cast to a ScriptCompilable pointer.
         /// @todo Add sample code of safe cast in ScriptCompilable, becuase that is kinda wierd.
+        /// @todo Put the Virtual inheritance back into the this class
         ///////////////////////////////////////
         class MEZZ_LIB iScriptCompilable : public iScript
         {

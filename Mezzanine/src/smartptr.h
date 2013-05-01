@@ -305,7 +305,7 @@ namespace Mezzanine
             /// @return Makes it appear, syntactically, as though you are dereferencing the raw pointer.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo* operator->() const throw()
-                { return _ReferenceCounter->GetReferenceCountPointer(); }
+                { return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer()); }
 
             /// @brief Get the raw pointer to the managed object.
             /// @return The raw pointer to the managed object or 0 if this pointer is invalid.

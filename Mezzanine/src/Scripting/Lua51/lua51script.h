@@ -63,7 +63,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////////////
             /// @brief This class is used to store a Lua script and in its source and compiled state.
             /// @details To execute this script use @ref LuaScriptingEngine::compile
-            class MEZZ_LIB Lua51Script : Mezzanine::Scripting::iScriptCompilable, Mezzanine::Scripting::iScriptMultipleReturn
+            class MEZZ_LIB Lua51Script : public virtual Mezzanine::Scripting::iScriptCompilable, public virtual Mezzanine::Scripting::iScriptMultipleReturn
             {
                 private:
                     // Makes passing internal data much easier and all Lua51 are logically encapsulated as a single system still.
