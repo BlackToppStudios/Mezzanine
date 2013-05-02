@@ -48,6 +48,23 @@
 /// @brief This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and exposes in its API
 namespace Mezzanine
 {
+    /// @brief CountedPointer casting implementation states.
+    /// @details
+    /// The CountedPtrCast uses some template metaprogramming to include the correct cast at compile time
+    /// in the CountedPtr. In some situations it is difficult to cast from one kind of pointer to another
+    /// even when it is conceptually sound to do so. For example, when virtual inheritance is used
+    /// downcasting can be difficult even when a pointer was just returned from one member of an object
+    /// into another member of that object but from a member function whose interface specified a more
+    /// base return type. While possible to work around this normally, imagine the same situation if
+    /// some of the types involved were templates.
+    enum CountedPointerCastingState
+    {
+        CastNoneCompileError = 0,       ///< No Casting, any cast attempt results in a compilation Error.
+        CastNoneReturnZero   = 1,       ///< No Casting, 0 is returned. Useful when types are unknown and dynamic casts are already used and checked.
+        CastDynamic          = 2,       ///< Dynamic Casting, the class must provide a 'virtual something* GetMostDerived()' and its return must be dynamically upcast to a more base class.
+        CastStatic           = 3        ///< Static Casting, the class provides a 'virtual void* GetMostDerived()' and its return can be statically upcast to a more base class.
+    };
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This exists once per object managed by a group of shared pointer to track items in memory.
     /// @details This exists to track the pointer to the managed object, and stores the single
@@ -75,7 +92,6 @@ namespace Mezzanine
             /// @brief Destructor, cleans up the object when the last reference deletes this
             ~ReferenceCount()
                 { delete Target; }
-
 
             /// @brief Increase the reference count by one and return the updated count.
             /// @return The updated count;
@@ -206,12 +222,8 @@ namespace Mezzanine
                 { return new ManagedType(Target); }
 
             /// @brief Used to determine if the data a CountedPtr is managing can be cast
-            /// @details The default Traits provide a 0.
-            ///     0 - No Casting, any cast attempt results in a compilation Error.
-            ///     1 - No Casting, 0 is returned.
-            ///     2 - Dynamic Casting, the class provides a 'virtual void* GetMostDerived()' and its return can be dynamically upcast to a more base class.
-            ///     3 - Static Casting, the class provides a 'virtual void* GetMostDerived()' and its return can be statically upcast to a more base class.
-            enum { IsCastable = 0 };
+            /// @details This uses the @ref CountedPointerCastingState to enter a value the Template MetaProgramming Machinery will understand.
+            enum { IsCastable = CastNoneCompileError };
     };
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -346,6 +358,8 @@ namespace Mezzanine
     };
 
     /// @internal
+    /// @brief The default implementation for CountedPtr casting
+    /// @details For any case that uses CastNoneCompileError including the default.
     template <typename ReturnCountedPointer, typename CountedPointer, int CastingType>
     class CountedPtrCastImpl
     {
@@ -356,17 +370,46 @@ namespace Mezzanine
             }
     };
 
-    /* // I should be able to implement partial specializations to get the desired casted behaviours
-    template <typename ReturnCountedPointer, typename CountedPointer, int>
-    class CountedPtrCastImpl<ReturnCountedPointer1>
+    /// @internal
+    template <typename ReturnCountedPointer, typename CountedPointer>
+    class CountedPtrCastImpl <ReturnCountedPointer, CountedPointer, CastNoneReturnZero>
     {
         public:
             static ReturnCountedPointer Cast(CountedPointer)
             {
                 return ReturnCountedPointer(0);
             }
-    };*/
+    };
 
+    /// @internal
+    template <typename ReturnCountedPointer, typename CountedPointer>
+    class CountedPtrCastImpl <ReturnCountedPointer, CountedPointer, CastDynamic>
+    {
+        public:
+            static ReturnCountedPointer Cast(CountedPointer Original)
+            {
+                return ReturnCountedPointer
+                    (
+                        dynamic_cast<typename ReturnCountedPointer::PtrType>
+                            (Original.Get()->GetMostDerived())
+                    );
+            }
+    };
+
+    /// @internal
+    template <typename ReturnCountedPointer, typename CountedPointer>
+    class CountedPtrCastImpl <ReturnCountedPointer, CountedPointer, CastStatic>
+    {
+        public:
+            static ReturnCountedPointer Cast(CountedPointer Original)
+            {
+                return ReturnCountedPointer
+                    (
+                        static_cast<typename ReturnCountedPointer::PtrType>
+                            (Original.Get()->GetMostDerived())
+                    );
+            }
+    };
 
     ///
     template <typename ReturnType, typename CountedPointer>
