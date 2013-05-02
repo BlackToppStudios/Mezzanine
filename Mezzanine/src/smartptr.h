@@ -160,6 +160,11 @@ namespace Mezzanine
             /// @return A Whole with the current reference count
             Whole GetReferenceCount()
                 { return RefCount; }
+
+            /// @brief Get a pointer to the most Derived type of this class
+            /// @return A pointer cast to a void*
+            void* GetMostDerived()
+                { return reinterpret_cast<void*>(this); }
     };
 
 
@@ -175,6 +180,8 @@ namespace Mezzanine
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
+
+            enum { IsCastable = 3 };
     };
 
     /// @brief Every class that does not implement its own reference count gets this default one.
@@ -197,6 +204,14 @@ namespace Mezzanine
             /// @note The default implemetation call new with a matching delete in CounterPtr::~CountedPtr . If no allocations are required this may simply return the passed parameter.
             static PtrType ConstructionPointer(T* Target)
                 { return new ManagedType(Target); }
+
+            /// @brief Used to determine if the data a CountedPtr is managing can be cast
+            /// @details The default Traits provide a 0.
+            ///     0 - No Casting, any cast attempt results in a compilation Error.
+            ///     1 - No Casting, 0 is returned.
+            ///     2 - Dynamic Casting, the class provides a 'virtual void* GetMostDerived()' and its return can be dynamically upcast to a more base class.
+            ///     3 - Static Casting, the class provides a 'virtual void* GetMostDerived()' and its return can be statically upcast to a more base class.
+            enum { IsCastable = 0 };
     };
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -330,16 +345,40 @@ namespace Mezzanine
                 { return Other._ReferenceCounter == _ReferenceCounter; }
     };
 
-    ///
-    template <typename ReturnType, typename OriginType>
-    CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OriginType> Original)
+    /// @internal
+    template <typename ReturnCountedPointer, typename CountedPointer, int CastingType>
+    class CountedPtrCastImpl
     {
-        OriginType* Temp = Original.get();
-        return CountedPtr<ReturnType> (
-                    dynamic_cast<ReturnType*>(Temp)
-        );
-    }
+        public:
+            static ReturnCountedPointer Cast(CountedPointer)
+            {
+                return ReturnCountedPointer(0);
+            }
+    };
 
+    /* // I should be able to implement partial specializations to get the desired casted behaviours
+    template <typename ReturnCountedPointer, typename CountedPointer, int>
+    class CountedPtrCastImpl<ReturnCountedPointer1>
+    {
+        public:
+            static ReturnCountedPointer Cast(CountedPointer)
+            {
+                return ReturnCountedPointer(0);
+            }
+    };*/
+
+
+    ///
+    template <typename ReturnType, typename CountedPointer>
+    CountedPtr<ReturnType> CountedPtrCast(CountedPointer Original)
+    {
+        return CountedPtrCastImpl
+                <
+                    CountedPtr<ReturnType>,
+                    CountedPointer,
+                    3
+                >::Cast(Original);
+    }
 
 } // \Mezzanine
 
