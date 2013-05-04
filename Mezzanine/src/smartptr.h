@@ -246,13 +246,14 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     template <class TypePointedTo> class CountedPtr
     {
-        protected:
+        public:
             /// @brief We don't know if we will use a pointer a reference counter, an instrusive pointer, or something else. This provides that abstraction layer.
             typedef typename ReferenceCountTraits<TypePointedTo>::PtrType PtrType;
 
             /// @brief The non pointer version of PtrType
             typedef typename ReferenceCountTraits<TypePointedTo>::ManagedType ManagedType;
 
+        protected:
             /// @brief This is the only data on this class, a pointer to the counter and the managed object.
             PtrType _ReferenceCounter;
 
@@ -332,13 +333,18 @@ namespace Mezzanine
             /// @return The managed object is returned by reference.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo& operator*() const throw()
-                { return _ReferenceCounter->GetReferenceCountReference(); }
+            {
+                return _ReferenceCounter->GetReferenceCountReference();
+            }
 
             /// @brief The Structure dereference operator.
             /// @return Makes it appear, syntactically, as though you are dereferencing the raw pointer.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo* operator->() const throw()
-                { return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer()); }
+            {
+                //return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer());
+                return _ReferenceCounter->GetReferenceCountPointer();
+            }
 
             /// @brief Get the raw pointer to the managed object.
             /// @return The raw pointer to the managed object or 0 if this pointer is invalid.
@@ -361,6 +367,9 @@ namespace Mezzanine
             /// @return This returns true if this and Other use the same reference count and pointer.
             bool operator==(const CountedPtr& Other)
                 { return Other._ReferenceCounter == _ReferenceCounter; }
+
+            operator bool()
+                { return 0 != _ReferenceCounter; }
     };
 
     /// @internal
@@ -442,7 +451,7 @@ namespace Mezzanine
                 (
                     CountedPtrCastImpl
                     <
-                        ReturnType,
+                        ReturnType*,
                         typename CountedPointer::PtrType,
                         CountedPointerCastingState
                             (
