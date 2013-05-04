@@ -130,20 +130,20 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Transform Methods
 
-                /// @copydoc TransformableChildObject::SetLocation(const Vector3& Location)
-                void SetLocation(const Vector3& Location);
+                /// @copydoc TransformableChildObject::SetLocation(const Vector3& Loc)
+                void SetLocation(const Vector3& Loc);
                 /// @copydoc TransformableChildObject::SetLocation(const Real X, const Real Y, const Real Z)
                 void SetLocation(const Real X, const Real Y, const Real Z);
                 /// @copydoc TransformableChildObject::GetLocation() const
                 Vector3 GetLocation() const;
-                /// @copydoc TransformableChildObject::SetOrientation(const Quaternion& Orientation)
-                void SetOrientation(const Quaternion& Orientation);
+                /// @copydoc TransformableChildObject::SetOrientation(const Quaternion& Ori)
+                void SetOrientation(const Quaternion& Ori);
                 /// @copydoc TransformableChildObject::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
                 void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
                 /// @copydoc TransformableChildObject::GetOrientation() const
                 Quaternion GetOrientation() const;
-                /// @copydoc TransformableChildObject::SetScale(const Vector3& Scale)
-                void SetScale(const Vector3& Scale);
+                /// @copydoc TransformableChildObject::SetScale(const Vector3& Sc)
+                void SetScale(const Vector3& Sc);
                 /// @copydoc TransformableChildObject::SetScale(const Real X, const Real Y, const Real Z)
                 void SetScale(const Real X, const Real Y, const Real Z);
                 /// @copydoc TransformableChildObject::GetScale() const

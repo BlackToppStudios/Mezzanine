@@ -121,8 +121,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
 
-        void Bone::SetLocation(const Vector3& Location)
-            { this->GraphicsBone->setPosition( Location.GetOgreVector3() ); }
+        void Bone::SetLocation(const Vector3& Loc)
+            { this->GraphicsBone->setPosition( Loc.GetOgreVector3() ); }
 
         void Bone::SetLocation(const Real X, const Real Y, const Real Z)
             { this->GraphicsBone->setPosition(X,Y,Z); }
@@ -130,8 +130,8 @@ namespace Mezzanine
         Vector3 Bone::GetLocation() const
             { return Vector3( this->GraphicsBone->getPosition() ); }
 
-        void Bone::SetOrientation(const Quaternion& Orientation)
-            { this->GraphicsBone->setOrientation( Orientation.GetOgreQuaternion() ); }
+        void Bone::SetOrientation(const Quaternion& Ori)
+            { this->GraphicsBone->setOrientation( Ori.GetOgreQuaternion() ); }
 
         void Bone::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
             { this->GraphicsBone->setOrientation(W,X,Y,Z); }
@@ -139,8 +139,8 @@ namespace Mezzanine
         Quaternion Bone::GetOrientation() const
             { return Quaternion( this->GraphicsBone->getOrientation() ); }
 
-        void Bone::SetScale(const Vector3& Scale)
-            { this->GraphicsBone->setScale( Scale.GetOgreVector3() ); }
+        void Bone::SetScale(const Vector3& Sc)
+            { this->GraphicsBone->setScale( Sc.GetOgreVector3() ); }
 
         void Bone::SetScale(const Real X, const Real Y, const Real Z)
             { this->GraphicsBone->setScale(X,Y,Z); }

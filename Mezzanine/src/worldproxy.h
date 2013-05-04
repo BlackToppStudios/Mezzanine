@@ -71,27 +71,27 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Methods
 
-            /// @copydoc TransformableObject::SetLocation(const Vector3& Location)
+            /// @copydoc TransformableObject::SetLocation(const Vector3& Loc)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
-            virtual void SetLocation(const Vector3& Location) = 0;
+            virtual void SetLocation(const Vector3& Loc) = 0;
             /// @copydoc TransformableObject::SetLocation(const Real X, const Real Y, const Real Z)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void SetLocation(const Real X, const Real Y, const Real Z) = 0;
             /// @copydoc TransformableObject::GetLocation() const
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual Vector3 GetLocation() const = 0;
-            /// @copydoc TransformableObject::SetOrientation(const Quaternion& Orientation)
+            /// @copydoc TransformableObject::SetOrientation(const Quaternion& Ori)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
-            virtual void SetOrientation(const Quaternion& Orientation) = 0;
+            virtual void SetOrientation(const Quaternion& Ori) = 0;
             /// @copydoc TransformableObject::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W) = 0;
             /// @copydoc TransformableObject::GetOrientation() const
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual Quaternion GetOrientation() const = 0;
-            /// @copydoc TransformableObject::SetScale(const Vector3& Scale)
+            /// @copydoc TransformableObject::SetScale(const Vector3& Sc)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
-            virtual void SetScale(const Vector3& Scale) = 0;
+            virtual void SetScale(const Vector3& Sc) = 0;
             /// @copydoc TransformableObject::SetScale(const Real X, const Real Y, const Real Z)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void SetScale(const Real X, const Real Y, const Real Z) = 0;
