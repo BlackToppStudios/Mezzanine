@@ -137,6 +137,8 @@ namespace Mezzanine
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
+
+            enum { IsCastable = CastStatic };
     };
 
     class FooDerived1 : public virtual FooInternal
@@ -166,6 +168,8 @@ namespace Mezzanine
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
+
+            enum { IsCastable = CastStatic };
     };
 
     template <>
@@ -177,6 +181,8 @@ namespace Mezzanine
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
+
+            enum { IsCastable = CastStatic };
     };
 
     template <>
@@ -188,6 +194,8 @@ namespace Mezzanine
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
+
+            enum { IsCastable = CastStatic };
     };
 
 

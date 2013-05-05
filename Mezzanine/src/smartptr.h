@@ -71,6 +71,8 @@ namespace Mezzanine
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastNoneReturnZero>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastDynamic>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastStatic>;
+    template <typename ReturnPointer, typename OriginalPointer> ReturnPointer CountedPtrCastInternal(OriginalPointer Original);
+
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This exists once per object managed by a group of shared pointer to track items in memory.
@@ -343,7 +345,8 @@ namespace Mezzanine
             TypePointedTo* operator->() const throw()
             {
                 //return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer());
-                return _ReferenceCounter->GetReferenceCountPointer();
+                return CountedPtrCastInternal<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer());
+
             }
 
             /// @brief Get the raw pointer to the managed object.
@@ -351,7 +354,10 @@ namespace Mezzanine
             /// @throw Nothing This member function does not throw exceptions.
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
             TypePointedTo* get() const throw()
-                { return static_cast<TypePointedTo*>(_ReferenceCounter ? _ReferenceCounter->GetReferenceCountPointer() : 0); }
+            {
+                //return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer());
+                return CountedPtrCastInternal<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer());
+            }
 
             /// @brief Is this the only pointer to the managed object
             /// @return True if use_count() == 1 or if the pointer is invalid
@@ -368,6 +374,7 @@ namespace Mezzanine
             bool operator==(const CountedPtr& Other)
                 { return Other._ReferenceCounter == _ReferenceCounter; }
 
+            // need to do something about the implicit cast to int thing
             operator bool()
                 { return 0 != _ReferenceCounter; }
     };
@@ -443,8 +450,39 @@ namespace Mezzanine
             }
     };
 
+    /// @internal
+    /// Abstracts away th
+    template <typename ReturnPointer, typename OriginalPointer>
+    ReturnPointer CountedPtrCastInternal(OriginalPointer Original)
+    {
+        return  CountedPtrCastImpl
+                    <
+                        ReturnPointer,
+                        OriginalPointer,
+                        CountedPointerCastingState
+                            (
+                                ReferenceCountTraits<OriginalPointer>::IsCastable
+                            )
+                    >::Cast(Original);
+    }
+
+
     ///
+    //abstracts away the Counted pointer
     template <typename ReturnType, typename CountedPointer>
+    CountedPtr<ReturnType> CountedPtrCast(CountedPointer Original)
+    {
+        return  CountedPtr<ReturnType>
+                (
+                    CountedPtrCastInternal
+                    <
+                        ReturnType*,
+                        typename CountedPointer::PtrType
+                    >(Original.get())
+                );
+    }
+
+    /*template <typename ReturnType, typename CountedPointer>
     CountedPtr<ReturnType> CountedPtrCast(CountedPointer Original)
     {
         return  CountedPtr<ReturnType>
@@ -459,7 +497,7 @@ namespace Mezzanine
                             )
                     >::Cast(Original.get())
                 );
-    }
+    }*/
 
 } // \Mezzanine
 

@@ -213,7 +213,7 @@ namespace Mezzanine
         /// @todo Add sample code of safe cast in ScriptCompilable, becuase that is kinda wierd.
         /// @todo Put the Virtual inheritance back into the this class
         ///////////////////////////////////////
-        class MEZZ_LIB iScriptCompilable : public iScript
+        class MEZZ_LIB iScriptCompilable : public virtual iScript
         {
             public:
 
@@ -281,6 +281,8 @@ namespace Mezzanine
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
+
+            enum { IsCastable = CastStatic };
     };
 
     /// @brief Marks iScriptCompilable for internal reference counting if a CountedPtr checks
@@ -293,6 +295,8 @@ namespace Mezzanine
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
+
+            enum { IsCastable = CastStatic };
     };
 
     /// @brief Marks iScriptMultipleReturn for internal reference counting if a CountedPtr checks
@@ -305,6 +309,8 @@ namespace Mezzanine
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
+
+            enum { IsCastable = CastStatic };
     };
 
 }//Mezzanine

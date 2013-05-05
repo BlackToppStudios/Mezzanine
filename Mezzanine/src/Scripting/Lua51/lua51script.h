@@ -149,6 +149,9 @@ namespace Mezzanine
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
+
+            enum { IsCastable = CastStatic };
+
     };
 } // Mezzanine
 
