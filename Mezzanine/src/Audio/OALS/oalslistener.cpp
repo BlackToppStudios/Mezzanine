@@ -52,8 +52,10 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            Listener::Listener(ALCcontext* ListContext)
-                : Context(ListContext)
+            Listener::Listener(ALCcontext* ListenContext)
+                : Context(ListenContext),
+                  VolumeModifier(1.0),
+                  MPU(1.0)
             {
             }
 
@@ -86,44 +88,47 @@ namespace Mezzanine
 
             void Listener::SetVelocity(const Vector3& Vel)
             {
-                this->MakeCurrent();
-                alListener3f(AL_VELOCITY,Vel.X,Vel.Y,Vel.Z);
+                if( this->Velocity != Vel )
+                {
+                    this->MakeCurrent();
+                    alListener3f(AL_VELOCITY,Vel.X,Vel.Y,Vel.Z);
+                    this->Velocity = Vel;
+                }
             }
 
             Vector3 Listener::GetVelocity() const
             {
-                this->MakeCurrent();
-                Vector3 Vel;
-                alListener3f(AL_VELOCITY,&Vel.X,&Vel.Y,&Vel.Z);
-                return Vel;
+                return this->Velocity;
             }
 
             void Listener::SetVolumeModifier(const Real Vol)
             {
-                this->MakeCurrent();
-                alListenerf(AL_GAIN,Vol);
+                if( this->VolumeModifier != Vol )
+                {
+                    this->MakeCurrent();
+                    alListenerf(AL_GAIN,Vol);
+                    this->VolumeModifier = Vol;
+                }
             }
 
             Real Listener::GetVolumeModifier() const
             {
-                this->MakeCurrent();
-                Real Vol = 0;
-                alGetListenerf(AL_GAIN,&Vol);
-                return Vol;
+                return this->VolumeModifier;
             }
 
             void Listener::SetMetersPerUnit(const Real Meters)
             {
-                this->MakeCurrent();
-                alListenerf(AL_METERS_PER_UNIT,Meters);
+                if( this->MPU != Meters )
+                {
+                    this->MakeCurrent();
+                    alListenerf(AL_METERS_PER_UNIT,Meters);
+                    this->MPU = Meters;
+                }
             }
 
             Real Listener::GetMetersPerUnit() const
             {
-                this->MakeCurrent();
-                Real Meters = 0;
-                alGetListenerf(AL_METERS_PER_UNIT,&Meters);
-                return Meters;
+                return this->Meters;
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -131,40 +136,51 @@ namespace Mezzanine
 
             void Listener::SetLocation(const Vector3& Loc)
             {
-                this->MakeCurrent();
-                alListener3f(AL_POSITION,Loc.X,Loc.Y,Loc.Z);
+                if( this->Location != Loc )
+                {
+                    this->MakeCurrent();
+                    alListener3f(AL_POSITION,Loc.X,Loc.Y,Loc.Z);
+                    this->Location = Loc;
+                }
             }
 
             void Listener::SetLocation(const Real X, const Real Y, const Real Z)
             {
-                this->MakeCurrent();
-                alListener3f(AL_POSITION,X,Y,Z);
+                if( this->Location.X != X || this->Location.Y != Y || this->Location.Z != Z )
+                {
+                    this->MakeCurrent();
+                    alListener3f(AL_POSITION,X,Y,Z);
+                    this->Location.SetValues(X,Y,Z);
+                }
             }
 
             Vector3 Listener::GetLocation() const
             {
-                this->MakeCurrent();
-                Vector3 Loc;
-                alGetListener3f(AL_POSITION,&Loc.X,&Loc.Y,&Loc.Z);
-                return Loc;
+                return this->Location;
             }
 
             void Listener::SetOrientation(const Quaternion& Ori)
             {
-                this->MakeCurrent();
-                this->Orientation = Ori;
-                Real ALOrient[6];
-                this->ConvertBuffer(ALOrient);
-                alListenerfv(AL_ORIENTATION,ALOrient);
+                if( this->Orientation != Ori )
+                {
+                    this->MakeCurrent();
+                    Real ALOrient[6];
+                    this->ConvertBuffer(ALOrient);
+                    alListenerfv(AL_ORIENTATION,ALOrient);
+                    this->Orientation = Ori;
+                }
             }
 
             void Listener::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
             {
-                this->MakeCurrent();
-                this->Orientation.SetValues(X,Y,Z,W);
-                Real ALOrient[6];
-                this->ConvertBuffer(ALOrient);
-                alListenerfv(AL_ORIENTATION,ALOrient);
+                if( this->Orientation.X != X || this->Orientation.Y != Y || this->Orientation.Z != Z || this->Orientation.W != W )
+                {
+                    this->MakeCurrent();
+                    Real ALOrient[6];
+                    this->ConvertBuffer(ALOrient);
+                    alListenerfv(AL_ORIENTATION,ALOrient);
+                    this->Orientation.SetValues(X,Y,Z,W);
+                }
             }
 
             Quaternion Listener::GetOrientation() const
@@ -185,6 +201,7 @@ namespace Mezzanine
             Vector3 Listener::GetScale() const
             {
                 // Currently you can't scale a listener
+                return Vector3(1,1,1);
             }
 
             void Listener::Translate(const Vector3& Trans)

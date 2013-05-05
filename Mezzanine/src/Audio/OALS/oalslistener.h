@@ -59,6 +59,14 @@ namespace Mezzanine
             {
                 protected:
                     ALCcontext* Context;
+                    Real VolumeModifier;
+                    Real MPU;
+                    /// @internal
+                    /// @brief This stores the current location of this listener in 3D space.
+                    Vector3 Location;
+                    /// @internal
+                    /// @brief This stores the current velocity of this listener.
+                    Vector3 Velocity;
                     /// @internal
                     /// @brief This stores the current orientation of this listener.
                     Quaternion Orientation;
@@ -70,8 +78,8 @@ namespace Mezzanine
                     void MakeCurrent();
                 public:
                     /// @brief Internal constructor.
-                    /// @param ListContext The context this listener belongs to.
-                    Listener(ALCcontext* ListContext);
+                    /// @param ListenContext The context this listener belongs to.
+                    Listener(ALCcontext* ListenContext);
                     /// @brief Class destructor.
                     virtual ~Listener();
 
