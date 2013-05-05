@@ -58,8 +58,14 @@ namespace Mezzanine
             class MEZZ_LIB Listener : public iListener
             {
                 protected:
+                    /// @internal
+                    /// @brief This is a pointer to the OALS context this listener belongs to.
                     ALCcontext* Context;
+                    /// @internal
+                    /// @brief This stores the modifier to be applied to the volume of all sounds heard by this listener.
                     Real VolumeModifier;
+                    /// @internal
+                    /// @brief This stores the amount of meters to be assumed in one unit of world space.
                     Real MPU;
                     /// @internal
                     /// @brief This stores the current location of this listener in 3D space.
