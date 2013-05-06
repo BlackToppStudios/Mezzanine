@@ -198,12 +198,19 @@ namespace Mezzanine
     class ReferenceCountTraits <IntrusiveRefCount>
     {
         public:
+            /// @brief The sample internal reference count needs to indicat that the managed type is the same as the ReferenceCountType, because it will have a counter.
             typedef IntrusiveRefCount ManagedType;
+
+            /// @brief For similar to ManagedType, this indicates that pointer type internal to the CountedPtr instance is a pointer to the target class instance.
             typedef IntrusiveRefCount* PtrType;
 
+            /// @brief Because The reference count is allocated when the caller created the target this does not need to allocate a Reference count separetaly.
+            /// @param The create object to manage.
+            /// @return This is expected to return a valid reference count, since the reference count is in the target, this returns whatever was passed in,
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
+            /// @brief What kind of casting should be done when the target must be down(or side) cast.
             enum { IsCastable = CastStatic };
     };
 
@@ -388,10 +395,11 @@ namespace Mezzanine
         public:
             /// @internal
             /// @brief Do not cast, rather fail to compile.
-            /// @return Always fails to compile, to signal an error in the calling code attempting to cast.
+            /// @return Always fails
             static ReturnPointer Cast(OriginalPointer)
             {
                 //#error Invalid Casting value for CountedPtr cast
+                throw(0); /// @todo make this conditionally fail to compile.
                 return ReturnPointer(0);
             }
     };
