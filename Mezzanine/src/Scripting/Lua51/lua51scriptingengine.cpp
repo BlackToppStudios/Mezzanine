@@ -146,7 +146,7 @@ namespace Mezzanine
 
             void Lua51ScriptingEngine::Compile(CountedPtr<iScriptCompilable> ScriptToCompile)
             {
-                Lua51Script* CompilationSource = dynamic_cast<Lua51Script*>(ScriptToCompile.get());
+                //Lua51Script* CompilationSource = CountedPtrCastInternal<Lua51Script*>(ScriptToCompile.get());
                 /*CountedPtr<Lua51Script> CompilationSource(CountedPtrCast<Lua51Script>(ScriptToCompile));
                 if(CompilationSource)
                 {

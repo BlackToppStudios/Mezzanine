@@ -194,6 +194,11 @@ namespace Mezzanine
                 /// @return A Whole with the current reference count
                 Whole GetReferenceCount()
                     { return RefCount; }
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer cast to a void*
+                virtual void* GetMostDerived()
+                    { return reinterpret_cast<void*>(this); }
         }; // iScript
 
 
@@ -239,6 +244,11 @@ namespace Mezzanine
 
                 virtual iScriptCompilable* GetAsScriptCompilable()
                     { return this; }
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer cast to a void*
+                virtual void* GetMostDerived()
+                    { return reinterpret_cast<void*>(this); }
         };
 
 
@@ -266,6 +276,11 @@ namespace Mezzanine
                 /// @brief Get the returns from the last exection of the script
                 /// @return An ArgumentSet that can be iterated over to get all the values returned.
                 virtual ArgumentSet GetAllReturns() const = 0;
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer cast to a void*
+                virtual void* GetMostDerived()
+                    { return reinterpret_cast<void*>(this); }
         };
 
 
@@ -282,7 +297,7 @@ namespace Mezzanine
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
-            enum { IsCastable = CastStatic };
+            enum { IsCastable = CastDynamic };
     };
 
     /// @brief Marks iScriptCompilable for internal reference counting if a CountedPtr checks
@@ -296,7 +311,7 @@ namespace Mezzanine
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
-            enum { IsCastable = CastStatic };
+            enum { IsCastable = CastDynamic };
     };
 
     /// @brief Marks iScriptMultipleReturn for internal reference counting if a CountedPtr checks
@@ -310,7 +325,7 @@ namespace Mezzanine
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
-            enum { IsCastable = CastStatic };
+            enum { IsCastable = CastDynamic };
     };
 
 }//Mezzanine

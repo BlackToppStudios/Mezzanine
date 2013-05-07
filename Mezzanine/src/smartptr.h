@@ -59,16 +59,18 @@ namespace Mezzanine
     /// some of the types involved were templates.
     enum CountedPointerCastingState
     {
-        CastNoneError = -2,       ///< No Casting, any cast attempt results in a compilation Error.
-        CastNoneReturnZero   = -1,       ///< No Casting, 0 is returned. Useful when types are unknown and dynamic casts are already used and checked.
-        CastDynamic          = 1,       ///< Dynamic Casting, the class must provide a 'virtual something* GetMostDerived()' and its return must be dynamically upcast to a more base class.
-        CastStatic           = 2        ///< Static Casting, the class provides a 'virtual void* GetMostDerived()' and its return can be statically upcast to a more base class.
+        CastNoneError        = -2,      ///< No Casting, any cast attempt results in a compilation Error.
+        CastNoneReturnZero   = -1,      ///< No Casting, 0 is returned. Useful when types are unknown and dynamic casts are already used and checked.
+        CastSimpleStatic     = 1,       ///< A static cast from the pointer as provided with no attempt to calls functions on the pointer target, this is default for externally reference counted pointers
+        CastDynamic          = 2,       ///< Dynamic Casting from most derived class, the class must provide a 'virtual something* GetMostDerived()' and its return must be dynamically upcast to a more base class.
+        CastStatic           = 3        ///< Static Casting from most dervied class, the class provides a 'virtual void* GetMostDerived()' and its return can be statically upcast to a more base class.
     };
 
     // Forward Declares for casting
     template <typename ReturnPointer, typename OriginalPointer, CountedPointerCastingState> class CountedPtrCastImpl;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastNoneError>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastNoneReturnZero>;
+    template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastSimpleStatic>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastDynamic>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastStatic>;
     template <typename ReturnPointer, typename OriginalPointer> ReturnPointer CountedPtrCastInternal(OriginalPointer Original);
@@ -185,7 +187,7 @@ namespace Mezzanine
                 { return RefCount; }
 
             /// @brief Get a pointer to the most Derived type of this class
-            /// @return A pointer cast to a void*
+            /// @return A pointer cast to a void*, for use with CountedPtrCast
             virtual void* GetMostDerived()
                 { return reinterpret_cast<void*>(this); }
     };
@@ -238,7 +240,7 @@ namespace Mezzanine
 
             /// @brief Used to determine if the data a CountedPtr is managing can be cast
             /// @details This uses the @ref CountedPointerCastingState to enter a value the Template MetaProgramming Machinery will understand.
-            enum { IsCastable = CastNoneError };
+            enum { IsCastable = CastSimpleStatic };
     };
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -406,26 +408,41 @@ namespace Mezzanine
 
 
     /// @internal
-    /// @brief An implementation of the CountedPtrCast that always return
-    template <typename ReturnPointer, typename OriginalPointer>
-    class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastNoneError>
+    /// @brief An implementation of the CountedPtrCast that always return the pointer passed
+    template <typename OriginalPointer>
+    class CountedPtrCastImpl <OriginalPointer, OriginalPointer, CastNoneError>
     {
         public:
-            static ReturnPointer Cast(OriginalPointer)
+            static OriginalPointer Cast(OriginalPointer Original)
             {
                 //#error ReferenceCountTraits for target declare pointers of given type as non-castable.
-                return ReturnPointer(0);
+                //return ReturnPointer(0);
+                return Original;
             }
     };
 
     /// @internal
-    /// @brief An implementation of the CountedPtrCast that always return
+    /// @brief An implementation of the CountedPtrCast that always returns 0 cast to the original pointer type
     template <typename ReturnPointer, typename OriginalPointer>
     class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastNoneReturnZero>
     {
         public:
             static ReturnPointer Cast(OriginalPointer)
                 { return ReturnPointer(0); }
+    };
+
+    /// @internal
+    template <typename ReturnPointer, typename OriginalPointer>
+    class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastSimpleStatic>
+    {
+        public:
+            static ReturnPointer Cast(OriginalPointer Original)
+            {
+                return  ReturnPointer
+                        (
+                            static_cast<ReturnPointer>(Original)
+                        );
+            }
     };
 
     /// @internal
@@ -461,19 +478,18 @@ namespace Mezzanine
     /// @internal
     /// Abstracts away th
     template <typename ReturnPointer, typename OriginalPointer>
-    ReturnPointer CountedPtrCastInternal(OriginalPointer Original)
+    ReturnPointer CountedPtrCastInternal(OriginalPointer* Original)
     {
         return  CountedPtrCastImpl
                     <
                         ReturnPointer,
-                        OriginalPointer,
+                        OriginalPointer*,
                         CountedPointerCastingState
                             (
                                 ReferenceCountTraits<OriginalPointer>::IsCastable
                             )
                     >::Cast(Original);
     }
-
 
     ///
     //abstracts away the Counted pointer

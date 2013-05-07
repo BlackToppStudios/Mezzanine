@@ -135,11 +135,18 @@ namespace Mezzanine
 
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetAllReturns
                     virtual ArgumentSet GetAllReturns() const;
+
+                    //For the CountedPointer Inheritance
+                public:
+                    /// @brief Get a pointer to the most Derived type of this class
+                    /// @return A pointer cast to a void*
+                    virtual void* GetMostDerived()
+                        { return reinterpret_cast<void*>(this); }
             };
         } // Lua
     } // Scripting
 
-    /// @brief Marks iScriptMultipleReturn for internal reference counting if a CountedPtr checks
+    /// @brief Marks Lua51Script for internal reference counting if a CountedPtr checks
     template <>
     class ReferenceCountTraits <Scripting::Lua::Lua51Script>
     {
@@ -150,7 +157,7 @@ namespace Mezzanine
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
-            enum { IsCastable = CastStatic };
+            enum { IsCastable = CastDynamic };
 
     };
 } // Mezzanine

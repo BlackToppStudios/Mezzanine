@@ -126,6 +126,11 @@ namespace Mezzanine
             /// @return A Whole with the current reference count
             Whole GetReferenceCount()
                 { return RefCount; }
+
+            /// @brief Get a pointer to the most Derived type of this class
+            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            virtual void* GetMostDerived()
+                { return reinterpret_cast<void*>(this); }
     };
 
     template <>
@@ -141,22 +146,38 @@ namespace Mezzanine
             enum { IsCastable = CastStatic };
     };
 
+
     class FooDerived1 : public virtual FooInternal
     {
         public:
             int Value1;
+
+            /// @brief Get a pointer to the most Derived type of this class
+            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            virtual void* GetMostDerived()
+                { return reinterpret_cast<void*>(this); }
     };
 
     class FooDerived2 : public virtual FooInternal
     {
         public:
             int Value2;
+
+            /// @brief Get a pointer to the most Derived type of this class
+            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            virtual void* GetMostDerived()
+                { return reinterpret_cast<void*>(this); }
     };
 
     class FooDiamond : public FooDerived1, public FooDerived2
     {
         public:
             int ValueDiamond;
+
+            /// @brief Get a pointer to the most Derived type of this class
+            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            virtual void* GetMostDerived()
+                { return reinterpret_cast<void*>(this); }
     };
 
     template <>
