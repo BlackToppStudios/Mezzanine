@@ -152,7 +152,10 @@ namespace Mezzanine
     {
         public:
             typedef Scripting::Lua::Lua51Script ManagedType;
-            typedef Scripting::Lua::Lua51Script * PtrType;
+            typedef Scripting::Lua::Lua51Script* PtrType;
+
+            typedef Scripting::Lua::Lua51Script TargetType;
+            typedef Scripting::Lua::Lua51Script* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }

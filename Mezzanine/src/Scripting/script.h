@@ -294,6 +294,9 @@ namespace Mezzanine
             typedef Scripting::iScript ManagedType;
             typedef Scripting::iScript * PtrType;
 
+            typedef Scripting::iScript TargetType;
+            typedef Scripting::iScript* TargetPtrType;
+
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
@@ -308,6 +311,9 @@ namespace Mezzanine
             typedef Scripting::iScriptCompilable ManagedType;
             typedef Scripting::iScriptCompilable * PtrType;
 
+            typedef Scripting::iScriptCompilable TargetType;
+            typedef Scripting::iScriptCompilable* TargetPtrType;
+
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
@@ -321,6 +327,9 @@ namespace Mezzanine
         public:
             typedef Scripting::iScriptMultipleReturn ManagedType;
             typedef Scripting::iScriptMultipleReturn * PtrType;
+
+            typedef Scripting::iScriptMultipleReturn TargetType;
+            typedef Scripting::iScriptMultipleReturn* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }

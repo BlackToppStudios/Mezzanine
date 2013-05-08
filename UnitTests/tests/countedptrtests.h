@@ -140,6 +140,9 @@ namespace Mezzanine
             typedef FooInternal ManagedType;
             typedef FooInternal* PtrType;
 
+            typedef FooInternal TargetType;
+            typedef FooInternal* TargetPtrType;
+
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
@@ -187,6 +190,9 @@ namespace Mezzanine
             typedef FooDerived1 ManagedType;
             typedef FooDerived1* PtrType;
 
+            typedef FooDerived1 TargetType;
+            typedef FooDerived1* TargetPtrType;
+
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
@@ -200,6 +206,9 @@ namespace Mezzanine
             typedef FooDerived2 ManagedType;
             typedef FooDerived2* PtrType;
 
+            typedef FooDerived1 TargetType;
+            typedef FooDerived1* TargetPtrType;
+
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
@@ -212,6 +221,9 @@ namespace Mezzanine
         public:
             typedef FooDiamond ManagedType;
             typedef FooDiamond* PtrType;
+
+            typedef FooDiamond TargetType;
+            typedef FooDiamond* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
