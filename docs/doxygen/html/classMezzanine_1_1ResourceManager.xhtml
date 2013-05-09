@@ -143,7 +143,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5b2bd318749c5d6e236680410c13f8bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pathname where engine data is stored.  <a href="#a5b2bd318749c5d6e236680410c13f8bc"></a><br/></td></tr>
 <tr class="memitem:a100f25758b1cf9ea352ddfcf56d56c02"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a100f25758b1cf9ea352ddfcf56d56c02">GetImplementationTypeName</a> () const </td></tr>
 <tr class="memdesc:a100f25758b1cf9ea352ddfcf56d56c02"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Allows any manager name to be sent to a stream. Primarily used for logging.   <a href="#a100f25758b1cf9ea352ddfcf56d56c02"></a><br/></td></tr>
-<tr class="memitem:a3bdf6552e87e885aab4e2db8c9142d26"><td class="memItemLeft" align="right" valign="top">virtual ManagerType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a3bdf6552e87e885aab4e2db8c9142d26">GetInterfaceType</a> () const </td></tr>
+<tr class="memitem:a3bdf6552e87e885aab4e2db8c9142d26"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a3bdf6552e87e885aab4e2db8c9142d26">GetInterfaceType</a> () const </td></tr>
 <tr class="memdesc:a3bdf6552e87e885aab4e2db8c9142d26"><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the type of this manager.   <a href="#a3bdf6552e87e885aab4e2db8c9142d26"></a><br/></td></tr>
 <tr class="memitem:a488e3fd88f733177ac5603e52bce1c18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a488e3fd88f733177ac5603e52bce1c18">GetLocalAppDataDir</a> () const </td></tr>
 <tr class="memdesc:a488e3fd88f733177ac5603e52bce1c18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the path to the directory intended for game and engine config data that is not meant to be shared.  <a href="#a488e3fd88f733177ac5603e52bce1c18"></a><br/></td></tr>
@@ -208,9 +208,9 @@ static <a class="el" href="namespaceMezzanine.xhtml#a25d7f893350196fa99e164f78df
 <tr class="memitem:a2f01fdfc345eb154b5aa789dc515c22c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a2f01fdfc345eb154b5aa789dc515c22c">GetStringFromArchiveType</a> (<a class="el" href="namespaceMezzanine.xhtml#a25d7f893350196fa99e164f78df3538b">ArchiveType</a> ArchiveType_)</td></tr>
 <tr class="memdesc:a2f01fdfc345eb154b5aa789dc515c22c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get A string that describes an <a class="el" href="namespaceMezzanine.xhtml#a25d7f893350196fa99e164f78df3538b">ArchiveType</a>.  <a href="#a2f01fdfc345eb154b5aa789dc515c22c"></a><br/></td></tr>
 <tr class="inherit_header pub_static_methods_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&nbsp;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1ManagerBase.xhtml">Mezzanine::ManagerBase</a></td></tr>
-<tr class="memitem:a446009f2bdf870d4a135d65e941bc066 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a446009f2bdf870d4a135d65e941bc066">GetTypeNameAsString</a> (const ManagerType &amp;ManagerType)</td></tr>
+<tr class="memitem:a446009f2bdf870d4a135d65e941bc066 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a446009f2bdf870d4a135d65e941bc066">GetTypeNameAsString</a> (const <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> &amp;<a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>)</td></tr>
 <tr class="memdesc:a446009f2bdf870d4a135d65e941bc066 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the string form of the type of manager.  <a href="#a446009f2bdf870d4a135d65e941bc066"></a><br/></td></tr>
-<tr class="memitem:ae76f56a9d8585b96c3cda9f51368b60a inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static ManagerType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ae76f56a9d8585b96c3cda9f51368b60a">GetTypeNameFromString</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ManagerName)</td></tr>
+<tr class="memitem:ae76f56a9d8585b96c3cda9f51368b60a inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ae76f56a9d8585b96c3cda9f51368b60a">GetTypeNameFromString</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ManagerName)</td></tr>
 <tr class="memdesc:ae76f56a9d8585b96c3cda9f51368b60a inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of manager requested from a string.  <a href="#ae76f56a9d8585b96c3cda9f51368b60a"></a><br/></td></tr>
 <tr class="inherit_header pub_static_methods_classMezzanine_1_1Singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1Singleton')"><img src="closed.png" alt="-"/>&nbsp;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Singleton.xhtml">Mezzanine::Singleton< ResourceManager ></a></td></tr>
 <tr class="memitem:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1ResourceManager.xhtml">ResourceManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.xhtml#a78fc425584913f0b2c615ec440871a67">GetSingletonPtr</a> ()</td></tr>
@@ -255,7 +255,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:ab23a9aa27c4e3cb58d902a149d3c6de2 inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab23a9aa27c4e3cb58d902a149d3c6de2"></a>
 typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab23a9aa27c4e3cb58d902a149d3c6de2">Callback</a> )()</td></tr>
 <tr class="memdesc:ab23a9aa27c4e3cb58d902a149d3c6de2 inherit pub_types_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This makes working with Callback function pointer a bit easier. <br/></td></tr>
-<tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ManagerType</b> { <br/>
+<tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> { <br/>
 &#160;&#160;<b>ActorManager</b> =  1, 
 <b>AudioManager</b>, 
 <b>CameraManager</b>, 
@@ -278,7 +278,7 @@ typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <br/>
 &#160;&#160;<b>TimerManager</b>, 
 <b>UIManager</b>, 
-<b>UserCreated</b> =  512
+<a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6caa58e48b5e043dfdaf6e2cd17b79a3194">UserCreated</a> =  512
 <br/>
  }</td></tr>
 <tr class="inherit_header pro_static_attribs_classMezzanine_1_1Singleton"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classMezzanine_1_1Singleton')"><img src="closed.png" alt="-"/>&nbsp;Static Protected Attributes inherited from <a class="el" href="classMezzanine_1_1Singleton.xhtml">Mezzanine::Singleton< ResourceManager ></a></td></tr>
@@ -744,7 +744,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.xhtml">ResourceMana
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual ManagerType Mezzanine::ResourceManager::GetInterfaceType </td>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> Mezzanine::ResourceManager::GetInterfaceType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -967,7 +967,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.xhtml">ResourceMana
 </div><div class="memdoc">
 
 <p>Resolves a string describing one of the platform data paths to the actual path it is. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000013">Todo:</a></b></dt><dd>Create a function to check if directory exists in the resource manager </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000012">Todo:</a></b></dt><dd>Create a function to check if directory exists in the resource manager </dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd>Currently there are only 4 preset path variables, and depending on platform they two or more may go to the same location. The valid variables are as follows: LocalAppData, ShareableAppData, CurrentUserData, and CommonUserData. These are not case sensative. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -984,6 +984,6 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.xhtml">ResourceMana
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 9 2013 23:03:27 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

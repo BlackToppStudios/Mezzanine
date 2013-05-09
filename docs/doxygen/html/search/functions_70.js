@@ -47,6 +47,8 @@ var searchData=
   ['postmainloopitems',['PostMainLoopItems',['../classMezzanine_1_1GraphicsManager.xhtml#a3e48797b4617ebad3399c5ce35ab4e17',1,'Mezzanine::GraphicsManager::PostMainLoopItems()'],['../classMezzanine_1_1ManagerBase.xhtml#aec26bca08780fd29f49370973f39cbf7',1,'Mezzanine::ManagerBase::PostMainLoopItems()']]],
   ['pow',['Pow',['../classMezzanine_1_1MathTool.xhtml#a2b0b49857122f3f2d1cad17e83fbbcd4',1,'Mezzanine::MathTool']]],
   ['powderblue',['PowderBlue',['../classMezzanine_1_1ColourValue.xhtml#a5e09d786e395e5fdb4f90f8fbc865a75',1,'Mezzanine::ColourValue']]],
+  ['predictbase64stringsizefrombinarysize',['PredictBase64StringSizeFromBinarySize',['../namespaceMezzanine_1_1BinaryTools.xhtml#a97766f570470a3c3a457faef28b6239f',1,'Mezzanine::BinaryTools']]],
+  ['predictbinarysizefrombase64string',['PredictBinarySizeFromBase64String',['../namespaceMezzanine_1_1BinaryTools.xhtml#ad9651d034b51497f37b69d52b605f6a8',1,'Mezzanine::BinaryTools']]],
   ['premainloopitems',['PreMainLoopItems',['../classMezzanine_1_1ManagerBase.xhtml#a786e385f50879d6643962ea17b9e13e7',1,'Mezzanine::ManagerBase']]],
   ['prepareforrendering',['PrepareForRendering',['../classMezzanine_1_1LineGroup.xhtml#ab94688dd800d390aefce0e6b9742b296',1,'Mezzanine::LineGroup']]],
   ['preparseclassfromsingletag',['PreParseClassFromSingleTag',['../namespaceMezzanine_1_1XML.xhtml#a666837c21098b243a1b35976b2f11e6d',1,'Mezzanine::XML::PreParseClassFromSingleTag(const String &amp;NameSpace, const String &amp;ClassName, const String &amp;OneTag)'],['../namespaceMezzanine_1_1XML.xhtml#a74f33f1434219f14ce83c142521e5bd6',1,'Mezzanine::XML::PreParseClassFromSingleTag(const String &amp;ClassName, const String &amp;OneTag)']]],

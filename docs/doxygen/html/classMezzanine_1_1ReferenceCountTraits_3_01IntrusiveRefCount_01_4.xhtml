@@ -89,36 +89,81 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>An Example <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml" title="Every class that does not implement its own reference count gets the default one.">ReferenceCountTraits</a> implmentation.  
+<p>An Example <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml" title="This is used to deduce at compile if a specific class has built-in reference counting or needs an ext...">ReferenceCountTraits</a> implmentation.  
  <a href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:a58760b0f7acab94b9508c9c7a95c2eb7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>IsCastable</b> =  CastStatic
+ }</td></tr>
+<tr class="memdesc:a58760b0f7acab94b9508c9c7a95c2eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">What kind of casting should be done when the target must be down(or side) cast. <br/></td></tr>
 <tr class="memitem:a82c470544c13fc7effe86f0226214762"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82c470544c13fc7effe86f0226214762"></a>
-typedef <a class="el" href="classMezzanine_1_1IntrusiveRefCount.xhtml">IntrusiveRefCount</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ManagedType</b></td></tr>
+typedef <a class="el" href="classMezzanine_1_1IntrusiveRefCount.xhtml">IntrusiveRefCount</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#a82c470544c13fc7effe86f0226214762">ManagedType</a></td></tr>
+<tr class="memdesc:a82c470544c13fc7effe86f0226214762"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sample internal reference count needs to indicate that the managed type is the same as the ReferenceCountType, because it will have a counter. <br/></td></tr>
 <tr class="memitem:a3b8a7a6eae994aa80a785d5c1e67d3fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b8a7a6eae994aa80a785d5c1e67d3fe"></a>
-typedef <a class="el" href="classMezzanine_1_1IntrusiveRefCount.xhtml">IntrusiveRefCount</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>PtrType</b></td></tr>
+typedef <a class="el" href="classMezzanine_1_1IntrusiveRefCount.xhtml">IntrusiveRefCount</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#a3b8a7a6eae994aa80a785d5c1e67d3fe">PtrType</a></td></tr>
+<tr class="memdesc:a3b8a7a6eae994aa80a785d5c1e67d3fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">For similar to ManagedType, this indicates that pointer type internal to the <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> instance is a pointer to the target class instance. <br/></td></tr>
+<tr class="memitem:acc9bf23ff22c5408626742c3fdf2d9cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc9bf23ff22c5408626742c3fdf2d9cf"></a>
+typedef <a class="el" href="classMezzanine_1_1IntrusiveRefCount.xhtml">IntrusiveRefCount</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>TargetPtrType</b></td></tr>
+<tr class="memitem:a175fe33726252516166d4a109180385b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a175fe33726252516166d4a109180385b"></a>
+typedef <a class="el" href="classMezzanine_1_1IntrusiveRefCount.xhtml">IntrusiveRefCount</a>&#160;</td><td class="memItemRight" valign="bottom"><b>TargetType</b></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac98cc6d41eb569b0639f69e567365586"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac98cc6d41eb569b0639f69e567365586"></a>
-static <a class="el" href="classMezzanine_1_1IntrusiveRefCount.xhtml">PtrType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ConstructionPointer</b> (<a class="el" href="classMezzanine_1_1IntrusiveRefCount.xhtml">PtrType</a> Target)</td></tr>
+<tr class="memitem:ac98cc6d41eb569b0639f69e567365586"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#a3b8a7a6eae994aa80a785d5c1e67d3fe">PtrType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#ac98cc6d41eb569b0639f69e567365586">ConstructionPointer</a> (<a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#a3b8a7a6eae994aa80a785d5c1e67d3fe">PtrType</a> Target)</td></tr>
+<tr class="memdesc:ac98cc6d41eb569b0639f69e567365586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Because The reference count is allocated when the caller created the target this does not need to allocate a Reference count separetaly.  <a href="#ac98cc6d41eb569b0639f69e567365586"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><h3>template&lt;&gt;<br/>
 class Mezzanine::ReferenceCountTraits&lt; IntrusiveRefCount &gt;</h3>
 
-<p>An Example <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml" title="Every class that does not implement its own reference count gets the default one.">ReferenceCountTraits</a> implmentation. </p>
+<p>An Example <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml" title="This is used to deduce at compile if a specific class has built-in reference counting or needs an ext...">ReferenceCountTraits</a> implmentation. </p>
 <p>Anything with an internal Reference should implement a specialization of this template that defines PtrType to be a pointer to the structure with the reference count interface </p>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00159">159</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00194">194</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+</div><h2>Member Function Documentation</h2>
+<a class="anchor" id="ac98cc6d41eb569b0639f69e567365586"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#a3b8a7a6eae994aa80a785d5c1e67d3fe">PtrType</a> <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml">Mezzanine::ReferenceCountTraits</a>&lt; <a class="el" href="classMezzanine_1_1IntrusiveRefCount.xhtml">IntrusiveRefCount</a> &gt;::ConstructionPointer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#a3b8a7a6eae994aa80a785d5c1e67d3fe">PtrType</a>&#160;</td>
+          <td class="paramname"><em>Target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Because The reference count is allocated when the caller created the target this does not need to allocate a Reference count separetaly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td>create object to manage. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>This is expected to return a valid reference count, since the reference count is in the target, this returns whatever was passed in, </dd></dl>
+
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00210">210</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 9 2013 23:03:27 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

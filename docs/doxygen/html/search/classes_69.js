@@ -9,6 +9,7 @@ var searchData=
   ['instanceidentitynotfoundexception',['InstanceIdentityNotFoundException',['../classMezzanine_1_1InstanceIdentityNotFoundException.xhtml',1,'Mezzanine']]],
   ['internalexception',['InternalException',['../classMezzanine_1_1InternalException.xhtml',1,'Mezzanine']]],
   ['intrusiverefcount',['IntrusiveRefCount',['../classMezzanine_1_1IntrusiveRefCount.xhtml',1,'Mezzanine']]],
+  ['invalidassignment',['InvalidAssignment',['../classMezzanine_1_1InvalidAssignment.xhtml',1,'Mezzanine']]],
   ['invalidparametersexception',['InvalidParametersException',['../classMezzanine_1_1InvalidParametersException.xhtml',1,'Mezzanine']]],
   ['invalidstateexception',['InvalidStateException',['../classMezzanine_1_1InvalidStateException.xhtml',1,'Mezzanine']]],
   ['invalidversionexception',['InvalidVersionException',['../classMezzanine_1_1InvalidVersionException.xhtml',1,'Mezzanine']]],

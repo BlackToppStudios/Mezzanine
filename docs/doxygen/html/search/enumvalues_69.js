@@ -9,6 +9,7 @@ var searchData=
   ['inputevent_5flast',['INPUTEVENT_LAST',['../namespaceMezzanine_1_1Input.xhtml#ab722ac9d149cd84c0db5080b46a3721aa38f0a38d8f9ef70fa75a7d9ccd862489',1,'Mezzanine::Input']]],
   ['internal_5fexception',['INTERNAL_EXCEPTION',['../classMezzanine_1_1Exception.xhtml#a4ee7e60ac53783c4975240c57071d420a07f3be084a22d754e1aeec37740f5f54',1,'Mezzanine::Exception']]],
   ['invalid',['Invalid',['../namespaceMezzanine.xhtml#a25d7f893350196fa99e164f78df3538bac1790df125a6142b8a5b550c95763de5',1,'Mezzanine']]],
+  ['invalid_5fassignment',['INVALID_ASSIGNMENT',['../classMezzanine_1_1Exception.xhtml#a4ee7e60ac53783c4975240c57071d420a24a355e43a99cb9ae4826a67f40158f7',1,'Mezzanine::Exception']]],
   ['invalid_5fparameters_5fexception',['INVALID_PARAMETERS_EXCEPTION',['../classMezzanine_1_1Exception.xhtml#a4ee7e60ac53783c4975240c57071d420a14311376b409dd4861e4bf0f1d640ea5',1,'Mezzanine::Exception']]],
   ['invalid_5fstate_5fexception',['INVALID_STATE_EXCEPTION',['../classMezzanine_1_1Exception.xhtml#a4ee7e60ac53783c4975240c57071d420a954af2fb48bf0d15a27069a890ef8dad',1,'Mezzanine::Exception']]],
   ['invalid_5fversion_5fexception',['INVALID_VERSION_EXCEPTION',['../classMezzanine_1_1Exception.xhtml#a4ee7e60ac53783c4975240c57071d420a28c9fc403419230fd704065a7b1a37f4',1,'Mezzanine::Exception']]],

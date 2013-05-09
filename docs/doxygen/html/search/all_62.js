@@ -1,8 +1,8 @@
 var searchData=
 [
   ['b',['B',['../classMezzanine_1_1ColourValue.xhtml#afade1a83b0a698395acf9d831327fa5c',1,'Mezzanine::ColourValue']]],
-  ['base64decode',['Base64Decode',['../namespaceMezzanine_1_1BinaryTools.xhtml#a5d589d15b7cf318b1759487b0d3e6de4',1,'Mezzanine::BinaryTools']]],
-  ['base64encode',['Base64Encode',['../namespaceMezzanine_1_1BinaryTools.xhtml#a6fe28da03ba8c9f4fd03860e9b6826ee',1,'Mezzanine::BinaryTools']]],
+  ['base64decode',['Base64Decode',['../namespaceMezzanine_1_1BinaryTools.xhtml#ade49f2e19e1c1e20ffd1e46e516913df',1,'Mezzanine::BinaryTools']]],
+  ['base64encode',['Base64Encode',['../namespaceMezzanine_1_1BinaryTools.xhtml#a3c082328654156419fc24f832a1f8fd9',1,'Mezzanine::BinaryTools::Base64Encode(String const &amp;Unencoded)'],['../namespaceMezzanine_1_1BinaryTools.xhtml#a67704bac672a59003cbcd963cd338c92',1,'Mezzanine::BinaryTools::Base64Encode(BinaryBuffer const &amp;Buffer)'],['../namespaceMezzanine_1_1BinaryTools.xhtml#a6fe28da03ba8c9f4fd03860e9b6826ee',1,'Mezzanine::BinaryTools::Base64Encode(UInt8 const *BytesToEncode, unsigned int Length)']]],
   ['baseline',['Baseline',['../classMezzanine_1_1UI_1_1GlyphData.xhtml#a02221c97dab51b1f3fd38445c5fa572e',1,'Mezzanine::UI::GlyphData']]],
   ['basicrenderable',['BasicRenderable',['../classMezzanine_1_1UI_1_1BasicRenderable.xhtml',1,'Mezzanine::UI']]],
   ['basicrenderable',['BasicRenderable',['../classMezzanine_1_1UI_1_1BasicRenderable.xhtml#a65a51f4af775948aece1934958f6475c',1,'Mezzanine::UI::BasicRenderable']]],
@@ -17,9 +17,9 @@ var searchData=
   ['beginviewport',['BeginViewport',['../classMezzanine_1_1Graphics_1_1GameWindow.xhtml#a16dc793e22ea4c41c605713bcc3bdb7a',1,'Mezzanine::Graphics::GameWindow::BeginViewport()'],['../classMezzanine_1_1Graphics_1_1GameWindow.xhtml#acefd74a01a1a5e9d02f9f7056c09ad79',1,'Mezzanine::Graphics::GameWindow::BeginViewport() const ']]],
   ['beginworldnode',['BeginWorldNode',['../classMezzanine_1_1SceneManager.xhtml#a3288784ada5dc7322f5ca0d6f4323f65',1,'Mezzanine::SceneManager::BeginWorldNode()'],['../classMezzanine_1_1SceneManager.xhtml#a0aa6eae7f9f66c5c31c346fd87c0c724',1,'Mezzanine::SceneManager::BeginWorldNode() const ']]],
   ['beige',['Beige',['../classMezzanine_1_1ColourValue.xhtml#a9ac20332e24412d5bb7646918ca27236',1,'Mezzanine::ColourValue']]],
-  ['binary',['Binary',['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#ab46d303215f067f3983a571267038b05',1,'Mezzanine::BinaryTools::BinaryBuffer']]],
+  ['binary',['Binary',['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#a99e9cadde8687dc8b304413608327b7c',1,'Mezzanine::BinaryTools::BinaryBuffer']]],
   ['binarybuffer',['BinaryBuffer',['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml',1,'Mezzanine::BinaryTools']]],
-  ['binarybuffer',['BinaryBuffer',['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#abb21f973c6deab7caab323b90df99938',1,'Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer()'],['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#aaeaf9610bf4c289c68b9aba837348952',1,'Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Integer PredeterminedSize, UInt8 *BinaryPointer)']]],
+  ['binarybuffer',['BinaryBuffer',['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#abb21f973c6deab7caab323b90df99938',1,'Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer()'],['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#ac08221c49506acf0ca4067252421065a',1,'Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(const BinaryBuffer &amp;Other)'],['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#ad9f601df964ea8c3c72855de040360fa',1,'Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(const String &amp;DataString, bool IsBase64=true)'],['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#a16eeeb9df439dfe0be115b4bcb5aa100',1,'Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Byte *BinaryPointer, Integer PredeterminedSize)'],['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#a5bfa5eaba7bafe6db8993765805a713f',1,'Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer(Whole PredeterminedSize)']]],
   ['bindactivationkeyorbutton',['BindActivationKeyOrButton',['../classMezzanine_1_1UI_1_1Activatable.xhtml#a223d6b34f0e2614175d8c256ee63d0a2',1,'Mezzanine::UI::Activatable']]],
   ['bindhotkey',['BindHotKey',['../classMezzanine_1_1UIManager.xhtml#a9d8cc26ef8d2b8df8312eaeea184dd7b',1,'Mezzanine::UIManager']]],
   ['bisque',['Bisque',['../classMezzanine_1_1ColourValue.xhtml#a2ce7c96c1f53f545a52dfb4b055b7e9a',1,'Mezzanine::ColourValue']]],
@@ -31,6 +31,7 @@ var searchData=
   ['bodyb',['BodyB',['../classMezzanine_1_1Physics_1_1Constraint.xhtml#a83db6ff278bb5e7d51ebec87f3ab7279',1,'Mezzanine::Physics::Constraint']]],
   ['boilerplate_2eh',['boilerplate.h',['../boilerplate_8h.xhtml',1,'']]],
   ['boilerplatetests',['boilerplatetests',['../classboilerplatetests.xhtml',1,'']]],
+  ['boilerplatetests_2eh',['boilerplatetests.h',['../boilerplatetests_8h.xhtml',1,'']]],
   ['bone',['Bone',['../classMezzanine_1_1Graphics_1_1Bone.xhtml#ab39fc44c645737a523121ca414e51d50',1,'Mezzanine::Graphics::Bone']]],
   ['bone',['Bone',['../classMezzanine_1_1Graphics_1_1Bone.xhtml',1,'Mezzanine::Graphics']]],
   ['bonebegin',['BoneBegin',['../classMezzanine_1_1Graphics_1_1Skeleton.xhtml#ae45ef3d330bb7d7544af19c0ed1aa456',1,'Mezzanine::Graphics::Skeleton::BoneBegin()'],['../classMezzanine_1_1Graphics_1_1Skeleton.xhtml#a32cbe3f9c899450dd32ee74789e42b95',1,'Mezzanine::Graphics::Skeleton::BoneBegin() const ']]],
@@ -53,5 +54,6 @@ var searchData=
   ['buttonactivationsetup',['ButtonActivationSetup',['../classMezzanine_1_1UI_1_1RenderableFactory.xhtml#abb1fff415e3420f31df0fce90376687c',1,'Mezzanine::UI::RenderableFactory']]],
   ['buttonautoregisterenabled',['ButtonAutoRegisterEnabled',['../classMezzanine_1_1UIManager.xhtml#a7e88a8d25ae95440032333179f2f493f',1,'Mezzanine::UIManager']]],
   ['buttonscroll',['ButtonScroll',['../classMezzanine_1_1UI_1_1Scrollbar.xhtml#a9d7080a4dac568c36fd221b17fb7ec37',1,'Mezzanine::UI::Scrollbar']]],
-  ['buttonstate',['ButtonState',['../namespaceMezzanine_1_1Input.xhtml#a6dace303a881a50244c5130492f85b61',1,'Mezzanine::Input']]]
+  ['buttonstate',['ButtonState',['../namespaceMezzanine_1_1Input.xhtml#a6dace303a881a50244c5130492f85b61',1,'Mezzanine::Input']]],
+  ['byte',['Byte',['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#aeb16c1234f82f2b97b98d6d1079469c6',1,'Mezzanine::BinaryTools::BinaryBuffer']]]
 ];

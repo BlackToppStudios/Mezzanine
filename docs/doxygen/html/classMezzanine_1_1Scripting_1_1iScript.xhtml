@@ -82,6 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classMezzanine_1_1Scripting_1_1iScript-members.xhtml">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Mezzanine::Scripting::iScript Class Reference</div>  </div>
@@ -102,6 +103,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a2aaf8e8b8f426072073447963fa5d092"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a2aaf8e8b8f426072073447963fa5d092">iScript</a> ()</td></tr>
+<tr class="memdesc:a2aaf8e8b8f426072073447963fa5d092"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor  <a href="#a2aaf8e8b8f426072073447963fa5d092"></a><br/></td></tr>
 <tr class="memitem:a7284ee097f9dc25075be0a1f90538be5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a7284ee097f9dc25075be0a1f90538be5">AddArgument</a> (<a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptArgument.xhtml">iScriptArgument</a> &gt; Arg)=0</td></tr>
 <tr class="memdesc:a7284ee097f9dc25075be0a1f90538be5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This adds an argument to be passed to the script.  <a href="#a7284ee097f9dc25075be0a1f90538be5"></a><br/></td></tr>
 <tr class="memitem:a5b6d72ccf1385c1dc80c77f1846fd0f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b6d72ccf1385c1dc80c77f1846fd0f3"></a>
@@ -109,6 +112,8 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memdesc:a5b6d72ccf1385c1dc80c77f1846fd0f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this script support multiple return values.  Some scripting language support return tuples of values(Python), return an array of values (javascript), returning tables made of records which are groups or values(sql), and some allow return an arbitrary number of items that could be tables, or values and allow for tables to contain more tables and values(Lua). This allows for checking for an interface to retrieve some of these. <br/></td></tr>
 <tr class="memitem:a86bda5ba7c8e01c932bfa2998c21b308"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a86bda5ba7c8e01c932bfa2998c21b308">ClearArguments</a> ()=0</td></tr>
 <tr class="memdesc:a86bda5ba7c8e01c932bfa2998c21b308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all the ARGs!!! <a href="http://imgur.com/DJhw7">http://imgur.com/DJhw7</a>.  <a href="#a86bda5ba7c8e01c932bfa2998c21b308"></a><br/></td></tr>
+<tr class="memitem:a6a0663b66f7df67e68ac80567687a716"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a6a0663b66f7df67e68ac80567687a716">DecrementReferenceCount</a> ()</td></tr>
+<tr class="memdesc:a6a0663b66f7df67e68ac80567687a716"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrease the reference count by one and return the updated count.  <a href="#a6a0663b66f7df67e68ac80567687a716"></a><br/></td></tr>
 <tr class="memitem:a2ca9c6a17e1bf5fd6d2249a79bc36c71"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a><br class="typebreak"/>
 &lt; <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptArgument.xhtml">iScriptArgument</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a2ca9c6a17e1bf5fd6d2249a79bc36c71">GetArgument</a> (<a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> ArgNumber) const =0</td></tr>
 <tr class="memdesc:a2ca9c6a17e1bf5fd6d2249a79bc36c71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a argument previously passed in.  <a href="#a2ca9c6a17e1bf5fd6d2249a79bc36c71"></a><br/></td></tr>
@@ -120,18 +125,34 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memdesc:a166c96bd77a34a4815a5da2eb5b1af65"><td class="mdescLeft">&#160;</td><td class="mdescRight">If your only handle to this is a pointer of type <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> this can be called to get a pointer to an <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">iScriptCompilable</a> if it would be valid.  <a href="#a166c96bd77a34a4815a5da2eb5b1af65"></a><br/></td></tr>
 <tr class="memitem:a3a9e22da955af88cb7dce88475cbba42"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">iScriptCompilable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a3a9e22da955af88cb7dce88475cbba42">GetAsScriptCompilable</a> () const </td></tr>
 <tr class="memdesc:a3a9e22da955af88cb7dce88475cbba42"><td class="mdescLeft">&#160;</td><td class="mdescRight">If your only handle to this is a pointer of type <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> this can be called to get a pointer to an <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">iScriptCompilable</a> if it would be valid.   <a href="#a3a9e22da955af88cb7dce88475cbba42"></a><br/></td></tr>
+<tr class="memitem:af2b8032d27d6f40afa7c42f18ce3e893"><td class="memItemLeft" align="right" valign="top">virtual void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#af2b8032d27d6f40afa7c42f18ce3e893">GetMostDerived</a> ()</td></tr>
+<tr class="memdesc:af2b8032d27d6f40afa7c42f18ce3e893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the most Derived type of this class.  <a href="#af2b8032d27d6f40afa7c42f18ce3e893"></a><br/></td></tr>
+<tr class="memitem:a0a31deb3fb04ce715a5f2d296f76eb43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a0a31deb3fb04ce715a5f2d296f76eb43">GetReferenceCount</a> ()</td></tr>
+<tr class="memdesc:a0a31deb3fb04ce715a5f2d296f76eb43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current amount of references.  <a href="#a0a31deb3fb04ce715a5f2d296f76eb43"></a><br/></td></tr>
+<tr class="memitem:ad79b5db7dca432d219e157ae5231c87d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#ad79b5db7dca432d219e157ae5231c87d">GetReferenceCountPointer</a> ()</td></tr>
+<tr class="memdesc:ad79b5db7dca432d219e157ae5231c87d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the actual pointer to the target.  <a href="#ad79b5db7dca432d219e157ae5231c87d"></a><br/></td></tr>
+<tr class="memitem:a81171d356f0a03eb55086aaff3e8a941"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a81171d356f0a03eb55086aaff3e8a941">GetReferenceCountReference</a> ()</td></tr>
+<tr class="memdesc:a81171d356f0a03eb55086aaff3e8a941"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a reference to the reference counter, which on this is this.  <a href="#a81171d356f0a03eb55086aaff3e8a941"></a><br/></td></tr>
 <tr class="memitem:a0547624508e0ba6e05c837e802e110fd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a0547624508e0ba6e05c837e802e110fd">GetSourceCode</a> () const =0</td></tr>
 <tr class="memdesc:a0547624508e0ba6e05c837e802e110fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">If present this returns the code of script.  <a href="#a0547624508e0ba6e05c837e802e110fd"></a><br/></td></tr>
+<tr class="memitem:afefd9e0ca818049340c9ef3e5b2edf22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#afefd9e0ca818049340c9ef3e5b2edf22">IncrementReferenceCount</a> ()</td></tr>
+<tr class="memdesc:afefd9e0ca818049340c9ef3e5b2edf22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increase the reference count by one and return the updated count.  <a href="#afefd9e0ca818049340c9ef3e5b2edf22"></a><br/></td></tr>
 <tr class="memitem:a5d222fee4b4f2ef855605472fd186667"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a5d222fee4b4f2ef855605472fd186667">IsCompilable</a> () const </td></tr>
 <tr class="memdesc:a5d222fee4b4f2ef855605472fd186667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to check if this Script supports compilation bytecode.  <a href="#a5d222fee4b4f2ef855605472fd186667"></a><br/></td></tr>
 <tr class="memitem:aca6d95a143bc299424fb6eb92552f750"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#aca6d95a143bc299424fb6eb92552f750">IsCompiled</a> () const </td></tr>
 <tr class="memdesc:aca6d95a143bc299424fb6eb92552f750"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to check if there is a bytecode version of the script available.  <a href="#aca6d95a143bc299424fb6eb92552f750"></a><br/></td></tr>
 <tr class="memitem:a21df950251c6981d7a28305a08556d3d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a21df950251c6981d7a28305a08556d3d">RemoveArgument</a> (<a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptArgument.xhtml">iScriptArgument</a> &gt; Arg)=0</td></tr>
-<tr class="memdesc:a21df950251c6981d7a28305a08556d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an argument based on a <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr</a> to the script  This searches through the internal list and removes the first entry it finds matching this. This should be treated as taking linear time, relative to the total count of arguments assigned to this script, to run. This can be used with AddArgument to re-order the way parameters are passed into a script.  <a href="#a21df950251c6981d7a28305a08556d3d"></a><br/></td></tr>
+<tr class="memdesc:a21df950251c6981d7a28305a08556d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an argument based on a <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> to the script  This searches through the internal list and removes the first entry it finds matching this. This should be treated as taking linear time, relative to the total count of arguments assigned to this script, to run. This can be used with AddArgument to re-order the way parameters are passed into a script.  <a href="#a21df950251c6981d7a28305a08556d3d"></a><br/></td></tr>
 <tr class="memitem:af5974a56a1f27070e6805d5d32872f2c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#af5974a56a1f27070e6805d5d32872f2c">RemoveArgument</a> (<a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> ArgNumber)=0</td></tr>
 <tr class="memdesc:af5974a56a1f27070e6805d5d32872f2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a Script argument based on the order it will be passed into the Script at Execution.  This removes the specified Argument from the internal list. This should be treated as taking linear time, relative to the total count of arguments assigned to this script, to run.  <a href="#af5974a56a1f27070e6805d5d32872f2c"></a><br/></td></tr>
 <tr class="memitem:a618b76f74785f78767846e109ea472b5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#a618b76f74785f78767846e109ea472b5">SetSourceCode</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Code)=0</td></tr>
 <tr class="memdesc:a618b76f74785f78767846e109ea472b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the string version of the script.  <a href="#a618b76f74785f78767846e109ea472b5"></a><br/></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ab293b1d55a785e54697415faa1681bab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab293b1d55a785e54697415faa1681bab"></a>
+<a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml#ab293b1d55a785e54697415faa1681bab">RefCount</a></td></tr>
+<tr class="memdesc:ab293b1d55a785e54697415faa1681bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the Counter that stores how many references exist. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The interface for a script. </p>
@@ -142,7 +163,36 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
  This uses multiple inheritance to minimize the amount of features a scripting langauge with need to implement. It is expected that a simple scripting language may only need to implement the base <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> interface. Other languages that support more features can have their script classes multiply inherit from the other classes like </p>
 
 <p>Definition at line <a class="el" href="script_8h_source.xhtml#l00070">70</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
-</div><h2>Member Function Documentation</h2>
+</div><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a2aaf8e8b8f426072073447963fa5d092"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mezzanine::Scripting::iScript::iScript </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>default constructor </p>
+<p>Initializes the internal reference counter. </p>
+
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00170">170</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+
+</div>
+</div>
+<h2>Member Function Documentation</h2>
 <a class="anchor" id="a7284ee097f9dc25075be0a1f90538be5"></a>
 <div class="memitem">
 <div class="memproto">
@@ -169,7 +219,7 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>All arguments added with this are passed in FIFO order to the Script during or just before execution. This should normally run in constant time. Some scripting implementations may change the order arguments are passed if doing it another way mays more sense. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Arg</td><td>This accepts a <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr</a> to a script argument and The script shares responsibility with caller for deleting the argument. </td></tr>
+    <tr><td class="paramname">Arg</td><td>This accepts a <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> to a script argument and The script shares responsibility with caller for deleting the argument. </td></tr>
   </table>
   </dd>
 </dl>
@@ -199,6 +249,34 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Remove all the ARGs!!! <a href="http://imgur.com/DJhw7">http://imgur.com/DJhw7</a>. </p>
 <p>This should run in constant time. It still might be slower than removing and readding just one a few arguments in simple cases </p>
+
+</div>
+</div>
+<a class="anchor" id="a6a0663b66f7df67e68ac80567687a716"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::Scripting::iScript::DecrementReferenceCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decrease the reference count by one and return the updated count. </p>
+<dl class="section return"><dt>Returns</dt><dd>The updated count; </dd></dl>
+
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00180">180</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
 
 </div>
 </div>
@@ -348,6 +426,120 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
+<a class="anchor" id="af2b8032d27d6f40afa7c42f18ce3e893"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void* Mezzanine::Scripting::iScript::GetMostDerived </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a pointer to the most Derived type of this class. </p>
+<dl class="section return"><dt>Returns</dt><dd>A pointer cast to a void* </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml#a2c15db29602a11658263706836816ff5">Mezzanine::Scripting::iScriptCompilable</a>.</p>
+
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00200">200</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0a31deb3fb04ce715a5f2d296f76eb43"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::Scripting::iScript::GetReferenceCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the current amount of references. </p>
+<dl class="section return"><dt>Returns</dt><dd>A Whole with the current reference count </dd></dl>
+
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00195">195</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad79b5db7dca432d219e157ae5231c87d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a>* Mezzanine::Scripting::iScript::GetReferenceCountPointer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the actual pointer to the target. </p>
+<dl class="section return"><dt>Returns</dt><dd>A Pointer of the targeted type to the object being managed. </dd></dl>
+
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00185">185</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a81171d356f0a03eb55086aaff3e8a941"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a>&amp; Mezzanine::Scripting::iScript::GetReferenceCountReference </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a reference to the reference counter, which on this is this. </p>
+<dl class="section return"><dt>Returns</dt><dd>A reference to this. </dd></dl>
+
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00190">190</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a0547624508e0ba6e05c837e802e110fd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -371,6 +563,34 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>If present this returns the code of script. </p>
 <dl class="section return"><dt>Returns</dt><dd>This will return either an empty <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> or the code. In cases where bytcode is set it is advised to clear this in implementations. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afefd9e0ca818049340c9ef3e5b2edf22"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::Scripting::iScript::IncrementReferenceCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Increase the reference count by one and return the updated count. </p>
+<dl class="section return"><dt>Returns</dt><dd>The updated count; </dd></dl>
+
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00175">175</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
 
 </div>
 </div>
@@ -456,10 +676,10 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </table>
 </div><div class="memdoc">
 
-<p>Remove an argument based on a <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr</a> to the script  This searches through the internal list and removes the first entry it finds matching this. This should be treated as taking linear time, relative to the total count of arguments assigned to this script, to run. This can be used with AddArgument to re-order the way parameters are passed into a script. </p>
+<p>Remove an argument based on a <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> to the script  This searches through the internal list and removes the first entry it finds matching this. This should be treated as taking linear time, relative to the total count of arguments assigned to this script, to run. This can be used with AddArgument to re-order the way parameters are passed into a script. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Arg</td><td>A <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr</a> matching the one to be removed </td></tr>
+    <tr><td class="paramname">Arg</td><td>A <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> matching the one to be removed </td></tr>
   </table>
   </dd>
 </dl>
@@ -535,6 +755,6 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 9 2013 23:03:28 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

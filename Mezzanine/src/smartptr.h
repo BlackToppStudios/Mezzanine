@@ -67,10 +67,9 @@ namespace Mezzanine
         CastStatic           = 4        ///< Static Casting from most dervied class, the class provides a 'virtual void* GetMostDerived()' and its return can be statically upcast to a more base class.
     };
 
-    // Forward Declares for casting
+    // Forward Declares for the casting system
     template <typename ReturnPointer, typename OriginalPointer, CountedPointerCastingState> class CountedPtrCastImpl;
     template <typename OriginalPointer> class CountedPtrCastImpl <OriginalPointer, OriginalPointer, CastNoneError>;
-    //template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastNoneError>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastNoneReturnZero>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastSimpleStatic>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastSimpleDynamic>;
@@ -79,6 +78,8 @@ namespace Mezzanine
 
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastInternal;
     template <typename Pointer> class CountedPtrCastInternal<Pointer, Pointer>;
+
+    template <typename T> class ReferenceCountTraits;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This exists once per object managed by a group of shared pointer to track items in memory.
@@ -132,23 +133,12 @@ namespace Mezzanine
             /// @return A Whole with the current reference count
             Whole GetReferenceCount()
                 { return RefCount; }
-    };
 
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is used to deduce at compile if a specific class has built reference counting or
-    /// specialized reference counting.
-    /// @details Any class that provides TypePointedTo* GetReferenceCountPointer(), Whole GetReferenceCount(),
-    /// TypePointedTo& GetReferenceCountReference(),
-    /// Whole IncrementReferenceCount() and Whole DecrementReferenceCount() can be used as a reference
-    /// counter. If it provides these then a specialization of ReferenceCountTraits should be
-    /// implemented for a given class and CountedPtr will use the type defined by
-    /// ReferenceCountTraits<T>::ManagedType as the counter. @n @n
-    /// The Mezzanine provides anReference count class that can be used with any type at the cost of
-    /// extra dereferences. Some types (Scripts) have their own internal reference count that when used
-    /// will increase the locality (since the reference count is part of the managed object) and reduce
-    /// dereferences to exactly one. Since the CountedPtr is the size of a native pointer if it is used
-    /// with an internal reference count, the only signifigant overhead should be the counting itself.
-    template <typename T> class ReferenceCountTraits;
+            /// @brief Get a pointer to the Target as a void*
+            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            virtual void* GetMostDerived()
+                { return reinterpret_cast<void*>(Target); }
+    };
 
     /// @brief A sample class that implements a minimal intrusive reference counting scheme.
     /// @details It might work to inherit from this, however on some platforms multiple inheritance
@@ -224,11 +214,24 @@ namespace Mezzanine
             enum { IsCastable = CastStatic };
     };
 
-    /// @brief Every class that does not implement its own reference count gets this default one.
-    /// @details The Default reference count is not thread-safe, and requires that every dereferencing
-    /// of the smart pointer is actually a double dereference. The double dereference is caused because
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is used to deduce at compile if a specific class has built-in reference counting or needs an external reference count.
+    /// @details Every class that does not implement its own reference count gets this default one.
+    /// The Default reference count is not thread-safe, and requires that every dereferencing
+    /// of the smart pointer has the cost of a double dereference. The double dereference is caused because
     /// the reference counter has to store a native pointer to the managed object. In benchmarks
     /// included with the Unit tests this seems to increase dereference time by about double.
+    /// @n @n
+    /// Any class that provides TypePointedTo* GetReferenceCountPointer(), Whole GetReferenceCount(),
+    /// TypePointedTo& GetReferenceCountReference(), Whole IncrementReferenceCount(), Whole DecrementReferenceCount()
+    /// and void* GetMostDerived() (which need to be virtual if inheritance is used to be useful) can be used as a reference
+    /// counter. If it provides these then a specialization of ReferenceCountTraits should be implemented for a given class
+    /// and CountedPtr will use the type defined by ReferenceCountTraits<T>::ManagedType as the counter. @n @n
+    /// The Mezzanine provides a Reference count class that can be used with any type at the cost of
+    /// extra dereferences. Some types (Scripts) have their own internal reference count that when used
+    /// will increase the locality (since the reference count is part of the managed object) and reduce
+    /// dereferences to exactly one. Since the CountedPtr is the size of a native pointer if it is used
+    /// with an internal reference count, the only signifigant overhead should be the counting itself.
     template <typename T>
     class ReferenceCountTraits
     {
@@ -297,10 +300,7 @@ namespace Mezzanine
                 if (_ReferenceCounter)
                 {
                     if (_ReferenceCounter->DecrementReferenceCount() == 0)
-                    {
-                        //delete _ReferenceCounter->GetReferenceCountPointer();
-                        delete _ReferenceCounter; // if we are deleting a ReferenceCount its destructor should clean up the object, if we are deleting something intrusive this does that
-                    }
+                        { delete _ReferenceCounter; } // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
                     _ReferenceCounter = NULL;
                 }
             }
@@ -530,7 +530,7 @@ namespace Mezzanine
                 { return Original; }
     };
 
-    ///
+    /// @brief If Possible convert on kind of a co
     //abstracts away the Counted pointer
     template <typename ReturnType, typename CountedPointer>
     CountedPtr<ReturnType> CountedPtrCast(CountedPointer Original)

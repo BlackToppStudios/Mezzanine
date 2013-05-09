@@ -60,6 +60,7 @@ var searchData=
   ['loadverticaloffsets',['LoadVerticalOffsets',['../classMezzanine_1_1UI_1_1TextureAtlas.xhtml#abb48994c9dc9b9ba04f573342dea8e2b',1,'Mezzanine::UI::TextureAtlas']]],
   ['location',['Location',['../classMezzanine_1_1Transform.xhtml#a93498c9bcba2298f199f9ab04671a944',1,'Mezzanine::Transform']]],
   ['log',['Log',['../classMezzanine_1_1Entresol.xhtml#a96f894e20225d43643091c3731acc35d',1,'Mezzanine::Entresol::Log(const T &amp;Message)'],['../classMezzanine_1_1Entresol.xhtml#a0f2340831c76fdf2a547868a29756c32',1,'Mezzanine::Entresol::Log()']]],
+  ['logger',['Logger',['../namespaceMezzanine.xhtml#ac0e305210456ef0132dc20c06aa292dd',1,'Mezzanine']]],
   ['loggingfrequency',['LoggingFrequency',['../classMezzanine_1_1Entresol.xhtml#add7bc967361f851b6a5bd9633141a264',1,'Mezzanine::Entresol']]],
   ['lognever',['LogNever',['../classMezzanine_1_1Entresol.xhtml#add7bc967361f851b6a5bd9633141a264a6bc527e961e4bde5c17eca0ac07cab7b',1,'Mezzanine::Entresol']]],
   ['logonceperframe',['LogOncePerFrame',['../classMezzanine_1_1Entresol.xhtml#add7bc967361f851b6a5bd9633141a264a10965bf83c466474c47a1a8e17b31a06',1,'Mezzanine::Entresol']]],

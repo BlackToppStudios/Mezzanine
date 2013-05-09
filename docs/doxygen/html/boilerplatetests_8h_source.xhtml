@@ -82,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">boilerplatetests.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<a href="boilerplatetests_8h.xhtml">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -125,47 +125,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _boilerplatetests_h</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;main.h&quot;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">using namespace </span>Mezzanine;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">using namespace </span>Mezzanine::Testing;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="classboilerplatetests.xhtml">   48</a></span>&#160;<span class="keyword">class </span><a class="code" href="classboilerplatetests.xhtml">boilerplatetests</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Testing_1_1UnitTestGroup.xhtml" title="A single group of tests, suitable for being all the tests of a small subsystem or single class...">UnitTestGroup</a></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="classboilerplatetests.xhtml#aed9b3172277e3a7ef3a1caf1401978c3">   51</a></span>&#160;        <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name()</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;boilerplate&quot;</span>); }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classboilerplatetests.xhtml#af040a6b8044fea8a6ab0347e0886d2d9">   54</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> RunTests(<span class="keywordtype">bool</span> RunAutomaticTests, <span class="keywordtype">bool</span> RunInteractiveTests)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">if</span> (RunAutomaticTests)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                TestResult temp;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keywordflow">if</span>(1)</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                    { temp=Success; }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                    { temp=Failed; }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                AddTestResult(<span class="stringliteral">&quot;BoilerPlate::Automatic&quot;</span>, temp);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                AddTestResult(<span class="stringliteral">&quot;BoilerPlate::Automatic&quot;</span>, Skipped);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">if</span> (RunInteractiveTests)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                TestResult temp;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                temp = GetTestAnswerFromStdin( <span class="stringliteral">&quot;Is this a question? &quot;</span>);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                AddTestResult(<span class="stringliteral">&quot;BoilerPlate::Interactive&quot;</span>, temp);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                AddTestResult(<span class="stringliteral">&quot;BoilerPlate::Interactive&quot;</span>, Skipped);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/// @file</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/// @brief this file should be used as template for building future Unit Tests</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">using namespace </span>Mezzanine;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">using namespace </span>Mezzanine::Testing;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="classboilerplatetests.xhtml">   51</a></span>&#160;<span class="keyword">class </span><a class="code" href="classboilerplatetests.xhtml">boilerplatetests</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Testing_1_1UnitTestGroup.xhtml" title="A single group of tests, suitable for being all the tests of a small subsystem or single class...">UnitTestGroup</a></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classboilerplatetests.xhtml#aed9b3172277e3a7ef3a1caf1401978c3">   54</a></span>&#160;        <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name()</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;boilerplate&quot;</span>); }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="classboilerplatetests.xhtml#af040a6b8044fea8a6ab0347e0886d2d9">   57</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> RunTests(<span class="keywordtype">bool</span> RunAutomaticTests, <span class="keywordtype">bool</span> RunInteractiveTests)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">if</span> (RunAutomaticTests)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                TestResult temp;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordflow">if</span>(1)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    { temp=Success; }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    { temp=Failed; }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                AddTestResult(<span class="stringliteral">&quot;BoilerPlate::Automatic&quot;</span>, temp);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                AddTestResult(<span class="stringliteral">&quot;BoilerPlate::Automatic&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">if</span> (RunInteractiveTests)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                TestResult temp;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                temp = GetTestAnswerFromStdin( <span class="stringliteral">&quot;Is this a question? &quot;</span>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                AddTestResult(<span class="stringliteral">&quot;BoilerPlate::Interactive&quot;</span>, temp);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                AddTestResult(<span class="stringliteral">&quot;BoilerPlate::Interactive&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 9 2013 23:03:26 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

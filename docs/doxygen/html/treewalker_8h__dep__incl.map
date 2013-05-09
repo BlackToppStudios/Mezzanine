@@ -58,7 +58,7 @@
 <area shape="rect" id="node39" href="$testtools_8h.xhtml" title="Some random function to ease the lives of test developers." alt="" coords="2591,1158,2791,1202"/>
 <area shape="rect" id="node42" href="$consolestringmanipulation_8h.xhtml" title="Some string manipulation functions geared towards console output for use in the Unit Tests..." alt="" coords="2683,1251,2944,1295"/>
 <area shape="rect" id="node21" href="$main_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/src/main.h" alt="" coords="2453,1345,2653,1389"/>
-<area shape="rect" id="node23" href="$boilerplatetests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/boilerplatetests.h" alt="" coords="2091,1438,2301,1482"/>
+<area shape="rect" id="node23" href="$boilerplatetests_8h.xhtml" title="this file should be used as template for building future Unit Tests" alt="" coords="2091,1438,2301,1482"/>
 <area shape="rect" id="node25" href="$compilerflagtests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/compilerflagtests.h" alt="" coords="2325,1438,2547,1482"/>
 <area shape="rect" id="node27" href="$lua51tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/lua51tests.h" alt="" coords="2571,1438,2771,1482"/>
 <area shape="rect" id="node29" href="$vector3tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/vector3tests.h" alt="" coords="2795,1438,2995,1482"/>

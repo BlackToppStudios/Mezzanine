@@ -146,7 +146,7 @@ namespace Mezzanine
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
-            enum { IsCastable = CastStatic };
+            enum { IsCastable = CastDynamic };
     };
 
 
@@ -196,7 +196,7 @@ namespace Mezzanine
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
-            enum { IsCastable = CastStatic };
+            enum { IsCastable = CastDynamic };
     };
 
     template <>
@@ -212,7 +212,7 @@ namespace Mezzanine
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
-            enum { IsCastable = CastStatic };
+            enum { IsCastable = CastDynamic };
     };
 
     template <>
@@ -228,7 +228,7 @@ namespace Mezzanine
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
 
-            enum { IsCastable = CastStatic };
+            enum { IsCastable = CastDynamic };
     };
 
 
@@ -548,7 +548,7 @@ class countedptrtests : public UnitTestGroup
 
 // unremark this line to test the CountedPtr vs Shared_Ptr
 // need to enable c++11 in gcc I added "-std=c++11" to CMAKE_CXX_FLAGS
-//#define SHAREDPTRTEST
+#define SHAREDPTRTEST
             Integer OutputE = 0;
             Integer OutputI = 0;
             Integer OutputS = 0;
@@ -565,7 +565,7 @@ class countedptrtests : public UnitTestGroup
                     MaxInt End;
 
 
-                    const Whole TestCount=1000000;
+                    const Whole TestCount=10000000;
 
                     /////////////////////////////////////
                     // Create tests
@@ -707,16 +707,15 @@ class countedptrtests : public UnitTestGroup
 
                 TestResult Result = NotApplicable;
 
-                /*
-                CountedPtr<Mezzanine::FooDiamond> DiamondPtr;
-                DiamondPtr->Value = 0;
-                DiamondPtr->Value1 = 1;
-                DiamondPtr->Value2 = 2;
-                DiamondPtr->ValueDiamond = 3;
-                // */
 
+                //The wrong CountedPtrInternal is being compiled for these calls :(
+                //CountedPtr<Mezzanine::FooDiamond> DiamondPtr;
+                //DiamondPtr->Value = 0;
+                //DiamondPtr->Value1 = 1;
+                //DiamondPtr->Value2 = 2;
+                //DiamondPtr->ValueDiamond = 3;
 
-                AddTestResult("CountedPtr::", Result);
+                //AddTestResult("CountedPtr::", Result);
 
             }else{
                 AddTestResult("CountedPtr::", Skipped);

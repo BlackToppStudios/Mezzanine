@@ -10,7 +10,7 @@
 <title>Graphical Class Hierarchy</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1CountedPtr.xhtml" target="_top" xlink:title="A simple referencing counting pointer.">
+<a xlink:href="classMezzanine_1_1CountedPtr.xhtml" target="_top" xlink:title="A simple reference counting pointer.">
 <polygon fill="none" stroke="black" points="0,-0 0,-32 116,-32 116,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::CountedPtr</text>
 <text text-anchor="middle" x="58" y="-7" font-family="FreeSans" font-size="10.00">&lt; TypePointedTo &gt;</text>

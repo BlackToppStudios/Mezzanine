@@ -164,6 +164,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a783ba092e9a41af0f5115048169a9de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a setting group by name.  <a href="#a783ba092e9a41af0f5115048169a9de4"></a><br/></td></tr>
 <tr class="memitem:ac6032ddb1364971221a1c840dac380de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#ac6032ddb1364971221a1c840dac380de">DestroySettingGroup</a> (<a class="el" href="classMezzanine_1_1ObjectSettingGroup.xhtml">ObjectSettingGroup</a> *ToBeDestroyed)</td></tr>
 <tr class="memdesc:ac6032ddb1364971221a1c840dac380de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a setting group.  <a href="#ac6032ddb1364971221a1c840dac380de"></a><br/></td></tr>
+<tr class="memitem:ab51d9634497757f2045f5d147503457e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#ab51d9634497757f2045f5d147503457e">GetAutoGenFiles</a> () const </td></tr>
+<tr class="memdesc:ab51d9634497757f2045f5d147503457e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently allowed to create/update settings files upon initialization and destruction.  <a href="#ab51d9634497757f2045f5d147503457e"></a><br/></td></tr>
+<tr class="memitem:a5e66244ea9685abaaedfbfe03b38d9ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#a5e66244ea9685abaaedfbfe03b38d9ee">GetAutoGenPath</a> () const </td></tr>
+<tr class="memdesc:a5e66244ea9685abaaedfbfe03b38d9ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is currently allowed to create folders when saving.  <a href="#a5e66244ea9685abaaedfbfe03b38d9ee"></a><br/></td></tr>
 <tr class="memitem:a87ca6f4f6c55de4de8b0832580dec3f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#a87ca6f4f6c55de4de8b0832580dec3f2">GetCurrentSettingsSaveFile</a> () const </td></tr>
 <tr class="memdesc:a87ca6f4f6c55de4de8b0832580dec3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the file the "Current" setting group is saved to.  <a href="#a87ca6f4f6c55de4de8b0832580dec3f2"></a><br/></td></tr>
 <tr class="memitem:a3e40cda861ae7f222f370234d02783c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ObjectSettingFile.xhtml">ObjectSettingFile</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#a3e40cda861ae7f222f370234d02783c2">GetSettingFile</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName)</td></tr>
@@ -196,6 +200,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:ac93a239a2d69022d9a27d387dbcf5abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all the current setting groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> node.  <a href="#ac93a239a2d69022d9a27d387dbcf5abe"></a><br/></td></tr>
 <tr class="memitem:aae2839db005c52ecdd0fad15723243ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#aae2839db005c52ecdd0fad15723243ca">SaveSettingsToXML</a> (<a class="el" href="namespaceMezzanine.xhtml#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> &amp;GroupNames, <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;RootSettings)</td></tr>
 <tr class="memdesc:aae2839db005c52ecdd0fad15723243ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the named settings groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> node.  <a href="#aae2839db005c52ecdd0fad15723243ca"></a><br/></td></tr>
+<tr class="memitem:a21b3109416ff12dea832c8a8f40358a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#a21b3109416ff12dea832c8a8f40358a5">SetAutoGenFiles</a> (bool Enable)</td></tr>
+<tr class="memdesc:a21b3109416ff12dea832c8a8f40358a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the automatic creation of settings files on initialization and destruction of this object.  <a href="#a21b3109416ff12dea832c8a8f40358a5"></a><br/></td></tr>
+<tr class="memitem:a83a9e8fd044461697fb596c9652cd71f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#a83a9e8fd044461697fb596c9652cd71f">SetAutoGenPath</a> (bool Enable)</td></tr>
+<tr class="memdesc:a83a9e8fd044461697fb596c9652cd71f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the automatic creation of a directory path when saving.  <a href="#a83a9e8fd044461697fb596c9652cd71f"></a><br/></td></tr>
 <tr class="memitem:aac4557c72aee5a8f02a7c1515e857175"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#aac4557c72aee5a8f02a7c1515e857175">SetCurrentSettingsSaveFile</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName)</td></tr>
 <tr class="memdesc:aac4557c72aee5a8f02a7c1515e857175"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the file that will have this object's "current" settings saved to.  <a href="#aac4557c72aee5a8f02a7c1515e857175"></a><br/></td></tr>
 <tr class="memitem:a31002ee8b05d8876500a726448a0dd2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#a31002ee8b05d8876500a726448a0dd2a">SetSettingsFilePath</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Path)</td></tr>
@@ -460,6 +468,42 @@ SettingGroupContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Sett
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="ab51d9634497757f2045f5d147503457e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mezzanine::ObjectSettingsHandler::GetAutoGenFiles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets whether or not this object is currently allowed to create/update settings files upon initialization and destruction. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if this object will generate or update settings files when it is initialized and destruction. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5e66244ea9685abaaedfbfe03b38d9ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mezzanine::ObjectSettingsHandler::GetAutoGenPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets whether or not this object is currently allowed to create folders when saving. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if this object will create folders in paths it uses to force the path to be valid. </dd></dl>
 
 </div>
 </div>
@@ -935,6 +979,54 @@ SettingGroupContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Sett
 
 </div>
 </div>
+<a class="anchor" id="a21b3109416ff12dea832c8a8f40358a5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ObjectSettingsHandler::SetAutoGenFiles </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables or disables the automatic creation of settings files on initialization and destruction of this object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Enable</td><td>True to allow this object to save it's settings sets to a file on initialization and destruction. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a83a9e8fd044461697fb596c9652cd71f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ObjectSettingsHandler::SetAutoGenPath </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables or disables the automatic creation of a directory path when saving. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Enable</td><td>True to allow this object to create folders in the intended save path allowing the path to be valid, false otherwise. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="aac4557c72aee5a8f02a7c1515e857175"></a>
 <div class="memitem">
 <div class="memproto">
@@ -991,6 +1083,6 @@ SettingGroupContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Sett
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 9 2013 23:03:27 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

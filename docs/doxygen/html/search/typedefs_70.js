@@ -3,5 +3,5 @@ var searchData=
   ['paramlist',['ParamList',['../classMezzanine_1_1Physics_1_1Constraint.xhtml#ab434efbcfdfe803d6f7cc014e7794868',1,'Mezzanine::Physics::Constraint']]],
   ['particleeffectiterator',['ParticleEffectIterator',['../classMezzanine_1_1SceneManager.xhtml#a5f3bd65fb09c7a08202083cc48e46fe7',1,'Mezzanine::SceneManager']]],
   ['pointer',['pointer',['../classMezzanine_1_1XML_1_1AttributeIterator.xhtml#adf736d8142b4bdf7bb413f2e49a0650c',1,'Mezzanine::XML::AttributeIterator::pointer()'],['../classMezzanine_1_1XML_1_1NodeIterator.xhtml#aed31d5848dac3fceb2fc1be9572c5fbf',1,'Mezzanine::XML::NodeIterator::pointer()'],['../classMezzanine_1_1XML_1_1NamedNodeIterator.xhtml#a8da8ca2c0a4072cf26ec9df61f523eaf',1,'Mezzanine::XML::NamedNodeIterator::pointer()']]],
-  ['ptrtype',['PtrType',['../classMezzanine_1_1CountedPtr.xhtml#aa2236b3a440dd1e6f1a7c7164c217b67',1,'Mezzanine::CountedPtr']]]
+  ['ptrtype',['PtrType',['../classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#a3b8a7a6eae994aa80a785d5c1e67d3fe',1,'Mezzanine::ReferenceCountTraits&lt; IntrusiveRefCount &gt;::PtrType()'],['../classMezzanine_1_1ReferenceCountTraits.xhtml#a779098f29cb18956f9f334d09ec1ad8b',1,'Mezzanine::ReferenceCountTraits::PtrType()'],['../classMezzanine_1_1CountedPtr.xhtml#aa2236b3a440dd1e6f1a7c7164c217b67',1,'Mezzanine::CountedPtr::PtrType()']]]
 ];

@@ -111,6 +111,7 @@ var searchData=
   ['_7einstanceidentityinvalidexception',['~InstanceIdentityInvalidException',['../classMezzanine_1_1InstanceIdentityInvalidException.xhtml#a87f58128c73b35713c743f638b6eee2a',1,'Mezzanine::InstanceIdentityInvalidException']]],
   ['_7einstanceidentitynotfoundexception',['~InstanceIdentityNotFoundException',['../classMezzanine_1_1InstanceIdentityNotFoundException.xhtml#a3ad0286ffd9d5527f7eafd299eacdc15',1,'Mezzanine::InstanceIdentityNotFoundException']]],
   ['_7einternalexception',['~InternalException',['../classMezzanine_1_1InternalException.xhtml#aaca5939ae18bbb8f1262e517883903c0',1,'Mezzanine::InternalException']]],
+  ['_7einvalidassignment',['~InvalidAssignment',['../classMezzanine_1_1InvalidAssignment.xhtml#ac2114b5f742402a5f195f012b61ff94f',1,'Mezzanine::InvalidAssignment']]],
   ['_7einvalidparametersexception',['~InvalidParametersException',['../classMezzanine_1_1InvalidParametersException.xhtml#a78e7c1b3119ad77b5cde47266844ba79',1,'Mezzanine::InvalidParametersException']]],
   ['_7einvalidstateexception',['~InvalidStateException',['../classMezzanine_1_1InvalidStateException.xhtml#adfccbae84e9e075d1a3e7b0b27adefe0',1,'Mezzanine::InvalidStateException']]],
   ['_7einvalidversionexception',['~InvalidVersionException',['../classMezzanine_1_1InvalidVersionException.xhtml#aa1402f90a3a87a8bfe5f6a2adf9ddc33',1,'Mezzanine::InvalidVersionException']]],

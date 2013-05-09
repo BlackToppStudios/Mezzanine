@@ -165,13 +165,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">                /// @details In implementations it is expected that this will create a script</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">                /// object, execute it and return it.</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">                /// @return A Shared pointer to the created Script.</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr&lt;iScript&gt;</a> Execute(<a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ScriptSource) = 0;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr&lt;iScript&gt;</a> Execute(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; ScriptSource) = 0;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">                /// @brief Run the script.</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">                /// @param ScriptToRun A shared ptr that points to a script to run.</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">                /// @details In Scripting langauge implementations this is expected to</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">                /// run (compile if needed) a script.</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Execute(<a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr&lt;iScript&gt;</a> ScriptToRun) = 0;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Execute(<a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr&lt;iScript&gt;</a> ScriptToRun) = 0;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">                ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"></span>                <span class="comment">// Inherited from Managerbase</span></div>
@@ -183,38 +183,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoMainLoopItems();</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">                /// @copydoc ManagerBase::GetInterfaceType()</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> ManagerType GetInterfaceType() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }; <span class="comment">//ScriptingManager</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">        /// @brief What a scripting manager should look like.</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">        /// @details This scripting manager implements no scripting language, but serves as</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">        /// model for what scripting managers</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Scripting_1_1iScriptCompilationManager.xhtml">  110</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Scripting_1_1iScriptCompilationManager.xhtml" title="What a scripting manager should look like.">iScriptCompilationManager</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml" title="What a scripting manager should look like.">iScriptingManager</a></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">                /// @brief Overidable deconstructor.</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Scripting_1_1iScriptCompilationManager.xhtml" title="What a scripting manager should look like.">iScriptCompilationManager</a>();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">                /// @brief Compile a script.</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">                /// @param ScriptToCompile A script object to be compiled.</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Compile(<a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr&lt;iScriptCompilable&gt;</a> ScriptToCompile) = 0;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">                /// @brief Comvert a string into a Script that is compiled and ready for use.</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">                /// @param SourceToCompile A string containing source code in the target language.</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">                /// @return The Script compiled and ready for use.</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr&lt;iScriptCompilable&gt;</a> Compile(<a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> SourceToCompile) = 0;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        };</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }<span class="comment">// Scripting</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> GetInterfaceType() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">                /// @copydoc ManagerBase::GetImplementationTypeName()</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> GetImplementationTypeName() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        }; <span class="comment">//ScriptingManager</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">        /// @brief What a scripting manager should look like.</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">        /// @details This scripting manager implements no scripting language, but serves as</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">        /// model for what scripting managers</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Scripting_1_1iScriptCompilationManager.xhtml">  113</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Scripting_1_1iScriptCompilationManager.xhtml" title="What a scripting manager should look like.">iScriptCompilationManager</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml" title="What a scripting manager should look like.">iScriptingManager</a></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">                /// @brief Overidable deconstructor.</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Scripting_1_1iScriptCompilationManager.xhtml" title="What a scripting manager should look like.">iScriptCompilationManager</a>();</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">                /// @brief Compile a script.</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">                /// @param ScriptToCompile A script object to be compiled.</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Compile(<a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr&lt;iScriptCompilable&gt;</a> ScriptToCompile) = 0;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">                /// @brief Comvert a string into a Script that is compiled and ready for use.</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">                /// @param SourceToCompile A string containing source code in the target language.</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">                /// @return The Script compiled and ready for use.</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr&lt;iScriptCompilable&gt;</a> Compile(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; SourceToCompile) = 0;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        };</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">// possible languages Lua, Tcl, squirrel, Angelscript, falcon</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#endif // \_scriptingmanager_h</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    }<span class="comment">// Scripting</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">// possible languages Lua, Tcl, squirrel, Angelscript, falcon</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif // \_scriptingmanager_h</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 9 2013 23:03:25 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

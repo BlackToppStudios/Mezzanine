@@ -1,6 +1,6 @@
 <map id="/home/sqeaky/Code/Mezzanine/UnitTests/src/consolelogic.h" name="/home/sqeaky/Code/Mezzanine/UnitTests/src/consolelogic.h">
 <area shape="rect" id="node3" href="$main_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/src/main.h" alt="" coords="368,99,568,143"/>
-<area shape="rect" id="node5" href="$boilerplatetests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/boilerplatetests.h" alt="" coords="5,193,216,237"/>
+<area shape="rect" id="node5" href="$boilerplatetests_8h.xhtml" title="this file should be used as template for building future Unit Tests" alt="" coords="5,193,216,237"/>
 <area shape="rect" id="node7" href="$compilerflagtests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/compilerflagtests.h" alt="" coords="240,193,461,237"/>
 <area shape="rect" id="node9" href="$lua51tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/lua51tests.h" alt="" coords="485,193,685,237"/>
 <area shape="rect" id="node11" href="$vector3tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/vector3tests.h" alt="" coords="709,193,909,237"/>

@@ -83,7 +83,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classMezzanine_1_1CountedPtr-members.xhtml">List of all members</a>  </div>
@@ -92,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>A simple referencing counting pointer.  
+<p>A simple reference counting pointer.  
  <a href="classMezzanine_1_1CountedPtr.xhtml#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>&gt;</code></p>
@@ -109,6 +108,14 @@ Public Types</h2></td></tr>
 <tr class="memitem:a3bad88b1ac4c311ca63891bc5689582b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3bad88b1ac4c311ca63891bc5689582b"></a>
 typedef TypePointedTo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a3bad88b1ac4c311ca63891bc5689582b">element_type</a></td></tr>
 <tr class="memdesc:a3bad88b1ac4c311ca63891bc5689582b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This makes referencing the type of the point object easier for external classes. <br/></td></tr>
+<tr class="memitem:ad23697dbcdcef9225c2d4887d2f03f04"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad23697dbcdcef9225c2d4887d2f03f04"></a>
+typedef <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml">ReferenceCountTraits</a><br class="typebreak"/>
+&lt; TypePointedTo &gt;::<a class="el" href="classMezzanine_1_1CountedPtr.xhtml#ad23697dbcdcef9225c2d4887d2f03f04">ManagedType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#ad23697dbcdcef9225c2d4887d2f03f04">ManagedType</a></td></tr>
+<tr class="memdesc:ad23697dbcdcef9225c2d4887d2f03f04"><td class="mdescLeft">&#160;</td><td class="mdescRight">The non pointer version of PtrType. <br/></td></tr>
+<tr class="memitem:aa2236b3a440dd1e6f1a7c7164c217b67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2236b3a440dd1e6f1a7c7164c217b67"></a>
+typedef <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml">ReferenceCountTraits</a><br class="typebreak"/>
+&lt; TypePointedTo &gt;::<a class="el" href="classMezzanine_1_1CountedPtr.xhtml#aa2236b3a440dd1e6f1a7c7164c217b67">PtrType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#aa2236b3a440dd1e6f1a7c7164c217b67">PtrType</a></td></tr>
+<tr class="memdesc:aa2236b3a440dd1e6f1a7c7164c217b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">We don't know if we will use a pointer a reference counter, an instrusive pointer, or something else. This provides that abstraction layer. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -121,6 +128,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a8f9ed87946e558881b33070519764240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructor, Just calls <a class="el" href="classMezzanine_1_1CountedPtr.xhtml#aedb1e5da381fcbf10c7737d4383fb715" title="This decrements the reference count and deletes the managed items if there are no remaining reference...">Release()</a>. <br/></td></tr>
 <tr class="memitem:a6f00c38226d1ae4f7797fe5944a53333"><td class="memItemLeft" align="right" valign="top">TypePointedTo *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a6f00c38226d1ae4f7797fe5944a53333">get</a> () const   throw ()</td></tr>
 <tr class="memdesc:a6f00c38226d1ae4f7797fe5944a53333"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the raw pointer to the managed object.  <a href="#a6f00c38226d1ae4f7797fe5944a53333"></a><br/></td></tr>
+<tr class="memitem:aa86092d233a8e1e4841388995364dd76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa86092d233a8e1e4841388995364dd76"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>operator bool</b> ()</td></tr>
 <tr class="memitem:a9fbe491e40d8adbaa372890501dcc5b1"><td class="memItemLeft" align="right" valign="top">TypePointedTo &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a9fbe491e40d8adbaa372890501dcc5b1">operator*</a> () const   throw ()</td></tr>
 <tr class="memdesc:a9fbe491e40d8adbaa372890501dcc5b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dereference operator.  <a href="#a9fbe491e40d8adbaa372890501dcc5b1"></a><br/></td></tr>
 <tr class="memitem:a88d0f8a1a22daa3a06394aa1430a6299"><td class="memItemLeft" align="right" valign="top">TypePointedTo *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a88d0f8a1a22daa3a06394aa1430a6299">operator-&gt;</a> () const   throw ()</td></tr>
@@ -128,22 +137,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afccd80ffc3d1e940b26dbbec0653e0f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#afccd80ffc3d1e940b26dbbec0653e0f9">operator=</a> (const <a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a> &amp;Other)  throw ()</td></tr>
 <tr class="memdesc:afccd80ffc3d1e940b26dbbec0653e0f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignement operator.  <a href="#afccd80ffc3d1e940b26dbbec0653e0f9"></a><br/></td></tr>
 <tr class="memitem:a00437c0038780d879e03ef50b4f6c607"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a00437c0038780d879e03ef50b4f6c607">operator==</a> (const <a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a> &amp;Other)</td></tr>
-<tr class="memdesc:a00437c0038780d879e03ef50b4f6c607"><td class="mdescLeft">&#160;</td><td class="mdescRight">A comparision of two <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr</a> instances.  <a href="#a00437c0038780d879e03ef50b4f6c607"></a><br/></td></tr>
+<tr class="memdesc:a00437c0038780d879e03ef50b4f6c607"><td class="mdescLeft">&#160;</td><td class="mdescRight">A comparision of two <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> instances.  <a href="#a00437c0038780d879e03ef50b4f6c607"></a><br/></td></tr>
 <tr class="memitem:ae991b2beca4077dc40c53110bc97308c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#ae991b2beca4077dc40c53110bc97308c">unique</a> () const   throw ()</td></tr>
 <tr class="memdesc:ae991b2beca4077dc40c53110bc97308c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this the only pointer to the managed object.  <a href="#ae991b2beca4077dc40c53110bc97308c"></a><br/></td></tr>
 <tr class="memitem:a5c97a5c62736f9304fca9ec38df71ed2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a5c97a5c62736f9304fca9ec38df71ed2">use_count</a> ()  throw ()</td></tr>
 <tr class="memdesc:a5c97a5c62736f9304fca9ec38df71ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current count of references.  <a href="#a5c97a5c62736f9304fca9ec38df71ed2"></a><br/></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2><a name="pro-types"></a>
-Protected Types</h2></td></tr>
-<tr class="memitem:ad23697dbcdcef9225c2d4887d2f03f04"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad23697dbcdcef9225c2d4887d2f03f04"></a>
-typedef <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml">ReferenceCountTraits</a><br class="typebreak"/>
-&lt; TypePointedTo &gt;::<a class="el" href="classMezzanine_1_1CountedPtr.xhtml#ad23697dbcdcef9225c2d4887d2f03f04">ManagedType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#ad23697dbcdcef9225c2d4887d2f03f04">ManagedType</a></td></tr>
-<tr class="memdesc:ad23697dbcdcef9225c2d4887d2f03f04"><td class="mdescLeft">&#160;</td><td class="mdescRight">The non pointer version of PtrType. <br/></td></tr>
-<tr class="memitem:aa2236b3a440dd1e6f1a7c7164c217b67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2236b3a440dd1e6f1a7c7164c217b67"></a>
-typedef <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml">ReferenceCountTraits</a><br class="typebreak"/>
-&lt; TypePointedTo &gt;::<a class="el" href="classMezzanine_1_1CountedPtr.xhtml#aa2236b3a440dd1e6f1a7c7164c217b67">PtrType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#aa2236b3a440dd1e6f1a7c7164c217b67">PtrType</a></td></tr>
-<tr class="memdesc:aa2236b3a440dd1e6f1a7c7164c217b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">We don't know if we will use a pointer a reference counter, an instrusive pointer, or something else. This provides that abstraction layer. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -163,12 +161,12 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><h3>template&lt;class TypePointedTo&gt;<br/>
 class Mezzanine::CountedPtr&lt; TypePointedTo &gt;</h3>
 
-<p>A simple referencing counting pointer. </p>
-<p>This is a pointer that automatically deallocates the object it manages when all <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr</a> intances managing it are destroyed or fall out of scope. This is a simpler version of std::shared_ptr. </p>
+<p>A simple reference counting pointer. </p>
+<p>This is a pointer that automatically deallocates the object it manages when all <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> intances managing it are destroyed or fall out of scope. This is a simpler version of std::shared_ptr. </p>
 <dl class="section warning"><dt>Warning</dt><dd>This is not thread safe by default. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The basis of this class originated externally, please see the counted pointer from <a href="http://ootips.org/yonat/4dev/smart-pointers.html">http://ootips.org/yonat/4dev/smart-pointers.html</a> which came with written permission for use stated as "Feel free to use my own smart pointers in your code" on that page. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00196">196</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00273">273</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab53831e2af99d19396cfab5016c640bd"></a>
 <div class="memitem">
@@ -197,7 +195,7 @@ template&lt;class TypePointedTo&gt; </div>
 <p>Initial Constructor. </p>
 <p>This should only be used for initial creation of a shared pointer group. This will allocate the raw pointer and the ReferenceCounter that will be used to track the pointer passed. This will only be explicitly called to prevent accidental premature deletion of the item managed. <br/>
  <br/>
- It is quite easy to accidentally make a secondary grup of counted pointers if not using the new statement inline with this constructor, and it is not recomended to use this in any other way. Here is an exmple of the reccomended way to use new inline with this: "Mezzanine::CountedPtr&lt;Mezzanine::Vector3&gt; VecPtr (new Mezzanine::Vector3);" </p>
+ It is quite easy to accidentally make a secondary group of counted pointers if not using the new statement inline with this constructor, and it is not recomended to use this in any other way. Here is an example of the recommended way to use new inline with this: "Mezzanine::CountedPtr&lt;Mezzanine::Vector3&gt; VecPtr (new Mezzanine::Vector3);" </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">PointerTarget</td><td>The item that will be deleted once all the pointer of this group disappear. </td></tr>
@@ -205,7 +203,7 @@ template&lt;class TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00246">246</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00321">321</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -242,12 +240,12 @@ template&lt;class TypePointedTo&gt; </div>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">Nothing</td><td>This member function does not throw exceptions. </td></tr>
+    <tr><td class="paramname">Nothing</td><td>This member function does not throws exceptions. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00256">256</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00331">331</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -291,7 +289,7 @@ template&lt;class TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00212">212</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00290">290</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -328,7 +326,7 @@ template&lt;class TypePointedTo&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This name was chosen to match standard compliant names, and should be usable in templates that require this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00296">296</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00376">376</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -364,7 +362,7 @@ template&lt;class TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00283">283</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00358">358</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -400,7 +398,7 @@ template&lt;class TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00289">289</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00366">366</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -436,9 +434,9 @@ template&lt;class TypePointedTo&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the this. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to this. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00271">271</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00346">346</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -466,17 +464,17 @@ template&lt;class TypePointedTo&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>A comparision of two <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr</a> instances. </p>
-<p>This is used to see if this and another <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr</a> are managing the same object and are part of the same group of <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr</a> managing that object. </p>
+<p>A comparision of two <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> instances. </p>
+<p>This is used to see if this and another <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> are managing the same object and are part of the same group of <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> managing that object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple referencing counting pointer.">CountedPtr</a> on the right hand side of the == </td></tr>
+    <tr><td class="paramname">Other</td><td>The <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> on the right hand side of the == </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This returns true if this and Other use the same reference count and pointer. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00311">311</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00394">394</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -513,7 +511,7 @@ template&lt;class TypePointedTo&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This name was chosen to match standard compliant names, and should be usable in templates that require this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00303">303</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00386">386</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -545,12 +543,12 @@ template&lt;class TypePointedTo&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>The amount of references which still exist, or 0 if the reference counter is somehow invalid. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">Nothing</td><td>This member function does not throw exceptions. </td></tr>
+    <tr><td class="paramname">Nothing</td><td>This member function does not throws exceptions. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00263">263</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00338">338</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -559,6 +557,6 @@ template&lt;class TypePointedTo&gt; </div>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 9 2013 23:03:26 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

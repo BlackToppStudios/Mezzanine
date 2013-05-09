@@ -95,16 +95,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="testenumerations_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="testenumerations_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="testenumerations_8h__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="testenumerations_8h__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div>
 <p><a href="testenumerations_8h_source.xhtml">Go to the source code of this file.</a></p>
@@ -129,13 +127,14 @@ Enumerations</h2></td></tr>
 <tr class="memdesc:ab22c8fc0a95f68ace710887a4b00e630"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used to control the behavior of the function UnitTestGroup::AddTestResult.  <a href="namespaceMezzanine_1_1Testing.xhtml#ab22c8fc0a95f68ace710887a4b00e630">More...</a><br/></td></tr>
 <tr class="memitem:a4bd484323eb90fa235e23a4d78b4bf65"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>TestResult</b> { <br/>
 &#160;&#160;<b>Mezzanine::Testing::Success</b> =  0, 
-<b>Mezzanine::Testing::Skipped</b> =  1, 
-<b>Mezzanine::Testing::Cancelled</b> =  2, 
-<b>Mezzanine::Testing::Inconclusive</b> =  3, 
+<b>Mezzanine::Testing::Warning</b> =  1, 
+<b>Mezzanine::Testing::Skipped</b> =  2, 
+<b>Mezzanine::Testing::Cancelled</b> =  3, 
 <br/>
-&#160;&#160;<b>Mezzanine::Testing::Failed</b> =  4, 
-<b>Mezzanine::Testing::Unknown</b> =  5, 
-<b>Mezzanine::Testing::NotApplicable</b> =  6
+&#160;&#160;<b>Mezzanine::Testing::Inconclusive</b> =  4, 
+<b>Mezzanine::Testing::Failed</b> =  5, 
+<b>Mezzanine::Testing::Unknown</b> =  6, 
+<b>Mezzanine::Testing::NotApplicable</b> =  7
 <br/>
  }</td></tr>
 <tr class="memdesc:a4bd484323eb90fa235e23a4d78b4bf65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return values from tests.  <a href="namespaceMezzanine_1_1Testing.xhtml#a4bd484323eb90fa235e23a4d78b4bf65">More...</a><br/></td></tr>
@@ -167,6 +166,9 @@ const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf
 <tr class="memitem:a0f6c3b987b595486d105861b7a902575"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f6c3b987b595486d105861b7a902575"></a>
 const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">Mezzanine::String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Testing::UnknownString</b> (&quot;Unknown&quot;)</td></tr>
 <tr class="memdesc:a0f6c3b987b595486d105861b7a902575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corresponds to TestResult::Unknown. <br/></td></tr>
+<tr class="memitem:a0a539b03e6bef22adab8060ad68b1529"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a539b03e6bef22adab8060ad68b1529"></a>
+const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">Mezzanine::String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Testing::WarningString</b> (&quot;Warning&quot;)</td></tr>
+<tr class="memdesc:a0a539b03e6bef22adab8060ad68b1529"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corresponds to TestResult::Warning. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Enumerations and constant values associated with the Unit tests. </p>
@@ -174,6 +176,6 @@ const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf
 <p>Definition in file <a class="el" href="testenumerations_8h_source.xhtml">testenumerations.h</a>.</p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 9 2013 23:03:26 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

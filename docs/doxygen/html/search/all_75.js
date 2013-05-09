@@ -42,6 +42,7 @@ var searchData=
   ['updatewidget',['UpdateWidget',['../classMezzanine_1_1UI_1_1ViewportUpdateTool.xhtml#a08dacd282c1cab80c276e8ae2577544a',1,'Mezzanine::UI::ViewportUpdateTool']]],
   ['usableaxis',['UsableAxis',['../classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml#aa5f11bf632d324dd4c3f5645c85e0565',1,'Mezzanine::Physics::Generic6DofConstraint::UsableAxis()'],['../classMezzanine_1_1Physics_1_1Generic6DofSpringConstraint.xhtml#ab3c5442035edfcec950a3b3456618fc3',1,'Mezzanine::Physics::Generic6DofSpringConstraint::UsableAxis()']]],
   ['use_5fcount',['use_count',['../classMezzanine_1_1CountedPtr.xhtml#a5c97a5c62736f9304fca9ec38df71ed2',1,'Mezzanine::CountedPtr']]],
+  ['usercreated',['UserCreated',['../classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6caa58e48b5e043dfdaf6e2cd17b79a3194',1,'Mezzanine::ManagerBase']]],
   ['userinput',['UserInput',['../classMezzanine_1_1EventBase.xhtml#ab85e31e97753b7e7ecb098f82526baefacfd86eef72e950cce84662d8a1a121cd',1,'Mezzanine::EventBase']]],
   ['uv',['UV',['../structMezzanine_1_1UI_1_1Vertex.xhtml#a455d8bcb1bf8ada3df6f1602745c7619',1,'Mezzanine::UI::Vertex']]],
   ['uvbottom',['UVBottom',['../classMezzanine_1_1UI_1_1Glyph.xhtml#a27fcc54233248b080845cf8478f8cca0',1,'Mezzanine::UI::Glyph::UVBottom()'],['../structMezzanine_1_1UI_1_1Sprite.xhtml#a0295d11e82070c9810042a37eeb8a200',1,'Mezzanine::UI::Sprite::UVBottom()']]],
