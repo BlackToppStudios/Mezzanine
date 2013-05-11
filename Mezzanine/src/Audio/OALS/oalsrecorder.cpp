@@ -53,6 +53,10 @@
 
 namespace
 {
+    /// @internal
+    /// @brief Converts the BitConfig value to the internal type.
+    /// @param Config The Mezzanine type to be converted.
+    /// @return Returns the internal type corresponding to the provided Mezzanine type.
     ALenum ConvertBitConfigEnum(Mezzanine::Audio::BitConfig Config)
     {
         switch(format)
