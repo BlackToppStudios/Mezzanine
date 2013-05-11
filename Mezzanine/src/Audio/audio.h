@@ -55,7 +55,6 @@ namespace Mezzanine
 #include "Audio/audioenumerations.h"
 #include "Audio/audiomanager.h"
 
-#include "Audio/audioproxy.h"
 #include "Audio/decoder.h"
 #include "Audio/decoderfactory.h"
 #include "Audio/effect.h"
@@ -65,9 +64,16 @@ namespace Mezzanine
 #include "Audio/listener.h"
 #include "Audio/musicplayer.h"
 #include "Audio/playlist.h"
+#include "Audio/rawdecoder.h"
+#include "Audio/rawdecoderfactory.h"
 #include "Audio/recorder.h"
 #include "Audio/sound.h"
+#include "Audio/soundproxy.h"
 #include "Audio/soundscapemanager.h"
 #include "Audio/soundset.h"
+#include "Audio/vorbisdecoder.h"
+#include "Audio/vorbisdecoderfactory.h"
+#include "Audio/wavdecoder.h"
+#include "Audio/wavdecoderfactory.h"
 
 #endif
