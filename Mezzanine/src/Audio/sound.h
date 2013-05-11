@@ -40,180 +40,30 @@
 #ifndef _audiosound_h
 #define _audiosound_h
 
-#include "datatypes.h"
-#include "Audio/audioenumerations.h"
-#include "Audio/decoder.h"
+#include "Audio/playbackable.h"
 
 namespace Mezzanine
 {
     namespace Audio
     {
-        class iEffect;
-        class iFilter;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is an interface class for a sound that can be played back.
-        /// @details The iSound class is the base class for 2D and 3D sound playback classes.  It contains all the basic
-        /// methods needed to manipulate playback of the sound, methods for effects, methods for filters, independent
-        /// volume, and a decoder which keeps track of all of it's audio stream specific data.
+        /// @brief This is an interface class for a 2D sound.
+        /// @details The iSound class is intended for 2D purposes only and can be named, unlike it's 3D proxy counterpart.
         ///////////////////////////////////////
-        class iSound
+        class iSound : public iPlaybackable
         {
-            public:
-                /// @brief Class constructor.
-                iSound() {  }
-                /// @brief Class destructor.
-                virtual ~iSound() {  }
+        public:
+            /// @brief Class constructor.
+            iSound() {  }
+            /// @brief Class destructor.
+            virtual ~iSound() {  }
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Playback
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-                /// @brief Plays the sound with it's current configuration.
-                /// @return Returns true if the sound succussfully started playing, false if there was an error.
-                virtual bool Play() = 0;
-                /// @brief Gets whether or not the sound is currently playing.
-                /// @return Returns true if the sound is playing, false otherwise.
-                virtual bool IsPlaying() const = 0;
-                /// @brief Pauses playback of the sound at it's current position in the stream.
-                virtual void Pause() = 0;
-                /// @brief Gets whether or not the sound is currently paused.
-                /// @return Returns true if the sound is paused, false otherwise.
-                virtual bool IsPaused() const = 0;
-                /// @brief Stops playback of the sound and resets it's position back to the start.
-                virtual void Stop() = 0;
-                /// @brief Gets whether or not the sound is currently stopped.
-                /// @return Returns true if the sound is stopped, false otherwise.
-                virtual bool IsStopped() const = 0;
-                /// @brief Sets whether the playback of the sound should loop or not.
-                /// @param ToLoop Whether to restart the sound when the end of playback is reached.
-                virtual void Loop(bool ToLoop) = 0;
-                /// @brief Checks to see if the sound is currently set to loop.
-                /// @return Returns true if this sound will restart from the beginning when it finishes playing back.
-                virtual bool IsLooping() const = 0;
-
-                /// @brief Sets the current position of the stream from which to playback audio.
-                /// @note May not be supported by all codecs.
-                /// @param Seconds Number of seconds to seek.
-                /// @param Relative Whether to seek from the current position or the start of the stream.
-                /// @return Returns true on success, False if the codec does not support seeking.
-                virtual bool Seek(const Real Seconds, bool Relative = false) = 0;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
-
-                /// @brief Gets the sound type of this sound.
-                /// @return Returns a SoundType enum value that is the type of this sound.
-                virtual Audio::SoundType GetType() const = 0;
-                /// @brief Gets whether or not the source is ready to be used.
-                /// @return Returns true if this sound is ready for playback, false otherwise.
-                virtual bool IsValid() const = 0;
-                /// @brief Sets the pitch of the sound source.
-                /// @note Higher values will speed up the playback of the sound.  Default: 1.0
-                /// @param Pitch The new pitch of the sound.
-                virtual void SetPitch(const Real Pitch) = 0;
-                /// @brief Gets the pitch of the sound source.
-                /// @return Returns the pitch of the source.
-                virtual Real GetPitch() const = 0;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Sound Stream Stats
-
-                /// @brief Gets the length of the stream in seconds.
-                /// @return Returns the total amount of time needed to playback the sound in seconds.
-                virtual Real GetTotalTime() const
-                    { this->_GetDecoder()->GetTotalTime(); }
-                /// @brief Gets the current time position in the stream.
-                /// @return Returns the current position in the stream in seconds.
-                virtual Real GetCurrentTime() const
-                    { this->_GetDecoder()->GetCurrentTime(); }
-                /// @brief Gets the size of the decoded audio source in use.
-                /// @return Returns the size of the decoded audio source.
-                virtual UInt32 GetTotalSize() const
-                    { this->_GetDecoder()->GetTotalSize(); }
-                /// @brief Gets the size of the encoded audio source in use.
-                /// @return Returns the size of the encoded audio source.
-                virtual UInt32 GetCompressedSize() const
-                    { this->_GetDecoder()->GetCompressedSize(); }
-                /// @brief Gets the sounds current position in the decoded audio source.
-                /// @return Returns the current position in the decoded audio source in bytes.
-                virtual UInt32 GetCurrentPosition() const
-                    { this->_GetDecoder()->GetCurrentPosition(); }
-                /// @brief Gets the sounds current position in the encoded audio source.
-                /// @return Returns the current position in the encoded audio source in bytes.
-                virtual UInt32 GetCurrentCompressedPosition() const
-                    { this->_GetDecoder()->GetCurrentCompressedPosition(); }
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Volume Control
-
-                /// @brief Gets the current volume of the sound source after all volume settings are applied.
-                /// @note The internal constructs for sound will be updated of any changes to the volume of this object when the _Update() method is called.
-                /// @return Returns a Real representing the volume of this sound after all volume settings are applied.
-                virtual Real GetVolume() const = 0;
-                /// @brief Sets the current volume of the sound source before effects and other volume settings.
-                /// @details This function will set the current volume of the sound source before effects
-                /// (like attenuation) are applied.
-                /// @param Base The volume of the sound source to be applied.
-                virtual void SetBaseVolume(const Real Base) = 0;
-                /// @brief Gets the current volume of the sound source.
-                /// @details This function will get the current volume of the sound source before effects and other volume settings are applied.
-                /// @return Returns the source volume before attenuation and other effects.
-                virtual Real GetBaseVolume() const = 0;
-                /// @brief Sets the minimum volume the sound source can achieve.
-                /// @details This function will set the minimum volume the sound source can achieve after
-                /// effects(like attenuation) have been applied.
-                /// @param MinVolume The minimum volume allowed for the sound source.
-                virtual void SetMinVolume(const Real MinVolume) = 0;
-                /// @brief Gets the minimum volume of the sound source.
-                /// @return Returns the minimum volume that the source can be attenuated to.
-                virtual Real GetMinVolume() const = 0;
-                /// @brief Sets the maximum volume the sound source can achieve.
-                /// @details This function will set the maximum volume the sound source can achieve after
-                /// effects(like attenuation) have been applied.
-                /// @param MaxVolume The maximum volume allowed for the sound source.
-                virtual void SetMaxVolume(const Real MaxVolume) = 0;
-                /// @brief Gets the Maximum volume of the sound source.
-                /// @return Returns the maximum volume that the source can achieve.
-                virtual Real GetMaxVolume() const = 0;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Effects Methods
-
-                /// @brief Attaches an effect to this sound.
-                /// @remarks Valid Slot Range: 0 to @ref iSound::GetNumEffectSlotsAvailable()
-                /// @param Slot The slot into which the effect will be attached.
-                /// @param Eff The effect to be attached.
-                /// @return Returns true if the effect was successfully attached, false otherwise.
-                virtual bool AttachEffect(const UInt32 Slot, iEffect* Eff) = 0;
-                /// @brief Gets the max number of effects that can be attached to this sound.
-                /// @return Returns the maximum number of effects this sound can support.
-                virtual UInt32 GetNumEffectSlotsAvailable() const = 0;
-                /// @brief Removes the effect in the specified slot.
-                /// @remarks Valid Slot Range: 0 to @ref iSound::GetNumEffectSlotsAvailable()
-                /// @param Slot The slot to remove the occupying effect.
-                virtual void RemoveEffect(const UInt32 Slot) = 0;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Filter Methods
-
-                /// @brief Attaches a filter to this sound that will operate on the direct feed, separate from any effects.
-                /// @note This will remove any previously attached filter.  Only one filter can be attached at a given time.
-                /// @param Fil The filter to be attached.
-                /// @return Returns true if the filter was successfully attached, false otherwise.
-                virtual bool AttachFilter(iFilter* Fil) = 0;
-                /// @brief Removes any currently attached filters.
-                virtual void RemoveFilter() = 0;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
-
-                /// @internal
-                /// @brief Updates the buffers for this sound as necessary for seemless playback.
-                /// @return Returns true of there were no errors updating, false if there were.
-                virtual bool _UpdateBuffer() = 0;
-                /// @internal
-                /// @brief Gets the decoder that belongs to this sound.
-                /// @return Returns a pointer to the decoder being used by this sound for playback.
-                virtual iDecoder* _GetDecoder() const = 0;
+            /// @brief Gets the name of this sound.
+            /// @return Returns a const reference to a string containing the name of this sound.
+            virtual const String& GetName() const = 0;
         };//iSound
     }//Audio
 }//Mezzanine
