@@ -56,23 +56,23 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Playlist : public std::list< Audio::Sound* >
         {
-            protected:
-            public:
-                /// @brief Class constructor.
-                Playlist();
-                /// @brief Class destructor.
-                ~Playlist();
-                /// @brief Adds a sound to the playlist.
-                /// @param ToAdd The sound to be added.
-                void AddSound(Sound* ToAdd);
-                /// @brief Randomly shuffles the content in the Playlist.
-                void ShuffleList();
-                /// @brief Checks the playlist to see if it contains a sound.
-                /// @param TheSound The sound to check for.
-                bool ContainsSound(Sound* TheSound);
-                /// @brief Checks the playlist to see if it contains a sound.
-                /// @param SoundName The name of the sound to check for.
-                bool ContainsSound(const String& SoundName);
+        protected:
+        public:
+            /// @brief Class constructor.
+            Playlist();
+            /// @brief Class destructor.
+            ~Playlist();
+            /// @brief Adds a sound to the playlist.
+            /// @param ToAdd The sound to be added.
+            void AddSound(Sound* ToAdd);
+            /// @brief Randomly shuffles the content in the Playlist.
+            void ShuffleList();
+            /// @brief Checks the playlist to see if it contains a sound.
+            /// @param TheSound The sound to check for.
+            bool ContainsSound(Sound* TheSound);
+            /// @brief Checks the playlist to see if it contains a sound.
+            /// @param SoundName The name of the sound to check for.
+            bool ContainsSound(const String& SoundName);
         };//Playlist
     }//Audio
 }//Mezzanine

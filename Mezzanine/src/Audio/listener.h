@@ -52,34 +52,34 @@ namespace Mezzanine
         ///////////////////////////////////////
         class iListener : public WorldProxy
         {
-            public:
-                /// @brief Class constructor.
-                iListener() {  }
-                /// @brief Class destructor.
-                virtual ~iListener() {  }
+        public:
+            /// @brief Class constructor.
+            iListener() {  }
+            /// @brief Class destructor.
+            virtual ~iListener() {  }
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-                /// @brief Sets the moving velocity of this listener.
-                /// @param Vel The velocity this listener is to be given.
-                virtual void SetVelocity(const Vector3& Vel) = 0;
-                /// @brief Gets the current velocity of this listener.
-                /// @return Returns a Vector3 containing the current velocity of this listener.
-                virtual Vector3 GetVelocity() const = 0;
+            /// @brief Sets the moving velocity of this listener.
+            /// @param Vel The velocity this listener is to be given.
+            virtual void SetVelocity(const Vector3& Vel) = 0;
+            /// @brief Gets the current velocity of this listener.
+            /// @return Returns a Vector3 containing the current velocity of this listener.
+            virtual Vector3 GetVelocity() const = 0;
 
-                /// @brief Sets the modifier to use that will adjust the volume of all audio heard by this listener.
-                /// @param Vol The modifier to be set.  Range 0.0 to +Inf.
-                virtual void SetVolumeModifier(const Real Vol) = 0;
-                /// @brief Gets the modifier applied to all audio heard by this listener.
-                /// @return Returns the currently set volume modifier.
-                virtual Real GetVolumeModifier() const = 0;
-                /// @brief Sets the number of meters in a single unit of world space.
-                /// @param Meters The number of meters in a single unit of world space.
-                virtual void SetMetersPerUnit(const Real Meters) = 0;
-                /// @brief Gets the currently set number of meters in a single unit of world space.
-                /// @return Returns a Real representing the number of meters in a unit of world space.
-                virtual Real GetMetersPerUnit() const = 0;
+            /// @brief Sets the modifier to use that will adjust the volume of all audio heard by this listener.
+            /// @param Vol The modifier to be set.  Range 0.0 to +Inf.
+            virtual void SetVolumeModifier(const Real Vol) = 0;
+            /// @brief Gets the modifier applied to all audio heard by this listener.
+            /// @return Returns the currently set volume modifier.
+            virtual Real GetVolumeModifier() const = 0;
+            /// @brief Sets the number of meters in a single unit of world space.
+            /// @param Meters The number of meters in a single unit of world space.
+            virtual void SetMetersPerUnit(const Real Meters) = 0;
+            /// @brief Gets the currently set number of meters in a single unit of world space.
+            /// @return Returns a Real representing the number of meters in a unit of world space.
+            virtual Real GetMetersPerUnit() const = 0;
         };//iListener
     }//Audio
 }//Mezzanine

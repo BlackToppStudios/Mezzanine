@@ -53,55 +53,47 @@ namespace Mezzanine
         ///////////////////////////////////////
         class iFilter
         {
-            public:
-                /// @brief Class constructor.
-                iFilter() {  }
-                /// @brief Class destructor.
-                virtual ~iFilter() {  }
+        public:
+            /// @brief Class constructor.
+            iFilter() {  }
+            /// @brief Class destructor.
+            virtual ~iFilter() {  }
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-                /// @brief Gets whether or not this filter is ready to be used.
-                /// @return Returns true if this filter is ready for use, or false if there is an error.
-                virtual bool IsValid() const = 0;
+            /// @brief Gets whether or not this filter is ready to be used.
+            /// @return Returns true if this filter is ready for use, or false if there is an error.
+            virtual bool IsValid() const = 0;
 
-                /// @brief Sets the type of filter this is.
-                /// @param FilType The type of filter to set this as.  See enum @ref FilterType for more information.
-                virtual void SetType(const FilterType FilType) = 0;
-                /// @brief Gets the type of filter this is.
-                /// @return Returns the type of filter this filter is currently set as.
-                virtual FilterType GetType() const = 0;
+            /// @brief Sets the type of filter this is.
+            /// @param FilType The type of filter to set this as.  See enum @ref FilterType for more information.
+            virtual void SetType(const FilterType FilType) = 0;
+            /// @brief Gets the type of filter this is.
+            /// @return Returns the type of filter this filter is currently set as.
+            virtual FilterType GetType() const = 0;
 
-                /// @brief Sets the master volume of this filter.
-                /// @note Valid range: 0.0 to 1.0.
-                /// @param Vol The volume scale to apply to all audio passed through this filter.
-                virtual void SetVolume(const Real Vol) = 0;
-                /// @brief Gets the master volume of this filter.
-                /// @return Returns a Real representing the volume scale being applied to all audio passing through this filter.
-                virtual Real GetVolume() const = 0;
-                /// @brief Sets the high frequency volume of this filter.
-                /// @note Valid range: 0.0 to 1.0.
-                /// @param HFVol The volume scale to apply to higher frequency audio passed through this filter.
-                virtual void SetHighFrequencyVolume(const Real HFVol) = 0;
-                /// @brief Gets the high frequency volume of this filter.
-                /// @return Returns a Real representing the volume scale being applied to higher frequency audio passing through this filter.
-                virtual Real GetHighFrequencyVolume() const = 0;
-                /// @brief Sets the low frequency volume of this filter.
-                /// @note Valid range: 0.0 to 1.0.
-                /// @param LFVol The volume scale to apply to lower frequency audio passed through this filter.
-                virtual void SetLowFrequencyVolume(const Real LFVol) = 0;
-                /// @brief Gets the low frequency volume of this filter.
-                /// @return Returns a Real representing the volume scale being applied to lower frequency audio passing through this filter.
-                virtual Real GetLowFrequencyVolume() const = 0;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
-
-                /// @internal
-                /// @brief Gets the timestamp indicating the last time settings on this filter were changed.
-                /// @return Returns a TimeMarker representing the timestamp of the last alteration to this filter.
-                virtual TimeMarker _GetLastUpdated() const = 0;
+            /// @brief Sets the master volume of this filter.
+            /// @note Valid range: 0.0 to 1.0.
+            /// @param Vol The volume scale to apply to all audio passed through this filter.
+            virtual void SetVolume(const Real Vol) = 0;
+            /// @brief Gets the master volume of this filter.
+            /// @return Returns a Real representing the volume scale being applied to all audio passing through this filter.
+            virtual Real GetVolume() const = 0;
+            /// @brief Sets the high frequency volume of this filter.
+            /// @note Valid range: 0.0 to 1.0.
+            /// @param HFVol The volume scale to apply to higher frequency audio passed through this filter.
+            virtual void SetHighFrequencyVolume(const Real HFVol) = 0;
+            /// @brief Gets the high frequency volume of this filter.
+            /// @return Returns a Real representing the volume scale being applied to higher frequency audio passing through this filter.
+            virtual Real GetHighFrequencyVolume() const = 0;
+            /// @brief Sets the low frequency volume of this filter.
+            /// @note Valid range: 0.0 to 1.0.
+            /// @param LFVol The volume scale to apply to lower frequency audio passed through this filter.
+            virtual void SetLowFrequencyVolume(const Real LFVol) = 0;
+            /// @brief Gets the low frequency volume of this filter.
+            /// @return Returns a Real representing the volume scale being applied to lower frequency audio passing through this filter.
+            virtual Real GetLowFrequencyVolume() const = 0;
         };//iFilter
     }//Audio
 }//Mezzanine

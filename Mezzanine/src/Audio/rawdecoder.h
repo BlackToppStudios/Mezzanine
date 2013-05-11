@@ -48,12 +48,12 @@ namespace Mezzanine
     {
         class MEZZ_LIB RawDecoder
         {
-            protected:
-            public:
-                /// @brief Class constructor.
-                RawDecoder();
-                /// @brief Class destructor.
-                virtual ~RawDecoder();
+        protected:
+        public:
+            /// @brief Class constructor.
+            RawDecoder();
+            /// @brief Class destructor.
+            virtual ~RawDecoder();
         };//RawDecoder
     }//Audio
 }//Mezzanine

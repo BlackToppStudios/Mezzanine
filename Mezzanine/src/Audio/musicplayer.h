@@ -57,88 +57,88 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB MusicPlayer
         {
-            protected:
-                Audio::Playlist* MusicPlaylist;
-                Audio::Sound* CurrSong;
-                bool ManualStop;
-                bool Playing;
-                bool EOPRepeat;
-                bool EOPShuffle;
-                std::list<Audio::Sound*>::iterator GetIteratorToSong(Sound* Song);
-            public:
-                /// @brief Class constructor.
-                MusicPlayer();
-                /// @brief Class destructor.
-                ~MusicPlayer();
+        protected:
+            Audio::Playlist* MusicPlaylist;
+            Audio::Sound* CurrSong;
+            bool ManualStop;
+            bool Playing;
+            bool EOPRepeat;
+            bool EOPShuffle;
+            std::list<Audio::Sound*>::iterator GetIteratorToSong(Sound* Song);
+        public:
+            /// @brief Class constructor.
+            MusicPlayer();
+            /// @brief Class destructor.
+            ~MusicPlayer();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Playback and Selection
+            ///////////////////////////////////////////////////////////////////////////////
+            // Playback and Selection
 
-                /// @brief Plays the current selection.
-                /// @throw If the current playlist is empty this throws a @ref InvalidStateException
-                void Play();
-                /// @brief Stops the current selection.
-                void Stop();
-                /// @brief Pauses the current selection.
-                void Pause();
-                /// @brief Advances to the next selection on the playlist.
-                void Next();
-                /// @brief Moves back to the previous selection on the playlist.
-                void Previous();
+            /// @brief Plays the current selection.
+            /// @throw If the current playlist is empty this throws a @ref InvalidStateException
+            void Play();
+            /// @brief Stops the current selection.
+            void Stop();
+            /// @brief Pauses the current selection.
+            void Pause();
+            /// @brief Advances to the next selection on the playlist.
+            void Next();
+            /// @brief Moves back to the previous selection on the playlist.
+            void Previous();
 
-                /// @brief Sets the specified song as the current song.
-                /// @throw If the provided song isn't in the playlist, this will throw an @ref InstanceIdentityNotFoundException . Use the ContainsSong() function to verify before using this.
-                /// @param Song The song to set.
-                void SwitchToSong(Sound* Song);
+            /// @brief Sets the specified song as the current song.
+            /// @throw If the provided song isn't in the playlist, this will throw an @ref InstanceIdentityNotFoundException . Use the ContainsSong() function to verify before using this.
+            /// @param Song The song to set.
+            void SwitchToSong(Sound* Song);
 
-                /// @brief Sets the specified song as the current song.
-                /// @throw If the provided song isn't in the playlist, this will throw an @ref InstanceIdentityNotFoundException . Use the ContainsSong() function to verify before using this.
-                /// @param SongName The name of the song to select.
-                void SwitchToSong(const String& SongName);
+            /// @brief Sets the specified song as the current song.
+            /// @throw If the provided song isn't in the playlist, this will throw an @ref InstanceIdentityNotFoundException . Use the ContainsSong() function to verify before using this.
+            /// @param SongName The name of the song to select.
+            void SwitchToSong(const String& SongName);
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Checks
+            ///////////////////////////////////////////////////////////////////////////////
+            // Checks
 
-                /// @brief Gets whether or not the current selection is playing.
-                /// @return Returns true if the current song is playing, false otherwise.
-                bool IsPlaying() const;
-                /// @brief Gets whether or not the current selection is stopped.
-                /// @return Returns true if the current song is stopped, false otherwise.
-                bool IsStopped() const;
-                /// @brief Gets whether or not the current selection is paused.
-                /// @return Returns true if the current song is paused, false otherwise.
-                bool IsPaused() const;
-                /// @brief Checks the set playlist to see if it contains a song.
-                /// @param Song The song to check for.
-                bool ContainsSong(Sound* Song) const;
-                /// @brief Checks the set playlist to see if it contains a song.
-                /// @param SongName The name of the song to check for.
-                bool ContainsSong(const String& SongName) const;
+            /// @brief Gets whether or not the current selection is playing.
+            /// @return Returns true if the current song is playing, false otherwise.
+            bool IsPlaying() const;
+            /// @brief Gets whether or not the current selection is stopped.
+            /// @return Returns true if the current song is stopped, false otherwise.
+            bool IsStopped() const;
+            /// @brief Gets whether or not the current selection is paused.
+            /// @return Returns true if the current song is paused, false otherwise.
+            bool IsPaused() const;
+            /// @brief Checks the set playlist to see if it contains a song.
+            /// @param Song The song to check for.
+            bool ContainsSong(Sound* Song) const;
+            /// @brief Checks the set playlist to see if it contains a song.
+            /// @param SongName The name of the song to check for.
+            bool ContainsSong(const String& SongName) const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Configuration
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
 
-                /// @brief Sets whether the playlist should return to the start after it reaches the end of the list.
-                /// @param Repeat Enables/Disables repeating the playlist when it reaches the end.
-                void SetEOPRepeat(bool Repeat);
-                /// @brief Gets wether playlist repeat is enabled.
-                /// @return Returns true if the playlist is set to repeat when it finishes, false otherwise.
-                bool GetEOPRepeat() const;
-                /// @brief Sets whether the playlist should shuffle it's contents after it reaches the end of the list.
-                /// @param Shuffle Enables/Disables shuffling the playlist when it reaches the end.
-                void SetEOPShuffle(bool Shuffle);
-                /// @brief Gets wether playlist shuffle is enabled.
-                /// @return Returns true if the playlist is set to shuffle when it finishes, false otherwise.
-                bool GetEOPShuffle() const;
+            /// @brief Sets whether the playlist should return to the start after it reaches the end of the list.
+            /// @param Repeat Enables/Disables repeating the playlist when it reaches the end.
+            void SetEOPRepeat(bool Repeat);
+            /// @brief Gets wether playlist repeat is enabled.
+            /// @return Returns true if the playlist is set to repeat when it finishes, false otherwise.
+            bool GetEOPRepeat() const;
+            /// @brief Sets whether the playlist should shuffle it's contents after it reaches the end of the list.
+            /// @param Shuffle Enables/Disables shuffling the playlist when it reaches the end.
+            void SetEOPShuffle(bool Shuffle);
+            /// @brief Gets wether playlist shuffle is enabled.
+            /// @return Returns true if the playlist is set to shuffle when it finishes, false otherwise.
+            bool GetEOPShuffle() const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-                /// @brief Gets the playlist in use by this music player.
-                /// @return Returns a pointer to the current playlist in use.
-                Playlist* GetPlaylist() const;
-                /// @brief Called on by the AudioManager to perform all music player responsibilities.
-                void Update();
+            /// @brief Gets the playlist in use by this music player.
+            /// @return Returns a pointer to the current playlist in use.
+            Playlist* GetPlaylist() const;
+            /// @brief Called on by the AudioManager to perform all music player responsibilities.
+            void Update();
         };//MusicPlayer
     }//Audio
 }//Mezzanine

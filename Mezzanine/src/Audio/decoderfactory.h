@@ -52,16 +52,16 @@ namespace Mezzanine
         ///////////////////////////////////////
         class iDecoderFactory
         {
-            public:
-                /// @brief Class constructor.
-                iDecoderFactory() {  }
-                /// @brief Class destructor.
-                virtual ~iDecoderFactory() {  }
+        public:
+            /// @brief Class constructor.
+            iDecoderFactory() {  }
+            /// @brief Class destructor.
+            virtual ~iDecoderFactory() {  }
 
-                /// @brief Creates a new @ref iDecoder for use.
-                /// @param Stream A pointer to the stream containing audio data.
-                /// @return Returns the newly created @ref iDecoder, or NULL if there was a failure.
-                virtual iDecoder* CreateDecoder(Resource::DataStream* Stream) = 0;
+            /// @brief Creates a new @ref iDecoder for use.
+            /// @param Stream A pointer to the stream containing audio data.
+            /// @return Returns the newly created @ref iDecoder, or NULL if there was a failure.
+            virtual iDecoder* CreateDecoder(Resource::DataStream* Stream) = 0;
         };//iDecoderFactory
     }//Audio
 }//Mezzanine

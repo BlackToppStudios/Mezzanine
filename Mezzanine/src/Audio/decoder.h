@@ -53,67 +53,67 @@ namespace Mezzanine
         ///////////////////////////////////////
         class iDecoder
         {
-            public:
-                /// @brief Class constructor.
-                iDecoder() {  }
-                /// @brief Class destructor.
-                virtual ~iDecoder() {  }
+        public:
+            /// @brief Class constructor.
+            iDecoder() {  }
+            /// @brief Class destructor.
+            virtual ~iDecoder() {  }
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-                /// @brief Gets whether or not the decoder is ready to be used.
-                /// @note On failure the issue likely lies with the stream being an improper format/encoding.
-                /// @return Returns true if this decoder is ready for playback, false otherwise.
-                virtual bool IsValid() = 0;
-                /// @brief Gets whether or not seeking is supported.
-                /// @return Returns true if you can skip to a specific point in the stream, false if you are stuck waiting.
-                virtual bool IsSeekingSupported() = 0;
-                /// @brief Gets the Bit Configuration used to decode the audio stream.
-                /// @return Returns the Bit Configuration currently being used to decode this stream.
-                virtual BitConfig GetBitConfiguration() const = 0;
-                /// @brief Gets the frequency used to decode the audio stream.
-                /// @return Returns the frequency (or sample rate) currently being used to decode this stream.
-                virtual UInt32 GetFrequency() const = 0;
+            /// @brief Gets whether or not the decoder is ready to be used.
+            /// @note On failure the issue likely lies with the stream being an improper format/encoding.
+            /// @return Returns true if this decoder is ready for playback, false otherwise.
+            virtual bool IsValid() = 0;
+            /// @brief Gets whether or not seeking is supported.
+            /// @return Returns true if you can skip to a specific point in the stream, false if you are stuck waiting.
+            virtual bool IsSeekingSupported() = 0;
+            /// @brief Gets the Bit Configuration used to decode the audio stream.
+            /// @return Returns the Bit Configuration currently being used to decode this stream.
+            virtual BitConfig GetBitConfiguration() const = 0;
+            /// @brief Gets the frequency used to decode the audio stream.
+            /// @return Returns the frequency (or sample rate) currently being used to decode this stream.
+            virtual UInt32 GetFrequency() const = 0;
 
-                /// @brief Sets the position (in bytes) of the stream.
-                /// @param Position The number of bytes to move(if relative) or the actual position in the stream to set.
-                /// @param Relative Whether or not to move from the current position.  If false this will set from the beginning.
-                /// @return Returns true if the position was successfully set, false otherwise.
-                virtual bool SetPosition(Int32 Position, bool Relative) = 0;
-                /// @brief Moves the current time position in the stream.
-                /// @param Seconds The position in seconds to move to in the stream.
-                /// @param Relative Whether or not to move from the current position.  If false this will seek from the beginning.
-                /// @return Returns true if the position was successfully moved, false otherwise.
-                virtual bool Seek(const Real Seconds, bool Relative) = 0;
+            /// @brief Sets the position (in bytes) of the stream.
+            /// @param Position The number of bytes to move(if relative) or the actual position in the stream to set.
+            /// @param Relative Whether or not to move from the current position.  If false this will set from the beginning.
+            /// @return Returns true if the position was successfully set, false otherwise.
+            virtual bool SetPosition(Int32 Position, bool Relative) = 0;
+            /// @brief Moves the current time position in the stream.
+            /// @param Seconds The position in seconds to move to in the stream.
+            /// @param Relative Whether or not to move from the current position.  If false this will seek from the beginning.
+            /// @return Returns true if the position was successfully moved, false otherwise.
+            virtual bool Seek(const Real Seconds, bool Relative) = 0;
 
-                /// @brief Reads from the audio stream and writes what is read to a buffer.
-                /// @param Output The buffer to write to when reading the audio stream.
-                /// @param Amount The number of bytes desired to be read from the audio stream.
-                /// @return Returns the number of bytes successfully read from the audio stream.
-                virtual UInt32 ReadAudioData(void* Output, UInt32 Amount) = 0;
+            /// @brief Reads from the audio stream and writes what is read to a buffer.
+            /// @param Output The buffer to write to when reading the audio stream.
+            /// @param Amount The number of bytes desired to be read from the audio stream.
+            /// @return Returns the number of bytes successfully read from the audio stream.
+            virtual UInt32 ReadAudioData(void* Output, UInt32 Amount) = 0;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Stream Stats
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Stats
 
-                /// @brief Gets the length of the stream in seconds.
-                /// @return Returns the total amount of time needed to playback the sound in seconds.
-                virtual Real GetTotalTime() const = 0;
-                /// @brief Gets the current time position in the stream.
-                /// @return Returns the current position in the stream in seconds.
-                virtual Real GetCurrentTime() const = 0;
-                /// @brief Gets the size of the decoded audio source in use.
-                /// @return Returns the size of the decoded audio source.
-                virtual UInt32 GetTotalSize() const = 0;
-                /// @brief Gets the size of the encoded audio source in use.
-                /// @return Returns the size of the encoded audio source.
-                virtual UInt32 GetCompressedSize() const = 0;
-                /// @brief Gets the sounds current position in the decoded audio source.
-                /// @return Returns the current position in the decoded audio source in bytes.
-                virtual UInt32 GetCurrentPosition() const = 0;
-                /// @brief Gets the sounds current position in the encoded audio source.
-                /// @return Returns the current position in the encoded audio source in bytes.
-                virtual UInt32 GetCurrentCompressedPosition() const = 0;
+            /// @brief Gets the length of the stream in seconds.
+            /// @return Returns the total amount of time needed to playback the sound in seconds.
+            virtual Real GetTotalTime() const = 0;
+            /// @brief Gets the current time position in the stream.
+            /// @return Returns the current position in the stream in seconds.
+            virtual Real GetCurrentTime() const = 0;
+            /// @brief Gets the size of the decoded audio source in use.
+            /// @return Returns the size of the decoded audio source.
+            virtual UInt32 GetTotalSize() const = 0;
+            /// @brief Gets the size of the encoded audio source in use.
+            /// @return Returns the size of the encoded audio source.
+            virtual UInt32 GetCompressedSize() const = 0;
+            /// @brief Gets the sounds current position in the decoded audio source.
+            /// @return Returns the current position in the decoded audio source in bytes.
+            virtual UInt32 GetCurrentPosition() const = 0;
+            /// @brief Gets the sounds current position in the encoded audio source.
+            /// @return Returns the current position in the encoded audio source in bytes.
+            virtual UInt32 GetCurrentCompressedPosition() const = 0;
         };//iDecoder
     }//Audio
 }//Mezzanine

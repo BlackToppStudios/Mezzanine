@@ -48,12 +48,12 @@ namespace Mezzanine
     {
         class MEZZ_LIB VorbisDecoderFactory
         {
-            protected:
-            public:
-                /// @brief Class constructor.
-                VorbisDecoderFactory();
-                /// @brief Class destructor.
-                virtual ~VorbisDecoderFactory();
+        protected:
+        public:
+            /// @brief Class constructor.
+            VorbisDecoderFactory();
+            /// @brief Class destructor.
+            virtual ~VorbisDecoderFactory();
         };//VorbisDecoderFactory
     }//Audio
 }//Mezzanine
