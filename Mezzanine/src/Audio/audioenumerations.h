@@ -88,8 +88,7 @@ namespace Mezzanine
             ET_Ring_Modulator,
             ET_Autowah,
             ET_Compressor,
-            ET_Equalizer,
-            ET_Count
+            ET_Equalizer
         };
 
 		/// @enum FilterType
@@ -99,8 +98,7 @@ namespace Mezzanine
             FT_Null,
             FT_LowPass,
             FT_HighPass,
-            FT_BandPass,
-            FT_Count
+            FT_BandPass
         };
 
         /// @enum SoundType
