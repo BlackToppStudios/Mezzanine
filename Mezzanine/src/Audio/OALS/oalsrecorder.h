@@ -57,88 +57,88 @@ namespace Mezzanine
             ///////////////////////////////////////
             class MEZZ_LIB Recorder : public iRecorder
             {
-                public:
-                    /// @brief Checks to see if recorder functionality is available with the current backend and hardware.
-                    /// @return Returns true if audio recording is available, false otherwise.
-                    static bool IsSupported();
-                protected:
-                    /// @internal
-                    /// @brief A pointer to the internal device doing the recording.
-                    ALCdevice* RecorderDevice;
-                    /// @internal
-                    /// @brief Stores whether audio is currently being recorded.
-                    bool Recording;
-                    /// @internal
-                    /// @brief The configuation to use when generating the recorded audio.
-                    BitConfig BitConfiguration;
-                    /// @internal
-                    /// @brief The audio frequency of the recorded audio.
-                    UInt32 Frequency;
-                    /// @internal
-                    /// @brief The size of the internal buffer where recorded audio is being placed.
-                    UInt32 InternalBufferSize;
-                    /// @internal
-                    /// @brief The name of the device currently in use by this recorder.
-                    String CurrentDeviceName;
-                    /// @internal
-                    /// @brief Initializes the recording device based on all the parameters set in this recorder instance.
-                    bool InitializeDevice();
-                    /// @internal
-                    /// @brief Shuts down the recording device and free's its buffers.
-                    void ShutdownDevice();
-                    /// @internal
-                    /// @brief Checks to see if there is an error message pending in the internal library.
-                    void CheckError();
-                public:
-                    /// @brief Class constructor.
-                    Recorder();
-                    /// @brief Class destructor.
-                    virtual ~Recorder();
+            public:
+                /// @brief Checks to see if recorder functionality is available with the current backend and hardware.
+                /// @return Returns true if audio recording is available, false otherwise.
+                static bool IsSupported();
+            protected:
+                /// @internal
+                /// @brief A pointer to the internal device doing the recording.
+                ALCdevice* RecorderDevice;
+                /// @internal
+                /// @brief Stores whether audio is currently being recorded.
+                bool Recording;
+                /// @internal
+                /// @brief The configuation to use when generating the recorded audio.
+                BitConfig BitConfiguration;
+                /// @internal
+                /// @brief The audio frequency of the recorded audio.
+                UInt32 Frequency;
+                /// @internal
+                /// @brief The size of the internal buffer where recorded audio is being placed.
+                UInt32 InternalBufferSize;
+                /// @internal
+                /// @brief The name of the device currently in use by this recorder.
+                String CurrentDeviceName;
+                /// @internal
+                /// @brief Initializes the recording device based on all the parameters set in this recorder instance.
+                bool InitializeDevice();
+                /// @internal
+                /// @brief Shuts down the recording device and free's its buffers.
+                void ShutdownDevice();
+                /// @internal
+                /// @brief Checks to see if there is an error message pending in the internal library.
+                void CheckError();
+            public:
+                /// @brief Class constructor.
+                Recorder();
+                /// @brief Class destructor.
+                virtual ~Recorder();
 
-                    ///////////////////////////////////////////////////////////////////////////////
-                    // Initialization and Shutdown
+                ///////////////////////////////////////////////////////////////////////////////
+                // Initialization and Shutdown
 
-                    /// @copydoc iRecorder::Initialize(const String& DeviceName,  const UInt32 Freq, const BitConfig Config, const UInt32 IntBufSize)
-                    virtual bool Initialize(const String& DeviceName = "",  const UInt32 Freq = 22050, const BitConfig Config = BC_16Bit_Mono, const UInt32 IntBufSize = 8192);
-                    /// @copydoc iRecorder::Shutdown()
-                    virtual void Shutdown();
+                /// @copydoc iRecorder::Initialize(const String& DeviceName,  const UInt32 Freq, const BitConfig Config, const UInt32 IntBufSize)
+                virtual bool Initialize(const String& DeviceName = "",  const UInt32 Freq = 22050, const BitConfig Config = BC_16Bit_Mono, const UInt32 IntBufSize = 8192);
+                /// @copydoc iRecorder::Shutdown()
+                virtual void Shutdown();
 
-                    ///////////////////////////////////////////////////////////////////////////////
-                    // Utility
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
 
-                    /// @copydoc iRecorder::IsReady() const
-                    virtual bool IsReady() const;
+                /// @copydoc iRecorder::IsReady() const
+                virtual bool IsReady() const;
 
-                    /// @copydoc iRecorder::BeginRecording()
-                    virtual bool BeginRecording();
-                    /// @copydoc iRecorder::StopRecording()
-                    virtual void StopRecording();
-                    /// @copydoc iRecorder::GetRecordedAudio(void* OutputBuffer, UInt32 OutputBufferSize)
-                    virtual UInt32 GetRecordedAudio(void* OutputBuffer, UInt32 OutputBufferSize);
-                    /// @copydoc iRecorder::GetBufferSize() const
-                    virtual UInt32 GetBufferSize() const;
+                /// @copydoc iRecorder::BeginRecording()
+                virtual bool BeginRecording();
+                /// @copydoc iRecorder::StopRecording()
+                virtual void StopRecording();
+                /// @copydoc iRecorder::GetRecordedAudio(void* OutputBuffer, UInt32 OutputBufferSize)
+                virtual UInt32 GetRecordedAudio(void* OutputBuffer, UInt32 OutputBufferSize);
+                /// @copydoc iRecorder::GetBufferSize() const
+                virtual UInt32 GetBufferSize() const;
 
-                    ///////////////////////////////////////////////////////////////////////////////
-                    // Recording Configuration
+                ///////////////////////////////////////////////////////////////////////////////
+                // Recording Configuration
 
-                    /// @copydoc iRecorder::SetDeviceName(const String& DeviceName)
-                    virtual bool SetDeviceName(const String& DeviceName);
-                    /// @copydoc iRecorder::GetDeviceName() const
-                    virtual String GetDeviceName() const;
-                    /// @copydoc iRecorder::SetFrequency(const UInt32 Freq)
-                    virtual bool SetFrequency(const UInt32 Freq);
-                    /// @copydoc iRecorder::GetFrequency() const
-                    virtual UInt32 GetFrequency() const;
-                    /// @copydoc iRecorder::SetBitConfiguration(const BitConfig Config)
-                    virtual bool SetBitConfiguration(const BitConfig Config);
-                    /// @copydoc iRecorder::GetBitConfiguration() const
-                    virtual BitConfig GetBitConfiguration() const;
-                    /// @copydoc iRecorder::SetInternalBufferSize(const UInt32 Size)
-                    virtual bool SetInternalBufferSize(const UInt32 Size);
-                    /// @copydoc iRecorder::GetInternalBufferSize() const
-                    virtual UInt32 GetInternalBufferSize() const;
-                    /// @copydoc iRecorder::GetSampleSize() const
-                    virtual UInt32 GetSampleSize() const;
+                /// @copydoc iRecorder::SetDeviceName(const String& DeviceName)
+                virtual bool SetDeviceName(const String& DeviceName);
+                /// @copydoc iRecorder::GetDeviceName() const
+                virtual String GetDeviceName() const;
+                /// @copydoc iRecorder::SetFrequency(const UInt32 Freq)
+                virtual bool SetFrequency(const UInt32 Freq);
+                /// @copydoc iRecorder::GetFrequency() const
+                virtual UInt32 GetFrequency() const;
+                /// @copydoc iRecorder::SetBitConfiguration(const BitConfig Config)
+                virtual bool SetBitConfiguration(const BitConfig Config);
+                /// @copydoc iRecorder::GetBitConfiguration() const
+                virtual BitConfig GetBitConfiguration() const;
+                /// @copydoc iRecorder::SetInternalBufferSize(const UInt32 Size)
+                virtual bool SetInternalBufferSize(const UInt32 Size);
+                /// @copydoc iRecorder::GetInternalBufferSize() const
+                virtual UInt32 GetInternalBufferSize() const;
+                /// @copydoc iRecorder::GetSampleSize() const
+                virtual UInt32 GetSampleSize() const;
             };//Recorder
         }//OALS
     }//Audio
