@@ -114,13 +114,8 @@ namespace Mezzanine
 
             /// @brief Gets the actual pointer to the target.
             /// @return A Pointer of the targeted type to the object being managed.
-            FooInternal* GetReferenceCountPointer()
+            FooInternal* GetReferenceCountTargetAsPointer()
                 { return this; }
-
-            /// @brief Gets a reference to the reference counter, which on this is this
-            /// @return A reference to this.
-            FooInternal& GetReferenceCountReference()
-                { return *this; }
 
             /// @brief Get the current amount of references.
             /// @return A Whole with the current reference count
@@ -137,11 +132,8 @@ namespace Mezzanine
     class ReferenceCountTraits <FooInternal>
     {
         public:
-            typedef FooInternal ManagedType;
+            typedef FooInternal RefCountType;
             typedef FooInternal* PtrType;
-
-            typedef FooInternal TargetType;
-            typedef FooInternal* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
@@ -187,11 +179,8 @@ namespace Mezzanine
     class ReferenceCountTraits <FooDerived1>
     {
         public:
-            typedef FooDerived1 ManagedType;
+            typedef FooDerived1 RefCountType;
             typedef FooDerived1* PtrType;
-
-            typedef FooDerived1 TargetType;
-            typedef FooDerived1* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
@@ -203,11 +192,8 @@ namespace Mezzanine
     class ReferenceCountTraits <FooDerived2>
     {
         public:
-            typedef FooDerived2 ManagedType;
+            typedef FooDerived2 RefCountType;
             typedef FooDerived2* PtrType;
-
-            typedef FooDerived1 TargetType;
-            typedef FooDerived1* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
@@ -219,11 +205,8 @@ namespace Mezzanine
     class ReferenceCountTraits <FooDiamond>
     {
         public:
-            typedef FooDiamond ManagedType;
+            typedef FooDiamond RefCountType;
             typedef FooDiamond* PtrType;
-
-            typedef FooDiamond TargetType;
-            typedef FooDiamond* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
@@ -548,7 +531,7 @@ class countedptrtests : public UnitTestGroup
 
 // unremark this line to test the CountedPtr vs Shared_Ptr
 // need to enable c++11 in gcc I added "-std=c++11" to CMAKE_CXX_FLAGS
-#define SHAREDPTRTEST
+//#define SHAREDPTRTEST
             Integer OutputE = 0;
             Integer OutputI = 0;
             Integer OutputS = 0;
@@ -565,7 +548,7 @@ class countedptrtests : public UnitTestGroup
                     MaxInt End;
 
 
-                    const Whole TestCount=10000000;
+                    const Whole TestCount=100000;
 
                     /////////////////////////////////////
                     // Create tests
@@ -624,7 +607,7 @@ class countedptrtests : public UnitTestGroup
                         OutputS=PtrS->Value;
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
-                    cout << OutputS << " - Creating and Dereferencing a shared_ptr from make_shared" << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+                    cout << OutputS << " - Creating and Dereferencing a shared_ptr from make_shared " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
                     #endif
 
                     /////////////////////////////////////
@@ -693,8 +676,8 @@ class countedptrtests : public UnitTestGroup
 
                 } // When pointers fall out of scope
 
-                //AddTestResult("CountedPtr::External::BenchmarkComplete", ResultE);
-                //AddTestResult("CountedPtr::Internal::BenchmarkComplete", ResultI);
+                AddTestResult("CountedPtr::External::BenchmarkComplete", ResultE);
+                AddTestResult("CountedPtr::Internal::BenchmarkComplete", ResultI);
 
             }else{
                 //AddTestResult("CountedPtr::External::BenchmarkComplete", Skipped);
@@ -707,13 +690,11 @@ class countedptrtests : public UnitTestGroup
 
                 TestResult Result = NotApplicable;
 
-
-                //The wrong CountedPtrInternal is being compiled for these calls :(
-                //CountedPtr<Mezzanine::FooDiamond> DiamondPtr;
-                //DiamondPtr->Value = 0;
-                //DiamondPtr->Value1 = 1;
-                //DiamondPtr->Value2 = 2;
-                //DiamondPtr->ValueDiamond = 3;
+                CountedPtr<Mezzanine::FooDiamond> DiamondPtr;
+                DiamondPtr->Value = 0;
+                /*DiamondPtr->Value1 = 1;
+                DiamondPtr->Value2 = 2;
+                DiamondPtr->ValueDiamond = 3;*/
 
                 //AddTestResult("CountedPtr::", Result);
 

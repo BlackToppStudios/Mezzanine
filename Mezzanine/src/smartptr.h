@@ -64,7 +64,7 @@ namespace Mezzanine
         CastSimpleStatic     = 1,       ///< A static cast from the pointer as provided with no attempt to calls functions on the pointer target, this is default for externally reference counted pointers
         CastSimpleDynamic    = 2,       ///< A dynamic cast from the pointer as provided with no attempt to calls functions on the pointer target, this is default for externally reference counted pointers
         CastDynamic          = 3,       ///< Dynamic Casting from most derived class, the class must provide a 'virtual something* GetMostDerived()' and its return must be dynamically upcast to a more base class.
-        CastStatic           = 4        ///< Static Casting from most dervied class, the class provides a 'virtual void* GetMostDerived()' and its return can be statically upcast to a more base class.
+        CastStatic           = 4        ///< Static Casting from most dervied class, the class provides a 'virtual something* GetMostDerived()' and its return can be statically upcast to a more base class.
     };
 
     // Forward Declares for the casting system
@@ -76,8 +76,9 @@ namespace Mezzanine
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastDynamic>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastStatic>;
 
-    template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastInternal;
-    template <typename Pointer> class CountedPtrCastInternal<Pointer, Pointer>;
+    template <typename Pointer> Pointer* CountedPtrCastInternal(Pointer* Original);
+    template <typename ReturnPointer, typename OriginalPointer> ReturnPointer* CountedPtrCastInternal(const OriginalPointer* Original);
+
 
     template <typename T> class ReferenceCountTraits;
 
@@ -121,13 +122,8 @@ namespace Mezzanine
 
             /// @brief Gets the actual pointer to the target.
             /// @return A Pointer of the targeted type to the object being managed.
-            TypePointedTo* GetReferenceCountPointer()
+            TypePointedTo* GetReferenceCountTargetAsPointer()
                 { return Target; }
-
-            /// @brief Gets a reference to the thing pointed at by the reference counter
-            /// @return A reference to the target.
-            TypePointedTo& GetReferenceCountReference()
-                { return *Target; }
 
             /// @brief Get the current amount of references.
             /// @return A Whole with the current reference count
@@ -136,8 +132,8 @@ namespace Mezzanine
 
             /// @brief Get a pointer to the Target as a void*
             /// @return A pointer cast to a void*, for use with CountedPtrCast
-            virtual void* GetMostDerived()
-                { return reinterpret_cast<void*>(Target); }
+            virtual TypePointedTo* GetMostDerived()
+                { return Target; }
     };
 
     /// @brief A sample class that implements a minimal intrusive reference counting scheme.
@@ -167,13 +163,8 @@ namespace Mezzanine
 
             /// @brief Gets the actual pointer to the target.
             /// @return A Pointer of the targeted type to the object being managed.
-            IntrusiveRefCount* GetReferenceCountPointer()
+            IntrusiveRefCount* GetReferenceCountTargetAsPointer()
                 { return this; }
-
-            /// @brief Gets a reference to the reference counter, which on this is this
-            /// @return A reference to this.
-            IntrusiveRefCount& GetReferenceCountReference()
-                { return *this; }
 
             /// @brief Get the current amount of references.
             /// @return A Whole with the current reference count
@@ -181,28 +172,64 @@ namespace Mezzanine
                 { return RefCount; }
 
             /// @brief Get a pointer to the most Derived type of this class
-            /// @return A pointer cast to a void*, for use with CountedPtrCast
-            virtual void* GetMostDerived()
-                { return reinterpret_cast<void*>(this); }
+            /// @return A pointer of the most derived pointing to this.
+            virtual IntrusiveRefCount* GetMostDerived()
+                { return this; }
     };
 
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is used to deduce at compile if a specific class has built-in reference counting or needs an external reference count.
+    /// @details Every class that does not implement its own reference count gets this default one.
+    /// The Default reference count is not thread-safe, and requires that every dereferencing
+    /// of the smart pointer has the cost of a double dereference. The double dereference is caused because
+    /// the reference counter has to store a native pointer to the managed object. In benchmarks
+    /// included with the Unit tests this seems to increase dereference time by about double.
+    /// @n @n
+    /// Any class that provides TypePointedTo* GetReferenceCountTargetAsPointer(), Whole GetReferenceCount(),
+    /// Whole IncrementReferenceCount(), Whole DecrementReferenceCount()
+    /// and something* GetMostDerived() (which need to be virtual if inheritance is used to be useful) can be used as a reference
+    /// counter. If it provides these then a specialization of ReferenceCountTraits should be implemented for a given class
+    /// and CountedPtr will use the type defined by ReferenceCountTraits<T>::RefCountType as the counter. @n @n
+    /// The Mezzanine provides a Reference count class that can be used with any type at the cost of
+    /// extra dereferences. Some types (Scripts) have their own internal reference count that when used
+    /// will increase the locality (since the reference count is part of the managed object) and reduce
+    /// dereferences to exactly one. Since the CountedPtr is the size of a native pointer if it is used
+    /// with an internal reference count, the only signifigant overhead should be the counting itself.
+    template <typename T>
+    class ReferenceCountTraits
+    {
+        public:
+            /// @brief This is type of the ReferenceCounter, The type of the class if reference counting is instrusive.
+            typedef ReferenceCount<T> RefCountType;
+
+            /// @brief The type of the Pointer to the reference count, in case it is not ManageType*.
+            typedef ReferenceCount<T>* PtrType;
+
+            /// @brief This will somehow return a pointer to the reference count
+            /// @param Target A pointer the freshly created object.
+            /// @return This will return a pointer to a valid reference counter.
+            /// @note The default implemetation call new with a matching delete in CounterPtr::~CountedPtr . If no allocations are required this may simply return the passed parameter.
+            static PtrType ConstructionPointer(T* Target)
+                { return new RefCountType(Target); }
+
+            /// @brief Used to determine if the data a CountedPtr is managing can be cast
+            /// @details This uses the @ref CountedPointerCastingState to enter a value the Template MetaProgramming Machinery will understand.
+            enum { IsCastable = CastSimpleStatic };
+    };
 
     /// @brief An Example ReferenceCountTraits implmentation.
     /// @details Anything with an internal Reference should implement a specialization of this template
-    /// that defines PtrType to be a pointer to the structure with the reference count interface
+    /// that defines PtrType to be a pointer to the structure with the reference count interface in
+    /// to the items defined in the main ReferenceCountTraits documentation.
     template <>
     class ReferenceCountTraits <IntrusiveRefCount>
     {
         public:
             /// @brief The sample internal reference count needs to indicate that the managed type is the same as the ReferenceCountType, because it will have a counter.
-            typedef IntrusiveRefCount ManagedType;
+            typedef IntrusiveRefCount RefCountType;
 
-            /// @brief For similar to ManagedType, this indicates that pointer type internal to the CountedPtr instance is a pointer to the target class instance.
+            /// @brief For similar to RefCountType, this indicates that pointer type internal to the CountedPtr instance is a pointer to the target class instance.
             typedef IntrusiveRefCount* PtrType;
-
-            typedef IntrusiveRefCount TargetType;
-            typedef IntrusiveRefCount* TargetPtrType;
-
 
             /// @brief Because The reference count is allocated when the caller created the target this does not need to allocate a Reference count separetaly.
             /// @param The create object to manage.
@@ -214,49 +241,7 @@ namespace Mezzanine
             enum { IsCastable = CastStatic };
     };
 
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is used to deduce at compile if a specific class has built-in reference counting or needs an external reference count.
-    /// @details Every class that does not implement its own reference count gets this default one.
-    /// The Default reference count is not thread-safe, and requires that every dereferencing
-    /// of the smart pointer has the cost of a double dereference. The double dereference is caused because
-    /// the reference counter has to store a native pointer to the managed object. In benchmarks
-    /// included with the Unit tests this seems to increase dereference time by about double.
-    /// @n @n
-    /// Any class that provides TypePointedTo* GetReferenceCountPointer(), Whole GetReferenceCount(),
-    /// TypePointedTo& GetReferenceCountReference(), Whole IncrementReferenceCount(), Whole DecrementReferenceCount()
-    /// and void* GetMostDerived() (which need to be virtual if inheritance is used to be useful) can be used as a reference
-    /// counter. If it provides these then a specialization of ReferenceCountTraits should be implemented for a given class
-    /// and CountedPtr will use the type defined by ReferenceCountTraits<T>::ManagedType as the counter. @n @n
-    /// The Mezzanine provides a Reference count class that can be used with any type at the cost of
-    /// extra dereferences. Some types (Scripts) have their own internal reference count that when used
-    /// will increase the locality (since the reference count is part of the managed object) and reduce
-    /// dereferences to exactly one. Since the CountedPtr is the size of a native pointer if it is used
-    /// with an internal reference count, the only signifigant overhead should be the counting itself.
-    template <typename T>
-    class ReferenceCountTraits
-    {
-        public:
-            /// @brief This is type of the ReferenceCounter, The type of the class if reference counting is instrusive.
-            typedef ReferenceCount<T> ManagedType;
 
-            /// @brief The type of the Pointer to the reference count, in case it is not ManageType*.
-            typedef ReferenceCount<T>* PtrType;
-
-            typedef T TargetType;
-
-            typedef T* TargetPtrType;
-
-            /// @brief This will somehow return a pointer to the reference count
-            /// @param Target A pointer the freshly created object.
-            /// @return This will return a pointer to a valid reference counter.
-            /// @note The default implemetation call new with a matching delete in CounterPtr::~CountedPtr . If no allocations are required this may simply return the passed parameter.
-            static PtrType ConstructionPointer(T* Target)
-                { return new ManagedType(Target); }
-
-            /// @brief Used to determine if the data a CountedPtr is managing can be cast
-            /// @details This uses the @ref CountedPointerCastingState to enter a value the Template MetaProgramming Machinery will understand.
-            enum { IsCastable = CastSimpleStatic };
-    };
     ///////////////////////////////////////////////////////////////////////////////
 
 
@@ -270,14 +255,15 @@ namespace Mezzanine
     /// from http://ootips.org/yonat/4dev/smart-pointers.html which came with written permission
     /// for use stated as "Feel free to use my own smart pointers in your code" on that page.
     ///////////////////////////////////////////////////////////////////////////////
-    template <class TypePointedTo> class CountedPtr
+    template <typename TypePointedTo>
+    class CountedPtr
     {
         public:
             /// @brief We don't know if we will use a pointer a reference counter, an instrusive pointer, or something else. This provides that abstraction layer.
             typedef typename ReferenceCountTraits<TypePointedTo>::PtrType PtrType;
 
             /// @brief The non pointer version of PtrType
-            typedef typename ReferenceCountTraits<TypePointedTo>::ManagedType ManagedType;
+            typedef typename ReferenceCountTraits<TypePointedTo>::RefCountType RefCountType;
 
         protected:
             /// @brief This is the only data on this class, a pointer to the counter and the managed object.
@@ -306,7 +292,7 @@ namespace Mezzanine
             }
 
         public:
-            /// @brief This makes referencing the type of the point object easier for external classes.
+            /// @brief This makes referencing the type of the pointer object easier for external classes.
             typedef TypePointedTo element_type;
 
             /// @brief Initial Constructor
@@ -357,7 +343,7 @@ namespace Mezzanine
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo& operator*() const throw()
             {
-                return _ReferenceCounter->GetReferenceCountReference();
+                return *(_ReferenceCounter->GetReferenceCountTargetAsPointer());
             }
 
             /// @brief The Structure dereference operator.
@@ -365,8 +351,9 @@ namespace Mezzanine
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo* operator->() const throw()
             {
-                //return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer());
-                return CountedPtrCastInternal<TypePointedTo,typename ReferenceCountTraits<TypePointedTo>::TargetType>::Cast(_ReferenceCounter->GetReferenceCountPointer());
+                //return _ReferenceCounter->GetReferenceCountTargetAsPointer();
+                //return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountTargetAsPointer());
+                return CountedPtrCastInternal<TypePointedTo>(_ReferenceCounter->GetMostDerived());
             }
 
             /// @brief Get the raw pointer to the managed object.
@@ -375,8 +362,9 @@ namespace Mezzanine
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
             TypePointedTo* get() const throw()
             {
-                //return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountPointer());
-                return CountedPtrCastInternal<TypePointedTo,typename ReferenceCountTraits<TypePointedTo>::TargetType>::Cast(_ReferenceCounter->GetReferenceCountPointer());
+                //return _ReferenceCounter->GetReferenceCountTargetAsPointer();
+                //return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountTargetAsPointer());
+                return CountedPtrCastInternal<TypePointedTo>(_ReferenceCounter->GetMostDerived());
             }
 
             /// @brief Is this the only pointer to the managed object
@@ -500,35 +488,34 @@ namespace Mezzanine
             }
     };
 
-    /// @internal
-    /// Abstracts away th
-    template <typename ReturnPointer, typename OriginalPointer>
-    class CountedPtrCastInternal
-    {
-        public:
-            static ReturnPointer* Cast(OriginalPointer* Original)
-            {
-                return  CountedPtrCastImpl
-                    <
-                        ReturnPointer,
-                        OriginalPointer*,
-                        CountedPointerCastingState
-                            (
-                                ReferenceCountTraits<OriginalPointer>::IsCastable
-                            )
-                    >::Cast(Original);
-            }
-    };
+
 
     /// @internal
-    /// Abstracts away th
-    template <typename Pointer>
-    class CountedPtrCastInternal<Pointer, Pointer>
+    /// Abstracts away the case where the return type would match the input type.
+    template <typename ReturnPointer, typename OriginalPointer>
+    ReturnPointer* CountedPtrCastInternal(const OriginalPointer* Original)
     {
-        public:
-            static Pointer* Cast(Pointer* Original)
-                { return Original; }
-    };
+        return  CountedPtrCastImpl
+            <
+                ReturnPointer*,
+                OriginalPointer*,
+                CountedPointerCastingState
+                    (
+                        ReferenceCountTraits<OriginalPointer>::IsCastable
+                    )
+            >::Cast(
+                        const_cast<OriginalPointer*>(Original)
+                    );
+    }
+
+    /// @internal
+    /// Abstracts away the case where the return type would match the input type.
+    template <typename Pointer>
+    Pointer* CountedPtrCastInternal(Pointer* Original)
+        { return  Original; }
+
+
+
 
     /// @brief If Possible convert on kind of a co
     //abstracts away the Counted pointer

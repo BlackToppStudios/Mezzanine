@@ -182,13 +182,8 @@ namespace Mezzanine
 
                 /// @brief Gets the actual pointer to the target.
                 /// @return A Pointer of the targeted type to the object being managed.
-                virtual iScript* GetReferenceCountPointer()
+                virtual iScript* GetReferenceCountTargetAsPointer()
                     { return this; }
-
-                /// @brief Gets a reference to the reference counter, which on this is this
-                /// @return A reference to this.
-                virtual iScript& GetReferenceCountReference()
-                    { return *this; }
 
                 /// @brief Get the current amount of references.
                 /// @return A Whole with the current reference count
@@ -196,9 +191,9 @@ namespace Mezzanine
                     { return RefCount; }
 
                 /// @brief Get a pointer to the most Derived type of this class
-                /// @return A pointer cast to a void*
-                virtual void* GetMostDerived()
-                    { return reinterpret_cast<void*>(this); }
+                /// @return A pointer of the most derived pointing to this.
+                virtual iScript* GetMostDerived()
+                    { return this; }
         }; // iScript
 
 
@@ -246,9 +241,9 @@ namespace Mezzanine
                     { return this; }
 
                 /// @brief Get a pointer to the most Derived type of this class
-                /// @return A pointer cast to a void*
-                virtual void* GetMostDerived()
-                    { return reinterpret_cast<void*>(this); }
+                /// @return A pointer of the most derived pointing to this.
+                virtual iScriptCompilable* GetMostDerived()
+                    { return this; }
         };
 
 
@@ -278,9 +273,9 @@ namespace Mezzanine
                 virtual ArgumentSet GetAllReturns() const = 0;
 
                 /// @brief Get a pointer to the most Derived type of this class
-                /// @return A pointer cast to a void*
-                virtual void* GetMostDerived()
-                    { return reinterpret_cast<void*>(this); }
+                /// @return A pointer of the most derived pointing to this.
+                virtual iScriptMultipleReturn* GetMostDerived()
+                    { return this; }
         };
 
 
@@ -291,11 +286,8 @@ namespace Mezzanine
     class ReferenceCountTraits <Scripting::iScript>
     {
         public:
-            typedef Scripting::iScript ManagedType;
+            typedef Scripting::iScript RefCountType;
             typedef Scripting::iScript * PtrType;
-
-            typedef Scripting::iScript TargetType;
-            typedef Scripting::iScript* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
@@ -308,11 +300,8 @@ namespace Mezzanine
     class ReferenceCountTraits <Scripting::iScriptCompilable>
     {
         public:
-            typedef Scripting::iScriptCompilable ManagedType;
+            typedef Scripting::iScriptCompilable RefCountType;
             typedef Scripting::iScriptCompilable * PtrType;
-
-            typedef Scripting::iScriptCompilable TargetType;
-            typedef Scripting::iScriptCompilable* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
@@ -325,11 +314,8 @@ namespace Mezzanine
     class ReferenceCountTraits <Scripting::iScriptMultipleReturn>
     {
         public:
-            typedef Scripting::iScriptMultipleReturn ManagedType;
+            typedef Scripting::iScriptMultipleReturn RefCountType;
             typedef Scripting::iScriptMultipleReturn * PtrType;
-
-            typedef Scripting::iScriptMultipleReturn TargetType;
-            typedef Scripting::iScriptMultipleReturn* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }

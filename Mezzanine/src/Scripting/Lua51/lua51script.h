@@ -139,9 +139,9 @@ namespace Mezzanine
                     //For the CountedPointer Inheritance
                 public:
                     /// @brief Get a pointer to the most Derived type of this class
-                    /// @return A pointer cast to a void*
-                    virtual void* GetMostDerived()
-                        { return reinterpret_cast<void*>(this); }
+                    /// @return A pointer of the most derived pointing to this.
+                    virtual Lua51Script* GetMostDerived()
+                        { return this; }
             };
         } // Lua
     } // Scripting
@@ -151,11 +151,8 @@ namespace Mezzanine
     class ReferenceCountTraits <Scripting::Lua::Lua51Script>
     {
         public:
-            typedef Scripting::Lua::Lua51Script ManagedType;
+            typedef Scripting::Lua::Lua51Script RefCountType;
             typedef Scripting::Lua::Lua51Script* PtrType;
-
-            typedef Scripting::Lua::Lua51Script TargetType;
-            typedef Scripting::Lua::Lua51Script* TargetPtrType;
 
             static PtrType ConstructionPointer(PtrType Target)
                 { return Target; }
