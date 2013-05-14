@@ -49,7 +49,7 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a struct containing all the parameters needed to describe an EAX Reverb effect.
-        /// @details
+        /// @details The Reverb effect simulates sounds that bounce off of surfaces and are reflected back at the listener.
         ///////////////////////////////////////
         struct EAXReverbParameters
         {
