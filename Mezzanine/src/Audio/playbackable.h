@@ -188,18 +188,22 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Effects Methods
 
-            /// @brief Attaches an effect to this sound.
+            /// @brief Attaches an @ref iEffect to this sound.
             /// @remarks Valid Slot Range: 0 to @ref iSound::GetNumEffectSlotsAvailable()
-            /// @param Slot The slot into which the effect will be attached.
-            /// @param Eff The effect to be attached.
-            /// @return Returns true if the effect was successfully attached, false otherwise.
+            /// @param Slot The slot into which the @ref iEffect will be attached.
+            /// @param Eff The @ref iEffect to be attached.
+            /// @return Returns true if the @ref iEffect was successfully attached, false otherwise.
             virtual bool AttachEffect(const UInt32 Slot, iEffect* Eff) = 0;
-            /// @brief Gets the max number of effects that can be attached to this sound.
-            /// @return Returns the maximum number of effects this sound can support.
+            /// @brief Gets the @ref iEffect attached at the specified slot.
+            /// @param Slot The slot to retrieve the @ref iEffect from.
+            /// @return Returns a pointer to the @ref iEffect attached at the specified slot, or NULL if none are attached.
+            virtual iEffect* GetEffect(const UInt32 Slot) const = 0;
+            /// @brief Gets the max number of @ref iEffect instances that can be attached to this sound.
+            /// @return Returns the maximum number of @ref iEffect instances this sound can support.
             virtual UInt32 GetNumEffectSlotsAvailable() const = 0;
-            /// @brief Removes the effect in the specified slot.
+            /// @brief Removes the @ref iEffect in the specified slot.
             /// @remarks Valid Slot Range: 0 to @ref iSound::GetNumEffectSlotsAvailable()
-            /// @param Slot The slot to remove the occupying effect.
+            /// @param Slot The slot to remove the occupying @ref iEffect.
             virtual void RemoveEffect(const UInt32 Slot) = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
