@@ -67,7 +67,11 @@ namespace Mezzanine
         CastStatic           = 4        ///< Static Casting from most dervied class, the class provides a 'virtual something* GetMostDerived()' and its return can be statically upcast to a more base class.
     };
 
-    // Forward Declares for the casting system
+    // Forward Declares Just about everything in this file
+    template <typename TypePointedTo> class CountedPtr;
+
+    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original);
+
     template <typename ReturnPointer, typename OriginalPointer, CountedPointerCastingState> class CountedPtrCastImpl;
     template <typename OriginalPointer> class CountedPtrCastImpl <OriginalPointer, OriginalPointer, CastNoneError>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastNoneReturnZero>;
@@ -241,10 +245,6 @@ namespace Mezzanine
             enum { IsCastable = CastStatic };
     };
 
-
-    ///////////////////////////////////////////////////////////////////////////////
-
-
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A simple reference counting pointer.
     /// @details This is a pointer that automatically deallocates the object it manages when
@@ -264,6 +264,9 @@ namespace Mezzanine
 
             /// @brief The non pointer version of PtrType
             typedef typename ReferenceCountTraits<TypePointedTo>::RefCountType RefCountType;
+
+            /// @brief This makes referencing the type of the pointer object easier for external classes.
+            typedef TypePointedTo element_type;
 
         protected:
             /// @brief This is the only data on this class, a pointer to the counter and the managed object.
@@ -292,10 +295,7 @@ namespace Mezzanine
             }
 
         public:
-            /// @brief This makes referencing the type of the pointer object easier for external classes.
-            typedef TypePointedTo element_type;
-
-            /// @brief Initial Constructor
+            /// @brief Initializing Constructor
             /// @details This should only be used for initial creation of a shared pointer group. This will allocate the raw
             /// pointer and the ReferenceCounter that will be used to track the pointer passed. This will only be explicitly
             /// called to prevent accidental premature deletion of the item managed.
@@ -313,9 +313,18 @@ namespace Mezzanine
 
             /// @brief Copy constructor
             /// @param Original The pointer being copied. This fresh pointer will use the same ReferenceCounter as the original.
-            /// @throw Nothing This member function does not throws exceptions.
+            /// @throw Nothing This member function does throws exceptions.
             CountedPtr(const CountedPtr& Original) throw() : _ReferenceCounter(NULL)
                 { Acquire( Original._ReferenceCounter ); }
+
+            /// @brief Casting copy constructor
+            /// @param Original The CountedPtr being copied. This fresh pointer will use the same ReferenceCounter as the original.
+            /// @throw Nothing This member function does throws exceptions, unless the casting mechanism throws, which it shouldn't.
+            template <typename OtherPointer>
+            CountedPtr(const CountedPtr<OtherPointer>& Original) throw() : _ReferenceCounter(NULL)
+            {
+                //Acquire( CountedPtrCast<TypePointedTo>(Original)._ReferenceCounter );
+            }
 
             /// @brief Get the current count of references.
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
@@ -519,15 +528,15 @@ namespace Mezzanine
 
     /// @brief If Possible convert on kind of a co
     //abstracts away the Counted pointer
-    template <typename ReturnType, typename CountedPointer>
-    CountedPtr<ReturnType> CountedPtrCast(CountedPointer Original)
+    template <typename ReturnType, typename OtherPointerTargetType>
+    CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original)
     {
         return  CountedPtr<ReturnType>
                 (
                     CountedPtrCastInternal
                     <
                         ReturnType*,
-                        typename CountedPointer::PtrType
+                        typename CountedPtr<OtherPointerTargetType>::PtrType
                     >(Original.get())
                 );
     }

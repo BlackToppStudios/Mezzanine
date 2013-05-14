@@ -91,14 +91,14 @@ namespace Mezzanine
             /// @brief A constructor that allows setting the value
             /// @param TargetResults Where to save destruction results
             /// @param Val A default value to use for testing.
-            explicit FooInternal(TestResult* TargetResults, Integer Val = 0)
+            explicit FooInternal(TestResult* TargetResults = 0, Integer Val = 0)
                 : Results(TargetResults), Value(Val), RefCount(0)
                 {}
 
             /// @brief A destructor that sets Results to Success if it wasNotApplicable and leaves it untouched otherwise.
             ~FooInternal()
             {
-                if(NotApplicable==*Results)
+                if(Results && NotApplicable==*Results)
                     { *Results = Success; }
             }
 
@@ -148,6 +148,7 @@ namespace Mezzanine
             int Value1;
 
             /// @brief Get a pointer to the most Derived type of this class
+            ///
             /// @return A pointer cast to a void*, for use with CountedPtrCast
             virtual void* GetMostDerived()
                 { return reinterpret_cast<void*>(this); }
@@ -174,6 +175,8 @@ namespace Mezzanine
             virtual void* GetMostDerived()
                 { return reinterpret_cast<void*>(this); }
     };
+
+
 
     template <>
     class ReferenceCountTraits <FooDerived1>
@@ -690,22 +693,21 @@ class countedptrtests : public UnitTestGroup
 
                 TestResult Result = NotApplicable;
 
-                CountedPtr<Mezzanine::FooDiamond> DiamondPtr;
+                CountedPtr<FooDiamond> DiamondPtr(new FooDiamond);
                 DiamondPtr->Value = 0;
-                /*DiamondPtr->Value1 = 1;
+                DiamondPtr->Value1 = 1;
                 DiamondPtr->Value2 = 2;
-                DiamondPtr->ValueDiamond = 3;*/
+                DiamondPtr->ValueDiamond = 3;
+                AddTestResult("CountedPtr::DiamondCastingConsistency", Result);
 
-                //AddTestResult("CountedPtr::", Result);
+                //CountedPtr<FooInternal> InternalPtrFromCast = CountedPtrCast<FooInternal>(DiamondPtr);
+
+                //CountedPtr<FooInternal> InternalPtr(DiamondPtr);
+
 
             }else{
-                AddTestResult("CountedPtr::", Skipped);
-                AddTestResult("CountedPtr::", Skipped);
-                AddTestResult("CountedPtr::", Skipped);
-                AddTestResult("CountedPtr::", Skipped);
-                AddTestResult("CountedPtr::", Skipped);
-                AddTestResult("CountedPtr::", Skipped);
-                AddTestResult("CountedPtr::", Skipped);
+                AddTestResult("CountedPtr::DiamondCastingConsistency", Skipped);
+                //AddTestResult("CountedPtr::", Skipped);
             }
 
 
