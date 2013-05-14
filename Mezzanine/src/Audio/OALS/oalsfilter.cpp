@@ -162,23 +162,30 @@ namespace Mezzanine
 
             void Filter::SetType(const FilterType FilType)
             {
-                EFX->alFilter(this->InternalFilter,AL_FILTER_TYPE,ConvertMezzanineFilterType(FilType));
-                this->UpdateVolume();
-                this->UpdateFrequencyVolume();
-                this->Dirty = true;
-                this->Valid = CheckError();
+                if( this->Valid )
+                {
+                    EFX->alFilter(this->InternalFilter,AL_FILTER_TYPE,ConvertMezzanineFilterType(FilType));
+                    this->UpdateVolume();
+                    this->UpdateFrequencyVolume();
+                    this->Dirty = true;
+                    this->Valid = CheckError();
+                }
             }
 
             FilterType Filter::GetType() const
             {
-                ALenum Type;
-                EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,Type);
-                return ConvertInternalFilterType(Type);
+                if( this->Valid ) {
+                    ALenum Type;
+                    EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,Type);
+                    return ConvertInternalFilterType(Type);
+                }else{
+                    return Audio::FT_Null;
+                }
             }
 
             void Filter::SetVolume(const Real Vol)
             {
-                if( this->Volume != Vol )
+                if( this->Volume != Vol && this->Valid )
                 {
                     this->Volume = Vol;
                     this->Dirty = true;
@@ -194,7 +201,7 @@ namespace Mezzanine
 
             void Filter::SetHighFrequencyVolume(const Real HFVol)
             {
-                if( this->HFVolume != HFVol )
+                if( this->HFVolume != HFVol && this->Valid )
                 {
                     this->HFVolume = HFVol;
                     this->Dirty = true;
@@ -210,7 +217,7 @@ namespace Mezzanine
 
             void Filter::SetLowFrequencyVolume(const Real LFVol)
             {
-                if( this->LFVolume != LFVol )
+                if( this->LFVolume != LFVol && this->Valid )
                 {
                     this->LFVolume = LFVol;
                     this->Dirty = true;
