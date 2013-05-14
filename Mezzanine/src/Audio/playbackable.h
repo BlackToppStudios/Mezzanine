@@ -210,6 +210,9 @@ namespace Mezzanine
             /// @param Fil The filter to be attached.
             /// @return Returns true if the filter was successfully attached, false otherwise.
             virtual bool AttachFilter(iFilter* Fil) = 0;
+            /// @brief Gets the filter currently being used by this object.
+            /// @return Returns a pointer to the currently attached filter, or NULL if there isn't one.
+            virtual iFilter* GetFilter() const = 0;
             /// @brief Removes any currently attached filters.
             virtual void RemoveFilter() = 0;
         };//iPlaybackable
