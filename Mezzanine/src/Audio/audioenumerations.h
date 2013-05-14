@@ -75,30 +75,30 @@ namespace Mezzanine
 		/// @brief Used by the @ref iEffect class to describe what type of effect it is.
         enum EffectType
         {
-            ET_Null,
-            ET_EAX_Reverb,
-            ET_Reverb,
-            ET_Chorus,
-            ET_Distortion,
-            ET_Echo,
-            ET_Flanger,
-            ET_Frequency_Shifter,
-            ET_Vocal_Morpher,
-            ET_Pitch_Shifter,
-            ET_Ring_Modulator,
-            ET_Autowah,
-            ET_Compressor,
-            ET_Equalizer
+            ET_Null,              ///< Null type with no values.
+            ET_EAX_Reverb,        ///< See @ref EAXReverbParameters.
+            ET_Reverb,            ///< See @ref ReverbParameters.
+            ET_Chorus,            ///< See @ref ChorusParameters.
+            ET_Distortion,        ///< See @ref DistortionParameters.
+            ET_Echo,              ///< See @ref EchoParameters.
+            ET_Flanger,           ///< See @ref FlangerParameters.
+            ET_Frequency_Shifter, ///< See @ref FrequencyShifterParameters.
+            ET_Vocal_Morpher,     ///< See @ref VocalMorpherParameters.
+            ET_Pitch_Shifter,     ///< See @ref PitchShifterParameters.
+            ET_Ring_Modulator,    ///< See @ref RingModulatorParameters.
+            ET_Autowah,           ///< See @ref AutowahParameters.
+            ET_Compressor,        ///< See @ref CompressorParameters.
+            ET_Equalizer          ///< See @ref RqualizerParameters.
         };
 
 		/// @enum FilterType
 		/// @brief Used by the @ref iFilter class to describe what type of filter it is.
         enum FilterType
         {
-            FT_Null,
-            FT_LowPass,
-            FT_HighPass,
-            FT_BandPass
+            FT_Null,        ///< Null type with no values.
+            FT_LowPass,     ///< Filters out high frequency audio from a sound beyond a certain threshold.
+            FT_HighPass,    ///< Filters out low frequency audio from a sound below a certain threshold.
+            FT_BandPass     ///< Filters out both high and low frequency audio from a sound outside of specified thresholds.
         };
 
         /// @enum SoundType
