@@ -363,8 +363,7 @@ namespace Mezzanine
             enum ChorusWaveform
             {
                 ECW_Sinusoid,   ///< A curved oscillation with smoother transitions at peak frequencies.
-                ECW_Triangle,   ///< A linear oscillation with rapid transitions at peak frequencies.
-                ECW_Count       ///< Filler value describing the number of values contained in this enum.
+                ECW_Triangle    ///< A linear oscillation with rapid transitions at peak frequencies.
             };
 
             /// @brief This property sets the waveform shape of the Low Frequency Oscillation that controls the delay time of the delayed signals.
@@ -496,8 +495,7 @@ namespace Mezzanine
             enum FlangerWaveform
             {
                 EFW_Sinusoid,   ///< A curved oscillation with smoother transitions at peak frequencies.
-                EFW_Triangle,   ///< A linear oscillation with rapid transitions at peak frequencies.
-                EFW_Count       ///< Filler value describing the number of values contained in this enum.
+                EFW_Triangle    ///< A linear oscillation with rapid transitions at peak frequencies.
             };
 
             /// @brief Selects the shape of the LFO waveform that controls the amount of the delay of the sampled signal.
@@ -549,8 +547,7 @@ namespace Mezzanine
             {
                 ESD_Down,
                 ESD_Up,
-                ESD_Off,
-                ESD_Count
+                ESD_Off
             };
 
             /// @brief This is the carrier frequency.
@@ -615,8 +612,7 @@ namespace Mezzanine
                 EMP_S,
                 EMP_T,
                 EMP_V,
-                EMP_Z,
-                ESD_COUNT
+                EMP_Z
             };
 
             /// @enum MorpherWaveform
@@ -625,8 +621,7 @@ namespace Mezzanine
             {
                 EMW_Sinusoid,   ///< A curved oscillation with smoother transitions at peak frequencies.
                 EMW_Triangle,   ///< A linear oscillation with rapid transitions at peak frequencies.
-                EMW_Saw,        ///< A curved upward oscillation with a rapid drop at it's peak frequency.
-                EMW_Count       ///< Filler value describing the number of values contained in this enum.
+                EMW_Saw         ///< A curved upward oscillation with a rapid drop at it's peak frequency.
             };
 
             /// @brief The source phoneme.
@@ -701,8 +696,7 @@ namespace Mezzanine
             {
                 EMW_Sinusoid,   ///< A curved oscillation with smoother transitions at peak frequencies.
                 EMW_Saw,        ///< A curved upward oscillation with a rapid drop at it's peak frequency.
-                EMW_Square,     ///< A digital waveform that only expresses the highest and lowest frequencies.  Effectively "on" or "off".
-                EMW_Count       ///< Filler value describing the number of values contained in this enum.
+                EMW_Square      ///< A digital waveform that only expresses the highest and lowest frequencies.  Effectively "on" or "off".
             };
 
             /// @brief This is the frequency of the carrier signal.
