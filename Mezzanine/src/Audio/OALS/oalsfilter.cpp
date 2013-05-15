@@ -149,7 +149,7 @@ namespace Mezzanine
             bool Filter::CheckError()
             {
                 Integer ALError = alGetError();
-                return ( ALError != AL_NO_ERROR );
+                return ( ALError == AL_NO_ERROR );
             }
 
             ///////////////////////////////////////////////////////////////////////////////
