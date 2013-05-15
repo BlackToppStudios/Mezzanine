@@ -61,16 +61,11 @@ namespace
     {
         switch(format)
 		{
-            case Mezzanine::Audio::BC_8Bit_Mono:
-                return AL_FORMAT_MONO8;
-            case Mezzanine::Audio::BC_16Bit_Mono:
-                return AL_FORMAT_MONO16;
-            case Mezzanine::Audio::BC_8Bit_Stereo:
-                return AL_FORMAT_STEREO8;
-            case Mezzanine::Audio::BC_16Bit_Stereo:
-                return AL_FORMAT_STEREO16;
-            default:
-                return AL_FORMAT_MONO8;
+            case Mezzanine::Audio::BC_8Bit_Mono:     return AL_FORMAT_MONO8;     break;
+            case Mezzanine::Audio::BC_16Bit_Mono:    return AL_FORMAT_MONO16;    break;
+            case Mezzanine::Audio::BC_8Bit_Stereo:   return AL_FORMAT_STEREO8;   break;
+            case Mezzanine::Audio::BC_16Bit_Stereo:  return AL_FORMAT_STEREO16;  break;
+            default:                                 return AL_FORMAT_MONO8;     break;
 		}
     }
 }
