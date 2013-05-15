@@ -68,7 +68,8 @@ namespace Mezzanine
             Enc_FLAC   = 3,  ///< Used in .flac files.
             Enc_VORBIS = 4,  ///< Used in .ogg files.
             Enc_MP3    = 5,  ///< Used in .mp3 files.
-            Enc_SPEEX  = 6   ///< Used in .spx files.
+            Enc_SPEEX  = 6,  ///< Used in .spx files.
+            Enc_OPUS   = 7   ///< Used in .opus files.
         };
 
 		/// @enum EffectType
