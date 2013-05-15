@@ -534,7 +534,7 @@ class countedptrtests : public UnitTestGroup
 
 // unremark this line to test the CountedPtr vs Shared_Ptr
 // need to enable c++11 in gcc I added "-std=c++11" to CMAKE_CXX_FLAGS
-//#define SHAREDPTRTEST
+#define SHAREDPTRTEST
             Integer OutputE = 0;
             Integer OutputI = 0;
             Integer OutputS = 0;
@@ -551,7 +551,7 @@ class countedptrtests : public UnitTestGroup
                     MaxInt End;
 
 
-                    const Whole TestCount=100000;
+                    const Whole TestCount=10000000;
 
                     /////////////////////////////////////
                     // Create tests
@@ -698,6 +698,7 @@ class countedptrtests : public UnitTestGroup
                 DiamondPtr->Value1 = 1;
                 DiamondPtr->Value2 = 2;
                 DiamondPtr->ValueDiamond = 3;
+                Result = Success;
                 AddTestResult("CountedPtr::DiamondCastingConsistency", Result);
 
                 //CountedPtr<FooInternal> InternalPtrFromCast = CountedPtrCast<FooInternal>(DiamondPtr);
@@ -707,6 +708,46 @@ class countedptrtests : public UnitTestGroup
 
             }else{
                 AddTestResult("CountedPtr::DiamondCastingConsistency", Skipped);
+                //AddTestResult("CountedPtr::", Skipped);
+            }
+
+
+            if (RunAutomaticTests)
+            {
+
+                TestResult Result = NotApplicable;
+
+                CountedPtr<int> IntPtr(new int(0));
+                IntPtr.reset();
+                if( IntPtr.use_count() )
+                {
+                    AddTestResult("CountedPtr::reset()", Failed);
+                }else{
+                    AddTestResult("CountedPtr::reset()", Success);
+                }
+
+                IntPtr.reset(new int(10));
+                if( *IntPtr == 10 )
+                {
+                    AddTestResult("CountedPtr::reset(Ptr*)", Success);
+                }else{
+                    AddTestResult("CountedPtr::reset(Ptr*)", Failed);
+                }
+
+                CountedPtr<int> TwentyTwo(new int(22));
+                IntPtr.reset(TwentyTwo);
+                if( *IntPtr == 22 )
+                {
+                    AddTestResult("CountedPtr::reset(CountedPtr)", Success);
+                }else{
+                    AddTestResult("CountedPtr::reset(CountedPtr)", Failed);
+                }
+
+
+            }else{
+                AddTestResult("CountedPtr::reset()", Skipped);
+                AddTestResult("CountedPtr::reset(Ptr*)", Skipped);
+                AddTestResult("CountedPtr::reset(CountedPtr)", Skipped);
                 //AddTestResult("CountedPtr::", Skipped);
             }
 

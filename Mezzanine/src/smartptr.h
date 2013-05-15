@@ -290,9 +290,13 @@ namespace Mezzanine
                 {
                     if (_ReferenceCounter->DecrementReferenceCount() == 0)
                         { delete _ReferenceCounter; } // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
-                    _ReferenceCounter = NULL;
                 }
             }
+
+            /// @brief If required create a reference counter and point this at the passed pointer.
+            /// @param PointerTarget the Pointer to take ownership of.
+            void FirstAcquire(TypePointedTo* PointerTarget)
+                { Acquire( ReferenceCountTraits<TypePointedTo>::ConstructionPointer(PointerTarget) ); }
 
         public:
             /// @brief Initializing Constructor
@@ -304,8 +308,13 @@ namespace Mezzanine
             /// not recomended to use this in any other way. Here is an example of the recommended way to use new inline with this:
             /// "Mezzanine::CountedPtr<Mezzanine::Vector3> VecPtr (new Mezzanine::Vector3);"
             /// @param PointerTarget The item that will be deleted once all the pointer of this group disappear.
-            explicit CountedPtr(TypePointedTo* PointerTarget = 0)
-                { Acquire( ReferenceCountTraits<TypePointedTo>::ConstructionPointer(PointerTarget) ); }
+            explicit CountedPtr(TypePointedTo* PointerTarget = 0) throw()
+            {
+                if(PointerTarget)
+                    { FirstAcquire(PointerTarget); }
+                else
+                    { _ReferenceCounter = NULL; }
+            }
 
             /// @brief Deconstructor, Just calls Release().
             ~CountedPtr() throw()
@@ -314,7 +323,7 @@ namespace Mezzanine
             /// @brief Copy constructor
             /// @param Original The pointer being copied. This fresh pointer will use the same ReferenceCounter as the original.
             /// @throw Nothing This member function does throws exceptions.
-            CountedPtr(const CountedPtr& Original) throw() : _ReferenceCounter(NULL)
+            CountedPtr(const CountedPtr& Original) throw()
                 { Acquire( Original._ReferenceCounter ); }
 
             /// @brief Casting copy constructor
@@ -324,6 +333,33 @@ namespace Mezzanine
             CountedPtr(const CountedPtr<OtherPointer>& Original) throw() : _ReferenceCounter(NULL)
             {
                 //Acquire( CountedPtrCast<TypePointedTo>(Original)._ReferenceCounter );
+            }
+
+            /// @brief Reset this to point at nothing.
+            void reset()
+            {
+                Release();
+                _ReferenceCounter = NULL;
+            }
+
+            /// @brief Reset this to point at the same as another CountedPtr of the same type.
+            /// @param Other Another CountedPtr which will share ownership of the target.
+            void reset(const CountedPtr<TypePointedTo>& Other)
+            {
+                if (this != &Other) {
+                    Release();
+                    Acquire(Other._ReferenceCounter);
+                }
+            }
+
+            /// @brief Take ownership of the passed pointer.
+            /// @param PointerTarget The pointer to assume ownership of.
+            void reset(TypePointedTo* PointerTarget)
+            {
+                if(PointerTarget)
+                    { FirstAcquire(PointerTarget); }
+                else
+                    { _ReferenceCounter = NULL; }
             }
 
             /// @brief Get the current count of references.
@@ -351,30 +387,20 @@ namespace Mezzanine
             /// @return The managed object is returned by reference.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo& operator*() const throw()
-            {
-                return *(_ReferenceCounter->GetReferenceCountTargetAsPointer());
-            }
+                { return *(_ReferenceCounter->GetReferenceCountTargetAsPointer()); }
 
             /// @brief The Structure dereference operator.
             /// @return Makes it appear, syntactically, as though you are dereferencing the raw pointer.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo* operator->() const throw()
-            {
-                //return _ReferenceCounter->GetReferenceCountTargetAsPointer();
-                //return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountTargetAsPointer());
-                return CountedPtrCastInternal<TypePointedTo>(_ReferenceCounter->GetMostDerived());
-            }
+                { return CountedPtrCastInternal<TypePointedTo>(_ReferenceCounter->GetMostDerived()); }
 
             /// @brief Get the raw pointer to the managed object.
             /// @return The raw pointer to the managed object or 0 if this pointer is invalid.
             /// @throw Nothing This member function does not throw exceptions.
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
             TypePointedTo* get() const throw()
-            {
-                //return _ReferenceCounter->GetReferenceCountTargetAsPointer();
-                //return static_cast<TypePointedTo*>(_ReferenceCounter->GetReferenceCountTargetAsPointer());
-                return CountedPtrCastInternal<TypePointedTo>(_ReferenceCounter->GetMostDerived());
-            }
+                { return CountedPtrCastInternal<TypePointedTo>(_ReferenceCounter->GetMostDerived()); }
 
             /// @brief Is this the only pointer to the managed object
             /// @return True if use_count() == 1 or if the pointer is invalid
@@ -391,7 +417,8 @@ namespace Mezzanine
             bool operator==(const CountedPtr& Other)
                 { return Other._ReferenceCounter == _ReferenceCounter; }
 
-            // need to do something about the implicit cast to int thing
+            /// @brief Returns true if this pointer points to something.
+            /// @warning Without C++11 this can be accidentally cast to a bool and can do sill things.
             operator bool()
                 { return 0 != _ReferenceCounter; }
     };
