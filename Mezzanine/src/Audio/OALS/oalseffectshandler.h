@@ -319,12 +319,15 @@ namespace Mezzanine
                 virtual EqualizerParameters GetEqualizerEffectPreset(const String& Name) const;
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+                // Internal Methods
 
                 /// @internal
                 /// @brief Gets a pointer to the class holding all the EFX function pointers.
                 /// @return Returns a pointer to the @ref EFXInterface.
                 virtual EFXInterface* _GetEFXInterface() const;
+                /// @internal
+                /// @brief Removes the dirty flag from all @ref iEffect instances and @ref iFilter instances.
+                virtual void _CleanAll();
             };//EffectsHandler
         }//OALS
     }//Audio

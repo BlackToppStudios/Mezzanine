@@ -64,10 +64,10 @@ namespace
     {
         switch(Type)
         {
-            case FT_Null:       return AL_FILTER_NULL;      break;
-            case FT_LowPass:    return AL_FILTER_LOWPASS;   break;
-            case FT_HighPass:   return AL_FILTER_HIGHPASS;  break;
-            case FT_BandPass:   return AL_FILTER_BANDPASS;  break;
+            case Mezzanine::Audio::FT_Null:       return AL_FILTER_NULL;      break;
+            case Mezzanine::Audio::FT_LowPass:    return AL_FILTER_LOWPASS;   break;
+            case Mezzanine::Audio::FT_HighPass:   return AL_FILTER_HIGHPASS;  break;
+            case Mezzanine::Audio::FT_BandPass:   return AL_FILTER_BANDPASS;  break;
         }
     }
 
@@ -79,20 +79,20 @@ namespace
     {
         switch(Type)
         {
-            case ET_Null:                return AL_EFFECT_NULL;               break;
-            case ET_EAX_Reverb:          return AL_EFFECT_EAXREVERB;          break;
-            case ET_Reverb:              return AL_EFFECT_REVERB;             break;
-            case ET_Chorus:              return AL_EFFECT_CHORUS;             break;
-            case ET_Distortion:          return AL_EFFECT_DISTORTION;         break;
-            case ET_Echo:                return AL_EFFECT_ECHO;               break;
-            case ET_Flanger:             return AL_EFFECT_FLANGER;            break;
-            case ET_Frequency_Shifter:   return AL_EFFECT_FREQUENCY_SHIFTER;  break;
-            case ET_Vocal_Morpher:       return AL_EFFECT_VOCAL_MORPHER;      break;
-            case ET_Pitch_Shifter:       return AL_EFFECT_PITCH_SHIFTER;      break;
-            case ET_Ring_Modulator:      return AL_EFFECT_RING_MODULATOR;     break;
-            case ET_Autowah:             return AL_EFFECT_AUTOWAH;            break;
-            case ET_Compressor:          return AL_EFFECT_COMPRESSOR;         break;
-            case ET_Equalizer:           return AL_EFFECT_EQUALIZER;          break;
+            case Mezzanine::Audio::ET_Null:                return AL_EFFECT_NULL;               break;
+            case Mezzanine::Audio::ET_EAX_Reverb:          return AL_EFFECT_EAXREVERB;          break;
+            case Mezzanine::Audio::ET_Reverb:              return AL_EFFECT_REVERB;             break;
+            case Mezzanine::Audio::ET_Chorus:              return AL_EFFECT_CHORUS;             break;
+            case Mezzanine::Audio::ET_Distortion:          return AL_EFFECT_DISTORTION;         break;
+            case Mezzanine::Audio::ET_Echo:                return AL_EFFECT_ECHO;               break;
+            case Mezzanine::Audio::ET_Flanger:             return AL_EFFECT_FLANGER;            break;
+            case Mezzanine::Audio::ET_Frequency_Shifter:   return AL_EFFECT_FREQUENCY_SHIFTER;  break;
+            case Mezzanine::Audio::ET_Vocal_Morpher:       return AL_EFFECT_VOCAL_MORPHER;      break;
+            case Mezzanine::Audio::ET_Pitch_Shifter:       return AL_EFFECT_PITCH_SHIFTER;      break;
+            case Mezzanine::Audio::ET_Ring_Modulator:      return AL_EFFECT_RING_MODULATOR;     break;
+            case Mezzanine::Audio::ET_Autowah:             return AL_EFFECT_AUTOWAH;            break;
+            case Mezzanine::Audio::ET_Compressor:          return AL_EFFECT_COMPRESSOR;         break;
+            case Mezzanine::Audio::ET_Equalizer:           return AL_EFFECT_EQUALIZER;          break;
         }
     }
 }
@@ -461,11 +461,24 @@ namespace Mezzanine
             }
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Utility
+            // Internal Methods
 
             EFXInterface* EffectsHandler::_GetEFXInterface() const
             {
                 return this->EFX;
+            }
+
+            void EffectsHandler::_CleanAll()
+            {
+                for( FilterIterator FilIt = this->Filters.begin() ; FilIt != this->Filters.end() ; ++FilIt )
+                {
+                    (*FilIt)->_Clean();
+                }
+
+                for( EffectIterator EffIt = this->Effects.begin() ; EffIt != this->Effects.end() ; ++EffIt )
+                {
+                    (*EffIt)->_Clean();
+                }
             }
         }//OALS
     }//Audio
