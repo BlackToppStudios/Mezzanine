@@ -62,10 +62,10 @@ namespace
     {
         switch(Type)
         {
-            case FT_Null:       return AL_FILTER_NULL;      break;
-            case FT_LowPass:    return AL_FILTER_LOWPASS;   break;
-            case FT_HighPass:   return AL_FILTER_HIGHPASS;  break;
-            case FT_BandPass:   return AL_FILTER_BANDPASS;  break;
+            case Mezzanine::Audio::FT_Null:       return AL_FILTER_NULL;      break;
+            case Mezzanine::Audio::FT_LowPass:    return AL_FILTER_LOWPASS;   break;
+            case Mezzanine::Audio::FT_HighPass:   return AL_FILTER_HIGHPASS;  break;
+            case Mezzanine::Audio::FT_BandPass:   return AL_FILTER_BANDPASS;  break;
         }
     }
     /// @internal
@@ -76,10 +76,10 @@ namespace
     {
         switch(Type)
         {
-            case AL_FILTER_NULL:      return FT_Null;       break;
-            case AL_FILTER_LOWPASS:   return FT_LowPass;    break;
-            case AL_FILTER_HIGHPASS:  return FT_HighPass;   break;
-            case AL_FILTER_BANDPASS:  return FT_BandPass;   break;
+            case AL_FILTER_NULL:      return Mezzanine::Audio::FT_Null;       break;
+            case AL_FILTER_LOWPASS:   return Mezzanine::Audio::FT_LowPass;    break;
+            case AL_FILTER_HIGHPASS:  return Mezzanine::Audio::FT_HighPass;   break;
+            case AL_FILTER_BANDPASS:  return Mezzanine::Audio::FT_BandPass;   break;
         }
     }
 }

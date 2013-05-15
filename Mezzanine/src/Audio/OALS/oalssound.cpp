@@ -63,18 +63,13 @@ namespace
     /// @return Returns the internal type corresponding to the provided Mezzanine type.
     ALenum ConvertBitConfigEnum(Mezzanine::Audio::BitConfig Config)
     {
-        switch(format)
+        switch(Config)
 		{
-            case Mezzanine::Audio::BC_8Bit_Mono:
-                return AL_FORMAT_MONO8;
-            case Mezzanine::Audio::BC_16Bit_Mono:
-                return AL_FORMAT_MONO16;
-            case Mezzanine::Audio::BC_8Bit_Stereo:
-                return AL_FORMAT_STEREO8;
-            case Mezzanine::Audio::BC_16Bit_Stereo:
-                return AL_FORMAT_STEREO16;
-            default:
-                return AL_FORMAT_MONO8;
+            case Mezzanine::Audio::BC_8Bit_Mono:     return AL_FORMAT_MONO8;      break;
+            case Mezzanine::Audio::BC_16Bit_Mono:    return AL_FORMAT_MONO16;     break;
+            case Mezzanine::Audio::BC_8Bit_Stereo:   return AL_FORMAT_STEREO8;    break;
+            case Mezzanine::Audio::BC_16Bit_Stereo:  return AL_FORMAT_STEREO16;   break;
+            default:                                 return AL_FORMAT_MONO8;      break;
 		}
     }
 }
@@ -346,7 +341,7 @@ namespace Mezzanine
                         this->Effects[Slot] = BeingAdded;
 
                         ALuint EffectSlotID = BeingAdded->_GetInternalEffectSlot();
-                        ALuint FilterID = ( BeingAdded->GetFilter() != NULL ? BeingAdded->GetFilter()->_GetInternalFilter() : AL_FILTER_NULL );
+                        ALuint FilterID = ( BeingAdded->GetFilter() != NULL ? static_cast<OALS::Filter*>(BeingAdded->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
                         alSource3i(this->InternalSource,AL_AUXILIARY_SEND_FILTER,EffectSlotID,Index,FilterID);
                     }
                 }
@@ -431,7 +426,7 @@ namespace Mezzanine
                     {
                         //ALuint EffectID = CurrEffect->_GetInternalEffect();
                         ALuint EffectSlotID = CurrEffect->_GetInternalEffectSlot();
-                        ALuint FilterID = ( CurrEffect->GetFilter() != NULL ? CurrEffect->GetFilter()->_GetInternalFilter() : AL_FILTER_NULL );
+                        ALuint FilterID = ( CurrEffect->GetFilter() != NULL ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
                         alSource3i(this->InternalSource,AL_AUXILIARY_SEND_FILTER,EffectSlotID,Index,FilterID);
                     }
                 }
