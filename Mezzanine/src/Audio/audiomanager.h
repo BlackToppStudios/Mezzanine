@@ -149,10 +149,10 @@ namespace Mezzanine
             /// @brief Gets the number of @ref iSound instances in this manager.
             /// @return Returns a UInt32 representing the number of @ref iSound instances contained in this manager.
             virtual UInt32 GetNumSounds() const = 0;
-            /// @brief Deletes a Sound.
+            /// @brief Deletes a @ref iSound.
             /// @param SoundName A pointer to the @ref iSound you want deleted.
             virtual void DestroySound(iSound* ToBeDestroyed) = 0;
-            /// @brief Deletes all stored sounds.
+            /// @brief Deletes all stored @ref iSound instances.
             virtual void DestroyAllSounds() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
