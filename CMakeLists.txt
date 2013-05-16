@@ -443,8 +443,6 @@ set(Bullet_LibraryNames
 )
 
 set(SoundLibraryNames
-    "cAudio"
-    "openal"
     "oggvorbis"
 )
 

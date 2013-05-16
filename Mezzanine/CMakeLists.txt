@@ -84,14 +84,30 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}any.h"
         "${${PROJECT_NAME}_SRC_DIR}areaeffect.h"
         "${${PROJECT_NAME}_SRC_DIR}attachable.h"
-        "${${PROJECT_NAME}_SRC_DIR}audio.h"
-        "${${PROJECT_NAME}_SRC_DIR}audiomanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/audio.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/audioenumerations.h"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/audiomanager.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/decoder.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/decoderfactory.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/effect.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/effectparameters.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/effectshandler.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/filter.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/listener.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/musicplayer.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/playbackable.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/playlist.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/rawdecoder.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/rawdecoderfactory.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/recorder.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/sound.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/soundproxy.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/soundscapemanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/soundset.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/vorbisdecoder.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/vorbisdecoderfactory.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/wavdecoder.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/wavdecoderfactory.h"
         "${${PROJECT_NAME}_SRC_DIR}binarytool.h"
         "${${PROJECT_NAME}_SRC_DIR}camera.h"
         "${${PROJECT_NAME}_SRC_DIR}cameracontroller.h"
@@ -206,7 +222,9 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/assetgroup.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assethandler.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/datastream.h"
+		"${${PROJECT_NAME}_SRC_DIR}Resource/filestream.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/inputstream.h"
+		"${${PROJECT_NAME}_SRC_DIR}Resource/memorystream.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/textsettingsfile.h"
         "${${PROJECT_NAME}_SRC_DIR}scenemanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptingmanager.h"
@@ -276,6 +294,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobject.h"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectgraphicssettings.h"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.h"
+		"${${PROJECT_NAME}_SRC_DIR}worldproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/objectrange.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.h"       # Going away soon
@@ -310,12 +329,14 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}actorsoft.cpp"
         "${${PROJECT_NAME}_SRC_DIR}areaeffect.cpp"
         "${${PROJECT_NAME}_SRC_DIR}attachable.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}audiomanager.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Audio/listener.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/audiomanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/musicplayer.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/playlist.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Audio/sound.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/rawdecoder.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/soundscapemanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/soundset.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/vorbisdecoder.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/wavdecoder.cpp"
         "${${PROJECT_NAME}_SRC_DIR}binarytool.cpp"
         "${${PROJECT_NAME}_SRC_DIR}camera.cpp"
         "${${PROJECT_NAME}_SRC_DIR}cameracontroller.cpp"
@@ -415,7 +436,9 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/assetgroup.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assethandler.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/datastream.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Resource/filestream.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/inputstream.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Resource/memorystream.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/textsettingsfile.cpp"
         "${${PROJECT_NAME}_SRC_DIR}scenemanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptingmanager.cpp"
@@ -470,6 +493,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobject.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectgraphicssettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}worldproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.cpp"     # Going away soon
         "${${PROJECT_NAME}_SRC_DIR}XML/attribute.cpp"
@@ -490,6 +514,113 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathvariableset.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathquery.cpp"
 )
+
+###############################################################################
+# Audio Subsystem Configuration
+
+set(AudioProviderSet 0)
+option(Mezz_Audio_UseOALS "Use OpenAL-Soft as the audio provider for the engine." ON)
+
+if(Mezz_Audio_UseOALS)
+    if(AudioProviderSet)
+	    message(FATAL_ERROR "A provider for the Audio subsystem has already been set.  Only one provider may be selected.")
+	endif(AudioProviderSet)
+    set(AudioProviderSet 1)
+    set(Mezzanine_sources ${Mezzanine_sources}
+	
+        #######################################
+        # Header files
+
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oals.h"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsaudiomanager.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsdefines.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffect.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffectshandler.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsefxinterface.h.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsfilter.h"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalslistener.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsrecorder.h"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssound.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundproxy.h"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanager.h"
+		
+        #######################################
+        # Source files
+		
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsaudiomanager.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffect.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffectshandler.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsfilter.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalslistener.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsrecorder.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssound.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundproxy.cpp"
+		"${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanager.cpp"
+    )
+	
+	include_directories(
+		"${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openalsoft"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/include"
+	)
+	
+	set(SoundLibraryNames ${SoundLibraryNames}
+		"openal"
+	)
+)
+endif(Mezz_Audio_UseOALS)
+
+if(NOT AudioProviderSet)
+    message(FATAL_ERROR "A provider for the Audio subsystem has not been set.")
+endif(NOT AudioProviderSet)
+
+###############################################################################
+# Encoding support configuration
+
+set(Mezz_Audio_Encodings "")
+
+option(Mezz_Audio_EnableRawEncoding "Enable the encoding and decoding of unencoded data." ON)
+if(Mezz_Audio_EnableRawEncoding)
+    message ( STATUS "${PROJECT_NAME} - Enabling Raw encoding.")
+	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_RAW_ENCODE")
+endif(Mezz_Audio_EnableRawEncoding)
+
+option(Mezz_Audio_EnableWavEncoding "Enable the encoding and decoding of .wav encoded data." ON)
+if(Mezz_Audio_EnableWavEncoding)
+    message ( STATUS "${PROJECT_NAME} - Enabling .wav encoding.")
+	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_WAV_ENCODE")
+endif(Mezz_Audio_EnableWavEncoding)
+
+option(Mezz_Audio_EnableFlacEncoding "Enable the encoding and decoding of .flac encoded data." ON)
+if(Mezz_Audio_EnableFlacEncoding)
+    message ( STATUS "${PROJECT_NAME} - Enabling .flac encoding")
+	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_FLAC_ENCODE")
+endif(Mezz_Audio_EnableFlacEncoding)
+
+option(Mezz_Audio_EnableVorbisEncoding "Enable the encoding and decoding of .ogg (vorbis) encoded data." ON)
+if(Mezz_Audio_EnableVorbisEncoding)
+    message ( STATUS "${PROJECT_NAME} - Enabling .ogg (vorbis) encoding.")
+	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_VORBIS_ENCODE")
+endif(Mezz_Audio_EnableVorbisEncoding)
+
+#option(Mezz_Audio_EnableMp3Encoding "Enable the encoding and decoding of .mp3 encoded data." ON)
+#if(Mezz_Audio_EnableMp3Encoding)
+#   message ( STATUS "${PROJECT_NAME} - Enabling .mp3 encoding.")
+#	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_MP3_ENCODE")
+#endif(Mezz_Audio_EnableMp3Encoding)
+
+option(Mezz_Audio_EnableSpeexEncoding "Enable the encoding and decoding of .spx encoded data." ON)
+if(Mezz_Audio_EnableSpeexEncoding)
+    message ( STATUS "${PROJECT_NAME} - Enabling .spx encoding.")
+	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_SPEEX_ENCODE")
+endif(Mezz_Audio_EnableSpeexEncoding)
+
+option(Mezz_Audio_EnableOpusEncoding "Enable the encoding and decoding of .opus encoded data." ON)
+if(Mezz_Audio_EnableOpusEncoding)
+    message ( STATUS "${PROJECT_NAME} - Enabling .opus encoding.")
+	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_OPUS_ENCODE")
+endif(Mezz_Audio_EnableOpusEncoding)
+
+add_definitions( ${Mezz_Audio_Encodings} )
 
 ###############################################################################
 # Functions for Later use
@@ -561,14 +692,8 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/Headers"
-
         "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
-
-        "${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openalsoft"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/include"
 
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/"
         #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
