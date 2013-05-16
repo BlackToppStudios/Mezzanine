@@ -112,7 +112,7 @@ namespace Mezzanine
 
         void UnitTestGroup::AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior)
         {
-            std::cout << "Noting result of " << Fresh << std::endl;
+            std::cout << "Noting result of " << Fresh << " as " << TestResultToString(Meat) << std::endl;
             AddTestResult(TestData(Fresh,Meat),Behavior);
         }
 

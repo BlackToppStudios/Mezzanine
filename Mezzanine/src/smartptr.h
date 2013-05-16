@@ -80,8 +80,8 @@ namespace Mezzanine
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastDynamic>;
     template <typename ReturnPointer, typename OriginalPointer> class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastStatic>;
 
-    template <typename Pointer> Pointer* CountedPtrCastInternal(Pointer* Original);
-    template <typename ReturnPointer, typename OriginalPointer> ReturnPointer* CountedPtrCastInternal(const OriginalPointer* Original);
+    template <typename Pointer> Pointer* CountedPtrInternalCast(Pointer* Original);
+    template <typename ReturnPointer, typename OriginalPointer> ReturnPointer* CountedPtrInternalCast(const OriginalPointer* Original);
 
 
     template <typename T> class ReferenceCountTraits;
@@ -393,14 +393,14 @@ namespace Mezzanine
             /// @return Makes it appear, syntactically, as though you are dereferencing the raw pointer.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo* operator->() const throw()
-                { return CountedPtrCastInternal<TypePointedTo>(_ReferenceCounter->GetMostDerived()); }
+                { return CountedPtrInternalCast<TypePointedTo>(_ReferenceCounter->GetMostDerived()); }
 
             /// @brief Get the raw pointer to the managed object.
             /// @return The raw pointer to the managed object or 0 if this pointer is invalid.
             /// @throw Nothing This member function does not throw exceptions.
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
             TypePointedTo* get() const throw()
-                { return CountedPtrCastInternal<TypePointedTo>(_ReferenceCounter->GetMostDerived()); }
+                { return CountedPtrInternalCast<TypePointedTo>(_ReferenceCounter->GetMostDerived()); }
 
             /// @brief Is this the only pointer to the managed object
             /// @return True if use_count() == 1 or if the pointer is invalid
@@ -424,15 +424,21 @@ namespace Mezzanine
     };
 
     /// @internal
-    /// @brief The default implementation for CountedPtr casting
+    /// @brief The default implementation for CountedPtr casting Simply throws an exception
+    /// @details This Should never actually get called. Though it is the default template instance
+    /// the default ReferenceCountTraits uses the CastNoneError specialization of this template.
+    /// @param ReturnPointer
+    /// @param OriginalPointer
+    /// @param CountedPointerCastingState
     /// @details For any case that uses CastNoneError including the default.
     template <typename ReturnPointer, typename OriginalPointer, CountedPointerCastingState>
     class CountedPtrCastImpl
     {
         public:
             /// @internal
-            /// @brief Do not cast, rather fail to compile.
-            /// @return Always fails
+            /// @brief Do not cast, rather fail.
+            /// @return Always fails by throwing
+            /// @throw Always throws a 0
             static ReturnPointer Cast(OriginalPointer)
             {
                 //#error Invalid Casting value for CountedPtr cast
@@ -443,62 +449,82 @@ namespace Mezzanine
 
 
     /// @internal
-    /// @brief An implementation of the CountedPtrCast that always return the pointer passed
+    /// @brief An implementation of the CountedPtrCast that always return the pointer passed reached via CastNoneError in the ReferenceCountTraits of the target class.
+    /// @param OriginalPointer The type of the original pointer and return value must match exactly
+    /// @note Since this requires both matching pointer types and CastNoneError to be present in the ReferenceCountTraits This should produce a compilation error when somethign is set wrong.
     template <typename OriginalPointer>
     class CountedPtrCastImpl <OriginalPointer, OriginalPointer, CastNoneError>
     {
         public:
+            /// @internal
+            /// @brief This literally does nothing and returns the value passed, so simple all but the dumbest compilers will optimize it away at compile time.
+            /// @return Whatever was passed.
             static OriginalPointer Cast(OriginalPointer Original)
-            {
-                //#error ReferenceCountTraits for target declare pointers of given type as non-castable.
-                //return ReturnPointer(0);
-                return Original;
-            }
+                { return Original; }
     };
 
     /// @internal
-    /// @brief An implementation of the CountedPtrCast that always returns 0 cast to the original pointer type
+    /// @brief An implementation of the CountedPtrCast that always returns 0 cast to the original pointer type. Reached by putting CastNoneReturnZero in the ReferenceCountTraits of the target class.
+    /// @param ReturnPointer The type of the NULL pointer to create.
+    /// @param OriginalPointer The type of the pointer prior to casting.
     template <typename ReturnPointer, typename OriginalPointer>
     class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastNoneReturnZero>
     {
         public:
+            /// @internal
+            /// @brief This accepts a parameter solely for compatibility with other templates and always returns 0.
+            /// @return Always 0
             static ReturnPointer Cast(OriginalPointer)
                 { return ReturnPointer(0); }
     };
 
     /// @internal
+    /// @brief An implementation of the CountedPtrCast that naively static casts the passed pointer. Reached by putting CastSimpleStatic in the ReferenceCountTraits of the target class.
+    /// @param ReturnPointer The type of the pointer to target with the static cast
+    /// @param OriginalPointer The type of the pointer prior to casting.
     template <typename ReturnPointer, typename OriginalPointer>
     class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastSimpleStatic>
     {
         public:
+            /// @internal
+            /// @brief Simply static cast the passed pointer.
+            /// @param Original the passed pointer.
+            /// @return The pointer after the cast.
+            /// @note This will almost certainly never actually exists as a function, in even basic testing the compiles completely optimizes this out during compilation.
             static ReturnPointer Cast(OriginalPointer Original)
-            {
-                return  ReturnPointer
-                        (
-                            static_cast<ReturnPointer>(Original)
-                        );
-            }
+                { return static_cast<ReturnPointer>(Original); }
     };
 
     /// @internal
+    /// @brief An implementation of the CountedPtrCast that naively dynamic casts the passed pointer. Reached by putting CastSimpleDynamic in the ReferenceCountTraits of the target class.
+    /// @param ReturnPointer The type of the pointer to target with the dynamic cast.
+    /// @param OriginalPointer The type of the pointer prior to casting.
     template <typename ReturnPointer, typename OriginalPointer>
     class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastSimpleDynamic>
     {
         public:
+            /// @internal
+            /// @brief Simply dynamic cast the passed pointer.
+            /// @param Original the passed pointer.
+            /// @return The pointer after the cast.
+            /// @note This will almost certainly never actually exists as a function, tests show this as performant as a normal call to dynamic_cast.
             static ReturnPointer Cast(OriginalPointer Original)
-            {
-                return  ReturnPointer
-                        (
-                            static_cast<ReturnPointer>(Original)
-                        );
-            }
+                { return dynamic_cast<ReturnPointer>(Original); }
     };
 
     /// @internal
+    /// @brief An implementation of the CountedPtrCast that intelligently downcasts a pointer. Reached by putting CastDynamic in the ReferenceCountTraits of the target class.
+    /// @param ReturnPointer The type of the pointer to target with the dynamic cast.
+    /// @param OriginalPointer The type of the pointer prior to casting.
     template <typename ReturnPointer, typename OriginalPointer>
     class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastDynamic>
     {
         public:
+            /// @internal
+            /// @brief Dynamic cast the passed pointer, from the most derived version of that class allowing the cast to traverse diamonds and pass virtual inheritance boundaries.
+            /// @param Original the passed pointer.
+            /// @return The pointer after the cast.
+            /// @note This will almost certainly actually exist, it must make a call to what should be a virtual function.
             static ReturnPointer Cast(OriginalPointer Original)
             {
                 return  ReturnPointer
@@ -510,10 +536,18 @@ namespace Mezzanine
     };
 
     /// @internal
+    /// @brief An implementation of the CountedPtrCast that intelligently downcasts a pointer statically. Reached by putting CastDynamic in the ReferenceCountTraits of the target class.
+    /// @param ReturnPointer The type of the pointer to target with the static cast.
+    /// @param OriginalPointer The type of the pointer prior to casting.
     template <typename ReturnPointer, typename OriginalPointer>
     class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastStatic>
     {
         public:
+            /// @internal
+            /// @brief Static cast the passed pointer, from the most derived version of that class allowing the cast to traverse diamonds and pass virtual inheritance boundaries.
+            /// @param Original the passed pointer.
+            /// @return The pointer after the cast.
+            /// @note This could do wierd things in terms of compiler optimizations some of the work does can be resolved at compile time, but some can't.
             static ReturnPointer Cast(OriginalPointer Original)
             {
                 return  ReturnPointer
@@ -527,9 +561,14 @@ namespace Mezzanine
 
 
     /// @internal
-    /// Abstracts away the case where the return type would match the input type.
+    /// @brief Used internally by CounterPtr to abstract away casts in the case where the return type would *NOT* match the input type.
+    /// @param ReturnPointer The type of the pointer to target after using the Casting Strategy described in the classes ReferenceCountTraits.
+    /// @param OriginalPointer The type of the pointer prior to casting.
+    /// @note The function argument Original is of type const OriginalPointer. When search for possible matching functions an template a compiler prioritizes functions that are off by just a CV qualifier ahead of those that it would need to implicitly cast to call. So if the to pointer types match exactly this will not be called.
+    /// @param Original The Pointer to cast which must be exactly of the type OriginalPointer(Which might be inferable).
+    /// @return A pointer of the type ReturnPointer after the desired casting strategy has been used.
     template <typename ReturnPointer, typename OriginalPointer>
-    ReturnPointer* CountedPtrCastInternal(const OriginalPointer* Original)
+    ReturnPointer* CountedPtrInternalCast(const OriginalPointer* Original)
     {
         return  CountedPtrCastImpl
             <
@@ -545,28 +584,31 @@ namespace Mezzanine
     }
 
     /// @internal
-    /// Abstracts away the case where the return type would match the input type.
+    /// @brief Used internally by CounterPtr to abstract away casts in the case where the return type would match the input type.
+    /// @details This enforces the logic that cast should only be performed inside the CountedPtr when a cast is required. This
+    /// also has the advantage of not performing meaningless extra casts if a runtime cast is used, so it coudl enhance performance.
+    /// @param Pointer The only type of pointers involved.
+    /// @param Original The pointer that needs to be checked to see if it should be cast and this compilation case does not require it.
+    /// @return The value passed in Original.
     template <typename Pointer>
-    Pointer* CountedPtrCastInternal(Pointer* Original)
+    Pointer* CountedPtrInternalCast(Pointer* Original)
         { return  Original; }
-
-
 
 
     /// @brief If Possible convert on kind of a co
     //abstracts away the Counted pointer
-    template <typename ReturnType, typename OtherPointerTargetType>
+    /*template <typename ReturnType, typename OtherPointerTargetType>
     CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original)
     {
         return  CountedPtr<ReturnType>
                 (
-                    CountedPtrCastInternal
+                    CountedPtrInternalCast
                     <
                         ReturnType*,
                         typename CountedPtr<OtherPointerTargetType>::PtrType
                     >(Original.get())
                 );
-    }
+    }*/
 
 
 } // \Mezzanine
