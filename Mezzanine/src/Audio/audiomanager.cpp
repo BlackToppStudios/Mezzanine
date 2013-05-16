@@ -37,59 +37,35 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _audioaudiomanager_h
-#define _audioaudiomanager_h
+#ifndef _audioaudiomanager_cpp
+#define _audioaudiomanager_cpp
 
 #include "Audio/audiomanager.h"
+#include "Audio/recorder.h"
+#include "Audio/sound.h"
+#include "Audio/effectshandler.h"
+#include "Audio/soundscapemanager.h"
+#include "Audio/decoder.h"
+#include "Audio/decoderfactory.h"
 #include "exception.h"
 
 namespace Mezzanine
 {
     namespace Audio
     {
+        template<> AudioManager* Singleton<AudioManager>::SingletonPtr = 0;
+
         AudioManager::AudioManager()
         {
-
         }
 
         AudioManager::AudioManager(XML::Node& XMLNode)
         {
-
         }
 
         AudioManager::~AudioManager()
         {
-
-        }
-
-        SoundTypeHandler* AudioManager::GetOrCreateSoundTypeHandler(const UInt16 Type)
-        {
-            SoundTypeHandler* Ret = GetSoundTypeHandler(Type);
-            if( Ret == NULL )
-            {
-                Ret = new SoundTypeHandler();
-                SoundsByType.insert( std::pair<UInt16,SoundTypeHandler*>(Type,Ret) );
-            }
-            return Ret;
-        }
-
-        SoundTypeHandler* AudioManager::GetSoundTypeHandler(const UInt16 Type) const
-        {
-            ConstSoundTypeIterator TypeIt = SoundsByType.find(Type);
-            if( TypeIt != SoundsByType.end() ) return (*TypeIt);
-            else return NULL;
-        }
-
-        SoundTypeHandler* GetSoundTypeHandlerExcept(const UInt16 Type) const
-        {
-            ConstSoundTypeIterator TypeIt = SoundsByType.find(Type);
-            if( TypeIt == SoundsByType.end() )
-            {
-                StringStream ExceptionStream;
-                ExceptionStream << "No SoundTypeHandler of Type \"" << Type << "\" found.";
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
-            }
-            else return (*TypeIt);
+            this->DestroyAllDecoderFactories();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -110,57 +86,44 @@ namespace Mezzanine
         iSound* AudioManager::CreateMusicSound(const String& SoundName, const String& FileName, const String& Group)
             { return this->CreateSound(Audio::ST_Music,SoundName,FileName,Group); }
 
+        iSound* CreateAmbientSound(const String& SoundName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+            { return this->CreateSound(Audio::ST_Ambient,SoundName,Buffer,Length,Encode); }
+        iSound* CreateDialogSound(const String& SoundName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+            { return this->CreateSound(Audio::ST_Dialog,SoundName,Buffer,Length,Encode); }
+        iSound* CreateEffectSound(const String& SoundName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+            { return this->CreateSound(Audio::ST_Effect,SoundName,Buffer,Length,Encode); }
+        iSound* CreateMusicSound(const String& SoundName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+            { return this->CreateSound(Audio::ST_Music,SoundName,Buffer,Length,Encode); }
+
+        iSound* CreateAmbientSound(const String& SoundName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSound(Audio::ST_Ambient,SoundName,Buffer,Length,Frequency,Config); }
+        iSound* CreateDialogSound(const String& SoundName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSound(Audio::ST_Dialog,SoundName,Buffer,Length,Frequency,Config); }
+        iSound* CreateEffectSound(const String& SoundName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSound(Audio::ST_Effect,SoundName,Buffer,Length,Frequency,Config); }
+        iSound* CreateMusicSound(const String& SoundName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSound(Audio::ST_Music,SoundName,Buffer,Length,Frequency,Config); }
+
+        iSound* CreateAmbientSound(const String& SoundName, DataStreamPtr Stream, const Audio::Encoding Encode)
+            { return this->CreateSound(Audio::ST_Ambient,SoundName,Stream,Encode); }
+        iSound* CreateDialogSound(const String& SoundName, DataStreamPtr Stream, const Audio::Encoding Encode)
+            { return this->CreateSound(Audio::ST_Dialog,SoundName,Stream,Encode); }
+        iSound* CreateEffectSound(const String& SoundName, DataStreamPtr Stream, const Audio::Encoding Encode)
+            { return this->CreateSound(Audio::ST_Effect,SoundName,Stream,Encode); }
+        iSound* CreateMusicSound(const String& SoundName, DataStreamPtr Stream, const Audio::Encoding Encode)
+            { return this->CreateSound(Audio::ST_Music,SoundName,Stream,Encode); }
+
+        iSound* CreateAmbientSound(const String& SoundName, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSound(Audio::ST_Ambient,SoundName,Stream,Frequency,Config); }
+        iSound* CreateDialogSound(const String& SoundName, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSound(Audio::ST_Dialog,SoundName,Stream,Frequency,Config); }
+        iSound* CreateEffectSound(const String& SoundName, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSound(Audio::ST_Effect,SoundName,Stream,Frequency,Config); }
+        iSound* CreateMusicSound(const String& SoundName, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            { return this->CreateSound(Audio::ST_Music,SoundName,Stream,Frequency,Config); }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Volume Management
-
-        void AudioManager::SetTypeVolume(const UInt16 Type, const Real Vol)
-        {
-            SoundTypeHandler* Handler = this->GetSoundTypeHandlerExcept(Type);
-            Handler->Volume = Vol;
-        }
-
-        Real AudioManager::GetTypeVolume(const UInt16 Type) const
-        {
-            SoundTypeHandler* Handler = this->GetSoundTypeHandlerExcept(Type);
-            return Handler->Volume;
-        }
-
-        void AudioManager::MuteType(const UInt16 Type, bool Enable)
-        {
-            SoundTypeHandler* Handler = this->GetSoundTypeHandlerExcept(Type);
-            Handler->Mute = Enable;
-        }
-
-        bool AudioManager::IsTypeMuted(const UInt16 Type) const
-        {
-            SoundTypeHandler* Handler = this->GetSoundTypeHandlerExcept(Type);
-            return Handler->Mute;
-        }
-
-        void AudioManager::SetMasterVolume(const Real& Master)
-        {
-            this->MasterVolume = Master;
-        }
-
-        Real AudioManager::GetMasterVolume() const
-        {
-            return this->MasterVolume;
-        }
-
-        void AudioManager::Mute(bool Enable)
-        {
-            this->MasterMute = Enable;
-        }
-
-        bool AudioManager::IsMuted() const
-        {
-            return this->MasterMute;
-        }
-
-        void AudioManager::UpdateAllVolumes()
-        {
-
-        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Convenience Type Volume Methods
@@ -209,47 +172,59 @@ namespace Mezzanine
 
         void AudioManager::AddDecoderFactory(iDecoderFactory* ToBeAdded)
         {
-
+            std::pair<bool,DecoderFactoryIterator> Result = this->DecoderFactories.insert(std::pair<Audio::Encoding,iDecoderFactory*>(ToBeAdded->GetSupportedEncoding(),ToBeAdded));
+            return Result.first;
         }
 
         bool AudioManager::DecoderFactoryExists(const AudioFileFormat Format)
         {
-
+            return this->DecoderFactories.count(Format);
         }
 
         iDecoderFactory* AudioManager::GetDecoderFactory(const AudioFileFormat Format)
         {
-
+            DecoderFactoryIterator FactIt = this->DecoderFactories.find(Format);
+            if( FactIt != this->DecoderFactories.end() ) return (*FactIt);
+            else return NULL;
         }
 
         void AudioManager::RemoveDecoderFactory(iDecoderFactory* ToBeRemoved)
         {
-
+            this->RemoveDecoderFactory(ToBeRemoved->GetSupportedEncoding());
         }
 
         void AudioManager::RemoveDecoderFactory(const AudioFileFormat Format)
         {
-
+            this->DecoderFactories.erase(Format);
         }
 
         void AudioManager::RemoveAllDecoderFactories()
         {
-
+            this->DecoderFactories.clear();
         }
 
         void AudioManager::DestroyDecoderFactory(iDecoderFactory* ToBeDestroyed)
         {
-
+            this->DestroyDecoderFactory(ToBeDestroyed->GetSupportedEncoding());
         }
 
         void AudioManager::DestroyDecoderFactory(const AudioFileFormat Format)
         {
-
+            DecoderFactoryIterator FactIt = this->DecoderFactories.find(Format);
+            if( FactIt != this->DecoderFactories.end() )
+            {
+                this->DecoderFactories.erase(FactIt);
+                delete (*FactIt);
+            }
         }
 
         void AudioManager::DestroyAllDecoderFactories()
         {
-
+            for( DecoderFactoryIterator FactIt = this->DecoderFactories.begin() ; FactIt != this->DecoderFactories.end() ; ++FactIt )
+            {
+                delete (*FactIt);
+            }
+            this->DecoderFactories.clear();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
