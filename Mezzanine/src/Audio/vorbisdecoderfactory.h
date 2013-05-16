@@ -40,7 +40,10 @@
 #ifndef _audiovorbisdecoderfactory_h
 #define _audiovorbisdecoderfactory_h
 
+#ifdef ENABLE_VORBIS_ENCODE
+
 #include "Audio/decoderfactory.h"
+#include "Audio/vorbisdecoder.h"
 
 namespace Mezzanine
 {
@@ -51,11 +54,20 @@ namespace Mezzanine
         protected:
         public:
             /// @brief Class constructor.
-            VorbisDecoderFactory();
+            VorbisDecoderFactory() {  }
             /// @brief Class destructor.
-            virtual ~VorbisDecoderFactory();
+            virtual ~VorbisDecoderFactory() {  }
+
+            /// @copydoc iDecoderFactory::CreateDecoder(Resource::DataStream* Stream)
+            virtual iDecoder* CreateDecoder(Resource::DataStream* Stream)
+                 { return new VorbisDecoder(Stream); }
+            /// @copydoc iDecoderFactory::GetSupportedEncoding() const
+            virtual Audio::Encoding GetSupportedEncoding() const
+                 { return Audio::Enc_VORBIS; }
         };//VorbisDecoderFactory
     }//Audio
 }//Mezzanine
+
+#endif //ENABLE_VORBIS_ENCODE
 
 #endif

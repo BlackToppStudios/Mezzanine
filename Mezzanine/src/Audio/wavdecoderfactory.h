@@ -40,7 +40,10 @@
 #ifndef _audiowavdecoderfactory_h
 #define _audiowavdecoderfactory_h
 
+#ifdef ENABLE_WAV_ENCODE
+
 #include "Audio/decoderfactory.h"
+#include "Audio/wavdecoder.h"
 
 namespace Mezzanine
 {
@@ -51,11 +54,20 @@ namespace Mezzanine
         protected:
         public:
             /// @brief Class constructor.
-            WavDecoderFactory();
+            WavDecoderFactory() {  }
             /// @brief Class destructor.
-            virtual ~WavDecoderFactory();
+            virtual ~WavDecoderFactory() {  }
+
+            /// @copydoc iDecoderFactory::CreateDecoder(Resource::DataStream* Stream)
+            virtual iDecoder* CreateDecoder(Resource::DataStream* Stream)
+                 { return new WavDecoder(Stream); }
+            /// @copydoc iDecoderFactory::GetSupportedEncoding() const
+            virtual Audio::Encoding GetSupportedEncoding() const
+                 { return Audio::Enc_WAV; }
         };//WavDecoderFactory
     }//Audio
 }//Mezzanine
+
+#endif //ENABLE_WAV_ENCODE
 
 #endif

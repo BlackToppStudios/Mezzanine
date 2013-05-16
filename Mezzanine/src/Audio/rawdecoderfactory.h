@@ -40,7 +40,10 @@
 #ifndef _audiorawdecoderfactory_h
 #define _audiorawdecoderfactory_h
 
+#ifdef ENABLE_RAW_ENCODE
+
 #include "Audio/decoderfactory.h"
+#include "Audio/rawdecoder.h"
 
 namespace Mezzanine
 {
@@ -51,11 +54,20 @@ namespace Mezzanine
         protected:
         public:
             /// @brief Class constructor.
-            RawDecoderFactory();
+            RawDecoderFactory() {  }
             /// @brief Class destructor.
-            virtual ~RawDecoderFactory();
+            virtual ~RawDecoderFactory() {  }
+
+            /// @copydoc iDecoderFactory::CreateDecoder(Resource::DataStream* Stream)
+            virtual iDecoder* CreateDecoder(Resource::DataStream* Stream)
+                 { return new RawDecoder(Stream); }
+            /// @copydoc iDecoderFactory::GetSupportedEncoding() const
+            virtual Audio::Encoding GetSupportedEncoding() const
+                 { return Audio::Enc_RAW; }
         };//RawDecoderFactory
     }//Audio
 }//Mezzanine
+
+#endif //ENABLE_RAW_ENCODE
 
 #endif
