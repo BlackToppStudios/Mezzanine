@@ -124,8 +124,8 @@ namespace Mezzanine
 
             /// @brief Get a pointer to the most Derived type of this class
             /// @return A pointer cast to a void*, for use with CountedPtrCast
-            virtual void* GetMostDerived()
-                { return reinterpret_cast<void*>(this); }
+            virtual FooInternal* GetMostDerived()
+                { return this; }
     };
 
     template <>
@@ -150,8 +150,8 @@ namespace Mezzanine
             /// @brief Get a pointer to the most Derived type of this class
             ///
             /// @return A pointer cast to a void*, for use with CountedPtrCast
-            virtual void* GetMostDerived()
-                { return reinterpret_cast<void*>(this); }
+            virtual FooDerived1* GetMostDerived()
+                { return this; }
     };
 
     class FooDerived2 : public virtual FooInternal
@@ -161,8 +161,8 @@ namespace Mezzanine
 
             /// @brief Get a pointer to the most Derived type of this class
             /// @return A pointer cast to a void*, for use with CountedPtrCast
-            virtual void* GetMostDerived()
-                { return reinterpret_cast<void*>(this); }
+            virtual FooDerived2* GetMostDerived()
+                { return this; }
     };
 
     class FooDiamond : public FooDerived1, public FooDerived2
@@ -172,8 +172,8 @@ namespace Mezzanine
 
             /// @brief Get a pointer to the most Derived type of this class
             /// @return A pointer cast to a void*, for use with CountedPtrCast
-            virtual void* GetMostDerived()
-                { return reinterpret_cast<void*>(this); }
+            virtual FooDiamond* GetMostDerived()
+                { return this; }
     };
 
 
@@ -690,25 +690,27 @@ class countedptrtests : public UnitTestGroup
 
             if (RunAutomaticTests)
             {
-
-                TestResult Result = NotApplicable;
-
                 CountedPtr<FooDiamond> DiamondPtr(new FooDiamond);
-                DiamondPtr->Value = 0;
+                DiamondPtr->Value = 0;// Things typical segfault here if the casting inconsiste
                 DiamondPtr->Value1 = 1;
                 DiamondPtr->Value2 = 2;
                 DiamondPtr->ValueDiamond = 3;
-                Result = Success;
-                AddTestResult("CountedPtr::DiamondCastingConsistency", Result);
+                AddTestResult("CountedPtr::DiamondCastingConsistency", Success);
 
-                //CountedPtr<FooInternal> InternalPtrFromCast = CountedPtrCast<FooInternal>(DiamondPtr);
+                CountedPtr<FooInternal> InternalPtrFromCast = CountedPtrCast<FooInternal>(DiamondPtr);
 
+                if (0==InternalPtrFromCast->Value)
+                {
+                    AddTestResult("CountedPtr::ExplicitDiamondCast", Success);
+                }else{
+                    AddTestResult("CountedPtr::ExplicitDiamondCast", Failed);
+                }
                 //CountedPtr<FooInternal> InternalPtr(DiamondPtr);
 
 
             }else{
                 AddTestResult("CountedPtr::DiamondCastingConsistency", Skipped);
-                //AddTestResult("CountedPtr::", Skipped);
+                AddTestResult("CountedPtr::ExplicitDiamondCast", Skipped);
             }
 
 

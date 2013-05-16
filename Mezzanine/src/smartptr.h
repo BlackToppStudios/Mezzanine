@@ -332,7 +332,7 @@ namespace Mezzanine
             template <typename OtherPointer>
             CountedPtr(const CountedPtr<OtherPointer>& Original) throw() : _ReferenceCounter(NULL)
             {
-                //Acquire( CountedPtrCast<TypePointedTo>(Original)._ReferenceCounter );
+                Acquire( CountedPtr<TypePointedTo>(Original)._ReferenceCounter );
             }
 
             /// @brief Reset this to point at nothing.
@@ -579,7 +579,7 @@ namespace Mezzanine
                         ReferenceCountTraits<OriginalPointer>::IsCastable
                     )
             >::Cast(
-                        const_cast<OriginalPointer*>(Original)
+                        const_cast<OriginalPointer*>(Original) // cast away the constness we just added
                     );
     }
 
@@ -609,6 +609,20 @@ namespace Mezzanine
                     >(Original.get())
                 );
     }*/
+
+    template <typename ReturnType, typename OtherPointerTargetType>
+    CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original)
+    {
+        return  CountedPtr<ReturnType>
+                (
+                    CountedPtrCastImpl
+                    <
+                        ReturnType*,
+                        typename CountedPtr<OtherPointerTargetType>::PtrType,
+                        CountedPointerCastingState( ReferenceCountTraits<OtherPointerTargetType>::IsCastable )
+                    >::Cast(Original.get())
+                );
+    }
 
 
 } // \Mezzanine
