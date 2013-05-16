@@ -49,6 +49,10 @@
 #include "Audio/decoderfactory.h"
 #include "exception.h"
 
+#include "Audio/rawdecoderfactory.h"
+#include "Audio/vorbisdecoderfactory.h"
+#include "Audio/wavdecoderfactory.h"
+
 namespace Mezzanine
 {
     namespace Audio
@@ -57,6 +61,15 @@ namespace Mezzanine
 
         AudioManager::AudioManager()
         {
+#ifdef ENABLE_RAW_ENCODE
+            this->AddDecoderFactory(new RawDecoderFactory());
+#endif
+#ifdef ENABLE_VORBIS_ENCODE
+            this->AddDecoderFactory(new VorbisDecoderFactory());
+#endif
+#ifdef ENABLE_WAV_ENCODE
+            this->AddDecoderFactory(new WavDecoderFactory());
+#endif
         }
 
         AudioManager::AudioManager(XML::Node& XMLNode)
