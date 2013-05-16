@@ -62,6 +62,9 @@ namespace Mezzanine
             /// @param Stream A pointer to the stream containing audio data.
             /// @return Returns the newly created @ref iDecoder, or NULL if there was a failure.
             virtual iDecoder* CreateDecoder(Resource::DataStream* Stream) = 0;
+            /// @brief Gets the encoding supported by decoders made by this factory.
+            /// @return Returns an @ref Audio::Encoding value representing the encoding supported by this factory.
+            virtual Audio::Encoding GetSupportedEncoding() const = 0;
         };//iDecoderFactory
     }//Audio
 }//Mezzanine

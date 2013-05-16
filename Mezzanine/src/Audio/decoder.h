@@ -66,6 +66,9 @@ namespace Mezzanine
             /// @note On failure the issue likely lies with the stream being an improper format/encoding.
             /// @return Returns true if this decoder is ready for playback, false otherwise.
             virtual bool IsValid() = 0;
+            /// @brief Gets the encoding supported by this decoder.
+            /// @return Returns an @ref Audio::Encoding value representing the encoding supported by this decoder.
+            virtual Audio::Encoding GetEncoding() const = 0;
             /// @brief Gets whether or not seeking is supported.
             /// @return Returns true if you can skip to a specific point in the stream, false if you are stuck waiting.
             virtual bool IsSeekingSupported() = 0;
