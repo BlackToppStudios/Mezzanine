@@ -133,9 +133,8 @@ namespace Mezzanine
     {
         public:
             typedef FooInternal RefCountType;
-            typedef FooInternal* PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };
@@ -183,9 +182,8 @@ namespace Mezzanine
     {
         public:
             typedef FooDerived1 RefCountType;
-            typedef FooDerived1* PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };
@@ -196,9 +194,8 @@ namespace Mezzanine
     {
         public:
             typedef FooDerived2 RefCountType;
-            typedef FooDerived2* PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };
@@ -209,9 +206,8 @@ namespace Mezzanine
     {
         public:
             typedef FooDiamond RefCountType;
-            typedef FooDiamond* PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };
@@ -534,7 +530,7 @@ class countedptrtests : public UnitTestGroup
 
 // unremark this line to test the CountedPtr vs Shared_Ptr
 // need to enable c++11 in gcc I added "-std=c++11" to CMAKE_CXX_FLAGS
-#define SHAREDPTRTEST
+//#define SHAREDPTRTEST
             Integer OutputE = 0;
             Integer OutputI = 0;
             Integer OutputS = 0;
@@ -699,18 +695,28 @@ class countedptrtests : public UnitTestGroup
 
                 CountedPtr<FooInternal> InternalPtrFromCast = CountedPtrCast<FooInternal>(DiamondPtr);
 
-                if (0==InternalPtrFromCast->Value)
+
+                if (InternalPtrFromCast && 0==InternalPtrFromCast->Value)
                 {
                     AddTestResult("CountedPtr::ExplicitDiamondCast", Success);
                 }else{
                     AddTestResult("CountedPtr::ExplicitDiamondCast", Failed);
                 }
-                //CountedPtr<FooInternal> InternalPtr(DiamondPtr);
+
+                CountedPtr<FooInternal> InternalPtrFromCrossConstruction(DiamondPtr);
+
+                if (InternalPtrFromCrossConstruction && 0==InternalPtrFromCrossConstruction->Value)
+                {
+                    AddTestResult("CountedPtr::CrossConstruction", Success);
+                }else{
+                    AddTestResult("CountedPtr::CrossConstruction", Failed);
+                }
 
 
             }else{
                 AddTestResult("CountedPtr::DiamondCastingConsistency", Skipped);
                 AddTestResult("CountedPtr::ExplicitDiamondCast", Skipped);
+                AddTestResult("CountedPtr::CrossConstruction", Skipped);
             }
 
 

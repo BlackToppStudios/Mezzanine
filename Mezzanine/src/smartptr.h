@@ -206,14 +206,11 @@ namespace Mezzanine
             /// @brief This is type of the ReferenceCounter, The type of the class if reference counting is instrusive.
             typedef ReferenceCount<T> RefCountType;
 
-            /// @brief The type of the Pointer to the reference count, in case it is not ManageType*.
-            typedef ReferenceCount<T>* PtrType;
-
             /// @brief This will somehow return a pointer to the reference count
             /// @param Target A pointer the freshly created object.
             /// @return This will return a pointer to a valid reference counter.
             /// @note The default implemetation call new with a matching delete in CounterPtr::~CountedPtr . If no allocations are required this may simply return the passed parameter.
-            static PtrType ConstructionPointer(T* Target)
+            static RefCountType* ConstructionPointer(T* Target)
                 { return new RefCountType(Target); }
 
             /// @brief Used to determine if the data a CountedPtr is managing can be cast
@@ -232,13 +229,10 @@ namespace Mezzanine
             /// @brief The sample internal reference count needs to indicate that the managed type is the same as the ReferenceCountType, because it will have a counter.
             typedef IntrusiveRefCount RefCountType;
 
-            /// @brief For similar to RefCountType, this indicates that pointer type internal to the CountedPtr instance is a pointer to the target class instance.
-            typedef IntrusiveRefCount* PtrType;
-
             /// @brief Because The reference count is allocated when the caller created the target this does not need to allocate a Reference count separetaly.
             /// @param The create object to manage.
             /// @return This is expected to return a valid reference count, since the reference count is in the target, this returns whatever was passed in,
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             /// @brief What kind of casting should be done when the target must be down(or side) cast.
@@ -259,9 +253,6 @@ namespace Mezzanine
     class CountedPtr
     {
         public:
-            /// @brief We don't know if we will use a pointer a reference counter, an instrusive pointer, or something else. This provides that abstraction layer.
-            typedef typename ReferenceCountTraits<TypePointedTo>::PtrType PtrType;
-
             /// @brief The non pointer version of PtrType
             typedef typename ReferenceCountTraits<TypePointedTo>::RefCountType RefCountType;
 
@@ -270,13 +261,13 @@ namespace Mezzanine
 
         protected:
             /// @brief This is the only data on this class, a pointer to the counter and the managed object.
-            PtrType _ReferenceCounter;
+            RefCountType* _ReferenceCounter;
 
             /// @brief Have this pointer point at the same thing another pointer points to,
             /// @param CounterToAcquire The ReferenceCounter that this pointer will use.
             /// @warning This does not Release the previous Reference counter. This means it is possible leak memory if a ReferenceCounter is acquired that differs from the previous one without plans to manage the original.
             /// @throw Nothing This member function does not throw exceptions, unless debug logging is enabled, then it can throw any exception the logger can throw.
-            void Acquire(PtrType CounterToAcquire) throw()
+            void Acquire(RefCountType* CounterToAcquire) throw()
             {
                 _ReferenceCounter = CounterToAcquire;
                 if (CounterToAcquire)
@@ -529,7 +520,7 @@ namespace Mezzanine
             {
                 return  ReturnPointer
                         (
-                            dynamic_cast<typename ReferenceCountTraits<OriginalPointer>::PtrType>
+                            dynamic_cast<typename ReferenceCountTraits<OriginalPointer>::RefCountType*>
                                 (Original->GetMostDerived())
                         );
             }
@@ -552,7 +543,7 @@ namespace Mezzanine
             {
                 return  ReturnPointer
                         (
-                            static_cast<typename ReferenceCountTraits<OriginalPointer>::PtrType>
+                            static_cast<typename ReferenceCountTraits<OriginalPointer>::RefCountType*>
                                 (Original->GetMostDerived())
                         );
             }
@@ -596,32 +587,19 @@ namespace Mezzanine
 
 
     /// @brief If Possible convert on kind of a co
-    //abstracts away the Counted pointer
-    /*template <typename ReturnType, typename OtherPointerTargetType>
-    CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original)
-    {
-        return  CountedPtr<ReturnType>
-                (
-                    CountedPtrInternalCast
-                    <
-                        ReturnType*,
-                        typename CountedPtr<OtherPointerTargetType>::PtrType
-                    >(Original.get())
-                );
-    }*/
-
     template <typename ReturnType, typename OtherPointerTargetType>
     CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original)
     {
-        return  CountedPtr<ReturnType>
+        return CountedPtr<ReturnType>();
+        /*return  CountedPtr<ReturnType>
                 (
                     CountedPtrCastImpl
                     <
                         ReturnType*,
-                        typename CountedPtr<OtherPointerTargetType>::PtrType,
+                        typename CountedPtr<OtherPointerTargetType>::RefCountType*,
                         CountedPointerCastingState( ReferenceCountTraits<OtherPointerTargetType>::IsCastable )
                     >::Cast(Original.get())
-                );
+                );*/
     }
 
 

@@ -287,9 +287,8 @@ namespace Mezzanine
     {
         public:
             typedef Scripting::iScript RefCountType;
-            typedef Scripting::iScript * PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };
@@ -301,9 +300,8 @@ namespace Mezzanine
     {
         public:
             typedef Scripting::iScriptCompilable RefCountType;
-            typedef Scripting::iScriptCompilable * PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };
@@ -315,9 +313,8 @@ namespace Mezzanine
     {
         public:
             typedef Scripting::iScriptMultipleReturn RefCountType;
-            typedef Scripting::iScriptMultipleReturn * PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };

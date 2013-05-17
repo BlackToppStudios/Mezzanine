@@ -152,9 +152,8 @@ namespace Mezzanine
     {
         public:
             typedef Scripting::Lua::Lua51Script RefCountType;
-            typedef Scripting::Lua::Lua51Script* PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };
