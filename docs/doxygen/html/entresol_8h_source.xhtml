@@ -82,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">entresol.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2012 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -704,7 +704,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;<span class="comment">            /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.</span></div>
 <div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;<span class="comment">            /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.</span></div>
 <div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;<span class="comment">            /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.</span></div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> RemoveManager(<span class="keyword">const</span> ManagerBase::ManagerType&amp; ManagersToRemoveType, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> WhichOne);</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> RemoveManager(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a>&amp; ManagersToRemoveType, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> WhichOne);</div>
 <div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;<span class="comment">            /// @brief This is will find the manager of a given type</span></div>
 <div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;<span class="comment">            /// @details Specifically this will iterate from lowest priority to highest priority, and return a pointer to the first Manager</span></div>
@@ -712,7 +712,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;<span class="comment">            /// @param ManagersToRemoveType</span></div>
 <div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;<span class="comment">            /// @param WhichOne If not getting the first/only manager of the given type, get one.</span></div>
 <div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;<span class="comment">            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists</span></div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* GetManager(<span class="keyword">const</span> ManagerBase::ManagerType&amp; ManagersToRemoveType, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> WhichOne=0);</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* GetManager(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a>&amp; ManagersToRemoveType, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> WhichOne=0);</div>
 <div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;<span class="comment">            /// @brief Changes a Manager&#39;s time of execution.</span></div>
 <div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;<span class="comment">            /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.</span></div>
@@ -798,6 +798,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 10:40:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

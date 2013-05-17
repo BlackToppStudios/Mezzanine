@@ -140,7 +140,7 @@ namespace Mezzanine
 
                 /// @copydoc GetAsScriptCompilable
                 virtual iScriptCompilable* GetAsScriptCompilable() const
-                { return 0; }
+                    { return 0; }
 
                 ///////////////////////////////////////////////////////////////////////////////////////////////////
                 // Multiple return Detection Support
@@ -156,6 +156,44 @@ namespace Mezzanine
                 /// @return A null pointer if this conversion is invalid or a valid pointer to this as an @ref iScriptMultipleReturn if it is valid.
                 virtual iScriptMultipleReturn* GetAsiScriptMultipleReturn()
                     { return 0; }
+
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+                // Internal Reference count for CountedPtr
+
+            protected:
+                /// @brief This is the Counter that stores how many references exist
+                Whole RefCount;
+
+            public:
+                /// @brief default constructor
+                /// @details Initializes the internal reference counter.
+                iScript() : RefCount(0)
+                    {}
+
+                /// @brief Increase the reference count by one and return the updated count.
+                /// @return The updated count;
+                Whole IncrementReferenceCount()
+                    { return ++RefCount; }
+
+                /// @brief Decrease the reference count by one and return the updated count.
+                /// @return The updated count;
+                Whole DecrementReferenceCount()
+                    { return --RefCount; }
+
+                /// @brief Gets the actual pointer to the target.
+                /// @return A Pointer of the targeted type to the object being managed.
+                virtual iScript* GetReferenceCountTargetAsPointer()
+                    { return this; }
+
+                /// @brief Get the current amount of references.
+                /// @return A Whole with the current reference count
+                Whole GetReferenceCount()
+                    { return RefCount; }
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer of the most derived pointing to this.
+                virtual iScript* GetMostDerived()
+                    { return this; }
         }; // iScript
 
 
@@ -173,6 +211,7 @@ namespace Mezzanine
         /// This class is designed for use with multiple inheritance. If a script returns true from
         /// @ref IsCompilable then its pointer can safely be cast to a ScriptCompilable pointer.
         /// @todo Add sample code of safe cast in ScriptCompilable, becuase that is kinda wierd.
+        /// @todo Put the Virtual inheritance back into the this class
         ///////////////////////////////////////
         class MEZZ_LIB iScriptCompilable : public virtual iScript
         {
@@ -199,6 +238,11 @@ namespace Mezzanine
                     { return true; }
 
                 virtual iScriptCompilable* GetAsScriptCompilable()
+                    { return this; }
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer of the most derived pointing to this.
+                virtual iScriptCompilable* GetMostDerived()
                     { return this; }
         };
 
@@ -227,11 +271,57 @@ namespace Mezzanine
                 /// @brief Get the returns from the last exection of the script
                 /// @return An ArgumentSet that can be iterated over to get all the values returned.
                 virtual ArgumentSet GetAllReturns() const = 0;
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer of the most derived pointing to this.
+                virtual iScriptMultipleReturn* GetMostDerived()
+                    { return this; }
         };
 
 
     }
 
+    /// @brief Marks IScript for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::iScript>
+    {
+        public:
+            typedef Scripting::iScript RefCountType;
+            typedef Scripting::iScript * PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks iScriptCompilable for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::iScriptCompilable>
+    {
+        public:
+            typedef Scripting::iScriptCompilable RefCountType;
+            typedef Scripting::iScriptCompilable * PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks iScriptMultipleReturn for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::iScriptMultipleReturn>
+    {
+        public:
+            typedef Scripting::iScriptMultipleReturn RefCountType;
+            typedef Scripting::iScriptMultipleReturn * PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+
+            enum { IsCastable = CastDynamic };
+    };
 
 }//Mezzanine
 

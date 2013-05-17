@@ -91,22 +91,22 @@ namespace Mezzanine
             return Bones.size();
         }
 
-        BoneIterator Skeleton::BoneBegin()
+        Skeleton::BoneIterator Skeleton::BoneBegin()
         {
             return Bones.begin();
         }
 
-        BoneIterator Skeleton::BoneEnd()
+        Skeleton::BoneIterator Skeleton::BoneEnd()
         {
             return Bones.end();
         }
 
-        ConstBoneIterator Skeleton::BoneBegin() const
+        Skeleton::ConstBoneIterator Skeleton::BoneBegin() const
         {
             return Bones.begin();
         }
 
-        ConstBoneIterator Skeleton::BoneEnd() const
+        Skeleton::ConstBoneIterator Skeleton::BoneEnd() const
         {
             return Bones.end();
         }

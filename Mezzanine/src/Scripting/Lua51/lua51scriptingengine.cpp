@@ -48,6 +48,7 @@
 #include "lua51scriptingengine.h"
 #include "exception.h"
 
+#include <cstring>
 /// @file
 /// @brief This file has the implemetation for the Lua based Scripting system.
 
@@ -79,17 +80,26 @@ namespace Mezzanine
                 /// @param State The lua state as provide by lua_dump
                 /// @param Buffer A pointer to the compiled Lua chunk.
                 /// @param Size The Size of the Lua chunk in bytes
-                /// @param MezzScript A pointer to a Mezzanine::Scripting::Lua::LuaScript
-                int LuaScriptWriter(lua_State *State, const void* Buffer, size_t Size, void* MezzScript)
+                /// @param BinBuff A pointer to a BinaryTools::BinaryBuffer that will serve as the real output
+                int LuaScriptWriter(lua_State *State, const void* Buffer, size_t Size, void* BinBuff)
                 {
-                    Lua51Script* CompilingScript = reinterpret_cast<Lua51Script*>(MezzScript);
-
+                    BinaryTools::BinaryBuffer* CompilingScript = reinterpret_cast<BinaryTools::BinaryBuffer*>(BinBuff);
+                    CompilingScript->Concatenate(
+                                    (BinaryTools::BinaryBuffer::Byte*) Buffer,
+                                    Size
+                                );
                 }
             }
 
             void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
             {
+                ThrowFromLuaErrorCode(
+                    luaL_loadstring(this->State, ScriptToCompile->SourceCode.c_str())
+                );
 
+                ThrowFromLuaErrorCode(
+                    lua_dump(this->State, LuaScriptWriter, &(ScriptToCompile->CompiledByteCode) )
+                );
             }
 
             void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
@@ -115,33 +125,49 @@ namespace Mezzanine
                 }
             }
 
-            Lua51ScriptingEngine::Lua51ScriptingEngine(int LibrariesToOpen) : State(luaL_newstate())
+            Lua51ScriptingEngine::Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen) : State(luaL_newstate())
                 { OpenLibraries(LibrariesToOpen); }
 
             Lua51ScriptingEngine::~Lua51ScriptingEngine()
                 { lua_close(State); }
 
-            CountedPtr<iScript> Lua51ScriptingEngine::Execute(String ScriptSource)
+            CountedPtr<iScript> Lua51ScriptingEngine::Execute(const String& ScriptSource)
             {
-                ThrowFromLuaErrorCode(
-                    luaL_dostring(State,ScriptSource.c_str())
-                );
-                luaopen_base(State);
+                //CountedPtr<iScriptCompilable> Results = static_cast<CountedPtr<iScript> >(Compile(ScriptSource));
+                //Execute(Results);
+                //return Results;//CountedPtr<iScriptCompilable>
             }
 
             void Lua51ScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)
             {
-
+                //if there is a compiled script load it and call it
+                // otherwise use luaL-dostring
             }
 
             void Lua51ScriptingEngine::Compile(CountedPtr<iScriptCompilable> ScriptToCompile)
             {
-
+                //Lua51Script* CompilationSource = something_cast<Lua51Script*>(ScriptToCompile.get());
+                /*CountedPtr<Lua51Script> CompilationSource(CountedPtrCast<Lua51Script>(ScriptToCompile));
+                if(CompilationSource)
+                {
+                    Compile(CompilationSource.get());
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Something other than a Lua51 script was passed to the Lua51 scripting engine and could not be compiled.")
+                }*/
             }
 
-            CountedPtr<iScriptCompilable> Lua51ScriptingEngine::Compile(String SourceToCompile)
+            CountedPtr<iScriptCompilable> Lua51ScriptingEngine::Compile(const String& SourceToCompile)
             {
+                CountedPtr<iScriptCompilable> Results(
+                                new Lua51Script(SourceToCompile,this)
+                            );
+                Compile(Results);
+                return Results;
+            }
 
+            String Lua51ScriptingEngine::GetImplementationTypeName() const
+            {
+                return String("Lua51ScriptingEngine");
             }
 
             void Lua51ScriptingEngine::OpenLibraries(int LibrariesToOpen)

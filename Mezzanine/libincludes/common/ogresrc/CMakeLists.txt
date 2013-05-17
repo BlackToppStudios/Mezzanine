@@ -100,6 +100,16 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OgreDeps_BINARY_DIR}" )
 # In ogresvnsrc\OgreMain\Src\OgreZip.cpp:
 # At around line 37 change the include '#include <zzip/zzip.h>' to '#include <zzip.h>'
 
+
+# To get -std=c++11
+# in dcraw_common.cpp 
+# around 9125 this: tiff_set (&th->ntag, 270, , 512, TOFF(th->t_desc));
+# should change to: tiff_set (&th->ntag, 270, 0, 512, TOFF(th->t_desc));
+# and 
+# around 9125 this: strcpy (th->soft, "dcraw v"DCRAW_VERSION);
+# should change to: strcpy (th->soft, "dcraw v9.12");
+
+
 add_subdirectory ( ogresvnsrc )
 
 message ("${PROJECT_NAME} - End")

@@ -133,6 +133,9 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:ab4f5efed51a1f6fc1799c821c3daf4b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">A datatype to represent one character.  <a href="#ab4f5efed51a1f6fc1799c821c3daf4b7"></a><br/></td></tr>
 <tr class="memitem:a63cd699ac54b73953f35ec9cfc05e506"><td class="memItemLeft" align="right" valign="top">typedef const String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#a63cd699ac54b73953f35ec9cfc05e506">Mezzanine::ConstString</a></td></tr>
 <tr class="memdesc:a63cd699ac54b73953f35ec9cfc05e506"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Datatype used to a series of imutable characters.  <a href="#a63cd699ac54b73953f35ec9cfc05e506"></a><br/></td></tr>
+<tr class="memitem:a07cdc0ed7dd61212948bc2fcb2b1c129"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07cdc0ed7dd61212948bc2fcb2b1c129"></a>
+typedef intptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#a07cdc0ed7dd61212948bc2fcb2b1c129">Mezzanine::ConvertiblePointer</a></td></tr>
+<tr class="memdesc:a07cdc0ed7dd61212948bc2fcb2b1c129"><td class="mdescLeft">&#160;</td><td class="mdescRight">A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical. <br/></td></tr>
 <tr class="memitem:adb602bffcbc8f1b381b2f529e9e364f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb602bffcbc8f1b381b2f529e9e364f6"></a>
 typedef int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#adb602bffcbc8f1b381b2f529e9e364f6">Mezzanine::Int16</a></td></tr>
 <tr class="memdesc:adb602bffcbc8f1b381b2f529e9e364f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">An 16-bit integer. <br/></td></tr>
@@ -147,6 +150,10 @@ typedef int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <tr class="memdesc:acbb048ee99aa07566d5a6eb33f5a2c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">An 8-bit integer. <br/></td></tr>
 <tr class="memitem:ac3576e52af3c62d13dde94829e0c5465"><td class="memItemLeft" align="right" valign="top">typedef int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#ac3576e52af3c62d13dde94829e0c5465">Mezzanine::Integer</a></td></tr>
 <tr class="memdesc:ac3576e52af3c62d13dde94829e0c5465"><td class="mdescLeft">&#160;</td><td class="mdescRight">A datatype use to represent any integer close to.  <a href="#ac3576e52af3c62d13dde94829e0c5465"></a><br/></td></tr>
+<tr class="memitem:ac0e305210456ef0132dc20c06aa292dd"><td class="memItemLeft" align="right" valign="top">typedef std::stringstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#ac0e305210456ef0132dc20c06aa292dd">Mezzanine::Logger</a></td></tr>
+<tr class="memdesc:ac0e305210456ef0132dc20c06aa292dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">In case we ever replace the stringstream with another class, this will allow us to swap it out.  <a href="#ac0e305210456ef0132dc20c06aa292dd"></a><br/></td></tr>
+<tr class="memitem:ad7ab1b85229be184e16d96c505143f9b"><td class="memItemLeft" align="right" valign="top">typedef long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#ad7ab1b85229be184e16d96c505143f9b">Mezzanine::MaxInt</a></td></tr>
+<tr class="memdesc:ad7ab1b85229be184e16d96c505143f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A large integer type suitable for compile time math and long term microsecond time keeping.  <a href="#ad7ab1b85229be184e16d96c505143f9b"></a><br/></td></tr>
 <tr class="memitem:ac9f30d4ba179aab9013e0c8fbf55bd28"><td class="memItemLeft" align="right" valign="top">typedef std::list&lt; std::pair<br class="typebreak"/>
 &lt; String, String &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#ac9f30d4ba179aab9013e0c8fbf55bd28">Mezzanine::NameValuePairList</a></td></tr>
 <tr class="memdesc:ac9f30d4ba179aab9013e0c8fbf55bd28"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a datatype mostly used for describing settings or parameters that can't be declared in advance.  <a href="#ac9f30d4ba179aab9013e0c8fbf55bd28"></a><br/></td></tr>
@@ -220,6 +227,6 @@ Functions</h2></td></tr>
 <p>Definition in file <a class="el" href="datatypes_8h_source.xhtml">datatypes.h</a>.</p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 10:40:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

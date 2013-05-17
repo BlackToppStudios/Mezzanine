@@ -87,8 +87,9 @@ namespace Mezzanine
 
         GameWindow::~GameWindow()
         {
-            OgreWindow->destroy();
             SDL_DestroyWindow(SDLWindow);
+            OgreWindow->destroy();
+            Ogre::Root::getSingleton().destroyRenderTarget(OgreWindow);
             delete GWID;
         }
 

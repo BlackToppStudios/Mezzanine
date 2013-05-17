@@ -80,7 +80,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">smartptr.h File Reference</div>  </div>
 </div><!--header-->
@@ -110,20 +112,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml">Mezzanine::CountedPtr&lt; TypePointedTo &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple referencing counting pointer.  <a href="classMezzanine_1_1CountedPtr.xhtml#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple reference counting pointer.  <a href="classMezzanine_1_1CountedPtr.xhtml#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtrCastImpl.xhtml">Mezzanine::CountedPtrCastImpl&lt; ReturnPointer, OriginalPointer, CountedPointerCastingState &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default implementation for <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> casting.  <a href="classMezzanine_1_1CountedPtrCastImpl.xhtml#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtrCastImpl_3_01OriginalPointer_00_01OriginalPointer_00_01CastNoneError_01_4.xhtml">Mezzanine::CountedPtrCastImpl&lt; OriginalPointer, OriginalPointer, CastNoneError &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An implementation of the CountedPtrCast that always return the pointer passed.  <a href="classMezzanine_1_1CountedPtrCastImpl_3_01OriginalPointer_00_01OriginalPointer_00_01CastNoneError_01_4.xhtml#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtrCastImpl_3_01ReturnPointer_00_01OriginalPointer_00_01CastDynamic_01_4.xhtml">Mezzanine::CountedPtrCastImpl&lt; ReturnPointer, OriginalPointer, CastDynamic &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtrCastImpl_3_01ReturnPointer_00_01OriginalPointer_00_01CastNoneReturnZero_01_4.xhtml">Mezzanine::CountedPtrCastImpl&lt; ReturnPointer, OriginalPointer, CastNoneReturnZero &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An implementation of the CountedPtrCast that always returns 0 cast to the original pointer type.  <a href="classMezzanine_1_1CountedPtrCastImpl_3_01ReturnPointer_00_01OriginalPointer_00_01CastNoneReturnZero_01_4.xhtml#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtrCastImpl_3_01ReturnPointer_00_01OriginalPointer_00_01CastSimpleDynamic_01_4.xhtml">Mezzanine::CountedPtrCastImpl&lt; ReturnPointer, OriginalPointer, CastSimpleDynamic &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtrCastImpl_3_01ReturnPointer_00_01OriginalPointer_00_01CastSimpleStatic_01_4.xhtml">Mezzanine::CountedPtrCastImpl&lt; ReturnPointer, OriginalPointer, CastSimpleStatic &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtrCastImpl_3_01ReturnPointer_00_01OriginalPointer_00_01CastStatic_01_4.xhtml">Mezzanine::CountedPtrCastImpl&lt; ReturnPointer, OriginalPointer, CastStatic &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtrCastInternal.xhtml">Mezzanine::CountedPtrCastInternal&lt; ReturnPointer, OriginalPointer &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtrCastInternal_3_01Pointer_00_01Pointer_01_4.xhtml">Mezzanine::CountedPtrCastInternal&lt; Pointer, Pointer &gt;</a></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1IntrusiveRefCount.xhtml">Mezzanine::IntrusiveRefCount</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A sample class that implements a minimal intrusive reference counting scheme.  <a href="classMezzanine_1_1IntrusiveRefCount.xhtml#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ReferenceCount.xhtml">Mezzanine::ReferenceCount&lt; TypePointedTo &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This exists once per object managed by a group of shared pointer to track items in memory.  <a href="classMezzanine_1_1ReferenceCount.xhtml#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml">Mezzanine::ReferenceCountTraits&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every class that does not implement its own reference count gets the default one.  <a href="classMezzanine_1_1ReferenceCountTraits.xhtml#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used to deduce at compile if a specific class has built-in reference counting or needs an external reference count.  <a href="classMezzanine_1_1ReferenceCountTraits.xhtml#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml">Mezzanine::ReferenceCountTraits&lt; IntrusiveRefCount &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An Example <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml" title="Every class that does not implement its own reference count gets the default one.">ReferenceCountTraits</a> implmentation.  <a href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An Example <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml" title="This is used to deduce at compile if a specific class has built-in reference counting or needs an ext...">ReferenceCountTraits</a> implmentation.  <a href="classMezzanine_1_1ReferenceCountTraits_3_01IntrusiveRefCount_01_4.xhtml#details">More...</a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMezzanine"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></td></tr>
 <tr class="memdesc:namespaceMezzanine"><td class="mdescLeft">&#160;</td><td class="mdescRight">The bulk of the engine components go in this namspace. <br/></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ad937b4d169586b963a9545c39fe66739"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739">Mezzanine::CountedPointerCastingState</a> { <br/>
+&#160;&#160;<a class="el" href="namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739a80b6e8497f1239b63fb0bac739f5618f">Mezzanine::CastNoneError</a> =  -2, 
+<a class="el" href="namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739ae348e547d2f989d5704dca631120c733">Mezzanine::CastNoneReturnZero</a> =  -1, 
+<a class="el" href="namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739a92615a5b9daecc60312db5c1fbb0ab29">Mezzanine::CastSimpleStatic</a> =  1, 
+<a class="el" href="namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739ad7287198d94494d7020fcd6d3eba23c3">Mezzanine::CastSimpleDynamic</a> =  2, 
+<br/>
+&#160;&#160;<a class="el" href="namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739ab052c77358611ba65ad3a013cb430867">Mezzanine::CastDynamic</a> =  3, 
+<a class="el" href="namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739a823a0503378eda9a9d1a1916a4d1e881">Mezzanine::CastStatic</a> =  4
+<br/>
+ }</td></tr>
+<tr class="memdesc:ad937b4d169586b963a9545c39fe66739"><td class="mdescLeft">&#160;</td><td class="mdescRight">CountedPointer casting implementation states.  <a href="namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739">More...</a><br/></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a60f96f945edcaa0c96339fb141842347"><td class="memTemplParams" colspan="2"><a class="anchor" id="a60f96f945edcaa0c96339fb141842347"></a>
+template&lt;typename ReturnType , typename CountedPointer &gt; </td></tr>
+<tr class="memitem:a60f96f945edcaa0c96339fb141842347"><td class="memTemplItemLeft" align="right" valign="top">CountedPtr&lt; ReturnType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#a60f96f945edcaa0c96339fb141842347">Mezzanine::CountedPtrCast</a> (CountedPointer Original)</td></tr>
+<tr class="memdesc:a60f96f945edcaa0c96339fb141842347"><td class="mdescLeft">&#160;</td><td class="mdescRight">If Possible convert on kind of a co. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This file describes and implements any pointers or typedefs to pointers that the <a class="el" href="namespaceMezzanine.xhtml" title="The bulk of the engine components go in this namspace.">Mezzanine</a> uses and exposes in its API. </p>
@@ -131,6 +166,6 @@ Namespaces</h2></td></tr>
 <p>Definition in file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 10:40:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

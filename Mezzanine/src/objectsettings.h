@@ -418,6 +418,19 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Saving Utilities
+            /// @brief Enables or disables the automatic creation of a directory path when saving.
+            /// @param Enable True to allow this object to create folders in the intended save path allowing the path to be valid, false otherwise.
+            void SetAutoGenPath(bool Enable);
+            /// @brief Gets whether or not this object is currently allowed to create folders when saving.
+            /// @return Returns true if this object will create folders in paths it uses to force the path to be valid.
+            bool GetAutoGenPath() const;
+            /// @brief Enables or disables the automatic creation of settings files on initialization and destruction of this object.
+            /// @param Enable True to allow this object to save it's settings sets to a file on initialization and destruction.
+            void SetAutoGenFiles(bool Enable);
+            /// @brief Gets whether or not this object is currently allowed to create/update settings files upon initialization and destruction.
+            /// @return Returns true if this object will generate or update settings files when it is initialized and destruction.
+            bool GetAutoGenFiles() const;
+
             /// @brief Saves all settings that need saving.
             /// @remarks This function does a few things.  First it will only save the setting groups which have their optional setting
             /// files specified, which is automatically set if they are loaded from a file.  Second, it will only save the files(and

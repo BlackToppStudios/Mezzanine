@@ -358,8 +358,8 @@ bool PostInput()
                             Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
                             Dragger->SetTAU(0.001);
                             TheEntresol->GetPhysicsManager()->AddConstraint(Dragger);
-                            Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2);
-                            Dragger->SetParam(Physics::Con_Stop_ERP,0.1,0); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,2);
+                            Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
+                            Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
                             firstframe=true;
                         }else{  // since we don't
                             #ifdef MEZZDEBUG
@@ -515,9 +515,10 @@ void LoadContent()
     String robotprefix ("Robot");
 
     Real mass=15.0;
+    /// @todo Figure why the EngineDemo fails on Linux when trying to find items in the
     TheEntresol->GetResourceManager()->AddAssetLocation("data/common", FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/Music", FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/Sounds", FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/music", FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/sounds", FileSystem, groupname, false);
     //TheEntresol->GetResourceManager()->AddAssetLocation(zipname.str(), "Zip", groupname, false);
     TheEntresol->GetResourceManager()->AddAssetLocation("", FileSystem, groupname, false);
     TheEntresol->GetResourceManager()->InitAssetGroup(groupname);

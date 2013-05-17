@@ -142,7 +142,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a89ce96fb5f8c5da6fa50e42fe1ae870b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an already created camera by index.  <a href="#a89ce96fb5f8c5da6fa50e42fe1ae870b"></a><br/></td></tr>
 <tr class="memitem:a4a39fc9a95b35986eb8d9bb5ed2dd0f9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CameraManager.xhtml#a4a39fc9a95b35986eb8d9bb5ed2dd0f9">GetImplementationTypeName</a> () const </td></tr>
 <tr class="memdesc:a4a39fc9a95b35986eb8d9bb5ed2dd0f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Allows any manager name to be sent to a stream. Primarily used for logging.   <a href="#a4a39fc9a95b35986eb8d9bb5ed2dd0f9"></a><br/></td></tr>
-<tr class="memitem:a5d46f88e7d12763eb40e39148363339c"><td class="memItemLeft" align="right" valign="top">virtual ManagerType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CameraManager.xhtml#a5d46f88e7d12763eb40e39148363339c">GetInterfaceType</a> () const </td></tr>
+<tr class="memitem:a5d46f88e7d12763eb40e39148363339c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CameraManager.xhtml#a5d46f88e7d12763eb40e39148363339c">GetInterfaceType</a> () const </td></tr>
 <tr class="memdesc:a5d46f88e7d12763eb40e39148363339c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the type of this manager.   <a href="#a5d46f88e7d12763eb40e39148363339c"></a><br/></td></tr>
 <tr class="memitem:aff1a5c332872cfd7db6c8f6bb75e1274"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CameraManager.xhtml#aff1a5c332872cfd7db6c8f6bb75e1274">GetNumCameras</a> ()</td></tr>
 <tr class="memdesc:aff1a5c332872cfd7db6c8f6bb75e1274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of cameras created and stored in this manager.  <a href="#aff1a5c332872cfd7db6c8f6bb75e1274"></a><br/></td></tr>
@@ -237,7 +237,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:ab23a9aa27c4e3cb58d902a149d3c6de2 inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab23a9aa27c4e3cb58d902a149d3c6de2"></a>
 typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab23a9aa27c4e3cb58d902a149d3c6de2">Callback</a> )()</td></tr>
 <tr class="memdesc:ab23a9aa27c4e3cb58d902a149d3c6de2 inherit pub_types_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This makes working with Callback function pointer a bit easier. <br/></td></tr>
-<tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ManagerType</b> { <br/>
+<tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> { <br/>
 &#160;&#160;<b>ActorManager</b> =  1, 
 <b>AudioManager</b>, 
 <b>CameraManager</b>, 
@@ -260,13 +260,13 @@ typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <br/>
 &#160;&#160;<b>TimerManager</b>, 
 <b>UIManager</b>, 
-<b>UserCreated</b> =  512
+<a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6caa58e48b5e043dfdaf6e2cd17b79a3194">UserCreated</a> =  512
 <br/>
  }</td></tr>
 <tr class="inherit_header pub_static_methods_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&nbsp;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1ManagerBase.xhtml">Mezzanine::ManagerBase</a></td></tr>
-<tr class="memitem:a446009f2bdf870d4a135d65e941bc066 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a446009f2bdf870d4a135d65e941bc066">GetTypeNameAsString</a> (const ManagerType &amp;ManagerType)</td></tr>
+<tr class="memitem:a446009f2bdf870d4a135d65e941bc066 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a446009f2bdf870d4a135d65e941bc066">GetTypeNameAsString</a> (const <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> &amp;<a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>)</td></tr>
 <tr class="memdesc:a446009f2bdf870d4a135d65e941bc066 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the string form of the type of manager.  <a href="#a446009f2bdf870d4a135d65e941bc066"></a><br/></td></tr>
-<tr class="memitem:ae76f56a9d8585b96c3cda9f51368b60a inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static ManagerType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ae76f56a9d8585b96c3cda9f51368b60a">GetTypeNameFromString</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ManagerName)</td></tr>
+<tr class="memitem:ae76f56a9d8585b96c3cda9f51368b60a inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ae76f56a9d8585b96c3cda9f51368b60a">GetTypeNameFromString</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ManagerName)</td></tr>
 <tr class="memdesc:ae76f56a9d8585b96c3cda9f51368b60a inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of manager requested from a string.  <a href="#ae76f56a9d8585b96c3cda9f51368b60a"></a><br/></td></tr>
 <tr class="inherit_header pub_static_methods_classMezzanine_1_1Singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1Singleton')"><img src="closed.png" alt="-"/>&nbsp;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Singleton.xhtml">Mezzanine::Singleton< CameraManager ></a></td></tr>
 <tr class="memitem:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1CameraManager.xhtml">CameraManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.xhtml#a78fc425584913f0b2c615ec440871a67">GetSingletonPtr</a> ()</td></tr>
@@ -505,7 +505,7 @@ static <a class="el" href="classMezzanine_1_1CameraManager.xhtml">CameraManager<
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual ManagerType Mezzanine::CameraManager::GetInterfaceType </td>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> Mezzanine::CameraManager::GetInterfaceType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -648,6 +648,6 @@ static <a class="el" href="classMezzanine_1_1CameraManager.xhtml">CameraManager<
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 10:40:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

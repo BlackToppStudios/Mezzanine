@@ -39,7 +39,7 @@
 </g>
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1IOReadException.xhtml" target="_top" xlink:title="Thrown when a read is happening but asoemthing has prevented teh underlying code from knowing what wa...">
+<a xlink:href="classMezzanine_1_1IOReadException.xhtml" target="_top" xlink:title="Thrown when a read is happening but something has prevented the underlying code from knowing what was...">
 <polygon fill="none" stroke="black" points="417,-236 417,-256 559,-256 559,-236 417,-236"/>
 <text text-anchor="middle" x="488" y="-243" font-family="FreeSans" font-size="10.00">Mezzanine::IOReadException</text>
 </a>
@@ -51,7 +51,7 @@
 </g>
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
-<a xlink:href="classMezzanine_1_1IOWriteException.xhtml" target="_top" xlink:title="Thrown when a write is happening but asoemthing has prevented teh underlying code from knowing what w...">
+<a xlink:href="classMezzanine_1_1IOWriteException.xhtml" target="_top" xlink:title="Thrown when a write is happening but something has prevented the underlying code from knowing what wa...">
 <polygon fill="none" stroke="black" points="417,-198 417,-218 559,-218 559,-198 417,-198"/>
 <text text-anchor="middle" x="488" y="-205" font-family="FreeSans" font-size="10.00">Mezzanine::IOWriteException</text>
 </a>
@@ -250,7 +250,7 @@
 </g>
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
-<a xlink:href="classMezzanine_1_1NetworkWriteException.xhtml" target="_top" xlink:title="Thrown when data could not be read from the network (i[loads).">
+<a xlink:href="classMezzanine_1_1NetworkWriteException.xhtml" target="_top" xlink:title="Thrown when data could not be read from the network (iloads).">
 <polygon fill="none" stroke="black" points="598.5,-0 598.5,-20 765.5,-20 765.5,-0 598.5,-0"/>
 <text text-anchor="middle" x="682" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkWriteException</text>
 </a>

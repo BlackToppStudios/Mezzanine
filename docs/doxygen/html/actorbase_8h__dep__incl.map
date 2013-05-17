@@ -1,8 +1,18 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorbase.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorbase.h">
-<area shape="rect" id="node3" href="$actorcharacter_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorcharacter.h" alt="" coords="5,193,211,237"/>
-<area shape="rect" id="node5" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="267,286,467,330"/>
-<area shape="rect" id="node7" href="$actorrigid_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorrigid.h" alt="" coords="303,99,503,143"/>
-<area shape="rect" id="node13" href="$actorsoft_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorsoft.h" alt="" coords="560,193,760,237"/>
-<area shape="rect" id="node17" href="$vector3wactor_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/vector3wactor.h" alt="" coords="679,99,881,143"/>
-<area shape="rect" id="node9" href="$actorserializer_8h.xhtml" title="This is where the declarations of any Serializers or DeSerializers for actors will go..." alt="" coords="336,193,536,237"/>
+<area shape="rect" id="node3" href="$actorcharacter_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorcharacter.h" alt="" coords="107,193,312,237"/>
+<area shape="rect" id="node5" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="368,286,568,330"/>
+<area shape="rect" id="node34" href="$actorrigid_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorrigid.h" alt="" coords="404,99,604,143"/>
+<area shape="rect" id="node40" href="$actorsoft_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorsoft.h" alt="" coords="661,193,861,237"/>
+<area shape="rect" id="node44" href="$vector3wactor_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/vector3wactor.h" alt="" coords="780,99,983,143"/>
+<area shape="rect" id="node7" href="$consolelogic_8h.xhtml" title="The defintion of items important a commandline tool to work correctly without need to be available to..." alt="" coords="180,566,380,610"/>
+<area shape="rect" id="node19" href="$testdata_8h.xhtml" title="TestData, TestDataStorage and UnitTestGroup class definitions." alt="" coords="231,473,431,517"/>
+<area shape="rect" id="node23" href="$testenumerations_8h.xhtml" title="Enumerations and constant values associated with the Unit tests." alt="" coords="361,379,575,423"/>
+<area shape="rect" id="node27" href="$testtools_8h.xhtml" title="Some random function to ease the lives of test developers." alt="" coords="505,473,705,517"/>
+<area shape="rect" id="node30" href="$consolestringmanipulation_8h.xhtml" title="Some string manipulation functions geared towards console output for use in the Unit Tests..." alt="" coords="597,566,859,610"/>
+<area shape="rect" id="node9" href="$main_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/src/main.h" alt="" coords="368,659,568,703"/>
+<area shape="rect" id="node11" href="$boilerplatetests_8h.xhtml" title="this file should be used as template for building future Unit Tests" alt="" coords="5,753,216,797"/>
+<area shape="rect" id="node13" href="$compilerflagtests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/compilerflagtests.h" alt="" coords="240,753,461,797"/>
+<area shape="rect" id="node15" href="$lua51tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/lua51tests.h" alt="" coords="485,753,685,797"/>
+<area shape="rect" id="node17" href="$vector3tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/vector3tests.h" alt="" coords="709,753,909,797"/>
+<area shape="rect" id="node36" href="$actorserializer_8h.xhtml" title="This is where the declarations of any Serializers or DeSerializers for actors will go..." alt="" coords="437,193,637,237"/>
 </map>

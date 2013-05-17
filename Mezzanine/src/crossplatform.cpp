@@ -61,6 +61,7 @@
 
 //Selective Includes
 #ifdef WINDOWS
+    #include <windows.h>
 	#include <cstdlib>//for sleep
     #include <Winuser.h>
 	#include "SDL_syswm.h" //for the needed commands
@@ -68,6 +69,7 @@
 #else
 	#include <unistd.h>//for sleep and getcwd
     #include "graphicsmanager.h"
+    #include <sys/time.h>
 #endif
 
 namespace Mezzanine
@@ -142,6 +144,65 @@ namespace Mezzanine
             ActualHeight = Height;
             #endif
         }
+
+        #ifdef _MEZZ_CPP11_
+            MaxInt GetTimeStamp()
+                { return std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now()).count(); }
+            #else
+                #ifdef WINDOWS
+                    namespace
+                    {
+                        /// @internal
+                        class Timer
+                        {
+                            public:
+                                LARGE_INTEGER frequency;
+
+                                Timer()
+                                    { QueryPerformanceFrequency(&frequency); }
+
+                                MaxInt GetTimeStamp()
+                                {
+                                    LARGE_INTEGER Current;
+                                    QueryPerformanceCounter(&Current);
+                                    return MaxInt(Current.QuadPart * (1000000.0 / frequency.QuadPart));
+                                }
+                        };
+
+                        static Timer ATimer;
+                    }
+
+                    MaxInt GetTimeStamp()
+                        { return ATimer.GetTimeStamp(); }
+
+                    Whole GetTimeStampResolution()
+                        { return Whole(ATimer.frequency.QuadPart/1000); }
+
+                #else
+                    MaxInt GetTimeStamp()
+                    {
+                        timeval Now;
+                        gettimeofday(&Now, NULL); // Posix says this must return 0, so it seems it can't fail
+                        return (Now.tv_sec * 1000000) + Now.tv_usec;
+                    }
+
+                    Whole GetTimeStampResolution()
+                        { return 1; } // barring kernel bugs
+
+                #endif
+            #endif
+
+            Whole MEZZ_LIB GetCPUCount()
+            {
+                #ifdef WINDOWS
+                SYSTEM_INFO sysinfo;
+                GetSystemInfo( &sysinfo );
+
+                return sysinfo.dwNumberOfProcessors;
+                #else
+                    return sysconf( _SC_NPROCESSORS_ONLN );
+                #endif
+            }
     }
 }
 

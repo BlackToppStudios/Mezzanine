@@ -82,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">managerbase.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2012 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -146,7 +146,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">            /// @details These will be returned by ManagerBase::GetType(), and will allow</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">            /// code using this to determine what type of Manager class they are working with</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">            /// and use this information to more safely cast to the correct manager if needed.</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span>            <span class="keyword">enum</span> ManagerType</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">   65</a></span>&#160;<span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            {</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                <a class="code" href="classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors in use.">ActorManager</a>    = 1,</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <a class="code" href="classMezzanine_1_1AudioManager.xhtml" title="This is simply a place for storing all the Sound utilities and functions.">AudioManager</a>,</div>
@@ -166,7 +166,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                <a class="code" href="classMezzanine_1_1TerrainManager.xhtml" title="This is manager for terrains and their functions.">TerrainManager</a>,</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <a class="code" href="classMezzanine_1_1TimerManager.xhtml" title="A manager responsible for the updating of all timers in use by this engine.">TimerManager</a>,</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <a class="code" href="classMezzanine_1_1UIManager.xhtml" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>,</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                UserCreated     = 512,         <span class="comment">/// This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6caa58e48b5e043dfdaf6e2cd17b79a3194">   85</a></span>&#160;                UserCreated     = 512         <span class="comment">///&lt; This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals</span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span>            };</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">            /// @brief This makes working with Callback function pointer a bit easier.</span></div>
@@ -194,7 +194,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">            /// @details This is intended to make using and casting from Manager base easier. With this is is possible to cast from</span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">            /// ManagerBase to the correct Manager Type.</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">            /// @return This returns a ManagerTypeName to identify what this can be safely cast to.</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ManagerType GetInterfaceType() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> GetInterfaceType() <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">            /// @brief This Allows any manager name to be sent to a stream. Primarily used for logging</span></div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">            /// @return This returns a String that contains the name.</span></div>
@@ -270,14 +270,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">            /// @brief Gets the string form of the type of manager.</span></div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">            /// @return Returns a string containing the name of the requested type of manager.</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> GetTypeNameAsString(<span class="keyword">const</span> ManagerType&amp; ManagerType);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> GetTypeNameAsString(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&amp; <a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>);</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">            /// @brief Gets the type of manager requested from a string.</span></div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">            /// @remarks This function does not try to compare the full string for the sake of speed.  Instead it&#39;ll check the first couple letters for a potential match.</span></div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">            /// This function is also not case sensative.  Providing the string &quot;ac&quot; will return an ActorManager value, for example.  Additionally if it does not find a</span></div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">            /// match it will throw an exception.  So be careful about what you put into this.</span></div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">            /// @return Returns a ManagerTypeName cooresponding to the string provided.</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> ManagerType GetTypeNameFromString(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; ManagerName);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> GetTypeNameFromString(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; ManagerName);</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="keyword">protected</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">            /// @internal</span></div>
@@ -306,6 +306,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 10:40:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Wed May 8 2013 23:33:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

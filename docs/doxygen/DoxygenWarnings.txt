@@ -40,31 +40,45 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/widget.h:91: warning: the name `uiwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/widget.h:289: warning: the name `uiwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/window.h:50: warning: the name `uiwindow.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:49: warning: Compound lua51tests is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assetgroup.h:54: warning: Compound Mezzanine::Resource::AssetGroup is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:68: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:53: warning: Compound vector3tests is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assethandler.h:54: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/matrix4x4.h:58: warning: Compound Mezzanine::Matrix4x4 is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/asset.h:54: warning: Compound Mezzanine::Resource::Asset is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/boilerplatetests.h:52: warning: Compound boilerplatetests is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/world.h:59: warning: Compound Mezzanine::World is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.h:93: warning: Compound Mezzanine::PhysicsConstructionInfo is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainer.h:280: warning: Compound Mezzanine::UI::RenderableContainer is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:49: warning: Compound compilerflagtests is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:58: warning: Compound Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/resizehandler.h:54: warning: Compound Mezzanine::UI::ResizeHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/listbox.h:52: warning: Compound Mezzanine::UI::TemplateParams is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/archive.h:54: warning: Compound Mezzanine::Resource::Archive is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:266: warning: Compound Mezzanine::UI::OpenRenderableContainerWidget is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:60: warning: Documentation for undefined enum `ManagerTypeName' found.
+/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/crossplatformexport.h:318: warning: end of comment block while expecting command </b>
+/home/sqeaky/Code/Mezzanine/UnitTests/src/consolelogic.h:68: warning: unable to resolve reference to `TempFile' for \ref command
+/home/sqeaky/Code/Mezzanine/UnitTests/src/consolelogic.h:75: warning: unable to resolve reference to `TempFile' for \ref command
+/home/sqeaky/Code/Mezzanine/UnitTests/src/testenumerations.h:105: warning: unable to resolve reference to `UnitTestGroup::AddTestResult' for \ref command
+/home/sqeaky/Code/Mezzanine/UnitTests/src/testenumerations.h:99: warning: unable to resolve reference to `TestResult' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:236: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:132: warning: unexpected command endcode
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:174: warning: found subsubsection command outside of subsection context!
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:230: warning: found subsubsection command outside of subsection context!
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:242: warning: found subsection command outside of section context!
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:275: warning: found subsection command outside of section context!
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:133: warning: unexpected command endcode
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:175: warning: found subsubsection command outside of subsection context!
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:231: warning: found subsubsection command outside of subsection context!
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:243: warning: found subsection command outside of section context!
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:276: warning: found subsection command outside of section context!
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:189: warning: explicit link request to 'wstream' could not be resolved
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:152: warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:152: warning: explicit link request to 'x' could not be resolved
+/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:52: warning: Member Name() (function) of class compilerflagtests is not documented.
+<RunTests>:1: warning: parameters of member compilerflagtests::RunTests are not (all) documented
+/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
+/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:68: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:66: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobject.h:295: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
@@ -272,6 +286,15 @@
   parameter 'CPercent'
   parameter 'PPercent'
   parameter 'UseAllSubmeshes'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:399: warning: Member operator bool() (function) of class Mezzanine::CountedPtr is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:428: warning: Member Cast(OriginalPointer Original) (function) of class Mezzanine::CountedPtrCastImpl< OriginalPointer, OriginalPointer, CastNoneError > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:479: warning: Member Cast(OriginalPointer Original) (function) of class Mezzanine::CountedPtrCastImpl< ReturnPointer, OriginalPointer, CastDynamic > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:442: warning: Member Cast(OriginalPointer) (function) of class Mezzanine::CountedPtrCastImpl< ReturnPointer, OriginalPointer, CastNoneReturnZero > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:465: warning: Member Cast(OriginalPointer Original) (function) of class Mezzanine::CountedPtrCastImpl< ReturnPointer, OriginalPointer, CastSimpleDynamic > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:451: warning: Member Cast(OriginalPointer Original) (function) of class Mezzanine::CountedPtrCastImpl< ReturnPointer, OriginalPointer, CastSimpleStatic > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:494: warning: Member Cast(OriginalPointer Original) (function) of class Mezzanine::CountedPtrCastImpl< ReturnPointer, OriginalPointer, CastStatic > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:510: warning: Member Cast(OriginalPointer *Original) (function) of class Mezzanine::CountedPtrCastInternal is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:530: warning: Member Cast(Pointer *Original) (function) of class Mezzanine::CountedPtrCastInternal< Pointer, Pointer > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:75: warning: target Mezzanine::Attachable::GetName() of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:99: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
@@ -308,51 +331,52 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventquit.h:68: warning: return type of member Mezzanine::EventQuit::GetType is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventrendertime.h:72: warning: return type of member Mezzanine::EventRenderTime::GetType is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventuserinput.h:157: warning: parameters of member Mezzanine::EventUserInput::GetMetaCode are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:139: warning: unable to resolve reference to `MEZZ_EXCEPTION' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:182: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1698: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ArithmeticException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:480: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:606: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryNotFoundException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:648: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryPermissionException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:522: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryReadException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:564: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryWriteException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:270: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:396: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileNotFoundException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:438: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FilePermissionException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:312: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileReadException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:354: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileWriteException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1152: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityDuplicateException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1026: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1068: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityInvalidException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1110: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityNotFoundException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1950: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InternalException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1740: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidParametersException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1824: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidStateException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1782: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidVersionException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:228: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:984: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOReadException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:942: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOWriteException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1194: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< MemoryManagementException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1278: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< MemoryOutOfBoundsException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:690: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:816: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkNotFoundException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:900: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkPermissionException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:732: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkReadException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:858: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkURLException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:774: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkWriteException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1992: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NotImplementedException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1236: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< OutOfMemoryException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1866: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< RenderingAPIException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1908: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< RuntimeAssertionException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1488: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1656: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaErrErrException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1530: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1614: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaRuntimeException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1572: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaYieldException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1320: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1446: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorLuaException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1362: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorXMLException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1404: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorXPathException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:145: warning: unable to resolve reference to `MEZZ_EXCEPTION' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:188: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1707: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ArithmeticException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:489: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:615: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryNotFoundException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:657: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryPermissionException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:531: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryReadException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:573: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryWriteException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:279: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:405: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileNotFoundException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:447: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FilePermissionException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:321: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileReadException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:363: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileWriteException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1161: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityDuplicateException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1035: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1077: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityInvalidException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1119: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityNotFoundException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1959: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InternalException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:2043: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidAssignment::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1749: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidParametersException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1833: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidStateException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1791: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidVersionException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:237: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:993: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOReadException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:951: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOWriteException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1203: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< MemoryManagementException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1287: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< MemoryOutOfBoundsException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:699: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:825: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkNotFoundException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:909: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkPermissionException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:741: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkReadException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:867: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkURLException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:783: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkWriteException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:2001: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NotImplementedException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1245: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< OutOfMemoryException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1875: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< RenderingAPIException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1917: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< RuntimeAssertionException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1497: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1665: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaErrErrException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1539: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1623: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaRuntimeException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1581: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaYieldException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1329: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1455: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorLuaException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1371: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorXMLException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1413: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorXPathException::ExceptionCode > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/extendedtimer.h:96: warning: Member CheckAll(const ExtendedTimer::TimeStruct Struct) (function) of class Mezzanine::ExtendedTimer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/extendedtimer.h:95: warning: Member CheckDays(const ExtendedTimer::TimeStruct Struct) (function) of class Mezzanine::ExtendedTimer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/extendedtimer.h:94: warning: Member CheckHours(const ExtendedTimer::TimeStruct Struct) (function) of class Mezzanine::ExtendedTimer is not documented.
@@ -491,6 +515,7 @@
   parameter 'Blue'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/linegroup.h:81: warning: return type of member Mezzanine::LineGroup::getPoint is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+<ManagerType>:1: warning: parameters of member Mezzanine::ManagerBase::ManagerType are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:187: warning: parameters of member Mezzanine::ManagerBase::GetTypeNameAsString are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:191: warning: parameters of member Mezzanine::ManagerBase::GetTypeNameFromString are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:183: warning: parameters of member Mezzanine::ManagerBase::SetPriority are not (all) documented
@@ -575,17 +600,17 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:306: warning: Member SettingFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:305: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:435: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName, const String &Path)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:435: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName, const String &Path) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:448: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName, const String &Path)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:448: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName, const String &Path) are not documented:
   parameter 'FileName'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:444: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:444: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:457: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:457: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName) are not documented:
   parameter 'FileName'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:426: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName, const String &Path)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:426: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName, const String &Path) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:439: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName, const String &Path)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:439: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName, const String &Path) are not documented:
   parameter 'FileName'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:430: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:430: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:443: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:443: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName) are not documented:
   parameter 'FileName'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/particleaffector.h:66: warning: parameters of member Mezzanine::ParticleAffector::ParticleAffector are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/particleaffector.h:81: warning: return type of member Mezzanine::ParticleAffector::GetCustomParam is not documented
@@ -612,12 +637,28 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< PhysicsManager > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.h:402: warning: return type of member Mezzanine::PhysicsManager::GetPhysicsWorldPointer is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/quaternion.h:190: warning: return type of member Mezzanine::Quaternion::GetOgreQuaternion is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:177: warning: Member ManagedType (typedef) of class Mezzanine::ReferenceCountTraits is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:178: warning: Member PtrType (typedef) of class Mezzanine::ReferenceCountTraits is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:181: warning: Member ConstructionPointer(T *Target) (function) of class Mezzanine::ReferenceCountTraits is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:162: warning: Member ManagedType (typedef) of class Mezzanine::ReferenceCountTraits< IntrusiveRefCount > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:163: warning: Member PtrType (typedef) of class Mezzanine::ReferenceCountTraits< IntrusiveRefCount > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:166: warning: Member ConstructionPointer(PtrType Target) (function) of class Mezzanine::ReferenceCountTraits< IntrusiveRefCount > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:247: warning: Member TargetPtrType (typedef) of class Mezzanine::ReferenceCountTraits is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:245: warning: Member TargetType (typedef) of class Mezzanine::ReferenceCountTraits is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:204: warning: Member TargetPtrType (typedef) of class Mezzanine::ReferenceCountTraits< IntrusiveRefCount > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:203: warning: Member TargetType (typedef) of class Mezzanine::ReferenceCountTraits< IntrusiveRefCount > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:207: warning: argument 'The' of command @param is not found in the argument list of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(PtrType Target)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:207: warning: The following parameters of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(PtrType Target) are not documented:
+  parameter 'Target'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:294: warning: Member ManagedType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:295: warning: Member PtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:298: warning: Member TargetPtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:297: warning: Member TargetType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:301: warning: Member ConstructionPointer(PtrType Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:311: warning: Member ManagedType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:312: warning: Member PtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:315: warning: Member TargetPtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:314: warning: Member TargetType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:318: warning: Member ConstructionPointer(PtrType Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:328: warning: Member ManagedType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:329: warning: Member PtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:332: warning: Member TargetPtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:331: warning: Member TargetType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:335: warning: Member ConstructionPointer(PtrType Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/inputstream.h:95: warning: Member operator>>(T &Data) (function) of class Mezzanine::ResourceInputStream is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:220: warning: Member GetArchiveTypeFromString(String FromString) (function) of class Mezzanine::ResourceManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:87: warning: Member AddAssetGroupName(String Name) (function) of class Mezzanine::ResourceManager is not documented.
@@ -909,13 +950,21 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/sound.h:69: warning: Member Type (variable) of class Mezzanine::Audio::Sound is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/sound.h:75: warning: return type of member Mezzanine::Audio::Sound::GetTypeVolume is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/soundset.h:89: warning: Member SerializableName() (function) of class Mezzanine::Audio::SoundSet is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:107: warning: return type of member Mezzanine::BinaryTools::Base64Encode is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:102: warning: argument 'Character' of command @param is not found in the argument list of Mezzanine::BinaryTools::IsBase64(unsigned char Char8)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:102: warning: The following parameters of Mezzanine::BinaryTools::IsBase64(unsigned char Char8) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:171: warning: argument 'Character' of command @param is not found in the argument list of Mezzanine::BinaryTools::IsBase64(unsigned char Char8)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:171: warning: The following parameters of Mezzanine::BinaryTools::IsBase64(unsigned char Char8) are not documented:
   parameter 'Char8'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:75: warning: Member BinaryBuffer(const BinaryBuffer &Other) (function) of class Mezzanine::BinaryTools::BinaryBuffer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:55: warning: unable to resolve reference to `ScriptCompilable' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:87: warning: parameters of member Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/crossplatform.h:91: warning: parameters of member Mezzanine::crossplatform::GetSDLOgreBinder are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: argument 'Axis' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: argument 'Angle' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: The following parameters of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent) are not documented:
+  parameter 'Rotation'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:154: warning: argument 'Trans' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::Translate(const Real X, const Real Y, const Real Z, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:154: warning: The following parameters of Mezzanine::Graphics::Bone::Translate(const Real X, const Real Y, const Real Z, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent) are not documented:
+  parameter 'X'
+  parameter 'Y'
+  parameter 'Z'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:70: warning: Member ConstViewportIterator (typedef) of class Mezzanine::Graphics::GameWindow is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:68: warning: Member ViewportContainer (typedef) of class Mezzanine::Graphics::GameWindow is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:69: warning: Member ViewportIterator (typedef) of class Mezzanine::Graphics::GameWindow is not documented.
@@ -937,7 +986,21 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:115: warning: parameters of member Mezzanine::Graphics::GameWindow::GetViewport are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:168: warning: parameters of member Mezzanine::Graphics::GameWindow::SetRenderOptions are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/material.h:67: warning: Member MID (variable) of class Mezzanine::Graphics::Material is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:65: warning: Member IMD (variable) of class Mezzanine::Graphics::Mesh is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:67: warning: Member ConstSubMeshIterator (typedef) of class Mezzanine::Graphics::Mesh is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:65: warning: Member SubMeshContainer (typedef) of class Mezzanine::Graphics::Mesh is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:66: warning: Member SubMeshIterator (typedef) of class Mezzanine::Graphics::Mesh is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:69: warning: Member IMD (variable) of class Mezzanine::Graphics::Mesh is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:70: warning: Member MeshSkel (variable) of class Mezzanine::Graphics::Mesh is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:71: warning: Member SubMeshes (variable) of class Mezzanine::Graphics::Mesh is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.h:65: warning: Member BoneContainer (typedef) of class Mezzanine::Graphics::Skeleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.h:66: warning: Member BoneIterator (typedef) of class Mezzanine::Graphics::Skeleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.h:67: warning: Member ConstBoneIterator (typedef) of class Mezzanine::Graphics::Skeleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.h:70: warning: Member ConstNamedBoneIterator (typedef) of class Mezzanine::Graphics::Skeleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.h:68: warning: Member NamedBoneContainer (typedef) of class Mezzanine::Graphics::Skeleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.h:69: warning: Member NamedBoneIterator (typedef) of class Mezzanine::Graphics::Skeleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.h:73: warning: Member Bones (variable) of class Mezzanine::Graphics::Skeleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.h:72: warning: Member ISD (variable) of class Mezzanine::Graphics::Skeleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.h:124: warning: return type of member Mezzanine::Graphics::Skeleton::_CreateBoneWrapper is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/texture.h:66: warning: Member ITD (variable) of class Mezzanine::Graphics::Texture is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/viewport.h:67: warning: Member OgreViewport (variable) of class Mezzanine::Graphics::Viewport is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/viewport.h:68: warning: Member Parent (variable) of class Mezzanine::Graphics::Viewport is not documented.
@@ -1213,7 +1276,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:149: warning: Found unknown command `\detail'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:84: warning: Found unknown command `\detail'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:91: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:196: warning: return type of member Mezzanine::Scripting::iScriptCompilable::IsCompilable is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:240: warning: return type of member Mezzanine::Scripting::iScriptCompilable::IsCompilable is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:149: warning: Found unknown command `\detail'
@@ -1222,6 +1285,8 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:103: warning: argument 'IniitialValue' of command @param is not found in the argument list of Mezzanine::Scripting::ScriptArgumentSpecific< T >::ScriptArgumentSpecific(T InitialValue)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:103: warning: The following parameters of Mezzanine::Scripting::ScriptArgumentSpecific::ScriptArgumentSpecific(T InitialValue) are not documented:
   parameter 'InitialValue'
+/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
+/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:135: warning: return type of member Mezzanine::Testing::UnitTestGroup::AddSuccessFromBool is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/tabset.h:51: warning: Member RenderableCollection (typedef) of namespace Mezzanine::UI is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/viewportupdatetool.h:52: warning: Member WidgetResult (typedef) of namespace Mezzanine::UI is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/activatable.h:62: warning: Member ConstListenerIterator (typedef) of class Mezzanine::UI::Activatable is not documented.
@@ -2313,5 +2378,3 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:127: warning: unable to resolve reference to `actorcontainer1' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:153: warning: unable to resolve reference to `Mezzanine::Character' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:176: warning: unable to resolve reference to `LuaManual' for \ref command
-error: problems opening rtf file /home/sqeaky/Code/Mezzanine/docs/doxygen/rtf/refman.rtf for reading
-An error occurred during post-processing the RTF files!

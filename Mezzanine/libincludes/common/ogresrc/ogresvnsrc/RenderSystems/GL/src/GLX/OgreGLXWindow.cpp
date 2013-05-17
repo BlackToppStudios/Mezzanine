@@ -83,14 +83,14 @@ namespace Ogre
 	{
 		Display* xDisplay = mGLSupport->getXDisplay();
 		
-		destroy();
-		
+        destroy();
+
 		// Ignore fatal XErrorEvents from stale handles.
-		oldXErrorHandler = XSetErrorHandler(safeXErrorHandler);
+        oldXErrorHandler = XSetErrorHandler(safeXErrorHandler);
 		
 		if (mWindow)
 		{
-			XDestroyWindow(xDisplay, mWindow);
+            XDestroyWindow(xDisplay, mWindow);
 		}
 		
 		if (mContext) 
@@ -98,8 +98,8 @@ namespace Ogre
 			delete mContext;
 		}
 		
-		XSetErrorHandler(oldXErrorHandler);
-		
+        XSetErrorHandler(oldXErrorHandler);
+
 		mContext = 0;
 		mWindow = 0;
 	}

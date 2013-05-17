@@ -63,7 +63,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////////////
             /// @brief This class is used to store a Lua script and in its source and compiled state.
             /// @details To execute this script use @ref LuaScriptingEngine::compile
-            class MEZZ_LIB Lua51Script : Mezzanine::Scripting::iScriptCompilable, Mezzanine::Scripting::iScriptMultipleReturn
+            class MEZZ_LIB Lua51Script : public virtual Mezzanine::Scripting::iScriptCompilable, public virtual Mezzanine::Scripting::iScriptMultipleReturn
             {
                 private:
                     // Makes passing internal data much easier and all Lua51 are logically encapsulated as a single system still.
@@ -82,7 +82,7 @@ namespace Mezzanine
                     /// @brief A set of the arguments being passed into the Lua script
                     ArgumentSet Args;
 
-                    /// @brief A set of all the values the Lua script returned teh last time it was executed.
+                    /// @brief A set of all the values the Lua script returned the last time it was executed.
                     ArgumentSet Returns;
 
                 public:
@@ -135,11 +135,31 @@ namespace Mezzanine
 
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetAllReturns
                     virtual ArgumentSet GetAllReturns() const;
+
+                    //For the CountedPointer Inheritance
+                public:
+                    /// @brief Get a pointer to the most Derived type of this class
+                    /// @return A pointer of the most derived pointing to this.
+                    virtual Lua51Script* GetMostDerived()
+                        { return this; }
             };
-
-
         } // Lua
     } // Scripting
+
+    /// @brief Marks Lua51Script for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::Lua::Lua51Script>
+    {
+        public:
+            typedef Scripting::Lua::Lua51Script RefCountType;
+            typedef Scripting::Lua::Lua51Script* PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+
+            enum { IsCastable = CastDynamic };
+
+    };
 } // Mezzanine
 
 

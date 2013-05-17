@@ -80,28 +80,33 @@ namespace Mezzanine
             IO_DIRECTORY_PERMISSION_EXCEPTION    = 0x01F02F04,    ///< When used a instance of DirectoryPermissionException is thrown. Thrown when permission is denied to a directory.
             IO_NETWORK_EXCEPTION                 = 0x01F03F00,    ///< When used a instance of NetworkException is thrown. Thrown when something unknown causes network IO to fail.
             IO_NETWORK_READ_EXCEPTION            = 0x01F03F01,    ///< When used a instance of NetworkReadException is thrown. Thrown when data could not be read from the network (downloads).
-            IO_NETWORK_WRITE_EXCEPTION           = 0x01F03F02,    ///< When used a instance of NetworkWriteException is thrown. Thrown when data could not be read from the network (i[loads).
+            IO_NETWORK_WRITE_EXCEPTION           = 0x01F03F02,    ///< When used a instance of NetworkWriteException is thrown. Thrown when data could not be read from the network (iloads).
             IO_NETWORK_NOT_FOUND_EXCEPTION       = 0x01F03F03,    ///< When used a instance of NetworkNotFoundException is thrown. Thrown when no network connection is available.
             IO_NETWORK_URL_EXCEPTION             = 0x01F03F04,    ///< When used a instance of NetworkURLException is thrown. Thrown when an address is invalid or could not be found.
             IO_NETWORK_PERMISSION_EXCEPTION      = 0x01F03F05,    ///< When used a instance of NetworkPermissionException is thrown. Thrown when permision was denied to a network interface or network resource.
-            IO_WRITE_EXCEPTION                   = 0x01F08F00,    ///< When used a instance of IOWriteException is thrown. Thrown when a write is happening but asoemthing has prevented teh underlying code from knowing what was writing.
-            IO_READ_EXCEPTION                    = 0x01F09F00,    ///< When used a instance of IOReadException is thrown. Thrown when a read is happening but asoemthing has prevented teh underlying code from knowing what was reading.
+            IO_WRITE_EXCEPTION                   = 0x01F08F00,    ///< When used a instance of IOWriteException is thrown. Thrown when a write is happening but something has prevented the underlying code from knowing what was writing.
+            IO_READ_EXCEPTION                    = 0x01F09F00,    ///< When used a instance of IOReadException is thrown. Thrown when a read is happening but something has prevented the underlying code from knowing what was reading.
+
             II_EXCEPTION                         = 0x02F00F00,    ///< When used a instance of InstanceIdentityException is thrown. Thrown when an unknown error with using an Identifier and it is invalid.
             II_IDENTITY_INVALID_EXCEPTION        = 0x02F01F00,    ///< When used a instance of InstanceIdentityInvalidException is thrown. Thrown when the identity string wasn't valid at all.
             II_IDENTITY_NOT_FOUND_EXCEPTION      = 0x02F02F00,    ///< When used a instance of InstanceIdentityNotFoundException is thrown. Thrown when the requested identity could not be found.
             II_DUPLICATE_IDENTITY_EXCEPTION      = 0x02F03F00,    ///< When used a instance of InstanceIdentityDuplicateException is thrown. Thrown when duplicates of teh same identity string exist.
+
             MM_EXCEPTION                         = 0x03F00F00,    ///< When used a instance of MemoryManagementException is thrown. Thrown when an unknown memory management exception occurs.
             MM_OUT_OF_MEMORY_EXCEPTION           = 0x03F01F00,    ///< When used a instance of OutOfMemoryException is thrown. Thrown when A memory allocation was attempted and failed.
             MM_OUT_OF_BOUNDS_EXCEPTION           = 0x03F02F00,    ///< When used a instance of MemoryOutOfBoundsException is thrown. Thrown when attempted to access something that really should note be accessed.
+
             SYNTAX_ERROR_EXCEPTION               = 0x04F00F00,    ///< When used a instance of SyntaxErrorException is thrown. Thrown when some kind of syntax exception
             SYNTAX_ERROR_EXCEPTION_XML           = 0x04F01F00,    ///< When used a instance of SyntaxErrorXMLException is thrown. Thrown when and XML document is being parsed but is invalid
             SYNTAX_ERROR_EXCEPTION_XPATH         = 0x04F02F00,    ///< When used a instance of SyntaxErrorXPathException is thrown. Thrown when an XPath query is being parsed but is invalid
             SYNTAX_ERROR_EXCEPTION_LUA           = 0x04F03F00,    ///< When used a instance of SyntaxErrorLuaException is thrown. Thrown when lua code in incorrect.
+
             SCRIPT_EXCEPTION                     = 0x05F00F00,    ///< When used a instance of ScriptException is thrown. Thrown when an unknown error happens with a script.
             SCRIPT_EXCEPTION_LUA                 = 0x05F01F00,    ///< When used a instance of ScriptLuaException is thrown. Thrown when an unknown error happens in a Lua script.
             SCRIPT_EXCEPTION_LUA_YIELD           = 0x05F01F01,    ///< When used a instance of ScriptLuaYieldException is thrown. Thrown when Lua returns a yield and it should not have.
             SCRIPT_EXCEPTION_LUA_RUNTIME         = 0x05F01F02,    ///< When used a instance of ScriptLuaRuntimeException is thrown. Thrown when a Lua script has a runtime error.
             SCRIPT_EXCEPTION_LUA_ERRERR          = 0x05F01F03,    ///< When used a instance of ScriptLuaErrErrException is thrown. Thrown when Lua has an error handling an error.
+
             ARITHMETIC_EXCEPTION                 = 0x00F01F00,    ///< When used a instance of ArithmeticException is thrown. Thrown when Math has failed.
             INVALID_PARAMETERS_EXCEPTION         = 0x00F02F00,    ///< When used a instance of InvalidParametersException is thrown. Thrown when parameters are checked at runtime and found invalid.
             INVALID_VERSION_EXCEPTION            = 0x00F03F00,    ///< When used a instance of InvalidVersionException is thrown. Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing.
@@ -109,7 +114,8 @@ namespace Mezzanine
             RENDERINGAPI_EXCEPTION               = 0x00F05F00,    ///< When used a instance of RenderingAPIException is thrown. Thrown when the graphics card/DirectX/OpenGL fail.
             RT_ASSERTION_EXCEPTION               = 0x00F06F00,    ///< When used a instance of RuntimeAssertionException is thrown. Thrown when a rutime assertion could have been thrown.
             INTERNAL_EXCEPTION                   = 0x00F07F00,    ///< When used a instance of InternalException is thrown. Thrown when an unknown internal error occurred.
-            NOT_IMPLEMENTED_EXCEPTION            = 0x00F08F00     ///< When used a instance of NotImplementedException is thrown. Thrown when we just have not coded a thing yet, but we knew what the API should look like.
+            NOT_IMPLEMENTED_EXCEPTION            = 0x00F08F00,    ///< When used a instance of NotImplementedException is thrown. Thrown when we just have not coded a thing yet, but we knew what the API should look like.
+            INVALID_ASSIGNMENT                   = 0x00F09F00     ///< When used a instance of InvalidAssignment is thrown. Then when a complex class is assigned to itself or other invalid assignments occur.
         };
 
         private:
@@ -187,6 +193,9 @@ namespace Mezzanine
     // Exception code class definitions.
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Exception code class definitions.
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// @brief Thrown when there was an issue with IO but very little was known about it.
     ///////////////////
     class MEZZ_LIB IOException : public Exception
@@ -202,7 +211,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         IOException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("IOException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -244,7 +253,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         FileException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : IOException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : IOException("FileException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -286,7 +295,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         FileReadException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : FileException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : FileException("FileReadException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -328,7 +337,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         FileWriteException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : FileException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : FileException("FileWriteException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -370,7 +379,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         FileNotFoundException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : FileException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : FileException("FileNotFoundException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -412,7 +421,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         FilePermissionException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : FileException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : FileException("FilePermissionException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -454,7 +463,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         DirectoryException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : IOException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : IOException("DirectoryException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -496,7 +505,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         DirectoryReadException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : DirectoryException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : DirectoryException("DirectoryReadException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -538,7 +547,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         DirectoryWriteException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : DirectoryException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : DirectoryException("DirectoryWriteException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -580,7 +589,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         DirectoryNotFoundException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : DirectoryException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : DirectoryException("DirectoryNotFoundException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -622,7 +631,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         DirectoryPermissionException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : DirectoryException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : DirectoryException("DirectoryPermissionException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -664,7 +673,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         NetworkException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : IOException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : IOException("NetworkException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -706,7 +715,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         NetworkReadException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : NetworkException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : NetworkException("NetworkReadException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -733,12 +742,12 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief Thrown when data could not be read from the network (i[loads).
+    /// @brief Thrown when data could not be read from the network (iloads).
     ///////////////////
     class MEZZ_LIB NetworkWriteException : public NetworkException
     {
     public:
-        /// @brief Thrown when data could not be read from the network (i[loads).
+        /// @brief Thrown when data could not be read from the network (iloads).
         static const Whole ExceptionCode = Exception::IO_NETWORK_WRITE_EXCEPTION;
 
         /// @brief Class constructor.
@@ -748,7 +757,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         NetworkWriteException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : NetworkException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : NetworkException("NetworkWriteException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -790,7 +799,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         NetworkNotFoundException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : NetworkException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : NetworkException("NetworkNotFoundException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -832,7 +841,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         NetworkURLException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : NetworkException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : NetworkException("NetworkURLException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -874,7 +883,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         NetworkPermissionException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : NetworkException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : NetworkException("NetworkPermissionException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -901,12 +910,12 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief Thrown when a write is happening but asoemthing has prevented teh underlying code from knowing what was writing.
+    /// @brief Thrown when a write is happening but something has prevented the underlying code from knowing what was writing.
     ///////////////////
     class MEZZ_LIB IOWriteException : public IOException
     {
     public:
-        /// @brief Thrown when a write is happening but asoemthing has prevented teh underlying code from knowing what was writing.
+        /// @brief Thrown when a write is happening but something has prevented the underlying code from knowing what was writing.
         static const Whole ExceptionCode = Exception::IO_WRITE_EXCEPTION;
 
         /// @brief Class constructor.
@@ -916,7 +925,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         IOWriteException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : IOException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : IOException("IOWriteException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -943,12 +952,12 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief Thrown when a read is happening but asoemthing has prevented teh underlying code from knowing what was reading.
+    /// @brief Thrown when a read is happening but something has prevented the underlying code from knowing what was reading.
     ///////////////////
     class MEZZ_LIB IOReadException : public IOException
     {
     public:
-        /// @brief Thrown when a read is happening but asoemthing has prevented teh underlying code from knowing what was reading.
+        /// @brief Thrown when a read is happening but something has prevented the underlying code from knowing what was reading.
         static const Whole ExceptionCode = Exception::IO_READ_EXCEPTION;
 
         /// @brief Class constructor.
@@ -958,7 +967,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         IOReadException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : IOException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : IOException("IOReadException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1000,7 +1009,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         InstanceIdentityException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("InstanceIdentityException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1042,7 +1051,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         InstanceIdentityInvalidException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : InstanceIdentityException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : InstanceIdentityException("InstanceIdentityInvalidException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1084,7 +1093,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         InstanceIdentityNotFoundException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : InstanceIdentityException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : InstanceIdentityException("InstanceIdentityNotFoundException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1126,7 +1135,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         InstanceIdentityDuplicateException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : InstanceIdentityException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : InstanceIdentityException("InstanceIdentityDuplicateException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1168,7 +1177,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         MemoryManagementException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("MemoryManagementException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1210,7 +1219,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         OutOfMemoryException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : MemoryManagementException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : MemoryManagementException("OutOfMemoryException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1252,7 +1261,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         MemoryOutOfBoundsException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : MemoryManagementException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : MemoryManagementException("MemoryOutOfBoundsException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1294,7 +1303,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         SyntaxErrorException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("SyntaxErrorException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1336,7 +1345,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         SyntaxErrorXMLException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : SyntaxErrorException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : SyntaxErrorException("SyntaxErrorXMLException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1378,7 +1387,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         SyntaxErrorXPathException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : SyntaxErrorException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : SyntaxErrorException("SyntaxErrorXPathException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1420,7 +1429,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         SyntaxErrorLuaException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : SyntaxErrorException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : SyntaxErrorException("SyntaxErrorLuaException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1462,7 +1471,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         ScriptException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("ScriptException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1504,7 +1513,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         ScriptLuaException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : ScriptException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : ScriptException("ScriptLuaException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1546,7 +1555,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         ScriptLuaYieldException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : ScriptLuaException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : ScriptLuaException("ScriptLuaYieldException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1588,7 +1597,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         ScriptLuaRuntimeException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : ScriptLuaException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : ScriptLuaException("ScriptLuaRuntimeException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1630,7 +1639,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         ScriptLuaErrErrException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : ScriptLuaException(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : ScriptLuaException("ScriptLuaErrErrException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1672,7 +1681,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         ArithmeticException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("ArithmeticException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1714,7 +1723,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         InvalidParametersException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("InvalidParametersException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1756,7 +1765,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         InvalidVersionException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("InvalidVersionException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1798,7 +1807,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         InvalidStateException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("InvalidStateException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1840,7 +1849,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         RenderingAPIException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("RenderingAPIException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1882,7 +1891,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         RuntimeAssertionException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("RuntimeAssertionException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1924,7 +1933,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         InternalException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("InternalException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1966,7 +1975,7 @@ namespace Mezzanine
         /// @param SrcFile The name of the file from which this originated.
         /// @param FileLine The line on the named file from which this originated.
         NotImplementedException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception(TypeName, Message, SrcFunction, SrcFile, FileLine)
+            : Exception("NotImplementedException", Message, SrcFunction, SrcFile, FileLine)
             {}
 
         /// @brief Class constructor.
@@ -1990,6 +1999,50 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<NotImplementedException::ExceptionCode>
         { typedef NotImplementedException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Then when a complex class is assigned to itself or other invalid assignments occur.
+    ///////////////////
+    class MEZZ_LIB InvalidAssignment : public Exception
+    {
+    public:
+        /// @brief Then when a complex class is assigned to itself or other invalid assignments occur.
+        static const Whole ExceptionCode = Exception::INVALID_ASSIGNMENT;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InvalidAssignment(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InvalidAssignment", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InvalidAssignment(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InvalidAssignment", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~InvalidAssignment() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return InvalidAssignment::ExceptionCode; }
+    }; //InvalidAssignment
+
+    /// @brief A template metaprogramming construct used to ensure that all required InvalidAssignment can be created at compile time if the compiler is clever.
+    template<>
+    struct MEZZ_LIB ExceptionFactory<InvalidAssignment::ExceptionCode>
+        { typedef InvalidAssignment Type; };
+
+
 
 
 

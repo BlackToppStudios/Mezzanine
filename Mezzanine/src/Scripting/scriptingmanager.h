@@ -81,7 +81,7 @@ namespace Mezzanine
                 /// @details In implementations it is expected that this will create a script
                 /// object, execute it and return it.
                 /// @return A Shared pointer to the created Script.
-                virtual CountedPtr<iScript> Execute(String ScriptSource) = 0;
+                virtual CountedPtr<iScript> Execute(const String& ScriptSource) = 0;
 
                 /// @brief Run the script.
                 /// @param ScriptToRun A shared ptr that points to a script to run.
@@ -100,6 +100,9 @@ namespace Mezzanine
 
                 /// @copydoc ManagerBase::GetInterfaceType()
                 virtual ManagerType GetInterfaceType() const;
+
+                /// @copydoc ManagerBase::GetImplementationTypeName()
+                virtual String GetImplementationTypeName() const = 0;
         }; //ScriptingManager
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -120,7 +123,7 @@ namespace Mezzanine
                 /// @brief Comvert a string into a Script that is compiled and ready for use.
                 /// @param SourceToCompile A string containing source code in the target language.
                 /// @return The Script compiled and ready for use.
-                virtual CountedPtr<iScriptCompilable> Compile(String SourceToCompile) = 0;
+                virtual CountedPtr<iScriptCompilable> Compile(const String& SourceToCompile) = 0;
         };
 
     }// Scripting

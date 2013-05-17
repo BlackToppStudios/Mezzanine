@@ -111,7 +111,10 @@ namespace Mezzanine
         }
 
         void UnitTestGroup::AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior)
-            { AddTestResult(TestData(Fresh,Meat),Behavior); }
+        {
+            std::cout << "Noting result of " << Fresh << " as " << TestResultToString(Meat) << std::endl;
+            AddTestResult(TestData(Fresh,Meat),Behavior);
+        }
 
         const UnitTestGroup& UnitTestGroup::operator+=(const UnitTestGroup& rhs)
         {
@@ -124,7 +127,7 @@ namespace Mezzanine
         void UnitTestGroup::DisplayResults(std::ostream& Output, bool Summary, bool FullOutput, bool HeaderOutput)
         {
             std::vector<unsigned int> TestCounts; // This will store the counts of the Sucesses, failures, etc...
-            TestCounts.insert(TestCounts.end(),1+(unsigned int)Unknown, 0); //Fill with the exact amount of 0s
+            TestCounts.insert(TestCounts.end(),1+(unsigned int)NotApplicable, 0); //Fill with the exact amount of 0s
 
             if(FullOutput && HeaderOutput) // No point in displaying the header without the other content.
             {

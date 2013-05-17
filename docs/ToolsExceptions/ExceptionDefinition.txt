@@ -12,13 +12,13 @@ IO_DIRECTORY_NOT_FOUND_EXCEPTION       0x01F02F03   DirectoryNotFoundException  
 IO_DIRECTORY_PERMISSION_EXCEPTION      0x01F02F04   DirectoryPermissionException              DirectoryException                 Thrown when permission is denied to a directory.
 IO_NETWORK_EXCEPTION                   0x01F03F00   NetworkException                          IOException                        Thrown when something unknown causes network IO to fail.
 IO_NETWORK_READ_EXCEPTION              0x01F03F01   NetworkReadException                      NetworkException                   Thrown when data could not be read from the network (downloads).
-IO_NETWORK_WRITE_EXCEPTION             0x01F03F02   NetworkWriteException                     NetworkException                   Thrown when data could not be read from the network (i[loads).
+IO_NETWORK_WRITE_EXCEPTION             0x01F03F02   NetworkWriteException                     NetworkException                   Thrown when data could not be read from the network (iloads).
 IO_NETWORK_NOT_FOUND_EXCEPTION         0x01F03F03   NetworkNotFoundException                  NetworkException                   Thrown when no network connection is available.
 IO_NETWORK_URL_EXCEPTION               0x01F03F04   NetworkURLException                       NetworkException                   Thrown when an address is invalid or could not be found.
 IO_NETWORK_PERMISSION_EXCEPTION        0x01F03F05   NetworkPermissionException                NetworkException                   Thrown when permision was denied to a network interface or network resource.
 #
-IO_WRITE_EXCEPTION                     0x01F08F00   IOWriteException                          IOException                        Thrown when a write is happening but asoemthing has prevented teh underlying code from knowing what was writing.
-IO_READ_EXCEPTION                      0x01F09F00   IOReadException                           IOException                        Thrown when a read is happening but asoemthing has prevented teh underlying code from knowing what was reading.
+IO_WRITE_EXCEPTION                     0x01F08F00   IOWriteException                          IOException                        Thrown when a write is happening but something has prevented the underlying code from knowing what was writing.
+IO_READ_EXCEPTION                      0x01F09F00   IOReadException                           IOException                        Thrown when a read is happening but something has prevented the underlying code from knowing what was reading.
 #
 II_EXCEPTION                           0x02F00F00   InstanceIdentityException                 Exception                          Thrown when an unknown error with using an Identifier and it is invalid.
 II_IDENTITY_INVALID_EXCEPTION          0x02F01F00   InstanceIdentityInvalidException          InstanceIdentityException          Thrown when the identity string wasn't valid at all.
@@ -48,3 +48,4 @@ RENDERINGAPI_EXCEPTION                 0x00F05F00   RenderingAPIException       
 RT_ASSERTION_EXCEPTION                 0x00F06F00   RuntimeAssertionException                 Exception                          Thrown when a rutime assertion could have been thrown.
 INTERNAL_EXCEPTION                     0x00F07F00   InternalException                         Exception                          Thrown when an unknown internal error occurred.
 NOT_IMPLEMENTED_EXCEPTION              0x00F08F00   NotImplementedException                   Exception                          Thrown when we just have not coded a thing yet, but we knew what the API should look like.
+INVALID_ASSIGNMENT                     0x00F09F00   InvalidAssignment                         Exception                          Then when a complex class is assigned to itself or other invalid assignments occur.

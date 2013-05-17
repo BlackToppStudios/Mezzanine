@@ -86,7 +86,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::EventRenderTim
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventRenderTime& Ev)
 {
     Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventRenderTime", OneTag) );
+    Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventRenderTime", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 

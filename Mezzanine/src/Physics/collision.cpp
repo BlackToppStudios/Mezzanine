@@ -250,7 +250,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::Colli
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Collision& Col)
 {
     Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventCollision", OneTag) );
+    Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventCollision", OneTag) );
 
     Doc->GetFirstChild() >> Col;
 

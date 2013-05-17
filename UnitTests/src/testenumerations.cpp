@@ -57,6 +57,8 @@ namespace Mezzanine
             {
                 case Success:
                     return SuccessString;
+                case Warning:
+                    return WarningString;
                 case Skipped:
                     return SkippedString;
                 case Cancelled:
@@ -88,6 +90,11 @@ namespace Mezzanine
                         { return Skipped; }
                     else
                         { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(S) " + Text); }
+                case 'W':
+                    if ( WarningString == Text )
+                        { return Warning;}
+                    else
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(W) " + Text); }
                 case 'C':
                     if ( CancelledString == Text )
                         { return Cancelled;}

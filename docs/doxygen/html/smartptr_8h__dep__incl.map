@@ -1,12 +1,43 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h">
-<area shape="rect" id="node3" href="$objectsettings_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/objectsettings.h" alt="" coords="241,326,441,370"/>
-<area shape="rect" id="node7" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="413,521,613,565"/>
-<area shape="rect" id="node12" href="$stringtool_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/stringtool.h" alt="" coords="525,326,725,370"/>
-<area shape="rect" id="node18" href="$scriptargument_8h.xhtml" title="This file has the interfaces for Script Arguments and the associated dependency chain." alt="" coords="688,99,888,159"/>
-<area shape="rect" id="node23" href="$script_8h.xhtml" title="This file has the interfaces for Scripts and tag derived classes." alt="" coords="851,209,1051,269"/>
-<area shape="rect" id="node5" href="$audiomanager_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/audiomanager.h" alt="" coords="5,427,208,471"/>
-<area shape="rect" id="node9" href="$graphicsmanager_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/graphicsmanager.h" alt="" coords="232,427,451,471"/>
-<area shape="rect" id="node14" href="$entresol_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.h" alt="" coords="576,427,776,471"/>
-<area shape="rect" id="node20" href="$scripting_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/scripting.h" alt="" coords="800,427,1000,471"/>
-<area shape="rect" id="node26" href="$scriptingmanager_8h.xhtml" title="This file has the interfaces for Scripting managers and the associated dependency chain..." alt="" coords="800,318,1000,378"/>
+<area shape="rect" id="node3" href="$serialization_8h.xhtml" title="The interface for serialization." alt="" coords="1325,107,1525,151"/>
+<area shape="rect" id="node7" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="4345,614,4545,658"/>
+<area shape="rect" id="node93" href="$objectsettings_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/objectsettings.h" alt="" coords="4572,427,4772,471"/>
+<area shape="rect" id="node101" href="$stringtool_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/stringtool.h" alt="" coords="4796,427,4996,471"/>
+<area shape="rect" id="node107" href="$scriptargument_8h.xhtml" title="This file has the interfaces for Script Arguments and the associated dependency chain." alt="" coords="4791,99,4991,159"/>
+<area shape="rect" id="node112" href="$script_8h.xhtml" title="This file has the interfaces for Scripts and tag derived classes." alt="" coords="4931,209,5131,269"/>
+<area shape="rect" id="node5" href="$actorserializer_8h.xhtml" title="This is where the declarations of any Serializers or DeSerializers for actors will go..." alt="" coords="5,217,205,261"/>
+<area shape="rect" id="node36" href="$collisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collisionshape.h" alt="" coords="2483,217,2733,261"/>
+<area shape="rect" id="node9" href="$consolelogic_8h.xhtml" title="The defintion of items important a commandline tool to work correctly without need to be available to..." alt="" coords="4157,894,4357,938"/>
+<area shape="rect" id="node21" href="$testdata_8h.xhtml" title="TestData, TestDataStorage and UnitTestGroup class definitions." alt="" coords="4208,801,4408,845"/>
+<area shape="rect" id="node25" href="$testenumerations_8h.xhtml" title="Enumerations and constant values associated with the Unit tests." alt="" coords="4339,707,4552,751"/>
+<area shape="rect" id="node29" href="$testtools_8h.xhtml" title="Some random function to ease the lives of test developers." alt="" coords="4483,801,4683,845"/>
+<area shape="rect" id="node32" href="$consolestringmanipulation_8h.xhtml" title="Some string manipulation functions geared towards console output for use in the Unit Tests..." alt="" coords="4575,894,4836,938"/>
+<area shape="rect" id="node11" href="$main_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/src/main.h" alt="" coords="4345,987,4545,1031"/>
+<area shape="rect" id="node13" href="$boilerplatetests_8h.xhtml" title="this file should be used as template for building future Unit Tests" alt="" coords="3983,1081,4193,1125"/>
+<area shape="rect" id="node15" href="$compilerflagtests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/compilerflagtests.h" alt="" coords="4217,1081,4439,1125"/>
+<area shape="rect" id="node17" href="$lua51tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/lua51tests.h" alt="" coords="4463,1081,4663,1125"/>
+<area shape="rect" id="node19" href="$vector3tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/vector3tests.h" alt="" coords="4687,1081,4887,1125"/>
+<area shape="rect" id="node38" href="$collisionshapemanager_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/collisionshapemanager.h" alt="" coords="4088,521,4339,565"/>
+<area shape="rect" id="node41" href="$physics_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/physics.h" alt="" coords="2483,521,2683,565"/>
+<area shape="rect" id="node44" href="$compoundcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/compoundcollisionshape.h" alt="" coords="2261,326,2571,370"/>
+<area shape="rect" id="node47" href="$fieldcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/fieldcollisionshape.h" alt="" coords="2821,326,3093,370"/>
+<area shape="rect" id="node56" href="$meshcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/meshcollisionshape.h" alt="" coords="3677,326,3957,370"/>
+<area shape="rect" id="node68" href="$primitivecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/primitivecollisionshape.h" alt="" coords="1272,326,1571,370"/>
+<area shape="rect" id="node50" href="$heightfieldcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/heightfieldcollisionshape.h" alt="" coords="2645,427,2952,471"/>
+<area shape="rect" id="node53" href="$planecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/planecollisionshape.h" alt="" coords="2976,427,3256,471"/>
+<area shape="rect" id="node58" href="$actorsoftcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/actorsoftcollisionshape.h" alt="" coords="3331,427,3629,471"/>
+<area shape="rect" id="node61" href="$dynamicmeshcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/dynamicmeshcollisionshape.h" alt="" coords="3653,427,3981,471"/>
+<area shape="rect" id="node65" href="$staticmeshcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/staticmeshcollisionshape.h" alt="" coords="4005,427,4317,471"/>
+<area shape="rect" id="node70" href="$boxcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/boxcollisionshape.h" alt="" coords="981,427,1251,471"/>
+<area shape="rect" id="node73" href="$capsulecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/capsulecollisionshape.h" alt="" coords="1275,427,1568,471"/>
+<area shape="rect" id="node76" href="$conecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/conecollisionshape.h" alt="" coords="1592,427,1869,471"/>
+<area shape="rect" id="node79" href="$convexhullcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/convexhullcollisionshape.h" alt="" coords="1893,427,2203,471"/>
+<area shape="rect" id="node82" href="$cylindercollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/cylindercollisionshape.h" alt="" coords="2227,427,2520,471"/>
+<area shape="rect" id="node85" href="$multispherecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/multispherecollisionshape.h" alt="" coords="280,427,595,471"/>
+<area shape="rect" id="node89" href="$spherecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/spherecollisionshape.h" alt="" coords="619,427,907,471"/>
+<area shape="rect" id="node95" href="$audiomanager_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/audiomanager.h" alt="" coords="4413,521,4616,565"/>
+<area shape="rect" id="node98" href="$graphicsmanager_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/graphicsmanager.h" alt="" coords="4640,521,4859,565"/>
+<area shape="rect" id="node103" href="$entresol_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.h" alt="" coords="4933,521,5133,565"/>
+<area shape="rect" id="node109" href="$scripting_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/scripting.h" alt="" coords="5020,427,5220,471"/>
+<area shape="rect" id="node115" href="$scriptingmanager_8h.xhtml" title="This file has the interfaces for Scripting managers and the associated dependency chain..." alt="" coords="4883,318,5083,378"/>
 </map>

@@ -41,24 +41,8 @@
 #include "autodetect.h"
 #include "main.h"
 
-// 4. When adding new tests - Add the new file to the includes in unittests/main.cpp
-/*#include "actortests.h"
-#include "collisionshapetests.h"
-#include "compilerflagtests.h"
-#include "constrainttests.h"
-#include "eventmanagertests.h"
-#include "lua51tests.h"
-#include "notatest.h"
-#include "metacodetests.h"
-#include "particleeffecttests.h"
-#include "scenemanagertests.h"
-#include "smartptrtests.h"
-#include "transformtests.h"
-#include "vector2tests.h"
-#include "vector3tests.h"
-#include "worldnodetests.h"
-*/
 #include <cstdlib> // For system
+#include <fstream>
 
 static const String MemSpaceArg("inthismemoryspacetheworkshallbedone");
 Mezzanine::String CommandName;
@@ -74,7 +58,7 @@ class AllUnitTestGroups : public UnitTestGroup
         GlobalCoreTestGroup& TestGroups;
 
         AllUnitTestGroups(GlobalCoreTestGroup& GlobalTestGroups) :
-            RunAll(false),
+            RunAll(true),
             RunAutomaticTests(false),
             RunInteractiveTests(false),
             ExecuteInThisMemorySpace(false),
@@ -86,8 +70,8 @@ class AllUnitTestGroups : public UnitTestGroup
 
         virtual void RunTests()
         {
-            if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running all tests if no type of test is specified
-                { RunAutomaticTests=true; RunInteractiveTests=true; }
+            if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running automatic tests if no type of test is specified
+                { RunAutomaticTests=true;  }
 
             if (RunAll)
             {
@@ -144,6 +128,7 @@ class AllUnitTestGroups : public UnitTestGroup
 int main (int argc, char** argv)
 {
     GlobalCoreTestGroup TestGroups;
+    bool WriteFile = true;
 
     if( !system( NULL ) ) // If this is not being run from a shell somehow, then using system() to run this task in a new process is not really possible.
     {
@@ -151,36 +136,13 @@ int main (int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here too
-
-    // 5. When adding new tests - Add the line to create a new UnitTest in the TestGroup Container in the main function
-    /*TestGroups["actor"] = new ActorTests;
-    TestGroups["collisionshape"] = new CollisionShapeTests;
-    TestGroups["compilerflag"] = new CompilerFlagTests;
-    TestGroups["constraint"] = new ConstraintTests;
-    TestGroups["eventmanager"] = new EventManagerTests;
-    TestGroups["lua5.1"] = new Lua51Tests;
-    TestGroups["metacode"] = new MetaCodeTests;
-    TestGroups["notatest"] = new notatestTests;
-    TestGroups["particleeffect"] = new ParticleEffectTests;
-    TestGroups["scenemanager"] = new SceneManagerTests;
-    TestGroups["smartptr"] = new SmartPtrTests;
-    TestGroups["transform"] = new TransformTests;
-    TestGroups["vector2"] = new Vector2Tests;
-    TestGroups["vector3"] = new Vector3Tests;
-    TestGroups["worldnode"] = new WorldNodeTests;
-    */
-
     // Display everything, or just a Summary or neither? Should this process do the work, or should we spawn a new process.
     bool FullDisplay = true, SummaryDisplay = true;
 
     if (argc > 0) //Not really sure how this would happen, but I would rather test for it than have it fail
         { CommandName=argv[0]; }
     else
-    { return Usage("UnitTestGroups", TestGroups); }
-
-    if (argc == 1)
-        { return Usage(CommandName, TestGroups); }
+        { return Usage("UnitTestGroups", TestGroups); }
 
     AllUnitTestGroups Runner(TestGroups);
 
@@ -194,20 +156,25 @@ int main (int argc, char** argv)
         else if(ThisArg=="testlist")
             { return PrintList(TestGroups); }
         else if(ThisArg=="interactive")
-            { Runner.RunInteractiveTests=true; }
+            { Runner.RunInteractiveTests=true; Runner.RunAll=false; }
         else if(ThisArg=="automatic")
-            { Runner.RunAutomaticTests=true; }
+            { Runner.RunAutomaticTests=true; Runner.RunAll=false; }
         else if(ThisArg=="all")
             { Runner.RunAll=true; }
         else if(ThisArg=="summary")
             { FullDisplay = false, SummaryDisplay = true; }
+        else if(ThisArg=="skipfile")
+            { WriteFile = false; }
         else  // Wasn't a command so it is either gibberish or a test group
         {
-            if(TestGroups[ThisArg.c_str()]) //pointer returned form the tesgroup will be null if gibberish
+            try
             {
+                TestGroups.at(ThisArg.c_str());
+                Runner.RunAll=false;
                 Runner.TestGroupsToRun.push_back(AllLower(argv[c]));
-            }else{
+            } catch ( const std::out_of_range& e) {
                 std::cerr << ThisArg << " is not a valid testgroup or parameter." << std::endl;
+                Usage(CommandName, TestGroups);
                 return ExitInvalidArguments;
             }
         }
@@ -215,6 +182,13 @@ int main (int argc, char** argv)
 
     Runner.RunTests();
 
+    if(WriteFile)
+    {
+        String FileName("TestResults.txt");
+        std::ofstream OutFile(FileName.c_str());
+        Runner.DisplayResults(OutFile,SummaryDisplay,FullDisplay);
+        OutFile.close();
+    }
     Runner.DisplayResults(std::cout,SummaryDisplay,FullDisplay);
 
     return ExitSuccess;

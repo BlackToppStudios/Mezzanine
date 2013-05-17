@@ -110,6 +110,23 @@ namespace Mezzanine
         /// @param ActualWidth The modified value of the rendering width, after window decorations have been taken into account.
         /// @param ActualHeight The modified value of the rendering height, after window decorations have been taken into account.
         void MEZZ_LIB SanitizeWindowedRes(const Whole& Width, const Whole& Height, Whole& ActualWidth, Whole& ActualHeight);
+
+        /// @brief Get a timestamp.
+        /// @warning On some platforms this requires a static initialization, an can cause undefined behavior if called before static initializations are complete
+        /// @return The largest size integer containing a timestamp that can be compared to other timestamps, but hads no guarantees for external value.
+        MaxInt MEZZ_LIB GetTimeStamp();
+
+        /// @brief Get the resolution of the timestamp in microseconds.
+        /// @return A Whole which returns in millionths of a second the smallest unit of time that GetTimeStamp can measure.
+        Whole MEZZ_LIB GetTimeStampResolution();
+
+        /// @brief Get the amount of logical processors, a reasononable amount to use for thread creation.
+        /// @details This returns whatever your OS thinks is the count of CPUs. This could include
+        /// Hyperthreading unit on Intel's chip, or it might not, it could include the threads from
+        /// Niagra CPUs or it might not, it could return just about any value on a given piece of
+        /// and should return a reasonable value for how many threads should be used.
+        /// @return A Whole containing the amount of processors.
+        Whole MEZZ_LIB GetCPUCount();
     }
 }
 #endif

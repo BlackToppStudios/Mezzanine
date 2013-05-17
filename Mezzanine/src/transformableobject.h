@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -229,6 +229,6 @@ namespace Mezzanine
             /// @param Z The scaling factor to apply on the Z axis.
             virtual void Scale(const Real X, const Real Y, const Real Z) = 0;
     };//TransformableObject
-};//Mezzanine
+}//Mezzanine
 
 #endif

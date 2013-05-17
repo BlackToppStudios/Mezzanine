@@ -284,7 +284,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Light& Ev)
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Light& Ev)
 {
     Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "Light", OneTag) );
+    Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "Light", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 
