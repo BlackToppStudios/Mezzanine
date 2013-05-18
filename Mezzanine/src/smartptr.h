@@ -61,10 +61,11 @@ namespace Mezzanine
     {
         CastNoneError        = -2,      ///< No Casting, any cast attempt results in a compilation Error.
         CastNoneReturnZero   = -1,      ///< No Casting, 0 is returned. Useful when types are unknown and dynamic casts are already used and checked.
-        CastSimpleStatic     = 1,       ///< A static cast from the pointer as provided with no attempt to calls functions on the pointer target, this is default for externally reference counted pointers
-        CastSimpleDynamic    = 2,       ///< A dynamic cast from the pointer as provided with no attempt to calls functions on the pointer target, this is default for externally reference counted pointers
-        CastDynamic          = 3,       ///< Dynamic Casting from most derived class, the class must provide a 'virtual something* GetMostDerived()' and its return must be dynamically upcast to a more base class.
-        CastStatic           = 4        ///< Static Casting from most dervied class, the class provides a 'virtual something* GetMostDerived()' and its return can be statically upcast to a more base class.
+        CastImplicit         = 1,       ///< Does no casting, but keeps types distinct. This should allow implicit casts to more base types, and disallow casts to derived types.
+        CastSimpleStatic     = 2,       ///< A static cast from the pointer as provided with no attempt to calls functions on the pointer target, this is default for externally reference counted pointers.
+        CastSimpleDynamic    = 3,       ///< A dynamic cast from the pointer as provided with no attempt to calls functions on the pointer target, this is default for externally reference counted pointers.
+        CastDynamic          = 4,       ///< Dynamic Casting from most derived class, the class must provide a 'virtual something* GetMostDerived()' and its return must be dynamically upcast to a more base class.
+        CastStatic           = 5        ///< Static Casting from most dervied class, the class provides a 'virtual something* GetMostDerived()' and its return can be statically upcast to a more base class.
     };
 
     // Forward Declares Just about everything in this file
@@ -323,7 +324,8 @@ namespace Mezzanine
             template <typename OtherPointer>
             CountedPtr(const CountedPtr<OtherPointer>& Original) throw() : _ReferenceCounter(NULL)
             {
-                Acquire( CountedPtr<TypePointedTo>(Original)._ReferenceCounter );
+                //Acquire( CountedPtr<TypePointedTo>(Original)._ReferenceCounter );
+                Acquire( Original.GetReferenceCount() );
             }
 
             /// @brief Reset this to point at nothing.
@@ -357,7 +359,7 @@ namespace Mezzanine
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
             /// @return The amount of references which still exist, or 0 if the reference counter is somehow invalid.
             /// @throw Nothing This member function does not throws exceptions.
-            Whole use_count() throw()
+            Whole use_count() const throw()
                 { return _ReferenceCounter ? _ReferenceCounter->GetReferenceCount() : 0; }
 
             /// @brief Assignement operator
@@ -405,22 +407,36 @@ namespace Mezzanine
             /// object and are part of the same group of CountedPtr managing that object.
             /// @param Other The CountedPtr on the right hand side of the ==
             /// @return This returns true if this and Other use the same reference count and pointer.
-            bool operator==(const CountedPtr& Other)
+            bool operator==(const CountedPtr& Other) const throw()
                 { return Other._ReferenceCounter == _ReferenceCounter; }
 
             /// @brief Returns true if this pointer points to something.
-            /// @warning Without C++11 this can be accidentally cast to a bool and can do sill things.
-            operator bool()
+            /// @warning Without C++11 this can be accidentally easily be cast to a bool and can do sill things.
+            operator bool() const throw()
                 { return 0 != _ReferenceCounter; }
+
+            /// @internal
+            /// @brief Get the internal Reference count
+            /// @return A pointer to internal reference count of this pointer.
+            RefCountType* GetReferenceCount() const throw()
+                { return _ReferenceCounter; }
     };
 
     /// @internal
-    /// @brief The default implementation for CountedPtr casting Simply throws an exception
-    /// @details This Should never actually get called. Though it is the default template instance
+    /// @brief This is used as to determine how a CountedPtr performs castin between pointer types internally.
+    /// @details The default implementation for internal casting in the CountedPtr  Simply throws an exception.
+    /// @n @n
+    /// This Should never actually get called. Though it is the default template instance
     /// the default ReferenceCountTraits uses the CastNoneError specialization of this template.
-    /// @param ReturnPointer
-    /// @param OriginalPointer
-    /// @param CountedPointerCastingState
+    /// @n @n
+    /// The ReferenceCountTraits for the CountedPtr<Type> should declare what kind castint should be used by
+    /// declaring an enumeration called 'IsCastable' and assigning the desired casting type.
+    /// @code
+    /// enum { IsCastable = CastStatic };
+    /// @endcode
+    /// @param ReturnPointer The type of pointer that the functions on the CountedPtr must return
+    /// @param OriginalPointer The actual type the CountedPtr is maintaining as a target.
+    /// @param CountedPointerCastingState Any value in the @ref CountedPointerCastingState to indicate kind of casting.
     /// @details For any case that uses CastNoneError including the default.
     template <typename ReturnPointer, typename OriginalPointer, CountedPointerCastingState>
     class CountedPtrCastImpl
@@ -467,6 +483,23 @@ namespace Mezzanine
             /// @return Always 0
             static ReturnPointer Cast(OriginalPointer)
                 { return ReturnPointer(0); }
+    };
+
+    /// @internal
+    /// @brief An implementation of the CountedPtrCast that casts the passed pointer. Reached by putting CastSimpleStatic in the ReferenceCountTraits of the target class.
+    /// @param ReturnPointer The type of the pointer to target with the static cast
+    /// @param OriginalPointer The type of the pointer prior to casting.
+    template <typename ReturnPointer, typename OriginalPointer>
+    class CountedPtrCastImpl <ReturnPointer, OriginalPointer, CastImplicit>
+    {
+        public:
+            /// @internal
+            /// @brief Simply static cast the passed pointer.
+            /// @param Original the passed pointer.
+            /// @return The pointer after the cast.
+            /// @note This will almost certainly never actually exists as a function, in even basic testing the compiles completely optimizes this out during compilation.
+            static ReturnPointer Cast(OriginalPointer Original)
+                { return static_cast<ReturnPointer>(Original); }
     };
 
     /// @internal
@@ -590,7 +623,7 @@ namespace Mezzanine
     template <typename ReturnType, typename OtherPointerTargetType>
     CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original)
     {
-        return CountedPtr<ReturnType>();
+        return CountedPtr<ReturnType>(Original);
         /*return  CountedPtr<ReturnType>
                 (
                     CountedPtrCastImpl

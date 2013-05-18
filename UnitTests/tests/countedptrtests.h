@@ -547,7 +547,7 @@ class countedptrtests : public UnitTestGroup
                     MaxInt End;
 
 
-                    const Whole TestCount=10000000;
+                    const Whole TestCount=100000;
 
                     /////////////////////////////////////
                     // Create tests
