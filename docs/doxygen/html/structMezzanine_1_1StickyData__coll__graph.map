@@ -24,6 +24,6 @@
 <area shape="rect" id="node59" href="$classMezzanine_1_1Graphics_1_1SubMesh.xhtml" title="This class represents a sub&#45;section of an overall mesh." alt="" coords="991,193,1129,237"/>
 <area shape="rect" id="node61" href="$classMezzanine_1_1AttachableParent.xhtml" title="Base class for objects that can have attachables attached to them." alt="" coords="236,419,425,447"/>
 <area shape="rect" id="node63" href="$classMezzanine_1_1AttachableBase.xhtml" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="261,99,440,127"/>
-<area shape="rect" id="node74" href="$classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml" title="Create simple but specific limits on any axis of movement or rotation." alt="" coords="225,1099,383,1143"/>
-<area shape="rect" id="node76" href="$classMezzanine_1_1Physics_1_1DualTransformConstraint.xhtml" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi..." alt="" coords="221,961,392,1005"/>
+<area shape="rect" id="node74" href="$classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml" title="Create simple but specific limits on any axis of movement or rotation." alt="" coords="229,1115,387,1159"/>
+<area shape="rect" id="node76" href="$classMezzanine_1_1Physics_1_1DualTransformConstraint.xhtml" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi..." alt="" coords="224,961,395,1005"/>
 </map>

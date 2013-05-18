@@ -1,3 +1,22 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space." alt="" coords="5,5,139,33"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1AttachableBase.xhtml" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="7,215,185,243"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1AttachableChild.xhtml" title="This class is the base class for objects that can be attached to AttachableParent." alt="" coords="240,165,419,193"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1AttachableParent.xhtml" title="Base class for objects that can have attachables attached to them." alt="" coords="235,266,424,294"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1AreaEffect.xhtml" title="This class is used to define area&#39;s in the world that have unique effects." alt="" coords="705,81,852,109"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1Camera.xhtml" title="This is the camera class." alt="" coords="495,63,628,91"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1Entity.xhtml" title="This class is useful for representing graphical bodies without a physics representation." alt="" coords="501,114,621,142"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1Light.xhtml" title="This class is the class used for dynamic lighting within the scene." alt="" coords="503,165,620,193"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1ParticleEffect.xhtml" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions." alt="" coords="479,215,644,243"/>
+<area shape="rect" id="node23" href="$classMezzanine_1_1WorldNode.xhtml" title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails..." alt="" coords="485,266,637,294"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1FieldOfForce.xhtml" title="This is field that applies force in a direction, and doesn&#39;t tamper with gravity." alt="" coords="908,5,1071,33"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1GravityField.xhtml" title="This is a gravity field implementation of the AreaEffect class." alt="" coords="911,55,1068,83"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1GravityWell.xhtml" title="This is a gravity well implementation of the AreaEffect class." alt="" coords="912,106,1067,134"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1TestAE.xhtml" title="This is a dummy class to test if the AE field works. Details will be output to the log..." alt="" coords="924,157,1055,185"/>
+<area shape="rect" id="node27" href="$classMezzanine_1_1NonStaticWorldObject.xhtml" title="This is a small extention of the WorldObject class that adds features common to non&#45;static objects..." alt="" coords="472,317,651,361"/>
+<area shape="rect" id="node29" href="$classMezzanine_1_1ActorBase.xhtml" title="This is the base class from which all the actors inherit." alt="" coords="704,325,853,353"/>
+<area shape="rect" id="node31" href="$classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects." alt="" coords="915,299,1064,327"/>
+<area shape="rect" id="node33" href="$classMezzanine_1_1ActorSoft.xhtml" title="This is the actor class for Soft Objects." alt="" coords="917,350,1061,378"/>
+<area shape="rect" id="node36" href="$classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="249,354,409,382"/>
+<area shape="rect" id="node39" href="$classMezzanine_1_1TerrainBase.xhtml" title="This is the base class from which all the terrains inherit." alt="" coords="483,383,640,411"/>
+<area shape="rect" id="node41" href="$classMezzanine_1_1MeshTerrain.xhtml" title="Mezzanine::MeshTerrain" alt="" coords="699,383,859,411"/>
 </map>

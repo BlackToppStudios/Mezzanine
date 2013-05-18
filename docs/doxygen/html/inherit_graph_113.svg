@@ -10,10 +10,10 @@
 <title>Graphical Class Hierarchy</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Resource_1_1Asset.xhtml" target="_top" xlink:title="Mezzanine::Resource\l::Asset">
+<a xlink:href="classMezzanine_1_1Resource_1_1TextSettingsFile.xhtml" target="_top" xlink:title="Mezzanine::Resource\l::TextSettingsFile">
 <polygon fill="none" stroke="black" points="0.5,-0 0.5,-32 107.5,-32 107.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Resource</text>
-<text text-anchor="middle" x="54" y="-7" font-family="FreeSans" font-size="10.00">::Asset</text>
+<text text-anchor="middle" x="54" y="-7" font-family="FreeSans" font-size="10.00">::TextSettingsFile</text>
 </a>
 </g>
 </g>

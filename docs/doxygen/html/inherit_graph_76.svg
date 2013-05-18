@@ -10,10 +10,10 @@
 <title>Graphical Class Hierarchy</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Skeleton.xhtml" target="_top" xlink:title="This class encapsulates the Skeletal animation functionality of a Mesh.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1Viewport.xhtml" target="_top" xlink:title="This class is for creating and managing viewports within a game window.">
 <polygon fill="none" stroke="black" points="0.5,-0 0.5,-32 105.5,-32 105.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
-<text text-anchor="middle" x="53" y="-7" font-family="FreeSans" font-size="10.00">::Skeleton</text>
+<text text-anchor="middle" x="53" y="-7" font-family="FreeSans" font-size="10.00">::Viewport</text>
 </a>
 </g>
 </g>

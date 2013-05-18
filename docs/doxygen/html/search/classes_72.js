@@ -10,7 +10,6 @@ var searchData=
   ['referencecounttraits_3c_20scripting_3a_3aiscript_20_3e',['ReferenceCountTraits&lt; Scripting::iScript &gt;',['../classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScript_01_4.xhtml',1,'Mezzanine']]],
   ['referencecounttraits_3c_20scripting_3a_3aiscriptcompilable_20_3e',['ReferenceCountTraits&lt; Scripting::iScriptCompilable &gt;',['../classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScriptCompilable_01_4.xhtml',1,'Mezzanine']]],
   ['referencecounttraits_3c_20scripting_3a_3aiscriptmultiplereturn_20_3e',['ReferenceCountTraits&lt; Scripting::iScriptMultipleReturn &gt;',['../classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScriptMultipleReturn_01_4.xhtml',1,'Mezzanine']]],
-  ['referencecounttraits_3c_20typepointedto_20_3e',['ReferenceCountTraits&lt; TypePointedTo &gt;',['../classMezzanine_1_1ReferenceCountTraits.xhtml',1,'Mezzanine']]],
   ['renderable',['Renderable',['../classMezzanine_1_1UI_1_1Renderable.xhtml',1,'Mezzanine::UI']]],
   ['renderablecontainer',['RenderableContainer',['../classMezzanine_1_1UI_1_1RenderableContainer.xhtml',1,'Mezzanine::UI']]],
   ['renderablecontainerwidget',['RenderableContainerWidget',['../classMezzanine_1_1UI_1_1RenderableContainerWidget.xhtml',1,'Mezzanine::UI']]],

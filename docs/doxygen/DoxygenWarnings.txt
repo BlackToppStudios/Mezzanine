@@ -1,3 +1,6 @@
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorcharacter.h:49: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorcharacter.h:49: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorcharacter.h:49: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/cell.h:122: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/activatable.h:157: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/arearenderable.h:51: warning: the name `uiarearenderable.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
@@ -60,17 +63,11 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:266: warning: Compound Mezzanine::UI::OpenRenderableContainerWidget is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:60: warning: Documentation for undefined enum `ManagerTypeName' found.
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/crossplatformexport.h:318: warning: end of comment block while expecting command </b>
 /home/sqeaky/Code/Mezzanine/UnitTests/src/consolelogic.h:68: warning: unable to resolve reference to `TempFile' for \ref command
 /home/sqeaky/Code/Mezzanine/UnitTests/src/consolelogic.h:75: warning: unable to resolve reference to `TempFile' for \ref command
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testenumerations.h:105: warning: unable to resolve reference to `UnitTestGroup::AddTestResult' for \ref command
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testenumerations.h:99: warning: unable to resolve reference to `TestResult' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:236: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:133: warning: unexpected command endcode
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:175: warning: found subsubsection command outside of subsection context!
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:231: warning: found subsubsection command outside of subsection context!
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:243: warning: found subsection command outside of section context!
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h:276: warning: found subsection command outside of section context!
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:189: warning: explicit link request to 'wstream' could not be resolved
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:152: warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:152: warning: explicit link request to 'x' could not be resolved
@@ -81,6 +78,15 @@
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:68: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:66: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:609: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:609: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:627: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrDynamicCast(CountedPtr< OtherPointerTargetType > Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:627: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrDynamicCast(CountedPtr< OtherPointerTargetType > Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:597: warning: argument 'Pointer' of command @param is not found in the argument list of Mezzanine::CountedPtrInternalCast(Pointer *Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:574: warning: argument 'ReturnPointer' of command @param is not found in the argument list of Mezzanine::CountedPtrInternalCast(const OriginalPointer *Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:574: warning: argument 'OriginalPointer' of command @param is not found in the argument list of Mezzanine::CountedPtrInternalCast(const OriginalPointer *Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:266: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:266: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > Original)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobject.h:295: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobject.h:325: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
@@ -286,15 +292,9 @@
   parameter 'CPercent'
   parameter 'PPercent'
   parameter 'UseAllSubmeshes'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:399: warning: Member operator bool() (function) of class Mezzanine::CountedPtr is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:428: warning: Member Cast(OriginalPointer Original) (function) of class Mezzanine::CountedPtrCastImpl< OriginalPointer, OriginalPointer, CastNoneError > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:479: warning: Member Cast(OriginalPointer Original) (function) of class Mezzanine::CountedPtrCastImpl< ReturnPointer, OriginalPointer, CastDynamic > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:442: warning: Member Cast(OriginalPointer) (function) of class Mezzanine::CountedPtrCastImpl< ReturnPointer, OriginalPointer, CastNoneReturnZero > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:465: warning: Member Cast(OriginalPointer Original) (function) of class Mezzanine::CountedPtrCastImpl< ReturnPointer, OriginalPointer, CastSimpleDynamic > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:451: warning: Member Cast(OriginalPointer Original) (function) of class Mezzanine::CountedPtrCastImpl< ReturnPointer, OriginalPointer, CastSimpleStatic > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:494: warning: Member Cast(OriginalPointer Original) (function) of class Mezzanine::CountedPtrCastImpl< ReturnPointer, OriginalPointer, CastStatic > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:510: warning: Member Cast(OriginalPointer *Original) (function) of class Mezzanine::CountedPtrCastInternal is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:530: warning: Member Cast(Pointer *Original) (function) of class Mezzanine::CountedPtrCastInternal< Pointer, Pointer > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:618: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtr< TypePointedTo >::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:618: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtr< TypePointedTo >::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:501: warning: parameters of member Mezzanine::CountedPtrCastImpl< OriginalPointer, OriginalPointer, CastNoneError >::Cast are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:75: warning: target Mezzanine::Attachable::GetName() of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:99: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
@@ -637,28 +637,15 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< PhysicsManager > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.h:402: warning: return type of member Mezzanine::PhysicsManager::GetPhysicsWorldPointer is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/quaternion.h:190: warning: return type of member Mezzanine::Quaternion::GetOgreQuaternion is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:247: warning: Member TargetPtrType (typedef) of class Mezzanine::ReferenceCountTraits is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:245: warning: Member TargetType (typedef) of class Mezzanine::ReferenceCountTraits is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:204: warning: Member TargetPtrType (typedef) of class Mezzanine::ReferenceCountTraits< IntrusiveRefCount > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:203: warning: Member TargetType (typedef) of class Mezzanine::ReferenceCountTraits< IntrusiveRefCount > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:207: warning: argument 'The' of command @param is not found in the argument list of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(PtrType Target)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:207: warning: The following parameters of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(PtrType Target) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:233: warning: argument 'The' of command @param is not found in the argument list of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(RefCountType *Target)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:233: warning: The following parameters of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(RefCountType *Target) are not documented:
   parameter 'Target'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:294: warning: Member ManagedType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:295: warning: Member PtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:298: warning: Member TargetPtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:297: warning: Member TargetType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:301: warning: Member ConstructionPointer(PtrType Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:311: warning: Member ManagedType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:312: warning: Member PtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:315: warning: Member TargetPtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:314: warning: Member TargetType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:318: warning: Member ConstructionPointer(PtrType Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:328: warning: Member ManagedType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:329: warning: Member PtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:332: warning: Member TargetPtrType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:331: warning: Member TargetType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:335: warning: Member ConstructionPointer(PtrType Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:289: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:292: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:302: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:305: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:315: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:318: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/inputstream.h:95: warning: Member operator>>(T &Data) (function) of class Mezzanine::ResourceInputStream is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:220: warning: Member GetArchiveTypeFromString(String FromString) (function) of class Mezzanine::ResourceManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:87: warning: Member AddAssetGroupName(String Name) (function) of class Mezzanine::ResourceManager is not documented.
@@ -1085,8 +1072,8 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/constraint.h:275: warning: argument 'The' of command @param is not found in the argument list of Mezzanine::Physics::Constraint::GetParam(ConstraintParam Param, int Axis=-1) const
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/constraint.h:275: warning: The following parameters of Mezzanine::Physics::Constraint::GetParam(ConstraintParam Param, int Axis=-1) const are not documented:
   parameter 'Param'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/constraint.h:163: warning: argument 'PivotB' of command @param is not found in the argument list of Mezzanine::Physics::Constraint::SetPivotBLocation(const Vector3 &PivotA)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/constraint.h:163: warning: The following parameters of Mezzanine::Physics::Constraint::SetPivotBLocation(const Vector3 &PivotA) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/constraint.h:163: warning: argument 'PivotB' of command @param is not found in the argument list of Mezzanine::Physics::Constraint::SetPivotBLocation(const Vector3 &PivotA)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/constraint.h:163: warning: The following parameters of Mezzanine::Physics::Constraint::SetPivotBLocation(const Vector3 &PivotA)=0 are not documented:
   parameter 'PivotA'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/convexhullcollisionshape.h:101: warning: return type of member Mezzanine::Physics::ConvexHullCollisionShape::GetBulletHullShape is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/convexhullcollisionshape.h:107: warning: parameters of member Mezzanine::Physics::ConvexHullCollisionShape::ProtoDeSerialize are not (all) documented
@@ -1276,7 +1263,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:149: warning: Found unknown command `\detail'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:84: warning: Found unknown command `\detail'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:91: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:240: warning: return type of member Mezzanine::Scripting::iScriptCompilable::IsCompilable is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:235: warning: return type of member Mezzanine::Scripting::iScriptCompilable::IsCompilable is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:149: warning: Found unknown command `\detail'
