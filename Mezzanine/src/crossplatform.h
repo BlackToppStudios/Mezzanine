@@ -92,6 +92,8 @@ namespace Mezzanine
         /// @brief This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)
         /// @details This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)
         /// This returns a named parameter list with valid settings to use Ogre rendering on a pre-existing SDL context
+        /// @param window A system specific window handle.
+        /// @param winGlContext A system specific OpenGL context.
         /// @warning This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish
         void* GetSDLOgreBinder(SDL_Window* window, const size_t& winGlContext);
 

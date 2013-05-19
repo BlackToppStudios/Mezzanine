@@ -17,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">May 19, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -179,17 +179,17 @@ Integrating with External XML Providers</h3>
 Serialization Operators</h2>
 <p>The stream insertion (&lt;&lt;) and stream extraction (&gt;&gt;) operators can be used for serializing and deserializing most items in the <a class="el" href="namespaceMezzanine.xhtml" title="The bulk of the engine components go in this namspace.">Mezzanine</a> engine.</p>
 <p>Unfortunately due to conflict with the stream insertion operators provided with the iostreams library these couldn't be made into a template. That doesn't mean that they are difficult to implement. Here is a typical implemenation of stream insertion operators for <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> serialization: </p>
-<div class="fragment"><div class="line">std::ostream&amp; <a class="code" href="camera_8h.xhtml#a547c3f8cb5c51da38148a6945d4b5447" title="Serializes the passed Mezzanine::Camera to XML.">operator &lt;&lt; </a>(std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; ActorToSerialize)</div>
+<div class="fragment"><div class="line">std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; ActorToSerialize)</div>
 <div class="line">{</div>
 <div class="line">    <a class="code" href="namespaceMezzanine.xhtml#a9015c5e668e14b857a27888c56934148" title="Convert any class that supports serialization or has a serializer to a string of chars in a stream...">Serialize</a>(stream, ActorToSerialize);</div>
 <div class="line">    <span class="keywordflow">return</span> stream;</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line">std::istream&amp; <a class="code" href="camera_8h.xhtml#a642e70b85734d279125f4e5d3d07722a" title="Deserialize a Mezzanine::Camera.">operator &gt;&gt; </a>(std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; x)</div>
+<div class="line">std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; x)</div>
 <div class="line">    { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#ad8989ea81ccd1ad6d59a11921f0239a4" title="Deserialize the next xml tag in the stream into a specific in memory class instance.">DeSerialize</a>(stream, x); }</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> <a class="code" href="camera_8h.xhtml#a642e70b85734d279125f4e5d3d07722a" title="Deserialize a Mezzanine::Camera.">operator &gt;&gt; </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; x)</div>
-<div class="line">    { x.<a class="code" href="classMezzanine_1_1ActorRigid.xhtml#a190b62b59be0534146c6f362644344ac" title="Take the data stored in an XML and overwrite this instance of this object with it.">ProtoDeSerialize</a>(OneNode); }</div>
+<div class="line"><span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; x)</div>
+<div class="line">    { x.<a class="code" href="classMezzanine_1_1ActorRigid.xhtml#abec93275a1d839ade34a142b090aea31" title="Take the data stored in an XML and overwrite this instance of this object with it.">ProtoDeSerialize</a>(OneNode); }</div>
 </div><!-- fragment --><p> You will want to implement these functions with the appropriate type. The type <a class="el" href="classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a> is used purely as example Though this is actual working code and was in the engine at one point, the current code is more sophiscticated <br/>
  <br/>
  The function operator&lt;&lt; simply calls Serialize and returns the stream, so it has all the pre and cost conditions of the Serialize function listed in the <a class="el" href="Serialization.xhtml#serializationmaking">Make a Serializable or a DeSerializable</a> section. <br/>
@@ -203,6 +203,6 @@ Other little Things</h2>
 </div><!-- fragment --><p> Both of these functions throw a <a class="el" href="classMezzanine_1_1Exception.xhtml" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a> with the descriptive text of "Could not {FailedTo} during {ClassName} [De]Serialization." If SOrD (Serialize Or Deserialize) is true the "De" is not printed. </p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 19:04:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sat May 18 2013 22:24:22 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

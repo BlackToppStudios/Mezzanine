@@ -1,18 +1,27 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorbase.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorbase.h">
-<area shape="rect" id="node3" href="$actorcharacter_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorcharacter.h" alt="" coords="107,193,312,237"/>
-<area shape="rect" id="node5" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="368,286,568,330"/>
-<area shape="rect" id="node34" href="$actorrigid_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorrigid.h" alt="" coords="404,99,604,143"/>
-<area shape="rect" id="node40" href="$actorsoft_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorsoft.h" alt="" coords="661,193,861,237"/>
-<area shape="rect" id="node44" href="$vector3wactor_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/vector3wactor.h" alt="" coords="780,99,983,143"/>
-<area shape="rect" id="node7" href="$consolelogic_8h.xhtml" title="The defintion of items important a commandline tool to work correctly without need to be available to..." alt="" coords="180,566,380,610"/>
-<area shape="rect" id="node19" href="$testdata_8h.xhtml" title="TestData, TestDataStorage and UnitTestGroup class definitions." alt="" coords="231,473,431,517"/>
-<area shape="rect" id="node23" href="$testenumerations_8h.xhtml" title="Enumerations and constant values associated with the Unit tests." alt="" coords="361,379,575,423"/>
-<area shape="rect" id="node27" href="$testtools_8h.xhtml" title="Some random function to ease the lives of test developers." alt="" coords="505,473,705,517"/>
-<area shape="rect" id="node30" href="$consolestringmanipulation_8h.xhtml" title="Some string manipulation functions geared towards console output for use in the Unit Tests..." alt="" coords="597,566,859,610"/>
-<area shape="rect" id="node9" href="$main_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/src/main.h" alt="" coords="368,659,568,703"/>
-<area shape="rect" id="node11" href="$boilerplatetests_8h.xhtml" title="this file should be used as template for building future Unit Tests" alt="" coords="5,753,216,797"/>
-<area shape="rect" id="node13" href="$compilerflagtests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/compilerflagtests.h" alt="" coords="240,753,461,797"/>
-<area shape="rect" id="node15" href="$lua51tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/lua51tests.h" alt="" coords="485,753,685,797"/>
-<area shape="rect" id="node17" href="$vector3tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/vector3tests.h" alt="" coords="709,753,909,797"/>
-<area shape="rect" id="node36" href="$actorserializer_8h.xhtml" title="This is where the declarations of any Serializers or DeSerializers for actors will go..." alt="" coords="437,193,637,237"/>
+<area shape="rect" id="node3" href="$actorbase_8cpp.xhtml" title="Code used by all actors is implemented here." alt="" coords="999,193,1199,237"/>
+<area shape="rect" id="node5" href="$actorrigid_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorrigid.h" alt="" coords="812,99,1012,143"/>
+<area shape="rect" id="node8" href="$actorphysicssettings_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorphysicssettings.cpp" alt="" coords="1223,193,1473,237"/>
+<area shape="rect" id="node16" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="1548,286,1748,330"/>
+<area shape="rect" id="node25" href="$actorsoft_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorsoft.h" alt="" coords="1411,99,1611,143"/>
+<area shape="rect" id="node32" href="$actorcharacter_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorcharacter.h" alt="" coords="1823,99,2028,143"/>
+<area shape="rect" id="node37" href="$actormanager_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actormanager.cpp" alt="" coords="2052,99,2265,143"/>
+<area shape="rect" id="node40" href="$vector3wactor_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/vector3wactor.h" alt="" coords="2289,99,2492,143"/>
+<area shape="rect" id="node47" href="$rayquerytool_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/rayquerytool.cpp" alt="" coords="2913,193,3119,237"/>
+<area shape="rect" id="node52" href="$eventcollision_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/eventcollision.cpp" alt="" coords="2567,99,2780,143"/>
+<area shape="rect" id="node55" href="$resourcemanager_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/resourcemanager.cpp" alt="" coords="2804,99,3039,143"/>
+<area shape="rect" id="node57" href="$worldnode_8cpp.xhtml" title="The implementation of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="3063,99,3263,143"/>
+<area shape="rect" id="node59" href="$worldobjectgraphicssettings_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobjectgraphicssettings.cpp" alt="" coords="3287,99,3580,143"/>
+<area shape="rect" id="node61" href="$collision_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collision.cpp" alt="" coords="3604,99,3833,143"/>
+<area shape="rect" id="node10" href="$actorrigid_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorrigid.cpp" alt="" coords="724,193,924,237"/>
+<area shape="rect" id="node12" href="$actorserializer_8h.xhtml" title="This is where the declarations of any Serializers or DeSerializers for actors will go..." alt="" coords="12,193,212,237"/>
+<area shape="rect" id="node20" href="$areaeffect_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/areaeffect.cpp" alt="" coords="236,193,436,237"/>
+<area shape="rect" id="node23" href="$constraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/constraint.cpp" alt="" coords="460,193,700,237"/>
+<area shape="rect" id="node14" href="$actorserializer_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorserializer.cpp" alt="" coords="5,286,219,330"/>
+<area shape="rect" id="node18" href="$entresol_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="1548,379,1748,423"/>
+<area shape="rect" id="node29" href="$actorsoft_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorsoft.cpp" alt="" coords="1548,193,1748,237"/>
+<area shape="rect" id="node34" href="$actorcharacter_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorcharacter.cpp" alt="" coords="1823,193,2041,237"/>
+<area shape="rect" id="node42" href="$cameracontroller_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/cameracontroller.cpp" alt="" coords="2167,193,2399,237"/>
+<area shape="rect" id="node45" href="$physicsmanager_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/physicsmanager.cpp" alt="" coords="2423,193,2649,237"/>
+<area shape="rect" id="node49" href="$vector3wactor_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/vector3wactor.cpp" alt="" coords="2673,193,2889,237"/>
 </map>

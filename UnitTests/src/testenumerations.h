@@ -93,16 +93,16 @@ namespace Mezzanine
         /// @brief This converts A test result enum value into a String matching the identifier name.
         /// @param Convertable A TestResult inclusively between Success and NotApplicable.
         /// @return  A string like "Success" or "Inconclusive" or similar.
-        /// @throw If an int not in the valid range of @ref TestResult is passed in then this will throw a INVALID_PARAMETERS_EXCEPTION
+        /// @throw If an int not in the valid range of TestResult is passed in then this will throw a INVALID_PARAMETERS_EXCEPTION
         Mezzanine::String TestResultToString(TestResult Convertable);
 
-        /// @brief Roughly convert a String to a @ref TestResult.
+        /// @brief Roughly convert a String to a TestResult.
         /// @param Text If this matches a word like "Success", "Skipped", "Cancelled", "Inconclusive", "Failed", "Unknown" or "N/A" exactly as returned by @ref TestResultToString then a valid result can be returned.
         /// @return The @ref TestResult corresponding to the String passed in.
-        /// @throw If the string passed in does not match a valid @ref TestResult then this will throw a INVALID_PARAMETERS_EXCEPTION
+        /// @throw If the string passed in does not match a valid TestResult then this will throw a INVALID_PARAMETERS_EXCEPTION
         TestResult StringToTestResult(Mezzanine::String Text);
 
-        /// @brief This is used to control the behavior of the function @ref UnitTestGroup::AddTestResult
+        /// @brief This is used to control the behavior of the function UnitTestGroup::AddTestResult()
         /// @details This can optionally be passedto prioritize whether newer vs older or successful vs failing results are more important
         enum OverWriteResults{
             OverWriteIfLessSuccessful,  ///< This is the default behavior, because it is presumed failures should be visible so they can be fixed.

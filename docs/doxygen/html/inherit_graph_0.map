@@ -1,3 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node3" href="$classcompilerflagtests.xhtml" title="compilerflagtests" alt="" coords="161,5,279,33"/>
+<area shape="rect" id="node3" href="$classbinarytoolstests.xhtml" title="binarytoolstests" alt="" coords="165,5,275,33"/>
+<area shape="rect" id="node5" href="$classboilerplatetests.xhtml" title="A small series of sample tests, which can be used as a boilerplate so creating new test groups..." alt="" coords="167,55,273,83"/>
+<area shape="rect" id="node7" href="$classcompilerflagtests.xhtml" title="A simple test to see if the compiler flag are set correctly." alt="" coords="161,106,279,134"/>
+<area shape="rect" id="node9" href="$classcountedptrtests.xhtml" title="countedptrtests" alt="" coords="165,157,275,185"/>
+<area shape="rect" id="node11" href="$classlua51tests.xhtml" title="The group of tests for." alt="" coords="180,207,260,235"/>
+<area shape="rect" id="node13" href="$classvector3tests.xhtml" title="A large number of test of the Vector3 class, nearly complete coverage." alt="" coords="175,258,265,286"/>
 </map>

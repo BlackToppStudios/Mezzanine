@@ -17,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">May 19, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -105,6 +105,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.xhtml">Collision</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an event class used to track collsions in the physics world.  <a href="classMezzanine_1_1Physics_1_1Collision.xhtml#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1Physics_1_1CollisionInternalData.xhtml">CollisionInternalData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to insulate the interface from the implementation details for bullet.  <a href="structMezzanine_1_1Physics_1_1CollisionInternalData.xhtml#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the base class for all collision shapes.  <a href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#details">More...</a><br/></td></tr>
@@ -239,7 +242,7 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8697c4711a045a8fd7a96dba727ae7fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea">CollisionShape::ShapeType</a> <a class="el" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a8697c4711a045a8fd7a96dba727ae7fc">BulletSapeTypeToShapeType</a> (int BulletShapeType)</td></tr>
+<tr class="memitem:a8697c4711a045a8fd7a96dba727ae7fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea">CollisionShape::ShapeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a8697c4711a045a8fd7a96dba727ae7fc">BulletSapeTypeToShapeType</a> (int BulletShapeType)</td></tr>
 <tr class="memdesc:a8697c4711a045a8fd7a96dba727ae7fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from a Bullet <a class="el" href="classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world.">Collision</a> Shape to a <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a>.  <a href="#a8697c4711a045a8fd7a96dba727ae7fc">More...</a><br/></td></tr>
 <tr class="separator:a8697c4711a045a8fd7a96dba727ae7fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20628c78a5f53a967af1aa3eec05f952"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a20628c78a5f53a967af1aa3eec05f952">char4ToAxis</a> (char it)</td></tr>
@@ -248,19 +251,19 @@ Functions</h2></td></tr>
 <tr class="memitem:aab6743742986e4125e21b9c68b9af967"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#aab6743742986e4125e21b9c68b9af967">ConstraintParamAsString</a> (<a class="el" href="namespaceMezzanine_1_1Physics.xhtml#aa640f4c4b2baf4a4039db76fd792d2c1">ConstraintParam</a> Param)</td></tr>
 <tr class="memdesc:aab6743742986e4125e21b9c68b9af967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a <a class="el" href="classMezzanine_1_1Physics_1_1Constraint.xhtml" title="This is the base class for all constraints supported.">Constraint</a> Parameter as a String.  <a href="#aab6743742986e4125e21b9c68b9af967">More...</a><br/></td></tr>
 <tr class="separator:aab6743742986e4125e21b9c68b9af967"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50226879433397f9a816f5b69cbfcc86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a> *<a class="el" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a50226879433397f9a816f5b69cbfcc86">CreateShape</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea">CollisionShape::ShapeType</a> ShapeToCreate, const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name_, btCollisionShape *ShapeToModel)</td></tr>
-<tr class="memdesc:a50226879433397f9a816f5b69cbfcc86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create A shape of a type and optionally model it after an example.  <a href="#a50226879433397f9a816f5b69cbfcc86">More...</a><br/></td></tr>
-<tr class="separator:a50226879433397f9a816f5b69cbfcc86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c6ad0aabdf431f5d4d579e9217f2897"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a> *<a class="el" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a8c6ad0aabdf431f5d4d579e9217f2897">CreateShape</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> OneNode)</td></tr>
-<tr class="memdesc:a8c6ad0aabdf431f5d4d579e9217f2897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes.">CollisionShape</a> from a snippet of xml.  <a href="#a8c6ad0aabdf431f5d4d579e9217f2897">More...</a><br/></td></tr>
-<tr class="separator:a8c6ad0aabdf431f5d4d579e9217f2897"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4900d97a41e81175d854f1fed11749d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> <a class="el" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#aa4900d97a41e81175d854f1fed11749d">ShapeTypeToString</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea">CollisionShape::ShapeType</a> ShapeToConvert)</td></tr>
+<tr class="memitem:a58012efb6a76c109d2bcc80b142c04bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a58012efb6a76c109d2bcc80b142c04bf">CreateShape</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea">CollisionShape::ShapeType</a> ShapeToCreate, const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name_, btCollisionShape *ShapeToModel)</td></tr>
+<tr class="memdesc:a58012efb6a76c109d2bcc80b142c04bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create A shape of a type and optionally model it after an example.  <a href="#a58012efb6a76c109d2bcc80b142c04bf">More...</a><br/></td></tr>
+<tr class="separator:a58012efb6a76c109d2bcc80b142c04bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb85cceec4e3de0b49346ce9fbcf87bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#afb85cceec4e3de0b49346ce9fbcf87bc">CreateShape</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> OneNode)</td></tr>
+<tr class="memdesc:afb85cceec4e3de0b49346ce9fbcf87bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes.">CollisionShape</a> from a snippet of xml.  <a href="#afb85cceec4e3de0b49346ce9fbcf87bc">More...</a><br/></td></tr>
+<tr class="separator:afb85cceec4e3de0b49346ce9fbcf87bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4900d97a41e81175d854f1fed11749d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#aa4900d97a41e81175d854f1fed11749d">ShapeTypeToString</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea">CollisionShape::ShapeType</a> ShapeToConvert)</td></tr>
 <tr class="memdesc:aa4900d97a41e81175d854f1fed11749d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a string suitable for human eyes from a <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a>, may not be suitable for endusers.  <a href="#aa4900d97a41e81175d854f1fed11749d">More...</a><br/></td></tr>
 <tr class="separator:aa4900d97a41e81175d854f1fed11749d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb0330d242970d0fdf1c5e98be35701e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#aa640f4c4b2baf4a4039db76fd792d2c1">ConstraintParam</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#adb0330d242970d0fdf1c5e98be35701e">StringAsConstraintParam</a> (<a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Param)</td></tr>
 <tr class="memdesc:adb0330d242970d0fdf1c5e98be35701e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert A string that might be ConstraintParam to one.  <a href="#adb0330d242970d0fdf1c5e98be35701e">More...</a><br/></td></tr>
 <tr class="separator:adb0330d242970d0fdf1c5e98be35701e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33f5db0f6af44912f6b5eddee22ca46f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea">CollisionShape::ShapeType</a> <a class="el" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a33f5db0f6af44912f6b5eddee22ca46f">StringToShapeType</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;TypeName)</td></tr>
+<tr class="memitem:a33f5db0f6af44912f6b5eddee22ca46f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea">CollisionShape::ShapeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a33f5db0f6af44912f6b5eddee22ca46f">StringToShapeType</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;TypeName)</td></tr>
 <tr class="memdesc:a33f5db0f6af44912f6b5eddee22ca46f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a human readable string (as provided by <a class="el" href="namespaceMezzanine_1_1Physics.xhtml#aa4900d97a41e81175d854f1fed11749d" title="Get a string suitable for human eyes from a CollisionShape::ShapeType, may not be suitable for enduse...">ShapeTypeToString()</a>) and convert it to a <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a>.  <a href="#a33f5db0f6af44912f6b5eddee22ca46f">More...</a><br/></td></tr>
 <tr class="separator:a33f5db0f6af44912f6b5eddee22ca46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -269,6 +272,8 @@ Variables</h2></td></tr>
 <tr class="memitem:a1693cefad473b8c50aa44b9f6e4ac108"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a1693cefad473b8c50aa44b9f6e4ac108">ConstraintParamCount</a> = 4</td></tr>
 <tr class="memdesc:a1693cefad473b8c50aa44b9f6e4ac108"><td class="mdescLeft">&#160;</td><td class="mdescRight">How many ConstraintParam Exist.  <a href="#a1693cefad473b8c50aa44b9f6e4ac108">More...</a><br/></td></tr>
 <tr class="separator:a1693cefad473b8c50aa44b9f6e4ac108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24f9082730ebc36ba260dbbe86c981f6"><td class="memItemLeft" align="right" valign="top">return&#160;</td><td class="memItemRight" valign="bottom"><b>Torque</b></td></tr>
+<tr class="separator:a24f9082730ebc36ba260dbbe86c981f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This namespace is for all the classes belonging to the <a class="el" href="namespaceMezzanine_1_1Physics.xhtml" title="This namespace is for all the classes belonging to the Physics Subsystem.">Physics</a> Subsystem. </p>
@@ -346,6 +351,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.xhtml#l00244">244</a> of file <a class="el" href="collisionshape_8cpp_source.xhtml">collisionshape.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a20628c78a5f53a967af1aa3eec05f952"></a>
@@ -398,12 +405,12 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a50226879433397f9a816f5b69cbfcc86"></a>
+<a class="anchor" id="a58012efb6a76c109d2bcc80b142c04bf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a>* <a class="el" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> Mezzanine::Physics::CreateShape </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a> *<a class="el" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> Mezzanine::Physics::CreateShape </td>
           <td>(</td>
           <td class="paramtype">CollisionShape::ShapeType&#160;</td>
           <td class="paramname"><em>ShapeToCreate</em>, </td>
@@ -440,14 +447,16 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>A new Mezzanine::CollisionShape with either default Values or the values of the bullet shape if one is provided. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>The only checking done on the bullet shape is to verify it is not a null pointer. If the Bullet shape fails to be of the appropriate kind correlating to ShapeToCreate then <em>undefined behavior</em> will occur. </dd></dl>
 
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.xhtml#l00162">162</a> of file <a class="el" href="collisionshape_8cpp_source.xhtml">collisionshape.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a8c6ad0aabdf431f5d4d579e9217f2897"></a>
+<a class="anchor" id="afb85cceec4e3de0b49346ce9fbcf87bc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a>* <a class="el" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> Mezzanine::Physics::CreateShape </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a> *<a class="el" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a> Mezzanine::Physics::CreateShape </td>
           <td>(</td>
           <td class="paramtype">XML::Node&#160;</td>
           <td class="paramname"><em>OneNode</em></td><td>)</td>
@@ -464,6 +473,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to a <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes.">CollisionShape</a> of the Correct Type with the values stored in the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000090">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.xhtml" title="A triangle mesh collsion shape based on a graphics mesh.">DynamicMeshCollisionShape</a> can be deserialized </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000091">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.xhtml" title="A collision shape for soft actors.">ActorSoftCollisionShape</a> can be deserialized </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000092">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1Physics_1_1StaticMeshCollisionShape.xhtml" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a> can be deserialized </dd></dl>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.xhtml#l00202">202</a> of file <a class="el" href="collisionshape_8cpp_source.xhtml">collisionshape.cpp</a>.</p>
 
 </div>
 </div>
@@ -489,6 +503,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A String with human readable contents corresponding to the passed in type. </dd></dl>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.xhtml#l00266">266</a> of file <a class="el" href="collisionshape_8cpp_source.xhtml">collisionshape.cpp</a>.</p>
 
 </div>
 </div>
@@ -552,6 +568,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.xhtml#l00288">288</a> of file <a class="el" href="collisionshape_8cpp_source.xhtml">collisionshape.cpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -572,8 +590,24 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a24f9082730ebc36ba260dbbe86c981f6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">return Mezzanine::Physics::Torque</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">            Vector3 Torque(PhysicsRigidBody-&gt;getTotalTorque())</div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00153">153</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 19:04:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sat May 18 2013 22:24:24 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

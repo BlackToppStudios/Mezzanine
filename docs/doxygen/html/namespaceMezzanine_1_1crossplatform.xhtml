@@ -17,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">May 19, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -96,9 +96,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aafef3bc737e34d6a1a337a57e67cb54a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1crossplatform.xhtml#aafef3bc737e34d6a1a337a57e67cb54a">GetPlatform</a> ()</td></tr>
 <tr class="memdesc:aafef3bc737e34d6a1a337a57e67cb54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the platform currently being run on.  <a href="#aafef3bc737e34d6a1a337a57e67cb54a">More...</a><br/></td></tr>
 <tr class="separator:aafef3bc737e34d6a1a337a57e67cb54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afee76cd3b35372ba1b8f70acb996fe0e"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1crossplatform.xhtml#afee76cd3b35372ba1b8f70acb996fe0e">GetSDLOgreBinder</a> (SDL_Window *window, const size_t &amp;winGlContext)</td></tr>
-<tr class="memdesc:afee76cd3b35372ba1b8f70acb996fe0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)  <a href="#afee76cd3b35372ba1b8f70acb996fe0e">More...</a><br/></td></tr>
-<tr class="separator:afee76cd3b35372ba1b8f70acb996fe0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5d3ddbc9ef81847b6dff94b3611458c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1crossplatform.xhtml#ab5d3ddbc9ef81847b6dff94b3611458c">GetSDLOgreBinder</a> (SDL_Window *window, const size_t &amp;winGlContext)</td></tr>
+<tr class="memdesc:ab5d3ddbc9ef81847b6dff94b3611458c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)  <a href="#ab5d3ddbc9ef81847b6dff94b3611458c">More...</a><br/></td></tr>
+<tr class="separator:ab5d3ddbc9ef81847b6dff94b3611458c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad24520d978a702635f8594d4f73e3772"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#ad7ab1b85229be184e16d96c505143f9b">MaxInt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1crossplatform.xhtml#ad24520d978a702635f8594d4f73e3772">GetTimeStamp</a> ()</td></tr>
 <tr class="memdesc:ad24520d978a702635f8594d4f73e3772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a timestamp.  <a href="#ad24520d978a702635f8594d4f73e3772">More...</a><br/></td></tr>
 <tr class="separator:ad24520d978a702635f8594d4f73e3772"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,7 +116,7 @@ Functions</h2></td></tr>
 <div class="textblock"><p>All functionality that needs different implemenations per platform will go in here. </p>
 <p>If we did our jobs right You not need to change anything to compile on different platforms exvept the build target. If you want, the platform can be manually defined in this section and this should be the only place that you need to change to compile this on a supported platform. Just remark all the lines that are not your platform using "//" and unremark your platform. <br/>
 <br/>
- Should you choose to port this to your platform, make sure that all the required libraries are installed, then make sure to write an implementation for each of the functions in crossplatform.cpp, then you should get to the nitty gritty of making the minor platforms inconsistencies work. <br/>
+ Should you choose to port this to your platform, make sure that all the required libraries are installed, then make sure to write an implementation for each of the functions in <a class="el" href="crossplatform_8cpp_source.xhtml">crossplatform.cpp</a>, then you should get to the nitty gritty of making the minor platforms inconsistencies work. <br/>
 <br/>
  For most games there will be no need to directly call these functions, however if you decide you game is an exception, there is one key thing to remember about all of these functions. All of these may perform/behave slightly differently. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -137,6 +137,8 @@ Functions</h2></td></tr>
 <p>This returns whatever your OS thinks is the count of CPUs. This could include Hyperthreading unit on Intel's chip, or it might not, it could include the threads from Niagra CPUs or it might not, it could return just about any value on a given piece of and should return a reasonable value for how many threads should be used. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Whole containing the amount of processors. </dd></dl>
 
+<p>Definition at line <a class="el" href="crossplatform_8cpp_source.xhtml#l00195">195</a> of file <a class="el" href="crossplatform_8cpp_source.xhtml">crossplatform.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="aafef3bc737e34d6a1a337a57e67cb54a"></a>
@@ -155,14 +157,16 @@ Functions</h2></td></tr>
 <p>Gets the platform currently being run on. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string based on the platform. "Windows", "Linux", or "MacOSX". </dd></dl>
 
+<p>Definition at line <a class="el" href="crossplatform_8cpp_source.xhtml#l00121">121</a> of file <a class="el" href="crossplatform_8cpp_source.xhtml">crossplatform.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="afee76cd3b35372ba1b8f70acb996fe0e"></a>
+<a class="anchor" id="ab5d3ddbc9ef81847b6dff94b3611458c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* Mezzanine::crossplatform::GetSDLOgreBinder </td>
+          <td class="memname">void * Mezzanine::crossplatform::GetSDLOgreBinder </td>
           <td>(</td>
           <td class="paramtype">SDL_Window *&#160;</td>
           <td class="paramname"><em>window</em>, </td>
@@ -183,7 +187,16 @@ Functions</h2></td></tr>
 
 <p>This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) </p>
 <p>This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) This returns a named parameter list with valid settings to use <a class="el" href="namespaceOgre.xhtml">Ogre</a> rendering on a pre-existing SDL context </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>A system specific window handle. </td></tr>
+    <tr><td class="paramname">winGlContext</td><td>A system specific OpenGL context. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section warning"><dt>Warning</dt><dd>This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish </dd></dl>
+
+<p>Definition at line <a class="el" href="crossplatform_8cpp_source.xhtml#l00083">83</a> of file <a class="el" href="crossplatform_8cpp_source.xhtml">crossplatform.cpp</a>.</p>
 
 </div>
 </div>
@@ -204,6 +217,8 @@ Functions</h2></td></tr>
 <dl class="section warning"><dt>Warning</dt><dd>On some platforms this requires a static initialization, an can cause undefined behavior if called before static initializations are complete </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The largest size integer containing a timestamp that can be compared to other timestamps, but hads no guarantees for external value. </dd></dl>
 
+<p>Definition at line <a class="el" href="crossplatform_8cpp_source.xhtml#l00182">182</a> of file <a class="el" href="crossplatform_8cpp_source.xhtml">crossplatform.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a2feddd76b3247e7114b0dfeeca861895"></a>
@@ -221,6 +236,8 @@ Functions</h2></td></tr>
 
 <p>Get the resolution of the timestamp in microseconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Whole which returns in millionths of a second the smallest unit of time that GetTimeStamp can measure. </dd></dl>
+
+<p>Definition at line <a class="el" href="crossplatform_8cpp_source.xhtml#l00189">189</a> of file <a class="el" href="crossplatform_8cpp_source.xhtml">crossplatform.cpp</a>.</p>
 
 </div>
 </div>
@@ -271,6 +288,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="crossplatform_8cpp_source.xhtml#l00134">134</a> of file <a class="el" href="crossplatform_8cpp_source.xhtml">crossplatform.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a4fa41d2165f1be34c66b9f9d049458da"></a>
@@ -296,10 +315,12 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="crossplatform_8cpp_source.xhtml#l00112">112</a> of file <a class="el" href="crossplatform_8cpp_source.xhtml">crossplatform.cpp</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 19:04:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sat May 18 2013 22:24:24 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

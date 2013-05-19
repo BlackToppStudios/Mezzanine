@@ -17,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">May 19, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -98,7 +98,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Ray__coll__graph.svg" width="144" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Ray__coll__graph.svg" width="144" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a href="graph_legend.xhtml">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -173,6 +174,8 @@ Public Attributes</h2></td></tr>
 <p>Default constructor. </p>
 <p>This create a ray starting at 0,0,0 pointing to 0,1,0, </p>
 
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00058">58</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a9b7c14d23e934927b6c35b81c65b9916"></a>
@@ -209,6 +212,8 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00063">63</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a60cc4b4fd34049f7cb36d8aa402f9005"></a>
@@ -234,6 +239,8 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00069">69</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -253,6 +260,8 @@ Public Attributes</h2></td></tr>
 <p>Gets the direction of this ray. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a vector3 that is the direction from it's origin to it's destination. </dd></dl>
 
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00097">97</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a7164d929caf75bcebceed9149e9a3540"></a>
@@ -271,6 +280,9 @@ Public Attributes</h2></td></tr>
 <p>This returns a normalized copy of this ray. </p>
 <p>This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a ray that is a normalized copy of this array. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000054">Todo:</a></b></dt><dd>discuss the merits throwing an error here. </dd></dl>
+
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00104">104</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
 
 </div>
 </div>
@@ -291,6 +303,8 @@ Public Attributes</h2></td></tr>
 <p>Used to aid interopability, this will return afresh Ogre::Ray with the same data as this <a class="el" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns an Ogre::Ray that contains the same information as this rays information. </dd></dl>
 
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00078">78</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a5c02a547876c4f590af181acdc81b486"></a>
@@ -310,6 +324,8 @@ Public Attributes</h2></td></tr>
 <p>This uses the distance method of <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> to determine the current length of this ray. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns a real value which contains the length. </dd></dl>
 
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00092">92</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a0f0605e55999112a5f1ae0e3a842593d"></a>
@@ -327,6 +343,8 @@ Public Attributes</h2></td></tr>
 
 <p>Turns this <a class="el" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a> into its own normal. </p>
 <p>This will change the ray to be exactly 1 unit long, but pointing the same direction. </p>
+
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00117">117</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
 
 </div>
 </div>
@@ -354,6 +372,8 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00131">131</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="aae46f14a24ddbf11e841f73121e513b7"></a>
@@ -378,6 +398,8 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00147">147</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
 
 </div>
 </div>
@@ -405,6 +427,8 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00139">139</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a4b66bd341d7f5e2bfc86cca7f2d665b9"></a>
@@ -430,13 +454,16 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="ray_8cpp_source.xhtml#l00152">152</a> of file <a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a>.</p>
+
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="ray_8h_source.xhtml">ray.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="ray_8cpp_source.xhtml">ray.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 19:04:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sat May 18 2013 22:24:23 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

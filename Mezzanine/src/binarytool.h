@@ -51,7 +51,7 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief A way to store and pass binary buffers like compiled bytcode.
-        /// @details Originally intended for use with @ref ScriptCompilable as a basic way to store and pass bytecode around.
+        /// @details Originally intended for use with ScriptCompilable as a basic way to store and pass bytecode around.
         /// This deletes the passed binary on destruction. to prevent this behavior set the Binary pointer to null.
         /// @n @n
         /// This is designed to be fairly minimalistic but passing by value causes the buffer to be copied.
@@ -83,7 +83,9 @@ namespace Mezzanine
                     {}
 
                 /// @brief Copy constructor.
-                /// @details Allocates identical amount of memory as other buffer then copies it.
+                /// @param Other The buffer to copy to make
+                /// @details Allocates identical amount of memory as other buffer then copies the other buffer into
+                /// the allocated space. Each BinaryBuffer retains ownership of their respective buffers.
                 BinaryBuffer(const BinaryBuffer& Other);
 
                 /// @brief Base64 decoding Constructor
@@ -169,7 +171,7 @@ namespace Mezzanine
         };
 
         /// @brief Is a character a valid Base64 character
-        /// @param Character a single char to check if it could possibly be valid base64
+        /// @param Char8 a single char to check if it could possibly be valid base64
         /// @return True if the character could be part of a valid block of Base64 text, false otherwise
         bool MEZZ_LIB IsBase64(unsigned char Char8);
 

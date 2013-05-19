@@ -1,0 +1,9 @@
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/node.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/node.cpp">
+<area shape="rect" id="node3" href="$node_8h.xhtml" title="This defines the Mezzanine::XML::Node one of the central XML classes." alt="" coords="709,99,800,127"/>
+<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="712,254,797,282"/>
+<area shape="rect" id="node39" href="$xmlenumerations_8h.xhtml" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="596,177,756,205"/>
+<area shape="rect" id="node42" href="$attribute_8h.xhtml" title="Contains the definition for the XML::Attribute class." alt="" coords="780,177,889,205"/>
+<area shape="rect" id="node45" href="$objectrange_8h.xhtml" title="Contains the implementation of the ObjectRange class template." alt="" coords="913,177,1044,205"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,331,149,359"/>
+<area shape="rect" id="node37" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1331,331,1387,359"/>
+</map>

@@ -49,12 +49,12 @@ using namespace Mezzanine::Testing;
 class lua51tests : public UnitTestGroup
 {
     public:
-        /// @copydoc UnitTestGroup::Name
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
         /// @return Returns a String containing "lua51"
         virtual String Name()
             { return String("lua51"); }
 
-        /// @copydoc UnitTestGroup::RunTests
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
         /// @warning Totally incomplete, when run this will prove nothing.
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {

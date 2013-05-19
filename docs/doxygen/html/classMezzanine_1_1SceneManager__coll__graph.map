@@ -1,25 +1,26 @@
 <map id="Mezzanine::SceneManager" name="Mezzanine::SceneManager">
-<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; SceneManager \&gt;" alt="" coords="2331,511,2472,555"/>
-<area shape="rect" id="node29" href="$classMezzanine_1_1WorldNode.xhtml" title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails..." alt="" coords="2325,298,2477,326"/>
-<area shape="rect" id="node66" href="$classMezzanine_1_1Light.xhtml" title="This class is the class used for dynamic lighting within the scene." alt="" coords="2343,585,2460,613"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="1748,582,1916,610"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1448,626,1581,654"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1761,643,1903,687"/>
-<area shape="rect" id="node9" title="STL class." alt="" coords="1151,626,1265,654"/>
-<area shape="rect" id="node11" title="STL class." alt="" coords="829,618,981,662"/>
-<area shape="rect" id="node13" title="STL class." alt="" coords="553,618,684,662"/>
-<area shape="rect" id="node15" title="STL class." alt="" coords="352,587,475,631"/>
-<area shape="rect" id="node17" title="STL class." alt="" coords="152,638,299,666"/>
-<area shape="rect" id="node21" title="STL class." alt="" coords="349,654,477,698"/>
-<area shape="rect" id="node19" title="STL class." alt="" coords="7,638,100,666"/>
-<area shape="rect" id="node31" href="$classMezzanine_1_1AttachableParent.xhtml" title="Base class for objects that can have attachables attached to them." alt="" coords="811,139,1000,167"/>
-<area shape="rect" id="node37" href="$classMezzanine_1_1AttachableChild.xhtml" title="This class is the base class for objects that can be attached to AttachableParent." alt="" coords="1119,237,1297,265"/>
-<area shape="rect" id="node33" href="$classMezzanine_1_1AttachableBase.xhtml" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="529,139,708,167"/>
-<area shape="rect" id="node58" href="$classMezzanine_1_1ParticleEffect.xhtml" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions." alt="" coords="1432,481,1597,509"/>
-<area shape="rect" id="node72" href="$classMezzanine_1_1Entity.xhtml" title="This class is useful for representing graphical bodies without a physics representation." alt="" coords="1455,430,1575,458"/>
-<area shape="rect" id="node40" href="$classMezzanine_1_1Transform.xhtml" title="Stores information about relative location and rotation in 3d space." alt="" coords="832,355,979,383"/>
-<area shape="rect" id="node42" href="$classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space." alt="" coords="552,331,685,359"/>
-<area shape="rect" id="node44" href="$classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space." alt="" coords="543,402,695,430"/>
-<area shape="rect" id="node51" title="STL class." alt="" coords="2077,70,2152,98"/>
-<area shape="rect" id="node53" title="STL class." alt="" coords="1772,58,1892,102"/>
+<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; SceneManager \&gt;" alt="" coords="2331,402,2472,446"/>
+<area shape="rect" id="node29" href="$classMezzanine_1_1WorldNode.xhtml" title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails..." alt="" coords="2325,503,2477,531"/>
+<area shape="rect" id="node66" href="$classMezzanine_1_1Light.xhtml" title="This class is the class used for dynamic lighting within the scene." alt="" coords="2343,109,2460,137"/>
+<area shape="rect" id="node75" href="$structMezzanine_1_1Internal_1_1EntityInternalData.xhtml" title="This class stores the internal data of an Entity." alt="" coords="2336,42,2467,86"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="1748,429,1916,457"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1448,833,1581,861"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1761,838,1903,882"/>
+<area shape="rect" id="node9" title="STL class." alt="" coords="1151,833,1265,861"/>
+<area shape="rect" id="node11" title="STL class." alt="" coords="829,825,981,869"/>
+<area shape="rect" id="node13" title="STL class." alt="" coords="553,825,684,869"/>
+<area shape="rect" id="node15" title="STL class." alt="" coords="352,794,475,838"/>
+<area shape="rect" id="node17" title="STL class." alt="" coords="152,845,299,873"/>
+<area shape="rect" id="node21" title="STL class." alt="" coords="349,861,477,905"/>
+<area shape="rect" id="node19" title="STL class." alt="" coords="7,845,100,873"/>
+<area shape="rect" id="node31" href="$classMezzanine_1_1AttachableParent.xhtml" title="Base class for objects that can have attachables attached to them." alt="" coords="811,438,1000,466"/>
+<area shape="rect" id="node37" href="$classMezzanine_1_1AttachableChild.xhtml" title="This class is the base class for objects that can be attached to AttachableParent." alt="" coords="1119,358,1297,386"/>
+<area shape="rect" id="node33" href="$classMezzanine_1_1AttachableBase.xhtml" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="529,438,708,466"/>
+<area shape="rect" id="node58" href="$classMezzanine_1_1ParticleEffect.xhtml" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions." alt="" coords="1432,310,1597,338"/>
+<area shape="rect" id="node72" href="$classMezzanine_1_1Entity.xhtml" title="This class is useful for representing graphical bodies without a physics representation." alt="" coords="2608,50,2728,78"/>
+<area shape="rect" id="node40" href="$classMezzanine_1_1Transform.xhtml" title="Stores information about relative location and rotation in 3d space." alt="" coords="832,630,979,658"/>
+<area shape="rect" id="node42" href="$classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space." alt="" coords="552,642,685,670"/>
+<area shape="rect" id="node44" href="$classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space." alt="" coords="543,745,695,773"/>
+<area shape="rect" id="node51" title="STL class." alt="" coords="2077,554,2152,582"/>
+<area shape="rect" id="node53" title="STL class." alt="" coords="1772,550,1892,594"/>
 </map>

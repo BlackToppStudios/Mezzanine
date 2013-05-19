@@ -1,25 +1,30 @@
 <map id="Mezzanine::StickyConstraintConstructionInfo" name="Mezzanine::StickyConstraintConstructionInfo">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Transform.xhtml" title="Stores information about relative location and rotation in 3d space." alt="" coords="276,486,423,514"/>
-<area shape="rect" id="node63" href="$classMezzanine_1_1AttachableChild.xhtml" title="This class is the base class for objects that can be attached to AttachableParent." alt="" coords="559,434,737,462"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space." alt="" coords="15,461,148,489"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space." alt="" coords="5,511,157,539"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects." alt="" coords="2029,593,2179,621"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1ActorBase.xhtml" title="This is the base class from which all the actors inherit." alt="" coords="1829,566,1979,594"/>
-<area shape="rect" id="node12" href="$classMezzanine_1_1NonStaticWorldObject.xhtml" title="This is a small extention of the WorldObject class that adds features common to non&#45;static objects..." alt="" coords="1557,450,1736,494"/>
-<area shape="rect" id="node14" href="$classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="1193,179,1353,207"/>
-<area shape="rect" id="node22" href="$classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="1545,41,1748,85"/>
-<area shape="rect" id="node34" href="$classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world." alt="" coords="1580,323,1713,367"/>
-<area shape="rect" id="node39" href="$classMezzanine_1_1WorldObjectGraphicsSettings.xhtml" title="This is a helper class for configuring graphics settings of a World Object." alt="" coords="1541,163,1752,207"/>
-<area shape="rect" id="node16" href="$classMezzanine_1_1Audio_1_1SoundSet.xhtml" title="This is a vector that stores sounds." alt="" coords="852,179,1036,207"/>
-<area shape="rect" id="node18" title="STL class." alt="" coords="575,179,721,207"/>
-<area shape="rect" id="node25" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="1207,5,1340,49"/>
-<area shape="rect" id="node27" title="STL class." alt="" coords="907,103,981,131"/>
-<area shape="rect" id="node29" title="STL class." alt="" coords="588,95,708,139"/>
-<area shape="rect" id="node42" href="$classMezzanine_1_1Graphics_1_1Mesh.xhtml" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="1204,261,1343,305"/>
-<area shape="rect" id="node44" href="$classMezzanine_1_1Graphics_1_1Skeleton.xhtml" title="This class encapsulates the Skeletal animation functionality of a Mesh." alt="" coords="875,519,1013,563"/>
-<area shape="rect" id="node48" href="$classMezzanine_1_1Graphics_1_1Bone.xhtml" title="This class encapsulates the bones contained in a skeleton used for animation." alt="" coords="1204,575,1343,619"/>
-<area shape="rect" id="node50" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="859,586,1029,630"/>
-<area shape="rect" id="node55" href="$classMezzanine_1_1Graphics_1_1SubMesh.xhtml" title="This class represents a sub&#45;section of an overall mesh." alt="" coords="579,261,717,305"/>
-<area shape="rect" id="node57" href="$classMezzanine_1_1AttachableParent.xhtml" title="Base class for objects that can have attachables attached to them." alt="" coords="1179,458,1368,486"/>
-<area shape="rect" id="node59" href="$classMezzanine_1_1AttachableBase.xhtml" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="260,363,439,391"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Transform.xhtml" title="Stores information about relative location and rotation in 3d space." alt="" coords="276,823,423,851"/>
+<area shape="rect" id="node75" href="$classMezzanine_1_1AttachableChild.xhtml" title="This class is the base class for objects that can be attached to AttachableParent." alt="" coords="559,709,737,737"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space." alt="" coords="15,798,148,826"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space." alt="" coords="5,849,157,877"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects." alt="" coords="2035,789,2184,817"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1ActorBase.xhtml" title="This is the base class from which all the actors inherit." alt="" coords="1835,771,1984,799"/>
+<area shape="rect" id="node12" href="$classMezzanine_1_1NonStaticWorldObject.xhtml" title="This is a small extention of the WorldObject class that adds features common to non&#45;static objects..." alt="" coords="1563,695,1741,739"/>
+<area shape="rect" id="node14" href="$classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="1196,406,1356,434"/>
+<area shape="rect" id="node22" href="$classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="1551,309,1753,353"/>
+<area shape="rect" id="node34" href="$classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world." alt="" coords="1585,66,1719,110"/>
+<area shape="rect" id="node41" href="$classMezzanine_1_1WorldObjectGraphicsSettings.xhtml" title="This is a helper class for configuring graphics settings of a World Object." alt="" coords="1547,505,1757,549"/>
+<area shape="rect" id="node16" href="$classMezzanine_1_1Audio_1_1SoundSet.xhtml" title="This is a vector that stores sounds." alt="" coords="852,406,1036,434"/>
+<area shape="rect" id="node18" title="STL class." alt="" coords="575,406,721,434"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="1209,274,1343,318"/>
+<area shape="rect" id="node27" title="STL class." alt="" coords="907,310,981,338"/>
+<area shape="rect" id="node29" title="STL class." alt="" coords="588,302,708,346"/>
+<area shape="rect" id="node39" href="$structMezzanine_1_1Physics_1_1CollisionInternalData.xhtml" title="Used to insulate the interface from the implementation details for bullet." alt="" coords="1203,55,1349,99"/>
+<area shape="rect" id="node44" href="$classMezzanine_1_1Graphics_1_1Mesh.xhtml" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="1207,578,1345,622"/>
+<area shape="rect" id="node46" href="$classMezzanine_1_1Graphics_1_1InternalMeshData.xhtml" title="This class is used to store the internal structures needed by the Mesh class." alt="" coords="875,533,1013,577"/>
+<area shape="rect" id="node48" href="$classMezzanine_1_1Graphics_1_1Skeleton.xhtml" title="This class encapsulates the Skeletal animation functionality of a Mesh." alt="" coords="875,131,1013,175"/>
+<area shape="rect" id="node52" href="$classMezzanine_1_1Graphics_1_1Bone.xhtml" title="This class encapsulates the bones contained in a skeleton used for animation." alt="" coords="1207,186,1345,230"/>
+<area shape="rect" id="node54" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="859,198,1029,242"/>
+<area shape="rect" id="node57" href="$classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" title="This class is used to store the internal structures needed by the Skeleton class." alt="" coords="573,131,723,175"/>
+<area shape="rect" id="node61" href="$classMezzanine_1_1Graphics_1_1SubMesh.xhtml" title="This class represents a sub&#45;section of an overall mesh." alt="" coords="579,591,717,635"/>
+<area shape="rect" id="node63" href="$classMezzanine_1_1Internal_1_1InternalWorldObjectGraphicsSettings.xhtml" title="Used to store internal data about an world objects." alt="" coords="1180,487,1372,547"/>
+<area shape="rect" id="node67" href="$classMezzanine_1_1ColourValue.xhtml" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="569,474,727,502"/>
+<area shape="rect" id="node69" href="$classMezzanine_1_1AttachableParent.xhtml" title="Base class for objects that can have attachables attached to them." alt="" coords="1181,703,1371,731"/>
+<area shape="rect" id="node71" href="$classMezzanine_1_1AttachableBase.xhtml" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="260,734,439,762"/>
 </map>

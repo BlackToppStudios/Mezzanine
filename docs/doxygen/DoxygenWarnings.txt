@@ -1,11 +1,22 @@
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Internal/motionstate.h.cpp:44: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Internal/meshtools.h.cpp:44: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorcharacter.cpp:49: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorcharacter.cpp:49: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Internal/decompinterface.h.cpp:47: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Internal/ogredatastreambuf.h.cpp:44: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/constraint.cpp:51: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/constraint.cpp:51: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.cpp:41: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.cpp:41: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/cell.h:122: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/activatable.h:157: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/arearenderable.h:51: warning: the name `uiarearenderable.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/basicrenderable.h:55: warning: the name `uibasicrenderable.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:56: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/caption.h:55: warning: the name `uicaption.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/cellgrid.h:54: warning: the name `uicellgrid.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/cell.h:51: warning: the name `uicell.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/cellgrid.cpp:60: warning: the name `uicellgrid.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/cellgrid.h:54: warning: the name `uicellgrid.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/checkbox.h:53: warning: the name `uicheckbox.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/dropdownlist.h:54: warning: the name `uidropdownlist.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/glyph.h:51: warning: the name `uiglyph.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
@@ -21,9 +32,9 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/pagedcellgrid.h:52: warning: the name `uipagedcellgrid.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/radiobutton.h:50: warning: the name `uiradiobutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/rectangle.h:55: warning: the name `uirectangle.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderable.h:55: warning: the name `uirenderable.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:68: warning: the name `uirenderablecontainerwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:376: warning: the name `uirenderablecontainerwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderable.h:55: warning: the name `uirenderable.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablerect.h:50: warning: the name `uirenderablerect.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/resizinginfo.h:51: warning: the name `uiresizinginfo.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:96: warning: the name `uiscreen.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
@@ -40,55 +51,645 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/widget.h:91: warning: the name `uiwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/widget.h:289: warning: the name `uiwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/window.h:50: warning: the name `uiwindow.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assetgroup.h:54: warning: Compound Mezzanine::Resource::AssetGroup is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:222: warning: Compound xml_object_range is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.cpp:72: warning: Compound Mezzanine::Graphics::GameWindowInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:205: warning: Compound Mezzanine::ReferenceCountTraits< FooDiamond > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:249: warning: Compound xml_writer_file is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assetgroup.h:52: warning: Compound Mezzanine::Resource::AssetGroup is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:133: warning: Compound Mezzanine::ReferenceCountTraits< FooInternal > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1142: warning: Compound xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:938: warning: Compound xpath_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:992: warning: Compound xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:279: warning: Compound xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:181: warning: Compound Mezzanine::ReferenceCountTraits< FooDerived1 > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1101: warning: Compound xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:666: warning: Compound xml_node_iterator is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:68: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assethandler.h:54: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:785: warning: Compound xml_tree_walker is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assethandler.h:52: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:365: warning: Compound xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/binarytoolstests.h:168: warning: Compound binarytoolstests is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:58: warning: Compound Mezzanine::AudioManagerInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:708: warning: Compound xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:193: warning: Compound Mezzanine::ReferenceCountTraits< FooDerived2 > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/matrix4x4.h:58: warning: Compound Mezzanine::Matrix4x4 is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/asset.h:54: warning: Compound Mezzanine::Resource::Asset is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/boilerplatetests.h:52: warning: Compound boilerplatetests is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:283: warning: Compound Mezzanine::ReferenceCountTraits< CarTest > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:239: warning: Compound xml_writer is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:257: warning: Compound Mezzanine::CarTest is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1083: warning: Compound xpath_exception is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:750: warning: Compound xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/asset.h:52: warning: Compound Mezzanine::Resource::Asset is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:271: warning: Compound Mezzanine::ReferenceCountTraits< VehicleTest > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:856: warning: Compound xml_document is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/world.h:59: warning: Compound Mezzanine::World is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:104: warning: Compound Mezzanine::UI::OgreVertex is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:834: warning: Compound xml_parse_result is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.h:93: warning: Compound Mezzanine::PhysicsConstructionInfo is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainer.h:280: warning: Compound Mezzanine::UI::RenderableContainer is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:49: warning: Compound compilerflagtests is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:305: warning: Compound countedptrtests is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1023: warning: Compound xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:167: warning: Compound Mezzanine::FooDiamond is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:957: warning: Compound xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:598: warning: Compound xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:263: warning: Compound xml_writer_stream is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:58: warning: Compound Mezzanine::Resource::TextSettingsFile is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:145: warning: Compound Mezzanine::FooDerived1 is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:156: warning: Compound Mezzanine::FooDerived2 is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/resizehandler.h:54: warning: Compound Mezzanine::UI::ResizeHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:66: warning: Compound Mezzanine::UI::TextureAtlasInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/listbox.h:52: warning: Compound Mezzanine::UI::TemplateParams is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/archive.h:54: warning: Compound Mezzanine::Resource::Archive is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:266: warning: Compound Mezzanine::UI::OpenRenderableContainerWidget is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:60: warning: Documentation for undefined enum `ManagerTypeName' found.
-/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
-/home/sqeaky/Code/Mezzanine/UnitTests/src/consolelogic.h:68: warning: unable to resolve reference to `TempFile' for \ref command
-/home/sqeaky/Code/Mezzanine/UnitTests/src/consolelogic.h:75: warning: unable to resolve reference to `TempFile' for \ref command
-/home/sqeaky/Code/Mezzanine/UnitTests/src/testenumerations.h:105: warning: unable to resolve reference to `UnitTestGroup::AddTestResult' for \ref command
-/home/sqeaky/Code/Mezzanine/UnitTests/src/testenumerations.h:99: warning: unable to resolve reference to `TestResult' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.cpp:202: warning: documented symbol `bool Mezzanine::Physics::PhysicsProxy::isActive' was not declared or defined.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.cpp:142: warning: documented symbol `Vector3 Mezzanine::Physics::RigidProxy::GetIndivudualGravity' was not declared or defined.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorrigid.h:122: warning: target WorldObject::_NotifyCollisionState(Physics::Collision* Col) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorrigid.h:140: warning: Found unknown command `\copy'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorrigid.h:142: warning: Found unknown command `\copy'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/areaeffect.h:132: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/areaeffect.h:136: warning: target NonStaticWorldObject::SetOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/areaeffect.h:140: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/areaeffect.h:144: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/areaeffect.h:146: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:295: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:299: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:301: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:75: warning: target Mezzanine::Attachable::GetName() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:99: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/controller.h:65: warning: target Device::InputImpl(std::vector<MetaCode>& Codes) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/controller.h:127: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/controller.h:127: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/keyboard.h:61: warning: target Device::InputImpl(std::vector<MetaCode>& Codes) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/keyboard.h:72: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/keyboard.h:72: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:70: warning: target Device::InputImpl(std::vector<MetaCode>& Codes) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:246: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:250: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:252: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/particleeffect.h:120: warning: target Mezzanine::AttachableBase::SetScaling(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/particleeffect.h:124: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: target Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofconstraint.h:384: warning: target Constraint::ValidParamOnAxis(int) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofconstraint.h:390: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/hingeconstraint.h:140: warning: target DualTransformConstraint::SetTransformA of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/hingeconstraint.h:142: warning: target DualTransformConstraint::SetTransformB of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/hingeconstraint.h:144: warning: target DualTransformConstraint::GetTransformA of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/hingeconstraint.h:146: warning: target DualTransformConstraint::GetTransformB of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/hingeconstraint.h:219: warning: target Constraint::ValidParamOnAxis(int) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/hingeconstraint.h:225: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/point2pointconstraint.h:117: warning: target Constraint::ValidParamOnAxis(int) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/point2pointconstraint.h:123: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:137: warning: target Constraint::ValidParamOnAxis(int) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:143: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:68: warning: recursive call chain of \copydoc commands detected at 68
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:70: warning: recursive call chain of \copydoc commands detected at 70
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:72: warning: recursive call chain of \copydoc commands detected at 72
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:104: warning: recursive call chain of \copydoc commands detected at 104
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:110: warning: recursive call chain of \copydoc commands detected at 110
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:110: warning: recursive call chain of \copydoc commands detected at 110
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:114: warning: recursive call chain of \copydoc commands detected at 114
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:110: warning: recursive call chain of \copydoc commands detected at 110
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:114: warning: recursive call chain of \copydoc commands detected at 114
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:104: warning: recursive call chain of \copydoc commands detected at 104
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:110: warning: recursive call chain of \copydoc commands detected at 110
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:114: warning: recursive call chain of \copydoc commands detected at 114
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:104: warning: recursive call chain of \copydoc commands detected at 104
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:104: warning: recursive call chain of \copydoc commands detected at 104
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:104: warning: recursive call chain of \copydoc commands detected at 104
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:104: warning: recursive call chain of \copydoc commands detected at 104
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:112: warning: recursive call chain of \copydoc commands detected at 112
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:116: warning: recursive call chain of \copydoc commands detected at 116
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:104: warning: recursive call chain of \copydoc commands detected at 104
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:104: warning: recursive call chain of \copydoc commands detected at 104
+
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:177: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:185: warning: target AttachableBase::SetScaling(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:191: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:177: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobject.h:295: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobject.h:325: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:51: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:56: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/binarytoolstests.h:117: warning: unable to resolve reference to `A' for \ref command
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/binarytoolstests.h:116: warning: return type of member ReneBase64Decode is not documented
+<unknown>:8: warning: unable to resolve reference to `World.GameInit()' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:236: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:189: warning: explicit link request to 'wstream' could not be resolved
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:152: warning: explicit link request to 'x' could not be resolved
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:152: warning: explicit link request to 'x' could not be resolved
-/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:52: warning: Member Name() (function) of class compilerflagtests is not documented.
-<RunTests>:1: warning: parameters of member compilerflagtests::RunTests are not (all) documented
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target UnitTestGroup::Name of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: target UnitTestGroup::RunTests of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target UnitTestGroup::Name of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:695: warning: explicit link request to 'wstream' could not be resolved
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:775: warning: explicit link request to 'x' could not be resolved
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:775: warning: explicit link request to 'x' could not be resolved
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/binarytoolstests.h:171: warning: Member Name() (function) of class binarytoolstests is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/binarytoolstests.h:174: warning: Member RunTests(bool RunAutomaticTests, bool RunInteractiveTests) (function) of class binarytoolstests is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/boilerplatetests.h:55: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/boilerplatetests.h:60: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/boilerplatetests.h:55: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/boilerplatetests.h:55: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/boilerplatetests.h:55: warning: return type of member boilerplatetests::Name is not documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/boilerplatetests.h:60: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/boilerplatetests.h:60: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/boilerplatetests.h:60: warning: parameters of member boilerplatetests::RunTests are not (all) documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:51: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:56: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:51: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:51: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:51: warning: return type of member compilerflagtests::Name is not documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:56: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:56: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:56: warning: parameters of member compilerflagtests::RunTests are not (all) documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:308: warning: Member Name() (function) of class countedptrtests is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:311: warning: Member RunTests(bool RunAutomaticTests, bool RunInteractiveTests) (function) of class countedptrtests is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: return type of member lua51tests::Name is not documented
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: target UnitTestGroup::RunTests of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: target UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: parameters of member lua51tests::RunTests are not (all) documented
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: target UnitTestGroup::Name of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: target UnitTestGroup::RunTests of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: target UnitTestGroup::Name of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: target UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: return type of member vector3tests::Name is not documented
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: target UnitTestGroup::RunTests of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: target UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: parameters of member vector3tests::RunTests are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:293: warning: Member xml_attribute(xml_attribute_struct *attr) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:326: warning: Member as_bool(bool def=false) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:322: warning: Member as_double(double def=0) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:323: warning: Member as_float(float def=0) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:320: warning: Member as_int(int def=0) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:317: warning: Member as_string(const char_t *def="") const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:321: warning: Member as_uint(unsigned int def=0) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:310: warning: Member empty() const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:350: warning: Member hash_value() const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:353: warning: Member internal_object() const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:313: warning: Member name() const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:346: warning: Member next_attribute() const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:296: warning: Member operator unspecified_bool_type() const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:299: warning: Member operator!() const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:303: warning: Member operator!=(const xml_attribute &r) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:304: warning: Member operator<(const xml_attribute &r) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:306: warning: Member operator<=(const xml_attribute &r) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:339: warning: Member operator=(const char_t *rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:340: warning: Member operator=(int rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:341: warning: Member operator=(unsigned int rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:342: warning: Member operator=(double rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:343: warning: Member operator=(bool rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:302: warning: Member operator==(const xml_attribute &r) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:305: warning: Member operator>(const xml_attribute &r) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:307: warning: Member operator>=(const xml_attribute &r) const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:347: warning: Member previous_attribute() const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:329: warning: Member set_name(const char_t *rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:330: warning: Member set_value(const char_t *rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:333: warning: Member set_value(int rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:334: warning: Member set_value(unsigned int rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:335: warning: Member set_value(double rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:336: warning: Member set_value(bool rhs) (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:314: warning: Member value() const  (function) of class xml_attribute is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:719: warning: Member difference_type (typedef) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:725: warning: Member iterator_category (typedef) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:721: warning: Member pointer (typedef) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:722: warning: Member reference (typedef) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:720: warning: Member value_type (typedef) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:732: warning: Member xml_attribute_iterator(const xml_attribute &attr, const xml_node &parent) (function) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:736: warning: Member operator!=(const xml_attribute_iterator &rhs) const  (function) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:738: warning: Member operator*() const  (function) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:741: warning: Member operator++() (function) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:742: warning: Member operator++(int) (function) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:744: warning: Member operator--() (function) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:745: warning: Member operator--(int) (function) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:739: warning: Member operator->() const  (function) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:735: warning: Member operator==(const xml_attribute_iterator &rhs) const  (function) of class xml_attribute_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:922: warning: Member document_element() const  (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:886: warning: Member load(std::basic_istream< char, std::char_traits< char > > &stream, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:887: warning: Member load(std::basic_istream< wchar_t, std::char_traits< wchar_t > > &stream, unsigned int options=parse_default) (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:891: warning: Member load(const char_t *contents, unsigned int options=parse_default) (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:898: warning: Member load_buffer(const void *contents, size_t size, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:902: warning: Member load_buffer_inplace(void *contents, size_t size, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:906: warning: Member load_buffer_inplace_own(void *contents, size_t size, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:894: warning: Member load_file(const char *path, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:895: warning: Member load_file(const wchar_t *path, unsigned int options=parse_default, xml_encoding encoding=encoding_auto) (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:879: warning: Member reset() (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:882: warning: Member reset(const xml_document &proto) (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:909: warning: Member save(xml_writer &writer, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:913: warning: Member save(std::basic_ostream< char, std::char_traits< char > > &stream, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:914: warning: Member save(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &stream, const char_t *indent="\t", unsigned int flags=format_default) const  (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:918: warning: Member save_file(const char *path, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:919: warning: Member save_file(const wchar_t *path, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto) const  (function) of class xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:380: warning: Member xml_node(xml_node_struct *p) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:444: warning: Member append_attribute(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:456: warning: Member append_child(xml_node_type type=node_element) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:462: warning: Member append_child(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:450: warning: Member append_copy(const xml_attribute &proto) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:468: warning: Member append_copy(const xml_node &proto) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:429: warning: Member attribute(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:578: warning: Member attributes() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:572: warning: Member attributes_begin() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:573: warning: Member attributes_end() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:566: warning: Member begin() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:428: warning: Member child(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:434: warning: Member child_value() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:437: warning: Member child_value(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:576: warning: Member children() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:577: warning: Member children(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:397: warning: Member empty() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:567: warning: Member end() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:483: warning: Member find_attribute(Predicate pred) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:495: warning: Member find_child(Predicate pred) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:530: warning: Member find_child_by_attribute(const char_t *name, const char_t *attr_name, const char_t *attr_value) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:531: warning: Member find_child_by_attribute(const char_t *attr_name, const char_t *attr_value) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:507: warning: Member find_node(Predicate pred) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:407: warning: Member first_attribute() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:411: warning: Member first_child() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:539: warning: Member first_element_by_path(const char_t *path, char_t delimiter= '/') const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:584: warning: Member hash_value() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:446: warning: Member insert_attribute_after(const char_t *name, const xml_attribute &attr) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:447: warning: Member insert_attribute_before(const char_t *name, const xml_attribute &attr) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:458: warning: Member insert_child_after(xml_node_type type, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:464: warning: Member insert_child_after(const char_t *name, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:459: warning: Member insert_child_before(xml_node_type type, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:465: warning: Member insert_child_before(const char_t *name, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:452: warning: Member insert_copy_after(const xml_attribute &proto, const xml_attribute &attr) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:470: warning: Member insert_copy_after(const xml_node &proto, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:453: warning: Member insert_copy_before(const xml_attribute &proto, const xml_attribute &attr) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:471: warning: Member insert_copy_before(const xml_node &proto, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:587: warning: Member internal_object() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:408: warning: Member last_attribute() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:412: warning: Member last_child() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:403: warning: Member name() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:415: warning: Member next_sibling() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:430: warning: Member next_sibling(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:581: warning: Member offset_debug() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:383: warning: Member operator unspecified_bool_type() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:386: warning: Member operator!() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:390: warning: Member operator!=(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:391: warning: Member operator<(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:393: warning: Member operator<=(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:389: warning: Member operator==(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:392: warning: Member operator>(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:394: warning: Member operator>=(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:419: warning: Member parent() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:535: warning: Member path(char_t delimiter= '/') const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:445: warning: Member prepend_attribute(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:457: warning: Member prepend_child(xml_node_type type=node_element) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:463: warning: Member prepend_child(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:451: warning: Member prepend_copy(const xml_attribute &proto) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:469: warning: Member prepend_copy(const xml_node &proto) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:416: warning: Member previous_sibling() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:431: warning: Member previous_sibling(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:555: warning: Member print(xml_writer &writer, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:559: warning: Member print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:560: warning: Member print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent="\t", unsigned int flags=format_default, unsigned int depth=0) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:474: warning: Member remove_attribute(const xml_attribute &a) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:475: warning: Member remove_attribute(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:478: warning: Member remove_child(const xml_node &n) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:479: warning: Member remove_child(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:422: warning: Member root() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:550: warning: Member select_nodes(const char_t *query, xpath_variable_set *variables=0) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:551: warning: Member select_nodes(const xpath_query &query) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:546: warning: Member select_single_node(const char_t *query, xpath_variable_set *variables=0) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:547: warning: Member select_single_node(const xpath_query &query) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:440: warning: Member set_name(const char_t *rhs) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:441: warning: Member set_value(const char_t *rhs) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:425: warning: Member text() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:542: warning: Member traverse(xml_tree_walker &walker) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:400: warning: Member type() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:404: warning: Member value() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:570: warning: Member attribute_iterator (typedef) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:564: warning: Member iterator (typedef) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:373: warning: Member unspecified_bool_type)(xml_node ***) (typedef) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:371: warning: Member _root (variable) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:753: warning: Member difference_type (typedef) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:759: warning: Member iterator_category (typedef) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:755: warning: Member pointer (typedef) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:756: warning: Member reference (typedef) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:754: warning: Member value_type (typedef) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:766: warning: Member xml_named_node_iterator(const xml_node &node, const char_t *name) (function) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:770: warning: Member operator!=(const xml_named_node_iterator &rhs) const  (function) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:772: warning: Member operator*() const  (function) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:775: warning: Member operator++() (function) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:776: warning: Member operator++(int) (function) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:773: warning: Member operator->() const  (function) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:769: warning: Member operator==(const xml_named_node_iterator &rhs) const  (function) of class xml_named_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:570: warning: Member attribute_iterator (typedef) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:564: warning: Member iterator (typedef) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:380: warning: Member xml_node(xml_node_struct *p) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:444: warning: Member append_attribute(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:456: warning: Member append_child(xml_node_type type=node_element) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:462: warning: Member append_child(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:450: warning: Member append_copy(const xml_attribute &proto) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:468: warning: Member append_copy(const xml_node &proto) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:429: warning: Member attribute(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:578: warning: Member attributes() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:572: warning: Member attributes_begin() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:573: warning: Member attributes_end() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:566: warning: Member begin() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:428: warning: Member child(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:434: warning: Member child_value() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:437: warning: Member child_value(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:576: warning: Member children() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:577: warning: Member children(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:397: warning: Member empty() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:567: warning: Member end() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:483: warning: Member find_attribute(Predicate pred) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:495: warning: Member find_child(Predicate pred) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:530: warning: Member find_child_by_attribute(const char_t *name, const char_t *attr_name, const char_t *attr_value) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:531: warning: Member find_child_by_attribute(const char_t *attr_name, const char_t *attr_value) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:507: warning: Member find_node(Predicate pred) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:407: warning: Member first_attribute() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:411: warning: Member first_child() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:539: warning: Member first_element_by_path(const char_t *path, char_t delimiter= '/') const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:584: warning: Member hash_value() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:446: warning: Member insert_attribute_after(const char_t *name, const xml_attribute &attr) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:447: warning: Member insert_attribute_before(const char_t *name, const xml_attribute &attr) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:458: warning: Member insert_child_after(xml_node_type type, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:464: warning: Member insert_child_after(const char_t *name, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:459: warning: Member insert_child_before(xml_node_type type, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:465: warning: Member insert_child_before(const char_t *name, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:452: warning: Member insert_copy_after(const xml_attribute &proto, const xml_attribute &attr) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:470: warning: Member insert_copy_after(const xml_node &proto, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:453: warning: Member insert_copy_before(const xml_attribute &proto, const xml_attribute &attr) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:471: warning: Member insert_copy_before(const xml_node &proto, const xml_node &node) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:587: warning: Member internal_object() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:408: warning: Member last_attribute() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:412: warning: Member last_child() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:403: warning: Member name() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:415: warning: Member next_sibling() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:430: warning: Member next_sibling(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:581: warning: Member offset_debug() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:383: warning: Member operator unspecified_bool_type() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:386: warning: Member operator!() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:390: warning: Member operator!=(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:391: warning: Member operator<(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:393: warning: Member operator<=(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:389: warning: Member operator==(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:392: warning: Member operator>(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:394: warning: Member operator>=(const xml_node &r) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:419: warning: Member parent() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:535: warning: Member path(char_t delimiter= '/') const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:445: warning: Member prepend_attribute(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:457: warning: Member prepend_child(xml_node_type type=node_element) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:463: warning: Member prepend_child(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:451: warning: Member prepend_copy(const xml_attribute &proto) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:469: warning: Member prepend_copy(const xml_node &proto) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:416: warning: Member previous_sibling() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:431: warning: Member previous_sibling(const char_t *name) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:555: warning: Member print(xml_writer &writer, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:559: warning: Member print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent="\t", unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:560: warning: Member print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent="\t", unsigned int flags=format_default, unsigned int depth=0) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:474: warning: Member remove_attribute(const xml_attribute &a) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:475: warning: Member remove_attribute(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:478: warning: Member remove_child(const xml_node &n) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:479: warning: Member remove_child(const char_t *name) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:422: warning: Member root() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:550: warning: Member select_nodes(const char_t *query, xpath_variable_set *variables=0) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:551: warning: Member select_nodes(const xpath_query &query) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:546: warning: Member select_single_node(const char_t *query, xpath_variable_set *variables=0) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:547: warning: Member select_single_node(const xpath_query &query) const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:440: warning: Member set_name(const char_t *rhs) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:441: warning: Member set_value(const char_t *rhs) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:425: warning: Member text() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:542: warning: Member traverse(xml_tree_walker &walker) (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:400: warning: Member type() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:404: warning: Member value() const  (function) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:373: warning: Member unspecified_bool_type)(xml_node ***) (typedef) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:371: warning: Member _root (variable) of class xml_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:677: warning: Member difference_type (typedef) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:683: warning: Member iterator_category (typedef) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:679: warning: Member pointer (typedef) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:680: warning: Member reference (typedef) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:678: warning: Member value_type (typedef) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:690: warning: Member xml_node_iterator(const xml_node &node) (function) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:694: warning: Member operator!=(const xml_node_iterator &rhs) const  (function) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:696: warning: Member operator*() const  (function) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:699: warning: Member operator++() (function) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:700: warning: Member operator++(int) (function) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:702: warning: Member operator--() (function) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:703: warning: Member operator--(int) (function) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:697: warning: Member operator->() const  (function) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:693: warning: Member operator==(const xml_node_iterator &rhs) const  (function) of class xml_node_iterator is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:224: warning: Member const_iterator (typedef) of class xml_object_range is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:227: warning: Member xml_object_range(It b, It e) (function) of class xml_object_range is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:230: warning: Member begin() const  (function) of class xml_object_range is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:231: warning: Member end() const  (function) of class xml_object_range is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:851: warning: Member description() const  (function) of class xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:848: warning: Member operator bool() const  (function) of class xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:842: warning: Member encoding (variable) of class xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:839: warning: Member offset (variable) of class xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:836: warning: Member status (variable) of class xml_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:636: warning: Member as_bool(bool def=false) const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:632: warning: Member as_double(double def=0) const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:633: warning: Member as_float(float def=0) const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:630: warning: Member as_int(int def=0) const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:627: warning: Member as_string(const char_t *def="") const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:631: warning: Member as_uint(unsigned int def=0) const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:655: warning: Member data() const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:621: warning: Member empty() const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:624: warning: Member get() const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:615: warning: Member operator unspecified_bool_type() const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:618: warning: Member operator!() const  (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:648: warning: Member operator=(const char_t *rhs) (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:649: warning: Member operator=(int rhs) (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:650: warning: Member operator=(unsigned int rhs) (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:651: warning: Member operator=(double rhs) (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:652: warning: Member operator=(bool rhs) (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:639: warning: Member set(const char_t *rhs) (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:642: warning: Member set(int rhs) (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:643: warning: Member set(unsigned int rhs) (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:644: warning: Member set(double rhs) (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:645: warning: Member set(bool rhs) (function) of class xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:800: warning: Member begin(xml_node &node) (function) of class xml_tree_walker is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:806: warning: Member end(xml_node &node) (function) of class xml_tree_walker is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:803: warning: Member for_each(xml_node &node)=0 (function) of class xml_tree_walker is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:793: warning: Member depth() const  (function) of class xml_tree_walker is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:244: warning: Member write(const void *data, size_t size)=0 (function) of class xml_writer is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:252: warning: Member xml_writer_file(void *file) (function) of class xml_writer_file is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:254: warning: Member write(const void *data, size_t size) (function) of class xml_writer_file is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:266: warning: Member xml_writer_stream(std::basic_ostream< char, std::char_traits< char > > &stream) (function) of class xml_writer_stream is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:267: warning: Member xml_writer_stream(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &stream) (function) of class xml_writer_stream is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:269: warning: Member write(const void *data, size_t size) (function) of class xml_writer_stream is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1089: warning: Member xpath_exception(const xpath_parse_result &result) (function) of class xpath_exception is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1095: warning: Member result() const  (function) of class xpath_exception is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1092: warning: Member what() const  (function) of class xpath_exception is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1113: warning: Member xpath_node(const xml_node &node) (function) of class xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1114: warning: Member xpath_node(const xml_attribute &attribute, const xml_node &parent) (function) of class xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1118: warning: Member attribute() const  (function) of class xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1117: warning: Member node() const  (function) of class xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1124: warning: Member operator unspecified_bool_type() const  (function) of class xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1127: warning: Member operator!() const  (function) of class xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1131: warning: Member operator!=(const xpath_node &n) const  (function) of class xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1130: warning: Member operator==(const xpath_node &n) const  (function) of class xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1121: warning: Member parent() const  (function) of class xpath_node is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1153: warning: Member const_iterator (typedef) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1146: warning: Member type_t (enumeration) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1159: warning: Member xpath_node_set(const_iterator begin, const_iterator end, type_t type=type_unsorted) (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1165: warning: Member xpath_node_set(const xpath_node_set &ns) (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1178: warning: Member begin() const  (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1188: warning: Member empty() const  (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1179: warning: Member end() const  (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1185: warning: Member first() const  (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1166: warning: Member operator=(const xpath_node_set &ns) (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1175: warning: Member operator[](size_t index) const  (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1172: warning: Member size() const  (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1182: warning: Member sort(bool reverse=false) (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1169: warning: Member type() const  (function) of class xpath_node_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:952: warning: Member description() const  (function) of class xpath_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:949: warning: Member operator bool() const  (function) of class xpath_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:940: warning: Member error (variable) of class xpath_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:943: warning: Member offset (variable) of class xpath_parse_result is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1037: warning: Member xpath_query(const char_t *query, xpath_variable_set *variables=0) (function) of class xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1047: warning: Member evaluate_boolean(const xpath_node &n) const  (function) of class xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1068: warning: Member evaluate_node_set(const xpath_node &n) const  (function) of class xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1051: warning: Member evaluate_number(const xpath_node &n) const  (function) of class xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1056: warning: Member evaluate_string(const xpath_node &n) const  (function) of class xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1063: warning: Member evaluate_string(char_t *buffer, size_t capacity, const xpath_node &n) const  (function) of class xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1074: warning: Member operator unspecified_bool_type() const  (function) of class xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1077: warning: Member operator!() const  (function) of class xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1071: warning: Member result() const  (function) of class xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1043: warning: Member return_type() const  (function) of class xpath_query is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:978: warning: Member get_boolean() const  (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:981: warning: Member get_node_set() const  (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:979: warning: Member get_number() const  (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:980: warning: Member get_string() const  (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:972: warning: Member name() const  (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:984: warning: Member set(bool value) (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:985: warning: Member set(double value) (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:986: warning: Member set(const char_t *value) (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:987: warning: Member set(const xpath_node_set &value) (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:975: warning: Member type() const  (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:967: warning: Member xpath_variable(const xpath_variable &) (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:968: warning: Member operator=(const xpath_variable &) (function) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:962: warning: Member _next (variable) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:961: warning: Member _type (variable) of class xpath_variable is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1008: warning: Member add(const char_t *name, xpath_value_type type) (function) of class xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1017: warning: Member get(const char_t *name) (function) of class xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1018: warning: Member get(const char_t *name) const  (function) of class xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1011: warning: Member set(const char_t *name, bool value) (function) of class xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1012: warning: Member set(const char_t *name, double value) (function) of class xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1013: warning: Member set(const char_t *name, const char_t *value) (function) of class xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1014: warning: Member set(const char_t *name, const xpath_node_set &value) (function) of class xpath_variable_set is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:274: warning: Member AlgoList (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:68: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:66: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.cpp:65: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:609: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > Original)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:609: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > Original)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:627: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrDynamicCast(CountedPtr< OtherPointerTargetType > Original)
@@ -178,7 +779,6 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:152: warning: Member Attached (variable) of class Mezzanine::AttachableParent is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:101: warning: Member AppendCurrentSettings(XML::Node &SettingsRootNode) (function) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:102: warning: Member ApplySettingGroupImpl(ObjectSettingGroup *Group) (function) of class Mezzanine::AudioManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:100: warning: Member GetObjectRootNodeName() const  (function) of class Mezzanine::AudioManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:313: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:311: warning: Member LoadSettingsFromFile(const String &FileName, const String &Path) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
@@ -219,6 +819,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:170: warning: The following parameters of Mezzanine::AudioManager::AddSoundToSoundSet(const String &SoundSetName, Audio::Sound *SoundInst) are not documented:
   parameter 'SoundSetName'
   parameter 'SoundInst'
+<ApplySettingGroupImpl>:1: warning: parameters of member Mezzanine::AudioManager::ApplySettingGroupImpl are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:149: warning: argument 'SoundName' of command @param is not found in the argument list of Mezzanine::AudioManager::DestroySound(Audio::Sound *ToBeDestroyed)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:149: warning: The following parameters of Mezzanine::AudioManager::DestroySound(Audio::Sound *ToBeDestroyed) are not documented:
   parameter 'ToBeDestroyed'
@@ -226,6 +827,11 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:200: warning: argument 'Music' of command @param is not found in the argument list of Mezzanine::AudioManager::SetMasterVolume(const Real &Master)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:200: warning: The following parameters of Mezzanine::AudioManager::SetMasterVolume(const Real &Master) are not documented:
   parameter 'Master'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:60: warning: Member AudioManagerInternalData(AudioManager *Man) (function) of class Mezzanine::AudioManagerInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:63: warning: Member AudioMan (variable) of class Mezzanine::AudioManagerInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:66: warning: Member EAXEffectSlots (variable) of class Mezzanine::AudioManagerInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:64: warning: Member InitializedDevice (variable) of class Mezzanine::AudioManagerInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:65: warning: Member OutputFrequency (variable) of class Mezzanine::AudioManagerInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:299: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:301: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:295: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
@@ -271,6 +877,13 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< CameraManager > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/cameramanager.h:120: warning: parameters of member Mezzanine::CameraManager::GetCamera are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/cameramanager.h:123: warning: parameters of member Mezzanine::CameraManager::GetCamera are not (all) documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:260: warning: Member StartEngine() (function) of class Mezzanine::CarTest is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:253: warning: Member StartEngine() (function) of class Mezzanine::VehicleTest is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:285: warning: Member CollisionDispatcher(btCollisionConfiguration *CollisionConfig) (function) of class Mezzanine::CollisionDispatcher is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:349: warning: Member allocateCollisionAlgorithm(int size) (function) of class Mezzanine::CollisionDispatcher is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:356: warning: Member freeCollisionAlgorithm(void *ptr) (function) of class Mezzanine::CollisionDispatcher is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:388: warning: Member GetAlgoCreationQueue() (function) of class Mezzanine::CollisionDispatcher is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:281: warning: Member AlgoCreationQueue (variable) of class Mezzanine::CollisionDispatcher is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< CollisionShapeManager > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/collisionshapemanager.h:159: warning: argument 'UseAllSubMeshes' of command @param is not found in the argument list of Mezzanine::CollisionShapeManager::GenerateConvexHull(const String &Name, Graphics::Mesh *ObjectMesh, bool UseAllSubmeshes=false)
@@ -329,12 +942,13 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:314: warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:407: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const PhysicsConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:541: warning: unable to resolve reference to `mainloop1' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:78: warning: Found unknown command `\TODO'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventcollision.h:73: warning: argument 'PhysicsManifold' of command @param is not found in the argument list of Mezzanine::EventCollision::EventCollision(ActorBase *actora, ActorBase *actorb, Mezzanine::Collision *Col)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventcollision.h:73: warning: The following parameters of Mezzanine::EventCollision::EventCollision(ActorBase *actora, ActorBase *actorb, Mezzanine::Collision *Col) are not documented:
   parameter 'Col'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventcollision.h:105: warning: return type of member Mezzanine::EventCollision::GetType is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventgamewindow.h:108: warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/eventgamewindow.cpp:63: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class Mezzanine::EventGameWindowData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< EventManager > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventmanager.h:394: warning: parameters of member Mezzanine::EventManager::GetAllSpecificEvents are not (all) documented
@@ -424,6 +1038,11 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:150: warning: Member ConstAttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:147: warning: Member Value1 (variable) of class Mezzanine::FooDerived1 is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:158: warning: Member Value2 (variable) of class Mezzanine::FooDerived2 is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:169: warning: Member ValueDiamond (variable) of class Mezzanine::FooDiamond is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:147: warning: Member Value1 (variable) of class Mezzanine::FooDerived1 is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:158: warning: Member Value2 (variable) of class Mezzanine::FooDerived2 is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:83: warning: Member ConstGameWindowIterator (typedef) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:81: warning: Member GameWindowContainer (typedef) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:82: warning: Member GameWindowIterator (typedef) of class Mezzanine::GraphicsManager is not documented.
@@ -434,8 +1053,6 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:299: warning: Member SettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:295: warning: Member SettingGroupContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:296: warning: Member SettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:110: warning: Member AppendCurrentSettings(XML::Node &SettingsRootNode) (function) of class Mezzanine::GraphicsManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:111: warning: Member ApplySettingGroupImpl(ObjectSettingGroup *Group) (function) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:109: warning: Member GetObjectRootNodeName() const  (function) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:108: warning: Member InitOgreRenderSystem() (function) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:313: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
@@ -458,6 +1075,8 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:305: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< GraphicsManager > is not documented.
+<AppendCurrentSettings>:1: warning: parameters of member Mezzanine::GraphicsManager::AppendCurrentSettings are not (all) documented
+<ApplySettingGroupImpl>:1: warning: parameters of member Mezzanine::GraphicsManager::ApplySettingGroupImpl are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:126: warning: return type of member Mezzanine::GraphicsManager::CreateGameWindow is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:138: warning: argument 'WindowIndex' of command @param is not found in the argument list of Mezzanine::GraphicsManager::DestroyGameWindow(Graphics::GameWindow *ToBeDestroyed)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:138: warning: The following parameters of Mezzanine::GraphicsManager::DestroyGameWindow(Graphics::GameWindow *ToBeDestroyed) are not documented:
@@ -509,9 +1128,6 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:149: warning: The following parameters of Mezzanine::Light::SetDiffuseColour(const Real &Red, const Real &Green, const Real &Blue) are not documented:
-  parameter 'Green'
-  parameter 'Blue'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:250: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:250: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:250: warning: parameters of member Mezzanine::Light::SetLocalLocation are not (all) documented
@@ -521,9 +1137,6 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:246: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:246: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:246: warning: parameters of member Mezzanine::Light::SetScaling are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/light.h:163: warning: The following parameters of Mezzanine::Light::SetSpecularColour(const Real &Red, const Real &Green, const Real &Blue) are not documented:
-  parameter 'Green'
-  parameter 'Blue'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/linegroup.h:81: warning: return type of member Mezzanine::LineGroup::getPoint is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 <ManagerType>:1: warning: parameters of member Mezzanine::ManagerBase::ManagerType are not (all) documented
@@ -648,23 +1261,35 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< PhysicsManager > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.h:402: warning: return type of member Mezzanine::PhysicsManager::GetPhysicsWorldPointer is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/quaternion.h:190: warning: return type of member Mezzanine::Quaternion::GetOgreQuaternion is not documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:285: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< CarTest > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:288: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< CarTest > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:183: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< FooDerived1 > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:186: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< FooDerived1 > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:195: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< FooDerived2 > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:198: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< FooDerived2 > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:207: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< FooDiamond > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:210: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< FooDiamond > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:135: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< FooInternal > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:138: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< FooInternal > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:233: warning: argument 'The' of command @param is not found in the argument list of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(RefCountType *Target)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:233: warning: The following parameters of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(RefCountType *Target) are not documented:
   parameter 'Target'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:289: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:292: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:302: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:305: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:315: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:318: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:290: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:293: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:303: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:306: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:316: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:319: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:273: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< VehicleTest > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:276: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< VehicleTest > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/inputstream.h:95: warning: Member operator>>(T &Data) (function) of class Mezzanine::ResourceInputStream is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:220: warning: Member GetArchiveTypeFromString(String FromString) (function) of class Mezzanine::ResourceManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:87: warning: Member AddAssetGroupName(String Name) (function) of class Mezzanine::ResourceManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:86: warning: Member ResourceGroups (variable) of class Mezzanine::ResourceManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< ResourceManager > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:95: warning: argument 'ArchiveType' of command @param is not found in the argument list of Mezzanine::ResourceManager::ResourceManager(const String &EngineDataPath=".", ArchiveType ArchiveType_=FileSystem)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:95: warning: The following parameters of Mezzanine::ResourceManager::ResourceManager(const String &EngineDataPath=".", ArchiveType ArchiveType_=FileSystem) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:95: warning: argument 'ArchiveType' of command @param is not found in the argument list of Mezzanine::ResourceManager::ResourceManager(const String &EngineDataPath=".", Mezzanine::ArchiveType ArchiveType_=FileSystem)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:95: warning: The following parameters of Mezzanine::ResourceManager::ResourceManager(const String &EngineDataPath=".", Mezzanine::ArchiveType ArchiveType_=FileSystem) are not documented:
   parameter 'ArchiveType_'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/scenemanager.h:89: warning: Member EntityContainer (typedef) of class Mezzanine::SceneManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/scenemanager.h:87: warning: Member LightContainer (typedef) of class Mezzanine::SceneManager is not documented.
@@ -705,6 +1330,21 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/simpletimer.h:66: warning: The following parameters of Mezzanine::SimpleTimer::SimpleTimer(const Timer::TimerStyle style) are not documented:
   parameter 'style'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/simpletimer.h:73: warning: parameters of member Mezzanine::SimpleTimer::SetAutoReset are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/actormanager.cpp:50: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/timermanager.cpp:50: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/meshmanager.cpp:51: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/terrainmanager.cpp:51: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/inputmanager.cpp:54: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:55: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/cameramanager.cpp:56: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/uimanager.cpp:63: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:73: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/collisionshapemanager.cpp:79: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.cpp:79: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.cpp:89: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/scenemanager.cpp:175: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/eventmanager.cpp:243: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:421: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:85: warning: Member StickyConstraintConstructionInfo(const StickyConstraintConstructionInfo &Other) (function) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:76: warning: Member ActA (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
@@ -877,6 +1517,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:121: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:121: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:121: warning: return type of member Mezzanine::Vector3::operator[] is not documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:253: warning: Member StartEngine() (function) of class Mezzanine::VehicleTest is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/windowsettings.h:70: warning: Member operator=(const WindowSettings &GS) (function) of class Mezzanine::WindowSettings is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/world.h:63: warning: Member PagingMan (variable) of class Mezzanine::World is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/world.h:61: warning: Member PhysicsMan (variable) of class Mezzanine::World is not documented.
@@ -948,12 +1589,9 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/sound.h:69: warning: Member Type (variable) of class Mezzanine::Audio::Sound is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/sound.h:75: warning: return type of member Mezzanine::Audio::Sound::GetTypeVolume is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/soundset.h:89: warning: Member SerializableName() (function) of class Mezzanine::Audio::SoundSet is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:171: warning: argument 'Character' of command @param is not found in the argument list of Mezzanine::BinaryTools::IsBase64(unsigned char Char8)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:171: warning: The following parameters of Mezzanine::BinaryTools::IsBase64(unsigned char Char8) are not documented:
-  parameter 'Char8'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:55: warning: unable to resolve reference to `ScriptCompilable' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarytool.h:87: warning: parameters of member Mezzanine::BinaryTools::BinaryBuffer::BinaryBuffer are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/crossplatform.h:91: warning: parameters of member Mezzanine::crossplatform::GetSDLOgreBinder are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:108: warning: argument 'ParentWorld_' of command @param is not found in the argument list of Mezzanine::debug::InternalDebugDrawer::InternalDebugDrawer(Mezzanine::Entresol *ParentEntresol_, Whole WireFrameCount_=2)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:108: warning: The following parameters of Mezzanine::debug::InternalDebugDrawer::InternalDebugDrawer(Mezzanine::Entresol *ParentEntresol_, Whole WireFrameCount_=2) are not documented:
+  parameter 'ParentEntresol_'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: argument 'Axis' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: argument 'Angle' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: The following parameters of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent) are not documented:
@@ -983,6 +1621,12 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:169: warning: return type of member Mezzanine::Graphics::GameWindow::GetSettings is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:115: warning: parameters of member Mezzanine::Graphics::GameWindow::GetViewport are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:168: warning: parameters of member Mezzanine::Graphics::GameWindow::SetRenderOptions are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.cpp:74: warning: Member Borderless (variable) of class Mezzanine::Graphics::GameWindowInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.cpp:75: warning: Member Resizeable (variable) of class Mezzanine::Graphics::GameWindowInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/material.cpp:61: warning: Member GraphicsMaterial (variable) of class Mezzanine::Graphics::InternalMaterialData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/mesh.cpp:59: warning: Member GraphicsMesh (variable) of class Mezzanine::Graphics::InternalMeshData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.cpp:59: warning: Member GraphicsSkeleton (variable) of class Mezzanine::Graphics::InternalSkeletonData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/texture.cpp:61: warning: Member GraphicsTexture (variable) of class Mezzanine::Graphics::InternalTextureData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/material.h:67: warning: Member MID (variable) of class Mezzanine::Graphics::Material is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:67: warning: Member ConstSubMeshIterator (typedef) of class Mezzanine::Graphics::Mesh is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:65: warning: Member SubMeshContainer (typedef) of class Mezzanine::Graphics::Mesh is not documented.
@@ -1046,11 +1690,17 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:70: warning: target Device::InputImpl(std::vector<MetaCode>& Codes) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:70: warning: target Device::InputImpl(std::vector<MetaCode>& Codes) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:70: warning: parameters of member Mezzanine::Input::Mouse::UpdateImpl are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.cpp:70: warning: parameters of member Mezzanine::Internal::EntityInternalData::EntityInternalData are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.cpp:87: warning: Member InternalWorldObjectGraphicsSettings(Ogre::Entity *GraphicsObject) (function) of class Mezzanine::Internal::InternalWorldObjectGraphicsSettings is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/particleeffect.cpp:86: warning: parameters of member Mezzanine::Internal::ParticleEffectInternalData::ParticleEffectInternalData are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/scenemanager.cpp:122: warning: parameters of member Mezzanine::Internal::SceneManagerData::UpdateSkyCache are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:62: warning: Member StickyConstraint (typedef) of namespace Mezzanine::Physics is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:58: warning: Member ProxyType (enumeration) of namespace Mezzanine::Physics is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.cpp:155: warning: Member Torque (variable) of namespace Mezzanine::Physics is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collisionshape.h:138: warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::Physics::CreateShape(CollisionShape::ShapeType ShapeToCreate, const String &Name_, btCollisionShape *ShapeToModel)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collisionshape.h:138: warning: The following parameters of Mezzanine::Physics::CreateShape(CollisionShape::ShapeType ShapeToCreate, const String &Name_, btCollisionShape *ShapeToModel) are not documented:
   parameter 'Name_'
+<Torque>:1: warning: parameters of member Mezzanine::Physics::Torque are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/actorsoftcollisionshape.h:67: warning: Member ActorSoftShape (variable) of class Mezzanine::Physics::ActorSoftCollisionShape is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:96: warning: return type of member Mezzanine::Physics::BoxCollisionShape::GetBulletBoxShape is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:102: warning: parameters of member Mezzanine::Physics::BoxCollisionShape::ProtoDeSerialize are not (all) documented
@@ -1060,6 +1710,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/capsulecollisionshape.h:125: warning: parameters of member Mezzanine::Physics::CapsuleCollisionShape::ProtoSerialize are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collision.h:110: warning: parameters of member Mezzanine::Physics::Collision::GetManifoldPoint are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collision.h:110: warning: return type of member Mezzanine::Physics::Collision::GetManifoldPoint is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collision.cpp:60: warning: Member Manifolds (variable) of class Mezzanine::Physics::CollisionInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/compoundcollisionshape.h:106: warning: return type of member Mezzanine::Physics::CompoundCollisionShape::GetBulletCompoundShape is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/compoundcollisionshape.h:113: warning: parameters of member Mezzanine::Physics::CompoundCollisionShape::ProtoDeSerialize are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/compoundcollisionshape.h:110: warning: parameters of member Mezzanine::Physics::CompoundCollisionShape::ProtoSerialize are not (all) documented
@@ -1263,28 +1914,8 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:61: warning: Member SettingsSectionMap (typedef) of class Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:65: warning: Member FileName (variable) of class Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:66: warning: Member Sections (variable) of class Mezzanine::Resource::TextSettingsFile is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:149: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:84: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:91: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:131: warning: unable to resolve reference to `ScriptCompilable' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:126: warning: unable to resolve reference to `ScriptCompilable' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:84: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:91: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:114: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:149: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:84: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:91: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:235: warning: return type of member Mezzanine::Scripting::iScriptCompilable::IsCompilable is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:149: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:84: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:91: warning: Found unknown command `\detail'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:103: warning: argument 'IniitialValue' of command @param is not found in the argument list of Mezzanine::Scripting::ScriptArgumentSpecific< T >::ScriptArgumentSpecific(T InitialValue)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:103: warning: The following parameters of Mezzanine::Scripting::ScriptArgumentSpecific::ScriptArgumentSpecific(T InitialValue) are not documented:
-  parameter 'InitialValue'
-/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
-/home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:135: warning: return type of member Mezzanine::Testing::UnitTestGroup::AddSuccessFromBool is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/tabset.h:51: warning: Member RenderableCollection (typedef) of namespace Mezzanine::UI is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/viewportupdatetool.h:52: warning: Member WidgetResult (typedef) of namespace Mezzanine::UI is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/activatable.h:62: warning: Member ConstListenerIterator (typedef) of class Mezzanine::UI::Activatable is not documented.
@@ -1571,6 +2202,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/cellgrid.h:163: warning: argument 'Area' of command @param is not found in the argument list of Mezzanine::UI::CellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit, bool Relative=true)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/cellgrid.h:163: warning: The following parameters of Mezzanine::UI::CellGrid::SetWorkAreaLimits(const Vector2 &AreaLimit, bool Relative=true) are not documented:
   parameter 'AreaLimit'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/cellgrid.cpp:68: warning: Member operator()(Cell *First, Cell *Second) (function) of class Mezzanine::UI::CellPrioritySorter is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:70: warning: Member Atlas (variable) of class Mezzanine::UI::Character is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:71: warning: Member CharGlyph (variable) of class Mezzanine::UI::Character is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:72: warning: Member CharSprite (variable) of class Mezzanine::UI::Character is not documented.
@@ -1863,6 +2495,9 @@
   parameter 'Accessor'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/menuwindow.h:142: warning: parameters of member Mezzanine::UI::MenuWindow::GetChildMenuWindow are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/menuwindow.h:145: warning: parameters of member Mezzanine::UI::MenuWindow::GetChildMenuWindow are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:106: warning: Member Colour (variable) of class Mezzanine::UI::OgreVertex is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:105: warning: Member Position (variable) of class Mezzanine::UI::OgreVertex is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:107: warning: Member UV (variable) of class Mezzanine::UI::OgreVertex is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:268: warning: Member AreaRenderableContainer (typedef) of class Mezzanine::UI::OpenRenderableContainerWidget is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:269: warning: Member AreaRenderableIterator (typedef) of class Mezzanine::UI::OpenRenderableContainerWidget is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:270: warning: Member ConstAreaRenderableIterator (typedef) of class Mezzanine::UI::OpenRenderableContainerWidget is not documented.
@@ -2058,7 +2693,6 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:151: warning: Member CheckAndInsert(Widget *ToInsert) (function) of class Mezzanine::UI::Screen is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:153: warning: Member CreateVertexBuffer(const Whole &InitialSize=32) (function) of class Mezzanine::UI::Screen is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:154: warning: Member DestroyVertexBuffer() (function) of class Mezzanine::UI::Screen is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:149: warning: Member GetSceneManager() (function) of class Mezzanine::UI::Screen is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:152: warning: Member PrepareRenderSystem() (function) of class Mezzanine::UI::Screen is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:155: warning: Member ResizeVertexBuffer(const Whole &RequestedSize) (function) of class Mezzanine::UI::Screen is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:129: warning: Member GameViewport (variable) of class Mezzanine::UI::Screen is not documented.
@@ -2079,10 +2713,17 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:132: warning: Member Visible (variable) of class Mezzanine::UI::Screen is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:147: warning: Member Widgets (variable) of class Mezzanine::UI::Screen is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:146: warning: Member WidgetsRoot (variable) of class Mezzanine::UI::Screen is not documented.
+<GetSceneManager>:1: warning: return type of member Mezzanine::UI::Screen::GetSceneManager is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainer.h:86: warning: return type of member Mezzanine::UI::Screen::GetScreen is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:172: warning: argument 'visable' of command @param is not found in the argument list of Mezzanine::UI::Screen::SetVisible(bool visible)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:172: warning: The following parameters of Mezzanine::UI::Screen::SetVisible(bool visible) are not documented:
   parameter 'visible'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:95: warning: Member renderQueueEnded(Ogre::uint8 queueGroupId, const Ogre::String &invocation, bool &repeatThisInvocation) (function) of class Mezzanine::UI::ScreenInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:93: warning: Member renderQueueStarted(Ogre::uint8, const Ogre::String &, bool &) (function) of class Mezzanine::UI::ScreenInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:88: warning: Member ParentScreen (variable) of class Mezzanine::UI::ScreenInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:89: warning: Member RenderOp (variable) of class Mezzanine::UI::ScreenInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:90: warning: Member RenderSys (variable) of class Mezzanine::UI::ScreenInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:91: warning: Member VertexBuffer (variable) of class Mezzanine::UI::ScreenInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:91: warning: Member Clear() (function) of class Mezzanine::UI::ScreenVertexData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:93: warning: Member operator[](const Whole &Index) (function) of class Mezzanine::UI::ScreenVertexData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.h:92: warning: Member Size() (function) of class Mezzanine::UI::ScreenVertexData is not documented.
@@ -2278,6 +2919,11 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:72: warning: Member Sprites (variable) of class Mezzanine::UI::TextureAtlas is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:70: warning: Member TAID (variable) of class Mezzanine::UI::TextureAtlas is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:74: warning: Member WhitePixel (variable) of class Mezzanine::UI::TextureAtlas is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:68: warning: Member Mat2D (variable) of class Mezzanine::UI::TextureAtlasInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:69: warning: Member Mat3D (variable) of class Mezzanine::UI::TextureAtlasInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:70: warning: Member Pass2D (variable) of class Mezzanine::UI::TextureAtlasInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:71: warning: Member Pass3D (variable) of class Mezzanine::UI::TextureAtlasInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:67: warning: Member TATexture (variable) of class Mezzanine::UI::TextureAtlasInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/viewportupdatetool.h:85: warning: Member MiddleTolerance (variable) of class Mezzanine::UI::ViewportUpdateTool is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/viewportupdatetool.h:84: warning: Member NewSize (variable) of class Mezzanine::UI::ViewportUpdateTool is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/viewportupdatetool.h:83: warning: Member OldSize (variable) of class Mezzanine::UI::ViewportUpdateTool is not documented.
@@ -2370,9 +3016,12 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:86: warning: Member NewlineBefore (variable) of class Mezzanine::UI::Word is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:88: warning: Member Pxheight (variable) of class Mezzanine::UI::Word is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:87: warning: Member Pxlength (variable) of class Mezzanine::UI::Word is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.cpp:471: warning: Member header (variable) of class pugi::xml_attribute_struct is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.cpp:489: warning: Member header (variable) of class pugi::xml_node_struct is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.cpp:483: warning: The following parameters of pugi::xml_node_struct::xml_node_struct(impl::xml_memory_page *page, xml_node_type type) are not documented:
+  parameter 'page'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:92: warning: unable to resolve reference to `Mezzanine::StringTool' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:110: warning: unable to resolve reference to `Mezzanine::NetworkManager' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:121: warning: unable to resolve reference to `mainloop1' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:127: warning: unable to resolve reference to `actorcontainer1' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:153: warning: unable to resolve reference to `Mezzanine::Character' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:176: warning: unable to resolve reference to `LuaManual' for \ref command
