@@ -49,12 +49,16 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
+/// @brief A large number of test of the Vector3 class, nearly complete coverage.
 class vector3tests : public UnitTestGroup
 {
     public:
+        /// @copydoc UnitTestGroup::Name
+        /// @return Returns a String containing "vector3"
         virtual String Name()
             { return String("vector3"); }
 
+        /// @copydoc UnitTestGroup::RunTests
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)

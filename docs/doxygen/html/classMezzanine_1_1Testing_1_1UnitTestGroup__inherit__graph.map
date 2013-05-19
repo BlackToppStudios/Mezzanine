@@ -1,6 +1,6 @@
 <map id="Mezzanine::Testing::UnitTestGroup" name="Mezzanine::Testing::UnitTestGroup">
 <area shape="rect" id="node5" href="$classboilerplatetests.xhtml" title="boilerplatetests" alt="" coords="5,177,112,205"/>
-<area shape="rect" id="node7" href="$classlua51tests.xhtml" title="lua51tests" alt="" coords="136,177,216,205"/>
-<area shape="rect" id="node9" href="$classvector3tests.xhtml" title="vector3tests" alt="" coords="240,177,331,205"/>
+<area shape="rect" id="node7" href="$classlua51tests.xhtml" title="The group of tests for." alt="" coords="136,177,216,205"/>
+<area shape="rect" id="node9" href="$classvector3tests.xhtml" title="A large number of test of the Vector3 class, nearly complete coverage." alt="" coords="240,177,331,205"/>
 <area shape="rect" id="node2" title="STL class." alt="" coords="117,6,235,34"/>
 </map>

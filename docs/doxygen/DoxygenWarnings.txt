@@ -1,6 +1,3 @@
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorcharacter.h:49: Warning: problem evaluating expression '0': Syntax error in part '0'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorcharacter.h:49: Warning: problem evaluating expression '0': Syntax error in part '0'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorcharacter.h:49: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/cell.h:122: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/activatable.h:157: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/arearenderable.h:51: warning: the name `uiarearenderable.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
@@ -43,10 +40,8 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/widget.h:91: warning: the name `uiwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/widget.h:289: warning: the name `uiwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/window.h:50: warning: the name `uiwindow.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:49: warning: Compound lua51tests is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assetgroup.h:54: warning: Compound Mezzanine::Resource::AssetGroup is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:68: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:53: warning: Compound vector3tests is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assethandler.h:54: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/matrix4x4.h:58: warning: Compound Mezzanine::Matrix4x4 is not documented.
@@ -74,8 +69,24 @@
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:52: warning: Member Name() (function) of class compilerflagtests is not documented.
 <RunTests>:1: warning: parameters of member compilerflagtests::RunTests are not (all) documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: target UnitTestGroup::RunTests of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: return type of member lua51tests::Name is not documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: target UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: target UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: parameters of member lua51tests::RunTests are not (all) documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: target UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: target UnitTestGroup::RunTests of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/src/testdata.h:125: warning: Found unknown command `\paramm'
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: target UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: target UnitTestGroup::Name of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:56: warning: return type of member vector3tests::Name is not documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: target UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: target UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/vector3tests.h:61: warning: parameters of member vector3tests::RunTests are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:68: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:66: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:609: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > Original)

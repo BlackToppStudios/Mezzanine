@@ -42,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classlua51tests.xhtml" target="_top" xlink:title="lua51tests">
+<a xlink:href="classlua51tests.xhtml" target="_top" xlink:title="The group of tests for.">
 <polygon fill="none" stroke="black" points="269,-38 269,-58 329,-58 329,-38 269,-38"/>
 <text text-anchor="middle" x="299" y="-45" font-family="FreeSans" font-size="10.00">lua51tests</text>
 </a>
@@ -54,7 +54,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classvector3tests.xhtml" target="_top" xlink:title="vector3tests">
+<a xlink:href="classvector3tests.xhtml" target="_top" xlink:title="A large number of test of the Vector3 class, nearly complete coverage.">
 <polygon fill="none" stroke="black" points="265,-0 265,-20 333,-20 333,-0 265,-0"/>
 <text text-anchor="middle" x="299" y="-7" font-family="FreeSans" font-size="10.00">vector3tests</text>
 </a>

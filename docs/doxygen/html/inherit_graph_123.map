@@ -2,6 +2,6 @@
 <area shape="rect" id="node1" title="STL class." alt="" coords="7,55,121,83"/>
 <area shape="rect" id="node3" href="$classMezzanine_1_1Testing_1_1UnitTestGroup.xhtml" title="A single group of tests, suitable for being all the tests of a small subsystem or single class..." alt="" coords="171,47,301,91"/>
 <area shape="rect" id="node5" href="$classboilerplatetests.xhtml" title="boilerplatetests" alt="" coords="351,5,457,33"/>
-<area shape="rect" id="node7" href="$classlua51tests.xhtml" title="lua51tests" alt="" coords="364,55,444,83"/>
-<area shape="rect" id="node9" href="$classvector3tests.xhtml" title="vector3tests" alt="" coords="359,106,449,134"/>
+<area shape="rect" id="node7" href="$classlua51tests.xhtml" title="The group of tests for." alt="" coords="364,55,444,83"/>
+<area shape="rect" id="node9" href="$classvector3tests.xhtml" title="A large number of test of the Vector3 class, nearly complete coverage." alt="" coords="359,106,449,134"/>
 </map>
