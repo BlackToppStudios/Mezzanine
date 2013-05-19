@@ -804,6 +804,8 @@ class countedptrtests : public UnitTestGroup
                 DiamondPtr->ValueDiamond = 3;
                 AddTestResult("CountedPtr::DiamondCastingConsistency", Success);
 
+                cout << DiamondPtr.UseCount() << endl;
+
                 CountedPtr<FooInternal> InternalPtrFromImplicitCast = CountedPtrCast<FooInternal>(DiamondPtr);
                 if (InternalPtrFromImplicitCast && 0==InternalPtrFromImplicitCast->Value)
                 {
@@ -811,7 +813,7 @@ class countedptrtests : public UnitTestGroup
                 }else{
                     AddTestResult("CountedPtr::ExplicitDiamondCast", Failed);
                 }
-
+                cout << DiamondPtr.UseCount() << endl;
 
                 CountedPtr<FooInternal> InternalPtrFromCrossConstruction(DiamondPtr);
                 if (InternalPtrFromCrossConstruction && 0==InternalPtrFromCrossConstruction->Value)
@@ -820,11 +822,13 @@ class countedptrtests : public UnitTestGroup
                 }else{
                     AddTestResult("CountedPtr::CrossConstruction", Failed);
                 }
+                cout << DiamondPtr.UseCount() << endl;
 
                 VehicleTest* Car1 = new CarTest;
                 CarTest* Car2 = new CarTest;
 
                 CountedPtr<VehicleTest> Car1Ptr(Car1);
+                cout << Car1Ptr.UseCount() << endl;
 
                 CountedPtr<CarTest> Car1PtrAfterStaticCast = CountedPtrStaticCast<CarTest>(Car1Ptr);
                 if(String("Starting V6")==Car1PtrAfterStaticCast->StartEngine())
@@ -834,6 +838,8 @@ class countedptrtests : public UnitTestGroup
                     AddTestResult("CountedPtr::CountedPtrStaticCast", Failed);
                 }
 
+                cout << Car1Ptr.UseCount() << endl;
+
                 CountedPtr<CarTest> Car1PtrAfterDynamicCast = CountedPtrStaticCast<CarTest>(Car1Ptr);
                 if(Car1PtrAfterDynamicCast && String("Starting V6")==Car1PtrAfterDynamicCast->StartEngine())
                 {
@@ -842,6 +848,7 @@ class countedptrtests : public UnitTestGroup
                     AddTestResult("CountedPtr::CountedPtrDynamicCast", Failed);
                 }
 
+                cout << Car1Ptr.UseCount() << endl;
             }else{
                 AddTestResult("CountedPtr::DiamondCastingConsistency", Skipped);
                 AddTestResult("CountedPtr::ExplicitDiamondCast", Skipped);
