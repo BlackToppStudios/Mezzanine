@@ -316,7 +316,7 @@ endif(${Mezz_ThrowOnSingletonFetch})
 #######################################
 # Ogre3d related values
 
-set(OgreLibraryAllNames ${OgreLinkName} Plugin_ParticleFX Plugin_CgProgramManager)
+set(OgreLibraryAllNames ${OgreLinkName} Plugin_ParticleFX)
 set(Ogre_Arguments "")
 set(OgreHeaderIncludeDir "")
 
@@ -404,12 +404,7 @@ Message(STATUS "Putting Ogre3d config.h in: ${OgreConfigHeaderIncludeDir}")
 
 set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/OgreMain/include")
 set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/PlugIns/ParticleFX/include")
-set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/PlugIns/CgProgramManager/include")
 
-# Line below is needed on Windows, maybe other platforms as well.
-if(${WIN32})
-	set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/Dependencies/src/Cg/include")
-endif(${WIN32})
 Message(STATUS "Looking for Ogre3d headers in: ${OgreHeaderIncludeDir}")
 
 # Ogre Plugins
@@ -463,7 +458,7 @@ set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_A
 Message(STATUS "Starting Subproject Configuration.")
 add_subdirectory (Mezzanine)
 add_subdirectory (EngineDemo)
-add_subdirectory (Catch!)
+#add_subdirectory (Catch!)
 add_subdirectory (UnitTests)
 Message(STATUS "Finishing Subproject Configuration.")
 

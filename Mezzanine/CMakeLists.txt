@@ -521,7 +521,7 @@ set(OGRE_SET_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine bui
 set(OGRE_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_CONFIG_THREADS 0 CACHE INT "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_CONFIG_THREAD_PROVIDER "" CACHE STRING "Forcing minimal build for Mezzanine build." FORCE)
-
+set(OGRE_BUILD_PLUGIN_CG FALSE CACHE BOOL "Forcing Ogre to disable CG, because it is disgusting." FORCE)
 
 #######################################
 # Windows Build Specific Items
@@ -619,7 +619,7 @@ set(SDL_ATOMIC    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_AUDIO     off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_CPUINFO   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_EVENTS    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_FILE      off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_FILE      on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 set(SDL_HAPTIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 set(SDL_JOYSTICK  on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 set(SDL_LOADSO    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
@@ -662,7 +662,6 @@ CopyFilesDuringBuild( common/gpl-3.0.txt data/common/gpl-3.0.txt )
 CopyFilesDuringBuild( common/lgpl-3.0.txt data/common/lgpl-3.0.txt )
 CopyFilesDuringBuild( common/Licenses.txt data/common/Licenses.txt )
 CopyFilesDuringBuild( common/Lua-MIT.txt data/common/Lua-MIT.txt )
-CopyFilesDuringBuild( common/Nvidia-CG-License.txt data/common/Nvidia-CG-License.txt )
 CopyFilesDuringBuild( common/Ogre-MITLicense.txt data/common/Ogre-MITLicense.txt )
 CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )
 CopyFilesDuringBuild( common/ReneNyffenegger-MIT.txt data/common/ReneNyffenegger-MIT.txt )

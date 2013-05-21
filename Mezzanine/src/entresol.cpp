@@ -53,7 +53,7 @@
 #include "mezzanine.h"
 
 //#include "OgreBspSceneManagerPlugin.h"
-#include "OgreCgPlugin.h"
+//#include "OgreCgPlugin.h"
 //#include "OgreOctreePlugin.h"
 //#include "OgreOctreeZonePlugin.h"
 #include "OgreParticleFXPlugin.h"
@@ -165,8 +165,6 @@ namespace Mezzanine
         // Load the necessary plugins.
         SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
         Ogre::Root::getSingleton().installPlugin(SubSystemParticleFXPlugin);
-        SubSystemCgPlugin = new Ogre::CgPlugin();
-        Ogre::Root::getSingleton().installPlugin(SubSystemCgPlugin);
 
         //add each manager that was passed in to the manager list
         for(std::vector<ManagerBase*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
@@ -223,8 +221,6 @@ namespace Mezzanine
         // Load the necessary plugins.
         SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
         Ogre::Root::getSingleton().installPlugin(SubSystemParticleFXPlugin);
-        SubSystemCgPlugin = new Ogre::CgPlugin();
-        Ogre::Root::getSingleton().installPlugin(SubSystemCgPlugin);
 
         // Set up the data we'll be populating.
         XML::Attribute CurrAttrib;
@@ -504,7 +500,6 @@ namespace Mezzanine
         delete Ogre::Root::getSingletonPtr(); // This should be done by the shutdown method shouldn't it?
         OgreCore = 0;
         delete SubSystemParticleFXPlugin;
-        delete SubSystemCgPlugin;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

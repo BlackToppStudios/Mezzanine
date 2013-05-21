@@ -286,7 +286,6 @@ namespace Ogre
 	class Viewport;
 
     class ParticleFXPlugin;
-    class CgPlugin;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -348,10 +347,6 @@ namespace Mezzanine
             /// @internal
             /// @brief Used to track Ogre specific details for the statically linked Particle plugin
             Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
-
-            /// @internal
-            /// @brief Used to track Ogre specific details for the statically linked CG plugin
-            Ogre::CgPlugin* SubSystemCgPlugin;
 
             //Settings for Engine Functionality
             Whole TargetFrameLength;
