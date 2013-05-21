@@ -45,12 +45,17 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
+/// @brief The group of tests for
 class lua51tests : public UnitTestGroup
 {
     public:
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
+        /// @return Returns a String containing "lua51"
         virtual String Name()
             { return String("lua51"); }
 
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
+        /// @warning Totally incomplete, when run this will prove nothing.
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)

@@ -42,12 +42,3 @@
      if (SetupWindowData(_this, window, w, SDL_FALSE) < 0) {
          return -1;
      }
-@@ -862,7 +891,7 @@
-     SDL_DisplayData *displaydata =
-         (SDL_DisplayData *) SDL_GetDisplayForWindow(window)->driverdata;
-     Display *display = data->videodata->display;
-- 
-+
-     XIconifyWindow(display, data->xwindow, displaydata->screen);
-     XFlush(display);
- }

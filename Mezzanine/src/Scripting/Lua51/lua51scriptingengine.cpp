@@ -133,9 +133,9 @@ namespace Mezzanine
 
             CountedPtr<iScript> Lua51ScriptingEngine::Execute(const String& ScriptSource)
             {
-                //CountedPtr<iScriptCompilable> Results = static_cast<CountedPtr<iScript> >(Compile(ScriptSource));
-                //Execute(Results);
-                //return Results;//CountedPtr<iScriptCompilable>
+                CountedPtr<iScriptCompilable> Results = Compile(ScriptSource);
+                Execute(Results);
+                return CountedPtrCast<iScript>(Results);
             }
 
             void Lua51ScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)

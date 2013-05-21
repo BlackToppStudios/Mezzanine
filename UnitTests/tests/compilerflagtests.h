@@ -43,16 +43,22 @@
 #include "main.h"
 
 
-// A simple test to see if the compiler flag are set correctly
-// mostly this is a sample of a very simple, but potentially useful unit test (it helped fix 2 bugs when we wrote it.)
+/// @brief A simple test to see if the compiler flag are set correctly
+/// @details This is a sample of a very simple, but potentially useful unit test (it helped fix 2 bugs when we wrote it.)
 class compilerflagtests : public UnitTestGroup
 {
     public:
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
+        /// @return Returns a String containing "compilerflags"
         virtual String Name()
             { return String("compilerflags"); }
 
-        virtual void RunTests(bool , bool RunInteractiveTests)
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
+        /// @detail A series on interactive tests allowing inspection and verification of CMake and compiler options.
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
+            RunAutomaticTests = false; // unsused, this line prevents compiler warnings
+
             if (RunInteractiveTests)
             {
                 TestResult temp;

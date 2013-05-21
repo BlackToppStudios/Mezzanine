@@ -1,8 +1,8 @@
 <map id="Mezzanine::MeshManager" name="Mezzanine::MeshManager">
-<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; MeshManager \&gt;" alt="" coords="2143,57,2284,101"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="1523,10,1691,38"/>
+<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; MeshManager \&gt;" alt="" coords="2143,59,2284,103"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="1523,13,1691,41"/>
 <area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1260,55,1393,83"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1536,61,1677,105"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1536,63,1677,107"/>
 <area shape="rect" id="node9" title="STL class." alt="" coords="993,55,1108,83"/>
 <area shape="rect" id="node11" title="STL class." alt="" coords="709,47,861,91"/>
 <area shape="rect" id="node13" title="STL class." alt="" coords="528,47,659,91"/>
@@ -10,11 +10,13 @@
 <area shape="rect" id="node17" title="STL class." alt="" coords="152,43,299,71"/>
 <area shape="rect" id="node21" title="STL class." alt="" coords="349,71,477,115"/>
 <area shape="rect" id="node19" title="STL class." alt="" coords="7,43,100,71"/>
-<area shape="rect" id="node29" title="STL class." alt="" coords="1289,190,1364,218"/>
-<area shape="rect" id="node31" title="STL class." alt="" coords="991,182,1111,226"/>
-<area shape="rect" id="node33" href="$classMezzanine_1_1Graphics_1_1Mesh.xhtml" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="1257,123,1396,167"/>
-<area shape="rect" id="node35" href="$classMezzanine_1_1Graphics_1_1Skeleton.xhtml" title="This class encapsulates the Skeletal animation functionality of a Mesh." alt="" coords="981,262,1120,306"/>
-<area shape="rect" id="node39" href="$classMezzanine_1_1Graphics_1_1Bone.xhtml" title="This class encapsulates the bones contained in a skeleton used for animation." alt="" coords="1257,331,1396,375"/>
-<area shape="rect" id="node41" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="965,342,1136,386"/>
-<area shape="rect" id="node46" href="$classMezzanine_1_1Graphics_1_1SubMesh.xhtml" title="This class represents a sub&#45;section of an overall mesh." alt="" coords="716,123,855,167"/>
+<area shape="rect" id="node29" title="STL class." alt="" coords="1289,122,1364,150"/>
+<area shape="rect" id="node31" title="STL class." alt="" coords="991,111,1111,155"/>
+<area shape="rect" id="node33" href="$classMezzanine_1_1Graphics_1_1Mesh.xhtml" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="1257,211,1396,255"/>
+<area shape="rect" id="node35" href="$classMezzanine_1_1Graphics_1_1InternalMeshData.xhtml" title="This class is used to store the internal structures needed by the Mesh class." alt="" coords="981,229,1120,273"/>
+<area shape="rect" id="node37" href="$classMezzanine_1_1Graphics_1_1Skeleton.xhtml" title="This class encapsulates the Skeletal animation functionality of a Mesh." alt="" coords="981,314,1120,358"/>
+<area shape="rect" id="node41" href="$classMezzanine_1_1Graphics_1_1Bone.xhtml" title="This class encapsulates the bones contained in a skeleton used for animation." alt="" coords="1257,383,1396,427"/>
+<area shape="rect" id="node43" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="965,394,1136,438"/>
+<area shape="rect" id="node46" href="$classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" title="This class is used to store the internal structures needed by the Skeleton class." alt="" coords="711,314,860,358"/>
+<area shape="rect" id="node50" href="$classMezzanine_1_1Graphics_1_1SubMesh.xhtml" title="This class represents a sub&#45;section of an overall mesh." alt="" coords="716,170,855,214"/>
 </map>

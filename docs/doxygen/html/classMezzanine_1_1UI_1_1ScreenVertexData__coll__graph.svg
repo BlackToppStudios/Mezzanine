@@ -32,7 +32,7 @@
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 968;
+var viewWidth = 958;
 var viewHeight = 154;
 var sectionId = 'dynsection-0';
 </script>
@@ -42,21 +42,22 @@ var sectionId = 'dynsection-0';
 <title>Mezzanine::UI::ScreenVertexData</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="800.5,-45 800.5,-65 959.5,-65 959.5,-45 800.5,-45"/>
-<text text-anchor="middle" x="880" y="-52" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScreenVertexData</text>
+<polygon fill="#bfbfbf" stroke="black" points="790.5,-45 790.5,-65 949.5,-65 949.5,-45 790.5,-45"/>
+<text text-anchor="middle" x="870" y="-52" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScreenVertexData</text>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<polygon fill="none" stroke="#bfbfbf" points="570,-45 570,-65 694,-65 694,-45 570,-45"/>
-<text text-anchor="middle" x="632" y="-52" font-family="FreeSans" font-size="10.00">std::vector&lt; VertexData &gt;</text>
+<polygon fill="none" stroke="#bfbfbf" points="570,-39 570,-71 684,-71 684,-39 570,-39"/>
+<text text-anchor="start" x="578" y="-58" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
+<text text-anchor="middle" x="627" y="-46" font-family="FreeSans" font-size="10.00">::UI::VertexData &gt;</text>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge2" class="edge"><title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M704.27,-55C734.384,-55 769.458,-55 800.316,-55"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="704.261,-51.5001 694.261,-55 704.261,-58.5001 704.261,-51.5001"/>
-<text text-anchor="middle" x="747" y="-82" font-family="FreeSans" font-size="10.00"> LowVertices</text>
-<text text-anchor="middle" x="747" y="-70" font-family="FreeSans" font-size="10.00">MediumVertices</text>
-<text text-anchor="middle" x="747" y="-58" font-family="FreeSans" font-size="10.00">HighVertices</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M694.525,-55C724.166,-55 759.187,-55 790.115,-55"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="694.28,-51.5001 684.28,-55 694.28,-58.5001 694.28,-51.5001"/>
+<text text-anchor="middle" x="737" y="-82" font-family="FreeSans" font-size="10.00"> LowVertices</text>
+<text text-anchor="middle" x="737" y="-70" font-family="FreeSans" font-size="10.00">MediumVertices</text>
+<text text-anchor="middle" x="737" y="-58" font-family="FreeSans" font-size="10.00">HighVertices</text>
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
@@ -67,8 +68,8 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge4" class="edge"><title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M502.298,-55C524.456,-55 548.501,-55 569.8,-55"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="502.267,-51.5001 492.267,-55 502.267,-58.5001 502.267,-51.5001"/>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M502.184,-55C524.536,-55 548.713,-55 569.783,-55"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="502.06,-51.5001 492.06,-55 502.06,-58.5001 502.06,-51.5001"/>
 <text text-anchor="middle" x="531" y="-58" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
 <!-- Node4 -->

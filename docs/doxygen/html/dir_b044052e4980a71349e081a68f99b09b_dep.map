@@ -1,10 +1,10 @@
-<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/">
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src">
 <area shape="rect" id="node4" href="dir_71ddc9d13dd987de7c5d58d0d602157d.xhtml" title="Audio" alt="" coords="325,160,397,208"/>
-<area shape="rect" id="edge8" href="dir_000001_000002.xhtml" title="2" alt="" coords="414,157,422,173"/>
+<area shape="rect" id="edge8" href="dir_000001_000002.xhtml" title="3" alt="" coords="414,157,422,173"/>
 <area shape="rect" id="node6" href="dir_4358ccd54f293adf03e83e7f75aaa22b.xhtml" title="Input" alt="" coords="421,160,493,208"/>
 <area shape="rect" id="edge4" href="dir_000001_000004.xhtml" title="1" alt="" coords="497,145,505,161"/>
 <area shape="rect" id="node9" href="dir_556416e301e6755c9a735453abbe624e.xhtml" title="Resource" alt="" coords="132,160,207,208"/>
-<area shape="rect" id="edge10" href="dir_000001_000007.xhtml" title="2" alt="" coords="222,174,230,190"/>
+<area shape="rect" id="edge10" href="dir_000001_000007.xhtml" title="3" alt="" coords="222,174,230,190"/>
 <area shape="rect" id="node10" href="dir_1a8bf512ac1e8674f397238bb15ffede.xhtml" title="Scripting" alt="" coords="517,160,589,208"/>
 <area shape="rect" id="edge6" href="dir_000001_000008.xhtml" title="3" alt="" coords="558,133,566,149"/>
 <area shape="rect" id="node5" href="dir_0353bf437d0ddd26ea7714b9bd779086.xhtml" title="Graphics" alt="" coords="421,64,493,112"/>

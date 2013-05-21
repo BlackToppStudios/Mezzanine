@@ -101,7 +101,7 @@ namespace Mezzanine
                 typedef T Type;
 
                 /// @brief Create an initialized Argument
-                /// @param IniitialValue The value to initialize the Argument with.
+                /// @param InitialValue The value to initialize the Argument with.
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
                 ScriptArgumentSpecific(T InitialValue) :
                     Datum(InitialValue)

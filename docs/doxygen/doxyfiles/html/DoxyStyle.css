@@ -652,7 +652,7 @@ table.memberdecls {
 }
 
 .memItemLeft {
-	border-left: 1px solid #bbb;
+	border-left: 1px solid #555;
 	border-top-left-radius: 5px;
 	-moz-border-radius-topleft: 5px;
 	-webkit-border-top-left-radius: 5px;
@@ -660,7 +660,7 @@ table.memberdecls {
 }
 
 .memItemRight {
-	border-right: 1px solid #bbb;
+	border-right: 1px solid #555;
 	border-top-right-radius: 5px;
 	-moz-border-radius-topright: 5px;
 	-webkit-border-top-right-radius: 5px;
@@ -668,11 +668,11 @@ table.memberdecls {
 }
 
 .memItemLeft, .memItemRight {
-	border-top: 1px solid #bbb;
+	border-top: 1px solid #555;
 }
 
 .mdescLeft {
-	border-left: 1px solid #bbb;
+	border-left: 1px solid #555;
 	border-bottom-left-radius: 5px;
 	-moz-border-radius-bottomleft: 5px;
 	-webkit-border-bottom-left-radius: 5px;
@@ -680,7 +680,7 @@ table.memberdecls {
 }
 
 .mdescRight {
-	border-right: 1px solid #bbb;
+	border-right: 1px solid #555;
 	border-bottom-right-radius: 5px;
 	-moz-border-radius-bottomright: 5px;
 	-webkit-border-bottom-right-radius: 5px;
@@ -690,7 +690,7 @@ table.memberdecls {
 .mdescLeft, .mdescRight {
 	padding: 0px 8px 4px 8px;
 	color: #EEE;
-	border-bottom: 1px solid #bbb;
+	border-bottom: 1px solid #555;
 	margin-bottom: 2px;
 }
 

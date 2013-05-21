@@ -65,14 +65,14 @@ namespace Mezzanine
         /// shouldn't be developing software until that is fixed.
         static const String TempFile("UnitTestWork.txt");
 
-        /// @brief Empty the file specified by @ref TempFile
+        /// @brief Empty the file specified by TempFile
         /// @warning This doesn't ask for permission and can't easily be cancelled or recovered
         /// from. This will open, then erase the contents of the file.
         /// @throw This can throw any exception that the C++ filestream classes can throw.
         void ClearTempFile();
 
         /// @internal
-        /// @brief This will open then parse the contents of the file specified by @ref TempFile and interpret any test results located
+        /// @brief This will open then parse the contents of the file specified by TempFile and interpret any test results located
         /// @throw This can throw any exception that the C++ filestream classes can throw.
         /// @return This "reads" the temp file and interprets it. It tries to extract the name of the test as the whole of a line minus
         /// the last word. The last word is then converted into a @ref TestResult using @ref StringToTestResult . Any Whitespace between
@@ -80,7 +80,7 @@ namespace Mezzanine
         /// as a single @ref UnitTestGroup.
         UnitTestGroup GetResultsFromTempFile();
 
-        /// @brief Attempts to delete temp file. Silently fails if not possible.
+        /// @brief Attempts to delete TempFile. Silently fails if not possible.
         void DeleteTempFile();
 
     }// Testing

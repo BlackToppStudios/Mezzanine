@@ -1,33 +1,67 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/serialization.h">
-<area shape="rect" id="node3" href="$actorserializer_8h.xhtml" title="This is where the declarations of any Serializers or DeSerializers for actors will go..." alt="" coords="149,379,349,423"/>
-<area shape="rect" id="node5" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="368,473,568,517"/>
-<area shape="rect" id="node34" href="$collisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collisionshape.h" alt="" coords="555,99,805,143"/>
-<area shape="rect" id="node7" href="$consolelogic_8h.xhtml" title="The defintion of items important a commandline tool to work correctly without need to be available to..." alt="" coords="180,753,380,797"/>
-<area shape="rect" id="node19" href="$testdata_8h.xhtml" title="TestData, TestDataStorage and UnitTestGroup class definitions." alt="" coords="231,659,431,703"/>
-<area shape="rect" id="node23" href="$testenumerations_8h.xhtml" title="Enumerations and constant values associated with the Unit tests." alt="" coords="361,566,575,610"/>
-<area shape="rect" id="node27" href="$testtools_8h.xhtml" title="Some random function to ease the lives of test developers." alt="" coords="505,659,705,703"/>
-<area shape="rect" id="node30" href="$consolestringmanipulation_8h.xhtml" title="Some string manipulation functions geared towards console output for use in the Unit Tests..." alt="" coords="597,753,859,797"/>
-<area shape="rect" id="node9" href="$main_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/src/main.h" alt="" coords="368,846,568,890"/>
-<area shape="rect" id="node11" href="$boilerplatetests_8h.xhtml" title="this file should be used as template for building future Unit Tests" alt="" coords="5,939,216,983"/>
-<area shape="rect" id="node13" href="$compilerflagtests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/compilerflagtests.h" alt="" coords="240,939,461,983"/>
-<area shape="rect" id="node15" href="$lua51tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/lua51tests.h" alt="" coords="485,939,685,983"/>
-<area shape="rect" id="node17" href="$vector3tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/vector3tests.h" alt="" coords="709,939,909,983"/>
-<area shape="rect" id="node36" href="$collisionshapemanager_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/collisionshapemanager.h" alt="" coords="424,379,675,423"/>
-<area shape="rect" id="node39" href="$physics_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/physics.h" alt="" coords="1871,379,2071,423"/>
-<area shape="rect" id="node42" href="$compoundcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/compoundcollisionshape.h" alt="" coords="525,193,835,237"/>
-<area shape="rect" id="node45" href="$fieldcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/fieldcollisionshape.h" alt="" coords="859,193,1131,237"/>
-<area shape="rect" id="node54" href="$meshcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/meshcollisionshape.h" alt="" coords="1321,193,1601,237"/>
-<area shape="rect" id="node66" href="$primitivecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/primitivecollisionshape.h" alt="" coords="2973,193,3272,237"/>
-<area shape="rect" id="node48" href="$heightfieldcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/heightfieldcollisionshape.h" alt="" coords="627,286,933,330"/>
-<area shape="rect" id="node51" href="$planecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/planecollisionshape.h" alt="" coords="957,286,1237,330"/>
-<area shape="rect" id="node56" href="$actorsoftcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/actorsoftcollisionshape.h" alt="" coords="1312,286,1611,330"/>
-<area shape="rect" id="node59" href="$dynamicmeshcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/dynamicmeshcollisionshape.h" alt="" coords="1635,286,1963,330"/>
-<area shape="rect" id="node63" href="$staticmeshcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/staticmeshcollisionshape.h" alt="" coords="1987,286,2299,330"/>
-<area shape="rect" id="node68" href="$boxcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/boxcollisionshape.h" alt="" coords="2373,286,2643,330"/>
-<area shape="rect" id="node71" href="$capsulecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/capsulecollisionshape.h" alt="" coords="2667,286,2960,330"/>
-<area shape="rect" id="node74" href="$conecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/conecollisionshape.h" alt="" coords="2984,286,3261,330"/>
-<area shape="rect" id="node77" href="$convexhullcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/convexhullcollisionshape.h" alt="" coords="3285,286,3595,330"/>
-<area shape="rect" id="node80" href="$cylindercollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/cylindercollisionshape.h" alt="" coords="3619,286,3912,330"/>
-<area shape="rect" id="node83" href="$multispherecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/multispherecollisionshape.h" alt="" coords="3936,286,4251,330"/>
-<area shape="rect" id="node87" href="$spherecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/spherecollisionshape.h" alt="" coords="4275,286,4563,330"/>
+<area shape="rect" id="node3" href="$actorbase_8cpp.xhtml" title="Code used by all actors is implemented here." alt="" coords="4048,99,4248,143"/>
+<area shape="rect" id="node5" href="$collisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collisionshape.h" alt="" coords="4272,99,4523,143"/>
+<area shape="rect" id="node9" href="$actorphysicssettings_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorphysicssettings.cpp" alt="" coords="7110,379,7360,423"/>
+<area shape="rect" id="node15" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="6696,473,6896,517"/>
+<area shape="rect" id="node19" href="$worldobjectphysicssettings_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobjectphysicssettings.cpp" alt="" coords="7384,379,7670,423"/>
+<area shape="rect" id="node154" href="$actorrigid_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorrigid.cpp" alt="" coords="7615,99,7815,143"/>
+<area shape="rect" id="node156" href="$actorserializer_8h.xhtml" title="This is where the declarations of any Serializers or DeSerializers for actors will go..." alt="" coords="7839,99,8039,143"/>
+<area shape="rect" id="node161" href="$colourvalue_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/colourvalue.cpp" alt="" coords="8063,99,8263,143"/>
+<area shape="rect" id="node164" href="$quaternion_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/quaternion.cpp" alt="" coords="8287,99,8487,143"/>
+<area shape="rect" id="node166" href="$serialization_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/serialization.cpp" alt="" coords="8511,99,8714,143"/>
+<area shape="rect" id="node168" href="$transform_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/transform.cpp" alt="" coords="8738,99,8938,143"/>
+<area shape="rect" id="node170" href="$vector2_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/vector2.cpp" alt="" coords="8962,99,9162,143"/>
+<area shape="rect" id="node172" href="$vector3_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/vector3.cpp" alt="" coords="9186,99,9386,143"/>
+<area shape="rect" id="node174" href="$worldobject_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobject.cpp" alt="" coords="9410,99,9610,143"/>
+<area shape="rect" id="node176" href="$worldobjectgraphicssettings_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobjectgraphicssettings.cpp" alt="" coords="9634,99,9927,143"/>
+<area shape="rect" id="node179" href="$metacode_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/metacode.cpp" alt="" coords="9951,99,10178,143"/>
+<area shape="rect" id="node181" href="$conetwistconstraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/conetwistconstraint.cpp" alt="" coords="10202,99,10495,143"/>
+<area shape="rect" id="node183" href="$constraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/constraint.cpp" alt="" coords="10519,99,10759,143"/>
+<area shape="rect" id="node185" href="$dualtransformconstraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/dualtransformconstraint.cpp" alt="" coords="10783,99,11100,143"/>
+<area shape="rect" id="node187" href="$generic6dofconstraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/generic6dofconstraint.cpp" alt="" coords="11124,99,11431,143"/>
+<area shape="rect" id="node189" href="$generic6dofspringconstraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/generic6dofspringconstraint.cpp" alt="" coords="11455,99,11796,143"/>
+<area shape="rect" id="node191" href="$hinge2constraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/hinge2constraint.cpp" alt="" coords="11820,99,12098,143"/>
+<area shape="rect" id="node193" href="$hingeconstraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/hingeconstraint.cpp" alt="" coords="12122,99,12391,143"/>
+<area shape="rect" id="node195" href="$point2pointconstraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/point2pointconstraint.cpp" alt="" coords="12415,99,12716,143"/>
+<area shape="rect" id="node197" href="$sliderconstraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/sliderconstraint.cpp" alt="" coords="12740,99,13010,143"/>
+<area shape="rect" id="node199" href="$universalconstraint_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/universalconstraint.cpp" alt="" coords="13034,99,13324,143"/>
+<area shape="rect" id="node7" href="$collisionshapemanager_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/collisionshapemanager.h" alt="" coords="4435,286,4686,330"/>
+<area shape="rect" id="node11" href="$areaeffect_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/areaeffect.cpp" alt="" coords="6886,379,7086,423"/>
+<area shape="rect" id="node13" href="$collisionshapemanager_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/collisionshapemanager.cpp" alt="" coords="984,379,1251,423"/>
+<area shape="rect" id="node27" href="$collisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collisionshape.cpp" alt="" coords="696,379,960,423"/>
+<area shape="rect" id="node58" href="$compoundcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/compoundcollisionshape.h" alt="" coords="40,286,350,330"/>
+<area shape="rect" id="node61" href="$physics_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/physics.h" alt="" coords="1275,379,1475,423"/>
+<area shape="rect" id="node67" href="$fieldcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/fieldcollisionshape.h" alt="" coords="4088,193,4360,237"/>
+<area shape="rect" id="node83" href="$meshcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/meshcollisionshape.h" alt="" coords="3403,193,3683,237"/>
+<area shape="rect" id="node105" href="$primitivecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/primitivecollisionshape.h" alt="" coords="1766,193,2064,237"/>
+<area shape="rect" id="node21" href="$actorsoftcollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/actorsoftcollisionshape.cpp" alt="" coords="4870,379,5184,423"/>
+<area shape="rect" id="node23" href="$boxcollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/boxcollisionshape.cpp" alt="" coords="2171,379,2454,423"/>
+<area shape="rect" id="node25" href="$capsulecollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/capsulecollisionshape.cpp" alt="" coords="2478,379,2784,423"/>
+<area shape="rect" id="node29" href="$compoundcollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/compoundcollisionshape.cpp" alt="" coords="1499,379,1822,423"/>
+<area shape="rect" id="node31" href="$conecollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/conecollisionshape.cpp" alt="" coords="2808,379,3099,423"/>
+<area shape="rect" id="node33" href="$convexhullcollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/convexhullcollisionshape.cpp" alt="" coords="3123,379,3446,423"/>
+<area shape="rect" id="node35" href="$cylindercollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/cylindercollisionshape.cpp" alt="" coords="3470,379,3776,423"/>
+<area shape="rect" id="node37" href="$dynamicmeshcollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/dynamicmeshcollisionshape.cpp" alt="" coords="4504,379,4846,423"/>
+<area shape="rect" id="node39" href="$fieldcollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/fieldcollisionshape.cpp" alt="" coords="6576,379,6862,423"/>
+<area shape="rect" id="node41" href="$heightfieldcollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/heightfieldcollisionshape.cpp" alt="" coords="5208,379,5531,423"/>
+<area shape="rect" id="node43" href="$meshcollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/meshcollisionshape.cpp" alt="" coords="6259,379,6552,423"/>
+<area shape="rect" id="node45" href="$multispherecollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/multispherecollisionshape.cpp" alt="" coords="3800,379,4131,423"/>
+<area shape="rect" id="node47" href="$planecollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/planecollisionshape.cpp" alt="" coords="5555,379,5848,423"/>
+<area shape="rect" id="node49" href="$primitivecollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/primitivecollisionshape.cpp" alt="" coords="5923,379,6235,423"/>
+<area shape="rect" id="node51" href="$spherecollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/spherecollisionshape.cpp" alt="" coords="1846,379,2147,423"/>
+<area shape="rect" id="node53" href="$staticmeshcollisionshape_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/staticmeshcollisionshape.cpp" alt="" coords="4155,379,4480,423"/>
+<area shape="rect" id="node17" href="$entresol_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="6696,566,6896,610"/>
+<area shape="rect" id="node69" href="$heightfieldcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/heightfieldcollisionshape.h" alt="" coords="3699,286,4006,330"/>
+<area shape="rect" id="node75" href="$planecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/planecollisionshape.h" alt="" coords="4030,286,4310,330"/>
+<area shape="rect" id="node85" href="$dynamicmeshcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/dynamicmeshcollisionshape.h" alt="" coords="2923,286,3251,330"/>
+<area shape="rect" id="node91" href="$actorsoftcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/actorsoftcollisionshape.h" alt="" coords="3275,286,3574,330"/>
+<area shape="rect" id="node97" href="$staticmeshcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/staticmeshcollisionshape.h" alt="" coords="2587,286,2899,330"/>
+<area shape="rect" id="node107" href="$boxcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/boxcollisionshape.h" alt="" coords="686,286,955,330"/>
+<area shape="rect" id="node113" href="$capsulecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/capsulecollisionshape.h" alt="" coords="979,286,1272,330"/>
+<area shape="rect" id="node119" href="$conecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/conecollisionshape.h" alt="" coords="1296,286,1574,330"/>
+<area shape="rect" id="node125" href="$convexhullcollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/convexhullcollisionshape.h" alt="" coords="1598,286,1907,330"/>
+<area shape="rect" id="node131" href="$cylindercollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/cylindercollisionshape.h" alt="" coords="1931,286,2224,330"/>
+<area shape="rect" id="node137" href="$multispherecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/multispherecollisionshape.h" alt="" coords="2248,286,2563,330"/>
+<area shape="rect" id="node143" href="$spherecollisionshape_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/spherecollisionshape.h" alt="" coords="374,286,662,330"/>
+<area shape="rect" id="node158" href="$actorserializer_8cpp_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorserializer.cpp" alt="" coords="7832,193,8046,237"/>
 </map>

@@ -147,8 +147,7 @@ namespace Mezzanine
             int Value1;
 
             /// @brief Get a pointer to the most Derived type of this class
-            ///
-            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            /// @return A pointer for use with CountedPtrCast
             virtual FooDerived1* GetMostDerived()
                 { return this; }
     };
@@ -159,7 +158,7 @@ namespace Mezzanine
             int Value2;
 
             /// @brief Get a pointer to the most Derived type of this class
-            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            /// @return A pointer for use with CountedPtrCast
             virtual FooDerived2* GetMostDerived()
                 { return this; }
     };
@@ -170,7 +169,7 @@ namespace Mezzanine
             int ValueDiamond;
 
             /// @brief Get a pointer to the most Derived type of this class
-            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            /// @return A pointer for use with CountedPtrCast
             virtual FooDiamond* GetMostDerived()
                 { return this; }
     };
@@ -216,6 +215,80 @@ namespace Mezzanine
 
 
 
+
+    /// @brief A class to point at that uses its ownreferencing counting internal mechanism and is suitable from some simple static casting experiments
+    class VehicleTest
+    {
+        private:
+            /// @brief This is the Counter that stores how many references exist
+            Whole RefCount;
+
+        public:
+            /// @brief Increase the reference count by one and return the updated count.
+            /// @return The updated count;
+            Whole IncrementReferenceCount()
+                { return ++RefCount; }
+
+            /// @brief Decrease the reference count by one and return the updated count.
+            /// @return The updated count;
+            Whole DecrementReferenceCount()
+                { return --RefCount; }
+
+            /// @brief Gets the actual pointer to the target.
+            /// @return A Pointer of the targeted type to the object being managed.
+            VehicleTest* GetReferenceCountTargetAsPointer()
+                { return this; }
+
+            /// @brief Get the current amount of references.
+            /// @return A Whole with the current reference count
+            Whole GetReferenceCount()
+                { return RefCount; }
+
+            /// @brief Get a pointer to the most Derived type of this class
+            /// @return A pointer for use with CountedPtrCast
+            virtual VehicleTest* GetMostDerived()
+                { return this; }
+
+            String StartEngine()
+                { return "Unknown Engine"; }
+    };
+
+    class CarTest : public VehicleTest
+    {
+        public:
+            String StartEngine()
+                { return "Starting V6"; }
+
+            /// @brief Get a pointer to the most Derived type of this class
+            /// @return A pointer for use with CountedPtrCast
+            virtual CarTest* GetMostDerived()
+                { return this; }
+    };
+
+
+    template <>
+    class ReferenceCountTraits <VehicleTest>
+    {
+        public:
+            typedef VehicleTest RefCountType;
+
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            enum { IsCastable = CastStatic };
+    };
+
+    template <>
+    class ReferenceCountTraits <CarTest>
+    {
+        public:
+            typedef CarTest RefCountType;
+
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            enum { IsCastable = CastStatic };
+    };
 
 }
 
@@ -686,42 +759,6 @@ class countedptrtests : public UnitTestGroup
 
             if (RunAutomaticTests)
             {
-                CountedPtr<FooDiamond> DiamondPtr(new FooDiamond);
-                DiamondPtr->Value = 0;// Things typical segfault here if the casting inconsiste
-                DiamondPtr->Value1 = 1;
-                DiamondPtr->Value2 = 2;
-                DiamondPtr->ValueDiamond = 3;
-                AddTestResult("CountedPtr::DiamondCastingConsistency", Success);
-
-                CountedPtr<FooInternal> InternalPtrFromCast = CountedPtrCast<FooInternal>(DiamondPtr);
-
-
-                if (InternalPtrFromCast && 0==InternalPtrFromCast->Value)
-                {
-                    AddTestResult("CountedPtr::ExplicitDiamondCast", Success);
-                }else{
-                    AddTestResult("CountedPtr::ExplicitDiamondCast", Failed);
-                }
-
-                CountedPtr<FooInternal> InternalPtrFromCrossConstruction(DiamondPtr);
-
-                if (InternalPtrFromCrossConstruction && 0==InternalPtrFromCrossConstruction->Value)
-                {
-                    AddTestResult("CountedPtr::CrossConstruction", Success);
-                }else{
-                    AddTestResult("CountedPtr::CrossConstruction", Failed);
-                }
-
-
-            }else{
-                AddTestResult("CountedPtr::DiamondCastingConsistency", Skipped);
-                AddTestResult("CountedPtr::ExplicitDiamondCast", Skipped);
-                AddTestResult("CountedPtr::CrossConstruction", Skipped);
-            }
-
-
-            if (RunAutomaticTests)
-            {
 
                 TestResult Result = NotApplicable;
 
@@ -756,8 +793,71 @@ class countedptrtests : public UnitTestGroup
                 AddTestResult("CountedPtr::reset()", Skipped);
                 AddTestResult("CountedPtr::reset(Ptr*)", Skipped);
                 AddTestResult("CountedPtr::reset(CountedPtr)", Skipped);
-                //AddTestResult("CountedPtr::", Skipped);
             }
+
+            if (RunAutomaticTests)
+            {
+                CountedPtr<FooDiamond> DiamondPtr(new FooDiamond);
+                DiamondPtr->Value = 0;// Things typical segfault here if the casting inconsiste
+                DiamondPtr->Value1 = 1;
+                DiamondPtr->Value2 = 2;
+                DiamondPtr->ValueDiamond = 3;
+                AddTestResult("CountedPtr::DiamondCastingConsistency", Success);
+
+                cout << DiamondPtr.UseCount() << endl;
+
+                CountedPtr<FooInternal> InternalPtrFromImplicitCast = CountedPtrCast<FooInternal>(DiamondPtr);
+                if (InternalPtrFromImplicitCast && 0==InternalPtrFromImplicitCast->Value)
+                {
+                    AddTestResult("CountedPtr::ExplicitDiamondCast", Success);
+                }else{
+                    AddTestResult("CountedPtr::ExplicitDiamondCast", Failed);
+                }
+                cout << DiamondPtr.UseCount() << endl;
+
+                CountedPtr<FooInternal> InternalPtrFromCrossConstruction(DiamondPtr);
+                if (InternalPtrFromCrossConstruction && 0==InternalPtrFromCrossConstruction->Value)
+                {
+                    AddTestResult("CountedPtr::CrossConstruction", Success);
+                }else{
+                    AddTestResult("CountedPtr::CrossConstruction", Failed);
+                }
+                cout << DiamondPtr.UseCount() << endl;
+
+                VehicleTest* Car1 = new CarTest;
+                CarTest* Car2 = new CarTest;
+
+                CountedPtr<VehicleTest> Car1Ptr(Car1);
+                cout << Car1Ptr.UseCount() << endl;
+
+                CountedPtr<CarTest> Car1PtrAfterStaticCast = CountedPtrStaticCast<CarTest>(Car1Ptr);
+                if(String("Starting V6")==Car1PtrAfterStaticCast->StartEngine())
+                {
+                    AddTestResult("CountedPtr::CountedPtrStaticCast", Success);
+                }else{
+                    AddTestResult("CountedPtr::CountedPtrStaticCast", Failed);
+                }
+
+                cout << Car1Ptr.UseCount() << endl;
+
+                CountedPtr<CarTest> Car1PtrAfterDynamicCast = CountedPtrStaticCast<CarTest>(Car1Ptr);
+                if(Car1PtrAfterDynamicCast && String("Starting V6")==Car1PtrAfterDynamicCast->StartEngine())
+                {
+                    AddTestResult("CountedPtr::CountedPtrDynamicCast", Success);
+                }else{
+                    AddTestResult("CountedPtr::CountedPtrDynamicCast", Failed);
+                }
+
+                cout << Car1Ptr.UseCount() << endl;
+            }else{
+                AddTestResult("CountedPtr::DiamondCastingConsistency", Skipped);
+                AddTestResult("CountedPtr::ExplicitDiamondCast", Skipped);
+                AddTestResult("CountedPtr::CrossConstruction", Skipped);
+                AddTestResult("CountedPtr::CountedPtrStaticCast", Skipped);
+                AddTestResult("CountedPtr::CountedPtrDynamicCast", Skipped);
+            }
+
+
 
 
         }

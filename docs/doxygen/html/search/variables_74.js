@@ -1,6 +1,7 @@
 var searchData=
 [
   ['target',['Target',['../classMezzanine_1_1ActorRigidDeSerializer.xhtml#a2721883c45e41b5a1b7992feb57750bc',1,'Mezzanine::ActorRigidDeSerializer']]],
+  ['template',['Template',['../structMezzanine_1_1Internal_1_1ParticleEffectInternalData.xhtml#ae6889294ffec6710565dfabdc059c596',1,'Mezzanine::Internal::ParticleEffectInternalData']]],
   ['terrains',['Terrains',['../classMezzanine_1_1TerrainManager.xhtml#a8223a765f5a9c852d3da1bedae3b925e',1,'Mezzanine::TerrainManager']]],
   ['tether',['Tether',['../structMezzanine_1_1UI_1_1ResizingInfo.xhtml#ab9e6622146887d8a24f4a4a1935a91cb',1,'Mezzanine::UI::ResizingInfo']]],
   ['theentresol',['TheEntresol',['../classMezzanine_1_1ManagerBase.xhtml#ae619b4bd732d7345e0ef59ecde6d03cc',1,'Mezzanine::ManagerBase']]],
