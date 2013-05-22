@@ -49,6 +49,10 @@ namespace Mezzanine
 {
     namespace Audio
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a @ref iDecoderFactory implementation for un-encoded data.
+        /// @details
+        ///////////////////////////////////////
         class MEZZ_LIB RawDecoderFactory
         {
         protected:
@@ -58,8 +62,8 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~RawDecoderFactory() {  }
 
-            /// @copydoc iDecoderFactory::CreateDecoder(Resource::DataStream* Stream)
-            virtual iDecoder* CreateDecoder(Resource::DataStream* Stream)
+            /// @copydoc iDecoderFactory::CreateDecoder(Resource::DataStreamPtr Stream)
+            virtual iDecoder* CreateDecoder(Resource::DataStreamPtr Stream)
                  { return new RawDecoder(Stream); }
             /// @copydoc iDecoderFactory::GetSupportedEncoding() const
             virtual Audio::Encoding GetSupportedEncoding() const

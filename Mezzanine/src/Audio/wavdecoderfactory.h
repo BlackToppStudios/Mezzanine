@@ -58,8 +58,8 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~WavDecoderFactory() {  }
 
-            /// @copydoc iDecoderFactory::CreateDecoder(Resource::DataStream* Stream)
-            virtual iDecoder* CreateDecoder(Resource::DataStream* Stream)
+            /// @copydoc iDecoderFactory::CreateDecoder(Resource::DataStreamPtr Stream)
+            virtual iDecoder* CreateDecoder(Resource::DataStreamPtr Stream)
                  { return new WavDecoder(Stream); }
             /// @copydoc iDecoderFactory::GetSupportedEncoding() const
             virtual Audio::Encoding GetSupportedEncoding() const
