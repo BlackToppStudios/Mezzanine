@@ -43,6 +43,8 @@
 #include "datatypes.h"
 #include "Audio/audioenumerations.h"
 
+#include "Resource/datastream.h"
+
 namespace Mezzanine
 {
     namespace Audio
@@ -74,10 +76,13 @@ namespace Mezzanine
             virtual bool IsSeekingSupported() = 0;
             /// @brief Gets the Bit Configuration used to decode the audio stream.
             /// @return Returns the Bit Configuration currently being used to decode this stream.
-            virtual BitConfig GetBitConfiguration() const = 0;
+            virtual Audio::BitConfig GetBitConfiguration() const = 0;
             /// @brief Gets the frequency used to decode the audio stream.
             /// @return Returns the frequency (or sample rate) currently being used to decode this stream.
             virtual UInt32 GetFrequency() const = 0;
+            /// @brief Gets the stream being decoded.
+            /// @return Returns a shared pointer to the DataStream being decoded.
+            virtual Resource::DataStreamPtr GetStream() const = 0;
 
             /// @brief Sets the position (in bytes) of the stream.
             /// @param Position The number of bytes to move(if relative) or the actual position in the stream to set.
