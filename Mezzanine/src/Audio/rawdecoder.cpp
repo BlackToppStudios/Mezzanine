@@ -40,22 +40,126 @@
 #ifndef _audiorawdecoder_cpp
 #define _audiorawdecoder_cpp
 
+#ifdef ENABLE_RAW_ENCODE
+
 #include "Audio/rawdecoder.h"
+
+namespace
+{
+    Integer GetSampleSize(const Mezzanine::Audio::BitConfig Config)
+    {
+        switch(Config)
+        {
+            case Mezzanine::Audio::BC_8Bit_Mono:     return 1;  break;
+		    case Mezzanine::Audio::BC_8Bit_Stereo:   return 2;  break;
+		    case Mezzanine::Audio::BC_16Bit_Mono:    return 2;  break;
+		    case Mezzanine::Audio::BC_16Bit_Stereo:  return 4;  break;
+		    case Mezzanine::Audio::BC_24Bit_Mono:    return 3;  break;
+		    case Mezzanine::Audio::BC_24Bit_Stereo:  return 6;  break;
+        }
+    }
+}
 
 namespace Mezzanine
 {
     namespace Audio
     {
-        RawDecoder::RawDecoder()
+        RawDecoder::RawDecoder(Resource::DataStreamPtr Stream, const UInt32 Freq, const Audio::BitConfig Config)
+            : RawStream(Stream),
+              Frequency(Freq),
+              BitConfiguration(Config)
         {
-
         }
 
         RawDecoder::~RawDecoder()
         {
+        }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        bool RawDecoder::IsValid()
+        {
+            return ( RawStream );
+        }
+
+        Audio::Encoding RawDecoder::GetEncoding() const
+        {
+            return Audio::Enc_RAW;
+        }
+
+        bool RawDecoder::IsSeekingSupported()
+        {
+            return true;
+        }
+
+        Audio::BitConfig RawDecoder::GetBitConfiguration() const
+        {
+            return this->BitConfiguration;
+        }
+
+        UInt32 RawDecoder::GetFrequency() const
+        {
+            return this->Frequency;
+        }
+
+        Resource::DataStreamPtr RawDecoder::GetStream() const
+        {
+            return this->RawStream;
+        }
+
+        bool RawDecoder::SetPosition(Int32 Position, bool Relative)
+        {
+            this->RawStream->SetStreamPosition(Position,( Relative ? Resource::DataStream::SO_Current : Resource::DataStream::SO_Beginning ));
+            return true;
+        }
+
+        bool RawDecoder::Seek(const Real Seconds, bool Relative)
+        {
+            Int32 Pos = static_cast<Int32>( Seconds * static_cast<Real>(this->Frequency) * static_cast<Real>( GetSampleSize(this->BitConfiguration) ) );
+            return this->SetPosition(Pos,Relative);
+        }
+
+        UInt32 RawDecoder::ReadAudioData(void* Output, UInt32 Amount)
+        {
+            return this->RawStream->Read(Output,Amount);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Stream Stats
+
+        Real RawDecoder::GetTotalTime() const
+        {
+            return static_cast<Real>( this->RawStream->GetSize() ) / ( static_cast<Real>(this->Frequency) * static_cast<Real>( GetSampleSize(this->BitConfiguration) ) );
+        }
+
+        Real RawDecoder::GetCurrentTime() const
+        {
+            return static_cast<Real>( this->RawStream->GetStreamPosition() ) / ( static_cast<Real>(this->Frequency) * static_cast<Real>( GetSampleSize(this->BitConfiguration) ) );
+        }
+
+        UInt32 RawDecoder::GetTotalSize() const
+        {
+            return this->RawStream->GetSize();
+        }
+
+        UInt32 RawDecoder::GetCompressedSize() const
+        {
+            return this->RawStream->GetSize();
+        }
+
+        UInt32 RawDecoder::GetCurrentPosition() const
+        {
+            return this->RawStream->GetStreamPosition();
+        }
+
+        UInt32 RawDecoder::GetCurrentCompressedPosition() const
+        {
+            return this->RawStream->GetStreamPosition();
         }
     }//Audio
 }//Mezzanine
+
+#endif //ENABLE_RAW_ENCODE
 
 #endif

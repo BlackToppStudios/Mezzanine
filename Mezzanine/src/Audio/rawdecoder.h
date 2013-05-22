@@ -40,22 +40,82 @@
 #ifndef _audiorawdecoder_h
 #define _audiorawdecoder_h
 
+#ifdef ENABLE_RAW_ENCODE
+
 #include "Audio/decoder.h"
 
 namespace Mezzanine
 {
     namespace Audio
     {
-        class MEZZ_LIB RawDecoder
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a @ref iDecoder implementation for un-encoded data.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB RawDecoder : public iDecoder
         {
         protected:
+            /// @internal
+            /// @brief This is a shared pointer to the stream being decoded.
+            Resource::DataStreamPtr RawStream;
+            /// @internal
+            /// @brief The frequency to expect when decoding the stream.
+            UInt32 Frequency;
+            /// @internal
+            /// @brief The configuration of the samples to expect when decoding the stream.
+            Audio::BitConfig BitConfiguration;
         public:
             /// @brief Class constructor.
-            RawDecoder();
+            /// @param Stream The stream to decode.
+            /// @param Freq The frequency of the audio being decoded.
+            /// @param Config The bit configuration of the audio being decoded.
+            RawDecoder(Resource::DataStreamPtr Stream, const UInt32 Freq = 22050, const Audio::BitConfig Config = Audio::BC_16Bit_Mono);
             /// @brief Class destructor.
             virtual ~RawDecoder();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @copydoc iDecoder::IsValid()
+            virtual bool IsValid();
+            /// @copydoc iDecoder::GetEncoding() const
+            virtual Audio::Encoding GetEncoding() const;
+            /// @copydoc iDecoder::IsSeekingSupported()
+            virtual bool IsSeekingSupported();
+            /// @copydoc iDecoder::GetBitConfiguration() const
+            virtual Audio::BitConfig GetBitConfiguration() const;
+            /// @copydoc iDecoder::GetFrequency() const
+            virtual UInt32 GetFrequency() const;
+            /// @copydoc iDecoder::GetStream() const
+            virtual DataStreamPtr GetStream() const;
+
+            /// @copydoc iDecoder::SetPosition(Int32 Position, bool Relative)
+            virtual bool SetPosition(Int32 Position, bool Relative);
+            /// @copydoc iDecoder::Seek(const Real Seconds, bool Relative)
+            virtual bool Seek(const Real Seconds, bool Relative);
+
+            /// @copydoc iDecoder::ReadAudioData(void* Output, UInt32 Amount)
+            virtual UInt32 ReadAudioData(void* Output, UInt32 Amount);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Stats
+
+            /// @copydoc iDecoder::GetTotalTime() const
+            virtual Real GetTotalTime() const;
+            /// @copydoc iDecoder::GetCurrentTime() const
+            virtual Real GetCurrentTime() const;
+            /// @copydoc iDecoder::GetTotalSize() const
+            virtual UInt32 GetTotalSize() const;
+            /// @copydoc iDecoder::GetCompressedSize() const
+            virtual UInt32 GetCompressedSize() const;
+            /// @copydoc iDecoder::GetCurrentPosition() const
+            virtual UInt32 GetCurrentPosition() const;
+            /// @copydoc iDecoder::GetCurrentCompressedPosition() const
+            virtual UInt32 GetCurrentCompressedPosition() const;
         };//RawDecoder
     }//Audio
 }//Mezzanine
+
+#endif //ENABLE_RAW_ENCODE
 
 #endif
