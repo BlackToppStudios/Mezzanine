@@ -468,7 +468,7 @@ endmacro(CheckCOCOA)
 # - DIRECTFB_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckDirectFB)
-  if(VIDEO_DIRECTFB)
+  if(SDL_VIDEO_DIRECTFB)
     pkg_check_modules(PKG_DIRECTFB directfb>=1.0.0)
     if(PKG_DIRECTFB_FOUND)
       set(HAVE_VIDEO_DIRECTFB TRUE)
@@ -491,7 +491,7 @@ macro(CheckDirectFB)
       endif(DIRECTFB_SHARED)
       set(HAVE_SDL_VIDEO TRUE)
     endif(PKG_DIRECTFB_FOUND)
-  endif(VIDEO_DIRECTFB)
+  endif(SDL_VIDEO_DIRECTFB)
 endmacro(CheckDirectFB)
 
 # Requires:

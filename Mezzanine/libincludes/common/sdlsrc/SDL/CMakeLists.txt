@@ -109,7 +109,7 @@ if(APPLE OR ARCH_64)
   set(OPT_DEF_SSEMATH ON)
 endif()
 if(UNIX OR MINGW OR MSYS)
-  set(OPT_DEF_LIBC ON)
+  set(OPT_DEF_SDL_LIBC ON)
 endif(UNIX OR MINGW OR MSYS)
 
 # Compiler info
@@ -172,19 +172,19 @@ endforeach()
 
 option_string(ASSERTIONS "Enable internal sanity checks (auto/disabled/release/enabled/paranoid)" "auto")
 #set_option(DEPENDENCY_TRACKING "Use gcc -MMD -MT dependency tracking" ON)
-set_option(LIBC                "Use the system C library" ${OPT_DEF_LIBC})
-set_option(GCC_ATOMICS         "Use gcc builtin atomics" ${USE_GCC})
-set_option(ASSEMBLY            "Enable assembly routines" ${OPT_DEF_ASM})
-set_option(SSEMATH             "Allow GCC to use SSE floating point math" ${OPT_DEF_SSEMATH})
-set_option(MMX                 "Use MMX assembly routines" ${OPT_DEF_ASM})
-set_option(3DNOW               "Use 3Dnow! MMX assembly routines" ${OPT_DEF_ASM})
-set_option(SSE                 "Use SSE assembly routines" ${OPT_DEF_ASM})
-set_option(SSE2                "Use SSE2 assembly routines" ${OPT_DEF_SSEMATH})
-set_option(ALTIVEC             "Use Altivec assembly routines" ${OPT_DEF_ASM})
-set_option(DISKAUDIO           "Support the disk writer audio driver" ON)
-set_option(DUMMYAUDIO          "Support the dummy audio driver" ON)
-set_option(VIDEO_DIRECTFB      "Use DirectFB video driver" OFF)
-dep_option(DIRECTFB_SHARED     "Dynamically load directfb support" ON "VIDEO_DIRECTFB" OFF)
+set_option(SDL_LIBC                "Use the system C library" ${OPT_DEF_SDL_LIBC})
+set_option(SDL_GCC_ATOMICS         "Use gcc builtin atomics" ${USE_GCC})
+set_option(SDL_ASSEMBLY            "Enable assembly routines" ${OPT_DEF_ASM})
+set_option(SDL_SSEMATH             "Allow GCC to use SSE floating point math" ${OPT_DEF_SSEMATH})
+set_option(SDL_MMX                 "Use MMX assembly routines" ${OPT_DEF_ASM})
+set_option(SDL_3DNOW               "Use 3Dnow! MMX assembly routines" ${OPT_DEF_ASM})
+set_option(SDL_SSE                 "Use SSE assembly routines" ${OPT_DEF_ASM})
+set_option(SDL_SSE2                "Use SSE2 assembly routines" ${OPT_DEF_SSEMATH})
+set_option(SDL_ALTIVEC             "Use Altivec assembly routines" ${OPT_DEF_ASM})
+set_option(SDL_DISKAUDIO           "Support the disk writer audio driver" ON)
+set_option(SDL_DUMMYAUDIO          "Support the dummy audio driver" ON)
+set_option(SDL_VIDEO_DIRECTFB      "Use DirectFB video driver" OFF)
+dep_option(DIRECTFB_SHARED     "Dynamically load directfb support" ON "SDL_VIDEO_DIRECTFB" OFF)
 set_option(FUSIONSOUND         "Use FusionSound audio driver" OFF)
 dep_option(FUSIONSOUND_SHARED  "Dynamically load fusionsound audio support" ON "FUSIONSOUND_SHARED" OFF)
 set_option(VIDEO_DUMMY         "Use dummy video driver" ON)
@@ -264,7 +264,7 @@ if(USE_GCC)
         int main(int argc, char **argv) { }" HAVE_DEPENDENCY_TRACKING)
   endif(DEPENDENCY_TRACKING)
 
-  if(GCC_ATOMICS)
+  if(SDL_GCC_ATOMICS)
     check_c_source_compiles("int main(int argc, char **argv) {
         int a;
         void *x, *y, *z;
@@ -279,7 +279,7 @@ if(USE_GCC)
           __sync_lock_test_and_set(&a, 1);
           __sync_lock_release(&a); }" HAVE_GCC_SYNC_LOCK_TEST_AND_SET)
     endif(NOT HAVE_GCC_ATOMICS)
-  endif(GCC_ATOMICS)
+  endif(SDL_GCC_ATOMICS)
 
   set(CMAKE_REQUIRED_FLAGS "-mpreferred-stack-boundary=2")
   check_c_source_compiles("int x = 0; int main(int argc, char **argv) {}"
@@ -305,13 +305,13 @@ if(USE_GCC)
   endif(HAVE_GCC_WALL)
 endif(USE_GCC)
 
-if(ASSEMBLY)
+if(SDL_ASSEMBLY)
   if(USE_GCC OR USE_CLANG)
     set(SDL_ASSEMBLY_ROUTINES 1)
     # TODO: Those all seem to be quite GCC specific - needs to be
     # reworked for better compiler support
     set(HAVE_ASSEMBLY TRUE)
-    if(MMX)
+    if(SDL_MMX)
       set(CMAKE_REQUIRED_FLAGS "-mmmx")
       check_c_source_compiles("
           #ifdef __MINGW32__
@@ -332,9 +332,9 @@ if(ASSEMBLY)
         list(APPEND EXTRA_CFLAGS "-mmmx")
       endif(HAVE_MMX)
       set(CMAKE_REQUIRED_FLAGS)
-    endif(MMX)
+    endif(SDL_MMX)
 
-    if(3DNOW)
+    if(SDL_3DNOW)
       set(CMAKE_REQUIRED_FLAGS "-m3dnow")
       check_c_source_compiles("
           #include <mm3dnow.h>
@@ -349,9 +349,9 @@ if(ASSEMBLY)
         list(APPEND EXTRA_CFLAGS "-m3dnow")
       endif(HAVE_3DNOW)
       set(CMAKE_REQUIRED_FLAGS)
-    endif(3DNOW)
+    endif(SDL_3DNOW)
 
-    if(SSE)
+    if(SDL_SSE)
       set(CMAKE_REQUIRED_FLAGS "-msse")
       check_c_source_compiles("
           #ifdef __MINGW32__
@@ -372,9 +372,9 @@ if(ASSEMBLY)
         list(APPEND EXTRA_CFLAGS "-msse")
       endif(HAVE_SSE)
       set(CMAKE_REQUIRED_FLAGS)
-    endif(SSE)
+    endif(SDL_SSE)
 
-    if(SSE2)
+    if(SDL_SSE2)
       set(CMAKE_REQUIRED_FLAGS "-msse2")
       check_c_source_compiles("
           #ifdef __MINGW32__
@@ -395,18 +395,18 @@ if(ASSEMBLY)
         list(APPEND EXTRA_CFLAGS "-msse2")
       endif(HAVE_SSE2)
       set(CMAKE_REQUIRED_FLAGS)
-    endif(SSE2)
+    endif(SDL_SSE2)
 
-    if(SSEMATH)
-      if(SSE OR SSE2)
+    if(SDL_SSEMATH)
+      if(SDL_SSE OR SDL_SSE2)
         if(USE_GCC)
           list(APPEND EXTRA_CFLAGS "-mfpmath=387")
         endif(USE_GCC)
         set(HAVE_SSEMATH TRUE)
-      endif(SSE OR SSE2)
-    endif(SSEMATH)
+      endif(SDL_SSE OR SDL_SSE2)
+    endif(SDL_SSEMATH)
 
-    if(ALTIVEC)
+    if(SDL_ALTIVEC)
       set(CMAKE_REQUIRED_FLAGS "-maltivec")
       check_c_source_compiles("
           #include <altivec.h>
@@ -428,7 +428,7 @@ if(ASSEMBLY)
           set(HAVE_ALTIVEC_H 1)
         endif(HAVE_ALTIVEC_H_HDR)
       endif(HAVE_ALTIVEC OR HAVE_ALTIVEC_H_HDR)
-    endif(ALTIVEC)
+    endif(SDL_ALTIVEC)
   elseif(MSVC_VERSION GREATER 1500)
     # TODO: SDL_cpuinfo.h needs to support the user's configuration wish
     # for MSVC - right now it is always activated
@@ -441,15 +441,15 @@ if(ASSEMBLY)
     set(SDL_ASSEMBLY_ROUTINES 1)
   endif(USE_GCC OR USE_CLANG)
 # TODO:
-#else(ASSEMBLY)
+#else(SDL_ASSEMBLY)
 #  if(USE_GCC OR USE_CLANG)
 #    list(APPEND EXTRA_CFLAGS "-mno-sse" "-mno-sse2" "-mno-mmx")
 #  endif(USE_GCC OR USE_CLANG)
-endif(ASSEMBLY)
+endif(SDL_ASSEMBLY)
 
-# TODO: Can't deactivate on FreeBSD? w/o LIBC, SDL_stdinc.h can't define
+# TODO: Can't deactivate on FreeBSD? w/o SDL_LIBC, SDL_stdinc.h can't define
 # anything.
-if(LIBC)
+if(SDL_LIBC)
   if(WINDOWS AND NOT MINGW)
     set(HAVE_LIBC TRUE)
     foreach(_HEADER stdio.h string.h ctype.h math.h)
@@ -526,12 +526,12 @@ if(LIBC)
 
     check_struct_has_member("struct sigaction" "sa_sigaction" "signal.h" HAVE_SA_SIGACTION)
   endif(WINDOWS AND NOT MINGW)
-else(LIBC)
+else(SDL_LIBC)
   if(WINDOWS)
     set(HAVE_STDARG_H 1)
     set(HAVE_STDDEF_H 1)
   endif(WINDOWS)
-endif(LIBC)
+endif(SDL_LIBC)
 
 
 # Enable/disable various subsystems of the SDL library
@@ -565,18 +565,18 @@ endif(SDL_POWER)
 # General SDL subsystem options, valid for all platforms
 if(SDL_AUDIO)
   # CheckDummyAudio/CheckDiskAudio - valid for all platforms
-  if(DUMMYAUDIO)
+  if(SDL_DUMMYAUDIO)
     set(SDL_AUDIO_DRIVER_DUMMY 1)
     file(GLOB DUMMYAUDIO_SOURCES ${SDL2_SOURCE_DIR}/src/audio/dummy/*.c)
     set(SOURCE_FILES ${SOURCE_FILES} ${DUMMYAUDIO_SOURCES})
     set(HAVE_DUMMYAUDIO TRUE)
-  endif(DUMMYAUDIO)
-  if(DISKAUDIO)
+  endif(SDL_DUMMYAUDIO)
+  if(SDL_DISKAUDIO)
     set(SDL_AUDIO_DRIVER_DISK 1)
     file(GLOB DISKAUDIO_SOURCES ${SDL2_SOURCE_DIR}/src/audio/disk/*.c)
     set(SOURCE_FILES ${SOURCE_FILES} ${DISKAUDIO_SOURCES})
     set(HAVE_DISKAUDIO TRUE)
-  endif(DISKAUDIO)
+  endif(SDL_DISKAUDIO)
 endif(SDL_AUDIO)
 
 if(SDL_DLOPEN)
