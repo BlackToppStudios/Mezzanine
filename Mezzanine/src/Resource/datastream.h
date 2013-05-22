@@ -41,6 +41,7 @@
 #define _resourcedatastream_h
 
 #include "datatypes.h"
+#include "smartptr.h"
 
 #include <iostream>
 
@@ -97,6 +98,10 @@ namespace Mezzanine
                 StreamBase() {  }
                 /// @brief Class destructor.
                 virtual ~StreamBase() {  }
+
+                /// @brief Gets the size of the stream.
+                /// @return Returns the size of this stream in bytes.
+                StreamSize GetSize() const = 0;
         };//StreamBase
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -237,7 +242,7 @@ namespace Mezzanine
                 /// @brief The type of access this stream has to the resource.
                 StreamFlags Flags;
                 /// @brief The size of the stream.
-                size_t Size;
+                StreamSize Size;
             public:
                 /// @brief Class constructor.
                 /// @param Mode The flags to use when initializing the stream.
@@ -257,7 +262,7 @@ namespace Mezzanine
                 ConstString& GetName() const;
                 /// @brief Gets the size of the stream.
                 /// @return Returns the size of this stream in bytes.
-                size_t GetSize() const;
+                StreamSize GetSize() const;
                 /// @brief Gets whether this stream can be read.
                 /// @return Returns true if this stream is in reading mode, false otherwise.
                 virtual bool IsReadable() const;
@@ -321,6 +326,9 @@ namespace Mezzanine
                 virtual size_t SkipLine(const String& Delim = "\n");
         };//DataStream
 #endif //USENEWDATASTREAM
+        /// @typedef DataStreamPtr
+        /// @brief This is a convenience type for a data stream in a counted pointer.
+        typedef CountedPtr<DataStream> DataStreamPtr;
     }//Resource
 }//Mezzanine
 
