@@ -44,22 +44,6 @@
 
 #include "Audio/rawdecoder.h"
 
-namespace
-{
-    Integer GetSampleSize(const Mezzanine::Audio::BitConfig Config)
-    {
-        switch(Config)
-        {
-            case Mezzanine::Audio::BC_8Bit_Mono:     return 1;  break;
-		    case Mezzanine::Audio::BC_8Bit_Stereo:   return 2;  break;
-		    case Mezzanine::Audio::BC_16Bit_Mono:    return 2;  break;
-		    case Mezzanine::Audio::BC_16Bit_Stereo:  return 4;  break;
-		    case Mezzanine::Audio::BC_24Bit_Mono:    return 3;  break;
-		    case Mezzanine::Audio::BC_24Bit_Stereo:  return 6;  break;
-        }
-    }
-}
-
 namespace Mezzanine
 {
     namespace Audio
@@ -116,7 +100,7 @@ namespace Mezzanine
 
         bool RawDecoder::Seek(const Real Seconds, bool Relative)
         {
-            Int32 Pos = static_cast<Int32>( Seconds * static_cast<Real>(this->Frequency) * static_cast<Real>( GetSampleSize(this->BitConfiguration) ) );
+            Int32 Pos = static_cast<Int32>( Seconds * static_cast<Real>(this->Frequency) * static_cast<Real>( this->GetSampleSize() ) );
             return this->SetPosition(Pos,Relative);
         }
 
@@ -130,12 +114,12 @@ namespace Mezzanine
 
         Real RawDecoder::GetTotalTime() const
         {
-            return static_cast<Real>( this->RawStream->GetSize() ) / ( static_cast<Real>(this->Frequency) * static_cast<Real>( GetSampleSize(this->BitConfiguration) ) );
+            return static_cast<Real>( this->RawStream->GetSize() ) / ( static_cast<Real>(this->Frequency) * static_cast<Real>( this->GetSampleSize() ) );
         }
 
         Real RawDecoder::GetCurrentTime() const
         {
-            return static_cast<Real>( this->RawStream->GetStreamPosition() ) / ( static_cast<Real>(this->Frequency) * static_cast<Real>( GetSampleSize(this->BitConfiguration) ) );
+            return static_cast<Real>( this->RawStream->GetStreamPosition() ) / ( static_cast<Real>(this->Frequency) * static_cast<Real>( this->GetSampleSize() ) );
         }
 
         UInt32 RawDecoder::GetTotalSize() const

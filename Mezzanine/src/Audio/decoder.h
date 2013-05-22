@@ -84,6 +84,21 @@ namespace Mezzanine
             /// @return Returns a shared pointer to the DataStream being decoded.
             virtual Resource::DataStreamPtr GetStream() const = 0;
 
+            /// @brief Gets the sample size based on the decoders current configuration.
+            /// @return Returns a UInt32 representing the size of a single sample from the underlying stream.
+            virtual UInt32 GetSampleSize() const
+            {
+                switch(this->GetBitConfiguration())
+                {
+                    case Mezzanine::Audio::BC_8Bit_Mono:     return 1;  break;
+                    case Mezzanine::Audio::BC_8Bit_Stereo:   return 2;  break;
+                    case Mezzanine::Audio::BC_16Bit_Mono:    return 2;  break;
+                    case Mezzanine::Audio::BC_16Bit_Stereo:  return 4;  break;
+                    case Mezzanine::Audio::BC_24Bit_Mono:    return 3;  break;
+                    case Mezzanine::Audio::BC_24Bit_Stereo:  return 6;  break;
+                }
+            }
+
             /// @brief Sets the position (in bytes) of the stream.
             /// @param Position The number of bytes to move(if relative) or the actual position in the stream to set.
             /// @param Relative Whether or not to move from the current position.  If false this will set from the beginning.
