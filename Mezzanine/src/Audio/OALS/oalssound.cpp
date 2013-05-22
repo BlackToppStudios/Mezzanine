@@ -80,18 +80,17 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            Sound::Sound(const UInt8 Type, const String& Name, iDecoder* Decode, ALCcontext* PlayContext)
+            Sound::Sound(const UInt8 Type, iDecoder* Decode, ALCcontext* PlayContext)
                 : Context(PlayContext),
                   SoundFilter(NULL),
                   SoundDecoder(Decode),
                   SType(Type),
-                  State(iPlaybackable::PS_Stopped),
+                  State(iSound::PS_Stopped),
                   SoundPitch(1.0),
                   BaseVolume(1.0),
                   MinVolume(0.0),
                   MaxVolume(1.0),
-                  InternalSource(0),
-                  SoundName(Name)
+                  InternalSource(0)
             {
                 // Set the context, so we can safely do all our business with the sources
                 this->MakeCurrent();
@@ -119,6 +118,8 @@ namespace Mezzanine
                 alDeleteSources(1,&InternalSource);
                 // Eradicate the buffers
                 alDeleteBuffers(OALS_SOURCE_NUM_BUFFERS,&Buffers[0]);
+                // Clean out our decoder
+                delete this->SoundDecoder;
             }
 
             void Sound::MakeCurrent()
@@ -173,9 +174,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            const String& Sound::GetName() const
+            bool Sound::IsValid() const
             {
-                return this->SoundName;
+                return ( this->SoundDecoder && this->SoundDecoder->GetStream() && this->InternalSource )
             }
 
             UInt16 Sound::GetType() const
@@ -185,7 +186,7 @@ namespace Mezzanine
 
             iDecoder* Sound::GetDecoder() const
             {
-                return this->SoundDecoder
+                return this->SoundDecoder;
             }
 
             void Sound::SetPitch(const Real Pitch)
@@ -201,6 +202,37 @@ namespace Mezzanine
             Real Sound::GetPitch() const
             {
                 return this->SoundPitch;
+            }
+
+            void Sound::SetStream(Resource::DataStream Stream, const Audio::Encoding Encode)
+            {
+                iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
+                if( Factory != NULL )
+                {
+                    this->SoundDecoder = Factory->CreateDecoder(Stream);
+                }
+            }
+
+            void Sound::SetStream(const UInt16 Type, Resource::DataStream Stream, const Audio::Encoding Encode)
+            {
+                this->SType = Type;
+                this->SetStream(Stream,Encode);
+            }
+
+            void Sound::SetStream(iDecoder* Decode)
+            {
+                if( this->SoundDecoder )
+                {
+                    delete SoundDecoder;
+                    SoundDecoder = NULL;
+                }
+                this->SoundDecoder = Decode;
+            }
+
+            void Sound::SetStream(const UInt16 Type, iDecoder* Decode)
+            {
+                this->SType = Type;
+                this->SetStream(Decode);
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -221,25 +253,25 @@ namespace Mezzanine
                 }
 
                 alSourcePlay(this->InternalSource);
-                this->State = ( this->IsLooping() ? iPlaybackable::PS_Playing | iPlaybackable::PS_Looping : iPlaybackable::PS_Playing );
+                this->State = ( this->IsLooping() ? iSound::PS_Playing | iSound::PS_Looping : iSound::PS_Playing );
                 return true;
             }
 
             bool Sound::IsPlaying() const
             {
-                return (this->State & iPlaybackable::PS_Playing);
+                return (this->State & iSound::PS_Playing);
             }
 
             void Sound::Pause()
             {
                 // Pause the source
                 alSourcePause(this->InternalSource);
-                this->State = ( this->IsLooping() ? iPlaybackable::PS_Paused | iPlaybackable::PS_Looping : iPlaybackable::PS_Paused );
+                this->State = ( this->IsLooping() ? iSound::PS_Paused | iSound::PS_Looping : iSound::PS_Paused );
             }
 
             bool Sound::IsPaused() const
             {
-                return (this->State & iPlaybackable::PS_Paused);
+                return (this->State & iSound::PS_Paused);
             }
 
             void Sound::Stop()
@@ -248,23 +280,23 @@ namespace Mezzanine
                 alSourceStop(this->InternalSource);
                 // Inform the decoder
                 this->Decoder->SetPosition(0,false);
-                this->State = ( this->IsLooping() ? iPlaybackable::PS_Stopped | iPlaybackable::PS_Looping : iPlaybackable::PS_Stopped );
+                this->State = ( this->IsLooping() ? iSound::PS_Stopped | iSound::PS_Looping : iSound::PS_Stopped );
             }
 
             bool Sound::IsStopped() const
             {
-                return (this->State & iPlaybackable::PS_Stopped);
+                return (this->State & iSound::PS_Stopped);
             }
 
             void Sound::Loop(bool ToLoop)
             {
-                if(ToLoop) this->State = ( this->State | iPlaybackable::PS_Looping );
-                else this->State = ( this->State & ~iPlaybackable::PS_Looping );
+                if(ToLoop) this->State = ( this->State | iSound::PS_Looping );
+                else this->State = ( this->State & ~iSound::PS_Looping );
             }
 
             bool Sound::IsLooping() const
             {
-                return (this->State & iPlaybackable::PS_Looping);
+                return (this->State & iSound::PS_Looping);
             }
 
             bool Sound::Seek(const Real Seconds, bool Relative)

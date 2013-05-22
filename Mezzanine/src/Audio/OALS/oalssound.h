@@ -104,9 +104,6 @@ namespace Mezzanine
                 /// @brief Handle to the internal OALS source representing this sound.
                 UInt32 InternalSource;
                 /// @internal
-                /// @brief This is an identifier containing the identity of this sound.
-                String SoundName;
-                /// @internal
                 /// @brief This stores the handles to all the OALS buffers owned by this sound.
                 BufferContainer Buffers;
                 /// @internal
@@ -122,88 +119,96 @@ namespace Mezzanine
             public:
                 /// @brief Class constructor.
                 /// @param Type The type of sound to initialize.  See @ref Audio::SoundType enum for the basic values.
-                /// @param Name The name to be given to this sound.
                 /// @param Decode A pointer to the decoder assigned to this sound.
                 /// @param PlayContext A pointer to the context responsible for decoder audio streams for this sound.
-                Sound(const UInt16 Type, const String& Name, iDecoder* Decode, ALCcontext* PlayContext);
+                Sound(const UInt16 Type, iDecoder* Decode, ALCcontext* PlayContext);
                 /// @brief Class destructor.
                 virtual ~Sound();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @copydoc iSound::GetName() const
-                virtual const String& GetName() const;
-                /// @copydoc iPlaybackable::GetType() const
+                /// @copydoc iSound::IsValid() const
+                virtual bool IsValid() const;
+                /// @copydoc iSound::GetType() const
                 virtual UInt16 GetType() const;
-                /// @copydoc iPlaybackable::GetDecoder() const
+                /// @copydoc iSound::GetDecoder() const
                 virtual iDecoder* GetDecoder() const;
-                /// @copydoc iPlaybackable::SetPitch(const Real Pitch)
+
+                /// @copydoc iSound::SetPitch(const Real Pitch)
                 virtual void SetPitch(const Real Pitch);
-                /// @copydoc iPlaybackable::GetPitch() const
+                /// @copydoc iSound::GetPitch() const
                 virtual Real GetPitch() const;
+                /// @copydoc iSound::SetStream(Resource::DataStream, const Audio::Encoding)
+                virtual void SetStream(Resource::DataStream Stream, const Audio::Encoding Encode);
+                /// @copydoc iSound::SetStream(const UInt16, Resource::DataStream, const Audio::Encoding)
+                virtual void SetStream(const UInt16 Type, Resource::DataStream Stream, const Audio::Encoding Encode);
+                /// @copydoc iSound::SetStream(iDecoder*)
+                virtual void SetStream(iDecoder* Decode);
+                /// @copydoc iSound::SetStream(const UInt16, iDecoder*)
+                virtual void SetStream(const UInt16 Type, iDecoder* Decode);
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Playback
 
-                /// @copydoc iPlaybackable::Play()
+                /// @copydoc iSound::Play()
                 virtual bool Play();
-                /// @copydoc iPlaybackable::IsPlaying() const
+                /// @copydoc iSound::IsPlaying() const
                 virtual bool IsPlaying() const;
-                /// @copydoc iPlaybackable::Pause()
+                /// @copydoc iSound::Pause()
                 virtual void Pause();
-                /// @copydoc iPlaybackable::IsPaused() const
+                /// @copydoc iSound::IsPaused() const
                 virtual bool IsPaused() const;
-                /// @copydoc iPlaybackable::Stop()
+                /// @copydoc iSound::Stop()
                 virtual void Stop();
-                /// @copydoc iPlaybackable::IsStopped() const
+                /// @copydoc iSound::IsStopped() const
                 virtual bool IsStopped() const;
-                /// @copydoc iPlaybackable::Loop(bool ToLoop)
+                /// @copydoc iSound::Loop(bool ToLoop)
                 virtual void Loop(bool ToLoop);
-                /// @copydoc iPlaybackable::IsLooping() const
+                /// @copydoc iSound::IsLooping() const
                 virtual bool IsLooping() const;
 
-                /// @copydoc iPlaybackable::Seek(const Real Seconds, bool Relative)
+                /// @copydoc iSound::Seek(const Real, bool)
                 virtual bool Seek(const Real Seconds, bool Relative = false);
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Volume Control
 
-                /// @copydoc iPlaybackable::GetVolume() const
+                /// @copydoc iSound::GetVolume() const
                 virtual Real GetVolume() const;
-                /// @copydoc iPlaybackable::SetBaseVolume(const Real Base)
+                /// @copydoc iSound::SetBaseVolume(const Real)
                 virtual void SetBaseVolume(const Real Base);
-                /// @copydoc iPlaybackable::GetBaseVolume() const
+                /// @copydoc iSound::GetBaseVolume() const
                 virtual Real GetBaseVolume() const;
-                /// @copydoc iPlaybackable::SetMinVolume(const Real MinVolume)
+                /// @copydoc iSound::SetMinVolume(const Real)
                 virtual void SetMinVolume(const Real MinVol);
-                /// @copydoc iPlaybackable::GetMinVolume() const
+                /// @copydoc iSound::GetMinVolume() const
                 virtual Real GetMinVolume() const;
-                /// @copydoc iPlaybackable::SetMaxVolume(const Real MaxVolume)
+                /// @copydoc iSound::SetMaxVolume(const Real)
                 virtual void SetMaxVolume(const Real MaxVol);
-                /// @copydoc iPlaybackable::GetMaxVolume() const
+                /// @copydoc iSound::GetMaxVolume() const
                 virtual Real GetMaxVolume() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Effects Methods
 
-                /// @copydoc iPlaybackable::AttachEffect(const UInt32 Slot, iEffect* Eff)
+                /// @copydoc iSound::AttachEffect(const UInt32, iEffect*)
                 virtual bool AttachEffect(const UInt32 Slot, iEffect* Eff);
-                /// @copydoc iPlaybackable::GetEffect(const UInt32 Slot) const
+                /// @copydoc iSound::GetEffect(const UInt32 Slot) const
                 virtual iEffect* GetEffect(const UInt32 Slot) const;
-                /// @copydoc iPlaybackable::GetNumEffectSlotsAvailable() const
+                /// @copydoc iSound::GetNumEffectSlotsAvailable() const
                 virtual UInt32 GetNumEffectSlotsAvailable() const;
-                /// @copydoc iPlaybackable::RemoveEffect(const UInt32 Slot)
+                /// @copydoc iSound::RemoveEffect(const UInt32)
                 virtual void RemoveEffect(const UInt32 Slot);
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Filter Methods
 
-                /// @copydoc iPlaybackable::AttachFilter(iFilter* Fil)
+                /// @copydoc iSound::AttachFilter(iFilter*)
                 virtual bool AttachFilter(iFilter* Fil);
-                /// @copydoc iPlaybackable::GetFilter() const
+                /// @copydoc iSound::GetFilter() const
                 virtual iFilter* GetFilter() const;
-                /// @copydoc iPlaybackable::RemoveFilter()
+                /// @copydoc iSound::RemoveFilter()
                 virtual void RemoveFilter();
 
                 ///////////////////////////////////////////////////////////////////////////////
