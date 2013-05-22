@@ -1,0 +1,24 @@
+--- sdlchecks.cmake.original	2013-01-01 00:52:26.000000000 -0600
++++ sdlchecks.cmake	2013-01-10 19:46:54.537837657 -0600
+@@ -437,18 +437,18 @@
+         endif(HAVE_X11_SHARED AND XF86VMODE_LIB)
+         set(SDL_VIDEO_DRIVER_X11_XVIDMODE 1)
+         set(HAVE_VIDEO_X11_XVM TRUE)
+-      endif(VIDEO_X11_XVM AND HAVE_XF86VM_H)
++      endif(SDL_VIDEO_X11_XVM AND HAVE_XF86VM_H)
+ 
+       set(CMAKE_REQUIRED_LIBRARIES)
+     endif(X11_LIB)
+-  endif(VIDEO_X11)
++  endif(SDL_VIDEO_X11)
+ endmacro(CheckX11)
+ 
+ # Requires:
+ # - n/a
+ #
+ macro(CheckCOCOA)
+-  if(VIDEO_COCOA)
++  if(SDL_VIDEO_COCOA)
+     check_c_source_compiles("
+         #import <Cocoa/Cocoa.h>
+         int main (int argc, char** argv) {}" HAVE_VIDEO_COCOA)
