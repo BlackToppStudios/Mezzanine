@@ -76,6 +76,7 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB ResourceManager : public ManagerBase, public Singleton<ResourceManager>
     {
+        public:
         protected:
             /// @brief Encapsulates the functionality of the ogre resource group manager.
             Ogre::ResourceGroupManager* OgreResource;
