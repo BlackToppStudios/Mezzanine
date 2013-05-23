@@ -259,10 +259,10 @@ endmacro(CheckFusionSound)
 # Requires:
 # - n/a
 # Optional:
-# - X11_SHARED opt
+# - SDL_X11_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckX11)
-  if(VIDEO_X11)
+  if(SDL_VIDEO_X11)
     foreach(_LIB X11 Xext Xcursor Xinerama Xi Xrandr Xrender Xss Xxf86vm)
       string(TOUPPER ${_LIB} _LNAME)
       find_library(${_LNAME}_LIB ${_LIB})
@@ -297,7 +297,7 @@ macro(CheckX11)
       endif(HAVE_GCC_FVISIBILITY)
 
       if(APPLE)
-        set(X11_SHARED OFF)
+        set(SDL_X11_SHARED OFF)
         set(X11_SYMBOLS_PRIVATE TRUE)
       endif(APPLE)
 
@@ -312,7 +312,7 @@ macro(CheckX11)
         endif(NOT HAVE_SHMAT)
       endif(NOT HAVE_SHMAT)
 
-      if(X11_SHARED)
+      if(SDL_X11_SHARED)
         if(NOT HAVE_DLOPEN)
           message_warn("You must have SDL_LoadObject() support for dynamic X11 loading")
           set(HAVE_X11_SHARED FALSE)
@@ -329,7 +329,7 @@ macro(CheckX11)
         else(HAVE_X11_SHARED)
           list(APPEND EXTRA_LIBS ${X11_LIB} ${XEXT_LIB})
         endif(HAVE_X11_SHARED)
-      endif(X11_SHARED)
+      endif(SDL_X11_SHARED)
 
       set(CMAKE_REQUIRED_LIBRARIES ${X11_LIB} ${X11_LIB})
       check_c_source_compiles("
@@ -441,7 +441,7 @@ macro(CheckX11)
 
       set(CMAKE_REQUIRED_LIBRARIES)
     endif(X11_LIB)
-  endif(VIDEO_X11)
+  endif(SDL_VIDEO_X11)
 endmacro(CheckX11)
 
 # Requires:
