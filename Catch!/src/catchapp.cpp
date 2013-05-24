@@ -892,14 +892,16 @@ bool CatchApp::PostUI()
     {
         if( !UIManager::GetSingletonPtr()->MouseIsInUISystem() )
         {
-            Ray *MouseRay = RayQueryer->GetMouseRay(5000);
-
-            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
-            #ifdef MEZZDEBUG
-            TheEntresol->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
-            TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
-            #endif
-
+            Vector3WActor* ClickOnActor = 0;
+            Ray* MouseRay = RayQueryer->GetMouseRay(5000);
+            if(MouseRay)
+            {
+                ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
+                #ifdef MEZZDEBUG
+                TheEntresol->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
+                TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
+                #endif
+            }
             //ActorBase *temp = ClickOnActor->Actor;
 
             bool firstframe=false;
@@ -950,21 +952,25 @@ bool CatchApp::PostUI()
                 }
             }
 
-            // This chunk of code calculates the 3d point that the actor needs to be dragged to
-            Vector3 *DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
-            if (0 == DragTo)
+            Vector3* DragTo = 0;
+            if(MouseRay)
             {
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("PlaneOfPlay Not Clicked on");
-                #endif
-            }else{
-                if(Dragger && !firstframe)
+                // This chunk of code calculates the 3d point that the actor needs to be dragged to
+                DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
+                if (0 == DragTo)
                 {
                     #ifdef MEZZDEBUG
-                    TheEntresol->Log("Dragged To");
-                    TheEntresol->Log(*DragTo);
+                    TheEntresol->Log("PlaneOfPlay Not Clicked on");
                     #endif
-                    Dragger->SetPivotBLocation(*DragTo);
+                }else{
+                    if(Dragger && !firstframe)
+                    {
+                        #ifdef MEZZDEBUG
+                        TheEntresol->Log("Dragged To");
+                        TheEntresol->Log(*DragTo);
+                        #endif
+                        Dragger->SetPivotBLocation(*DragTo);
+                    }
                 }
             }
 
