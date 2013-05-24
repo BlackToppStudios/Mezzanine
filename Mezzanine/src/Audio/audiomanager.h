@@ -148,13 +148,14 @@ namespace Mezzanine
             /// @return Returns a pointer to the @ref iSound instance that was created.
             virtual iSound* CreateSound(const UInt16 Type, const String& StreamName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
             /// @brief Gets an @ref iSound instance by index.
+            /// @param Index The index of the @ref iSound to be retrieved.
             /// @return Returns a pointer to the @ref iSound at the specified index.
             virtual iSound* GetSound(const UInt32 Index) const = 0;
             /// @brief Gets the number of @ref iSound instances in this manager.
             /// @return Returns a UInt32 representing the number of @ref iSound instances contained in this manager.
             virtual UInt32 GetNumSounds() const = 0;
             /// @brief Deletes a @ref iSound.
-            /// @param SoundName A pointer to the @ref iSound you want deleted.
+            /// @param ToBeDestroyed A pointer to the @ref iSound you want deleted.
             virtual void DestroySound(iSound* ToBeDestroyed) = 0;
             /// @brief Deletes all stored @ref iSound instances.
             virtual void DestroyAllSounds() = 0;
