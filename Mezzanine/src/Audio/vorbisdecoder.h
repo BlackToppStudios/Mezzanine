@@ -40,22 +40,92 @@
 #ifndef _audiovorbisdecoder_h
 #define _audiovorbisdecoder_h
 
+#ifdef ENABLE_VORBIS_ENCODE
+
 #include "Audio/decoder.h"
 
 namespace Mezzanine
 {
     namespace Audio
     {
-        class MEZZ_LIB VorbisDecoder
+        class VorbisDecoderInternalData;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a @ref iDecoder implementation for the vorbis encoding.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB VorbisDecoder : public iDecoder
         {
         protected:
+            /// @internal
+            /// @brief A pointer to all the internal data needed for working with the vorbis library.
+            VorbisDecoderInteralData* VDID;
+            /// @internal
+            /// @brief This is a shared pointer to the stream being decoded.
+            Resource::DataStreamPtr VorbisStream;
+            /// @internal
+            /// @brief Tracks and stores the validity of the Vorbis stream.
+            bool Valid;
         public:
             /// @brief Class constructor.
-            VorbisDecoder();
+            /// @param Stream The stream to decode.
+            VorbisDecoder(Resource::DataStreamPtr Stream);
             /// @brief Class destructor.
             virtual ~VorbisDecoder();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Additional Vorbis Functionality
+
+            /// @brief Gets a vorbis file comment by index.
+            /// @param Index The index of the vorbis file comment to retrieve.
+            /// @return Returns a string containing the vorbis file comment at the specified index.
+            virtual String GetUserComment(const UInt32 Index);
+            /// @brief Gets the number of user comments that have been inserted into this vorbis file.
+            /// @return Returns the number of user comments in this vorbis file.
+            virtual UInt32 GetNumUserComments() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @copydoc iDecoder::IsValid()
+            virtual bool IsValid();
+            /// @copydoc iDecoder::GetEncoding() const
+            virtual Audio::Encoding GetEncoding() const;
+            /// @copydoc iDecoder::IsSeekingSupported()
+            virtual bool IsSeekingSupported();
+            /// @copydoc iDecoder::GetBitConfiguration() const
+            virtual Audio::BitConfig GetBitConfiguration() const;
+            /// @copydoc iDecoder::GetFrequency() const
+            virtual UInt32 GetFrequency() const;
+            /// @copydoc iDecoder::GetStream() const
+            virtual Resource::DataStreamPtr GetStream() const;
+
+            /// @copydoc iDecoder::SetPosition(Int32 Position, bool Relative)
+            virtual bool SetPosition(Int32 Position, bool Relative);
+            /// @copydoc iDecoder::Seek(const Real Seconds, bool Relative)
+            virtual bool Seek(const Real Seconds, bool Relative);
+
+            /// @copydoc iDecoder::ReadAudioData(void* Output, UInt32 Amount)
+            virtual UInt32 ReadAudioData(void* Output, UInt32 Amount);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Stats
+
+            /// @copydoc iDecoder::GetTotalTime() const
+            virtual Real GetTotalTime() const;
+            /// @copydoc iDecoder::GetCurrentTime() const
+            virtual Real GetCurrentTime() const;
+            /// @copydoc iDecoder::GetTotalSize() const
+            virtual UInt32 GetTotalSize() const;
+            /// @copydoc iDecoder::GetCompressedSize() const
+            virtual UInt32 GetCompressedSize() const;
+            /// @copydoc iDecoder::GetCurrentPosition() const
+            virtual UInt32 GetCurrentPosition() const;
+            /// @copydoc iDecoder::GetCurrentCompressedPosition() const
+            virtual UInt32 GetCurrentCompressedPosition() const;
         };//VorbisDecoder
     }//Audio
 }//Mezzanine
+
+#endif //ENABLE_VORBIS_ENCODE
 
 #endif
