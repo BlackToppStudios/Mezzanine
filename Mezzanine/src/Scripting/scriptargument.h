@@ -72,21 +72,21 @@ namespace Mezzanine
 
                 /// @brief Get the Argument as a Whole
                 /// @return The argument value lexographically converted as a @ref Whole
-                virtual String GetWhole() = 0;
+                virtual Whole GetWhole() = 0;
 
                 /// @brief Get the Argument as a Integer
                 /// @return The argument value lexographically converted as an @ref Integer
-                virtual String GetInteger() = 0;
+                virtual Integer GetInteger() = 0;
 
                 /// @brief Get the Argument as a Real
                 /// @return The argument value lexographically converted as an @ref Real
-                virtual String GetReal() = 0;
+                virtual Real GetReal() = 0;
 
         }; // iScriptArgument
 
         /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations
         template <class T>
-        class MEZZ_LIB ScriptArgumentSpecific : public virtual iScriptArgument
+        class MEZZ_LIB ScriptArgumentSpecific : public iScriptArgument
         {
             private:
                 /// @brief the actual data.
@@ -96,7 +96,6 @@ namespace Mezzanine
                 T Datum;
 
             public:
-
                 /// @brief To make working with this easier.
                 typedef T Type;
 
@@ -124,17 +123,17 @@ namespace Mezzanine
 
                 /// @brief Get the Argument as a Whole, slow default implementation.
                 /// @return The argument value lexographically converted as a @ref Whole
-                virtual String GetWhole()
+                virtual Whole GetWhole()
                     { return ToWhole(Datum); }
 
                 /// @brief Get the Argument as a Integer, slow default implementation.
                 /// @return The argument value lexographically converted as an @ref Integer
-                virtual String GetInteger()
+                virtual Integer GetInteger()
                     { return ToInteger(Datum); }
 
                 /// @brief Get the Argument as a Real, slow default implementation.
                 /// @return The argument value lexographically converted as an @ref Real
-                virtual String GetReal()
+                virtual Real GetReal()
                     { return ToReal(Datum); }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
