@@ -90,31 +90,31 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Convenience Creation Methods
 
-        iSound* CreateAmbientSound()
+        iSound* AudioManager::CreateAmbientSound()
             { return this->CreateSound(Audio::ST_Ambient); }
-        iSound* CreateDialogSound()
+        iSound* AudioManager::CreateDialogSound()
             { return this->CreateSound(Audio::ST_Dialog); }
-        iSound* CreateEffectSound()
+        iSound* AudioManager::CreateEffectSound()
             { return this->CreateSound(Audio::ST_Effect); }
-        iSound* CreateMusicSound()
+        iSound* AudioManager::CreateMusicSound()
             { return this->CreateSound(Audio::ST_Music); }
 
-        iSound* CreateAmbientSound(DataStreamPtr Stream, const Audio::Encoding Encode)
+        iSound* AudioManager::CreateAmbientSound(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
             { return this->CreateSound(Audio::ST_Ambient,Stream,Encode); }
-        iSound* CreateDialogSound(DataStreamPtr Stream, const Audio::Encoding Encode)
+        iSound* AudioManager::CreateDialogSound(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
             { return this->CreateSound(Audio::ST_Dialog,Stream,Encode); }
-        iSound* CreateEffectSound(DataStreamPtr Stream, const Audio::Encoding Encode)
+        iSound* AudioManager::CreateEffectSound(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
             { return this->CreateSound(Audio::ST_Effect,Stream,Encode); }
-        iSound* CreateMusicSound(DataStreamPtr Stream, const Audio::Encoding Encode)
+        iSound* AudioManager::CreateMusicSound(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
             { return this->CreateSound(Audio::ST_Music,Stream,Encode); }
 
-        iSound* CreateAmbientSound(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+        iSound* AudioManager::CreateAmbientSound(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
             { return this->CreateSound(Audio::ST_Ambient,Stream,Frequency,Config); }
-        iSound* CreateDialogSound(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+        iSound* AudioManager::CreateDialogSound(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
             { return this->CreateSound(Audio::ST_Dialog,Stream,Frequency,Config); }
-        iSound* CreateEffectSound(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+        iSound* AudioManager::CreateEffectSound(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
             { return this->CreateSound(Audio::ST_Effect,Stream,Frequency,Config); }
-        iSound* CreateMusicSound(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+        iSound* AudioManager::CreateMusicSound(Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
             { return this->CreateSound(Audio::ST_Music,Stream,Frequency,Config); }
 
         iSound* AudioManager::CreateAmbientSound(const String& FileName, const String& Group)
@@ -126,22 +126,22 @@ namespace Mezzanine
         iSound* AudioManager::CreateMusicSound(const String& FileName, const String& Group)
             { return this->CreateSound(Audio::ST_Music,FileName,Group); }
 
-        iSound* CreateAmbientSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+        iSound* AudioManager::CreateAmbientSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
             { return this->CreateSound(Audio::ST_Ambient,StreamName,Buffer,Length,Encode); }
-        iSound* CreateDialogSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+        iSound* AudioManager::CreateDialogSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
             { return this->CreateSound(Audio::ST_Dialog,StreamName,Buffer,Length,Encode); }
-        iSound* CreateEffectSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+        iSound* AudioManager::CreateEffectSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
             { return this->CreateSound(Audio::ST_Effect,StreamName,Buffer,Length,Encode); }
-        iSound* CreateMusicSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+        iSound* AudioManager::CreateMusicSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
             { return this->CreateSound(Audio::ST_Music,StreamName,Buffer,Length,Encode); }
 
-        iSound* CreateAmbientSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+        iSound* AudioManager::CreateAmbientSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
             { return this->CreateSound(Audio::ST_Ambient,StreamName,Buffer,Length,Frequency,Config); }
-        iSound* CreateDialogSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+        iSound* AudioManager::CreateDialogSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
             { return this->CreateSound(Audio::ST_Dialog,StreamName,Buffer,Length,Frequency,Config); }
-        iSound* CreateEffectSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+        iSound* AudioManager::CreateEffectSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
             { return this->CreateSound(Audio::ST_Effect,StreamName,Buffer,Length,Frequency,Config); }
-        iSound* CreateMusicSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+        iSound* AudioManager::CreateMusicSound(const String& StreamName, const Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
             { return this->CreateSound(Audio::ST_Music,StreamName,Buffer,Length,Frequency,Config); }
 
         ///////////////////////////////////////////////////////////////////////////////
