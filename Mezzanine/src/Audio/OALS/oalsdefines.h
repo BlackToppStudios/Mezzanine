@@ -50,4 +50,7 @@
 // The number of special effect slots each source has available to it.
 #define OALS_SOURCE_MAX_EFFECT_SLOTS 4
 
+// The maximum number of listeners that are permitted to be made by a single SoundScapeManager.
+#define OALS_MAX_LISTENERS_PER_MANAGER 4
+
 #endif

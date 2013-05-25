@@ -212,7 +212,8 @@ namespace Mezzanine
 
             void Listener::Translate(const Real X, const Real Y, const Real Z)
             {
-                this->SetLocation( this->GetLocation() + Vector3(X,Y,Z) );
+                Vector3 Trans(X,Y,Z);
+                this->SetLocation( this->GetLocation() + Trans );
                 this->SetVelocity(Trans);
             }
 

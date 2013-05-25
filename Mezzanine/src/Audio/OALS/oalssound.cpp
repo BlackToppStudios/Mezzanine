@@ -47,6 +47,7 @@
 #include "exception.h"
 
 #include "Audio/audiomanager.h"
+#include "Audio/decoderfactory.h"
 
 #include <AL/al.h>
 #include <AL/alc.h>
@@ -209,6 +210,11 @@ namespace Mezzanine
                 iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
                 if( Factory != NULL )
                 {
+                    if( this->SoundDecoder )
+                    {
+                        delete SoundDecoder;
+                        SoundDecoder = NULL;
+                    }
                     this->SoundDecoder = Factory->CreateDecoder(Stream);
                 }
             }
@@ -374,7 +380,8 @@ namespace Mezzanine
 
                         ALuint EffectSlotID = BeingAdded->_GetInternalEffectSlot();
                         ALuint FilterID = ( BeingAdded->GetFilter() != NULL ? static_cast<OALS::Filter*>(BeingAdded->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
-                        alSource3i(this->InternalSource,AL_AUXILIARY_SEND_FILTER,EffectSlotID,Index,FilterID);
+                        alSource3i(this->InternalSource,AL_AUXILIARY_SEND_FILTER,EffectSlotID,Slot,FilterID);
+                        return true;
                     }
                 }
                 return false;

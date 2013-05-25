@@ -76,16 +76,6 @@ namespace Mezzanine
             /// @details This function will get the factor used in attenuating the source over distance.
             /// @return Returns the factor used in attenuating the source over distance.
             virtual Real GetRolloffFactor() const = 0;
-            /// @brief Sets the strength of the sound source.
-            /// @details This function will set the strength of the sound, which will determine how well
-            /// the sound from this sound source will carry over a distance.
-            /// @param SoundStrength The strength of the sound.  Default: 1.0
-            virtual void SetStrength(const Real& SoundStrength) = 0;
-            /// @brief Gets the Strength of the sound source.
-            /// @details This function will get the strength of the source, which determines how well
-            /// the sound carries over a distance.
-            /// @return Returns the strength of the source.
-            virtual Real GetStrength() const = 0;
             /// @brief Sets the distance from the sound source where attenuation will start.
             /// @details This function will set the distance from the sound source where attenuation
             /// effects will start being applied.
@@ -139,11 +129,17 @@ namespace Mezzanine
             /// @brief Sets the doppler velocity vector.
             /// @details In most cases you shouldn't need to call this as this is handled by the engine.
             /// Is called every time position, velocity, or direction is altered.
-            /// @param Velocity A vector3 representing the doppler velocity to be applied.
-            virtual void SetDopplerVelocity(const Vector3& Velocity) = 0;
+            /// @param DopVel A vector3 representing the doppler velocity to be applied.
+            virtual void SetDopplerVelocity(const Vector3& DopVel) = 0;
             /// @brief Gets the doppler velocity vector.
             /// @return Returns the override for the doppler velocity vector.
             virtual Vector3 GetDopplerVelocity() const = 0;
+            /// @brief Sets the velocity of this sound proxy.
+            /// @param Vel The velocity to be given to this sound proxy.
+            virtual void SetVelocity(const Vector3& Vel) = 0;
+            /// @brief Gets the current velocity of this sound proxy.
+            /// @return Returns a Vector3 representing this proxy's current velocity.
+            virtual Vector3 GetVelocity() const = 0;
         };//SoundProxy
     }//Audio
 }//Mezzanine

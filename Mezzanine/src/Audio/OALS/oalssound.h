@@ -135,7 +135,7 @@ namespace Mezzanine
                 /// @copydoc iSound::GetDecoder() const
                 virtual iDecoder* GetDecoder() const;
 
-                /// @copydoc iSound::SetPitch(const Real Pitch)
+                /// @copydoc iSound::SetPitch(const Real)
                 virtual void SetPitch(const Real Pitch);
                 /// @copydoc iSound::GetPitch() const
                 virtual Real GetPitch() const;

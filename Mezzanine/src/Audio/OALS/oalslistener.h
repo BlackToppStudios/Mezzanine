@@ -76,6 +76,7 @@ namespace Mezzanine
                 /// @internal
                 /// @brief This stores the current orientation of this listener.
                 Quaternion Orientation;
+
                 /// @internal
                 /// @brief Converts our orientation into something OpanAL can read/use.
                 void ConvertBuffer(Real* OrientationArray);
@@ -109,42 +110,42 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Transform Methods
 
-                /// @copydoc WorldProxy::SetLocation(const Vector3& Loc)
+                /// @copydoc WorldProxy::SetLocation(const Vector3&)
                 virtual void SetLocation(const Vector3& Loc);
-                /// @copydoc WorldProxy::SetLocation(const Real X, const Real Y, const Real Z)
+                /// @copydoc WorldProxy::SetLocation(const Real, const Real, const Real)
                 virtual void SetLocation(const Real X, const Real Y, const Real Z);
                 /// @copydoc WorldProxy::GetLocation() const
                 virtual Vector3 GetLocation() const;
-                /// @copydoc WorldProxy::SetOrientation(const Quaternion& Ori)
+                /// @copydoc WorldProxy::SetOrientation(const Quaternion&)
                 virtual void SetOrientation(const Quaternion& Ori);
-                /// @copydoc WorldProxy::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
+                /// @copydoc WorldProxy::SetOrientation(const Real, const Real, const Real, const Real)
                 virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
                 /// @copydoc WorldProxy::GetOrientation() const
                 virtual Quaternion GetOrientation() const;
-                /// @copydoc WorldProxy::SetScale(const Vector3& Sc)
+                /// @copydoc WorldProxy::SetScale(const Vector3&)
                 virtual void SetScale(const Vector3& Sc);
-                /// @copydoc WorldProxy::SetScale(const Real X, const Real Y, const Real Z)
+                /// @copydoc WorldProxy::SetScale(const Real, const Real, const Real)
                 virtual void SetScale(const Real X, const Real Y, const Real Z);
                 /// @copydoc WorldProxy::GetScale() const
                 virtual Vector3 GetScale() const;
 
-                /// @copydoc WorldProxy::Translate(const Vector3& Trans)
+                /// @copydoc WorldProxy::Translate(const Vector3&)
                 virtual void Translate(const Vector3& Trans);
-                /// @copydoc WorldProxy::Translate(const Real X, const Real Y, const Real Z)
+                /// @copydoc WorldProxy::Translate(const Real, const Real, const Real)
                 virtual void Translate(const Real X, const Real Y, const Real Z);
-                /// @copydoc WorldProxy::Yaw(const Real Angle)
+                /// @copydoc WorldProxy::Yaw(const Real)
                 virtual void Yaw(const Real Angle);
-                /// @copydoc WorldProxy::Pitch(const Real Angle)
+                /// @copydoc WorldProxy::Pitch(const Real)
                 virtual void Pitch(const Real Angle);
-                /// @copydoc WorldProxy::Roll(const Real Angle)
+                /// @copydoc WorldProxy::Roll(const Real)
                 virtual void Roll(const Real Angle);
-                /// @copydoc WorldProxy::Rotate(const Vector3& Axis, const Real Angle)
+                /// @copydoc WorldProxy::Rotate(const Vector3&, const Real)
                 virtual void Rotate(const Vector3& Axis, const Real Angle);
-                /// @copydoc WorldProxy::Rotate(const Quaternion& Rotation)
+                /// @copydoc WorldProxy::Rotate(const Quaternion&)
                 virtual void Rotate(const Quaternion& Rotation);
-                /// @copydoc WorldProxy::Scale(const Vector3& Scale)
+                /// @copydoc WorldProxy::Scale(const Vector3&)
                 virtual void Scale(const Vector3& Scale);
-                /// @copydoc WorldProxy::Scale(const Real X, const Real Y, const Real Z)
+                /// @copydoc WorldProxy::Scale(const Real, const Real, const Real)
                 virtual void Scale(const Real X, const Real Y, const Real Z);
             };//Listener
         }//OALS

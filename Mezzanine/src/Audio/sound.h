@@ -102,12 +102,12 @@ namespace Mezzanine
             /// @brief Sets a new stream for playback by this @ref iSound via a new decoder.
             /// @warning @ref iSound instances take ownership of decoders.  Decoders should not be shared between @ref iSound instances.
             /// @param Decode A pointer to the decoder containing the stream that will be used by this @ref iSound.
-            virtual void SetStream(iDecoder* Decode);
+            virtual void SetStream(iDecoder* Decode) = 0;
             /// @brief Sets a new stream for playback by this @ref iSound via a new decoder.
             /// @warning @ref iSound instances take ownership of decoders.  Decoders should not be shared between @ref iSound instances.
             /// @param Type The new type to set this @ref iSound instance as.
             /// @param Decode A pointer to the decoder containing the stream that will be used by this @ref iSound.
-            virtual void SetStream(const UInt16 Type, iDecoder* Decode);
+            virtual void SetStream(const UInt16 Type, iDecoder* Decode) = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Playback

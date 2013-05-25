@@ -71,59 +71,59 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Methods
 
-            /// @copydoc TransformableObject::SetLocation(const Vector3& Loc)
+            /// @copydoc TransformableObject::SetLocation(const Vector3&)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void SetLocation(const Vector3& Loc) = 0;
-            /// @copydoc TransformableObject::SetLocation(const Real X, const Real Y, const Real Z)
+            /// @copydoc TransformableObject::SetLocation(const Real, const Real, const Real)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void SetLocation(const Real X, const Real Y, const Real Z) = 0;
             /// @copydoc TransformableObject::GetLocation() const
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual Vector3 GetLocation() const = 0;
-            /// @copydoc TransformableObject::SetOrientation(const Quaternion& Ori)
+            /// @copydoc TransformableObject::SetOrientation(const Quaternion&)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void SetOrientation(const Quaternion& Ori) = 0;
-            /// @copydoc TransformableObject::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
+            /// @copydoc TransformableObject::SetOrientation(const Real, const Real, const Real, const Real)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W) = 0;
             /// @copydoc TransformableObject::GetOrientation() const
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual Quaternion GetOrientation() const = 0;
-            /// @copydoc TransformableObject::SetScale(const Vector3& Sc)
+            /// @copydoc TransformableObject::SetScale(const Vector3&)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void SetScale(const Vector3& Sc) = 0;
-            /// @copydoc TransformableObject::SetScale(const Real X, const Real Y, const Real Z)
+            /// @copydoc TransformableObject::SetScale(const Real, const Real, const Real)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void SetScale(const Real X, const Real Y, const Real Z) = 0;
             /// @copydoc TransformableObject::GetScale() const
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual Vector3 GetScale() const = 0;
 
-            /// @copydoc TransformableObject::Translate(const Vector3& Trans)
+            /// @copydoc TransformableObject::Translate(const Vector3&)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void Translate(const Vector3& Trans) = 0;
-            /// @copydoc TransformableObject::Translate(const Real X, const Real Y, const Real Z)
+            /// @copydoc TransformableObject::Translate(const Real, const Real, const Real)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void Translate(const Real X, const Real Y, const Real Z) = 0;
-            /// @copydoc TransformableObject::Yaw(const Real Angle)
+            /// @copydoc TransformableObject::Yaw(const Real)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void Yaw(const Real Angle) = 0;
-            /// @copydoc TransformableObject::Pitch(const Real Angle)
+            /// @copydoc TransformableObject::Pitch(const Real)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void Pitch(const Real Angle) = 0;
-            /// @copydoc TransformableObject::Roll(const Real Angle)
+            /// @copydoc TransformableObject::Roll(const Real)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void Roll(const Real Angle) = 0;
-            /// @copydoc TransformableObject::Rotate(const Vector3& Axis, const Real Angle)
+            /// @copydoc TransformableObject::Rotate(const Vector3&, const Real)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void Rotate(const Vector3& Axis, const Real Angle) = 0;
-            /// @copydoc TransformableObject::Rotate(const Quaternion& Rotation)
+            /// @copydoc TransformableObject::Rotate(const Quaternion&)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void Rotate(const Quaternion& Rotation) = 0;
-            /// @copydoc TransformableObject::Scale(const Vector3& Scale)
+            /// @copydoc TransformableObject::Scale(const Vector3&)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void Scale(const Vector3& Scale) = 0;
-            /// @copydoc TransformableObject::Scale(const Real X, const Real Y, const Real Z)
+            /// @copydoc TransformableObject::Scale(const Real, const Real, const Real)
             /// @warning Calling this method directly can de-sync a WorldObject.  Do NOT do this unless you know exactly what you are doing.
             virtual void Scale(const Real X, const Real Y, const Real Z) = 0;
 
