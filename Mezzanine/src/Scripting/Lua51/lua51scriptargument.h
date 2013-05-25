@@ -49,8 +49,7 @@
 #include "Scripting/scriptingmanager.h"
 
 /// @file
-/// @brief This file has the definition of the Script Argument for Lua 51
-
+/// @brief This file has the definition of the Script Arguments for Lua 51
 
 namespace Mezzanine
 {
@@ -59,18 +58,20 @@ namespace Mezzanine
         namespace Lua
         {
 
+            /// @brief No special care is required for Integer Lua Arguments, so a simple typedef is used.
             typedef ScriptArgumentSpecific<Integer> Lua51IntegerArgument;
 
+            /// @brief No special care is required for Real number Lua Arguments, so a simple typedef is used.
             typedef ScriptArgumentSpecific<Real> Lua51RealArgument;
 
+            /// @brief No special care is required for Whole number Lua Arguments, so a simple typedef is used.
             typedef ScriptArgumentSpecific<Whole> Lua51WholeArgument;
 
-            typedef ScriptArgumentSpecific<bool> Lua51boolArgument;
-
+            /// @brief No special care is required for String Lua Arguments, so a simple typedef is used.
             typedef ScriptArgumentSpecific<String> Lua51StringArgument;
 
-
-
+            /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
+            typedef ScriptArgumentSpecific<Bool> Lua51BoolArgument;
 
         } // Lua
     } // Scripting

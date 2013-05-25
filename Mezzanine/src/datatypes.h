@@ -158,6 +158,11 @@ namespace Mezzanine
     /// @details This should be a char if String is an std::string.
     typedef char Char8;
 
+    /// @typedef Bool
+    /// @brief A single bit, true or false
+    /// @details Normally just a bool, and this corrects the casing of bool
+    typedef bool Bool;
+
     /// @typedef StringStream
     /// @brief A Datatype used for streaming operations with strings.
     typedef std::stringstream StringStream;
@@ -267,6 +272,12 @@ namespace Mezzanine
     /// @return A Real with the converted data
     template<class T> Real ToReal( const T& Datum )
         { return ConvertTo<Real>(Datum); }
+
+    /// @brief Converts whatever to a Bool as long as the proper streaming operators are available for it
+    /// @param Datum The whatever to be converted
+    /// @return A Bool with the converted data
+    template<class T> Bool ToBool( const T& Datum )
+        { return ConvertTo<Bool>(Datum); }
 
     /// @brief Converts whatever to a float as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted

@@ -60,8 +60,6 @@ extern "C"
     #include "lauxlib.h"        // Extra Lua Goodies like lua_open()
 }
 
-#include <iostream>
-
 namespace Mezzanine
 {
     namespace Scripting
