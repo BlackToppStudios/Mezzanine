@@ -59,6 +59,18 @@ namespace Mezzanine
         namespace Lua
         {
 
+            typedef ScriptArgumentSpecific<Integer> Lua51IntegerArgument;
+
+            typedef ScriptArgumentSpecific<Real> Lua51RealArgument;
+
+            typedef ScriptArgumentSpecific<Whole> Lua51WholeArgument;
+
+            typedef ScriptArgumentSpecific<bool> Lua51boolArgument;
+
+            typedef ScriptArgumentSpecific<String> Lua51StringArgument;
+
+
+
 
         } // Lua
     } // Scripting

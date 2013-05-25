@@ -58,6 +58,7 @@ namespace Mezzanine
         /// transport primitive types into and out of scripts without needing to care
         /// about any underlying types. This limits what operations can be done with
         /// this.
+        /// @todo Define operators for the iScriptArgument at least for assignment
         ///////////////////////////////////////
         class MEZZ_LIB iScriptArgument
         {
@@ -89,7 +90,7 @@ namespace Mezzanine
         class MEZZ_LIB ScriptArgumentSpecific : public iScriptArgument
         {
             private:
-                /// @brief the actual data.
+                /// @brief The actual data.
                 /// @warning To prevent Slicing don't store the parent class in a container.
                 /// This practically guarantees that derived class will have different sizes
                 /// and overflow container boundaries.
@@ -104,12 +105,6 @@ namespace Mezzanine
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
                 ScriptArgumentSpecific(T InitialValue) :
                     Datum(InitialValue)
-                    {}
-
-                /// @brief Converting Constructor
-                /// @param InitialValue The ScriptArgument tio be used for
-                ScriptArgumentSpecific(CountedPtr<iScriptArgument> InitialValue) :
-                    Datum(ConvertTo<T>( InitialValue->GetString() ))
                     {}
 
                 /// @brief Overloadable Deconstructor
@@ -147,6 +142,115 @@ namespace Mezzanine
                     { return Datum; }
 
         }; //ScriptArgumentSpecific
+
+        /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations
+        template <>
+        class MEZZ_LIB ScriptArgumentSpecific<Integer> : public iScriptArgument
+        {
+            private:
+                /// @brief The Integer actual data.
+                Integer Datum;
+
+            public:
+                /// @brief To make working with this easier.
+                typedef Integer Type;
+
+                /// @brief Create an initialized Argument
+                /// @param InitialValue The value to initialize the Argument Integer value with.
+                /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
+                ScriptArgumentSpecific(Integer InitialValue) :
+                    Datum(InitialValue)
+                    {}
+
+                /// @brief Overloadable Deconstructor
+                virtual ~ScriptArgumentSpecific()
+                    {}
+
+                /// @brief Get the Integer as a String.
+                /// @return The Integer value lexographically converted as a @ref String
+                virtual String GetString() const
+                    { return ToString(Datum); }
+
+                /// @brief Get the Integer as a Whole.
+                /// @return The Integer value lexographically converted as a @ref Whole
+                virtual Whole GetWhole()
+                    { return Whole(Datum); }
+
+                /// @brief Get the Integer as a Integer.
+                /// @return The Integer value lexographically converted as an @ref Integer
+                virtual Integer GetInteger()
+                    { return Datum; }
+
+                /// @brief Get the Integer as a Real.
+                /// @return The Integer value lexographically converted as an @ref Real
+                virtual Real GetReal()
+                    { return Real(Datum); }
+
+                /// @brief Provide an overload point to change assignment that operators will use.
+                /// @param NewValue The new value for this.
+                virtual void SetValue(Integer NewValue)
+                    { Datum=NewValue; }
+
+                /// @brief Get the raw primitive to value.
+                /// @return The internal value that meaningful operations can be performed on.
+                virtual Integer GetValue()
+                    { return Datum; }
+        }; //ScriptArgumentSpecific<Integer>
+
+        /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations
+        template <>
+        class MEZZ_LIB ScriptArgumentSpecific<Whole> : public iScriptArgument
+        {
+            private:
+                /// @brief The Whole actual data.
+                Whole Datum;
+
+            public:
+                /// @brief To make working with this easier.
+                typedef Whole Type;
+
+                /// @brief Create an initialized Argument
+                /// @param InitialValue The value to initialize the Argument Whole value with.
+                /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
+                ScriptArgumentSpecific(Whole InitialValue) :
+                    Datum(InitialValue)
+                    {}
+
+                /// @brief Overloadable Deconstructor
+                virtual ~ScriptArgumentSpecific()
+                    {}
+
+                /// @brief Get the Whole as a String
+                /// @return The Whole value lexographically converted as a @ref String
+                virtual String GetString() const
+                    { return ToString(Datum); }
+
+                /// @brief Get the Whole as a Whole.
+                /// @return The Whole value lexographically converted as a @ref Whole
+                virtual Whole GetWhole()
+                    { return Datum; }
+
+                /// @brief Get the Whole as a Integer.
+                /// @return The Whole value lexographically converted as an @ref Integer
+                virtual Integer GetInteger()
+                    { return Integer(Datum); }
+
+                /// @brief Get the Whole as a Real.
+                /// @return The Whole value lexographically converted as an @ref Real
+                virtual Real GetReal()
+                    { return Real(Datum); }
+
+                /// @brief Provide an overload point to change assignment that operators will use.
+                /// @param NewValue The new value for this.
+                virtual void SetValue(Whole NewValue)
+                    { Datum=NewValue; }
+
+                /// @brief Get the raw primitive to value.
+                /// @return The internal value that meaningful operation can be performed on.
+                virtual Whole GetValue()
+                    { return Datum; }
+
+        }; //ScriptArgumentSpecific<Integer>
 
 
     }//Scripting
