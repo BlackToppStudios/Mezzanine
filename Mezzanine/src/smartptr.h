@@ -240,6 +240,35 @@ namespace Mezzanine
             enum { IsCastable = CastStatic};
     };
 
+    /// @internal
+    /// @brief This is to conceal
+    namespace
+    {
+        template <typename CurrentReferenceCountType, typename OtherReferenceCountType>
+        class ReferenceCountAdjuster
+        {
+            public:
+                static void Acquire(CurrentReferenceCountType* UpdateCounter, OtherReferenceCountType* OtherCounter)
+                {
+                    UpdateCounter = CountedPtrInternalCast<CurrentReferenceCountType>(OtherCounter->GetMostDerived());
+                    if (UpdateCounter)
+                           { UpdateCounter->IncrementReferenceCount(); }
+                }
+        };
+
+        template <typename InternalReferenceCount>
+        class ReferenceCountAdjuster<InternalReferenceCount,InternalReferenceCount>
+        {
+            public:
+                static void Acquire(InternalReferenceCount* UpdateCounter, InternalReferenceCount* OtherCounter)
+                {
+                    UpdateCounter = OtherCounter;
+                    if (UpdateCounter)
+                           { UpdateCounter->IncrementReferenceCount(); }
+                }
+        };
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A simple reference counting pointer.
     /// @details This is a pointer that automatically deallocates the object it manages when
@@ -276,8 +305,9 @@ namespace Mezzanine
             template <typename AnyReferenceCountType>
             void Acquire(AnyReferenceCountType* CounterToAcquire) throw()
             {
+                ReferenceCountAdjuster<AnyReferenceCountType, RefCountType>::Acquire(CounterToAcquire, _ReferenceCounter);
                 //_ReferenceCounter = CountedPtrInternalCast<RefCountType>(CounterToAcquire->GetMostDerived());
-                _ReferenceCounter = CounterToAcquire;
+                //_ReferenceCounter = CounterToAcquire;
                 if (CounterToAcquire)
                        { CounterToAcquire->IncrementReferenceCount(); }
             }
@@ -289,6 +319,7 @@ namespace Mezzanine
                 if (CounterToAcquire)
                        { CounterToAcquire->IncrementReferenceCount(); }
             }*/
+
             /*void Acquire(RefCountType* CounterToAcquire) throw()
             {
                 _ReferenceCounter = CounterToAcquire;

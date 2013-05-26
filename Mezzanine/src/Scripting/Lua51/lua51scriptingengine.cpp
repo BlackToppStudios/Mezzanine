@@ -138,9 +138,9 @@ namespace Mezzanine
 
             CountedPtr<iScript> Lua51ScriptingEngine::Execute(const String& ScriptSource)
             {
-                /*CountedPtr<Lua51Script> Results = Compile(ScriptSource);
+                CountedPtr<Lua51Script> Results = Compile(ScriptSource);
                 Execute(Results);
-                return CountedPtrCast<iScript>(Results);*/
+                return CountedPtrCast<iScript>(Results);
             }
 
             void Lua51ScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)
