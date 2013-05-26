@@ -37,10 +37,15 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcefilestream_h
-#define _resourcefilestream_h
+#ifndef _resourcefilestream_cpp
+#define _resourcefilestream_cpp
 
 #include "Resource/filestream.h"
+#include "stringtool.h"
+#include "exception.h"
+
+#include <fstream>
+#include <algorithm>
 
 namespace Mezzanine
 {
@@ -49,37 +54,27 @@ namespace Mezzanine
 #ifdef USENEWDATASTREAM
         /// @todo Implement this
 #else //USENEWDATASTREAM
-        FileStream::FileStream(std::fstream* Stream, const StreamFlags Mode)
+        FileStream::FileStream(std::fstream* Stream, const UInt16 Mode)
             : DataStream( Mode ),
               StandardStream(Stream)
         {
             StandardStream->seekg(0,std::ios_base::end);
             Size = (size_t)StandardStream->tellg();
             StandardStream->flush();
-            Seek(0);
+            this->Advance(0);
         }
 
-        FileStream::FileStream(const String& Name, std::fstream* Stream, const StreamFlags Mode)
-            : DataStream( Name, Mode ),
-              StandardStream(Stream)
-        {
-            StandardStream->seekg(0,std::ios_base::end);
-            Size = (size_t)StandardStream->tellg();
-            StandardStream->flush();
-            Seek(0);
-        }
-
-        FileStream::FileStream(const String& Name, const String& Path, const StreamFlags Mode)
-            : DataStream( Name, Mode )
+        FileStream::FileStream(const String& FileName, const String& Path, const UInt16 Mode)
+            : DataStream( Mode )
         {
             StandardStream = new std::fstream();
 
             std::ios_base::openmode Options = (std::ios_base::in | std::ios_base::out);
-            if(Flags & DataStream::SF_Binary)
+            if(SFlags & DataStream::SF_Binary)
             {
                 Options = (Options | std::ios_base::binary);
             }
-            if(Flags & DataStream::SF_Truncate)
+            if(SFlags & DataStream::SF_Truncate)
             {
                 Options = (Options | std::ios_base::trunc);
             }
@@ -92,20 +87,20 @@ namespace Mezzanine
             char SysSlash = '/';
             #endif
             if( SysSlash != Check )
-                FullPath = Path+SysSlash+Name;
+                FullPath = Path+SysSlash+FileName;
             else
-                FullPath = Path+Name;
+                FullPath = Path+FileName;
             StandardStream->open(FullPath.c_str(),Options);
 
             if(!StandardStream->is_open())
             {
-                MEZZ_EXCEPTION(Exception::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \""+Name+"\".");
+                MEZZ_EXCEPTION(Exception::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \""+FileName+"\".");
             }
 
             StandardStream->seekg(0,std::ios_base::end);
             Size = (size_t)StandardStream->tellg();
             StandardStream->flush();
-            Seek(0);
+            this->Advance(0);
         }
 
         FileStream::~FileStream()

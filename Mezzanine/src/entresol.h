@@ -252,7 +252,6 @@ namespace Mezzanine
     class ActorBase;
     class ActorManager;
     class ActorContainerBase;
-    class AudioManager;
     class EventManager;
     class CameraManager;
     class PhysicsManager;
@@ -268,6 +267,11 @@ namespace Mezzanine
     class NetworkManager;
     class SceneManager;
     class ManagerFactory;
+    namespace Audio
+    {
+        class AudioManager;
+        class SoundScapeManager;
+    }
 }
 
 //Other forward declarations
@@ -648,7 +652,7 @@ namespace Mezzanine
             /// @brief This gets the AudioManager from the manager list.
             /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.
             /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.
-            AudioManager* GetAudioManager(const UInt16 WhichOne = 0);
+            Audio::AudioManager* GetAudioManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the CameraManager from the manager list.
             /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.
@@ -698,7 +702,7 @@ namespace Mezzanine
             /// @brief This gets the SoundScapeManager from the manager list.
             /// @param WhichOne If you have multiple SoundScapeManagers this will choose which one to return.
             /// @return This returns a pointer to a SoundScapeManager, or a NULL pointer if no matching manager exists.
-            SoundScapeManager* GetSoundScapeManager(const UInt16 WhichOne = 0);
+            Audio::SoundScapeManager* GetSoundScapeManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.

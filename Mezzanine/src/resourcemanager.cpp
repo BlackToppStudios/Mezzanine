@@ -50,6 +50,8 @@
 #include "Internal/ogredatastreambuf.h.cpp"
 #include "Internal/bulletfilemanager.h.cpp"
 
+#include "Resource/resourceenumerations.h"
+
 #include <Ogre.h>
 #include <btBulletWorldImporter.h>
 #include <btBulletDynamicsCommon.h>
@@ -88,7 +90,7 @@ namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = 0;
 
-    ResourceManager::ResourceManager(const String& EngineDataPath, Mezzanine::ArchiveType ArchType)
+    ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType)
     {
         this->Priority = 60;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
@@ -431,13 +433,13 @@ namespace Mezzanine
         return Results;
     }
 
-    String ResourceManager::GetStringFromArchiveType(ArchiveType ArchiveType_)
+    String ResourceManager::GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType)
     {
-        switch(ArchiveType_)
+        switch(ArchType)
         {
-            case FileSystem:
+            case Mezzanine::AT_FileSystem:
                 return String("FileSystem");
-            case Zip:
+            case Mezzanine::AT_Zip:
                 return String("Zip");
             default:
                 MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
@@ -445,14 +447,14 @@ namespace Mezzanine
         }
     }
 
-    ArchiveType ResourceManager::GetArchiveTypeFromString(String FromString)
+    Mezzanine::ArchiveType ResourceManager::GetArchiveTypeFromString(const String& FromString)
     {
         if(String("FileSystem")==FromString)
-            { return FileSystem; }
+            { return Mezzanine::AT_FileSystem; }
         if(String("Zip")==FromString)
-            { return Zip; }
+            { return Mezzanine::AT_Zip; }
         MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
-        return Invalid;
+        return AT_Invalid;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

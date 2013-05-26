@@ -46,6 +46,14 @@
 
 namespace Mezzanine
 {
+    /// @brief Used to indicate what kind of resources the Entrosol should look for
+    enum ArchiveType
+    {
+        AT_FileSystem  = 0,    ///< Look for raw files
+        AT_Zip         = 1,    ///< Look for stuff in zip files even if the extension is not '.zip'.
+        AT_Invalid     = 32768 ///< Indicates this valid was messed up unrecoverably, most likely by a bug.
+    };
+
     /// @enum AttenuationStyle
     /// @brief These values represent the kind of attenuation applied to the field strength
     /// over a distance.
@@ -82,7 +90,7 @@ namespace Mezzanine
     /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.
     enum StandardAxis
     {
-        Axis_Invalid   = -1,   ///< Not an axis, Don't pass this into functions or operator[] functions, it is intended as a 
+        Axis_Invalid   = -1,   ///< Not an axis, Don't pass this into functions or operator[] functions, it is intended as a
         Axis_X         = 0,    ///< X axis
         Axis_Y         = 1,    ///< Y axis
         Axis_Z         = 2     ///< Z axis
@@ -172,14 +180,6 @@ namespace Mezzanine
 
         // Other Objects
         WSO_WorldNode = 1048576
-    };
-
-    /// @brief Used to indicate what kind of resources the Entrosol should look for
-    enum ArchiveType
-    {
-        FileSystem  = 0,    ///< Look for raw files
-        Zip         = 1,    ///< Look for stuff in zip files even if the extension is not '.zip'.
-        Invalid     = 32768 ///< Indicates this valid was messed up unrecoverably, most likely by a bug.
     };
 }
 

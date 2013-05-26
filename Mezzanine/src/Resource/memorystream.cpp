@@ -37,10 +37,15 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcememorystream_h
-#define _resourcememorystream_h
+#ifndef _resourcememorystream_cpp
+#define _resourcememorystream_cpp
 
 #include "Resource/memorystream.h"
+#include "stringtool.h"
+#include "exception.h"
+
+#include <cstring>
+#include <algorithm>
 
 namespace Mezzanine
 {
@@ -50,20 +55,7 @@ namespace Mezzanine
         /// @todo Implement this
 #else //USENEWDATASTREAM
         MemoryStream::MemoryStream(const size_t& BufferSize, bool FreeOnClose, bool ReadOnly)
-            : DataStream( ReadOnly ? DataStream::DS_Read : static_cast<DataStream::StreamFlags>(DataStream::SF_Read | DataStream::SF_Write) ),
-              FreeBuffer(FreeOnClose)
-        {
-            Size = BufferSize;
-            BufferStart = new UInt8[BufferSize];
-            BufferPos = BufferStart;
-            BufferEnd = BufferStart + BufferSize;
-
-            if(BufferEnd < BufferStart)
-                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
-        }
-
-        MemoryStream::MemoryStream(const String& Name, const size_t& BufferSize, bool FreeOnClose, bool ReadOnly)
-            : DataStream( Name, ReadOnly ? DataStream::DS_Read : static_cast<DataStream::StreamFlags>(DataStream::SF_Read | DataStream::SF_Write) ),
+            : DataStream( ReadOnly ? DataStream::SF_Read : static_cast<DataStream::StreamFlags>(DataStream::SF_Read | DataStream::SF_Write) ),
               FreeBuffer(FreeOnClose)
         {
             Size = BufferSize;
@@ -76,7 +68,7 @@ namespace Mezzanine
         }
 
         MemoryStream::MemoryStream(void* Buffer, const size_t& BufferSize, bool FreeOnClose, bool ReadOnly)
-            : DataStream( ReadOnly ? DataStream::DS_Read : static_cast<DataStream::StreamFlags>(DataStream::SF_Read | DataStream::SF_Write) ),
+            : DataStream( ReadOnly ? DataStream::SF_Read : static_cast<DataStream::StreamFlags>(DataStream::SF_Read | DataStream::SF_Write) ),
               FreeBuffer(FreeOnClose)
         {
             BufferStart = BufferPos = static_cast<UInt8*>(Buffer);
@@ -87,19 +79,7 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
         }
 
-        MemoryStream::MemoryStream(const String& Name, void* Buffer, const size_t& BufferSize, bool FreeOnClose, bool ReadOnly)
-            : DataStream( Name, ReadOnly ? DataStream::DS_Read : static_cast<DataStream::StreamFlags>(DataStream::SF_Read | DataStream::SF_Write) ),
-              FreeBuffer(FreeOnClose)
-        {
-            BufferStart = BufferPos = static_cast<UInt8*>(Buffer);
-            Size = BufferSize;
-            BufferEnd = BufferStart + BufferSize;
-
-            if(BufferEnd < BufferStart)
-                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
-        }
-
-        MemoryStream::~MemoryDataStream()
+        MemoryStream::~MemoryStream()
         {
             Close();
         }
@@ -191,7 +171,7 @@ namespace Mezzanine
                 }
                 case SO_Current:
                 {
-                    if( GetStreamPosition() + Offset < 0 || GetStreamPosition + Offset >= Size )
+                    if( GetStreamPosition() + Offset < 0 || GetStreamPosition() + Offset >= Size )
                         MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
 
                     BufferPos = BufferStart + (GetStreamPosition() + Offset);

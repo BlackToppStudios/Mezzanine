@@ -69,25 +69,12 @@ namespace Mezzanine
                 /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
                 /// @param ReadOnly If true, writing operations on this stream will be prohibited.
                 MemoryStream(const size_t& BufferSize, bool FreeOnClose = true, bool ReadOnly = false);
-                /// @brief Named buffer creation constructor.
-                /// @param Name The name of the stream.
-                /// @param BufferSize The size of the buffer to be created.
-                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
-                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
-                MemoryStream(const String& Name, const size_t& BufferSize, bool FreeOnClose = true, bool ReadOnly = false);
                 /// @brief Pre-made buffer constructor.
                 /// @param Buffer The premade buffer to stream from.
                 /// @param BufferSize The size of the buffer to stream to/from.
                 /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
                 /// @param ReadOnly If true, writing operations on this stream will be prohibited.
                 MemoryStream(void* Buffer, const size_t& BufferSize, bool FreeOnClose = false, bool ReadOnly = false);
-                /// @brief Named pre-made buffer constructor.
-                /// @param Name The name of the stream.
-                /// @param Buffer The premade buffer to stream from.
-                /// @param BufferSize The size of the buffer to stream to/from.
-                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
-                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
-                MemoryStream(const String& Name, void* Buffer, const size_t& BufferSize, bool FreeOnClose = false, bool ReadOnly = false);
                 /// @brief Class destructor.
                 virtual ~MemoryStream();
 

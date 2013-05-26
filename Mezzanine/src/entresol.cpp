@@ -52,6 +52,13 @@
 /// @todo Remove #include "mezzanine.h" and just include what is required. Waiting for multithreaded refactor, because we will have to do this again after that.
 #include "mezzanine.h"
 
+//Enabled implementation includes
+#ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
+    // Permit the factories to be visible so they can be auto-added.
+    #include "Audio/OALS/oalsaudiomanagerfactory.h"
+    #include "Audio/OALS/oalssoundscapemanagerfactory.h"
+#endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
+
 //#include "OgreBspSceneManagerPlugin.h"
 #include "OgreCgPlugin.h"
 //#include "OgreOctreePlugin.h"
@@ -172,6 +179,8 @@ namespace Mezzanine
         for(std::vector<ManagerBase*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
             { this->AddManager(*iter); }
 
+        //Dummy param list so we can use the auto-added manager types if needed
+        NameValuePairList Params;
         //Create and add any managers that have not been taken care of yet.
         if(this->GetActorManager()==0)
             { this->AddManager(new ActorManager()); }
@@ -179,8 +188,6 @@ namespace Mezzanine
             { this->AddManager(new ResourceManager(EngineDataPath)); }
         if(this->GetGraphicsManager()==0)
             { this->AddManager(new GraphicsManager()); }
-        if(this->GetAudioManager()==0)
-            { this->AddManager(new AudioManager()); }
         if(this->GetEventManager()==0)
             { this->AddManager(new EventManager()); }
         if(this->GetInputManager()==0)
@@ -199,8 +206,12 @@ namespace Mezzanine
             { this->AddManager(new CollisionShapeManager()); }
         if(this->GetCameraManager()==0)
             { this->AddManager(new CameraManager()); }
+        #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
+        if(this->GetAudioManager()==0)
+            { this->AddManager( this->CreateManager("OALSAudioManager",Params,false) ); }
         if(this->GetSoundScapeManager()==0)
-            { this->AddManager(new SoundScapeManager()); }
+            { this->AddManager( this->CreateManager("OALSSoundScapeManager",Params,false) ); }
+        #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -649,9 +660,6 @@ namespace Mezzanine
     void Entresol::LogString(const String& Message)
     {
         // if it is in the Audiologs then it has already happened so it needs to be logged first
-        AudioManager* AudioMan = this->GetAudioManager();
-        if(AudioMan && AudioMan->GetLogs())
-            { this->LogStream << AudioMan->GetLogs()->str(); }
         if(Message.size()>0)
             { this->LogStream << endl << Message; }
     }
@@ -851,9 +859,6 @@ namespace Mezzanine
         //DefaultActorManager
         ManIt = ManagerFactories.find("DefaultActorManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultActorManagerFactory());
-        //DefaultAudioManager
-        ManIt = ManagerFactories.find("DefaultAudioManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultAudioManagerFactory());
         //DefaultCameraManager
         ManIt = ManagerFactories.find("DefaultCameraManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultCameraManagerFactory());
@@ -893,6 +898,15 @@ namespace Mezzanine
         //DefaultUIManager
         ManIt = ManagerFactories.find("DefaultUIManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultUIManagerFactory());
+
+        #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
+        //OALSAudioManager
+        ManIt = ManagerFactories.find("OALSAudioManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Audio::OALS::OALSAudioManagerFactory());
+        //OALSSoundScapeManager
+        ManIt = ManagerFactories.find("OALSSoundScapeManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Audio::OALS::OALSSoundScapeManagerFactory());
+        #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -1072,9 +1086,9 @@ namespace Mezzanine
         return dynamic_cast<ActorManager*> (this->GetManager(ManagerBase::ActorManager, WhichOne));
     }
 
-    AudioManager* Entresol::GetAudioManager(const UInt16 WhichOne)
+    Audio::AudioManager* Entresol::GetAudioManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<AudioManager*> (this->GetManager(ManagerBase::AudioManager, WhichOne));
+        return dynamic_cast<Audio::AudioManager*> (this->GetManager(ManagerBase::AudioManager, WhichOne));
     }
 
     CameraManager* Entresol::GetCameraManager(const UInt16 WhichOne)
@@ -1122,9 +1136,9 @@ namespace Mezzanine
         return dynamic_cast<SceneManager*> (this->GetManager(ManagerBase::SceneManager, WhichOne));
     }
 
-    SoundScapeManager* Entresol::GetSoundScapeManager(const UInt16 WhichOne)
+    Audio::SoundScapeManager* Entresol::GetSoundScapeManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<SoundScapeManager*> (this->GetManager(ManagerBase::SoundScapeManager, WhichOne));
+        return dynamic_cast<Audio::SoundScapeManager*> (this->GetManager(ManagerBase::SoundScapeManager, WhichOne));
     }
 
     ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)

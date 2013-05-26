@@ -237,32 +237,23 @@ namespace Mezzanine
                     SO_End       = std::ios_base::end   ///< The end of the stream.
                 };
             protected:
-                /// @brief Name of the resource.  If this is a stream to a file, this should be the filename.
-                String ResourceName;
                 /// @brief The type of access this stream has to the resource.
-                StreamFlags Flags;
+                UInt16 SFlags;
                 /// @brief The size of the stream.
                 StreamSize Size;
             public:
                 /// @brief Class constructor.
-                /// @param Mode The flags to use when initializing the stream.
-                DataStream(const StreamFlags Mode = SF_Read);
-                /// @brief Named constructor.
-                /// @param Name The name of the stream.
-                /// @param Mode The flags to use when initializing the stream.
-                DataStream(const String& Name, const StreamFlags Mode = SF_Read);
+                /// @param Flags The flags to use when initializing the stream.
+                DataStream(const UInt16 Flags = SF_Read);
                 /// @brief Class destructor.
                 virtual ~DataStream();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @brief Gets the name of this resource.
-                /// @return Returns a const reference to a string containing the name of this resource if one was assigned.
-                ConstString& GetName() const;
                 /// @brief Gets the size of the stream.
                 /// @return Returns the size of this stream in bytes.
-                StreamSize GetSize() const;
+                virtual StreamSize GetSize() const;
                 /// @brief Gets whether this stream can be read.
                 /// @return Returns true if this stream is in reading mode, false otherwise.
                 virtual bool IsReadable() const;

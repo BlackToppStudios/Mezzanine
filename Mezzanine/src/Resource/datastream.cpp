@@ -46,7 +46,6 @@
 
 #include <cstring>
 #include <cstdio>
-#include <fstream>
 #include <algorithm>
 
 #define TEMP_STREAM_SIZE 128
@@ -82,16 +81,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // DataStream Methods
         ///////////////////////////////////////
-        DataStream::DataStream(const StreamFlags Mode)
-            : ResourceName(""),
-              Access(Mode),
-              Size(0)
-        {
-        }
-
-        DataStream::DataStream(const String& Name, const StreamFlags Mode)
-            : ResourceName(Name),
-              Access(Mode),
+        DataStream::DataStream(const UInt16 Flags)
+            : SFlags(Flags),
               Size(0)
         {
         }
@@ -103,24 +94,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        ConstString& DataStream::GetName() const
-        {
-            return ResourceName;
-        }
-
-        size_t DataStream::GetSize() const
+        StreamSize DataStream::GetSize() const
         {
             return Size;
         }
 
         bool DataStream::IsReadable() const
         {
-            return (Access & DataStream::DS_Read);
+            return (SFlags & DataStream::SF_Read);
         }
 
         bool DataStream::IsWriteable() const
         {
-            return (Access & DataStream::DS_Write);
+            return (SFlags & DataStream::SF_Write);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -134,7 +120,7 @@ namespace Mezzanine
             size_t BufferSize = (this->Size > 0 ? this->Size : 4096);
             char* Buffer = new char[BufferSize];
 
-            Seek(0);
+            this->SetStreamPosition(0);
             String Ret;
             while (!EoF())
             {
@@ -165,7 +151,7 @@ namespace Mezzanine
 
                 if(Pos < ReadCount)
                 {
-                    Skip((long)(Pos + 1 - ReadCount));
+                    this->Advance((long)(Pos + 1 - ReadCount));
                 }
 
                 if(Buffer)
@@ -202,7 +188,7 @@ namespace Mezzanine
                 char* Pos = std::strchr(Temp,'\n');
                 if(Pos != 0)
                 {
-                    Skip((long)(Pos + 1 - Temp - ReadCount));
+                    this->Advance((long)(Pos + 1 - Temp - ReadCount));
                     *Pos = '\0';
                 }
 
@@ -239,7 +225,7 @@ namespace Mezzanine
 
                 if(Position < ReadCount)
                 {
-                    Skip((long)(Position + 1 - ReadCount));
+                    this->Advance((long)(Position + 1 - ReadCount));
                     TotalBytes += Position + 1;
                     break;
                 }

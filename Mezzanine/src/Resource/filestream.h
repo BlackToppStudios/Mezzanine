@@ -75,17 +75,12 @@ namespace Mezzanine
                 /// @brief Class constructor.
                 /// @param Stream The stream to the file being streamed to/from.
                 /// @param Mode The flags to use when initializing the stream.
-                FileStream(std::fstream* Stream, const StreamFlags Flags = DataStream::SF_Read);
-                /// @brief Named constructor.
-                /// @param Name The name of the stream.
-                /// @param Stream The stream to the file being streamed to/from.
-                /// @param Mode The flags to use when initializing the stream.
-                FileStream(const String& Name, std::fstream* Stream, const StreamFlags Flags = DataStream::SF_Read);
+                FileStream(std::fstream* Stream, const UInt16 Flags = DataStream::SF_Read);
                 /// @brief Self loading constructor.
-                /// @param Name The name of the file to be loaded.  This will also become the name of the stream.
+                /// @param FileName The name of the file to be loaded.  This will also become the name of the stream.
                 /// @param Path The path to the file being loaded.
                 /// @param Mode The flags to use when initializing the stream.
-                FileStream(const String& Name, const String& Path, const StreamFlags Flags = DataStream::SF_Read);
+                FileStream(const String& FileName, const String& Path, const UInt16 Flags = DataStream::SF_Read);
                 /// @brief Class destructor.
                 virtual ~FileStream();
 
@@ -110,6 +105,7 @@ namespace Mezzanine
                 /// @copydoc DataStream::Close()
                 virtual void Close();
         };//FileStream
+#endif //USENEWDATASTREAM
     }//Resource
 }//Mezzanine
 

@@ -42,7 +42,7 @@
 
 #include "worldobject.h"
 #include "serialization.h"
-#include "audiomanager.h"
+#include "Audio/audiomanager.h"
 #include "Audio/soundset.h"
 #include "physicsmanager.h"
 #include "scenemanager.h"
@@ -223,13 +223,13 @@ namespace Mezzanine
         if ( !(WorldObjectName && WorldObjectVersion && WorldObjectIsInWorld) )
             { ThrowSerialError("create WorldObjectNode Attributes"); }
 
-        XML::Attribute WorldObjectSoundSetName = WorldObjectNode.AppendAttribute("SoundSet");
+        /*XML::Attribute WorldObjectSoundSetName = WorldObjectNode.AppendAttribute("SoundSet");
         if(this->GetSounds())
         {
             WorldObjectSoundSetName.SetValue(this->GetSounds()->GetName());
         }else{
             WorldObjectSoundSetName.SetValue("");
-        }
+        }//*/
     }
 
     void WorldObject::ProtoDeSerialize(const XML::Node& OneNode)
@@ -269,10 +269,10 @@ namespace Mezzanine
                         { this->AddToWorld(); }
                 }
 
-                if( 0!=OneNode.GetAttribute("SoundSet") && ""!=OneNode.GetAttribute("SoundSet").AsString())
-                    { this->ObjectSounds = AudioManager::GetSingletonPtr()->GetSoundSet(OneNode.GetAttribute("SoundSet").AsString()); }
+                /*if( 0!=OneNode.GetAttribute("SoundSet") && ""!=OneNode.GetAttribute("SoundSet").AsString())
+                    { this->ObjectSounds = Audio::AudioManager::GetSingletonPtr()->GetSoundSet(OneNode.GetAttribute("SoundSet").AsString()); }
                 else
-                    { this->ObjectSounds = 0; }
+                    { this->ObjectSounds = 0; }//*/
             }else{
                 DeSerializeError("find usable serialization version",SerializableName());
             }

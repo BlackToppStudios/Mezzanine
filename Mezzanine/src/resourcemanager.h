@@ -77,32 +77,40 @@ namespace Mezzanine
     class MEZZ_LIB ResourceManager : public ManagerBase, public Singleton<ResourceManager>
     {
         public:
+            /// @brief Basic container type for @ref DataStream storage by this class.
+            typedef std::vector<Resource::DataStreamPtr>       DataStreamContainer;
+            /// @brief Iterator type for @ref DataStream instances stored by this class.
+            typedef DataStreamContainer::iterator              DataStreamIterator;
+            /// @brief Const Iterator type for @ref DataStream instances stored by this class.
+            typedef DataStreamContainer::const_iterator        ConstDataStreamIterator;
+            /// @brief Basic container type for named @ref DataStream storage by this class.
+            typedef std::map<String,Resource::DataStreamPtr>   NamedDataStreamContainer;
+            /// @brief Iterator type for named @ref DataStream instances stored by this class.
+            typedef NamedDataStreamContainer::iterator         NamedDataStreamIterator;
+            /// @brief Const Iterator type for named @ref DataStream instances stored by this class.
+            typedef NamedDataStreamContainer::const_iterator   ConstNamedDataStreamIterator;
         protected:
             /// @brief Encapsulates the functionality of the ogre resource group manager.
             Ogre::ResourceGroupManager* OgreResource;
-
-            /// A list of Pointers to streams created to delete periodically.
-            std::vector<ResourceInputStream*> DeleteList;
-
-            std::vector<String> ResourceGroups;
-            void AddAssetGroupName(String Name);
-
             /// @brief The location of engine data
             String EngineDataDir;
 
+            /// @brief A list of Pointers to streams created to delete periodically.
+            std::vector<ResourceInputStream*> DeleteList;
+            std::vector<String> ResourceGroups;
+
+            void AddAssetGroupName(String Name);
         public:
             /// @brief Class constructor.
             /// @details Standard manager constructor.
             /// @param EngineDataPath The directory for engine specific data.
             /// @param ArchiveType The name of the type of archive at this path.
-            ResourceManager(const String& EngineDataPath = ".", ArchiveType ArchType = FileSystem);
-
+            ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             ResourceManager(XML::Node& XMLNode);
-
             /// @details Class Destructor.
-            ~ResourceManager();
+            virtual ~ResourceManager();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Directory Management
@@ -206,19 +214,19 @@ namespace Mezzanine
             /// @brief Gets the dot-and-extention of this platforms plugins.
             /// @return Returns the platform appropriate extention for plugin files.
             String GetPluginExtension() const;
-
             /// @brief Get a stream to read from the specified file
             /// @param FileName The name of the File you want to stream data from
             /// @return An derivative of std::istream a ResourceInputStream that will pull it's data from the desired resource
             /// @details The returned ResourceInputStream is the Caller's responsibility to deal with. If it is not deleted it is a memory leak.
             ResourceInputStream* GetResourceStream(const String& FileName);
-
-            /// @brief Get A string that describes an @ref ArchiveType
-            /// @param ArchiveType_ A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
-            /// @return A String that represents the @ref ArchiveType passed
-            static String GetStringFromArchiveType(ArchiveType ArchiveType_);
-
-            static ArchiveType GetArchiveTypeFromString(String FromString);
+            /// @brief Gets a string that describes an @ref ArchiveType.
+            /// @param ArchType A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
+            /// @return A String that represents the @ref ArchiveType passed.
+            static String GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType);
+            /// @brief Gets an @ref ArchiveType from a string.
+            /// @param FromString The string to be converted to an archive type.
+            /// @return Returns a @ref ArchiveType corresponding to the string provided, or AT_Invalid if it is invalid.
+            static ArchiveType GetArchiveTypeFromString(const String& FromString);
 
             ///////////////////////////////////////////////////////////////////////////////
             //Inherited from ManagerBase
