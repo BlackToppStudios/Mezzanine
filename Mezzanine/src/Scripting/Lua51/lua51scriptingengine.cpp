@@ -102,6 +102,11 @@ namespace Mezzanine
                 );
             }
 
+            void Lua51ScriptingEngine::Execute(Lua51Script* ScriptTorun)
+            {
+
+            }
+
             void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
             {
                 switch(LuaReturn)
@@ -133,19 +138,22 @@ namespace Mezzanine
 
             CountedPtr<iScript> Lua51ScriptingEngine::Execute(const String& ScriptSource)
             {
-                CountedPtr<iScriptCompilable> Results = Compile(ScriptSource);
+                /*CountedPtr<Lua51Script> Results = Compile(ScriptSource);
                 Execute(Results);
-                return CountedPtrCast<iScript>(Results);
+                return CountedPtrCast<iScript>(Results);*/
             }
 
             void Lua51ScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)
             {
-                //if there is a compiled script load it and call it
-                // otherwise use luaL-dostring
+                /*CountedPtr<Lua51Script> ScriptToCompile = CountedPtrCast<Lua51Script>(ScriptToRun);
+                if(!ScriptToCompile->IsCompiled())
+                    { Compile(ScriptToCompile.Get()); }
+                Execute(ScriptToCompile.Get());*/
             }
 
             void Lua51ScriptingEngine::Compile(CountedPtr<iScriptCompilable> ScriptToCompile)
             {
+                //CountedPtr<Lua51Script> ConvertedScript = CountedPtrCast<Lua51Script>(ScriptToCompile);
                 //Lua51Script* CompilationSource = something_cast<Lua51Script*>(ScriptToCompile.get());
                 /*CountedPtr<Lua51Script> CompilationSource(CountedPtrCast<Lua51Script>(ScriptToCompile));
                 if(CompilationSource)
@@ -158,7 +166,7 @@ namespace Mezzanine
 
             CountedPtr<iScriptCompilable> Lua51ScriptingEngine::Compile(const String& SourceToCompile)
             {
-                CountedPtr<iScriptCompilable> Results(
+                CountedPtr<Lua51Script> Results(
                                 new Lua51Script(SourceToCompile,this)
                             );
                 Compile(Results);
@@ -169,6 +177,12 @@ namespace Mezzanine
             {
                 return String("Lua51ScriptingEngine");
             }
+
+            void Lua51ScriptingEngine::Execute(CountedPtr<Lua51Script> ScriptToRun)
+                { Execute(ScriptToRun.Get()); }
+
+            void Lua51ScriptingEngine::Compile(CountedPtr<Lua51Script> ScriptToCompile)
+                { Compile(ScriptToCompile.Get()); }
 
             void Lua51ScriptingEngine::OpenLibraries(int LibrariesToOpen)
             {

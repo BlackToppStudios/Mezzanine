@@ -62,6 +62,7 @@ class lua51tests : public UnitTestGroup
             {
                 {
                     Scripting::Lua::Lua51ScriptingEngine LuaSafe(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);
+                    LuaSafe.Compile("Print \"Hello World!\"");
                     //Scripting::Lua::Lua51ScriptingEngine LuaEverything(Scripting::Lua::Lua51ScriptingEngine::AllLibs);
 
 

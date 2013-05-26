@@ -273,12 +273,28 @@ namespace Mezzanine
             /// @param CounterToAcquire The ReferenceCounter that this pointer will use.
             /// @warning This does not Release the previous Reference counter. This means it is possible leak memory if a ReferenceCounter is acquired that differs from the previous one without plans to manage the original.
             /// @throw Nothing This member function does not throw exceptions, unless debug logging is enabled, then it can throw any exception the logger can throw.
-            void Acquire(RefCountType* CounterToAcquire) throw()
+            template <typename AnyReferenceCountType>
+            void Acquire(AnyReferenceCountType* CounterToAcquire) throw()
             {
+                //_ReferenceCounter = CountedPtrInternalCast<RefCountType>(CounterToAcquire->GetMostDerived());
                 _ReferenceCounter = CounterToAcquire;
                 if (CounterToAcquire)
                        { CounterToAcquire->IncrementReferenceCount(); }
             }
+
+            /*template <>
+            void Acquire<ReferenceCount<typename TypePointedTo> >(TypePointedTo* CounterToAcquire) throw()
+            {
+                _ReferenceCounter = CounterToAcquire;
+                if (CounterToAcquire)
+                       { CounterToAcquire->IncrementReferenceCount(); }
+            }*/
+            /*void Acquire(RefCountType* CounterToAcquire) throw()
+            {
+                _ReferenceCounter = CounterToAcquire;
+                if (CounterToAcquire)
+                       { CounterToAcquire->IncrementReferenceCount(); }
+            }*/
 
             /// @brief This decrements the reference count and deletes the managed items if there are no remaining references.
             void Release() throw()
