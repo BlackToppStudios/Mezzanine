@@ -160,7 +160,7 @@ namespace Mezzanine
             { return this->IsTypeMuted(Audio::ST_Ambient); }
 
         void AudioManager::SetDialogVolume(const Real& Dialog)
-            { this->SetTypeVolume(Audio::ST_Dialog,Ambient); }
+            { this->SetTypeVolume(Audio::ST_Dialog,Dialog); }
         Real AudioManager::GetDialogVolume() const
             { return this->GetTypeVolume(Audio::ST_Dialog); }
         void AudioManager::MuteDialog(bool Enable)
@@ -169,7 +169,7 @@ namespace Mezzanine
             { return this->IsTypeMuted(Audio::ST_Dialog); }
 
         void AudioManager::SetEffectVolume(const Real& Effect)
-            { this->SetTypeVolume(Audio::ST_Effect,Ambient); }
+            { this->SetTypeVolume(Audio::ST_Effect,Effect); }
         Real AudioManager::GetEffectVolume() const
             { return this->GetTypeVolume(Audio::ST_Effect); }
         void AudioManager::MuteEffect(bool Enable)
@@ -178,7 +178,7 @@ namespace Mezzanine
             { return this->IsTypeMuted(Audio::ST_Effect); }
 
         void AudioManager::SetMusicVolume(const Real& Music)
-            { this->SetTypeVolume(Audio::ST_Music,Ambient); }
+            { this->SetTypeVolume(Audio::ST_Music,Music); }
         Real AudioManager::GetMusicVolume() const
             { return this->GetTypeVolume(Audio::ST_Music); }
         void AudioManager::MuteMusic(bool Enable)
@@ -197,19 +197,19 @@ namespace Mezzanine
 
         void AudioManager::AddDecoderFactory(iDecoderFactory* ToBeAdded)
         {
-            std::pair<bool,DecoderFactoryIterator> Result = this->DecoderFactories.insert(std::pair<Audio::Encoding,iDecoderFactory*>(ToBeAdded->GetSupportedEncoding(),ToBeAdded));
-            return Result.first;
+            std::pair<DecoderFactoryIterator,bool> Result = this->DecoderFactories.insert(std::pair<Audio::Encoding,iDecoderFactory*>(ToBeAdded->GetSupportedEncoding(),ToBeAdded));
+            //return Result.first;
         }
 
-        bool AudioManager::DecoderFactoryExists(const AudioFileFormat Format)
+        bool AudioManager::DecoderFactoryExists(const Audio::Encoding Encode)
         {
-            return this->DecoderFactories.count(Format);
+            return this->DecoderFactories.count(Encode);
         }
 
-        iDecoderFactory* AudioManager::GetDecoderFactory(const AudioFileFormat Format)
+        iDecoderFactory* AudioManager::GetDecoderFactory(const Audio::Encoding Encode)
         {
-            DecoderFactoryIterator FactIt = this->DecoderFactories.find(Format);
-            if( FactIt != this->DecoderFactories.end() ) return (*FactIt);
+            DecoderFactoryIterator FactIt = this->DecoderFactories.find(Encode);
+            if( FactIt != this->DecoderFactories.end() ) return (*FactIt).second;
             else return NULL;
         }
 
@@ -218,9 +218,9 @@ namespace Mezzanine
             this->RemoveDecoderFactory(ToBeRemoved->GetSupportedEncoding());
         }
 
-        void AudioManager::RemoveDecoderFactory(const AudioFileFormat Format)
+        void AudioManager::RemoveDecoderFactory(const Audio::Encoding Encode)
         {
-            this->DecoderFactories.erase(Format);
+            this->DecoderFactories.erase(Encode);
         }
 
         void AudioManager::RemoveAllDecoderFactories()
@@ -233,13 +233,13 @@ namespace Mezzanine
             this->DestroyDecoderFactory(ToBeDestroyed->GetSupportedEncoding());
         }
 
-        void AudioManager::DestroyDecoderFactory(const AudioFileFormat Format)
+        void AudioManager::DestroyDecoderFactory(const Audio::Encoding Encode)
         {
-            DecoderFactoryIterator FactIt = this->DecoderFactories.find(Format);
+            DecoderFactoryIterator FactIt = this->DecoderFactories.find(Encode);
             if( FactIt != this->DecoderFactories.end() )
             {
+                delete (*FactIt).second;
                 this->DecoderFactories.erase(FactIt);
-                delete (*FactIt);
             }
         }
 
@@ -247,7 +247,7 @@ namespace Mezzanine
         {
             for( DecoderFactoryIterator FactIt = this->DecoderFactories.begin() ; FactIt != this->DecoderFactories.end() ; ++FactIt )
             {
-                delete (*FactIt);
+                delete (*FactIt).second;
             }
             this->DecoderFactories.clear();
         }
@@ -255,7 +255,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Inherited from Managerbase
 
-        ManagerType AudioManager::GetInterfaceType() const
+        ManagerBase::ManagerType AudioManager::GetInterfaceType() const
             { return ManagerBase::AudioManager; }
 
         ///////////////////////////////////////////////////////////////////////////////

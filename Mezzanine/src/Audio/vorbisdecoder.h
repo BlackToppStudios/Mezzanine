@@ -58,7 +58,7 @@ namespace Mezzanine
         protected:
             /// @internal
             /// @brief A pointer to all the internal data needed for working with the vorbis library.
-            VorbisDecoderInteralData* VDID;
+            VorbisDecoderInternalData* VDID;
             /// @internal
             /// @brief This is a shared pointer to the stream being decoded.
             Resource::DataStreamPtr VorbisStream;

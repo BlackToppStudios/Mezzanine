@@ -127,7 +127,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Inherited from Managerbase
 
-        ManagerType SoundScapeManager::GetInterfaceType() const
+        ManagerBase::ManagerType SoundScapeManager::GetInterfaceType() const
             { return ManagerBase::SoundScapeManager; }
     }//Audio
 }//Mezzanine

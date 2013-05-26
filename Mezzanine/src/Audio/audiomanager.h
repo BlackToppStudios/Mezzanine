@@ -57,7 +57,9 @@ namespace Mezzanine
         class iRecorder;
         class iDecoder;
         class iDecoderFactory;
+        class iEffectsHandler;
         class MusicPlayer;
+        class SoundScapeManager;
 
         // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
         #ifdef SWIG
@@ -114,14 +116,14 @@ namespace Mezzanine
             /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
             /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateSound(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
+            virtual iSound* CreateSound(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
             /// @brief Creates a new @ref iSound from a custom stream that is unencoded.
             /// @param Type A UInt16 that is the ID for the type of sound the created @ref iSound is to be categorized as.
             /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateSound(const UInt16 Type, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
+            virtual iSound* CreateSound(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
             /// @brief Creates a new @ref iSound from a file.
             /// @param Type A UInt16 that is the ID for the type of sound the created @ref iSound is to be categorized as.
             /// @param FileName The name of the file to read audio data from.
@@ -490,17 +492,17 @@ namespace Mezzanine
             /// @brief Checks if a @ref iDecoderFactory is already registered with this manager.
             /// @param Format The @ref Audio::Encoding supported by the @ref iDecoderFactory to look for.
             /// @return Returns true if a @ref iDecoderFactory supporting that @ref Audio::Encoding exists, false otherwise.
-            bool DecoderFactoryExists(const Encoding Format);
+            bool DecoderFactoryExists(const Audio::Encoding Format);
             /// @brief Gets an @ref iDecoderFactory by it's supported @ref Audio::Encoding.
             /// @param Format The @ref Audio::Encoding supported by the @ref iDecoderFactory to retrieve.
             /// @return Returns a pointer to the @ref iDecoderFactory registered to the provided @ref Audio::Encoding, or NULL if none are registered.
-            iDecoderFactory* GetDecoderFactory(const Encoding Format);
+            iDecoderFactory* GetDecoderFactory(const Audio::Encoding Format);
             /// @brief Removes (but does not destroy) an @ref iDecoderFactory.
             /// @param ToBeRemoved A pointer to the @ref iDecoderFactory to be removed.
             void RemoveDecoderFactory(iDecoderFactory* ToBeRemoved);
             /// @brief Removes (but does not destroy) an @ref iDecoderFactory.
             /// @param Format The @ref Audio::Encoding supported by the @ref iDecoderFactory to remove.
-            void RemoveDecoderFactory(const Encoding Format);
+            void RemoveDecoderFactory(const Audio::Encoding Format);
             /// @brief Removes (but does not destroy) all registered @ref iDecoderFactory instances.
             void RemoveAllDecoderFactories();
             /// @brief Destroy a registered @ref iDecoderFactory.
@@ -524,11 +526,11 @@ namespace Mezzanine
             /// @internal
             /// @brief Notifies this AudioManager of the creation of a new SoundScapeManager.
             /// @param Manager A pointer to the manager being registered.
-            void _RegisterSoundScapeManager(SoundScapeManager* Manager) = 0;
+            virtual void _RegisterSoundScapeManager(Audio::SoundScapeManager* Manager) = 0;
             /// @internal
             /// @brief Notifies this AudioManager of the destruction of a SoundScapeManager.
             /// @param Manager A pointer to the manager being unregistered.
-            void _UnregisterSoundScapeManager(SoundScapeManager* Manager) = 0;
+            virtual void _UnregisterSoundScapeManager(Audio::SoundScapeManager* Manager) = 0;
         };//AudioManager
     }//Audio
 }//Mezzanine

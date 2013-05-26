@@ -53,7 +53,7 @@ namespace Mezzanine
         /// @brief This is a @ref iDecoderFactory implementation for un-encoded data.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB RawDecoderFactory
+        class MEZZ_LIB RawDecoderFactory : public iDecoderFactory
         {
         protected:
         public:

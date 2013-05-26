@@ -49,7 +49,7 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        class MEZZ_LIB WavDecoderFactory
+        class MEZZ_LIB WavDecoderFactory : public iDecoderFactory
         {
         protected:
         public:

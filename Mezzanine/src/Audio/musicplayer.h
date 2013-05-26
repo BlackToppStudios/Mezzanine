@@ -64,7 +64,7 @@ namespace Mezzanine
             bool Playing;
             bool EOPRepeat;
             bool EOPShuffle;
-            std::list<Audio::iSound*>::iterator GetIteratorToSong(Sound* Song);
+            std::list<Audio::iSound*>::iterator GetIteratorToSong(iSound* Song);
         public:
             /// @brief Class constructor.
             MusicPlayer();

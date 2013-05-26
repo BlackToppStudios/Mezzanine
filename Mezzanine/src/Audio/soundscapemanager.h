@@ -42,6 +42,7 @@
 
 #include "managerbase.h"
 #include "managerfactory.h"
+#include "Audio/audioenumerations.h"
 
 namespace Mezzanine
 {
@@ -68,7 +69,7 @@ namespace Mezzanine
             SoundScapeManager();
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            SoundScapeManager(XML::Node& XMLNode)
+            SoundScapeManager(XML::Node& XMLNode);
             /// @brief Class destructor.
             virtual ~SoundScapeManager();
 
@@ -106,14 +107,14 @@ namespace Mezzanine
             /// @param Stream A Datastream containing the data to be streamed for this @ref SoundProxy.
             /// @param Encode The encoding to be expected when decoding audio for this @ref SoundProxy.
             /// @return Returns a pointer to the @ref SoundProxy instance that was created.
-            virtual SoundProxy* CreateSoundProxy(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
+            virtual SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
             /// @brief Creates a new @ref SoundProxy from a custom stream that is unencoded.
             /// @param Type A UInt16 that is the ID for the type of sound the created @ref SoundProxy is to be categorized as.
             /// @param Stream A Datastream containing the data to be streamed for this @ref SoundProxy.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the @ref SoundProxy instance that was created.
-            virtual SoundProxy* CreateSoundProxy(const UInt16 Type, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
+            virtual SoundProxy* CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
             /// @brief Creates a new @ref SoundProxy from a file.
             /// @param Type A UInt16 that is the ID for the type of sound the created @ref SoundProxy is to be categorized as.
             /// @param FileName The name of the file to read audio data from.

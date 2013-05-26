@@ -87,54 +87,55 @@ namespace
 	{
 		return 0;
 	}
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @internal
-    /// @brief Internal convenience class for the storage of Vorbis structs needed for Vorbis operations.
-    /// @details
-    ///////////////////////////////////////
-	class MEZZ_LIB VorbisDecoderInternalData
-	{
-    protected:
-    public:
-        ///////////////////////////////////////////////////////////////////////////////
-        // Publid Data Members
-
-        /// @brief Mandatory callbacks for working with our streams.
-        ov_callbacks VorbisCallbacks;
-        /// @brief Format Information from the file.
-        vorbis_info VorbisInfo;
-        /// @brief User comments embedded in the file.
-        vorbis_comment VorbisComments;
-        /// @brief The main audio encoding.
-        OggVorbis_File VorbisFile;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Construction and destruction
-
-        /// @brief Class constructor.
-        VorbisDecoderInternalData()
-        {
-            VorbisCallbacks.read_func = VorbisRead;
-            VorbisCallbacks.seek_func = VorbisSeek;
-            VorbisCallbacks.tell_func = VorbisTell;
-            VorbisCallbacks.close_func = VorbisClose;
-        }
-        /// @brief Class destructor.
-        ~VorbisDecoderInternalData() {  }
-	};//VorbisDecoderInternalData
 }
 
 namespace Mezzanine
 {
     namespace Audio
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @internal
+        /// @brief Internal convenience class for the storage of Vorbis structs needed for Vorbis operations.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB VorbisDecoderInternalData
+        {
+        protected:
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Publid Data Members
+
+            /// @brief Format Information from the file.
+            vorbis_info* VorbisInfo;
+            /// @brief User comments embedded in the file.
+            vorbis_comment* VorbisComments;
+            /// @brief Mandatory callbacks for working with our streams.
+            ov_callbacks VorbisCallbacks;
+            /// @brief The main audio encoding.
+            OggVorbis_File VorbisFile;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and destruction
+
+            /// @brief Class constructor.
+            VorbisDecoderInternalData()
+            {
+                VorbisCallbacks.read_func = VorbisRead;
+                VorbisCallbacks.seek_func = VorbisSeek;
+                VorbisCallbacks.tell_func = VorbisTell;
+                VorbisCallbacks.close_func = VorbisClose;
+            }
+            /// @brief Class destructor.
+            ~VorbisDecoderInternalData() {  }
+        };//VorbisDecoderInternalData
+
+
         VorbisDecoder::VorbisDecoder(Resource::DataStreamPtr Stream)
             : VorbisStream(Stream),
               Valid(false)
         {
             this->VDID = new VorbisDecoderInternalData();
-            this->Valid = ( ov_open_callbacks(VorbisStream.get(),&(this->VDID->VorbisFile),NULL,0,&(this->VDID->VorbisCallbacks)) == 0 );
+            this->Valid = ( ov_open_callbacks(VorbisStream.get(),&(this->VDID->VorbisFile),NULL,0,this->VDID->VorbisCallbacks) == 0 );
 
             if( this->Valid )
             {
@@ -217,9 +218,6 @@ namespace Mezzanine
                 }else{
                     return ( ov_raw_seek( &(this->VDID->VorbisFile), Position ) == 0 );
                 }
-
-
-                return ( ov_raw_seek(  ) )
             }
         }
 

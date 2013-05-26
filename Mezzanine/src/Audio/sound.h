@@ -48,6 +48,8 @@ namespace Mezzanine
 {
     namespace Audio
     {
+        class iFilter;
+        class iEffect;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is an interface class for a non-spacialized sound.
         /// @details The iSound class is intended for non-3D purposes only.
@@ -93,12 +95,12 @@ namespace Mezzanine
             /// @brief Sets a new stream for playback by this @ref iSound.
             /// @param Stream The stream to be decoded and played by this sound.
             /// @param Encode The encoding to expect when decoding the stream provided.
-            virtual void SetStream(Resource::DataStream Stream, const Audio::Encoding Encode) = 0;
+            virtual void SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
             /// @brief Sets a new stream for playback by this @ref iSound.
             /// @param Type The new type to set this @ref iSound instance as.
             /// @param Stream The stream to be decoded and played by this sound.
             /// @param Encode The encoding to expect when decoding the stream provided.
-            virtual void SetStream(const UInt16 Type, Resource::DataStream Stream, const Audio::Encoding Encode) = 0;
+            virtual void SetStream(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
             /// @brief Sets a new stream for playback by this @ref iSound via a new decoder.
             /// @warning @ref iSound instances take ownership of decoders.  Decoders should not be shared between @ref iSound instances.
             /// @param Decode A pointer to the decoder containing the stream that will be used by this @ref iSound.
@@ -113,6 +115,7 @@ namespace Mezzanine
             // Playback
 
             /// @brief Plays the sound with it's current configuration.
+            /// @note This will restart playback in the event it is already playing.
             /// @return Returns true if the sound succussfully started playing, false if there was an error.
             virtual bool Play() = 0;
             /// @brief Gets whether or not the sound is currently playing.

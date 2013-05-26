@@ -49,7 +49,7 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        class MEZZ_LIB VorbisDecoderFactory
+        class MEZZ_LIB VorbisDecoderFactory : public iDecoderFactory
         {
         protected:
         public:

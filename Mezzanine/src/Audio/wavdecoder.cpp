@@ -91,7 +91,7 @@ namespace Mezzanine
                         //Scan for the first fmt chuck (not necessarily right after)
                         do{
                             this->WavStream->Read(Ident,4);
-                        } while( ( strncmp(Ident,FORMATTAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) )
+                        } while( ( strncmp(Ident,FORMATTAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) );
                         //Did we find it?
                         if( this->WavStream->GetStreamPosition() < ( this->WavStream->GetSize() - 16 ) )
                         {
@@ -112,7 +112,7 @@ namespace Mezzanine
                                     this->WavStream->Read(&Temp16,2);
                                     this->BlockAlign = Temp16;
                                     this->WavStream->Read(&Temp16,2);
-                                    this->BitsPerSameple = Temp16;
+                                    this->BitsPerSample = Temp16;
 
                                     //We only support 8 bit or 16 bit wavs
                                     if( this->BitsPerSample == 8 || this->BitsPerSample == 16 )
@@ -122,7 +122,7 @@ namespace Mezzanine
 										//Scan for the first data chuck (not necessarily right after)
                                         do{
                                             this->WavStream->Read(Ident,4);
-                                        } while( ( strncmp(Ident,DATATAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) )
+                                        } while( ( strncmp(Ident,DATATAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) );
 
                                         //Did we find it?
                                         if( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() )
@@ -242,13 +242,13 @@ namespace Mezzanine
 
         Real WavDecoder::GetTotalTime() const
         {
-            Real Second = ( static_cast<Real>(this->SampleRate) * static_cast<Real>(this->Channels) * (static_cast<Real>(this->BitsPerSample) / 8.0) )
+            Real Second = ( static_cast<Real>(this->SampleRate) * static_cast<Real>(this->Channels) * (static_cast<Real>(this->BitsPerSample) / 8.0) );
             return static_cast<Real>(this->WavStream->GetSize()) / Second;
         }
 
         Real WavDecoder::GetCurrentTime() const
         {
-            Real Second = ( static_cast<Real>(this->SampleRate) * static_cast<Real>(this->Channels) * (static_cast<Real>(this->BitsPerSample) / 8.0) )
+            Real Second = ( static_cast<Real>(this->SampleRate) * static_cast<Real>(this->Channels) * (static_cast<Real>(this->BitsPerSample) / 8.0) );
             return static_cast<Real>(this->WavStream->GetStreamPosition()) / Second;
         }
 

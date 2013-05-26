@@ -50,7 +50,7 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        class Sound;
+        class iSound;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class is a list of sounds with common playlist features.
         /// @details

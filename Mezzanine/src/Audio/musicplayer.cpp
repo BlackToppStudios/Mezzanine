@@ -66,7 +66,7 @@ namespace Mezzanine
             delete MusicPlaylist;
         }
 
-        std::list<Audio::iSound*>::iterator MusicPlayer::GetIteratorToSong(Sound* Song)
+        std::list<Audio::iSound*>::iterator MusicPlayer::GetIteratorToSong(iSound* Song)
         {
             for( std::list< Audio::iSound* >::iterator it = MusicPlaylist->begin() ; it != MusicPlaylist->end() ; ++it )
             {
@@ -88,7 +88,7 @@ namespace Mezzanine
                 if(MusicPlaylist->empty()) { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to play a song in MusicPlayer with an empty playlist"); }
                 else CurrSong = *(MusicPlaylist->begin());
             }
-            CurrSong->Play2d();
+            CurrSong->Play();
         }
 
         void MusicPlayer::Stop()
@@ -105,7 +105,7 @@ namespace Mezzanine
 
         void MusicPlayer::Next()
         {
-            std::list<iSound*>::iterator SongIt = GetIteratorToSong(CurrSong);
+            std::list<iSound*>::iterator SongIt = this->GetIteratorToSong(CurrSong);
             SongIt++;
             CurrSong = (*SongIt);
             if(Playing && !ManualStop)
@@ -185,7 +185,7 @@ namespace Mezzanine
         {
             if(0!=CurrSong)
             {
-                std::list<Audio::iSound*>::iterator SongIt = GetIteratorToSong(CurrSong);
+                std::list<Audio::iSound*>::iterator SongIt = this->GetIteratorToSong(CurrSong);
                 std::list<Audio::iSound*>::iterator NextSong = SongIt;
                 NextSong++;
                 if(CurrSong->IsStopped() && Playing)
@@ -194,7 +194,7 @@ namespace Mezzanine
                     {
                         if(EOPRepeat)
                         {
-                            if(EOPShuffle) MusicPlaylist->ShuffleList();
+                            if(EOPShuffle) MusicPlaylist->Shuffle();
                             CurrSong = *(MusicPlaylist->begin());
                             Play();
                         }else{

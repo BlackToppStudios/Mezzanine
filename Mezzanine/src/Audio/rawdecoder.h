@@ -87,7 +87,7 @@ namespace Mezzanine
             /// @copydoc iDecoder::GetFrequency() const
             virtual UInt32 GetFrequency() const;
             /// @copydoc iDecoder::GetStream() const
-            virtual DataStreamPtr GetStream() const;
+            virtual Resource::DataStreamPtr GetStream() const;
 
             /// @copydoc iDecoder::SetPosition(Int32 Position, bool Relative)
             virtual bool SetPosition(Int32 Position, bool Relative);

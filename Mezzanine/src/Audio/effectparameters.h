@@ -218,10 +218,10 @@ namespace Mezzanine
                 Real decayLFRatio = 1.0f,
                 Real reflectionsGain = 0.05f,
                 Real reflectionsDelay = 0.007f,
-                Vector3 reflectionsPan = cVector3(0.0f, 0.0f, 0.0f),
+                Vector3 reflectionsPan = Vector3(0.0f, 0.0f, 0.0f),
                 Real lateReverbGain = 1.26f,
                 Real lateReverbDelay = 0.011f,
-                Vector3 lateReverbPan = cVector3(0.0f, 0.0f, 0.0f),
+                Vector3 lateReverbPan = Vector3(0.0f, 0.0f, 0.0f),
                 Real echoTime = 0.25f,
                 Real echoDepth = 0.0f,
                 Real modulationTime = 0.25f,
@@ -719,7 +719,7 @@ namespace Mezzanine
             RingModulatorParameters(
                 Real frequency = 440.0f,
                 Real highPassCutoff = 800.0f,
-                ModulatorWaveform waveform = EMW_SINUSOID) :
+                ModulatorWaveform waveform = EMW_Sinusoid) :
                 Frequency(frequency), HighPassCutoff(highPassCutoff), Waveform(waveform) { }
         };//RingModulatorParameters
 
