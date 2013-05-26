@@ -532,6 +532,7 @@ if(Mezz_Audio_UseOALS)
 
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oals.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsaudiomanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsaudiomanagerfactory.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsdefines.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffect.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffectshandler.h"
@@ -542,11 +543,13 @@ if(Mezz_Audio_UseOALS)
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssound.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanagerfactory.h"
 		
         #######################################
         # Source files
 		
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsaudiomanager.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsaudiomanagerfactory.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffect.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffectshandler.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsfilter.cpp"
@@ -555,6 +558,7 @@ if(Mezz_Audio_UseOALS)
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssound.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanager.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanagerfactory.cpp"
     )
 	
 	include_directories(
@@ -565,6 +569,8 @@ if(Mezz_Audio_UseOALS)
 	set(SoundLibraryNames ${SoundLibraryNames}
         "openal"
 	)
+    
+    add_definitions( "${D}ENABLE_OALS_AUDIO_IMPLEMENTATION" )
 endif(Mezz_Audio_UseOALS)
 
 if(NOT AudioProviderSet)
@@ -694,6 +700,8 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
 
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libvorbis-1.3.3/include/"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libogg-1.3.0/include/"
         #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
 
         ${OgreConfigHeaderIncludeDir}
