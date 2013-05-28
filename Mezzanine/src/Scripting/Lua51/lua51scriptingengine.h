@@ -131,10 +131,11 @@ namespace Mezzanine
                     /// @details This will create a CountPtr to a Lua51Script and assign both its Source and Byte code
                     virtual CountedPtr<iScript> Execute(const String& ScriptSource);
 
-                    /// @brief This will execute the passed script, compiling it if not present
-                    /// @param ScriptToRun The script to execute.
-                    /// @details If a bytecode is present on ScriptToRun then it is executed. Otherwise the Source is
-                    /// compiled and the result is set as the bytecode and it is executed.
+
+                    /// @brief Implements a required for iScriptManager, Calls Execute(CountedPtr<Lua51Script>)
+                    /// @param ScriptToRun A CountedPtr<iScript> to be run. This is cast to an CountedPtr<Lua51Script> and called if possible.
+                    /// @throw If this cannot be cast this throws a .
+                    /// @todo fill in the kind of exception thrown.
                     virtual void Execute(CountedPtr<iScript> ScriptToRun);
 
                     /// @brief Accepts an Counted ptr to a script and compiles it.
@@ -152,7 +153,10 @@ namespace Mezzanine
                     /// @return A String containing "Lua51ScriptingEngine"
                     virtual String GetImplementationTypeName() const;
 
-
+                    /// @brief This will execute the passed script, compiling it if not present
+                    /// @param ScriptToRun The script to execute.
+                    /// @details If a bytecode is present on ScriptToRun then it is executed. Otherwise the Source is
+                    /// compiled and the result is set as the bytecode and it is executed.
                     virtual void Execute(CountedPtr<Lua51Script> ScriptToRun);
 
                     virtual void Compile(CountedPtr<Lua51Script> ScriptToCompile);

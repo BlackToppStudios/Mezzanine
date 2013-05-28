@@ -335,13 +335,12 @@ class countedptrtests : public UnitTestGroup
 
                 {
                     CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
-                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultM, 3) );
-
                     CountedPtr<FooExternal>   PtrE2( PtrE );
-                    CountedPtr<FooInternal>   PtrI2( PtrI );
-
                     if( 2!=PtrE.use_count() )
                         { ResultE = Failed; }
+
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultM, 3) );
+                    CountedPtr<FooInternal>   PtrI2( PtrI );
                     if( 2!=PtrI.use_count() )
                         { ResultM = Failed; }
                 } // When pointers fall out of scope
@@ -359,19 +358,17 @@ class countedptrtests : public UnitTestGroup
 
             if (RunAutomaticTests)
             {
-                TestResult ResultE = NotApplicable;
-                TestResult ResultI = NotApplicable;
+                TestResult ResultE = Failed;
+                TestResult ResultI = Failed;
 
                 {
                     CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
-                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
-
-                    CountedPtr<FooExternal>   PtrE2( PtrE );
-                    CountedPtr<FooInternal>   PtrI2( PtrI );
-
+                    CountedPtr<FooExternal>   PtrE2( PtrE ); // why is this incrementing as though it were internal
                     if( 1!=(*PtrE2).Value )
                         { ResultE = Failed; }
 
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 1) );
+                    CountedPtr<FooInternal>   PtrI2( PtrI );
                     if( 3!=(*PtrI2).Value )
                         { ResultI = Failed; }
                 } // When pointers fall out of scope

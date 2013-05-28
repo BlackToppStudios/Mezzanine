@@ -248,11 +248,9 @@ namespace Mezzanine
         class ReferenceCountAdjuster
         {
             public:
-                static void Acquire(CurrentReferenceCountType* UpdateCounter, OtherReferenceCountType* OtherCounter)
+                static void Acquire(CurrentReferenceCountType* & UpdateCounter, OtherReferenceCountType* & OtherCounter)
                 {
                     UpdateCounter = CountedPtrInternalCast<CurrentReferenceCountType>(OtherCounter->GetMostDerived());
-                    if (UpdateCounter)
-                           { UpdateCounter->IncrementReferenceCount(); }
                 }
         };
 
@@ -260,11 +258,9 @@ namespace Mezzanine
         class ReferenceCountAdjuster<InternalReferenceCount,InternalReferenceCount>
         {
             public:
-                static void Acquire(InternalReferenceCount* UpdateCounter, InternalReferenceCount* OtherCounter)
+                static void Acquire(InternalReferenceCount* & UpdateCounter, InternalReferenceCount* & OtherCounter)
                 {
                     UpdateCounter = OtherCounter;
-                    if (UpdateCounter)
-                           { UpdateCounter->IncrementReferenceCount(); }
                 }
         };
     }
@@ -305,11 +301,9 @@ namespace Mezzanine
             template <typename AnyReferenceCountType>
             void Acquire(AnyReferenceCountType* CounterToAcquire) throw()
             {
-                ReferenceCountAdjuster<AnyReferenceCountType, RefCountType>::Acquire(CounterToAcquire, _ReferenceCounter);
-                //_ReferenceCounter = CountedPtrInternalCast<RefCountType>(CounterToAcquire->GetMostDerived());
-                //_ReferenceCounter = CounterToAcquire;
-                if (CounterToAcquire)
-                       { CounterToAcquire->IncrementReferenceCount(); }
+                ReferenceCountAdjuster<RefCountType, AnyReferenceCountType>::Acquire(_ReferenceCounter, CounterToAcquire);
+                if (_ReferenceCounter)
+                       { _ReferenceCounter->IncrementReferenceCount(); }
             }
 
             /*template <>
