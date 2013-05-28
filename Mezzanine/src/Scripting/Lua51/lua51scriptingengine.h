@@ -137,12 +137,21 @@ namespace Mezzanine
                     /// compiled and the result is set as the bytecode and it is executed.
                     virtual void Execute(CountedPtr<iScript> ScriptToRun);
 
+                    /// @brief Accepts an Counted ptr to a script and compiles it.
+                    /// @param ScriptToCompile The CountedPtr to compile
+                    /// @details The ByteCode member on the passed script is erased, if present,
+                    /// and sets it to corresponding lua binary.
                     virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile);
 
+                    /// @brief Calls Compile(CountedPtr<iScriptCompilable>) and returns a CountedPtr to the script created.
+                    /// @param SourceToCompile A string Containing valid lua source code.
+                    /// @return A CountedPtr<iScriptCompilable> pointing to a created Script object that contains the source and compile binary.
                     virtual CountedPtr<iScriptCompilable> Compile(const String& SourceToCompile);
 
                     /// @copydoc ManagerBase::GetImplementationTypeName()
+                    /// @return A String containing "Lua51ScriptingEngine"
                     virtual String GetImplementationTypeName() const;
+
 
                     virtual void Execute(CountedPtr<Lua51Script> ScriptToRun);
 
