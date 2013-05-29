@@ -109,7 +109,7 @@ if(APPLE OR ARCH_64)
   set(OPT_DEF_SSEMATH ON)
 endif()
 if(UNIX OR MINGW OR MSYS)
-  set(OPT_DEF_SDL_LIBC ON)
+  set(OPT_DEF_LIBC ON)
 endif(UNIX OR MINGW OR MSYS)
 
 # Compiler info

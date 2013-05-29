@@ -1,5 +1,5 @@
---- sdlchecks.cmake	2013-05-20 20:12:27.486816035 -0500
-+++ sdlchecks.cmake.Updated	2013-05-20 20:38:07.426816055 -0500
+--- /home/sqeaky/Code/Mezzanine/Mezzanine/libincludes/common/sdlsrc/Pending Patches/SDL/cmake/sdlchecks.cmake
++++ /home/sqeaky/Code/Mezzanine/Mezzanine/libincludes/common/sdlsrc/SDL/cmake/sdlchecks.cmake
 @@ -37,7 +37,7 @@
  # Requires:
  # - n/a
@@ -9,7 +9,7 @@
      set(OSS_HEADER_FILE "sys/soundcard.h")
      check_c_source_compiles("
          #include <sys/soundcard.h>
-@@ -62,16 +62,16 @@
+@@ -62,7 +62,7 @@
        endif(NETBSD OR OPENBSD)
        set(HAVE_SDL_AUDIO TRUE)
      endif(OSS_FOUND)
@@ -18,10 +18,8 @@
  endmacro(CheckOSS)
  
  # Requires:
- # - n/a
- # Optional:
--# - ALSA_SHARED opt
-+# - SDL_ALSA_SHARED opt
+@@ -71,7 +71,7 @@
+ # - ALSA_SHARED opt
  # - HAVE_DLOPEN opt
  macro(CheckALSA)
 -  if(ALSA)
@@ -29,24 +27,8 @@
      CHECK_INCLUDE_FILE(alsa/asoundlib.h HAVE_ASOUNDLIB_H)
      if(HAVE_ASOUNDLIB_H)
        CHECK_LIBRARY_EXISTS(asound snd_pcm_open "" HAVE_LIBASOUND)
-@@ -79,7 +79,7 @@
-       file(GLOB ALSA_SOURCES ${SDL2_SOURCE_DIR}/src/audio/alsa/*.c)
-       set(SOURCE_FILES ${SOURCE_FILES} ${ALSA_SOURCES})
-       set(SDL_AUDIO_DRIVER_ALSA 1)
--      if(ALSA_SHARED)
-+      if(SDL_ALSA_SHARED)
-         if(NOT HAVE_DLOPEN)
-           message_warn("You must have SDL_LoadObject() support for dynamic ALSA loading")
-         else()
-@@ -88,21 +88,21 @@
-           set(SDL_AUDIO_DRIVER_ALSA_DYNAMIC "\"${F_ALSA_LIB}\"")
-           set(HAVE_ALSA_SHARED TRUE)
-         endif(NOT HAVE_DLOPEN)
--      else(ALSA_SHARED)
-+      else(SDL_ALSA_SHARED)
-         list(APPEND EXTRA_LIBS asound)
--      endif(ALSA_SHARED)
-+      endif(SDL_ALSA_SHARED)
+@@ -93,16 +93,16 @@
+       endif(ALSA_SHARED)
        set(HAVE_SDL_AUDIO TRUE)
      endif(HAVE_ASOUNDLIB_H)
 -  endif(ALSA)
@@ -74,7 +56,7 @@
          if(NOT HAVE_DLOPEN)
            message_warn("You must have SDL_LoadObject() support for dynamic PulseAudio loading")
          else()
-@@ -119,21 +119,21 @@
+@@ -119,29 +119,29 @@
            set(SDL_AUDIO_DRIVER_PULSEAUDIO_DYNAMIC "\"${F_PULSE_LIB}\"")
            set(HAVE_PULSEAUDIO_SHARED TRUE)
          endif(NOT HAVE_DLOPEN)
@@ -101,8 +83,9 @@
      pkg_check_modules(PKG_ESD esound)
      if(PKG_ESD_FOUND)
        set(HAVE_ESD TRUE)
-@@ -141,7 +141,7 @@
-       set(SOURCE_FILES ${SOURCE_FILES} ${ESD_SOURCES})
+       file(GLOB ESD_SOURCES ${SDL2_SOURCE_DIR}/src/audio/esd/*.c)
+-      set(SOURCE_FILES ${SOURCE_FILES} ${ESD_SOURCES})
++      set(SOURCE_FILES ${SOURCE_FILES} ${SDL_ESD_SOURCES})
        set(SDL_AUDIO_DRIVER_ESD 1)
        list(APPEND EXTRA_CFLAGS ${PKG_ESD_CFLAGS})
 -      if(ESD_SHARED)
@@ -286,9 +269,10 @@
          endif(HAVE_X11_SHARED AND XCURSOR_LIB)
          set(SDL_VIDEO_DRIVER_X11_XCURSOR 1)
 -      endif(VIDEO_X11_XCURSOR AND HAVE_XCURSOR_H)
-+      endif(SDL_VIDEO_X11_XCURSOR AND HAVE_XCURSOR_H)
- 
+-
 -      if(VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
++      endif(SDL_VIDEO_X11_XCURSOR AND HAVE_XCURSOR_H)
++
 +      if(SDL_VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
          set(HAVE_VIDEO_X11_XINERAMA TRUE)
          if(HAVE_X11_SHARED AND XINERAMA_LIB)
@@ -298,9 +282,10 @@
          endif(HAVE_X11_SHARED AND XINERAMA_LIB)
          set(SDL_VIDEO_DRIVER_X11_XINERAMA 1)
 -      endif(VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
-+      endif(SDL_VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
- 
+-
 -      if(VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
++      endif(SDL_VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
++
 +      if(SDL_VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
          set(HAVE_VIDEO_X11_XINPUT TRUE)
          if(HAVE_X11_SHARED AND XI_LIB)
@@ -310,9 +295,10 @@
            set(SDL_VIDEO_DRIVER_X11_XINPUT2_SUPPORTS_MULTITOUCH 1)
          endif(HAVE_XINPUT2_MULTITOUCH)
 -      endif(VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
-+      endif(SDL_VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
- 
+-
 -      if(VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
++      endif(SDL_VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
++
 +      if(SDL_VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
          if(HAVE_X11_SHARED AND XRANDR_LIB)
            set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XRANDR "\"${XRANDR_LIB}\"")
@@ -322,9 +308,10 @@
          set(SDL_VIDEO_DRIVER_X11_XRANDR 1)
          set(HAVE_VIDEO_X11_XRANDR TRUE)
 -      endif(VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
-+      endif(SDL_VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
- 
+-
 -      if(VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
++      endif(SDL_VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
++
 +      if(SDL_VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
          if(HAVE_X11_SHARED AND XSS_LIB)
            set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XSS "\"${XSS_LIB}\"")
@@ -334,16 +321,18 @@
          set(SDL_VIDEO_DRIVER_X11_XSCRNSAVER 1)
          set(HAVE_VIDEO_X11_XSCRNSAVER TRUE)
 -      endif(VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
-+      endif(SDL_VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
- 
+-
 -      if(VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
++      endif(SDL_VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
++
 +      if(SDL_VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
          set(SDL_VIDEO_DRIVER_X11_XSHAPE 1)
          set(HAVE_VIDEO_X11_XSHAPE TRUE)
 -      endif(VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
-+      endif(SDL_VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
- 
+-
 -      if(VIDEO_X11_XVM AND HAVE_XF86VM_H)
++      endif(SDL_VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
++
 +      if(SDL_VIDEO_X11_XVM AND HAVE_XF86VM_H)
          if(HAVE_X11_SHARED AND XF86VMODE_LIB)
            set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XVIDMODE "\"${XF86VMODE_LIB}\"")
@@ -438,7 +427,7 @@
      check_c_source_compiles("
          #include <EGL/egl.h>
          int main (int argc, char** argv) {}" HAVE_VIDEO_OPENGLES)
-@@ -538,18 +538,18 @@
+@@ -538,7 +538,7 @@
          set(SDL_VIDEO_RENDER_OGL_ES2 1)
        endif(HAVE_VIDEO_OPENGLES_V2)
      endif(HAVE_VIDEO_OPENGLES)
@@ -447,11 +436,7 @@
  endmacro(CheckOpenGLESX11)
  
  # Rquires:
- # - nada
- # Optional:
--# - THREADS opt
-+# - SDL_PTHREADS opt
- # Sets:
+@@ -549,7 +549,7 @@
  # PTHREAD_CFLAGS
  # PTHREAD_LIBS
  macro(CheckPTHREAD)
