@@ -345,12 +345,12 @@ class countedptrtests : public UnitTestGroup
                         { ResultM = Failed; }
                 } // When pointers fall out of scope
 
-                AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
-                AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultM);
+                AddTestResult("CountedPtr::External::use_count", ResultE);
+                AddTestResult("CountedPtr::Internal::use_count", ResultM);
 
             }else{
-                AddTestResult("CountedPtr::External::NonDestructionRelease", Skipped);
-                AddTestResult("CountedPtr::Internal::NonDestructionRelease", Skipped);
+                AddTestResult("CountedPtr::External::use_count", Skipped);
+                AddTestResult("CountedPtr::Internal::use_count", Skipped);
             }
 
 
@@ -358,8 +358,8 @@ class countedptrtests : public UnitTestGroup
 
             if (RunAutomaticTests)
             {
-                TestResult ResultE = Failed;
-                TestResult ResultI = Failed;
+                TestResult ResultE = NotApplicable;
+                TestResult ResultI = NotApplicable;
 
                 {
                     CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
