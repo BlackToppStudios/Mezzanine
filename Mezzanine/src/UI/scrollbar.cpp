@@ -88,7 +88,7 @@ namespace Mezzanine
                 }
                 else
                 {
-                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Scrollbar dimensions incompatible with this widget.");
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Scrollbar dimensions incompatible with this widget.");
                 }
             }else{
                 RelPosition = Rect.Position / ParentScreen->GetViewportDimensions();
@@ -106,7 +106,7 @@ namespace Mezzanine
                 }
                 else
                 {
-                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Scrollbar dimensions incompatible with this widget.");
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Scrollbar dimensions incompatible with this widget.");
                 }
             }
         }

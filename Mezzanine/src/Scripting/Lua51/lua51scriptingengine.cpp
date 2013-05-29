@@ -153,14 +153,21 @@ namespace Mezzanine
 
             void Lua51ScriptingEngine::Compile(CountedPtr<iScriptCompilable> ScriptToCompile)
             {
-                //CountedPtr<Lua51Script> ConvertedScript = CountedPtrCast<Lua51Script>(ScriptToCompile);
+                CountedPtr<Lua51Script> ConvertedScript = CountedPtrCast<Lua51Script>(ScriptToCompile);
+                if(ConvertedScript)
+                {
+                    Compile(ConvertedScript);
+                }else{
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51 Engine attempted to compile a script, but it did not appear to bea Lua51 script.")
+                }
+
                 //Lua51Script* CompilationSource = something_cast<Lua51Script*>(ScriptToCompile.get());
                 /*CountedPtr<Lua51Script> CompilationSource(CountedPtrCast<Lua51Script>(ScriptToCompile));
                 if(CompilationSource)
                 {
                     Compile(CompilationSource.get());
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Something other than a Lua51 script was passed to the Lua51 scripting engine and could not be compiled.")
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Something other than a Lua51 script was passed to the Lua51 scripting engine and could not be compiled.")
                 }*/
             }
 

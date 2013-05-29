@@ -76,7 +76,7 @@ namespace Mezzanine
             case 0: return this->X;
             case 1: return this->Y;
             case 2: return this->Z;
-            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
         }
     }
 
@@ -90,7 +90,7 @@ namespace Mezzanine
             case 0: return this->X;
             case 1: return this->Y;
             case 2: return this->Z;
-            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
         }
     }
 
@@ -163,7 +163,7 @@ namespace Mezzanine
             case 0: return Vector3::Unit_X();
             case 1: return Vector3::Unit_Y();
             case 2: return Vector3::Unit_Z();
-            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot convert invalid StandardAxis."); }
         }
     }
 

@@ -417,7 +417,7 @@ namespace Mezzanine
         if(It != Atlases.end()) TheAtlas = (*It).second;
         else
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to access TextureAtlas \"" + Atlas + "\", which does not exist or is not loaded.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to access TextureAtlas \"" + Atlas + "\", which does not exist or is not loaded.");
         }
         std::map<UInt32,UI::GlyphData*>& Glyphs = TheAtlas->GetGlyphs();
         Whole LargerMatch = 0;

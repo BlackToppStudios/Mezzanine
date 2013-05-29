@@ -123,12 +123,12 @@ namespace Mezzanine
             TextSettingsFile::SectionIterator SecIt = Sections.find(Section);
             if(SecIt == Sections.end())
             {
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to access section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to access section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
             }else{
                 TextSettingsFile::SettingsIterator SetIt = (*SecIt).second->find(Key);
                 if(SetIt == (*SecIt).second->end())
                 {
-                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to access setting \"" + Key + " in section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to access setting \"" + Key + " in section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
                 }else{
                     return (*SetIt).second;
                 }
@@ -167,7 +167,7 @@ namespace Mezzanine
             TextSettingsFile::SectionIterator SecIt = Sections.find(Section);
             if(SecIt == Sections.end())
             {
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to access section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to access section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
             }else{
                 return (*SecIt).second->begin();
             }
@@ -178,7 +178,7 @@ namespace Mezzanine
             TextSettingsFile::SectionIterator SecIt = Sections.find(Section);
             if(SecIt == Sections.end())
             {
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to access section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to access section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
             }else{
                 return (*SecIt).second->end();
             }

@@ -97,7 +97,7 @@ namespace Mezzanine
                 return NULL;
             }
         }else{                          //Whoopsie something Failed
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
         }
 
         // at this point we have raycast to a series of different objects bounding boxes.
@@ -195,7 +195,7 @@ namespace Mezzanine
                 return NULL;
             }
         }else{                          //Whoopsie something Failed
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery.");
         }
 
         Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();

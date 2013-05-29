@@ -72,14 +72,14 @@ namespace Mezzanine
                 case NotApplicable:
                     return NotApplicableString;
                 default:
-                    { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to String from TestResult " + Mezzanine::ToString(Convertable)); }
+                    { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to String from TestResult " + Mezzanine::ToString(Convertable)); }
             }
         }
 
         TestResult StringToTestResult(Mezzanine::String Text)
         {
             if(Text.size()==0)
-                { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from empty String"); }
+                { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from empty String"); }
 
             switch(Text.at(0))
             {
@@ -89,40 +89,40 @@ namespace Mezzanine
                     else if ( SkippedString == Text )
                         { return Skipped; }
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(S) " + Text); }
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(S) " + Text); }
                 case 'W':
                     if ( WarningString == Text )
                         { return Warning;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(W) " + Text); }
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(W) " + Text); }
                 case 'C':
                     if ( CancelledString == Text )
                         { return Cancelled;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(C) " + Text); }
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(C) " + Text); }
                 case 'I':
                     if ( InconclusiveString == Text )
                         { return Inconclusive;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(I) " + Text); }
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(I) " + Text); }
                 case 'U':
                     if ( UnknownString == Text )
                         { return Unknown;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(U) " + Text); }
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(U) " + Text); }
                 case 'F':
                     return Failed;
                     if ( FailedString == Text )
                         { return Failed;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(F) " + Text); }
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(F) " + Text); }
                 case 'N':
                     if ( NotApplicableString == Text )
                         { return NotApplicable;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(N) " + Text); }
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(N) " + Text); }
                 default:
-                    { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text() " + Text); }
+                    { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text() " + Text); }
             }
             return Unknown;
         }

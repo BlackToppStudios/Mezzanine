@@ -119,7 +119,7 @@ namespace Mezzanine
             if(!Doc->Load(OneTag.c_str()))
             {
                 delete Doc;
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not Deserialize XML Stream which should contain:" + ClassName + "\n XML looked Like: " + OneTag + ".");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not Deserialize XML Stream which should contain:" + ClassName + "\n XML looked Like: " + OneTag + ".");
             }
 
             Node InputNode = Doc->GetFirstChild();
@@ -130,11 +130,11 @@ namespace Mezzanine
                     return Doc;
                 }else{
                     delete Doc;
-                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,NameSpace + ClassName + " not next item in stream, failed to deserialize.");
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,NameSpace + ClassName + " not next item in stream, failed to deserialize.");
                 }
             }else{
                 delete Doc;
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"No valid XML element in stream, when attempting to deserialize " + NameSpace + ClassName + ".");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"No valid XML element in stream, when attempting to deserialize " + NameSpace + ClassName + ".");
             }
         }
 

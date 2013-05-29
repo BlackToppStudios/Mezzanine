@@ -180,7 +180,7 @@ namespace Mezzanine
             }else if( Input::CONTROLLERBALL_2_VERTICAL == Trackball ){
                 return Trackballs.at(1).Y;
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid Trackball parameter.");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid Trackball parameter.");
             }
         }
 

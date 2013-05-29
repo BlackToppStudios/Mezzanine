@@ -10,7 +10,7 @@ OptsVolume::~OptsVolume()
 void OptsVolume::SetCaller(UI::Widget* Caller)
 {
     if(UI::Widget::W_Scrollbar != Caller->GetType())
-        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Volume Widget callback was attempted to be applied to a non-scrollbar widget."); }
+        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Volume Widget callback was attempted to be applied to a non-scrollbar widget."); }
     UI::WidgetListener::SetCaller(Caller);
     UI::Scrollbar* Scroll = static_cast<UI::Scrollbar*>(this->Caller);
     Scroll->SetScrollerValue(GetVolume());
@@ -86,7 +86,7 @@ OptsAudioMute::~OptsAudioMute()
 void OptsAudioMute::SetCaller(UI::Widget* Caller)
 {
     if(UI::Widget::W_CheckBox != Caller->GetType())
-        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Audio Mute Widget callback was attempted to be applied to a non-checkbox widget."); }
+        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Audio Mute Widget callback was attempted to be applied to a non-checkbox widget."); }
     UI::WidgetListener::SetCaller(Caller);
     /// @todo This code should eventually be replaced with something that reads from a settings file.
     bool Mute = AudioManager::GetSingletonPtr()->IsMuted();
@@ -127,7 +127,7 @@ OptsVideoRes::~OptsVideoRes()
 void OptsVideoRes::SetCaller(UI::Widget* Caller)
 {
     if(UI::Widget::W_DropDownList != Caller->GetType())
-        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Video Resolution Widget callback was attempted to be applied to a non-dropdownlist widget."); }
+        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Video Resolution Widget callback was attempted to be applied to a non-dropdownlist widget."); }
     UI::WidgetListener::SetCaller(Caller);
     UI::DropDownList* ResList = static_cast<UI::DropDownList*>(this->Caller);
     std::stringstream ResStream;
@@ -177,7 +177,7 @@ OptsVideoFullscreen::~OptsVideoFullscreen()
 void OptsVideoFullscreen::SetCaller(UI::Widget* Caller)
 {
     if(UI::Widget::W_CheckBox != Caller->GetType())
-        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Video Fullscreen Widget callback was attempted to be applied to a non-checkbox widget."); }
+        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Video Fullscreen Widget callback was attempted to be applied to a non-checkbox widget."); }
     UI::WidgetListener::SetCaller(Caller);
     /// @todo This code should eventually be replaced with something that reads from a settings file.
     /// @todo Temp code to verify fullscreen setting is set properly.
@@ -214,7 +214,7 @@ OptsVideoFSAA::~OptsVideoFSAA()
 void OptsVideoFSAA::SetCaller(UI::Widget* Caller)
 {
     if(UI::Widget::W_DropDownList != Caller->GetType())
-        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Video FSAA Widget callback was attempted to be applied to a non-dropdownlist widget."); }
+        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Video FSAA Widget callback was attempted to be applied to a non-dropdownlist widget."); }
     UI::WidgetListener::SetCaller(Caller);
     UI::DropDownList* FSAAList = static_cast<UI::DropDownList*>(this->Caller);
     /// @todo This code should eventually be replaced with something that reads from a settings file.
@@ -264,7 +264,7 @@ OptsVideoStats::~OptsVideoStats()
 void OptsVideoStats::SetCaller(UI::Widget* Caller)
 {
     if(UI::Widget::W_CheckBox != Caller->GetType())
-        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Video Stats Widget callback was attempted to be applied to a non-checkbox widget."); }
+        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Video Stats Widget callback was attempted to be applied to a non-checkbox widget."); }
     UI::WidgetListener::SetCaller(Caller);
     /// @todo This code should eventually be replaced with something that reads from a settings file.
     /// @todo Temp code to verify fullscreen setting is set properly.

@@ -366,12 +366,17 @@ class countedptrtests : public UnitTestGroup
                     CountedPtr<FooExternal>   PtrE2( PtrE ); // why is this incrementing as though it were internal
                     if( 1!=(*PtrE2).Value )
                         { ResultE = Failed; }
+                    PtrE.Reset();
+                    PtrE2.Reset();
 
-                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 1) );
+
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
                     CountedPtr<FooInternal>   PtrI2( PtrI );
                     if( 3!=(*PtrI2).Value )
                         { ResultI = Failed; }
-                } // When pointers fall out of scope
+                    PtrI.Reset();
+                    PtrI2.Reset();
+                }
 
                 AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
                 AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultI);
@@ -432,16 +437,12 @@ class countedptrtests : public UnitTestGroup
 
                 } // When pointers fall out of scope
 
-                AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
-                AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultI);
                 AddTestResult("CountedPtr::External::operator*", ResultEDereference);
                 AddTestResult("CountedPtr::Internal::operator*", ResultIDereference);
                 AddTestResult("CountedPtr::External::operator->", ResultEDereference2);
                 AddTestResult("CountedPtr::Internal::operator->", ResultIDereference2);
 
             }else{
-                AddTestResult("CountedPtr::External::NonDestructionRelease", Skipped);
-                AddTestResult("CountedPtr::Internal::NonDestructionRelease", Skipped);
                 AddTestResult("CountedPtr::External::operator*", Skipped);
                 AddTestResult("CountedPtr::Internal::operator*", Skipped);
                 AddTestResult("CountedPtr::External::operator->", Skipped);

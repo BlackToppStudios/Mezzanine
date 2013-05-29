@@ -107,15 +107,18 @@ namespace Mezzanine
             SCRIPT_EXCEPTION_LUA_RUNTIME         = 0x05F01F02,    ///< When used a instance of ScriptLuaRuntimeException is thrown. Thrown when a Lua script has a runtime error.
             SCRIPT_EXCEPTION_LUA_ERRERR          = 0x05F01F03,    ///< When used a instance of ScriptLuaErrErrException is thrown. Thrown when Lua has an error handling an error.
 
+            PARAMETERS_EXCEPTION                 = 0x06F01F00,    ///< When used a instance of ParametersException is thrown. Thrown when parameters are checked at runtime and found invalid.
+            PARAMETERS_CAST_EXCEPTION            = 0x06F01F01,    ///< When used a instance of ParametersCastException is thrown. Thrown when a pointer parameter is checked at runtime and cannot be cast as expected.
+            PARAMETERS_RANGE_EXCEPTION           = 0x06F01F02,    ///< When used a instance of ParametersRangeException is thrown. Thrown when a passed parameter is checked at runtime and not in the expected range.
+
             ARITHMETIC_EXCEPTION                 = 0x00F01F00,    ///< When used a instance of ArithmeticException is thrown. Thrown when Math has failed.
-            INVALID_PARAMETERS_EXCEPTION         = 0x00F02F00,    ///< When used a instance of InvalidParametersException is thrown. Thrown when parameters are checked at runtime and found invalid.
-            INVALID_VERSION_EXCEPTION            = 0x00F03F00,    ///< When used a instance of InvalidVersionException is thrown. Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing.
-            INVALID_STATE_EXCEPTION              = 0x00F04F00,    ///< When used a instance of InvalidStateException is thrown. Thrown when the available information should have worked but failed for unknown reasons.
-            RENDERINGAPI_EXCEPTION               = 0x00F05F00,    ///< When used a instance of RenderingAPIException is thrown. Thrown when the graphics card/DirectX/OpenGL fail.
-            RT_ASSERTION_EXCEPTION               = 0x00F06F00,    ///< When used a instance of RuntimeAssertionException is thrown. Thrown when a rutime assertion could have been thrown.
-            INTERNAL_EXCEPTION                   = 0x00F07F00,    ///< When used a instance of InternalException is thrown. Thrown when an unknown internal error occurred.
-            NOT_IMPLEMENTED_EXCEPTION            = 0x00F08F00,    ///< When used a instance of NotImplementedException is thrown. Thrown when we just have not coded a thing yet, but we knew what the API should look like.
-            INVALID_ASSIGNMENT                   = 0x00F09F00     ///< When used a instance of InvalidAssignment is thrown. Then when a complex class is assigned to itself or other invalid assignments occur.
+            INVALID_VERSION_EXCEPTION            = 0x00F02F00,    ///< When used a instance of InvalidVersionException is thrown. Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing.
+            INVALID_STATE_EXCEPTION              = 0x00F03F00,    ///< When used a instance of InvalidStateException is thrown. Thrown when the available information should have worked but failed for unknown reasons.
+            RENDERINGAPI_EXCEPTION               = 0x00F04F00,    ///< When used a instance of RenderingAPIException is thrown. Thrown when the graphics card/DirectX/OpenGL fail.
+            RT_ASSERTION_EXCEPTION               = 0x00F05F00,    ///< When used a instance of RuntimeAssertionException is thrown. Thrown when a rutime assertion could have been thrown.
+            INTERNAL_EXCEPTION                   = 0x00F06F00,    ///< When used a instance of InternalException is thrown. Thrown when an unknown internal error occurred.
+            NOT_IMPLEMENTED_EXCEPTION            = 0x00F07F00,    ///< When used a instance of NotImplementedException is thrown. Thrown when we just have not coded a thing yet, but we knew what the API should look like.
+            INVALID_ASSIGNMENT                   = 0x00F08F00     ///< When used a instance of InvalidAssignment is thrown. Then when a complex class is assigned to itself or other invalid assignments occur.
         };
 
         private:
@@ -194,7 +197,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Exception code class definitions.
-
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief Thrown when there was an issue with IO but very little was known about it.
     ///////////////////
@@ -1666,6 +1668,132 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when parameters are checked at runtime and found invalid.
+    ///////////////////
+    class MEZZ_LIB ParametersException : public Exception
+    {
+    public:
+        /// @brief Thrown when parameters are checked at runtime and found invalid.
+        static const Whole ExceptionCode = Exception::PARAMETERS_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ParametersException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("ParametersException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ParametersException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("ParametersException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~ParametersException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return ParametersException::ExceptionCode; }
+    }; //ParametersException
+
+    /// @brief A template metaprogramming construct used to ensure that all required ParametersException can be created at compile time if the compiler is clever.
+    template<>
+    struct MEZZ_LIB ExceptionFactory<ParametersException::ExceptionCode>
+        { typedef ParametersException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when a pointer parameter is checked at runtime and cannot be cast as expected.
+    ///////////////////
+    class MEZZ_LIB ParametersCastException : public ParametersException
+    {
+    public:
+        /// @brief Thrown when a pointer parameter is checked at runtime and cannot be cast as expected.
+        static const Whole ExceptionCode = Exception::PARAMETERS_CAST_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ParametersCastException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ParametersException("ParametersCastException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ParametersCastException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ParametersException("ParametersCastException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~ParametersCastException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return ParametersCastException::ExceptionCode; }
+    }; //ParametersCastException
+
+    /// @brief A template metaprogramming construct used to ensure that all required ParametersCastException can be created at compile time if the compiler is clever.
+    template<>
+    struct MEZZ_LIB ExceptionFactory<ParametersCastException::ExceptionCode>
+        { typedef ParametersCastException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when a passed parameter is checked at runtime and not in the expected range.
+    ///////////////////
+    class MEZZ_LIB ParametersRangeException : public ParametersException
+    {
+    public:
+        /// @brief Thrown when a passed parameter is checked at runtime and not in the expected range.
+        static const Whole ExceptionCode = Exception::PARAMETERS_RANGE_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ParametersRangeException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ParametersException("ParametersRangeException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ParametersRangeException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ParametersException("ParametersRangeException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~ParametersRangeException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return ParametersRangeException::ExceptionCode; }
+    }; //ParametersRangeException
+
+    /// @brief A template metaprogramming construct used to ensure that all required ParametersRangeException can be created at compile time if the compiler is clever.
+    template<>
+    struct MEZZ_LIB ExceptionFactory<ParametersRangeException::ExceptionCode>
+        { typedef ParametersRangeException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// @brief Thrown when Math has failed.
     ///////////////////
     class MEZZ_LIB ArithmeticException : public Exception
@@ -1705,48 +1833,6 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<ArithmeticException::ExceptionCode>
         { typedef ArithmeticException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief Thrown when parameters are checked at runtime and found invalid.
-    ///////////////////
-    class MEZZ_LIB InvalidParametersException : public Exception
-    {
-    public:
-        /// @brief Thrown when parameters are checked at runtime and found invalid.
-        static const Whole ExceptionCode = Exception::INVALID_PARAMETERS_EXCEPTION;
-
-        /// @brief Class constructor.
-        /// @param TypeName The name of this class.
-        /// @param Message A basic description of the error.
-        /// @param SrcFunction The name of the function from which this originated.
-        /// @param SrcFile The name of the file from which this originated.
-        /// @param FileLine The line on the named file from which this originated.
-        InvalidParametersException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception("InvalidParametersException", Message, SrcFunction, SrcFile, FileLine)
-            {}
-
-        /// @brief Class constructor.
-        /// @param Message A basic description of the error.
-        /// @param SrcFunction The name of the function from which this originated.
-        /// @param SrcFile The name of the file from which this originated.
-        /// @param FileLine The line on the named file from which this originated.
-        InvalidParametersException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-            : Exception("InvalidParametersException", Message, SrcFunction, SrcFile, FileLine)
-            {}
-
-        /// @brief Class destructor.
-        virtual ~InvalidParametersException() throw() {}
-
-        /// @copydoc Exception::GetExceptionCode()
-        virtual Whole GetExceptionCode() const throw()
-            { return InvalidParametersException::ExceptionCode; }
-    }; //InvalidParametersException
-
-    /// @brief A template metaprogramming construct used to ensure that all required InvalidParametersException can be created at compile time if the compiler is clever.
-    template<>
-    struct MEZZ_LIB ExceptionFactory<InvalidParametersException::ExceptionCode>
-        { typedef InvalidParametersException Type; };
 
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -2041,6 +2127,8 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<InvalidAssignment::ExceptionCode>
         { typedef InvalidAssignment Type; };
+
+
 
 
 
