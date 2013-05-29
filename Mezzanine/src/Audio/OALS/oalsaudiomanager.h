@@ -80,7 +80,7 @@ namespace Mezzanine
                 /// @brief The volume currently set for this type of sound.
                 Real Volume;
                 /// @brief Sound storage.
-                SoundContainer TypeSounds;
+                //SoundContainer TypeSounds;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Construction and Destruction
