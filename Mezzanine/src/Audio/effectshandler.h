@@ -133,7 +133,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the EAX Reverb Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual EAXReverbParameters GetEAXReverbEffectPreset(const String& Name) = 0;
+            virtual EAXReverbParameters GetEAXReverbEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Reverb Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -142,7 +142,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Reverb Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual ReverbParameters GetReverbEffectPreset(const String& Name) = 0;
+            virtual ReverbParameters GetReverbEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Chorus Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -151,7 +151,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Chorus Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual ChorusParameters GetChorusEffectPreset(const String& Name) = 0;
+            virtual ChorusParameters GetChorusEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Distortion Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -160,7 +160,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Distortion Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual DistortionParameters GetDistortionEffectPreset(const String& Name) = 0;
+            virtual DistortionParameters GetDistortionEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Echo Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -169,7 +169,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Echo Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual EchoParameters GetEchoEffectPreset(const String& Name) = 0;
+            virtual EchoParameters GetEchoEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Flanger Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -178,7 +178,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Flanger Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual FlangerParameters GetFlangerEffectPreset(const String& Name) = 0;
+            virtual FlangerParameters GetFlangerEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Frequency Shift Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -187,7 +187,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Frequency Shift Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual FrequencyShiftParameters GetFrequencyShiftEffectPreset(const String& Name) = 0;
+            virtual FrequencyShiftParameters GetFrequencyShiftEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Vocal Morpher Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -196,7 +196,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Vocal Morpher Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual VocalMorpherParameters GetVocalMorpherEffectPreset(const String& Name) = 0;
+            virtual VocalMorpherParameters GetVocalMorpherEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Pitch Shifter Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -205,7 +205,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Pitch Shifter Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual PitchShifterParameters GetPitchShifterEffectPreset(const String& Name) = 0;
+            virtual PitchShifterParameters GetPitchShifterEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Ring Modulator Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -214,7 +214,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Ring Modulator Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual RingModulatorParameters GetRingModulatorEffectPreset(const String& Name) = 0;
+            virtual RingModulatorParameters GetRingModulatorEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Autowah Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -223,7 +223,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Autowah Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual AutowahParameters GetAutowahEffectPreset(const String& Name) = 0;
+            virtual AutowahParameters GetAutowahEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Compressor Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -232,7 +232,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Compressor Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual CompressorParameters GetCompressorEffectPreset(const String& Name) = 0;
+            virtual CompressorParameters GetCompressorEffectPreset(const String& Name) const = 0;
 
             /// @brief Adds a preset for the Equalizer Audio Effect type.
             /// @param Name The name to be given to the preset.
@@ -241,7 +241,7 @@ namespace Mezzanine
             /// @brief Returns a previously registered preset for the Equalizer Effect.
             /// @param Name The name of the preset to retrieve.
             /// @return Returns the specified preset or the default parameters if the preset could not be found.
-            virtual EqualizerParameters GetEqualizerEffectPreset(const String& Name) = 0;
+            virtual EqualizerParameters GetEqualizerEffectPreset(const String& Name) const = 0;
         };//iEffectsHandler
     }//Audio
 }//Mezzanine
