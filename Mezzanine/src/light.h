@@ -148,8 +148,8 @@ namespace Mezzanine
             /// @details When rendering the final color of an object values of the colours of 3 types of lights are taken into account.
             /// The 3 types are: Diffuse, Specular, and Ambient.
             /// @param Red Real in the range of 0.0 to 1.0 determining the amount of red in the colour.
-            /// @param Red Green in the range of 0.0 to 1.0 determining the amount of green in the colour.
-            /// @param Red Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour.
+            /// @param Green Green in the range of 0.0 to 1.0 determining the amount of green in the colour.
+            /// @param Blue Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour.
             void SetDiffuseColour(const Real& Red, const Real& Green, const Real& Blue);
             /// @brief Sets the colour for the Diffuse light from this source.
             /// @details This allows the setting of Diffuse color by a premade ColourValue.
@@ -162,8 +162,8 @@ namespace Mezzanine
             /// @details When rendering the final color of an object values of the colours of 3 types of lights are taken into account.
             /// The 3 types are: Diffuse, Specular, and Ambient.
             /// @param Red Real in the range of 0.0 to 1.0 determining the amount of red in the colour.
-            /// @param Red Green in the range of 0.0 to 1.0 determining the amount of green in the colour.
-            /// @param Red Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour.
+            /// @param Green Green in the range of 0.0 to 1.0 determining the amount of green in the colour.
+            /// @param Blue Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour.
             void SetSpecularColour(const Real& Red, const Real& Green, const Real& Blue);
             /// @brief Sets the colour for the Specular light from this source.
             /// @details This allows the setting of Specular color by a premade ColourValue.

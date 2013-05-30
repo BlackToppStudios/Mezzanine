@@ -1,0 +1,21 @@
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/document.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/document.cpp">
+<area shape="rect" id="node3" href="$document_8h.xhtml" title="The definition of the XML::Document Class." alt="" coords="413,99,533,127"/>
+<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="612,409,697,437"/>
+<area shape="rect" id="node39" href="$xmlenumerations_8h.xhtml" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="293,331,453,359"/>
+<area shape="rect" id="node42" href="$parseresult_8h.xhtml" title="XML/parseresult.h" alt="" coords="277,254,403,282"/>
+<area shape="rect" id="node46" href="$node_8h.xhtml" title="This defines the Mezzanine::XML::Node one of the central XML classes." alt="" coords="477,254,568,282"/>
+<area shape="rect" id="node56" href="$writer_8h.xhtml" title="The definitions for all of the XML::Writer inheritance hierarchy." alt="" coords="783,177,876,205"/>
+<area shape="rect" id="node71" href="$datastream_8h.xhtml" title="Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream." alt="" coords="867,331,1021,359"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1173,486,1317,514"/>
+<area shape="rect" id="node37" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1093,486,1149,514"/>
+<area shape="rect" id="node50" href="$attribute_8h.xhtml" title="Contains the definition for the XML::Attribute class." alt="" coords="528,331,637,359"/>
+<area shape="rect" id="node53" href="$objectrange_8h.xhtml" title="Contains the implementation of the ObjectRange class template." alt="" coords="661,331,792,359"/>
+<area shape="rect" id="node59" href="$resource_8h_source.xhtml" title="resource.h" alt="" coords="1492,254,1572,282"/>
+<area shape="rect" id="node61" href="$resourceenumerations_8h_source.xhtml" title="Resource/resourceenumerations.h" alt="" coords="1227,331,1443,359"/>
+<area shape="rect" id="node63" href="$archive_8h_source.xhtml" title="Resource/archive.h" alt="" coords="1467,331,1597,359"/>
+<area shape="rect" id="node65" href="$asset_8h_source.xhtml" title="Resource/asset.h" alt="" coords="1621,331,1741,359"/>
+<area shape="rect" id="node67" href="$assetgroup_8h_source.xhtml" title="Resource/assetgroup.h" alt="" coords="1765,331,1917,359"/>
+<area shape="rect" id="node69" href="$assethandler_8h_source.xhtml" title="Resource/assethandler.h" alt="" coords="1941,331,2104,359"/>
+<area shape="rect" id="node74" href="$inputstream_8h_source.xhtml" title="Resource/inputstream.h" alt="" coords="1045,331,1203,359"/>
+<area shape="rect" id="node78" href="$textsettingsfile_8h_source.xhtml" title="Resource/textsettingsfile.h" alt="" coords="2128,331,2299,359"/>
+</map>

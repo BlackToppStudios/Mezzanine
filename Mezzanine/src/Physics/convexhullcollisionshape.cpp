@@ -81,7 +81,7 @@ namespace Mezzanine
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-                if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
+                if(!OneName) { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
 
                 this->Name = OneName.AsString();
 

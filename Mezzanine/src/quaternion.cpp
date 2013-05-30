@@ -286,7 +286,7 @@ namespace Mezzanine
     Quaternion Quaternion::operator/ (const Real& Scalar) const
     {
         if( 0 == Scalar )
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Dividing by zero in 'Quaternion::operator/', Quit it."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Dividing by zero in 'Quaternion::operator/', Quit it."); }
         return *this * ( 1.0 / Scalar );
     }
 

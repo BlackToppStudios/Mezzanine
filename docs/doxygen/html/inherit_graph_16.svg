@@ -10,11 +10,11 @@
 <title>Graphical Class Hierarchy</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1CountedPtrCastImpl_3_01ReturnPointer_00_01OriginalPointer_00_01CastSimpleDynamic_01_4.xhtml" target="_top" xlink:title="Mezzanine::CountedPtrCast\lImpl\&lt; ReturnPointer, OriginalPointer,\l CastSimpleDynamic \&gt;">
+<a xlink:href="classMezzanine_1_1CountedPtrCastImpl_3_01ReturnPointer_00_01OriginalPointer_00_01CastDynamic_01_4.xhtml" target="_top" xlink:title="An implementation of the CountedPtrCast that naively dynamic casts the passed pointer. Reached by putting CastDynamic in the ReferenceCountTraits of the target class.">
 <polygon fill="none" stroke="black" points="0.5,-0 0.5,-44 175.5,-44 175.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-31" font-family="FreeSans" font-size="10.00">Mezzanine::CountedPtrCast</text>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Impl&lt; ReturnPointer, OriginalPointer,</text>
-<text text-anchor="middle" x="88" y="-7" font-family="FreeSans" font-size="10.00"> CastSimpleDynamic &gt;</text>
+<text text-anchor="middle" x="88" y="-7" font-family="FreeSans" font-size="10.00"> CastDynamic &gt;</text>
 </a>
 </g>
 </g>

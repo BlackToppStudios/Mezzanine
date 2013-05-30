@@ -446,11 +446,11 @@ namespace Mezzanine
 
         // Error conditions
                 case SDL_FIRSTEVENT:  //capture and ignore or throw error
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted."); }
                     break;
 
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unexpected Quit event in event manager."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected Quit event in event manager."); }
                     break;
 
                 default:                //Never thrown by SDL, but could be added by a user
@@ -656,7 +656,7 @@ namespace Mezzanine
         {
             this->_Data->AddInputCodeToManualCheck(InputToTryPolling.GetCode(), Internal::EventManagerInternalData::Polling);
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported Polling Check on this Platform");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Polling Check on this Platform");
         }
     }
 
@@ -791,14 +791,14 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& 
                             Mgr.AddEvent(temp); }
                             break;
                         case 'O':{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event::Other... not sure what you are trying to serialize."); }
+                            MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event::Other... not sure what you are trying to serialize."); }
                             break;
                         default:{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event... not sure what you are trying to serialize."); }
+                            MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event... not sure what you are trying to serialize."); }
                             break;
                     }
                 }else{
-                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid event, name is not long enough to identify event.");
+                    MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Invalid event, name is not long enough to identify event.");
                 } // end if name length
                 Child = Child.GetNextSibling();
             } // end while
@@ -806,7 +806,7 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& 
             MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventManager: Not Version 1");
         } // if version
     }else{
-        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to deserialize an EventManager, event mananger not found.");
+        MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attempting to deserialize an EventManager, event mananger not found.");
     }// if event
 }
 

@@ -168,7 +168,7 @@ namespace Mezzanine
         {
             return Vector2(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)));
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"String does not contain 2 digits when attempting to convert.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"String does not contain 2 digits when attempting to convert.");
         }
     }
 
@@ -186,7 +186,7 @@ namespace Mezzanine
         {
             return Vector3(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)));
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"String does not contain 3 digits when attempting to convert.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"String does not contain 3 digits when attempting to convert.");
         }
     }
 
@@ -204,7 +204,7 @@ namespace Mezzanine
         {
             return Quaternion(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)),ConvertToReal(Digits->at(3)));
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
         }
     }
 
@@ -222,7 +222,7 @@ namespace Mezzanine
         {
             return ColourValue(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)),ConvertToReal(Digits->at(3)));
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
         }
     }
 

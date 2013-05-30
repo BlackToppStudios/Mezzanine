@@ -11,6 +11,7 @@ var searchData=
   ['rendersystemtypes',['RenderSystemTypes',['../classMezzanine_1_1GraphicsManager.xhtml#affbbb7aae8cc73c13ff868fae4acbedd',1,'Mezzanine::GraphicsManager']]],
   ['renderwidth',['RenderWidth',['../structMezzanine_1_1WindowSettings.xhtml#a2a8fdd89ff4218a6eac0c5596534708b',1,'Mezzanine::WindowSettings']]],
   ['resourcename',['ResourceName',['../classMezzanine_1_1Resource_1_1DataStream.xhtml#a4c8f09b002ce06283df8f1f1791fef07',1,'Mezzanine::Resource::DataStream']]],
+  ['results',['Results',['../classMezzanine_1_1FooExternal.xhtml#a14a646c48c6533f1971b129b66b6c3b0',1,'Mezzanine::FooExternal::Results()'],['../classMezzanine_1_1FooInternal.xhtml#a15f5c356940f25d2f7e56b32efccc379',1,'Mezzanine::FooInternal::Results()']]],
   ['rigidactors',['RigidActors',['../classMezzanine_1_1ActorManager.xhtml#a1283d3955dc83831c7687573b6cff206',1,'Mezzanine::ActorManager']]],
   ['rigidparent',['RigidParent',['../classMezzanine_1_1ActorRigidPhysicsSettings.xhtml#ac83840161a9a88ecdcbacfa3c204bd6e',1,'Mezzanine::ActorRigidPhysicsSettings']]],
   ['rotation',['Rotation',['../classMezzanine_1_1Transform.xhtml#a4f41685c108f02fd4faad209b1a438ef',1,'Mezzanine::Transform']]]

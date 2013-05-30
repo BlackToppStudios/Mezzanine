@@ -102,6 +102,13 @@ namespace Mezzanine
                 );
             }
 
+            void Lua51ScriptingEngine::Execute(Lua51Script* ScriptTorun)
+            {
+                if(!ScriptTorun->IsCompiled())
+                    { Compile(ScriptTorun); }
+                // Do execution logic here.
+            }
+
             void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
             {
                 switch(LuaReturn)
@@ -133,32 +140,36 @@ namespace Mezzanine
 
             CountedPtr<iScript> Lua51ScriptingEngine::Execute(const String& ScriptSource)
             {
-                //CountedPtr<iScriptCompilable> Results = static_cast<CountedPtr<iScript> >(Compile(ScriptSource));
-                //Execute(Results);
-                //return Results;//CountedPtr<iScriptCompilable>
+                CountedPtr<Lua51Script> Results = Compile(ScriptSource);
+                Execute(Results);
+                return CountedPtrCast<iScript>(Results);
             }
 
             void Lua51ScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)
             {
-                //if there is a compiled script load it and call it
-                // otherwise use luaL-dostring
+                CountedPtr<Lua51Script> ScriptToCompile = CountedPtrCast<Lua51Script>(ScriptToRun);
+                if(ScriptToCompile)
+                {
+                    Execute(ScriptToCompile);
+                }else{
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51 Engine attempted to execute a script, but it did not appear to bea Lua51 script.")
+                }
             }
 
             void Lua51ScriptingEngine::Compile(CountedPtr<iScriptCompilable> ScriptToCompile)
             {
-                //Lua51Script* CompilationSource = something_cast<Lua51Script*>(ScriptToCompile.get());
-                /*CountedPtr<Lua51Script> CompilationSource(CountedPtrCast<Lua51Script>(ScriptToCompile));
-                if(CompilationSource)
+                CountedPtr<Lua51Script> ConvertedScript = CountedPtrCast<Lua51Script>(ScriptToCompile);
+                if(ConvertedScript)
                 {
-                    Compile(CompilationSource.get());
+                    Compile(ConvertedScript);
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Something other than a Lua51 script was passed to the Lua51 scripting engine and could not be compiled.")
-                }*/
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51 Engine attempted to compile a script, but it did not appear to bea Lua51 script.")
+                }
             }
 
             CountedPtr<iScriptCompilable> Lua51ScriptingEngine::Compile(const String& SourceToCompile)
             {
-                CountedPtr<iScriptCompilable> Results(
+                CountedPtr<Lua51Script> Results(
                                 new Lua51Script(SourceToCompile,this)
                             );
                 Compile(Results);
@@ -166,9 +177,13 @@ namespace Mezzanine
             }
 
             String Lua51ScriptingEngine::GetImplementationTypeName() const
-            {
-                return String("Lua51ScriptingEngine");
-            }
+                { return String("Lua51ScriptingEngine"); }
+
+            void Lua51ScriptingEngine::Execute(CountedPtr<Lua51Script> ScriptToRun)
+                { Execute(ScriptToRun.Get()); }
+
+            void Lua51ScriptingEngine::Compile(CountedPtr<Lua51Script> ScriptToCompile)
+                { Compile(ScriptToCompile.Get()); }
 
             void Lua51ScriptingEngine::OpenLibraries(int LibrariesToOpen)
             {

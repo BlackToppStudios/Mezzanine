@@ -1,0 +1,6 @@
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/memorymanagement.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/memorymanagement.cpp">
+<area shape="rect" id="node3" href="$memorymanagement_8h.xhtml" title="The xml memory management system must be integrated into the rest of the Mezzanine resource managemen..." alt="" coords="663,99,847,127"/>
+<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="712,177,797,205"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,254,149,282"/>
+<area shape="rect" id="node37" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1331,254,1387,282"/>
+</map>

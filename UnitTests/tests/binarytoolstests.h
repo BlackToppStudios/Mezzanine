@@ -44,6 +44,7 @@
 
 /// @file
 /// @brief Test the BinaryBuffer and associate functions
+
 using namespace std;
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
@@ -52,6 +53,8 @@ using namespace Mezzanine::BinaryTools;
 
 // Code change to Match BTS naming conventions and formatting
 // Copyright information in binarytools.cpp
+
+/// @brief The library of characters used in Rene's Base64 implementation
 static const String Base64Chars =
              "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
              "abcdefghijklmnopqrstuvwxyz"
@@ -60,6 +63,10 @@ static const String Base64Chars =
 
 // Code change to Match BTS naming conventions and formatting
 // Copyright information in binarytools.cpp
+/// @brief Rene's Base64 implementation for comparison purposes.
+/// @param BytesToEncode A buffer of bytes which is to be encoded. NULL bytes are encoded and not used for termination
+/// @param Length The Length of the buffer pointed to by BytesToEncode
+/// @return A String containing the encoded value.
 String ReneBase64Encode(UInt8 const* BytesToEncode, unsigned int Length)
 {
     String ret;
@@ -106,6 +113,9 @@ String ReneBase64Encode(UInt8 const* BytesToEncode, unsigned int Length)
 
 // Code change to Match BTS naming conventions and formatting
 // Copyright information in binarytools.cpp
+/// @brief A reference implementation of Base64 decoding as provide by Rene.
+/// @param EncodedString The String to be decoded as provided by ReneBase64Encode()
+/// @ref A string Containing the resulting binary.
 String ReneBase64Decode(String const& EncodedString)
 {
     int in_len = EncodedString.size();

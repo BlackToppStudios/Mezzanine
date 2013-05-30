@@ -1,12 +1,4 @@
 #!/bin/bash
 
-# This part should remove the old archive if it works, but it is untested
-if [ -e SDL.tar.gz ]
-then 
-	rm SDL.tar.gz
-fi
-
 # get most updated source
 hg clone http://hg.libsdl.org/SDL
-# re-compress new source into SDL.tar.gz
-tar czf SDL.tar.gz SDL/

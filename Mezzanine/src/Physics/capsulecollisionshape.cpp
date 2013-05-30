@@ -60,7 +60,7 @@ namespace Mezzanine
             if(Axis_Y == UpAxis) CapsuleShape = new btCapsuleShape(Radius,Height);
             else if(Axis_X == UpAxis) CapsuleShape = new btCapsuleShapeX(Radius,Height);
             else if(Axis_Z == UpAxis) CapsuleShape = new btCapsuleShapeZ(Radius,Height);
-            else { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Non-supported up Axis passed into CapsuleCollisionShape constructor."); }
+            else { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-supported up Axis passed into CapsuleCollisionShape constructor."); }
             SetPointers(CapsuleShape);
         }
 
@@ -75,7 +75,7 @@ namespace Mezzanine
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-                if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
+                if(!OneName) { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
                 String Name_(OneName.AsString());
 
                 XML::Attribute Axis = OneNode.GetAttribute("Axis");

@@ -104,7 +104,7 @@ namespace Mezzanine
         {
             this->Cam->setProjectionType(Ogre::PT_PERSPECTIVE);
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unknown ProjectionType when attempting to set Camera Type.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unknown ProjectionType when attempting to set Camera Type.");
         }
     }
 
@@ -119,7 +119,7 @@ namespace Mezzanine
         {
             return Camera::Perspective;
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unknown ProjectionType when attempting to get Camera Type.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unknown ProjectionType when attempting to get Camera Type.");
         }
     }
 

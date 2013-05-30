@@ -617,7 +617,7 @@ namespace Mezzanine
         String FilePath = ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group);
         if( FilePath.empty() )
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Failed to find path for file \"" + FileName + "\", in group \"" + Group + "\".");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Failed to find path for file \"" + FileName + "\", in group \"" + Group + "\".");
         }
         return LoadSettingsFromFile(FileName,FilePath);
     }
@@ -631,7 +631,7 @@ namespace Mezzanine
     {
         if( SettingsFilePath.empty() )
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
         return LoadSettingsFromFile(FileName,SettingsFilePath);
     }
@@ -695,7 +695,7 @@ namespace Mezzanine
     {
         if( SettingsFilePath.empty() )
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
 
         StringVector GroupNames;
@@ -727,7 +727,7 @@ namespace Mezzanine
         SettingFilesIterator SetFileIt = SettingFiles.find(FileName);
         if( SetFileIt == SettingFiles.end() )
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Setting file \"" + FileName + "\" was not found when attempting to save.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Setting file \"" + FileName + "\" was not found when attempting to save.");
         }
 
         for( ObjectSettingFile::SaveGroupsIterator SetGroupIt = (*SetFileIt).second->SaveGroupsBegin() ; SetGroupIt != (*SetFileIt).second->SaveGroupsEnd() ; ++SetGroupIt )
@@ -742,7 +742,7 @@ namespace Mezzanine
     {
         if( SettingsFilePath.empty() )
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
 
         StringVector GroupNames;
@@ -752,7 +752,7 @@ namespace Mezzanine
         SettingFilesIterator SetFileIt = SettingFiles.find(FileName);
         if( SetFileIt == SettingFiles.end() )
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Setting file \"" + FileName + "\" was not found when attempting to save.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Setting file \"" + FileName + "\" was not found when attempting to save.");
         }
 
         for( ObjectSettingFile::SaveGroupsIterator SetGroupIt = (*SetFileIt).second->SaveGroupsBegin() ; SetGroupIt != (*SetFileIt).second->SaveGroupsEnd() ; ++SetGroupIt )
@@ -772,7 +772,7 @@ namespace Mezzanine
     {
         if( SettingsFilePath.empty() )
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
 
         SaveSettingsToFile(GroupNames,FileName,SettingsFilePath);

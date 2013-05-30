@@ -68,7 +68,7 @@ namespace Mezzanine
                 case Axis_Z:
                     CylinderShape = new btCylinderShapeZ(HalfExtents.GetBulletVector3());
                     break;
-                default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Non-supported up Axis passed into CylinderCollisionShape constructor."); }
+                default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-supported up Axis passed into CylinderCollisionShape constructor."); }
             }
             Construct(Name, CylinderShape);
         }
@@ -99,7 +99,7 @@ namespace Mezzanine
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-                if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
+                if(!OneName) { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
 
                 /*XML::Node HalfExtentsNode = OneNode.GetChild("HalfExtents").GetFirstChild();
                 if (!HalfExtentsNode) { DeSerializeError("find HalfExtentsNode",CylinderCollisionShape::SerializableName()); }
@@ -129,7 +129,7 @@ namespace Mezzanine
                 case Axis_Y: return Vector3(Radius,Height,Radius);
                 case Axis_X: return Vector3(Height,Radius,Radius);
                 case Axis_Z: return Vector3(Radius,Radius,Height);
-                default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Non-supported up Axis passed into CylinderCollisionShape::CreateHalfExtents."); }
+                default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-supported up Axis passed into CylinderCollisionShape::CreateHalfExtents."); }
             }
         }
 

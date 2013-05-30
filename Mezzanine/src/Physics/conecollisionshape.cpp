@@ -60,7 +60,7 @@ namespace Mezzanine
             if(Axis_Y == UpAxis) ConeShape = new btConeShape(Radius,Height);
             else if(Axis_X == UpAxis) ConeShape = new btConeShapeX(Radius,Height);
             else if(Axis_Z == UpAxis) ConeShape = new btConeShapeZ(Radius,Height);
-            else { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Non-supported up StandardAxis passed into ConeCollisionShape constructor."); }
+            else { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-supported up StandardAxis passed into ConeCollisionShape constructor."); }
             SetPointers(ConeShape);
             this->GetBulletConeShape()->setImplicitShapeDimensions(Vector3(0,0,0).GetBulletVector3());
         }
@@ -86,7 +86,7 @@ namespace Mezzanine
                         Results[2] = 1;
                     break;
                 default:
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Non-supported up StandardAxis passed into ConeCollisionShape::GetAxisMathBS()."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-supported up StandardAxis passed into ConeCollisionShape::GetAxisMathBS()."); }
             }
 
             return Results;
@@ -103,7 +103,7 @@ namespace Mezzanine
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-                if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
+                if(!OneName) { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
                 String Name_(OneName.AsString());
 
                 XML::Attribute Radius = OneNode.GetAttribute("Radius");                                                                             // Find Attributes

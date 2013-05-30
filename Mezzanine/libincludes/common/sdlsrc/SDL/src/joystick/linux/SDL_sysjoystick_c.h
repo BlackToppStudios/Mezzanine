@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -31,12 +31,12 @@ struct joystick_hwdata
     SDL_JoystickGUID guid;
     char *fname;                /* Used in haptic subsystem */
 
-    /* The current linux joystick driver maps hats to two axes */
+    /* The current Linux joystick driver maps hats to two axes */
     struct hwdata_hat
     {
         int axis[2];
     } *hats;
-    /* The current linux joystick driver maps balls to two axes */
+    /* The current Linux joystick driver maps balls to two axes */
     struct hwdata_ball
     {
         int axis[2];
@@ -50,4 +50,8 @@ struct joystick_hwdata
         int used;
         int coef[3];
     } abs_correct[ABS_MAX];
+
+    int fresh;
 };
+
+/* vi: set ts=4 sw=4 expandtab: */

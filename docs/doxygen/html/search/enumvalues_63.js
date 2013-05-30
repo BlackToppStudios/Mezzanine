@@ -1,10 +1,9 @@
 var searchData=
 [
   ['castdynamic',['CastDynamic',['../namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739ab052c77358611ba65ad3a013cb430867',1,'Mezzanine']]],
+  ['castimplicit',['CastImplicit',['../namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739ae59dfba69bca041768bad858c2d34151',1,'Mezzanine']]],
   ['castnoneerror',['CastNoneError',['../namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739a80b6e8497f1239b63fb0bac739f5618f',1,'Mezzanine']]],
   ['castnonereturnzero',['CastNoneReturnZero',['../namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739ae348e547d2f989d5704dca631120c733',1,'Mezzanine']]],
-  ['castsimpledynamic',['CastSimpleDynamic',['../namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739ad7287198d94494d7020fcd6d3eba23c3',1,'Mezzanine']]],
-  ['castsimplestatic',['CastSimpleStatic',['../namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739a92615a5b9daecc60312db5c1fbb0ab29',1,'Mezzanine']]],
   ['caststatic',['CastStatic',['../namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739a823a0503378eda9a9d1a1916a4d1e881',1,'Mezzanine']]],
   ['ccm_5ffly',['CCM_Fly',['../classMezzanine_1_1CameraController.xhtml#a2e4a40630fb6c845b8073151dc36c286a0278660084281f11192f9350b17a0621',1,'Mezzanine::CameraController']]],
   ['ccm_5fwalk',['CCM_Walk',['../classMezzanine_1_1CameraController.xhtml#a2e4a40630fb6c845b8073151dc36c286a3e59766116db3f0d979787d66405d2fb',1,'Mezzanine::CameraController']]],

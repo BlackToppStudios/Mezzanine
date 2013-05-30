@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -21,49 +21,46 @@
 
 /**
  *  \file SDL_test_compare.h
- *  
+ *
  *  Include file for SDL test framework.
  *
  *  This code is a part of the SDL2_test library, not the main SDL library.
  */
 
-/* 
+/*
 
  Defines comparison functions (i.e. for surfaces).
-  
+
 */
 
 #ifndef _SDL_test_compare_h
 #define _SDL_test_compare_h
 
 #include "SDL.h"
+
 #include "SDL_test_images.h"
 
 #include "begin_code.h"
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
-/* *INDENT-OFF* */
 extern "C" {
-/* *INDENT-ON* */
 #endif
 
 /**
  * \brief Compares a surface and with reference image data for equality
  *
- * \param sur Surface used in comparison
- * \param img Test Surface used in comparison
- * \param allowable_error Allowable difference in blending accuracy
+ * \param surface Surface used in comparison
+ * \param referenceSurface Test Surface used in comparison
+ * \param allowable_error Allowable difference (squared) in blending accuracy.
  *
- * \returns 0 if comparison succeeded, >0 (=number of pixels where comparison failed) if comparison failed, <0 for any other error.
+ * \returns 0 if comparison succeeded, >0 (=number of pixels where comparison failed) if comparison failed, -1 if any of the surfaces were NULL, -2 if the surface sizes differ.
  */
-int SDLTest_CompareSurfaces(SDL_Surface *sur, SDL_Surface *img, int allowable_error);
-      
+int SDLTest_CompareSurfaces(SDL_Surface *surface, SDL_Surface *referenceSurface, int allowable_error);
+
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus
-/* *INDENT-OFF* */
 }
-/* *INDENT-ON* */
 #endif
 #include "close_code.h"
 

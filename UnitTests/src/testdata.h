@@ -122,7 +122,8 @@ namespace Mezzanine
                 void AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior=OverWriteIfLessSuccessful);
 
                 /// @brief Add all the items in another UnitTestGroup to this one
-                /// @paramm rhs The item on the right hand side.
+                /// @param rhs The item on the right hand side of the +=.
+                /// @return A reference to this is returned allowiong operator chaining.
                 const UnitTestGroup& operator+=(const UnitTestGroup& rhs);
 
                 /// @brief Print the results or save them to a file.
@@ -132,9 +133,10 @@ namespace Mezzanine
                 /// @param HeaderOutput makes the output a little more understandif it is short or needs to be copied into a spreadsheet. Defaults to true/enabled.
                 virtual void DisplayResults(std::ostream& Output=std::cout, bool Summary = true, bool FullOutput = true, bool HeaderOutput = true);
 
-                /// @brief Convert a Bool to an added test
-                /// @param TestName The name of the Test
-                /// @param Condition if false converted to Failed and if true converted Success
+                /// @brief Convert a Bool to an added test.
+                /// @param TestName The name of the Test.
+                /// @param Condition if false converted to Failed and if true converted Success.
+                /// @return The value passed in as the condition.
                 virtual bool AddSuccessFromBool(Mezzanine::String TestName, bool Condition);
         };
 

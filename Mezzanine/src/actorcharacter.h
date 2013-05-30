@@ -46,7 +46,7 @@
 class btRigidBody;
 
 // Do not put in documentation until this is done
-/// @cond 0
+/// @cond INTERNAL
 
 namespace Mezzanine
 {

@@ -234,7 +234,7 @@ namespace Mezzanine
         else if(LowerVar == "commonuserdata") return GetCommonUserDataDir();
         else
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to retrieve unknown path variable: \"" + PathVar + "\".");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to retrieve unknown path variable: \"" + PathVar + "\".");
         }
     }
 
@@ -484,7 +484,7 @@ namespace Mezzanine
             case Mezzanine::AT_Zip:
                 return String("Zip");
             default:
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
                 return String("");
         }
     }
@@ -495,7 +495,7 @@ namespace Mezzanine
             { return Mezzanine::AT_FileSystem; }
         if(String("Zip")==FromString)
             { return Mezzanine::AT_Zip; }
-        MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
+        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
         return AT_Invalid;
     }
 

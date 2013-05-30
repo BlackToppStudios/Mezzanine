@@ -49,12 +49,18 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
+/// @brief A large number of test of the Vector3 class, nearly complete coverage.
 class vector3tests : public UnitTestGroup
 {
     public:
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
+        /// @return Returns a String containing "vector3"
         virtual String Name()
             { return String("vector3"); }
 
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
+        /// @details Provides no Interactive Test (that would be silly), and about 80 or 90
+        /// non-interactive test, usually one or two per method on the Vector3
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)

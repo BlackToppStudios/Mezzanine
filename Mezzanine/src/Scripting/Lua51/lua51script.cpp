@@ -129,7 +129,7 @@ namespace Mezzanine
             Whole Lua51Script::GetReturnCount() const
                 { return Returns.size(); }
 
-            ArgumentSet Lua51Script::GetAllReturns() const
+            ArgumentGroup Lua51Script::GetAllReturns() const
                 { return Returns; }
         } // Lua
     } // Scripting

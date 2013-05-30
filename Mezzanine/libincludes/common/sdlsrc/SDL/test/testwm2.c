@@ -13,15 +13,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "common.h"
+#include "SDL_test_common.h"
 
-static CommonState *state;
+static SDLTest_CommonState *state;
 
 /* Call this instead of exit(), so we can clean up SDL: atexit() is evil. */
 static void
 quit(int rc)
 {
-    CommonQuit(state);
+    SDLTest_CommonQuit(state);
     exit(rc);
 }
 
@@ -42,15 +42,16 @@ main(int argc, char *argv[])
         "NO",
         "hand",
     };
-    SDL_assert(SDL_arraysize(cursorNames) == SDL_NUM_SYSTEM_CURSORS);
 
     int i, done;
     SDL_Event event;
     int system_cursor = -1;
     SDL_Cursor *cursor = NULL;
 
+    SDL_assert(SDL_arraysize(cursorNames) == SDL_NUM_SYSTEM_CURSORS);
+
     /* Initialize test framework */
-    state = CommonCreateState(argv, SDL_INIT_VIDEO);
+    state = SDLTest_CommonCreateState(argv, SDL_INIT_VIDEO);
     if (!state) {
         return 1;
     }
@@ -58,17 +59,17 @@ main(int argc, char *argv[])
     for (i = 1; i < argc;) {
         int consumed;
 
-        consumed = CommonArg(state, i);
+        consumed = SDLTest_CommonArg(state, i);
         if (consumed == 0) {
             consumed = -1;
         }
         if (consumed < 0) {
-            fprintf(stderr, "Usage: %s %s\n", argv[0], CommonUsage(state));
+            fprintf(stderr, "Usage: %s %s\n", argv[0], SDLTest_CommonUsage(state));
             quit(1);
         }
         i += consumed;
     }
-    if (!CommonInit(state)) {
+    if (!SDLTest_CommonInit(state)) {
         quit(2);
     }
 
@@ -77,17 +78,26 @@ main(int argc, char *argv[])
     while (!done) {
         /* Check for events */
         while (SDL_PollEvent(&event)) {
-            CommonEvent(state, &event, &done);
+            SDLTest_CommonEvent(state, &event, &done);
 
             if (event.type == SDL_WINDOWEVENT) {
+                if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+                    SDL_Window *window = SDL_GetWindowFromID(event.window.windowID);
+                    if (window) {
+                        printf("Window %d resized to %dx%d\n",
+                            event.window.windowID,
+                            event.window.data1,
+                            event.window.data2);
+                    }
+                }
                 if (event.window.event == SDL_WINDOWEVENT_MOVED) {
                     SDL_Window *window = SDL_GetWindowFromID(event.window.windowID);
                     if (window) {
-                        printf("Window %d moved to %d,%d (display %d)\n",
+                        printf("Window %d moved to %d,%d (display %s)\n",
                             event.window.windowID,
                             event.window.data1,
                             event.window.data2,
-                            SDL_GetWindowDisplay(window));
+                            SDL_GetDisplayName(SDL_GetWindowDisplayIndex(window)));
                     }
                 }
             }
@@ -119,8 +129,8 @@ main(int argc, char *argv[])
     SDL_FreeCursor(cursor);
 
     quit(0);
-	// keep the compiler happy ...
-	return(0);
+    // keep the compiler happy ...
+    return(0);
 }
 
 /* vi: set ts=4 sw=4 expandtab: */

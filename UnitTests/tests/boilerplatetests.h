@@ -48,12 +48,17 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
+/// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
 class boilerplatetests : public UnitTestGroup
 {
     public:
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
+        /// @return Returns a String containing "boilerplate"
         virtual String Name()
             { return String("boilerplate"); }
 
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
+        /// @detail provides on Sample interactive and one sample automatic test.
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)

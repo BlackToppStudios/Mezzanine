@@ -91,13 +91,14 @@ namespace Mezzanine
                     /// @param ScriptToCompile A pointer to the Lua51Script to compile.
                     virtual void Compile(Lua51Script* ScriptToCompile);
 
+                    /// @brief Performs the compilation on a raw pointer, only used internally
+                    /// @param ScriptToCompile A pointer to the Lua51Script to compile.
+                    virtual void Execute(Lua51Script* ScriptTorun);
+
                     /// @brief This will do nothing if the past integer
                     /// @param LuaReturn The return code from a Lua Compile or execution call
                     /// @throws This Throws ScriptLuaYieldException, ScriptLuaRuntimeException, ScriptLuaRuntimeException, ScriptLuaErrErrException, SyntaxErrorLuaException, OutOfMemoryException, FileException, ScriptLuaException with as much precision as possible when thrown.
                     virtual void ThrowFromLuaErrorCode(int LuaReturn);
-
-                    //virtual void Execute(LuaScript* ScriptToRun);
-
 
                 public:
                     /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries open a little easier.
@@ -118,21 +119,54 @@ namespace Mezzanine
                         AllLibs        = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
                     };
 
+                    /// @brief Constructs a Scripting engine with a set of libraries preloaded.
+                    /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to load, this defaults to DefaultLibs
                     explicit Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen=DefaultLibs);
 
+                    /// @brief Virtual Deconstructor
                     virtual ~Lua51ScriptingEngine();
 
+                    /// @brief Compile and execute a passed string.
+                    /// @param ScriptSource A String containing the source code to be executed.
+                    /// @details This will create a CountPtr to a Lua51Script and assign both its Source and Byte code
                     virtual CountedPtr<iScript> Execute(const String& ScriptSource);
 
+                    /// @brief Implements a required for iScriptManager, Calls Execute(CountedPtr<Lua51Script>)
+                    /// @param ScriptToRun A CountedPtr<iScript> to be run. This is cast to an CountedPtr<Lua51Script> and called if possible.
+                    /// @throw If this cannot be cast this throws a ParametersCastException.
+                    /// @todo fill in the kind of exception thrown.
                     virtual void Execute(CountedPtr<iScript> ScriptToRun);
 
+                    /// @brief Accepts an Counted ptr to a script and compiles it.
+                    /// @param ScriptToCompile The CountedPtr to compile
+                    /// @details The ByteCode member on the passed script is erased, if present,
+                    /// and sets it to corresponding lua binary.
+                    /// @throw If an invalid script is passed this throws ParametersCastException.
                     virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile);
 
+                    /// @brief Calls Compile(CountedPtr<iScriptCompilable>) and returns a CountedPtr to the script created.
+                    /// @param SourceToCompile A string Containing valid lua source code.
+                    /// @return A CountedPtr<iScriptCompilable> pointing to a created Script object that contains the source and compile binary.
                     virtual CountedPtr<iScriptCompilable> Compile(const String& SourceToCompile);
 
                     /// @copydoc ManagerBase::GetImplementationTypeName()
+                    /// @return A String containing "Lua51ScriptingEngine".
                     virtual String GetImplementationTypeName() const;
 
+                    /// @brief This will execute the passed script, compiling it if not present
+                    /// @param ScriptToRun The script to execute.
+                    /// @details If a bytecode is present on ScriptToRun then it is executed. Otherwise the Source is
+                    /// compiled and the result is set as the bytecode and it is executed.
+                    virtual void Execute(CountedPtr<Lua51Script> ScriptToRun);
+
+                    /// @brief Compile a Lua51 script.
+                    /// @param ScriptToCompile A CountedPtr to a Lua51Script.
+                    /// @details Compiles the source code present in ScriptToCompile and puts the results back in
+                    /// the ByteCode member on the script.
+                    virtual void Compile(CountedPtr<Lua51Script> ScriptToCompile);
+
+                    /// @brief Makes Lua function calls in Lua standard libraries available for use in Lua scripts.
+                    /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to load, this defaults to DefaultLibs
                     virtual void OpenLibraries(int LibrariesToOpen);
 
                     /// @brief Prepare most Mezzanine and some Lua functionality for use in Lua scripts.
@@ -186,8 +220,12 @@ namespace Mezzanine
                     /// Lua manuak at http://www.lua.org/manual/5.1/manual.html#5.9 .
                     virtual void OpenDebugLibrary();
 
-
+                    /// @brief Make the everything in the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @warning This makes arbitrary execution of programs and file management available to scripts. This is not suitable if untrusted scripts will be run.
                     virtual void OpenMezzanineLibrary();
+
+                    /// @brief Make a subset of the Mezzanine Library available for use in Lua51 scripts.
+                    /// @details This should not allow access to any functions, methods or classes than can execute code or manage files.
                     virtual void OpenMezzanineSafeLibrary();
             };
 

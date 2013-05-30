@@ -166,7 +166,7 @@ namespace Mezzanine
                 break;}
 
             default:
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unknown SDL Event Inserted");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unknown SDL Event Inserted");
                 break;
         }
 

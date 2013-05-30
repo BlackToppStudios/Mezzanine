@@ -99,7 +99,7 @@ namespace Mezzanine
             void Base64DecodeImpl(const String& EncodedString, BinaryBuffer& Results)
             {
                 if(Results.Binary==0 || Results.Size==0)
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Cannot encode an empty buffer."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Cannot encode an empty buffer."); }
 
                 String::const_iterator Progress = EncodedString.begin();
                 Whole Output = 0;
@@ -118,7 +118,7 @@ namespace Mezzanine
                     //cout << *(Progress+0) << *(Progress+1) << *(Progress+2) << *(Progress+3) << endl;
                     //cout << !IsBase64(*Progress) << !IsBase64(*(Progress+1)) << !IsBase64(*(Progress+2)) << !IsBase64(*(Progress+3)) <<endl;
                     if(!IsBase64(*Progress) || !IsBase64(*(Progress+1)) || !IsBase64(*(Progress+2)) || !IsBase64(*(Progress+3)))
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
 
                     First = Base64Chars.find(*(Progress+0));
                     Second = Base64Chars.find(*(Progress+1));
@@ -344,7 +344,7 @@ namespace Mezzanine
         Whole PredictBinarySizeFromBase64String(String const& EncodedString)
         {
             if(EncodedString.size()<4)
-                { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "It is not possible to have a base64 string less than 4 bytes in length, but one was received.") }
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "It is not possible to have a base64 string less than 4 bytes in length, but one was received.") }
 
             return EncodedString.size()/4*3 - ( EncodedString.at(EncodedString.size()-2)=='=' ?1:0) - ( EncodedString.at(EncodedString.size()-1)=='=' ?1:0);
         }

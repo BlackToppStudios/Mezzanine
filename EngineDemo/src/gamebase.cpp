@@ -430,7 +430,7 @@ bool CheckForStuff()
         #endif
 
         if(OneInput->GetType()!=EventBase::UserInput)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
 
         #ifdef MEZZDEBUG
         TheEntresol->Log(*OneInput);
@@ -460,13 +460,13 @@ bool CheckForStuff()
     while(0 != OneWindowEvent)
     {
         if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
         if(!OneWindowEvent->IsEventIDValid())
         {
             StringStream ExceptionStream;
             ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,ExceptionStream.str());
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
         }
 
         TheEntresol->Log(*OneWindowEvent);
@@ -498,7 +498,7 @@ bool CheckForStuff()
     while(0 != OneCollision)
     {
         if(OneCollision->GetType() != EventBase::Collision)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventCollision as an EventCollision."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventCollision as an EventCollision."); }
         delete OneCollision;
         OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
     }

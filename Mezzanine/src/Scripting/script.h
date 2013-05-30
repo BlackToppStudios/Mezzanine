@@ -81,14 +81,14 @@ namespace Mezzanine
                 virtual void AddArgument(CountedPtr<iScriptArgument> Arg) = 0;
 
                 /// @brief Remove an argument based on a CountedPtr to the script
-                /// @detail This searches through the internal list and removes the first entry it finds matching this.
+                /// @details This searches through the internal list and removes the first entry it finds matching this.
                 /// This should be treated as taking linear time, relative to the total count of arguments assigned to this script, to run.
                 /// This can be used with AddArgument to re-order the way parameters are passed into a script
                 /// @param Arg A CountedPtr matching the one to be removed
                 virtual void RemoveArgument(CountedPtr<iScriptArgument> Arg) = 0;
 
                 /// @brief Remove a Script argument based on the order it will be passed into the Script at Execution.
-                /// @detail This removes the  specified Argument from the internal list. This should be treated as taking linear
+                /// @details This removes the  specified Argument from the internal list. This should be treated as taking linear
                 /// time, relative to the total count of arguments assigned to this script, to run.
                 /// @param ArgNumber The number of the Argument to be removed. This behaves similar to an array or vector as it starts counting at 0.
                 virtual void RemoveArgument(Whole ArgNumber) = 0;
@@ -112,7 +112,7 @@ namespace Mezzanine
 
                 /// @brief Sets the string version of the script.
                 /// @param Code A string that defines the source code to be executed or compiled whne running the script.
-                /// @detail It is recomended that when this is called that implentors clear any bytecode or any other compiled
+                /// @details It is recomended that when this is called that implentors clear any bytecode or any other compiled
                 /// version of the script. This will prevent issues with mismatched version of source and bytecode.
                 virtual void SetSourceCode(const String& Code) = 0;
 
@@ -124,12 +124,12 @@ namespace Mezzanine
                 // Compilation Detection support
 
                 /// @brief Used to check if there is a bytecode version of the script available.
-                /// @return This will return false on all scripts not implementing @ref ScriptCompilable and only false when the bytecode is already compiled.
+                /// @return This will return false on all scripts not implementing ScriptCompilable and only false when the bytecode is already compiled.
                 virtual bool IsCompiled() const
                     { return false; }
 
                 /// @brief Used to check if this Script supports compilation bytecode.
-                /// @return This will return false on all scripts not implementing @ref ScriptCompilable and on those that do implement it.
+                /// @return This will return false on all scripts not implementing ScriptCompilable and on those that do implement it.
                 virtual bool IsCompilable() const
                     { return false; }
 
@@ -146,9 +146,10 @@ namespace Mezzanine
                 // Multiple return Detection Support
 
                 /// @brief Does this script support multiple return values.
-                /// @detail Some scripting language support return tuples of values(Python), return an array of values (javascript), returning tables made of records
-                /// which are groups or values(sql), and some allow return an arbitrary number of items that could be tables, or values and allow for tables to contain
+                /// @details Some scripting language support return tuples of values(Python), return an array of values (javascript), returning tables made of records
+                /// which are groups of values(sql), and some allow return an arbitrary number of items that could be tables, or values and allow for tables to contain
                 /// more tables and values(Lua). This allows for checking for an interface to retrieve some of these.
+                /// @return This default implementation returns false, but if the target language supports this it is expected to overload this and return true instead.
                 virtual bool CanReturnMultples()
                     { return false; }
 
@@ -233,7 +234,7 @@ namespace Mezzanine
                 virtual bool IsCompiled() const = 0;
 
                 /// @brief Any script implementing this class is compilable.
-                /// @brief returns true.
+                /// @return returns true.
                 virtual bool IsCompilable() const
                     { return true; }
 
@@ -248,7 +249,7 @@ namespace Mezzanine
 
 
         /// @brief A group of arguments that can be returned from some scripts
-        typedef std::vector< CountedPtr<iScriptArgument> > ArgumentSet;
+        typedef std::vector< CountedPtr<iScriptArgument> > ArgumentGroup;
 
         /// @brief This script can return simple group of values.
         /// @details This loosely correlates to a tuple like the simple returns
@@ -270,7 +271,7 @@ namespace Mezzanine
 
                 /// @brief Get the returns from the last exection of the script
                 /// @return An ArgumentSet that can be iterated over to get all the values returned.
-                virtual ArgumentSet GetAllReturns() const = 0;
+                virtual ArgumentGroup GetAllReturns() const = 0;
 
                 /// @brief Get a pointer to the most Derived type of this class
                 /// @return A pointer of the most derived pointing to this.
@@ -287,9 +288,8 @@ namespace Mezzanine
     {
         public:
             typedef Scripting::iScript RefCountType;
-            typedef Scripting::iScript * PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };
@@ -301,9 +301,8 @@ namespace Mezzanine
     {
         public:
             typedef Scripting::iScriptCompilable RefCountType;
-            typedef Scripting::iScriptCompilable * PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };
@@ -315,9 +314,8 @@ namespace Mezzanine
     {
         public:
             typedef Scripting::iScriptMultipleReturn RefCountType;
-            typedef Scripting::iScriptMultipleReturn * PtrType;
 
-            static PtrType ConstructionPointer(PtrType Target)
+            static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
             enum { IsCastable = CastDynamic };

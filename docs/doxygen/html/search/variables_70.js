@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['parent',['Parent',['../classMezzanine_1_1WorldObjectGraphicsSettings.xhtml#a3c3e1552382dd78af68a561464bca083',1,'Mezzanine::WorldObjectGraphicsSettings::Parent()'],['../classMezzanine_1_1WorldObjectPhysicsSettings.xhtml#a0dc3ea3047f6692dcafe4f4ade69aba0',1,'Mezzanine::WorldObjectPhysicsSettings::Parent()'],['../classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a253125a0d9f44a0c689f219acc47bc03',1,'Mezzanine::Physics::PhysicsProxy::Parent()']]],
+  ['parent',['parent',['../structpugi_1_1xml__node__struct.xhtml#af692c222bcc5a9f61108cb3ae0b7b5ea',1,'pugi::xml_node_struct::parent()'],['../classMezzanine_1_1WorldObjectGraphicsSettings.xhtml#a3c3e1552382dd78af68a561464bca083',1,'Mezzanine::WorldObjectGraphicsSettings::Parent()'],['../classMezzanine_1_1WorldObjectPhysicsSettings.xhtml#a0dc3ea3047f6692dcafe4f4ade69aba0',1,'Mezzanine::WorldObjectPhysicsSettings::Parent()'],['../classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a253125a0d9f44a0c689f219acc47bc03',1,'Mezzanine::Physics::PhysicsProxy::Parent()']]],
   ['parsecdata',['ParseCdata',['../namespaceMezzanine_1_1XML.xhtml#a4504643b4b1ad4cd0ed85fb42b25e1a4',1,'Mezzanine::XML']]],
   ['parsecomments',['ParseComments',['../namespaceMezzanine_1_1XML.xhtml#aa47eb6ac501513239cda4ff7b23f6786',1,'Mezzanine::XML']]],
   ['parsedeclaration',['ParseDeclaration',['../namespaceMezzanine_1_1XML.xhtml#a8f36bcf2332a3393c6bb437f080e7468',1,'Mezzanine::XML']]],
@@ -27,5 +27,7 @@ var searchData=
   ['position',['Position',['../structMezzanine_1_1UI_1_1Vertex.xhtml#a9f9ab1c9be1171e2b5ad6cff63f7e194',1,'Mezzanine::UI::Vertex']]],
   ['postmainloop',['PostMainLoop',['../classMezzanine_1_1ManagerBase.xhtml#ab27f3f7458b9a6f2a08974d096125ed5',1,'Mezzanine::ManagerBase']]],
   ['premainloop',['PreMainLoop',['../classMezzanine_1_1ManagerBase.xhtml#a1652110258237bc313a02757229d0f47',1,'Mezzanine::ManagerBase']]],
+  ['prev_5fattribute_5fc',['prev_attribute_c',['../structpugi_1_1xml__attribute__struct.xhtml#a0e3a022235b316e4cfc1034ceb7d7862',1,'pugi::xml_attribute_struct']]],
+  ['prev_5fsibling_5fc',['prev_sibling_c',['../structpugi_1_1xml__node__struct.xhtml#a74e62128c88c422c0ed969633bbb2d4e',1,'pugi::xml_node_struct']]],
   ['priority',['Priority',['../classMezzanine_1_1ManagerBase.xhtml#a96fb02bf2f4e8b4afe70dedd0d8c6ac9',1,'Mezzanine::ManagerBase']]]
 ];
