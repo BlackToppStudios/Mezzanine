@@ -257,7 +257,13 @@ namespace Mezzanine
         /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
         Resource::FileStream InitStream(InitializerFile,EngineDataPath);
         XML::Document InitDoc;
-        InitDoc.Load(InitStream);
+        XML::ParseResult DocResult = InitDoc.Load(InitStream);
+        if( DocResult.Status != XML::StatusOk )
+        {
+            StringStream ExceptionStream;
+            ExceptionStream << "Failed to parse XML file \"" << InitializerFile << "\".";
+            MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+        }
 
         // Get the world settings and set them.
         XML::Node WorldSettings = InitDoc.GetChild("WorldSettings");
