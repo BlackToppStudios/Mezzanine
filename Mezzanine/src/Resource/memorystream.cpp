@@ -63,7 +63,7 @@ namespace Mezzanine
             BufferPos = BufferStart;
             BufferEnd = BufferStart + BufferSize;
 
-            if(BufferEnd < BufferStart)
+            if(BufferEnd <= BufferStart)
                 MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
         }
 
@@ -75,7 +75,7 @@ namespace Mezzanine
             Size = BufferSize;
             BufferEnd = BufferStart + BufferSize;
 
-            if(BufferEnd < BufferStart)
+            if(BufferEnd <= BufferStart)
                 MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
         }
 

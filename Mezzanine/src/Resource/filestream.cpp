@@ -61,7 +61,7 @@ namespace Mezzanine
             StandardStream->seekg(0,std::ios_base::end);
             Size = (size_t)StandardStream->tellg();
             StandardStream->flush();
-            this->Advance(0);
+            this->SetStreamPosition(0);
         }
 
         FileStream::FileStream(const String& FileName, const String& Path, const UInt16 Mode)
@@ -100,7 +100,7 @@ namespace Mezzanine
             StandardStream->seekg(0,std::ios_base::end);
             Size = (size_t)StandardStream->tellg();
             StandardStream->flush();
-            this->Advance(0);
+            this->SetStreamPosition(0);
         }
 
         FileStream::~FileStream()
