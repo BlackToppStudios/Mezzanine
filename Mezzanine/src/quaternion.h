@@ -333,19 +333,34 @@ namespace Mezzanine
             // Equality Comparison Operators
 
             /// @brief Equality Comparison Operator from Mezzanine::Quaternion.
-            /// @param Other The other quaternion to overwrite this one.
+            /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are semantically equal, false otherwise.
-            bool operator== (const Mezzanine::Quaternion& Other) const;
+            bool operator==(const Mezzanine::Quaternion& Other) const;
 
             /// @brief Equality Comparison Operator from Ogre::Quaternion.
-            /// @param Other The other quaternion to overwrite this one.
+            /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are semantically equal, false otherwise.
-            bool operator== (const Ogre::Quaternion& Other) const;
+            bool operator==(const Ogre::Quaternion& Other) const;
 
             /// @brief Equality Comparison Operator from btQuaternion.
-            /// @param Other The other quaternion to overwrite this one.
+            /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are semantically equal, false otherwise.
-            bool operator== (const btQuaternion& Other) const;
+            bool operator==(const btQuaternion& Other) const;
+
+            /// @brief Inequality Comparison Operator from Mezzanine::Quaternion.
+            /// @param Other The other quaternion to compare with.
+            /// @return True if the Quaternions are not semantically equal, false otherwise.
+            bool operator!=(const Mezzanine::Quaternion& Other) const;
+
+            /// @brief Inequality Comparison Operator from Ogre::Quaternion.
+            /// @param Other The other quaternion to compare with.
+            /// @return True if the Quaternions are not semantically equal, false otherwise.
+            bool operator!=(const Ogre::Quaternion& Other) const;
+
+            /// @brief Inequality Comparison Operator from btQuaternion.
+            /// @param Other The other quaternion to compare with.
+            /// @return True if the Quaternions are not semantically equal, false otherwise.
+            bool operator!=(const btQuaternion& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
