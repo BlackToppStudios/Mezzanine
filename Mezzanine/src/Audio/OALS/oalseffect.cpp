@@ -41,6 +41,7 @@
 #define _audiooalseffect_cpp
 
 #include "Audio/OALS/oalseffect.h"
+#include "Audio/OALS/oalsfilter.h"
 #include "exception.h"
 
 #include "Audio/OALS/oalsefxinterface.h.cpp"
@@ -386,7 +387,7 @@ namespace Mezzanine
 
             void Effect::SetType(const EffectType& EffType)
             {
-                switch(Type)
+                switch(EffType)
                 {
                     case Audio::ET_Null:
                     case Audio::ET_EAX_Reverb:
@@ -571,8 +572,11 @@ namespace Mezzanine
                     this->EFX->alGetEffectf(this->InternalEffect,AL_EAXREVERB_LFREFERENCE,&Ret.LFReference);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_EAXREVERB_ROOM_ROLLOFF_FACTOR,&Ret.RoomRolloffFactor);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_EAXREVERB_AIR_ABSORPTION_GAINHF,&Ret.AirAbsorptionGainHF);
-                    this->EFX->alGetEffecti(this->InternalEffect,AL_EAXREVERB_DECAY_HFLIMIT,&Ret.DecayHFLimit);
-                    this->Valid = this->CheckError();
+
+                    ALint BoolParam;
+                    this->EFX->alGetEffecti(this->InternalEffect,AL_EAXREVERB_DECAY_HFLIMIT,&BoolParam);
+                    Ret.DecayHFLimit = static_cast<bool>(BoolParam);
+
                     return Ret;
                 }else{
                     return EAXReverbParameters();
@@ -608,20 +612,23 @@ namespace Mezzanine
                 if( InternalType == AL_EFFECT_REVERB ) {
                     ReverbParameters Ret;
 
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_DENSITY,&Ret.Density);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_DIFFUSION,&Ret.Diffusion);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_GAIN,&Ret.Gain);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_GAINHF,&Ret.GainHF);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_DECAY_TIME,&Ret.DecayTime);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_DECAY_HFRATIO,&Ret.DecayHFRatio);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_REFLECTIONS_GAIN,&Ret.ReflectionsGain);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_REFLECTIONS_DELAY,&Ret.ReflectionsDelay);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_LATE_REVERB_GAIN,&Ret.LateReverbGain);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_LATE_REVERB_DELAY,&Ret.LateReverbDelay);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_ROOM_ROLLOFF_FACTOR,&Ret.RoomRolloffFactor);
-                    this->EFX->alEffectf(this->InternalEffect,AL_REVERB_AIR_ABSORPTION_GAINHF,&Ret.AirAbsorptionGainHF);
-                    this->EFX->alEffecti(this->InternalEffect,AL_REVERB_DECAY_HFLIMIT,&Ret.DecayHFLimit);
-                    this->Valid = this->CheckError();
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_DENSITY,&Ret.Density);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_DIFFUSION,&Ret.Diffusion);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_GAIN,&Ret.Gain);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_GAINHF,&Ret.GainHF);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_DECAY_TIME,&Ret.DecayTime);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_DECAY_HFRATIO,&Ret.DecayHFRatio);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_REFLECTIONS_GAIN,&Ret.ReflectionsGain);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_REFLECTIONS_DELAY,&Ret.ReflectionsDelay);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_LATE_REVERB_GAIN,&Ret.LateReverbGain);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_LATE_REVERB_DELAY,&Ret.LateReverbDelay);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_ROOM_ROLLOFF_FACTOR,&Ret.RoomRolloffFactor);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_REVERB_AIR_ABSORPTION_GAINHF,&Ret.AirAbsorptionGainHF);
+
+                    ALint BoolParam;
+                    this->EFX->alGetEffecti(this->InternalEffect,AL_REVERB_DECAY_HFLIMIT,&BoolParam);
+                    Ret.DecayHFLimit = static_cast<bool>(BoolParam);
+
                     return Ret;
                 }else{
                     return ReverbParameters();
@@ -648,7 +655,7 @@ namespace Mezzanine
                 ALenum InternalType = 0;
                 this->EFX->alGetEffecti(this->InternalEffect,AL_EFFECT_TYPE,&InternalType);
                 if( InternalType == AL_EFFECT_CHORUS ) {
-                    DistortionParameters Ret;
+                    ChorusParameters Ret;
 
                     ALenum WaveformType;
                     this->EFX->alGetEffecti(this->InternalEffect,AL_CHORUS_WAVEFORM,&WaveformType);
@@ -659,10 +666,9 @@ namespace Mezzanine
                     this->EFX->alGetEffectf(this->InternalEffect,AL_CHORUS_DEPTH,&Ret.Depth);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_CHORUS_FEEDBACK,&Ret.Feedback);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_CHORUS_DELAY,&Ret.Delay);
-                    this->Valid = this->CheckError();
                     return Ret;
                 }else{
-                    return DistortionParameters();
+                    return ChorusParameters();
                 }
             }
 
@@ -692,7 +698,6 @@ namespace Mezzanine
                     this->EFX->alGetEffectf(this->InternalEffect,AL_DISTORTION_LOWPASS_CUTOFF,&Ret.LowpassCutoff);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_DISTORTION_EQCENTER,&Ret.EqCenter);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_DISTORTION_EQBANDWIDTH,&Ret.EqBandwidth);
-                    this->Valid = this->CheckError();
                     return Ret;
                 }else{
                     return DistortionParameters();
@@ -725,7 +730,6 @@ namespace Mezzanine
                     this->EFX->alGetEffectf(this->InternalEffect,AL_ECHO_DAMPING,&Ret.Damping);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_ECHO_FEEDBACK,&Ret.Feedback);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_ECHO_SPREAD,&Ret.Spread);
-                    this->Valid = this->CheckError();
                     return Ret;
                 }else{
                     return EchoParameters();
@@ -763,7 +767,6 @@ namespace Mezzanine
                     this->EFX->alGetEffectf(this->InternalEffect,AL_FLANGER_DEPTH,&Ret.Depth);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_FLANGER_FEEDBACK,&Ret.Feedback);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_FLANGER_DELAY,&Ret.Delay);
-                    this->Valid = this->CheckError();
                     return Ret;
                 }else{
                     return FlangerParameters();
@@ -798,7 +801,6 @@ namespace Mezzanine
                     Ret.Right = ConvertInternalShiftDirectionType(RightWaveformType);
 
                     this->EFX->alGetEffectf(this->InternalEffect,AL_FREQUENCY_SHIFTER_FREQUENCY,&Ret.Frequency);
-                    this->Valid = this->CheckError();
                     return Ret;
                 }else{
                     return FrequencyShiftParameters();
@@ -842,7 +844,6 @@ namespace Mezzanine
                     this->EFX->alGetEffecti(this->InternalEffect,AL_VOCAL_MORPHER_PHONEMEA_COARSE_TUNING,&Ret.PhonemeACoarseTune);
                     this->EFX->alGetEffecti(this->InternalEffect,AL_VOCAL_MORPHER_PHONEMEB_COARSE_TUNING,&Ret.PhonemeBCoarseTune);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_VOCAL_MORPHER_RATE,&Ret.Rate);
-                    this->Valid = this->CheckError();
                     return Ret;
                 }else{
                     return VocalMorpherParameters();
@@ -869,7 +870,6 @@ namespace Mezzanine
 
                     this->EFX->alGetEffecti(this->InternalEffect,AL_PITCH_SHIFTER_COARSE_TUNE,&Ret.CoarseTune);
                     this->EFX->alGetEffecti(this->InternalEffect,AL_PITCH_SHIFTER_FINE_TUNE,&Ret.FineTune);
-                    this->Valid = this->CheckError();
                     return Ret;
                 }else{
                     return PitchShifterParameters();
@@ -901,7 +901,6 @@ namespace Mezzanine
 
                     this->EFX->alGetEffectf(this->InternalEffect,AL_RING_MODULATOR_FREQUENCY,&Ret.Frequency);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_RING_MODULATOR_HIGHPASS_CUTOFF,&Ret.HighPassCutoff);
-                    this->Valid = this->CheckError();
                     return Ret;
                 }else{
                     return RingModulatorParameters();
@@ -928,11 +927,10 @@ namespace Mezzanine
                 if( InternalType == AL_EFFECT_AUTOWAH ) {
                     AutowahParameters Ret;
 
-                    this->EFX->alGetEffecti(this->InternalEffect,AL_AUTOWAH_ATTACK_TIME,&Ret.AttackTime);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_AUTOWAH_ATTACK_TIME,&Ret.AttackTime);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_AUTOWAH_RELEASE_TIME,&Ret.ReleaseTime);
-                    this->EFX->alGetEffecti(this->InternalEffect,AL_AUTOWAH_RESONANCE,&Ret.Resonance);
+                    this->EFX->alGetEffectf(this->InternalEffect,AL_AUTOWAH_RESONANCE,&Ret.Resonance);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_AUTOWAH_PEAK_GAIN,&Ret.PeakGain);
-                    this->Valid = this->CheckError();
                     return Ret;
                 }else{
                     return AutowahParameters();
@@ -956,8 +954,10 @@ namespace Mezzanine
                 if( InternalType == AL_EFFECT_COMPRESSOR ) {
                     CompressorParameters Ret;
 
-                    this->EFX->alGetEffecti(this->InternalEffect,AL_COMPRESSOR_ONOFF,&Ret.Active);
-                    this->Valid = this->CheckError();
+                    ALint BoolParam;
+                    this->EFX->alGetEffecti(this->InternalEffect,AL_COMPRESSOR_ONOFF,&BoolParam);
+                    Ret.Active = static_cast<bool>(BoolParam);
+
                     return Ret;
                 }else{
                     return CompressorParameters();
@@ -1000,7 +1000,6 @@ namespace Mezzanine
                     this->EFX->alGetEffectf(this->InternalEffect,AL_EQUALIZER_MID2_WIDTH,&Ret.Mid2Width);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_EQUALIZER_HIGH_GAIN,&Ret.HighGain);
                     this->EFX->alGetEffectf(this->InternalEffect,AL_EQUALIZER_HIGH_CUTOFF,&Ret.HighCutoff);
-                    this->Valid = this->CheckError();
                     return Ret;
                 }else{
                     return EqualizerParameters();

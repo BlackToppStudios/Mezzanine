@@ -120,7 +120,7 @@ namespace Mezzanine
             void Filter::UpdateVolume()
             {
                 ALenum Type;
-                EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,Type);
+                EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,&Type);
                 switch(Type)
                 {
                     case AL_FILTER_LOWPASS:   EFX->alFilterf(this->InternalFilter,AL_LOWPASS_GAIN,this->Volume);    break;
@@ -132,7 +132,7 @@ namespace Mezzanine
             void Filter::UpdateFrequencyVolume()
             {
                 ALenum Type;
-                EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,Type);
+                EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,&Type);
                 switch(Type)
                 {
                     case AL_FILTER_LOWPASS:   EFX->alFilterf(this->InternalFilter,AL_LOWPASS_GAINHF,this->HFVolume);   break;
@@ -164,7 +164,7 @@ namespace Mezzanine
             {
                 if( this->Valid )
                 {
-                    EFX->alFilter(this->InternalFilter,AL_FILTER_TYPE,ConvertMezzanineFilterType(FilType));
+                    EFX->alFilteri(this->InternalFilter,AL_FILTER_TYPE,ConvertMezzanineFilterType(FilType));
                     this->UpdateVolume();
                     this->UpdateFrequencyVolume();
                     this->Dirty = true;
@@ -176,7 +176,7 @@ namespace Mezzanine
             {
                 if( this->Valid ) {
                     ALenum Type;
-                    EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,Type);
+                    EFX->alGetFilteri(this->InternalFilter,AL_FILTER_TYPE,&Type);
                     return ConvertInternalFilterType(Type);
                 }else{
                     return Audio::FT_Null;

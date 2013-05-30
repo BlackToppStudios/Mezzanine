@@ -49,6 +49,7 @@ namespace Mezzanine
         namespace OALS
         {
             class Filter;
+            class EFXInterface;
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the OpenALSoft implemenation for an Audio Effect.
             /// @details

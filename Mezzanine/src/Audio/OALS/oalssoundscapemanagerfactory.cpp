@@ -64,20 +64,14 @@ namespace Mezzanine
 
             ManagerBase* OALSSoundScapeManagerFactory::CreateManager(NameValuePairList& Params)
             {
-                if(SoundScapeManager::SingletonValid())
-                {
-                    /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-                    return SoundScapeManager::GetSingletonPtr();
-                }else return new OALS::SoundScapeManager();
+                // SoundScapeManagers are not singleton, so let'er rip!
+                return new OALS::SoundScapeManager();
             }
 
             ManagerBase* OALSSoundScapeManagerFactory::CreateManager(XML::Node& XMLNode)
             {
-                if(AudioManager::SingletonValid())
-                {
-                    /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-                    return SoundScapeManager::GetSingletonPtr();
-                }else return new OALS::SoundScapeManager(XMLNode);
+                // SoundScapeManagers are not singleton, so let'er rip!
+                return new OALS::SoundScapeManager(XMLNode);
             }
 
             void OALSSoundScapeManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)

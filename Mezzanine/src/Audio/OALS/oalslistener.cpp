@@ -40,11 +40,13 @@
 #ifndef _audiolistener_cpp
 #define _audiolistener_cpp
 
-#include "Audio/OALS/oalslistener.h"
-
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <AL/alext.h>
+
+#define OALS_STRUCTS_DECLARED
+
+#include "Audio/OALS/oalslistener.h"
 
 namespace Mezzanine
 {
@@ -128,7 +130,7 @@ namespace Mezzanine
 
             Real Listener::GetMetersPerUnit() const
             {
-                return this->Meters;
+                return this->MPU;
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -146,12 +148,8 @@ namespace Mezzanine
 
             void Listener::SetLocation(const Real X, const Real Y, const Real Z)
             {
-                if( this->Location.X != X || this->Location.Y != Y || this->Location.Z != Z )
-                {
-                    this->MakeCurrent();
-                    alListener3f(AL_POSITION,X,Y,Z);
-                    this->Location.SetValues(X,Y,Z);
-                }
+                Vector3 TempVec(X,Y,Z);
+                this->SetLocation(TempVec);
             }
 
             Vector3 Listener::GetLocation() const
@@ -173,14 +171,8 @@ namespace Mezzanine
 
             void Listener::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
             {
-                if( this->Orientation.X != X || this->Orientation.Y != Y || this->Orientation.Z != Z || this->Orientation.W != W )
-                {
-                    this->MakeCurrent();
-                    Real ALOrient[6];
-                    this->ConvertBuffer(ALOrient);
-                    alListenerfv(AL_ORIENTATION,ALOrient);
-                    this->Orientation.SetValues(X,Y,Z,W);
-                }
+                Quaternion TempQuat(X,Y,Z,W);
+                this->SetOrientation(TempQuat);
             }
 
             Quaternion Listener::GetOrientation() const
@@ -219,25 +211,25 @@ namespace Mezzanine
 
             void Listener::Yaw(const Real Angle)
             {
-                Quaternion NewRot = this->Orientation * Quaternion(Vector3::Unit_Y(),Angle);
+                Quaternion NewRot = this->Orientation * Quaternion(Angle,Vector3::Unit_Y());
                 this->SetOrientation(NewRot);
             }
 
             void Listener::Pitch(const Real Angle)
             {
-                Quaternion NewRot = this->Orientation * Quaternion(Vector3::Unit_X(),Angle);
+                Quaternion NewRot = this->Orientation * Quaternion(Angle,Vector3::Unit_X());
                 this->SetOrientation(NewRot);
             }
 
             void Listener::Roll(const Real Angle)
             {
-                Quaternion NewRot = this->Orientation * Quaternion(Vector3::Unit_Z(),Angle);
+                Quaternion NewRot = this->Orientation * Quaternion(Angle,Vector3::Unit_Z());
                 this->SetOrientation(NewRot);
             }
 
             void Listener::Rotate(const Vector3& Axis, const Real Angle)
             {
-                Quaternion NewRot = this->Orientation * Quaternion(Axis,Angle);
+                Quaternion NewRot = this->Orientation * Quaternion(Angle,Axis);
                 this->SetOrientation(NewRot);
             }
 

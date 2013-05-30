@@ -43,7 +43,9 @@
 #include "Audio/sound.h"
 
 // OALS forward declares
+#ifndef OALS_STRUCTS_DECLARED
 struct ALCcontext;
+#endif //OALS_STRUCTS_DECLARED
 
 namespace Mezzanine
 {
@@ -139,10 +141,10 @@ namespace Mezzanine
                 virtual void SetPitch(const Real Pitch);
                 /// @copydoc iSound::GetPitch() const
                 virtual Real GetPitch() const;
-                /// @copydoc iSound::SetStream(Resource::DataStream, const Audio::Encoding)
-                virtual void SetStream(Resource::DataStream Stream, const Audio::Encoding Encode);
-                /// @copydoc iSound::SetStream(const UInt16, Resource::DataStream, const Audio::Encoding)
-                virtual void SetStream(const UInt16 Type, Resource::DataStream Stream, const Audio::Encoding Encode);
+                /// @copydoc iSound::SetStream(Resource::DataStreamPtr, const Audio::Encoding)
+                virtual void SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode);
+                /// @copydoc iSound::SetStream(const UInt16, Resource::DataStreamPtr, const Audio::Encoding)
+                virtual void SetStream(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode);
                 /// @copydoc iSound::SetStream(iDecoder*)
                 virtual void SetStream(iDecoder* Decode);
                 /// @copydoc iSound::SetStream(const UInt16, iDecoder*)

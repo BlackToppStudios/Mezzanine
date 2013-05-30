@@ -40,14 +40,16 @@
 #ifndef _audiooalsrecorder_cpp
 #define _audiooalsrecorder_cpp
 
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alext.h>
+
+#define OALS_STRUCTS_DECLARED
+
 #include "Audio/OALS/oalsrecorder.h"
 #include "Audio/OALS/oalsdefines.h"
 
 #include "exception.h"
-
-#include <AL/al.h>
-#include <AL/alc.h>
-#include <AL/alext.h>
 
 #include <algorithm>
 
@@ -59,7 +61,7 @@ namespace
     /// @return Returns the internal type corresponding to the provided Mezzanine type.
     ALenum ConvertBitConfigEnum(Mezzanine::Audio::BitConfig Config)
     {
-        switch(format)
+        switch(Config)
 		{
             case Mezzanine::Audio::BC_8Bit_Mono:     return AL_FORMAT_MONO8;     break;
             case Mezzanine::Audio::BC_16Bit_Mono:    return AL_FORMAT_MONO16;    break;
@@ -99,7 +101,7 @@ namespace Mezzanine
             {
                 if(this->RecorderDevice != NULL)
                     this->ShutdownDevice();
-                if(this->CurrentDeviceName.emtpy())
+                if(this->CurrentDeviceName.empty())
                     this->RecorderDevice = alcCaptureOpenDevice(NULL, this->Frequency, ConvertBitConfigEnum(this->BitConfiguration), this->InternalBufferSize / this->GetSampleSize());
                 else
                     this->RecorderDevice = alcCaptureOpenDevice(this->CurrentDeviceName.c_str(), this->Frequency, ConvertBitConfigEnum(this->BitConfiguration), this->InternalBufferSize / this->GetSampleSize());
@@ -107,7 +109,6 @@ namespace Mezzanine
                 if(this->RecorderDevice != NULL)
                 {
                     this->CurrentDeviceName = alcGetString(this->RecorderDevice, ALC_CAPTURE_DEVICE_SPECIFIER);
-                    this->Ready = true;
                     return true;
                 }
                 return false;
@@ -125,36 +126,42 @@ namespace Mezzanine
                 }
             }
 
-            void Recorder::CheckError()
+            void Recorder::CheckError() const
             {
                 if(RecorderDevice)
                 {
                     int ErrorCode = alcGetError(RecorderDevice);
+                    StringStream ExceptionStream;
                     switch(ErrorCode)
                     {
                         case AL_INVALID_NAME:
                         {
-                            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid name passed into OpenAL.  OpenAL error follows: " + alGetString(ErrorCode));
+                            ExceptionStream << "Invalid name passed into OpenAL.  OpenAL error follows: " << alGetString(ErrorCode);
+                            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,ExceptionStream.str());
                             break;
                         }
                         case AL_INVALID_ENUM:
                         {
-                            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid enum passed into OpenAL.  OpenAL error follows: " + alGetString(ErrorCode));
+                            ExceptionStream << "Invalid enum passed into OpenAL.  OpenAL error follows: " << alGetString(ErrorCode);
+                            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,ExceptionStream.str());
                             break;
                         }
                         case AL_INVALID_VALUE:
                         {
-                            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid value passed into OpenAL.  OpenAL error follows: " + alGetString(ErrorCode));
+                            ExceptionStream << "Invalid value passed into OpenAL.  OpenAL error follows: " << alGetString(ErrorCode);
+                            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,ExceptionStream.str());
                             break;
                         }
                         case AL_INVALID_OPERATION:
                         {
-                            MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Bad call to OpenAL.  OpenAL error follows: " + alGetString(ErrorCode));
+                            ExceptionStream << "Bad call to OpenAL.  OpenAL error follows: " << alGetString(ErrorCode);
+                            MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,ExceptionStream.str());
                             break;
                         }
                         case AL_OUT_OF_MEMORY:
                         {
-                            MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION,"Unable to allocate.  OpenAL error follows: " + alGetString(ErrorCode));
+                            ExceptionStream << "Unable to allocate.  OpenAL error follows: " << alGetString(ErrorCode);
+                            MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION,ExceptionStream.str());
                             break;
                         }
                     }
@@ -217,10 +224,10 @@ namespace Mezzanine
             UInt32 Recorder::GetRecordedAudio(void* OutputBuffer, UInt32 OutputBufferSize)
             {
                 if(this->RecorderDevice != NULL) {
-                    UInt32 AvailableSamples = 0;
+                    Int32 AvailableSamples = 0;
                     alcGetIntegerv(this->RecorderDevice, ALC_CAPTURE_SAMPLES, 1, &AvailableSamples);
 
-                    UInt32 SamplesToCopy = std::min(AvailableSamples,OutputBufferSize / this->GetSampleSize());
+                    UInt32 SamplesToCopy = std::min(static_cast<UInt32>(AvailableSamples),OutputBufferSize / this->GetSampleSize());
                     alcCaptureSamples(this->RecorderDevice, OutputBuffer, SamplesToCopy);
                     this->CheckError();
                     return SamplesToCopy * this->GetSampleSize();
@@ -232,7 +239,7 @@ namespace Mezzanine
             UInt32 Recorder::GetBufferSize() const
             {
                 if(this->RecorderDevice != NULL) {
-                    UInt32 AvailableSamples = 0;
+                    Int32 AvailableSamples = 0;
                     alcGetIntegerv(this->RecorderDevice, ALC_CAPTURE_SAMPLES, 1, &AvailableSamples);
                     return AvailableSamples * this->GetSampleSize();
                     this->CheckError();
@@ -276,7 +283,7 @@ namespace Mezzanine
                 return this->Frequency;
             }
 
-            bool Recorder::SetBitConfiguration(const AudioBitConfig Config)
+            bool Recorder::SetBitConfiguration(const BitConfig Config)
             {
                 if( Config > Audio::BC_16Bit_Stereo )
                 {
@@ -292,7 +299,7 @@ namespace Mezzanine
                 }
             }
 
-            AudioBitConfig Recorder::GetBitConfiguration() const
+            BitConfig Recorder::GetBitConfiguration() const
             {
                 return this->BitConfiguration;
             }

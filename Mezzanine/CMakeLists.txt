@@ -570,7 +570,7 @@ if(Mezz_Audio_UseOALS)
         "openal"
 	)
     
-    add_definitions( "${D}ENABLE_OALS_AUDIO_IMPLEMENTATION" )
+    add_definitions( "${D}ENABLE_OALS_AUDIO_IMPLEMENTATION" "${D}AL_LIBTYPE_STATIC" )
 endif(Mezz_Audio_UseOALS)
 
 if(NOT AudioProviderSet)

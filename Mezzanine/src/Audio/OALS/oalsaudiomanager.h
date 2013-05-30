@@ -161,7 +161,7 @@ namespace Mezzanine
                 SoundContainer Sounds;
                 /// @internal
                 /// @brief Container storing all @ref iSound instances by their type.
-                SoundTypesContainer SoundsByType;
+                mutable SoundTypesContainer SoundsByType;
                 /// @internal
                 /// @brief Container storing all @ref iRecorder instances.
                 RecorderContainer Recorders;
@@ -174,7 +174,7 @@ namespace Mezzanine
                 /// @note Unlike GetSoundTypeHandler(const UInt16 Type) const, this method will always return a valid pointer.
                 /// @param Type A UInt16 that is the ID for the type of Sound instances to get the handler for.
                 /// @return Returns a pointer to the requested SoundTypeHandler.
-                virtual SoundTypeHandler* GetOrCreateSoundTypeHandler(const UInt16 Type);
+                virtual SoundTypeHandler* GetOrCreateSoundTypeHandler(const UInt16 Type) const;
                 /// @internal
                 /// @brief Gets the handler storing information on a specific type of Sound instance.
                 /// @param Type A UInt16 that is the ID for the type of Sound instances to get the handler for.

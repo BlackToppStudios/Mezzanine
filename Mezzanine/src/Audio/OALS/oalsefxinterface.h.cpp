@@ -184,7 +184,7 @@ namespace Mezzanine
                 EFXInterface(ALCdevice* Device)
                     : Supported(false)
                 {
-                    if(alcIsExtensionPresent(device,"ALC_EXT_EFX"))
+                    if(alcIsExtensionPresent(Device,"ALC_EXT_EFX"))
                     {
                         // Get function pointers
                         alGenEffects = (LPALGENEFFECTS)alGetProcAddress("alGenEffects");

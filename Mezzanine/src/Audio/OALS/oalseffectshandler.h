@@ -43,7 +43,9 @@
 #include "Audio/effectshandler.h"
 
 // OALS forward declares
+#ifndef OALS_STRUCTS_DECLARED
 struct ALCdevice;
+#endif //OALS_STRUCTS_DECLARED
 
 namespace Mezzanine
 {
@@ -51,6 +53,8 @@ namespace Mezzanine
     {
         namespace OALS
         {
+            class Effect;
+            class Filter;
             class EFXInterface;
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the OpenALSoft implemenation for an Audio EffectsHandler.
@@ -126,11 +130,11 @@ namespace Mezzanine
                 /// @brief Const Iterator type for @ref PitchShifterParameters instances stored by this class.
                 typedef PitchShifterParamContainer::const_iterator    ConstPitchShifterParamIterator;
                 /// @brief The container type used for the storage of @ref RingModulatorParameters in this handler.
-                typedef std::map<String,RingModulatorParameters>      RingModulatiorParamContainer;
+                typedef std::map<String,RingModulatorParameters>      RingModulatorParamContainer;
                 /// @brief Iterator type for @ref RingModulatorParameters instances stored by this class.
-                typedef RingModulatiorParamContainer::iterator        RingModulatiorParamIterator;
+                typedef RingModulatorParamContainer::iterator         RingModulatorParamIterator;
                 /// @brief Const Iterator type for @ref RingModulatorParameters instances stored by this class.
-                typedef RingModulatiorParamContainer::const_iterator  ConstRingModulatiorParamIterator;
+                typedef RingModulatorParamContainer::const_iterator   ConstRingModulatorParamIterator;
                 /// @brief The container type used for the storage of @ref AutowahParameters in this handler.
                 typedef std::map<String,AutowahParameters>            AutowahParamContainer;
                 /// @brief Iterator type for @ref AutowahParameters instances stored by this class.
@@ -188,7 +192,7 @@ namespace Mezzanine
                 PitchShifterParamContainer PitchShifterParams;
                 /// @internal
                 /// @brief Container responsible for the storage of @ref RingModulatorParameters.
-                RingModulatiorParamContainer RingModulatiorParams;
+                RingModulatorParamContainer RingModulatorParams;
                 /// @internal
                 /// @brief Container responsible for the storage of @ref AutowahParameters.
                 AutowahParamContainer AutowahParams;

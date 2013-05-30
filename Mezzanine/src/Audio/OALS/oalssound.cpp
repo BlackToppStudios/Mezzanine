@@ -40,20 +40,23 @@
 #ifndef _audiooalssound_cpp
 #define _audiooalssound_cpp
 
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alext.h>
+
+#define OALS_STRUCTS_DECLARED
+
 #include "Audio/OALS/oalssound.h"
-#include "Audio/OALS/filter.h"
-#include "Audio/OALS/effect.h"
+#include "Audio/OALS/oalsfilter.h"
+#include "Audio/OALS/oalseffect.h"
 #include "Audio/OALS/oalsdefines.h"
 #include "exception.h"
 
 #include "Audio/audiomanager.h"
 #include "Audio/decoderfactory.h"
 
-#include <AL/al.h>
-#include <AL/alc.h>
-#include <AL/alext.h>
-
 #include <algorithm>
+#include <cstring>
 #include <memory>
 
 namespace
@@ -81,7 +84,7 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            Sound::Sound(const UInt8 Type, iDecoder* Decode, ALCcontext* PlayContext)
+            Sound::Sound(const UInt16 Type, iDecoder* Decode, ALCcontext* PlayContext)
                 : Context(PlayContext),
                   SoundFilter(NULL),
                   SoundDecoder(Decode),
@@ -98,7 +101,7 @@ namespace Mezzanine
                 // Create the storage space for our buffer handles
                 Buffers.resize(OALS_SOURCE_NUM_BUFFERS,0);
                 // Create the storage space for our effect slots
-                UInt32 SupportedSlots = 0;
+                Int32 SupportedSlots = 0;
                 ALCdevice* Device = alcGetContextsDevice(Context);
                 alcGetIntegerv(Device,ALC_MAX_AUXILIARY_SENDS,1,&SupportedSlots);
                 Effects.resize(std::min(SupportedSlots,OALS_SOURCE_MAX_EFFECT_SLOTS),NULL);
@@ -132,7 +135,7 @@ namespace Mezzanine
 
             bool Sound::StreamToBuffer(const UInt32 Buffer)
             {
-                if(this->Decode)
+                if(this->SoundDecoder)
                 {
                     UInt32 TotalRead = 0;
                     UInt8 ErrorCount = 0;
@@ -140,7 +143,7 @@ namespace Mezzanine
                     while( TotalRead < OALS_SOURCE_BUFFER_SIZE )
                     {
                         Char8 TempBuffer2[OALS_SOURCE_BUFFER_SIZE];
-                        UInt32 ActualRead = this->Decode->ReadAudioData(TempBuffer2,OALS_SOURCE_BUFFER_SIZE - TotalRead);
+                        UInt32 ActualRead = this->SoundDecoder->ReadAudioData(TempBuffer2,OALS_SOURCE_BUFFER_SIZE - TotalRead);
                         if(ActualRead > 0)
                         {
                             memcpy(TempBuffer+TotalRead,TempBuffer2,ActualRead);
@@ -157,7 +160,7 @@ namespace Mezzanine
                         }
                         else if(ActualRead == 0)
                         {
-                            if(this->IsLooping()) this->Decode->SetPosition(0,false);
+                            if(this->IsLooping()) this->SoundDecoder->SetPosition(0,false);
                             else break;
                         }
                     }
@@ -166,7 +169,7 @@ namespace Mezzanine
                     {
                         return false;
                     }
-                    alBufferData(Buffer,ConvertBitConfigEnum(this->Decode->GetBitConfiguration()),TempBuffer,TotalRead,this->Decode->GetFrequency());
+                    alBufferData(Buffer,ConvertBitConfigEnum(this->SoundDecoder->GetBitConfiguration()),TempBuffer,TotalRead,this->SoundDecoder->GetFrequency());
                     return true;
                 }
                 return false;
@@ -177,7 +180,7 @@ namespace Mezzanine
 
             bool Sound::IsValid() const
             {
-                return ( this->SoundDecoder && this->SoundDecoder->GetStream() && this->InternalSource )
+                return ( this->SoundDecoder && this->SoundDecoder->GetStream() && this->InternalSource );
             }
 
             UInt16 Sound::GetType() const
@@ -205,7 +208,7 @@ namespace Mezzanine
                 return this->SoundPitch;
             }
 
-            void Sound::SetStream(Resource::DataStream Stream, const Audio::Encoding Encode)
+            void Sound::SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
                 if( Factory != NULL )
@@ -219,7 +222,7 @@ namespace Mezzanine
                 }
             }
 
-            void Sound::SetStream(const UInt16 Type, Resource::DataStream Stream, const Audio::Encoding Encode)
+            void Sound::SetStream(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 this->SType = Type;
                 this->SetStream(Stream,Encode);
@@ -249,7 +252,7 @@ namespace Mezzanine
                 if( !IsPaused() )
                 {
                     UInt32 QueueSize = 0;
-                    alSourcei(InternalSource,AL_BUFFER,0);
+                    alSourcei(this->InternalSource,AL_BUFFER,0);
                     for( UInt32 BuffIndex = 0 ; BuffIndex < Buffers.size() ; ++BuffIndex )
                     {
                         if( this->StreamToBuffer(Buffers[BuffIndex]) ) ++QueueSize;
@@ -285,7 +288,7 @@ namespace Mezzanine
                 // Stop the source
                 alSourceStop(this->InternalSource);
                 // Inform the decoder
-                this->Decoder->SetPosition(0,false);
+                this->SoundDecoder->SetPosition(0,false);
                 this->State = ( this->IsLooping() ? iSound::PS_Stopped | iSound::PS_Looping : iSound::PS_Stopped );
             }
 
@@ -308,9 +311,9 @@ namespace Mezzanine
             bool Sound::Seek(const Real Seconds, bool Relative)
             {
                 bool Ret = false;
-                if( this->Decode->IsSeekingSupported() )
+                if( this->SoundDecoder->IsSeekingSupported() )
                 {
-                    Ret = this->Decode->Seek(Seconds,Relative);
+                    Ret = this->SoundDecoder->Seek(Seconds,Relative);
                 }
                 return Ret;
             }
@@ -387,7 +390,7 @@ namespace Mezzanine
                 return false;
             }
 
-            iEffect* GetEffect(const UInt32 Slot) const
+            iEffect* Sound::GetEffect(const UInt32 Slot) const
             {
                 if( Slot < this->Effects.size() ) {
                     return Effects.at(Slot);
@@ -476,7 +479,7 @@ namespace Mezzanine
 
             bool Sound::_UpdateBuffers()
             {
-                UInt32 Processed = 0;
+                Int32 Processed = 0;
                 bool Active = true;
                 if( this->IsPlaying() )
                 {
@@ -497,7 +500,8 @@ namespace Mezzanine
                 alGetSourcei(this->InternalSource,AL_SOURCE_STATE,&OALSState);
                 if( OALSState == AL_STOPPED && !IsStopped() )
                 {
-                    this->Decode->SetPosition(0,false);
+                    this->SoundDecoder->SetPosition(0,false);
+                    this->State = ( this->IsLooping() ? iSound::PS_Stopped | iSound::PS_Looping : iSound::PS_Stopped );
                 }
                 return Active;
             }

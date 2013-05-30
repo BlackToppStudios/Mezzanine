@@ -40,15 +40,17 @@
 #ifndef _audiooalseffectshandler_cpp
 #define _audiooalseffectshandler_cpp
 
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alext.h>
+
+#define OALS_STRUCTS_DECLARED
+
 #include "Audio/OALS/oalseffectshandler.h"
 #include "Audio/OALS/oalsfilter.h"
 #include "Audio/OALS/oalseffect.h"
 
 #include "Audio/OALS/oalsefxinterface.h.cpp"
-
-#include <AL/al.h>
-#include <AL/alc.h>
-#include <AL/alext.h>
 
 #include <AL/efx.h>
 #include <AL/efx-creative.h>
@@ -111,8 +113,8 @@ namespace Mezzanine
 
             EffectsHandler::~EffectsHandler()
             {
-                this->DestroyAllEffects();
                 this->DestroyAllFilters();
+                this->DestroyAllEffects();
                 delete EFX;
             }
 
@@ -253,7 +255,7 @@ namespace Mezzanine
                     case Audio::ET_Frequency_Shifter:  return FrequencyShiftParams.count(Name);  break;
                     case Audio::ET_Vocal_Morpher:      return VocalMorpherParams.count(Name);    break;
                     case Audio::ET_Pitch_Shifter:      return PitchShifterParams.count(Name);    break;
-                    case Audio::ET_Ring_Modulator:     return RingModulatiorParams.count(Name);  break;
+                    case Audio::ET_Ring_Modulator:     return RingModulatorParams.count(Name);   break;
                     case Audio::ET_Autowah:            return AutowahParams.count(Name);         break;
                     case Audio::ET_Compressor:         return CompressorParams.count(Name);      break;
                     case Audio::ET_Equalizer:          return EqualizerParams.count(Name);       break;
@@ -274,7 +276,7 @@ namespace Mezzanine
                     case Audio::ET_Frequency_Shifter:  FrequencyShiftParams.erase(Name);  break;
                     case Audio::ET_Vocal_Morpher:      VocalMorpherParams.erase(Name);    break;
                     case Audio::ET_Pitch_Shifter:      PitchShifterParams.erase(Name);    break;
-                    case Audio::ET_Ring_Modulator:     RingModulatiorParams.erase(Name);  break;
+                    case Audio::ET_Ring_Modulator:     RingModulatorParams.erase(Name);   break;
                     case Audio::ET_Autowah:            AutowahParams.erase(Name);         break;
                     case Audio::ET_Compressor:         CompressorParams.erase(Name);      break;
                     case Audio::ET_Equalizer:          EqualizerParams.erase(Name);       break;
@@ -294,7 +296,7 @@ namespace Mezzanine
                     case Audio::ET_Frequency_Shifter:  FrequencyShiftParams.clear();  break;
                     case Audio::ET_Vocal_Morpher:      VocalMorpherParams.clear();    break;
                     case Audio::ET_Pitch_Shifter:      PitchShifterParams.clear();    break;
-                    case Audio::ET_Ring_Modulator:     RingModulatiorParams.clear();  break;
+                    case Audio::ET_Ring_Modulator:     RingModulatorParams.clear();   break;
                     case Audio::ET_Autowah:            AutowahParams.clear();         break;
                     case Audio::ET_Compressor:         CompressorParams.clear();      break;
                     case Audio::ET_Equalizer:          EqualizerParams.clear();       break;
@@ -312,7 +314,7 @@ namespace Mezzanine
             EAXReverbParameters EffectsHandler::GetEAXReverbEffectPreset(const String& Name) const
             {
                 ConstEAXReverbParamIterator ParamIt = EAXReverbParams.find(Name);
-                if( ParamIt != EAXReverbParams.end() ) return (*ParamIt);
+                if( ParamIt != EAXReverbParams.end() ) return (*ParamIt).second;
                 else return EAXReverbParameters();
             }
 
@@ -324,7 +326,7 @@ namespace Mezzanine
             ReverbParameters EffectsHandler::GetReverbEffectPreset(const String& Name) const
             {
                 ConstReverbParamIterator ParamIt = ReverbParams.find(Name);
-                if( ParamIt != ReverbParams.end() ) return (*ParamIt);
+                if( ParamIt != ReverbParams.end() ) return (*ParamIt).second;
                 else return ReverbParameters();
             }
 
@@ -336,7 +338,7 @@ namespace Mezzanine
             ChorusParameters EffectsHandler::GetChorusEffectPreset(const String& Name) const
             {
                 ConstChorusParamIterator ParamIt = ChorusParams.find(Name);
-                if( ParamIt != ChorusParams.end() ) return (*ParamIt);
+                if( ParamIt != ChorusParams.end() ) return (*ParamIt).second;
                 else return ChorusParameters();
             }
 
@@ -348,7 +350,7 @@ namespace Mezzanine
             DistortionParameters EffectsHandler::GetDistortionEffectPreset(const String& Name) const
             {
                 ConstDistortionParamIterator ParamIt = DistortionParams.find(Name);
-                if( ParamIt != DistortionParams.end() ) return (*ParamIt);
+                if( ParamIt != DistortionParams.end() ) return (*ParamIt).second;
                 else return DistortionParameters();
             }
 
@@ -360,7 +362,7 @@ namespace Mezzanine
             EchoParameters EffectsHandler::GetEchoEffectPreset(const String& Name) const
             {
                 ConstEchoParamIterator ParamIt = EchoParams.find(Name);
-                if( ParamIt != EchoParams.end() ) return (*ParamIt);
+                if( ParamIt != EchoParams.end() ) return (*ParamIt).second;
                 else return EchoParameters();
             }
 
@@ -372,7 +374,7 @@ namespace Mezzanine
             FlangerParameters EffectsHandler::GetFlangerEffectPreset(const String& Name) const
             {
                 ConstFlangerParamIterator ParamIt = FlangerParams.find(Name);
-                if( ParamIt != FlangerParams.end() ) return (*ParamIt);
+                if( ParamIt != FlangerParams.end() ) return (*ParamIt).second;
                 else return FlangerParameters();
             }
 
@@ -384,7 +386,7 @@ namespace Mezzanine
             FrequencyShiftParameters EffectsHandler::GetFrequencyShiftEffectPreset(const String& Name) const
             {
                 ConstFrequencyShiftParamIterator ParamIt = FrequencyShiftParams.find(Name);
-                if( ParamIt != FrequencyShiftParams.end() ) return (*ParamIt);
+                if( ParamIt != FrequencyShiftParams.end() ) return (*ParamIt).second;
                 else return FrequencyShiftParameters();
             }
 
@@ -396,7 +398,7 @@ namespace Mezzanine
             VocalMorpherParameters EffectsHandler::GetVocalMorpherEffectPreset(const String& Name) const
             {
                 ConstVocalMorpherParamIterator ParamIt = VocalMorpherParams.find(Name);
-                if( ParamIt != VocalMorpherParams.end() ) return (*ParamIt);
+                if( ParamIt != VocalMorpherParams.end() ) return (*ParamIt).second;
                 else return VocalMorpherParameters();
             }
 
@@ -408,7 +410,7 @@ namespace Mezzanine
             PitchShifterParameters EffectsHandler::GetPitchShifterEffectPreset(const String& Name) const
             {
                 ConstPitchShifterParamIterator ParamIt = PitchShifterParams.find(Name);
-                if( ParamIt != PitchShifterParams.end() ) return (*ParamIt);
+                if( ParamIt != PitchShifterParams.end() ) return (*ParamIt).second;
                 else return PitchShifterParameters();
             }
 
@@ -420,7 +422,7 @@ namespace Mezzanine
             RingModulatorParameters EffectsHandler::GetRingModulatorEffectPreset(const String& Name) const
             {
                 ConstRingModulatorParamIterator ParamIt = RingModulatorParams.find(Name);
-                if( ParamIt != RingModulatorParams.end() ) return (*ParamIt);
+                if( ParamIt != RingModulatorParams.end() ) return (*ParamIt).second;
                 else return RingModulatorParameters();
             }
 
@@ -432,7 +434,7 @@ namespace Mezzanine
             AutowahParameters EffectsHandler::GetAutowahEffectPreset(const String& Name) const
             {
                 ConstAutowahParamIterator ParamIt = AutowahParams.find(Name);
-                if( ParamIt != AutowahParams.end() ) return (*ParamIt);
+                if( ParamIt != AutowahParams.end() ) return (*ParamIt).second;
                 else return AutowahParameters();
             }
 
@@ -444,7 +446,7 @@ namespace Mezzanine
             CompressorParameters EffectsHandler::GetCompressorEffectPreset(const String& Name) const
             {
                 ConstCompressorParamIterator ParamIt = CompressorParams.find(Name);
-                if( ParamIt != CompressorParams.end() ) return (*ParamIt);
+                if( ParamIt != CompressorParams.end() ) return (*ParamIt).second;
                 else return CompressorParameters();
             }
 
@@ -456,7 +458,7 @@ namespace Mezzanine
             EqualizerParameters EffectsHandler::GetEqualizerEffectPreset(const String& Name) const
             {
                 ConstEqualizerParamIterator ParamIt = EqualizerParams.find(Name);
-                if( ParamIt != EqualizerParams.end() ) return (*ParamIt);
+                if( ParamIt != EqualizerParams.end() ) return (*ParamIt).second;
                 else return EqualizerParameters();
             }
 

@@ -43,7 +43,9 @@
 #include "Audio/listener.h"
 
 // OALS forward declares
+#ifndef OALS_STRUCTS_DECLARED
 struct ALCcontext;
+#endif //OALS_STRUCTS_DECLARED
 
 namespace Mezzanine
 {

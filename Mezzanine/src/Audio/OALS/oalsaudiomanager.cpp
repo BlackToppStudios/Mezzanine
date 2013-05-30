@@ -84,6 +84,8 @@ namespace Mezzanine
                   ContextOutputFrequency(-1),
                   ContextEAXEffectSlots(-1)
             {
+                this->Priority = 55;
+                this->AutoGenFiles = false;
                 this->GetAvailableDeviceNames();
             }
 
@@ -97,7 +99,60 @@ namespace Mezzanine
                   ContextOutputFrequency(-1),
                   ContextEAXEffectSlots(-1)
             {
+                this->Priority = 55;
                 this->GetAvailableDeviceNames();
+
+                XML::Attribute CurrAttrib;
+                String PathPreset;
+                // Get whether or not to autogen the directory path and settings file.
+                XML::Node AutoGenNode = XMLNode.GetChild("AutoCreateSettings");
+                if(!AutoGenNode.Empty())
+                {
+                    CurrAttrib = AutoGenNode.GetAttribute("Auto");
+                    if(!CurrAttrib.Empty())
+                        AutoGenPath = AutoGenFiles = StringTools::ConvertToBool( CurrAttrib.AsString() );
+                }
+                // Get preset path to default to if a path is not provided.
+                XML::Node PathNode = XMLNode.GetChild("SettingsPath");
+                if(!PathNode.Empty())
+                {
+                    CurrAttrib = PathNode.GetAttribute("Path");
+                    if(!CurrAttrib.Empty())
+                        PathPreset = CurrAttrib.AsString();
+
+                    if(!PathPreset.empty())
+                        SetSettingsFilePath(PathPreset);
+                }
+                // Get the files to be loaded, and load them.
+                XML::Node FilesNode = XMLNode.GetChild("SettingsFiles");
+                if(!FilesNode.Empty())
+                {
+                    for( XML::NodeIterator SetFileIt = FilesNode.begin() ; SetFileIt != FilesNode.end() ; ++SetFileIt )
+                    {
+                        String FileName, FilePath, FileGroup;
+                        // Get the filename to load
+                        CurrAttrib = (*SetFileIt).GetAttribute("FileName");
+                        if(!CurrAttrib.Empty())
+                            FileName = CurrAttrib.AsString();
+                        // Get the path
+                        CurrAttrib = (*SetFileIt).GetAttribute("Path");
+                        if(!CurrAttrib.Empty())
+                            FilePath = CurrAttrib.AsString();
+                        else
+                        {
+                            CurrAttrib = (*SetFileIt).GetAttribute("Group");
+                            if(!CurrAttrib.Empty())
+                                FileGroup = CurrAttrib.AsString();
+                        }
+
+                        if(FilePath.empty())
+                        {
+                            if(FileGroup.empty()) LoadSettings(FileName);
+                            else LoadSettingsFromGroup(FileName,FileGroup);
+                        }
+                        else LoadSettings(FileName,FilePath);
+                    }
+                }
             }
 
             OALS::AudioManager::~AudioManager()
@@ -112,7 +167,7 @@ namespace Mezzanine
                 this->ShutdownPlaybackDevice();
             }
 
-            SoundTypeHandler* OALS::AudioManager::GetOrCreateSoundTypeHandler(const UInt16 Type)
+            SoundTypeHandler* OALS::AudioManager::GetOrCreateSoundTypeHandler(const UInt16 Type) const
             {
                 SoundTypeHandler* Ret = GetSoundTypeHandler(Type);
                 if( Ret == NULL )
@@ -443,26 +498,26 @@ namespace Mezzanine
 
             void OALS::AudioManager::SetTypeVolume(const UInt16 Type, const Real Vol)
             {
-                SoundTypeHandler* Handler = this->GetSoundTypeHandlerExcept(Type);
+                SoundTypeHandler* Handler = this->GetOrCreateSoundTypeHandler(Type);
                 Handler->Volume = Vol;
             }
 
             Real OALS::AudioManager::GetTypeVolume(const UInt16 Type) const
             {
-                SoundTypeHandler* Handler = this->GetSoundTypeHandlerExcept(Type);
-                return ( Handler->Mute ? 0 : Handler->Volume );
+                SoundTypeHandler* Handler = this->GetOrCreateSoundTypeHandler(Type);
+                return ( Handler->Mute || this->IsMuted() ? 0 : Handler->Volume );
             }
 
             void OALS::AudioManager::MuteType(const UInt16 Type, bool Enable)
             {
-                SoundTypeHandler* Handler = this->GetSoundTypeHandlerExcept(Type);
+                SoundTypeHandler* Handler = this->GetOrCreateSoundTypeHandler(Type);
                 Handler->Mute = Enable;
             }
 
             bool OALS::AudioManager::IsTypeMuted(const UInt16 Type) const
             {
-                SoundTypeHandler* Handler = this->GetSoundTypeHandlerExcept(Type);
-                return Handler->Mute;
+                SoundTypeHandler* Handler = this->GetOrCreateSoundTypeHandler(Type);
+                return Handler->Mute || this->IsMuted();
             }
 
             void OALS::AudioManager::SetMasterVolume(const Real& Master)
