@@ -47,11 +47,11 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        class Sound;
+        class iSound;
 
         // Used by the scripting language binder to help create bindgings for this class.
         #ifdef SWIG
-        %template(VectorSoundPtr) std::vector< Sound * >;
+        %template(VectorSoundPtr) std::vector< iSound * >;
         #endif
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ namespace Mezzanine
         /// @details This is a vector and can be use to store sounds that can be grouped together
         /// for similiar purposes or similiar content for easy tracking.
         ///////////////////////////////////////////////////////////////////////////////
-        class MEZZ_LIB SoundSet : public std::vector< Sound* >
+        class MEZZ_LIB SoundSet : public std::vector< iSound* >
         {
         private:
             /// @brief The name of the sound
