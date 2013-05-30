@@ -22,6 +22,8 @@ Entresol* TheEntresol;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
+Audio::SoundSet *Announcer, *Soundtrack;
+
 ActorBase *Robot7, *Robot8;
 
 int main(int argc, char **argv)
@@ -110,6 +112,8 @@ int main(int argc, char **argv)
 	//Start the Main Loop
 	TheEntresol->MainLoop();
 
+    delete Soundtrack;
+    delete Announcer;
     delete TheEntresol;
 	return 0;
 }
@@ -155,11 +159,11 @@ bool PostRender()
     if (notplayed)
     {
         notplayed=false;
-        Audio::Sound* Welcome = NULL;
-        Welcome = TheEntresol->GetAudioManager()->GetSoundByName("Welcome");
+        Audio::iSound* Welcome = NULL;
+        Welcome = Announcer->front();
         if(Welcome)
         {
-            Welcome->Play2d(false);
+            Welcome->Play();
         }
         #ifdef MEZZDEBUG
         TheEntresol->Log("Played Welcome Fun:");
@@ -286,16 +290,16 @@ bool PostInput()
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) )
     {
-        Audio::Sound* Theme = TheEntresol->GetAudioManager()->GetSoundByName("Theme2");
+        Audio::iSound* Theme = Soundtrack->at(1);
         if(!Theme->IsPlaying())
         {
-            Theme->Play2d(false);
+            Theme->Play();
         }
     }
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) )
     {
-        Audio::Sound* Theme = TheEntresol->GetAudioManager()->GetSoundByName("Theme2");
+        Audio::iSound* Theme = Soundtrack->at(1);
         if(Theme->IsPlaying())
         {
             Theme->Stop();
@@ -475,11 +479,11 @@ bool CheckForStuff()
 
         if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
         {
-            Audio::Sound* Welcome = NULL;
-            Welcome = TheEntresol->GetAudioManager()->GetSoundByName("Welcome");
+            Audio::iSound* Welcome = NULL;
+            Welcome = Announcer->front();
             if(Welcome)
             {
-                Welcome->Play2d(false);
+                Welcome->Play();
             }
         }
 
@@ -516,11 +520,11 @@ void LoadContent()
 
     Real mass=15.0;
     /// @todo Figure why the EngineDemo fails on Linux when trying to find items in the
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common", FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/music", FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/sounds", FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common", AT_FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/music", AT_FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/sounds", AT_FileSystem, groupname, false);
     //TheEntresol->GetResourceManager()->AddAssetLocation(zipname.str(), "Zip", groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("", FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("", AT_FileSystem, groupname, false);
     TheEntresol->GetResourceManager()->InitAssetGroup(groupname);
 
     ParticleEffect *GreenPart = TheEntresol->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
@@ -653,17 +657,18 @@ void LoadContent()
     BlackHole->CreateGraphicsSphere(ColourValue(0.9,0.7,0.7,0.55));
     TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
-    Audio::Sound *sound1, *music1, *music2;
-    AudioManager* AudioMan = TheEntresol->GetAudioManager();
-    AudioMan->CreateSoundSet("Announcer");
-    sound1 = AudioMan->CreateDialogSound("Welcome", "welcomefun-1.ogg", groupname);
-    AudioMan->AddSoundToSoundSet("Announcer", sound1);
 
-    AudioMan->CreateSoundSet("SoundTrack");
-    music1 = AudioMan->CreateMusicSound("Theme1", "cAudioTheme1.ogg", groupname);
-    AudioMan->AddSoundToSoundSet("SoundTrack", music1);
-    music2 = AudioMan->CreateMusicSound("Theme2", "cAudioTheme2.ogg", groupname);
-    AudioMan->AddSoundToSoundSet("SoundTrack", music2);
+    Audio::iSound *sound1 = NULL, *music1 = NULL, *music2 = NULL;
+    Announcer = new Audio::SoundSet();
+    Soundtrack = new Audio::SoundSet();
+    Audio::AudioManager* AudioMan = TheEntresol->GetAudioManager();
+    sound1 = AudioMan->CreateDialogSound("welcomefun-1.ogg", groupname);
+    Announcer->push_back(sound1);
+
+    music1 = AudioMan->CreateMusicSound("cAudioTheme1.ogg", groupname);
+    Soundtrack->push_back(music1);
+    music2 = AudioMan->CreateMusicSound("cAudioTheme2.ogg", groupname);
+    Soundtrack->push_back(music2);
 
     TheEntresol->Log("Actor Count");
     TheEntresol->Log( TheEntresol->GetActorManager()->GetNumActors() );
