@@ -80,10 +80,10 @@ namespace Mezzanine
                     void Compile(Lua51ScriptingEngine* Compiler);
 
                     /// @brief A set of the arguments being passed into the Lua script
-                    ArgumentSet Args;
+                    ArgumentGroup Args;
 
                     /// @brief A set of all the values the Lua script returned the last time it was executed.
-                    ArgumentSet Returns;
+                    ArgumentGroup Returns;
 
                 public:
                     /// @brief Simple constructor, creates a script that executes a no-op.
@@ -134,7 +134,7 @@ namespace Mezzanine
                     virtual Whole GetReturnCount() const;
 
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetAllReturns
-                    virtual ArgumentSet GetAllReturns() const;
+                    virtual ArgumentGroup GetAllReturns() const;
 
                     //For the CountedPointer Inheritance
                 public:

@@ -369,7 +369,6 @@ class countedptrtests : public UnitTestGroup
                     PtrE.Reset();
                     PtrE2.Reset();
 
-
                     CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
                     CountedPtr<FooInternal>   PtrI2( PtrI );
                     if( 3!=(*PtrI2).Value )
@@ -380,7 +379,6 @@ class countedptrtests : public UnitTestGroup
 
                 AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
                 AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultI);
-
 
             }else{
                 AddTestResult("CountedPtr::External::NonDestructionRelease", Skipped);

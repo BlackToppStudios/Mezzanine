@@ -131,10 +131,9 @@ namespace Mezzanine
                     /// @details This will create a CountPtr to a Lua51Script and assign both its Source and Byte code
                     virtual CountedPtr<iScript> Execute(const String& ScriptSource);
 
-
                     /// @brief Implements a required for iScriptManager, Calls Execute(CountedPtr<Lua51Script>)
                     /// @param ScriptToRun A CountedPtr<iScript> to be run. This is cast to an CountedPtr<Lua51Script> and called if possible.
-                    /// @throw If this cannot be cast this throws a .
+                    /// @throw If this cannot be cast this throws a ParametersCastException.
                     /// @todo fill in the kind of exception thrown.
                     virtual void Execute(CountedPtr<iScript> ScriptToRun);
 
@@ -142,6 +141,7 @@ namespace Mezzanine
                     /// @param ScriptToCompile The CountedPtr to compile
                     /// @details The ByteCode member on the passed script is erased, if present,
                     /// and sets it to corresponding lua binary.
+                    /// @throw If an invalid script is passed this throws ParametersCastException.
                     virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile);
 
                     /// @brief Calls Compile(CountedPtr<iScriptCompilable>) and returns a CountedPtr to the script created.
@@ -150,7 +150,7 @@ namespace Mezzanine
                     virtual CountedPtr<iScriptCompilable> Compile(const String& SourceToCompile);
 
                     /// @copydoc ManagerBase::GetImplementationTypeName()
-                    /// @return A String containing "Lua51ScriptingEngine"
+                    /// @return A String containing "Lua51ScriptingEngine".
                     virtual String GetImplementationTypeName() const;
 
                     /// @brief This will execute the passed script, compiling it if not present
@@ -159,8 +159,14 @@ namespace Mezzanine
                     /// compiled and the result is set as the bytecode and it is executed.
                     virtual void Execute(CountedPtr<Lua51Script> ScriptToRun);
 
+                    /// @brief Compile a Lua51 script.
+                    /// @param ScriptToCompile A CountedPtr to a Lua51Script.
+                    /// @details Compiles the source code present in ScriptToCompile and puts the results back in
+                    /// the ByteCode member on the script.
                     virtual void Compile(CountedPtr<Lua51Script> ScriptToCompile);
 
+                    /// @brief Makes Lua function calls in Lua standard libraries available for use in Lua scripts.
+                    /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to load, this defaults to DefaultLibs
                     virtual void OpenLibraries(int LibrariesToOpen);
 
                     /// @brief Prepare most Mezzanine and some Lua functionality for use in Lua scripts.
@@ -214,8 +220,12 @@ namespace Mezzanine
                     /// Lua manuak at http://www.lua.org/manual/5.1/manual.html#5.9 .
                     virtual void OpenDebugLibrary();
 
-
+                    /// @brief Make the everything in the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @warning This makes arbitrary execution of programs and file management available to scripts. This is not suitable if untrusted scripts will be run.
                     virtual void OpenMezzanineLibrary();
+
+                    /// @brief Make a subset of the Mezzanine Library available for use in Lua51 scripts.
+                    /// @details This should not allow access to any functions, methods or classes than can execute code or manage files.
                     virtual void OpenMezzanineSafeLibrary();
             };
 

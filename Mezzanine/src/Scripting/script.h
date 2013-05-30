@@ -249,7 +249,7 @@ namespace Mezzanine
 
 
         /// @brief A group of arguments that can be returned from some scripts
-        typedef std::vector< CountedPtr<iScriptArgument> > ArgumentSet;
+        typedef std::vector< CountedPtr<iScriptArgument> > ArgumentGroup;
 
         /// @brief This script can return simple group of values.
         /// @details This loosely correlates to a tuple like the simple returns
@@ -271,7 +271,7 @@ namespace Mezzanine
 
                 /// @brief Get the returns from the last exection of the script
                 /// @return An ArgumentSet that can be iterated over to get all the values returned.
-                virtual ArgumentSet GetAllReturns() const = 0;
+                virtual ArgumentGroup GetAllReturns() const = 0;
 
                 /// @brief Get a pointer to the most Derived type of this class
                 /// @return A pointer of the most derived pointing to this.
