@@ -81,8 +81,7 @@ namespace Mezzanine
                   MPlayer(NULL),
                   MasterMute(false),
                   MasterVolume(1.0),
-                  ContextOutputFrequency(-1),
-                  ContextEAXEffectSlots(-1)
+                  ContextOutputFrequency(44100)
             {
                 this->Priority = 55;
                 this->AutoGenFiles = false;
@@ -96,9 +95,11 @@ namespace Mezzanine
                   MPlayer(NULL),
                   MasterMute(false),
                   MasterVolume(1.0),
-                  ContextOutputFrequency(-1),
-                  ContextEAXEffectSlots(-1)
+                  ContextOutputFrequency(44100)
             {
+                /// @todo Research possibly moving XML settings serialization to the AudioManager base class.
+                /// The likelyhood of having implementation specific settings being serialized is somewhat low.
+                /// Doing so would make settings files be implementation agnostic.
                 this->Priority = 55;
                 this->GetAvailableDeviceNames();
 
@@ -210,7 +211,6 @@ namespace Mezzanine
                 XML::Node PlaybackDeviceSettingsNode = CurrentSettings.AppendChild("PlaybackDeviceSettings");
                 PlaybackDeviceSettingsNode.AppendAttribute("DeviceName").SetValue( this->GetCurrentPlaybackDeviceName() );
                 PlaybackDeviceSettingsNode.AppendAttribute("OutputFrequency").SetValue( StringTools::ConvertToString(this->ContextOutputFrequency) );
-                PlaybackDeviceSettingsNode.AppendAttribute("EAXEffectSlots").SetValue( StringTools::ConvertToString(this->ContextEAXEffectSlots) );
                 // Create and initialize the volume settings
                 XML::Node VolumeSettingsNode = CurrentSettings.AppendChild("Volume");
                 VolumeSettingsNode.AppendAttribute("Ambient").SetValue( StringTools::ConvertToString(this->GetAmbientVolume()) );
@@ -233,7 +233,6 @@ namespace Mezzanine
                         // Setup the data to populate
                         String DeviceName("Default");
                         Integer OutputFreq = -1;
-                        Integer EAXSlots = 4;
                         // Get the values
                         CurrSettingValue = (*SubSetIt)->GetSettingValue("DeviceName");
                         if(!CurrSettingValue.empty())
@@ -241,30 +240,24 @@ namespace Mezzanine
                         CurrSettingValue = (*SubSetIt)->GetSettingValue("OutputFrequency");
                         if(!CurrSettingValue.empty())
                             OutputFreq = StringTools::ConvertToInteger(CurrSettingValue);
-                        CurrSettingValue = (*SubSetIt)->GetSettingValue("EAXEffectSlots");
-                        if(!CurrSettingValue.empty())
-                            EAXSlots = StringTools::ConvertToInteger(CurrSettingValue);
 
                         if( "Default" == DeviceName )
                         {
                             DeviceName = this->GetDefaultPlaybackDeviceName();
-                        }
-                        else
-                        {
+                        }else{
                             if( !this->PlaybackDeviceNameValid(DeviceName) )
                                 DeviceName = this->GetDefaultPlaybackDeviceName();
                         }
                         // Check if everything is initialized and set the settings appropriately
                         if(Initialized == false)
                         {
-                            this->InitializePlaybackDevice(DeviceName,OutputFreq,EAXSlots);
+                            this->InitializePlaybackDevice(DeviceName,OutputFreq);
                         }else{
                             /// @todo May want to make some other data member so that people can accurately get what is set now, instead of what will be set.
                             Entresol::GetSingletonPtr()->Log("WARNING: Attempting to apply new device settings after the AudioManager has been initialized.  "
                                                           "These Settings will be applied the next time settings are loaded during manager construction if current settings are saved.");
-                            this->CurrentDevice = DeviceName;
+                            this->CurrentDeviceName = DeviceName;
                             this->ContextOutputFrequency = OutputFreq;
-                            this->ContextEAXEffectSlots = EAXSlots;
                         }
                     }
                     else if( "Volume" == (*SubSetIt)->GetName() )
@@ -433,7 +426,7 @@ namespace Mezzanine
                 }else if( Extension == "opus" ) {
                     Encode = Audio::Enc_OPUS;
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting playback of a sound with unsupported encoding.");
+                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting playback of audio with unsupported encoding.");
                 }
 
                 return this->CreateSound(Type,SoundStream,Encode);
@@ -590,7 +583,7 @@ namespace Mezzanine
 
             String OALS::AudioManager::GetCurrentPlaybackDeviceName() const
             {
-                return this->CurrentDevice;
+                return this->CurrentDeviceName;
                 //return ( this->InternalDevice != NULL ? alcGetString(this->InternalDevice,ALC_DEVICE_SPECIFIER) : "");
             }
 
@@ -619,7 +612,7 @@ namespace Mezzanine
                 return false;
             }
 
-            bool OALS::AudioManager::InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency, const Integer EAXEffectSlots)
+            bool OALS::AudioManager::InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency)
             {
                 /// @todo We should create a "reinitialize" method that preserves sources.
                 if( this->Initialized )
@@ -636,11 +629,8 @@ namespace Mezzanine
                     Attribs[AttribIndex++] = OutputFrequency;
                 }
                 // Sort out our effect slots attrib
-                if( EAXEffectSlots > 0 )
-                {
-                    Attribs[AttribIndex++] = ALC_MAX_AUXILIARY_SENDS;
-                    Attribs[AttribIndex++] = EAXEffectSlots;
-                }
+                Attribs[AttribIndex++] = ALC_MAX_AUXILIARY_SENDS;
+                Attribs[AttribIndex++] = OALS_SOURCE_MAX_EFFECT_SLOTS;
 
                 // Create the device we'll use
                 this->InternalDevice = alcOpenDevice(DeviceName.c_str());
@@ -668,9 +658,8 @@ namespace Mezzanine
                     return false;
                 }
 
-                this->CurrentDevice = DeviceName;
+                this->CurrentDeviceName = DeviceName;
                 this->ContextOutputFrequency = OutputFrequency;
-                this->ContextEAXEffectSlots = EAXEffectSlots;
 
                 this->EffHandler = new OALS::EffectsHandler(this->InternalDevice);
                 this->MPlayer = new MusicPlayer();
@@ -743,10 +732,10 @@ namespace Mezzanine
             void OALS::AudioManager::Initialize()
             {
                 if( this->Initialized == false)
-                    this->InitializePlaybackDevice(this->GetDefaultPlaybackDeviceName(),-1,4);
+                    this->InitializePlaybackDevice(this->GetDefaultPlaybackDeviceName());
                 if( this->AutoGenFiles )
                     this->SaveAllSettings();
-                this->Initialized = true;
+                //this->Initialized = true;
             }
 
             void OALS::AudioManager::DoMainLoopItems()
@@ -770,6 +759,16 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
+
+            ALCcontext* OALS::AudioManager::_GetNonSpacialContext() const
+            {
+                return this->NonSpacialContext;
+            }
+
+            ALCdevice* OALS::AudioManager::_GetAudioDevice() const
+            {
+                return this->InternalDevice;
+            }
 
             void OALS::AudioManager::_RegisterSoundScapeManager(Audio::SoundScapeManager* Manager)
             {

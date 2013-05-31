@@ -98,23 +98,23 @@ namespace Mezzanine
             class MEZZ_LIB AudioManager : public Audio::AudioManager
             {
             public:
-                /// @brief Basic container type for @ref iSound storage by this class.
+                /// @brief Basic container type for @ref OALS::Sound storage by this class.
                 typedef std::vector<OALS::Sound*>                   SoundContainer;
-                /// @brief Iterator type for @ref iSound instances stored by this class.
+                /// @brief Iterator type for @ref OALS::Sound instances stored by this class.
                 typedef SoundContainer::iterator                    SoundIterator;
-                /// @brief Const Iterator type for @ref iSound instances stored by this class.
+                /// @brief Const Iterator type for @ref OALS::Sound instances stored by this class.
                 typedef SoundContainer::const_iterator              ConstSoundIterator;
-                /// @brief Basic container type for storing @ref iSound instances by type in this class.
+                /// @brief Basic container type for storing @ref OALS::Sound instances by type in this class.
                 typedef std::map<UInt16,SoundTypeHandler*>          SoundTypesContainer;
-                /// @brief Iterator type for @ref iSound instances stored by type in this class.
+                /// @brief Iterator type for @ref OALS::Sound instances stored by type in this class.
                 typedef SoundTypesContainer::iterator               SoundTypesIterator;
-                /// @brief Const Iterator type for @ref iSound instances stored by type in this class.
+                /// @brief Const Iterator type for @ref OALS::Sound instances stored by type in this class.
                 typedef SoundTypesContainer::const_iterator         ConstSoundTypesIterator;
-                /// @brief Basic container type for @ref iRecorder storage by this class.
+                /// @brief Basic container type for @ref OALS::Recorder storage by this class.
                 typedef std::vector<OALS::Recorder*>                RecorderContainer;
-                /// @brief Iterator type for @ref iRecorder instances stored by this class.
+                /// @brief Iterator type for @ref OALS::Recorder instances stored by this class.
                 typedef RecorderContainer::iterator                 RecorderIterator;
-                /// @brief Const Iterator type for @ref iRecorder instances stored by this class.
+                /// @brief Const Iterator type for @ref OALS::Recorder instances stored by this class.
                 typedef RecorderContainer::const_iterator           ConstRecorderIterator;
                 /// @brief Basic container type for @ref OALS::SoundScapeManager instances registered to this class.
                 typedef std::vector<OALS::SoundScapeManager*>       SoundScapeManagerContainer;
@@ -145,11 +145,8 @@ namespace Mezzanine
                 /// @brief The output frequency of the rendered audio belonging to the non-spacial context.
                 Integer ContextOutputFrequency;
                 /// @internal
-                /// @brief The number of EAX Effect Slots to support on the non-spacial context.
-                Integer ContextEAXEffectSlots;
-                /// @internal
                 /// @brief The name of the current device being used for audio playback.
-                String CurrentDevice;
+                String CurrentDeviceName;
                 /// @internal
                 /// @brief A vector containing
                 StringVector AvailablePlaybackDevices;
@@ -157,13 +154,13 @@ namespace Mezzanine
                 /// @brief
                 StringVector AvailableRecorderDevices;
                 /// @internal
-                /// @brief Container storing all @ref iSound instances by name.
+                /// @brief Container storing all @ref OALS::Sound instances.
                 SoundContainer Sounds;
                 /// @internal
-                /// @brief Container storing all @ref iSound instances by their type.
+                /// @brief Container storing all @ref OALS::Sound instances by their type.
                 mutable SoundTypesContainer SoundsByType;
                 /// @internal
-                /// @brief Container storing all @ref iRecorder instances.
+                /// @brief Container storing all @ref OALS::Recorder instances.
                 RecorderContainer Recorders;
                 /// @internal
                 /// @brief Container storing all @ref OALS::SoundScapeManager instances registered to this manager.
@@ -294,8 +291,8 @@ namespace Mezzanine
                 /// @copydoc Audio::AudioMananger::PlaybackDeviceNameValid(const String&) const
                 virtual bool PlaybackDeviceNameValid(const String& DeviceName) const;
 
-                /// @copydoc Audio::AudioMananger::InitializePlaybackDevice(const String&, const Integer, const Integer)
-                virtual bool InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency = -1, const Integer EAXEffectSlots = 4);
+                /// @copydoc Audio::AudioMananger::InitializePlaybackDevice(const String&, const Integer)
+                virtual bool InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency = 44100);
                 /// @copydoc Audio::AudioMananger::ShutdownPlaybackDevice()
                 virtual void ShutdownPlaybackDevice();
 
@@ -322,6 +319,12 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods
 
+                /// @internal
+                /// @brief Gets the 2D context owned by this manager.
+                ALCcontext* _GetNonSpacialContext() const;
+                /// @internal
+                /// @brief Gets the open audio device owned by this manager.
+                ALCdevice* _GetAudioDevice() const;
                 /// @copydoc Audio::AudioMananger::_RegisterSoundScapeManager(Audio::SoundScapeManager*)
                 void _RegisterSoundScapeManager(Audio::SoundScapeManager* Manager);
                 /// @copydoc Audio::AudioMananger::_UnregisterSoundScapeManager(Audio::SoundScapeManager*)

@@ -461,9 +461,8 @@ namespace Mezzanine
             /// you can use the manager.
             /// @param DeviceName The name of the device you wish to have this manager interface with/use.
             /// @param OutputFrequency Frequency of the output audio, -1 for the devices default.
-            /// @param EAXEffectSlots The number of effects per sound allowed to be applied.
             /// @return Returns true if the device was initialized successfully.  False on a failure.
-            virtual bool InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency = -1, const Integer EAXEffectSlots = 4) = 0;
+            virtual bool InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency = 44100) = 0;
             /// @brief Shuts down the current playback device and unloads all sounds.
             /// @warning This will destroy all sounds and sound proxies in the system.
             virtual void ShutdownPlaybackDevice() = 0;
