@@ -248,6 +248,14 @@ namespace Mezzanine
             {
                 // Currently you can't scale a listener
             }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            ALCcontext* Listener::_GetListenerContext() const
+            {
+                return this->Context;
+            }
         }//OALS
     }//Audio
 }//Mezzanine

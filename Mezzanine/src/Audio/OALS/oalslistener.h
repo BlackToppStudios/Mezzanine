@@ -149,6 +149,14 @@ namespace Mezzanine
                 virtual void Scale(const Vector3& Scale);
                 /// @copydoc WorldProxy::Scale(const Real, const Real, const Real)
                 virtual void Scale(const Real X, const Real Y, const Real Z);
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Methods
+
+                /// @internal
+                /// @brief Gets the context this listener belongs to.
+                /// @return Returns a pointer to the context that owns this Listener.
+                virtual ALCcontext* _GetListenerContext() const;
             };//Listener
         }//OALS
     }//Audio
