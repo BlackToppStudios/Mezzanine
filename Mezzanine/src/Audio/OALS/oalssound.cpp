@@ -116,6 +116,8 @@ namespace Mezzanine
 
             Sound::~Sound()
             {
+                // Set the context, so we can safely do all our business with the sources
+                this->MakeCurrent();
                 // Stop the source
                 alSourceStop(InternalSource);
                 // Eradicate the source
