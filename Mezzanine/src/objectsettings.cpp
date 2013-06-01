@@ -702,9 +702,10 @@ namespace Mezzanine
         for( SettingFilesIterator SettingFileIt = SettingFiles.begin() ; SettingFileIt != SettingFiles.end() ; ++SettingFileIt )
         {
             ObjectSettingFile* CurrFile = (*SettingFileIt).second;
-            if( CurrFile->GetNeedsSave() )
+            bool IsCurrentSettingsFile = CurrentSettingsSaveFile == CurrFile->GetFileName();
+            if( CurrFile->GetNeedsSave() || IsCurrentSettingsFile )
             {
-                if( CurrentSettingsSaveFile == CurrFile->GetFileName() )
+                if( IsCurrentSettingsFile )
                     GroupNames.push_back( "Current" );
                 for( ObjectSettingFile::SaveGroupsIterator SetGroupIt = CurrFile->SaveGroupsBegin() ; SetGroupIt != CurrFile->SaveGroupsEnd() ; ++SetGroupIt )
                 {
