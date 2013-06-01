@@ -1023,10 +1023,10 @@ namespace Mezzanine
             {
                 if( Index < this->ContextsAndSources.size() )
                 {
-                    ALCcontext* Context = this->ContextsAndSources[Index].first;
+                    ALCcontext* OldContext = this->ContextsAndSources[Index].first;
                     //UInt32 SourceID = this->ContextsAndSources[Index].second;
 
-                    if( Context != NULL )
+                    if( OldContext != NULL )
                         { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to write over an existing context."); }
 
                     this->MakeCurrent(Context);
@@ -1049,6 +1049,9 @@ namespace Mezzanine
                         this->MakeCurrent(Context);
                         alSourceStop(SourceID);
                         alDeleteSources(1,&SourceID);
+
+                        this->ContextsAndSources[Index].first = NULL;
+                        this->ContextsAndSources[Index].second = 0;
                     }
                 }
             }
