@@ -137,19 +137,19 @@ namespace Mezzanine
                         case AL_INVALID_NAME:
                         {
                             ExceptionStream << "Invalid name passed into OpenAL.  OpenAL error follows: " << alGetString(ErrorCode);
-                            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,ExceptionStream.str());
+                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
                             break;
                         }
                         case AL_INVALID_ENUM:
                         {
                             ExceptionStream << "Invalid enum passed into OpenAL.  OpenAL error follows: " << alGetString(ErrorCode);
-                            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,ExceptionStream.str());
+                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
                             break;
                         }
                         case AL_INVALID_VALUE:
                         {
                             ExceptionStream << "Invalid value passed into OpenAL.  OpenAL error follows: " << alGetString(ErrorCode);
-                            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,ExceptionStream.str());
+                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
                             break;
                         }
                         case AL_INVALID_OPERATION:
@@ -287,7 +287,7 @@ namespace Mezzanine
             {
                 if( Config > Audio::BC_16Bit_Stereo )
                 {
-                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid BitConfiguration parameter.  The OLAS audio system does not support above 16-bit stereo.");
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid BitConfiguration parameter.  The OLAS audio system does not support above 16-bit stereo.");
                 }else{
                     this->BitConfiguration = Config;
                     if(this->RecorderDevice != NULL) {
