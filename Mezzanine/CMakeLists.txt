@@ -800,6 +800,7 @@ CopyFilesDuringBuild( common/SDL-MITLicense.txt data/common/SDL-MITLicense.txt )
 CopyFilesDuringBuild( common/XiphCopyrightNotice.txt data/common/XiphCopyrightNotice.txt )
 CopyFilesDuringBuild( common/zlib-libpngLicense.txt data/common/zlib-libpngLicense.txt )
 CopyFilesDuringBuild( common/zlib-zliblicense.txt data/common/zlib-zliblicense.txt )
+CopyFilesDuringBuild( common/cAudio-ZLIBLicense.txt data/common/cAudio-ZLIBLicense.txt )
 
 
 # Ogre

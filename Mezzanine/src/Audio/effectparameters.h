@@ -37,6 +37,9 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+// Copyright (c) 2008-2010 Raynaldo (Wildicv) Rivera, Joshua (Dark_Kilauea) Jones
+// This file is part of the "cAudio Engine"
+// For conditions of distribution and use, see copyright notice in cAudio-ZLIBLicense.txt
 #ifndef _audioeffectparameters_h
 #define _audioeffectparameters_h
 
