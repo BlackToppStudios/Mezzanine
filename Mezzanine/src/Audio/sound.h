@@ -221,6 +221,9 @@ namespace Mezzanine
             virtual iEffect* GetEffect(const UInt32 Slot) const = 0;
             /// @brief Gets the max number of @ref iEffect instances that can be attached to this sound.
             /// @return Returns the maximum number of @ref iEffect instances this sound can support.
+            virtual UInt32 GetMaxEffectSlots() const = 0;
+            /// @brief Gets the number of @ref iEffect slots remaining that can be attached to.
+            /// @return Returns the remaining number of @ref iEffect instances this sound can support before it reaches it's max.
             virtual UInt32 GetNumEffectSlotsAvailable() const = 0;
             /// @brief Removes the @ref iEffect in the specified slot.
             /// @remarks Valid Slot Range: 0 to @ref iSound::GetNumEffectSlotsAvailable()

@@ -198,6 +198,8 @@ namespace Mezzanine
                 virtual bool AttachEffect(const UInt32 Slot, iEffect* Eff);
                 /// @copydoc iSound::GetEffect(const UInt32 Slot) const
                 virtual iEffect* GetEffect(const UInt32 Slot) const;
+                /// @copydoc iSound::GetMaxEffectSlots() const
+                virtual UInt32 GetMaxEffectSlots() const;
                 /// @copydoc iSound::GetNumEffectSlotsAvailable() const
                 virtual UInt32 GetNumEffectSlotsAvailable() const;
                 /// @copydoc iSound::RemoveEffect(const UInt32)

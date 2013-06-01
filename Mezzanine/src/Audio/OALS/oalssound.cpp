@@ -101,10 +101,7 @@ namespace Mezzanine
                 // Create the storage space for our buffer handles
                 Buffers.resize(OALS_SOURCE_NUM_BUFFERS,0);
                 // Create the storage space for our effect slots
-                Int32 SupportedSlots = 0;
-                ALCdevice* Device = alcGetContextsDevice(Context);
-                alcGetIntegerv(Device,ALC_MAX_AUXILIARY_SENDS,1,&SupportedSlots);
-                Effects.resize(std::min(SupportedSlots,OALS_SOURCE_MAX_EFFECT_SLOTS),NULL);
+                Effects.resize(OALS_SOURCE_MAX_EFFECT_SLOTS,NULL);
 
                 // Create and place our buffers
                 alGenBuffers(OALS_SOURCE_NUM_BUFFERS,&Buffers[0]);
@@ -401,9 +398,20 @@ namespace Mezzanine
                 }
             }
 
-            UInt32 Sound::GetNumEffectSlotsAvailable() const
+            UInt32 Sound::GetMaxEffectSlots() const
             {
                 return this->Effects.size();
+            }
+
+            UInt32 Sound::GetNumEffectSlotsAvailable() const
+            {
+                UInt32 Available = 0;
+                for( ConstEffectIterator EffIt = this->Effects.begin() ; EffIt != this->Effects.end() ; ++EffIt )
+                {
+                    if( (*EffIt) != NULL )
+                        ++Available;
+                }
+                return Available;
             }
 
             void Sound::RemoveEffect(const UInt32 Slot)
