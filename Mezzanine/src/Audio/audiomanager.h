@@ -351,7 +351,7 @@ namespace Mezzanine
             virtual Real GetMasterVolume() const = 0;
             /// @brief Sets whether or not to mute all Audio.
             /// @param Enable Whether or not all sounds should be muted.
-            virtual void Mute(bool Enable) = 0;
+            virtual void SetMasterMute(bool Enable) = 0;
             /// @brief Gets whether or not the Audio subsystem is muted.
             /// @return Returns a bool indicating whether or not the Audio subsystem is currently muted.
             virtual bool IsMuted() const = 0;

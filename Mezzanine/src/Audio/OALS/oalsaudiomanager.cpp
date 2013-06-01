@@ -51,6 +51,7 @@
 #include "Audio/OALS/oalssound.h"
 #include "Audio/OALS/oalseffectshandler.h"
 #include "Audio/OALS/oalssoundscapemanager.h"
+#include "Audio/OALS/oalsdefines.h"
 
 #include "Audio/rawdecoderfactory.h"
 #include "Audio/musicplayer.h"
@@ -211,16 +212,19 @@ namespace Mezzanine
                 XML::Node PlaybackDeviceSettingsNode = CurrentSettings.AppendChild("PlaybackDeviceSettings");
                 PlaybackDeviceSettingsNode.AppendAttribute("DeviceName").SetValue( this->GetCurrentPlaybackDeviceName() );
                 PlaybackDeviceSettingsNode.AppendAttribute("OutputFrequency").SetValue( StringTools::ConvertToString(this->ContextOutputFrequency) );
+                // Create and initialize the master settings
+                XML::Node MasterSettingsNode = CurrentSettings.AppendChild("MasterSettings");
+                MasterSettingsNode.AppendAttribute("Volume").SetValue( StringTools::ConvertToString( this->MasterVolume ) );
+                MasterSettingsNode.AppendAttribute("Mute").SetValue( StringTools::ConvertToString( this->MasterMute ) );
                 // Create and initialize the volume settings
-                XML::Node VolumeSettingsNode = CurrentSettings.AppendChild("Volume");
-                VolumeSettingsNode.AppendAttribute("Ambient").SetValue( StringTools::ConvertToString(this->GetAmbientVolume()) );
-                VolumeSettingsNode.AppendAttribute("Dialog").SetValue( StringTools::ConvertToString(this->GetDialogVolume()) );
-                VolumeSettingsNode.AppendAttribute("Effects").SetValue( StringTools::ConvertToString(this->GetEffectVolume()) );
-                VolumeSettingsNode.AppendAttribute("Music").SetValue( StringTools::ConvertToString(this->GetMusicVolume()) );
-                VolumeSettingsNode.AppendAttribute("Master").SetValue( StringTools::ConvertToString(this->GetMasterVolume()) );
-                // Create and initialize the mute setting
-                XML::Node MuteSettingNode = CurrentSettings.AppendChild("Mute");
-                MuteSettingNode.AppendAttribute("Muted").SetValue( StringTools::ConvertToString(this->IsMuted()) );
+                XML::Node VolumeSettingsNode = CurrentSettings.AppendChild("SettingsByType");
+                for( SoundTypesIterator TypeIt = this->SoundsByType.begin() ; TypeIt != this->SoundsByType.end() ; ++TypeIt )
+                {
+                    XML::Node TypeNode = VolumeSettingsNode.AppendChild("Type");
+                    TypeNode.AppendAttribute("ID").SetValue( StringTools::ConvertToString( (*TypeIt).first ) );
+                    TypeNode.AppendAttribute("Volume").SetValue( StringTools::ConvertToString( (*TypeIt).second->Volume ) );
+                    TypeNode.AppendAttribute("Mute").SetValue( StringTools::ConvertToString( (*TypeIt).second->Mute ) );
+                }
             }
 
             void OALS::AudioManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
@@ -260,49 +264,50 @@ namespace Mezzanine
                             this->ContextOutputFrequency = OutputFreq;
                         }
                     }
-                    else if( "Volume" == (*SubSetIt)->GetName() )
+                    else if( "MasterSettings" == (*SubSetIt)->GetName() )
                     {
                         // Setup the data to populate
-                        Real AmbientVol = -1.0;
-                        Real DialogVol = -1.0;
-                        Real EffectVol = -1.0;
-                        Real MusicVol = -1.0;
-                        Real MasterVol = -1.0;
+                        Real Volume = 1.0;
+                        bool Mute = false;
                         // Get the values
-                        CurrSettingValue = (*SubSetIt)->GetSettingValue("Ambient");
+                        CurrSettingValue = (*SubSetIt)->GetSettingValue("Volume");
                         if(!CurrSettingValue.empty())
-                            AmbientVol = StringTools::ConvertToReal(CurrSettingValue);
-                        CurrSettingValue = (*SubSetIt)->GetSettingValue("Dialog");
+                            Volume = StringTools::ConvertToReal(CurrSettingValue);
+                        CurrSettingValue = (*SubSetIt)->GetSettingValue("Mute");
                         if(!CurrSettingValue.empty())
-                            DialogVol = StringTools::ConvertToReal(CurrSettingValue);
-                        CurrSettingValue = (*SubSetIt)->GetSettingValue("Effects");
-                        if(!CurrSettingValue.empty())
-                            EffectVol = StringTools::ConvertToReal(CurrSettingValue);
-                        CurrSettingValue = (*SubSetIt)->GetSettingValue("Music");
-                        if(!CurrSettingValue.empty())
-                            MusicVol = StringTools::ConvertToReal(CurrSettingValue);
-                        CurrSettingValue = (*SubSetIt)->GetSettingValue("Master");
-                        if(!CurrSettingValue.empty())
-                            MasterVol = StringTools::ConvertToReal(CurrSettingValue);
-                        // Set the values
-                        if( 0.0 <= AmbientVol ) this->SetAmbientVolume(AmbientVol);
-                        if( 0.0 <= DialogVol ) this->SetDialogVolume(DialogVol);
-                        if( 0.0 <= EffectVol ) this->SetEffectVolume(EffectVol);
-                        if( 0.0 <= MusicVol ) this->SetMusicVolume(MusicVol);
-                        if( 0.0 <= MasterVol ) this->SetMasterVolume(MasterVol);
+                            Mute = StringTools::ConvertToBool(CurrSettingValue);
+
+                        this->SetMasterVolume(Volume);
+                        this->SetMasterMute(Mute);
                     }
-                    else if( "Mute" == (*SubSetIt)->GetName() )
+                    else if( "SettingsByType" == (*SubSetIt)->GetName() )
                     {
-                        // Setup the data to populate
-                        bool MuteState = false;
-                        // Get the values
-                        CurrSettingValue = (*SubSetIt)->GetSettingValue("Muted");
-                        if(!CurrSettingValue.empty())
-                            MuteState = StringTools::ConvertToBool(CurrSettingValue,false);
-                        // Set the values
-                        this->Mute(MuteState);
-                    }
-                }
+                        for( ObjectSettingSetContainer::SubSetIterator TypeIt = (*SubSetIt)->SubSetBegin() ; TypeIt != (*SubSetIt)->SubSetEnd() ; ++TypeIt )
+                        {
+                            // Setup the data to populate
+                            UInt16 TypeID = 0;
+                            Real Volume = 1.0;
+                            bool Mute = false;
+                            // Get the values
+                            CurrSettingValue = (*SubSetIt)->GetSettingValue("ID");
+                            if(!CurrSettingValue.empty())
+                                TypeID = StringTools::ConvertToReal(CurrSettingValue);
+                            CurrSettingValue = (*SubSetIt)->GetSettingValue("Volume");
+                            if(!CurrSettingValue.empty())
+                                Volume = StringTools::ConvertToReal(CurrSettingValue);
+                            CurrSettingValue = (*SubSetIt)->GetSettingValue("Mute");
+                            if(!CurrSettingValue.empty())
+                                Mute = StringTools::ConvertToBool(CurrSettingValue);
+
+                            if( TypeID > 0 )
+                            {
+                                SoundTypeHandler* Handler = this->GetOrCreateSoundTypeHandler(TypeID);
+                                Handler->Volume = Volume;
+                                Handler->Mute = Mute;
+                            }// if type id
+                        }// for each type
+                    }// if "SettingsByType"
+                }// for each node
             }
 
             void OALS::AudioManager::GetAvailableDeviceNames()
@@ -378,7 +383,7 @@ namespace Mezzanine
 
                 iDecoderFactory* Factory = this->GetDecoderFactory(Encode);
                 if( Factory == NULL )
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = Factory->CreateDecoder(Stream);
                 OALS::Sound* NewSound = new OALS::Sound(Type,SoundDecoder,this->NonSpacialContext);
@@ -393,7 +398,7 @@ namespace Mezzanine
 
                 iDecoderFactory* Factory = this->GetDecoderFactory(Audio::Enc_RAW);
                 if( Factory == NULL )
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = static_cast<RawDecoderFactory*>(Factory)->CreateDecoder(Stream,Frequency,Config);
                 OALS::Sound* NewSound = new OALS::Sound(Type,SoundDecoder,this->NonSpacialContext);
@@ -426,7 +431,7 @@ namespace Mezzanine
                 }else if( Extension == "opus" ) {
                     Encode = Audio::Enc_OPUS;
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting playback of audio with unsupported encoding.");
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting playback of audio with unsupported encoding.");
                 }
 
                 return this->CreateSound(Type,SoundStream,Encode);
@@ -523,7 +528,7 @@ namespace Mezzanine
                 return ( this->IsMuted() ? 0 : this->MasterVolume );
             }
 
-            void OALS::AudioManager::Mute(bool Enable)
+            void OALS::AudioManager::SetMasterMute(bool Enable)
             {
                 this->MasterMute = Enable;
             }
@@ -664,7 +669,7 @@ namespace Mezzanine
                 this->EffHandler = new OALS::EffectsHandler(this->InternalDevice);
                 this->MPlayer = new MusicPlayer();
 
-                this->Initialized = true;
+                return true;
             }
 
             void OALS::AudioManager::ShutdownPlaybackDevice()
@@ -732,10 +737,10 @@ namespace Mezzanine
             void OALS::AudioManager::Initialize()
             {
                 if( this->Initialized == false)
-                    this->InitializePlaybackDevice(this->GetDefaultPlaybackDeviceName());
+                    this->Initialized = this->InitializePlaybackDevice(this->GetDefaultPlaybackDeviceName());
+
                 if( this->AutoGenFiles )
                     this->SaveAllSettings();
-                //this->Initialized = true;
             }
 
             void OALS::AudioManager::DoMainLoopItems()

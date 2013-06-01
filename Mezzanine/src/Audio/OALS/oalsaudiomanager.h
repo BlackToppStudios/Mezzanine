@@ -258,7 +258,7 @@ namespace Mezzanine
                 /// @copydoc Audio::AudioMananger::GetMasterVolume() const
                 virtual Real GetMasterVolume() const;
                 /// @copydoc Audio::AudioMananger::Mute(bool)
-                virtual void Mute(bool Enable);
+                virtual void SetMasterMute(bool Enable);
                 /// @copydoc Audio::AudioMananger::IsMuted() const
                 virtual bool IsMuted() const;
 
