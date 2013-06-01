@@ -109,7 +109,7 @@ void OptsAudioMute::DoPostUpdateItems()
     bool Mute = AudioMan->IsMuted();
     UI::CheckBox* MuteCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(Mute != MuteCheck->IsChecked())
-        AudioMan->Mute(MuteCheck->IsChecked());
+        AudioMan->SetMasterMute(MuteCheck->IsChecked());
 }
 
 void OptsAudioMute::DoVisibilityChangeItems()
