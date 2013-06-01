@@ -124,16 +124,16 @@ namespace Mezzanine
 
             void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
             {
-                ThrowFromLuaErrorCode(
+                /*ThrowFromLuaErrorCode(
                             lua_load(this->State, LuaSourceLoader, ScriptToCompile, 0)
                 );
                 ThrowFromLuaErrorCode(
                             lua_dump(this->State, LuaBytecodeDumper, &(ScriptToCompile->CompiledByteCode) )
-                );
+                );*/
             }
 
             void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
-            {
+            {/*
                 if(!ScriptToRun->IsCompiled())
                     { Compile(ScriptToRun); }
                 else
@@ -141,7 +141,7 @@ namespace Mezzanine
                     ThrowFromLuaErrorCode(
                                 lua_load(this->State, LuaBytecodeLoader, ScriptToRun, 0)
                     );
-                }
+                }*/
                 // Since Lua_Dump will leave
 
                 //ScriptToRun->GetArgumentCount();
