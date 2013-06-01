@@ -76,6 +76,10 @@ namespace Mezzanine
             namespace
             {
                 /// @internal
+                /// @brief Used with the Lua API when a chunk name is required.
+                char* DefaultChunkName = "Chunk";
+
+                /// @internal
                 /// @brief Used in the LuaScriptingEngine to get data from lua_dump durign script compilation
                 /// @param State The Lua state as provide by lua_dump
                 /// @param Buffer A pointer to the compiled Lua chunk.
@@ -120,24 +124,28 @@ namespace Mezzanine
 
             void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
             {
-                // lua_load
                 ThrowFromLuaErrorCode(
                             lua_load(this->State, LuaSourceLoader, ScriptToCompile, 0)
                 );
-/*
                 ThrowFromLuaErrorCode(
-                    luaL_loadstring(this->State, ScriptToCompile->SourceCode.c_str())
+                            lua_dump(this->State, LuaBytecodeDumper, &(ScriptToCompile->CompiledByteCode) )
                 );
-
-                ThrowFromLuaErrorCode(
-                    lua_dump(this->State, LuaScriptWriter, &(ScriptToCompile->CompiledByteCode) )
-                );*/
             }
 
-            void Lua51ScriptingEngine::Execute(Lua51Script* ScriptTorun)
+            void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
             {
-                if(!ScriptTorun->IsCompiled())
-                    { Compile(ScriptTorun); }
+                if(!ScriptToRun->IsCompiled())
+                    { Compile(ScriptToRun); }
+                else
+                {
+                    ThrowFromLuaErrorCode(
+                                lua_load(this->State, LuaBytecodeLoader, ScriptToRun, 0)
+                    );
+                }
+                // Since Lua_Dump will leave
+
+                //ScriptToRun->GetArgumentCount();
+
                 // Do execution logic here.
             }
 

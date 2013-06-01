@@ -93,7 +93,7 @@ namespace Mezzanine
 
                     /// @brief Performs the compilation on a raw pointer, only used internally
                     /// @param ScriptToCompile A pointer to the Lua51Script to compile.
-                    virtual void Execute(Lua51Script* ScriptTorun);
+                    virtual void Execute(Lua51Script* ScriptToRun);
 
                     /// @brief This will do nothing if the past integer
                     /// @param LuaReturn The return code from a Lua Compile or execution call
@@ -230,10 +230,10 @@ namespace Mezzanine
             };
 
             //simplistic error checking function, to be replace with proper exception driven code later.
-            int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
+            //int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
 
             // super simple lua test
-            int MEZZ_LIB test();
+            //int MEZZ_LIB test();
 
         } // Lua
     } // Scripting
