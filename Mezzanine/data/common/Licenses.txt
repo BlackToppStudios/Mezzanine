@@ -25,6 +25,7 @@ The following Licenses are applicable to the libraries that comprise the Mezzani
 		Bullet Extras - Extras/GIMPACTBullet
 
 	The "zlib/libpng License" as described in zlib-libpngLicense.txt:
+	An updated copy of the license can also be found in cAudio-ZLIBLicense.txt:
 		cAudio
 
 	The "Xiph.org Copyright Notice" as described in XiphCopyrightNotice.txt:
