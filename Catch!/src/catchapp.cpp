@@ -27,7 +27,7 @@ CatchApp::CatchApp()
     CatchApp::TheRealCatchApp = this;
 
     //try{
-        TheEntresol = new Entresol( "Data/", FileSystem );
+        TheEntresol = new Entresol( "Data/", AT_FileSystem );
     //}catch(...){
 //        throw "";
 //    }
@@ -503,19 +503,19 @@ void CatchApp::CreateLoadingScreen()
 
 void CatchApp::InitMusic()
 {
-    AudioManager* AudioMan = AudioManager::GetSingletonPtr();
+    Audio::AudioManager* AudioMan = Audio::AudioManager::GetSingletonPtr();
     Audio::MusicPlayer* MPlayer = AudioMan->GetMusicPlayer();
     String CommonGroup("Common");
-    Audio::Sound* Track1 = AudioMan->CreateMusicSound("Track1","Track1.ogg",CommonGroup);
-    Audio::Sound* Track2 = AudioMan->CreateMusicSound("Track2","Track2.ogg",CommonGroup);
-    Audio::Sound* Track3 = AudioMan->CreateMusicSound("Track3","Track3.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track4","Track4.ogg",CommonGroup);
-    /*Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track5","Track4.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track6","Track4.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track7","Track4.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track8","Track4.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track9","Track4.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track10","Track4.ogg",CommonGroup);// */
+    Audio::iSound* Track1 = AudioMan->CreateMusicSound("Track1.ogg",CommonGroup);
+    Audio::iSound* Track2 = AudioMan->CreateMusicSound("Track2.ogg",CommonGroup);
+    Audio::iSound* Track3 = AudioMan->CreateMusicSound("Track3.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    /*Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);// */
     MPlayer->GetPlaylist()->AddSound(Track1);
     MPlayer->GetPlaylist()->AddSound(Track2);
     MPlayer->GetPlaylist()->AddSound(Track3);
@@ -526,15 +526,15 @@ void CatchApp::InitMusic()
     MPlayer->GetPlaylist()->AddSound(Track8);
     MPlayer->GetPlaylist()->AddSound(Track9);
     MPlayer->GetPlaylist()->AddSound(Track10);// */
-    MPlayer->SetEOPRepeat(true);
-    MPlayer->SetEOPShuffle(true);
+    MPlayer->SetPlaylistRepeat(true);
+    MPlayer->SetPlaylistShuffle(true);
     //MPlayer->SwitchToSong(Track4);
 }
 
 void CatchApp::VerifySettings()
 {
     // Verify the Audio Settings
-    AudioManager* AudioMan = AudioManager::GetSingletonPtr();
+    Audio::AudioManager* AudioMan = Audio::AudioManager::GetSingletonPtr();
     // Ensure file exists
     String AudioSaveFileName("AudioSettings.mxs");
     ObjectSettingFile* AudioSettingFile = AudioMan->GetSettingFile(AudioSaveFileName);
@@ -765,7 +765,7 @@ int CatchApp::GetCatchin()
     if(1 == Profiles->GetNumLoadedProfiles())
         Profiles->SetActiveProfile(Profiles->GetProfile(0));
 
-    AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
+    Audio::AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
     Loader->SetNextLevel("MainMenu");
     do{
         ChangeState(CatchApp::Catch_Loading);

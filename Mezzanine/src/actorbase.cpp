@@ -51,7 +51,7 @@
 #include "actorsoft.h"
 #include "actorphysicssettings.h"
 #include "serialization.h"
-#include "audiomanager.h"
+#include "Audio/audiomanager.h"
 #include "Audio/soundset.h"
 #include "physicsmanager.h"
 #include "scenemanager.h"

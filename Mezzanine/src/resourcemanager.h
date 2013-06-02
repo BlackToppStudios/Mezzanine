@@ -46,12 +46,11 @@
 #include "managerbase.h"
 #include "managerfactory.h"
 #include "singleton.h"
+#include "Resource/datastream.h"
 #include "Resource/inputstream.h"
 
 /// @file
 /// @brief The defintion of the Resource Manager.
-
-class btBulletWorldImporter;
 
 namespace Ogre
 {
@@ -76,32 +75,55 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB ResourceManager : public ManagerBase, public Singleton<ResourceManager>
     {
+        public:
+            /// @brief Basic container type for @ref DataStream storage by this class.
+            typedef std::vector<Resource::DataStreamPtr>       DataStreamContainer;
+            /// @brief Iterator type for @ref DataStream instances stored by this class.
+            typedef DataStreamContainer::iterator              DataStreamIterator;
+            /// @brief Const Iterator type for @ref DataStream instances stored by this class.
+            typedef DataStreamContainer::const_iterator        ConstDataStreamIterator;
+            /// @brief Basic container type for named @ref DataStream storage by this class.
+            typedef std::map<String,Resource::DataStreamPtr>   NamedDataStreamContainer;
+            /// @brief Iterator type for named @ref DataStream instances stored by this class.
+            typedef NamedDataStreamContainer::iterator         NamedDataStreamIterator;
+            /// @brief Const Iterator type for named @ref DataStream instances stored by this class.
+            typedef NamedDataStreamContainer::const_iterator   ConstNamedDataStreamIterator;
         protected:
+            /// @internal
             /// @brief Encapsulates the functionality of the ogre resource group manager.
             Ogre::ResourceGroupManager* OgreResource;
-
-            /// A list of Pointers to streams created to delete periodically.
-            std::vector<ResourceInputStream*> DeleteList;
-
-            std::vector<String> ResourceGroups;
-            void AddAssetGroupName(String Name);
-
+            /// @internal
             /// @brief The location of engine data
             String EngineDataDir;
 
+            /// @internal
+            /// @brief A container storing all un-named, un-grouped data streams known by the resource system.
+            DataStreamContainer DataStreams;
+            /// @internal
+            /// @brief A container storing all named but un-grouped data streams known by the resource system.
+            NamedDataStreamContainer NamedDataStreams;
+
+            /// @internal
+            /// @brief A vector of Pointers to streams created to delete periodically.
+            std::vector<ResourceInputStream*> DeleteList;
+            /// @internal
+            /// @brief A vector of all the known internal Asset Groups.
+            std::vector<String> ResourceGroups;
+
+            /// @internal
+            /// @brief Adds an asset group name to the list of known AssetGroups.
+            void AddAssetGroupName(String Name);
         public:
             /// @brief Class constructor.
             /// @details Standard manager constructor.
             /// @param EngineDataPath The directory for engine specific data.
             /// @param ArchiveType The name of the type of archive at this path.
-            ResourceManager(const String& EngineDataPath = ".", ArchiveType ArchiveType_ = FileSystem);
-
+            ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             ResourceManager(XML::Node& XMLNode);
-
             /// @details Class Destructor.
-            ~ResourceManager();
+            virtual ~ResourceManager();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Directory Management
@@ -154,6 +176,33 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Management
 
+            /// @brief Opens a stream to an asset in an AssetGroup.
+            /// @param AssetName The identity of the asset to be opened (commonly a file name).
+            /// @param AssetGroup The name of the AssetGroup where the Asset can be found.
+            Resource::DataStreamPtr OpenAssetStream(const String& AssetName, const String& AssetGroup);
+
+            /// @brief Creates a stream from a memory buffer.
+            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
+            /// @param Buffer A pointer to the memory to stream from.
+            /// @param BufferSize The size of the provided buffer in bytes.
+            /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
+            Resource::DataStreamPtr CreateDataStream(void* Buffer, const UInt32 BufferSize);
+            /// @brief Creates a named stream from a memory buffer.
+            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
+            /// @param AssetName The name to be given to the created stream.
+            /// @param Buffer A pointer to the memory to stream from.
+            /// @param BufferSize The size of the provided buffer in bytes.
+            /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
+            Resource::DataStreamPtr CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize);
+            /// @brief Creates a named stream from a memory buffer and adds it to the named AssetGroup.
+            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
+            /// @param AssetName The name to be given to the created stream.
+            /// @param AssetGroup The name of the AssetGroup this stream will be added to.
+            /// @param Buffer A pointer to the memory to stream from.
+            /// @param BufferSize The size of the provided buffer in bytes.
+            /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
+            Resource::DataStreamPtr CreateDataStream(const String& AssetName, const String& AssetGroup, void* Buffer, const UInt32 BufferSize);
+
             ///////////////////////////////////////////////////////////////////////////////
             // AssetGroup Management
 
@@ -165,8 +214,8 @@ namespace Mezzanine
             /// @param Type The kind of file system the location can be found in. @n
             /// Options are: filesystem, zip.
             /// @param Group The name of the group the resources at this location belong to.  If the group does not exist it will be created.
-            /// @param recursive Whether or not to search sub-directories.
-            void AddAssetLocation(const String& Location, ArchiveType Type, const String& Group, const bool recursive=false);
+            /// @param Recursive Whether or not to search sub-directories.
+            void AddAssetLocation(const String& Location, const ArchiveType Type, const String& Group, const bool Recursive = false);
             /// @brief Creates an asset group.
             /// @param GroupName The name to be given to the created asset group.
             void CreateAssetGroup(const String& GroupName);
@@ -205,19 +254,19 @@ namespace Mezzanine
             /// @brief Gets the dot-and-extention of this platforms plugins.
             /// @return Returns the platform appropriate extention for plugin files.
             String GetPluginExtension() const;
-
             /// @brief Get a stream to read from the specified file
             /// @param FileName The name of the File you want to stream data from
             /// @return An derivative of std::istream a ResourceInputStream that will pull it's data from the desired resource
             /// @details The returned ResourceInputStream is the Caller's responsibility to deal with. If it is not deleted it is a memory leak.
             ResourceInputStream* GetResourceStream(const String& FileName);
-
-            /// @brief Get A string that describes an @ref ArchiveType
-            /// @param ArchiveType_ A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
-            /// @return A String that represents the @ref ArchiveType passed
-            static String GetStringFromArchiveType(ArchiveType ArchiveType_);
-
-            static ArchiveType GetArchiveTypeFromString(String FromString);
+            /// @brief Gets a string that describes an @ref ArchiveType.
+            /// @param ArchType A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
+            /// @return A String that represents the @ref ArchiveType passed.
+            static String GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType);
+            /// @brief Gets an @ref ArchiveType from a string.
+            /// @param FromString The string to be converted to an archive type.
+            /// @return Returns a @ref ArchiveType corresponding to the string provided, or AT_Invalid if it is invalid.
+            static ArchiveType GetArchiveTypeFromString(const String& FromString);
 
             ///////////////////////////////////////////////////////////////////////////////
             //Inherited from ManagerBase

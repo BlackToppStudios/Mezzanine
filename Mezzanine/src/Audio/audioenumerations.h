@@ -47,16 +47,69 @@ namespace Mezzanine
 {
     namespace Audio
     {
+        /// @enum BitConfig
+		/// @brief Used to describe the different bit configurations supported by this audio system.
+		enum BitConfig
+		{
+		    BC_8Bit_Mono = 1,
+		    BC_8Bit_Stereo,
+		    BC_16Bit_Mono,
+		    BC_16Bit_Stereo,
+		    BC_24Bit_Mono,
+		    BC_24Bit_Stereo
+		};
+
+        /// @enum Encoding
+        /// @brief The encoding to use when reading or writing an audio buffer.
+        enum Encoding
+        {
+            Enc_RAW    = 1,  ///< Unknown or error condition.
+            Enc_WAV    = 2,  ///< Used in .wav files.
+            Enc_FLAC   = 3,  ///< Used in .flac files.
+            Enc_VORBIS = 4,  ///< Used in .ogg files.
+            Enc_MP3    = 5,  ///< Used in .mp3 files.
+            Enc_SPEEX  = 6,  ///< Used in .spx files.
+            Enc_OPUS   = 7   ///< Used in .opus files.
+        };
+
+		/// @enum EffectType
+		/// @brief Used by the @ref iEffect class to describe what type of effect it is.
+        enum EffectType
+        {
+            ET_Null,              ///< Null type with no values.
+            ET_EAX_Reverb,        ///< See @ref EAXReverbParameters.
+            ET_Reverb,            ///< See @ref ReverbParameters.
+            ET_Chorus,            ///< See @ref ChorusParameters.
+            ET_Distortion,        ///< See @ref DistortionParameters.
+            ET_Echo,              ///< See @ref EchoParameters.
+            ET_Flanger,           ///< See @ref FlangerParameters.
+            ET_Frequency_Shifter, ///< See @ref FrequencyShifterParameters.
+            ET_Vocal_Morpher,     ///< See @ref VocalMorpherParameters.
+            ET_Pitch_Shifter,     ///< See @ref PitchShifterParameters.
+            ET_Ring_Modulator,    ///< See @ref RingModulatorParameters.
+            ET_Autowah,           ///< See @ref AutowahParameters.
+            ET_Compressor,        ///< See @ref CompressorParameters.
+            ET_Equalizer          ///< See @ref RqualizerParameters.
+        };
+
+		/// @enum FilterType
+		/// @brief Used by the @ref iFilter class to describe what type of filter it is.
+        enum FilterType
+        {
+            FT_Null,        ///< Null type with no values.
+            FT_LowPass,     ///< Filters out high frequency audio from a sound beyond a certain threshold.
+            FT_HighPass,    ///< Filters out low frequency audio from a sound below a certain threshold.
+            FT_BandPass     ///< Filters out both high and low frequency audio from a sound outside of specified thresholds.
+        };
+
         /// @enum SoundType
-        /// @brief Used by the sound class to determine what type of sound it is.
-        /// @details Classifying what type of sound a sound instance is allows it to be affected by functions
-        /// that globally affect that pool.
+        /// @brief Used by the @ref iSound class to describe what type of sound it is.
         enum SoundType
         {
-            ST_Ambient,  ///< Environmental sounds.  Bird's chirping, water washing against rocks, etc.
-            ST_Dialog,   ///< Character sounds and speech.
-            ST_Effect,   ///< Various effects such as objects colliding, explosions, guns firing, etc.
-            ST_Music     ///< Self explanitory.  The game SoundTrack.
+            ST_Ambient = 1,  ///< Environmental sounds.  Bird's chirping, water washing against rocks, etc.
+            ST_Dialog  = 2,  ///< Character sounds and speech.
+            ST_Effect  = 3,  ///< Various effects such as objects colliding, explosions, guns firing, etc.
+            ST_Music   = 4   ///< Self explanitory.  The game SoundTrack.
         };
     }//audio
 }//Mezzanine

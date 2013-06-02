@@ -57,33 +57,23 @@ namespace Mezzanine
         {
         }
 
-        void Playlist::AddSound(Sound* ToAdd)
+        void Playlist::AddSound(iSound* ToAdd)
         {
             this->push_back(ToAdd);
         }
 
-        void Playlist::ShuffleList()
+        void Playlist::Shuffle()
         {
-            std::vector< Audio::Sound* > temp( this->begin(), this->end() );
+            std::vector< Audio::iSound* > temp( this->begin(), this->end() );
             std::random_shuffle( temp.begin(), temp.end() );
             this->assign( temp.begin(), temp.end() );
         }
 
-        bool Playlist::ContainsSound(Sound* TheSound)
+        bool Playlist::ContainsSound(iSound* TheSound)
         {
-            for( std::list< Audio::Sound* >::iterator it = this->begin() ; it != this->end() ; ++it )
+            for( std::list< Audio::iSound* >::iterator it = this->begin() ; it != this->end() ; ++it )
             {
                 if(TheSound == (*it))
-                    return true;
-            }
-            return false;
-        }
-
-        bool Playlist::ContainsSound(const String& SoundName)
-        {
-            for( std::list< Audio::Sound* >::iterator it = this->begin() ; it != this->end() ; ++it )
-            {
-                if(SoundName == (*it)->GetName())
                     return true;
             }
             return false;

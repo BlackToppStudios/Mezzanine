@@ -50,7 +50,6 @@
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
-#include <cAudio.h>
 
 #include <memory>
 
@@ -126,9 +125,6 @@ namespace Mezzanine
     Vector3::Vector3(const btVector3& Vec)
         { this->ExtractBulletVector3(Vec); }
 
-    Vector3::Vector3(const cAudio::cVector3& Vec)
-        { this->ExtractcAudioVector3(Vec); }
-
     Vector3::Vector3(const Mezzanine::Vector3& Vec)
         { *this = Vec; }
 
@@ -201,13 +197,6 @@ namespace Mezzanine
         this->Z=Vec.z;
     }
 
-    Vector3& Vector3::operator= (const cAudio::cVector3 &Vec)
-    {
-        this->X=Vec.x;
-        this->Y=Vec.y;
-        this->Z=Vec.z;
-    }
-
     ///////////////////////////////////////////////////////////////////////////////
     // Unary Operators
     Vector3 Vector3::operator- ()
@@ -250,9 +239,6 @@ namespace Mezzanine
     bool Vector3::operator== (const Ogre::Vector3 &Vec) const
         { return ( Vec.x == this->X && Vec.y == this->Y && Vec.z == this->Z ); }
 
-    bool Vector3::operator== (const cAudio::cVector3 &Vec) const
-        { return ( Vec.x == this->X && Vec.y == this->Y && Vec.z == this->Z ); }
-
 
     bool Vector3::operator!= (const Vector3 &Vec) const
         { return ( Vec.X != this->X || Vec.Y != this->Y || Vec.Z != this->Z ); }
@@ -261,9 +247,6 @@ namespace Mezzanine
         { return ( Vec.getX() != this->X || Vec.getY() != this->Y || Vec.getZ() != this->Z ); }
 
     bool Vector3::operator!= (const Ogre::Vector3 &Vec) const
-        { return ( Vec.x != this->X || Vec.y != this->Y || Vec.z != this->Z ); }
-
-    bool Vector3::operator!= (const cAudio::cVector3 &Vec) const
         { return ( Vec.x != this->X || Vec.y != this->Y || Vec.z != this->Z ); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -309,21 +292,6 @@ namespace Mezzanine
         { return Vector3(X*Vec.x, Y*Vec.y, Z*Vec.z); }
 
     Vector3 Vector3::operator/ (const Ogre::Vector3 &Vec) const
-        { return Vector3(X/Vec.x, Y/Vec.y, Z/Vec.z); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Arithmetic Operators with cAudio::cVector3
-
-    Vector3 Vector3::operator+ (const cAudio::cVector3 &Vec) const
-        { return Vector3(X+Vec.x, Y+Vec.y, Z+Vec.z); }
-
-    Vector3 Vector3::operator- (const cAudio::cVector3 &Vec) const
-        { return Vector3(X-Vec.x, Y-Vec.y, Z-Vec.z); }
-
-    Vector3 Vector3::operator* (const cAudio::cVector3 &Vec) const
-        { return Vector3(X*Vec.x, Y*Vec.y, Z*Vec.z); }
-
-    Vector3 Vector3::operator/ (const cAudio::cVector3 &Vec)  const
         { return Vector3(X/Vec.x, Y/Vec.y, Z/Vec.z); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -500,22 +468,6 @@ namespace Mezzanine
         this->Z=Ours.z;
     }
 
-    cAudio::cVector3 Vector3::GetcAudioVector3() const
-    {
-        cAudio::cVector3 Theirs;
-        Theirs.x=this->X;
-        Theirs.y=this->Y;
-        Theirs.z=this->Z;
-        return Theirs;
-    }
-
-    void Vector3::ExtractcAudioVector3(const cAudio::cVector3& Ours)
-    {
-        this->X=Ours.x;
-        this->Y=Ours.y;
-        this->Z=Ours.z;
-    }
-
         // Serializable
         void Vector3::ProtoSerialize(XML::Node& CurrentRoot) const
         {
@@ -580,15 +532,6 @@ Mezzanine::Vector3 operator* (const Ogre::Vector3 &Vec, const Mezzanine::Vector3
 Mezzanine::Vector3 operator/ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
     { return Mezzanine::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
 
-Mezzanine::Vector3 operator+ (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return lhs + Vec; }
-Mezzanine::Vector3 operator- (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return Mezzanine::Vector3(Vec.x-lhs.X, Vec.y-lhs.Y, Vec.z-lhs.Z); }
-Mezzanine::Vector3 operator* (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return lhs * Vec; }
-Mezzanine::Vector3 operator/ (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return Mezzanine::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
-
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Vector3& x)
@@ -618,15 +561,6 @@ Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom)
     return VecTo;
 }
 
-Ogre::Vector3&  operator << (Ogre::Vector3& VecTo, const cAudio::cVector3& VecFrom)
-{
-    VecTo.x=VecFrom.x;
-    VecTo.y=VecFrom.y;
-    VecTo.z=VecFrom.z;
-    return VecTo;
-}
-
-
 btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom)
 {
     VecTo.setX(VecFrom.x);
@@ -642,14 +576,6 @@ btVector3& operator << (btVector3& VecTo, const Mezzanine::Vector3& VecFrom)
     return VecTo;
 }
 
-btVector3&  operator << (btVector3& VecTo, const cAudio::cVector3& VecFrom)
-{
-    VecTo.setX(VecFrom.x);
-    VecTo.setY(VecFrom.y);
-    VecTo.setZ(VecFrom.z);
-    return VecTo;
-}
-
 Mezzanine::Vector3& operator << (Mezzanine::Vector3& VecTo, const Ogre::Vector3& VecFrom)
 {
     VecTo=VecFrom;
@@ -659,34 +585,6 @@ Mezzanine::Vector3& operator << (Mezzanine::Vector3& VecTo, const Ogre::Vector3&
 Mezzanine::Vector3& operator << (Mezzanine::Vector3& VecTo, const btVector3& VecFrom)
 {
     VecTo=VecFrom;
-    return VecTo;
-}
-
-Mezzanine::Vector3&  operator << (Mezzanine::Vector3& VecTo, const cAudio::cVector3& VecFrom)
-{
-    VecTo=VecFrom;
-    return VecTo;
-}
-
-cAudio::cVector3&  operator << (cAudio::cVector3& VecTo, const Ogre::Vector3& VecFrom)
-{
-    VecTo.x=VecFrom.x;
-    VecTo.y=VecFrom.y;
-    VecTo.z=VecFrom.z;
-    return VecTo;
-}
-
-cAudio::cVector3&  operator << (cAudio::cVector3& VecTo, const btVector3& VecFrom)
-{
-    VecTo.x=VecFrom.getX();
-    VecTo.y=VecFrom.getY();
-    VecTo.z=VecFrom.getZ();
-    return VecTo;
-}
-
-cAudio::cVector3&  operator << (cAudio::cVector3& VecTo, const Mezzanine::Vector3& VecFrom)
-{
-    VecTo=VecFrom.GetcAudioVector3();
     return VecTo;
 }
 

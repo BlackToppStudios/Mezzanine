@@ -159,10 +159,7 @@ namespace Mezzanine
             {
                 ThrowFromLuaErrorCode(
                             lua_load(this->State, LuaSourceLoader, ScriptToCompile, DefaultChunkName)
-                );
-                ThrowFromLuaErrorCode(
-                            lua_dump(this->State, LuaBytecodeDumper, &(ScriptToCompile->CompiledByteCode) )
-                );
+                            );
             }
 
             void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
