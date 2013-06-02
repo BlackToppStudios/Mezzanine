@@ -77,7 +77,7 @@ namespace Mezzanine
             {
                 /// @internal
                 /// @brief Used with the Lua API when a chunk name is required.
-                char* DefaultChunkName = "Chunk";
+                const char* DefaultChunkName = "Chunk";
 
                 /// @internal
                 /// @brief Used in the LuaScriptingEngine to get data from lua_dump durign script compilation
@@ -100,7 +100,7 @@ namespace Mezzanine
                 /// @param Size an output parameter to convey the size of the return to Lua.
                 /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
                 /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
-                const char* LuaBytecodeLoader(lua_State *State, void* BinBuff, long unsigned int* Size)
+                const char* LuaBytecodeLoader(lua_State* State, void* BinBuff, long unsigned int* Size)
                 {
                     const BinaryTools::BinaryBuffer* LoadingScript = reinterpret_cast<const BinaryTools::BinaryBuffer*>(BinBuff);
                     *Size = LoadingScript->Size;
@@ -113,19 +113,52 @@ namespace Mezzanine
                 /// @param Size an output parameter to convey the size of the return to Lua.
                 /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
                 /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
-                const char* LuaSourceLoader(lua_State *State, void* BinBuff, long unsigned int* Size)
+                const char* LuaSourceLoader(lua_State* State, void* BinBuff, long unsigned int* Size)
                 {
                     const Lua51Script* LoadingScript = reinterpret_cast<const Lua51Script*>(BinBuff);
                     *Size = LoadingScript->GetSourceCode().size();
                     return LoadingScript->GetSourceCode().c_str();
                 }
 
+                /// @internal
+                template <typename T>
+                void Push(lua_State* State, ScriptArgumentSpecific<T> Arg)
+                {
+                    String AsString(Arg.GetString());
+                    lua_pushlstring(State, AsString.c_str(), AsString.size() );
+                }
+
+                template <>
+                void Push(lua_State* State, ScriptArgumentSpecific<String> Arg)
+                {
+                    String AsString(Arg.GetValue());
+                    lua_pushlstring(State, AsString.c_str(), AsString.size() );
+                }
+
+                template <>
+                void Push(lua_State* State, ScriptArgumentSpecific<Bool> Arg)
+                    { lua_pushboolean(State, Arg.GetValue()); }
+
+                template <>
+                void Push(lua_State* State, ScriptArgumentSpecific<Integer> Arg)
+                    { lua_pushinteger(State, Arg.GetValue()); }
+
+                template <>
+                void Push(lua_State* State, ScriptArgumentSpecific<Real> Arg)
+                    { lua_pushnumber(State, Arg.GetValue()); }
+
+                template <>
+                void Push(lua_State* State, ScriptArgumentSpecific<Whole> Arg)
+                    { lua_pushnumber(State, Arg.GetValue()); }
+
+                template <> void Push(lua_State* State, ScriptArgumentSpecific<String> Arg);
+
             }
 
             void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
             {
                 ThrowFromLuaErrorCode(
-                            lua_load(this->State, LuaSourceLoader, ScriptToCompile, 0)
+                            lua_load(this->State, LuaSourceLoader, ScriptToCompile, DefaultChunkName)
                 );
                 ThrowFromLuaErrorCode(
                             lua_dump(this->State, LuaBytecodeDumper, &(ScriptToCompile->CompiledByteCode) )
@@ -139,14 +172,22 @@ namespace Mezzanine
                 else
                 {
                     ThrowFromLuaErrorCode(
-                                lua_load(this->State, LuaBytecodeLoader, ScriptToRun, 0)
+                                lua_load(this->State, LuaBytecodeLoader, ScriptToRun, DefaultChunkName)
                     );
                 }
-                // Since Lua_Dump will leave
+                // Since Lua_Dump or lua_load will leave the function on the stack then...
 
-                //ScriptToRun->GetArgumentCount();
+                // We just need to push all the arguments
+                for(ArgumentGroup::const_iterator Iter = ScriptToRun->Args.begin();
+                    Iter != ScriptToRun->Args.end();
+                    Iter++
+                    )
+                {
+                    //Push(this->State, **Iter);
+                }
 
-                // Do execution logic here.
+                //lua_
+
             }
 
             void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
@@ -280,7 +321,7 @@ namespace Mezzanine
             // Old stuff to be removed
 
             //simplistic error checking function, to be replace with proper exception driven code later.
-            int PrintErrorMessageOrNothing(int ErrorCode)
+/*            int PrintErrorMessageOrNothing(int ErrorCode)
             {
                 switch(ErrorCode)
                 {
@@ -331,7 +372,8 @@ namespace Mezzanine
                 PrintErrorMessageOrNothing(Error);
 
                 lua_close(State);           // Close the Lua state
-            }
+            }*/
+
         } // Lua
     } // Scripting
 } // Mezzanine

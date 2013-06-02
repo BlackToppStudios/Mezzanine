@@ -820,9 +820,6 @@ bool CatchApp::GameIsPaused()
 
 bool CatchApp::PreInput()
 {
-    // Just a simple Lua Test
-    //Mezzanine::Scripting::Lua::test();
-
     // using the Raw Event Manager, and deleting the events
     if( !CheckForStuff() )
         return false;
