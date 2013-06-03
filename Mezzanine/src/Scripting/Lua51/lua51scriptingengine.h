@@ -76,7 +76,7 @@ namespace Mezzanine
         namespace Lua
         {
             ///////////////////////////////////////////////////////////////////////////////////////
-            //
+            /// @brief
             class MEZZ_LIB Lua51ScriptingEngine : public Mezzanine::Scripting::iScriptCompilationManager
             {
                 private:

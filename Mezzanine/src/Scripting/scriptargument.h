@@ -70,23 +70,23 @@ namespace Mezzanine
 
                 /// @brief Get the Argument as a String
                 /// @return The argument value lexographically converted as a @ref String
-                virtual String GetString() = 0;
+                virtual String GetString() const = 0;
 
                 /// @brief Get the Argument as a Whole
                 /// @return The argument value lexographically converted as a @ref Whole
-                virtual Whole GetWhole() = 0;
+                virtual Whole GetWhole() const = 0;
 
                 /// @brief Get the Argument as a Integer
                 /// @return The argument value lexographically converted as an @ref Integer
-                virtual Integer GetInteger() = 0;
+                virtual Integer GetInteger() const = 0;
 
                 /// @brief Get the Argument as a Real
                 /// @return The argument value lexographically converted as an @ref Real
-                virtual Real GetReal() = 0;
+                virtual Real GetReal() const = 0;
 
                 /// @brief Get the Argument as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Bool GetBool() = 0;
+                virtual Bool GetBool() const = 0;
 
         }; // iScriptArgument
 
@@ -123,22 +123,22 @@ namespace Mezzanine
 
                 /// @brief Get the Argument as a Whole, slow default implementation.
                 /// @return The argument value lexographically converted as a @ref Whole
-                virtual Whole GetWhole()
+                virtual Whole GetWhole() const
                     { return ToWhole(Datum); }
 
                 /// @brief Get the Argument as a Integer, slow default implementation.
                 /// @return The argument value lexographically converted as an @ref Integer
-                virtual Integer GetInteger()
+                virtual Integer GetInteger() const
                     { return ToInteger(Datum); }
 
                 /// @brief Get the Argument as a Real, slow default implementation.
                 /// @return The argument value lexographically converted as an @ref Real
-                virtual Real GetReal()
+                virtual Real GetReal() const
                     { return ToReal(Datum); }
 
                 /// @brief Get the Argument as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Bool GetBool()
+                virtual Bool GetBool() const
                     { return ToBool(Datum); }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -148,7 +148,7 @@ namespace Mezzanine
 
                 /// @brief Get the raw primitive to value.
                 /// @return The internal value that meaningful operation can be performed on.
-                virtual T GetValue()
+                virtual T GetValue() const
                     { return Datum; }
 
         }; //ScriptArgumentSpecific
@@ -183,22 +183,22 @@ namespace Mezzanine
 
                 /// @brief Get the Integer as a Whole.
                 /// @return The Integer value lexographically converted as a @ref Whole
-                virtual Whole GetWhole()
+                virtual Whole GetWhole() const
                     { return Whole(Datum); }
 
                 /// @brief Get the Integer as a Integer.
                 /// @return The Integer value lexographically converted as an @ref Integer
-                virtual Integer GetInteger()
+                virtual Integer GetInteger() const
                     { return Datum; }
 
                 /// @brief Get the Integer as a Real.
                 /// @return The Integer value lexographically converted as an @ref Real
-                virtual Real GetReal()
+                virtual Real GetReal() const
                     { return Real(Datum); }
 
                 /// @brief Get the Integer as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Bool GetBool()
+                virtual Bool GetBool() const
                     { return Bool(Datum); }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -208,7 +208,7 @@ namespace Mezzanine
 
                 /// @brief Get the raw primitive to value.
                 /// @return The internal value that meaningful operations can be performed on.
-                virtual Integer GetValue()
+                virtual Integer GetValue() const
                     { return Datum; }
         }; //ScriptArgumentSpecific<Integer>
 
@@ -242,22 +242,22 @@ namespace Mezzanine
 
                 /// @brief Get the Whole number.
                 /// @return The Whole value lexographically converted as a @ref Whole
-                virtual Whole GetWhole()
+                virtual Whole GetWhole() const
                     { return Datum; }
 
                 /// @brief Get the Whole as a Integer.
                 /// @return The Whole value lexographically converted as an @ref Integer
-                virtual Integer GetInteger()
+                virtual Integer GetInteger() const
                     { return Integer(Datum); }
 
                 /// @brief Get the Whole as a Real.
                 /// @return The Whole value lexographically converted as an @ref Real
-                virtual Real GetReal()
+                virtual Real GetReal() const
                     { return Real(Datum); }
 
                 /// @brief Get the Whole Number as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Bool GetBool()
+                virtual Bool GetBool() const
                     { return Bool(Datum); }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -267,7 +267,7 @@ namespace Mezzanine
 
                 /// @brief Get the raw primitive to value.
                 /// @return The internal value that meaningful operation can be performed on.
-                virtual Whole GetValue()
+                virtual Whole GetValue() const
                     { return Datum; }
 
         }; //ScriptArgumentSpecific<Whole>
@@ -302,22 +302,22 @@ namespace Mezzanine
 
                 /// @brief Get the String as a Whole.
                 /// @return The String value lexographically converted as a @ref Whole
-                virtual Whole GetWhole()
+                virtual Whole GetWhole() const
                     { return ConvertTo<Whole>(Datum); }
 
                 /// @brief Get the String as a Integer.
                 /// @return The String value lexographically converted as an @ref Integer
-                virtual Integer GetInteger()
+                virtual Integer GetInteger() const
                     { return ConvertTo<Integer>(Datum); }
 
                 /// @brief Get the String as a Real.
                 /// @return The String value lexographically converted as an @ref Real
-                virtual Real GetReal()
+                virtual Real GetReal() const
                     { return ConvertTo<Real>(Datum); }
 
                 /// @brief Get the String as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Bool GetBool()
+                virtual Bool GetBool() const
                     { return ToBool(Datum); }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -327,7 +327,7 @@ namespace Mezzanine
 
                 /// @brief Get the raw primitive to value.
                 /// @return The internal value that meaningful operation can be performed on.
-                virtual String GetValue()
+                virtual String GetValue() const
                     { return Datum; }
 
         }; //ScriptArgumentSpecific<String>
@@ -362,22 +362,22 @@ namespace Mezzanine
 
                 /// @brief Get the Real as a Whole.
                 /// @return The Real value lexographically converted as a @ref Whole
-                virtual Whole GetWhole()
+                virtual Whole GetWhole() const
                     { return Whole(Datum); }
 
                 /// @brief Get the Real as a Integer.
                 /// @return The Real value lexographically converted as an @ref Integer
-                virtual Integer GetInteger()
+                virtual Integer GetInteger() const
                     { return Integer(Datum); }
 
                 /// @brief Get the Real.
                 /// @return The Real.
-                virtual Real GetReal()
+                virtual Real GetReal() const
                     { return Datum; }
 
                 /// @brief Get the Real as a Bool
                 /// @return The Real value lexographically converted as an @ref Bool
-                virtual Bool GetBool()
+                virtual Bool GetBool() const
                     { return Bool(Datum); }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -387,7 +387,7 @@ namespace Mezzanine
 
                 /// @brief Get the raw primitive to value.
                 /// @return The internal value that meaningful operations can be performed on.
-                virtual Real GetValue()
+                virtual Real GetValue() const
                     { return Datum; }
         }; //ScriptArgumentSpecific<Real>
 
@@ -422,22 +422,22 @@ namespace Mezzanine
 
                 /// @brief Get the Bool as a Whole.
                 /// @return The Bool value lexographically converted as a @ref Whole
-                virtual Whole GetWhole()
+                virtual Whole GetWhole() const
                     { return Whole(Datum); }
 
                 /// @brief Get the Bool as a Integer.
                 /// @return The Bool value lexographically converted as an @ref Integer
-                virtual Integer GetInteger()
+                virtual Integer GetInteger() const
                     { return Integer(Datum); }
 
                 /// @brief Get the Bool as a Integer.
                 /// @return The Bool value lexographically converted as an @ref Integer
-                virtual Real GetReal()
+                virtual Real GetReal() const
                     { return Real(Datum); }
 
                 /// @brief Get the Bool.
                 /// @return The Bool.
-                virtual Bool GetBool()
+                virtual Bool GetBool() const
                     { return Datum; }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -447,7 +447,7 @@ namespace Mezzanine
 
                 /// @brief Get the raw primitive to value.
                 /// @return The internal value that meaningful operations can be performed on.
-                virtual Bool GetValue()
+                virtual Bool GetValue() const
                     { return Datum; }
         }; //ScriptArgumentSpecific<Real>
 

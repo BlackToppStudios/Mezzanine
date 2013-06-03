@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@
 #ifndef _audioeffectparameters_h
 #define _audioeffectparameters_h
 
-#include "Vector3.h"
+#include "vector3.h"
 #include "Audio/audioenumerations.h"
 
 namespace Mezzanine
@@ -766,7 +766,7 @@ namespace Mezzanine
         ///////////////////////////////////////
         struct CompressorParameters
         {
-            /// @brief The Compressor can only be switched on and off – it cannot be adjusted.
+            /// @brief The Compressor can only be switched on and off Â– it cannot be adjusted.
             bool Active;
 
             /// @brief Struct constructor.

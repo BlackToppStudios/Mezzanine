@@ -646,7 +646,6 @@ namespace Mezzanine
     Pointer* CountedPtrInternalCast(Pointer* Original)
         { return  Original; }
 
-
     /// @brief A compile time cast that uses only the implicit conversion of the underlying raw pointers
     /// @param ReturnType The type to be returned, must be specified
     /// @param OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.
