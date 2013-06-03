@@ -96,6 +96,15 @@ namespace Mezzanine
         Axis_Z         = 2     ///< Z axis
     };
 
+    /// @enum TrackType
+    /// @brief Used by Track classes to define the type of curves the track has.
+    enum TrackType
+    {
+        TT_Simple = 1,
+        TT_Spline = 2,
+        TT_Bezier = 3
+    };
+
     /// @enum TransformSpace
     /// @brief Used to define what frame of reference is to be used when positioning or rotating objects.
     enum TransformSpace
