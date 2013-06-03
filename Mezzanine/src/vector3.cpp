@@ -355,7 +355,7 @@ namespace Mezzanine
 
     Vector3 Vector3::Reflect(const Vector3& Normal)
     {
-        return Vector3( *this - ( 2 * this->DotProduct(normal) * normal ) );
+        return Vector3( *this - ( Normal * (2 * this->DotProduct(Normal) ) ) );
     }
 
     Real Vector3::Distance(const Vector3& OtherVec) const
