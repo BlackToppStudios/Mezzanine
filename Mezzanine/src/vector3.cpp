@@ -107,17 +107,15 @@ namespace Mezzanine
 
     Real& Vector3::operator[] (const Whole& Axis)
         { return this->GetAxisValue((StandardAxis)Axis); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Constructors
+
     Vector3::Vector3()
-    {
-        Zero();
-    }
+        { this->Zero(); }
 
     Vector3::Vector3(const Real& x, const Real& y, const Real& z)
-    {
-        SetValues(x,y,z);
-    }
+        { this->SetValues(x,y,z); }
 
     Vector3::Vector3(const Ogre::Vector3& Vec)
         { this->ExtractOgreVector3(Vec); }
@@ -183,6 +181,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Assignment Operators
+
     Vector3& Vector3::operator= (const btVector3 &Vec)
     {
         this->X=Vec.getX();
@@ -199,11 +198,13 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Unary Operators
+
     Vector3 Vector3::operator- ()
         { return Vector3(-X,-Y,-Z); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector3 Arithmetic with Real
+
     Vector3 Vector3::operator* (const Real &scalar) const
         { return Vector3(this->X * scalar, this->Y * scalar, this->Z * scalar); }
 
@@ -212,6 +213,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector3 Arithmetic and assignment with Real
+
     Vector3& Vector3::operator*= (const Real &scalar)
     {
         this->X *= scalar;
@@ -230,6 +232,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
+
     bool Vector3::operator== (const Vector3 &Vec) const
         { return( Vec.X == this->X && Vec.Y == this->Y && Vec.Z == this->Z ); }
 
@@ -336,9 +339,7 @@ namespace Mezzanine
 
     Vector3 Vector3::GetDirection(const Vector3& Destination) const
     {
-        Vector3 Dir = Destination - *this;
-        Dir.Normalize();
-        return Dir;
+        return (Destination - *this).Normalize();
     }
 
     Vector3 Vector3::Inverse()
@@ -350,6 +351,11 @@ namespace Mezzanine
         if (Z!=0)
             Z=1/Z;
         return *this;
+    }
+
+    Vector3 Vector3::Reflect(const Vector3& Normal)
+    {
+        return Vector3( *this - ( Normal * (2 * this->DotProduct(Normal) ) ) );
     }
 
     Real Vector3::Distance(const Vector3& OtherVec) const
@@ -419,6 +425,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility Functions
+
     void Vector3::Zero()
     {
         this->X = 0;
@@ -435,6 +442,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Manual Conversions
+
     btVector3 Vector3::GetBulletVector3() const
     {
         btVector3 Theirs;
@@ -468,50 +476,47 @@ namespace Mezzanine
         this->Z=Ours.z;
     }
 
-        // Serializable
-        void Vector3::ProtoSerialize(XML::Node& CurrentRoot) const
+    void Vector3::ProtoSerialize(XML::Node& CurrentRoot) const
+    {
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+        VecNode.SetName(SerializableName());
+
+        Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+        Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
+        Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
+        Mezzanine::XML::Attribute ZAttr = VecNode.AppendAttribute("Z");
+        if( VersionAttr && XAttr && YAttr && ZAttr )
         {
-            Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
-            VecNode.SetName(SerializableName());
-
-            Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
-            Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
-            Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
-            Mezzanine::XML::Attribute ZAttr = VecNode.AppendAttribute("Z");
-            if( VersionAttr && XAttr && YAttr && ZAttr )
+            if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z))
             {
-                if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z))
-                {
-                    return;
-                }else{
-                    SerializeError("Create XML Attribute Values", SerializableName(),true);
-                }
+                return;
             }else{
-                SerializeError("Create XML Attributes", SerializableName(),true);
+                SerializeError("Create XML Attribute Values", SerializableName(),true);
             }
+        }else{
+            SerializeError("Create XML Attributes", SerializableName(),true);
         }
+    }
 
-        // DeSerializable
-        void Vector3::ProtoDeSerialize(const XML::Node& OneNode)
+    void Vector3::ProtoDeSerialize(const XML::Node& OneNode)
+    {
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
         {
-            if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                if(OneNode.GetAttribute("Version").AsInt() == 1)
-                {
-                    this->X=OneNode.GetAttribute("X").AsReal();
-                    this->Y=OneNode.GetAttribute("Y").AsReal();
-                    this->Z=OneNode.GetAttribute("Z").AsReal();
-                }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
-                }
+                this->X=OneNode.GetAttribute("X").AsReal();
+                this->Y=OneNode.GetAttribute("Y").AsReal();
+                this->Z=OneNode.GetAttribute("Z").AsReal();
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
             }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
         }
+    }
 
-        String Vector3::SerializableName()
-            { return String("Vector3"); }
-
+    String Vector3::SerializableName()
+        { return String("Vector3"); }
 }
 
 Mezzanine::Vector3 operator+ (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
