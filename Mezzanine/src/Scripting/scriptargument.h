@@ -55,7 +55,8 @@ namespace Mezzanine
         /// @details All the members that all script for all languages must implement.
         /// @n @n
         /// These are created to provide data to scripts. This is intended to primarily
-        /// transport primitive types into and out of scripts without needing to care
+        /// to act as an abstraction layer between game data and data inside scripts,
+        /// but currently just transports primitives into and out of scripts without needing to care
         /// about any underlying types. This limits what operations can be done with
         /// this, because it is intended to provide an abstraction that can be used
         /// to implement specific algorithms for languages that require them.
@@ -88,11 +89,26 @@ namespace Mezzanine
                 /// @return The argument value lexographically converted as an @ref Bool
                 virtual Bool GetBool() const = 0;
 
+                /// @brief Get data about the underlying specific to the scripting system using the argument.
+                /// @return An Integer containing scripting langauge specific data.
+                virtual Integer GetTypeData() const = 0;
+
         }; // iScriptArgument
+
+        enum ScriptArgment
+        {
+            GenericUnknown      = 0,    ///< This is not readily available when instantiating ScriptArgumentGeneric<T> where T is unknown
+            GenericInteger      = 1,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an Integer
+            GenericWhole        = 2,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an Whole
+            GenericString       = 3,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an String
+            GenericReal         = 4,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an Real
+            GenericBool         = 5,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an Bool
+            GenericMax          = 5     ///< This is always equal to the maximum value in this enumeration so that other constant values can be based on this. For example Lua
+        };
 
         /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations
         template <class T>
-        class MEZZ_LIB ScriptArgumentSpecific : public iScriptArgument
+        class MEZZ_LIB ScriptArgumentGeneric : public iScriptArgument
         {
             private:
                 /// @brief The actual data.
@@ -108,12 +124,12 @@ namespace Mezzanine
                 /// @brief Create an initialized Argument
                 /// @param InitialValue The value to initialize the Argument with.
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
-                ScriptArgumentSpecific(T InitialValue) :
+                ScriptArgumentGeneric(T InitialValue) :
                     Datum(InitialValue)
                     {}
 
                 /// @brief Overloadable Deconstructor
-                virtual ~ScriptArgumentSpecific()
+                virtual ~ScriptArgumentGeneric()
                     {}
 
                 /// @brief Get the Argument as a String, slow default implementation.
@@ -151,11 +167,16 @@ namespace Mezzanine
                 virtual T GetValue() const
                     { return Datum; }
 
+                /// @brief Get data about this having an unknown type
+                /// @return This will return an Integer containing GenericUnknown. If needed proper specialization of this can be made for any class, see the ScriptArgumentGeneric<Mezzanine::Scripting::Lua::Lua51Nil>
+                virtual Integer GetTypeData() const
+                    { return GenericUnknown; }
+
         }; //ScriptArgumentSpecific
 
         /// @brief A Integer implementation of a ScriptArgument that is suitable for primitive types in most situations
         template <>
-        class MEZZ_LIB ScriptArgumentSpecific<Integer> : public iScriptArgument
+        class MEZZ_LIB ScriptArgumentGeneric<Integer> : public iScriptArgument
         {
             private:
                 /// @brief The Integer actual data.
@@ -168,12 +189,12 @@ namespace Mezzanine
                 /// @brief Create an initialized Argument
                 /// @param InitialValue The value to initialize the Argument Integer value with.
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
-                ScriptArgumentSpecific(Integer InitialValue) :
+                ScriptArgumentGeneric(Integer InitialValue) :
                     Datum(InitialValue)
                     {}
 
                 /// @brief Overloadable Deconstructor
-                virtual ~ScriptArgumentSpecific()
+                virtual ~ScriptArgumentGeneric()
                     {}
 
                 /// @brief Get the Integer as a String.
@@ -210,11 +231,16 @@ namespace Mezzanine
                 /// @return The internal value that meaningful operations can be performed on.
                 virtual Integer GetValue() const
                     { return Datum; }
+
+                /// @brief Get data about this being and Integer
+                /// @return This will return an Integer containing GenericInteger.
+                virtual Integer GetTypeData() const
+                    { return GenericInteger; }
         }; //ScriptArgumentSpecific<Integer>
 
         /// @brief A Whole number implementation of a ScriptArgument that is suitable for primitive types in most situations
         template <>
-        class MEZZ_LIB ScriptArgumentSpecific<Whole> : public iScriptArgument
+        class MEZZ_LIB ScriptArgumentGeneric<Whole> : public iScriptArgument
         {
             private:
                 /// @brief The Whole actual data.
@@ -227,12 +253,12 @@ namespace Mezzanine
                 /// @brief Create an initialized Argument
                 /// @param InitialValue The value to initialize the Argument Whole value with.
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
-                ScriptArgumentSpecific(Whole InitialValue) :
+                ScriptArgumentGeneric(Whole InitialValue) :
                     Datum(InitialValue)
                     {}
 
                 /// @brief Overloadable Deconstructor
-                virtual ~ScriptArgumentSpecific()
+                virtual ~ScriptArgumentGeneric()
                     {}
 
                 /// @brief Get the Whole as a String
@@ -270,11 +296,15 @@ namespace Mezzanine
                 virtual Whole GetValue() const
                     { return Datum; }
 
+                /// @brief Get data about this being a Whol
+                /// @return This will return an Integer containing GenericWhole.
+                virtual Integer GetTypeData() const
+                    { return GenericWhole; }
         }; //ScriptArgumentSpecific<Whole>
 
         /// @brief A String implementation of a ScriptArgument that is suitable for primitive types in most situations
         template <>
-        class MEZZ_LIB ScriptArgumentSpecific<String> : public iScriptArgument
+        class MEZZ_LIB ScriptArgumentGeneric<String> : public iScriptArgument
         {
             private:
                 /// @brief The String data.
@@ -287,12 +317,12 @@ namespace Mezzanine
                 /// @brief Create an initialized Argument
                 /// @param InitialValue The value to initialize the Argument String value with.
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
-                ScriptArgumentSpecific(String InitialValue) :
+                ScriptArgumentGeneric(String InitialValue) :
                     Datum(InitialValue)
                     {}
 
                 /// @brief Overloadable Deconstructor
-                virtual ~ScriptArgumentSpecific()
+                virtual ~ScriptArgumentGeneric()
                     {}
 
                 /// @brief Get the String
@@ -330,11 +360,16 @@ namespace Mezzanine
                 virtual String GetValue() const
                     { return Datum; }
 
+                /// @brief Get data about this being a String
+                /// @return This will return an Integer containing GenericString.
+                virtual Integer GetTypeData() const
+                    { return GenericString; }
+
         }; //ScriptArgumentSpecific<String>
 
         /// @brief A Real number implementation of a ScriptArgument that is suitable for primitive types in most situations
         template <>
-        class MEZZ_LIB ScriptArgumentSpecific<Real> : public iScriptArgument
+        class MEZZ_LIB ScriptArgumentGeneric<Real> : public iScriptArgument
         {
             private:
                 /// @brief The Real actual data.
@@ -347,12 +382,12 @@ namespace Mezzanine
                 /// @brief Create an initialized Argument
                 /// @param InitialValue The value to initialize the Argument Integer value with.
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
-                ScriptArgumentSpecific(Real InitialValue) :
+                ScriptArgumentGeneric(Real InitialValue) :
                     Datum(InitialValue)
                     {}
 
                 /// @brief Overloadable Deconstructor
-                virtual ~ScriptArgumentSpecific()
+                virtual ~ScriptArgumentGeneric()
                     {}
 
                 /// @brief Get the Real as a String.
@@ -389,12 +424,16 @@ namespace Mezzanine
                 /// @return The internal value that meaningful operations can be performed on.
                 virtual Real GetValue() const
                     { return Datum; }
-        }; //ScriptArgumentSpecific<Real>
 
+                /// @brief Get data about this being a Real number.
+                /// @return This will return an Integer containing GenericReal.
+                virtual Integer GetTypeData() const
+                    { return GenericReal; }
+        }; //ScriptArgumentSpecific<Real>
 
         /// @brief A Bool implementation of a ScriptArgument that is suitable for primitive types in most situations
         template <>
-        class MEZZ_LIB ScriptArgumentSpecific<Bool> : public iScriptArgument
+        class MEZZ_LIB ScriptArgumentGeneric<Bool> : public iScriptArgument
         {
             private:
                 /// @brief The Bool actual data.
@@ -407,12 +446,12 @@ namespace Mezzanine
                 /// @brief Create an initialized Argument
                 /// @param InitialValue The value to initialize the Argument Integer value with.
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
-                ScriptArgumentSpecific(Bool InitialValue) :
+                ScriptArgumentGeneric(Bool InitialValue) :
                     Datum(InitialValue)
                     {}
 
                 /// @brief Overloadable Deconstructor
-                virtual ~ScriptArgumentSpecific()
+                virtual ~ScriptArgumentGeneric()
                     {}
 
                 /// @brief Get the Bool as a String.
@@ -449,7 +488,12 @@ namespace Mezzanine
                 /// @return The internal value that meaningful operations can be performed on.
                 virtual Bool GetValue() const
                     { return Datum; }
-        }; //ScriptArgumentSpecific<Real>
+
+                /// @brief Get data about this being a Bool
+                /// @return This will return an Integer containing GenericBool.
+                virtual Integer GetTypeData() const
+                    { return GenericBool; }
+        }; //ScriptArgumentSpecific<Bool>
 
     }//Scripting
 }//Mezzanine

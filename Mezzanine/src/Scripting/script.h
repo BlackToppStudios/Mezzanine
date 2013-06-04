@@ -249,6 +249,7 @@ namespace Mezzanine
 
 
         /// @brief A group of arguments that can be returned from some scripts
+        /// @details A vector is used to preserve ordering of returns for languages that support multiple returns in order
         typedef std::vector< CountedPtr<iScriptArgument> > ArgumentGroup;
 
         /// @brief This script can return simple group of values.
