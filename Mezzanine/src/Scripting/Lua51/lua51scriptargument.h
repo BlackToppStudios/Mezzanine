@@ -40,6 +40,9 @@
 #ifndef _lua51scriptargument_h
 #define _lua51scriptargument_h
 
+/// @file
+/// @brief This file has the definition of the Script Arguments for Lua 51
+
 #include "datatypes.h"
 
 #ifdef MEZZLUA51
@@ -48,8 +51,8 @@
 #include "Scripting/script.h"
 #include "Scripting/scriptingmanager.h"
 
-/// @file
-/// @brief This file has the definition of the Script Arguments for Lua 51
+/// @brief Forward declaration to enable pointer parameters
+class lua_State;
 
 namespace Mezzanine
 {
@@ -57,28 +60,102 @@ namespace Mezzanine
     {
         namespace Lua
         {
-            /// @brief No special care is required for Integer Lua Arguments, so a simple typedef is used.
-            typedef ScriptArgumentGeneric<Integer> Lua51IntegerArgument;
+            /// @brief The ScriptArgumentGeneric<T> does a good enough job for actually passing data, but it needs just a bit of Lua specific functionality
+            class LuaArgument
+            {
+                public:
+                    /// @brief Handle the details of putting this data onto Lua's Stack.
+                    /// @param TargetState The state with the stack to push the data onto.
+                    /// @return Whatever the Lua return code of the first failing lua call, or the last successful call.
+                    virtual void Push(lua_State* TargetState) const = 0;
+
+                    /// @brief Handle the details of pulling data from Lua's Stack into this.
+                    /// @param TargetState The state with the stack to pull the data from.
+                    /// @return Whatever the Lua return code of the first failing lua call, or the last successful call.
+                    virtual void Pop(lua_State* TargetState) const = 0;
+            };
+
+  /*
+                    case LuaNil:
+                        {
+                            ScriptArgumentGeneric<Lua51Nil>* ArgToPush = dynamic_cast<ScriptArgumentGeneric<Lua51Nil>*>(Parameter);
+                            if(ArgToPush)
+                                { lua_pushnil(State); }
+                            else
+                                { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Parameter reported it was a Lua51Nil but could not be converted as one.") }
+                        }
+                        break;
+                    default:
+                        MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Parameter reported incorrectly when being passed to Lua51Script.")
+            */
+
+            /// @brief The implementations in the ScriptArgumentGeneric<Integer> will cover most of what this needs
+            class Lua51IntegerArgument : public LuaArgument, public ScriptArgumentGeneric<Integer>
+            {
+                public:
+                    Lua51IntegerArgument(Integer InitialValue) : ScriptArgumentGeneric<Integer>(InitialValue)
+                    {}
+
+                    virtual void Push(lua_State* TargetState) const;
+
+                    virtual void Pop(lua_State* TargetState) const;
+            };
             /// @brief Lua51IntegerArgument returns this value when checking GetTypeData() const.
             const Integer LuaInteger = GenericInteger;
 
-            /// @brief No special care is required for Real number Lua Arguments, so a simple typedef is used.
-            typedef ScriptArgumentGeneric<Real> Lua51RealArgument;
+            /// @brief A Real that can readily be passed into lua scripts
+            class Lua51RealArgument : public LuaArgument, public ScriptArgumentGeneric<Real>
+            {
+                public:
+                    Lua51RealArgument(Real InitialValue) : ScriptArgumentGeneric<Real>(InitialValue)
+                    {}
+
+                    virtual void Push(lua_State* TargetState) const;
+
+                    virtual void Pop(lua_State* TargetState) const;
+            };
             /// @brief Lua51RealArgument returns this value when checking GetTypeData() const.
             const Integer LuaReal = GenericReal;
 
             /// @brief No special care is required for Whole number Lua Arguments, so a simple typedef is used.
-            typedef ScriptArgumentGeneric<Whole> Lua51WholeArgument;
+            class Lua51WholeArgument : public LuaArgument, public ScriptArgumentGeneric<Whole>
+            {
+                public:
+                    Lua51WholeArgument(Whole InitialValue) : ScriptArgumentGeneric<Whole>(InitialValue)
+                    {}
+
+                    virtual void Push(lua_State* TargetState) const;
+
+                    virtual void Pop(lua_State* TargetState) const;
+            };
             /// @brief Lua51WholeArgument returns this value when checking GetTypeData() const.
             const Integer LuaWhole = GenericWhole;
 
             /// @brief No special care is required for String Lua Arguments, so a simple typedef is used.
-            typedef ScriptArgumentGeneric<String> Lua51StringArgument;
+            class Lua51StringArgument : public LuaArgument, public ScriptArgumentGeneric<String>
+            {
+                public:
+                    Lua51StringArgument(String InitialValue) : ScriptArgumentGeneric<String>(InitialValue)
+                    {}
+
+                    virtual void Push(lua_State* TargetState) const;
+
+                    virtual void Pop(lua_State* TargetState) const;
+            };
             /// @brief Lua51StringArgument returns this value when checking GetTypeData() const.
             const Integer LuaString = GenericString;
 
             /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
-            typedef ScriptArgumentGeneric<Bool> Lua51BoolArgument;
+            class Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Bool>
+            {
+                public:
+                    Lua51BoolArgument(Bool InitialValue) : ScriptArgumentGeneric<Bool>(InitialValue)
+                    {}
+
+                    virtual void Push(lua_State* TargetState) const;
+
+                    virtual void Pop(lua_State* TargetState) const;
+            };
             /// @brief Lua51BoolArgument returns this value when checking GetTypeData() const.
             const Integer LuaBool = GenericBool;
 
@@ -92,7 +169,7 @@ namespace Mezzanine
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<Mezzanine::Scripting::Lua::Lua51Nil> : public iScriptArgument
         {
-            private:
+            protected:
                 /// @brief For propriety here is an actual Lua51Nil, it does nothing and will likely be optimized out by any sane compiler
                 Mezzanine::Scripting::Lua::Lua51Nil Datum;
 
@@ -151,8 +228,17 @@ namespace Mezzanine
 
         namespace Lua
         {
-            /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
-            typedef ScriptArgumentGeneric<Lua51Nil> Lua51NilArgument;
+            /// @brief Represents not much of anything but will insert and retrieves Nils from Lua51.
+            class Lua51NilArgument : public LuaArgument, public ScriptArgumentGeneric<Lua51Nil>
+            {
+                public:
+                    Lua51NilArgument() : ScriptArgumentGeneric<Lua51Nil>()
+                    {}
+
+                    virtual void Push(lua_State* TargetState) const;
+
+                    virtual void Pop(lua_State* TargetState) const;
+            };
 
         } // Lua
     } // Scripting

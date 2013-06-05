@@ -121,48 +121,6 @@ namespace Mezzanine
                     return LoadingScript->GetSourceCode().c_str();
                 }
 
-                /// @internal
-                template <typename T>
-                void Push(lua_State* State, ScriptArgumentGeneric<T> Arg)
-                {
-                    String AsString(Arg.GetString());
-                    lua_pushlstring(State, AsString.c_str(), AsString.size() );
-                }
-
-                template <>
-                void Push(lua_State* State, ScriptArgumentGeneric<String> Arg)
-                {
-                    String AsString(Arg.GetValue());
-                    lua_pushlstring(State, AsString.c_str(), AsString.size() );
-                }
-
-                template <>
-                void Push(lua_State* State, ScriptArgumentGeneric<Bool> Arg)
-                    { lua_pushboolean(State, Arg.GetValue()); }
-
-                template <>
-                void Push(lua_State* State, ScriptArgumentGeneric<Integer> Arg)
-                    { lua_pushinteger(State, Arg.GetValue()); }
-
-                template <>
-                void Push(lua_State* State, ScriptArgumentGeneric<Real> Arg)
-                    { lua_pushnumber(State, Arg.GetValue()); }
-
-                template <>
-                void Push(lua_State* State, ScriptArgumentGeneric<Whole> Arg)
-                    { lua_pushnumber(State, Arg.GetValue()); }
-
-                template <>
-                void Push(lua_State* State, ScriptArgumentGeneric<Lua51Nil> Arg)
-                    { lua_pushnil(State); }
-
-                // To force instantiation
-                template <> void Push(lua_State* State, ScriptArgumentGeneric<String> Arg);
-                template <> void Push(lua_State* State, ScriptArgumentGeneric<Bool> Arg);
-                template <> void Push(lua_State* State, ScriptArgumentGeneric<Integer> Arg);
-                template <> void Push(lua_State* State, ScriptArgumentGeneric<Real> Arg);
-                template <> void Push(lua_State* State, ScriptArgumentGeneric<Whole> Arg);
-                template <> void Push(lua_State* State, ScriptArgumentGeneric<Lua51Nil> Arg);
             }
 
             void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
@@ -175,6 +133,7 @@ namespace Mezzanine
                             lua_dump(this->State, LuaBytecodeDumper, &(ScriptToCompile->CompiledByteCode) )
                 );
             }
+
 
             void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
             {
@@ -189,19 +148,22 @@ namespace Mezzanine
                 // Since Lua_Dump or lua_load will leave the function on the stack then...
 
                 // We just need to push all the arguments
-                CountedPtr<iScriptArgument> ArgToPush;
+                LuaArgument* Current;
                 for(ArgumentGroup::const_iterator Iter = ScriptToRun->Args.begin();
                     Iter != ScriptToRun->Args.end();
-                    Iter++
-                    )
+                    Iter++ )
                 {
-                    ArgToPush = *Iter;
-                    //ArgToPush = CountedPtrDynamicCast<>(*Iter);
-                    //Push(this->State, *);
+                    Current = dynamic_cast<LuaArgument*>(Iter->Get());
+                    if(Current)
+                        { Current->Push(this->State); }
+                    else
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one.") }
                 }
 
-                //lua_
+                // Need to perform Lua_call here
+                // Need to get return values here
 
+                // stickreturns into Returns on the script
             }
 
             void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)

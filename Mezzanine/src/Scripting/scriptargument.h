@@ -110,7 +110,7 @@ namespace Mezzanine
         template <class T>
         class MEZZ_LIB ScriptArgumentGeneric : public iScriptArgument
         {
-            private:
+            protected:
                 /// @brief The actual data.
                 /// @warning To prevent Slicing don't store the parent class in a container.
                 /// This practically guarantees that derived class will have different sizes
@@ -178,7 +178,7 @@ namespace Mezzanine
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<Integer> : public iScriptArgument
         {
-            private:
+            protected:
                 /// @brief The Integer actual data.
                 Integer Datum;
 
@@ -242,7 +242,7 @@ namespace Mezzanine
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<Whole> : public iScriptArgument
         {
-            private:
+            protected:
                 /// @brief The Whole actual data.
                 Whole Datum;
 
@@ -306,7 +306,7 @@ namespace Mezzanine
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<String> : public iScriptArgument
         {
-            private:
+            protected:
                 /// @brief The String data.
                 String Datum;
 
@@ -371,7 +371,7 @@ namespace Mezzanine
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<Real> : public iScriptArgument
         {
-            private:
+            protected:
                 /// @brief The Real actual data.
                 Real Datum;
 
@@ -435,7 +435,7 @@ namespace Mezzanine
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<Bool> : public iScriptArgument
         {
-            private:
+            protected:
                 /// @brief The Bool actual data.
                 Bool Datum;
 

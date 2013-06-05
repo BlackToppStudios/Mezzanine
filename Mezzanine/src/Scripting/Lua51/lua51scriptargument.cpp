@@ -41,6 +41,7 @@
 #define _lua51scriptargument_cpp
 
 #include "datatypes.h"
+#include "lua51scriptargument.h"
 
 #ifdef MEZZLUA51
 
@@ -66,6 +67,52 @@ namespace Mezzanine
     {
         namespace Lua
         {
+
+
+            void Lua51IntegerArgument::Push(lua_State* TargetState) const
+                { lua_pushinteger(TargetState, this->Datum); }
+
+            void Lua51IntegerArgument::Pop(lua_State* TargetState) const
+            {
+                // What do
+            }
+
+            void Lua51RealArgument::Push(lua_State* TargetState) const
+                { lua_pushnumber(TargetState, this->Datum); }
+
+            void Lua51RealArgument::Pop(lua_State* TargetState) const
+            {
+            }
+
+            void Lua51WholeArgument::Push(lua_State* TargetState) const
+                { lua_pushnumber(TargetState, this->Datum); }
+
+            void Lua51WholeArgument::Pop(lua_State* TargetState) const
+            {
+            }
+
+            void Lua51StringArgument::Push(lua_State *TargetState) const
+                { lua_pushlstring(TargetState, this->Datum.c_str(), this->Datum.size() ); }
+
+            void Lua51StringArgument::Pop(lua_State *TargetState) const
+            {
+            }
+
+            void Lua51BoolArgument::Push(lua_State *TargetState) const
+                { lua_pushboolean(TargetState, this->Datum); }
+
+            void Lua51BoolArgument::Pop(lua_State *TargetState) const
+            {
+            }
+
+            void Lua51NilArgument::Push(lua_State *TargetState) const
+                { lua_pushnil(TargetState); }
+
+            void Lua51NilArgument::Pop(lua_State *TargetState) const
+            {
+            }
+
+
 
         } // Lua
     } // Scripting
