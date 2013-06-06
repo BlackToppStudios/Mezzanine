@@ -60,6 +60,19 @@ namespace Mezzanine
     {
         namespace Lua
         {
+            /// @brief Lua51IntegerArgument returns this value when checking GetTypeData() const.
+            const Integer LuaInteger = GenericInteger;
+            /// @brief Lua51RealArgument returns this value when checking GetTypeData() const.
+            const Integer LuaReal = GenericReal;
+            /// @brief Lua51WholeArgument returns this value when checking GetTypeData() const.
+            const Integer LuaWhole = GenericWhole;
+            /// @brief Lua51StringArgument returns this value when checking GetTypeData() const.
+            const Integer LuaString = GenericString;
+            /// @brief Lua51BoolArgument returns this value when checking GetTypeData() const.
+            const Integer LuaBool = GenericBool;
+            /// @brief Lua51NilArgument returns this value when checking GetTypeData() const.
+            const Integer LuaNil = GenericMax+1;
+
             /// @brief The ScriptArgumentGeneric<T> does a good enough job for actually passing data, but it needs just a bit of Lua specific functionality
             class LuaArgument
             {
@@ -72,36 +85,23 @@ namespace Mezzanine
                     /// @brief Handle the details of pulling data from Lua's Stack into this.
                     /// @param TargetState The state with the stack to pull the data from.
                     /// @return Whatever the Lua return code of the first failing lua call, or the last successful call.
-                    virtual void Pop(lua_State* TargetState) const = 0;
+                    virtual void Pop(lua_State* TargetState) = 0;
             };
-
-  /*
-                    case LuaNil:
-                        {
-                            ScriptArgumentGeneric<Lua51Nil>* ArgToPush = dynamic_cast<ScriptArgumentGeneric<Lua51Nil>*>(Parameter);
-                            if(ArgToPush)
-                                { lua_pushnil(State); }
-                            else
-                                { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Parameter reported it was a Lua51Nil but could not be converted as one.") }
-                        }
-                        break;
-                    default:
-                        MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Parameter reported incorrectly when being passed to Lua51Script.")
-            */
 
             /// @brief The implementations in the ScriptArgumentGeneric<Integer> will cover most of what this needs
             class Lua51IntegerArgument : public LuaArgument, public ScriptArgumentGeneric<Integer>
             {
                 public:
-                    Lua51IntegerArgument(Integer InitialValue) : ScriptArgumentGeneric<Integer>(InitialValue)
+                    /// @brief Implicit constructor
+                    /// @param InitialValue Defaults to 0 and is the actual data to pass into Lua
+                    /// @note This is intentionally not explicit. This should make it easier to work with in situations where the creation of this is less important.
+                    Lua51IntegerArgument(Integer InitialValue = 0) : ScriptArgumentGeneric<Integer>(InitialValue)
                     {}
 
                     virtual void Push(lua_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState) const;
+                    virtual void Pop(lua_State* TargetState);
             };
-            /// @brief Lua51IntegerArgument returns this value when checking GetTypeData() const.
-            const Integer LuaInteger = GenericInteger;
 
             /// @brief A Real that can readily be passed into lua scripts
             class Lua51RealArgument : public LuaArgument, public ScriptArgumentGeneric<Real>
@@ -112,10 +112,8 @@ namespace Mezzanine
 
                     virtual void Push(lua_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState) const;
+                    virtual void Pop(lua_State* TargetState);
             };
-            /// @brief Lua51RealArgument returns this value when checking GetTypeData() const.
-            const Integer LuaReal = GenericReal;
 
             /// @brief No special care is required for Whole number Lua Arguments, so a simple typedef is used.
             class Lua51WholeArgument : public LuaArgument, public ScriptArgumentGeneric<Whole>
@@ -126,10 +124,8 @@ namespace Mezzanine
 
                     virtual void Push(lua_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState) const;
+                    virtual void Pop(lua_State* TargetState);
             };
-            /// @brief Lua51WholeArgument returns this value when checking GetTypeData() const.
-            const Integer LuaWhole = GenericWhole;
 
             /// @brief No special care is required for String Lua Arguments, so a simple typedef is used.
             class Lua51StringArgument : public LuaArgument, public ScriptArgumentGeneric<String>
@@ -140,10 +136,8 @@ namespace Mezzanine
 
                     virtual void Push(lua_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState) const;
+                    virtual void Pop(lua_State* TargetState);
             };
-            /// @brief Lua51StringArgument returns this value when checking GetTypeData() const.
-            const Integer LuaString = GenericString;
 
             /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
             class Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Bool>
@@ -154,15 +148,12 @@ namespace Mezzanine
 
                     virtual void Push(lua_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState) const;
+                    virtual void Pop(lua_State* TargetState);
             };
-            /// @brief Lua51BoolArgument returns this value when checking GetTypeData() const.
-            const Integer LuaBool = GenericBool;
 
             /// @brief A very simple class to allow a specialization of ScriptArgumentGeneric to correspond with Lua's Nil.
             class Lua51Nil {};
-            /// @brief Lua51NilArgument returns this value when checking GetTypeData() const.
-            const Integer LuaNil = GenericMax+1;
+
         } // Lua
 
         /// @brief A Lua51Nil implementation of a ScriptArgument that is suitable for only for passing Nil into Lua51 scripts
@@ -237,7 +228,7 @@ namespace Mezzanine
 
                     virtual void Push(lua_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState) const;
+                    virtual void Pop(lua_State* TargetState);
             };
 
         } // Lua

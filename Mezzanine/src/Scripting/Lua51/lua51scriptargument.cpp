@@ -72,45 +72,70 @@ namespace Mezzanine
             void Lua51IntegerArgument::Push(lua_State* TargetState) const
                 { lua_pushinteger(TargetState, this->Datum); }
 
-            void Lua51IntegerArgument::Pop(lua_State* TargetState) const
+            void Lua51IntegerArgument::Pop(lua_State* TargetState)
             {
-                // What do
+                int Top = lua_gettop(TargetState);
+                if(LUA_TNUMBER==lua_type(TargetState,Top))
+                    { Datum = lua_tointeger(TargetState,Top); }
+                else
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Integer), but found something else.") }
             }
 
             void Lua51RealArgument::Push(lua_State* TargetState) const
                 { lua_pushnumber(TargetState, this->Datum); }
-
-            void Lua51RealArgument::Pop(lua_State* TargetState) const
+            void Lua51RealArgument::Pop(lua_State* TargetState)
             {
+                int Top = lua_gettop(TargetState);
+                if(LUA_TNUMBER==lua_type(TargetState,Top))
+                    { Datum = lua_tonumber(TargetState,Top); }
+                else
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Real), but found something else.") }
             }
 
             void Lua51WholeArgument::Push(lua_State* TargetState) const
                 { lua_pushnumber(TargetState, this->Datum); }
-
-            void Lua51WholeArgument::Pop(lua_State* TargetState) const
+            void Lua51WholeArgument::Pop(lua_State* TargetState)
             {
+                int Top = lua_gettop(TargetState);
+                if(LUA_TNUMBER==lua_type(TargetState,Top))
+                    { Datum = lua_tointeger(TargetState,Top); }
+                else
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Whole), but found something else.") }
             }
 
             void Lua51StringArgument::Push(lua_State *TargetState) const
                 { lua_pushlstring(TargetState, this->Datum.c_str(), this->Datum.size() ); }
-
-            void Lua51StringArgument::Pop(lua_State *TargetState) const
+            void Lua51StringArgument::Pop(lua_State *TargetState)
             {
+                int Top = lua_gettop(TargetState);
+                if(LUA_TSTRING==lua_type(TargetState,Top))
+                    { Datum = lua_tostring(TargetState,Top); }
+                else
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
             }
 
             void Lua51BoolArgument::Push(lua_State *TargetState) const
                 { lua_pushboolean(TargetState, this->Datum); }
-
-            void Lua51BoolArgument::Pop(lua_State *TargetState) const
+            void Lua51BoolArgument::Pop(lua_State *TargetState)
             {
+                int Top = lua_gettop(TargetState);
+                if(LUA_TBOOLEAN==lua_type(TargetState,Top))
+                    { Datum = lua_toboolean(TargetState,Top); }
+                else
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
             }
 
             void Lua51NilArgument::Push(lua_State *TargetState) const
                 { lua_pushnil(TargetState); }
-
-            void Lua51NilArgument::Pop(lua_State *TargetState) const
+            void Lua51NilArgument::Pop(lua_State *TargetState)
             {
+                int Top = lua_gettop(TargetState);
+                if(LUA_TNIL==lua_type(TargetState,Top))
+                    { lua_pop(TargetState,1); }
+                else
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
             }
+
 
 
 

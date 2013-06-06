@@ -80,9 +80,8 @@ namespace Mezzanine
             Lua51Script::Lua51Script()
                 { }
 
-            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler, Whole CreationReturnCount)
-                : SourceCode(InitialSourceCode),
-                  ReturnCount(CreationReturnCount)
+            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler)
+                : SourceCode(InitialSourceCode)
             {
                 if(Compiler)
                     { Compile(Compiler); }
@@ -115,10 +114,11 @@ namespace Mezzanine
                 SourceCode = Code;
             }
 
-            void Lua51Script::SetSourceCode(const String& Code, Whole CodeReturnCount)
+            void Lua51Script::SetSourceCode(const String& Code, CountedPtr<iScriptArgument> Return1)
             {
-                ReturnCount = CodeReturnCount;
                 SetSourceCode(Code);
+                Returns.clear();
+                Returns.push_back(Return1);
             }
 
             String Lua51Script::GetSourceCode() const
@@ -136,8 +136,8 @@ namespace Mezzanine
             Whole Lua51Script::GetReturnCount() const
                 { return Returns.size(); }
 
-            Whole Lua51Script::GetTargetReturnCount() const
-                { return ReturnCount; }
+            void Lua51Script::AddReturn(CountedPtr<iScriptArgument> ReturnArg)
+                { Returns.push_back(ReturnArg); }
 
             ArgumentGroup Lua51Script::GetAllReturns() const
                 { return Returns; }

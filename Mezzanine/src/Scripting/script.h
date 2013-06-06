@@ -274,6 +274,14 @@ namespace Mezzanine
                 /// @return An ArgumentSet that can be iterated over to get all the values returned.
                 virtual ArgumentGroup GetAllReturns() const = 0;
 
+                /// @brief Add another value to be returned.
+                /// @param A copy assignable script argument that conveys type information to the specific language runtime
+                /// @details Some scripting languages (Lua51) require knowledge of the return types
+                /// of the scripts in order to extract them from the language runtime. Pointers to
+                /// classes derived from iScriptArgument should convey that typing information to
+                /// such language runtimes.
+                virtual void AddReturn(CountedPtr<iScriptArgument> ReturnArg) = 0;
+
                 /// @brief Get a pointer to the most Derived type of this class
                 /// @return A pointer of the most derived pointing to this.
                 virtual iScriptMultipleReturn* GetMostDerived()

@@ -82,9 +82,6 @@ namespace Mezzanine
                     /// @brief A set of the arguments being passed into the Lua script
                     ArgumentGroup Args;
 
-                    /// @brief The Expected amount of return values after execution
-                    Whole ReturnCount;
-
                     /// @brief A set of all the values the Lua script returned the last time it was executed.
                     ArgumentGroup Returns;
 
@@ -95,7 +92,7 @@ namespace Mezzanine
                     /// @brief Compiling Constructor
                     /// @param SourceCode The source of the script to be used in this.
                     /// @param Compiler Defaults to a null pointer. If passed a null pointer this does nothing. If passed a valid LuaScriptingEngine then that engine is used to compile (but not run) this script.
-                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0, Whole CreationReturnCount=0);
+                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0);
 
                     /// @brief Virtual destructor
                     virtual ~Lua51Script();
@@ -122,8 +119,8 @@ namespace Mezzanine
                     virtual void SetSourceCode(const String& Code);
 
                     /// @copydoc SetSourceCode(const String&)
-                    /// @param CodeReturnCount Set the possinle return count of this script
-                    virtual void SetSourceCode(const String& Code, Whole CodeReturnCount);
+                    /// @param Return1 Something for containing the return from the script
+                    virtual void SetSourceCode(const String& Code, CountedPtr<iScriptArgument> Return1);
 
                     /// @copydoc Mezzanine::Scripting::iScript::GetSourceCode
                     virtual String GetSourceCode() const;
@@ -140,10 +137,13 @@ namespace Mezzanine
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetReturnCount
                     virtual Whole GetReturnCount() const;
 
-                    /// @brief How many returns will the current source code return.
-                    /// @details This can be set on construction or when loading new source code.
-                    /// @return A whole containing the amount of returns the current Script will return after it is next executed.
-                    virtual Whole GetTargetReturnCount() const;
+                    // @brief How many returns will the current source code return.
+                    // @details This can be set on construction or when loading new source code.
+                    // @return A whole containing the amount of returns the current Script will return after it is next executed.
+                    //virtual Whole GetTargetReturnCount() const;
+
+                    /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::AddReturn
+                    virtual void AddReturn(CountedPtr<iScriptArgument> ReturnArg);
 
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetAllReturns
                     virtual ArgumentGroup GetAllReturns() const;
@@ -163,11 +163,16 @@ namespace Mezzanine
     class ReferenceCountTraits <Scripting::Lua::Lua51Script>
     {
         public:
+            /// @brief The type that maintains the Reference count for Lua51Script with be Lua51Script itself
             typedef Scripting::Lua::Lua51Script RefCountType;
 
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::Lua::Lua51Script that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
             enum { IsCastable = CastDynamic };
 
     };

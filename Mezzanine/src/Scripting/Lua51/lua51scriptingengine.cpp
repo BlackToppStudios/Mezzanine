@@ -157,13 +157,24 @@ namespace Mezzanine
                     if(Current)
                         { Current->Push(this->State); }
                     else
-                        { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one.") }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for parameter purposes.") }
                 }
 
-                // Need to perform Lua_call here
-                // Need to get return values here
+                // Do the actual script
+                lua_call(this->State, ScriptToRun->Args.size(), ScriptToRun->Returns.size() );
 
-                // stickreturns into Returns on the script
+                // Need to get return values
+                for(ArgumentGroup::iterator Iter = ScriptToRun->Returns.begin();
+                    Iter != ScriptToRun->Returns.end();
+                    Iter++ )
+                {
+                    Current = dynamic_cast<LuaArgument*>(Iter->Get());
+                    if(Current)
+                        { Current->Pop(this->State); }
+                    else
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for return value purposes.") }
+                }
+
             }
 
             void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
