@@ -255,25 +255,25 @@ namespace Mezzanine
 
             void Lua51ScriptingEngine::OpenLibraries(int LibrariesToOpen)
             {
-                if(AllLibs & BaseLib)
+                if(LibrariesToOpen & BaseLib)
                     { OpenBaseLibrary(); }
-                if(AllLibs & PackageLib)
+                if(LibrariesToOpen & PackageLib)
                     { OpenPackageLibrary(); }
-                if(AllLibs & StringLib)
+                if(LibrariesToOpen & StringLib)
                     { OpenStringLibrary(); }
-                if(AllLibs & TableLib)
+                if(LibrariesToOpen & TableLib)
                     { OpenTableLibrary(); }
-                if(AllLibs & MathLib)
+                if(LibrariesToOpen & MathLib)
                     { OpenMathLibrary(); }
-                if(AllLibs & IOLib)
+                if(LibrariesToOpen & IOLib)
                     { OpenIOLibrary(); }
-                if(AllLibs & OSLib)
+                if(LibrariesToOpen & OSLib)
                     { OpenOSLibrary(); }
-                if(AllLibs & DebugLib)
+                if(LibrariesToOpen & DebugLib)
                     { OpenDebugLibrary(); }
-                if(AllLibs & MezzLib)
+                if(LibrariesToOpen & MezzLib)
                     { OpenMezzanineLibrary(); }
-                if(AllLibs & MezzSafeLib)
+                if(LibrariesToOpen & MezzSafeLib)
                     { OpenMezzanineSafeLibrary(); }
             }
 
