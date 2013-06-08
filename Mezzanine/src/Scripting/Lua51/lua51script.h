@@ -94,6 +94,11 @@ namespace Mezzanine
                     /// @param Compiler Defaults to a null pointer. If passed a null pointer this does nothing. If passed a valid LuaScriptingEngine then that engine is used to compile (but not run) this script.
                     Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0);
 
+                    /// @brief Compiling Cosntructor without pointer
+                    /// @param SourceCode The source of the script to be used in this.
+                    /// @param
+                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler);
+
                     /// @brief Virtual destructor
                     virtual ~Lua51Script();
 

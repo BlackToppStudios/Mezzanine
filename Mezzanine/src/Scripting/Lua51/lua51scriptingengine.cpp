@@ -81,11 +81,12 @@ namespace Mezzanine
                 const char* DefaultChunkName = "Chunk";
 
                 /// @internal
-                /// @brief Used in the LuaScriptingEngine to get data from lua_dump durign script compilation
+                /// @brief Used in the LuaScriptingEngine to get data from lua_dump during script compilation
                 /// @param State The Lua state as provide by lua_dump
                 /// @param Buffer A pointer to the compiled Lua chunk.
                 /// @param Size The Size of the Lua chunk in bytes
                 /// @param BinBuff A pointer to a BinaryTools::BinaryBuffer that will serve as the real output
+                /// @note This is a lua_Writer as per http://www.lua.org/manual/5.1/manual.html#lua_Writer
                 int LuaBytecodeDumper(lua_State *State, const void* Buffer, size_t Size, void* BinBuff)
                 {
                     BinaryTools::BinaryBuffer* CompilingScript = reinterpret_cast<BinaryTools::BinaryBuffer*>(BinBuff);
@@ -93,6 +94,7 @@ namespace Mezzanine
                                     (BinaryTools::BinaryBuffer::Byte*) Buffer,
                                     Size
                                 );
+                    return 0;
                 }
 
                 /// @internal
@@ -101,8 +103,10 @@ namespace Mezzanine
                 /// @param Size an output parameter to convey the size of the return to Lua.
                 /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
                 /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
+                /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
                 const char* LuaBytecodeLoader(lua_State* State, void* BinBuff, long unsigned int* Size)
                 {
+                    //return 0;
                     const BinaryTools::BinaryBuffer* LoadingScript = reinterpret_cast<const BinaryTools::BinaryBuffer*>(BinBuff);
                     *Size = LoadingScript->Size;
                     return (const char*)LoadingScript->Binary;
@@ -114,8 +118,10 @@ namespace Mezzanine
                 /// @param Size an output parameter to convey the size of the return to Lua.
                 /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
                 /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
+                /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
                 const char* LuaSourceLoader(lua_State* State, void* BinBuff, long unsigned int* Size)
                 {
+                    //return 0;
                     const Lua51Script* LoadingScript = reinterpret_cast<const Lua51Script*>(BinBuff);
                     *Size = LoadingScript->GetSourceCode().size();
                     return LoadingScript->GetSourceCode().c_str();
