@@ -107,15 +107,27 @@ namespace Mezzanine
                 const char* LuaBytecodeLoader(lua_State* State, void* BinBuff, long unsigned int* Size)
                 {
                     //const BinaryTools::BinaryBuffer* LoadingScript = reinterpret_cast<const BinaryTools::BinaryBuffer*>(BinBuff);
+                    FlaggedBuffer* LoadingBuffer= reinterpret_cast<FlaggedBuffer*>(BinBuff);
+                    if(LoadingBuffer->Loaded)
+                    {
+                        LoadingBuffer->Loaded = false;
+                        return 0;
+                    }else{
+                        *Size = LoadingBuffer->Size;
+                        LoadingBuffer->Loaded = true;
+                        return (const char*)LoadingBuffer->Binary;
+                    }
+                    /*
                     Lua51Script* LoadingScript = reinterpret_cast<Lua51Script*>(BinBuff);
                     if(LoadingScript->Loaded)
                     {
+                        LoadingScript->Loaded = false;
                         return 0;
                     }else{
                         *Size = LoadingScript->GetByteCode().Size;
                         LoadingScript->Loaded = true;
                         return (const char*)LoadingScript->GetByteCode().Binary;
-                    }
+                    }*/
                 }
 
                 /// @internal
@@ -128,12 +140,13 @@ namespace Mezzanine
                 const char* LuaSourceLoader(lua_State* State, void* BinBuff, long unsigned int* Size)
                 {
                     Lua51Script* LoadingScript = reinterpret_cast<Lua51Script*>(BinBuff);
-                    if(LoadingScript->Loaded)
+                    if(LoadingScript->GetByteCodeReference().Loaded)
                     {
+                        LoadingScript->GetByteCodeReference().Loaded = false;
                         return 0;
                     }else{
                         *Size = LoadingScript->GetSourceCode().size();
-                        LoadingScript->Loaded = true;
+                        LoadingScript->GetByteCodeReference().Loaded = true;
                         return LoadingScript->GetSourceCode().c_str();
                     }
                 }
@@ -145,7 +158,6 @@ namespace Mezzanine
                 ThrowFromLuaErrorCode(
                             lua_load(this->State, LuaSourceLoader, ScriptToCompile, DefaultChunkName)
                 );
-                ScriptToCompile->Loaded = false;
 
                 ThrowFromLuaErrorCode(
                             //lua_dump(this->State, LuaBytecodeDumper, &(ScriptToCompile->CompiledByteCode) )
@@ -163,7 +175,6 @@ namespace Mezzanine
                     ThrowFromLuaErrorCode(
                                 lua_load(this->State, LuaBytecodeLoader, ScriptToRun, DefaultChunkName)
                     );
-                    ScriptToRun->Loaded = false;
                 }
                 // Since Lua_Dump or lua_load will leave the function on the stack then...
 

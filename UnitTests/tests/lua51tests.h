@@ -61,27 +61,34 @@ class lua51tests : public UnitTestGroup
             if (RunAutomaticTests)
             {
                 {
-                    Scripting::Lua::Lua51ScriptingEngine LuaSafe(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);
-                    Scripting::Lua::Lua51Script Hello("Print \"Hello World!\"",&LuaSafe);
-                    //Scripting::Lua::Lua51ScriptingEngine LuaEverything(Scripting::Lua::Lua51ScriptingEngine::AllLibs);
+                    Scripting::Lua::Lua51ScriptingEngine LuaRuntimeSafe(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);
+                    Scripting::Lua::Lua51ScriptingEngine LuaRuntimeAll(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);
 
-                    //CountedPtr<Entresol> World = SimpleEngineStartup();
+                    try
+                    {
+                        Scripting::Lua::Lua51Script Hello("Print \"Hello World!\"",&LuaRuntimeSafe); //From pointer
+                        AddTestResult("Lua51::ScriptCompileOnConstruction1", Success);
+                    } catch (ScriptLuaException& e) {
+                        AddTestResult("Lua51::ScriptCompileOnConstruction1", Failed);
+                    }
 
-                    //World->EngineInit(true);
+                    try
+                    {
+                        Scripting::Lua::Lua51Script Hello("Print \"Hello World!\"",LuaRuntimeSafe); // from reference
+                        AddTestResult("Lua51::ScriptCompileOnConstruction2", Success);
+                    } catch (ScriptLuaException& e) {
+                        AddTestResult("Lua51::ScriptCompileOnConstruction2", Failed);
+                    }
+
+
 
 
                 }
 
-                TestResult temp;
-
-                if(1)
-                    { temp=Success; }
-                else
-                    { temp=Failed; }
-                AddTestResult("Lua51::Blank", temp);
 
             }else{
-                AddTestResult("Lua51::Blank", Skipped);
+                AddTestResult("Lua51::ScriptCompileOnConstruction1", Skipped);
+                AddTestResult("Lua51::ScriptCompileOnConstruction1", Skipped);
             }
         }
 };

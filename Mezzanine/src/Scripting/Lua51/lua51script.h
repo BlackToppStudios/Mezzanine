@@ -60,6 +60,27 @@ namespace Mezzanine
         {
             class Lua51ScriptingEngine;
 
+            /// @brief An expanded version of the BinaryTools::BinaryBuffer to carry one tiny piece of metadata around with it.
+            class FlaggedBuffer : public BinaryTools::BinaryBuffer
+            {
+                public:
+                    /// @brief just a passthru to BinaryBuffer::operator=
+                    /// @param RH The assiging binary buffer
+                    /// @return This returns a reference to this for operator chaing and such.
+                    FlaggedBuffer& operator= (const BinaryBuffer& RH)
+                    {
+                        BinaryBuffer::operator=(RH);
+                        return *this;
+                    }
+
+                    /// @brief Used to indicate that this data has been loaded into lua.
+                    bool Loaded;
+
+                    /// @brief Constructor just set the extra flag to false.
+                    FlaggedBuffer() : Loaded(false)
+                        {}
+            };
+
             ///////////////////////////////////////////////////////////////////////////////////////
             /// @brief This class is used to store a Lua script and in its source and compiled state.
             /// @details To execute this script use @ref LuaScriptingEngine::compile
@@ -73,7 +94,8 @@ namespace Mezzanine
                     String SourceCode;
 
                     /// @brief If the script is compiled this will be used to store it.
-                    BinaryTools::BinaryBuffer CompiledByteCode;
+                    //BinaryTools::BinaryBuffer CompiledByteCode;
+                    FlaggedBuffer CompiledByteCode;
 
                     /// @brief This will compile the Lua script
                     /// @param Compiler This will be used to compile the script, no safety checks are performed.
@@ -86,9 +108,6 @@ namespace Mezzanine
                     ArgumentGroup Returns;
 
                 public:
-                    /// @brief Used
-                    bool Loaded;
-
                     /// @brief Simple constructor, creates a script that executes a no-op.
                     Lua51Script();
 
@@ -139,19 +158,15 @@ namespace Mezzanine
                     /// @copydoc Mezzanine::Scripting::iScriptCompilable::GetByteCode
                     virtual BinaryTools::BinaryBuffer GetByteCode() const;
 
-
-                    virtual BinaryTools::BinaryBuffer& GetByteCodeReference();
+                    /// @brief Get a reference to bytecode instead of a copy.
+                    /// @return A BinaryTools::BinaryBuffer& containing either nothing or the Bytecode that would executed.
+                    virtual FlaggedBuffer& GetByteCodeReference();
 
                     /// @copydoc Mezzanine::Scripting::iScriptCompilable::IsCompiled
                     virtual bool IsCompiled() const;
 
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetReturnCount
                     virtual Whole GetReturnCount() const;
-
-                    // @brief How many returns will the current source code return.
-                    // @details This can be set on construction or when loading new source code.
-                    // @return A whole containing the amount of returns the current Script will return after it is next executed.
-                    //virtual Whole GetTargetReturnCount() const;
 
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::AddReturn
                     virtual void AddReturn(CountedPtr<iScriptArgument> ReturnArg);
@@ -164,7 +179,7 @@ namespace Mezzanine
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
                     virtual Lua51Script* GetMostDerived()
-                    { return this; }
+                        { return this; }
 
             };
         } // Lua

@@ -79,14 +79,14 @@ namespace Mezzanine
                 { }
 
             Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler)
-                : SourceCode(InitialSourceCode), Loaded(false)
+                : SourceCode(InitialSourceCode)
             {
                 if(Compiler)
                     { Compile(Compiler); }
             }
 
             Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler)
-                : SourceCode(InitialSourceCode), Loaded(false)
+                : SourceCode(InitialSourceCode)
                 { Compile(&Compiler); }
 
             Lua51Script::~Lua51Script()
@@ -132,7 +132,7 @@ namespace Mezzanine
             BinaryTools::BinaryBuffer Lua51Script::GetByteCode() const
                 { return CompiledByteCode; }
 
-            BinaryTools::BinaryBuffer &Lua51Script::GetByteCodeReference()
+            FlaggedBuffer& Lua51Script::GetByteCodeReference()
                 { return CompiledByteCode; }
 
             bool Lua51Script::IsCompiled() const
