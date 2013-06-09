@@ -86,6 +86,9 @@ namespace Mezzanine
                     ArgumentGroup Returns;
 
                 public:
+                    /// @brief Used
+                    bool Loaded;
+
                     /// @brief Simple constructor, creates a script that executes a no-op.
                     Lua51Script();
 
@@ -136,6 +139,9 @@ namespace Mezzanine
                     /// @copydoc Mezzanine::Scripting::iScriptCompilable::GetByteCode
                     virtual BinaryTools::BinaryBuffer GetByteCode() const;
 
+
+                    virtual BinaryTools::BinaryBuffer& GetByteCodeReference();
+
                     /// @copydoc Mezzanine::Scripting::iScriptCompilable::IsCompiled
                     virtual bool IsCompiled() const;
 
@@ -158,7 +164,8 @@ namespace Mezzanine
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
                     virtual Lua51Script* GetMostDerived()
-                        { return this; }
+                    { return this; }
+
             };
         } // Lua
     } // Scripting
