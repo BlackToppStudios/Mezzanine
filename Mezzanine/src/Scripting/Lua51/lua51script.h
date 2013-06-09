@@ -180,7 +180,6 @@ namespace Mezzanine
                     /// @return A pointer of the most derived pointing to this.
                     virtual Lua51Script* GetMostDerived()
                         { return this; }
-
             };
         } // Lua
     } // Scripting
@@ -201,7 +200,6 @@ namespace Mezzanine
 
             /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
             enum { IsCastable = CastDynamic };
-
     };
 } // Mezzanine
 

@@ -117,17 +117,6 @@ namespace Mezzanine
                         LoadingBuffer->Loaded = true;
                         return (const char*)LoadingBuffer->Binary;
                     }
-                    /*
-                    Lua51Script* LoadingScript = reinterpret_cast<Lua51Script*>(BinBuff);
-                    if(LoadingScript->Loaded)
-                    {
-                        LoadingScript->Loaded = false;
-                        return 0;
-                    }else{
-                        *Size = LoadingScript->GetByteCode().Size;
-                        LoadingScript->Loaded = true;
-                        return (const char*)LoadingScript->GetByteCode().Binary;
-                    }*/
                 }
 
                 /// @internal
@@ -153,18 +142,64 @@ namespace Mezzanine
 
             }
 
-            void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // Publically visible internals
+            void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
             {
-                ThrowFromLuaErrorCode(
-                            lua_load(this->State, LuaSourceLoader, ScriptToCompile, DefaultChunkName)
-                );
-
-                ThrowFromLuaErrorCode(
-                            //lua_dump(this->State, LuaBytecodeDumper, &(ScriptToCompile->CompiledByteCode) )
-                            lua_dump(this->State, LuaBytecodeDumper, &ScriptToCompile->GetByteCodeReference() )
-                );
+                switch(LuaReturn)
+                {
+                    case 0:
+                        break;
+                    case LUA_YIELD:
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_YIELD, "Lua returned a LUA_YIELD instead of completing.")
+                    case LUA_ERRRUN:
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_RUNTIME, "There was a runtime Error handling the Lua script.")
+                    case LUA_ERRSYNTAX:
+                        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_LUA, "There was an error with the syntax of the Lua script.")
+                    case LUA_ERRERR:
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_ERRERR, "There was an error when Lua attempted to handle an error.")
+                    case LUA_ERRMEM:
+                        MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Lua could not allocate memory.")
+                    case LUA_ERRFILE:
+                        MEZZ_EXCEPTION(Exception::IO_FILE_EXCEPTION, "Lua had an error with file IO.")
+                    default:
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua had an error and we are not sure what it was.")
+                }
             }
 
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // Construction/Deconstruction
+            Lua51ScriptingEngine::Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen) : State(luaL_newstate())
+                { OpenLibraries(LibrariesToOpen); }
+
+            Lua51ScriptingEngine::~Lua51ScriptingEngine()
+                { lua_close(State); }
+
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // Execution
+            CountedPtr<iScript> Lua51ScriptingEngine::Execute(const String& ScriptSource)
+            {
+                CountedPtr<Lua51Script> Results = Compile(ScriptSource);
+                Execute(Results);
+                return CountedPtrCast<iScript>(Results);
+            }
+
+            void Lua51ScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)
+            {
+                CountedPtr<Lua51Script> ScriptToCompile = CountedPtrCast<Lua51Script>(ScriptToRun);
+                if(ScriptToCompile)
+                {
+                    Execute(ScriptToCompile);
+                }else{
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51 Engine attempted to execute a script, but it did not appear to bea Lua51 script.")
+                }
+            }
+
+            void Lua51ScriptingEngine::Execute(CountedPtr<Lua51Script> ScriptToRun)
+                { Execute(ScriptToRun.Get()); }
+
+            void Lua51ScriptingEngine::Execute(Lua51Script& ScriptToRun)
+                { Execute(&ScriptToRun); }
 
             void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
             {
@@ -208,51 +243,15 @@ namespace Mezzanine
 
             }
 
-            void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // Compilation
+            CountedPtr<iScriptCompilable> Lua51ScriptingEngine::Compile(const String& SourceToCompile)
             {
-                switch(LuaReturn)
-                {
-                    case 0:
-                        break;
-                    case LUA_YIELD:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_YIELD, "Lua returned a LUA_YIELD instead of completing.")
-                    case LUA_ERRRUN:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_RUNTIME, "There was a runtime Error handling the Lua script.")
-                    case LUA_ERRSYNTAX:
-                        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_LUA, "There was an error with the syntax of the Lua script.")
-                    case LUA_ERRERR:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_ERRERR, "There was an error when Lua attempted to handle an error.")
-                    case LUA_ERRMEM:
-                        MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Lua could not allocate memory.")
-                    case LUA_ERRFILE:
-                        MEZZ_EXCEPTION(Exception::IO_FILE_EXCEPTION, "Lua had an error with file IO.")
-                    default:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua had an error and we are not sure what it was.")
-                }
-            }
-
-            Lua51ScriptingEngine::Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen) : State(luaL_newstate())
-                { OpenLibraries(LibrariesToOpen); }
-
-            Lua51ScriptingEngine::~Lua51ScriptingEngine()
-                { lua_close(State); }
-
-            CountedPtr<iScript> Lua51ScriptingEngine::Execute(const String& ScriptSource)
-            {
-                CountedPtr<Lua51Script> Results = Compile(ScriptSource);
-                Execute(Results);
-                return CountedPtrCast<iScript>(Results);
-            }
-
-            void Lua51ScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)
-            {
-                CountedPtr<Lua51Script> ScriptToCompile = CountedPtrCast<Lua51Script>(ScriptToRun);
-                if(ScriptToCompile)
-                {
-                    Execute(ScriptToCompile);
-                }else{
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51 Engine attempted to execute a script, but it did not appear to bea Lua51 script.")
-                }
+                CountedPtr<Lua51Script> Results(
+                                new Lua51Script(SourceToCompile,this)
+                            );
+                Compile(Results);
+                return Results;
             }
 
             void Lua51ScriptingEngine::Compile(CountedPtr<iScriptCompilable> ScriptToCompile)
@@ -266,24 +265,31 @@ namespace Mezzanine
                 }
             }
 
-            CountedPtr<iScriptCompilable> Lua51ScriptingEngine::Compile(const String& SourceToCompile)
-            {
-                CountedPtr<Lua51Script> Results(
-                                new Lua51Script(SourceToCompile,this)
-                            );
-                Compile(Results);
-                return Results;
-            }
-
-            String Lua51ScriptingEngine::GetImplementationTypeName() const
-                { return String("Lua51ScriptingEngine"); }
-
-            void Lua51ScriptingEngine::Execute(CountedPtr<Lua51Script> ScriptToRun)
-                { Execute(ScriptToRun.Get()); }
-
             void Lua51ScriptingEngine::Compile(CountedPtr<Lua51Script> ScriptToCompile)
                 { Compile(ScriptToCompile.Get()); }
 
+            void Lua51ScriptingEngine::Compile(Lua51Script& ScriptToCompile)
+                { Compile(&ScriptToCompile); }
+
+            void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
+            {
+                ThrowFromLuaErrorCode(
+                            lua_load(this->State, LuaSourceLoader, ScriptToCompile, DefaultChunkName)
+                );
+
+                ThrowFromLuaErrorCode(
+                            //lua_dump(this->State, LuaBytecodeDumper, &(ScriptToCompile->CompiledByteCode) )
+                            lua_dump(this->State, LuaBytecodeDumper, &ScriptToCompile->GetByteCodeReference() )
+                );
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // For Inheritance
+            String Lua51ScriptingEngine::GetImplementationTypeName() const
+                { return String("Lua51ScriptingEngine"); }
+
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // Library Manipulation
             void Lua51ScriptingEngine::OpenLibraries(int LibrariesToOpen)
             {
                 if(LibrariesToOpen & BaseLib)
@@ -333,64 +339,6 @@ namespace Mezzanine
                 { luaopen_Mezzanine(State); }
             void Lua51ScriptingEngine::OpenMezzanineSafeLibrary()
                 { luaopen_MezzanineSafe(State); }
-
-
-            ///////////////////////////////////////////////////////////////////////////////////////
-            // Old stuff to be removed
-
-            //simplistic error checking function, to be replace with proper exception driven code later.
-/*            int PrintErrorMessageOrNothing(int ErrorCode)
-            {
-                switch(ErrorCode)
-                {
-                    case 0:             // Fine
-                        break;
-                    case LUA_YIELD:     // most errors seem to be this.
-                        std::cout << std::endl << "Lua Error Code(LUA_YIELD): " << ErrorCode << std::endl;
-                        break;
-                    case LUA_ERRRUN:
-                        std::cout << std::endl << "Lua Error Code(LUA_ERRRUN): " << ErrorCode << std::endl;
-                        break;
-                    case LUA_ERRSYNTAX:
-                        std::cout << std::endl << "Lua Error Code(LUA_ERRSYNTAX): " << ErrorCode << std::endl;
-                        break;
-                    case LUA_ERRERR:
-                        std::cout << std::endl << "Lua Error Code(LUA_ERRERR): " << ErrorCode << std::endl;
-                        break;
-                    default:
-                        std::cout << std::endl << "Lua Error Code(Unknown Error): " << ErrorCode << std::endl;
-                }
-                return ErrorCode;
-            }
-
-            int test()
-            {
-                lua_State *State;           // create a pointer to Track the Lua State
-                State = luaL_newstate();    // Create a Lua State
-                luaL_openlibs(State);
-                luaopen_Mezzanine(State);
-
-                std::cout << std::endl << "Let's try running a Lua command." << std::endl;
-                int Error = luaL_dostring(State,"print \"Hello from Lua\"");    // run a very simple Lua script.
-                PrintErrorMessageOrNothing(Error);
-
-                std::cout << std::endl << "Now for Lua to call a function in the Mezzanine." << std::endl;
-                Error = luaL_dostring(State,"Mezzanine.PrintHello()");
-                PrintErrorMessageOrNothing(Error);
-
-                std::cout << std::endl << "Now for some Lua class creation." << std::endl;
-                Error = luaL_dostring(State,"                                                                   \
-                                      print \"First We need some vectors, lets make A(1,2,3) a and b(4,5,6)\"   \
-                                      A = Mezzanine.Vector3(1,2,3)                                              \
-                                      B = Mezzanine.Vector3(4,5,6)                                              \
-                                      print \"Now lets add them and see what happens\"                          \
-                                      C = A+B                                                                   \
-                                      print(C.X, C.Y, C.Z)                                                      \
-                                      ");
-                PrintErrorMessageOrNothing(Error);
-
-                lua_close(State);           // Close the Lua state
-            }*/
 
         } // Lua
     } // Scripting

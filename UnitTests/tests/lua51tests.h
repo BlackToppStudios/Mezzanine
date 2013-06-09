@@ -61,23 +61,29 @@ class lua51tests : public UnitTestGroup
             if (RunAutomaticTests)
             {
                 {
-                    Scripting::Lua::Lua51ScriptingEngine LuaRuntimeSafe(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);
-                    Scripting::Lua::Lua51ScriptingEngine LuaRuntimeAll(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);
+                    Scripting::Lua::Lua51ScriptingEngine LuaRuntimeSafe(Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+                    //Scripting::Lua::Lua51ScriptingEngine LuaRuntimeAll(Scripting::Lua::Lua51ScriptingEngine::AllLibs);
+
+                    String WorldWorldSource("print (\"Hello World!\")");
+
+                    // Lua script Default constructor skipped
+                    // Skiped FlaggedBuffer completely.
 
                     try
                     {
-                        Scripting::Lua::Lua51Script Hello("Print \"Hello World!\"",&LuaRuntimeSafe); //From pointer
-                        AddTestResult("Lua51::ScriptCompileOnConstruction1", Success);
+                        Scripting::Lua::Lua51Script Hello(WorldWorldSource,&LuaRuntimeSafe); //From pointer
+                        AddTestResult("Lua51::Script::ConstructCompilePointer", Success);
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::ScriptCompileOnConstruction1", Failed);
+                        AddTestResult("Lua51::Script::ConstructCompilePointer", Failed);
                     }
 
                     try
                     {
-                        Scripting::Lua::Lua51Script Hello("Print \"Hello World!\"",LuaRuntimeSafe); // from reference
-                        AddTestResult("Lua51::ScriptCompileOnConstruction2", Success);
+                        Scripting::Lua::Lua51Script Hello(WorldWorldSource,LuaRuntimeSafe); // from reference
+                        AddTestResult("Lua51::Script::ConstructCompileReference", Success);
+                        LuaRuntimeSafe.Execute(Hello);
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::ScriptCompileOnConstruction2", Failed);
+                        AddTestResult("Lua51::Script::ConstructCompileReference", Failed);
                     }
 
 
@@ -87,8 +93,9 @@ class lua51tests : public UnitTestGroup
 
 
             }else{
-                AddTestResult("Lua51::ScriptCompileOnConstruction1", Skipped);
-                AddTestResult("Lua51::ScriptCompileOnConstruction1", Skipped);
+                AddTestResult("Lua51::Script::ConstructCompilePointer", Skipped);
+                AddTestResult("Lua51::Script::ConstructCompileReference", Skipped);
+                AddTestResult("Lua51::Script::ConstructCompileCountedPtr", Skipped);
             }
         }
 };
