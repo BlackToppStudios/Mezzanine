@@ -208,7 +208,7 @@ namespace Mezzanine
                 else
                 {
                     ThrowFromLuaErrorCode(
-                                lua_load(this->State, LuaBytecodeLoader, ScriptToRun, DefaultChunkName)
+                                lua_load(this->State, LuaBytecodeLoader, &ScriptToRun->GetByteCodeReference(), DefaultChunkName)
                     );
                 }
                 // Since Lua_Dump or lua_load will leave the function on the stack then...
