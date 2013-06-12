@@ -112,7 +112,7 @@ class lua51tests : public UnitTestGroup
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::ExecuteFromCountedPtr", Failed);
                     }
-/*
+
                     try
                     {
                         CountedPtr<Scripting::iScript> Hello(new Scripting::Lua::Lua51Script(WorldWorldSource,LuaRuntimeSafe));

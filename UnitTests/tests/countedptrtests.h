@@ -213,6 +213,82 @@ namespace Mezzanine
     };
 
 
+    class FooInternalBase
+    {
+    public:
+        virtual ~FooInternalBase()
+         {}
+
+        /// @brief Increase the reference count by one and return the updated count.
+        /// @return The updated count;
+        virtual Whole IncrementReferenceCount() = 0;
+
+        /// @brief Decrease the reference count by one and return the updated count.
+        /// @return The updated count;
+        virtual Whole DecrementReferenceCount() = 0;
+
+        /// @brief Gets the actual pointer to the target.
+        /// @return A Pointer of the targeted type to the object being managed.
+        virtual FooInternalBase* GetReferenceCountTargetAsPointer() = 0;
+
+        /// @brief Get the current amount of references.
+        /// @return A Whole with the current reference count
+        virtual Whole GetReferenceCount() = 0;
+
+        /// @brief Get a pointer to the most Derived type of this class
+        /// @return A pointer cast to a void*, for use with CountedPtrCast
+        virtual FooInternalBase* GetMostDerived() = 0;
+    };
+
+
+    /// @brief A class to point at that uses its ownreferencing counting internal mechanism
+    class FooInternalInherits : public FooInternalBase
+    {
+        private:
+            /// @brief This is the Counter that stores how many references exist
+            Whole RefCount;
+
+        public:
+            /// @brief A value to use for testing Purposes
+            Integer Value;
+
+            /// @brief A constructor that allows setting the value
+            /// @param TargetResults Where to save destruction results
+            /// @param Val A default value to use for testing.
+            explicit FooInternalInherits(Integer Val = 0)
+                :Value(Val), RefCount(0)
+                {}
+
+            /// @brief A destructor that sets Results to Success if it wasNotApplicable and leaves it untouched otherwise.
+            virtual ~FooInternalInherits()
+             {}
+
+            /// @brief Increase the reference count by one and return the updated count.
+            /// @return The updated count;
+            virtual Whole IncrementReferenceCount()
+                { return ++RefCount; }
+
+            /// @brief Decrease the reference count by one and return the updated count.
+            /// @return The updated count;
+            virtual Whole DecrementReferenceCount()
+                { return --RefCount; }
+
+            /// @brief Gets the actual pointer to the target.
+            /// @return A Pointer of the targeted type to the object being managed.
+            virtual FooInternalInherits* GetReferenceCountTargetAsPointer()
+                { return this; }
+
+            /// @brief Get the current amount of references.
+            /// @return A Whole with the current reference count
+            virtual Whole GetReferenceCount()
+                { return RefCount; }
+
+            /// @brief Get a pointer to the most Derived type of this class
+            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            virtual FooInternalInherits* GetMostDerived()
+                { return this; }
+    };
+
 
 
 
@@ -853,7 +929,24 @@ class countedptrtests : public UnitTestGroup
                 AddTestResult("CountedPtr::CountedPtrDynamicCast", Skipped);
             }
 
+            if (RunAutomaticTests)
+            {
 
+
+                {
+                    CountedPtr<FooInternalBase> PtrBase;
+                    {
+                        CountedPtr<FooInternalInherits> PtrIn( new FooInternalInherits(3) );
+                        //PtrBase = PtrIn;          // This should work
+                        //PtrBase.Acquire(PtrIn);   // So should this
+                    }
+
+
+                } // When pointers fall out of scope
+                AddTestResult("CountedPtr::Internal::CovariantDeletion", Success);
+            }else{
+                AddTestResult("CountedPtr::External::CovariantDeletion", Skipped);
+            }
 
 
         }

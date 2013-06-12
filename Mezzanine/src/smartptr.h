@@ -245,20 +245,30 @@ namespace Mezzanine
     namespace
     {
         template <typename CurrentReferenceCountType, typename OtherReferenceCountType>
-        class ReferenceCountIncrementer
+        class ReferenceCountAdjuster
         {
             public:
                 static void Acquire(CurrentReferenceCountType* & UpdateCounter, OtherReferenceCountType* & OtherCounter)
                 {
                     UpdateCounter = CountedPtrInternalCast<CurrentReferenceCountType>(OtherCounter->GetMostDerived());
                 }
+
+                static void Release(CurrentReferenceCountType* & UpdateCounter, OtherReferenceCountType* & OtherCounter)
+                {
+                    UpdateCounter = CountedPtrInternalCast<CurrentReferenceCountType>(OtherCounter->GetMostDerived());
+                }
         };
 
         template <typename InternalReferenceCount>
-        class ReferenceCountIncrementer<InternalReferenceCount,InternalReferenceCount>
+        class ReferenceCountAdjuster<InternalReferenceCount,InternalReferenceCount>
         {
             public:
                 static void Acquire(InternalReferenceCount* & UpdateCounter, InternalReferenceCount* & OtherCounter)
+                {
+                    UpdateCounter = OtherCounter;
+                }
+
+                static void Release(InternalReferenceCount* & UpdateCounter, InternalReferenceCount* & OtherCounter)
                 {
                     UpdateCounter = OtherCounter;
                 }
@@ -301,7 +311,7 @@ namespace Mezzanine
             template <typename AnyReferenceCountType>
             void Acquire(AnyReferenceCountType* CounterToAcquire) throw()
             {
-                ReferenceCountIncrementer<RefCountType, AnyReferenceCountType>::Acquire(_ReferenceCounter, CounterToAcquire);
+                ReferenceCountAdjuster<RefCountType, AnyReferenceCountType>::Acquire(_ReferenceCounter, CounterToAcquire);
                 if (_ReferenceCounter)
                        { _ReferenceCounter->IncrementReferenceCount(); }
             }
@@ -321,13 +331,24 @@ namespace Mezzanine
                        { CounterToAcquire->IncrementReferenceCount(); }
             }*/
 
+            /*template <typename AnyReferenceCountType>
+            void Release(AnyReferenceCountType* CounterToAcquire) throw()
+            {
+                ReferenceCountAdjuster<RefCountType, AnyReferenceCountType>::Release(_ReferenceCounter, CounterToAcquire);
+                if (_ReferenceCounter)
+                {
+                    if (_ReferenceCounter->DecrementReferenceCount() == 0)
+                        { delete _ReferenceCounter; } // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
+                }
+            }*/
+
             /// @brief This decrements the reference count and deletes the managed items if there are no remaining references.
             void Release() throw()
             {
                 if (_ReferenceCounter)
                 {
                     if (_ReferenceCounter->DecrementReferenceCount() == 0)
-                        { delete _ReferenceCounter; } // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
+                        { delete _ReferenceCounter->GetMostDerived(); } // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
                 }
             }
 
