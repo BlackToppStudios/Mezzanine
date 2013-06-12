@@ -245,7 +245,7 @@ namespace Mezzanine
     namespace
     {
         template <typename CurrentReferenceCountType, typename OtherReferenceCountType>
-        class ReferenceCountAdjuster
+        class ReferenceCountIncrementer
         {
             public:
                 static void Acquire(CurrentReferenceCountType* & UpdateCounter, OtherReferenceCountType* & OtherCounter)
@@ -255,7 +255,7 @@ namespace Mezzanine
         };
 
         template <typename InternalReferenceCount>
-        class ReferenceCountAdjuster<InternalReferenceCount,InternalReferenceCount>
+        class ReferenceCountIncrementer<InternalReferenceCount,InternalReferenceCount>
         {
             public:
                 static void Acquire(InternalReferenceCount* & UpdateCounter, InternalReferenceCount* & OtherCounter)
@@ -301,7 +301,7 @@ namespace Mezzanine
             template <typename AnyReferenceCountType>
             void Acquire(AnyReferenceCountType* CounterToAcquire) throw()
             {
-                ReferenceCountAdjuster<RefCountType, AnyReferenceCountType>::Acquire(_ReferenceCounter, CounterToAcquire);
+                ReferenceCountIncrementer<RefCountType, AnyReferenceCountType>::Acquire(_ReferenceCounter, CounterToAcquire);
                 if (_ReferenceCounter)
                        { _ReferenceCounter->IncrementReferenceCount(); }
             }

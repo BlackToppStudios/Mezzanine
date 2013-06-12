@@ -104,7 +104,7 @@ class lua51tests : public UnitTestGroup
                         AddTestResult("Lua51::Engine::ExecuteFromPointer", Failed);
                     }
 
-                    /*try
+                    try
                     {
                         CountedPtr<Scripting::Lua::Lua51Script> Hello(new Scripting::Lua::Lua51Script(WorldWorldSource,LuaRuntimeSafe));
                         LuaRuntimeSafe.Execute(Hello);
@@ -112,7 +112,7 @@ class lua51tests : public UnitTestGroup
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::ExecuteFromCountedPtr", Failed);
                     }
-
+/*
                     try
                     {
                         CountedPtr<Scripting::iScript> Hello(new Scripting::Lua::Lua51Script(WorldWorldSource,LuaRuntimeSafe));
@@ -121,7 +121,7 @@ class lua51tests : public UnitTestGroup
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::ExecuteFromCountedPtrCovariant", Failed);
                     }
-
+/*
                     try
                     {
                         LuaRuntimeSafe.Execute(WorldWorldSource);
