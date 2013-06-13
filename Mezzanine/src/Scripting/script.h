@@ -196,8 +196,27 @@ namespace Mezzanine
                 virtual iScript* GetMostDerived()
                     { return this; }
         }; // iScript
+    }
 
+    /// @brief Marks IScript for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::iScript>
+    {
+        public:
+            /// @brief The Scripting::iScript is its own reference count
+            typedef Scripting::iScript RefCountType;
 
+            /// @brief The Construction Pointer for a Scripting::iScript is the pointer created during the New call
+            /// @param Target The pointer returned by new during construction of Scripting::iScript
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This should be cast dynamically when doing conversions inside CountedPtr.
+            enum { IsCastable = CastDynamic };
+    };
+
+    namespace Scripting
+    {
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief The interface for a script that can be compiled to bytecode
@@ -246,8 +265,27 @@ namespace Mezzanine
                 virtual iScriptCompilable* GetMostDerived()
                     { return this; }
         };
+    }
 
+    /// @brief Marks iScriptCompilable for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::iScriptCompilable>
+    {
+        public:
+            /// @brief The Scripting::iScriptCompilable is its own reference count
+            typedef Scripting::iScriptCompilable RefCountType;
 
+            /// @brief The Construction Pointer for a Scripting::iScriptCompilable is the pointer created during the New call
+            /// @param Target The pointer returned by new during construction of Scripting::iScript
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This should be cast dynamically when doing conversions inside CountedPtr.
+            enum { IsCastable = CastDynamic };
+    };
+
+    namespace Scripting
+    {
         /// @brief A group of arguments that can be returned from some scripts
         /// @details A vector is used to preserve ordering of returns for languages that support multiple returns in order
         typedef std::vector< CountedPtr<iScriptArgument> > ArgumentGroup;
@@ -287,46 +325,22 @@ namespace Mezzanine
                 virtual iScriptMultipleReturn* GetMostDerived()
                     { return this; }
         };
-
-
     }
-
-    /// @brief Marks IScript for internal reference counting if a CountedPtr checks
-    template <>
-    class ReferenceCountTraits <Scripting::iScript>
-    {
-        public:
-            typedef Scripting::iScript RefCountType;
-
-            static RefCountType* ConstructionPointer(RefCountType* Target)
-                { return Target; }
-
-            enum { IsCastable = CastDynamic };
-    };
-
-    /// @brief Marks iScriptCompilable for internal reference counting if a CountedPtr checks
-    template <>
-    class ReferenceCountTraits <Scripting::iScriptCompilable>
-    {
-        public:
-            typedef Scripting::iScriptCompilable RefCountType;
-
-            static RefCountType* ConstructionPointer(RefCountType* Target)
-                { return Target; }
-
-            enum { IsCastable = CastDynamic };
-    };
 
     /// @brief Marks iScriptMultipleReturn for internal reference counting if a CountedPtr checks
     template <>
     class ReferenceCountTraits <Scripting::iScriptMultipleReturn>
     {
         public:
+            /// @brief The Scripting::iScriptMultipleReturn is its own reference count
             typedef Scripting::iScriptMultipleReturn RefCountType;
 
+            /// @brief The Construction Pointer for a Scripting::iScriptMultipleReturn is the pointer created during the New call
+            /// @param Target The pointer returned by new during construction of Scripting::iScript
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
+            /// @brief This should be cast dynamically when doing conversions inside CountedPtr.
             enum { IsCastable = CastDynamic };
     };
 

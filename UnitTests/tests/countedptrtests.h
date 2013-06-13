@@ -289,6 +289,30 @@ namespace Mezzanine
                 { return this; }
     };
 
+    template <>
+    class ReferenceCountTraits <FooInternalInherits>
+    {
+        public:
+            typedef FooInternalInherits RefCountType;
+
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            enum { IsCastable = CastDynamic };
+    };
+
+    template <>
+    class ReferenceCountTraits <FooInternalBase>
+    {
+        public:
+            typedef FooInternalBase RefCountType;
+
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            enum { IsCastable = CastDynamic };
+    };
+
 
 
 
@@ -939,6 +963,7 @@ class countedptrtests : public UnitTestGroup
                         CountedPtr<FooInternalInherits> PtrIn( new FooInternalInherits(3) );
                         //PtrBase = PtrIn;          // This should work
                         //PtrBase.Acquire(PtrIn);   // So should this
+                        PtrBase = CountedPtrDynamicCast<FooInternalBase>(PtrIn);
                     }
 
 
