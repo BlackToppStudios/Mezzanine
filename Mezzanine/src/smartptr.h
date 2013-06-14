@@ -316,39 +316,16 @@ namespace Mezzanine
                        { _ReferenceCounter->IncrementReferenceCount(); }
             }
 
-            /*template <>
-            void Acquire<ReferenceCount<typename TypePointedTo> >(TypePointedTo* CounterToAcquire) throw()
-            {
-                _ReferenceCounter = CounterToAcquire;
-                if (CounterToAcquire)
-                       { CounterToAcquire->IncrementReferenceCount(); }
-            }*/
-
-            /*void Acquire(RefCountType* CounterToAcquire) throw()
-            {
-                _ReferenceCounter = CounterToAcquire;
-                if (CounterToAcquire)
-                       { CounterToAcquire->IncrementReferenceCount(); }
-            }*/
-
-            /*template <typename AnyReferenceCountType>
-            void Release(AnyReferenceCountType* CounterToAcquire) throw()
-            {
-                ReferenceCountAdjuster<RefCountType, AnyReferenceCountType>::Release(_ReferenceCounter, CounterToAcquire);
-                if (_ReferenceCounter)
-                {
-                    if (_ReferenceCounter->DecrementReferenceCount() == 0)
-                        { delete _ReferenceCounter; } // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
-                }
-            }*/
-
             /// @brief This decrements the reference count and deletes the managed items if there are no remaining references.
             void Release() throw()
             {
                 if (_ReferenceCounter)
                 {
                     if (_ReferenceCounter->DecrementReferenceCount() == 0)
-                        { delete _ReferenceCounter->GetMostDerived(); } // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
+                    {
+                        delete _ReferenceCounter->GetMostDerived();
+                        _ReferenceCounter = 0; // does adding this introduce bugs?
+                    } // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
                 }
             }
 
