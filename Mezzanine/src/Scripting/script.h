@@ -158,6 +158,8 @@ namespace Mezzanine
                 virtual iScriptMultipleReturn* GetAsiScriptMultipleReturn()
                     { return 0; }
 
+                virtual ~iScript(){}
+
                 ///////////////////////////////////////////////////////////////////////////////////////////////////
                 // Internal Reference count for CountedPtr
 
@@ -195,9 +197,6 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual iScript* GetMostDerived()
                     { return this; }
-
-                virtual void Delete()
-                    { delete this; }
         }; // iScript
     }
 
@@ -216,9 +215,6 @@ namespace Mezzanine
 
             /// @brief This should be cast dynamically when doing conversions inside CountedPtr.
             enum { IsCastable = CastDynamic };
-
-            virtual void Delete()
-                { delete this; }
     };
 
     namespace Scripting
@@ -271,8 +267,7 @@ namespace Mezzanine
                 virtual iScriptCompilable* GetMostDerived()
                     { return this; }
 
-                virtual void Delete()
-                    { delete this; }
+                virtual ~iScriptCompilable(){}
         };
     }
 
@@ -305,6 +300,7 @@ namespace Mezzanine
         /// tuples that contain tuples in a graceful way.
         class MEZZ_LIB iScriptMultipleReturn : public virtual iScript
         {
+            public:
                 /// @brief Does this script support multiple return values.
                 /// @return Any implementation of this returns true.
                 virtual bool CanReturnMultples() const
@@ -334,8 +330,7 @@ namespace Mezzanine
                 virtual iScriptMultipleReturn* GetMostDerived()
                     { return this; }
 
-                virtual void Delete()
-                    { delete this; }
+                virtual ~iScriptMultipleReturn(){}
         };
     }
 

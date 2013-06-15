@@ -139,9 +139,6 @@ namespace Mezzanine
             /// @return A pointer cast to a void*, for use with CountedPtrCast
             virtual TypePointedTo* GetMostDerived()
                 { return Target; }
-
-            virtual void Delete()
-                { delete this; }
     };
 
     /// @brief A sample class that implements a minimal intrusive reference counting scheme.
@@ -183,9 +180,6 @@ namespace Mezzanine
             /// @return A pointer of the most derived pointing to this.
             virtual IntrusiveRefCount* GetMostDerived()
                 { return this; }
-
-            virtual void Delete()
-                { delete this; }
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -319,9 +313,9 @@ namespace Mezzanine
                 {
                     if (_ReferenceCounter->DecrementReferenceCount() == 0)
                     {
-                        //delete _ReferenceCounter;
-                        _ReferenceCounter->Delete();
-                        _ReferenceCounter = 0; // does adding this introduce bugs?
+                        delete _ReferenceCounter;
+                        //_ReferenceCounter->Delete();
+                        _ReferenceCounter = 0;
                     } // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
                 }
             }

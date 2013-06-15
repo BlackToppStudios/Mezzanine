@@ -126,9 +126,6 @@ namespace Mezzanine
             /// @return A pointer cast to a void*, for use with CountedPtrCast
             virtual FooInternal* GetMostDerived()
                 { return this; }
-
-            virtual void Delete()
-                { delete this; }
     };
 
     template <>
@@ -153,9 +150,6 @@ namespace Mezzanine
             /// @return A pointer for use with CountedPtrCast
             virtual FooDerived1* GetMostDerived()
                 { return this; }
-
-            virtual void Delete()
-                { delete this; }
     };
 
     class FooDerived2 : public virtual FooInternal
@@ -167,9 +161,6 @@ namespace Mezzanine
             /// @return A pointer for use with CountedPtrCast
             virtual FooDerived2* GetMostDerived()
                 { return this; }
-
-            virtual void Delete()
-                { delete this; }
     };
 
     class FooDiamond : public FooDerived1, public FooDerived2
@@ -181,9 +172,6 @@ namespace Mezzanine
             /// @return A pointer for use with CountedPtrCast
             virtual FooDiamond* GetMostDerived()
                 { return this; }
-
-            virtual void Delete()
-                { delete this; }
     };
 
 
@@ -250,8 +238,6 @@ namespace Mezzanine
         /// @brief Get a pointer to the most Derived type of this class
         /// @return A pointer cast to a void*, for use with CountedPtrCast
         virtual FooInternalBase* GetMostDerived() = 0;
-
-        virtual void Delete() = 0;
     };
 
 
@@ -301,9 +287,6 @@ namespace Mezzanine
             /// @return A pointer cast to a void*, for use with CountedPtrCast
             virtual FooInternalInherits* GetMostDerived()
                 { return this; }
-
-            virtual void Delete()
-                { delete this; }
     };
 
     template <>
@@ -366,9 +349,6 @@ namespace Mezzanine
             virtual VehicleTest* GetMostDerived()
                 { return this; }
 
-            virtual void Delete()
-                { delete this; }
-
             String StartEngine()
                 { return "Unknown Engine"; }
     };
@@ -383,9 +363,6 @@ namespace Mezzanine
             /// @return A pointer for use with CountedPtrCast
             virtual CarTest* GetMostDerived()
                 { return this; }
-
-            virtual void Delete()
-                { delete this; }
     };
 
 
