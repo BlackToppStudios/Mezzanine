@@ -195,6 +195,9 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual iScript* GetMostDerived()
                     { return this; }
+
+                virtual void Delete()
+                    { delete this; }
         }; // iScript
     }
 
@@ -213,6 +216,9 @@ namespace Mezzanine
 
             /// @brief This should be cast dynamically when doing conversions inside CountedPtr.
             enum { IsCastable = CastDynamic };
+
+            virtual void Delete()
+                { delete this; }
     };
 
     namespace Scripting
@@ -264,6 +270,9 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual iScriptCompilable* GetMostDerived()
                     { return this; }
+
+                virtual void Delete()
+                    { delete this; }
         };
     }
 
@@ -324,6 +333,9 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual iScriptMultipleReturn* GetMostDerived()
                     { return this; }
+
+                virtual void Delete()
+                    { delete this; }
         };
     }
 

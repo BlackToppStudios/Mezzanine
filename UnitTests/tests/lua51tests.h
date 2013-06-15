@@ -121,14 +121,14 @@ class lua51tests : public UnitTestGroup
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::ExecuteFromCountedPtrCovariant", Failed);
                     }
-/*
+
                     try
                     {
                         LuaRuntimeSafe.Execute(WorldWorldSource);
                         AddTestResult("Lua51::Engine::ExecuteFromSource", Success);
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::ExecuteFromSource", Failed);
-                    }*/
+                    }
 
                 }
 

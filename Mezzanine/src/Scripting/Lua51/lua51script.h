@@ -180,6 +180,9 @@ namespace Mezzanine
                     /// @return A pointer of the most derived pointing to this.
                     virtual Lua51Script* GetMostDerived()
                         { return this; }
+
+                    virtual void Delete()
+                        { delete this; }
             };
         } // Lua
     } // Scripting
