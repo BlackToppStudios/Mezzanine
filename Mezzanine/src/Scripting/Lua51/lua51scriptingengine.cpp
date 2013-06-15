@@ -184,7 +184,7 @@ namespace Mezzanine
                 return CountedPtrCast<iScript>(Results);
             }
 
-            void Lua51ScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)
+            void Lua51ScriptingEngine::Execute(CountedPtr<iScript>& ScriptToRun)
             {
                 CountedPtr<Lua51Script> ScriptToCompile = CountedPtrCast<Lua51Script>(ScriptToRun);
                 if(ScriptToCompile)
@@ -195,7 +195,7 @@ namespace Mezzanine
                 }
             }
 
-            void Lua51ScriptingEngine::Execute(CountedPtr<Lua51Script> ScriptToRun)
+            void Lua51ScriptingEngine::Execute(CountedPtr<Lua51Script>& ScriptToRun)
                 { Execute(ScriptToRun.Get()); }
 
             void Lua51ScriptingEngine::Execute(Lua51Script& ScriptToRun)
@@ -254,7 +254,7 @@ namespace Mezzanine
                 return Results;
             }
 
-            void Lua51ScriptingEngine::Compile(CountedPtr<iScriptCompilable> ScriptToCompile)
+            void Lua51ScriptingEngine::Compile(CountedPtr<iScriptCompilable>& ScriptToCompile)
             {
                 CountedPtr<Lua51Script> ConvertedScript = CountedPtrCast<Lua51Script>(ScriptToCompile);
                 if(ConvertedScript)
@@ -265,7 +265,7 @@ namespace Mezzanine
                 }
             }
 
-            void Lua51ScriptingEngine::Compile(CountedPtr<Lua51Script> ScriptToCompile)
+            void Lua51ScriptingEngine::Compile(CountedPtr<Lua51Script>& ScriptToCompile)
                 { Compile(ScriptToCompile.Get()); }
 
             void Lua51ScriptingEngine::Compile(Lua51Script& ScriptToCompile)

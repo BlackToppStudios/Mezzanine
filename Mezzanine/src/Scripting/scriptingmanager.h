@@ -87,7 +87,7 @@ namespace Mezzanine
                 /// @param ScriptToRun A shared ptr that points to a script to run.
                 /// @details In Scripting langauge implementations this is expected to
                 /// run (compile if needed) a script.
-                virtual void Execute(CountedPtr<iScript> ScriptToRun) = 0;
+                virtual void Execute(CountedPtr<iScript>& ScriptToRun) = 0;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Inherited from Managerbase
@@ -118,7 +118,7 @@ namespace Mezzanine
 
                 /// @brief Compile a script.
                 /// @param ScriptToCompile A script object to be compiled.
-                virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile) = 0;
+                virtual void Compile(CountedPtr<iScriptCompilable>& ScriptToCompile) = 0;
 
                 /// @brief Comvert a string into a Script that is compiled and ready for use.
                 /// @param SourceToCompile A string containing source code in the target language.

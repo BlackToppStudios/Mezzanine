@@ -132,13 +132,13 @@ namespace Mezzanine
                     /// @param ScriptToRun A CountedPtr<iScript> to be run. This is cast to an CountedPtr<Lua51Script> and called if possible.
                     /// @throw If this cannot be cast this throws a ParametersCastException.
                     /// @todo fill in the kind of exception thrown.
-                    virtual void Execute(CountedPtr<iScript> ScriptToRun);
+                    virtual void Execute(CountedPtr<iScript>& ScriptToRun);
 
                     /// @brief This will execute the passed script, compiling it if not present
                     /// @param ScriptToRun The script to execute.
                     /// @details If a bytecode is present on ScriptToRun then it is executed. Otherwise the Source is
                     /// compiled and the result is set as the bytecode and it is executed.
-                    virtual void Execute(CountedPtr<Lua51Script> ScriptToRun);
+                    virtual void Execute(CountedPtr<Lua51Script>& ScriptToRun);
 
                     /// @brief Performs the compilation on a script reference
                     /// @param ScriptToCompile A reference to the Lua51Script to compile.
@@ -160,13 +160,13 @@ namespace Mezzanine
                     /// @details The ByteCode member on the passed script is erased, if present,
                     /// and sets it to corresponding lua binary.
                     /// @throw If an invalid script is passed this throws ParametersCastException.
-                    virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile);
+                    virtual void Compile(CountedPtr<iScriptCompilable>& ScriptToCompile);
 
                     /// @brief Compile a Lua51 script.
                     /// @param ScriptToCompile A CountedPtr to a Lua51Script.
                     /// @details Compiles the source code present in ScriptToCompile and puts the results back in
                     /// the ByteCode member on the script.
-                    virtual void Compile(CountedPtr<Lua51Script> ScriptToCompile);
+                    virtual void Compile(CountedPtr<Lua51Script>& ScriptToCompile);
 
                     /// @brief Performs the compilation on a script reference
                     /// @param ScriptToCompile A reference to the Lua51Script to compile.

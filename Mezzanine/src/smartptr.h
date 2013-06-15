@@ -71,9 +71,9 @@ namespace Mezzanine
     template <typename TypePointedTo> class CountedPtr;
 
     // Externally callable casts
-    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original);
-    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType> Original);
-    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrDynamicCast(CountedPtr<OtherPointerTargetType> Original);
+    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType>& Original);
+    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType>& Original);
+    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrDynamicCast(CountedPtr<OtherPointerTargetType>& Original);
 
     // Casts the pointer uses internally for consistency.
     template <typename ReturnPointer, typename OriginalPointer, CountedPointerCastingState> class CountedPtrCastImpl;
@@ -289,7 +289,7 @@ namespace Mezzanine
             template <typename OtherPointer> friend class CountedPtr;
 
             /// @brief Static casting can access internals also
-            template <typename ReturnType, typename OtherPointerTargetType> friend CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType> Original);
+            template <typename ReturnType, typename OtherPointerTargetType> friend CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType>& Original);
         protected:
             /// @brief This is the only data on this class, a pointer to the counter and the managed object.
             RefCountType* _ReferenceCounter;
@@ -641,7 +641,7 @@ namespace Mezzanine
     /// @param Original The pointer to convert.
     /// @return Either a pointer of the desired or a compilation error
     template <typename ReturnType, typename OtherPointerTargetType>
-    CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original)
+    CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType>& Original)
         { return CountedPtr<ReturnType>(Original); }
 
     /// @brief A compile time cast that uses static casting conversion of the underlying raw pointers but only works on internally reference count types
@@ -650,7 +650,7 @@ namespace Mezzanine
     /// @param Original The pointer to convert.
     /// @return Either a pointer of the desired or a compilation error
     template <typename ReturnType, typename OtherPointerTargetType>
-    CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType> Original)
+    CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType>& Original)
         //{ return CountedPtr<ReturnType>(static_cast<ReturnType*>(Original._ReferenceCounter)); }
         { return CountedPtr<ReturnType>(static_cast<ReturnType*>(Original.GetReferenceCount())); }
 
@@ -660,7 +660,7 @@ namespace Mezzanine
     /// @param Original The pointer to convert.
     /// @return Either a pointer of the desired or a 0 if casting is not possible.
     template <typename ReturnType, typename OtherPointerTargetType>
-    CountedPtr<ReturnType> CountedPtrDynamicCast(CountedPtr<OtherPointerTargetType> Original)
+    CountedPtr<ReturnType> CountedPtrDynamicCast(CountedPtr<OtherPointerTargetType>& Original)
         // { return CountedPtr<ReturnType>(dynamic_cast<ReturnType*>(Original._ReferenceCounter)); }
         { return CountedPtr<ReturnType>(dynamic_cast<ReturnType*>(Original.GetReferenceCount())); }
 
