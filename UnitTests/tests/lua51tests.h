@@ -67,7 +67,7 @@ class lua51tests : public UnitTestGroup
                     String WorldWorldSource("print (\"Hello World!\")");
 
                     // Lua script Default constructor skipped
-                    // Skiped FlaggedBuffer completely.
+                    // Skipped FlaggedBuffer completely.
 
                     try
                     {
@@ -129,6 +129,8 @@ class lua51tests : public UnitTestGroup
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::ExecuteFromSource", Failed);
                     }
+
+
 
                 }
 
