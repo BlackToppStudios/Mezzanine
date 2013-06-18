@@ -130,6 +130,14 @@ class lua51tests : public UnitTestGroup
                         AddTestResult("Lua51::Engine::ExecuteFromSource", Failed);
                     }
 
+                    try
+                    {
+                        LuaRuntimeSafe.Execute(WorldWorldSource);
+                        AddTestResult("Lua51::Engine::ExecuteFromSource", Success);
+                    } catch (ScriptLuaException& e) {
+                        AddTestResult("Lua51::Engine::ExecuteFromSource", Failed);
+                    }
+
 
 
                 }
