@@ -98,6 +98,7 @@ namespace Mezzanine
                     /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries open a little easier.
                     enum Lua51Libraries
                     {
+                        NoLib          = 0,      ///< No libraries
                         BaseLib        = 1,      ///< Correlates to @ref Lua51ScriptingEngine::OpenBaseLibrary
                         PackageLib     = 2,      ///< Correlates to @ref Lua51ScriptingEngine::OpenPackageLibrary
                         StringLib      = 4,      ///< Correlates to @ref Lua51ScriptingEngine::OpenStringLibrary

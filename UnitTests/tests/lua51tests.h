@@ -69,6 +69,31 @@ class lua51tests : public UnitTestGroup
                     // Lua script Default constructor skipped
                     // Skipped FlaggedBuffer completely.
 
+                    //////////////////////////////////////////////////////////////////////////////////////////
+                    // Static Data Tests
+                    if(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName())
+                    {
+                        AddTestResult("Lua51::Engine::ImplementationName", Success);
+                    }else{
+                        AddTestResult("Lua51::Engine::ImplementationName", Failed);
+                    }
+
+                    if(541==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs)
+                    {
+                        AddTestResult("Lua51::Engine::LuaLibEnumDefault", Success);
+                    }else{
+                        AddTestResult("Lua51::Engine::LuaLibEnumDefault", Failed);
+                    }
+
+                    if(511==Scripting::Lua::Lua51ScriptingEngine::AllLibs)
+                    {
+                        AddTestResult("Lua51::Engine::LuaLibEnumUnsafe", Success);
+                    }else{
+                        AddTestResult("Lua51::Engine::LuaLibEnumUnsafe", Failed);
+                    }
+
+                    //////////////////////////////////////////////////////////////////////////////////////////
+                    // Compile Tests
                     try
                     {
                         Scripting::Lua::Lua51Script Hello(WorldWorldSource,&LuaRuntimeSafe); //From pointer
@@ -86,6 +111,8 @@ class lua51tests : public UnitTestGroup
                     }
 
 
+                    //////////////////////////////////////////////////////////////////////////////////////////
+                    // Execute Tests
                     try
                     {
                         Scripting::Lua::Lua51Script Hello(WorldWorldSource,LuaRuntimeSafe);
@@ -130,12 +157,16 @@ class lua51tests : public UnitTestGroup
                         AddTestResult("Lua51::Engine::ExecuteFromSource", Failed);
                     }
 
+                    //////////////////////////////////////////////////////////////////////////////////////////
+                    // Argument Tests
                     try
                     {
-                        LuaRuntimeSafe.Execute(WorldWorldSource);
-                        AddTestResult("Lua51::Engine::ExecuteFromSource", Success);
+                        Scripting::Lua::Lua51Script IntArgScript("function PrintNum(x)\n   print(x)\nend",LuaRuntimeSafe);
+                        IntArgScript.AddArgument((Scripting::Lua::Lua51IntegerArgument(9));
+                        LuaRuntimeSafe.Execute(IntArgScript);
+                        AddTestResult("Lua51::Engine::PassInt", Success);
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::ExecuteFromSource", Failed);
+                        AddTestResult("Lua51::Engine::PassInt", Failed);
                     }
 
 
@@ -144,6 +175,10 @@ class lua51tests : public UnitTestGroup
 
 
             }else{
+                AddTestResult("Lua51::Engine::ImplementationName", Skipped);
+                AddTestResult("Lua51::Engine::LuaLibEnumDefault", Skipped);
+                AddTestResult("Lua51::Engine::LuaLibEnumUnsafe", Skipped);
+
                 AddTestResult("Lua51::Script::ConstructCompilePointer", Skipped);
                 AddTestResult("Lua51::Script::ConstructCompileReference", Skipped);
                 AddTestResult("Lua51::Script::ConstructCompileCountedPtr", Skipped);
