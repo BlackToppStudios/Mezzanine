@@ -59,6 +59,12 @@ namespace Mezzanine
         namespace Lua
         {
             class Lua51ScriptingEngine;
+            class Lua51IntegerArgument;
+            class Lua51RealArgument;
+            class Lua51WholeArgument;
+            class Lua51StringArgument;
+            class Lua51BoolArgument;
+            class Lua51NilArgument;
 
             /// @brief An expanded version of the BinaryTools::BinaryBuffer to carry one tiny piece of metadata around with it.
             class FlaggedBuffer : public BinaryTools::BinaryBuffer
@@ -87,14 +93,13 @@ namespace Mezzanine
             class MEZZ_LIB Lua51Script : public virtual Mezzanine::Scripting::iScriptCompilable, public virtual Mezzanine::Scripting::iScriptMultipleReturn
             {
                 private:
-                    // Makes passing internal data much easier and all Lua51 are logically encapsulated as a single system still.
+                    /// @brief Makes passing internal data much easier and all Lua51 are logically encapsulated as a single system still.
                     friend class Lua51ScriptingEngine;
 
                     /// @brief This will contain the source of the script
                     String SourceCode;
 
                     /// @brief If the script is compiled this will be used to store it.
-                    //BinaryTools::BinaryBuffer CompiledByteCode;
                     FlaggedBuffer CompiledByteCode;
 
                     /// @brief This will compile the Lua script
@@ -108,6 +113,8 @@ namespace Mezzanine
                     ArgumentGroup Returns;
 
                 public:
+                    ///////////////////////////////////////////////////////////////////////////////////////
+                    // LuaScript basics
                     /// @brief Simple constructor, creates a script that executes a no-op.
                     Lua51Script();
 
@@ -124,8 +131,21 @@ namespace Mezzanine
                     /// @brief Virtual destructor
                     virtual ~Lua51Script();
 
+                    ///////////////////////////////////////////////////////////////////////////////////////
+                    // Arguments
                     /// @copydoc Mezzanine::Scripting::iScript::AddArgument
                     virtual void AddArgument(CountedPtr<iScriptArgument> Arg);
+
+                    virtual void AddArgument(Lua51IntegerArgument Arg);
+                    virtual void AddArgument(Lua51RealArgument Arg);
+                    virtual void AddArgument(Lua51WholeArgument Arg);
+                    virtual void AddArgument(Lua51StringArgument Arg);
+                    virtual void AddArgument(Lua51BoolArgument Arg);
+                    virtual void AddArgument(Lua51NilArgument Arg);
+                    /// @brief When called with no arguments this inserts a Lua51nil
+                    virtual void AddArgument();
+
+                    //IntegerArgument Lua51RealArgument Lua51WholeArgument Lua51StringArgument Lua51BoolArgument
 
                     /// @copydoc Mezzanine::Scripting::iScript::RemoveArgument
                     virtual void RemoveArgument(CountedPtr<iScriptArgument> Arg);
@@ -142,6 +162,8 @@ namespace Mezzanine
                     /// @copydoc Mezzanine::Scripting::iScript::GetArgument
                     virtual CountedPtr<iScriptArgument> GetArgument(Whole ArgNumber) const;
 
+                    ///////////////////////////////////////////////////////////////////////////////////////
+                    // Source code
                     /// @copydoc Mezzanine::Scripting::iScript::SetSourceCode
                     virtual void SetSourceCode(const String& Code);
 
@@ -165,6 +187,8 @@ namespace Mezzanine
                     /// @copydoc Mezzanine::Scripting::iScriptCompilable::IsCompiled
                     virtual bool IsCompiled() const;
 
+                    ///////////////////////////////////////////////////////////////////////////////////////
+                    // Returns
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetReturnCount
                     virtual Whole GetReturnCount() const;
 
@@ -174,7 +198,8 @@ namespace Mezzanine
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetAllReturns
                     virtual ArgumentGroup GetAllReturns() const;
 
-                    //For the CountedPointer Inheritance
+                    ///////////////////////////////////////////////////////////////////////////////////////
+                    // CountedPointer Inheritance
                 public:
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.

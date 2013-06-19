@@ -45,6 +45,7 @@
 #ifdef MEZZLUA51
 
 #include "lua51script.h"
+#include "lua51scriptargument.h"
 #include "lua51scriptingengine.h"
 #include "exception.h"
 
@@ -70,11 +71,11 @@ namespace Mezzanine
     {
         namespace Lua
         {
-            ///////////////////////////////////////////////////////////////////////////////////////
-            // LuaScript
             void Lua51Script::Compile(Lua51ScriptingEngine* Compiler)
                 { Compiler->Compile(this); }
 
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // LuaScript basics
             Lua51Script::Lua51Script()
                 { }
 
@@ -92,8 +93,31 @@ namespace Mezzanine
             Lua51Script::~Lua51Script()
                 {}
 
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // Arguments
             void Lua51Script::AddArgument(CountedPtr<iScriptArgument> Arg)
                 { Args.push_back(Arg); }
+
+            void Lua51Script::AddArgument(Lua51IntegerArgument Arg)
+            {}
+
+            void Lua51Script::AddArgument(Lua51RealArgument Arg)
+            {}
+
+            void Lua51Script::AddArgument(Lua51WholeArgument Arg)
+            {}
+
+            void Lua51Script::AddArgument(Lua51StringArgument Arg)
+            {}
+
+            void Lua51Script::AddArgument(Lua51BoolArgument Arg)
+            {}
+
+            void Lua51Script::AddArgument(Lua51NilArgument Arg)
+            {}
+
+            void Lua51Script::AddArgument()
+            {}
 
             void Lua51Script::RemoveArgument(CountedPtr<iScriptArgument> Arg)
                 { Args.erase( std::remove(Args.begin(),Args.end(),Arg) ); }
@@ -110,6 +134,8 @@ namespace Mezzanine
             CountedPtr<iScriptArgument> Lua51Script::GetArgument(Whole ArgNumber) const
                 { return Args.at(ArgNumber); }
 
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // Source code
             void Lua51Script::SetSourceCode(const String& Code)
             {
                 CompiledByteCode.DeleteBuffer();
@@ -138,6 +164,8 @@ namespace Mezzanine
             bool Lua51Script::IsCompiled() const
                 { return CompiledByteCode.Binary != 0; }
 
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // Returns
             Whole Lua51Script::GetReturnCount() const
                 { return Returns.size(); }
 
