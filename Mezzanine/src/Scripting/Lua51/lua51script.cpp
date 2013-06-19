@@ -99,7 +99,7 @@ namespace Mezzanine
                 { Args.push_back(Arg); }
 
             void Lua51Script::AddArgument(Lua51IntegerArgument Arg)
-            {}
+            { Args.push_back(CountedPtr<iScriptArgument>(new Lua51IntegerArgument(Arg))); }
 
             void Lua51Script::AddArgument(Lua51RealArgument Arg)
             {}

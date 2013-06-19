@@ -208,7 +208,7 @@ namespace Mezzanine
                 else
                 {
                     ThrowFromLuaErrorCode(
-                                lua_load(this->State, LuaBytecodeLoader, &ScriptToRun->GetByteCodeReference(), DefaultChunkName)
+                        lua_load(this->State, LuaBytecodeLoader, &ScriptToRun->GetByteCodeReference(), DefaultChunkName)
                     );
                 }
                 // Since Lua_Dump or lua_load will leave the function on the stack then...
@@ -227,7 +227,10 @@ namespace Mezzanine
                 }
 
                 // Do the actual script
-                lua_call(this->State, ScriptToRun->Args.size(), ScriptToRun->Returns.size() );
+                ThrowFromLuaErrorCode(
+                    //lua_call(this->State, ScriptToRun->Args.size(), ScriptToRun->Returns.size() )
+                    lua_pcall(this->State, ScriptToRun->Args.size(), ScriptToRun->Returns.size(), 0)
+                );
 
                 // Need to get return values
                 for(ArgumentGroup::iterator Iter = ScriptToRun->Returns.begin();
