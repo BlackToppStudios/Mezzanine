@@ -99,18 +99,22 @@ namespace Mezzanine
                     /// @brief This will contain the source of the script
                     String SourceCode;
 
-                    /// @brief If the script is compiled this will be used to store it.
-                    FlaggedBuffer CompiledByteCode;
-
-                    /// @brief This will compile the Lua script
-                    /// @param Compiler This will be used to compile the script, no safety checks are performed.
-                    void Compile(Lua51ScriptingEngine* Compiler);
-
                     /// @brief A set of the arguments being passed into the Lua script
                     ArgumentGroup Args;
 
                     /// @brief A set of all the values the Lua script returned the last time it was executed.
                     ArgumentGroup Returns;
+
+                    /// @brief If the script is compiled this will be used to store it.
+                    FlaggedBuffer CompiledByteCode;
+
+                    /// @brief If set this script just calls an existing lua function.
+                    /// @todo Add a function to set/get this
+                    Bool FunctionCall;
+
+                    /// @brief This will compile the Lua script
+                    /// @param Compiler This will be used to compile the script, no safety checks are performed.
+                    void Compile(Lua51ScriptingEngine* Compiler);
 
                 public:
                     ///////////////////////////////////////////////////////////////////////////////////////
@@ -121,12 +125,13 @@ namespace Mezzanine
                     /// @brief Compiling Constructor
                     /// @param SourceCode The source of the script to be used in this.
                     /// @param Compiler Defaults to a null pointer. If passed a null pointer this does nothing. If passed a valid LuaScriptingEngine then that engine is used to compile (but not run) this script.
-                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0);
+                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0, Bool JustAFunctionCall = false);
 
                     /// @brief Compiling Cosntructor without pointer
                     /// @param SourceCode The source of the script to be used in this.
                     /// @param
-                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler);
+                    /// @param
+                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Bool JustAFunctionCall = false);
 
                     /// @brief Virtual destructor
                     virtual ~Lua51Script();
@@ -136,6 +141,8 @@ namespace Mezzanine
                     /// @copydoc Mezzanine::Scripting::iScript::AddArgument
                     virtual void AddArgument(CountedPtr<iScriptArgument> Arg);
 
+                    /// @brief Another overload to make adding arguments easier
+                    /// @param Arg
                     virtual void AddArgument(Lua51IntegerArgument Arg);
                     virtual void AddArgument(Lua51RealArgument Arg);
                     virtual void AddArgument(Lua51WholeArgument Arg);

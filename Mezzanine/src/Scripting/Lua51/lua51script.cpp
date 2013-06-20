@@ -76,19 +76,22 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // LuaScript basics
-            Lua51Script::Lua51Script()
+            Lua51Script::Lua51Script() : FunctionCall(false)
                 { }
 
-            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler)
-                : SourceCode(InitialSourceCode)
+            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler, Bool JustAFunctionCall)
+                : SourceCode(InitialSourceCode), FunctionCall(JustAFunctionCall)
             {
-                if(Compiler)
+                if(Compiler && !FunctionCall)
                     { Compile(Compiler); }
             }
 
-            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler)
-                : SourceCode(InitialSourceCode)
-                { Compile(&Compiler); }
+            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Bool JustAFunctionCall)
+                : SourceCode(InitialSourceCode), FunctionCall(JustAFunctionCall)
+            {
+                if(!FunctionCall)
+                    { Compile(&Compiler); }
+            }
 
             Lua51Script::~Lua51Script()
                 {}
@@ -99,25 +102,25 @@ namespace Mezzanine
                 { Args.push_back(Arg); }
 
             void Lua51Script::AddArgument(Lua51IntegerArgument Arg)
-            { Args.push_back(CountedPtr<iScriptArgument>(new Lua51IntegerArgument(Arg))); }
+                { Args.push_back(CountedPtr<iScriptArgument>(new Lua51IntegerArgument(Arg))); }
 
             void Lua51Script::AddArgument(Lua51RealArgument Arg)
-            {}
+                { Args.push_back(CountedPtr<iScriptArgument>(new Lua51RealArgument(Arg))); }
 
             void Lua51Script::AddArgument(Lua51WholeArgument Arg)
-            {}
+                { Args.push_back(CountedPtr<iScriptArgument>(new Lua51WholeArgument(Arg))); }
 
             void Lua51Script::AddArgument(Lua51StringArgument Arg)
-            {}
+                { Args.push_back(CountedPtr<iScriptArgument>(new Lua51StringArgument(Arg))); }
 
             void Lua51Script::AddArgument(Lua51BoolArgument Arg)
-            {}
+                { Args.push_back(CountedPtr<iScriptArgument>(new Lua51BoolArgument(Arg))); }
 
             void Lua51Script::AddArgument(Lua51NilArgument Arg)
-            {}
+                { Args.push_back(CountedPtr<iScriptArgument>(new Lua51NilArgument(Arg))); }
 
             void Lua51Script::AddArgument()
-            {}
+                { Args.push_back(CountedPtr<iScriptArgument>(new Lua51NilArgument)); }
 
             void Lua51Script::RemoveArgument(CountedPtr<iScriptArgument> Arg)
                 { Args.erase( std::remove(Args.begin(),Args.end(),Arg) ); }

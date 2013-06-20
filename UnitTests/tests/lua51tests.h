@@ -162,8 +162,12 @@ class lua51tests : public UnitTestGroup
                     try
                     {
                         Scripting::Lua::Lua51Script IntArgScript("function PrintNum(x)\n   print(x)\nend",LuaRuntimeSafe);
-                        IntArgScript.AddArgument(Scripting::Lua::Lua51IntegerArgument(9));
                         LuaRuntimeSafe.Execute(IntArgScript);
+
+                        Scripting::Lua::Lua51Script IntArgCall("PrintNum",LuaRuntimeSafe,true);
+                        IntArgCall.AddArgument(Scripting::Lua::Lua51IntegerArgument(9));
+                        LuaRuntimeSafe.Execute(IntArgCall);
+
                         AddTestResult("Lua51::Engine::PassInt", Success);
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::PassInt", Failed);

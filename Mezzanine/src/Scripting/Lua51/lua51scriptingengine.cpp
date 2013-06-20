@@ -203,15 +203,20 @@ namespace Mezzanine
 
             void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
             {
-                if(!ScriptToRun->IsCompiled())
-                    { Compile(ScriptToRun); }
-                else
+                if(ScriptToRun->FunctionCall)
                 {
-                    ThrowFromLuaErrorCode(
-                        lua_load(this->State, LuaBytecodeLoader, &ScriptToRun->GetByteCodeReference(), DefaultChunkName)
-                    );
+                    lua_getglobal(this->State,ScriptToRun->SourceCode.c_str());
+                }else{
+                    if(!ScriptToRun->IsCompiled())
+                        { Compile(ScriptToRun); }
+                    else
+                    {
+                        ThrowFromLuaErrorCode(
+                            lua_load(this->State, LuaBytecodeLoader, &ScriptToRun->GetByteCodeReference(), DefaultChunkName)
+                        );
+                    }
+                    // Since Lua_Dump or lua_load will leave the function on the stack then...
                 }
-                // Since Lua_Dump or lua_load will leave the function on the stack then...
 
                 // We just need to push all the arguments
                 LuaArgument* Current;
