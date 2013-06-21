@@ -206,7 +206,7 @@ Protected Attributes</h2></td></tr>
 <p>default constructor </p>
 <p>Initializes the internal reference counter. </p>
 
-<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00171">171</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00173">173</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
 
 </div>
 </div>
@@ -323,7 +323,7 @@ Protected Attributes</h2></td></tr>
 <p>Decrease the reference count by one and return the updated count. </p>
 <dl class="section return"><dt>Returns</dt><dd>The updated count; </dd></dl>
 
-<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00181">181</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00183">183</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
 
 </div>
 </div>
@@ -409,6 +409,8 @@ Protected Attributes</h2></td></tr>
 
 <p>If your only handle to this is a pointer of type <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> this can be called to get a pointer to an <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.xhtml">iScriptMultipleReturn</a> if it would be valid. </p>
 <dl class="section return"><dt>Returns</dt><dd>A null pointer if this conversion is invalid or a valid pointer to this as an <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.xhtml">iScriptMultipleReturn</a> if it is valid. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.xhtml#a6120b8d1baa0d088bc3bacd53e6c77a3">Mezzanine::Scripting::iScriptMultipleReturn</a>.</p>
 
 <p>Definition at line <a class="el" href="script_8h_source.xhtml#l00158">158</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
 
@@ -496,9 +498,9 @@ Protected Attributes</h2></td></tr>
 <p>Get a pointer to the most Derived type of this class. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer of the most derived pointing to this. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml#a29d33adeff18ad7514ad5e7b3304a418">Mezzanine::Scripting::iScriptCompilable</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.xhtml#ae81d7180979cc004f9f4b89fa08511cb">Mezzanine::Scripting::iScriptMultipleReturn</a>, and <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml#a29d33adeff18ad7514ad5e7b3304a418">Mezzanine::Scripting::iScriptCompilable</a>.</p>
 
-<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00196">196</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00198">198</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
 
 </div>
 </div>
@@ -526,7 +528,7 @@ Protected Attributes</h2></td></tr>
 <p>Get the current amount of references. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Whole with the current reference count </dd></dl>
 
-<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00191">191</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00193">193</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
 
 </div>
 </div>
@@ -554,7 +556,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the actual pointer to the target. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Pointer of the targeted type to the object being managed. </dd></dl>
 
-<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00186">186</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00188">188</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
 
 </div>
 </div>
@@ -608,7 +610,7 @@ Protected Attributes</h2></td></tr>
 <p>Increase the reference count by one and return the updated count. </p>
 <dl class="section return"><dt>Returns</dt><dd>The updated count; </dd></dl>
 
-<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00176">176</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00178">178</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
 
 </div>
 </div>
@@ -776,6 +778,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 20:29:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

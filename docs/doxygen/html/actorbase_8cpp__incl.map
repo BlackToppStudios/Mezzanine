@@ -1,70 +1,73 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorbase.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/actorbase.cpp">
-<area shape="rect" id="node11" href="$actorbase_8h.xhtml" title="The base class for all Actors is defined here." alt="" coords="3052,177,3140,205"/>
-<area shape="rect" id="node57" href="$xml_8h_source.xhtml" title="XML/xml.h" alt="" coords="2701,563,2784,591"/>
-<area shape="rect" id="node195" href="$actorrigid_8h_source.xhtml" title="actorrigid.h" alt="" coords="3011,99,3096,127"/>
-<area shape="rect" id="node198" href="$actorphysicssettings_8h_source.xhtml" title="actorphysicssettings.h" alt="" coords="2275,331,2421,359"/>
-<area shape="rect" id="node206" href="$actorsoft_8h_source.xhtml" title="actorsoft.h" alt="" coords="3171,99,3253,127"/>
-<area shape="rect" id="node212" href="$serialization_8h.xhtml" title="The interface for serialization." alt="" coords="600,486,699,514"/>
-<area shape="rect" id="node222" href="$audiomanager_8h_source.xhtml" title="audiomanager.h" alt="" coords="4415,331,4527,359"/>
-<area shape="rect" id="node252" href="$soundset_8h_source.xhtml" title="Audio/soundset.h" alt="" coords="773,486,893,514"/>
-<area shape="rect" id="node256" href="$physicsmanager_8h_source.xhtml" title="physicsmanager.h" alt="" coords="2625,254,2748,282"/>
-<area shape="rect" id="node274" href="$scenemanager_8h_source.xhtml" title="scenemanager.h" alt="" coords="3535,331,3649,359"/>
-<area shape="rect" id="node283" href="$entresol_8h_source.xhtml" title="entresol.h" alt="" coords="4640,331,4717,359"/>
-<area shape="rect" id="node13" href="$worldnode_8h.xhtml" title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="2924,254,3015,282"/>
-<area shape="rect" id="node168" href="$worldobject_8h_source.xhtml" title="worldobject.h" alt="" coords="3039,254,3135,282"/>
-<area shape="rect" id="node174" href="$collision_8h_source.xhtml" title="Physics/collision.h" alt="" coords="3207,331,3332,359"/>
-<area shape="rect" id="node15" href="$attachable_8h.xhtml" title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec..." alt="" coords="3041,331,3132,359"/>
-<area shape="rect" id="node54" href="$enumerations_8h.xhtml" title="Any global enumerations shared between multiple classes is to be declared here." alt="" coords="2235,563,2344,591"/>
-<area shape="rect" id="node17" href="$transform_8h.xhtml" title="The defintion of the transform is stored in this file." alt="" coords="3044,409,3129,437"/>
-<area shape="rect" id="node19" href="$vector3_8h_source.xhtml" title="vector3.h" alt="" coords="3653,486,3728,514"/>
-<area shape="rect" id="node161" href="$quaternion_8h_source.xhtml" title="quaternion.h" alt="" coords="3141,486,3232,514"/>
-<area shape="rect" id="node21" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="4648,1027,4792,1055"/>
-<area shape="rect" id="node23" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="1883,950,1968,978"/>
-<area shape="rect" id="node52" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="4109,1027,4165,1055"/>
-<area shape="rect" id="node59" href="$objectrange_8h.xhtml" title="Contains the implementation of the ObjectRange class template." alt="" coords="3072,873,3203,901"/>
-<area shape="rect" id="node62" href="$attribute_8h.xhtml" title="Contains the definition for the XML::Attribute class." alt="" coords="3277,873,3387,901"/>
-<area shape="rect" id="node65" href="$attributeiterator_8h.xhtml" title="Contains the defintion of the AttributeIterator class." alt="" coords="2092,718,2241,746"/>
-<area shape="rect" id="node68" href="$node_8h.xhtml" title="This defines the Mezzanine::XML::Node one of the central XML classes." alt="" coords="3037,795,3128,823"/>
-<area shape="rect" id="node71" href="$xmlenumerations_8h.xhtml" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="1411,873,1571,901"/>
-<area shape="rect" id="node76" href="$document_8h.xhtml" title="The definition of the XML::Document Class." alt="" coords="2451,641,2571,669"/>
-<area shape="rect" id="node80" href="$parseresult_8h.xhtml" title="XML/parseresult.h" alt="" coords="1917,795,2043,823"/>
-<area shape="rect" id="node85" href="$writer_8h.xhtml" title="The definitions for all of the XML::Writer inheritance hierarchy." alt="" coords="2367,718,2460,746"/>
-<area shape="rect" id="node112" href="$memorymanagement_8h.xhtml" title="The xml memory management system must be integrated into the rest of the Mezzanine resource managemen..." alt="" coords="3304,795,3488,823"/>
-<area shape="rect" id="node115" href="$nodeiterator_8h.xhtml" title="Contains the defintion of the Mezzanine::XML::NodeIterator and Mezzanine::XML::NamedNodeIterator clas..." alt="" coords="3384,718,3515,746"/>
-<area shape="rect" id="node120" href="$nodetext_8h.xhtml" title="The declaration of the XML::NodeText class." alt="" coords="3539,718,3651,746"/>
-<area shape="rect" id="node127" href="$treewalker_8h.xhtml" title="This defines the TreeWalker Interface." alt="" coords="3187,718,3309,746"/>
-<area shape="rect" id="node133" href="$xmlstring_8h.xhtml" title="A few functions to help the XML system perform conversions between UTF8 and the native wide character..." alt="" coords="1107,641,1221,669"/>
-<area shape="rect" id="node136" href="$xpathnode_8h.xhtml" title="The definition of the Mezzanine::XML::XPathNode." alt="" coords="1277,718,1400,746"/>
-<area shape="rect" id="node140" href="$xpathnodeset_8h.xhtml" title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet." alt="" coords="1245,641,1384,669"/>
-<area shape="rect" id="node144" href="$xpathparseresult_8h.xhtml" title="Has all the classes for the XPath implementation." alt="" coords="1651,718,1805,746"/>
-<area shape="rect" id="node148" href="$xpathvariable_8h.xhtml" title="The XPathVariable class definition." alt="" coords="1208,795,1347,823"/>
-<area shape="rect" id="node152" href="$xpathvariableset_8h.xhtml" title="The definition of the Mezzanine::XML::XPathVariableSet." alt="" coords="1371,795,1525,823"/>
-<area shape="rect" id="node156" href="$xpathquery_8h.xhtml" title="The definition of the Mezzanine::XML::XPathQuery ." alt="" coords="1577,641,1703,669"/>
-<area shape="rect" id="node100" href="$datastream_8h.xhtml" title="Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream." alt="" coords="1941,873,2096,901"/>
-<area shape="rect" id="node88" href="$resource_8h_source.xhtml" title="resource.h" alt="" coords="2535,795,2615,823"/>
-<area shape="rect" id="node90" href="$resourceenumerations_8h_source.xhtml" title="Resource/resourceenumerations.h" alt="" coords="2120,873,2336,901"/>
-<area shape="rect" id="node92" href="$archive_8h_source.xhtml" title="Resource/archive.h" alt="" coords="2360,873,2491,901"/>
-<area shape="rect" id="node94" href="$asset_8h_source.xhtml" title="Resource/asset.h" alt="" coords="2515,873,2635,901"/>
-<area shape="rect" id="node96" href="$assetgroup_8h_source.xhtml" title="Resource/assetgroup.h" alt="" coords="2659,873,2811,901"/>
-<area shape="rect" id="node98" href="$assethandler_8h_source.xhtml" title="Resource/assethandler.h" alt="" coords="2835,873,2997,901"/>
-<area shape="rect" id="node103" href="$inputstream_8h_source.xhtml" title="Resource/inputstream.h" alt="" coords="3613,873,3771,901"/>
-<area shape="rect" id="node107" href="$textsettingsfile_8h_source.xhtml" title="Resource/textsettingsfile.h" alt="" coords="1747,873,1917,901"/>
-<area shape="rect" id="node178" href="$worldobjectgraphicssettings_8h_source.xhtml" title="worldobjectgraphicssettings.h" alt="" coords="2648,409,2837,437"/>
-<area shape="rect" id="node187" href="$worldobjectphysicssettings_8h_source.xhtml" title="worldobjectphysicssettings.h" alt="" coords="2045,486,2227,514"/>
-<area shape="rect" id="node181" href="$colourvalue_8h_source.xhtml" title="colourvalue.h" alt="" coords="3904,486,4000,514"/>
-<area shape="rect" id="node191" href="$physicsenumerations_8h_source.xhtml" title="Physics/physicsenumerations.h" alt="" coords="2013,563,2211,591"/>
-<area shape="rect" id="node215" href="$smartptr_8h.xhtml" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="3643,563,3720,591"/>
-<area shape="rect" id="node226" href="$managerbase_8h_source.xhtml" title="managerbase.h" alt="" coords="4416,409,4525,437"/>
-<area shape="rect" id="node231" href="$managerfactory_8h_source.xhtml" title="managerfactory.h" alt="" coords="3459,409,3579,437"/>
-<area shape="rect" id="node234" href="$singleton_8h_source.xhtml" title="singleton.h" alt="" coords="4651,409,4733,437"/>
-<area shape="rect" id="node239" href="$objectsettings_8h_source.xhtml" title="objectsettings.h" alt="" coords="3805,409,3915,437"/>
-<area shape="rect" id="node236" href="$exception_8h_source.xhtml" title="exception.h" alt="" coords="4699,486,4784,514"/>
-<area shape="rect" id="node242" href="$vector2_8h_source.xhtml" title="vector2.h" alt="" coords="4125,486,4200,514"/>
-<area shape="rect" id="node260" href="$constraint_8h_source.xhtml" title="Physics/constraint.h" alt="" coords="2831,331,2967,359"/>
-<area shape="rect" id="node271" href="$objectpair_8h_source.xhtml" title="objectpair.h" alt="" coords="701,563,789,591"/>
-<area shape="rect" id="node285" href="$stringtool_8h_source.xhtml" title="stringtool.h" alt="" coords="3996,409,4079,437"/>
-<area shape="rect" id="node298" href="$crossplatform_8h_source.xhtml" title="crossplatform.h" alt="" coords="4909,873,5019,901"/>
-<area shape="rect" id="node302" href="$eventbase_8h_source.xhtml" title="eventbase.h" alt="" coords="4851,641,4941,669"/>
-<area shape="rect" id="node287" href="$metacode_8h_source.xhtml" title="Input/metacode.h" alt="" coords="4224,486,4347,514"/>
-<area shape="rect" id="node291" href="$inputenumerations_8h_source.xhtml" title="Input/inputenumerations.h" alt="" coords="4301,563,4472,591"/>
+<area shape="rect" id="node11" href="$actorbase_8h.xhtml" title="The base class for all Actors is defined here." alt="" coords="2805,177,2893,205"/>
+<area shape="rect" id="node57" href="$xml_8h_source.xhtml" title="XML/xml.h" alt="" coords="2168,563,2251,591"/>
+<area shape="rect" id="node207" href="$actorrigid_8h_source.xhtml" title="actorrigid.h" alt="" coords="2807,99,2892,127"/>
+<area shape="rect" id="node210" href="$actorphysicssettings_8h_source.xhtml" title="actorphysicssettings.h" alt="" coords="1537,331,1684,359"/>
+<area shape="rect" id="node217" href="$actorsoft_8h_source.xhtml" title="actorsoft.h" alt="" coords="3388,99,3471,127"/>
+<area shape="rect" id="node223" href="$serialization_8h.xhtml" title="The interface for serialization." alt="" coords="4944,486,5043,514"/>
+<area shape="rect" id="node230" href="$audiomanager_8h_source.xhtml" title="Audio/audiomanager.h" alt="" coords="4184,331,4333,359"/>
+<area shape="rect" id="node262" href="$soundset_8h_source.xhtml" title="Audio/soundset.h" alt="" coords="448,486,568,514"/>
+<area shape="rect" id="node266" href="$physicsmanager_8h_source.xhtml" title="physicsmanager.h" alt="" coords="4527,254,4649,282"/>
+<area shape="rect" id="node284" href="$scenemanager_8h_source.xhtml" title="scenemanager.h" alt="" coords="3565,331,3680,359"/>
+<area shape="rect" id="node293" href="$entresol_8h_source.xhtml" title="entresol.h" alt="" coords="3868,331,3945,359"/>
+<area shape="rect" id="node13" href="$worldnode_8h.xhtml" title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="2509,254,2600,282"/>
+<area shape="rect" id="node180" href="$worldobject_8h_source.xhtml" title="worldobject.h" alt="" coords="2801,254,2897,282"/>
+<area shape="rect" id="node186" href="$collision_8h_source.xhtml" title="Physics/collision.h" alt="" coords="2655,331,2780,359"/>
+<area shape="rect" id="node15" href="$attachable_8h.xhtml" title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec..." alt="" coords="2804,331,2895,359"/>
+<area shape="rect" id="node54" href="$enumerations_8h.xhtml" title="Any global enumerations shared between multiple classes is to be declared here." alt="" coords="499,563,608,591"/>
+<area shape="rect" id="node17" href="$transform_8h.xhtml" title="The defintion of the transform is stored in this file." alt="" coords="3093,409,3179,437"/>
+<area shape="rect" id="node19" href="$vector3_8h_source.xhtml" title="vector3.h" alt="" coords="3211,486,3285,514"/>
+<area shape="rect" id="node173" href="$quaternion_8h_source.xhtml" title="quaternion.h" alt="" coords="3480,486,3571,514"/>
+<area shape="rect" id="node21" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="4385,1182,4529,1210"/>
+<area shape="rect" id="node23" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="3173,1105,3259,1133"/>
+<area shape="rect" id="node52" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="408,1182,464,1210"/>
+<area shape="rect" id="node59" href="$objectrange_8h.xhtml" title="Contains the implementation of the ObjectRange class template." alt="" coords="1576,873,1707,901"/>
+<area shape="rect" id="node62" href="$attribute_8h.xhtml" title="Contains the definition for the XML::Attribute class." alt="" coords="1107,873,1216,901"/>
+<area shape="rect" id="node65" href="$attributeiterator_8h.xhtml" title="Contains the defintion of the AttributeIterator class." alt="" coords="957,718,1107,746"/>
+<area shape="rect" id="node68" href="$node_8h.xhtml" title="This defines the Mezzanine::XML::Node one of the central XML classes." alt="" coords="1335,795,1425,823"/>
+<area shape="rect" id="node71" href="$xmlenumerations_8h.xhtml" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="1341,873,1501,901"/>
+<area shape="rect" id="node76" href="$document_8h.xhtml" title="The definition of the XML::Document Class." alt="" coords="1919,641,2039,669"/>
+<area shape="rect" id="node80" href="$parseresult_8h.xhtml" title="XML/parseresult.h" alt="" coords="1633,795,1759,823"/>
+<area shape="rect" id="node85" href="$writer_8h.xhtml" title="The definitions for all of the XML::Writer inheritance hierarchy." alt="" coords="2347,718,2440,746"/>
+<area shape="rect" id="node124" href="$memorymanagement_8h.xhtml" title="The xml memory management system must be integrated into the rest of the Mezzanine resource managemen..." alt="" coords="3208,950,3392,978"/>
+<area shape="rect" id="node127" href="$nodeiterator_8h.xhtml" title="Contains the defintion of the Mezzanine::XML::NodeIterator and Mezzanine::XML::NamedNodeIterator clas..." alt="" coords="803,718,933,746"/>
+<area shape="rect" id="node132" href="$nodetext_8h.xhtml" title="The declaration of the XML::NodeText class." alt="" coords="1525,718,1637,746"/>
+<area shape="rect" id="node139" href="$treewalker_8h.xhtml" title="This defines the TreeWalker Interface." alt="" coords="1277,718,1400,746"/>
+<area shape="rect" id="node145" href="$xmlstring_8h.xhtml" title="A few functions to help the XML system perform conversions between UTF8 and the native wide character..." alt="" coords="3416,950,3531,978"/>
+<area shape="rect" id="node148" href="$xpathnode_8h.xhtml" title="The definition of the Mezzanine::XML::XPathNode." alt="" coords="1131,718,1253,746"/>
+<area shape="rect" id="node152" href="$xpathnodeset_8h.xhtml" title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet." alt="" coords="1059,641,1197,669"/>
+<area shape="rect" id="node156" href="$xpathparseresult_8h.xhtml" title="Has all the classes for the XPath implementation." alt="" coords="2067,718,2221,746"/>
+<area shape="rect" id="node160" href="$xpathvariable_8h.xhtml" title="The XPathVariable class definition." alt="" coords="1935,795,2073,823"/>
+<area shape="rect" id="node164" href="$xpathvariableset_8h.xhtml" title="The definition of the Mezzanine::XML::XPathVariableSet." alt="" coords="904,795,1059,823"/>
+<area shape="rect" id="node168" href="$xpathquery_8h.xhtml" title="The definition of the Mezzanine::XML::XPathQuery ." alt="" coords="2147,641,2272,669"/>
+<area shape="rect" id="node100" href="$datastream_8h.xhtml" title="Declaration of DataStream." alt="" coords="2928,950,3083,978"/>
+<area shape="rect" id="node88" href="$resource_8h_source.xhtml" title="resource.h" alt="" coords="2604,795,2684,823"/>
+<area shape="rect" id="node90" href="$resourceenumerations_8h_source.xhtml" title="Resource/resourceenumerations.h" alt="" coords="2339,873,2555,901"/>
+<area shape="rect" id="node92" href="$archive_8h_source.xhtml" title="Resource/archive.h" alt="" coords="2579,873,2709,901"/>
+<area shape="rect" id="node94" href="$asset_8h_source.xhtml" title="Resource/asset.h" alt="" coords="2733,873,2853,901"/>
+<area shape="rect" id="node96" href="$assetgroup_8h_source.xhtml" title="Resource/assetgroup.h" alt="" coords="2877,873,3029,901"/>
+<area shape="rect" id="node98" href="$assethandler_8h_source.xhtml" title="Resource/assethandler.h" alt="" coords="2152,873,2315,901"/>
+<area shape="rect" id="node109" href="$filestream_8h.xhtml" title="Declaration of FileStream." alt="" coords="1984,873,2128,901"/>
+<area shape="rect" id="node112" href="$inputstream_8h_source.xhtml" title="Resource/inputstream.h" alt="" coords="3749,1027,3907,1055"/>
+<area shape="rect" id="node116" href="$memorystream_8h.xhtml" title="Declaration of MemoryStream." alt="" coords="3053,873,3227,901"/>
+<area shape="rect" id="node119" href="$textsettingsfile_8h_source.xhtml" title="Resource/textsettingsfile.h" alt="" coords="1107,1027,1277,1055"/>
+<area shape="rect" id="node103" href="$smartptr_8h.xhtml" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="4520,1027,4597,1055"/>
+<area shape="rect" id="node190" href="$worldobjectgraphicssettings_8h_source.xhtml" title="worldobjectgraphicssettings.h" alt="" coords="2795,409,2984,437"/>
+<area shape="rect" id="node199" href="$worldobjectphysicssettings_8h_source.xhtml" title="worldobjectphysicssettings.h" alt="" coords="800,486,981,514"/>
+<area shape="rect" id="node193" href="$colourvalue_8h_source.xhtml" title="colourvalue.h" alt="" coords="3360,486,3456,514"/>
+<area shape="rect" id="node203" href="$physicsenumerations_8h_source.xhtml" title="Physics/physicsenumerations.h" alt="" coords="632,563,829,591"/>
+<area shape="rect" id="node233" href="$managerbase_8h_source.xhtml" title="managerbase.h" alt="" coords="4293,409,4403,437"/>
+<area shape="rect" id="node238" href="$managerfactory_8h_source.xhtml" title="managerfactory.h" alt="" coords="4528,409,4648,437"/>
+<area shape="rect" id="node241" href="$singleton_8h_source.xhtml" title="singleton.h" alt="" coords="3944,409,4027,437"/>
+<area shape="rect" id="node246" href="$objectsettings_8h_source.xhtml" title="objectsettings.h" alt="" coords="4051,409,4160,437"/>
+<area shape="rect" id="node259" href="$audioenumerations_8h_source.xhtml" title="audioenumerations.h" alt="" coords="4723,409,4861,437"/>
+<area shape="rect" id="node243" href="$exception_8h_source.xhtml" title="exception.h" alt="" coords="3893,486,3979,514"/>
+<area shape="rect" id="node249" href="$vector2_8h_source.xhtml" title="vector2.h" alt="" coords="4003,486,4077,514"/>
+<area shape="rect" id="node270" href="$constraint_8h_source.xhtml" title="Physics/constraint.h" alt="" coords="3707,331,3843,359"/>
+<area shape="rect" id="node281" href="$objectpair_8h_source.xhtml" title="objectpair.h" alt="" coords="4773,950,4861,978"/>
+<area shape="rect" id="node295" href="$stringtool_8h_source.xhtml" title="stringtool.h" alt="" coords="3716,409,3799,437"/>
+<area shape="rect" id="node308" href="$crossplatform_8h_source.xhtml" title="crossplatform.h" alt="" coords="4285,1027,4395,1055"/>
+<area shape="rect" id="node312" href="$eventbase_8h_source.xhtml" title="eventbase.h" alt="" coords="4365,641,4456,669"/>
+<area shape="rect" id="node297" href="$metacode_8h_source.xhtml" title="Input/metacode.h" alt="" coords="3696,486,3819,514"/>
+<area shape="rect" id="node301" href="$inputenumerations_8h_source.xhtml" title="Input/inputenumerations.h" alt="" coords="3613,563,3784,591"/>
 </map>

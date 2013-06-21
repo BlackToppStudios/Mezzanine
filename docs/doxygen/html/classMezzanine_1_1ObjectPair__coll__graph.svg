@@ -118,14 +118,14 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="113,-450 113,-470 223,-470 223,-450 113,-450"/>
-<text text-anchor="middle" x="168" y="-457" font-family="FreeSans" font-size="10.00">std::vector&lt; Sound * &gt;</text>
+<polygon fill="none" stroke="#bfbfbf" points="111.5,-450 111.5,-470 224.5,-470 224.5,-450 111.5,-450"/>
+<text text-anchor="middle" x="168" y="-457" font-family="FreeSans" font-size="10.00">std::vector&lt; iSound * &gt;</text>
 </a>
 </g>
 <!-- Node4&#45;&gt;Node3 -->
 <g id="edge6" class="edge"><title>Node4&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M233.296,-460C256.536,-460 282.783,-460 306.373,-460"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="233.194,-456.5 223.194,-460 233.194,-463.5 233.194,-456.5"/>
+<path fill="none" stroke="midnightblue" d="M234.86,-460C257.738,-460 283.376,-460 306.46,-460"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="234.562,-456.5 224.562,-460 234.562,-463.5 234.562,-456.5"/>
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
@@ -134,7 +134,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5&#45;&gt;Node4 -->
 <g id="edge8" class="edge"><title>Node5&#45;&gt;Node4</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M39.9304,-460C59.6377,-460 87.8893,-460 112.846,-460"/>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M39.7538,-460C59.1015,-460 86.762,-460 111.444,-460"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="39.6703,-456.5 29.6703,-460 39.6702,-463.5 39.6703,-456.5"/>
 <text text-anchor="middle" x="69" y="-463" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
@@ -314,10 +314,10 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node42" class="node"><title>Node20</title>
-<a xlink:href="classMezzanine_1_1TransformableObject.xhtml" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
+<a xlink:href="classMezzanine_1_1TransformableChildObject.xhtml" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
 <polygon fill="none" stroke="black" points="312,-0 312,-32 440,-32 440,-0 312,-0"/>
 <text text-anchor="start" x="320" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
-<text text-anchor="middle" x="376" y="-7" font-family="FreeSans" font-size="10.00">Object</text>
+<text text-anchor="middle" x="376" y="-7" font-family="FreeSans" font-size="10.00">ChildObject</text>
 </a>
 </g>
 <!-- Node20&#45;&gt;Node19 -->

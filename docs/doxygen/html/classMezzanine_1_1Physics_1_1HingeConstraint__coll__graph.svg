@@ -169,38 +169,38 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1SoundSet.xhtml" target="_top" xlink:title="This is a vector that stores sounds.">
-<polygon fill="none" stroke="black" points="268.5,-599 268.5,-619 407.5,-619 407.5,-599 268.5,-599"/>
-<text text-anchor="middle" x="338" y="-606" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundSet</text>
+<polygon fill="none" stroke="black" points="267.5,-599 267.5,-619 406.5,-619 406.5,-599 267.5,-599"/>
+<text text-anchor="middle" x="337" y="-606" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundSet</text>
 </a>
 </g>
 <!-- Node8&#45;&gt;Node7 -->
 <g id="edge14" class="edge"><title>Node8&#45;&gt;Node7</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M332.173,-588.795C329,-573.23 327.717,-552.062 339,-538 360.723,-510.925 381.573,-529.356 415,-520 428.85,-516.123 444.038,-511.284 456.799,-507.046"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="328.774,-589.631 334.54,-598.519 335.575,-587.975 328.774,-589.631"/>
-<text text-anchor="middle" x="371" y="-553" font-family="FreeSans" font-size="10.00"> ObjectSounds</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M331.215,-589.044C327.997,-573.451 326.634,-552.124 338,-538 360.034,-510.62 381.142,-529.424 415,-520 428.856,-516.144 444.044,-511.307 456.805,-507.066"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="327.818,-589.89 333.605,-598.765 334.616,-588.218 327.818,-589.89"/>
+<text text-anchor="middle" x="370" y="-553" font-family="FreeSans" font-size="10.00"> ObjectSounds</text>
 </g>
 <!-- Node9 -->
 <g id="node16" class="node"><title>Node9</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="282,-681 282,-701 392,-701 392,-681 282,-681"/>
-<text text-anchor="middle" x="337" y="-688" font-family="FreeSans" font-size="10.00">std::vector&lt; Sound * &gt;</text>
+<polygon fill="none" stroke="#bfbfbf" points="279.5,-681 279.5,-701 392.5,-701 392.5,-681 279.5,-681"/>
+<text text-anchor="middle" x="336" y="-688" font-family="FreeSans" font-size="10.00">std::vector&lt; iSound * &gt;</text>
 </a>
 </g>
 <!-- Node9&#45;&gt;Node8 -->
 <g id="edge16" class="edge"><title>Node9&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M337.247,-670.75C337.447,-654.361 337.72,-631.965 337.876,-619.137"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="333.745,-670.903 337.123,-680.945 340.744,-670.989 333.745,-670.903"/>
+<path fill="none" stroke="midnightblue" d="M336.247,-670.75C336.447,-654.361 336.72,-631.965 336.876,-619.137"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="332.745,-670.903 336.123,-680.945 339.744,-670.989 332.745,-670.903"/>
 </g>
 <!-- Node10 -->
 <g id="node18" class="node"><title>Node10</title>
-<polygon fill="none" stroke="#bfbfbf" points="322.5,-757 322.5,-777 351.5,-777 351.5,-757 322.5,-757"/>
-<text text-anchor="middle" x="337" y="-764" font-family="FreeSans" font-size="10.00">T</text>
+<polygon fill="none" stroke="#bfbfbf" points="321.5,-757 321.5,-777 350.5,-777 350.5,-757 321.5,-757"/>
+<text text-anchor="middle" x="336" y="-764" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node10&#45;&gt;Node9 -->
 <g id="edge18" class="edge"><title>Node10&#45;&gt;Node9</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M337,-746.579C337,-731.864 337,-712.639 337,-701.087"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="333.5,-746.75 337,-756.75 340.5,-746.75 333.5,-746.75"/>
-<text text-anchor="middle" x="358" y="-729" font-family="FreeSans" font-size="10.00"> elements</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M336,-746.579C336,-731.864 336,-712.639 336,-701.087"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="332.5,-746.75 336,-756.75 339.5,-746.75 332.5,-746.75"/>
+<text text-anchor="middle" x="357" y="-729" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
 <!-- Node11&#45;&gt;Node7 -->
 <g id="edge20" class="edge"><title>Node11&#45;&gt;Node7</title>
@@ -237,9 +237,9 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node13&#45;&gt;Node12 -->
 <g id="edge26" class="edge"><title>Node13&#45;&gt;Node12</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M443.234,-590.261C431.816,-572.332 415.067,-546.763 407,-538 398.613,-528.89 388.122,-520.104 378.84,-513.019"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="440.339,-592.232 448.644,-598.811 446.254,-588.489 440.339,-592.232"/>
-<text text-anchor="middle" x="447" y="-553" font-family="FreeSans" font-size="10.00"> Name</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M443.84,-589.855C434.667,-574.923 420.811,-554.09 406,-538 397.713,-528.997 387.418,-520.228 378.328,-513.126"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="441.005,-591.934 449.154,-598.705 447.007,-588.33 441.005,-591.934"/>
+<text text-anchor="middle" x="448" y="-553" font-family="FreeSans" font-size="10.00"> Name</text>
 </g>
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
@@ -378,10 +378,10 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node25 -->
 <g id="node52" class="node"><title>Node25</title>
-<a xlink:href="classMezzanine_1_1TransformableObject.xhtml" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
+<a xlink:href="classMezzanine_1_1TransformableChildObject.xhtml" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
 <polygon fill="none" stroke="black" points="926,-593 926,-625 1054,-625 1054,-593 926,-593"/>
 <text text-anchor="start" x="934" y="-612" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
-<text text-anchor="middle" x="990" y="-600" font-family="FreeSans" font-size="10.00">Object</text>
+<text text-anchor="middle" x="990" y="-600" font-family="FreeSans" font-size="10.00">ChildObject</text>
 </a>
 </g>
 <!-- Node25&#45;&gt;Node24 -->

@@ -166,7 +166,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>    <span class="comment">// Raycasting Nonsense goe here</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#af1224419c58901fc57fcef2d236a8298">   85</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* RayQueryTool::GetFirstActorOnRayByPolygon(<a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a> ActorRay, <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> ObjectFlags)</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#af1224419c58901fc57fcef2d236a8298">   85</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* RayQueryTool::GetFirstActorOnRayByPolygon(<a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a> ActorRay, <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A datatype used to represent an postive integer numbers.">Whole</a> ObjectFlags)</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    {</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        VerifyRayQuery();</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        Ogre::Ray Ooray = ActorRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#af0dad9b998e8825d102d9da80fda10aa" title="Gets an Ogre::Ray that contains this Rays information.">GetOgreRay</a>();</div>
@@ -181,7 +181,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        }<span class="keywordflow">else</span>{                          <span class="comment">//Whoopsie something Failed</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,<span class="stringliteral">&quot;Attempting to run a query on Null RaySceneQuery&quot;</span>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,<span class="stringliteral">&quot;Attempting to run a query on Null RaySceneQuery&quot;</span>);</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="comment">// at this point we have raycast to a series of different objects bounding boxes.</span></div>
@@ -263,7 +263,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="keywordflow">return</span> ClosestActor;</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#a9ded1647755a523d3dbda297a0e73eba">  182</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* RayQueryTool::GetFirstActorOnRayByAABB(<a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a> ActorRay, <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> ObjectFlags)</div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#a9ded1647755a523d3dbda297a0e73eba">  182</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* RayQueryTool::GetFirstActorOnRayByAABB(<a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a> ActorRay, <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A datatype used to represent an postive integer numbers.">Whole</a> ObjectFlags)</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    {</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        VerifyRayQuery();</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">        #ifdef MEZZDEBUG</span></div>
@@ -279,7 +279,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            }</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        }<span class="keywordflow">else</span>{                          <span class="comment">//Whoopsie something Failed</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,<span class="stringliteral">&quot;Attempting to run a query on Null RaySceneQuery.&quot;</span>);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,<span class="stringliteral">&quot;Attempting to run a query on Null RaySceneQuery.&quot;</span>);</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        }</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        Ogre::RaySceneQueryResult &amp;query_result = RayQuery-&gt;getLastResults();</div>
@@ -299,7 +299,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        }</div>
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    }</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#adddae3c56c5eba8af77e8d72e5c751bd">  218</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* RayQueryTool::GetActorUnderMouse(<a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> ObjectFlags, <a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> RayLength, <span class="keywordtype">bool</span> UsePolygon)</div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#adddae3c56c5eba8af77e8d72e5c751bd">  218</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* RayQueryTool::GetActorUnderMouse(<a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A datatype used to represent an postive integer numbers.">Whole</a> ObjectFlags, <a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> RayLength, <span class="keywordtype">bool</span> UsePolygon)</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    {</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        VerifyRayQuery();</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* Results = 0;</div>
@@ -583,6 +583,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 20:29:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

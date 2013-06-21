@@ -7,7 +7,7 @@
 <area shape="rect" id="node26" href="$classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world." alt="" coords="1508,467,1641,511"/>
 <area shape="rect" id="node33" href="$classMezzanine_1_1WorldObjectGraphicsSettings.xhtml" title="This is a helper class for configuring graphics settings of a World Object." alt="" coords="1469,607,1680,651"/>
 <area shape="rect" id="node8" href="$classMezzanine_1_1Audio_1_1SoundSet.xhtml" title="This is a vector that stores sounds." alt="" coords="691,461,875,489"/>
-<area shape="rect" id="node10" title="STL class." alt="" coords="367,461,513,489"/>
+<area shape="rect" id="node10" title="STL class." alt="" coords="365,461,515,489"/>
 <area shape="rect" id="node81" href="$classMezzanine_1_1NonTriggerPhysicsSettings.xhtml" title="This is an extension of the basic WorldObjectPhysicsSettings class for non&#45;trigger objects(I..." alt="" coords="1249,663,1444,707"/>
 <area shape="rect" id="node17" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="373,566,507,610"/>
 <area shape="rect" id="node19" title="STL class." alt="" coords="180,553,255,581"/>
@@ -17,7 +17,7 @@
 <area shape="rect" id="node38" href="$classMezzanine_1_1Graphics_1_1InternalMeshData.xhtml" title="This class is used to store the internal structures needed by the Mesh class." alt="" coords="713,767,852,811"/>
 <area shape="rect" id="node40" href="$classMezzanine_1_1Graphics_1_1Skeleton.xhtml" title="This class encapsulates the Skeletal animation functionality of a Mesh." alt="" coords="713,281,852,325"/>
 <area shape="rect" id="node44" href="$classMezzanine_1_1Graphics_1_1Bone.xhtml" title="This class encapsulates the bones contained in a skeleton used for animation." alt="" coords="1057,219,1196,263"/>
-<area shape="rect" id="node46" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="697,201,868,245"/>
+<area shape="rect" id="node46" href="$classMezzanine_1_1TransformableChildObject.xhtml" title="This is an interface for all child 3D objects that can have their full transforms manipulated..." alt="" coords="697,201,868,245"/>
 <area shape="rect" id="node49" href="$classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" title="This class is used to store the internal structures needed by the Skeleton class." alt="" coords="365,281,515,325"/>
 <area shape="rect" id="node53" href="$classMezzanine_1_1Graphics_1_1SubMesh.xhtml" title="This class represents a sub&#45;section of an overall mesh." alt="" coords="371,826,509,870"/>
 <area shape="rect" id="node55" href="$classMezzanine_1_1Internal_1_1InternalWorldObjectGraphicsSettings.xhtml" title="Used to store internal data about an world objects." alt="" coords="1031,689,1223,749"/>

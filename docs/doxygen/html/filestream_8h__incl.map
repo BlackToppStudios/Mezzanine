@@ -1,0 +1,7 @@
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/filestream.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/filestream.h">
+<area shape="rect" id="node3" href="$datastream_8h.xhtml" title="Declaration of DataStream." alt="" coords="791,115,945,143"/>
+<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="749,270,835,298"/>
+<area shape="rect" id="node39" href="$smartptr_8h.xhtml" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="829,193,907,221"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,347,149,375"/>
+<area shape="rect" id="node37" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1240,347,1296,375"/>
+</map>

@@ -123,14 +123,14 @@
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="271,-286 271,-306 381,-306 381,-286 271,-286"/>
-<text text-anchor="middle" x="326" y="-293" font-family="FreeSans" font-size="10.00">std::vector&lt; Sound * &gt;</text>
+<polygon fill="none" stroke="#bfbfbf" points="269.5,-286 269.5,-306 382.5,-306 382.5,-286 269.5,-286"/>
+<text text-anchor="middle" x="326" y="-293" font-family="FreeSans" font-size="10.00">std::vector&lt; iSound * &gt;</text>
 </a>
 </g>
 <!-- Node6&#45;&gt;Node5 -->
 <g id="edge10" class="edge"><title>Node6&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M391.375,-296C428.628,-296 475.298,-296 513.254,-296"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="391.133,-292.5 381.133,-296 391.133,-299.5 391.133,-292.5"/>
+<path fill="none" stroke="midnightblue" d="M392.891,-296C429.85,-296 475.716,-296 513.137,-296"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="392.718,-292.5 382.718,-296 392.718,-299.5 392.718,-292.5"/>
 </g>
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
@@ -139,7 +139,7 @@
 </g>
 <!-- Node7&#45;&gt;Node6 -->
 <g id="edge12" class="edge"><title>Node7&#45;&gt;Node6</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M183.709,-296C206.551,-296 241.307,-296 270.751,-296"/>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M183.543,-296C205.991,-296 240.045,-296 269.229,-296"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="183.528,-292.5 173.528,-296 183.528,-299.5 183.528,-292.5"/>
 <text text-anchor="middle" x="227" y="-299" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
@@ -332,10 +332,10 @@
 </g>
 <!-- Node22 -->
 <g id="node46" class="node"><title>Node22</title>
-<a xlink:href="classMezzanine_1_1TransformableObject.xhtml" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
+<a xlink:href="classMezzanine_1_1TransformableChildObject.xhtml" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
 <polygon fill="none" stroke="black" points="519,-469 519,-501 647,-501 647,-469 519,-469"/>
 <text text-anchor="start" x="527" y="-488" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
-<text text-anchor="middle" x="583" y="-476" font-family="FreeSans" font-size="10.00">Object</text>
+<text text-anchor="middle" x="583" y="-476" font-family="FreeSans" font-size="10.00">ChildObject</text>
 </a>
 </g>
 <!-- Node22&#45;&gt;Node21 -->

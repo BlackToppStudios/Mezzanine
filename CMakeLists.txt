@@ -465,6 +465,20 @@ add_subdirectory (Catch!)
 add_subdirectory (UnitTests)
 Message(STATUS "Finishing Subproject Configuration.")
 
+
+Message(STATUS "Starting Doxygen Configuration.")
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+    add_custom_target(MezzanineDocumentation ALL
+        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/
+        COMMENT "Generating API documentation with Doxygen" VERBATIM
+    )
+else(DOXYGEN_FOUND)
+    Message(STATUS "Doxygen not found.")
+endif(DOXYGEN_FOUND)
+Message(STATUS "Finishing Doxygen Configuration.")
+
 ###############################################################################
 # Hide Variables not directly related to the Mezzanine Engine
 mark_as_advanced( FORCE

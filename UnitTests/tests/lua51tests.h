@@ -161,7 +161,7 @@ class lua51tests : public UnitTestGroup
                     // Argument Tests
                     try
                     {
-                        Scripting::Lua::Lua51Script IntArgScript("function PrintNum(x)\n   print(x)\nend",LuaRuntimeSafe);
+                        Scripting::Lua::Lua51Script IntArgScript("function PrintNum(x)\n   return x * 9\nend",LuaRuntimeSafe);
                         LuaRuntimeSafe.Execute(IntArgScript);
 
                         Scripting::Lua::Lua51Script IntArgCall("PrintNum",LuaRuntimeSafe,true);

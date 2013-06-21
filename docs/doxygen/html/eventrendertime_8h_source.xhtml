@@ -143,13 +143,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="classMezzanine_1_1EventRenderTime.xhtml">   59</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1EventRenderTime.xhtml" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1EventBase.xhtml" title="The base class for all events.">EventBase</a></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Rendertime;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A datatype used to represent an postive integer numbers.">Whole</a> Rendertime;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">            /// @brief The Constructor</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">            /// @details This is the only way to set the time</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">            /// @param Milliseconds As it says, the amount of milliseconds since the last rendering</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1EventRenderTime.xhtml" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a> (<a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Milliseconds=0);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1EventRenderTime.xhtml" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a> (<a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A datatype used to represent an postive integer numbers.">Whole</a> Milliseconds=0);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            /// @brief Returns that this event is a EventType::RenderTime</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            /// @details This is primarily for the benefit of sorting thorugh event pointers. If</span></div>
@@ -160,7 +160,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">            /// @brief Returns the a floating point value with the amount of time.</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">            /// @details Returns the a floating point value with the amount of time.</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">            /// @return A floating point value with the amount of time.</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> getMilliSecondsSinceLastFrame() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A datatype used to represent an postive integer numbers.">Whole</a> getMilliSecondsSinceLastFrame() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">            /// @brief Assignment operator</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">            /// @param rhs the Right Hand object in the assignment operator</span></div>
@@ -194,6 +194,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 20:29:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

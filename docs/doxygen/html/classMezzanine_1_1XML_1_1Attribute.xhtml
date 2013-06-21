@@ -313,7 +313,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000108">Todo:</a></b></dt><dd>Update <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a09bfced7ac57e4c80af524a31561447b" title="Attempts to convert the value of the attribute to a double and returns the results.">Attribute::AsDouble()</a> to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000113">Todo:</a></b></dt><dd>Update <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a09bfced7ac57e4c80af524a31561447b" title="Attempts to convert the value of the attribute to a double and returns the results.">Attribute::AsDouble()</a> to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and double. Check "errno" and see if it is set to "ERANGE" to test for this condition. </dd></dl>
 
 </div>
@@ -340,7 +340,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000109">Todo:</a></b></dt><dd>Update <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a73ae5a32a8f10d3de238758e13840850" title="Attempts to convert the value of the attribute to a float and returns the results.">Attribute::AsFloat()</a> to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000114">Todo:</a></b></dt><dd>Update <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a73ae5a32a8f10d3de238758e13840850" title="Attempts to convert the value of the attribute to a float and returns the results.">Attribute::AsFloat()</a> to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check "errno" and see if it is set to "ERANGE" to test for this condition. </dd></dl>
 
 </div>
@@ -361,7 +361,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 
 <p>Attempts to convert the value of the attribute to an int and returns the results. </p>
 <dl class="section return"><dt>Returns</dt><dd>If the value of this attribute can be convert to an int by reading the character and interpretting them a number, that numberis returned. Returns passed parameter on failure. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000106">Todo:</a></b></dt><dd>Update <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a433fef4f74eaa825755b53b1baea539a" title="Attempts to convert the value of the attribute to an int and returns the results.">Attribute::AsInt()</a> to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000111">Todo:</a></b></dt><dd>Update <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a433fef4f74eaa825755b53b1baea539a" title="Attempts to convert the value of the attribute to an int and returns the results.">Attribute::AsInt()</a> to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">def</td><td>Is returned if the attribute is empty. </td></tr>
@@ -487,7 +487,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000107">Todo:</a></b></dt><dd>Update <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#affc4e62ae891b85fea0d34f90c5b18c9" title="Attempts to convert the value of the attribute to an unsigned int and returns the results...">Attribute::AsUint()</a> to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000112">Todo:</a></b></dt><dd>Update <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#affc4e62ae891b85fea0d34f90c5b18c9" title="Attempts to convert the value of the attribute to an unsigned int and returns the results...">Attribute::AsUint()</a> to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check "errno" and see if it is set to "ERANGE" to test for this condition. </dd></dl>
 
 </div>
@@ -975,7 +975,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, returns false if the name cannot be stored or there is not enough memory. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> is used instead, for enhanced robustness in the event corrupt String are created. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">Mezzanine::String</a> is used instead, for enhanced robustness in the event corrupt String are created. </dd></dl>
 
 </div>
 </div>
@@ -1037,10 +1037,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, returns false if this is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000110">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000115">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> is used instead, for enhanced robustness in the event corrupt String are created. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">Mezzanine::String</a> is used instead, for enhanced robustness in the event corrupt String are created. </dd></dl>
 
 </div>
 </div>
@@ -1066,10 +1066,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, returns false if <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000111">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000116">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> is used instead. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">Mezzanine::String</a> is used instead. </dd></dl>
 
 </div>
 </div>
@@ -1095,10 +1095,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, returns false if <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000112">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000117">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> is used instead. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">Mezzanine::String</a> is used instead. </dd></dl>
 
 </div>
 </div>
@@ -1124,10 +1124,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, returns false if <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000113">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000118">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">Mezzanine::String</a>. </dd></dl>
 
 </div>
 </div>
@@ -1153,10 +1153,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, returns false if <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000114">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000119">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> is used instead. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Not available in scripting languages the Overload which accepts a <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">Mezzanine::String</a> is used instead. </dd></dl>
 
 </div>
 </div>
@@ -1193,7 +1193,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, returns false if <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>You should not pass classes that stream/serialize to xml into this function, the result will be invalid <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a>. If you must, find a way to strip out the "&gt;" character, then you can reinsert it later </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000115">Todo:</a></b></dt><dd>Strip "&gt;" automatically and provide a method to reconsitute it. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000120">Todo:</a></b></dt><dd>Strip "&gt;" automatically and provide a method to reconsitute it. </dd></dl>
 
 <p>Definition at line <a class="el" href="attribute_8h_source.xhtml#l00285">285</a> of file <a class="el" href="attribute_8h_source.xhtml">attribute.h</a>.</p>
 
@@ -1229,7 +1229,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, returns false if this is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000116">Todo:</a></b></dt><dd>update this to make the error return code redundant and use an exception instead. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000121">Todo:</a></b></dt><dd>update this to make the error return code redundant and use an exception instead. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This overload is used in scripting languages. </dd></dl>
 
 <p>Definition at line <a class="el" href="attribute_8h_source.xhtml#l00294">294</a> of file <a class="el" href="attribute_8h_source.xhtml">attribute.h</a>.</p>
@@ -1260,6 +1260,6 @@ template&lt;class T &gt; </div>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:58 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 20:29:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

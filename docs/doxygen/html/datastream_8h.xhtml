@@ -80,21 +80,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">datastream.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream.  
+<p>Declaration of DataStream.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="datatypes_8h_source.xhtml">datatypes.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>&quot;</code><br/>
+<code>#include &lt;iostream&gt;</code><br/>
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for datastream.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="datastream_8h__incl.svg" width="100%" height="470"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="datastream_8h__incl.svg" width="100%" height="528"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
@@ -111,15 +114,6 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1DataStream.xhtml">Mezzanine::Resource::DataStream</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This represents a stream to a piece of data, usually a file.  <a href="classMezzanine_1_1Resource_1_1DataStream.xhtml#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1FileHandleDataStream.xhtml">Mezzanine::Resource::FileHandleDataStream</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This represents a stream to a file on disk using the C file API.  <a href="classMezzanine_1_1Resource_1_1FileHandleDataStream.xhtml#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1FileStreamDataStream.xhtml">Mezzanine::Resource::FileStreamDataStream</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This represents a stream to a file on disk using the C++ file stream API.  <a href="classMezzanine_1_1Resource_1_1FileStreamDataStream.xhtml#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Resource_1_1MemoryDataStream.xhtml">Mezzanine::Resource::MemoryDataStream</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This represents a stream to a buffer in memory.  <a href="classMezzanine_1_1Resource_1_1MemoryDataStream.xhtml#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -129,14 +123,33 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMezzanine_1_1Resource"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.xhtml">Mezzanine::Resource</a></td></tr>
 <tr class="memdesc:namespaceMezzanine_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">This namespace is for all the classes belonging to the non-network I/O Subsystem. <br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a62a315666b8e56a64640c813ac400b52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62a315666b8e56a64640c813ac400b52"></a>
+typedef CountedPtr&lt; DataStream &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.xhtml#a62a315666b8e56a64640c813ac400b52">Mezzanine::Resource::DataStreamPtr</a></td></tr>
+<tr class="memdesc:a62a315666b8e56a64640c813ac400b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a convenience type for a data stream in a counted pointer. <br/></td></tr>
+<tr class="separator:a62a315666b8e56a64640c813ac400b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a927f01aa6d9e7751748be3b042fd54f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a927f01aa6d9e7751748be3b042fd54f7"></a>
+typedef Integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.xhtml#a927f01aa6d9e7751748be3b042fd54f7">Mezzanine::Resource::StreamOff</a></td></tr>
+<tr class="memdesc:a927f01aa6d9e7751748be3b042fd54f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience define for the stream offset datatype. <br/></td></tr>
+<tr class="separator:a927f01aa6d9e7751748be3b042fd54f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5696fd3c8e65153dc45d33729590af31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5696fd3c8e65153dc45d33729590af31"></a>
+typedef Integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.xhtml#a5696fd3c8e65153dc45d33729590af31">Mezzanine::Resource::StreamPos</a></td></tr>
+<tr class="memdesc:a5696fd3c8e65153dc45d33729590af31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience define for the stream position datatype. <br/></td></tr>
+<tr class="separator:a5696fd3c8e65153dc45d33729590af31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57c319fb1991c37cb3ee0473ba973235"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57c319fb1991c37cb3ee0473ba973235"></a>
+typedef Integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.xhtml#a57c319fb1991c37cb3ee0473ba973235">Mezzanine::Resource::StreamSize</a></td></tr>
+<tr class="memdesc:a57c319fb1991c37cb3ee0473ba973235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience define for the stream size datatype. <br/></td></tr>
+<tr class="separator:a57c319fb1991c37cb3ee0473ba973235"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000095">Todo:</a></b></dt><dd>Investigate how required these these stream implementations are </dd></dl>
+<div class="textblock"><p>Declaration of DataStream. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000099">Todo:</a></b></dt><dd>Investigate how required these stream implementations are </dd></dl>
 
 <p>Definition in file <a class="el" href="datastream_8h_source.xhtml">datastream.h</a>.</p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 20:29:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

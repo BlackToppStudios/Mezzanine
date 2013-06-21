@@ -141,43 +141,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a574b7a451eab384a77a0e114b8664c72">   60</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a574b7a451eab384a77a0e114b8664c72" title="Adds a sound to the playlist.">Playlist::AddSound</a>(<a class="code" href="classMezzanine_1_1Audio_1_1Sound.xhtml" title="This is an instance of a sound that can be played and manipulated.">Sound</a>* ToAdd)</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a18f42906ceba2e179a7b9470e8d3d1f9">   60</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a18f42906ceba2e179a7b9470e8d3d1f9" title="Adds a sound to the playlist.">Playlist::AddSound</a>(<a class="code" href="classMezzanine_1_1Audio_1_1iSound.xhtml" title="This is an interface class for a non-spacialized sound.">iSound</a>* ToAdd)</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        {</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            this-&gt;push_back(ToAdd);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a656f958e3fd4fe44cdaf75c0f8487eaf">   65</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a656f958e3fd4fe44cdaf75c0f8487eaf" title="Randomly shuffles the content in the Playlist.">Playlist::ShuffleList</a>()</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#ab754245559d72b4ba7e0cbda7d6166c8">   65</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#ab754245559d72b4ba7e0cbda7d6166c8" title="Randomly shuffles the content in the Playlist.">Playlist::Shuffle</a>()</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            std::vector&lt; Audio::Sound* &gt; temp( this-&gt;begin(), this-&gt;end() );</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            std::vector&lt; Audio::iSound* &gt; temp( this-&gt;begin(), this-&gt;end() );</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            std::random_shuffle( temp.begin(), temp.end() );</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            this-&gt;assign( temp.begin(), temp.end() );</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a319f906c569d851da502e52fae43cc9d">   72</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a319f906c569d851da502e52fae43cc9d" title="Checks the playlist to see if it contains a sound.">Playlist::ContainsSound</a>(<a class="code" href="classMezzanine_1_1Audio_1_1Sound.xhtml" title="This is an instance of a sound that can be played and manipulated.">Sound</a>* TheSound)</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a071b3fb9c147d8bed94836fb7293dab0">   72</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a071b3fb9c147d8bed94836fb7293dab0" title="Checks the playlist to see if it contains a sound.">Playlist::ContainsSound</a>(<a class="code" href="classMezzanine_1_1Audio_1_1iSound.xhtml" title="This is an interface class for a non-spacialized sound.">iSound</a>* TheSound)</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">for</span>( std::list&lt; Audio::Sound* &gt;::iterator it = this-&gt;begin() ; it != this-&gt;end() ; ++it )</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">for</span>( std::list&lt; Audio::iSound* &gt;::iterator it = this-&gt;begin() ; it != this-&gt;end() ; ++it )</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            {</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordflow">if</span>(TheSound == (*it))</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            }</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#afa6086153b55cdcfed29baaad5566da1">   82</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1Audio_1_1Playlist.xhtml#a319f906c569d851da502e52fae43cc9d" title="Checks the playlist to see if it contains a sound.">Playlist::ContainsSound</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; SoundName)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">for</span>( std::list&lt; Audio::Sound* &gt;::iterator it = this-&gt;begin() ; it != this-&gt;end() ; ++it )</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="keywordflow">if</span>(SoundName == (*it)-&gt;GetName())</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }<span class="comment">//Audio</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }<span class="comment">//Audio</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 20:29:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

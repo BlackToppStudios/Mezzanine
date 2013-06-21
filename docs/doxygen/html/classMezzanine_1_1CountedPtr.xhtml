@@ -191,9 +191,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:aacf64aab4c602c626557dec6583258d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#aacf64aab4c602c626557dec6583258d9">Acquire</a> (<a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a5049e9157bf5a997625b6189da55474b">RefCountType</a> *CounterToAcquire)  throw ()</td></tr>
-<tr class="memdesc:aacf64aab4c602c626557dec6583258d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Have this pointer point at the same thing another pointer points to,.  <a href="#aacf64aab4c602c626557dec6583258d9">More...</a><br/></td></tr>
-<tr class="separator:aacf64aab4c602c626557dec6583258d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8928e944ee2b9f069421242ed0d3f0da"><td class="memTemplParams" colspan="2">template&lt;typename AnyReferenceCountType &gt; </td></tr>
+<tr class="memitem:a8928e944ee2b9f069421242ed0d3f0da"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a8928e944ee2b9f069421242ed0d3f0da">Acquire</a> (AnyReferenceCountType *CounterToAcquire)  throw ()</td></tr>
+<tr class="memdesc:a8928e944ee2b9f069421242ed0d3f0da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Have this pointer point at the same thing another pointer points to,.  <a href="#a8928e944ee2b9f069421242ed0d3f0da">More...</a><br/></td></tr>
+<tr class="separator:a8928e944ee2b9f069421242ed0d3f0da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cce00e9d7683271d77e8ede266b068e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a3cce00e9d7683271d77e8ede266b068e">FirstAcquire</a> (TypePointedTo *PointerTarget)</td></tr>
 <tr class="memdesc:a3cce00e9d7683271d77e8ede266b068e"><td class="mdescLeft">&#160;</td><td class="mdescRight">If required create a reference counter and point this at the passed pointer.  <a href="#a3cce00e9d7683271d77e8ede266b068e">More...</a><br/></td></tr>
 <tr class="separator:a3cce00e9d7683271d77e8ede266b068e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -216,10 +217,10 @@ template&lt;typename OtherPointer &gt; </td></tr>
 <tr class="memitem:ae7db19162dcfa97421b8b546221a8fa0"><td class="memTemplItemLeft" align="right" valign="top">class&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#ae7db19162dcfa97421b8b546221a8fa0">CountedPtr</a></td></tr>
 <tr class="memdesc:ae7db19162dcfa97421b8b546221a8fa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">declare all pointers as friends so they can reference eachother _ReferenceCounter. <br/></td></tr>
 <tr class="separator:ae7db19162dcfa97421b8b546221a8fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade16596c9fd5932a194b7808b61263bc"><td class="memTemplParams" colspan="2">template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </td></tr>
-<tr class="memitem:ade16596c9fd5932a194b7808b61263bc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; ReturnType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#ade16596c9fd5932a194b7808b61263bc">CountedPtrStaticCast</a> (<a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; OtherPointerTargetType &gt; Original)</td></tr>
-<tr class="memdesc:ade16596c9fd5932a194b7808b61263bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static casting can access internals also.  <a href="#ade16596c9fd5932a194b7808b61263bc">More...</a><br/></td></tr>
-<tr class="separator:ade16596c9fd5932a194b7808b61263bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5e76047ecb1b7b19bd7745475e82cce"><td class="memTemplParams" colspan="2">template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </td></tr>
+<tr class="memitem:aa5e76047ecb1b7b19bd7745475e82cce"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; ReturnType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#aa5e76047ecb1b7b19bd7745475e82cce">CountedPtrStaticCast</a> (<a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; OtherPointerTargetType &gt; &amp;Original)</td></tr>
+<tr class="memdesc:aa5e76047ecb1b7b19bd7745475e82cce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static casting can access internals also.  <a href="#aa5e76047ecb1b7b19bd7745475e82cce">More...</a><br/></td></tr>
+<tr class="separator:aa5e76047ecb1b7b19bd7745475e82cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename TypePointedTo&gt;<br/>
@@ -227,7 +228,9 @@ class Mezzanine::CountedPtr&lt; TypePointedTo &gt;</h3>
 
 <p>A simple reference counting pointer. </p>
 <p>This is a pointer that automatically deallocates the object it manages when all <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> intances managing it are destroyed or fall out of scope. This is a simpler version of std::shared_ptr. </p>
-<dl class="section warning"><dt>Warning</dt><dd>This is not thread safe by default. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>This is not thread safe by default. </dd>
+<dd>
+If you intead to have covariant pointers (Multiple pointers to the same item but with different type date, like more base or more derived pointers) all classes pointed to must have virtual deconstructors </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The basis of this class originated externally, please see the counted pointer from <a href="http://ootips.org/yonat/4dev/smart-pointers.html">http://ootips.org/yonat/4dev/smart-pointers.html</a> which came with written permission for use stated as "Feel free to use my own smart pointers in your code" on that page. </dd></dl>
 
 <p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00071">71</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
@@ -267,7 +270,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00308">308</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00343">343</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -309,7 +312,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00323">323</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00358">358</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -353,16 +356,18 @@ template&lt;typename OtherPointer &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00330">330</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00365">365</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aacf64aab4c602c626557dec6583258d9"></a>
+<a class="anchor" id="a8928e944ee2b9f069421242ed0d3f0da"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename TypePointedTo&gt; </div>
+<div class="memtemplate">
+template&lt;typename AnyReferenceCountType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -370,7 +375,7 @@ template&lt;typename TypePointedTo&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classMezzanine_1_1CountedPtr.xhtml">Mezzanine::CountedPtr</a>&lt; TypePointedTo &gt;::Acquire </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a5049e9157bf5a997625b6189da55474b">RefCountType</a> *&#160;</td>
+          <td class="paramtype">AnyReferenceCountType *&#160;</td>
           <td class="paramname"><em>CounterToAcquire</em></td><td>)</td>
           <td>  throw ()</td>
         </tr>
@@ -397,7 +402,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00276">276</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00308">308</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -433,7 +438,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00295">295</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00330">330</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -470,7 +475,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This name was chosen to match standard compliant names, and should be usable in templates that require this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00420">420</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00455">455</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -507,7 +512,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This name was chosen to match standard compliant names, and should be usable in templates that require this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00425">425</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00460">460</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -537,7 +542,7 @@ template&lt;typename TypePointedTo&gt; </div>
 <p>Get the internal Reference count. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to internal reference count of this pointer. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00456">456</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00491">491</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -567,7 +572,7 @@ template&lt;typename TypePointedTo&gt; </div>
 <p>Returns true if this pointer points to something. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Without C++11 this can be accidentally easily be cast to a bool and can do sill things. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00450">450</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00485">485</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -603,7 +608,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00407">407</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00442">442</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -639,7 +644,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00413">413</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00448">448</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -677,7 +682,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to this. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00395">395</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00430">430</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -715,7 +720,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This returns true if this and Other use the same reference count and pointer. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00445">445</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00480">480</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -744,7 +749,7 @@ template&lt;typename TypePointedTo&gt; </div>
 
 <p>Reset this to point at nothing. </p>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00345">345</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00380">380</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -780,7 +785,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00350">350</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00385">385</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -816,7 +821,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00360">360</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00395">395</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -852,7 +857,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00365">365</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00400">400</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -888,7 +893,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00375">375</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00410">410</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -925,7 +930,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This name was chosen to match standard compliant names, and should be usable in templates that require this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00432">432</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00467">467</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -962,7 +967,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This name was chosen to match standard compliant names, and should be usable in templates that require this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00437">437</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00472">472</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -999,7 +1004,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00387">387</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00422">422</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -1036,12 +1041,12 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00382">382</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00417">417</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a class="anchor" id="ade16596c9fd5932a194b7808b61263bc"></a>
+<a class="anchor" id="aa5e76047ecb1b7b19bd7745475e82cce"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1055,7 +1060,7 @@ template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt;ReturnType&gt; CountedPtrStaticCast </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; OtherPointerTargetType &gt;&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; OtherPointerTargetType &gt; &amp;&#160;</td>
           <td class="paramname"><em>Original</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1085,6 +1090,6 @@ template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </div>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 20:29:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

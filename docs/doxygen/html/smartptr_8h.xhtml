@@ -176,14 +176,14 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a98a4fa9258df4275aedd2b3a161d076c"><td class="memTemplParams" colspan="2">template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </td></tr>
-<tr class="memitem:a98a4fa9258df4275aedd2b3a161d076c"><td class="memTemplItemLeft" align="right" valign="top">CountedPtr&lt; ReturnType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#a98a4fa9258df4275aedd2b3a161d076c">Mezzanine::CountedPtrCast</a> (CountedPtr&lt; OtherPointerTargetType &gt; Original)</td></tr>
-<tr class="memdesc:a98a4fa9258df4275aedd2b3a161d076c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A compile time cast that uses only the implicit conversion of the underlying raw pointers.  <a href="#a98a4fa9258df4275aedd2b3a161d076c">More...</a><br/></td></tr>
-<tr class="separator:a98a4fa9258df4275aedd2b3a161d076c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ba58584fd62b6129e332ecf540a29c4"><td class="memTemplParams" colspan="2">template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </td></tr>
-<tr class="memitem:a7ba58584fd62b6129e332ecf540a29c4"><td class="memTemplItemLeft" align="right" valign="top">CountedPtr&lt; ReturnType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#a7ba58584fd62b6129e332ecf540a29c4">Mezzanine::CountedPtrDynamicCast</a> (CountedPtr&lt; OtherPointerTargetType &gt; Original)</td></tr>
-<tr class="memdesc:a7ba58584fd62b6129e332ecf540a29c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Runtime cast that uses dynamic casting conversion of the underlying raw pointers but only works on internally reference count types.  <a href="#a7ba58584fd62b6129e332ecf540a29c4">More...</a><br/></td></tr>
-<tr class="separator:a7ba58584fd62b6129e332ecf540a29c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4224173a1ac42674b1ff813d72a1666"><td class="memTemplParams" colspan="2">template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </td></tr>
+<tr class="memitem:ab4224173a1ac42674b1ff813d72a1666"><td class="memTemplItemLeft" align="right" valign="top">CountedPtr&lt; ReturnType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#ab4224173a1ac42674b1ff813d72a1666">Mezzanine::CountedPtrCast</a> (CountedPtr&lt; OtherPointerTargetType &gt; &amp;Original)</td></tr>
+<tr class="memdesc:ab4224173a1ac42674b1ff813d72a1666"><td class="mdescLeft">&#160;</td><td class="mdescRight">A compile time cast that uses only the implicit conversion of the underlying raw pointers.  <a href="#ab4224173a1ac42674b1ff813d72a1666">More...</a><br/></td></tr>
+<tr class="separator:ab4224173a1ac42674b1ff813d72a1666"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d26cc4afa9fedd9c998091d2d960784"><td class="memTemplParams" colspan="2">template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </td></tr>
+<tr class="memitem:a5d26cc4afa9fedd9c998091d2d960784"><td class="memTemplItemLeft" align="right" valign="top">CountedPtr&lt; ReturnType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#a5d26cc4afa9fedd9c998091d2d960784">Mezzanine::CountedPtrDynamicCast</a> (CountedPtr&lt; OtherPointerTargetType &gt; &amp;Original)</td></tr>
+<tr class="memdesc:a5d26cc4afa9fedd9c998091d2d960784"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Runtime cast that uses dynamic casting conversion of the underlying raw pointers but only works on internally reference count types.  <a href="#a5d26cc4afa9fedd9c998091d2d960784">More...</a><br/></td></tr>
+<tr class="separator:a5d26cc4afa9fedd9c998091d2d960784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4900c81f1a95d2da5d6309936b57b663"><td class="memTemplParams" colspan="2">template&lt;typename Pointer &gt; </td></tr>
 <tr class="memitem:a4900c81f1a95d2da5d6309936b57b663"><td class="memTemplItemLeft" align="right" valign="top">Pointer *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#a4900c81f1a95d2da5d6309936b57b663">Mezzanine::CountedPtrInternalCast</a> (Pointer *Original)</td></tr>
 <tr class="memdesc:a4900c81f1a95d2da5d6309936b57b663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used internally by CounterPtr to abstract away casts in the case where the return type would match the input type.  <a href="#a4900c81f1a95d2da5d6309936b57b663">More...</a><br/></td></tr>
@@ -192,10 +192,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a81cb2e3c87ff45317e47ac082e60ad32"><td class="memTemplItemLeft" align="right" valign="top">ReturnPointer *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#a81cb2e3c87ff45317e47ac082e60ad32">Mezzanine::CountedPtrInternalCast</a> (const OriginalPointer *Original)</td></tr>
 <tr class="memdesc:a81cb2e3c87ff45317e47ac082e60ad32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used internally by CounterPtr to abstract away casts in the case where the return type would <em>NOT</em> match the input type.  <a href="#a81cb2e3c87ff45317e47ac082e60ad32">More...</a><br/></td></tr>
 <tr class="separator:a81cb2e3c87ff45317e47ac082e60ad32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6887248bf308f2bd750bce8912a5f57e"><td class="memTemplParams" colspan="2">template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </td></tr>
-<tr class="memitem:a6887248bf308f2bd750bce8912a5f57e"><td class="memTemplItemLeft" align="right" valign="top">CountedPtr&lt; ReturnType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#a6887248bf308f2bd750bce8912a5f57e">Mezzanine::CountedPtrStaticCast</a> (CountedPtr&lt; OtherPointerTargetType &gt; Original)</td></tr>
-<tr class="memdesc:a6887248bf308f2bd750bce8912a5f57e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A compile time cast that uses static casting conversion of the underlying raw pointers but only works on internally reference count types.  <a href="#a6887248bf308f2bd750bce8912a5f57e">More...</a><br/></td></tr>
-<tr class="separator:a6887248bf308f2bd750bce8912a5f57e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abca8f4d958804ca1c77b3d7cd41b2108"><td class="memTemplParams" colspan="2">template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </td></tr>
+<tr class="memitem:abca8f4d958804ca1c77b3d7cd41b2108"><td class="memTemplItemLeft" align="right" valign="top">CountedPtr&lt; ReturnType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#abca8f4d958804ca1c77b3d7cd41b2108">Mezzanine::CountedPtrStaticCast</a> (CountedPtr&lt; OtherPointerTargetType &gt; &amp;Original)</td></tr>
+<tr class="memdesc:abca8f4d958804ca1c77b3d7cd41b2108"><td class="mdescLeft">&#160;</td><td class="mdescRight">A compile time cast that uses static casting conversion of the underlying raw pointers but only works on internally reference count types.  <a href="#abca8f4d958804ca1c77b3d7cd41b2108">More...</a><br/></td></tr>
+<tr class="separator:abca8f4d958804ca1c77b3d7cd41b2108"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file describes and implements any pointers or typedefs to pointers that the <a class="el" href="namespaceMezzanine.xhtml" title="The bulk of the engine components go in this namspace.">Mezzanine</a> uses and exposes in its API. </p>
@@ -203,6 +203,6 @@ Functions</h2></td></tr>
 <p>Definition in file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 20:29:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

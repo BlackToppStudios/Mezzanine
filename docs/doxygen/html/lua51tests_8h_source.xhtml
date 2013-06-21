@@ -135,8 +135,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">public</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">        /// @return Returns a String containing &quot;lua51&quot;</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classlua51tests.xhtml#a494a2971acb176fc28d87c3d57ec7a8a">   54</a></span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name()</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;lua51&quot;</span>); }</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classlua51tests.xhtml#a494a2971acb176fc28d87c3d57ec7a8a">   54</a></span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> Name()</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;lua51&quot;</span>); }</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">        /// @warning Totally incomplete, when run this will prove nothing.</span></div>
@@ -145,36 +145,145 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">if</span> (RunAutomaticTests)</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            {</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    Scripting::Lua::Lua51ScriptingEngine LuaSafe(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    <span class="comment">//Scripting::Lua::Lua51ScriptingEngine LuaEverything(Scripting::Lua::Lua51ScriptingEngine::AllLibs);</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    Scripting::Lua::Lua51ScriptingEngine LuaRuntimeSafe(Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    <span class="comment">//Scripting::Lua::Lua51ScriptingEngine LuaRuntimeAll(Scripting::Lua::Lua51ScriptingEngine::AllLibs);</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> WorldWorldSource(<span class="stringliteral">&quot;print (\&quot;Hello World!\&quot;)&quot;</span>);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    <span class="comment">//CountedPtr&lt;Entresol&gt; World = SimpleEngineStartup();</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    <span class="comment">//World-&gt;EngineInit(true);</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                TestResult temp;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">if</span>(1)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    { temp=Success; }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    { temp=Failed; }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Blank&quot;</span>, temp);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Blank&quot;</span>, Skipped);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    <span class="comment">// Lua script Default constructor skipped</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                    <span class="comment">// Skipped FlaggedBuffer completely.</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">                    //////////////////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>                    <span class="comment">// Static Data Tests</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    <span class="keywordflow">if</span>(<a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;Lua51ScriptingEngine&quot;</span>)==LuaRuntimeSafe.GetImplementationTypeName())</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ImplementationName&quot;</span>, Success);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                    }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ImplementationName&quot;</span>, Failed);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    <span class="keywordflow">if</span>(541==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs)</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                    {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::LuaLibEnumDefault&quot;</span>, Success);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::LuaLibEnumDefault&quot;</span>, Failed);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                    <span class="keywordflow">if</span>(511==Scripting::Lua::Lua51ScriptingEngine::AllLibs)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                    {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::LuaLibEnumUnsafe&quot;</span>, Success);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                    }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::LuaLibEnumUnsafe&quot;</span>, Failed);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">                    //////////////////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"></span>                    <span class="comment">// Compile Tests</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                    {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        Scripting::Lua::Lua51Script Hello(WorldWorldSource,&amp;LuaRuntimeSafe); <span class="comment">//From pointer</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Script::ConstructCompilePointer&quot;</span>, Success);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                    } <span class="keywordflow">catch</span> (<a class="code" href="classMezzanine_1_1ScriptLuaException.xhtml" title="Thrown when an unknown error happens in a Lua script.">ScriptLuaException</a>&amp; e) {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Script::ConstructCompilePointer&quot;</span>, Failed);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        Scripting::Lua::Lua51Script Hello(WorldWorldSource,LuaRuntimeSafe); <span class="comment">// from reference</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Script::ConstructCompileReference&quot;</span>, Success);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                    } <span class="keywordflow">catch</span> (<a class="code" href="classMezzanine_1_1ScriptLuaException.xhtml" title="Thrown when an unknown error happens in a Lua script.">ScriptLuaException</a>&amp; e) {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Script::ConstructCompileReference&quot;</span>, Failed);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                    }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">                    //////////////////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"></span>                    <span class="comment">// Execute Tests</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                    {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                        Scripting::Lua::Lua51Script Hello(WorldWorldSource,LuaRuntimeSafe);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                        LuaRuntimeSafe.Execute(Hello);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromReference&quot;</span>, Success);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                    } <span class="keywordflow">catch</span> (<a class="code" href="classMezzanine_1_1ScriptLuaException.xhtml" title="Thrown when an unknown error happens in a Lua script.">ScriptLuaException</a>&amp; e) {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ConstructCompileReference&quot;</span>, Failed);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                    }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                    {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        Scripting::Lua::Lua51Script Hello(WorldWorldSource,LuaRuntimeSafe);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                        LuaRuntimeSafe.Execute(&amp;Hello);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromPointer&quot;</span>, Success);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                    } <span class="keywordflow">catch</span> (<a class="code" href="classMezzanine_1_1ScriptLuaException.xhtml" title="Thrown when an unknown error happens in a Lua script.">ScriptLuaException</a>&amp; e) {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromPointer&quot;</span>, Failed);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                    {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                        <a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr&lt;Scripting::Lua::Lua51Script&gt;</a> Hello(<span class="keyword">new</span> Scripting::Lua::Lua51Script(WorldWorldSource,LuaRuntimeSafe));</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                        LuaRuntimeSafe.Execute(Hello);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromCountedPtr&quot;</span>, Success);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                    } <span class="keywordflow">catch</span> (<a class="code" href="classMezzanine_1_1ScriptLuaException.xhtml" title="Thrown when an unknown error happens in a Lua script.">ScriptLuaException</a>&amp; e) {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromCountedPtr&quot;</span>, Failed);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                    }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                    {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                        <a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr&lt;Scripting::iScript&gt;</a> Hello(<span class="keyword">new</span> Scripting::Lua::Lua51Script(WorldWorldSource,LuaRuntimeSafe));</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                        LuaRuntimeSafe.Execute(Hello);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromCountedPtrCovariant&quot;</span>, Success);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                    } <span class="keywordflow">catch</span> (<a class="code" href="classMezzanine_1_1ScriptLuaException.xhtml" title="Thrown when an unknown error happens in a Lua script.">ScriptLuaException</a>&amp; e) {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromCountedPtrCovariant&quot;</span>, Failed);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                    }</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                    {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                        LuaRuntimeSafe.Execute(WorldWorldSource);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromSource&quot;</span>, Success);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                    } <span class="keywordflow">catch</span> (<a class="code" href="classMezzanine_1_1ScriptLuaException.xhtml" title="Thrown when an unknown error happens in a Lua script.">ScriptLuaException</a>&amp; e) {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromSource&quot;</span>, Failed);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                    }</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">                    //////////////////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment"></span>                    <span class="comment">// Argument Tests</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                    {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                        Scripting::Lua::Lua51Script IntArgScript(<span class="stringliteral">&quot;function PrintNum(x)\n   return x * 9\nend&quot;</span>,LuaRuntimeSafe);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                        LuaRuntimeSafe.Execute(IntArgScript);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                        Scripting::Lua::Lua51Script IntArgCall(<span class="stringliteral">&quot;PrintNum&quot;</span>,LuaRuntimeSafe,<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                        IntArgCall.AddArgument(Scripting::Lua::Lua51IntegerArgument(9));</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                        LuaRuntimeSafe.Execute(IntArgCall);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::PassInt&quot;</span>, Success);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                    } <span class="keywordflow">catch</span> (<a class="code" href="classMezzanine_1_1ScriptLuaException.xhtml" title="Thrown when an unknown error happens in a Lua script.">ScriptLuaException</a>&amp; e) {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                        AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::PassInt&quot;</span>, Failed);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                }</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ImplementationName&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::LuaLibEnumDefault&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::LuaLibEnumUnsafe&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Script::ConstructCompilePointer&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Script::ConstructCompileReference&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Script::ConstructCompileCountedPtr&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromReference&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromPointer&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromCountedPtr&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromSource&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                AddTestResult(<span class="stringliteral">&quot;Lua51::Engine::ExecuteFromCountedPtrCovariant&quot;</span>, Skipped);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            }</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;};</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 20:29:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

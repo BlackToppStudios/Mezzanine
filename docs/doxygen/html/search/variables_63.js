@@ -6,6 +6,8 @@ var searchData=
   ['character',['Character',['../structMezzanine_1_1UI_1_1KerningInfo.xhtml#a1174fdb6e0a71495192c6aef64dfcdac',1,'Mezzanine::UI::KerningInfo']]],
   ['characteractors',['CharacterActors',['../classMezzanine_1_1ActorManager.xhtml#a07fba4f64f1a9162d3a12916d6ef29bd',1,'Mezzanine::ActorManager']]],
   ['childshapes',['ChildShapes',['../classMezzanine_1_1Physics_1_1CompoundCollisionShape.xhtml#aafeb1001abeaa701532372c39459988c',1,'Mezzanine::Physics::CompoundCollisionShape']]],
+  ['closed',['Closed',['../classMezzanine_1_1Track.xhtml#a9a87abbbf87cc953c8bf13846fe77ce7',1,'Mezzanine::Track']]],
+  ['coarsetune',['CoarseTune',['../structMezzanine_1_1Audio_1_1PitchShifterParameters.xhtml#a9a030143fe95592afe0a2405226967b8',1,'Mezzanine::Audio::PitchShifterParameters']]],
   ['collection',['Collection',['../structMezzanine_1_1UI_1_1RenderableSetData.xhtml#a35dddda517f77cbbb31eea781d7f9874',1,'Mezzanine::UI::RenderableSetData']]],
   ['collisiongroup',['CollisionGroup',['../classMezzanine_1_1WorldObjectPhysicsSettings.xhtml#a5dbea4c96d2eb21cf39e26b138deb4fe',1,'Mezzanine::WorldObjectPhysicsSettings::CollisionGroup()'],['../classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a19e4e14646ef4ce1945cb2ac7041423c',1,'Mezzanine::Physics::PhysicsProxy::CollisionGroup()']]],
   ['collisionmask',['CollisionMask',['../classMezzanine_1_1WorldObjectPhysicsSettings.xhtml#a9065465b55008f208333b5e39a9bb4c6',1,'Mezzanine::WorldObjectPhysicsSettings::CollisionMask()'],['../classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ae8999b3ac508ffa0375409c707993f09',1,'Mezzanine::Physics::PhysicsProxy::CollisionMask()']]],

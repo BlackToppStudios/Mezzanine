@@ -151,6 +151,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a284f73fe1354a2cf632f31ec83ee58ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Quaternion.xhtml">Quaternion</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.xhtml#a284f73fe1354a2cf632f31ec83ee58ad">Normalize</a> ()</td></tr>
 <tr class="memdesc:a284f73fe1354a2cf632f31ec83ee58ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalizes this <a class="el" href="classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space.">Quaternion</a>.  <a href="#a284f73fe1354a2cf632f31ec83ee58ad">More...</a><br/></td></tr>
 <tr class="separator:a284f73fe1354a2cf632f31ec83ee58ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a597b46b00bdf880ef318210eaebc8cb9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.xhtml#a597b46b00bdf880ef318210eaebc8cb9">operator!=</a> (const <a class="el" href="classMezzanine_1_1Quaternion.xhtml">Mezzanine::Quaternion</a> &amp;Other) const </td></tr>
+<tr class="memdesc:a597b46b00bdf880ef318210eaebc8cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inequality Comparison Operator from <a class="el" href="classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space.">Mezzanine::Quaternion</a>.  <a href="#a597b46b00bdf880ef318210eaebc8cb9">More...</a><br/></td></tr>
+<tr class="separator:a597b46b00bdf880ef318210eaebc8cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebe868b9a98528552308e4ccae21e07b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.xhtml#aebe868b9a98528552308e4ccae21e07b">operator!=</a> (const Ogre::Quaternion &amp;Other) const </td></tr>
+<tr class="memdesc:aebe868b9a98528552308e4ccae21e07b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inequality Comparison Operator from Ogre::Quaternion.  <a href="#aebe868b9a98528552308e4ccae21e07b">More...</a><br/></td></tr>
+<tr class="separator:aebe868b9a98528552308e4ccae21e07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee3e856ca64b6ebb334029a22cfe20b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.xhtml#a7ee3e856ca64b6ebb334029a22cfe20b">operator!=</a> (const btQuaternion &amp;Other) const </td></tr>
+<tr class="memdesc:a7ee3e856ca64b6ebb334029a22cfe20b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inequality Comparison Operator from btQuaternion.  <a href="#a7ee3e856ca64b6ebb334029a22cfe20b">More...</a><br/></td></tr>
+<tr class="separator:a7ee3e856ca64b6ebb334029a22cfe20b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61e1e32521a5353287f158c091d41aaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Quaternion.xhtml">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.xhtml#a61e1e32521a5353287f158c091d41aaa">operator*</a> (const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Scalar) const </td></tr>
 <tr class="memdesc:a61e1e32521a5353287f158c091d41aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scaling by multiplication.  <a href="#a61e1e32521a5353287f158c091d41aaa">More...</a><br/></td></tr>
 <tr class="separator:a61e1e32521a5353287f158c091d41aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -797,6 +806,87 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a597b46b00bdf880ef318210eaebc8cb9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mezzanine::Quaternion::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Quaternion.xhtml">Mezzanine::Quaternion</a> &amp;&#160;</td>
+          <td class="paramname"><em>Other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inequality Comparison Operator from <a class="el" href="classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space.">Mezzanine::Quaternion</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Other</td><td>The other quaternion to compare with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the Quaternions are not semantically equal, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="quaternion_8cpp_source.xhtml#l00452">452</a> of file <a class="el" href="quaternion_8cpp_source.xhtml">quaternion.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aebe868b9a98528552308e4ccae21e07b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mezzanine::Quaternion::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const Ogre::Quaternion &amp;&#160;</td>
+          <td class="paramname"><em>Other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inequality Comparison Operator from Ogre::Quaternion. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Other</td><td>The other quaternion to compare with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the Quaternions are not semantically equal, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="quaternion_8cpp_source.xhtml#l00455">455</a> of file <a class="el" href="quaternion_8cpp_source.xhtml">quaternion.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7ee3e856ca64b6ebb334029a22cfe20b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mezzanine::Quaternion::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const btQuaternion &amp;&#160;</td>
+          <td class="paramname"><em>Other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inequality Comparison Operator from btQuaternion. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Other</td><td>The other quaternion to compare with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the Quaternions are not semantically equal, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="quaternion_8cpp_source.xhtml#l00458">458</a> of file <a class="el" href="quaternion_8cpp_source.xhtml">quaternion.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a61e1e32521a5353287f158c091d41aaa"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1381,7 +1471,7 @@ Public Attributes</h2></td></tr>
 <p>Equality Comparison Operator from <a class="el" href="classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space.">Mezzanine::Quaternion</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other quaternion to overwrite this one. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other quaternion to compare with. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1408,7 +1498,7 @@ Public Attributes</h2></td></tr>
 <p>Equality Comparison Operator from Ogre::Quaternion. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other quaternion to overwrite this one. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other quaternion to compare with. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1435,7 +1525,7 @@ Public Attributes</h2></td></tr>
 <p>Equality Comparison Operator from btQuaternion. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other quaternion to overwrite this one. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other quaternion to compare with. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1529,7 +1619,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="quaternion_8cpp_source.xhtml#l00477">477</a> of file <a class="el" href="quaternion_8cpp_source.xhtml">quaternion.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quaternion_8cpp_source.xhtml#l00486">486</a> of file <a class="el" href="quaternion_8cpp_source.xhtml">quaternion.cpp</a>.</p>
 
 </div>
 </div>
@@ -1563,7 +1653,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="quaternion_8cpp_source.xhtml#l00453">453</a> of file <a class="el" href="quaternion_8cpp_source.xhtml">quaternion.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quaternion_8cpp_source.xhtml#l00462">462</a> of file <a class="el" href="quaternion_8cpp_source.xhtml">quaternion.cpp</a>.</p>
 
 </div>
 </div>
@@ -1591,7 +1681,7 @@ Public Attributes</h2></td></tr>
 <p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag this class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing "Quaternion" </dd></dl>
 
-<p>Definition at line <a class="el" href="quaternion_8cpp_source.xhtml#l00495">495</a> of file <a class="el" href="quaternion_8cpp_source.xhtml">quaternion.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quaternion_8cpp_source.xhtml#l00504">504</a> of file <a class="el" href="quaternion_8cpp_source.xhtml">quaternion.cpp</a>.</p>
 
 </div>
 </div>
@@ -1708,6 +1798,6 @@ Public Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 20:29:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

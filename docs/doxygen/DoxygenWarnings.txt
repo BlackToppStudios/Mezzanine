@@ -69,35 +69,37 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/assethandler.h:52: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:365: warning: Compound xml_node is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/binarytoolstests.h:168: warning: Compound binarytoolstests is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:58: warning: Compound Mezzanine::AudioManagerInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:708: warning: Compound xml_attribute_iterator is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:193: warning: Compound Mezzanine::ReferenceCountTraits< FooDerived2 > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/matrix4x4.h:58: warning: Compound Mezzanine::Matrix4x4 is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:283: warning: Compound Mezzanine::ReferenceCountTraits< CarTest > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:383: warning: Compound Mezzanine::ReferenceCountTraits< CarTest > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:239: warning: Compound xml_writer is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:257: warning: Compound Mezzanine::CarTest is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:357: warning: Compound Mezzanine::CarTest is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1083: warning: Compound xpath_exception is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:750: warning: Compound xml_named_node_iterator is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/asset.h:52: warning: Compound Mezzanine::Resource::Asset is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:271: warning: Compound Mezzanine::ReferenceCountTraits< VehicleTest > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:371: warning: Compound Mezzanine::ReferenceCountTraits< VehicleTest > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:856: warning: Compound xml_document is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:294: warning: Compound Mezzanine::ReferenceCountTraits< FooInternalInherits > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/world.h:59: warning: Compound Mezzanine::World is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/screen.cpp:104: warning: Compound Mezzanine::UI::OgreVertex is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:834: warning: Compound xml_parse_result is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.h:93: warning: Compound Mezzanine::PhysicsConstructionInfo is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainer.h:280: warning: Compound Mezzanine::UI::RenderableContainer is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:305: warning: Compound countedptrtests is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:405: warning: Compound countedptrtests is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1023: warning: Compound xpath_query is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:167: warning: Compound Mezzanine::FooDiamond is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:957: warning: Compound xpath_variable is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:598: warning: Compound xml_text is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:306: warning: Compound Mezzanine::ReferenceCountTraits< FooInternalBase > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:263: warning: Compound xml_writer_stream is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:58: warning: Compound Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:145: warning: Compound Mezzanine::FooDerived1 is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:156: warning: Compound Mezzanine::FooDerived2 is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/resizehandler.h:54: warning: Compound Mezzanine::UI::ResizeHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:66: warning: Compound Mezzanine::UI::TextureAtlasInternalData is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:217: warning: Compound Mezzanine::FooInternalBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/listbox.h:52: warning: Compound Mezzanine::UI::TemplateParams is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/archive.h:54: warning: Compound Mezzanine::Resource::Archive is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:266: warning: Compound Mezzanine::UI::OpenRenderableContainerWidget is not documented.
@@ -118,6 +120,9 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/areaeffect.h:140: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/areaeffect.h:144: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/areaeffect.h:146: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:86: warning: unable to resolve reference to `FrequencyShifterParameters' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:92: warning: unable to resolve reference to `RqualizerParameters' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectshandler.h:76: warning: unable to resolve reference to `Sound' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:295: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:299: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:301: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
@@ -161,6 +166,12 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/point2pointconstraint.h:123: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:137: warning: target Constraint::ValidParamOnAxis(int) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:143: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:87: warning: unable to resolve reference to `DataStream' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:79: warning: unable to resolve reference to `DataStream' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:81: warning: unable to resolve reference to `DataStream' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:83: warning: unable to resolve reference to `DataStream' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:85: warning: unable to resolve reference to `DataStream' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:89: warning: unable to resolve reference to `DataStream' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:68: warning: recursive call chain of \copydoc commands detected at 68
 
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/button.h:70: warning: recursive call chain of \copydoc commands detected at 70
@@ -270,10 +281,10 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.h:114: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
@@ -289,6 +300,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobject.h:325: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:51: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:56: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:99: warning: Member ScriptArgment (enumeration) of namespace Mezzanine::Scripting is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/binarytoolstests.h:117: warning: unable to resolve reference to `A' for \ref command
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/binarytoolstests.h:116: warning: return type of member ReneBase64Decode is not documented
 <unknown>:8: warning: unable to resolve reference to `World.GameInit()' for \ref command
@@ -314,8 +326,8 @@
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:56: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:56: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/compilerflagtests.h:56: warning: parameters of member compilerflagtests::RunTests are not (all) documented
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:308: warning: Member Name() (function) of class countedptrtests is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:311: warning: Member RunTests(bool RunAutomaticTests, bool RunInteractiveTests) (function) of class countedptrtests is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:408: warning: Member Name() (function) of class countedptrtests is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:411: warning: Member RunTests(bool RunAutomaticTests, bool RunInteractiveTests) (function) of class countedptrtests is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:57: warning: target Mezzanine::Testing::UnitTestGroup::RunTests of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/lua51tests.h:52: warning: target Mezzanine::Testing::UnitTestGroup::Name of \copydoc command not found
@@ -689,16 +701,16 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.hpp:1014: warning: Member set(const char_t *name, const xpath_node_set &value) (function) of class xpath_variable_set is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:274: warning: Member AlgoList (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:68: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.cpp:65: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:609: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > Original)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:609: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > Original)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:627: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrDynamicCast(CountedPtr< OtherPointerTargetType > Original)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:627: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrDynamicCast(CountedPtr< OtherPointerTargetType > Original)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:597: warning: argument 'Pointer' of command @param is not found in the argument list of Mezzanine::CountedPtrInternalCast(Pointer *Original)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:574: warning: argument 'ReturnPointer' of command @param is not found in the argument list of Mezzanine::CountedPtrInternalCast(const OriginalPointer *Original)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:574: warning: argument 'OriginalPointer' of command @param is not found in the argument list of Mezzanine::CountedPtrInternalCast(const OriginalPointer *Original)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:266: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > Original)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:266: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.cpp:64: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:643: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:643: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:661: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrDynamicCast(CountedPtr< OtherPointerTargetType > &Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:661: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrDynamicCast(CountedPtr< OtherPointerTargetType > &Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:632: warning: argument 'Pointer' of command @param is not found in the argument list of Mezzanine::CountedPtrInternalCast(Pointer *Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:609: warning: argument 'ReturnPointer' of command @param is not found in the argument list of Mezzanine::CountedPtrInternalCast(const OriginalPointer *Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:609: warning: argument 'OriginalPointer' of command @param is not found in the argument list of Mezzanine::CountedPtrInternalCast(const OriginalPointer *Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:297: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > &Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:297: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > &Original)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobject.h:295: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobject.h:325: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
@@ -778,60 +790,6 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:150: warning: Member ConstAttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:152: warning: Member Attached (variable) of class Mezzanine::AttachableParent is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:101: warning: Member AppendCurrentSettings(XML::Node &SettingsRootNode) (function) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:100: warning: Member GetObjectRootNodeName() const  (function) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:313: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:311: warning: Member LoadSettingsFromFile(const String &FileName, const String &Path) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:314: warning: Member SaveSettingSetToXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:312: warning: Member SaveSettingsToFile(StringVector &GroupNames, const String &FileName, const String &Path) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:87: warning: Member AmbientSounds (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:91: warning: Member AmbientVolume (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:84: warning: Member AMID (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:83: warning: Member cAudioMan (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:88: warning: Member DialogSounds (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:92: warning: Member DialogVolume (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:89: warning: Member EffectSounds (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:93: warning: Member EffectVolume (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:98: warning: Member Listener (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:95: warning: Member MasterVolume (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:99: warning: Member MusicPlayer (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:90: warning: Member MusicSounds (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:94: warning: Member MusicVolume (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:97: warning: Member Muted (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:96: warning: Member MuteStandby (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:86: warning: Member Sounds (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:85: warning: Member SoundSets (variable) of class Mezzanine::AudioManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:308: warning: Member AutoGenFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:307: warning: Member AutoGenPath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:310: warning: Member CurrentSettingsSaveFile (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:306: warning: Member SettingFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:305: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:300: warning: Member ConstSettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:297: warning: Member ConstSettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:298: warning: Member SettingFilesContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:299: warning: Member SettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:295: warning: Member SettingGroupContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:296: warning: Member SettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< AudioManager > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:170: warning: argument 'SoundName' of command @param is not found in the argument list of Mezzanine::AudioManager::AddSoundToSoundSet(const String &SoundSetName, Audio::Sound *SoundInst)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:170: warning: The following parameters of Mezzanine::AudioManager::AddSoundToSoundSet(const String &SoundSetName, Audio::Sound *SoundInst) are not documented:
-  parameter 'SoundSetName'
-  parameter 'SoundInst'
-<ApplySettingGroupImpl>:1: warning: parameters of member Mezzanine::AudioManager::ApplySettingGroupImpl are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:149: warning: argument 'SoundName' of command @param is not found in the argument list of Mezzanine::AudioManager::DestroySound(Audio::Sound *ToBeDestroyed)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:149: warning: The following parameters of Mezzanine::AudioManager::DestroySound(Audio::Sound *ToBeDestroyed) are not documented:
-  parameter 'ToBeDestroyed'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:146: warning: parameters of member Mezzanine::AudioManager::GetSoundByName are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:200: warning: argument 'Music' of command @param is not found in the argument list of Mezzanine::AudioManager::SetMasterVolume(const Real &Master)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.h:200: warning: The following parameters of Mezzanine::AudioManager::SetMasterVolume(const Real &Master) are not documented:
-  parameter 'Master'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:60: warning: Member AudioManagerInternalData(AudioManager *Man) (function) of class Mezzanine::AudioManagerInternalData is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:63: warning: Member AudioMan (variable) of class Mezzanine::AudioManagerInternalData is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:66: warning: Member EAXEffectSlots (variable) of class Mezzanine::AudioManagerInternalData is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:64: warning: Member InitializedDevice (variable) of class Mezzanine::AudioManagerInternalData is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:65: warning: Member OutputFrequency (variable) of class Mezzanine::AudioManagerInternalData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:299: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:301: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h:295: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
@@ -877,8 +835,8 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< CameraManager > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/cameramanager.h:120: warning: parameters of member Mezzanine::CameraManager::GetCamera are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/cameramanager.h:123: warning: parameters of member Mezzanine::CameraManager::GetCamera are not (all) documented
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:260: warning: Member StartEngine() (function) of class Mezzanine::CarTest is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:253: warning: Member StartEngine() (function) of class Mezzanine::VehicleTest is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:360: warning: Member StartEngine() (function) of class Mezzanine::CarTest is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:353: warning: Member StartEngine() (function) of class Mezzanine::VehicleTest is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:285: warning: Member CollisionDispatcher(btCollisionConfiguration *CollisionConfig) (function) of class Mezzanine::CollisionDispatcher is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:349: warning: Member allocateCollisionAlgorithm(int size) (function) of class Mezzanine::CollisionDispatcher is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:356: warning: Member freeCollisionAlgorithm(void *ptr) (function) of class Mezzanine::CollisionDispatcher is not documented.
@@ -916,9 +874,9 @@
   parameter 'CPercent'
   parameter 'PPercent'
   parameter 'UseAllSubmeshes'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:618: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtr< TypePointedTo >::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > Original)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:618: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtr< TypePointedTo >::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > Original)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:501: warning: parameters of member Mezzanine::CountedPtrCastImpl< OriginalPointer, OriginalPointer, CastNoneError >::Cast are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:652: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtr< TypePointedTo >::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > &Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:652: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtr< TypePointedTo >::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > &Original)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:536: warning: parameters of member Mezzanine::CountedPtrCastImpl< OriginalPointer, OriginalPointer, CastNoneError >::Cast are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:75: warning: target Mezzanine::Attachable::GetName() of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:99: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
@@ -937,12 +895,12 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: parameters of member Mezzanine::Entity::SetLocalOrientation are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:316: warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:315: warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:314: warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:320: warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:319: warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:318: warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:407: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const PhysicsConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:78: warning: Found unknown command `\TODO'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:411: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const PhysicsConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:85: warning: Found unknown command `\TODO'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventcollision.h:73: warning: argument 'PhysicsManifold' of command @param is not found in the argument list of Mezzanine::EventCollision::EventCollision(ActorBase *actora, ActorBase *actorb, Mezzanine::Collision *Col)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventcollision.h:73: warning: The following parameters of Mezzanine::EventCollision::EventCollision(ActorBase *actora, ActorBase *actorb, Mezzanine::Collision *Col) are not documented:
   parameter 'Col'
@@ -956,52 +914,54 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventquit.h:68: warning: return type of member Mezzanine::EventQuit::GetType is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventrendertime.h:72: warning: return type of member Mezzanine::EventRenderTime::GetType is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventuserinput.h:157: warning: parameters of member Mezzanine::EventUserInput::GetMetaCode are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:145: warning: unable to resolve reference to `MEZZ_EXCEPTION' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:188: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1707: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ArithmeticException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:489: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:615: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryNotFoundException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:657: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryPermissionException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:531: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryReadException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:573: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryWriteException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:279: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:405: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileNotFoundException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:447: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FilePermissionException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:321: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileReadException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:363: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileWriteException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1161: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityDuplicateException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1035: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1077: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityInvalidException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1119: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityNotFoundException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1959: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InternalException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:2043: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidAssignment::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1749: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidParametersException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1833: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidStateException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1791: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidVersionException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:237: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:993: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOReadException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:951: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOWriteException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1203: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< MemoryManagementException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1287: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< MemoryOutOfBoundsException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:699: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:825: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkNotFoundException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:909: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkPermissionException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:741: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkReadException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:867: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkURLException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:783: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkWriteException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:2001: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NotImplementedException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1245: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< OutOfMemoryException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1875: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< RenderingAPIException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1917: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< RuntimeAssertionException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1497: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1665: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaErrErrException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1539: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1623: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaRuntimeException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1581: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaYieldException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1329: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1455: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorLuaException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1371: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorXMLException::ExceptionCode > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1413: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorXPathException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:148: warning: unable to resolve reference to `MEZZ_EXCEPTION' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:191: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1835: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ArithmeticException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:491: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:617: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryNotFoundException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:659: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryPermissionException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:533: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryReadException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:575: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< DirectoryWriteException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:281: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:407: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileNotFoundException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:449: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FilePermissionException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:323: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileReadException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:365: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< FileWriteException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1163: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityDuplicateException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1037: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1079: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityInvalidException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1121: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InstanceIdentityNotFoundException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:2045: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InternalException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:2129: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidAssignment::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1919: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidStateException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1877: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< InvalidVersionException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:239: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:995: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOReadException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:953: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< IOWriteException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1205: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< MemoryManagementException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1289: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< MemoryOutOfBoundsException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:701: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:827: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkNotFoundException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:911: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkPermissionException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:743: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkReadException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:869: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkURLException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:785: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NetworkWriteException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:2087: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< NotImplementedException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1247: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< OutOfMemoryException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1751: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ParametersCastException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1709: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ParametersException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1793: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ParametersRangeException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1961: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< RenderingAPIException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:2003: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< RuntimeAssertionException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1499: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1667: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaErrErrException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1541: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1625: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaRuntimeException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1583: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ScriptLuaYieldException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1331: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1457: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorLuaException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1373: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorXMLException::ExceptionCode > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/exception.h:1415: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< SyntaxErrorXPathException::ExceptionCode > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/extendedtimer.h:96: warning: Member CheckAll(const ExtendedTimer::TimeStruct Struct) (function) of class Mezzanine::ExtendedTimer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/extendedtimer.h:95: warning: Member CheckDays(const ExtendedTimer::TimeStruct Struct) (function) of class Mezzanine::ExtendedTimer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/extendedtimer.h:94: warning: Member CheckHours(const ExtendedTimer::TimeStruct Struct) (function) of class Mezzanine::ExtendedTimer is not documented.
@@ -1043,6 +1003,7 @@
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:169: warning: Member ValueDiamond (variable) of class Mezzanine::FooDiamond is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:147: warning: Member Value1 (variable) of class Mezzanine::FooDerived1 is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:158: warning: Member Value2 (variable) of class Mezzanine::FooDerived2 is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:255: warning: argument 'TargetResults' of command @param is not found in the argument list of Mezzanine::FooInternalInherits::FooInternalInherits(Integer Val=0)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:83: warning: Member ConstGameWindowIterator (typedef) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:81: warning: Member GameWindowContainer (typedef) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:82: warning: Member GameWindowIterator (typedef) of class Mezzanine::GraphicsManager is not documented.
@@ -1056,9 +1017,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:109: warning: Member GetObjectRootNodeName() const  (function) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:108: warning: Member InitOgreRenderSystem() (function) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:313: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:311: warning: Member LoadSettingsFromFile(const String &FileName, const String &Path) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:314: warning: Member SaveSettingSetToXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:312: warning: Member SaveSettingsToFile(StringVector &GroupNames, const String &FileName, const String &Path) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:99: warning: Member CurrRenderSys (variable) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:100: warning: Member DesktopSettings (variable) of class Mezzanine::GraphicsManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.h:98: warning: Member FrameDelay (variable) of class Mezzanine::GraphicsManager is not documented.
@@ -1140,9 +1099,9 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/linegroup.h:81: warning: return type of member Mezzanine::LineGroup::getPoint is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 <ManagerType>:1: warning: parameters of member Mezzanine::ManagerBase::ManagerType are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:187: warning: parameters of member Mezzanine::ManagerBase::GetTypeNameAsString are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:191: warning: parameters of member Mezzanine::ManagerBase::GetTypeNameFromString are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:183: warning: parameters of member Mezzanine::ManagerBase::SetPriority are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:188: warning: parameters of member Mezzanine::ManagerBase::GetTypeNameAsString are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:192: warning: parameters of member Mezzanine::ManagerBase::GetTypeNameFromString are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:184: warning: parameters of member Mezzanine::ManagerBase::SetPriority are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/mathtool.h:60: warning: Member DegToRadMult (variable) of class Mezzanine::MathTool is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/mathtool.h:58: warning: Member HalfPi (variable) of class Mezzanine::MathTool is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/mathtool.h:56: warning: Member Pi (variable) of class Mezzanine::MathTool is not documented.
@@ -1155,10 +1114,13 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< MeshManager > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:128: warning: parameters of member Mezzanine::MetaCode::MetaCode are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:202: warning: unable to resolve reference to `InvalidParametersException' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:194: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of Mezzanine::MetaCode::GetJoystickButtonCode(short unsigned int ButtonNumber)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:196: warning: unable to resolve reference to `InvalidParametersException' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:194: warning: The following parameters of Mezzanine::MetaCode::GetJoystickButtonCode(short unsigned int ButtonNumber) are not documented:
   parameter 'ButtonNumber'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:188: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of Mezzanine::MetaCode::GetMouseButtonCode(short unsigned int ButtonNumber)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:190: warning: unable to resolve reference to `InvalidParametersException' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:188: warning: The following parameters of Mezzanine::MetaCode::GetMouseButtonCode(short unsigned int ButtonNumber) are not documented:
   parameter 'ButtonNumber'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:252: warning: parameters of member Mezzanine::MetaCode::operator== are not (all) documented
@@ -1215,15 +1177,15 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:317: warning: Member ApplySettingGroupImpl(ObjectSettingGroup *Group)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:315: warning: Member GetObjectRootNodeName() const =0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:313: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:311: warning: Member LoadSettingsFromFile(const String &FileName, const String &Path) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:314: warning: Member SaveSettingSetToXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:312: warning: Member SaveSettingsToFile(StringVector &GroupNames, const String &FileName, const String &Path) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:308: warning: Member AutoGenFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:307: warning: Member AutoGenPath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:310: warning: Member CurrentSettingsSaveFile (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:306: warning: Member SettingFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:305: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+<LoadSettingsFromFile>:1: warning: parameters of member Mezzanine::ObjectSettingsHandler::LoadSettingsFromFile are not (all) documented
+<LoadSettingsFromFile>:1: warning: return type of member Mezzanine::ObjectSettingsHandler::LoadSettingsFromFile is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:448: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName, const String &Path)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:448: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName, const String &Path) are not documented:
   parameter 'FileName'
@@ -1236,6 +1198,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:443: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:443: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName) are not documented:
   parameter 'FileName'
+<SaveSettingsToFile>:1: warning: parameters of member Mezzanine::ObjectSettingsHandler::SaveSettingsToFile are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/particleaffector.h:66: warning: parameters of member Mezzanine::ParticleAffector::ParticleAffector are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/particleaffector.h:81: warning: return type of member Mezzanine::ParticleAffector::GetCustomParam is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/particleeffect.h:124: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
@@ -1261,8 +1224,8 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< PhysicsManager > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.h:402: warning: return type of member Mezzanine::PhysicsManager::GetPhysicsWorldPointer is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/quaternion.h:190: warning: return type of member Mezzanine::Quaternion::GetOgreQuaternion is not documented
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:285: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< CarTest > is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:288: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< CarTest > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:385: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< CarTest > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:388: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< CarTest > is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:183: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< FooDerived1 > is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:186: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< FooDerived1 > is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:195: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< FooDerived2 > is not documented.
@@ -1271,26 +1234,32 @@
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:210: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< FooDiamond > is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:135: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< FooInternal > is not documented.
 /home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:138: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< FooInternal > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:308: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< FooInternalBase > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:311: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< FooInternalBase > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:296: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< FooInternalInherits > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:299: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< FooInternalInherits > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:233: warning: argument 'The' of command @param is not found in the argument list of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(RefCountType *Target)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/smartptr.h:233: warning: The following parameters of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(RefCountType *Target) are not documented:
   parameter 'Target'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:290: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:293: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScript > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:303: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:306: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:316: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:319: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn > is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:273: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< VehicleTest > is not documented.
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:276: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< VehicleTest > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:211: warning: return type of member Mezzanine::ReferenceCountTraits< Scripting::iScript >::ConstructionPointer is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:282: warning: return type of member Mezzanine::ReferenceCountTraits< Scripting::iScriptCompilable >::ConstructionPointer is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:345: warning: return type of member Mezzanine::ReferenceCountTraits< Scripting::iScriptMultipleReturn >::ConstructionPointer is not documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:373: warning: Member RefCountType (typedef) of class Mezzanine::ReferenceCountTraits< VehicleTest > is not documented.
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:376: warning: Member ConstructionPointer(RefCountType *Target) (function) of class Mezzanine::ReferenceCountTraits< VehicleTest > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/inputstream.h:95: warning: Member operator>>(T &Data) (function) of class Mezzanine::ResourceInputStream is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:220: warning: Member GetArchiveTypeFromString(String FromString) (function) of class Mezzanine::ResourceManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:87: warning: Member AddAssetGroupName(String Name) (function) of class Mezzanine::ResourceManager is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:86: warning: Member ResourceGroups (variable) of class Mezzanine::ResourceManager is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:83: warning: unable to resolve reference to `DataStream' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:89: warning: unable to resolve reference to `DataStream' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:79: warning: unable to resolve reference to `DataStream' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:81: warning: unable to resolve reference to `DataStream' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:85: warning: unable to resolve reference to `DataStream' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:87: warning: unable to resolve reference to `DataStream' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< ResourceManager > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:95: warning: argument 'ArchiveType' of command @param is not found in the argument list of Mezzanine::ResourceManager::ResourceManager(const String &EngineDataPath=".", Mezzanine::ArchiveType ArchiveType_=FileSystem)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:95: warning: The following parameters of Mezzanine::ResourceManager::ResourceManager(const String &EngineDataPath=".", Mezzanine::ArchiveType ArchiveType_=FileSystem) are not documented:
-  parameter 'ArchiveType_'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:119: warning: argument 'ArchiveType' of command @param is not found in the argument list of Mezzanine::ResourceManager::ResourceManager(const String &EngineDataPath=".", const ArchiveType ArchType=AT_FileSystem)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:119: warning: The following parameters of Mezzanine::ResourceManager::ResourceManager(const String &EngineDataPath=".", const ArchiveType ArchType=AT_FileSystem) are not documented:
+  parameter 'ArchType'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:113: warning: parameters of member Mezzanine::ResourceManager::AddAssetGroupName are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h:179: warning: return type of member Mezzanine::ResourceManager::OpenAssetStream is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/scenemanager.h:89: warning: Member EntityContainer (typedef) of class Mezzanine::SceneManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/scenemanager.h:87: warning: Member LightContainer (typedef) of class Mezzanine::SceneManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/scenemanager.h:88: warning: Member ParticleContainer (typedef) of class Mezzanine::SceneManager is not documented.
@@ -1335,13 +1304,12 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/meshmanager.cpp:51: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/terrainmanager.cpp:51: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/inputmanager.cpp:54: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/audiomanager.cpp:55: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/cameramanager.cpp:56: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/uimanager.cpp:63: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:73: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/collisionshapemanager.cpp:79: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/graphicsmanager.cpp:79: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.cpp:89: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:80: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.cpp:93: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/scenemanager.cpp:175: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventmanager.cpp:243: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:421: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
@@ -1396,6 +1364,24 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< TimerManager > is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/timermanager.h:91: warning: parameters of member Mezzanine::TimerManager::GetTimer are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/transform.h:97: warning: return type of member Mezzanine::Transform::GetBulletTransform is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:145: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::TransformableChildObject::SetLocation(const Vector3 &Loc)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:145: warning: The following parameters of Mezzanine::TransformableChildObject::SetLocation(const Vector3 &Loc)=0 are not documented:
+  parameter 'Loc'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:156: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::TransformableChildObject::SetOrientation(const Quaternion &Ori)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:156: warning: The following parameters of Mezzanine::TransformableChildObject::SetOrientation(const Quaternion &Ori)=0 are not documented:
+  parameter 'Ori'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:168: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::TransformableChildObject::SetScale(const Vector3 &Sc)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:168: warning: The following parameters of Mezzanine::TransformableChildObject::SetScale(const Vector3 &Sc)=0 are not documented:
+  parameter 'Sc'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:56: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::TransformableObject::SetLocation(const Vector3 &Loc)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:56: warning: The following parameters of Mezzanine::TransformableObject::SetLocation(const Vector3 &Loc)=0 are not documented:
+  parameter 'Loc'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:67: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::TransformableObject::SetOrientation(const Quaternion &Ori)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:67: warning: The following parameters of Mezzanine::TransformableObject::SetOrientation(const Quaternion &Ori)=0 are not documented:
+  parameter 'Ori'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:79: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::TransformableObject::SetScale(const Vector3 &Sc)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/transformableobject.h:79: warning: The following parameters of Mezzanine::TransformableObject::SetScale(const Vector3 &Sc)=0 are not documented:
+  parameter 'Sc'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/uimanager.h:92: warning: Member AtlasContainer (typedef) of class Mezzanine::UIManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/uimanager.h:93: warning: Member AtlasIterator (typedef) of class Mezzanine::UIManager is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/uimanager.h:86: warning: Member ButtonContainer (typedef) of class Mezzanine::UIManager is not documented.
@@ -1447,77 +1433,69 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector2.h:169: warning: return type of member Mezzanine::Vector2::operator/ is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector2.h:103: warning: return type of member Mezzanine::Vector2::operator== is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector2.h:113: warning: return type of member Mezzanine::Vector2::operator== is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:99: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:108: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:115: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:118: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:121: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:157: warning: argument 'Vec' of command @param is not found in the argument list of Mezzanine::Vector3::Vector3(XML::Node OneNode)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:157: warning: The following parameters of Mezzanine::Vector3::Vector3(XML::Node OneNode) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:103: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:113: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:139: warning: argument 'Vec' of command @param is not found in the argument list of Mezzanine::Vector3::Vector3(XML::Node OneNode)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:139: warning: The following parameters of Mezzanine::Vector3::Vector3(XML::Node OneNode) are not documented:
   parameter 'OneNode'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:99: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:99: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:99: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:99: warning: parameters of member Mezzanine::Vector3::GetAxisValue are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:99: warning: return type of member Mezzanine::Vector3::GetAxisValue is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:108: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:108: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:108: warning: parameters of member Mezzanine::Vector3::GetAxisValue are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:108: warning: return type of member Mezzanine::Vector3::GetAxisValue is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:459: warning: return type of member Mezzanine::Vector3::GetBulletVector3 is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:479: warning: return type of member Mezzanine::Vector3::GetcAudioVector3 is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:406: warning: return type of member Mezzanine::Vector3::GetDirection is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:469: warning: return type of member Mezzanine::Vector3::GetOgreVector3 is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:439: warning: The following parameters of Mezzanine::Vector3::GetRotationToAxis(const Vector3 &Axis, const Vector3 &FallBackAxis=Vector3()) const are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: parameters of member Mezzanine::Vector3::GetAxisValue are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: return type of member Mezzanine::Vector3::GetAxisValue is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:103: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:103: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:103: warning: parameters of member Mezzanine::Vector3::GetAxisValue are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:103: warning: return type of member Mezzanine::Vector3::GetAxisValue is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:386: warning: return type of member Mezzanine::Vector3::GetBulletVector3 is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:335: warning: return type of member Mezzanine::Vector3::GetDirection is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:394: warning: return type of member Mezzanine::Vector3::GetOgreVector3 is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:365: warning: The following parameters of Mezzanine::Vector3::GetRotationToAxis(const Vector3 &Axis, const Vector3 &FallBackAxis=Vector3()) const are not documented:
   parameter 'FallBackAxis'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:268: warning: return type of member Mezzanine::Vector3::operator!= is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:273: warning: return type of member Mezzanine::Vector3::operator!= is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:278: warning: return type of member Mezzanine::Vector3::operator!= is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:283: warning: return type of member Mezzanine::Vector3::operator!= is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:300: warning: return type of member Mezzanine::Vector3::operator* is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:322: warning: return type of member Mezzanine::Vector3::operator* is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:344: warning: return type of member Mezzanine::Vector3::operator* is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:366: warning: return type of member Mezzanine::Vector3::operator* is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:235: warning: return type of member Mezzanine::Vector3::operator*= is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:290: warning: return type of member Mezzanine::Vector3::operator+ is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:312: warning: return type of member Mezzanine::Vector3::operator+ is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:334: warning: return type of member Mezzanine::Vector3::operator+ is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:356: warning: return type of member Mezzanine::Vector3::operator+ is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:215: warning: return type of member Mezzanine::Vector3::operator- is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:235: warning: return type of member Mezzanine::Vector3::operator!= is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:239: warning: return type of member Mezzanine::Vector3::operator!= is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:243: warning: return type of member Mezzanine::Vector3::operator!= is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:259: warning: return type of member Mezzanine::Vector3::operator* is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:279: warning: return type of member Mezzanine::Vector3::operator* is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:299: warning: return type of member Mezzanine::Vector3::operator* is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:211: warning: return type of member Mezzanine::Vector3::operator*= is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:251: warning: return type of member Mezzanine::Vector3::operator+ is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:271: warning: return type of member Mezzanine::Vector3::operator+ is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:291: warning: return type of member Mezzanine::Vector3::operator+ is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:190: warning: return type of member Mezzanine::Vector3::operator- is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:255: warning: return type of member Mezzanine::Vector3::operator- is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:275: warning: return type of member Mezzanine::Vector3::operator- is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:295: warning: return type of member Mezzanine::Vector3::operator- is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:317: warning: return type of member Mezzanine::Vector3::operator- is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:339: warning: return type of member Mezzanine::Vector3::operator- is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:361: warning: return type of member Mezzanine::Vector3::operator- is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:305: warning: return type of member Mezzanine::Vector3::operator/ is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:327: warning: return type of member Mezzanine::Vector3::operator/ is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:349: warning: return type of member Mezzanine::Vector3::operator/ is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:371: warning: return type of member Mezzanine::Vector3::operator/ is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:240: warning: return type of member Mezzanine::Vector3::operator/= is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:197: warning: return type of member Mezzanine::Vector3::operator= is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:202: warning: return type of member Mezzanine::Vector3::operator= is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:207: warning: return type of member Mezzanine::Vector3::operator= is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:248: warning: return type of member Mezzanine::Vector3::operator== is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:253: warning: return type of member Mezzanine::Vector3::operator== is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:258: warning: return type of member Mezzanine::Vector3::operator== is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:263: warning: return type of member Mezzanine::Vector3::operator== is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:112: warning: return type of member Mezzanine::Vector3::operator[] is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:115: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:115: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:115: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:115: warning: return type of member Mezzanine::Vector3::operator[] is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:118: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:118: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:118: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:118: warning: return type of member Mezzanine::Vector3::operator[] is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:121: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:121: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:121: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:121: warning: return type of member Mezzanine::Vector3::operator[] is not documented
-/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:253: warning: Member StartEngine() (function) of class Mezzanine::VehicleTest is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:263: warning: return type of member Mezzanine::Vector3::operator/ is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:283: warning: return type of member Mezzanine::Vector3::operator/ is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:303: warning: return type of member Mezzanine::Vector3::operator/ is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:215: warning: return type of member Mezzanine::Vector3::operator/= is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:178: warning: return type of member Mezzanine::Vector3::operator= is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:182: warning: return type of member Mezzanine::Vector3::operator= is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:223: warning: return type of member Mezzanine::Vector3::operator== is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:227: warning: return type of member Mezzanine::Vector3::operator== is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:231: warning: return type of member Mezzanine::Vector3::operator== is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: return type of member Mezzanine::Vector3::operator[] is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: return type of member Mezzanine::Vector3::operator[] is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: return type of member Mezzanine::Vector3::operator[] is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:113: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:113: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:113: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:113: warning: return type of member Mezzanine::Vector3::operator[] is not documented
+/home/sqeaky/Code/Mezzanine/UnitTests/tests/countedptrtests.h:353: warning: Member StartEngine() (function) of class Mezzanine::VehicleTest is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/windowsettings.h:70: warning: Member operator=(const WindowSettings &GS) (function) of class Mezzanine::WindowSettings is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/world.h:63: warning: Member PagingMan (variable) of class Mezzanine::World is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/world.h:61: warning: Member PhysicsMan (variable) of class Mezzanine::World is not documented.
@@ -1570,25 +1548,152 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.h:107: warning: The following parameters of Mezzanine::WorldObjectGraphicsSettings::SetMesh(Graphics::Mesh *ObjectMesh) are not documented:
   parameter 'ObjectMesh'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobjectphysicssettings.h:85: warning: parameters of member Mezzanine::WorldObjectPhysicsSettings::AssignShape are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldproxy.h:74: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::WorldProxy::SetLocation(const Vector3 &Loc)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldproxy.h:74: warning: The following parameters of Mezzanine::WorldProxy::SetLocation(const Vector3 &Loc)=0 are not documented:
+  parameter 'Loc'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldproxy.h:83: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::WorldProxy::SetOrientation(const Quaternion &Ori)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldproxy.h:83: warning: The following parameters of Mezzanine::WorldProxy::SetOrientation(const Quaternion &Ori)=0 are not documented:
+  parameter 'Ori'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldproxy.h:92: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::WorldProxy::SetScale(const Vector3 &Sc)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldproxy.h:92: warning: The following parameters of Mezzanine::WorldProxy::SetScale(const Vector3 &Sc)=0 are not documented:
+  parameter 'Sc'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/worldtrigger.h:56: warning: Member Name (variable) of class Mezzanine::WorldTrigger is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:67: warning: Member GetIteratorToSong(Sound *Song) (function) of class Mezzanine::Audio::MusicPlayer is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:76: warning: unable to resolve reference to `iEffect' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:96: warning: unable to resolve reference to `iFilter' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:106: warning: unable to resolve reference to `iSound' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:86: warning: unable to resolve reference to `FrequencyShifterParameters' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:92: warning: unable to resolve reference to `RqualizerParameters' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:300: warning: Member ConstSettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:297: warning: Member ConstSettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:298: warning: Member SettingFilesContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:299: warning: Member SettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:295: warning: Member SettingGroupContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:296: warning: Member SettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:308: warning: Member AutoGenFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:307: warning: Member AutoGenPath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:310: warning: Member CurrentSettingsSaveFile (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:306: warning: Member SettingFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:305: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:316: warning: Member AppendCurrentSettings(XML::Node &CurrentNode)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:317: warning: Member ApplySettingGroupImpl(ObjectSettingGroup *Group)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:315: warning: Member GetObjectRootNodeName() const =0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:313: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/objectsettings.h:314: warning: Member SaveSettingSetToXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< AudioManager > is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audiomanager.h:259: warning: argument 'SoundName' of command @param is not found in the argument list of Mezzanine::Audio::AudioManager::CreateDialogSound(const String &StreamName, Char8 *Buffer, const UInt32 Length, const Audio::Encoding Encode)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audiomanager.h:259: warning: The following parameters of Mezzanine::Audio::AudioManager::CreateDialogSound(const String &StreamName, Char8 *Buffer, const UInt32 Length, const Audio::Encoding Encode) are not documented:
+  parameter 'StreamName'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audiomanager.h:349: warning: argument 'Music' of command @param is not found in the argument list of Mezzanine::Audio::AudioManager::SetMasterVolume(const Real &Master)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/audiomanager.h:349: warning: The following parameters of Mezzanine::Audio::AudioManager::SetMasterVolume(const Real &Master)=0 are not documented:
+  parameter 'Master'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:749: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::AutowahParameters::AutowahParameters(Real attackTime=0.06f, Real releaseTime=0.06f, Real resonance=1000.0f, Real peakGain=11.22f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:749: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::AutowahParameters::AutowahParameters(Real attackTime=0.06f, Real releaseTime=0.06f, Real resonance=1000.0f, Real peakGain=11.22f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:749: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::AutowahParameters::AutowahParameters(Real attackTime=0.06f, Real releaseTime=0.06f, Real resonance=1000.0f, Real peakGain=11.22f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:749: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::AutowahParameters::AutowahParameters(Real attackTime=0.06f, Real releaseTime=0.06f, Real resonance=1000.0f, Real peakGain=11.22f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:393: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ChorusParameters::ChorusParameters(ChorusWaveform waveform=ECW_Triangle, Integer phase=90, Real rate=1.1f, Real depth=0.1f, Real feedback=0.25f, Real delay=0.016f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:393: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ChorusParameters::ChorusParameters(ChorusWaveform waveform=ECW_Triangle, Integer phase=90, Real rate=1.1f, Real depth=0.1f, Real feedback=0.25f, Real delay=0.016f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:393: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ChorusParameters::ChorusParameters(ChorusWaveform waveform=ECW_Triangle, Integer phase=90, Real rate=1.1f, Real depth=0.1f, Real feedback=0.25f, Real delay=0.016f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:393: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ChorusParameters::ChorusParameters(ChorusWaveform waveform=ECW_Triangle, Integer phase=90, Real rate=1.1f, Real depth=0.1f, Real feedback=0.25f, Real delay=0.016f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:393: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ChorusParameters::ChorusParameters(ChorusWaveform waveform=ECW_Triangle, Integer phase=90, Real rate=1.1f, Real depth=0.1f, Real feedback=0.25f, Real delay=0.016f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:393: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ChorusParameters::ChorusParameters(ChorusWaveform waveform=ECW_Triangle, Integer phase=90, Real rate=1.1f, Real depth=0.1f, Real feedback=0.25f, Real delay=0.016f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:772: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::CompressorParameters::CompressorParameters(bool active=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:433: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::DistortionParameters::DistortionParameters(Real edge=0.2f, Real gain=0.05f, Real lowpassCutoff=8000.0f, Real eqCenter=3600.0f, Real eqBandwidth=3600.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:433: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::DistortionParameters::DistortionParameters(Real edge=0.2f, Real gain=0.05f, Real lowpassCutoff=8000.0f, Real eqCenter=3600.0f, Real eqBandwidth=3600.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:433: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::DistortionParameters::DistortionParameters(Real edge=0.2f, Real gain=0.05f, Real lowpassCutoff=8000.0f, Real eqCenter=3600.0f, Real eqBandwidth=3600.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:433: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::DistortionParameters::DistortionParameters(Real edge=0.2f, Real gain=0.05f, Real lowpassCutoff=8000.0f, Real eqCenter=3600.0f, Real eqBandwidth=3600.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:433: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::DistortionParameters::DistortionParameters(Real edge=0.2f, Real gain=0.05f, Real lowpassCutoff=8000.0f, Real eqCenter=3600.0f, Real eqBandwidth=3600.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:189: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EAXReverbParameters::EAXReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real gainLF=0.0f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real decayLFRatio=1.0f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Vector3 reflectionsPan=Vector3(0.0f, 0.0f, 0.0f), Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Vector3 lateReverbPan=Vector3(0.0f, 0.0f, 0.0f), Real echoTime=0.25f, Real echoDepth=0.0f, Real modulationTime=0.25f, Real modulationDepth=0.0f, Real airAbsorptionGainHF=0.994f, Real hFReference=5000.0f, Real lFReference=250.0f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:474: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EchoParameters::EchoParameters(Real delay=0.1f, Real lRDelay=0.1f, Real damping=0.5f, Real feedback=0.5f, Real spread=-1.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:474: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EchoParameters::EchoParameters(Real delay=0.1f, Real lRDelay=0.1f, Real damping=0.5f, Real feedback=0.5f, Real spread=-1.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:474: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EchoParameters::EchoParameters(Real delay=0.1f, Real lRDelay=0.1f, Real damping=0.5f, Real feedback=0.5f, Real spread=-1.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:474: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EchoParameters::EchoParameters(Real delay=0.1f, Real lRDelay=0.1f, Real damping=0.5f, Real feedback=0.5f, Real spread=-1.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:474: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EchoParameters::EchoParameters(Real delay=0.1f, Real lRDelay=0.1f, Real damping=0.5f, Real feedback=0.5f, Real spread=-1.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:816: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EqualizerParameters::EqualizerParameters(Real lowGain=1.0f, Real lowCutoff=200.0f, Real mid1Gain=1.0f, Real mid1Center=500.0f, Real mid1Width=1.0f, Real mid2Gain=1.0f, Real mid2Center=3000.0f, Real mid2Width=1.0f, Real highGain=1.0f, Real highCutoff=6000.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:816: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EqualizerParameters::EqualizerParameters(Real lowGain=1.0f, Real lowCutoff=200.0f, Real mid1Gain=1.0f, Real mid1Center=500.0f, Real mid1Width=1.0f, Real mid2Gain=1.0f, Real mid2Center=3000.0f, Real mid2Width=1.0f, Real highGain=1.0f, Real highCutoff=6000.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:816: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EqualizerParameters::EqualizerParameters(Real lowGain=1.0f, Real lowCutoff=200.0f, Real mid1Gain=1.0f, Real mid1Center=500.0f, Real mid1Width=1.0f, Real mid2Gain=1.0f, Real mid2Center=3000.0f, Real mid2Width=1.0f, Real highGain=1.0f, Real highCutoff=6000.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:816: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EqualizerParameters::EqualizerParameters(Real lowGain=1.0f, Real lowCutoff=200.0f, Real mid1Gain=1.0f, Real mid1Center=500.0f, Real mid1Width=1.0f, Real mid2Gain=1.0f, Real mid2Center=3000.0f, Real mid2Width=1.0f, Real highGain=1.0f, Real highCutoff=6000.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:816: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EqualizerParameters::EqualizerParameters(Real lowGain=1.0f, Real lowCutoff=200.0f, Real mid1Gain=1.0f, Real mid1Center=500.0f, Real mid1Width=1.0f, Real mid2Gain=1.0f, Real mid2Center=3000.0f, Real mid2Width=1.0f, Real highGain=1.0f, Real highCutoff=6000.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:816: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EqualizerParameters::EqualizerParameters(Real lowGain=1.0f, Real lowCutoff=200.0f, Real mid1Gain=1.0f, Real mid1Center=500.0f, Real mid1Width=1.0f, Real mid2Gain=1.0f, Real mid2Center=3000.0f, Real mid2Width=1.0f, Real highGain=1.0f, Real highCutoff=6000.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:816: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EqualizerParameters::EqualizerParameters(Real lowGain=1.0f, Real lowCutoff=200.0f, Real mid1Gain=1.0f, Real mid1Center=500.0f, Real mid1Width=1.0f, Real mid2Gain=1.0f, Real mid2Center=3000.0f, Real mid2Width=1.0f, Real highGain=1.0f, Real highCutoff=6000.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:816: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EqualizerParameters::EqualizerParameters(Real lowGain=1.0f, Real lowCutoff=200.0f, Real mid1Gain=1.0f, Real mid1Center=500.0f, Real mid1Width=1.0f, Real mid2Gain=1.0f, Real mid2Center=3000.0f, Real mid2Width=1.0f, Real highGain=1.0f, Real highCutoff=6000.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:816: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EqualizerParameters::EqualizerParameters(Real lowGain=1.0f, Real lowCutoff=200.0f, Real mid1Gain=1.0f, Real mid1Center=500.0f, Real mid1Width=1.0f, Real mid2Gain=1.0f, Real mid2Center=3000.0f, Real mid2Width=1.0f, Real highGain=1.0f, Real highCutoff=6000.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:816: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::EqualizerParameters::EqualizerParameters(Real lowGain=1.0f, Real lowCutoff=200.0f, Real mid1Gain=1.0f, Real mid1Center=500.0f, Real mid1Width=1.0f, Real mid2Gain=1.0f, Real mid2Center=3000.0f, Real mid2Width=1.0f, Real highGain=1.0f, Real highCutoff=6000.0f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:523: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::FlangerParameters::FlangerParameters(FlangerWaveform waveform=EFW_Triangle, Integer phase=0, Real rate=0.27f, Real depth=1.0f, Real feedback=-0.5f, Real delay=0.002f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:523: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::FlangerParameters::FlangerParameters(FlangerWaveform waveform=EFW_Triangle, Integer phase=0, Real rate=0.27f, Real depth=1.0f, Real feedback=-0.5f, Real delay=0.002f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:523: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::FlangerParameters::FlangerParameters(FlangerWaveform waveform=EFW_Triangle, Integer phase=0, Real rate=0.27f, Real depth=1.0f, Real feedback=-0.5f, Real delay=0.002f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:523: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::FlangerParameters::FlangerParameters(FlangerWaveform waveform=EFW_Triangle, Integer phase=0, Real rate=0.27f, Real depth=1.0f, Real feedback=-0.5f, Real delay=0.002f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:523: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::FlangerParameters::FlangerParameters(FlangerWaveform waveform=EFW_Triangle, Integer phase=0, Real rate=0.27f, Real depth=1.0f, Real feedback=-0.5f, Real delay=0.002f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:523: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::FlangerParameters::FlangerParameters(FlangerWaveform waveform=EFW_Triangle, Integer phase=0, Real rate=0.27f, Real depth=1.0f, Real feedback=-0.5f, Real delay=0.002f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:568: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::FrequencyShiftParameters::FrequencyShiftParameters(Real frequency=0.0f, ShiftDirection left=ESD_Down, ShiftDirection right=ESD_Down)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:568: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::FrequencyShiftParameters::FrequencyShiftParameters(Real frequency=0.0f, ShiftDirection left=ESD_Down, ShiftDirection right=ESD_Down)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:568: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::FrequencyShiftParameters::FrequencyShiftParameters(Real frequency=0.0f, ShiftDirection left=ESD_Down, ShiftDirection right=ESD_Down)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectshandler.h:76: warning: unable to resolve reference to `Sound' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectshandler.h:76: warning: unable to resolve reference to `Sound' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectshandler.h:79: warning: parameters of member Mezzanine::Audio::iEffectsHandler::GetEffect are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectshandler.h:101: warning: parameters of member Mezzanine::Audio::iEffectsHandler::GetFilter are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/recorder.h:129: warning: return type of member Mezzanine::Audio::iRecorder::SetInternalBufferSize is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:67: warning: Member GetIteratorToSong(iSound *Song) (function) of class Mezzanine::Audio::MusicPlayer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:62: warning: Member CurrSong (variable) of class Mezzanine::Audio::MusicPlayer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:65: warning: Member EOPRepeat (variable) of class Mezzanine::Audio::MusicPlayer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:66: warning: Member EOPShuffle (variable) of class Mezzanine::Audio::MusicPlayer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:63: warning: Member ManualStop (variable) of class Mezzanine::Audio::MusicPlayer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:61: warning: Member MusicPlaylist (variable) of class Mezzanine::Audio::MusicPlayer is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:64: warning: Member Playing (variable) of class Mezzanine::Audio::MusicPlayer is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:111: warning: return type of member Mezzanine::Audio::MusicPlayer::ContainsSong is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:114: warning: return type of member Mezzanine::Audio::MusicPlayer::ContainsSong is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/playlist.h:70: warning: return type of member Mezzanine::Audio::Playlist::ContainsSound is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/playlist.h:73: warning: return type of member Mezzanine::Audio::Playlist::ContainsSound is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/sound.h:70: warning: Member BaseVolume (variable) of class Mezzanine::Audio::Sound is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/sound.h:68: warning: Member Manager (variable) of class Mezzanine::Audio::Sound is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/sound.h:71: warning: Member Name (variable) of class Mezzanine::Audio::Sound is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/sound.h:67: warning: Member SoundSource (variable) of class Mezzanine::Audio::Sound is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/sound.h:69: warning: Member Type (variable) of class Mezzanine::Audio::Sound is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/sound.h:75: warning: return type of member Mezzanine::Audio::Sound::GetTypeVolume is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/musicplayer.h:106: warning: return type of member Mezzanine::Audio::MusicPlayer::ContainsSong is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:681: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::PitchShifterParameters::PitchShifterParameters(Integer coarseTune=12, Integer fineTune=0)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:681: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::PitchShifterParameters::PitchShifterParameters(Integer coarseTune=12, Integer fineTune=0)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/playlist.h:76: warning: return type of member Mezzanine::Audio::Playlist::ContainsSound is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:322: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::ReverbParameters::ReverbParameters(Real density=1.0f, Real diffusion=1.0f, Real gain=0.32f, Real gainHF=0.89f, Real decayTime=1.49f, Real decayHFRatio=0.83f, Real reflectionsGain=0.05f, Real reflectionsDelay=0.007f, Real lateReverbGain=1.26f, Real lateReverbDelay=0.011f, Real airAbsorptionGainHF=0.994f, Real roomRolloffFactor=0.0f, bool decayHFLimit=true)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:718: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::RingModulatorParameters::RingModulatorParameters(Real frequency=440.0f, Real highPassCutoff=800.0f, ModulatorWaveform waveform=EMW_Sinusoid)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:718: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::RingModulatorParameters::RingModulatorParameters(Real frequency=440.0f, Real highPassCutoff=800.0f, ModulatorWaveform waveform=EMW_Sinusoid)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:718: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::RingModulatorParameters::RingModulatorParameters(Real frequency=440.0f, Real highPassCutoff=800.0f, ModulatorWaveform waveform=EMW_Sinusoid)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/soundscapemanager.h:247: warning: argument 'SoundName' of command @param is not found in the argument list of Mezzanine::Audio::SoundScapeManager::CreateDialogSoundProxy(const String &StreamName, Char8 *Buffer, const UInt32 Length, const Audio::Encoding Encode)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/soundscapemanager.h:247: warning: The following parameters of Mezzanine::Audio::SoundScapeManager::CreateDialogSoundProxy(const String &StreamName, Char8 *Buffer, const UInt32 Length, const Audio::Encoding Encode) are not documented:
+  parameter 'StreamName'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/soundset.h:89: warning: Member SerializableName() (function) of class Mezzanine::Audio::SoundSet is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:108: warning: argument 'ParentWorld_' of command @param is not found in the argument list of Mezzanine::debug::InternalDebugDrawer::InternalDebugDrawer(Mezzanine::Entresol *ParentEntresol_, Whole WireFrameCount_=2)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/physicsmanager.cpp:108: warning: The following parameters of Mezzanine::debug::InternalDebugDrawer::InternalDebugDrawer(Mezzanine::Entresol *ParentEntresol_, Whole WireFrameCount_=2) are not documented:
   parameter 'ParentEntresol_'
@@ -1596,6 +1701,15 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: argument 'Angle' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: The following parameters of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent) are not documented:
   parameter 'Rotation'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:133: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::SetLocation(const Vector3 &Loc)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:133: warning: The following parameters of Mezzanine::Graphics::Bone::SetLocation(const Vector3 &Loc) are not documented:
+  parameter 'Loc'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:139: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::SetOrientation(const Quaternion &Ori)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:139: warning: The following parameters of Mezzanine::Graphics::Bone::SetOrientation(const Quaternion &Ori) are not documented:
+  parameter 'Ori'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:145: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::SetScale(const Vector3 &Sc)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:145: warning: The following parameters of Mezzanine::Graphics::Bone::SetScale(const Vector3 &Sc) are not documented:
+  parameter 'Sc'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:154: warning: argument 'Trans' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::Translate(const Real X, const Real Y, const Real Z, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:154: warning: The following parameters of Mezzanine::Graphics::Bone::Translate(const Real X, const Real Y, const Real Z, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent) are not documented:
   parameter 'X'
@@ -1659,6 +1773,7 @@
   parameter 'Count'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/controller.h:127: warning: parameters of member Mezzanine::Input::Controller::GetButtonState are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/controller.h:129: warning: parameters of member Mezzanine::Input::Controller::GetButtonState are not (all) documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/controller.h:124: warning: unable to resolve reference to `InvalidParametersException' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/controller.h:94: warning: The following parameters of Mezzanine::Input::Controller::IsHatPushedInDirection(const UInt16 Hat, const Input::HatState &WhichWay) const are not documented:
   parameter 'Hat'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/controller.h:65: warning: target Device::InputImpl(std::vector<MetaCode>& Codes) of \copydoc command not found
@@ -1899,14 +2014,19 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/universalconstraint.h:68: warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class Mezzanine::Physics::UniversalConstraint is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/universalconstraint.h:67: warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class Mezzanine::Physics::UniversalConstraint is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/generic6dofconstraint.h:390: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) const of \copydoc command not found
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/datastream.h:249: warning: Member FileHandle (variable) of class Mezzanine::Resource::FileHandleDataStream is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/datastream.h:295: warning: Member FileStream (variable) of class Mezzanine::Resource::FileStreamDataStream is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/datastream.h:174: warning: Member BufferEnd (variable) of class Mezzanine::Resource::MemoryDataStream is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/datastream.h:173: warning: Member BufferPos (variable) of class Mezzanine::Resource::MemoryDataStream is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/datastream.h:172: warning: Member BufferStart (variable) of class Mezzanine::Resource::MemoryDataStream is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/datastream.h:171: warning: Member FreeBuffer (variable) of class Mezzanine::Resource::MemoryDataStream is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/datastream.h:215: warning: argument 'True' of command @param is not found in the argument list of Mezzanine::Resource::MemoryDataStream::SetFreeOnClose(bool FreeOnClose)
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/datastream.h:215: warning: The following parameters of Mezzanine::Resource::MemoryDataStream::SetFreeOnClose(bool FreeOnClose) are not documented:
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/filestream.h:73: warning: Member StandardStream (variable) of class Mezzanine::Resource::FileStream is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/filestream.h:75: warning: argument 'Mode' of command @param is not found in the argument list of Mezzanine::Resource::FileStream::FileStream(std::fstream *Stream, const UInt16 Flags=DataStream::SF_Read)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/filestream.h:75: warning: The following parameters of Mezzanine::Resource::FileStream::FileStream(std::fstream *Stream, const UInt16 Flags=DataStream::SF_Read) are not documented:
+  parameter 'Flags'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/filestream.h:79: warning: argument 'Mode' of command @param is not found in the argument list of Mezzanine::Resource::FileStream::FileStream(const String &FileName, const String &Path, const UInt16 Flags=DataStream::SF_Read)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/filestream.h:79: warning: The following parameters of Mezzanine::Resource::FileStream::FileStream(const String &FileName, const String &Path, const UInt16 Flags=DataStream::SF_Read) are not documented:
+  parameter 'Flags'
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/memorystream.h:65: warning: Member BufferEnd (variable) of class Mezzanine::Resource::MemoryStream is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/memorystream.h:64: warning: Member BufferPos (variable) of class Mezzanine::Resource::MemoryStream is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/memorystream.h:63: warning: Member BufferStart (variable) of class Mezzanine::Resource::MemoryStream is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/memorystream.h:62: warning: Member FreeBuffer (variable) of class Mezzanine::Resource::MemoryStream is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/memorystream.h:93: warning: argument 'True' of command @param is not found in the argument list of Mezzanine::Resource::MemoryStream::SetFreeOnClose(bool FreeOnClose)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/memorystream.h:93: warning: The following parameters of Mezzanine::Resource::MemoryStream::SetFreeOnClose(bool FreeOnClose) are not documented:
   parameter 'FreeOnClose'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:63: warning: Member SectionIterator (typedef) of class Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:62: warning: Member SettingsIterator (typedef) of class Mezzanine::Resource::TextSettingsFile is not documented.
@@ -1914,8 +2034,13 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:61: warning: Member SettingsSectionMap (typedef) of class Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:65: warning: Member FileName (variable) of class Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:66: warning: Member Sections (variable) of class Mezzanine::Resource::TextSettingsFile is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:99: warning: Member ScriptArgment (enumeration) of namespace Mezzanine::Scripting is not documented.
+<ScriptArgment>:1: warning: parameters of member Mezzanine::Scripting::ScriptArgment are not (all) documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:320: warning: argument 'A' of command @param is not found in the argument list of Mezzanine::Scripting::iScriptMultipleReturn::AddReturn(CountedPtr< iScriptArgument > ReturnArg)=0
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h:320: warning: The following parameters of Mezzanine::Scripting::iScriptMultipleReturn::AddReturn(CountedPtr< iScriptArgument > ReturnArg)=0 are not documented:
+  parameter 'ReturnArg'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/tabset.h:51: warning: Member RenderableCollection (typedef) of namespace Mezzanine::UI is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/viewportupdatetool.h:52: warning: Member WidgetResult (typedef) of namespace Mezzanine::UI is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/activatable.h:62: warning: Member ConstListenerIterator (typedef) of class Mezzanine::UI::Activatable is not documented.
@@ -3021,6 +3146,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/pugixml.cpp:483: warning: The following parameters of pugi::xml_node_struct::xml_node_struct(impl::xml_memory_page *page, xml_node_type type) are not documented:
   parameter 'page'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:92: warning: unable to resolve reference to `Mezzanine::StringTool' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:104: warning: unable to resolve reference to `Mezzanine::AudioManager' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:110: warning: unable to resolve reference to `Mezzanine::NetworkManager' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:127: warning: unable to resolve reference to `actorcontainer1' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:153: warning: unable to resolve reference to `Mezzanine::Character' for \ref command
