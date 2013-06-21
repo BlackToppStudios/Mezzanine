@@ -41,7 +41,7 @@
 #define _internalmotionstate_h_cpp
 
 // Keeps this file form being documented by doxygen
-/// @cond 0
+/// @cond DontDocumentInternal
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"

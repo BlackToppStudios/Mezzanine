@@ -57,11 +57,14 @@
 #        Mezz_Lua51                         - True if lua is to be included and link against. False if lua was not selected to be compiled in.
 #        Mezz_Network                       - Enable or disable networking support
 #
+# Build Extra Features alongside the Mezzanine
+#        Mezz_Doc                           - Check for Doxygen on the system and force a doxygen build as part of a full build when it is present.
+#
 # Advanced Mezzanine build options
 #        Mezz_Profile                       - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
 #        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
 #
-# Depracated options
+# Deprecated options
 #        Mezz_XML                           - Previously disabled/enabled XML options, now XML is used everywhere. Thsi option has been removed.
 #
 # That affect only build time values:
@@ -266,19 +269,6 @@ else(${Mezz_Profile})
 endif(${Mezz_Profile})
 
 ###############################################################################
-# Check For the Mezz_XML option and set values accordingly
-#option(Mezz_XML "Enable XML and XML serialization support." ON)
-#if(${Mezz_XML})
-#    message ( STATUS "${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting MEZZXML")
-#    set(Mezz_XML_Arguments "${D}MEZZXML")
-#    set(Mezz_XML_Defined "MEZZXML = 1")
-#else(${Mezz_XML})
-#    message ( STATUS "${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting MEZZXML")
-#    set(Mezz_XML_Arguments "${D}MEZZXML_undefined")
-#    set(Mezz_XML_Defined "MEZZXML_undefined")
-#endif(${Mezz_XML})
-
-###############################################################################
 # Check For the Mezz_Network option and set values accordingly
 option(Mezz_Network "Enable Networking support." ON)
 if(${Mezz_Network})
@@ -417,7 +407,24 @@ Message(STATUS "Looking for Ogre3d headers in: ${OgreHeaderIncludeDir}")
 #set(OgrePluginRenderGL ${StaticLibPrefix}RenderSystem_GL${OgresD}${StaticLibSuffix})
 #set(OgrePluginParticle ${StaticLibPrefix}Plugin_ParticleFX${OgresD}${StaticLibSuffix})
 
+###############################################################################
+# Doxygen options
+option (Mezz_Doc "Refresh Doxygen documentation during a build" OFF)
 
+if(Mezz_Doc)
+    Message(STATUS "Starting Doxygen Configuration.")
+    find_package(Doxygen)
+    if(DOXYGEN_FOUND)
+        add_custom_target(MezzanineDocumentation ALL
+            ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/
+            COMMENT "Generating API documentation with Doxygen" VERBATIM
+        )
+    else(DOXYGEN_FOUND)
+        Message(STATUS "Doxygen not found.")
+    endif(DOXYGEN_FOUND)
+    Message(STATUS "Finishing Doxygen Configuration.")
+endif(Mezz_Doc)
 
 ###############################################################################
 # Network Library Define
@@ -464,20 +471,6 @@ add_subdirectory (EngineDemo)
 add_subdirectory (Catch!)
 add_subdirectory (UnitTests)
 Message(STATUS "Finishing Subproject Configuration.")
-
-
-Message(STATUS "Starting Doxygen Configuration.")
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-    add_custom_target(MezzanineDocumentation ALL
-        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/
-        COMMENT "Generating API documentation with Doxygen" VERBATIM
-    )
-else(DOXYGEN_FOUND)
-    Message(STATUS "Doxygen not found.")
-endif(DOXYGEN_FOUND)
-Message(STATUS "Finishing Doxygen Configuration.")
 
 ###############################################################################
 # Hide Variables not directly related to the Mezzanine Engine

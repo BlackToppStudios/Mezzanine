@@ -38,7 +38,7 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-/// @cond 0
+/// @cond DontDocumentInternal
 
 /*
  * pugixml parser - version 1.2

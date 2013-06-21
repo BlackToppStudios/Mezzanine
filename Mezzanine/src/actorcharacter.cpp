@@ -46,7 +46,7 @@
 #include "actorcharacter.h"
 
 // Do not put in documentation until this is done
-/// @cond 0
+/// @cond DontDocumentInternal
 
 namespace Mezzanine
 {

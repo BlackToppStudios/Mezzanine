@@ -48,7 +48,7 @@
 
 #include <btBulletDynamicsCommon.h>
 
-/// @cond 0
+/// @cond DontDocumentInternal
 
 namespace Mezzanine
 {

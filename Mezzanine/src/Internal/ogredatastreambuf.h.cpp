@@ -41,7 +41,7 @@
 #define _ogredatastreambuf_h_cpp
 
 // Keeps this file from being documented by doxygen
-/// @cond 0
+/// @cond DontDocumentInternal
 
 #include "datatypes.h"
 
