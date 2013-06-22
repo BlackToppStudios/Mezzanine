@@ -161,7 +161,7 @@ class lua51tests : public UnitTestGroup
                     // Argument Tests
                     try
                     {
-                        Scripting::Lua::Lua51Script IntArgScript("function PrintNum(x)\n   return x * 9\nend",LuaRuntimeSafe);
+                        Scripting::Lua::Lua51Script IntArgScript("function PrintNum(x)\n   return x * 2\nend",LuaRuntimeSafe);
                         LuaRuntimeSafe.Execute(IntArgScript);
 
                         Scripting::Lua::Lua51Script IntArgCall("PrintNum",LuaRuntimeSafe,true);
@@ -170,9 +170,13 @@ class lua51tests : public UnitTestGroup
                         IntArgCall.AddReturn(IntReturn);
                         LuaRuntimeSafe.Execute(IntArgCall);
 
-                        cout << IntReturn->GetInteger() << endl;
+                        if(18==IntReturn->GetInteger())
+                        {
+                            AddTestResult("Lua51::Engine::PassInt", Success);
+                        }else{
+                            AddTestResult("Lua51::Engine::PassInt", Failed);
+                        }
 
-                        AddTestResult("Lua51::Engine::PassInt", Success);
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::PassInt", Failed);
                     }
@@ -196,6 +200,8 @@ class lua51tests : public UnitTestGroup
                 AddTestResult("Lua51::Engine::ExecuteFromCountedPtr", Skipped);
                 AddTestResult("Lua51::Engine::ExecuteFromSource", Skipped);
                 AddTestResult("Lua51::Engine::ExecuteFromCountedPtrCovariant", Skipped);
+
+                AddTestResult("Lua51::Engine::PassInt", Skipped);
             }
         }
 };
