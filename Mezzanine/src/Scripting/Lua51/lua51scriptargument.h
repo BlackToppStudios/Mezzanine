@@ -86,12 +86,20 @@ namespace Mezzanine
                     /// @param TargetState The state with the stack to pull the data from.
                     /// @return Whatever the Lua return code of the first failing lua call, or the last successful call.
                     virtual void Pop(lua_State* TargetState) = 0;
+
+                    virtual ~LuaArgument() {}
+
+                    /// @brief Get a pointer to the most Derived type of this class
+                    /// @return A pointer of the most derived pointing to this.
+                    virtual LuaArgument* GetMostDerived()
+                        { return this; }
             };
 
             /// @brief The implementations in the ScriptArgumentGeneric<Integer> will cover most of what this needs
             class Lua51IntegerArgument : public LuaArgument, public ScriptArgumentGeneric<Integer>
             {
                 public:
+
                     /// @brief Implicit constructor
                     /// @param InitialValue Defaults to 0 and is the actual data to pass into Lua
                     /// @note This is intentionally not explicit. This should make it easier to work with in situations where the creation of this is less important.
@@ -101,6 +109,13 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51IntegerArgument() {}
+
+                    /// @brief Get a pointer to the most Derived type of this class
+                    /// @return A pointer of the most derived pointing to this.
+                    virtual Lua51IntegerArgument* GetMostDerived()
+                        { return this; }
             };
 
             /// @brief A Real that can readily be passed into lua scripts
@@ -113,6 +128,13 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51RealArgument() {}
+
+                    /// @brief Get a pointer to the most Derived type of this class
+                    /// @return A pointer of the most derived pointing to this.
+                    virtual Lua51RealArgument* GetMostDerived()
+                        { return this; }
             };
 
             /// @brief No special care is required for Whole number Lua Arguments, so a simple typedef is used.
@@ -125,6 +147,13 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51WholeArgument() {}
+
+                    /// @brief Get a pointer to the most Derived type of this class
+                    /// @return A pointer of the most derived pointing to this.
+                    virtual Lua51WholeArgument* GetMostDerived()
+                        { return this; }
             };
 
             /// @brief No special care is required for String Lua Arguments, so a simple typedef is used.
@@ -137,6 +166,13 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51StringArgument() {}
+
+                    /// @brief Get a pointer to the most Derived type of this class
+                    /// @return A pointer of the most derived pointing to this.
+                    virtual Lua51StringArgument* GetMostDerived()
+                        { return this; }
             };
 
             /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
@@ -149,6 +185,13 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51BoolArgument() {}
+
+                    /// @brief Get a pointer to the most Derived type of this class
+                    /// @return A pointer of the most derived pointing to this.
+                    virtual Lua51BoolArgument* GetMostDerived()
+                        { return this; }
             };
 
             /// @brief A very simple class to allow a specialization of ScriptArgumentGeneric to correspond with Lua's Nil.
@@ -215,6 +258,11 @@ namespace Mezzanine
                 /// @return This will return an Integer containing LuaNil
                 virtual Integer GetTypeData() const
                     { return Mezzanine::Scripting::Lua::LuaNil; }
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer of the most derived pointing to this.
+                virtual ScriptArgumentGeneric<Mezzanine::Scripting::Lua::Lua51Nil>* GetMostDerived()
+                    { return this; }
         }; //ScriptArgumentSpecific<Lua51Nil>
 
         namespace Lua
@@ -229,10 +277,146 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51NilArgument() {}
+
+                    /// @brief Get a pointer to the most Derived type of this class
+                    /// @return A pointer of the most derived pointing to this.
+                    virtual Lua51NilArgument* GetMostDerived()
+                        { return this; }
             };
 
         } // Lua
     } // Scripting
+
+    //
+
+    /// @brief Marks LuaArgument for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::Lua::LuaArgument>
+    {
+        public:
+            /// @brief The type that maintains the Reference count for LuaArgument with be LuaArgument itself
+            typedef Scripting::Lua::LuaArgument RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::Lua::LuaArgument that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks Lua51IntegerArgument for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::Lua::Lua51IntegerArgument>
+    {
+        public:
+            /// @brief The type that maintains the Reference count for Lua51IntegerArgument with be Lua51IntegerArgument itself
+            typedef Scripting::Lua::Lua51IntegerArgument RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::Lua::Lua51IntegerArgument that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks Lua51RealArgument for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::Lua::Lua51RealArgument>
+    {
+        public:
+            /// @brief The type that maintains the Reference count for Lua51RealArgument with be Lua51RealArgument itself
+            typedef Scripting::Lua::Lua51RealArgument RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::Lua::Lua51RealArgument that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks Lua51WholeArgument for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::Lua::Lua51WholeArgument>
+    {
+        public:
+            /// @brief The type that maintains the Reference count for Lua51WholeArgument with be Lua51WholeArgument itself
+            typedef Scripting::Lua::Lua51WholeArgument RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::Lua::Lua51WholeArgument that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks Lua51StringArgument for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::Lua::Lua51StringArgument>
+    {
+        public:
+            /// @brief The type that Lua51StringArgument the Reference count for Lua51StringArgument with be Lua51StringArgument itself
+            typedef Scripting::Lua::LuaArgument RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::Lua::Lua51StringArgument that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks Lua51BoolArgument for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::Lua::Lua51BoolArgument>
+    {
+        public:
+            /// @brief The type that maintains the Reference count for Lua51BoolArgument with be Lua51BoolArgument itself
+            typedef Scripting::Lua::Lua51BoolArgument RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::Lua::Lua51BoolArgument that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks Lua51NilArgument for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::Lua::Lua51NilArgument>
+    {
+        public:
+            /// @brief The type that maintains the Reference count for Lua51NilArgument with be Lua51NilArgument itself
+            typedef Scripting::Lua::Lua51NilArgument RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::Lua::Lua51NilArgument that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
 
 
 } // Mezzanine

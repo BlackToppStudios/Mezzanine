@@ -202,6 +202,8 @@ namespace Mezzanine
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::AddReturn
                     virtual void AddReturn(CountedPtr<iScriptArgument> ReturnArg);
 
+                    //void Lua51Script::AddReturn(CountedPtr<Lua51StringArgument> ReturnArg);
+
                     /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetAllReturns
                     virtual ArgumentGroup GetAllReturns() const;
 

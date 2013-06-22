@@ -135,8 +135,8 @@ namespace Mezzanine
             Whole GetReferenceCount()
                 { return RefCount; }
 
-            /// @brief Get a pointer to the Target as a void*
-            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            /// @brief Get a pointer to the Target as a The most derived type in of this object*
+            /// @return A pointer, for use with CountedPtrCast
             virtual TypePointedTo* GetMostDerived()
                 { return Target; }
     };
@@ -180,6 +180,9 @@ namespace Mezzanine
             /// @return A pointer of the most derived pointing to this.
             virtual IntrusiveRefCount* GetMostDerived()
                 { return this; }
+
+            /// @brief Virtual Deconstructor to prevent issues with deletion with incomplete type information
+            virtual ~IntrusiveRefCount() {}
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -586,7 +589,7 @@ namespace Mezzanine
             /// @return The pointer after the cast.
             /// @note This will almost certainly never actually exists as a function, in even basic testing the compiles completely optimizes this out during compilation.
             static ReturnPointer Cast(OriginalPointer Original)
-                { return static_cast<ReturnPointer>(Original); }
+                { return dynamic_cast<ReturnPointer>(Original); }
     };
 
     /// @internal
