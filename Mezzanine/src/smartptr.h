@@ -586,7 +586,7 @@ namespace Mezzanine
             /// @return The pointer after the cast.
             /// @note This will almost certainly never actually exists as a function, in even basic testing the compiles completely optimizes this out during compilation.
             static ReturnPointer Cast(OriginalPointer Original)
-                { return static_cast<ReturnPointer>(Original); }
+                { return dynamic_cast<ReturnPointer>(Original); }
     };
 
     /// @internal

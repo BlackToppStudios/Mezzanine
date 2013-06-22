@@ -166,7 +166,11 @@ class lua51tests : public UnitTestGroup
 
                         Scripting::Lua::Lua51Script IntArgCall("PrintNum",LuaRuntimeSafe,true);
                         IntArgCall.AddArgument(Scripting::Lua::Lua51IntegerArgument(9));
+                        CountedPtr<Scripting::Lua::Lua51IntegerArgument> IntReturn(new Scripting::Lua::Lua51IntegerArgument);
+                        IntArgCall.AddReturn(IntReturn);
                         LuaRuntimeSafe.Execute(IntArgCall);
+
+                        cout << IntReturn->GetInteger() << endl;
 
                         AddTestResult("Lua51::Engine::PassInt", Success);
                     } catch (ScriptLuaException& e) {

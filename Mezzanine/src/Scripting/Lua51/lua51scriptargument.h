@@ -86,6 +86,8 @@ namespace Mezzanine
                     /// @param TargetState The state with the stack to pull the data from.
                     /// @return Whatever the Lua return code of the first failing lua call, or the last successful call.
                     virtual void Pop(lua_State* TargetState) = 0;
+
+                    virtual ~LuaArgument() {}
             };
 
             /// @brief The implementations in the ScriptArgumentGeneric<Integer> will cover most of what this needs
@@ -101,6 +103,8 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51IntegerArgument() {}
             };
 
             /// @brief A Real that can readily be passed into lua scripts
@@ -113,6 +117,8 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51RealArgument() {}
             };
 
             /// @brief No special care is required for Whole number Lua Arguments, so a simple typedef is used.
@@ -125,6 +131,8 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51WholeArgument() {}
             };
 
             /// @brief No special care is required for String Lua Arguments, so a simple typedef is used.
@@ -137,6 +145,8 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51StringArgument() {}
             };
 
             /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
@@ -149,6 +159,8 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51BoolArgument() {}
             };
 
             /// @brief A very simple class to allow a specialization of ScriptArgumentGeneric to correspond with Lua's Nil.
@@ -229,10 +241,33 @@ namespace Mezzanine
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
+
+                    virtual ~Lua51NilArgument() {}
             };
 
         } // Lua
     } // Scripting
+
+    // Lua51NilArgument Lua51BoolArgument Lua51StringArgument Lua51WholeArgument Lua51RealArgument Lua51IntegerArgument
+
+    /// @brief Marks LuaArgument for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::Lua::LuaArgument>
+    {
+        public:
+            /// @brief The type that maintains the Reference count for Lua51Script with be Lua51Script itself
+            typedef Scripting::Lua::LuaArgument RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::Lua::LuaArgument that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
 
 
 } // Mezzanine
