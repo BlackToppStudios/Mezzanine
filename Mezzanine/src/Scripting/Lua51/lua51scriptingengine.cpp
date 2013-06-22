@@ -104,7 +104,7 @@ namespace Mezzanine
                 /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
                 /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
                 /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
-                const char* LuaBytecodeLoader(lua_State* State, void* BinBuff, long unsigned int* Size)
+                const char* LuaBytecodeLoader(lua_State* State, void* BinBuff, size_t* Size)
                 {
                     //const BinaryTools::BinaryBuffer* LoadingScript = reinterpret_cast<const BinaryTools::BinaryBuffer*>(BinBuff);
                     FlaggedBuffer* LoadingBuffer= reinterpret_cast<FlaggedBuffer*>(BinBuff);
@@ -126,7 +126,7 @@ namespace Mezzanine
                 /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
                 /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
                 /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
-                const char* LuaSourceLoader(lua_State* State, void* BinBuff, long unsigned int* Size)
+                const char* LuaSourceLoader(lua_State* State, void* BinBuff, size_t* Size)
                 {
                     Lua51Script* LoadingScript = reinterpret_cast<Lua51Script*>(BinBuff);
                     if(LoadingScript->GetByteCodeReference().Loaded)
