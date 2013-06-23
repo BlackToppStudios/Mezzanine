@@ -161,7 +161,10 @@ class lua51tests : public UnitTestGroup
                     // Argument Tests
                     try
                     {
-                        Scripting::Lua::Lua51Script IntArgScript("function TakeArgInt(x)\n   return x * 2\nend",LuaRuntimeSafe);
+                        Scripting::Lua::Lua51Script IntArgScript("function TakeArgInt(x)\n"
+                                                                 "   return x * 2\n"
+                                                                 "end"
+                                                                 ,LuaRuntimeSafe);
                         LuaRuntimeSafe.Execute(IntArgScript);
 
                         Scripting::Lua::Lua51Script IntArgCall("TakeArgInt",LuaRuntimeSafe,true);
@@ -184,7 +187,10 @@ class lua51tests : public UnitTestGroup
 
                     try
                     {
-                        Scripting::Lua::Lua51Script WholeArgScript("function TakeArgWhole(x)\n   return x * 2\nend",LuaRuntimeSafe);
+                        Scripting::Lua::Lua51Script WholeArgScript("function TakeArgWhole(x)\n"
+                                                                   "   return x * 2\n"
+                                                                   "end"
+                                                                   ,LuaRuntimeSafe);
                         LuaRuntimeSafe.Execute(WholeArgScript);
 
                         Scripting::Lua::Lua51Script WholeArgCall("TakeArgWhole",LuaRuntimeSafe,true);
@@ -206,7 +212,10 @@ class lua51tests : public UnitTestGroup
 
                     try
                     {
-                        Scripting::Lua::Lua51Script RealArgScript("function TakeArgReal(x)\n   return x * 2\nend",LuaRuntimeSafe);
+                        Scripting::Lua::Lua51Script RealArgScript("function TakeArgReal(x)\n"
+                                                                  "   return x * 2\n"
+                                                                  "end"
+                                                                  ,LuaRuntimeSafe);
                         LuaRuntimeSafe.Execute(RealArgScript);
 
                         Scripting::Lua::Lua51Script RealArgCall("TakeArgReal",LuaRuntimeSafe,true);
@@ -227,7 +236,11 @@ class lua51tests : public UnitTestGroup
 
                     try
                     {
-                        Scripting::Lua::Lua51Script StringArgScript("function TakeArgString(x)\n   results = x .. \"World!\"\n   return results\nend",LuaRuntimeSafe);
+                        Scripting::Lua::Lua51Script StringArgScript("function TakeArgString(x)\n"
+                                                                    "   results = x .. \"World!\"\n"
+                                                                    "   return results\n"
+                                                                    "end"
+                                                                    ,LuaRuntimeSafe);
                         LuaRuntimeSafe.Execute(StringArgScript);
 
                         Scripting::Lua::Lua51Script StringArgCall("TakeArgString",LuaRuntimeSafe,true);
@@ -248,7 +261,11 @@ class lua51tests : public UnitTestGroup
 
                     try
                     {
-                        Scripting::Lua::Lua51Script BoolArgScript("function TakeArgBool(x)\n   results = not x\n   return results\nend",LuaRuntimeSafe);
+                        Scripting::Lua::Lua51Script BoolArgScript("function TakeArgBool(x)\n"
+                                                                  "   results = not x\n"
+                                                                  "   return results\n"
+                                                                  "end"
+                                                                  ,LuaRuntimeSafe);
                         LuaRuntimeSafe.Execute(BoolArgScript);
 
                         Scripting::Lua::Lua51Script BoolArgCall("TakeArgBool",LuaRuntimeSafe,true);
@@ -266,6 +283,30 @@ class lua51tests : public UnitTestGroup
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::PassBool", Failed);
                     }
+                    try
+                    {
+                        Scripting::Lua::Lua51Script NilArgScript("function TakeArgNil(x)\n"
+                                                                 "   return nil\n"
+                                                                 "end\n"
+                                                                 ,LuaRuntimeSafe);
+                        LuaRuntimeSafe.Execute(NilArgScript);
+
+                        Scripting::Lua::Lua51Script NilArgCall("TakeArgBool",LuaRuntimeSafe,true);
+                        NilArgCall.AddArgument(false);
+                        CountedPtr<Scripting::Lua::Lua51NilArgument> NilReturn(new Scripting::Lua::Lua51NilArgument);
+                        NilArgCall.AddReturn(NilReturn);
+                        LuaRuntimeSafe.Execute(NilArgCall);
+
+                        if(true==NilReturn->GetBool())
+                        {
+                            AddTestResult("Lua51::Engine::PassNil", Success);
+                        }else{
+                            AddTestResult("Lua51::Engine::PassNil", Failed);
+                        }
+                    } catch (ScriptLuaException& e) {
+                        AddTestResult("Lua51::Engine::PassNil", Failed);
+                    }
+
                 }
 
 
