@@ -106,7 +106,6 @@ namespace Mezzanine
                 /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
                 const char* LuaBytecodeLoader(lua_State* State, void* BinBuff, size_t* Size)
                 {
-                    //const BinaryTools::BinaryBuffer* LoadingScript = reinterpret_cast<const BinaryTools::BinaryBuffer*>(BinBuff);
                     FlaggedBuffer* LoadingBuffer= reinterpret_cast<FlaggedBuffer*>(BinBuff);
                     if(LoadingBuffer->Loaded)
                     {
