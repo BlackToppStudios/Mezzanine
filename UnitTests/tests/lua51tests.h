@@ -161,11 +161,12 @@ class lua51tests : public UnitTestGroup
                     // Argument Tests
                     try
                     {
-                        Scripting::Lua::Lua51Script IntArgScript("function PrintNum(x)\n   return x * 2\nend",LuaRuntimeSafe);
+                        Scripting::Lua::Lua51Script IntArgScript("function TakeArgInt(x)\n   return x * 2\nend",LuaRuntimeSafe);
                         LuaRuntimeSafe.Execute(IntArgScript);
 
-                        Scripting::Lua::Lua51Script IntArgCall("PrintNum",LuaRuntimeSafe,true);
-                        IntArgCall.AddArgument(Scripting::Lua::Lua51IntegerArgument(9));
+                        Scripting::Lua::Lua51Script IntArgCall("TakeArgInt",LuaRuntimeSafe,true);
+                        //IntArgCall.AddArgument(Scripting::Lua::Lua51IntegerArgument(9));
+                        IntArgCall.AddArgument(9);
                         CountedPtr<Scripting::Lua::Lua51IntegerArgument> IntReturn(new Scripting::Lua::Lua51IntegerArgument);
                         IntArgCall.AddReturn(IntReturn);
                         LuaRuntimeSafe.Execute(IntArgCall);
@@ -181,8 +182,90 @@ class lua51tests : public UnitTestGroup
                         AddTestResult("Lua51::Engine::PassInt", Failed);
                     }
 
+                    try
+                    {
+                        Scripting::Lua::Lua51Script WholeArgScript("function TakeArgWhole(x)\n   return x * 2\nend",LuaRuntimeSafe);
+                        LuaRuntimeSafe.Execute(WholeArgScript);
 
+                        Scripting::Lua::Lua51Script WholeArgCall("TakeArgWhole",LuaRuntimeSafe,true);
+                        WholeArgCall.AddArgument(9);
+                        CountedPtr<Scripting::Lua::Lua51WholeArgument> WholeReturn(new Scripting::Lua::Lua51WholeArgument);
+                        WholeArgCall.AddReturn(WholeReturn);
+                        LuaRuntimeSafe.Execute(WholeArgCall);
 
+                        if(18==WholeReturn->GetWhole())
+                        {
+                            AddTestResult("Lua51::Engine::PassWhole", Success);
+                        }else{
+                            AddTestResult("Lua51::Engine::PassWhole", Failed);
+                        }
+
+                    } catch (ScriptLuaException& e) {
+                        AddTestResult("Lua51::Engine::PassWhole", Failed);
+                    }
+
+                    try
+                    {
+                        Scripting::Lua::Lua51Script RealArgScript("function TakeArgReal(x)\n   return x * 2\nend",LuaRuntimeSafe);
+                        LuaRuntimeSafe.Execute(RealArgScript);
+
+                        Scripting::Lua::Lua51Script RealArgCall("TakeArgReal",LuaRuntimeSafe,true);
+                        RealArgCall.AddArgument(Real(9.5));
+                        CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
+                        RealArgCall.AddReturn(RealReturn);
+                        LuaRuntimeSafe.Execute(RealArgCall);
+
+                        if(19.0==RealReturn->GetWhole())
+                        {
+                            AddTestResult("Lua51::Engine::PassReal", Success);
+                        }else{
+                            AddTestResult("Lua51::Engine::PassReal", Failed);
+                        }
+                    } catch (ScriptLuaException& e) {
+                        AddTestResult("Lua51::Engine::PassReal", Failed);
+                    }
+
+                    try
+                    {
+                        Scripting::Lua::Lua51Script StringArgScript("function TakeArgString(x)\n   results = x .. \"World!\"\n   return results\nend",LuaRuntimeSafe);
+                        LuaRuntimeSafe.Execute(StringArgScript);
+
+                        Scripting::Lua::Lua51Script StringArgCall("TakeArgString",LuaRuntimeSafe,true);
+                        StringArgCall.AddArgument((char*)"Hello ");
+                        CountedPtr<Scripting::Lua::Lua51StringArgument> StringReturn(new Scripting::Lua::Lua51StringArgument);
+                        StringArgCall.AddReturn(StringReturn);
+                        LuaRuntimeSafe.Execute(StringArgCall);
+
+                        if(String("Hello World!")==StringReturn->GetString())
+                        {
+                            AddTestResult("Lua51::Engine::PassString", Success);
+                        }else{
+                            AddTestResult("Lua51::Engine::PassString", Failed);
+                        }
+                    } catch (ScriptLuaException& e) {
+                        AddTestResult("Lua51::Engine::PassString", Failed);
+                    }
+
+                    try
+                    {
+                        Scripting::Lua::Lua51Script BoolArgScript("function TakeArgBool(x)\n   results = not x\n   return results\nend",LuaRuntimeSafe);
+                        LuaRuntimeSafe.Execute(BoolArgScript);
+
+                        Scripting::Lua::Lua51Script BoolArgCall("TakeArgBool",LuaRuntimeSafe,true);
+                        BoolArgCall.AddArgument(false);
+                        CountedPtr<Scripting::Lua::Lua51BoolArgument> BoolReturn(new Scripting::Lua::Lua51BoolArgument);
+                        BoolArgCall.AddReturn(BoolReturn);
+                        LuaRuntimeSafe.Execute(BoolArgCall);
+
+                        if(true==BoolReturn->GetBool())
+                        {
+                            AddTestResult("Lua51::Engine::PassBool", Success);
+                        }else{
+                            AddTestResult("Lua51::Engine::PassBool", Failed);
+                        }
+                    } catch (ScriptLuaException& e) {
+                        AddTestResult("Lua51::Engine::PassBool", Failed);
+                    }
                 }
 
 
@@ -202,6 +285,11 @@ class lua51tests : public UnitTestGroup
                 AddTestResult("Lua51::Engine::ExecuteFromCountedPtrCovariant", Skipped);
 
                 AddTestResult("Lua51::Engine::PassInt", Skipped);
+                AddTestResult("Lua51::Engine::PassWhole", Skipped);
+                AddTestResult("Lua51::Engine::PassReal", Skipped);
+                AddTestResult("Lua51::Engine::PassString", Skipped);
+                AddTestResult("Lua51::Engine::PassBool", Skipped);
+                AddTestResult("Lua51::Engine::PassNil", Skipped);
             }
         }
 };

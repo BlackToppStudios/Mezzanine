@@ -149,6 +149,14 @@ namespace Mezzanine
                     virtual void AddArgument(Lua51StringArgument Arg);
                     virtual void AddArgument(Lua51BoolArgument Arg);
                     virtual void AddArgument(Lua51NilArgument Arg);
+
+                    virtual void AddArgument(Integer Arg);
+                    virtual void AddArgument(Real Arg);
+                    virtual void AddArgument(Whole Arg);
+                    virtual void AddArgument(String Arg);
+                    virtual void AddArgument(char* Arg);
+                    virtual void AddArgument(Bool Arg);
+
                     /// @brief When called with no arguments this inserts a Lua51nil
                     virtual void AddArgument();
 
