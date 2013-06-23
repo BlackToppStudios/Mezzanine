@@ -124,7 +124,7 @@ namespace Mezzanine
                 /// @param Buffer A Lua51Script* containing the source to load into Lua
                 /// @param Size an output parameter to convey the size of the return to Lua.
                 /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
-                /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
+                /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says unsigned int*
                 /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
                 const char* LuaSourceLoader(lua_State* State, void* BinBuff, size_t* Size)
                 {
