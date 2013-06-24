@@ -286,18 +286,22 @@ class lua51tests : public UnitTestGroup
                     try
                     {
                         Scripting::Lua::Lua51Script NilArgScript("function TakeArgNil(x)\n"
-                                                                 "   return nil\n"
-                                                                 "end\n"
+                                                                 "   if \"nil\"==type(x) then\n"
+                                                                 "      return nil\n"
+                                                                 "   else\n"
+                                                                 "      return 10\n"
+                                                                 "   end\n"
+                                                                 "end"
                                                                  ,LuaRuntimeSafe);
                         LuaRuntimeSafe.Execute(NilArgScript);
 
-                        Scripting::Lua::Lua51Script NilArgCall("TakeArgBool",LuaRuntimeSafe,true);
-                        NilArgCall.AddArgument(false);
+                        Scripting::Lua::Lua51Script NilArgCall("TakeArgNil",LuaRuntimeSafe,true);
+                        NilArgCall.AddArgument();
                         CountedPtr<Scripting::Lua::Lua51NilArgument> NilReturn(new Scripting::Lua::Lua51NilArgument);
                         NilArgCall.AddReturn(NilReturn);
                         LuaRuntimeSafe.Execute(NilArgCall);
 
-                        if(true==NilReturn->GetBool())
+                        if(false==NilReturn->GetBool())
                         {
                             AddTestResult("Lua51::Engine::PassNil", Success);
                         }else{
