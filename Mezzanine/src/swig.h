@@ -59,7 +59,12 @@
     // Tell SWIG to create a module that scripting languages can use called "mezzanine"
     // and insert a minimum of documentation into the bindingfile
     %{
-        // code to be inserted verbatim into the swig file that does not go at the top or bottom like the build script does it
+        // code to be inserted verbatim into the swig file goes here
+        #include "mezzanine.h"
+        #include "btBulletDynamicsCommon.h"
+        #include "Ogre.h"
+
+        using namespace Mezzanine;
     %}
 
     %include stl.i

@@ -283,6 +283,8 @@ class lua51tests : public UnitTestGroup
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::PassBool", Failed);
                     }
+
+
                     try
                     {
                         Scripting::Lua::Lua51Script NilArgScript("function TakeArgNil(x)\n"
@@ -310,7 +312,80 @@ class lua51tests : public UnitTestGroup
                     } catch (ScriptLuaException& e) {
                         AddTestResult("Lua51::Engine::PassNil", Failed);
                     }
+                }
 
+                {
+                    //////////////////////////////////////////////////////////////////////////////////////////
+                    // Library Tests
+                    {
+                        String FeatureSource("assert(1)\n"
+                                             "print(type(tostring(1)))\n"
+                                             "coroutine.running()\n"
+                                            );
+
+                        Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
+                        Scripting::Lua::Lua51Script FeatureScript(FeatureSource);
+
+                        cout << "Attempting execution of Base library function without that library being loaded." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::BaselibExclude", Failed); // Why does this work?
+                        } catch (ScriptLuaException& e) {
+                            cout << endl << "It failed as it should." << endl;
+                            AddTestResult("Lua51::Script::BaselibExclude", Success);
+                        }
+
+                        LuaRuntimePartial.OpenLibraries(Scripting::Lua::Lua51ScriptingEngine::BaseLib);
+                        //LuaRuntimePartial.OpenBaseLibrary();
+
+                        cout << "Attempting normal execution of properly loaded Base library function." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::BaselibInclude", Success);
+                        } catch (ScriptLuaException& e) {
+
+                            AddTestResult("Lua51::Script::BaselibInclude", Failed);
+                        }
+
+                    }
+
+                    {
+                        String FeatureSource("module(EmptyModule)\n");
+
+                        Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::BaseLib);
+                        Scripting::Lua::Lua51Script FeatureScript(FeatureSource);
+
+                        cout << "Attempting execution of Package library function without that library being loaded." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::PackagelibExclude", Failed); // Why does this work?
+                        } catch (ScriptLuaException& e) {
+                            cout << endl << "It failed as it should." << endl;
+                            AddTestResult("Lua51::Script::PackagelibExclude", Success);
+                        }
+
+                        LuaRuntimePartial.OpenLibraries(Scripting::Lua::Lua51ScriptingEngine::PackageLib);
+                        //LuaRuntimePartial.OpenPackageLibrary(); //identical to above line
+
+                        cout << "Attempting normal execution of properly loaded Package library function." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::PackagelibInclude", Success);
+                        } catch (ScriptLuaException& e) {
+                            AddTestResult("Lua51::Script::PackagelibInclude", Failed);
+                        }
+
+                    }
+
+                    cout << endl;
                 }
 
 
@@ -335,6 +410,11 @@ class lua51tests : public UnitTestGroup
                 AddTestResult("Lua51::Engine::PassString", Skipped);
                 AddTestResult("Lua51::Engine::PassBool", Skipped);
                 AddTestResult("Lua51::Engine::PassNil", Skipped);
+
+                AddTestResult("Lua51::Script::BaselibExclude", Skipped);
+                AddTestResult("Lua51::Script::BaselibInclude", Skipped);
+                AddTestResult("Lua51::Script::PackagelibExclude", Skipped);
+                AddTestResult("Lua51::Script::PackagelibInclude", Skipped);
             }
         }
 };

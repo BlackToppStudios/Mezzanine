@@ -71,8 +71,6 @@ namespace Mezzanine
     {
         namespace Lua
         {
-            void Lua51Script::Compile(Lua51ScriptingEngine* Compiler)
-                { Compiler->Compile(this); }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // LuaScript basics
@@ -131,7 +129,7 @@ namespace Mezzanine
             void Lua51Script::AddArgument(String Arg)
                 { AddArgument((Lua51StringArgument(Arg))); }
 
-            void Lua51Script::AddArgument(char* Arg)
+            void Lua51Script::AddArgument(Char8 *Arg)
                 { AddArgument((String(Arg))); }
 
             void Lua51Script::AddArgument(Bool Arg)
@@ -184,6 +182,12 @@ namespace Mezzanine
 
             bool Lua51Script::IsCompiled() const
                 { return CompiledByteCode.Binary != 0; }
+
+            void Lua51Script::Compile(Lua51ScriptingEngine* Compiler)
+                { Compiler->Compile(this); }
+
+            void Lua51Script::Compile(Lua51ScriptingEngine& Compiler)
+                { Compiler.Compile(this); }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // Returns

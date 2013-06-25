@@ -53,8 +53,8 @@
 
 /// @page LuaManual Mezzanine::Scripting Lua Manual
 /// The file that SWIG generated was made with the following command run on an ubuntu machine from the Mezzananine/src directory:
-/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o scriptbindinglua51.cpp mezzanine.h
-///
+/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o Scripting/Lua51/scriptbindinglua51.cpp mezzanine.h
+/// swig2.0 -c++ -v -Wall -lua -importall -includeall -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindinglua51unsafe.cpp mezzanine.h
 /// Need to document "Mezzanine.", nspaces, calling conventions
 ///
 /// script class compilation
