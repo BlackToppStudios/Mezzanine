@@ -347,13 +347,12 @@ class lua51tests : public UnitTestGroup
                             LuaRuntimePartial.Execute(FeatureScript);
                             AddTestResult("Lua51::Script::BaselibInclude", Success);
                         } catch (ScriptLuaException& e) {
-
                             AddTestResult("Lua51::Script::BaselibInclude", Failed);
                         }
-
+                        cout << endl;
                     }
 
-                    {
+                    /*{
                         String FeatureSource("module(EmptyModule)\n");
 
                         Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::BaseLib);
@@ -366,7 +365,7 @@ class lua51tests : public UnitTestGroup
                             LuaRuntimePartial.Execute(FeatureScript);
                             AddTestResult("Lua51::Script::PackagelibExclude", Failed); // Why does this work?
                         } catch (ScriptLuaException& e) {
-                            cout << endl << "It failed as it should." << endl;
+                            cout << end << "It failed as it should." << endl;
                             AddTestResult("Lua51::Script::PackagelibExclude", Success);
                         }
 
@@ -382,8 +381,107 @@ class lua51tests : public UnitTestGroup
                         } catch (ScriptLuaException& e) {
                             AddTestResult("Lua51::Script::PackagelibInclude", Failed);
                         }
+                        cout << endl;
+                    }*/
 
+                    {
+                        String FeatureSource("x = string.lower(\"A\")");
+
+                        Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
+                        Scripting::Lua::Lua51Script FeatureScript(FeatureSource);
+
+                        cout << "Attempting execution of String library function without that library being loaded." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::StringlibExclude", Failed); // Why does this work?
+                        } catch (ScriptLuaException& e) {
+                            cout << endl << "It failed as it should." << endl;
+                            AddTestResult("Lua51::Script::StringlibExclude", Success);
+                        }
+
+                        LuaRuntimePartial.OpenLibraries(Scripting::Lua::Lua51ScriptingEngine::StringLib);
+                        //LuaRuntimePartial.OpenStringLibrary();
+
+                        cout << "Attempting normal execution of properly loaded String library function." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::StringlibInclude", Success);
+                        } catch (ScriptLuaException& e) {
+                            AddTestResult("Lua51::Script::StringlibInclude", Failed);
+                        }
+                        cout << endl;
                     }
+
+
+                    {
+                        String FeatureSource("num = {1,2,3}\n"
+                                             "table.maxn(num)");
+
+                        Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
+                        Scripting::Lua::Lua51Script FeatureScript(FeatureSource);
+
+                        cout << "Attempting execution of Table library function without that library being loaded." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::TablelibExclude", Failed); // Why does this work?
+                        } catch (ScriptLuaException& e) {
+                            cout << endl << "It failed as it should." << endl;
+                            AddTestResult("Lua51::Script::TablelibExclude", Success);
+                        }
+
+                        LuaRuntimePartial.OpenLibraries(Scripting::Lua::Lua51ScriptingEngine::TableLib);
+                        //LuaRuntimePartial.OpenTableLibrary();
+
+                        cout << "Attempting normal execution of properly loaded Table library function." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::TablelibInclude", Success);
+                        } catch (ScriptLuaException& e) {
+                            AddTestResult("Lua51::Script::TablelibInclude", Failed);
+                        }
+                        cout << endl;
+                    }
+
+                    {
+                        String FeatureSource("x = math.abs(-10)");
+
+                        Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
+                        Scripting::Lua::Lua51Script FeatureScript(FeatureSource);
+
+                        cout << "Attempting execution of Math library function without that library being loaded." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::MathlibExclude", Failed); // Why does this work?
+                        } catch (ScriptLuaException& e) {
+                            cout << endl << "It failed as it should." << endl;
+                            AddTestResult("Lua51::Script::MathlibExclude", Success);
+                        }
+
+                        LuaRuntimePartial.OpenLibraries(Scripting::Lua::Lua51ScriptingEngine::MathLib);
+                        //LuaRuntimePartial.OpenMathLibrary();
+
+                        cout << "Attempting normal execution of properly loaded Math library function." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::MathlibInclude", Success);
+                        } catch (ScriptLuaException& e) {
+                            AddTestResult("Lua51::Script::MathlibInclude", Failed);
+                        }
+                        cout << endl;
+                    }
+
 
                     cout << endl;
                 }
@@ -413,8 +511,14 @@ class lua51tests : public UnitTestGroup
 
                 AddTestResult("Lua51::Script::BaselibExclude", Skipped);
                 AddTestResult("Lua51::Script::BaselibInclude", Skipped);
-                AddTestResult("Lua51::Script::PackagelibExclude", Skipped);
-                AddTestResult("Lua51::Script::PackagelibInclude", Skipped);
+                //AddTestResult("Lua51::Script::PackagelibExclude", Skipped);
+                //AddTestResult("Lua51::Script::PackagelibInclude", Skipped);
+                AddTestResult("Lua51::Script::StringlibExclude", Skipped);
+                AddTestResult("Lua51::Script::StringlibInclude", Skipped);
+                AddTestResult("Lua51::Script::TablelibExclude", Skipped);
+                AddTestResult("Lua51::Script::TablelibInclude", Skipped);
+                AddTestResult("Lua51::Script::MathlibExclude", Skipped);
+                AddTestResult("Lua51::Script::MathlibInclude", Skipped);
             }
         }
 };
