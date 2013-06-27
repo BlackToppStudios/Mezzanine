@@ -482,6 +482,21 @@ class lua51tests : public UnitTestGroup
                         cout << endl;
                     }
 
+                    /*
+                    virtual void OpenIOLibrary();
+
+                    /// @detail See http://www.lua.org/manual/5.1/manual.html#5.7 in the Lua manual for details
+
+                    virtual void OpenOSLibrary();
+
+                    /// Lua manual at http://www.lua.org/manual/5.1/manual.html#5.9 .
+                    virtual void OpenDebugLibrary();
+
+
+                    virtual void OpenMezzanineLibrary();
+
+                    virtual void OpenMezzanineSafeLibrary();
+                    */
 
                     cout << endl;
                 }
