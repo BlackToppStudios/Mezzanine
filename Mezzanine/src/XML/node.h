@@ -107,6 +107,9 @@ namespace Mezzanine
                 /// @brief Default constructor. Constructs an empty node.
                 Node();
 
+                /// @brief Virtual deconstructor.
+                ~Node();
+
                 /// @brief Constructs node from internal pointer
                 /// @param p An internal node pointer.
                 explicit Node(NodeStruct* p);

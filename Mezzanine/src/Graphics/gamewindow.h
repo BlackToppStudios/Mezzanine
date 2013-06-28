@@ -81,7 +81,7 @@ namespace Mezzanine
                     WF_FSAA_16 = 64,      ///< Enables Fullscreen Anti-Aliasing level 16 for the window.
                     WF_Resizeable = 128,  ///< Creates a window with resizable borders, otherwise it is fixed size.
                     WF_Maximized = 256,   ///< Maximizes the window immediately after construction.
-                    WF_Borderless = 512,  ///< Removes all window decorations from the window(titlebar, borders, etc.).
+                    WF_Borderless = 512   ///< Removes all window decorations from the window(titlebar, borders, etc.).
                 };
             protected:
                 GraphicsManager* Manager;

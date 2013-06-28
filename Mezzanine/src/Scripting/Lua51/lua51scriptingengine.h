@@ -237,7 +237,7 @@ namespace Mezzanine
                     /// @brief Enable Debugging Lua features.
                     /// @details This is the only Lua library omitted from the Defaults for functionality rather than security reasons. This
                     /// unimportant for most game uses and is primarily include for completeness. More details in the
-                    /// Lua manuak at http://www.lua.org/manual/5.1/manual.html#5.9 .
+                    /// Lua manual at http://www.lua.org/manual/5.1/manual.html#5.9 .
                     virtual void OpenDebugLibrary();
 
                     /// @brief Make the everything in the Mezzanine Libary available for use in Lua51 scripts.

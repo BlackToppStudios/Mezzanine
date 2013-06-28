@@ -112,7 +112,7 @@ namespace Mezzanine
                 {}
 
             /// @brief Destructor, cleans up the object when the last reference deletes this
-            ~ReferenceCount()
+            virtual ~ReferenceCount()
                 { delete Target; }
 
             /// @brief Increase the reference count by one and return the updated count.

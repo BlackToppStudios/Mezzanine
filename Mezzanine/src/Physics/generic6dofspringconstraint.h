@@ -76,7 +76,7 @@ namespace Mezzanine
                     LinearZ         = 2,    ///< Translation on the Z axis
                     AngularX        = 3,    ///< Rotation on the X axis
                     AngularY        = 4,    ///< Rotation on the Y axis
-                    AngularZ        = 5,    ///< Rotation on the Z axis
+                    AngularZ        = 5     ///< Rotation on the Z axis
                 };
 
                 ////////////////////////////////////////////////////////////////////////////////
