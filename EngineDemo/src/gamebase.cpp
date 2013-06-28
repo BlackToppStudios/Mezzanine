@@ -56,17 +56,17 @@ int main(int argc, char **argv)
     TheEntresol->GetGraphicsManager()->SetPostMainLoopItems(&PostRender);
 
     //Create the windows!
-    Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",800,600,0);
+    Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
     Camera* FirstCam = CameraManager::GetSingletonPtr()->CreateCamera("FirstCam");
     Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
     FirstCam->SetLocation( Vector3(0,50,900) );
     FirstCam->LookAt( Vector3(0,0,0) );
 
-    Graphics::GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
+    /*Graphics::GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
     Camera* SecondCam = CameraManager::GetSingletonPtr()->CreateCamera("SecondCam");
     Graphics::Viewport* SecondViewport = SecondWindow->CreateViewport(SecondCam);
     SecondCam->SetLocation( Vector3(-300,50,-50) );
-    SecondCam->LookAt( Vector3(0,0,0) );
+    SecondCam->LookAt( Vector3(0,0,0) );//*/
 
     //Init
 	TheEntresol->EngineInit(false);
@@ -91,10 +91,10 @@ int main(int argc, char **argv)
     //Setup some camera tricks
     //WorldNode* CameraNode = TheEntresol->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
     //CameraNode->AttachElement(TheEntresol->GetCameraManager()->GetDefaultCamera());
-    TheEntresol->GetCameraManager()->GetCamera(0)->SetLocation(Vector3(0.0,200.0,150.0));
-    CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
-    DefaultControl->SetMovementMode(CameraController::CCM_Walk);
-    DefaultControl->SetHoverHeight(75);
+    TheEntresol->GetCameraManager()->GetCamera(0)->SetLocation(Vector3(0.0,200.0,450.0));
+    //CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
+    //DefaultControl->SetMovementMode(CameraController::CCM_Walk);
+    //DefaultControl->SetHoverHeight(75);
     Light *Headlight = TheEntresol->GetSceneManager()->CreateLight("Headlight");
     Headlight->SetLightType(Light::Directional);
     Vector3 LightLoc(200,300,0);
@@ -647,17 +647,19 @@ void LoadContent()
     TheEntresol->GetActorManager()->AddActor(object7);
     //TheEntresol->GetActorManager()->AddActor(Act9);
 
+    //GravityField
     /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
     Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
     Reverse->SetLocation(Vector3(200,50,-5.0));
     TheEntresol->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
-    /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
-    BlackHole->CreateSphereShape(750.0);
+    //GravityWell
+    GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    BlackHole->GetPhysicsSettings()->SetCollisionShape(new Physics::SphereCollisionShape("GravWellShape",750.0));
     BlackHole->SetAllowWorldGravity(false);
-    BlackHole->SetFieldStrength(100000.0);
-    BlackHole->SetAttenuation(85.0,GravityWell::GW_Att_Linear);
-    BlackHole->CreateGraphicsSphere(ColourValue(0.9,0.7,0.7,0.55));
+    BlackHole->SetFieldStrength(1000.0);
+    BlackHole->SetAttenuation(3.000,Mezzanine::Att_Linear);
+    //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
     TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
 
