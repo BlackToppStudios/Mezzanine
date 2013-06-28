@@ -154,27 +154,27 @@ namespace Mezzanine
             /// @brief Gets the length of the stream in seconds.
             /// @return Returns the total amount of time needed to playback the sound in seconds.
             virtual Real GetTotalTime() const
-                { this->GetDecoder()->GetTotalTime(); }
+                { return this->GetDecoder()->GetTotalTime(); }
             /// @brief Gets the current time position in the stream.
             /// @return Returns the current position in the stream in seconds.
             virtual Real GetCurrentTime() const
-                { this->GetDecoder()->GetCurrentTime(); }
+                { return this->GetDecoder()->GetCurrentTime(); }
             /// @brief Gets the size of the decoded audio source in use.
             /// @return Returns the size of the decoded audio source.
             virtual UInt32 GetTotalSize() const
-                { this->GetDecoder()->GetTotalSize(); }
+                { return this->GetDecoder()->GetTotalSize(); }
             /// @brief Gets the size of the encoded audio source in use.
             /// @return Returns the size of the encoded audio source.
             virtual UInt32 GetCompressedSize() const
-                { this->GetDecoder()->GetCompressedSize(); }
+                { return this->GetDecoder()->GetCompressedSize(); }
             /// @brief Gets the sounds current position in the decoded audio source.
             /// @return Returns the current position in the decoded audio source in bytes.
             virtual UInt32 GetCurrentPosition() const
-                { this->GetDecoder()->GetCurrentPosition(); }
+                { return this->GetDecoder()->GetCurrentPosition(); }
             /// @brief Gets the sounds current position in the encoded audio source.
             /// @return Returns the current position in the encoded audio source in bytes.
             virtual UInt32 GetCurrentCompressedPosition() const
-                { this->GetDecoder()->GetCurrentCompressedPosition(); }
+                { return this->GetDecoder()->GetCurrentCompressedPosition(); }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Volume Control

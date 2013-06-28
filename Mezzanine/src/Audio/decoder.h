@@ -99,6 +99,7 @@ namespace Mezzanine
                     case Mezzanine::Audio::BC_16Bit_Stereo:  return 4;  break;
                     case Mezzanine::Audio::BC_24Bit_Mono:    return 3;  break;
                     case Mezzanine::Audio::BC_24Bit_Stereo:  return 6;  break;
+                    default: return -1;
                 }
             }
 

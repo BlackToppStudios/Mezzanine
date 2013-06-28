@@ -101,7 +101,7 @@ namespace Mezzanine
                 PCF_SoftRigidWorld = 1,
 
                 //broadphase flags
-                PCF_LimitlessWorld = 2,
+                PCF_LimitlessWorld = 2
             };
 
             /// @brief Class constructor.

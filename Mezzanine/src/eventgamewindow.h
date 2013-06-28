@@ -101,7 +101,7 @@ namespace Mezzanine
             EventGameWindow( const EventGameWindow& Other);
 
             /// @brief Deconstructs this EventGameWindow
-            ~EventGameWindow();
+            virtual ~EventGameWindow();
 
             /// @brief This returns EventType::GameWindow
             /// @details  This returns the kind of message this is, specifcally EventType::GameWindow . If

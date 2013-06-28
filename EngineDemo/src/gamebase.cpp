@@ -578,6 +578,9 @@ void LoadContent()
             {Robot8=ActRig;}
     }
 
+    //new ActorRigid(mass,"C","chassis.obj.mesh",groupname);
+    new ActorRigid(mass,"C","newchassis2x.mesh",groupname);
+
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
     ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);

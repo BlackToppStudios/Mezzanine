@@ -3671,6 +3671,10 @@ namespace XML
 	{
 	}
 
+    PUGI__FN Node::~Node()
+    {
+    }
+
 	PUGI__FN Node::Node(NodeStruct* p): NodeData(p)
 	{
 	}

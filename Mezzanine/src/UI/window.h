@@ -69,7 +69,7 @@ namespace Mezzanine
                     RM_Left,
                     RM_Right,
                     RM_Top,
-                    RM_Bottom,
+                    RM_Bottom
                 };
                 Rectangle* WindowBack;
                 //Caption* WindowTitle;

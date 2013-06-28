@@ -222,7 +222,7 @@ namespace Mezzanine
                 virtual bool IsParamValidOnAxis(ConstraintParam Param, int Axis) const
                 {
                     ParamList Supported = ValidParamOnAxis(Axis);
-                    if(ConstraintParamCount == Supported.size())                           // no need to check deeper, because everything is supported
+                    if(size_t(ConstraintParamCount) == Supported.size())                           // no need to check deeper, because everything is supported
                     {
                         return true;
                     }else{

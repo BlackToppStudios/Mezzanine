@@ -74,7 +74,7 @@ namespace Mezzanine
             const Integer LuaNil = GenericMax+1;
 
             /// @brief The ScriptArgumentGeneric<T> does a good enough job for actually passing data, but it needs just a bit of Lua specific functionality
-            class LuaArgument
+            class MEZZ_LIB LuaArgument
             {
                 public:
                     /// @brief Handle the details of putting this data onto Lua's Stack.
@@ -97,7 +97,7 @@ namespace Mezzanine
             };
 
             /// @brief The implementations in the ScriptArgumentGeneric<Integer> will cover most of what this needs
-            class Lua51IntegerArgument : public LuaArgument, public ScriptArgumentGeneric<Integer>
+            class MEZZ_LIB Lua51IntegerArgument : public LuaArgument, public ScriptArgumentGeneric<Integer>
             {
                 public:
 
@@ -120,7 +120,7 @@ namespace Mezzanine
             };
 
             /// @brief A Real that can readily be passed into lua scripts
-            class Lua51RealArgument : public LuaArgument, public ScriptArgumentGeneric<Real>
+            class MEZZ_LIB Lua51RealArgument : public LuaArgument, public ScriptArgumentGeneric<Real>
             {
                 public:
                     Lua51RealArgument(Real InitialValue = 0.0) : ScriptArgumentGeneric<Real>(InitialValue)
@@ -139,7 +139,7 @@ namespace Mezzanine
             };
 
             /// @brief No special care is required for Whole number Lua Arguments, so a simple typedef is used.
-            class Lua51WholeArgument : public LuaArgument, public ScriptArgumentGeneric<Whole>
+            class MEZZ_LIB Lua51WholeArgument : public LuaArgument, public ScriptArgumentGeneric<Whole>
             {
                 public:
                     Lua51WholeArgument(Whole InitialValue = 0) : ScriptArgumentGeneric<Whole>(InitialValue)
@@ -158,7 +158,7 @@ namespace Mezzanine
             };
 
             /// @brief No special care is required for String Lua Arguments, so a simple typedef is used.
-            class Lua51StringArgument : public LuaArgument, public ScriptArgumentGeneric<String>
+            class MEZZ_LIB Lua51StringArgument : public LuaArgument, public ScriptArgumentGeneric<String>
             {
                 public:
                     Lua51StringArgument(String InitialValue = String()) : ScriptArgumentGeneric<String>(InitialValue)
@@ -177,7 +177,7 @@ namespace Mezzanine
             };
 
             /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
-            class Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Bool>
+            class MEZZ_LIB Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Bool>
             {
                 public:
                     Lua51BoolArgument(Bool InitialValue = false) : ScriptArgumentGeneric<Bool>(InitialValue)
@@ -196,7 +196,7 @@ namespace Mezzanine
             };
 
             /// @brief A very simple class to allow a specialization of ScriptArgumentGeneric to correspond with Lua's Nil.
-            class Lua51Nil {};
+            class MEZZ_LIB Lua51Nil {};
 
         } // Lua
 
@@ -269,7 +269,7 @@ namespace Mezzanine
         namespace Lua
         {
             /// @brief Represents not much of anything but will insert and retrieves Nils from Lua51.
-            class Lua51NilArgument : public LuaArgument, public ScriptArgumentGeneric<Lua51Nil>
+            class MEZZ_LIB Lua51NilArgument : public LuaArgument, public ScriptArgumentGeneric<Lua51Nil>
             {
                 public:
                     Lua51NilArgument() : ScriptArgumentGeneric<Lua51Nil>()
@@ -294,7 +294,7 @@ namespace Mezzanine
 
     /// @brief Marks LuaArgument for internal reference counting if a CountedPtr checks
     template <>
-    class ReferenceCountTraits <Scripting::Lua::LuaArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::LuaArgument>
     {
         public:
             /// @brief The type that maintains the Reference count for LuaArgument with be LuaArgument itself
@@ -312,7 +312,7 @@ namespace Mezzanine
 
     /// @brief Marks Lua51IntegerArgument for internal reference counting if a CountedPtr checks
     template <>
-    class ReferenceCountTraits <Scripting::Lua::Lua51IntegerArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51IntegerArgument>
     {
         public:
             /// @brief The type that maintains the Reference count for Lua51IntegerArgument with be Lua51IntegerArgument itself
@@ -330,7 +330,7 @@ namespace Mezzanine
 
     /// @brief Marks Lua51RealArgument for internal reference counting if a CountedPtr checks
     template <>
-    class ReferenceCountTraits <Scripting::Lua::Lua51RealArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51RealArgument>
     {
         public:
             /// @brief The type that maintains the Reference count for Lua51RealArgument with be Lua51RealArgument itself
@@ -348,7 +348,7 @@ namespace Mezzanine
 
     /// @brief Marks Lua51WholeArgument for internal reference counting if a CountedPtr checks
     template <>
-    class ReferenceCountTraits <Scripting::Lua::Lua51WholeArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51WholeArgument>
     {
         public:
             /// @brief The type that maintains the Reference count for Lua51WholeArgument with be Lua51WholeArgument itself
@@ -366,7 +366,7 @@ namespace Mezzanine
 
     /// @brief Marks Lua51StringArgument for internal reference counting if a CountedPtr checks
     template <>
-    class ReferenceCountTraits <Scripting::Lua::Lua51StringArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51StringArgument>
     {
         public:
             /// @brief The type that Lua51StringArgument the Reference count for Lua51StringArgument with be Lua51StringArgument itself
@@ -384,7 +384,7 @@ namespace Mezzanine
 
     /// @brief Marks Lua51BoolArgument for internal reference counting if a CountedPtr checks
     template <>
-    class ReferenceCountTraits <Scripting::Lua::Lua51BoolArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51BoolArgument>
     {
         public:
             /// @brief The type that maintains the Reference count for Lua51BoolArgument with be Lua51BoolArgument itself
@@ -402,7 +402,7 @@ namespace Mezzanine
 
     /// @brief Marks Lua51NilArgument for internal reference counting if a CountedPtr checks
     template <>
-    class ReferenceCountTraits <Scripting::Lua::Lua51NilArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51NilArgument>
     {
         public:
             /// @brief The type that maintains the Reference count for Lua51NilArgument with be Lua51NilArgument itself

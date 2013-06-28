@@ -97,7 +97,7 @@ namespace Mezzanine
 
                     AngularXAsRotationalAxis        = 0,    ///< Rotation on the X axis, when working with only rotational Axis
                     AngularYAsRotationalAxis        = 1,    ///< Rotation on the Y axis, when working with only rotational Axis
-                    AngularZAsRotationalAxis        = 2,    ///< Rotation on the Z axis, when working with only rotational Axis
+                    AngularZAsRotationalAxis        = 2     ///< Rotation on the Z axis, when working with only rotational Axis
                 };
 
                 ////////////////////////////////////////////////////////////////////////////////
