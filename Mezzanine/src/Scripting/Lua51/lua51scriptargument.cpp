@@ -134,6 +134,7 @@ namespace Mezzanine
                     { lua_pop(TargetState,1); }
                 else
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
+                // It seems Lua Nils never go on the stack when being returned sometimes.
             }
 
 

@@ -71,8 +71,6 @@ namespace Mezzanine
     {
         namespace Lua
         {
-            void Lua51Script::Compile(Lua51ScriptingEngine* Compiler)
-                { Compiler->Compile(this); }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // LuaScript basics
@@ -118,6 +116,24 @@ namespace Mezzanine
 
             void Lua51Script::AddArgument(Lua51NilArgument Arg)
                 { Args.push_back(CountedPtr<iScriptArgument>(new Lua51NilArgument(Arg))); }
+
+            void Lua51Script::AddArgument(Integer Arg)
+                { AddArgument(Lua51IntegerArgument(Arg)); }
+
+            void Lua51Script::AddArgument(Real Arg)
+                { AddArgument((Lua51RealArgument(Arg))); }
+
+            void Lua51Script::AddArgument(Whole Arg)
+                { AddArgument((Lua51WholeArgument(Arg))); }
+
+            void Lua51Script::AddArgument(String Arg)
+                { AddArgument((Lua51StringArgument(Arg))); }
+
+            void Lua51Script::AddArgument(Char8 *Arg)
+                { AddArgument((String(Arg))); }
+
+            void Lua51Script::AddArgument(Bool Arg)
+                { AddArgument((Lua51BoolArgument(Arg))); }
 
             void Lua51Script::AddArgument()
                 { Args.push_back(CountedPtr<iScriptArgument>(new Lua51NilArgument)); }
@@ -166,6 +182,12 @@ namespace Mezzanine
 
             bool Lua51Script::IsCompiled() const
                 { return CompiledByteCode.Binary != 0; }
+
+            void Lua51Script::Compile(Lua51ScriptingEngine* Compiler)
+                { Compiler->Compile(this); }
+
+            void Lua51Script::Compile(Lua51ScriptingEngine& Compiler)
+                { Compiler.Compile(this); }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // Returns

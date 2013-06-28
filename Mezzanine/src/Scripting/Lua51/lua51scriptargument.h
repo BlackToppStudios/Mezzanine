@@ -87,6 +87,7 @@ namespace Mezzanine
                     /// @return Whatever the Lua return code of the first failing lua call, or the last successful call.
                     virtual void Pop(lua_State* TargetState) = 0;
 
+                    /// @brief Virtual deconstructor
                     virtual ~LuaArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -122,7 +123,7 @@ namespace Mezzanine
             class Lua51RealArgument : public LuaArgument, public ScriptArgumentGeneric<Real>
             {
                 public:
-                    Lua51RealArgument(Real InitialValue) : ScriptArgumentGeneric<Real>(InitialValue)
+                    Lua51RealArgument(Real InitialValue = 0.0) : ScriptArgumentGeneric<Real>(InitialValue)
                     {}
 
                     virtual void Push(lua_State* TargetState) const;
@@ -141,7 +142,7 @@ namespace Mezzanine
             class Lua51WholeArgument : public LuaArgument, public ScriptArgumentGeneric<Whole>
             {
                 public:
-                    Lua51WholeArgument(Whole InitialValue) : ScriptArgumentGeneric<Whole>(InitialValue)
+                    Lua51WholeArgument(Whole InitialValue = 0) : ScriptArgumentGeneric<Whole>(InitialValue)
                     {}
 
                     virtual void Push(lua_State* TargetState) const;
@@ -160,7 +161,7 @@ namespace Mezzanine
             class Lua51StringArgument : public LuaArgument, public ScriptArgumentGeneric<String>
             {
                 public:
-                    Lua51StringArgument(String InitialValue) : ScriptArgumentGeneric<String>(InitialValue)
+                    Lua51StringArgument(String InitialValue = String()) : ScriptArgumentGeneric<String>(InitialValue)
                     {}
 
                     virtual void Push(lua_State* TargetState) const;
@@ -179,7 +180,7 @@ namespace Mezzanine
             class Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Bool>
             {
                 public:
-                    Lua51BoolArgument(Bool InitialValue) : ScriptArgumentGeneric<Bool>(InitialValue)
+                    Lua51BoolArgument(Bool InitialValue = false) : ScriptArgumentGeneric<Bool>(InitialValue)
                     {}
 
                     virtual void Push(lua_State* TargetState) const;
@@ -369,7 +370,7 @@ namespace Mezzanine
     {
         public:
             /// @brief The type that Lua51StringArgument the Reference count for Lua51StringArgument with be Lua51StringArgument itself
-            typedef Scripting::Lua::LuaArgument RefCountType;
+            typedef Scripting::Lua::Lua51StringArgument RefCountType;
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
             /// @param Target A pointer to a Scripting::Lua::Lua51StringArgument that will simply be returned

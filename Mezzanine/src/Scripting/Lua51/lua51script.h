@@ -112,10 +112,6 @@ namespace Mezzanine
                     /// @todo Add a function to set/get this
                     Bool FunctionCall;
 
-                    /// @brief This will compile the Lua script
-                    /// @param Compiler This will be used to compile the script, no safety checks are performed.
-                    void Compile(Lua51ScriptingEngine* Compiler);
-
                 public:
                     ///////////////////////////////////////////////////////////////////////////////////////
                     // LuaScript basics
@@ -142,17 +138,55 @@ namespace Mezzanine
                     virtual void AddArgument(CountedPtr<iScriptArgument> Arg);
 
                     /// @brief Another overload to make adding arguments easier
-                    /// @param Arg
+                    /// @param Arg A Lua51IntegerArgument to pass into the script
                     virtual void AddArgument(Lua51IntegerArgument Arg);
+
+                    /// @brief Another overload to make adding arguments easier
+                    /// @param Arg A Lua51RealArgument to pass into the script
                     virtual void AddArgument(Lua51RealArgument Arg);
+
+                    /// @brief Another overload to make adding arguments easier
+                    /// @param Arg A Lua51WholeArgument to pass into the script
                     virtual void AddArgument(Lua51WholeArgument Arg);
+
+                    /// @brief Another overload to make adding arguments easier
+                    /// @param Arg A Lua51StringArgument to pass into the script
                     virtual void AddArgument(Lua51StringArgument Arg);
+
+                    /// @brief Another overload to make adding arguments easier
+                    /// @param Arg A Lua51BoolArgument to pass into the script
                     virtual void AddArgument(Lua51BoolArgument Arg);
+
+                    /// @brief Another overload to make adding arguments easier
+                    /// @param Arg A Lua51NilArgument to pass into the script
                     virtual void AddArgument(Lua51NilArgument Arg);
+
+                    /// @brief Another overload to make adding arguments easier, This one adds a Lua51IntegerArgument
+                    /// @param Arg An Integer to pass into the script
+                    virtual void AddArgument(Integer Arg);
+
+                    /// @brief Another overload to make adding arguments easier, This one adds a Lua51RealArgument
+                    /// @param Arg An Real to pass into the script
+                    virtual void AddArgument(Real Arg);
+
+                    /// @brief Another overload to make adding arguments easier, This one adds a Lua51WholeArgument
+                    /// @param Arg An Whole to pass into the script
+                    virtual void AddArgument(Whole Arg);
+
+                    /// @brief Another overload to make adding arguments easier, This one adds a Lua51StringArgument
+                    /// @param Arg An String to pass into the script
+                    virtual void AddArgument(String Arg);
+
+                    /// @brief Another overload to make adding arguments easier, This one adds a Lua51StringArgument
+                    /// @param Arg An Char8* to pass into the script
+                    virtual void AddArgument(Char8* Arg);
+
+                    /// @brief Another overload to make adding arguments easier, This one adds a Lua51BoolArgument
+                    /// @param Arg An Bool to pass into the script
+                    virtual void AddArgument(Bool Arg);
+
                     /// @brief When called with no arguments this inserts a Lua51nil
                     virtual void AddArgument();
-
-                    //IntegerArgument Lua51RealArgument Lua51WholeArgument Lua51StringArgument Lua51BoolArgument
 
                     /// @copydoc Mezzanine::Scripting::iScript::RemoveArgument
                     virtual void RemoveArgument(CountedPtr<iScriptArgument> Arg);
@@ -193,6 +227,14 @@ namespace Mezzanine
 
                     /// @copydoc Mezzanine::Scripting::iScriptCompilable::IsCompiled
                     virtual bool IsCompiled() const;
+
+                    /// @brief This will compile the Lua script
+                    /// @param Compiler This will be used to compile the script, no safety checks are performed.
+                    void Compile(Lua51ScriptingEngine* Compiler);
+
+                    /// @brief This will compile the Lua script
+                    /// @param Compiler This will be used to compile the script, no safety checks are performed.
+                    void Compile(Lua51ScriptingEngine& Compiler);
 
                     ///////////////////////////////////////////////////////////////////////////////////////
                     // Returns
