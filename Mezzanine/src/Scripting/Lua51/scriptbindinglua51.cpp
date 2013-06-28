@@ -1739,6 +1739,8 @@ typedef struct{} LANGUAGE_OBJ;
         #include "mezzanine.h"
         #include "btBulletDynamicsCommon.h"
         #include "Ogre.h"
+
+        using namespace Mezzanine;
     
 
 #include <stdexcept>
