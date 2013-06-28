@@ -232,9 +232,9 @@ namespace Mezzanine
         Ogre::ManualObject* cylinder = new Ogre::ManualObject("TempMan");
         cylinder->begin(MaterialName);
 
-        for (int i = 0; i <= Segments; i++)
+        for(int i = 0; i <= Segments; i++)
         {
-            for (int j = 0; j < CircleRes; j++)
+            for(int j = 0; j < CircleRes; j++)
             {
                 Real x0 = radius * cosf(j*deltaAngle);
                 Real z0 = radius * sinf(j*deltaAngle);
@@ -242,11 +242,11 @@ namespace Mezzanine
                 cylinder->normal( RotationModifier * Ogre::Vector3(x0,0,z0).normalisedCopy() );
                 cylinder->textureCoord(j/(Real)CircleRes, i/(Real)Segments);
 
-                if (i != Segments)
+                if(i != Segments)
                 {
                     /// @todo These if/elses aren't really a long term solution
                     /// as they won't work for any more then 1 segment.  This needs to be addressed.
-                    if(offset + CircleRes + 1 == CircleRes * 2)
+                    if(offset + CircleRes == CircleRes * 2)
                         cylinder->index(CircleRes);
                     else
                         cylinder->index(offset + CircleRes + 1);
@@ -254,7 +254,7 @@ namespace Mezzanine
                     cylinder->index(offset);
                     cylinder->index(offset + CircleRes);
 
-                    if(offset + CircleRes + 1 == CircleRes * 2)
+                    if(offset + CircleRes == CircleRes * 2)
                         cylinder->index(0);
                     else
                         cylinder->index(offset + CircleRes + 1);
@@ -262,7 +262,7 @@ namespace Mezzanine
                     cylinder->index(offset + 1);
                     cylinder->index(offset);
                 }
-                offset ++;
+                offset++;
             }
 		}
 
