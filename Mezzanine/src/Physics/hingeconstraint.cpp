@@ -159,7 +159,7 @@ namespace Mezzanine
             { this->Hinge->setMotorTarget(TargetAngle, Dt); }
 
         void HingeConstraint::SetMotorTargetVelocity(Real TargetVelocity)
-            { return this->SetMotorTargetVelocity(TargetVelocity); }
+            { this->Hinge->m_motorTargetVelocity = TargetVelocity; }
 
         Real HingeConstraint::GetMotorTargetVelocity() const
             { return this->Hinge->getMotorTargetVelosity(); }
