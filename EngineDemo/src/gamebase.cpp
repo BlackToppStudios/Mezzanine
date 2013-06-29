@@ -579,7 +579,14 @@ void LoadContent()
     }
 
     //new ActorRigid(mass,"C","chassis.obj.mesh",groupname);
-    //new ActorRigid(mass,"C","newchassis2x.mesh",groupname);
+    /*String TargetFile("Ramp.mesh");
+    ActorRigid* target = new ActorRigid(mass,"C",TargetFile,groupname);
+    Physics::CollisionShape* targetShape = CSMan->GenerateConvexHull("TargetShape",TargetFile,groupname);
+    target->GetPhysicsSettings()->SetCollisionShape(targetShape);
+    target->SetScaling(Vector3(10.0,10.0,10.0));
+    target->SetOrientation(Quaternion(1.0, 0.3, 0.0, 0.5));
+    target->SetLocation(Vector3(0.0,100.0,-200.0));
+    TheEntresol->GetActorManager()->AddActor( target );*/
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
@@ -654,7 +661,7 @@ void LoadContent()
     TheEntresol->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
     //GravityWell
-    GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
     BlackHole->GetPhysicsSettings()->SetCollisionShape(new Physics::SphereCollisionShape("GravWellShape",750.0));
     BlackHole->SetAllowWorldGravity(false);
     BlackHole->SetFieldStrength(1000.0);

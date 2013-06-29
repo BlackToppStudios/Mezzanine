@@ -43,7 +43,7 @@
 /// @file
 /// @brief This file has the interfaces for Scripts and tag derived classes.
 
-#include "binarytool.h"
+#include "binarybuffer.h"
 #include "scriptargument.h"
 #include "smartptr.h"
 

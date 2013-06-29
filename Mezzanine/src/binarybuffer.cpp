@@ -43,7 +43,7 @@
 /// @file
 /// @brief The implementation of some tools for making working with binary stuff easier.
 
-#include "binarytool.h"
+#include "binarybuffer.h"
 #include "exception.h"
 
 #include <string.h>
