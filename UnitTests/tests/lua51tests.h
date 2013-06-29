@@ -482,11 +482,39 @@ class lua51tests : public UnitTestGroup
                         cout << endl;
                     }
 
+                    {
+                        String FeatureSource("io.tmpfile()");
+
+                        Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
+                        Scripting::Lua::Lua51Script FeatureScript(FeatureSource);
+
+                        cout << "Attempting execution of IO library function without that library being loaded." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::IOlibExclude", Failed); // Why does this work?
+                        } catch (ScriptException& e) {
+                            cout << endl << "It failed as it should." << endl;
+                            AddTestResult("Lua51::Script::IOlibExclude", Success);
+                        }
+
+                        LuaRuntimePartial.OpenLibraries(Scripting::Lua::Lua51ScriptingEngine::IOLib);
+                        //LuaRuntimePartial.OpenIOLibrary();
+
+                        cout << "Attempting normal execution of properly loaded IOS library function." << endl;
+                        try
+                        {
+                            FeatureScript.Compile(LuaRuntimePartial);
+                            LuaRuntimePartial.Execute(FeatureScript);
+                            AddTestResult("Lua51::Script::IOlibInclude", Success);
+                        } catch (ScriptLuaException& e) {
+                            AddTestResult("Lua51::Script::IOlibInclude", Failed);
+                        }
+                        cout << endl;
+                    }
+
                     /*
-                    virtual void OpenIOLibrary();
-
-                    /// @detail See http://www.lua.org/manual/5.1/manual.html#5.7 in the Lua manual for details
-
                     virtual void OpenOSLibrary();
 
                     /// Lua manual at http://www.lua.org/manual/5.1/manual.html#5.9 .
@@ -534,6 +562,8 @@ class lua51tests : public UnitTestGroup
                 AddTestResult("Lua51::Script::TablelibInclude", Skipped);
                 AddTestResult("Lua51::Script::MathlibExclude", Skipped);
                 AddTestResult("Lua51::Script::MathlibInclude", Skipped);
+                //AddTestResult("Lua51::Script::IOlibExclude", Skipped);
+                AddTestResult("Lua51::Script::IOlibInclude", Skipped);
             }
         }
 };
