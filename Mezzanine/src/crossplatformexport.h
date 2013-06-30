@@ -101,6 +101,7 @@
     /// @def MEZZ_LIB
     /// @brief Some platforms require special decorations to denote what is exported/imported in a share library. This is that decoration if when it is needed.
     #ifdef WINDOWS
+        #define _MEZZ_THREAD_WIN32_
         #ifdef EXPORTINGMEZZANINEDLL
             #define MEZZ_LIB __declspec(dllexport)
         #else
@@ -108,7 +109,10 @@
         #endif      // \EXPORTINGMEZZANINEDLL
     #else
         #define MEZZ_LIB
+        #define _MEZZ_THREAD_POSIX_
     #endif  // \WINDOWS
+
+    #define _MEZZ_PLATFORM_DEFINED_
 
     /// @def MEZZ_DEPRECATED
     /// @brief Used to mark old functionality that should not be used as such. In supported compilers using such functionality should produce warnings.
@@ -121,5 +125,65 @@
             #define MEZZ_DEPRECATED
         #endif
     #endif
+
+    #ifdef _MEZZ_THREAD_WIN32_
+        #ifdef _MSC_VER
+            #pragma warning( disable : 4251) // Disable the dll import/export warnings on items that are set correctly.
+            #pragma warning( disable : 4244) // Disable the double to float conversions, they are in their by design to minimize floating point rounding during intermediate calculations.
+        #endif
+        #ifndef WIN32_LEAN_AND_MEAN
+            #define WIN32_LEAN_AND_MEAN
+            #define __UNDEF_LEAN_AND_MEAN
+        #endif
+        #ifndef NOMINMAX
+            #define NOMINMAX
+        #endif
+        #include <windows.h>
+        #include <process.h>
+        #ifdef __UNDEF_LEAN_AND_MEAN
+            #undef WIN32_LEAN_AND_MEAN
+            #undef __UNDEF_LEAN_AND_MEAN
+        #endif
+    #else
+        #include <pthread.h>
+        #include <signal.h>
+        #include <sched.h>
+        #include <unistd.h>
+    #endif
+
+
+    /// @def MEZZ_USEBARRIERSEACHFRAME
+    /// @brief This is used to configure whether to re-create threads each frame of or synchronize.
+    /// @details Any synchronization will be done with atomic @ref Mezzanine::Threading::Barrier "Barrier". This is
+    /// controlled by the CMake (or other build system) option Mezz_MinimizeThreadsEachFrame.
+    #define MEZZ_USEBARRIERSEACHFRAME
+    #ifndef _MEZZ_MINTHREADS_
+        #undef MEZZ_USEBARRIERSEACHFRAME
+    #endif
+
+    /// @def MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+    /// @brief This is used to configure whether to atomically store a shortcut to skip checking all workunits.
+    /// @details When this is enabled @ref Mezzanine::Threading::AtomicCompareAndSwap32 "Atomic CAS" operations are used to maintain
+    /// a count of the number of complete workunits at the beginning of the work unit listings. Normally these
+    /// listings are read-only during frame execution, and the work units store whether or not they are
+    /// complete. The default algorithm forces iteration over a large number of work units to simply check for
+    /// completion in some situations. If memory bandwidth is slow or limited this can be a large source of
+    /// of contention. Enable this option when there are many work units trades atomic operations for memory
+    /// bandwidth. This must be tested on a per system basis to determine full preformance ramifications. This
+    /// is controlled by the CMake (or other build system) option Mezz_DecacheWorkUnits.
+    #define MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+    #ifndef _MEZZ_DECACHEWORKUNIT_
+        #undef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+    #endif
+
+    /// @def MEZZ_FRAMESTOTRACK
+    /// @brief Used to control how long frames track length and other similar values. This is
+    /// controlled by the CMake (or other build system) option Mezz_FramesToTrack.
+    #define MEZZ_FRAMESTOTRACK 10
+    #ifdef _MEZZ_FRAMESTOTRACK_
+        #undef MEZZ_FRAMESTOTRACK
+        #define MEZZ_FRAMESTOTRACK _MEZZ_FRAMESTOTRACK_
+    #endif
+
 
 #endif
