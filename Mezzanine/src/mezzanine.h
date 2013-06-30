@@ -67,6 +67,7 @@
 #include "actorsoft.h"
 #include "areaeffect.h"
 #include "attachable.h"                 // Target for output only
+#include "binarybuffer.h"
 #include "Audio/audio.h"
 #include "camera.h"                     // done, must review after Mar27 upgrades
 #include "cameracontroller.h"

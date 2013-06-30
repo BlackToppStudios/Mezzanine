@@ -70,6 +70,8 @@
     #include <ostream>
 #endif
 
+
+
 #include "swig.h"
 
 
@@ -84,9 +86,11 @@ namespace Mezzanine
     ///////////////////////////////////////
 
     #ifdef _MEZZ_CPP11_PARTIAL_
+    #include <cstdint>
     /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
     typedef std::intptr_t ConvertiblePointer;
     #else
+    #include <stdint.h>
     /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
     typedef intptr_t ConvertiblePointer;
     #endif
@@ -127,20 +131,15 @@ namespace Mezzanine
     typedef float Real;
 
     /// @typedef Whole
-    /// @brief A datatype used to represent an postive integer numbers.
-    /// @details This is a typedef to unsigned Long. but could be smaller in some situations.
+    /// @brief Whole is an unsigned integer, it will be at least 32bits in size.
+    /// @details This is a typedef to unsigned Long. but could be smaller in some situations.  In
+    /// general it will be the most efficient unsigned type for math.
     typedef unsigned long Whole;
 
     /// @typedef Integer
     /// @brief A datatype used to represent any integer close to.
-    /// @details This is a typedef to int, but could int16 or smaller to improve performance in some situtations
-    /// handheld platforms.
+    /// @details This is a typedef to int, but could int16 or smaller to improve performance in some situtations, In general it will be the most efficient signed type for math.
     typedef int Integer;
-
-    /// @typedef TimeMarker
-    /// @brief A datatype used to indicate a specific point in time, or a timestamp.
-    /// @details This is made into it's own datatype in case we want to tweak the possible size for a timestamp.
-    typedef UInt32 TimeMarker;
 
     /// @typedef String
     /// @brief A datatype used to a series of characters.
@@ -187,6 +186,12 @@ namespace Mezzanine
         typedef long long MaxInt;
     #endif
 
+
+    /// @typedef TimeMarker
+    /// @brief A datatype used to indicate a specific point in time, or a timestamp.
+    /// @details This is made into it's own datatype in case we want to tweak the possible size for a timestamp.
+    typedef UInt32 TimeMarker;
+
     ///////////////////////////////////////////////////////////////////////////////
     // Complex Data types
     ///////////////////////////////////////
@@ -214,6 +219,12 @@ namespace Mezzanine
     /// @brief This is an internal datatype use to communicate with the User input Subsystem.
     /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details.
     typedef SDL_Event RawEvent;
+
+    /// @brief In case we ever replace the stringstream with another class, this will allow us to swap it out.
+    /// @details This will always support <<, str() but may lose support for formatting functions like std::hex.
+    typedef std::stringstream Logger;
+
+
 
     ///////////////////////////////////////////////////////////////////////////////
     // Simple conversion functions
