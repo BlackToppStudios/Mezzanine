@@ -68,7 +68,7 @@ freely, subject to the following restrictions:
     distribution.
 */
 
-#include "compilerthreadcompat.h"
+#include "crossplatformincludes.h"
 
 #include <string>
 

@@ -70,32 +70,32 @@
         distribution.
     */
 
-#include "compilerthreadcompat.h"
+#include "crossplatformexport.h"
 
-    #ifdef _MEZZ_THREAD_WIN32_
-        #ifdef _MSC_VER
-            #pragma warning( disable : 4251) // Disable the dll import/export warnings on items that are set correctly.
-            #pragma warning( disable : 4244) // Disable the double to float conversions, they are in their by design to minimize floating point rounding during intermediate calculations.
-        #endif
-        #ifndef WIN32_LEAN_AND_MEAN
-            #define WIN32_LEAN_AND_MEAN
-            #define __UNDEF_LEAN_AND_MEAN
-        #endif
-        #ifndef NOMINMAX
-            #define NOMINMAX
-        #endif
-        #include <windows.h>
-        #include <process.h>
-        #ifdef __UNDEF_LEAN_AND_MEAN
-            #undef WIN32_LEAN_AND_MEAN
-            #undef __UNDEF_LEAN_AND_MEAN
-        #endif
-    #else
-        #include <pthread.h>
-        #include <signal.h>
-        #include <sched.h>
-        #include <unistd.h>
+#ifdef _MEZZ_THREAD_WIN32_
+    #ifdef _MSC_VER
+        #pragma warning( disable : 4251) // Disable the dll import/export warnings on items that are set correctly.
+        #pragma warning( disable : 4244) // Disable the double to float conversions, they are in their by design to minimize floating point rounding during intermediate calculations.
     #endif
+    #ifndef WIN32_LEAN_AND_MEAN
+        #define WIN32_LEAN_AND_MEAN
+        #define __UNDEF_LEAN_AND_MEAN
+    #endif
+    #ifndef NOMINMAX
+        #define NOMINMAX
+    #endif
+    #include <windows.h>
+    #include <process.h>
+    #ifdef __UNDEF_LEAN_AND_MEAN
+        #undef WIN32_LEAN_AND_MEAN
+        #undef __UNDEF_LEAN_AND_MEAN
+    #endif
+#else
+    #include <pthread.h>
+    #include <signal.h>
+    #include <sched.h>
+    #include <unistd.h>
+#endif
 
 
 #endif // include guard

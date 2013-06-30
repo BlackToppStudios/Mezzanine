@@ -66,6 +66,7 @@
 #        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
 #        Mezz_MinimizeThreadsEachFrame      - On some platforms thread creation is expensive, on others it is cheap and atomics expensive. Use this with your favorite benchmark to maximize performance.
 #        Mezz_DecacheWorkUnits              - Different CPUs have different Cache sizes and different ratios of actual work to IO bandwith. This tries to increase the amount of work done at the expense of forcing work units to be reloaded into CPU from RAM each frame. Use this with your favorite benchmark to maximize performance.
+#        Mezz_FramesToTrack                 - How many frame should the runtime performance metrics be tracked for
 #
 # Deprecated options
 #        Mezz_XML                           - Previously disabled/enabled XML options, now XML is used everywhere. Thsi option has been removed.
@@ -296,6 +297,34 @@ else(${Mezz_Lua51})
 endif(${Mezz_Lua51})
 
 ###############################################################################
+# DAGFrameScheduler
+
+#How long should the default length on rolling averages and other multiframe periods be.
+set(Mezz_FramesToTrack 10 CACHE STRING "How long should frame durations be tracked for")
+
+# Allow the developer to select if New thread should be created each frame or if an atomic barrier should be used to synchronized threads.
+option(Mezz_MinimizeThreadsEachFrame "Used atomics to minimize thread creation" OFF)
+set(MinimizeThreads THREADSEACHFRAME)
+if (Mezz_MinimizeThreadsEachFrame)
+    set(MinimizeThreads MINTHREADS)
+endif (Mezz_MinimizeThreadsEachFrame)
+
+#When looking for work use atomics to advance iterators past complete work units.
+option(Mezz_DecacheWorkUnits "Use atomics to minimize how many WorkUnits are likely to be in CPU cache]." ON)
+set(DecacheWork NODECACHEWORKUNIT)
+if (Mezz_DecacheWorkUnits)
+    set(DecacheWork DECACHEWORKUNIT)
+endif (Mezz_DecacheWorkUnits)
+
+add_definitions(
+    -D_MEZZ_STATIC_BUILD_                   # Trailing slash indicates that compiler header should massage this before the library consumes
+    -D_MEZZ_${MinimizeThreads}_
+    -D_MEZZ_${DecacheWork}_
+    -D_MEZZ_FRAMESTOTRACK_=${Mezz_FramesToTrack}
+)
+
+
+###############################################################################
 # Misc simple defines
 option(Mezz_ThrowOnSingletonFetch "When retrieving an invalid Singleton, should an exception be thrown" OFF)
 if(${Mezz_ThrowOnSingletonFetch})
@@ -499,6 +528,7 @@ mark_as_advanced( FORCE
 
     # Mezzanine options
     Mezz_UseOgreVersion Mezz_Profile Mezz_ThrowOnSingletonFetch
+    Mezz_MinimizeThreadsEachFrame Mezz_FramesToTrack Mezz_DecacheWorkUnits
 
     # Misc Options
     CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX CMAKE_DEBUG_POSTFIX CMAKE_GNUtoMS

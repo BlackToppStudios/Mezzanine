@@ -323,7 +323,7 @@ namespace Mezzanine
 
             /// @internal
             /// @brief
-            //Threading::FrameScheduler WorkScheduler;
+            Threading::FrameScheduler WorkScheduler;
 
         private:
             //friend class PhysicsManager;

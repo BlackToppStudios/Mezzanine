@@ -168,8 +168,8 @@ namespace Mezzanine
 
     ActorRigidPhysicsSettings::ActorRigidPhysicsSettings(ActorRigid* Actor, btRigidBody* PhysicsObject)
         : ActorBasePhysicsSettings(Actor,PhysicsObject),
-          RigidParent(Actor),
           ActorRB(PhysicsObject),
+          RigidParent(Actor),
           StickyContacts(NULL)
     {
         bool Dynamic = !IsStaticOrKinematic();
@@ -454,8 +454,8 @@ namespace Mezzanine
 
     ActorSoftPhysicsSettings::ActorSoftPhysicsSettings(ActorSoft* Actor, btSoftBody* PhysicsObject)
         : ActorBasePhysicsSettings(Actor,PhysicsObject),
-          SoftParent(Actor),
-          ActorSB(PhysicsObject)
+          ActorSB(PhysicsObject),
+          SoftParent(Actor)
     {
         CollisionGroup = Mezzanine::Physics::CF_GenericFilter;
         CollisionMask = Mezzanine::Physics::CF_AllFilter;

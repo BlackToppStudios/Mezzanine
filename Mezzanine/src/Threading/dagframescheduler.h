@@ -48,7 +48,8 @@
 #include "asynchronousworkunit.h"
 #include "atomicoperations.h"
 #include "barrier.h"
-#include "compilerthreadcompat.h"
+//#include "crossplatformincludes.h" // This is omitted because windows.h include a ton of macros that break clean code, so this vile file's scope must be minimized
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "doublebufferedresource.h"
 #include "framescheduler.h"

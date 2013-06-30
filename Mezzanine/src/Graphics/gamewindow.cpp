@@ -186,9 +186,9 @@ namespace Mezzanine
         {
             SDL_DisplayMode DesktopDisplay;
             SDL_GetDesktopDisplayMode(0,&DesktopDisplay);
-            if(Width > DesktopDisplay.w || Height > DesktopDisplay.h)
+            if(Width > Whole(DesktopDisplay.w) || Height > Whole(DesktopDisplay.h))
                 return 1;
-            else if(Width == DesktopDisplay.w || Height == DesktopDisplay.h)
+            else if(Width == Whole(DesktopDisplay.w) || Height == Whole(DesktopDisplay.h))
                 return 0;
             else
                 return -1;

@@ -800,6 +800,8 @@ endif(${Mezz_Lua51})
 # Library Link Dependencies
 add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames} ${LuaProject} ${SDLLibraryNames} ${SoundLibraryNames} )
 
+find_package(Threads)
+
 # Link to all of the Mezzanine Dependencies
 target_link_libraries( ${PROJECT_NAME}
     ${NetworkLibrary}
@@ -808,6 +810,7 @@ target_link_libraries( ${PROJECT_NAME}
     ${Bullet_LibraryNames}
     ${SDLLibraryNames}
     ${SoundLibraryNames}
+    ${CMAKE_THREAD_LIBS_INIT}
 )
 
 ###############################################################################

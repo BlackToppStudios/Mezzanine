@@ -130,7 +130,9 @@
     /// @brief This is used to configure whether to re-create threads each frame of or synchronize.
     /// @details Any synchronization will be done with atomic @ref Mezzanine::Threading::Barrier "Barrier". This is
     /// controlled by the CMake (or other build system) option Mezz_MinimizeThreadsEachFrame.
-    #define MEZZ_USEBARRIERSEACHFRAME
+    #ifndef MEZZ_USEBARRIERSEACHFRAME
+        #define MEZZ_USEBARRIERSEACHFRAME
+    #endif
     #ifndef _MEZZ_MINTHREADS_
         #undef MEZZ_USEBARRIERSEACHFRAME
     #endif
@@ -145,7 +147,9 @@
     /// of contention. Enable this option when there are many work units trades atomic operations for memory
     /// bandwidth. This must be tested on a per system basis to determine full preformance ramifications. This
     /// is controlled by the CMake (or other build system) option Mezz_DecacheWorkUnits.
-    #define MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+    #ifndef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+        #define MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+    #endif
     #ifndef _MEZZ_DECACHEWORKUNIT_
         #undef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
     #endif
@@ -153,7 +157,9 @@
     /// @def MEZZ_FRAMESTOTRACK
     /// @brief Used to control how long frames track length and other similar values. This is
     /// controlled by the CMake (or other build system) option Mezz_FramesToTrack.
-    #define MEZZ_FRAMESTOTRACK 10
+    #ifndef MEZZ_FRAMESTOTRACK
+        #define MEZZ_FRAMESTOTRACK 10
+    #endif
     #ifdef _MEZZ_FRAMESTOTRACK_
         #undef MEZZ_FRAMESTOTRACK
         #define MEZZ_FRAMESTOTRACK _MEZZ_FRAMESTOTRACK_

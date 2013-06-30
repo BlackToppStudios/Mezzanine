@@ -238,7 +238,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventGameWi
     return stream;
 }
 
-Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev)
+const Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev)
 {
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("EventGameWindow") )
     {
@@ -254,6 +254,26 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
         MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventGameWindow, found a " + Mezzanine::String(OneNode.Name()));
     }
 
+    return OneNode;
+}
+
+Mezzanine::XML::Node& operator >> (Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev)
+{
+    if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("EventGameWindow") )
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            Ev = Mezzanine::EventGameWindow( (Mezzanine::EventGameWindow::GameWindowEventID)OneNode.GetAttribute("EventID").AsInt(),
+                                    OneNode.GetAttribute("First").AsInt(),
+                                    OneNode.GetAttribute("Second").AsInt() );
+        }else{
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventGameWindow: Not Version 1");
+        }
+    }else{
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventGameWindow, found a " + Mezzanine::String(OneNode.Name()));
+    }
+
+    return OneNode;
 }
 
 #endif
