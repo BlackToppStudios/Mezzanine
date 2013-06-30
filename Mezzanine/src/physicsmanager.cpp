@@ -1052,7 +1052,7 @@ namespace Mezzanine
         #endif
 
         Real FloatTime = TimeElapsed * 0.001; //Convert from MilliSeconds to Seconds
-        Real IdealStep = this->TheEntresol->GetTargetFrameTime() * 0.001;
+        Real IdealStep = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
         IdealStep /= SubstepModifier;
         int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep)+1;
         #ifdef MEZZPROFILE
@@ -1166,7 +1166,7 @@ namespace Mezzanine
 
     void PhysicsManager::DoMainLoopItems()
     {
-        this->DoMainLoopItems(this->TheEntresol->GetFrameTime());
+        this->DoMainLoopItems(this->TheEntresol->GetFrameTimeMilliseconds());
     }
 
     ManagerBase::ManagerType PhysicsManager::GetInterfaceType() const

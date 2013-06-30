@@ -60,7 +60,7 @@ Roll_Roll::~Roll_Roll()
 
 void Roll_Roll::Rotate(Physics::HingeConstraint* RollerMotor)
 {
-    Real DeltaTime = Entresol::GetSingletonPtr()->GetFrameTime();
+    Real DeltaTime = Entresol::GetSingletonPtr()->GetFrameTimeMilliseconds();
     Real DeltaAngle = 1.25 * DeltaTime;
     Real CurrentAngle = RollerMotor->GetHingeAngle();
     Real ActualAngle = DeltaAngle + ( CurrentAngle>0 ? CurrentAngle : -CurrentAngle );

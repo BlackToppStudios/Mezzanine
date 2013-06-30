@@ -770,7 +770,8 @@ namespace Mezzanine
             {
                 #ifdef MEZZDEBUG
                 StringStream SleepStream;
-                SleepStream << "-------------------------- Sleeping for " << this->TargetFrameLength - PrePauseFrameTime << " microseconds --------------------------";
+                //SleepStream << "-------------------------- Sleeping for " << this->TargetFrameLength - PrePauseFrameTime << " microseconds --------------------------";
+                SleepStream << "-------------------------- Sleeping for " << (this->TargetFrameLength - PrePauseFrameTime) * 0.001 << " milliseconds --------------------------";
                 this->Log(SleepStream.str());
                 this->DoMainLoopLogging();
                 #endif
@@ -827,7 +828,12 @@ namespace Mezzanine
         return this->TargetFrameLength;
     }
 
-    Whole Entresol::GetFrameTime() const
+    Whole Entresol::GetFrameTimeMilliseconds() const
+    {
+        return this->FrameTime * 0.001;
+    }
+
+    Whole Entresol::GetFrameTimeMicroseconds() const
     {
         return this->FrameTime;
     }

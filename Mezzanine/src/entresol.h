@@ -532,10 +532,15 @@ namespace Mezzanine
             /// @return This returns a Whole with the current value in microseconds.
             Whole GetTargetFrameTimeMicroseconds() const;
 
-            /// @brief Gets the amount of time since the last time Rendering began.
-            /// @details This returns, in milliseconds the amount of time since the frame started (since the last rendering began)
+            /// @brief Gets the amount of time since the last time the last frame took to run.
+            /// @details This returns, in milliseconds the amount of time since the frame started.
             /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
-            Whole GetFrameTime() const;
+            Whole GetFrameTimeMilliseconds() const;
+
+            /// @brief Gets the amount of time since the last time the last frame took to run.
+            /// @details This returns, in microseconds the amount of time since the frame started.
+            /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
+            Whole GetFrameTimeMicroseconds() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Initialization

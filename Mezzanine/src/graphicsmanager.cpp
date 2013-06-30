@@ -641,7 +641,6 @@ namespace Mezzanine
 
     bool GraphicsManager::PostMainLoopItems()
     {
-        EventManager::GetSingletonPtr()->AddEvent(new EventRenderTime(this->TheEntresol->GetFrameTime()));
         return ManagerBase::PostMainLoopItems();
     }
 
