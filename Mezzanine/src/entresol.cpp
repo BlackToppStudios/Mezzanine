@@ -771,7 +771,7 @@ namespace Mezzanine
                 #ifdef MEZZDEBUG
                 StringStream SleepStream;
                 //SleepStream << "-------------------------- Sleeping for " << this->TargetFrameLength - PrePauseFrameTime << " microseconds --------------------------";
-                SleepStream << "-------------------------- Sleeping for " << (this->TargetFrameLength - PrePauseFrameTime) * 0.001 << " milliseconds --------------------------";
+                SleepStream << "-------------------------- Sleeping for " << static_cast<Whole>( (this->TargetFrameLength - PrePauseFrameTime) * 0.001 ) << " milliseconds --------------------------";
                 this->Log(SleepStream.str());
                 this->DoMainLoopLogging();
                 #endif
