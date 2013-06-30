@@ -875,15 +875,7 @@ bool CatchApp::PostUI()
     InputManager* InputMan = InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     static RayQueryTool* RayQueryer = new RayQueryTool();
-
-    TheEntresol->Log("Mouse location X/Y");
-    TheEntresol->Log(SysMouse->GetWindowX());
-    TheEntresol->Log(SysMouse->GetWindowY());
-    StringStream ButtonStream;
-    ButtonStream << "Button State: " << SysMouse->GetButtonState(1);
-    TheEntresol->Log(ButtonStream.str());
-
-    static Physics::Point2PointConstraint* Dragger=NULL;
+    static Physics::Point2PointConstraint* Dragger = NULL;
 
     if( SysMouse->IsButtonPressed(1) )
     {
@@ -894,28 +886,16 @@ bool CatchApp::PostUI()
             if(MouseRay)
             {
                 ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
-                #ifdef MEZZDEBUG
-                TheEntresol->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
-                TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
-                #endif
             }
             //ActorBase *temp = ClickOnActor->Actor;
 
             bool firstframe=false;
             if(0 == ClickOnActor || 0 == ClickOnActor->Actor)
             {
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("No Actor Clicked on");
-                #endif
+                // Do nothing
             }else if(!IsInsideAnyStartZone(ClickOnActor->Actor)){
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("Actor is not in any starting zone");
-                #endif
+                // Do nothing
             }else{
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("Actor Clicked on");
-                TheEntresol->Log(*ClickOnActor);
-                #endif
                 if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
                 {
                     if(!Dragger) //If we have a dragger, then this is dragging, not clicking
@@ -937,35 +917,23 @@ bool CatchApp::PostUI()
                             firstframe=true;
                             LastActorThrown = rigid;
                         }else{  // since we don't
-                            #ifdef MEZZDEBUG
-                            TheEntresol->Log("Actor is not an ActorRigid.  Aborting.");
-                            #endif
+                            // Do nothing
                         }
                     }
                 }else{
-                    #ifdef MEZZDEBUG
-                    TheEntresol->Log("Actor is Static/Kinematic.  Aborting.");
-                    #endif
+                    // Do nothing
                 }
             }
 
             Vector3* DragTo = 0;
-            if(MouseRay)
+            if( MouseRay )
             {
                 // This chunk of code calculates the 3d point that the actor needs to be dragged to
                 DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
-                if (0 == DragTo)
+                if( DragTo != NULL )
                 {
-                    #ifdef MEZZDEBUG
-                    TheEntresol->Log("PlaneOfPlay Not Clicked on");
-                    #endif
-                }else{
-                    if(Dragger && !firstframe)
+                    if( Dragger && !firstframe )
                     {
-                        #ifdef MEZZDEBUG
-                        TheEntresol->Log("Dragged To");
-                        TheEntresol->Log(*DragTo);
-                        #endif
                         Dragger->SetPivotBLocation(*DragTo);
                     }
                 }
@@ -981,9 +949,9 @@ bool CatchApp::PostUI()
             }
 
             // Here we cleanup everything we needed for the clicking/dragging
-            if ( DragTo )
+            if( DragTo )
                 { delete DragTo; }
-            if ( MouseRay )
+            if( MouseRay )
                 { delete MouseRay; }
         }
 
@@ -993,7 +961,7 @@ bool CatchApp::PostUI()
             ActorRigid* Act = Dragger->GetActorA();
             PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
             delete Dragger;
-            Dragger=NULL;
+            Dragger = NULL;
             Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
         }
     }
@@ -1013,29 +981,6 @@ bool CatchApp::PostPhysics()
 
 bool CatchApp::PostRender()
 {
-	//Lets set a variable for the time
-	static Whole gametime = 0;
-
-	TheEntresol->Log(String("---------- Starting PosterRender CallBack -------------"));
-    TheEntresol->Log(String("Current Game Time "));
-
-	//getting a message from the event manager)
-	EventManager* EventMan = EventManager::GetSingletonPtr();
-	EventRenderTime* CurrentTime = EventMan->PopNextRenderTimeEvent();
-    Whole LastFrame = 0;
-
-    // Is CurrentTime a valid event?
-    while(0 != CurrentTime)
-    {
-        LastFrame = CurrentTime->getMilliSecondsSinceLastFrame();
-
-        TheEntresol->Log(gametime);
-        gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
-
-        delete CurrentTime;
-        CurrentTime = EventMan->GetNextRenderTimeEvent();
-    }
-
     // Update the timer
     UI::Screen* GameScreen = UIManager::GetSingletonPtr()->GetScreen("GameScreen");
     UI::OpenRenderableContainerWidget* HUDCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_HUD"));
@@ -1113,6 +1058,16 @@ bool CatchApp::CheckForStuff()
 
         delete OneWindowEvent;
         OneWindowEvent = EventMan->PopNextGameWindowEvent();
+    }
+
+	EventRenderTime* CurrentTime = EventMan->PopNextRenderTimeEvent();
+    while(0 != CurrentTime)
+    {
+        if(CurrentTime->GetType()!=EventBase::RenderTime)
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventRenderTime as an EventRenderTime."); }
+
+        delete CurrentTime;
+        CurrentTime = EventMan->GetNextRenderTimeEvent();
     }
 
     return true;

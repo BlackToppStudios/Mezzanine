@@ -90,9 +90,6 @@ namespace Mezzanine
 
     EventGameWindow::~EventGameWindow()
     {
-        #ifdef MEZZDEBUG
-        Entresol::GetSingletonPtr()->Log("De-Constructing internal data for EventGameWindow");
-        #endif
         delete this->Data;
     }
 
@@ -219,9 +216,6 @@ namespace Mezzanine
 
     void EventGameWindow::construct(EventGameWindow::GameWindowEventID GWEventID, int First, int Second)
     {
-        #ifdef MEZZDEBUG
-        Entresol::GetSingletonPtr()->Log("Constructing internal data for EventGameWindow");
-        #endif
         this->Data=new EventGameWindowData(GWEventID,First, Second);
     }
 }

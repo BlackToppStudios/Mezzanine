@@ -446,16 +446,15 @@ namespace Mezzanine
 
         // Error conditions
                 case SDL_FIRSTEVENT:  //capture and ignore or throw error
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted."); }
-                    break;
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted.");  break; }
 
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected Quit event in event manager."); }
-                    break;
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected Quit event in event manager.");  break; }
 
                 default:                //Never thrown by SDL, but could be added by a user
                     //Entresol::GetSingletonPtr()->LogAndThrow("Unknown SDL Event Inserted.");
                     Entresol::GetSingletonPtr()->Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
+                    Entresol::GetSingletonPtr()->DoMainLoopLogging();
                     break;
             }
             //free(FromSDLRaw); //Does this need to Happen?
@@ -465,13 +464,13 @@ namespace Mezzanine
             { this->_Data->DropAllKeyPresses(); }//*/
 
         #ifdef MEZZDEBUG
-        Entresol::GetSingletonPtr()->Log("User Input entered this Frame");
+        /*Entresol::GetSingletonPtr()->Log("User Input entered this Frame");
         for(EventUserInput::iterator LIter=FromSDLEvent->begin(); FromSDLEvent->end()!=LIter; ++LIter)
         {
             Entresol::GetSingletonPtr()->Log(*LIter);
         }
         Entresol::GetSingletonPtr()->Log("End Of User Input entered this Frame");
-        Entresol::GetSingletonPtr()->DoMainLoopLogging();
+        Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
         #endif
 
         //Check to see if we should add a User input event or not. We wouldn't want to pass an empty event
