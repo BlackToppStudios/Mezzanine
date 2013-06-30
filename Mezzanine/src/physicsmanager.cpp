@@ -1054,6 +1054,7 @@ namespace Mezzanine
         Real FloatTime = TimeElapsed * 0.001; //Convert from MilliSeconds to Seconds
         Real IdealStep = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
         IdealStep /= SubstepModifier;
+        IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
         int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep)+1;
         #ifdef MEZZPROFILE
         Profiler->reset();
