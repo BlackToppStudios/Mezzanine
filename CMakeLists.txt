@@ -56,6 +56,7 @@
 #        Mezz_BuildTypeSmall                - False - The Engine will be optimizing for minimum size by setting CMAKE_BUILD_TYPE, MEZZSMALL is passed into the source when compiling as a preprocessor macro.
 #        Mezz_Lua51                         - True if lua is to be included and link against. False if lua was not selected to be compiled in.
 #        Mezz_Network                       - Enable or disable networking support
+#        Mezz_AllWarnings                   - Enable all compiler warnings
 #
 # Build Extra Features alongside the Mezzanine
 #        Mezz_Doc                           - Check for Doxygen on the system and force a doxygen build as part of a full build when it is present.
@@ -63,6 +64,8 @@
 # Advanced Mezzanine build options
 #        Mezz_Profile                       - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
 #        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
+#        Mezz_MinimizeThreadsEachFrame      - On some platforms thread creation is expensive, on others it is cheap and atomics expensive. Use this with your favorite benchmark to maximize performance.
+#        Mezz_DecacheWorkUnits              - Different CPUs have different Cache sizes and different ratios of actual work to IO bandwith. This tries to increase the amount of work done at the expense of forcing work units to be reloaded into CPU from RAM each frame. Use this with your favorite benchmark to maximize performance.
 #
 # Deprecated options
 #        Mezz_XML                           - Previously disabled/enabled XML options, now XML is used everywhere. Thsi option has been removed.
@@ -303,9 +306,27 @@ else(${Mezz_ThrowOnSingletonFetch})
     set(Mezz_ThrowOnSingletonFetch_Arguments "${D}THROW_ON_FETCH_FAIL_undefined")
 endif(${Mezz_ThrowOnSingletonFetch})
 
+# Allow the developer to disable mandatory compiler wanrings, in case it breaks stuff
+option(Mezz_AllWarnings "Used atomics to minimize thread creation" ON)
+if (Mezz_AllWarnings)
+    if(MSVC)
+    # Force to always compile with W4
+        if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
+            string(REGEX REPLACE "/W[0-4]" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+        else()
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+        endif()
+    elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+            # Update if necessary
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic")
+    endif()
+endif (Mezz_AllWarnings)
+
+###############################################################################
+# Misc simple defines
+
 #######################################
 # Ogre3d related values
-
 set(OgreLibraryAllNames ${OgreLinkName} Plugin_ParticleFX Plugin_CgProgramManager)
 set(Ogre_Arguments "")
 set(OgreHeaderIncludeDir "")

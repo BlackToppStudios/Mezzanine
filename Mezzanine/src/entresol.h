@@ -247,6 +247,8 @@
 #include "managerbase.h"
 #include "singleton.h"
 
+#include "Threading/dagframescheduler.h"
+
 namespace Mezzanine
 {
     class ActorBase;
@@ -319,6 +321,10 @@ namespace Mezzanine
             typedef ManagerFactoryMap::iterator ManagerFactoryIterator;
             typedef ManagerFactoryMap::const_iterator ConstManagerFactoryIterator;
 
+            /// @internal
+            /// @brief
+            Threading::FrameScheduler WorkScheduler;
+
         private:
             //friend class PhysicsManager;
 
@@ -345,7 +351,9 @@ namespace Mezzanine
                                     const ArchiveType ArchType,
                                     const String& InitializerFile );
 
+            /// @brief Perform a series of checks that could change on certain system or from certain codechanges to alert us to any problems early.
             void SanityChecks();
+
             void OneTimeMainLoopInit();
             bool VerifyManagerInitializations();
 

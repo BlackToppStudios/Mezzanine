@@ -44,9 +44,9 @@
 /// @file
 /// @brief This file defines some platform specifc functions
 
-
 #include "datatypes.h"
 #include "systemcalls.h"
+#include "crossplatformincludes.h"
 
 #ifdef _MEZZ_CPP11_
     #include<chrono>

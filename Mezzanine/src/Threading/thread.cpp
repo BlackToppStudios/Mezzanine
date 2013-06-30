@@ -70,6 +70,7 @@ freely, subject to the following restrictions:
 */
 
 #include "thread.h"
+#include "crossplatformincludes.h"
 
 #if defined(_MEZZ_THREAD_POSIX_)
     #include <map>

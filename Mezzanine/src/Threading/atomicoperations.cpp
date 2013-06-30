@@ -42,6 +42,7 @@
 #define _atomic_black_ops_would_be_an_awesome_name_for_a_cheezy_game_cpp
 
 #include "datatypes.h"
+#include "crossplatformincludes.h"
 
 /// @file
 /// @brief The implementation of simple thread safe ways to check and change a specified variable atomically.

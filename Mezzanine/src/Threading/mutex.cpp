@@ -42,6 +42,7 @@
 #define _mezz_mutex_cpp
 
 #include "mutex.h"
+#include "crossplatformincludes.h"
 
 /// @file
 /// @brief Contains the implementation for the @ref Mezzanine::Threading::Mutex Mutex synchronization object.
