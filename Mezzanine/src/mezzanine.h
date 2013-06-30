@@ -57,6 +57,12 @@
 #ifndef SWIG
                                         // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
 
+#include "Audio/audio.h"
+#include "Threading/dagframescheduler.h"
+#include "Graphics/viewport.h"
+#include "XML/xml.h"
+
+
 // We put headers in our headers so we can include while we include
 #include "actorbase.h"                  // serializes
 #include "actorcharacter.h"
@@ -68,7 +74,6 @@
 #include "areaeffect.h"
 #include "attachable.h"                 // Target for output only
 #include "binarybuffer.h"
-#include "Audio/audio.h"
 #include "camera.h"                     // done, must review after Mar27 upgrades
 #include "cameracontroller.h"
 #include "cameramanager.h"
@@ -136,15 +141,13 @@
 // more stuff swig shouldn't read yet
 #ifndef SWIG
 #include "vector3wactor.h"
-#include "Graphics/viewport.h"
+
 #include "entresol.h"
 #include "worldnode.h"                  // done
 #include "worldobjectgraphicssettings.h"// done
 #include "worldobject.h"
 #include "worldobjectphysicssettings.h"
 #include "worldtrigger.h"
-#include "XML/xml.h"                        // nothing to do
-
 
 #endif // \no SWIG
 
