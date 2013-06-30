@@ -472,7 +472,6 @@ namespace Mezzanine
     void Entresol::OneTimeMainLoopInit()
     {
         VerifyManagerInitializations();
-        GraphicsManager::GetSingletonPtr()->ResetRenderTimer();
     }
 
     bool Entresol::VerifyManagerInitializations()
@@ -764,6 +763,13 @@ namespace Mezzanine
 
             if( ManualLoopBreak )
                 break;
+
+            //Do Time Calculations to Determine Rendering Time
+            this->FrameTime = FrameTimer->getMilliseconds();
+            if( this->TargetFrameTime > this->FrameTime )
+            {
+                crossplatform::WaitMilliseconds( this->TargetFrameTime - this->FrameTime );
+            }
         }//End of main loop
 
         ManualLoopBreak = false;

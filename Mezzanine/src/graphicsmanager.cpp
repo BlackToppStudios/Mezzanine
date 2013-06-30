@@ -193,7 +193,6 @@ namespace Mezzanine
         DesktopSettings.RefreshRate = DeskMode.refresh_rate;
 
         this->Priority = 70;
-        this->FrameDelay = 0;
     }
 
     void GraphicsManager::InitOgreRenderSystem()
@@ -571,11 +570,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility Methods
 
-    void GraphicsManager::ResetRenderTimer()
-    {
-        this->RenderTimer->reset();
-    }
-
     void GraphicsManager::RenderOneFrame()
     {
         Ogre::Root::getSingleton().renderOneFrame();
@@ -609,7 +603,6 @@ namespace Mezzanine
     {
         if(!OgreBeenInitialized)
             InitOgreRenderSystem();
-        this->RenderTimer = new Ogre::Timer();
 
         Ogre::ConfigOptionMap& CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();
         for( Ogre::ConfigOptionMap::iterator configItr = CurrentRendererOptions.begin() ;
@@ -644,21 +637,6 @@ namespace Mezzanine
     {
         Ogre::WindowEventUtilities::messagePump();
         RenderOneFrame();
-
-        //Do Time Calculations to Determine Rendering Time
-        this->TheEntresol->SetFrameTime( this->RenderTimer->getMilliseconds() );
-        this->RenderTimer->reset();
-        if(this->TheEntresol->GetTargetFrameTime() > this->TheEntresol->GetFrameTime()){
-            FrameDelay++;
-        }else if(this->TheEntresol->GetTargetFrameTime() == this->TheEntresol->GetFrameTime()){
-        }else{
-            if (0<FrameDelay){
-                FrameDelay--;
-            }else{
-                FrameDelay=0;
-            }
-        }
-        crossplatform::WaitMilliseconds( FrameDelay );
     }
 
     bool GraphicsManager::PostMainLoopItems()

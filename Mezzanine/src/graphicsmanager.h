@@ -92,10 +92,8 @@ namespace Mezzanine
             std::vector<Graphics::RenderSystem> RenderSystemTypes;
 
 
-            Ogre::Timer* RenderTimer;
             Graphics::GameWindow* PrimaryGameWindow;
             bool OgreBeenInitialized;
-            Whole FrameDelay;
             Graphics::RenderSystem CurrRenderSys;
             WindowSettings DesktopSettings;
 
@@ -194,10 +192,6 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
-            /// @brief Resets the Render timer.
-            /// @details This function should not be called unless you know exactly what you are doing.
-            /// This will reset the timer keeping track of game frame times, and thus can disrupt functionality of the mainloop.
-            virtual void ResetRenderTimer();
             /// @brief Renders one frame of the scene.
             virtual void RenderOneFrame();
             /// @brief Swaps all the buffers of all GameWindows.
