@@ -525,7 +525,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobject.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectgraphicssettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.cpp"
-		"${${PROJECT_NAME}_SRC_DIR}worldproxy.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}worldproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.cpp"     # Going away soon
         "${${PROJECT_NAME}_SRC_DIR}XML/attribute.cpp"
