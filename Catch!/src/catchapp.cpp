@@ -1003,11 +1003,17 @@ bool CatchApp::PostRender()
     ScoreAmount->SetText(StringTools::ConvertToString(CurrScore));
 
     // Update Stat information
+    GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
     UI::OpenRenderableContainerWidget* StatsCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_Stats"));
     UI::Caption* CurFPS = static_cast<UI::Caption*>(StatsCont->GetAreaRenderable("CurFPS"));
     UI::Caption* AvFPS = static_cast<UI::Caption*>(StatsCont->GetAreaRenderable("AvFPS"));
-    CurFPS->SetText(StringTools::ConvertToString(GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetLastFPS()));
-    AvFPS->SetText(StringTools::ConvertToString(GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetAverageFPS()));
+    CurFPS->SetText(StringTools::ConvertToString(GraphicsMan->GetGameWindow(0)->GetLastFPS()));
+    AvFPS->SetText(StringTools::ConvertToString(GraphicsMan->GetGameWindow(0)->GetAverageFPS()));
+
+    StringStream FPSStream;
+    FPSStream << "-------------------------- Current FPS: " << GraphicsMan->GetGameWindow(0)->GetLastFPS() << ", Average FPS: " << GraphicsMan->GetGameWindow(0)->GetAverageFPS() << " --------------------------";
+    this->TheEntresol->Log(FPSStream.str());
+    this->TheEntresol->DoMainLoopLogging();
 
     //See if the level is over
     if(CurrentState != CatchApp::Catch_ScoreScreen)
