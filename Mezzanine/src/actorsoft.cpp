@@ -49,7 +49,6 @@
 //#include "BulletCollision/Gimpact/btGImpactShape.h"
 
 #include "Internal/meshtools.h.cpp"
-#include "objectreference.h"
 #include "entresol.h"
 #include "physicsmanager.h"
 #include "scenemanager.h"
@@ -86,8 +85,7 @@ namespace Mezzanine
 
         this->PhysicsSoftBody = btSoftBodyHelpers::CreateFromTriMesh(PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         PhysicsObject=PhysicsSoftBody;
-        ObjectReference* ActorRef = new ObjectReference(Mezzanine::WSO_ActorSoft,this);
-        PhysicsObject->setUserPointer(ActorRef);
+        PhysicsObject->setUserPointer(this);
         PhysicsShape = PhysicsSoftBody->getCollisionShape();
         PhysicsSoftBody->setTotalMass(mass, true);
         PhysicsSoftBody->m_cfg.collisions = /*btSoftBody::fCollision::CL_SS +*/ btSoftBody::fCollision::CL_RS;
@@ -99,7 +97,7 @@ namespace Mezzanine
         CreateManualMesh(CurMesh);
 
         this->GraphicsObject = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
-        Ogre::Any OgreRef(ActorRef);
+        Ogre::Any OgreRef(this);
         GraphicsObject->setUserAny(OgreRef);
 
         this->PhysicsSoftBody->m_clusters[0]->m_collide = true;

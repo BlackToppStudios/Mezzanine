@@ -172,7 +172,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Network/socket.h"
         "${${PROJECT_NAME}_SRC_DIR}Network/systemaddress.h"
         "${${PROJECT_NAME}_SRC_DIR}objectpair.h"
-        "${${PROJECT_NAME}_SRC_DIR}objectreference.h"
         "${${PROJECT_NAME}_SRC_DIR}objectsettings.h"
         "${${PROJECT_NAME}_SRC_DIR}particleaffector.h"
         "${${PROJECT_NAME}_SRC_DIR}particleeffect.h"

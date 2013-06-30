@@ -48,7 +48,6 @@
 #include "Graphics/mesh.h"
 #include "meshmanager.h"
 #include "scenemanager.h"
-#include "objectreference.h"
 #include "Internal/meshtools.h.cpp"
 #include "entresol.h"
 
@@ -75,7 +74,6 @@ namespace Mezzanine
 
     AreaEffect::~AreaEffect()
     {
-        delete (ObjectReference*)Ghost->getUserPointer();
         delete Ghost;
         delete GraphicsSettings;
         delete PhysicsSettings;
@@ -91,8 +89,7 @@ namespace Mezzanine
         Ghost = new btPairCachingGhostObject();
         Ghost->setCollisionFlags(Ghost->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
-        ObjectReference* AERef = new ObjectReference(this->GetType(),this);
-        Ghost->setUserPointer(AERef);
+        Ghost->setUserPointer(this);
 
         PhysicsObject = Ghost;
         this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
@@ -278,10 +275,10 @@ namespace Mezzanine
                     //    continue;
                     btCollisionObject* ColObj = manifold->getBody0() != Ghost ? (btCollisionObject*)(manifold->getBody0()) : (btCollisionObject*)(manifold->getBody1());
 
-                    ObjectReference* ActorRef = (ObjectReference*)(ColObj->getUserPointer());
+                    WorldObject* WO = static_cast<WorldObject*>(ColObj->getUserPointer());
                     ActorBase* Actor = NULL;
-                    if(Mezzanine::WSO_TerrainFirst > ActorRef->GetType())
-                        Actor = (ActorBase*)ActorRef->GetObject();
+                    if( Mezzanine::WSO_TerrainFirst > WO->GetType() )
+                        Actor = static_cast<ActorBase*>( WO->GetObject() );
                     else
                         continue;
                     // Check list for the actor in the pair.

@@ -54,7 +54,6 @@ using namespace std;
 #include "eventcollision.h"
 #include "worldtrigger.h"
 #include "worldobject.h"
-#include "objectreference.h"
 #include "Physics/collision.h"
 #include "scenemanager.h"
 #include "stringtool.h"
@@ -508,8 +507,8 @@ namespace Mezzanine
         btCollisionObjectArray ObjectArray( BulletDynamicsWorld->getCollisionObjectArray() );
         for( Whole X = 0 ; X < BulletDynamicsWorld->getNumCollisionObjects() ; ++X )
         {
-            ObjectReference* ObjectRef = static_cast<ObjectReference*>( ObjectArray[X]->getUserPointer() );
-            ObjectRef->GetObject()->RemoveFromWorld();
+            WorldObject* WO = static_cast<WorldObject*>( ObjectArray[X]->getUserPointer() );
+            WO->RemoveFromWorld();
         }
 
         DestroyAllConstraints();
@@ -630,8 +629,8 @@ namespace Mezzanine
         btCollisionAlgorithm* NewAlgo = AlgoQueue.front();
         while( NewAlgo != NULL )
         {
-            ObjectReference* ObjectA = NULL;
-            ObjectReference* ObjectB = NULL;
+            WorldObject* ObjectA = NULL;
+            WorldObject* ObjectB = NULL;
             /// @todo This is an absurd round-about way to get the data we need,
             /// and bullet will probably have to be extended to change this so it's actually good.
             btBroadphasePairArray& PairArray = BulletBroadphase->getOverlappingPairCache()->getOverlappingPairArray();
@@ -640,9 +639,9 @@ namespace Mezzanine
                 if( NewAlgo == PairArray[X].m_algorithm )
                 {
                     btCollisionObject* COA = (btCollisionObject*)PairArray[X].m_pProxy0->m_clientObject;
-                    ObjectA = (ObjectReference*)COA->getUserPointer();
+                    ObjectA = (WorldObject*)COA->getUserPointer();
                     btCollisionObject* COB = (btCollisionObject*)PairArray[X].m_pProxy1->m_clientObject;
-                    ObjectB = (ObjectReference*)COB->getUserPointer();
+                    ObjectB = (WorldObject*)COB->getUserPointer();
                     break;
                 }
             }
@@ -655,8 +654,8 @@ namespace Mezzanine
                 continue;
             }
             // Verify the objects actually collide
-            if( !ObjectA->GetObject()->GetPhysicsSettings()->GetCollisionResponse() ||
-                !ObjectB->GetObject()->GetPhysicsSettings()->GetCollisionResponse() )
+            if( !ObjectA->GetPhysicsSettings()->GetCollisionResponse() ||
+                !ObjectB->GetPhysicsSettings()->GetCollisionResponse() )
             {
                 AlgoQueue.pop_front();
                 if(AlgoQueue.size() > 0) NewAlgo = AlgoQueue.front();
@@ -664,11 +663,11 @@ namespace Mezzanine
                 continue;
             }
             // Creat the collision
-            ObjectPair NewPair(ObjectA->GetObject(),ObjectB->GetObject());
+            ObjectPair NewPair(ObjectA,ObjectB);
             PhysicsManager::CollisionIterator ColIt = Collisions.find(NewPair);
             if(ColIt == Collisions.end())
             {
-                Physics::Collision* NewCol = new Physics::Collision(ObjectA->GetObject(),ObjectB->GetObject(),NewAlgo);
+                Physics::Collision* NewCol = new Physics::Collision(ObjectA,ObjectB,NewAlgo);
                 //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                 //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                 Collisions.insert(std::pair<ObjectPair,Physics::Collision*>(NewPair,NewCol));

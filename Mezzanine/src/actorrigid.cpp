@@ -48,7 +48,6 @@
 #include "physicsmanager.h"
 #include "scenemanager.h"
 #include "actorrigid.h"
-#include "objectreference.h"
 #include "Physics/collision.h"
 #include "Physics/generic6dofconstraint.h"
 #include "Internal/motionstate.h.cpp" // This is required for the internal physmotionstate :(
@@ -88,10 +87,9 @@ namespace Mezzanine
         btScalar bmass=pmass;
         this->PhysicsRigidBody = new btRigidBody(bmass, this->MotionState, this->PhysicsShape);
         PhysicsObject=PhysicsRigidBody;
-        ObjectReference* ActorRef = new ObjectReference(Mezzanine::WSO_ActorRigid,this);
-        Ogre::Any OgreRef(ActorRef);
+        Ogre::Any OgreRef(this);
         GraphicsObject->setUserAny(OgreRef);
-        PhysicsObject->setUserPointer(ActorRef);
+        PhysicsObject->setUserPointer(this);
         if(0.0 == bmass)
         {
             PhysicsObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);

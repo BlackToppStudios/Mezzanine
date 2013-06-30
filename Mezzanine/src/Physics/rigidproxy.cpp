@@ -232,13 +232,11 @@ namespace Mezzanine
 			return this->PhysicsRigidBody;
 		}
 		
-		/// Note: Outdated ObjectReference/bullet user pointer
 		void RigidProxy::CreateRigidObject(const Real& pmass)
 		{
 			btScalar bmass=pmass;
 			this->PhysicsRigidBody = new btRigidBody(bmass, new internal::AttachableMotionState(this), Shape->GetBulletShape());
-			ObjectReference* ActorRef = new ObjectReference(Mezzanine::WSO_ActorRigid,this);
-			PhysicsRigidBody->setUserPointer(ActorRef);
+			PhysicsRigidBody->setUserPointer(this);
 			if(0.0 == bmass)
 			{
 				PhysicsRigidBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);

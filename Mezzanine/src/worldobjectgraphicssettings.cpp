@@ -43,7 +43,6 @@
 #include "worldobjectgraphicssettings.h"
 #include "actorbase.h"
 #include "worldobject.h"
-#include "objectreference.h"
 #include "Graphics/mesh.h"
 #include "serialization.h"
 #include "meshmanager.h"
@@ -126,8 +125,8 @@ namespace Mezzanine
         Parent->GraphicsNode->setPosition((Parent->GetLocation()).GetOgreVector3());
         //Parent->GraphicsNode->attachObject(IWOGS->WorldObjectEnt);
 
-        ObjectReference* AERef = (ObjectReference*)Parent->PhysicsObject->getUserPointer();
-        Ogre::Any OgreRef(AERef);
+        WorldObject* WO = static_cast<WorldObject*>( Parent->PhysicsObject->getUserPointer() );
+        Ogre::Any OgreRef(WO);
         IWOGS->WorldObjectEnt->setUserAny(OgreRef);
 
         Parent->GraphicsObject = IWOGS->WorldObjectEnt;
