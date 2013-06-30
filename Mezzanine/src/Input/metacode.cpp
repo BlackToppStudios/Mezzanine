@@ -89,9 +89,6 @@ namespace Mezzanine
 
     void MetaCode::Construct(const RawEvent& RawEvent_)
     {
-        #ifdef MEZZDEBUG
-        Entresol::GetSingletonPtr()->Log("Entering: MetaCode::Construct(RawEvent);");
-        #endif
         switch(RawEvent_.type)
         {
             case SDL_KEYDOWN:

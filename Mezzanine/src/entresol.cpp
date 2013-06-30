@@ -452,24 +452,20 @@ namespace Mezzanine
 
     void Entresol::SanityChecks()
     {
-        crossplatform::WaitMilliseconds(1500);
+        //crossplatform::WaitMilliseconds(1500);
         //Perform a Test that only needs to be done once for the SDL/userinputevent system.`
-        Log("Verifying size of userinput events:");
+        /*Log("Verifying size of userinput events:");
         Log(sizeof(Input::InputCode));
         Log(sizeof(SDL_Scancode));
-        Log(sizeof(int));
+        Log(sizeof(int));//*/
         if(sizeof(Input::InputCode) != sizeof(SDL_Scancode))
         {
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go be buggier than a highschool fortran class.");
-        }else{
-            Log("External User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }
 
         if(sizeof(Input::InputCode) != sizeof(int))
         {
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
-        }else{
-            Log("Internal User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }
     }
 
@@ -556,21 +552,11 @@ namespace Mezzanine
 
         void EachFrame()
         {
-            #ifdef MEZZDEBUG
-            static Whole LogIteration = 0;
-            Entresol::GetSingletonPtr()->LogStream << "Logging - every frame, iteration: " << LogIteration;
-            ++LogIteration;
-            #endif
             Entresol::GetSingletonPtr()->DoMainLoopLogging();
         }
 
         void EachXFrame()
         {
-            #ifdef MEZZDEBUG
-            static Whole LogIteration = 0;
-            Entresol::GetSingletonPtr()->LogStream << "Logging - per X frames, iteration: " << LogIteration;
-            ++LogIteration;
-            #endif
             static Whole X=0;
             if (X>FrequencyCounter__)
             {
@@ -589,11 +575,6 @@ namespace Mezzanine
         {
             virtual void DoCallbackItems()
             {
-                #ifdef MEZZDEBUG
-                static Whole LogIteration = 0;
-                Entresol::GetSingletonPtr()->LogStream << "Logging - per X seconds, iteration: " << LogIteration;
-                ++LogIteration;
-                #endif
                 Entresol::GetSingletonPtr()->DoMainLoopLogging();
                 LogTimer->Reset();
                 LogTimer->Start();
@@ -667,7 +648,7 @@ namespace Mezzanine
     {
         // if it is in the Audiologs then it has already happened so it needs to be logged first
         if(Message.size()>0)
-            { this->LogStream << endl << Message; }
+            { this->LogStream << Message; }
     }
 
     void Entresol::Log()
@@ -681,13 +662,12 @@ namespace Mezzanine
 
     void Entresol::EngineInit( const bool &CallMainLoop )
     {
-        #ifdef MEZZDEBUG
-        this->Log("Entering EngineInit()");
-        #endif
-
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
-            this->LogStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << " Manager" << endl;
+            StringStream InitStream;
+            InitStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << ".";
+            this->Log(InitStream.str());
+            this->DoMainLoopLogging();
             if((*Iter)->GetInterfaceType() != ManagerBase::GraphicsManager)
             {
                 (*Iter)->Initialize();
@@ -697,14 +677,7 @@ namespace Mezzanine
 
         if(CallMainLoop)
         {
-            #ifdef MEZZDEBUG
-            this->Log("Starting the main loop");
-            #endif
             this->MainLoop();
-        }else{
-            #ifdef MEZZDEBUG
-            this->Log("Not calling the main loop");
-            #endif
         }
     }
 
@@ -734,45 +707,68 @@ namespace Mezzanine
              20 Resources
         */
 
-        Ogre::Timer* LoopTimer = new Ogre::Timer();
+        Ogre::Timer* ManagerTimer = new Ogre::Timer();
+        Ogre::Timer* FrameTimer = new Ogre::Timer();
         this->OneTimeMainLoopInit();
         //As long as all the CallBacks return true the game continues
-        bool DoNotBreak=true;
-        while (DoNotBreak)
+        bool DoNotBreak = true;
+        while(DoNotBreak)
         {
+            #ifdef MEZZDEBUG
+            static UInt32 FrameCounter = 0;
+
+            StringStream FrameStream;
+            FrameStream << "-------------------------- Starting Frame: " << FrameCounter << " --------------------------";
+            this->Log(FrameStream.str());
+            this->DoMainLoopLogging();
+            FrameStream.str("");
+
+            FrameTimer->reset();
+            #endif
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
                 #ifdef MEZZDEBUG
-                this->LogStream << "Current Manager: " << (*Iter)->GetInterfaceTypeAsString() << " - Priority: " << (*Iter)->GetPriority();
-                this->DoMainLoopLogging();
+                StringStream ManagerStream;
+                ManagerStream << "Current Manager: " << (*Iter)->GetInterfaceTypeAsString() << " - Priority: " << (*Iter)->GetPriority();
                 #endif
 
-                #ifdef MEZZPROFILE
-                LoopTimer->reset();
+                #ifdef MEZZDEBUG
+                ManagerTimer->reset();
                 #endif
 
                 //Actual main loop work
                 if( !(*Iter)->PreMainLoopItems() )
-                    { DoNotBreak=false; }
+                    { DoNotBreak = false; }
 
                 (*Iter)->DoMainLoopItems();
 
                 if( !(*Iter)->PostMainLoopItems() )
-                    { DoNotBreak=false; }
+                    { DoNotBreak = false; }
 
-                #ifdef MEZZPROFILE
-                this->LogStream << (*Iter)->GetInterfaceTypeAsString() << " took " << LoopTimer->getMicroseconds() << " microseconds.";
+                #ifdef MEZZDEBUG
+                ManagerStream << " - Execution Time: " << ManagerTimer->getMicroseconds() << " microseconds.";
+                this->Log(ManagerStream.str());
                 this->DoMainLoopLogging();
                 #endif
 
                 LogCommitFunc();
             }
-            if(ManualLoopBreak)
-                    break;
+
+            #ifdef MEZZDEBUG
+            FrameStream.str("");
+            FrameStream << "-------------------------- Ending Frame: " << FrameCounter << ", After " << FrameTimer->getMicroseconds() << " microseconds --------------------------";
+            this->Log(FrameStream.str());
+            this->DoMainLoopLogging();
+            ++FrameCounter;
+            #endif
+
+            if( ManualLoopBreak )
+                break;
         }//End of main loop
 
         ManualLoopBreak = false;
-        delete LoopTimer;
+        delete ManagerTimer;
+        delete FrameTimer;
     }
 
     void Entresol::DoMainLoopLogging()
@@ -961,7 +957,8 @@ namespace Mezzanine
         {
             Current = (*iter);
             #ifdef MEZZDEBUG
-            this->Log("Deleting " + Current->GetInterfaceTypeAsString());
+            this->Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
+            this->DoMainLoopLogging();
             #endif
             DestroyManager(Current);
         }
@@ -971,7 +968,8 @@ namespace Mezzanine
     void Entresol::AddManager(ManagerBase* ManagerToAdd)
     {
         #ifdef MEZZDEBUG
-        this->LogStream << "Calling Entresol::AddManager("<<ManagerToAdd<<") size before:" <<this->ManagerList.size();
+        this->Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".");
+        this->DoMainLoopLogging();
         #endif
         if(!this->ManagerList.empty())
         {
@@ -983,17 +981,11 @@ namespace Mezzanine
                 if( (*ManIter)->GetPriority() > ManagerToAdd->GetPriority() )
                 {
                     this->ManagerList.insert(ManIter, ManagerToAdd);
-                    #ifdef MEZZDEBUG
-                    this->LogStream << " - Added by sorted insertion:"<<ManagerToAdd<<" - size after:" <<this->ManagerList.size() ;
-                    #endif
                     return;
                 }
             }
         }
         ManagerList.push_back(ManagerToAdd);
-        #ifdef MEZZDEBUG
-        this->LogStream << " - Added by push_back:"<<ManagerToAdd<<" - size after:" <<this->ManagerList.size() << endl;
-        #endif
     }
 
     void Entresol::RemoveManager(ManagerBase* ManagerToRemove)
