@@ -497,38 +497,45 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Timing system methods
         ///////////////////////////////////////
-            /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be
-            /// @details In practice harI've done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn't mind that shouldn't be there.  like there was a " Schedule : " right after a line where a pointer was initialized.  I only found such occurrences in gamebase.cpp though, removed them and did two tests.  First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over.  Second time I ran the game trying to click stuff, I simply couldn't click anything.  I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven't done yet, but there were no results with the Robots.  The third time I was successfully able to stop two spheres and move them around the platform quite smoothly.  These spheres were slightly further away from the camera compared to the first run.  I stopped the wooden sphere and the second metal sphere.  I included a screen shot and a copy of my log for the third run.  The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
-            /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.
-            /// @return This returns a Whole with the current Value
-            Whole GetTargetFrameTime();
-
-            /// @brief This sets a new Target Time
-            /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value
-            /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but
-            /// set it too high, and system resources could becom completely taxed and power will be wasted.
-            /// @param NewTargetTime The new length of time, in milliseconds.
-            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-            void SetTargetFrameTime(const Whole& NewTargetTime);
-
             /// @brief This sets a new Target Frame Rate
             /// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to
             /// Entresol::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms
             /// @param NewFrameRate The new desired frame rate.
             /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-            void SetTargetFrameRate(const Whole& NewFrameRate);
+            void SetTargetFrameRate(const Whole NewFrameRate);
+
+            /// @brief This sets a new target time in milliseconds.
+            /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value
+            /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but
+            /// set it too high, and system resources could becom completely taxed and power will be wasted.
+            /// @param NewTargetTime The new length of time, in milliseconds.
+            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
+            void SetTargetFrameTimeMilliseconds(const Whole NewTargetTime);
+
+            /// @brief This sets a new target time microseconds.
+            /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value
+            /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but
+            /// set it too high, and system resources could becom completely taxed and power will be wasted.
+            /// @param NewTargetTime The new length of time, in microseconds.
+            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
+            void SetTargetFrameTimeMicroseconds(const Whole NewTargetTime);
+
+            /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be.
+            /// @details In practice I've done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn't mind that shouldn't be there.  like there was a " Schedule : " right after a line where a pointer was initialized.  I only found such occurrences in gamebase.cpp though, removed them and did two tests.  First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over.  Second time I ran the game trying to click stuff, I simply couldn't click anything.  I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven't done yet, but there were no results with the Robots.  The third time I was successfully able to stop two spheres and move them around the platform quite smoothly.  These spheres were slightly further away from the camera compared to the first run.  I stopped the wooden sphere and the second metal sphere.  I included a screen shot and a copy of my log for the third run.  The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
+            /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.
+            /// @return This returns a Whole with the current value in milliseconds.
+            Whole GetTargetFrameTimeMilliseconds() const;
+
+            /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be.
+            /// @details In practice I've done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn't mind that shouldn't be there.  like there was a " Schedule : " right after a line where a pointer was initialized.  I only found such occurrences in gamebase.cpp though, removed them and did two tests.  First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over.  Second time I ran the game trying to click stuff, I simply couldn't click anything.  I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven't done yet, but there were no results with the Robots.  The third time I was successfully able to stop two spheres and move them around the platform quite smoothly.  These spheres were slightly further away from the camera compared to the first run.  I stopped the wooden sphere and the second metal sphere.  I included a screen shot and a copy of my log for the third run.  The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
+            /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.
+            /// @return This returns a Whole with the current value in microseconds.
+            Whole GetTargetFrameTimeMicroseconds() const;
 
             /// @brief Gets the amount of time since the last time Rendering began.
             /// @details This returns, in milliseconds the amount of time since the frame started (since the last rendering began)
             /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
-            Whole GetFrameTime();
-
-            /// @internal
-            /// @brief Sets the amount of time since the last time Rendering began.
-            /// @param FrameTime_ This is the amount of time in milliseconds.
-            /// @details This sets, in milliseconds the amount of time since the frame started (since the last rendering began). Don't set this carelessely can screw up a lot of
-            /// stuff, for the most part this should be by the rendering manager during the rendering process.
-            void SetFrameTime(const Whole& FrameTime_);
+            Whole GetFrameTime() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Initialization

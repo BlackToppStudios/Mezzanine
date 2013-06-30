@@ -158,7 +158,7 @@ namespace Mezzanine
         //Add default manager factories
         AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values
-        this->TargetFrameLength = 16;
+        this->TargetFrameLength = 16667;
         this->FrameTime = 0;
         this->ManualLoopBreak = false;
 
@@ -222,7 +222,7 @@ namespace Mezzanine
         //Add default manager factories
         AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values.
-        this->TargetFrameLength = 16;
+        this->TargetFrameLength = 16667;
         this->FrameTime = 0;
         this->ManualLoopBreak = false;
         this->SetLoggingFrequency(LogNever);
@@ -277,7 +277,7 @@ namespace Mezzanine
                 {
                     CurrAttrib = (*SetIt).GetAttribute("TargetFrameTime");
                     if(!CurrAttrib.Empty())
-                        SetTargetFrameTime(CurrAttrib.AsWhole());
+                        SetTargetFrameTimeMicroseconds(CurrAttrib.AsWhole());
                 }else{
                     this->SetTargetFrameRate(CurrAttrib.AsWhole());
                 }
@@ -765,11 +765,18 @@ namespace Mezzanine
                 break;
 
             //Do Time Calculations to Determine Rendering Time
-            this->FrameTime = FrameTimer->getMilliseconds();
-            if( this->TargetFrameTime > this->FrameTime )
+            Whole PrePauseFrameTime = FrameTimer->getMicroseconds();
+            if( this->TargetFrameLength > PrePauseFrameTime )
             {
-                crossplatform::WaitMilliseconds( this->TargetFrameTime - this->FrameTime );
+                #ifdef MEZZDEBUG
+                StringStream SleepStream;
+                SleepStream << "-------------------------- Sleeping for " << this->TargetFrameLength - PrePauseFrameTime << " microseconds --------------------------";
+                this->Log(SleepStream.str());
+                this->DoMainLoopLogging();
+                #endif
+                crossplatform::WaitMilliseconds( (this->TargetFrameLength - PrePauseFrameTime) * 0.001 );
             }
+            this->FrameTime = FrameTimer->getMicroseconds();
         }//End of main loop
 
         ManualLoopBreak = false;
@@ -795,29 +802,34 @@ namespace Mezzanine
     // Simple get and Set functions
     ///////////////////////////////////////
 
-    Whole Entresol::GetTargetFrameTime()
+    void Entresol::SetTargetFrameRate(const Whole NewFrameRate)
     {
-        return this->TargetFrameLength;
+        this->SetTargetFrameTimeMicroseconds( 1000000 / NewFrameRate );
     }
 
-    void Entresol::SetTargetFrameTime(const Whole& NewTargetTime)
+    void Entresol::SetTargetFrameTimeMilliseconds(const Whole NewTargetTime)
+    {
+        this->SetTargetFrameTimeMicroseconds( NewTargetTime * 1000 );
+    }
+
+    void Entresol::SetTargetFrameTimeMicroseconds(const Whole NewTargetTime)
     {
         this->TargetFrameLength = NewTargetTime;
     }
 
-    void Entresol::SetTargetFrameRate(const Whole& NewFrameRate)
+    Whole Entresol::GetTargetFrameTimeMilliseconds() const
     {
-        this->SetTargetFrameTime( 1000/NewFrameRate );
+        return this->TargetFrameLength * 0.001;
     }
 
-    Whole Entresol::GetFrameTime()
+    Whole Entresol::GetTargetFrameTimeMicroseconds() const
+    {
+        return this->TargetFrameLength;
+    }
+
+    Whole Entresol::GetFrameTime() const
     {
         return this->FrameTime;
-    }
-
-    void Entresol::SetFrameTime( const Whole& FrameTime_ )
-    {
-        this->FrameTime = FrameTime_;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

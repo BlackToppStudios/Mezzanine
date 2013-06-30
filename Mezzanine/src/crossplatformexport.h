@@ -138,8 +138,8 @@
         #ifndef NOMINMAX
             #define NOMINMAX
         #endif
-        #include <windows.h>
-        #include <process.h>
+        //#include <windows.h>
+        //#include <process.h>
         #ifdef __UNDEF_LEAN_AND_MEAN
             #undef WIN32_LEAN_AND_MEAN
             #undef __UNDEF_LEAN_AND_MEAN

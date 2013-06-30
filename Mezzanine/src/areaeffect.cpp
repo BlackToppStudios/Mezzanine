@@ -89,7 +89,7 @@ namespace Mezzanine
         Ghost = new btPairCachingGhostObject();
         Ghost->setCollisionFlags(Ghost->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
-        Ghost->setUserPointer(this);
+        Ghost->setUserPointer( (WorldObject*)this );
 
         PhysicsObject = Ghost;
         this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
@@ -278,7 +278,7 @@ namespace Mezzanine
                     WorldObject* WO = static_cast<WorldObject*>(ColObj->getUserPointer());
                     ActorBase* Actor = NULL;
                     if( Mezzanine::WSO_TerrainFirst > WO->GetType() )
-                        Actor = static_cast<ActorBase*>( WO->GetObject() );
+                        Actor = static_cast<ActorBase*>( WO );
                     else
                         continue;
                     // Check list for the actor in the pair.

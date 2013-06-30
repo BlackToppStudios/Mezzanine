@@ -87,9 +87,9 @@ namespace Mezzanine
         btScalar bmass=pmass;
         this->PhysicsRigidBody = new btRigidBody(bmass, this->MotionState, this->PhysicsShape);
         PhysicsObject=PhysicsRigidBody;
-        Ogre::Any OgreRef(this);
+        Ogre::Any OgreRef( (WorldObject*)this );
         GraphicsObject->setUserAny(OgreRef);
-        PhysicsObject->setUserPointer(this);
+        PhysicsObject->setUserPointer( (WorldObject*)this );
         if(0.0 == bmass)
         {
             PhysicsObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
