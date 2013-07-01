@@ -160,7 +160,7 @@ namespace Mezzanine
         //Set some sane Defaults for some values
         this->TargetFrameLength = 16;
         this->FrameTime = 0;
-        this->ManualLoopBreak = false;
+        this->ManualLoopBreak = 0;
 
         this->SetLoggingFrequency(LogOncePerFrame);
 
@@ -714,6 +714,12 @@ namespace Mezzanine
         bool DoNotBreak = true;
         while(DoNotBreak)
         {
+            WorkScheduler.RunAllMonopolies(); //1
+            WorkScheduler.CreateThreads();    //2
+            WorkScheduler.RunMainThreadWork();//3
+            WorkScheduler.JoinAllThreads();   //4
+            WorkScheduler.ResetAllWorkUnits();//5
+
             #ifdef MEZZDEBUG
             static UInt32 FrameCounter = 0;
 
@@ -761,12 +767,14 @@ namespace Mezzanine
             this->DoMainLoopLogging();
             ++FrameCounter;
             #endif
-
             if( ManualLoopBreak )
                 break;
+
+            WorkScheduler.WaitUntilNextFrame(); //6
+
         }//End of main loop
 
-        ManualLoopBreak = false;
+        ManualLoopBreak = 0;
         delete ManagerTimer;
         delete FrameTimer;
     }
@@ -782,7 +790,9 @@ namespace Mezzanine
 
     void Entresol::BreakMainLoop()
     {
-        ManualLoopBreak = true;
+        while(!ManualLoopBreak)
+            { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,0,1); }
+        //ManualLoopBreak = true;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

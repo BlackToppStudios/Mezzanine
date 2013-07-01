@@ -369,7 +369,7 @@ namespace Mezzanine
             Whole TargetFrameLength;
             Whole FrameTime;
             //Used to break the mainloop
-            bool ManualLoopBreak;
+            Int32 ManualLoopBreak;
 
             /// @internal
             /// @brief This is a map containing all the registered manager factories.
@@ -558,6 +558,7 @@ namespace Mezzanine
 
             /// @brief This makes the main loop end after it's current iteration.
             /// @details If called while not in the main loop, it will simply cause the next call to the main loop to do a single iteration and then exit.
+            /// This function is thread safe and can be called from any work unit at any time.
             void BreakMainLoop();
 
         ///////////////////////////////////////////////////////////////////////////////
