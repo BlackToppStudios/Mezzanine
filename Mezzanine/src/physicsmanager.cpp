@@ -59,6 +59,7 @@ using namespace std;
 #include "stringtool.h"
 
 #include <queue>
+#include <algorithm>
 
 #include <Ogre.h>
 
@@ -422,7 +423,8 @@ namespace Mezzanine
     PhysicsManager::PhysicsManager()
         : BulletDrawer(NULL),
           SimulationPaused(false),
-          SubstepModifier(1)
+          SubstepModifier(1),
+          StepSize(1.0/60.0)
     {
         PhysicsConstructionInfo Info;
         Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_SoftRigidWorld | PhysicsConstructionInfo::PCF_LimitlessWorld);
@@ -432,7 +434,8 @@ namespace Mezzanine
     PhysicsManager::PhysicsManager(XML::Node& XMLNode)
         : BulletDrawer(NULL),
           SimulationPaused(false),
-          SubstepModifier(1)
+          SubstepModifier(1),
+          StepSize(1.0/60.0)
     {
         PhysicsConstructionInfo Info;
         XML::Attribute CurrAttrib;
@@ -683,6 +686,9 @@ namespace Mezzanine
         PhysicsManager::GetSingletonPtr()->ProcessAllCollisions();
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Simulation Management
+
     void PhysicsManager::PauseSimulation(bool Pause)
     {
         SimulationPaused = Pause;
@@ -692,6 +698,9 @@ namespace Mezzanine
     {
         return SimulationPaused;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Gravity Management
 
     void PhysicsManager::SetGravity(const Vector3& pgrav)
     {
@@ -723,6 +732,9 @@ namespace Mezzanine
             Rigid->setGravity(igrav.GetBulletVector3());
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Constraint Management
 
     void PhysicsManager::AddConstraint(Physics::Constraint* Con, bool DisableCollisions)
     {
@@ -762,6 +774,9 @@ namespace Mezzanine
         }
         Constraints.clear();
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // AreaEffect Management
 
     void PhysicsManager::AddAreaEffect(AreaEffect* AE)
     {
@@ -814,6 +829,9 @@ namespace Mezzanine
         AreaEffects.clear();
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Trigger Management
+
     void PhysicsManager::AddWorldTrigger(WorldTrigger* Trig)
     {
         Triggers.push_back(Trig);
@@ -859,6 +877,9 @@ namespace Mezzanine
             delete (*Trig);
         Triggers.clear();
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Collision Management
 
     Physics::Collision* PhysicsManager::GetCollision(ObjectPair* Pair)
     {
@@ -939,7 +960,9 @@ namespace Mezzanine
         return Collisions.end();
     }
 
-    //Bullet Debug Drawing
+    ///////////////////////////////////////////////////////////////////////////////
+    // Debug Management
+
     void PhysicsManager::SetDebugPhysicsRendering(int ToBeEnabled)
     {
         if(!BulletDrawer)
@@ -987,6 +1010,9 @@ namespace Mezzanine
         else
             return 0;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
 
     void PhysicsManager::ResetPhysicsWorld(PhysicsConstructionInfo* Info)
     {
@@ -1042,6 +1068,9 @@ namespace Mezzanine
         SubstepModifier = Modifier;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Inherited from Managerbase
+
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
         if(SimulationPaused)
@@ -1052,14 +1081,14 @@ namespace Mezzanine
         #endif
 
         Real FloatTime = TimeElapsed * 0.001; //Convert from MilliSeconds to Seconds
-        Real IdealStep = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
-        IdealStep /= SubstepModifier;
-        IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
-        int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep)+1;
+        //Real IdealStep = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
+        //IdealStep /= SubstepModifier;
+        //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
+        int MaxSteps = (FloatTime<StepSize) ? 1 : int(FloatTime/StepSize)+1;
         #ifdef MEZZPROFILE
         Profiler->reset();
         #endif
-        this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
+        this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, StepSize);
         #ifdef MEZZPROFILE
         TheEntresol->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
         TheEntresol->DoMainLoopLogging();
@@ -1158,8 +1187,31 @@ namespace Mezzanine
         return this->BulletDynamicsWorld;
     }
 
+    void PhysicsManager::MainLoopInitialize()
+    {
+        // Configure our area effects so they have an updated list and apply their effects immediately.
+        this->BulletDynamicsWorld->updateAabbs();
+        this->BulletBroadphase->calculateOverlappingPairs(this->BulletDispatcher);
+        this->BulletDispatcher->dispatchAllCollisionPairs(this->BulletDynamicsWorld->getPairCache(),this->BulletDynamicsWorld->getDispatchInfo(),this->BulletDispatcher);
+        for( std::vector<AreaEffect*>::iterator AE = AreaEffects.begin() ; AE != AreaEffects.end() ; AE++ )
+        {
+            btPairCachingGhostObject* InternalGhost = (*AE)->_GetBulletObject();
+            //this->BulletDispatcher->dispatchAllCollisionPairs(InternalGhost->getOverlappingPairCache(),this->BulletDynamicsWorld->getDispatchInfo(),this->BulletDispatcher);
+
+            (*AE)->_Update();
+            (*AE)->ApplyEffect();
+        }
+
+        // Set our ideal simulation step size
+        Real InvSubStepMod = 1.0 / this->SubstepModifier;
+        Real TargetTimeSeconds = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMicroseconds() ) * 0.000001;
+        //this->StepSize = std::max( TargetTimeSeconds * InvSubStepMod, static_cast<Real>( 1.0 / 120.0 ) );
+        this->StepSize = TargetTimeSeconds * InvSubStepMod;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Inherited from Managerbase
+
     void PhysicsManager::Initialize()
     {
         Initialized = true;

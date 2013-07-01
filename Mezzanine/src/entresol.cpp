@@ -472,6 +472,7 @@ namespace Mezzanine
     void Entresol::OneTimeMainLoopInit()
     {
         VerifyManagerInitializations();
+        PhysicsManager::GetSingletonPtr()->MainLoopInitialize();
     }
 
     bool Entresol::VerifyManagerInitializations()
@@ -765,17 +766,19 @@ namespace Mezzanine
                 break;
 
             //Do Time Calculations to Determine Rendering Time
-            Whole PrePauseFrameTime = FrameTimer->getMicroseconds();
-            if( this->TargetFrameLength > PrePauseFrameTime )
+            Whole SleepTime = 0;
+            if( this->TargetFrameLength > FrameTimer->getMicroseconds() )
+                SleepTime = static_cast<Whole>( (this->TargetFrameLength - FrameTimer->getMicroseconds()) * 0.001 );
+
+            if( SleepTime > 0 )
             {
                 #ifdef MEZZDEBUG
                 StringStream SleepStream;
-                //SleepStream << "-------------------------- Sleeping for " << this->TargetFrameLength - PrePauseFrameTime << " microseconds --------------------------";
-                SleepStream << "-------------------------- Sleeping for " << static_cast<Whole>( (this->TargetFrameLength - PrePauseFrameTime) * 0.001 ) << " milliseconds --------------------------";
+                SleepStream << "-------------------------- Sleeping for " << SleepTime << " milliseconds --------------------------";
                 this->Log(SleepStream.str());
                 this->DoMainLoopLogging();
                 #endif
-                crossplatform::WaitMilliseconds( (this->TargetFrameLength - PrePauseFrameTime) * 0.001 );
+                crossplatform::WaitMilliseconds( SleepTime );
             }
             this->FrameTime = FrameTimer->getMicroseconds();
         }//End of main loop

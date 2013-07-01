@@ -150,6 +150,7 @@ namespace Mezzanine
             PhysicsConstructionInfo WorldConstructionInfo;
             bool SimulationPaused;
             Whole SubstepModifier;
+            Real StepSize;
             std::vector< Physics::Constraint* > Constraints;
             std::vector< AreaEffect* > AreaEffects;
             std::vector< WorldTrigger* > Triggers;
@@ -172,11 +173,9 @@ namespace Mezzanine
             /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect.
             /// @details This function is automatically called every step.
             void ProcessAllEffects();
-
             /// @brief Calls the ConditionsAreMet() and ApplyTrigger() functions of every stored trigger.
             /// @details This function is automatically called every step.
             void ProcessAllTriggers();
-
             /// @brief Checks the internal collision data and generates/updates collisions as necessary.
             /// @details This function is automatically called every step.
             void ProcessAllCollisions();
@@ -402,6 +401,9 @@ namespace Mezzanine
             /// @internal
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
             btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
+
+            /// @brief Does all of the necessary configuration to prepare for a running simulation.
+            void MainLoopInitialize();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Managerbase
