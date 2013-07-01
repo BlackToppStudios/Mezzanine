@@ -722,9 +722,8 @@ namespace Mezzanine
             this->Log(FrameStream.str());
             this->DoMainLoopLogging();
             FrameStream.str("");
-
-            FrameTimer->reset();
             #endif
+            FrameTimer->reset();
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
                 #ifdef MEZZDEBUG
@@ -808,7 +807,7 @@ namespace Mezzanine
 
     void Entresol::SetTargetFrameRate(const Whole NewFrameRate)
     {
-        this->SetTargetFrameTimeMicroseconds( 1000000 / NewFrameRate );
+        this->SetTargetFrameTimeMicroseconds( 1000000 / static_cast<Real>( NewFrameRate ) );
     }
 
     void Entresol::SetTargetFrameTimeMilliseconds(const Whole NewTargetTime)
