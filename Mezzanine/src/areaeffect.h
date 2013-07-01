@@ -127,6 +127,7 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Attachable classes
+
             /// @copydoc WorldObject::GetName()
             ConstString& GetName() const;
             /// @copydoc WorldObject::SetLocation(Vector3&)
@@ -148,6 +149,7 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from WorldObject
+
             /// @copydoc Mezzanine::WorldObject::GetType()
             virtual WorldAndSceneObjectType GetType() const;
             /// @copydoc Mezzanine::WorldObject::AddToWorld()
@@ -156,6 +158,14 @@ namespace Mezzanine
             virtual void RemoveFromWorld();
             /// @copydoc Mezzanine::WorldObject::_Update()
             virtual void _Update();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Gets the internal object this AreaEffect is based on.
+            /// @return Returns a pointer to the internal Ghost object representing this AreaEffect.
+            btPairCachingGhostObject* _GetBulletObject() const;
 
         protected:
             /// @internal

@@ -237,9 +237,9 @@ namespace Mezzanine
     void AreaEffect::_Update()
     {
         if ( !AddedActors.empty() )
-            AddedActors.clear();
+            this->AddedActors.clear();
         if ( !RemovedActors.empty() )
-            RemovedActors.clear();
+            this->RemovedActors.clear();
         btSoftRigidDynamicsWorld* PhysWorld = PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer();
 
         std::list<ActorBase*>::iterator it = OverlappingActors.begin();
@@ -282,7 +282,7 @@ namespace Mezzanine
                     else
                         continue;
                     // Check list for the actor in the pair.
-                    for( it = OverlappingActors.begin(), bit = Tracker.begin() ; it != OverlappingActors.end() ; it++, bit++ )
+                    for( it = this->OverlappingActors.begin(), bit = Tracker.begin() ; it != this->OverlappingActors.end() ; it++, bit++ )
                     {
                         if ( Actor == (*it) )
                         {
@@ -290,9 +290,9 @@ namespace Mezzanine
                             break;
                         }
                     }
-                    if ( it == OverlappingActors.end() )
+                    if ( it == this->OverlappingActors.end() )
                     {
-                        AddActorToList(Actor);
+                        this->AddActorToList(Actor);
                         Tracker.push_back(true);
                     }
                 }
@@ -318,6 +318,9 @@ namespace Mezzanine
             }
         }// */
     }
+
+    btPairCachingGhostObject* AreaEffect::_GetBulletObject() const
+        { return this->Ghost; }
 
     void AreaEffect::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
