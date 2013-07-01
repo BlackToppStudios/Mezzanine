@@ -39,8 +39,7 @@ Mezzanine::WorldAndSceneObjectType LevelZone::GetType() const
 }
 
 StartArea::StartArea(const String& name, const Vector3& Location)
-    : LevelZone(name,Location),
-      Init(true)
+    : LevelZone(name,Location)
 {
 }
 
@@ -60,10 +59,6 @@ void StartArea::ApplyEffect()
             Act = (*it);
             ((ActorBasePhysicsSettings*)Act->GetPhysicsSettings())->SetCollisionResponse(false);
             PhysMan->SetIndividualGravity(Act, Grav);
-            if(Init && Act->GetType() == Mezzanine::WSO_ActorRigid)
-            {
-                ((ActorRigid*)Act)->GetPhysicsSettings()->SetLinearVelocity(Vector3());
-            }
         }
     }
     if(!RemovedActors.empty())
@@ -75,7 +70,6 @@ void StartArea::ApplyEffect()
             PhysMan->SetIndividualGravity(Act, PhysMan->GetGravity());
         }
     }
-    if(Init) Init = false;
 }
 
 ScoreArea::ScoreArea(const String& name, const Vector3& Location)

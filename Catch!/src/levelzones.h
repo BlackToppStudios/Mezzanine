@@ -20,7 +20,6 @@ class LevelZone : public AreaEffect
 class StartArea : public LevelZone
 {
     protected:
-        bool Init;
     public:
         StartArea(const String& name, const Vector3& Location);
         ~StartArea();
