@@ -256,22 +256,22 @@ bool PostInput()
     CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
     if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
     {
-        DefaultControl->StrafeLeft(300 * (TheEntresol->GetFrameTime() * 0.001));
+        DefaultControl->StrafeLeft(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
     }
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
     {
-        DefaultControl->StrafeRight(300 * (TheEntresol->GetFrameTime() * 0.001));
+        DefaultControl->StrafeRight(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
     }
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
     {
-        DefaultControl->MoveForward(300 * (TheEntresol->GetFrameTime() * 0.001));
+        DefaultControl->MoveForward(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
     }
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
     {
-        DefaultControl->MoveBackward(300 * (TheEntresol->GetFrameTime() * 0.001));
+        DefaultControl->MoveBackward(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
     }
 
     static bool MouseCam=false;
