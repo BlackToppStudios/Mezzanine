@@ -60,7 +60,7 @@
 #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
 
 //#include "OgreBspSceneManagerPlugin.h"
-#include "OgreCgPlugin.h"
+//#include "OgreCgPlugin.h"
 //#include "OgreOctreePlugin.h"
 //#include "OgreOctreeZonePlugin.h"
 #include "OgreParticleFXPlugin.h"
@@ -160,7 +160,7 @@ namespace Mezzanine
         //Set some sane Defaults for some values
         this->TargetFrameLength = 16667;
         this->FrameTime = 0;
-        this->ManualLoopBreak = false;
+        this->ManualLoopBreak = 0;
 
         this->SetLoggingFrequency(LogOncePerFrame);
 
@@ -172,8 +172,6 @@ namespace Mezzanine
         // Load the necessary plugins.
         SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
         Ogre::Root::getSingleton().installPlugin(SubSystemParticleFXPlugin);
-        SubSystemCgPlugin = new Ogre::CgPlugin();
-        Ogre::Root::getSingleton().installPlugin(SubSystemCgPlugin);
 
         //add each manager that was passed in to the manager list
         for(std::vector<ManagerBase*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
@@ -236,8 +234,6 @@ namespace Mezzanine
         // Load the necessary plugins.
         SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
         Ogre::Root::getSingleton().installPlugin(SubSystemParticleFXPlugin);
-        SubSystemCgPlugin = new Ogre::CgPlugin();
-        Ogre::Root::getSingleton().installPlugin(SubSystemCgPlugin);
 
         // Set up the data we'll be populating.
         XML::Attribute CurrAttrib;
@@ -522,7 +518,6 @@ namespace Mezzanine
         delete Ogre::Root::getSingletonPtr(); // This should be done by the shutdown method shouldn't it?
         OgreCore = 0;
         delete SubSystemParticleFXPlugin;
-        delete SubSystemCgPlugin;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -714,6 +709,12 @@ namespace Mezzanine
         bool DoNotBreak = true;
         while(DoNotBreak)
         {
+            WorkScheduler.RunAllMonopolies(); //1
+            WorkScheduler.CreateThreads();    //2
+            WorkScheduler.RunMainThreadWork();//3
+            WorkScheduler.JoinAllThreads();   //4
+            WorkScheduler.ResetAllWorkUnits();//5
+
             #ifdef MEZZDEBUG
             static UInt32 FrameCounter = 0;
 
@@ -760,11 +761,10 @@ namespace Mezzanine
             this->DoMainLoopLogging();
             ++FrameCounter;
             #endif
-
             if( ManualLoopBreak )
                 break;
 
-            //Do Time Calculations to Determine Rendering Time
+            /*//Do Time Calculations to Determine Rendering Time
             Whole SleepTime = 0;
             if( this->TargetFrameLength > FrameTimer->getMicroseconds() )
                 SleepTime = static_cast<Whole>( (this->TargetFrameLength - FrameTimer->getMicroseconds()) * 0.001 );
@@ -779,10 +779,12 @@ namespace Mezzanine
                 #endif
                 crossplatform::WaitMilliseconds( SleepTime );
             }
-            this->FrameTime = FrameTimer->getMicroseconds();
+            this->FrameTime = FrameTimer->getMicroseconds();//*/
+
+            WorkScheduler.WaitUntilNextFrame(); //6
         }//End of main loop
 
-        ManualLoopBreak = false;
+        ManualLoopBreak = 0;
         delete ManagerTimer;
         delete FrameTimer;
     }
@@ -798,7 +800,9 @@ namespace Mezzanine
 
     void Entresol::BreakMainLoop()
     {
-        ManualLoopBreak = true;
+        while(!ManualLoopBreak)
+            { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,0,1); }
+        //ManualLoopBreak = true;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

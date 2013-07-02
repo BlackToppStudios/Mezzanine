@@ -172,9 +172,9 @@ namespace Mezzanine
             /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
             void AddMetaCodesToManualCheck(std::vector<MetaCode> Transport, PollingType _PollingCheck)
             {
-                for ( std::vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
+                for ( std::vector<MetaCode>::const_iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                 {
-                    Input::InputCode temp = Iter->GetCode();
+                    //Input::InputCode temp = Iter->GetCode();
                     AddInputCodeToManualCheck(Iter->GetCode(), _PollingCheck);
                 }
             }

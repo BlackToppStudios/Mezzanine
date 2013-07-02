@@ -247,6 +247,8 @@
 #include "managerbase.h"
 #include "singleton.h"
 
+#include "Threading/dagframescheduler.h"
+
 namespace Mezzanine
 {
     class ActorBase;
@@ -290,7 +292,6 @@ namespace Ogre
 	class Viewport;
 
     class ParticleFXPlugin;
-    class CgPlugin;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -319,6 +320,10 @@ namespace Mezzanine
             typedef ManagerFactoryMap::iterator ManagerFactoryIterator;
             typedef ManagerFactoryMap::const_iterator ConstManagerFactoryIterator;
 
+            /// @internal
+            /// @brief
+            Threading::FrameScheduler WorkScheduler;
+
         private:
             //friend class PhysicsManager;
 
@@ -345,7 +350,9 @@ namespace Mezzanine
                                     const ArchiveType ArchType,
                                     const String& InitializerFile );
 
+            /// @brief Perform a series of checks that could change on certain system or from certain codechanges to alert us to any problems early.
             void SanityChecks();
+
             void OneTimeMainLoopInit();
             bool VerifyManagerInitializations();
 
@@ -353,15 +360,11 @@ namespace Mezzanine
             /// @brief Used to track Ogre specific details for the statically linked Particle plugin
             Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
 
-            /// @internal
-            /// @brief Used to track Ogre specific details for the statically linked CG plugin
-            Ogre::CgPlugin* SubSystemCgPlugin;
-
             //Settings for Engine Functionality
             Whole TargetFrameLength;
             Whole FrameTime;
             //Used to break the mainloop
-            bool ManualLoopBreak;
+            Int32 ManualLoopBreak;
 
             /// @internal
             /// @brief This is a map containing all the registered manager factories.
@@ -562,6 +565,7 @@ namespace Mezzanine
 
             /// @brief This makes the main loop end after it's current iteration.
             /// @details If called while not in the main loop, it will simply cause the next call to the main loop to do a single iteration and then exit.
+            /// This function is thread safe and can be called from any work unit at any time.
             void BreakMainLoop();
 
         ///////////////////////////////////////////////////////////////////////////////

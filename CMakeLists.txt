@@ -56,6 +56,7 @@
 #        Mezz_BuildTypeSmall                - False - The Engine will be optimizing for minimum size by setting CMAKE_BUILD_TYPE, MEZZSMALL is passed into the source when compiling as a preprocessor macro.
 #        Mezz_Lua51                         - True if lua is to be included and link against. False if lua was not selected to be compiled in.
 #        Mezz_Network                       - Enable or disable networking support
+#        Mezz_AllWarnings                   - Enable all compiler warnings
 #
 # Build Extra Features alongside the Mezzanine
 #        Mezz_Doc                           - Check for Doxygen on the system and force a doxygen build as part of a full build when it is present.
@@ -63,6 +64,9 @@
 # Advanced Mezzanine build options
 #        Mezz_Profile                       - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
 #        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
+#        Mezz_MinimizeThreadsEachFrame      - On some platforms thread creation is expensive, on others it is cheap and atomics expensive. Use this with your favorite benchmark to maximize performance.
+#        Mezz_DecacheWorkUnits              - Different CPUs have different Cache sizes and different ratios of actual work to IO bandwith. This tries to increase the amount of work done at the expense of forcing work units to be reloaded into CPU from RAM each frame. Use this with your favorite benchmark to maximize performance.
+#        Mezz_FramesToTrack                 - How many frame should the runtime performance metrics be tracked for
 #
 # Deprecated options
 #        Mezz_XML                           - Previously disabled/enabled XML options, now XML is used everywhere. Thsi option has been removed.
@@ -293,6 +297,34 @@ else(${Mezz_Lua51})
 endif(${Mezz_Lua51})
 
 ###############################################################################
+# DAGFrameScheduler
+
+#How long should the default length on rolling averages and other multiframe periods be.
+set(Mezz_FramesToTrack 10 CACHE STRING "How long should frame durations be tracked for")
+
+# Allow the developer to select if New thread should be created each frame or if an atomic barrier should be used to synchronized threads.
+option(Mezz_MinimizeThreadsEachFrame "Used atomics to minimize thread creation" OFF)
+set(MinimizeThreads THREADSEACHFRAME)
+if (Mezz_MinimizeThreadsEachFrame)
+    set(MinimizeThreads MINTHREADS)
+endif (Mezz_MinimizeThreadsEachFrame)
+
+#When looking for work use atomics to advance iterators past complete work units.
+option(Mezz_DecacheWorkUnits "Use atomics to minimize how many WorkUnits are likely to be in CPU cache]." ON)
+set(DecacheWork NODECACHEWORKUNIT)
+if (Mezz_DecacheWorkUnits)
+    set(DecacheWork DECACHEWORKUNIT)
+endif (Mezz_DecacheWorkUnits)
+
+add_definitions(
+    -D_MEZZ_STATIC_BUILD_                   # Trailing slash indicates that compiler header should massage this before the library consumes
+    -D_MEZZ_${MinimizeThreads}_
+    -D_MEZZ_${DecacheWork}_
+    -D_MEZZ_FRAMESTOTRACK_=${Mezz_FramesToTrack}
+)
+
+
+###############################################################################
 # Misc simple defines
 option(Mezz_ThrowOnSingletonFetch "When retrieving an invalid Singleton, should an exception be thrown" OFF)
 if(${Mezz_ThrowOnSingletonFetch})
@@ -303,10 +335,29 @@ else(${Mezz_ThrowOnSingletonFetch})
     set(Mezz_ThrowOnSingletonFetch_Arguments "${D}THROW_ON_FETCH_FAIL_undefined")
 endif(${Mezz_ThrowOnSingletonFetch})
 
+# Allow the developer to disable mandatory compiler wanrings, in case it breaks stuff
+option(Mezz_AllWarnings "Used atomics to minimize thread creation" ON)
+if (Mezz_AllWarnings)
+    if(MSVC)
+    # Force to always compile with W4
+        if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
+            string(REGEX REPLACE "/W[0-4]" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+        else()
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+        endif()
+    elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+            # Update if necessary
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic")
+    endif()
+endif (Mezz_AllWarnings)
+
+###############################################################################
+# Misc simple defines
+
 #######################################
 # Ogre3d related values
 
-set(OgreLibraryAllNames ${OgreLinkName} Plugin_ParticleFX Plugin_CgProgramManager)
+set(OgreLibraryAllNames ${OgreLinkName} Plugin_ParticleFX)
 set(Ogre_Arguments "")
 set(OgreHeaderIncludeDir "")
 
@@ -394,12 +445,7 @@ Message(STATUS "Putting Ogre3d config.h in: ${OgreConfigHeaderIncludeDir}")
 
 set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/OgreMain/include")
 set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/PlugIns/ParticleFX/include")
-set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/PlugIns/CgProgramManager/include")
 
-# Line below is needed on Windows, maybe other platforms as well.
-if(${WIN32})
-	set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/Dependencies/src/Cg/include")
-endif(${WIN32})
 Message(STATUS "Looking for Ogre3d headers in: ${OgreHeaderIncludeDir}")
 
 # Ogre Plugins
@@ -468,7 +514,7 @@ set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_A
 Message(STATUS "Starting Subproject Configuration.")
 add_subdirectory (Mezzanine)
 add_subdirectory (EngineDemo)
-add_subdirectory (Catch!)
+#add_subdirectory (Catch!)
 add_subdirectory (UnitTests)
 Message(STATUS "Finishing Subproject Configuration.")
 
@@ -478,6 +524,7 @@ mark_as_advanced( FORCE
 
     # Mezzanine options
     Mezz_UseOgreVersion Mezz_Profile Mezz_ThrowOnSingletonFetch
+    Mezz_MinimizeThreadsEachFrame Mezz_FramesToTrack Mezz_DecacheWorkUnits
 
     # Misc Options
     CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX CMAKE_DEBUG_POSTFIX CMAKE_GNUtoMS

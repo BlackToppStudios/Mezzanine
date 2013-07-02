@@ -88,6 +88,10 @@ namespace Mezzanine
             /// Mezzanine provided class to safely cast a pointer to the correct event type.
             virtual EventBase::EventType GetType() const = 0;
 
+            /// @brief Virtual Deconstructor
+            virtual ~EventBase()
+                {}
+
     };
 }
 

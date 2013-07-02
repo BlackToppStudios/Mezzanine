@@ -40,17 +40,6 @@
 #ifndef _graphicsgamewindow_cpp
 #define _graphicsgamewindow_cpp
 
-#include "Graphics/gamewindow.h"
-#include "crossplatform.h"
-#include "Graphics/viewport.h"
-#include "camera.h"
-#include "graphicsmanager.h"
-#include "entresol.h"
-
-#include <SDL.h>
-#include "../src/video/SDL_sysvideo.h"
-#include <Ogre.h>
-
 #ifdef WINDOWS
 #include <windows.h>
 #endif
@@ -61,8 +50,19 @@
 #endif
 
 #ifdef MACOSX
-//#import <Cocoa/Cocoa.h>
+#include <Cocoa/Cocoa.h>
 #endif
+
+#include "Graphics/gamewindow.h"
+#include "crossplatform.h"
+#include "Graphics/viewport.h"
+#include "camera.h"
+#include "graphicsmanager.h"
+#include "entresol.h"
+
+#include <SDL.h>
+#include "../src/video/SDL_sysvideo.h"
+#include <Ogre.h>
 
 namespace Mezzanine
 {
@@ -161,7 +161,7 @@ namespace Mezzanine
                 Window Data = 0;
                 #endif
                 #ifdef MACOSX
-                // NSWindow* Data = 0;
+                NSWindow* Data = 0;
                 #endif
                 OgreWindow->getCustomAttribute("WINDOW",&Data);
                 SDLWindow = SDL_CreateWindowFrom((void*)Data);
@@ -186,9 +186,9 @@ namespace Mezzanine
         {
             SDL_DisplayMode DesktopDisplay;
             SDL_GetDesktopDisplayMode(0,&DesktopDisplay);
-            if(Width > DesktopDisplay.w || Height > DesktopDisplay.h)
+            if(Width > Whole(DesktopDisplay.w) || Height > Whole(DesktopDisplay.h))
                 return 1;
-            else if(Width == DesktopDisplay.w || Height == DesktopDisplay.h)
+            else if(Width == Whole(DesktopDisplay.w) || Height == Whole(DesktopDisplay.h))
                 return 0;
             else
                 return -1;

@@ -502,7 +502,7 @@ class lua51tests : public UnitTestGroup
                         LuaRuntimePartial.OpenLibraries(Scripting::Lua::Lua51ScriptingEngine::IOLib);
                         //LuaRuntimePartial.OpenIOLibrary();
 
-                        cout << "Attempting normal execution of properly loaded IOS library function." << endl;
+                        cout << "Attempting normal execution of properly loaded IO library function." << endl;
                         try
                         {
                             FeatureScript.Compile(LuaRuntimePartial);

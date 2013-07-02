@@ -68,8 +68,9 @@ namespace Mezzanine
     ///////////////////////////////////
     // ActorBase class fuctions
     ActorBase::ActorBase()
-        : MotionState(NULL),
-          Animation(NULL)
+        : Animation(NULL),
+          MotionState(NULL)
+
     {
     }
 

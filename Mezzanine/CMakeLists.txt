@@ -239,6 +239,23 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}swig.h"
         "${${PROJECT_NAME}_SRC_DIR}terrainbase.h"
         "${${PROJECT_NAME}_SRC_DIR}terrainmanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/asynchronousfileloadingworkunit.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/asynchronousworkunit.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/atomicoperations.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/barrier.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/crossplatformincludes.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/dagframescheduler.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/doublebufferedresource.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/framescheduler.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/frameschedulerworkunits.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/threadingenumerations.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/monopoly.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/mutex.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/rollingaverage.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/systemcalls.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/thread.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/workunit.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/workunitkey.h"
         "${${PROJECT_NAME}_SRC_DIR}timer.h"
         "${${PROJECT_NAME}_SRC_DIR}timermanager.h"
         "${${PROJECT_NAME}_SRC_DIR}track.h"
@@ -293,7 +310,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobject.h"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectgraphicssettings.h"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.h"
-		"${${PROJECT_NAME}_SRC_DIR}worldproxy.h"
+        "${${PROJECT_NAME}_SRC_DIR}worldproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/objectrange.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.h"       # Going away soon
@@ -435,9 +452,9 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/assetgroup.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assethandler.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/datastream.cpp"
-		"${${PROJECT_NAME}_SRC_DIR}Resource/filestream.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/filestream.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/inputstream.cpp"
-		"${${PROJECT_NAME}_SRC_DIR}Resource/memorystream.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/memorystream.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/textsettingsfile.cpp"
         "${${PROJECT_NAME}_SRC_DIR}scenemanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptingmanager.cpp"
@@ -451,6 +468,19 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}stringtool.cpp"
         "${${PROJECT_NAME}_SRC_DIR}terrainbase.cpp"
         "${${PROJECT_NAME}_SRC_DIR}terrainmanager.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/asynchronousfileloadingworkunit.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/asynchronousworkunit.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/atomicoperations.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/barrier.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/framescheduler.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/frameschedulerworkunits.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/monopoly.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/mutex.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/rollingaverage.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/systemcalls.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/thread.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/workunit.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/workunitkey.cpp"
         "${${PROJECT_NAME}_SRC_DIR}timermanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}track.cpp"
         "${${PROJECT_NAME}_SRC_DIR}transform.cpp"
@@ -494,7 +524,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobject.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectgraphicssettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.cpp"
-		"${${PROJECT_NAME}_SRC_DIR}worldproxy.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}worldproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.cpp"     # Going away soon
         "${${PROJECT_NAME}_SRC_DIR}XML/attribute.cpp"
@@ -658,7 +688,7 @@ set(OGRE_SET_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine bui
 set(OGRE_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_CONFIG_THREADS 0 CACHE INT "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_CONFIG_THREAD_PROVIDER "" CACHE STRING "Forcing minimal build for Mezzanine build." FORCE)
-
+set(OGRE_BUILD_PLUGIN_CG FALSE CACHE BOOL "Forcing Ogre to disable CG, because it is disgusting." FORCE)
 
 #######################################
 # Windows Build Specific Items
@@ -686,7 +716,9 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
         add_definitions( -DMACOSX)
-        message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
+	#set_source_files_properties("${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp" PROPERTIES COMPILE_FLAGS "-x objective-c++")
+	set_property(SOURCE "${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp" PROPERTY COMPILE_FLAGS "-x objective-c++")
+	message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
@@ -749,7 +781,7 @@ set(SDL_ATOMIC    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_AUDIO     off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_CPUINFO   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_EVENTS    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_FILE      off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_FILE      on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 set(SDL_HAPTIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 set(SDL_JOYSTICK  on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 set(SDL_LOADSO    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
@@ -769,6 +801,8 @@ endif(${Mezz_Lua51})
 # Library Link Dependencies
 add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames} ${LuaProject} ${SDLLibraryNames} ${SoundLibraryNames} )
 
+find_package(Threads)
+
 # Link to all of the Mezzanine Dependencies
 target_link_libraries( ${PROJECT_NAME}
     ${NetworkLibrary}
@@ -777,6 +811,7 @@ target_link_libraries( ${PROJECT_NAME}
     ${Bullet_LibraryNames}
     ${SDLLibraryNames}
     ${SoundLibraryNames}
+    ${CMAKE_THREAD_LIBS_INIT}
 )
 
 ###############################################################################
@@ -792,7 +827,6 @@ CopyFilesDuringBuild( common/gpl-3.0.txt data/common/gpl-3.0.txt )
 CopyFilesDuringBuild( common/lgpl-3.0.txt data/common/lgpl-3.0.txt )
 CopyFilesDuringBuild( common/Licenses.txt data/common/Licenses.txt )
 CopyFilesDuringBuild( common/Lua-MIT.txt data/common/Lua-MIT.txt )
-CopyFilesDuringBuild( common/Nvidia-CG-License.txt data/common/Nvidia-CG-License.txt )
 CopyFilesDuringBuild( common/Ogre-MITLicense.txt data/common/Ogre-MITLicense.txt )
 CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )
 CopyFilesDuringBuild( common/ReneNyffenegger-MIT.txt data/common/ReneNyffenegger-MIT.txt )
