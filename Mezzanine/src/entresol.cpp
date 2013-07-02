@@ -778,8 +778,8 @@ namespace Mezzanine
                 this->DoMainLoopLogging();
                 #endif
                 crossplatform::WaitMilliseconds( SleepTime );
-            }
-            this->FrameTime = FrameTimer->getMicroseconds();//*/
+            }//*/
+            this->FrameTime = FrameTimer->getMicroseconds();
 
             WorkScheduler.WaitUntilNextFrame(); //6
         }//End of main loop
