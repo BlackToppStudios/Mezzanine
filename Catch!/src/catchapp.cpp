@@ -890,38 +890,28 @@ bool CatchApp::PostUI()
             //ActorBase *temp = ClickOnActor->Actor;
 
             bool firstframe=false;
-            if(0 == ClickOnActor || 0 == ClickOnActor->Actor)
+            if( 0 != ClickOnActor &&
+                0 != ClickOnActor->Actor &&
+                IsInsideAnyStartZone(ClickOnActor->Actor) )
             {
-                // Do nothing
-            }else if(!IsInsideAnyStartZone(ClickOnActor->Actor)){
-                // Do nothing
-            }else{
-                if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
+                if( !(ClickOnActor->Actor->IsStaticOrKinematic()) &&
+                    ClickOnActor->Actor->GetType() == Mezzanine::WSO_ActorRigid &&
+                    !Dragger )
                 {
-                    if(!Dragger) //If we have a dragger, then this is dragging, not clicking
-                    {
-                        if(ClickOnActor->Actor->GetType()==Mezzanine::WSO_ActorRigid) //This is Dragging let's do some checks for sanity
-                        {
-                            Vector3 LocalPivot = ClickOnActor->Vector;
-                            ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                            rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
-                            Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
-                            Dragger->SetTAU(0.001);
-                            PhysicsManager::GetSingletonPtr()->AddConstraint(Dragger);
-                            Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
-                            Dragger->SetParam(Physics::Con_CFM,0.8,-1);
-                            //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
-                            Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
-                            Dragger->SetParam(Physics::Con_ERP,0.1,-1);
-                            //Dragger->SetParam(Physics::Con_Stop_ERP,0.1,0); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
-                            firstframe=true;
-                            LastActorThrown = rigid;
-                        }else{  // since we don't
-                            // Do nothing
-                        }
-                    }
-                }else{
-                    // Do nothing
+                    Vector3 LocalPivot = ClickOnActor->Vector;
+                    ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                    rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
+                    Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
+                    Dragger->SetTAU(0.001);
+                    PhysicsManager::GetSingletonPtr()->AddConstraint(Dragger);
+                    Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
+                    Dragger->SetParam(Physics::Con_CFM,0.8,-1);
+                    //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
+                    Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
+                    Dragger->SetParam(Physics::Con_ERP,0.1,-1);
+                    //Dragger->SetParam(Physics::Con_Stop_ERP,0.1,0); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
+                    firstframe = true;
+                    LastActorThrown = rigid;
                 }
             }
 
@@ -944,7 +934,7 @@ bool CatchApp::PostUI()
                 ActorRigid* Act = Dragger->GetActorA();
                 PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
                 delete Dragger;
-                Dragger=NULL;
+                Dragger = NULL;
                 Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
             }
 
