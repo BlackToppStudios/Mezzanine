@@ -262,7 +262,6 @@ CopyFilesFromMezzanineDuringBuild( data/common/gpl-3.0.txt ${LicenseDir}/gpl-3.0
 CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt ${LicenseDir}/lgpl-3.0.tx)
 CopyFilesFromMezzanineDuringBuild( data/common/Licenses.txt ${LicenseDir}/Licenses.txt)
 CopyFilesFromMezzanineDuringBuild( data/common/Lua-MIT.txt ${LicenseDir}/Lua-MIT.txt)
-CopyFilesFromMezzanineDuringBuild( data/common/Nvidia-CG-License.txt ${LicenseDir}/Nvidia-CG-License.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt ${LicenseDir}/Ogre-MITLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt ${LicenseDir}/PugiXML-MITLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/ReneNyffenegger-MIT.txt ${LicenseDir}/ReneNyffenegger-MIT.txt )
@@ -297,7 +296,6 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${Mezzanine
 # Windows File Copy Specific Items
 if(${WIN32})
     message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	CopyFilesFromMezzanineDuringBuild( cg.dll ${GameDir}cg.dll )
     message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
 endif(${WIN32})
