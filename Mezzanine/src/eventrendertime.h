@@ -82,6 +82,10 @@ namespace Mezzanine
             /// @param rhs the Right Hand object in the assignment operator
             void operator= (const EventRenderTime& rhs);
 
+            /// @brief Virtual Deconstructor
+            virtual ~EventRenderTime();
+
+
     };
 }
 

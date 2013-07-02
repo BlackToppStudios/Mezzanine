@@ -47,8 +47,12 @@
 #include "meshmanager.h"
 #include "actorbase.h"
 #include "stringtool.h"
+#include "Resource/filestream.h"
+#include "Resource/memorystream.h"
 #include "Internal/ogredatastreambuf.h.cpp"
 #include "Internal/bulletfilemanager.h.cpp"
+
+#include "Resource/resourceenumerations.h"
 
 #include <Ogre.h>
 #include <btBulletWorldImporter.h>
@@ -88,12 +92,12 @@ namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = 0;
 
-    ResourceManager::ResourceManager(const String& EngineDataPath, Mezzanine::ArchiveType ArchiveType_)
+    ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType)
     {
         this->Priority = 60;
-        OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-        EngineDataDir = EngineDataPath;
-        this->AddAssetLocation(EngineDataPath, ArchiveType_, "EngineData", false);
+        this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
+        this->EngineDataDir = EngineDataPath;
+        this->AddAssetLocation(EngineDataPath, ArchType, "EngineData", false);
     }
 
     ResourceManager::ResourceManager(XML::Node& XMLNode)
@@ -230,7 +234,7 @@ namespace Mezzanine
         else if(LowerVar == "commonuserdata") return GetCommonUserDataDir();
         else
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to retrieve unknown path variable: \"" + PathVar + "\".");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to retrieve unknown path variable: \"" + PathVar + "\".");
         }
     }
 
@@ -330,6 +334,46 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Stream Management
 
+    Resource::DataStreamPtr ResourceManager::OpenAssetStream(const String& AssetName, const String& AssetGroup)
+    {
+        /// @todo This entire method is a bit of a hack.  When the resource system gets refactored it should go through our archives or whatever equivalent.
+        /// Since we currently have to put up with Ogre's system, we'll use it for now as a hack.
+
+        NamedDataStreamIterator StreamIt = this->NamedDataStreams.find(AssetName);
+        if( StreamIt != this->NamedDataStreams.end() )
+            return (*StreamIt).second;
+
+        Ogre::DataStreamPtr OgreStream = this->OgreResource->openResource(AssetName,AssetGroup);
+        Char8* AssetBuffer = new Char8[ OgreStream->size() ];
+        OgreStream->read( (void*)AssetBuffer, OgreStream->size() );
+
+        return this->CreateDataStream(AssetName,AssetBuffer,OgreStream->size());
+    }
+
+    Resource::DataStreamPtr ResourceManager::CreateDataStream(void* Buffer, const UInt32 BufferSize)
+    {
+        Resource::DataStreamPtr NewStream( new Resource::MemoryStream(Buffer,BufferSize,true) );
+        this->DataStreams.push_back(NewStream);
+        return NewStream;
+    }
+
+    Resource::DataStreamPtr ResourceManager::CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize)
+    {
+        Resource::DataStreamPtr NewStream( new Resource::MemoryStream(Buffer,BufferSize,true) );
+        this->NamedDataStreams.insert(std::pair<String,Resource::DataStreamPtr>(AssetName,NewStream));
+        return NewStream;
+    }
+
+    Resource::DataStreamPtr ResourceManager::CreateDataStream(const String& AssetName, const String& AssetGroup, void* Buffer, const UInt32 BufferSize)
+    {
+        Resource::DataStreamPtr NewStream( new Resource::MemoryStream(Buffer,BufferSize,true) );
+
+        /// @todo Once we have our own AssetGroup implementation we need to implement this.
+        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Assigning new DataStreams to AssetGroups has not yet been implemented.");
+
+        return NewStream;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // AssetGroup Management
 
@@ -343,9 +387,9 @@ namespace Mezzanine
         ResourceGroups.push_back(Name);
     }
 
-    void ResourceManager::AddAssetLocation(const String& Location, ArchiveType Type, const String& Group, bool recursive)
+    void ResourceManager::AddAssetLocation(const String& Location, const ArchiveType Type, const String& Group, bool Recursive)
     {
-        this->OgreResource->addResourceLocation(Location, GetStringFromArchiveType(Type), Group, recursive);
+        this->OgreResource->addResourceLocation(Location, GetStringFromArchiveType(Type), Group, Recursive);
         AddAssetGroupName(Group);
     }
 
@@ -431,28 +475,28 @@ namespace Mezzanine
         return Results;
     }
 
-    String ResourceManager::GetStringFromArchiveType(ArchiveType ArchiveType_)
+    String ResourceManager::GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType)
     {
-        switch(ArchiveType_)
+        switch(ArchType)
         {
-            case FileSystem:
+            case Mezzanine::AT_FileSystem:
                 return String("FileSystem");
-            case Zip:
+            case Mezzanine::AT_Zip:
                 return String("Zip");
             default:
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
                 return String("");
         }
     }
 
-    ArchiveType ResourceManager::GetArchiveTypeFromString(String FromString)
+    Mezzanine::ArchiveType ResourceManager::GetArchiveTypeFromString(const String& FromString)
     {
         if(String("FileSystem")==FromString)
-            { return FileSystem; }
+            { return Mezzanine::AT_FileSystem; }
         if(String("Zip")==FromString)
-            { return Zip; }
-        MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
-        return Invalid;
+            { return Mezzanine::AT_Zip; }
+        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
+        return AT_Invalid;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -49,84 +49,251 @@ using namespace Mezzanine::Testing;
 
 namespace Mezzanine
 {
-    /// @brief A class to point at
-    class FooExternal
+    namespace Testing
     {
+        /// @brief A class to point at
+        class FooExternal
+        {
+            public:
+                /// @brief A value to use for testing Purposes
+                Integer Value;
+
+                /// @brief A pointer to the test results to set on destruction
+                TestResult* Results;
+
+                /// @brief A constructor that allows setting the value
+                /// @param TargetResults Where to save destruction results
+                /// @param Val A default value to use for testing.
+                explicit FooExternal(TestResult* TargetResults, Integer Val = 0)
+                    : Value(Val), Results(TargetResults)
+                    {}
+
+                /// @brief A destructor that sets Results to Success if it wasNotApplicable and leaves it untouched otherwise.
+                ~FooExternal()
+                {
+                    if(NotApplicable==*Results)
+                        { *Results = Success; }
+                }
+        };
+
+        /// @brief A class to point at that uses its ownreferencing counting internal mechanism
+        class FooInternal
+        {
+            private:
+                /// @brief This is the Counter that stores how many references exist
+                Whole RefCount;
+
+            public:
+                /// @brief A value to use for testing Purposes
+                Integer Value;
+
+                /// @brief A pointer to the test results to set on destruction
+                TestResult* Results;
+
+                /// @brief A constructor that allows setting the value
+                /// @param TargetResults Where to save destruction results
+                /// @param Val A default value to use for testing.
+                explicit FooInternal(TestResult* TargetResults = 0, Integer Val = 0)
+                    : RefCount(0), Value(Val), Results(TargetResults)
+                    {}
+
+                /// @brief A destructor that sets Results to Success if it wasNotApplicable and leaves it untouched otherwise.
+                virtual ~FooInternal()
+                {
+                    if(Results && NotApplicable==*Results)
+                        { *Results = Success; }
+                }
+
+                /// @brief Increase the reference count by one and return the updated count.
+                /// @return The updated count;
+                Whole IncrementReferenceCount()
+                    { return ++RefCount; }
+
+                /// @brief Decrease the reference count by one and return the updated count.
+                /// @return The updated count;
+                Whole DecrementReferenceCount()
+                    { return --RefCount; }
+
+                /// @brief Gets the actual pointer to the target.
+                /// @return A Pointer of the targeted type to the object being managed.
+                FooInternal* GetReferenceCountTargetAsPointer()
+                    { return this; }
+
+                /// @brief Get the current amount of references.
+                /// @return A Whole with the current reference count
+                Whole GetReferenceCount()
+                    { return RefCount; }
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer cast to a void*, for use with CountedPtrCast
+                virtual FooInternal* GetMostDerived()
+                    { return this; }
+        };
+
+        class FooDerived1 : public virtual FooInternal
+        {
+            public:
+                int Value1;
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer for use with CountedPtrCast
+                virtual FooDerived1* GetMostDerived()
+                    { return this; }
+        };
+
+        class FooDerived2 : public virtual FooInternal
+        {
+            public:
+                int Value2;
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer for use with CountedPtrCast
+                virtual FooDerived2* GetMostDerived()
+                    { return this; }
+        };
+
+        class FooDiamond : public FooDerived1, public FooDerived2
+        {
+            public:
+                int ValueDiamond;
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer for use with CountedPtrCast
+                virtual FooDiamond* GetMostDerived()
+                    { return this; }
+        };
+
+        class FooInternalBase
+        {
         public:
-            /// @brief A value to use for testing Purposes
-            Integer Value;
-
-            /// @brief A pointer to the test results to set on destruction
-            TestResult* Results;
-
-            /// @brief A constructor that allows setting the value
-            /// @param TargetResults Where to save destruction results
-            /// @param Val A default value to use for testing.
-            explicit FooExternal(TestResult* TargetResults, Integer Val = 0)
-                : Results(TargetResults), Value(Val)
-                {}
-
-            /// @brief A destructor that sets Results to Success if it wasNotApplicable and leaves it untouched otherwise.
-            ~FooExternal()
-            {
-                if(NotApplicable==*Results)
-                    { *Results = Success; }
-            }
-    };
-
-    /// @brief A class to point at that uses its ownreferencing counting internal mechanism
-    class FooInternal
-    {
-        private:
-            /// @brief This is the Counter that stores how many references exist
-            Whole RefCount;
-
-        public:
-            /// @brief A value to use for testing Purposes
-            Integer Value;
-
-            /// @brief A pointer to the test results to set on destruction
-            TestResult* Results;
-
-            /// @brief A constructor that allows setting the value
-            /// @param TargetResults Where to save destruction results
-            /// @param Val A default value to use for testing.
-            explicit FooInternal(TestResult* TargetResults = 0, Integer Val = 0)
-                : Results(TargetResults), Value(Val), RefCount(0)
-                {}
-
-            /// @brief A destructor that sets Results to Success if it wasNotApplicable and leaves it untouched otherwise.
-            ~FooInternal()
-            {
-                if(Results && NotApplicable==*Results)
-                    { *Results = Success; }
-            }
+            virtual ~FooInternalBase()
+             {}
 
             /// @brief Increase the reference count by one and return the updated count.
             /// @return The updated count;
-            Whole IncrementReferenceCount()
-                { return ++RefCount; }
+            virtual Whole IncrementReferenceCount() = 0;
 
             /// @brief Decrease the reference count by one and return the updated count.
             /// @return The updated count;
-            Whole DecrementReferenceCount()
-                { return --RefCount; }
+            virtual Whole DecrementReferenceCount() = 0;
 
             /// @brief Gets the actual pointer to the target.
             /// @return A Pointer of the targeted type to the object being managed.
-            FooInternal* GetReferenceCountTargetAsPointer()
-                { return this; }
+            virtual FooInternalBase* GetReferenceCountTargetAsPointer() = 0;
 
             /// @brief Get the current amount of references.
             /// @return A Whole with the current reference count
-            Whole GetReferenceCount()
-                { return RefCount; }
+            virtual Whole GetReferenceCount() = 0;
 
             /// @brief Get a pointer to the most Derived type of this class
             /// @return A pointer cast to a void*, for use with CountedPtrCast
-            virtual FooInternal* GetMostDerived()
-                { return this; }
-    };
+            virtual FooInternalBase* GetMostDerived() = 0;
+        };
+
+        /// @brief A class to point at that uses its ownreferencing counting internal mechanism
+        class FooInternalInherits : public FooInternalBase
+        {
+            private:
+                /// @brief This is the Counter that stores how many references exist
+                Whole RefCount;
+
+            public:
+                /// @brief A value to use for testing Purposes
+                Integer Value;
+
+                /// @brief A constructor that allows setting the value
+                /// @param TargetResults Where to save destruction results
+                /// @param Val A default value to use for testing.
+                explicit FooInternalInherits(Integer Val = 0)
+                    : RefCount(0), Value(Val)
+                    {}
+
+                /// @brief A destructor that sets Results to Success if it wasNotApplicable and leaves it untouched otherwise.
+                virtual ~FooInternalInherits()
+                 {}
+
+                /// @brief Increase the reference count by one and return the updated count.
+                /// @return The updated count;
+                virtual Whole IncrementReferenceCount()
+                    { return ++RefCount; }
+
+                /// @brief Decrease the reference count by one and return the updated count.
+                /// @return The updated count;
+                virtual Whole DecrementReferenceCount()
+                    { return --RefCount; }
+
+                /// @brief Gets the actual pointer to the target.
+                /// @return A Pointer of the targeted type to the object being managed.
+                virtual FooInternalInherits* GetReferenceCountTargetAsPointer()
+                    { return this; }
+
+                /// @brief Get the current amount of references.
+                /// @return A Whole with the current reference count
+                virtual Whole GetReferenceCount()
+                    { return RefCount; }
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer cast to a void*, for use with CountedPtrCast
+                virtual FooInternalInherits* GetMostDerived()
+                    { return this; }
+        };
+
+        /// @brief A class to point at that uses its ownreferencing counting internal mechanism and is suitable from some simple static casting experiments
+        class VehicleTest
+        {
+            private:
+                /// @brief This is the Counter that stores how many references exist
+                Whole RefCount;
+
+            public:
+                /// @brief Increase the reference count by one and return the updated count.
+                /// @return The updated count;
+                Whole IncrementReferenceCount()
+                    { return ++RefCount; }
+
+                /// @brief Decrease the reference count by one and return the updated count.
+                /// @return The updated count;
+                Whole DecrementReferenceCount()
+                    { return --RefCount; }
+
+                /// @brief Gets the actual pointer to the target.
+                /// @return A Pointer of the targeted type to the object being managed.
+                VehicleTest* GetReferenceCountTargetAsPointer()
+                    { return this; }
+
+                /// @brief Get the current amount of references.
+                /// @return A Whole with the current reference count
+                Whole GetReferenceCount()
+                    { return RefCount; }
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer for use with CountedPtrCast
+                virtual VehicleTest* GetMostDerived()
+                    { return this; }
+
+                String StartEngine()
+                    { return "Unknown Engine"; }
+
+                virtual ~VehicleTest()
+                    {}
+        };
+
+        class CarTest : public VehicleTest
+        {
+            public:
+                String StartEngine()
+                    { return "Starting V6"; }
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer for use with CountedPtrCast
+                virtual CarTest* GetMostDerived()
+                    { return this; }
+
+                virtual ~CarTest()
+                    {}
+        };
+
+    } // Testing Namespace
 
     template <>
     class ReferenceCountTraits <FooInternal>
@@ -139,42 +306,6 @@ namespace Mezzanine
 
             enum { IsCastable = CastDynamic };
     };
-
-
-    class FooDerived1 : public virtual FooInternal
-    {
-        public:
-            int Value1;
-
-            /// @brief Get a pointer to the most Derived type of this class
-            /// @return A pointer for use with CountedPtrCast
-            virtual FooDerived1* GetMostDerived()
-                { return this; }
-    };
-
-    class FooDerived2 : public virtual FooInternal
-    {
-        public:
-            int Value2;
-
-            /// @brief Get a pointer to the most Derived type of this class
-            /// @return A pointer for use with CountedPtrCast
-            virtual FooDerived2* GetMostDerived()
-                { return this; }
-    };
-
-    class FooDiamond : public FooDerived1, public FooDerived2
-    {
-        public:
-            int ValueDiamond;
-
-            /// @brief Get a pointer to the most Derived type of this class
-            /// @return A pointer for use with CountedPtrCast
-            virtual FooDiamond* GetMostDerived()
-                { return this; }
-    };
-
-
 
     template <>
     class ReferenceCountTraits <FooDerived1>
@@ -212,59 +343,29 @@ namespace Mezzanine
             enum { IsCastable = CastDynamic };
     };
 
-
-
-
-
-    /// @brief A class to point at that uses its ownreferencing counting internal mechanism and is suitable from some simple static casting experiments
-    class VehicleTest
-    {
-        private:
-            /// @brief This is the Counter that stores how many references exist
-            Whole RefCount;
-
-        public:
-            /// @brief Increase the reference count by one and return the updated count.
-            /// @return The updated count;
-            Whole IncrementReferenceCount()
-                { return ++RefCount; }
-
-            /// @brief Decrease the reference count by one and return the updated count.
-            /// @return The updated count;
-            Whole DecrementReferenceCount()
-                { return --RefCount; }
-
-            /// @brief Gets the actual pointer to the target.
-            /// @return A Pointer of the targeted type to the object being managed.
-            VehicleTest* GetReferenceCountTargetAsPointer()
-                { return this; }
-
-            /// @brief Get the current amount of references.
-            /// @return A Whole with the current reference count
-            Whole GetReferenceCount()
-                { return RefCount; }
-
-            /// @brief Get a pointer to the most Derived type of this class
-            /// @return A pointer for use with CountedPtrCast
-            virtual VehicleTest* GetMostDerived()
-                { return this; }
-
-            String StartEngine()
-                { return "Unknown Engine"; }
-    };
-
-    class CarTest : public VehicleTest
+    template <>
+    class ReferenceCountTraits <FooInternalInherits>
     {
         public:
-            String StartEngine()
-                { return "Starting V6"; }
+            typedef FooInternalInherits RefCountType;
 
-            /// @brief Get a pointer to the most Derived type of this class
-            /// @return A pointer for use with CountedPtrCast
-            virtual CarTest* GetMostDerived()
-                { return this; }
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            enum { IsCastable = CastDynamic };
     };
 
+    template <>
+    class ReferenceCountTraits <FooInternalBase>
+    {
+        public:
+            typedef FooInternalBase RefCountType;
+
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            enum { IsCastable = CastDynamic };
+    };
 
     template <>
     class ReferenceCountTraits <VehicleTest>
@@ -291,15 +392,6 @@ namespace Mezzanine
     };
 
 }
-
-
-
-
-
-
-
-
-
 
 class countedptrtests : public UnitTestGroup
 {
@@ -335,23 +427,22 @@ class countedptrtests : public UnitTestGroup
 
                 {
                     CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
-                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultM, 3) );
-
                     CountedPtr<FooExternal>   PtrE2( PtrE );
-                    CountedPtr<FooInternal>   PtrI2( PtrI );
-
                     if( 2!=PtrE.use_count() )
                         { ResultE = Failed; }
+
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultM, 3) );
+                    CountedPtr<FooInternal>   PtrI2( PtrI );
                     if( 2!=PtrI.use_count() )
                         { ResultM = Failed; }
                 } // When pointers fall out of scope
 
-                AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
-                AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultM);
+                AddTestResult("CountedPtr::External::use_count", ResultE);
+                AddTestResult("CountedPtr::Internal::use_count", ResultM);
 
             }else{
-                AddTestResult("CountedPtr::External::NonDestructionRelease", Skipped);
-                AddTestResult("CountedPtr::Internal::NonDestructionRelease", Skipped);
+                AddTestResult("CountedPtr::External::use_count", Skipped);
+                AddTestResult("CountedPtr::Internal::use_count", Skipped);
             }
 
 
@@ -364,21 +455,22 @@ class countedptrtests : public UnitTestGroup
 
                 {
                     CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
-                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
-
-                    CountedPtr<FooExternal>   PtrE2( PtrE );
-                    CountedPtr<FooInternal>   PtrI2( PtrI );
-
+                    CountedPtr<FooExternal>   PtrE2( PtrE ); // why is this incrementing as though it were internal
                     if( 1!=(*PtrE2).Value )
                         { ResultE = Failed; }
+                    PtrE.Reset();
+                    PtrE2.Reset();
 
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
+                    CountedPtr<FooInternal>   PtrI2( PtrI );
                     if( 3!=(*PtrI2).Value )
                         { ResultI = Failed; }
-                } // When pointers fall out of scope
+                    PtrI.Reset();
+                    PtrI2.Reset();
+                }
 
                 AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
                 AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultI);
-
 
             }else{
                 AddTestResult("CountedPtr::External::NonDestructionRelease", Skipped);
@@ -435,16 +527,12 @@ class countedptrtests : public UnitTestGroup
 
                 } // When pointers fall out of scope
 
-                AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
-                AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultI);
                 AddTestResult("CountedPtr::External::operator*", ResultEDereference);
                 AddTestResult("CountedPtr::Internal::operator*", ResultIDereference);
                 AddTestResult("CountedPtr::External::operator->", ResultEDereference2);
                 AddTestResult("CountedPtr::Internal::operator->", ResultIDereference2);
 
             }else{
-                AddTestResult("CountedPtr::External::NonDestructionRelease", Skipped);
-                AddTestResult("CountedPtr::Internal::NonDestructionRelease", Skipped);
                 AddTestResult("CountedPtr::External::operator*", Skipped);
                 AddTestResult("CountedPtr::Internal::operator*", Skipped);
                 AddTestResult("CountedPtr::External::operator->", Skipped);
@@ -611,7 +699,7 @@ class countedptrtests : public UnitTestGroup
             {
                 TestResult ResultE = NotApplicable;
                 TestResult ResultI = NotApplicable;
-                TestResult ResultS = NotApplicable;
+                //TestResult ResultS = NotApplicable;
 
                 {
                     cout << "The objects being created all change a variable on destruction and have initializing, but otherwise trivial constructors. This is useful only for comparing the speeds of the point constructs on this platform, not for providing objective pointer dereferencing costs." << std::endl;
@@ -760,7 +848,7 @@ class countedptrtests : public UnitTestGroup
             if (RunAutomaticTests)
             {
 
-                TestResult Result = NotApplicable;
+                //TestResult Result = NotApplicable;
 
                 CountedPtr<int> IntPtr(new int(0));
                 IntPtr.reset();
@@ -825,7 +913,7 @@ class countedptrtests : public UnitTestGroup
                 cout << DiamondPtr.UseCount() << endl;
 
                 VehicleTest* Car1 = new CarTest;
-                CarTest* Car2 = new CarTest;
+                //CarTest* Car2 = new CarTest;
 
                 CountedPtr<VehicleTest> Car1Ptr(Car1);
                 cout << Car1Ptr.UseCount() << endl;
@@ -857,7 +945,25 @@ class countedptrtests : public UnitTestGroup
                 AddTestResult("CountedPtr::CountedPtrDynamicCast", Skipped);
             }
 
+            if (RunAutomaticTests)
+            {
 
+
+                {
+                    CountedPtr<FooInternalBase> PtrBase;
+                    {
+                        CountedPtr<FooInternalInherits> PtrIn( new FooInternalInherits(3) );
+                        //PtrBase = PtrIn;          // This should work
+                        //PtrBase.Acquire(PtrIn);   // So should this
+                        PtrBase = CountedPtrDynamicCast<FooInternalBase>(PtrIn);
+                    }
+
+
+                } // When pointers fall out of scope
+                AddTestResult("CountedPtr::Internal::CovariantDeletion", Success);
+            }else{
+                AddTestResult("CountedPtr::External::CovariantDeletion", Skipped);
+            }
 
 
         }

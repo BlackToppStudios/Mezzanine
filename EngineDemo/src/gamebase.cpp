@@ -22,6 +22,8 @@ Entresol* TheEntresol;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
+Audio::SoundSet *Announcer, *Soundtrack;
+
 ActorBase *Robot7, *Robot8;
 
 int main(int argc, char **argv)
@@ -54,17 +56,17 @@ int main(int argc, char **argv)
     TheEntresol->GetGraphicsManager()->SetPostMainLoopItems(&PostRender);
 
     //Create the windows!
-    Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",800,600,0);
+    Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
     Camera* FirstCam = CameraManager::GetSingletonPtr()->CreateCamera("FirstCam");
     Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
     FirstCam->SetLocation( Vector3(0,50,900) );
     FirstCam->LookAt( Vector3(0,0,0) );
 
-    Graphics::GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
+    /*Graphics::GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
     Camera* SecondCam = CameraManager::GetSingletonPtr()->CreateCamera("SecondCam");
     Graphics::Viewport* SecondViewport = SecondWindow->CreateViewport(SecondCam);
     SecondCam->SetLocation( Vector3(-300,50,-50) );
-    SecondCam->LookAt( Vector3(0,0,0) );
+    SecondCam->LookAt( Vector3(0,0,0) );//*/
 
     //Init
 	TheEntresol->EngineInit(false);
@@ -89,10 +91,10 @@ int main(int argc, char **argv)
     //Setup some camera tricks
     //WorldNode* CameraNode = TheEntresol->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
     //CameraNode->AttachElement(TheEntresol->GetCameraManager()->GetDefaultCamera());
-    TheEntresol->GetCameraManager()->GetCamera(0)->SetLocation(Vector3(0.0,200.0,150.0));
-    CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
-    DefaultControl->SetMovementMode(CameraController::CCM_Walk);
-    DefaultControl->SetHoverHeight(75);
+    TheEntresol->GetCameraManager()->GetCamera(0)->SetLocation(Vector3(0.0,200.0,450.0));
+    //CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
+    //DefaultControl->SetMovementMode(CameraController::CCM_Walk);
+    //DefaultControl->SetHoverHeight(75);
     Light *Headlight = TheEntresol->GetSceneManager()->CreateLight("Headlight");
     Headlight->SetLightType(Light::Directional);
     Vector3 LightLoc(200,300,0);
@@ -110,6 +112,8 @@ int main(int argc, char **argv)
 	//Start the Main Loop
 	TheEntresol->MainLoop();
 
+    delete Soundtrack;
+    delete Announcer;
     delete TheEntresol;
 	return 0;
 }
@@ -155,11 +159,11 @@ bool PostRender()
     if (notplayed)
     {
         notplayed=false;
-        Audio::Sound* Welcome = NULL;
-        Welcome = TheEntresol->GetAudioManager()->GetSoundByName("Welcome");
+        Audio::iSound* Welcome = NULL;
+        Welcome = Announcer->front();
         if(Welcome)
         {
-            Welcome->Play2d(false);
+            Welcome->Play();
         }
         #ifdef MEZZDEBUG
         TheEntresol->Log("Played Welcome Fun:");
@@ -286,16 +290,16 @@ bool PostInput()
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) )
     {
-        Audio::Sound* Theme = TheEntresol->GetAudioManager()->GetSoundByName("Theme2");
+        Audio::iSound* Theme = Soundtrack->at(1);
         if(!Theme->IsPlaying())
         {
-            Theme->Play2d(false);
+            Theme->Play();
         }
     }
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) )
     {
-        Audio::Sound* Theme = TheEntresol->GetAudioManager()->GetSoundByName("Theme2");
+        Audio::iSound* Theme = Soundtrack->at(1);
         if(Theme->IsPlaying())
         {
             Theme->Stop();
@@ -426,7 +430,7 @@ bool CheckForStuff()
         #endif
 
         if(OneInput->GetType()!=EventBase::UserInput)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
 
         #ifdef MEZZDEBUG
         TheEntresol->Log(*OneInput);
@@ -456,13 +460,13 @@ bool CheckForStuff()
     while(0 != OneWindowEvent)
     {
         if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
         if(!OneWindowEvent->IsEventIDValid())
         {
             StringStream ExceptionStream;
             ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,ExceptionStream.str());
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
         }
 
         TheEntresol->Log(*OneWindowEvent);
@@ -475,11 +479,11 @@ bool CheckForStuff()
 
         if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
         {
-            Audio::Sound* Welcome = NULL;
-            Welcome = TheEntresol->GetAudioManager()->GetSoundByName("Welcome");
+            Audio::iSound* Welcome = NULL;
+            Welcome = Announcer->front();
             if(Welcome)
             {
-                Welcome->Play2d(false);
+                Welcome->Play();
             }
         }
 
@@ -494,7 +498,7 @@ bool CheckForStuff()
     while(0 != OneCollision)
     {
         if(OneCollision->GetType() != EventBase::Collision)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventCollision as an EventCollision."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventCollision as an EventCollision."); }
         delete OneCollision;
         OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
     }
@@ -516,11 +520,11 @@ void LoadContent()
 
     Real mass=15.0;
     /// @todo Figure why the EngineDemo fails on Linux when trying to find items in the
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common", FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/music", FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/sounds", FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common", AT_FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/music", AT_FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/sounds", AT_FileSystem, groupname, false);
     //TheEntresol->GetResourceManager()->AddAssetLocation(zipname.str(), "Zip", groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("", FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("", AT_FileSystem, groupname, false);
     TheEntresol->GetResourceManager()->InitAssetGroup(groupname);
 
     ParticleEffect *GreenPart = TheEntresol->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
@@ -573,6 +577,16 @@ void LoadContent()
         if (c+7==8)
             {Robot8=ActRig;}
     }
+
+    //new ActorRigid(mass,"C","chassis.obj.mesh",groupname);
+    /*String TargetFile("Ramp.mesh");
+    ActorRigid* target = new ActorRigid(mass,"C",TargetFile,groupname);
+    Physics::CollisionShape* targetShape = CSMan->GenerateConvexHull("TargetShape",TargetFile,groupname);
+    target->GetPhysicsSettings()->SetCollisionShape(targetShape);
+    target->SetScaling(Vector3(10.0,10.0,10.0));
+    target->SetOrientation(Quaternion(1.0, 0.3, 0.0, 0.5));
+    target->SetLocation(Vector3(0.0,100.0,-200.0));
+    TheEntresol->GetActorManager()->AddActor( target );*/
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
@@ -640,30 +654,33 @@ void LoadContent()
     TheEntresol->GetActorManager()->AddActor(object7);
     //TheEntresol->GetActorManager()->AddActor(Act9);
 
+    //GravityField
     /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
     Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
     Reverse->SetLocation(Vector3(200,50,-5.0));
     TheEntresol->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
+    //GravityWell
     /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
-    BlackHole->CreateSphereShape(750.0);
+    BlackHole->GetPhysicsSettings()->SetCollisionShape(new Physics::SphereCollisionShape("GravWellShape",750.0));
     BlackHole->SetAllowWorldGravity(false);
-    BlackHole->SetFieldStrength(100000.0);
-    BlackHole->SetAttenuation(85.0,GravityWell::GW_Att_Linear);
-    BlackHole->CreateGraphicsSphere(ColourValue(0.9,0.7,0.7,0.55));
+    BlackHole->SetFieldStrength(1000.0);
+    BlackHole->SetAttenuation(3.000,Mezzanine::Att_Linear);
+    //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
     TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
-    Audio::Sound *sound1, *music1, *music2;
-    AudioManager* AudioMan = TheEntresol->GetAudioManager();
-    AudioMan->CreateSoundSet("Announcer");
-    sound1 = AudioMan->CreateDialogSound("Welcome", "welcomefun-1.ogg", groupname);
-    AudioMan->AddSoundToSoundSet("Announcer", sound1);
 
-    AudioMan->CreateSoundSet("SoundTrack");
-    music1 = AudioMan->CreateMusicSound("Theme1", "cAudioTheme1.ogg", groupname);
-    AudioMan->AddSoundToSoundSet("SoundTrack", music1);
-    music2 = AudioMan->CreateMusicSound("Theme2", "cAudioTheme2.ogg", groupname);
-    AudioMan->AddSoundToSoundSet("SoundTrack", music2);
+    Audio::iSound *sound1 = NULL, *music1 = NULL, *music2 = NULL;
+    Announcer = new Audio::SoundSet();
+    Soundtrack = new Audio::SoundSet();
+    Audio::AudioManager* AudioMan = TheEntresol->GetAudioManager();
+    sound1 = AudioMan->CreateDialogSound("welcomefun-1.ogg", groupname);
+    Announcer->push_back(sound1);
+
+    music1 = AudioMan->CreateMusicSound("cAudioTheme1.ogg", groupname);
+    Soundtrack->push_back(music1);
+    music2 = AudioMan->CreateMusicSound("cAudioTheme2.ogg", groupname);
+    Soundtrack->push_back(music2);
 
     TheEntresol->Log("Actor Count");
     TheEntresol->Log( TheEntresol->GetActorManager()->GetNumActors() );

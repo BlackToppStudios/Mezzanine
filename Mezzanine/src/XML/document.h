@@ -121,7 +121,7 @@ namespace Mezzanine
                 Document();
 
                 /// @brief Tears down a document, and incidentally invalidates all Node and Attribute handles to this document.
-                ~Document();
+                virtual ~Document();
 
                 /// @brief Removes all nodes, leaving the empty document.
                 void Reset();

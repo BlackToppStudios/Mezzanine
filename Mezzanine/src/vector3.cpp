@@ -50,7 +50,6 @@
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
-#include <cAudio.h>
 
 #include <memory>
 
@@ -76,7 +75,7 @@ namespace Mezzanine
             case 0: return this->X;
             case 1: return this->Y;
             case 2: return this->Z;
-            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
         }
     }
 
@@ -90,7 +89,7 @@ namespace Mezzanine
             case 0: return this->X;
             case 1: return this->Y;
             case 2: return this->Z;
-            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
         }
     }
 
@@ -108,26 +107,21 @@ namespace Mezzanine
 
     Real& Vector3::operator[] (const Whole& Axis)
         { return this->GetAxisValue((StandardAxis)Axis); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Constructors
+
     Vector3::Vector3()
-    {
-        Zero();
-    }
+        { this->Zero(); }
 
     Vector3::Vector3(const Real& x, const Real& y, const Real& z)
-    {
-        SetValues(x,y,z);
-    }
+        { this->SetValues(x,y,z); }
 
     Vector3::Vector3(const Ogre::Vector3& Vec)
         { this->ExtractOgreVector3(Vec); }
 
     Vector3::Vector3(const btVector3& Vec)
         { this->ExtractBulletVector3(Vec); }
-
-    Vector3::Vector3(const cAudio::cVector3& Vec)
-        { this->ExtractcAudioVector3(Vec); }
 
     Vector3::Vector3(const Mezzanine::Vector3& Vec)
         { *this = Vec; }
@@ -163,7 +157,7 @@ namespace Mezzanine
             case 0: return Vector3::Unit_X();
             case 1: return Vector3::Unit_Y();
             case 2: return Vector3::Unit_Z();
-            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert invalid StandardAxis."); }
+            default: { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Cannot convert invalid StandardAxis."); }
         }
     }
 
@@ -187,6 +181,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Assignment Operators
+
     Vector3& Vector3::operator= (const btVector3 &Vec)
     {
         this->X=Vec.getX();
@@ -201,20 +196,15 @@ namespace Mezzanine
         this->Z=Vec.z;
     }
 
-    Vector3& Vector3::operator= (const cAudio::cVector3 &Vec)
-    {
-        this->X=Vec.x;
-        this->Y=Vec.y;
-        this->Z=Vec.z;
-    }
-
     ///////////////////////////////////////////////////////////////////////////////
     // Unary Operators
+
     Vector3 Vector3::operator- ()
         { return Vector3(-X,-Y,-Z); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector3 Arithmetic with Real
+
     Vector3 Vector3::operator* (const Real &scalar) const
         { return Vector3(this->X * scalar, this->Y * scalar, this->Z * scalar); }
 
@@ -223,6 +213,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector3 Arithmetic and assignment with Real
+
     Vector3& Vector3::operator*= (const Real &scalar)
     {
         this->X *= scalar;
@@ -241,6 +232,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
+
     bool Vector3::operator== (const Vector3 &Vec) const
         { return( Vec.X == this->X && Vec.Y == this->Y && Vec.Z == this->Z ); }
 
@@ -248,9 +240,6 @@ namespace Mezzanine
         { return( Vec.getX() == this->X && Vec.getY() == this->Y && Vec.getZ() == this->Z ); }
 
     bool Vector3::operator== (const Ogre::Vector3 &Vec) const
-        { return ( Vec.x == this->X && Vec.y == this->Y && Vec.z == this->Z ); }
-
-    bool Vector3::operator== (const cAudio::cVector3 &Vec) const
         { return ( Vec.x == this->X && Vec.y == this->Y && Vec.z == this->Z ); }
 
 
@@ -261,9 +250,6 @@ namespace Mezzanine
         { return ( Vec.getX() != this->X || Vec.getY() != this->Y || Vec.getZ() != this->Z ); }
 
     bool Vector3::operator!= (const Ogre::Vector3 &Vec) const
-        { return ( Vec.x != this->X || Vec.y != this->Y || Vec.z != this->Z ); }
-
-    bool Vector3::operator!= (const cAudio::cVector3 &Vec) const
         { return ( Vec.x != this->X || Vec.y != this->Y || Vec.z != this->Z ); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -312,21 +298,6 @@ namespace Mezzanine
         { return Vector3(X/Vec.x, Y/Vec.y, Z/Vec.z); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Arithmetic Operators with cAudio::cVector3
-
-    Vector3 Vector3::operator+ (const cAudio::cVector3 &Vec) const
-        { return Vector3(X+Vec.x, Y+Vec.y, Z+Vec.z); }
-
-    Vector3 Vector3::operator- (const cAudio::cVector3 &Vec) const
-        { return Vector3(X-Vec.x, Y-Vec.y, Z-Vec.z); }
-
-    Vector3 Vector3::operator* (const cAudio::cVector3 &Vec) const
-        { return Vector3(X*Vec.x, Y*Vec.y, Z*Vec.z); }
-
-    Vector3 Vector3::operator/ (const cAudio::cVector3 &Vec)  const
-        { return Vector3(X/Vec.x, Y/Vec.y, Z/Vec.z); }
-
-    ///////////////////////////////////////////////////////////////////////////////
     // Fancy Math
 
     Vector3 Vector3::CrossProduct( const Vector3& Vec ) const
@@ -368,9 +339,7 @@ namespace Mezzanine
 
     Vector3 Vector3::GetDirection(const Vector3& Destination) const
     {
-        Vector3 Dir = Destination - *this;
-        Dir.Normalize();
-        return Dir;
+        return (Destination - *this).Normalize();
     }
 
     Vector3 Vector3::Inverse()
@@ -382,6 +351,11 @@ namespace Mezzanine
         if (Z!=0)
             Z=1/Z;
         return *this;
+    }
+
+    Vector3 Vector3::Reflect(const Vector3& Normal)
+    {
+        return Vector3( *this - ( Normal * (2 * this->DotProduct(Normal) ) ) );
     }
 
     Real Vector3::Distance(const Vector3& OtherVec) const
@@ -451,6 +425,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility Functions
+
     void Vector3::Zero()
     {
         this->X = 0;
@@ -467,6 +442,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Manual Conversions
+
     btVector3 Vector3::GetBulletVector3() const
     {
         btVector3 Theirs;
@@ -500,66 +476,47 @@ namespace Mezzanine
         this->Z=Ours.z;
     }
 
-    cAudio::cVector3 Vector3::GetcAudioVector3() const
+    void Vector3::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        cAudio::cVector3 Theirs;
-        Theirs.x=this->X;
-        Theirs.y=this->Y;
-        Theirs.z=this->Z;
-        return Theirs;
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+        VecNode.SetName(SerializableName());
+
+        Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+        Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
+        Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
+        Mezzanine::XML::Attribute ZAttr = VecNode.AppendAttribute("Z");
+        if( VersionAttr && XAttr && YAttr && ZAttr )
+        {
+            if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z))
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values", SerializableName(),true);
+            }
+        }else{
+            SerializeError("Create XML Attributes", SerializableName(),true);
+        }
     }
 
-    void Vector3::ExtractcAudioVector3(const cAudio::cVector3& Ours)
+    void Vector3::ProtoDeSerialize(const XML::Node& OneNode)
     {
-        this->X=Ours.x;
-        this->Y=Ours.y;
-        this->Z=Ours.z;
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                this->X=OneNode.GetAttribute("X").AsReal();
+                this->Y=OneNode.GetAttribute("Y").AsReal();
+                this->Z=OneNode.GetAttribute("Z").AsReal();
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+        }
     }
 
-        // Serializable
-        void Vector3::ProtoSerialize(XML::Node& CurrentRoot) const
-        {
-            Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
-            VecNode.SetName(SerializableName());
-
-            Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
-            Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
-            Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
-            Mezzanine::XML::Attribute ZAttr = VecNode.AppendAttribute("Z");
-            if( VersionAttr && XAttr && YAttr && ZAttr )
-            {
-                if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z))
-                {
-                    return;
-                }else{
-                    SerializeError("Create XML Attribute Values", SerializableName(),true);
-                }
-            }else{
-                SerializeError("Create XML Attributes", SerializableName(),true);
-            }
-        }
-
-        // DeSerializable
-        void Vector3::ProtoDeSerialize(const XML::Node& OneNode)
-        {
-            if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
-            {
-                if(OneNode.GetAttribute("Version").AsInt() == 1)
-                {
-                    this->X=OneNode.GetAttribute("X").AsReal();
-                    this->Y=OneNode.GetAttribute("Y").AsReal();
-                    this->Z=OneNode.GetAttribute("Z").AsReal();
-                }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
-                }
-            }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
-            }
-        }
-
-        String Vector3::SerializableName()
-            { return String("Vector3"); }
-
+    String Vector3::SerializableName()
+        { return String("Vector3"); }
 }
 
 Mezzanine::Vector3 operator+ (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
@@ -578,15 +535,6 @@ Mezzanine::Vector3 operator- (const Ogre::Vector3 &Vec, const Mezzanine::Vector3
 Mezzanine::Vector3 operator* (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
     { return lhs * Vec; }
 Mezzanine::Vector3 operator/ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return Mezzanine::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
-
-Mezzanine::Vector3 operator+ (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return lhs + Vec; }
-Mezzanine::Vector3 operator- (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return Mezzanine::Vector3(Vec.x-lhs.X, Vec.y-lhs.Y, Vec.z-lhs.Z); }
-Mezzanine::Vector3 operator* (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return lhs * Vec; }
-Mezzanine::Vector3 operator/ (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs)
     { return Mezzanine::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -618,15 +566,6 @@ Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom)
     return VecTo;
 }
 
-Ogre::Vector3&  operator << (Ogre::Vector3& VecTo, const cAudio::cVector3& VecFrom)
-{
-    VecTo.x=VecFrom.x;
-    VecTo.y=VecFrom.y;
-    VecTo.z=VecFrom.z;
-    return VecTo;
-}
-
-
 btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom)
 {
     VecTo.setX(VecFrom.x);
@@ -642,14 +581,6 @@ btVector3& operator << (btVector3& VecTo, const Mezzanine::Vector3& VecFrom)
     return VecTo;
 }
 
-btVector3&  operator << (btVector3& VecTo, const cAudio::cVector3& VecFrom)
-{
-    VecTo.setX(VecFrom.x);
-    VecTo.setY(VecFrom.y);
-    VecTo.setZ(VecFrom.z);
-    return VecTo;
-}
-
 Mezzanine::Vector3& operator << (Mezzanine::Vector3& VecTo, const Ogre::Vector3& VecFrom)
 {
     VecTo=VecFrom;
@@ -659,34 +590,6 @@ Mezzanine::Vector3& operator << (Mezzanine::Vector3& VecTo, const Ogre::Vector3&
 Mezzanine::Vector3& operator << (Mezzanine::Vector3& VecTo, const btVector3& VecFrom)
 {
     VecTo=VecFrom;
-    return VecTo;
-}
-
-Mezzanine::Vector3&  operator << (Mezzanine::Vector3& VecTo, const cAudio::cVector3& VecFrom)
-{
-    VecTo=VecFrom;
-    return VecTo;
-}
-
-cAudio::cVector3&  operator << (cAudio::cVector3& VecTo, const Ogre::Vector3& VecFrom)
-{
-    VecTo.x=VecFrom.x;
-    VecTo.y=VecFrom.y;
-    VecTo.z=VecFrom.z;
-    return VecTo;
-}
-
-cAudio::cVector3&  operator << (cAudio::cVector3& VecTo, const btVector3& VecFrom)
-{
-    VecTo.x=VecFrom.getX();
-    VecTo.y=VecFrom.getY();
-    VecTo.z=VecFrom.getZ();
-    return VecTo;
-}
-
-cAudio::cVector3&  operator << (cAudio::cVector3& VecTo, const Mezzanine::Vector3& VecFrom)
-{
-    VecTo=VecFrom.GetcAudioVector3();
     return VecTo;
 }
 

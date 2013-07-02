@@ -148,9 +148,10 @@ typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 &#160;&#160;<b>ResourceManager</b>, 
 <b>SceneManager</b>, 
 <b>ScriptingManager</b>, 
-<b>TerrainManager</b>, 
+<b>SoundScapeManager</b>, 
 <br/>
-&#160;&#160;<b>TimerManager</b>, 
+&#160;&#160;<b>TerrainManager</b>, 
+<b>TimerManager</b>, 
 <b>UIManager</b>, 
 <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6caa58e48b5e043dfdaf6e2cd17b79a3194">UserCreated</a> = 512
 <br/>
@@ -463,14 +464,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>InitOgreRenderSystem<
 <tr class="memitem:a8387d2882dbc1726650d105a05ae8981 inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8387d2882dbc1726650d105a05ae8981"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>LoadSettingSetFromXML</b> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;XMLNode, <a class="el" href="classMezzanine_1_1ObjectSettingSet.xhtml">ObjectSettingSet</a> *Set)</td></tr>
 <tr class="separator:a8387d2882dbc1726650d105a05ae8981 inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a449d13d7cae00ebf4499d5e58d22eadb inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a449d13d7cae00ebf4499d5e58d22eadb"></a>
-<a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#a673b2401b956abd67f876bcb6c53a28c">SettingGroupVector</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>LoadSettingsFromFile</b> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName, const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Path)</td></tr>
+<tr class="memitem:a449d13d7cae00ebf4499d5e58d22eadb inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#a673b2401b956abd67f876bcb6c53a28c">SettingGroupVector</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#a449d13d7cae00ebf4499d5e58d22eadb">LoadSettingsFromFile</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName, const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Path)</td></tr>
 <tr class="separator:a449d13d7cae00ebf4499d5e58d22eadb inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af28de5a69811f09e37cfff412900c204 inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af28de5a69811f09e37cfff412900c204"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SaveSettingSetToXML</b> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;XMLNode, <a class="el" href="classMezzanine_1_1ObjectSettingSet.xhtml">ObjectSettingSet</a> *Set)</td></tr>
 <tr class="separator:af28de5a69811f09e37cfff412900c204 inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dfe2e9ee9c26b7c44ffcd9c253b8fa7 inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4dfe2e9ee9c26b7c44ffcd9c253b8fa7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SaveSettingsToFile</b> (<a class="el" href="namespaceMezzanine.xhtml#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> &amp;GroupNames, const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName, const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Path)</td></tr>
+<tr class="memitem:a4dfe2e9ee9c26b7c44ffcd9c253b8fa7 inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml#a4dfe2e9ee9c26b7c44ffcd9c253b8fa7">SaveSettingsToFile</a> (<a class="el" href="namespaceMezzanine.xhtml#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> &amp;GroupNames, const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName, const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Path)</td></tr>
 <tr class="separator:a4dfe2e9ee9c26b7c44ffcd9c253b8fa7 inherit pro_methods_classMezzanine_1_1ObjectSettingsHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -494,7 +493,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>OgreBeenInitialized</
 <a class="el" href="classMezzanine_1_1Graphics_1_1GameWindow.xhtml">Graphics::GameWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>PrimaryGameWindow</b></td></tr>
 <tr class="separator:aa47613f60139105cc27a396a82d5a893"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4a6179197d263d63550b48b7c42cc89"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Ogre::Plugin * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GraphicsManager.xhtml#af4a6179197d263d63550b48b7c42cc89">RenderSystems</a></td></tr>
-<tr class="memdesc:af4a6179197d263d63550b48b7c42cc89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track all statically linked <a class="el" href="namespaceOgre.xhtml">Ogre</a> render systems, usually only one, but could be many.  <a href="#af4a6179197d263d63550b48b7c42cc89">More...</a><br/></td></tr>
+<tr class="memdesc:af4a6179197d263d63550b48b7c42cc89"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMezzanine_1_1Track.xhtml" title="This class represents a series of points as a line in 3D space.">Track</a> all statically linked <a class="el" href="namespaceOgre.xhtml">Ogre</a> render systems, usually only one, but could be many.  <a href="#af4a6179197d263d63550b48b7c42cc89">More...</a><br/></td></tr>
 <tr class="separator:af4a6179197d263d63550b48b7c42cc89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affbbb7aae8cc73c13ff868fae4acbedd"><td class="memItemLeft" align="right" valign="top">std::vector<br class="typebreak"/>
 &lt; <a class="el" href="namespaceMezzanine_1_1Graphics.xhtml#a6938522e19376f3d97db95b6dc9efa0a">Graphics::RenderSystem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GraphicsManager.xhtml#affbbb7aae8cc73c13ff868fae4acbedd">RenderSystemTypes</a></td></tr>
@@ -613,7 +612,7 @@ static <a class="el" href="classMezzanine_1_1GraphicsManager.xhtml">GraphicsMana
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000031">Todo:</a></b></dt><dd>This is currently necessary because a render window of some kind needs to exist for the loading of resources that occurs later in world construction (when this is constructed by the world, which this assumes. If possible this should be removed, to keep construction more flexible. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000030">Todo:</a></b></dt><dd>This is currently necessary because a render window of some kind needs to exist for the loading of resources that occurs later in world construction (when this is constructed by the world, which this assumes. If possible this should be removed, to keep construction more flexible. </dd></dl>
 
 <p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.xhtml#l00092">92</a> of file <a class="el" href="graphicsmanager_8cpp_source.xhtml">graphicsmanager.cpp</a>.</p>
 
@@ -633,7 +632,7 @@ static <a class="el" href="classMezzanine_1_1GraphicsManager.xhtml">GraphicsMana
 </div><div class="memdoc">
 
 <p>Class Destructor. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000032">Todo:</a></b></dt><dd>This is commented out due to an issue with the ogre shutdown sequence. <a class="el" href="namespaceOgre.xhtml">Ogre</a> will eventually shut these plugins down, but not until after the lifetime of this manager. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000031">Todo:</a></b></dt><dd>This is commented out due to an issue with the ogre shutdown sequence. <a class="el" href="namespaceOgre.xhtml">Ogre</a> will eventually shut these plugins down, but not until after the lifetime of this manager. </dd></dl>
 
 <p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.xhtml#l00156">156</a> of file <a class="el" href="graphicsmanager_8cpp_source.xhtml">graphicsmanager.cpp</a>.</p>
 
@@ -661,7 +660,7 @@ static <a class="el" href="classMezzanine_1_1GraphicsManager.xhtml">GraphicsMana
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000033">Todo:</a></b></dt><dd>Currently the maximized setting does nothing in the gamewindow. If it gets implemented, so does this. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000032">Todo:</a></b></dt><dd>Currently the maximized setting does nothing in the gamewindow. If it gets implemented, so does this. </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml">Mezzanine::ObjectSettingsHandler</a>.</p>
 
@@ -690,7 +689,7 @@ static <a class="el" href="classMezzanine_1_1GraphicsManager.xhtml">GraphicsMana
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000034">Todo:</a></b></dt><dd>May want to make some other data member so that people can accurately get what is set now, instead of what will be set. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000033">Todo:</a></b></dt><dd>May want to make some other data member so that people can accurately get what is set now, instead of what will be set. </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ObjectSettingsHandler.xhtml">Mezzanine::ObjectSettingsHandler</a>.</p>
 
@@ -1021,7 +1020,7 @@ static <a class="el" href="classMezzanine_1_1GraphicsManager.xhtml">GraphicsMana
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string containing the name of the provided render system. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000035">Todo:</a></b></dt><dd>This will likely have to change when other OGL systems are implemented </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000034">Todo:</a></b></dt><dd>This will likely have to change when other OGL systems are implemented </dd></dl>
 
 <p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.xhtml#l00523">523</a> of file <a class="el" href="graphicsmanager_8cpp_source.xhtml">graphicsmanager.cpp</a>.</p>
 
@@ -1049,7 +1048,7 @@ static <a class="el" href="classMezzanine_1_1GraphicsManager.xhtml">GraphicsMana
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string containing the shortened name of the provided render system. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000036">Todo:</a></b></dt><dd>This will likely have to change when other OGL systems are implemented </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000035">Todo:</a></b></dt><dd>This will likely have to change when other OGL systems are implemented </dd></dl>
 
 <p>Definition at line <a class="el" href="graphicsmanager_8cpp_source.xhtml#l00538">538</a> of file <a class="el" href="graphicsmanager_8cpp_source.xhtml">graphicsmanager.cpp</a>.</p>
 
@@ -1320,7 +1319,7 @@ static <a class="el" href="classMezzanine_1_1GraphicsManager.xhtml">GraphicsMana
 </table>
 </div><div class="memdoc">
 
-<p>Track all statically linked <a class="el" href="namespaceOgre.xhtml">Ogre</a> render systems, usually only one, but could be many. </p>
+<p><a class="el" href="classMezzanine_1_1Track.xhtml" title="This class represents a series of points as a line in 3D space.">Track</a> all statically linked <a class="el" href="namespaceOgre.xhtml">Ogre</a> render systems, usually only one, but could be many. </p>
 
 <p>Definition at line <a class="el" href="graphicsmanager_8h_source.xhtml#l00088">88</a> of file <a class="el" href="graphicsmanager_8h_source.xhtml">graphicsmanager.h</a>.</p>
 
@@ -1356,6 +1355,6 @@ static <a class="el" href="classMezzanine_1_1GraphicsManager.xhtml">GraphicsMana
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 21:56:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

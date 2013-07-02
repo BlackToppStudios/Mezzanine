@@ -212,10 +212,13 @@ namespace Mezzanine
     Graphics::Mesh* MeshManager::CreateCylinderMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes, const Whole& Segments)
     {
 /// Start of MIT(Ogre Proceadural) License ///
-        if(AxisOrientation != Vector3::Unit_Y())
-            return NULL;
-        if(HalfExtents.X != HalfExtents.Z)
-            return NULL;
+        Ogre::Quaternion RotationModifier;
+        if(AxisOrientation == Vector3::Unit_X())
+            RotationModifier = Ogre::Quaternion(Ogre::Radian(0.5),Ogre::Vector3::UNIT_Z);
+        else if( AxisOrientation == Vector3::Unit_Y() )
+            RotationModifier = Ogre::Quaternion(1,0,0,0);
+        else if( AxisOrientation == Vector3::Unit_Z() )
+            RotationModifier = Ogre::Quaternion(Ogre::Radian(0.5),Ogre::Vector3::UNIT_X);
 
         Vector3 Half = HalfExtents;
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
@@ -229,21 +232,21 @@ namespace Mezzanine
         Ogre::ManualObject* cylinder = new Ogre::ManualObject("TempMan");
         cylinder->begin(MaterialName);
 
-        for (int i = 0; i <= Segments; i++)
+        for(int i = 0; i <= Segments; i++)
         {
-            for (int j = 0; j < CircleRes; j++)
+            for(int j = 0; j < CircleRes; j++)
             {
                 Real x0 = radius * cosf(j*deltaAngle);
                 Real z0 = radius * sinf(j*deltaAngle);
-                cylinder->position(x0, (i*deltaHeight) - Half.Y, z0);
-                cylinder->normal(Ogre::Vector3(x0,0,z0).normalisedCopy());
+                cylinder->position( RotationModifier * Ogre::Vector3(x0, (i*deltaHeight) - Half.Y, z0) );
+                cylinder->normal( RotationModifier * Ogre::Vector3(x0,0,z0).normalisedCopy() );
                 cylinder->textureCoord(j/(Real)CircleRes, i/(Real)Segments);
 
-                if (i != Segments)
+                if(i != Segments)
                 {
                     /// @todo These if/elses aren't really a long term solution
                     /// as they won't work for any more then 1 segment.  This needs to be addressed.
-                    if(offset + CircleRes + 1 == CircleRes * 2)
+                    if(offset + CircleRes == CircleRes * 2)
                         cylinder->index(CircleRes);
                     else
                         cylinder->index(offset + CircleRes + 1);
@@ -251,7 +254,7 @@ namespace Mezzanine
                     cylinder->index(offset);
                     cylinder->index(offset + CircleRes);
 
-                    if(offset + CircleRes + 1 == CircleRes * 2)
+                    if(offset + CircleRes == CircleRes * 2)
                         cylinder->index(0);
                     else
                         cylinder->index(offset + CircleRes + 1);
@@ -259,14 +262,14 @@ namespace Mezzanine
                     cylinder->index(offset + 1);
                     cylinder->index(offset);
                 }
-                offset ++;
+                offset++;
             }
 		}
 
 		//low cap
 		int centerIndex = offset;
-		cylinder->position(0,-Half.Y,0);
-		cylinder->normal(Ogre::Vector3::NEGATIVE_UNIT_Y);
+		cylinder->position( RotationModifier * Ogre::Vector3(0,-Half.Y,0) );
+		cylinder->normal( RotationModifier * Ogre::Vector3::NEGATIVE_UNIT_Y );
 		cylinder->textureCoord(0,1);
 		offset++;
 		for (int j=0;j<=CircleRes;j++)
@@ -274,8 +277,8 @@ namespace Mezzanine
 			Real x0 = radius * cosf(j*deltaAngle);
 			Real z0 = radius * sinf(j*deltaAngle);
 
-			cylinder->position(x0,-Half.Y, z0);
-			cylinder->normal(Ogre::Vector3::NEGATIVE_UNIT_Y);
+			cylinder->position( RotationModifier * Ogre::Vector3(x0,-Half.Y, z0) );
+			cylinder->normal( RotationModifier * Ogre::Vector3::NEGATIVE_UNIT_Y );
 			cylinder->textureCoord(j/(Real)CircleRes,0.0);
 			if (j!=CircleRes)
 			{
@@ -288,8 +291,8 @@ namespace Mezzanine
 
 		// high cap
 		centerIndex = offset;
-		cylinder->position(0,Half.Y,0);
-		cylinder->normal(Ogre::Vector3::UNIT_Y);
+		cylinder->position( RotationModifier * Ogre::Vector3(0,Half.Y,0) );
+		cylinder->normal( RotationModifier * Ogre::Vector3::UNIT_Y );
 		cylinder->textureCoord(0,0);
 		offset++;
 		for (int j=0;j<=CircleRes;j++)
@@ -297,8 +300,8 @@ namespace Mezzanine
 			Real x0 = radius * cosf(j*deltaAngle);
 			Real z0 = radius * sinf(j*deltaAngle);
 
-			cylinder->position(x0, Half.Y, z0);
-			cylinder->normal(Ogre::Vector3::UNIT_Y);
+			cylinder->position( RotationModifier * Ogre::Vector3(x0, Half.Y, z0) );
+			cylinder->normal( RotationModifier * Ogre::Vector3::UNIT_Y );
 			cylinder->textureCoord(j/(Real)CircleRes,1);
 			if (j!=CircleRes)
 			{

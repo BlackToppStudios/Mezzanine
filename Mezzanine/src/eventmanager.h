@@ -151,7 +151,7 @@ namespace Mezzanine
 
             /// @brief Default Deconstructor
             /// @details This deletes everything still in the event manager and tears it down.
-            ~EventManager();
+            virtual ~EventManager();
 
             /// @brief Look for Joysticks that are hooked up to the system
             /// @details Currently this will only find the first joystick. This only needs to be done once after the joystick has been connected and

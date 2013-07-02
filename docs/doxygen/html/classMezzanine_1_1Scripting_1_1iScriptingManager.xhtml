@@ -122,9 +122,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a06a34216676d72f56a18e06d807a0804"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml#a06a34216676d72f56a18e06d807a0804">Execute</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ScriptSource)=0</td></tr>
 <tr class="memdesc:a06a34216676d72f56a18e06d807a0804"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run a string containing script soure code.  <a href="#a06a34216676d72f56a18e06d807a0804">More...</a><br/></td></tr>
 <tr class="separator:a06a34216676d72f56a18e06d807a0804"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7131e3d3cd52ada613323740cc0183ac"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml#a7131e3d3cd52ada613323740cc0183ac">Execute</a> (<a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> &gt; ScriptToRun)=0</td></tr>
-<tr class="memdesc:a7131e3d3cd52ada613323740cc0183ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the script.  <a href="#a7131e3d3cd52ada613323740cc0183ac">More...</a><br/></td></tr>
-<tr class="separator:a7131e3d3cd52ada613323740cc0183ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab973d282891d8f046cf979c5b8661044"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml#ab973d282891d8f046cf979c5b8661044">Execute</a> (<a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> &gt; &amp;ScriptToRun)=0</td></tr>
+<tr class="memdesc:ab973d282891d8f046cf979c5b8661044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the script.  <a href="#ab973d282891d8f046cf979c5b8661044">More...</a><br/></td></tr>
+<tr class="separator:ab973d282891d8f046cf979c5b8661044"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae81fba6b343d1c4bf6dbedbfdec3026b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml#ae81fba6b343d1c4bf6dbedbfdec3026b">GetImplementationTypeName</a> () const =0</td></tr>
 <tr class="memdesc:ae81fba6b343d1c4bf6dbedbfdec3026b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Allows any manager name to be sent to a stream. Primarily used for logging.  <a href="#ae81fba6b343d1c4bf6dbedbfdec3026b">More...</a><br/></td></tr>
 <tr class="separator:ae81fba6b343d1c4bf6dbedbfdec3026b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,9 +207,10 @@ typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 &#160;&#160;<b>ResourceManager</b>, 
 <b>SceneManager</b>, 
 <b>ScriptingManager</b>, 
-<b>TerrainManager</b>, 
+<b>SoundScapeManager</b>, 
 <br/>
-&#160;&#160;<b>TimerManager</b>, 
+&#160;&#160;<b>TerrainManager</b>, 
+<b>TimerManager</b>, 
 <b>UIManager</b>, 
 <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6caa58e48b5e043dfdaf6e2cd17b79a3194">UserCreated</a> = 512
 <br/>
@@ -332,7 +333,7 @@ typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 
 </div>
 </div>
-<a class="anchor" id="a7131e3d3cd52ada613323740cc0183ac"></a>
+<a class="anchor" id="ab973d282891d8f046cf979c5b8661044"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -342,7 +343,7 @@ typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
         <tr>
           <td class="memname">virtual void Mezzanine::Scripting::iScriptingManager::Execute </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> &gt;&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1CountedPtr.xhtml">CountedPtr</a>&lt; <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml">iScript</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>ScriptToRun</em></td><td>)</td>
           <td></td>
         </tr>
@@ -462,6 +463,6 @@ typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 21:56:59 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

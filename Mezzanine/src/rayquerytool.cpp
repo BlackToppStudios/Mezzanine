@@ -97,7 +97,7 @@ namespace Mezzanine
                 return NULL;
             }
         }else{                          //Whoopsie something Failed
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
         }
 
         // at this point we have raycast to a series of different objects bounding boxes.
@@ -182,9 +182,6 @@ namespace Mezzanine
     Vector3WActor* RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
     {
         VerifyRayQuery();
-        #ifdef MEZZDEBUG
-        Entresol::GetSingletonPtr()->Log("WorldQueryTool::GetFirstActorOnRayByAABB:");
-        #endif
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
         if(NULL != RayQuery)          //Double check that the Rayquery is valid
@@ -195,7 +192,7 @@ namespace Mezzanine
                 return NULL;
             }
         }else{                          //Whoopsie something Failed
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery.");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery.");
         }
 
         Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
@@ -236,19 +233,12 @@ namespace Mezzanine
     Vector3* RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
     {
         VerifyRayQuery();
-        //#define MEZZDEBUG
-        #ifdef MEZZDEBUG
-        Entresol::GetSingletonPtr()->LogStream << "WorldQueryTool::RayPlaneIntersection("<< QueryRay << ", " << QueryPlane << ")" << endl;
-        #endif
         try{
             Vector3 u = QueryRay.To - QueryRay.From;
             Vector3 p0 = Vector3(0,0,0);
 
             if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
             {
-                #ifdef MEZZDEBUG
-                Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Invalid Plane. Plane contains no points.");
-                #endif
                 return 0;
             }
             else{
@@ -266,10 +256,6 @@ namespace Mezzanine
                 }
             }
 
-            #ifdef MEZZDEBUG
-            Entresol::GetSingletonPtr()->LogStream << " WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance << endl;
-            #endif
-
             Vector3 w = QueryRay.From - p0;
 
             Real D = u.DotProduct(QueryPlane.Normal);
@@ -285,9 +271,6 @@ namespace Mezzanine
                 }
                 else
                 {
-                    #ifdef MEZZDEBUG
-                    Entresol::GetSingletonPtr()->Log("WorldQueryTool Error: num<SMALL_NUM: Ray casted with no intersection point.");
-                    #endif
                     return 0;
                 }
             }
@@ -296,17 +279,10 @@ namespace Mezzanine
 
             if(sI < 0 || sI > 1) //checks if the ray is too long
             {
-                #ifdef MEZZDEBUG
-                Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:(si<0 || si > 1: Ray casted with no intersection point.");
-                #endif
                 return 0;
             }
 
             Vector3 test =  Vector3(QueryRay.From + (u * sI));
-
-            #ifdef MEZZDEBUG
-            Entresol::GetSingletonPtr()->LogStream << "WorldQueryTool: RayPlane Intersection RESULTS   X:" << test.X << " Y:" << test.Y << " Z:" << test.Z << endl;
-            #endif
 
             Vector3* return_vector = new Vector3(QueryRay.From + (u * sI));
 
@@ -314,15 +290,8 @@ namespace Mezzanine
 
             if(distance > QueryRay.From.Distance(QueryRay.To))
             {
-                #ifdef MEZZDEBUG
-                Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Ray casted hits plane but is not long enough.");
-                #endif
                 return 0;
             }
-
-            #ifdef MEZZDEBUG
-            Entresol::GetSingletonPtr()->LogStream << "Distance:" << distance << endl;
-            #endif
 
             return return_vector;
         } catch(exception e) {

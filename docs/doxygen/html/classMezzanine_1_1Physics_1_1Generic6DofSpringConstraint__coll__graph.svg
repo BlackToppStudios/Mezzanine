@@ -182,38 +182,38 @@ var sectionId = 'dynsection-1';
 <!-- Node9 -->
 <g id="node16" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1SoundSet.xhtml" target="_top" xlink:title="This is a vector that stores sounds.">
-<polygon fill="none" stroke="black" points="268.5,-671 268.5,-691 407.5,-691 407.5,-671 268.5,-671"/>
-<text text-anchor="middle" x="338" y="-678" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundSet</text>
+<polygon fill="none" stroke="black" points="267.5,-671 267.5,-691 406.5,-691 406.5,-671 267.5,-671"/>
+<text text-anchor="middle" x="337" y="-678" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundSet</text>
 </a>
 </g>
 <!-- Node9&#45;&gt;Node8 -->
 <g id="edge16" class="edge"><title>Node9&#45;&gt;Node8</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M332.173,-660.795C329,-645.23 327.717,-624.062 339,-610 360.723,-582.925 381.573,-601.356 415,-592 428.85,-588.123 444.038,-583.284 456.799,-579.046"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="328.774,-661.631 334.54,-670.519 335.575,-659.975 328.774,-661.631"/>
-<text text-anchor="middle" x="371" y="-625" font-family="FreeSans" font-size="10.00"> ObjectSounds</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M331.215,-661.044C327.997,-645.451 326.634,-624.124 338,-610 360.034,-582.62 381.142,-601.424 415,-592 428.856,-588.144 444.044,-583.307 456.805,-579.066"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="327.818,-661.89 333.605,-670.765 334.616,-660.218 327.818,-661.89"/>
+<text text-anchor="middle" x="370" y="-625" font-family="FreeSans" font-size="10.00"> ObjectSounds</text>
 </g>
 <!-- Node10 -->
 <g id="node18" class="node"><title>Node10</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="282,-753 282,-773 392,-773 392,-753 282,-753"/>
-<text text-anchor="middle" x="337" y="-760" font-family="FreeSans" font-size="10.00">std::vector&lt; Sound * &gt;</text>
+<polygon fill="none" stroke="#bfbfbf" points="279.5,-753 279.5,-773 392.5,-773 392.5,-753 279.5,-753"/>
+<text text-anchor="middle" x="336" y="-760" font-family="FreeSans" font-size="10.00">std::vector&lt; iSound * &gt;</text>
 </a>
 </g>
 <!-- Node10&#45;&gt;Node9 -->
 <g id="edge18" class="edge"><title>Node10&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M337.247,-742.75C337.447,-726.361 337.72,-703.965 337.876,-691.137"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="333.745,-742.903 337.123,-752.945 340.744,-742.989 333.745,-742.903"/>
+<path fill="none" stroke="midnightblue" d="M336.247,-742.75C336.447,-726.361 336.72,-703.965 336.876,-691.137"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="332.745,-742.903 336.123,-752.945 339.744,-742.989 332.745,-742.903"/>
 </g>
 <!-- Node11 -->
 <g id="node20" class="node"><title>Node11</title>
-<polygon fill="none" stroke="#bfbfbf" points="322.5,-829 322.5,-849 351.5,-849 351.5,-829 322.5,-829"/>
-<text text-anchor="middle" x="337" y="-836" font-family="FreeSans" font-size="10.00">T</text>
+<polygon fill="none" stroke="#bfbfbf" points="321.5,-829 321.5,-849 350.5,-849 350.5,-829 321.5,-829"/>
+<text text-anchor="middle" x="336" y="-836" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node11&#45;&gt;Node10 -->
 <g id="edge20" class="edge"><title>Node11&#45;&gt;Node10</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M337,-818.579C337,-803.864 337,-784.639 337,-773.087"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="333.5,-818.75 337,-828.75 340.5,-818.75 333.5,-818.75"/>
-<text text-anchor="middle" x="358" y="-801" font-family="FreeSans" font-size="10.00"> elements</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M336,-818.579C336,-803.864 336,-784.639 336,-773.087"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="332.5,-818.75 336,-828.75 339.5,-818.75 332.5,-818.75"/>
+<text text-anchor="middle" x="357" y="-801" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
 <!-- Node12&#45;&gt;Node8 -->
 <g id="edge22" class="edge"><title>Node12&#45;&gt;Node8</title>
@@ -250,9 +250,9 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node14&#45;&gt;Node13 -->
 <g id="edge28" class="edge"><title>Node14&#45;&gt;Node13</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M443.234,-662.261C431.816,-644.332 415.067,-618.763 407,-610 398.613,-600.89 388.122,-592.104 378.84,-585.019"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="440.339,-664.232 448.644,-670.811 446.254,-660.489 440.339,-664.232"/>
-<text text-anchor="middle" x="447" y="-625" font-family="FreeSans" font-size="10.00"> Name</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M443.84,-661.855C434.667,-646.923 420.811,-626.09 406,-610 397.713,-600.997 387.418,-592.228 378.328,-585.126"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="441.005,-663.934 449.154,-670.705 447.007,-660.33 441.005,-663.934"/>
+<text text-anchor="middle" x="448" y="-625" font-family="FreeSans" font-size="10.00"> Name</text>
 </g>
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
@@ -391,10 +391,10 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node26 -->
 <g id="node54" class="node"><title>Node26</title>
-<a xlink:href="classMezzanine_1_1TransformableObject.xhtml" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
+<a xlink:href="classMezzanine_1_1TransformableChildObject.xhtml" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
 <polygon fill="none" stroke="black" points="926,-665 926,-697 1054,-697 1054,-665 926,-665"/>
 <text text-anchor="start" x="934" y="-684" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
-<text text-anchor="middle" x="990" y="-672" font-family="FreeSans" font-size="10.00">Object</text>
+<text text-anchor="middle" x="990" y="-672" font-family="FreeSans" font-size="10.00">ChildObject</text>
 </a>
 </g>
 <!-- Node26&#45;&gt;Node25 -->

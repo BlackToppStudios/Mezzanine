@@ -79,6 +79,7 @@ namespace Mezzanine
                 ResourceManager,
                 SceneManager,
                 ScriptingManager,
+                SoundScapeManager,
                 TerrainManager,
                 TimerManager,
                 UIManager,

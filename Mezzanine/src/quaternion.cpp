@@ -286,7 +286,7 @@ namespace Mezzanine
     Quaternion Quaternion::operator/ (const Real& Scalar) const
     {
         if( 0 == Scalar )
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Dividing by zero in 'Quaternion::operator/', Quit it."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Dividing by zero in 'Quaternion::operator/', Quit it."); }
         return *this * ( 1.0 / Scalar );
     }
 
@@ -440,14 +440,23 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison Operators
 
-    bool Quaternion::operator== (const Mezzanine::Quaternion& Other) const
+    bool Quaternion::operator==(const Mezzanine::Quaternion& Other) const
         { return (this->X==Other.X && this->Y==Other.Y && this->Z==Other.Z && this->W==Other.W); }
 
-    bool Quaternion::operator== (const Ogre::Quaternion& Other) const
+    bool Quaternion::operator==(const Ogre::Quaternion& Other) const
         { return (this->X==Other.x && this->Y==Other.y && this->Z==Other.z && this->W==Other.w); }
 
-    bool Quaternion::operator== (const btQuaternion& Other) const
+    bool Quaternion::operator==(const btQuaternion& Other) const
         { return (this->X==Other.getX() && this->Y==Other.getY() && this->Z==Other.getZ() && this->W==Other.getW()); }
+
+    bool Quaternion::operator!=(const Mezzanine::Quaternion& Other) const
+        { return (this->X!=Other.X || this->Y!=Other.Y || this->Z!=Other.Z || this->W!=Other.W); }
+
+    bool Quaternion::operator!=(const Ogre::Quaternion& Other) const
+        { return (this->X!=Other.x || this->Y!=Other.y || this->Z!=Other.z || this->W!=Other.w); }
+
+    bool Quaternion::operator!=(const btQuaternion& Other) const
+        { return (this->X!=Other.getX() || this->Y!=Other.getY() || this->Z!=Other.getZ() || this->W!=Other.getW()); }
 
     // Serializable
     void Quaternion::ProtoSerialize(XML::Node& CurrentRoot) const

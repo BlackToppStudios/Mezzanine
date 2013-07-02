@@ -2,7 +2,6 @@ var searchData=
 [
   ['datastream',['DataStream',['../classMezzanine_1_1Resource_1_1DataStream.xhtml',1,'Mezzanine::Resource']]],
   ['defaultactormanagerfactory',['DefaultActorManagerFactory',['../classMezzanine_1_1DefaultActorManagerFactory.xhtml',1,'Mezzanine']]],
-  ['defaultaudiomanagerfactory',['DefaultAudioManagerFactory',['../classMezzanine_1_1DefaultAudioManagerFactory.xhtml',1,'Mezzanine']]],
   ['defaultcameramanagerfactory',['DefaultCameraManagerFactory',['../classMezzanine_1_1DefaultCameraManagerFactory.xhtml',1,'Mezzanine']]],
   ['defaultcollisionshapemanagerfactory',['DefaultCollisionShapeManagerFactory',['../classMezzanine_1_1DefaultCollisionShapeManagerFactory.xhtml',1,'Mezzanine']]],
   ['defaulteventmanagerfactory',['DefaultEventManagerFactory',['../classMezzanine_1_1DefaultEventManagerFactory.xhtml',1,'Mezzanine']]],
@@ -24,6 +23,7 @@ var searchData=
   ['directorypermissionexception',['DirectoryPermissionException',['../classMezzanine_1_1DirectoryPermissionException.xhtml',1,'Mezzanine']]],
   ['directoryreadexception',['DirectoryReadException',['../classMezzanine_1_1DirectoryReadException.xhtml',1,'Mezzanine']]],
   ['directorywriteexception',['DirectoryWriteException',['../classMezzanine_1_1DirectoryWriteException.xhtml',1,'Mezzanine']]],
+  ['distortionparameters',['DistortionParameters',['../structMezzanine_1_1Audio_1_1DistortionParameters.xhtml',1,'Mezzanine::Audio']]],
   ['document',['Document',['../classMezzanine_1_1XML_1_1Document.xhtml',1,'Mezzanine::XML']]],
   ['dropdownlist',['DropDownList',['../classMezzanine_1_1UI_1_1DropDownList.xhtml',1,'Mezzanine::UI']]],
   ['dualtransformconstraint',['DualTransformConstraint',['../classMezzanine_1_1Physics_1_1DualTransformConstraint.xhtml',1,'Mezzanine::Physics']]],

@@ -433,9 +433,9 @@ class binarytoolstests : public UnitTestGroup
 
                 MaxInt Begin;
                 MaxInt End;
-                MaxInt BTSEncodeTime=0;
+                //MaxInt BTSEncodeTime=0;
                 MaxInt BTSDecodeTime=0;
-                MaxInt ReneEncodeTime=0;
+                //MaxInt ReneEncodeTime=0;
                 MaxInt ReneDecodeTime=0;
                 String OutputS; //To prevent optimizing this whole chunk away.
                 BinaryBuffer OutputB; //To prevent optimizing this whole chunk away.

@@ -37,97 +37,53 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+// Copyright (c) 2008-2010 Raynaldo (Wildicv) Rivera, Joshua (Dark_Kilauea) Jones
+// This file is part of the "cAudio Engine"
+// For conditions of distribution and use, see copyright notice in cAudio-ZLIBLicense.txt
 #ifndef _audiolistener_h
 #define _audiolistener_h
 
-#include "crossplatformexport.h"
-#include "vector3.h"
-
-namespace cAudio
-{
-    class IListener;
-}
+#include "worldproxy.h"
 
 namespace Mezzanine
 {
     namespace Audio
     {
-        class AudioManager;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Listener
-        /// @brief This is the listener class used for 3D sound.
-        /// @details This is the listener class used for determining how 3D sound is played.
-        ///////////////////////////////////////////////////////////////////////////////
-        class MEZZ_LIB Listener
+        /// @brief This is an interface class for a listener (such as a player) in the 3D audio world.
+        /// @details
+        ///////////////////////////////////////
+        class iListener : public WorldProxy
         {
-            protected:
-                /// @brief The internal implementation of the Audio Listener
-                cAudio::IListener* AudioListener;
-            public:
-                /// @brief Class constructor.  Internal use only.
-                /// @param Listener Pointer to the internal listener.
-                Listener(cAudio::IListener* Listener);
-                /// @brief Class destructor.
-                ~Listener();
-                /// @brief Sets the listener position.
-                /// @details Sets the listeners position.
-                /// @param Position The new position for the listener.
-                void SetPosition(Vector3 Position);
-                /// @brief Sets the direction the listener is facing.
-                /// @details Sets the direction the listener is facing.
-                /// @param Direction The new direction for the listener.
-                void SetDirection(Vector3 Direction);
-                /// @brief Sets the up direction for the listener.
-                /// @details Sets the direction that is up relative to the orientation of the listener.  Default: +Y
-                /// @param Up The new upward vector to be used by the listener.
-                void SetUpVector(Vector3 Up);
-                /// @brief Sets the velocity of the listener.
-                /// @details Sets the listeners velocity, for use in determining doppler effects.
-                /// @param Velocity The new velocity for the listener.
-                void SetVelocity(Vector3 Velocity);
-                /// @brief Sets the master volume for all sources heard by this listener.
-                /// @details This function will scale the volume for all sources heard by this listener by the
-                /// amount provided.
-                /// @param Volume The amount by which to scale all sound sources heard.
-                void SetMasterVolume(Real Volume);
-                /// @brief Moves the listener to a new location.
-                /// @details This function will set a new position and velocity of the listener.
-                /// @param Position The new position of the listener.
-                void Move(Vector3 Position);
-                /// @brief Gets the current position of the listener.
-                /// @details This function will get the current position of the listener.
-                /// @return Returns the current position of the listener.
-                Vector3 GetPosition();
-                /// @brief Gets the current direction of the listener.
-                /// @details This function will get the current direction of the listener.
-                /// @return Returns the current direction of the listener.
-                Vector3 GetDirection();
-                /// @brief Sets the upward orientation of the listener.
-                /// @details Sets which direction is up for the listener
-                /// @return Returns the current up orientation of the listener.
-                Vector3 GetUpVector();
-                /// @brief Gets the current velocity of the listener.
-                /// @details This function will get the current velocity of the listener.
-                /// @return Returns the current velocity of the listener.
-                Vector3 GetVelocity();
-                /// @brief Gets the master volume used to scale sound sources.
-                /// @details This function will get the master volume, which is used to scale the volume
-                /// of all sound sources heard by this listener.
-                /// @return Returns the current scale used for adjusting the volume of all sources heard by
-                /// this listener.
-                Real GetMasterVolume();
-                /// @brief Sets the scale to be used by the manager for this listener.
-                /// @details This function will set the engines scale for use with sounds.
-                /// Internally the engine assumes all units are in meters.  If that is not the
-                /// case then this function should be called to set the scale.
-                /// @param Meters The amount of meters that are in one unit of your games scale.
-                void SetMetersPerUnit(Real Meters);
-                /// @brief Gets the scale used by the manager for this listener.
-                /// @details This function will get the amount of meters per unit used in your
-                /// game/simulation scale.  The engine assumes you use meters, so default is 1.0.
-                /// @return Returns the amount of meters per unit in your scale.
-                Real GetMetersPerUnit();
-        };// sound listener
+        public:
+            /// @brief Class constructor.
+            iListener() {  }
+            /// @brief Class destructor.
+            virtual ~iListener() {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Sets the moving velocity of this listener.
+            /// @param Vel The velocity this listener is to be given.
+            virtual void SetVelocity(const Vector3& Vel) = 0;
+            /// @brief Gets the current velocity of this listener.
+            /// @return Returns a Vector3 containing the current velocity of this listener.
+            virtual Vector3 GetVelocity() const = 0;
+
+            /// @brief Sets the modifier to use that will adjust the volume of all audio heard by this listener.
+            /// @param Vol The modifier to be set.  Range 0.0 to +Inf.
+            virtual void SetVolumeModifier(const Real Vol) = 0;
+            /// @brief Gets the modifier applied to all audio heard by this listener.
+            /// @return Returns the currently set volume modifier.
+            virtual Real GetVolumeModifier() const = 0;
+            /// @brief Sets the number of meters in a single unit of world space.
+            /// @param Meters The number of meters in a single unit of world space.
+            virtual void SetMetersPerUnit(const Real Meters) = 0;
+            /// @brief Gets the currently set number of meters in a single unit of world space.
+            /// @return Returns a Real representing the number of meters in a unit of world space.
+            virtual Real GetMetersPerUnit() const = 0;
+        };//iListener
     }//Audio
 }//Mezzanine
 

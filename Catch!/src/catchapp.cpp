@@ -27,7 +27,7 @@ CatchApp::CatchApp()
     CatchApp::TheRealCatchApp = this;
 
     //try{
-        TheEntresol = new Entresol( "Data/", FileSystem );
+        TheEntresol = new Entresol( "Data/", AT_FileSystem );
     //}catch(...){
 //        throw "";
 //    }
@@ -503,19 +503,19 @@ void CatchApp::CreateLoadingScreen()
 
 void CatchApp::InitMusic()
 {
-    AudioManager* AudioMan = AudioManager::GetSingletonPtr();
+    Audio::AudioManager* AudioMan = Audio::AudioManager::GetSingletonPtr();
     Audio::MusicPlayer* MPlayer = AudioMan->GetMusicPlayer();
     String CommonGroup("Common");
-    Audio::Sound* Track1 = AudioMan->CreateMusicSound("Track1","Track1.ogg",CommonGroup);
-    Audio::Sound* Track2 = AudioMan->CreateMusicSound("Track2","Track2.ogg",CommonGroup);
-    Audio::Sound* Track3 = AudioMan->CreateMusicSound("Track3","Track3.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track4","Track4.ogg",CommonGroup);
-    /*Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track5","Track4.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track6","Track4.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track7","Track4.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track8","Track4.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track9","Track4.ogg",CommonGroup);
-    Audio::Sound* Track4 = AudioMan->CreateMusicSound("Track10","Track4.ogg",CommonGroup);// */
+    Audio::iSound* Track1 = AudioMan->CreateMusicSound("Track1.ogg",CommonGroup);
+    Audio::iSound* Track2 = AudioMan->CreateMusicSound("Track2.ogg",CommonGroup);
+    Audio::iSound* Track3 = AudioMan->CreateMusicSound("Track3.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    /*Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);
+    Audio::iSound* Track4 = AudioMan->CreateMusicSound("Track4.ogg",CommonGroup);// */
     MPlayer->GetPlaylist()->AddSound(Track1);
     MPlayer->GetPlaylist()->AddSound(Track2);
     MPlayer->GetPlaylist()->AddSound(Track3);
@@ -526,15 +526,15 @@ void CatchApp::InitMusic()
     MPlayer->GetPlaylist()->AddSound(Track8);
     MPlayer->GetPlaylist()->AddSound(Track9);
     MPlayer->GetPlaylist()->AddSound(Track10);// */
-    MPlayer->SetEOPRepeat(true);
-    MPlayer->SetEOPShuffle(true);
+    MPlayer->SetPlaylistRepeat(true);
+    MPlayer->SetPlaylistShuffle(true);
     //MPlayer->SwitchToSong(Track4);
 }
 
 void CatchApp::VerifySettings()
 {
     // Verify the Audio Settings
-    AudioManager* AudioMan = AudioManager::GetSingletonPtr();
+    Audio::AudioManager* AudioMan = Audio::AudioManager::GetSingletonPtr();
     // Ensure file exists
     String AudioSaveFileName("AudioSettings.mxs");
     ObjectSettingFile* AudioSettingFile = AudioMan->GetSettingFile(AudioSaveFileName);
@@ -765,7 +765,7 @@ int CatchApp::GetCatchin()
     if(1 == Profiles->GetNumLoadedProfiles())
         Profiles->SetActiveProfile(Profiles->GetProfile(0));
 
-    AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
+    Audio::AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
     Loader->SetNextLevel("MainMenu");
     do{
         ChangeState(CatchApp::Catch_Loading);
@@ -820,9 +820,6 @@ bool CatchApp::GameIsPaused()
 
 bool CatchApp::PreInput()
 {
-    // Just a simple Lua Test
-    Mezzanine::Scripting::Lua::test();
-
     // using the Raw Event Manager, and deleting the events
     if( !CheckForStuff() )
         return false;
@@ -878,45 +875,27 @@ bool CatchApp::PostUI()
     InputManager* InputMan = InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     static RayQueryTool* RayQueryer = new RayQueryTool();
-
-    TheEntresol->Log("Mouse location X/Y");
-    TheEntresol->Log(SysMouse->GetWindowX());
-    TheEntresol->Log(SysMouse->GetWindowY());
-    StringStream ButtonStream;
-    ButtonStream << "Button State: " << SysMouse->GetButtonState(1);
-    TheEntresol->Log(ButtonStream.str());
-
-    static Physics::Point2PointConstraint* Dragger=NULL;
+    static Physics::Point2PointConstraint* Dragger = NULL;
 
     if( SysMouse->IsButtonPressed(1) )
     {
         if( !UIManager::GetSingletonPtr()->MouseIsInUISystem() )
         {
-            Ray *MouseRay = RayQueryer->GetMouseRay(5000);
-
-            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
-            #ifdef MEZZDEBUG
-            TheEntresol->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
-            TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
-            #endif
-
+            Vector3WActor* ClickOnActor = 0;
+            Ray* MouseRay = RayQueryer->GetMouseRay(5000);
+            if(MouseRay)
+            {
+                ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
+            }
             //ActorBase *temp = ClickOnActor->Actor;
 
             bool firstframe=false;
             if(0 == ClickOnActor || 0 == ClickOnActor->Actor)
             {
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("No Actor Clicked on");
-                #endif
+                // Do nothing
             }else if(!IsInsideAnyStartZone(ClickOnActor->Actor)){
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("Actor is not in any starting zone");
-                #endif
+                // Do nothing
             }else{
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("Actor Clicked on");
-                TheEntresol->Log(*ClickOnActor);
-                #endif
                 if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
                 {
                     if(!Dragger) //If we have a dragger, then this is dragging, not clicking
@@ -938,33 +917,25 @@ bool CatchApp::PostUI()
                             firstframe=true;
                             LastActorThrown = rigid;
                         }else{  // since we don't
-                            #ifdef MEZZDEBUG
-                            TheEntresol->Log("Actor is not an ActorRigid.  Aborting.");
-                            #endif
+                            // Do nothing
                         }
                     }
                 }else{
-                    #ifdef MEZZDEBUG
-                    TheEntresol->Log("Actor is Static/Kinematic.  Aborting.");
-                    #endif
+                    // Do nothing
                 }
             }
 
-            // This chunk of code calculates the 3d point that the actor needs to be dragged to
-            Vector3 *DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
-            if (0 == DragTo)
+            Vector3* DragTo = 0;
+            if( MouseRay )
             {
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("PlaneOfPlay Not Clicked on");
-                #endif
-            }else{
-                if(Dragger && !firstframe)
+                // This chunk of code calculates the 3d point that the actor needs to be dragged to
+                DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
+                if( DragTo != NULL )
                 {
-                    #ifdef MEZZDEBUG
-                    TheEntresol->Log("Dragged To");
-                    TheEntresol->Log(*DragTo);
-                    #endif
-                    Dragger->SetPivotBLocation(*DragTo);
+                    if( Dragger && !firstframe )
+                    {
+                        Dragger->SetPivotBLocation(*DragTo);
+                    }
                 }
             }
 
@@ -978,9 +949,9 @@ bool CatchApp::PostUI()
             }
 
             // Here we cleanup everything we needed for the clicking/dragging
-            if ( DragTo )
+            if( DragTo )
                 { delete DragTo; }
-            if ( MouseRay )
+            if( MouseRay )
                 { delete MouseRay; }
         }
 
@@ -990,7 +961,7 @@ bool CatchApp::PostUI()
             ActorRigid* Act = Dragger->GetActorA();
             PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
             delete Dragger;
-            Dragger=NULL;
+            Dragger = NULL;
             Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
         }
     }
@@ -1010,29 +981,6 @@ bool CatchApp::PostPhysics()
 
 bool CatchApp::PostRender()
 {
-	//Lets set a variable for the time
-	static Whole gametime = 0;
-
-	TheEntresol->Log(String("---------- Starting PosterRender CallBack -------------"));
-    TheEntresol->Log(String("Current Game Time "));
-
-	//getting a message from the event manager)
-	EventManager* EventMan = EventManager::GetSingletonPtr();
-	EventRenderTime* CurrentTime = EventMan->PopNextRenderTimeEvent();
-    Whole LastFrame = 0;
-
-    // Is CurrentTime a valid event?
-    while(0 != CurrentTime)
-    {
-        LastFrame = CurrentTime->getMilliSecondsSinceLastFrame();
-
-        TheEntresol->Log(gametime);
-        gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
-
-        delete CurrentTime;
-        CurrentTime = EventMan->GetNextRenderTimeEvent();
-    }
-
     // Update the timer
     UI::Screen* GameScreen = UIManager::GetSingletonPtr()->GetScreen("GameScreen");
     UI::OpenRenderableContainerWidget* HUDCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_HUD"));
@@ -1083,7 +1031,7 @@ bool CatchApp::CheckForStuff()
     while(0 != OneInput)
     {
         if(OneInput->GetType()!=EventBase::UserInput)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
 
         //we check each MetaCode in each Event
         /*for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
@@ -1101,15 +1049,25 @@ bool CatchApp::CheckForStuff()
     while(0 != OneWindowEvent)
     {
         if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
         if(!OneWindowEvent->IsEventIDValid())
         {
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid EventID on GameWindow Event: " + OneWindowEvent->GetEventID());
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid EventID on GameWindow Event: " + OneWindowEvent->GetEventID());
         }
 
         delete OneWindowEvent;
         OneWindowEvent = EventMan->PopNextGameWindowEvent();
+    }
+
+	EventRenderTime* CurrentTime = EventMan->PopNextRenderTimeEvent();
+    while(0 != CurrentTime)
+    {
+        if(CurrentTime->GetType()!=EventBase::RenderTime)
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventRenderTime as an EventRenderTime."); }
+
+        delete CurrentTime;
+        CurrentTime = EventMan->GetNextRenderTimeEvent();
     }
 
     return true;

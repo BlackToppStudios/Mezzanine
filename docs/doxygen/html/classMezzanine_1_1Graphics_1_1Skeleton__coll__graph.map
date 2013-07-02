@@ -1,5 +1,5 @@
 <map id="Mezzanine::Graphics::Skeleton" name="Mezzanine::Graphics::Skeleton">
 <area shape="rect" id="node4" href="$classMezzanine_1_1Graphics_1_1Bone.xhtml" title="This class encapsulates the bones contained in a skeleton used for animation." alt="" coords="83,225,221,269"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="5,115,176,159"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1TransformableChildObject.xhtml" title="This is an interface for all child 3D objects that can have their full transforms manipulated..." alt="" coords="5,115,176,159"/>
 <area shape="rect" id="node9" href="$classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" title="This class is used to store the internal structures needed by the Skeleton class." alt="" coords="195,6,344,50"/>
 </map>

@@ -1,9 +1,9 @@
 <map id="Mezzanine::ResourceManager" name="Mezzanine::ResourceManager">
-<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;" alt="" coords="2223,165,2369,209"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="1589,22,1757,50"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1332,66,1465,94"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1603,75,1744,119"/>
-<area shape="rect" id="node9" title="STL class." alt="" coords="991,66,1105,94"/>
+<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;" alt="" coords="2332,233,2479,277"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="1673,22,1841,50"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1403,66,1536,94"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1687,75,1828,119"/>
+<area shape="rect" id="node9" title="STL class." alt="" coords="1021,66,1136,94"/>
 <area shape="rect" id="node11" title="STL class." alt="" coords="720,58,872,102"/>
 <area shape="rect" id="node13" title="STL class." alt="" coords="528,58,659,102"/>
 <area shape="rect" id="node15" title="STL class." alt="" coords="352,5,475,49"/>
@@ -13,6 +13,8 @@
 <area shape="rect" id="node19" title="STL class." alt="" coords="7,79,100,107"/>
 <area shape="rect" id="node29" href="$classMezzanine_1_1ResourceInputStream.xhtml" title="A stream from a file, can read from zip files as well." alt="" coords="711,138,881,182"/>
 <area shape="rect" id="node31" title="STL class." alt="" coords="551,146,636,174"/>
-<area shape="rect" id="node36" title="STL class." alt="" coords="1361,219,1436,247"/>
-<area shape="rect" id="node38" title="STL class." alt="" coords="988,211,1108,255"/>
+<area shape="rect" id="node38" href="$classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer." alt="" coords="1392,215,1547,259"/>
+<area shape="rect" id="node40" href="$classMezzanine_1_1ReferenceCount.xhtml" title="This exists once per object managed by a group of shared pointer to track items in memory..." alt="" coords="988,215,1169,259"/>
+<area shape="rect" id="node42" title="STL class." alt="" coords="1432,333,1507,361"/>
+<area shape="rect" id="node44" title="STL class." alt="" coords="1019,325,1139,369"/>
 </map>

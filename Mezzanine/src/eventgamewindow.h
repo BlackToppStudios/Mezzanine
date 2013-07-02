@@ -101,7 +101,7 @@ namespace Mezzanine
             EventGameWindow( const EventGameWindow& Other);
 
             /// @brief Deconstructs this EventGameWindow
-            ~EventGameWindow();
+            virtual ~EventGameWindow();
 
             /// @brief This returns EventType::GameWindow
             /// @details  This returns the kind of message this is, specifcally EventType::GameWindow . If
@@ -188,7 +188,9 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventGameWi
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventGameWindow.
 /// @param Ev the Mezzanine::EventGameWindow to be reset.
 /// @return This returns theXML::Node that was passed in.
-Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev);
+const Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev);
+
+Mezzanine::XML::Node& MEZZ_LIB operator >> (Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev);
 
 #endif
 

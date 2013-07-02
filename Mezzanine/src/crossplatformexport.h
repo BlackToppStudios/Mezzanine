@@ -101,6 +101,7 @@
     /// @def MEZZ_LIB
     /// @brief Some platforms require special decorations to denote what is exported/imported in a share library. This is that decoration if when it is needed.
     #ifdef WINDOWS
+        #define _MEZZ_THREAD_WIN32_
         #ifdef EXPORTINGMEZZANINEDLL
             #define MEZZ_LIB __declspec(dllexport)
         #else
@@ -108,7 +109,10 @@
         #endif      // \EXPORTINGMEZZANINEDLL
     #else
         #define MEZZ_LIB
+        #define _MEZZ_THREAD_POSIX_
     #endif  // \WINDOWS
+
+    #define _MEZZ_PLATFORM_DEFINED_
 
     /// @def MEZZ_DEPRECATED
     /// @brief Used to mark old functionality that should not be used as such. In supported compilers using such functionality should produce warnings.
@@ -121,5 +125,45 @@
             #define MEZZ_DEPRECATED
         #endif
     #endif
+
+    /// @def MEZZ_USEBARRIERSEACHFRAME
+    /// @brief This is used to configure whether to re-create threads each frame of or synchronize.
+    /// @details Any synchronization will be done with atomic @ref Mezzanine::Threading::Barrier "Barrier". This is
+    /// controlled by the CMake (or other build system) option Mezz_MinimizeThreadsEachFrame.
+    #ifndef MEZZ_USEBARRIERSEACHFRAME
+        #define MEZZ_USEBARRIERSEACHFRAME
+    #endif
+    #ifndef _MEZZ_MINTHREADS_
+        #undef MEZZ_USEBARRIERSEACHFRAME
+    #endif
+
+    /// @def MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+    /// @brief This is used to configure whether to atomically store a shortcut to skip checking all workunits.
+    /// @details When this is enabled @ref Mezzanine::Threading::AtomicCompareAndSwap32 "Atomic CAS" operations are used to maintain
+    /// a count of the number of complete workunits at the beginning of the work unit listings. Normally these
+    /// listings are read-only during frame execution, and the work units store whether or not they are
+    /// complete. The default algorithm forces iteration over a large number of work units to simply check for
+    /// completion in some situations. If memory bandwidth is slow or limited this can be a large source of
+    /// of contention. Enable this option when there are many work units trades atomic operations for memory
+    /// bandwidth. This must be tested on a per system basis to determine full preformance ramifications. This
+    /// is controlled by the CMake (or other build system) option Mezz_DecacheWorkUnits.
+    #ifndef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+        #define MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+    #endif
+    #ifndef _MEZZ_DECACHEWORKUNIT_
+        #undef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+    #endif
+
+    /// @def MEZZ_FRAMESTOTRACK
+    /// @brief Used to control how long frames track length and other similar values. This is
+    /// controlled by the CMake (or other build system) option Mezz_FramesToTrack.
+    #ifndef MEZZ_FRAMESTOTRACK
+        #define MEZZ_FRAMESTOTRACK 10
+    #endif
+    #ifdef _MEZZ_FRAMESTOTRACK_
+        #undef MEZZ_FRAMESTOTRACK
+        #define MEZZ_FRAMESTOTRACK _MEZZ_FRAMESTOTRACK_
+    #endif
+
 
 #endif

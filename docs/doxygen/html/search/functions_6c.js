@@ -27,7 +27,6 @@ var searchData=
   ['linelist',['LineList',['../classMezzanine_1_1UI_1_1LineList.xhtml#ab2aaa85928df4b6f0f3ef9e77ed0cb42',1,'Mezzanine::UI::LineList']]],
   ['linen',['Linen',['../classMezzanine_1_1ColourValue.xhtml#aba3b82db7c889f06d5126fa7808374fc',1,'Mezzanine::ColourValue']]],
   ['listbox',['ListBox',['../classMezzanine_1_1UI_1_1ListBox.xhtml#a61be46079aca37b5592d046699a6e8cb',1,'Mezzanine::UI::ListBox']]],
-  ['listener',['Listener',['../classMezzanine_1_1Audio_1_1Listener.xhtml#a31804de89544d687005f4e8aa7373f79',1,'Mezzanine::Audio::Listener']]],
   ['load',['Load',['../classMezzanine_1_1Resource_1_1TextSettingsFile.xhtml#a5ffb86d6822701880e1dc47b4f37a637',1,'Mezzanine::Resource::TextSettingsFile::Load()'],['../classMezzanine_1_1UI_1_1TextureAtlas.xhtml#abdece215b41ada34678730e591413003',1,'Mezzanine::UI::TextureAtlas::Load()'],['../classMezzanine_1_1XML_1_1Document.xhtml#afb9abd5b77651735b1380f6bd5934837',1,'Mezzanine::XML::Document::Load(Resource::DataStream &amp;stream, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto)'],['../classMezzanine_1_1XML_1_1Document.xhtml#a319fa46ad3580c3643bb1678e51c1721',1,'Mezzanine::XML::Document::Load(std::basic_istream&lt; char, std::char_traits&lt; char &gt; &gt; &amp;stream, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto)'],['../classMezzanine_1_1XML_1_1Document.xhtml#aef1bc969024acf12bcf722e46f9f9527',1,'Mezzanine::XML::Document::Load(std::basic_istream&lt; wchar_t, std::char_traits&lt; wchar_t &gt; &gt; &amp;stream, unsigned int options=ParseDefault)'],['../classMezzanine_1_1XML_1_1Document.xhtml#a160b482e13a3eedd89e377c1aca17fa7',1,'Mezzanine::XML::Document::Load(const Char8 *contents, unsigned int options=ParseDefault)']]],
   ['loadallshapesfromfile',['LoadAllShapesFromFile',['../classMezzanine_1_1CollisionShapeManager.xhtml#af76b90ccca8183a6ddfc33b7a4e65773',1,'Mezzanine::CollisionShapeManager']]],
   ['loadbuffer',['LoadBuffer',['../classMezzanine_1_1XML_1_1Document.xhtml#a98977b675efa58d56c224f6256800127',1,'Mezzanine::XML::Document']]],
@@ -39,6 +38,7 @@ var searchData=
   ['loadmesh',['LoadMesh',['../classMezzanine_1_1MeshManager.xhtml#a1165cfd040bce804af9644dcdfc8deab',1,'Mezzanine::MeshManager']]],
   ['loadmta',['LoadMTA',['../classMezzanine_1_1UIManager.xhtml#a78c3b7a0aafc83e0b4ea55b0b0ad640c',1,'Mezzanine::UIManager']]],
   ['loadsettings',['LoadSettings',['../classMezzanine_1_1ObjectSettingsHandler.xhtml#a3777e9716ae4c2a7188e30f5f39f79f2',1,'Mezzanine::ObjectSettingsHandler::LoadSettings(const String &amp;FileName, const String &amp;Path)'],['../classMezzanine_1_1ObjectSettingsHandler.xhtml#a6dc214e7817f3a2a9a044490b98d3c09',1,'Mezzanine::ObjectSettingsHandler::LoadSettings(const String &amp;FileName)']]],
+  ['loadsettingsfromfile',['LoadSettingsFromFile',['../classMezzanine_1_1ObjectSettingsHandler.xhtml#a449d13d7cae00ebf4499d5e58d22eadb',1,'Mezzanine::ObjectSettingsHandler']]],
   ['loadsettingsfromgroup',['LoadSettingsFromGroup',['../classMezzanine_1_1ObjectSettingsHandler.xhtml#a4e3953d05fb5446539fa5e56dfb8f2b6',1,'Mezzanine::ObjectSettingsHandler']]],
   ['loadsettingsfromxml',['LoadSettingsFromXML',['../classMezzanine_1_1ObjectSettingsHandler.xhtml#a66d85f481956daf504240c4062887869',1,'Mezzanine::ObjectSettingsHandler']]],
   ['loadsprites',['LoadSprites',['../classMezzanine_1_1UI_1_1TextureAtlas.xhtml#ae509c276dd7b314d23415131c7ebae76',1,'Mezzanine::UI::TextureAtlas']]],
@@ -47,5 +47,5 @@ var searchData=
   ['log',['Log',['../classMezzanine_1_1Entresol.xhtml#a96f894e20225d43643091c3731acc35d',1,'Mezzanine::Entresol::Log(const T &amp;Message)'],['../classMezzanine_1_1Entresol.xhtml#a0f2340831c76fdf2a547868a29756c32',1,'Mezzanine::Entresol::Log()']]],
   ['logstring',['LogString',['../classMezzanine_1_1Entresol.xhtml#ab42f6a9a7f43618625667b5d40b12681',1,'Mezzanine::Entresol']]],
   ['lookat',['LookAt',['../classMezzanine_1_1Camera.xhtml#a8343f2d2fb174937aef2894ebf8a5e29',1,'Mezzanine::Camera::LookAt()'],['../classMezzanine_1_1WorldNode.xhtml#ad9ec8a56450e749cddedef9748594b6d',1,'Mezzanine::WorldNode::LookAt()']]],
-  ['loop',['Loop',['../classMezzanine_1_1Audio_1_1Sound.xhtml#ae8747ddd906e7e0f65ba4ac1aa748525',1,'Mezzanine::Audio::Sound']]]
+  ['loop',['Loop',['../classMezzanine_1_1Audio_1_1iSound.xhtml#a4176e0c327796d44bf41cdf8f6e48433',1,'Mezzanine::Audio::iSound']]]
 ];

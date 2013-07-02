@@ -1,6 +1,9 @@
 var searchData=
 [
   ['g',['G',['../classMezzanine_1_1ColourValue.xhtml#a8991eb598d82e40a284d2d14717fa59b',1,'Mezzanine::ColourValue']]],
+  ['gain',['Gain',['../structMezzanine_1_1Audio_1_1EAXReverbParameters.xhtml#a236f4cbcd1055ad10cfc540e88ccdd38',1,'Mezzanine::Audio::EAXReverbParameters::Gain()'],['../structMezzanine_1_1Audio_1_1ReverbParameters.xhtml#a8c6b44ff71c1d0b0126a1506905b48b3',1,'Mezzanine::Audio::ReverbParameters::Gain()'],['../structMezzanine_1_1Audio_1_1DistortionParameters.xhtml#a6bcdc9c8463ce226cc876947b2b859c5',1,'Mezzanine::Audio::DistortionParameters::Gain()']]],
+  ['gainhf',['GainHF',['../structMezzanine_1_1Audio_1_1EAXReverbParameters.xhtml#a225ea897f281f7b9c757fcbed3e9f339',1,'Mezzanine::Audio::EAXReverbParameters::GainHF()'],['../structMezzanine_1_1Audio_1_1ReverbParameters.xhtml#a1b10f608eef7b3fe02905867df7efa97',1,'Mezzanine::Audio::ReverbParameters::GainHF()']]],
+  ['gainlf',['GainLF',['../structMezzanine_1_1Audio_1_1EAXReverbParameters.xhtml#ad01f463332ab22f4a816b2327d1b9785',1,'Mezzanine::Audio::EAXReverbParameters']]],
   ['generic6dof',['Generic6dof',['../classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml#ae3d7e21b9b64c1218d8ea6f9646b7089',1,'Mezzanine::Physics::Generic6DofConstraint']]],
   ['geographylowerbounds',['GeographyLowerBounds',['../classMezzanine_1_1PhysicsConstructionInfo.xhtml#aed6f8f0555fe4dec58758f6d774cbcee',1,'Mezzanine::PhysicsConstructionInfo']]],
   ['geographyupperbounds',['GeographyUpperBounds',['../classMezzanine_1_1PhysicsConstructionInfo.xhtml#aa1794e928aea2ce5f2e9ad4f467b1c14',1,'Mezzanine::PhysicsConstructionInfo']]],

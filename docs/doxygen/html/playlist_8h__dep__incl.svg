@@ -48,10 +48,10 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="audio_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/audio.h">
+<a xlink:href="audio_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/audio.h">
 <polygon fill="none" stroke="black" points="-0.5,-141 -0.5,-173 150.5,-173 150.5,-141 -0.5,-141"/>
 <text text-anchor="start" x="7.5" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="75" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/audio.h</text>
+<text text-anchor="middle" x="75" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Audio/audio.h</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node2 -->

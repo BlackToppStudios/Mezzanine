@@ -56,7 +56,7 @@ namespace Mezzanine
         /// @brief This class encapsulates the bones contained in a skeleton used for animation.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB Bone : public TransformableObject
+        class MEZZ_LIB Bone : public TransformableChildObject
         {
             protected:
                 friend class Skeleton;
@@ -130,42 +130,42 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Transform Methods
 
-                /// @copydoc TransformableObject::SetLocation(const Vector3& Location)
-                void SetLocation(const Vector3& Location);
-                /// @copydoc TransformableObject::SetLocation(const Real X, const Real Y, const Real Z)
+                /// @copydoc TransformableChildObject::SetLocation(const Vector3& Loc)
+                void SetLocation(const Vector3& Loc);
+                /// @copydoc TransformableChildObject::SetLocation(const Real X, const Real Y, const Real Z)
                 void SetLocation(const Real X, const Real Y, const Real Z);
-                /// @copydoc TransformableObject::GetLocation() const
+                /// @copydoc TransformableChildObject::GetLocation() const
                 Vector3 GetLocation() const;
-                /// @copydoc TransformableObject::SetOrientation(const Quaternion& Orientation)
-                void SetOrientation(const Quaternion& Orientation);
-                /// @copydoc TransformableObject::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
+                /// @copydoc TransformableChildObject::SetOrientation(const Quaternion& Ori)
+                void SetOrientation(const Quaternion& Ori);
+                /// @copydoc TransformableChildObject::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
                 void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
-                /// @copydoc TransformableObject::GetOrientation() const
+                /// @copydoc TransformableChildObject::GetOrientation() const
                 Quaternion GetOrientation() const;
-                /// @copydoc TransformableObject::SetScale(const Vector3& Scale)
-                void SetScale(const Vector3& Scale);
-                /// @copydoc TransformableObject::SetScale(const Real X, const Real Y, const Real Z)
+                /// @copydoc TransformableChildObject::SetScale(const Vector3& Sc)
+                void SetScale(const Vector3& Sc);
+                /// @copydoc TransformableChildObject::SetScale(const Real X, const Real Y, const Real Z)
                 void SetScale(const Real X, const Real Y, const Real Z);
-                /// @copydoc TransformableObject::GetScale() const
+                /// @copydoc TransformableChildObject::GetScale() const
                 Vector3 GetScale() const;
 
-                /// @copydoc TransformableObject::Translate(const Vector3& Trans, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
+                /// @copydoc TransformableChildObject::Translate(const Vector3& Trans, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
                 void Translate(const Vector3& Trans, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent);
-                /// @copydoc TransformableObject::Translate(const Real X, const Real Y, const Real Z, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
+                /// @copydoc TransformableChildObject::Translate(const Real X, const Real Y, const Real Z, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
                 void Translate(const Real X, const Real Y, const Real Z, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent);
-                /// @copydoc TransformableObject::Yaw(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
+                /// @copydoc TransformableChildObject::Yaw(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
                 void Yaw(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent);
-                /// @copydoc TransformableObject::Pitch(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
+                /// @copydoc TransformableChildObject::Pitch(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
                 void Pitch(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent);
-                /// @copydoc TransformableObject::Roll(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
+                /// @copydoc TransformableChildObject::Roll(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
                 void Roll(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent);
-                /// @copydoc TransformableObject::Rotate(const Vector3& Axis, const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
+                /// @copydoc TransformableChildObject::Rotate(const Vector3& Axis, const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
                 void Rotate(const Vector3& Axis, const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent);
-                /// @copydoc TransformableObject::Rotate(const Quaternion& Rotation, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
+                /// @copydoc TransformableChildObject::Rotate(const Quaternion& Rotation, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent)
                 void Rotate(const Quaternion& Rotation, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent);
-                /// @copydoc TransformableObject::Scale(const Vector3& Scale)
+                /// @copydoc TransformableChildObject::Scale(const Vector3& Scale)
                 void Scale(const Vector3& Scale);
-                /// @copydoc TransformableObject::Scale(const Real X, const Real Y, const Real Z)
+                /// @copydoc TransformableChildObject::Scale(const Real X, const Real Y, const Real Z)
                 void Scale(const Real X, const Real Y, const Real Z);
 
                 ///////////////////////////////////////////////////////////////////////////////

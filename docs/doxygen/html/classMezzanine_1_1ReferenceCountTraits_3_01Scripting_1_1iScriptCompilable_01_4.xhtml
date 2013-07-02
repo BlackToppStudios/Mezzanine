@@ -98,16 +98,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Types</h2></td></tr>
 <tr class="memitem:aa152c2f8c38606be65914b8396efad0c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>IsCastable</b> = CastDynamic
  }</td></tr>
+<tr class="memdesc:aa152c2f8c38606be65914b8396efad0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This should be cast dynamically when doing conversions inside <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a>. <br/></td></tr>
 <tr class="separator:aa152c2f8c38606be65914b8396efad0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f54ddb452cc6c9fe8786778a7ea98a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f54ddb452cc6c9fe8786778a7ea98a1"></a>
 typedef <br class="typebreak"/>
-<a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">Scripting::iScriptCompilable</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RefCountType</b></td></tr>
+<a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">Scripting::iScriptCompilable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScriptCompilable_01_4.xhtml#a1f54ddb452cc6c9fe8786778a7ea98a1">RefCountType</a></td></tr>
+<tr class="memdesc:a1f54ddb452cc6c9fe8786778a7ea98a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml" title="The interface for a script that can be compiled to bytecode.">Scripting::iScriptCompilable</a> is its own reference count. <br/></td></tr>
 <tr class="separator:a1f54ddb452cc6c9fe8786778a7ea98a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a4eb39f4a64f45c32366c3f1ead22c182"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4eb39f4a64f45c32366c3f1ead22c182"></a>
-static <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">RefCountType</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ConstructionPointer</b> (<a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">RefCountType</a> *Target)</td></tr>
+<tr class="memitem:a4eb39f4a64f45c32366c3f1ead22c182"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScriptCompilable_01_4.xhtml#a1f54ddb452cc6c9fe8786778a7ea98a1">RefCountType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScriptCompilable_01_4.xhtml#a4eb39f4a64f45c32366c3f1ead22c182">ConstructionPointer</a> (<a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScriptCompilable_01_4.xhtml#a1f54ddb452cc6c9fe8786778a7ea98a1">RefCountType</a> *Target)</td></tr>
+<tr class="memdesc:a4eb39f4a64f45c32366c3f1ead22c182"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Construction Pointer for a <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml" title="The interface for a script that can be compiled to bytecode.">Scripting::iScriptCompilable</a> is the pointer created during the New call.  <a href="#a4eb39f4a64f45c32366c3f1ead22c182">More...</a><br/></td></tr>
 <tr class="separator:a4eb39f4a64f45c32366c3f1ead22c182"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -116,12 +118,47 @@ class Mezzanine::ReferenceCountTraits&lt; Scripting::iScriptCompilable &gt;</h3>
 
 <p>Marks iScriptCompilable for internal reference counting if a <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> checks. </p>
 
-<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00300">300</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00276">276</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4eb39f4a64f45c32366c3f1ead22c182"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScriptCompilable_01_4.xhtml#a1f54ddb452cc6c9fe8786778a7ea98a1">RefCountType</a>* <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml">Mezzanine::ReferenceCountTraits</a>&lt; <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">Scripting::iScriptCompilable</a> &gt;::ConstructionPointer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScriptCompilable_01_4.xhtml#a1f54ddb452cc6c9fe8786778a7ea98a1">RefCountType</a> *&#160;</td>
+          <td class="paramname"><em>Target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The Construction Pointer for a <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml" title="The interface for a script that can be compiled to bytecode.">Scripting::iScriptCompilable</a> is the pointer created during the New call. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Target</td><td>The pointer returned by new during construction of <a class="el" href="classMezzanine_1_1Scripting_1_1iScript.xhtml" title="The interface for a script.">Scripting::iScript</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="script_8h_source.xhtml#l00284">284</a> of file <a class="el" href="script_8h_source.xhtml">script.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/<a class="el" href="script_8h_source.xhtml">script.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 18 2013 23:09:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Jun 20 2013 21:56:58 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

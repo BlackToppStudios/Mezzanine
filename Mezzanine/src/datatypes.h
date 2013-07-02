@@ -70,6 +70,8 @@
     #include <ostream>
 #endif
 
+
+
 #include "swig.h"
 
 
@@ -84,9 +86,11 @@ namespace Mezzanine
     ///////////////////////////////////////
 
     #ifdef _MEZZ_CPP11_PARTIAL_
+    #include <cstdint>
     /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
     typedef std::intptr_t ConvertiblePointer;
     #else
+    #include <stdint.h>
     /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
     typedef intptr_t ConvertiblePointer;
     #endif
@@ -117,7 +121,7 @@ namespace Mezzanine
     typedef uint64_t UInt64;
 
     /// @typedef Real
-    /// @brief A Datatype used to represent a real floating point number
+    /// @brief A Datatype used to represent a real floating point number.
     /// @details This Datatype is currently a typedef to a float, This is to match
     /// our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics
     /// subsystem, btScalar). With a recompilation of all the subsystems and  this
@@ -127,18 +131,18 @@ namespace Mezzanine
     typedef float Real;
 
     /// @typedef Whole
-    /// @brief A Datatype used to represent an postive integer numbers
-    /// @details This is a typedef to unsigned Long. but could be smaller in some situations
+    /// @brief Whole is an unsigned integer, it will be at least 32bits in size.
+    /// @details This is a typedef to unsigned Long. but could be smaller in some situations.  In
+    /// general it will be the most efficient unsigned type for math.
     typedef unsigned long Whole;
 
     /// @typedef Integer
-    /// @brief A datatype use to represent any integer close to
-    /// @details This is a typedef to int, but could int16 or smaller to improve performance in some situtations
-    /// handheld platforms
+    /// @brief A datatype used to represent any integer close to.
+    /// @details This is a typedef to int, but could int16 or smaller to improve performance in some situtations, In general it will be the most efficient signed type for math.
     typedef int Integer;
 
     /// @typedef String
-    /// @brief A Datatype used to a series of characters
+    /// @brief A datatype used to a series of characters.
     /// @details This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is
     /// changed, The Character typedef should be adjusted accordingly.
     typedef std::string String;
@@ -149,7 +153,7 @@ namespace Mezzanine
     typedef std::wstring WideString;
 
     /// @typedef ConstString
-    /// @brief A Datatype used to a series of imutable characters
+    /// @brief A Datatype used to a series of imutable characters.
     /// @details This is a typedef to const String, but could change.
     typedef const String ConstString;
 
@@ -157,6 +161,11 @@ namespace Mezzanine
     /// @brief A datatype to represent one character.
     /// @details This should be a char if String is an std::string.
     typedef char Char8;
+
+    /// @typedef Bool
+    /// @brief A single bit, true or false
+    /// @details Normally just a bool, and this corrects the casing of bool
+    typedef bool Bool;
 
     /// @typedef StringStream
     /// @brief A Datatype used for streaming operations with strings.
@@ -176,6 +185,12 @@ namespace Mezzanine
     #else
         typedef long long MaxInt;
     #endif
+
+
+    /// @typedef TimeMarker
+    /// @brief A datatype used to indicate a specific point in time, or a timestamp.
+    /// @details This is made into it's own datatype in case we want to tweak the possible size for a timestamp.
+    typedef UInt32 TimeMarker;
 
     ///////////////////////////////////////////////////////////////////////////////
     // Complex Data types
@@ -201,17 +216,23 @@ namespace Mezzanine
 
     /// @internal
     /// @typedef RawEvent
-    /// @brief This is an internal datatype use to communicate with the User input Subsystem
-    /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details
+    /// @brief This is an internal datatype use to communicate with the User input Subsystem.
+    /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details.
     typedef SDL_Event RawEvent;
-    
+
+    /// @brief In case we ever replace the stringstream with another class, this will allow us to swap it out.
+    /// @details This will always support <<, str() but may lose support for formatting functions like std::hex.
+    typedef std::stringstream Logger;
+
+
+
     ///////////////////////////////////////////////////////////////////////////////
     // Simple conversion functions
     ///////////////////////////////////////
 
-    /// @brief Catch all Lexigraphical Conversion
+    /// @brief Catch all Lexigraphical Conversion.
     /// @param Datum A value of any type that will be converted.
-    /// @return The value as if 'read' into the target type
+    /// @return The value as if 'read' into the target type.
     /// @todo Overload ConvertTo for ToString Conversions.
     template<typename To, typename From>
     To ConvertTo(const From& Datum)
@@ -223,9 +244,9 @@ namespace Mezzanine
         return Results;
     }
 
-    /// @brief Converts whatever to a String as long as a streaming operator is available for it
-    /// @param Datum The whatever to be converted
-    /// @return A String with the converted data
+    /// @brief Converts whatever to a String as long as a streaming operator is available for it.
+    /// @param Datum The whatever to be converted.
+    /// @return A String with the converted data.
     template<class T> String ToString( const T& Datum )
     {
         //std::stringstream Converter;
@@ -234,57 +255,60 @@ namespace Mezzanine
         return ConvertTo<String>(Datum);
     }
 
-    /// @brief Converts whatever to a Whole as long as the proper streaming operators are available for it
-    /// @param Datum The whatever to be converted
-    /// @return A Whole with the converted data
+    /// @brief Converts whatever to a Whole as long as the proper streaming operators are available for it.
+    /// @param Datum The whatever to be converted.
+    /// @return A Whole with the converted data.
     template<class T> Whole ToWhole( const T& Datum )
         { return ConvertTo<Whole>(Datum); }
 
-    /// @brief Converts whatever to an Integer as long as the proper streaming operators are available for it
-    /// @param Datum The whatever to be converted
-    /// @return An Integer with the converted data
+    /// @brief Converts whatever to an Integer as long as the proper streaming operators are available for it.
+    /// @param Datum The whatever to be converted.
+    /// @return An Integer with the converted data.
     template<class T> Integer ToInteger( const T& Datum )
         { return ConvertTo<Integer>(Datum); }
 
-    /// @brief Converts whatever to an int as long as the proper streaming operators are available for it
-    /// @param Datum The whatever to be converted
-    /// @return An int with the converted data
+    /// @brief Converts whatever to an int as long as the proper streaming operators are available for it.
+    /// @param Datum The whatever to be converted.
+    /// @return An int with the converted data.
     /// @details This exists for interacting with other libraies, in situations where changing the Integer Typedef could
-    /// break things
+    /// break things.
     template<class T> int Toint( const T& Datum )
         { return ConvertTo<int>(Datum); }
 
-    /// @brief Converts whatever to an unsigned int as long as the proper streaming operators are available for it
-    /// @param Datum The whatever to be converted
-    /// @return An unsigned int with the converted data
+    /// @brief Converts whatever to an unsigned int as long as the proper streaming operators are available for it.
+    /// @param Datum The whatever to be converted.
+    /// @return An unsigned int with the converted data.
     /// @details This exists for interacting with other libraies, in situations where changing the Integer Typedef could
-    /// break things
+    /// break things.
     template<class T> unsigned int Tounsignedint( const T& Datum )
         { return ConvertTo<unsigned int>(Datum); }
 
-    /// @brief Converts whatever to a Real as long as the proper streaming operators are available for it
-    /// @param Datum The whatever to be converted
-    /// @return A Real with the converted data
+    /// @brief Converts whatever to a Real as long as the proper streaming operators are available for it.
+    /// @param Datum The whatever to be converted.
+    /// @return A Real with the converted data.
     template<class T> Real ToReal( const T& Datum )
         { return ConvertTo<Real>(Datum); }
+
+    /// @brief Converts whatever to a Bool as long as the proper streaming operators are available for it
+    /// @param Datum The whatever to be converted
+    /// @return A Bool with the converted data
+    template<class T> Bool ToBool( const T& Datum )
+        { return ConvertTo<Bool>(Datum); }
 
     /// @brief Converts whatever to a float as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
     /// @return A float with the converted data
     /// @details This exists for interacting with other libraies, in situations where changing the Real Typedef could
-    /// break things
+    /// break things.
     template<class T> float Tofloat( const T& Datum )
         { return ConvertTo<float>(Datum); }
 
-    /// @brief Converts whatever to a double as long as the proper streaming operators are available for it
-    /// @param Datum The whatever to be converted
-    /// @return A double with the converted data
-    /// @details This exists for interacting with other libraies, in situations where changing the Typedefs could break things
+    /// @brief Converts whatever to a double as long as the proper streaming operators are available for it.
+    /// @param Datum The whatever to be converted.
+    /// @return A double with the converted data.
+    /// @details This exists for interacting with other libraies, in situations where changing the Typedefs could break things.
     template<class T> double Todouble( const T& Datum )
         { return ConvertTo<double>(Datum); }
-
-
-
 } // \Mezzanine
 
 #ifndef MEZZLUA51

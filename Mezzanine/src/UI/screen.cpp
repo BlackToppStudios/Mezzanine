@@ -693,7 +693,7 @@ namespace Mezzanine
                 {
                     if( CurrIndexData->Vertices[I].Atlas.empty() )
                     {
-                        MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Null or Empty String Atlas found when rendering UI.");
+                        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Null or Empty String Atlas found when rendering UI.");
                     }
                     if( CurrIndexData->Vertices[I].Atlas != CurrentName )
                     {

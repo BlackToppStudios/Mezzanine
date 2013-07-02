@@ -40,12 +40,15 @@ SCRIPT_EXCEPTION_LUA_YIELD             0x05F01F01   ScriptLuaYieldException     
 SCRIPT_EXCEPTION_LUA_RUNTIME           0x05F01F02   ScriptLuaRuntimeException                 ScriptLuaException                 Thrown when a Lua script has a runtime error.
 SCRIPT_EXCEPTION_LUA_ERRERR            0x05F01F03   ScriptLuaErrErrException                  ScriptLuaException                 Thrown when Lua has an error handling an error.
 #
+PARAMETERS_EXCEPTION                   0x06F01F00   ParametersException                       Exception                          Thrown when parameters are checked at runtime and found invalid.
+PARAMETERS_CAST_EXCEPTION              0x06F01F01   ParametersCastException                   ParametersException                Thrown when a pointer parameter is checked at runtime and cannot be cast as expected.
+PARAMETERS_RANGE_EXCEPTION             0x06F01F02   ParametersRangeException                  ParametersException                Thrown when a passed parameter is checked at runtime and not in the expected range.
+#
 ARITHMETIC_EXCEPTION                   0x00F01F00   ArithmeticException                       Exception                          Thrown when Math has failed.
-INVALID_PARAMETERS_EXCEPTION           0x00F02F00   InvalidParametersException                Exception                          Thrown when parameters are checked at runtime and found invalid.
-INVALID_VERSION_EXCEPTION              0x00F03F00   InvalidVersionException                   Exception                          Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing.
-INVALID_STATE_EXCEPTION                0x00F04F00   InvalidStateException                     Exception                          Thrown when the available information should have worked but failed for unknown reasons.
-RENDERINGAPI_EXCEPTION                 0x00F05F00   RenderingAPIException                     Exception                          Thrown when the graphics card/DirectX/OpenGL fail.
-RT_ASSERTION_EXCEPTION                 0x00F06F00   RuntimeAssertionException                 Exception                          Thrown when a rutime assertion could have been thrown.
-INTERNAL_EXCEPTION                     0x00F07F00   InternalException                         Exception                          Thrown when an unknown internal error occurred.
-NOT_IMPLEMENTED_EXCEPTION              0x00F08F00   NotImplementedException                   Exception                          Thrown when we just have not coded a thing yet, but we knew what the API should look like.
-INVALID_ASSIGNMENT                     0x00F09F00   InvalidAssignment                         Exception                          Then when a complex class is assigned to itself or other invalid assignments occur.
+INVALID_VERSION_EXCEPTION              0x00F02F00   InvalidVersionException                   Exception                          Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing.
+INVALID_STATE_EXCEPTION                0x00F03F00   InvalidStateException                     Exception                          Thrown when the available information should have worked but failed for unknown reasons.
+RENDERINGAPI_EXCEPTION                 0x00F04F00   RenderingAPIException                     Exception                          Thrown when the graphics card/DirectX/OpenGL fail.
+RT_ASSERTION_EXCEPTION                 0x00F05F00   RuntimeAssertionException                 Exception                          Thrown when a rutime assertion could have been thrown.
+INTERNAL_EXCEPTION                     0x00F06F00   InternalException                         Exception                          Thrown when an unknown internal error occurred.
+NOT_IMPLEMENTED_EXCEPTION              0x00F07F00   NotImplementedException                   Exception                          Thrown when we just have not coded a thing yet, but we knew what the API should look like.
+INVALID_ASSIGNMENT                     0x00F08F00   InvalidAssignment                         Exception                          Then when a complex class is assigned to itself or other invalid assignments occur.

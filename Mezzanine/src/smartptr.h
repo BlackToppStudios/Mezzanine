@@ -71,9 +71,9 @@ namespace Mezzanine
     template <typename TypePointedTo> class CountedPtr;
 
     // Externally callable casts
-    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original);
-    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType> Original);
-    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrDynamicCast(CountedPtr<OtherPointerTargetType> Original);
+    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType>& Original);
+    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType>& Original);
+    template <typename ReturnType, typename OtherPointerTargetType> CountedPtr<ReturnType> CountedPtrDynamicCast(CountedPtr<OtherPointerTargetType>& Original);
 
     // Casts the pointer uses internally for consistency.
     template <typename ReturnPointer, typename OriginalPointer, CountedPointerCastingState> class CountedPtrCastImpl;
@@ -112,7 +112,7 @@ namespace Mezzanine
                 {}
 
             /// @brief Destructor, cleans up the object when the last reference deletes this
-            ~ReferenceCount()
+            virtual ~ReferenceCount()
                 { delete Target; }
 
             /// @brief Increase the reference count by one and return the updated count.
@@ -135,8 +135,8 @@ namespace Mezzanine
             Whole GetReferenceCount()
                 { return RefCount; }
 
-            /// @brief Get a pointer to the Target as a void*
-            /// @return A pointer cast to a void*, for use with CountedPtrCast
+            /// @brief Get a pointer to the Target as a The most derived type in of this object*
+            /// @return A pointer, for use with CountedPtrCast
             virtual TypePointedTo* GetMostDerived()
                 { return Target; }
     };
@@ -173,13 +173,16 @@ namespace Mezzanine
 
             /// @brief Get the current amount of references.
             /// @return A Whole with the current reference count
-            Whole GetReferenceCount()
+            Whole GetReferenceCount() const
                 { return RefCount; }
 
             /// @brief Get a pointer to the most Derived type of this class
             /// @return A pointer of the most derived pointing to this.
             virtual IntrusiveRefCount* GetMostDerived()
                 { return this; }
+
+            /// @brief Virtual Deconstructor to prevent issues with deletion with incomplete type information
+            virtual ~IntrusiveRefCount() {}
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -240,12 +243,43 @@ namespace Mezzanine
             enum { IsCastable = CastStatic};
     };
 
+    /// @internal
+    /// @brief This exists to conceal internal type detection mechanisms making internal and external reference couting different.
+    namespace
+    {
+        /// @brief This handles the case of needing to adjust the reference count of covariant pointers all covariant pointer must use internal reference counts
+        template <typename CurrentReferenceCountType, typename OtherReferenceCountType>
+        class ReferenceCountAdjuster
+        {
+            public:
+                /// @brief Gain a copy of the reference counter with appropriate type data.
+                /// @param UpdateCounter A reference to a pointer that the CounterPtr wants to point at the correct reference count
+                /// @param OtherCounter A reference to a pointer that is pointing to the refence counter we want to acquire
+                static void Acquire(CurrentReferenceCountType* & UpdateCounter, OtherReferenceCountType* & OtherCounter)
+                    { UpdateCounter = CountedPtrInternalCast<CurrentReferenceCountType>(OtherCounter->GetMostDerived()); }
+        };
+
+        /// @brief The logic is much simpler when covariant types are not involved, this will acwuire a reference counter
+        /// @details Incidentally this should work for internal reference counts that are of identical type and all external reference counts.
+        template <typename InternalReferenceCount>
+        class ReferenceCountAdjuster<InternalReferenceCount,InternalReferenceCount>
+        {
+            public:
+                /// @brief Gain a copy of the reference counter which already has appropriate type data.
+                /// @param UpdateCounter A reference to a pointer that the CounterPtr wants to point at the correct reference count.
+                /// @param OtherCounter A reference to a pointer that is pointing to the refence counter we want to acquire.
+                static void Acquire(InternalReferenceCount* & UpdateCounter, InternalReferenceCount* & OtherCounter)
+                    { UpdateCounter = OtherCounter; }
+        };
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A simple reference counting pointer.
     /// @details This is a pointer that automatically deallocates the object it manages when
     /// all CountedPtr intances managing it are destroyed or fall out of scope. This is a
     /// simpler version of std::shared_ptr.
     /// @warning This is not thread safe by default.
+    /// @warning If you intead to have covariant pointers (Multiple pointers to the same item but with different type date, like more base or more derived pointers) all classes pointed to must have virtual deconstructors
     /// @note The basis of this class originated externally, please see the counted pointer
     /// from http://ootips.org/yonat/4dev/smart-pointers.html which came with written permission
     /// for use stated as "Feel free to use my own smart pointers in your code" on that page.
@@ -264,7 +298,7 @@ namespace Mezzanine
             template <typename OtherPointer> friend class CountedPtr;
 
             /// @brief Static casting can access internals also
-            template <typename ReturnType, typename OtherPointerTargetType> friend CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType> Original);
+            template <typename ReturnType, typename OtherPointerTargetType> friend CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType>& Original);
         protected:
             /// @brief This is the only data on this class, a pointer to the counter and the managed object.
             RefCountType* _ReferenceCounter;
@@ -273,11 +307,12 @@ namespace Mezzanine
             /// @param CounterToAcquire The ReferenceCounter that this pointer will use.
             /// @warning This does not Release the previous Reference counter. This means it is possible leak memory if a ReferenceCounter is acquired that differs from the previous one without plans to manage the original.
             /// @throw Nothing This member function does not throw exceptions, unless debug logging is enabled, then it can throw any exception the logger can throw.
-            void Acquire(RefCountType* CounterToAcquire) throw()
+            template <typename AnyReferenceCountType>
+            void Acquire(AnyReferenceCountType* CounterToAcquire) throw()
             {
-                _ReferenceCounter = CounterToAcquire;
-                if (CounterToAcquire)
-                       { CounterToAcquire->IncrementReferenceCount(); }
+                ReferenceCountAdjuster<RefCountType, AnyReferenceCountType>::Acquire(_ReferenceCounter, CounterToAcquire);
+                if (_ReferenceCounter)
+                       { _ReferenceCounter->IncrementReferenceCount(); }
             }
 
             /// @brief This decrements the reference count and deletes the managed items if there are no remaining references.
@@ -286,7 +321,10 @@ namespace Mezzanine
                 if (_ReferenceCounter)
                 {
                     if (_ReferenceCounter->DecrementReferenceCount() == 0)
-                        { delete _ReferenceCounter; } // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
+                    {
+                        delete _ReferenceCounter; // deleting a ReferenceCount should clean up the target object in its destructor, if we are deleting something intrusively reference counted this does
+                        _ReferenceCounter = 0;
+                    }
                 }
             }
 
@@ -483,7 +521,7 @@ namespace Mezzanine
             /// @throw Always throws a 0
             static ReturnPointer Cast(OriginalPointer)
             {
-                //#error Invalid Casting value for CountedPtr cast
+                // #error Invalid Casting value for CountedPtr cast
                 throw(0); /// @todo make this conditionally fail to compile.
                 return ReturnPointer(0);
             }
@@ -551,7 +589,7 @@ namespace Mezzanine
             /// @return The pointer after the cast.
             /// @note This will almost certainly never actually exists as a function, in even basic testing the compiles completely optimizes this out during compilation.
             static ReturnPointer Cast(OriginalPointer Original)
-                { return static_cast<ReturnPointer>(Original); }
+                { return dynamic_cast<ReturnPointer>(Original); }
     };
 
     /// @internal
@@ -605,14 +643,13 @@ namespace Mezzanine
     Pointer* CountedPtrInternalCast(Pointer* Original)
         { return  Original; }
 
-
     /// @brief A compile time cast that uses only the implicit conversion of the underlying raw pointers
     /// @param ReturnType The type to be returned, must be specified
     /// @param OtherPointerTargetType The type of the provided pointer, this can be infered and should not be provided.
     /// @param Original The pointer to convert.
     /// @return Either a pointer of the desired or a compilation error
     template <typename ReturnType, typename OtherPointerTargetType>
-    CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType> Original)
+    CountedPtr<ReturnType> CountedPtrCast(CountedPtr<OtherPointerTargetType>& Original)
         { return CountedPtr<ReturnType>(Original); }
 
     /// @brief A compile time cast that uses static casting conversion of the underlying raw pointers but only works on internally reference count types
@@ -621,8 +658,8 @@ namespace Mezzanine
     /// @param Original The pointer to convert.
     /// @return Either a pointer of the desired or a compilation error
     template <typename ReturnType, typename OtherPointerTargetType>
-    CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType> Original)
-        { return CountedPtr<ReturnType>(static_cast<ReturnType*>(Original._ReferenceCounter)); }
+    CountedPtr<ReturnType> CountedPtrStaticCast(CountedPtr<OtherPointerTargetType>& Original)
+        { return CountedPtr<ReturnType>(static_cast<ReturnType*>(Original.GetReferenceCount())); }
 
     /// @brief A Runtime cast that uses dynamic casting conversion of the underlying raw pointers but only works on internally reference count types
     /// @param ReturnType The type to be returned, must be specified
@@ -630,8 +667,8 @@ namespace Mezzanine
     /// @param Original The pointer to convert.
     /// @return Either a pointer of the desired or a 0 if casting is not possible.
     template <typename ReturnType, typename OtherPointerTargetType>
-    CountedPtr<ReturnType> CountedPtrDynamicCast(CountedPtr<OtherPointerTargetType> Original)
-        { return CountedPtr<ReturnType>(dynamic_cast<ReturnType*>(Original._ReferenceCounter)); }
+    CountedPtr<ReturnType> CountedPtrDynamicCast(CountedPtr<OtherPointerTargetType>& Original)
+        { return CountedPtr<ReturnType>(dynamic_cast<ReturnType*>(Original.GetReferenceCount())); }
 
 } // \Mezzanine
 

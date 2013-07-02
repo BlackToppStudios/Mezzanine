@@ -622,10 +622,10 @@ namespace Mezzanine
         if(AlgoQueue.empty())
             return;
         #ifdef MEZZDEBUG
-        std::stringstream logstream;
+        /*std::stringstream logstream;
         logstream << "Processing " << AlgoQueue.size() << " algorithms for collisions." << endl;
         Entresol::GetSingletonPtr()->Log(logstream.str());
-        //Entresol::GetSingletonPtr()->DoMainLoopLogging();
+        Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
         #endif
         btCollisionAlgorithm* NewAlgo = AlgoQueue.front();
         while( NewAlgo != NULL )
@@ -1059,8 +1059,6 @@ namespace Mezzanine
         #ifdef MEZZPROFILE
         Profiler->reset();
         #endif
-        TheEntresol->LogStream << "Entering StepSimulation.";
-        TheEntresol->DoMainLoopLogging();
         this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
         #ifdef MEZZPROFILE
         TheEntresol->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";

@@ -44,6 +44,10 @@
 
 namespace Mezzanine
 {
+    namespace XML
+    {
+        class Node;
+    }
     class ManagerBase;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ManagerFactory

@@ -8,12 +8,12 @@
 <Managers>
 	<DefaultActorManager>
 	</DefaultActorManager>
-	<DefaultAudioManager>
+	<OALSAudioManager>
 		<SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
 		<SettingsFiles>
 			<SettingsFile FileName="AudioSettings.mxs" />
 		</SettingsFiles>
-	</DefaultAudioManager>
+	</OALSAudioManager>
 	<DefaultCameraManager>
 	</DefaultCameraManager>
 	<DefaultCollisionShapeManager>

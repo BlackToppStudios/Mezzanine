@@ -1,3 +1,8 @@
 <map id="Mezzanine::Scripting::iScriptArgument" name="Mezzanine::Scripting::iScriptArgument">
-<area shape="rect" id="node3" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.xhtml" title="A generic implementation of a ScriptArgument that is suitable for primitive types in most situations..." alt="" coords="5,99,200,143"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric.xhtml" title="A generic implementation of a ScriptArgument that is suitable for primitive types in most situations..." alt="" coords="196,5,388,49"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Bool_01_4.xhtml" title="A Bool implementation of a ScriptArgument that is suitable for primitive types in most situations..." alt="" coords="211,71,373,131"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Integer_01_4.xhtml" title="A Integer implementation of a ScriptArgument that is suitable for primitive types in most situations..." alt="" coords="211,154,373,214"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Real_01_4.xhtml" title="A Real number implementation of a ScriptArgument that is suitable for primitive types in most situati..." alt="" coords="211,237,373,297"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01String_01_4.xhtml" title="A String implementation of a ScriptArgument that is suitable for primitive types in most situations..." alt="" coords="211,319,373,379"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Whole_01_4.xhtml" title="A Whole number implementation of a ScriptArgument that is suitable for primitive types in most situat..." alt="" coords="211,402,373,462"/>
 </map>

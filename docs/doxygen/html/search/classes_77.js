@@ -10,6 +10,7 @@ var searchData=
   ['worldobject',['WorldObject',['../classMezzanine_1_1WorldObject.xhtml',1,'Mezzanine']]],
   ['worldobjectgraphicssettings',['WorldObjectGraphicsSettings',['../classMezzanine_1_1WorldObjectGraphicsSettings.xhtml',1,'Mezzanine']]],
   ['worldobjectphysicssettings',['WorldObjectPhysicsSettings',['../classMezzanine_1_1WorldObjectPhysicsSettings.xhtml',1,'Mezzanine']]],
+  ['worldproxy',['WorldProxy',['../classMezzanine_1_1WorldProxy.xhtml',1,'Mezzanine']]],
   ['worldtrigger',['WorldTrigger',['../classMezzanine_1_1WorldTrigger.xhtml',1,'Mezzanine']]],
   ['writer',['Writer',['../classMezzanine_1_1XML_1_1Writer.xhtml',1,'Mezzanine::XML']]],
   ['writerfile',['WriterFile',['../classMezzanine_1_1XML_1_1WriterFile.xhtml',1,'Mezzanine::XML']]],

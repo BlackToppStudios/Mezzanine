@@ -578,16 +578,9 @@ namespace Mezzanine
 
     void GraphicsManager::RenderOneFrame()
     {
-        Entresol* TheEntresol = Entresol::GetSingletonPtr();
-        #ifdef MEZZDEBUG
-        TheEntresol->Log("Rendering the World.");
-        #endif
         Ogre::Root::getSingleton().renderOneFrame();
         if( !GetPrimaryGameWindow()->_GetOgreWindowPointer()->isVisible() )
             Ogre::Root::getSingleton().clearEventTimes();
-        #ifdef MEZZDEBUG
-        TheEntresol->Log("Finished Rendering");
-        #endif
     }
 
     void GraphicsManager::SwapAllBuffers(bool WaitForVsync)

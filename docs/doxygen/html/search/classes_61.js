@@ -28,6 +28,6 @@ var searchData=
   ['attachableparent',['AttachableParent',['../classMezzanine_1_1AttachableParent.xhtml',1,'Mezzanine']]],
   ['attribute',['Attribute',['../classMezzanine_1_1XML_1_1Attribute.xhtml',1,'Mezzanine::XML']]],
   ['attributeiterator',['AttributeIterator',['../classMezzanine_1_1XML_1_1AttributeIterator.xhtml',1,'Mezzanine::XML']]],
-  ['audiomanager',['AudioManager',['../classMezzanine_1_1AudioManager.xhtml',1,'Mezzanine']]],
-  ['audiomanagerinternaldata',['AudioManagerInternalData',['../classMezzanine_1_1AudioManagerInternalData.xhtml',1,'Mezzanine']]]
+  ['audiomanager',['AudioManager',['../classMezzanine_1_1Audio_1_1AudioManager.xhtml',1,'Mezzanine::Audio']]],
+  ['autowahparameters',['AutowahParameters',['../structMezzanine_1_1Audio_1_1AutowahParameters.xhtml',1,'Mezzanine::Audio']]]
 ];

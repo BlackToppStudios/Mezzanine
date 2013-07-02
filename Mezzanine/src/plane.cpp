@@ -117,7 +117,7 @@ Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode,
             {
                 OneNode.GetFirstChild() >> x.Normal;
             }else{
-                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Normal not found while parsing Mezzanine::Plane.");
+                MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Normal not found while parsing Mezzanine::Plane.");
             }
         }else{
             MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Plane: Not Version 1.");

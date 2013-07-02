@@ -89,9 +89,6 @@ namespace Mezzanine
 
     void MetaCode::Construct(const RawEvent& RawEvent_)
     {
-        #ifdef MEZZDEBUG
-        Entresol::GetSingletonPtr()->Log("Entering: MetaCode::Construct(RawEvent);");
-        #endif
         switch(RawEvent_.type)
         {
             case SDL_KEYDOWN:
@@ -228,7 +225,7 @@ namespace Mezzanine
     {
         Input::InputCode Answer = (Input::InputCode)(ButtonNumber + (int)Input::MOUSEBUTTON);
         if ( Input::MOUSEBUTTON_FIRST > Answer && Input::MOUSEBUTTON_LAST < Answer)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported mouse Button."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported mouse Button."); }
         return Answer;
     }
 
@@ -236,7 +233,7 @@ namespace Mezzanine
     {
         Input::InputCode Answer = (Input::InputCode)(ButtonNumber + (int)Input::CONTROLLERBUTTON);
         if ( Input::CONTROLLERBUTTON_FIRST > Answer && Input::CONTROLLERBUTTON_LAST < Answer)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported Joystick Button."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Joystick Button."); }
         return Answer;
     }
 
@@ -244,7 +241,7 @@ namespace Mezzanine
     {
         Input::InputCode Answer = (Input::InputCode)(AxisNumber + (int)Input::CONTROLLERAXIS);
         if ( Input::CONTROLLERAXIS_FIRST > Answer && Input::CONTROLLERAXIS_LAST < Answer)
-            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported Joystick AXIS."); }
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Joystick AXIS."); }
         return Answer;
     }
 

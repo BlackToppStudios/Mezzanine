@@ -41,6 +41,7 @@
 #define _audioplsylist_h
 
 #include "datatypes.h"
+#include "Resource/datastream.h"
 
 /// @file
 /// @brief The declaration of the Playlist class.
@@ -49,30 +50,32 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        class Sound;
+        class iSound;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class is a list of sounds with common playlist features.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB Playlist : public std::list< Audio::Sound* >
+        class MEZZ_LIB Playlist : public std::list< Audio::iSound* >
         {
-            protected:
-            public:
-                /// @brief Class constructor.
-                Playlist();
-                /// @brief Class destructor.
-                ~Playlist();
-                /// @brief Adds a sound to the playlist.
-                /// @param ToAdd The sound to be added.
-                void AddSound(Sound* ToAdd);
-                /// @brief Randomly shuffles the content in the Playlist.
-                void ShuffleList();
-                /// @brief Checks the playlist to see if it contains a sound.
-                /// @param TheSound The sound to check for.
-                bool ContainsSound(Sound* TheSound);
-                /// @brief Checks the playlist to see if it contains a sound.
-                /// @param SoundName The name of the sound to check for.
-                bool ContainsSound(const String& SoundName);
+        protected:
+        public:
+            /// @brief Class constructor.
+            Playlist();
+            /// @brief Class destructor.
+            ~Playlist();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Adds a sound to the playlist.
+            /// @param ToAdd The sound to be added.
+            void AddSound(iSound* ToAdd);
+            /// @brief Randomly shuffles the content in the Playlist.
+            void Shuffle();
+
+            /// @brief Checks the playlist to see if it contains a sound.
+            /// @param TheSound The sound to check for.
+            bool ContainsSound(iSound* TheSound);
         };//Playlist
     }//Audio
 }//Mezzanine

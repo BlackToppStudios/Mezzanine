@@ -43,7 +43,7 @@
 /// @file
 /// @brief This file has the interfaces for Scripts and tag derived classes.
 
-#include "binarytool.h"
+#include "binarybuffer.h"
 #include "scriptargument.h"
 #include "smartptr.h"
 
@@ -158,6 +158,8 @@ namespace Mezzanine
                 virtual iScriptMultipleReturn* GetAsiScriptMultipleReturn()
                     { return 0; }
 
+                virtual ~iScript(){}
+
                 ///////////////////////////////////////////////////////////////////////////////////////////////////
                 // Internal Reference count for CountedPtr
 
@@ -196,8 +198,27 @@ namespace Mezzanine
                 virtual iScript* GetMostDerived()
                     { return this; }
         }; // iScript
+    }
 
+    /// @brief Marks IScript for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::iScript>
+    {
+        public:
+            /// @brief The Scripting::iScript is its own reference count
+            typedef Scripting::iScript RefCountType;
 
+            /// @brief The Construction Pointer for a Scripting::iScript is the pointer created during the New call
+            /// @param Target The pointer returned by new during construction of Scripting::iScript
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This should be cast dynamically when doing conversions inside CountedPtr.
+            enum { IsCastable = CastDynamic };
+    };
+
+    namespace Scripting
+    {
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief The interface for a script that can be compiled to bytecode
@@ -245,11 +266,33 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual iScriptCompilable* GetMostDerived()
                     { return this; }
+
+                virtual ~iScriptCompilable(){}
         };
+    }
 
+    /// @brief Marks iScriptCompilable for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::iScriptCompilable>
+    {
+        public:
+            /// @brief The Scripting::iScriptCompilable is its own reference count
+            typedef Scripting::iScriptCompilable RefCountType;
 
+            /// @brief The Construction Pointer for a Scripting::iScriptCompilable is the pointer created during the New call
+            /// @param Target The pointer returned by new during construction of Scripting::iScript
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This should be cast dynamically when doing conversions inside CountedPtr.
+            enum { IsCastable = CastDynamic };
+    };
+
+    namespace Scripting
+    {
         /// @brief A group of arguments that can be returned from some scripts
-        typedef std::vector< CountedPtr<iScriptArgument> > ArgumentSet;
+        /// @details A vector is used to preserve ordering of returns for languages that support multiple returns in order
+        typedef std::vector< CountedPtr<iScriptArgument> > ArgumentGroup;
 
         /// @brief This script can return simple group of values.
         /// @details This loosely correlates to a tuple like the simple returns
@@ -257,6 +300,7 @@ namespace Mezzanine
         /// tuples that contain tuples in a graceful way.
         class MEZZ_LIB iScriptMultipleReturn : public virtual iScript
         {
+            public:
                 /// @brief Does this script support multiple return values.
                 /// @return Any implementation of this returns true.
                 virtual bool CanReturnMultples() const
@@ -271,53 +315,39 @@ namespace Mezzanine
 
                 /// @brief Get the returns from the last exection of the script
                 /// @return An ArgumentSet that can be iterated over to get all the values returned.
-                virtual ArgumentSet GetAllReturns() const = 0;
+                virtual ArgumentGroup GetAllReturns() const = 0;
+
+                /// @brief Add another value to be returned.
+                /// @param A copy assignable script argument that conveys type information to the specific language runtime
+                /// @details Some scripting languages (Lua51) require knowledge of the return types
+                /// of the scripts in order to extract them from the language runtime. Pointers to
+                /// classes derived from iScriptArgument should convey that typing information to
+                /// such language runtimes.
+                virtual void AddReturn(CountedPtr<iScriptArgument> ReturnArg) = 0;
 
                 /// @brief Get a pointer to the most Derived type of this class
                 /// @return A pointer of the most derived pointing to this.
                 virtual iScriptMultipleReturn* GetMostDerived()
                     { return this; }
+
+                virtual ~iScriptMultipleReturn(){}
         };
-
-
     }
-
-    /// @brief Marks IScript for internal reference counting if a CountedPtr checks
-    template <>
-    class ReferenceCountTraits <Scripting::iScript>
-    {
-        public:
-            typedef Scripting::iScript RefCountType;
-
-            static RefCountType* ConstructionPointer(RefCountType* Target)
-                { return Target; }
-
-            enum { IsCastable = CastDynamic };
-    };
-
-    /// @brief Marks iScriptCompilable for internal reference counting if a CountedPtr checks
-    template <>
-    class ReferenceCountTraits <Scripting::iScriptCompilable>
-    {
-        public:
-            typedef Scripting::iScriptCompilable RefCountType;
-
-            static RefCountType* ConstructionPointer(RefCountType* Target)
-                { return Target; }
-
-            enum { IsCastable = CastDynamic };
-    };
 
     /// @brief Marks iScriptMultipleReturn for internal reference counting if a CountedPtr checks
     template <>
     class ReferenceCountTraits <Scripting::iScriptMultipleReturn>
     {
         public:
+            /// @brief The Scripting::iScriptMultipleReturn is its own reference count
             typedef Scripting::iScriptMultipleReturn RefCountType;
 
+            /// @brief The Construction Pointer for a Scripting::iScriptMultipleReturn is the pointer created during the New call
+            /// @param Target The pointer returned by new during construction of Scripting::iScript
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
 
+            /// @brief This should be cast dynamically when doing conversions inside CountedPtr.
             enum { IsCastable = CastDynamic };
     };
 

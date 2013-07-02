@@ -48,10 +48,6 @@
 
 //Forward Declarations for wierd compatibility functions
 class btVector3;
-namespace cAudio
-{
-    class cVector3;
-}
 namespace Ogre
 {
     class Vector3;
@@ -104,20 +100,16 @@ namespace Mezzanine
         /// @param Axis Which axis to retrieve.
         /// @return Either X, Y or Z as indicated by the value passed in.
         Real& GetAxisValue(const StandardAxis& Axis);
-
         /// @copydoc GetAxisValue(StandardAxis Axis)
         Real& GetAxisValue(const Whole& Axis);
         #endif // \SWIG
 
         /// @copydoc GetAxisValue(StandardAxis Axis) const
         Real operator[] (const StandardAxis& Axis) const;
-
         /// @copydoc GetAxisValue(StandardAxis Axis) const
         Real operator[] (const Whole& Axis) const;
-
         /// @copydoc GetAxisValue(StandardAxis Axis)
         Real& operator[] (const StandardAxis& Axis);
-
         /// @copydoc GetAxisValue(StandardAxis Axis)
         Real& operator[] (const Whole& Axis);
 
@@ -127,33 +119,23 @@ namespace Mezzanine
         /// @brief Default Constructor.
         /// @details Basic all zero initialization constructor.
         Vector3();
-
         /// @brief Real value Constructor.
         /// @details Constructor that sets all three vectors.
         /// @param X Coordinate on the X vector.
         /// @param Y Coordinate on the Y vector.
         /// @param Z Coordinate on the Z vector.
         Vector3(const Real& X, const Real& Y, const Real& Z);
-
         /// @brief Ogre Value Constructor.
         /// @details Constructor that sets all values to match the Ogre vector.
         /// @param Vec The vector to be copied to make this vector.
         explicit Vector3(const Ogre::Vector3& Vec);
-
         /// @brief Bullet Value Constructor.
         /// @details Constructor that sets all values to match the Bullet vector.
         /// @param Vec The vector to be copied to make this vector.
         explicit Vector3(const btVector3& Vec);
-
-        /// @brief cAudio Value Constructor.
-        /// @details Constructor that sets all values to match the cAudio vector.
-        /// @param Vec The vector to be copied to make this vector.
-        explicit Vector3(const cAudio::cVector3& Vec);
-
         /// @brief Copy Constructor
         /// @param Vec The other Mezzanine::Vector3 to copy to make this one.
         Vector3(const Mezzanine::Vector3& Vec);
-
         /// @brief Deserializing constructor
         /// @param Vec The other Mezzanine::Vector3 to copy to make this one.
         explicit Vector3(XML::Node OneNode);
@@ -184,7 +166,6 @@ namespace Mezzanine
         /// @param Axis The StandardAxis correlating to the Unit Vector you are retrieving
         /// @return A vector one unit in length along the Axis specified.
         static Vector3 UnitOnAxis(StandardAxis Axis);
-
         /// @brief Get a Unit Vector along the given Axis
         /// @return The Corresponding StandardAxis if a Vector equal to Unit_X, Unit_Y or Unit_Z is passed in.
         StandardAxis IsStandardUnitAxis() const;
@@ -196,16 +177,10 @@ namespace Mezzanine
         /// @details This copies the x,y and z values from the bullet into this vector
         /// @param Vec This is a btVector3 that will be copied
         Vector3& operator= (const btVector3 &Vec);
-
         /// @brief Assignment operator to convert from Ogre Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
         /// @param Vec This is a Ogre::Vector3 that will be copied.
         Vector3& operator= (const Ogre::Vector3 &Vec);
-
-        /// @brief Assignment operator to convert from cAudio Vectors
-        /// @details This copies the x,y and z values from the bullet into this vector
-        /// @param Vec This is a cAudio::cVector3 that will be copied.
-        Vector3& operator= (const cAudio::cVector3 &Vec);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Unary Operators
@@ -216,12 +191,12 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Vector3 Arithmetic with Real
+
         /// @brief Scaling by multiplication
         /// @details This Multiplies X, Y and Z by scalar
         /// @return This returns a Vector3 that has been scaled
         /// @param scalar This is the amount to scale the Vector3 by
         Vector3 operator* (const Real &scalar) const;
-
         /// @brief Scaling by Division
         /// @details This Diisionn X, Y and Z by scalar
         /// @return This returns a Vector3 that has been scaled
@@ -230,11 +205,11 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Vector3 Arithmetic and assignment with Real
+
         /// @brief Scaling by multiplication.
         /// @details This Multiplies X, Y and Z by scalar and stores the changes in this Vector3.
         /// @param scalar This is the amount to scale the Vector3 by.
         Vector3& operator*= (const Real &scalar);
-
         /// @brief Scaling by Division
         /// @details This Division X, Y and Z by scalar and and stores the changes in this Vector3.
         /// @param scalar This is the amount to scale the Vector3 by
@@ -247,59 +222,42 @@ namespace Mezzanine
         /// @details Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns false.
         /// @param Vec This is the other Mezzanine::Vector3.
         bool operator== (const Mezzanine::Vector3 &Vec) const;
-
         /// @brief Equality Comparison Operator.
         /// @details Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match this returns false.
         /// @param Vec This is an btVector3 that needs to be compared with this.
         bool operator== (const btVector3 &Vec) const;
-
         /// @brief Equality Comparison Operator.
         /// @details Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false.
         /// @param Vec This is an Ogre::Vector3 that needs to be compared with this.
         bool operator== (const Ogre::Vector3 &Vec) const;
-
-        /// @brief Equality Comparison Operator.
-        /// @details Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false.
-        /// @param Vec This is an cAudio::cVector3 that needs to be compared with this.
-        bool operator== (const cAudio::cVector3 &Vec) const;
-
         /// @brief Inequality Comparison Operator.
         /// @details Returns true if X!=X, Y!=Y or Z!=Z. If all of those match this returns false.
         /// @param Vec This is the other Mezzanine::Vector3.
         bool operator!= (const Mezzanine::Vector3 &Vec) const;
-
         /// @brief Inequality Comparison Operator.
         /// @details Returns true if X!=getX(), Y!=getY() or Z!=getZ(). If all of those match this returns false.
         /// @param Vec This is an btVector3 that needs to be compared with this.
         bool operator!= (const btVector3 &Vec) const;
-
         /// @brief Inequality Comparison Operator.
         /// @details Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false.
         /// @param Vec This is an Ogre::Vector3 that needs to be compared with this.
         bool operator!= (const Ogre::Vector3 &Vec) const;
 
-        /// @brief Inequality Comparison Operator.
-        /// @details Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false.
-        /// @param Vec This is an cAudio::cVector3 that needs to be compared with this.
-        bool operator!= (const cAudio::cVector3 &Vec) const;
-
         ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators
+
         /// @brief Addition Operator
         /// @details Allows for addition from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         Vector3 operator+ (const Vector3 &Vec) const;
-
         /// @brief Subraction Operator
         /// @details Allows for subtraction from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         Vector3 operator- (const Vector3 &Vec) const;
-
         /// @brief Multiplaction Operator
         /// @details Allows for multiplaction from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
         Vector3 operator* (const Vector3 &Vec) const;
-
         /// @brief Division Operator
         /// @details Allows for division from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
@@ -307,69 +265,44 @@ namespace Mezzanine
 
         /////////////////////////////////////////////////////////////////////
         // Arithmetic Operators with btVector3
+
         /// @brief Bullet Addition Operator
         /// @details Allows for addition  between a Mezzanine::Vector3 and a btVector3
         /// @param Vec This is the btVector3 to be added
-        Vector3 operator+ (const btVector3  &Vec) const;
-
+        Vector3 operator+ (const btVector3 &Vec) const;
         /// @brief Bullet Subtraction Operator
         /// @details Allows for subtraction  between a Mezzanine::Vector3 and a btVector3
         /// @param Vec This is the btVector3 to be subtracted
-        Vector3 operator- (const btVector3  &Vec) const;
-
+        Vector3 operator- (const btVector3 &Vec) const;
         /// @brief Bullet Multiplication Operator
         /// @details Allows for multiplication  between a Mezzanine::Vector3 and a btVector3
         /// @param Vec This is the btVector3 to be multiplied
-        Vector3 operator* (const btVector3  &Vec) const;
-
+        Vector3 operator* (const btVector3 &Vec) const;
         /// @brief Bullet Division Operator
         /// @details Allows for division  between a Mezzanine::Vector3 and a btVector3
         /// @param Vec This is the btVector3 to be divided
-        Vector3 operator/ (const btVector3  &Vec) const;
+        Vector3 operator/ (const btVector3 &Vec) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators with Ogre::Vector3
+
         /// @brief Ogre Addition Operator
         /// @details Allows for addition  between a Mezzanine::Vector3 and a Ogre::Vector3
         /// @param Vec This is the Ogre::Vector3 to be added
         Vector3 operator+ (const Ogre::Vector3 &Vec) const;
-
         /// @brief Ogre Subtraction Operator
         /// @details Allows for subtraction  between a Mezzanine::Vector3 and a Ogre::Vector3
         /// @param Vec This is the Ogre::Vector3 to be subtracted
         Vector3 operator- (const Ogre::Vector3 &Vec) const;
-
         /// @brief Ogre Multiplication Operator
         /// @details Allows for multiplying  between a Mezzanine::Vector3 and a Ogre::Vector3
         /// @param Vec This is the Ogre::Vector3 to be multiplied
         Vector3 operator* (const Ogre::Vector3 &Vec) const;
-
         /// @brief Ogre Division Operator
         /// @details Allows for division  between a Mezzanine::Vector3 and a Ogre::Vector3
         /// @param Vec This is the Ogre::Vector3 to be divided
         Vector3 operator/ (const Ogre::Vector3 &Vec) const;
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Arithmetic Operators with cAudio::cVector3
-        /// @brief cAudio Addition Operator
-        /// @details Allows for addition  between a Mezzanine::Vector3 and a cAudio::cVector3
-        /// @param Vec This is the cAudio::cVector3 to be added
-        Vector3 operator+ (const cAudio::cVector3 &Vec) const;
-
-        /// @brief cAudio Subtraction Operator
-        /// @details Allows for subtraction  between a Mezzanine::Vector3 and a cAudio::cVector3
-        /// @param Vec This is the cAudio::cVector3 to be subtracted
-        Vector3 operator- (const cAudio::cVector3 &Vec) const;
-
-        /// @brief cAudio Multiplication Operator
-        /// @details Allows for multiplying  between a Mezzanine::Vector3 and a cAudio::cVector3
-        /// @param Vec This is the cAudio::cVector3 to be multiplied
-        Vector3 operator* (const cAudio::cVector3 &Vec) const;
-
-        /// @brief cAudio Division Operator
-        /// @details Allows for division  between a Mezzanine::Vector3 and a cAudio::cVector3
-        /// @param Vec This is the cAudio::cVector3 to be divided
-        Vector3 operator/ (const cAudio::cVector3 &Vec) const;
         ///////////////////////////////////////////////////////////////////////////////
         // Fancy Math
 
@@ -380,8 +313,7 @@ namespace Mezzanine
         /// that we based this on.
         /// @param Vec the Vector to work with to create the cross product
         /// @return This is the crossproduct of this vector and Vec
-        Vector3 CrossProduct( const Vector3& Vec ) const;
-
+        Vector3 CrossProduct(const Vector3& Vec) const;
         /// @brief This is used to calculate the dotproduct of this and another vector
         /// @details This calculates the sum of the products of X, Y and Z. \n\n
         /// Thanks to the guys at Ogre3d for the well written version of this function
@@ -389,53 +321,47 @@ namespace Mezzanine
         /// @param Vec The vector to work with to create the cross product
         /// @return This is the dotproduct of this vector and vec
         Real DotProduct(const Vector3& Vec) const;
-
         /// @brief This will change this point into it's own normal relative to the origin
         /// @details This will change this vector into one that is the same direction from the origin, but only one unit a away.
         /// @return Returns a reference to the normalized vector.
         Vector3& Normalize();
-
         /// @brief This returns the normal for this relative to the origin
         /// @details This will return a vector that is 1 unit in away from the origin, if a line were starting and the origin it would pass through
         /// both the normal and the original point.
         /// @return At a vector3 that is the normal of this Vector3 or 0,0,0 if the current Vector is all 0s
         Vector3 GetNormal() const;
-
         /// @brief This will get the direction between two points.
         /// @details This returns the direction expressed as a vector between this vector and another provided vector.
         /// The vector the results vector is relative to this vector.
         /// @param Destination The point in space to determine the direction for.
         Vector3 GetDirection(const Vector3& Destination) const;
-
         /// @brief This will inverse the reals in the vector.
         /// @details This function will inverse all the reals in the vector.
         /// @return A copy of of the current Vector3
         Vector3 Inverse();
-
+        /// @brief Gets a reflection vector to the plane with the given normal.
+        /// @param Normal The normal of the plane being reflected off of.
+        /// @return Returns a Vector3 containing the reflection vector.
+        Vector3 Reflect(const Vector3& Normal);
         /// @brief Gets the distance between this and another vector.
         /// @details This uses a 3d extension of pythagoras thereom to calculate the distance between
         /// this Vector3 and another.
         /// @param OtherVec This is the other point to measure the distance to.
         /// @return Returns a Real representing the distance.
         Real Distance(const Vector3& OtherVec) const;
-
         /// @brief Gets the squared distance between this and another vector.
         /// @param OtherVec This is the other point to measure the distance to.
         /// @return Returns a Real representing the distance squared.
         Real SquaredDistance(const Vector3& OtherVec) const;
-
         /// @brief Gets the length of this vector.
         /// @return Returns a real representing the length of this vector.
         Real Length() const;
-
         /// @brief Gets the length of this vector squared.
         /// @return Returns a real representing the squared length of this vector.
         Real SquaredLength() const;
-
         /// @brief Checks to see if the length of this vector is zero.
         /// @return Returns true if this vector has zero length, false otherwise.
         bool IsZeroLength() const;
-
         /// @brief Gets the rotation needed to rotate this vector as an axis to another axis.
         /// @param Axis The target axis to rotate to.
         /// @return Returns a Quaternion representing the needed rotation to the specified axis.
@@ -443,9 +369,9 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Functions
+
         /// @brief Sets all the members of this vector3 to zero.
         void Zero();
-
         /// @brief Manually sets all the members of this vector3.
         /// @param X Value to set for X.
         /// @param Y Value to set for Y.
@@ -454,55 +380,38 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Manual Conversions
+
         /// @brief Gets a Bullet vector3.
         /// @details Creates a Bullet vector3 with values equal to this class and returns it.
         btVector3 GetBulletVector3() const;
-
         /// @brief Copies an existing Bullet vector3.
         /// @details This function will copy the values stored in an existing Bullet vector3
         /// and set the values of this class to be the same.
         /// @param temp The vector3 to be extracted.
         void ExtractBulletVector3(const btVector3& temp);
-
         /// @brief Gets a Ogre vector3.
         /// @details Creates a Ogre vector3 with values equal to this class and returns it.
         Ogre::Vector3 GetOgreVector3() const;
-
         /// @brief Copies an existing Ogre vector3.
         /// @details This function will copy the values stored in an existing Ogre vector3
         /// and set the values of this class to be the same.
         /// @param temp The vector3 to be extracted.
         void ExtractOgreVector3(const Ogre::Vector3& temp);
 
-        /// @brief Gets a cAudio vector3.
-        /// @details Creates a cAudio vector3 with values equal to this class and returns it.
-        cAudio::cVector3 GetcAudioVector3() const;
-
-        /// @brief Copies an existing cAudio vector3.
-        /// @details This function will copy the values stored in an existing cAudio vector3
-        /// and set the values of this class to be the same.
-        /// @param temp The vector3 to be extracted.
-        void ExtractcAudioVector3(const cAudio::cVector3& temp);
-
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        // Serializable
         /// @brief Convert this class to an XML::Node ready for serialization
         /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
-        virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-
-        // DeSerializable
+        void ProtoSerialize(XML::Node& CurrentRoot) const;
         /// @brief Take the data stored in an XML and overwrite this instance of this object with it
         /// @param OneNode and XML::Node containing the data.
-        virtual void ProtoDeSerialize(const XML::Node& OneNode);
-
+        void ProtoDeSerialize(const XML::Node& OneNode);
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "Vector3"
         static String SerializableName();
-
-    };
-}// /Mezz
+    };//Vector3
+}//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Right Hand Arithmetic Operators
@@ -555,32 +464,6 @@ Mezzanine::Vector3 MEZZ_LIB operator* (const Ogre::Vector3 &Vec, const Mezzanine
 /// @return A Mezzanine::Vector3 with the results
 Mezzanine::Vector3 MEZZ_LIB operator/ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs);
 
-
-/// @brief Right Hand Addition Operator for cAudio Vectors with a Mezzanine::Vector3.
-/// @param Vec The cAudio Vector to be added.
-/// @param lhs The Mezzanine::Vector3 to be added.
-/// @return A Mezzanine::Vector3 with the Sum.
-Mezzanine::Vector3 MEZZ_LIB operator+ (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs);
-
-/// @brief Right Hand Subtraction Operator for cAudio Vectors with a Mezzanine::Vector3.
-/// @param Vec The cAudio Vector to be subtracted from.
-/// @param lhs The Mezzanine::Vector3 to be subtracted.
-/// @return A Mezzanine::Vector3 with the difference.
-Mezzanine::Vector3 MEZZ_LIB operator- (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs);
-
-/// @brief Right Hand Multiplication Operator for cAudio Vectors with a Mezzanine::Vector3.
-/// @param Vec The cAudio Vector to be multiplied.
-/// @param lhs The Mezzanine::Vector3 to be multiplied.
-/// @return A Mezzanine::Vector3 with the product.
-Mezzanine::Vector3 MEZZ_LIB operator* (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs);
-
-/// @brief Right Hand Division Operator for cAudio Vectors with a Mezzanine::Vector3.
-/// @param Vec The cAudio Vector to be divided by.
-/// @param lhs The Mezzanine::Vector3 to be divided.
-/// @return A Mezzanine::Vector3 with the results
-Mezzanine::Vector3 MEZZ_LIB operator/ (const cAudio::cVector3 &Vec, const Mezzanine::Vector3& lhs);
-
-
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
@@ -626,13 +509,6 @@ Ogre::Vector3& MEZZ_LIB operator << (Ogre::Vector3& VecTo, const Mezzanine::Vect
 /// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).
 Ogre::Vector3& MEZZ_LIB operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom);
 
-/// @brief Conversion Assignment Operator to Ogre::Vector3.
-/// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a cAudio::cVector3, this vector will be copied and unchanged.
-/// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).
-Ogre::Vector3& MEZZ_LIB operator << (Ogre::Vector3& VecTo, const cAudio::cVector3& VecFrom);
-
-
 /// @brief Conversion Assignment Operator to btVector3.
 /// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.
 /// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
@@ -645,13 +521,6 @@ btVector3& MEZZ_LIB operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom)
 /// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).
 btVector3& MEZZ_LIB operator << (btVector3& VecTo, const Mezzanine::Vector3& VecFrom);
 
-/// @brief Conversion Assignment Operator to btVector3.
-/// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a cAudio::cVector3, this vector will be copied and unchanged.
-/// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).
-btVector3& MEZZ_LIB operator << (btVector3& VecTo, const cAudio::cVector3& VecFrom);
-
-
 /// @brief Conversion Assignment Operator to Mezzanine::Vector3.
 /// @param VecTo The left hand side vector, is an Mezzanine::Vector3. The values of VecFrom will be copied here.
 /// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
@@ -663,31 +532,6 @@ Mezzanine::Vector3& MEZZ_LIB operator << (Mezzanine::Vector3& VecTo, const Ogre:
 /// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.
 /// @return An Mezzanine::Vector3 in case multiple operators are chainged together (not usually a good idea).
 Mezzanine::Vector3& MEZZ_LIB operator << (Mezzanine::Vector3& VecTo, const btVector3& VecFrom);
-
-/// @brief Conversion Assignment Operator to Mezzanine::Vector3.
-/// @param VecTo The left hand side vector, is an Mezzanine::Vector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a cAudio::cVector3, this vector will be copied and unchanged.
-/// @return An Mezzanine::Vector3 in case multiple operators are chainged together (not usually a good idea).
-Mezzanine::Vector3& MEZZ_LIB operator << (Mezzanine::Vector3& VecTo, const cAudio::cVector3& VecFrom);
-
-
-/// @brief Conversion Assignment Operator to cAudio::cVector3.
-/// @param VecTo The left hand side vector, is an cAudio::cVector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
-/// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).
-cAudio::cVector3& MEZZ_LIB operator << (cAudio::cVector3& VecTo, const Ogre::Vector3& VecFrom);
-
-/// @brief Conversion Assignment Operator to cAudio::cVector3.
-/// @param VecTo The left hand side vector, is an cAudio::cVector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.
-/// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).
-cAudio::cVector3& MEZZ_LIB operator << (cAudio::cVector3& VecTo, const btVector3& VecFrom);
-
-/// @brief Conversion Assignment Operator to cAudio::cVector3.
-/// @param VecTo The left hand side vector, is an cAudio::cVector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a Mezzanine::Vector3, this vector will be copied and unchanged.
-/// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).
-cAudio::cVector3& MEZZ_LIB operator << (cAudio::cVector3& VecTo, const Mezzanine::Vector3& VecFrom);
 #endif // \SWIG
 
 SWIG_INFO_ENDCLASS

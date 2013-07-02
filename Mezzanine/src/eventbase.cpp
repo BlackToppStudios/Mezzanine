@@ -68,10 +68,10 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Event
             stream << *dynamic_cast<const Mezzanine::EventUserInput*> (&Ev);
             break;
         case Mezzanine::EventBase::Other:
-            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event::Other... not sure what you are trying to serialize.");
+            MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event::Other... not sure what you are trying to serialize.");
             break;
         default:
-            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event... not sure what you are trying to serialize.");
+            MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event... not sure what you are trying to serialize.");
             break;
     }
     return stream;

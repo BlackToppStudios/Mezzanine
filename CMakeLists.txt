@@ -56,12 +56,19 @@
 #        Mezz_BuildTypeSmall                - False - The Engine will be optimizing for minimum size by setting CMAKE_BUILD_TYPE, MEZZSMALL is passed into the source when compiling as a preprocessor macro.
 #        Mezz_Lua51                         - True if lua is to be included and link against. False if lua was not selected to be compiled in.
 #        Mezz_Network                       - Enable or disable networking support
+#        Mezz_AllWarnings                   - Enable all compiler warnings
+#
+# Build Extra Features alongside the Mezzanine
+#        Mezz_Doc                           - Check for Doxygen on the system and force a doxygen build as part of a full build when it is present.
 #
 # Advanced Mezzanine build options
 #        Mezz_Profile                       - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
 #        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
+#        Mezz_MinimizeThreadsEachFrame      - On some platforms thread creation is expensive, on others it is cheap and atomics expensive. Use this with your favorite benchmark to maximize performance.
+#        Mezz_DecacheWorkUnits              - Different CPUs have different Cache sizes and different ratios of actual work to IO bandwith. This tries to increase the amount of work done at the expense of forcing work units to be reloaded into CPU from RAM each frame. Use this with your favorite benchmark to maximize performance.
+#        Mezz_FramesToTrack                 - How many frame should the runtime performance metrics be tracked for
 #
-# Depracated options
+# Deprecated options
 #        Mezz_XML                           - Previously disabled/enabled XML options, now XML is used everywhere. Thsi option has been removed.
 #
 # That affect only build time values:
@@ -106,9 +113,9 @@ Message(STATUS "Putting all major output in: ${ProjectBinaryDir}")
 
 #######################################
 # PostFix configuration
-SET(CMAKE_DEBUG_POSTFIX "_Debug" CACHE STRING "Adds a postfix for debug-built libraries.")
-SET(CMAKE_MINSIZEREL_POSTFIX "_MinsizeRel" CACHE STRING "Adds a postfix for MinsizeRelease-built libraries.")
-SET(CMAKE_RELWITHDEBINFO_POSTFIX "_RelWithDebugInfo" CACHE STRING "Adds a postfix for ReleaseWithDebug-built libraries.")
+SET(CMAKE_DEBUG_POSTFIX "" CACHE STRING "Adds a postfix for debug-built libraries." FORCE)
+SET(CMAKE_MINSIZEREL_POSTFIX "" CACHE STRING "Adds a postfix for MinsizeRelease-built libraries." FORCE)
+SET(CMAKE_RELWITHDEBINFO_POSTFIX "" CACHE STRING "Adds a postfix for ReleaseWithDebug-built libraries." FORCE)
 mark_as_advanced(CMAKE_DEBUG_POSTFIX CMAKE_MINSIZEREL_POSTFIX CMAKE_RELWITHDEBINFO_POSTFIX)
 
 ###############################################################################
@@ -266,19 +273,6 @@ else(${Mezz_Profile})
 endif(${Mezz_Profile})
 
 ###############################################################################
-# Check For the Mezz_XML option and set values accordingly
-#option(Mezz_XML "Enable XML and XML serialization support." ON)
-#if(${Mezz_XML})
-#    message ( STATUS "${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting MEZZXML")
-#    set(Mezz_XML_Arguments "${D}MEZZXML")
-#    set(Mezz_XML_Defined "MEZZXML = 1")
-#else(${Mezz_XML})
-#    message ( STATUS "${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting MEZZXML")
-#    set(Mezz_XML_Arguments "${D}MEZZXML_undefined")
-#    set(Mezz_XML_Defined "MEZZXML_undefined")
-#endif(${Mezz_XML})
-
-###############################################################################
 # Check For the Mezz_Network option and set values accordingly
 option(Mezz_Network "Enable Networking support." ON)
 if(${Mezz_Network})
@@ -303,6 +297,34 @@ else(${Mezz_Lua51})
 endif(${Mezz_Lua51})
 
 ###############################################################################
+# DAGFrameScheduler
+
+#How long should the default length on rolling averages and other multiframe periods be.
+set(Mezz_FramesToTrack 10 CACHE STRING "How long should frame durations be tracked for")
+
+# Allow the developer to select if New thread should be created each frame or if an atomic barrier should be used to synchronized threads.
+option(Mezz_MinimizeThreadsEachFrame "Used atomics to minimize thread creation" OFF)
+set(MinimizeThreads THREADSEACHFRAME)
+if (Mezz_MinimizeThreadsEachFrame)
+    set(MinimizeThreads MINTHREADS)
+endif (Mezz_MinimizeThreadsEachFrame)
+
+#When looking for work use atomics to advance iterators past complete work units.
+option(Mezz_DecacheWorkUnits "Use atomics to minimize how many WorkUnits are likely to be in CPU cache]." ON)
+set(DecacheWork NODECACHEWORKUNIT)
+if (Mezz_DecacheWorkUnits)
+    set(DecacheWork DECACHEWORKUNIT)
+endif (Mezz_DecacheWorkUnits)
+
+add_definitions(
+    -D_MEZZ_STATIC_BUILD_                   # Trailing slash indicates that compiler header should massage this before the library consumes
+    -D_MEZZ_${MinimizeThreads}_
+    -D_MEZZ_${DecacheWork}_
+    -D_MEZZ_FRAMESTOTRACK_=${Mezz_FramesToTrack}
+)
+
+
+###############################################################################
 # Misc simple defines
 option(Mezz_ThrowOnSingletonFetch "When retrieving an invalid Singleton, should an exception be thrown" OFF)
 if(${Mezz_ThrowOnSingletonFetch})
@@ -312,6 +334,25 @@ else(${Mezz_ThrowOnSingletonFetch})
     message ( STATUS "${PROJECT_NAME} - Disabling exceptions on bad singleton fetches")
     set(Mezz_ThrowOnSingletonFetch_Arguments "${D}THROW_ON_FETCH_FAIL_undefined")
 endif(${Mezz_ThrowOnSingletonFetch})
+
+# Allow the developer to disable mandatory compiler wanrings, in case it breaks stuff
+option(Mezz_AllWarnings "Used atomics to minimize thread creation" ON)
+if (Mezz_AllWarnings)
+    if(MSVC)
+    # Force to always compile with W4
+        if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
+            string(REGEX REPLACE "/W[0-4]" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+        else()
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+        endif()
+    elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+            # Update if necessary
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic")
+    endif()
+endif (Mezz_AllWarnings)
+
+###############################################################################
+# Misc simple defines
 
 #######################################
 # Ogre3d related values
@@ -412,7 +453,24 @@ Message(STATUS "Looking for Ogre3d headers in: ${OgreHeaderIncludeDir}")
 #set(OgrePluginRenderGL ${StaticLibPrefix}RenderSystem_GL${OgresD}${StaticLibSuffix})
 #set(OgrePluginParticle ${StaticLibPrefix}Plugin_ParticleFX${OgresD}${StaticLibSuffix})
 
+###############################################################################
+# Doxygen options
+option (Mezz_Doc "Refresh Doxygen documentation during a build" OFF)
 
+if(Mezz_Doc)
+    Message(STATUS "Starting Doxygen Configuration.")
+    find_package(Doxygen)
+    if(DOXYGEN_FOUND)
+        add_custom_target(MezzanineDocumentation ALL
+            ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/Doxyfile
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/doxygen/doxyfiles/
+            COMMENT "Generating API documentation with Doxygen" VERBATIM
+        )
+    else(DOXYGEN_FOUND)
+        Message(STATUS "Doxygen not found.")
+    endif(DOXYGEN_FOUND)
+    Message(STATUS "Finishing Doxygen Configuration.")
+endif(Mezz_Doc)
 
 ###############################################################################
 # Network Library Define
@@ -438,8 +496,6 @@ set(Bullet_LibraryNames
 )
 
 set(SoundLibraryNames
-    "cAudio"
-    "openal"
     "oggvorbis"
 )
 
@@ -468,6 +524,7 @@ mark_as_advanced( FORCE
 
     # Mezzanine options
     Mezz_UseOgreVersion Mezz_Profile Mezz_ThrowOnSingletonFetch
+    Mezz_MinimizeThreadsEachFrame Mezz_FramesToTrack Mezz_DecacheWorkUnits
 
     # Misc Options
     CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX CMAKE_DEBUG_POSTFIX CMAKE_GNUtoMS
@@ -498,7 +555,7 @@ mark_as_advanced( FORCE
     SDL_ALTIVEC SDL_DISKAUDIO SDL_DUMMYAUDIO SDL_VIDEO_DIRECTFB SDL_DIRECTFB_SHARED SDL_FUSIONSOUND
     SDL_FUSIONSOUND_SHARED SDL_VIDEO_DUMMY SDL_VIDEO_OPENGL SDL_VIDEO_OPENGLES SDL_PTHREADS SDL_PTHREADS_SEM
     SDL_DLOPEN SDL_OSS SDL_ALSA SDL_ALSA_SHARED SDL_ESD SDL_ESD_SHARED SDL_PULSEAUDIO SDL_PULSEAUDIO_SHARED
-    SDL_ARTS SDL_ARTS_SHARED SDL_NAS SDL_RPATH SDL_CLOCK_GETTIME SDL_INPUT_TSLIB SDL_VIDEO_X11
+    SDL_ARTS SDL_ARTS_SHARED SDL_NAS SDL_RPATH SDL_CLOCK_GETTIME INPUT_TSLIB SDL_VIDEO_X11
     SDL_X11_SHARED SDL_VIDEO_X11_XCURSOR SDL_VIDEO_X11_XINERAMA SDL_VIDEO_X11_XINPUT SDL_VIDEO_X11_XRANDR
     SDL_VIDEO_X11_XSCRNSAVER SDL_VIDEO_X11_XSHAPE SDL_VIDEO_X11_XVM SDL_VIDEO_COCOA SDL_DIRECTX
     SDL_RENDER_D3D

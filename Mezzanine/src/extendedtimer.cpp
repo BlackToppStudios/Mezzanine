@@ -68,6 +68,8 @@ namespace Mezzanine
             case ExtendedTimer::Initial:
                 return InitialTime;
                 break;
+            default:
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Invalid Timer type acquisition");
         }
     }
 

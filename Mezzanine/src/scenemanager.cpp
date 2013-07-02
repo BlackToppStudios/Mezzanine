@@ -957,7 +957,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                 Mezzanine::Light* ChildLight = Ev.CreateLight(ChildName);
                                 Child >> *ChildLight;
                             }else{
-                                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to deserialize nameless light during deserialization of SceneManager but lights must have a name.");
+                                MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to deserialize nameless light during deserialization of SceneManager but lights must have a name.");
                             }
                         }else{
                             MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element L-\"" + Name + "\".");
@@ -975,10 +975,10 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                                     Mezzanine::ParticleEffect* ChildPE = Ev.CreateParticleEffect(ChildName,ChildTemplate);
                                     Child >> *ChildPE;
                                 }else{
-                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to deserialize Templateless ParticleEffect during deserialization of SceneManager but ParticleEffects must have a Template.");
+                                    MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to deserialize Templateless ParticleEffect during deserialization of SceneManager but ParticleEffects must have a Template.");
                                 }
                             }else{
-                                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to deserialize nameless ParticleEffect during deserialization of SceneManager but ParticleEffects must have a name.");
+                                MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to deserialize nameless ParticleEffect during deserialization of SceneManager but ParticleEffects must have a name.");
                             }
                         }else{
                             MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element P-\"" + Name + "\".");
@@ -994,7 +994,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                             {
                                 Mezzanine::WorldNode* ChildNode = Ev.CreateWorldNode(ChildName);
                             }else{
-                                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to deserialize nameless WorldNode during deserialization of SceneManager but WorldNodes must have a name.");
+                                MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to deserialize nameless WorldNode during deserialization of SceneManager but WorldNodes must have a name.");
                             }
                         }else{
                             MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element W-\"" + Name + "\".");

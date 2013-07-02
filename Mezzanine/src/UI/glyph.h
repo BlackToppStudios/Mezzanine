@@ -56,7 +56,8 @@ namespace Mezzanine
         {
             public:
                 /// @brief Class constructor.
-                Glyph() : UVTop(0), UVBottom(0), UVWidth(0), UVHeight(0), UVLeft(0), UVRight(0), GlyphAdvance(0), VerticalOffset(0), GlyphSize(Vector2()) {};
+                Glyph() : UVTop(0), UVBottom(0), UVWidth(0), UVHeight(0), UVLeft(0), UVRight(0),
+                    VerticalOffset(0), GlyphAdvance(0), GlyphSize(Vector2()) {};
                 /// @brief Class destructor.
                 ~Glyph() {};
 
@@ -94,7 +95,7 @@ namespace Mezzanine
                         return 0;
                     for(size_t i=0;i < Kernings.size();i++)
                     {
-                        if((UInt32)(Kernings[i].Character) == Left_of)
+                        if((UInt32)(Kernings[i].Character) == (UInt32)Left_of)
                             return Kernings[i].Kerning;
                     }
                     return 0;

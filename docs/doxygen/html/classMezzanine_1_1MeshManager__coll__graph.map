@@ -16,7 +16,7 @@
 <area shape="rect" id="node35" href="$classMezzanine_1_1Graphics_1_1InternalMeshData.xhtml" title="This class is used to store the internal structures needed by the Mesh class." alt="" coords="981,229,1120,273"/>
 <area shape="rect" id="node37" href="$classMezzanine_1_1Graphics_1_1Skeleton.xhtml" title="This class encapsulates the Skeletal animation functionality of a Mesh." alt="" coords="981,314,1120,358"/>
 <area shape="rect" id="node41" href="$classMezzanine_1_1Graphics_1_1Bone.xhtml" title="This class encapsulates the bones contained in a skeleton used for animation." alt="" coords="1257,383,1396,427"/>
-<area shape="rect" id="node43" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="965,394,1136,438"/>
+<area shape="rect" id="node43" href="$classMezzanine_1_1TransformableChildObject.xhtml" title="This is an interface for all child 3D objects that can have their full transforms manipulated..." alt="" coords="965,394,1136,438"/>
 <area shape="rect" id="node46" href="$classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" title="This class is used to store the internal structures needed by the Skeleton class." alt="" coords="711,314,860,358"/>
 <area shape="rect" id="node50" href="$classMezzanine_1_1Graphics_1_1SubMesh.xhtml" title="This class represents a sub&#45;section of an overall mesh." alt="" coords="716,170,855,214"/>
 </map>

@@ -52,6 +52,13 @@
 /// @todo Remove #include "mezzanine.h" and just include what is required. Waiting for multithreaded refactor, because we will have to do this again after that.
 #include "mezzanine.h"
 
+//Enabled implementation includes
+#ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
+    // Permit the factories to be visible so they can be auto-added.
+    #include "Audio/OALS/oalsaudiomanagerfactory.h"
+    #include "Audio/OALS/oalssoundscapemanagerfactory.h"
+#endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
+
 //#include "OgreBspSceneManagerPlugin.h"
 //#include "OgreCgPlugin.h"
 //#include "OgreOctreePlugin.h"
@@ -153,7 +160,7 @@ namespace Mezzanine
         //Set some sane Defaults for some values
         this->TargetFrameLength = 16;
         this->FrameTime = 0;
-        this->ManualLoopBreak = false;
+        this->ManualLoopBreak = 0;
 
         this->SetLoggingFrequency(LogOncePerFrame);
 
@@ -170,6 +177,8 @@ namespace Mezzanine
         for(std::vector<ManagerBase*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
             { this->AddManager(*iter); }
 
+        //Dummy param list so we can use the auto-added manager types if needed
+        NameValuePairList Params;
         //Create and add any managers that have not been taken care of yet.
         if(this->GetActorManager()==0)
             { this->AddManager(new ActorManager()); }
@@ -177,8 +186,6 @@ namespace Mezzanine
             { this->AddManager(new ResourceManager(EngineDataPath)); }
         if(this->GetGraphicsManager()==0)
             { this->AddManager(new GraphicsManager()); }
-        if(this->GetAudioManager()==0)
-            { this->AddManager(new AudioManager()); }
         if(this->GetEventManager()==0)
             { this->AddManager(new EventManager()); }
         if(this->GetInputManager()==0)
@@ -197,6 +204,12 @@ namespace Mezzanine
             { this->AddManager(new CollisionShapeManager()); }
         if(this->GetCameraManager()==0)
             { this->AddManager(new CameraManager()); }
+        #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
+        if(this->GetAudioManager()==0)
+            { this->AddManager( this->CreateManager("OALSAudioManager",Params,false) ); }
+        if(this->GetSoundScapeManager()==0)
+            { this->AddManager( this->CreateManager("OALSSoundScapeManager",Params,false) ); }
+        #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -237,9 +250,16 @@ namespace Mezzanine
 
         // Open and load the initializer doc.
         ResourceManager* ResourceMan = GetResourceManager();
-        Resource::FileStreamDataStream InitStream(InitializerFile,EngineDataPath);
+        /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+        Resource::FileStream InitStream(InitializerFile,EngineDataPath);
         XML::Document InitDoc;
-        InitDoc.Load(InitStream);
+        XML::ParseResult DocResult = InitDoc.Load(InitStream);
+        if( DocResult.Status != XML::StatusOk )
+        {
+            StringStream ExceptionStream;
+            ExceptionStream << "Failed to parse XML file \"" << InitializerFile << "\".";
+            MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+        }
 
         // Get the world settings and set them.
         XML::Node WorldSettings = InitDoc.GetChild("WorldSettings");
@@ -323,7 +343,8 @@ namespace Mezzanine
         // Load additional resource groups
         /*if(!ResourceInit.empty())
         {
-            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
+            /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+            Resource::FileStream ResourceStream(ResourceInit,EngineDataPath);
             XML::Document ResourceDoc;
             ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.
@@ -373,7 +394,8 @@ namespace Mezzanine
         // Load additional resource groups
         if(!ResourceInit.empty())
         {
-            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
+            /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+            Resource::FileStream ResourceStream(ResourceInit,EngineDataPath);
             XML::Document ResourceDoc;
             ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.
@@ -426,24 +448,20 @@ namespace Mezzanine
 
     void Entresol::SanityChecks()
     {
-        crossplatform::WaitMilliseconds(1500);
+        //crossplatform::WaitMilliseconds(1500);
         //Perform a Test that only needs to be done once for the SDL/userinputevent system.`
-        Log("Verifying size of userinput events:");
+        /*Log("Verifying size of userinput events:");
         Log(sizeof(Input::InputCode));
         Log(sizeof(SDL_Scancode));
-        Log(sizeof(int));
+        Log(sizeof(int));//*/
         if(sizeof(Input::InputCode) != sizeof(SDL_Scancode))
         {
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go be buggier than a highschool fortran class.");
-        }else{
-            Log("External User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }
 
         if(sizeof(Input::InputCode) != sizeof(int))
         {
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
-        }else{
-            Log("Internal User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }
     }
 
@@ -529,21 +547,11 @@ namespace Mezzanine
 
         void EachFrame()
         {
-            #ifdef MEZZDEBUG
-            static Whole LogIteration = 0;
-            Entresol::GetSingletonPtr()->LogStream << "Logging - every frame, iteration: " << LogIteration;
-            ++LogIteration;
-            #endif
             Entresol::GetSingletonPtr()->DoMainLoopLogging();
         }
 
         void EachXFrame()
         {
-            #ifdef MEZZDEBUG
-            static Whole LogIteration = 0;
-            Entresol::GetSingletonPtr()->LogStream << "Logging - per X frames, iteration: " << LogIteration;
-            ++LogIteration;
-            #endif
             static Whole X=0;
             if (X>FrequencyCounter__)
             {
@@ -562,11 +570,6 @@ namespace Mezzanine
         {
             virtual void DoCallbackItems()
             {
-                #ifdef MEZZDEBUG
-                static Whole LogIteration = 0;
-                Entresol::GetSingletonPtr()->LogStream << "Logging - per X seconds, iteration: " << LogIteration;
-                ++LogIteration;
-                #endif
                 Entresol::GetSingletonPtr()->DoMainLoopLogging();
                 LogTimer->Reset();
                 LogTimer->Start();
@@ -639,11 +642,8 @@ namespace Mezzanine
     void Entresol::LogString(const String& Message)
     {
         // if it is in the Audiologs then it has already happened so it needs to be logged first
-        AudioManager* AudioMan = this->GetAudioManager();
-        if(AudioMan && AudioMan->GetLogs())
-            { this->LogStream << AudioMan->GetLogs()->str(); }
         if(Message.size()>0)
-            { this->LogStream << endl << Message; }
+            { this->LogStream << Message; }
     }
 
     void Entresol::Log()
@@ -657,13 +657,12 @@ namespace Mezzanine
 
     void Entresol::EngineInit( const bool &CallMainLoop )
     {
-        #ifdef MEZZDEBUG
-        this->Log("Entering EngineInit()");
-        #endif
-
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
-            this->LogStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << " Manager" << endl;
+            StringStream InitStream;
+            InitStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << ".";
+            this->Log(InitStream.str());
+            this->DoMainLoopLogging();
             if((*Iter)->GetInterfaceType() != ManagerBase::GraphicsManager)
             {
                 (*Iter)->Initialize();
@@ -673,14 +672,7 @@ namespace Mezzanine
 
         if(CallMainLoop)
         {
-            #ifdef MEZZDEBUG
-            this->Log("Starting the main loop");
-            #endif
             this->MainLoop();
-        }else{
-            #ifdef MEZZDEBUG
-            this->Log("Not calling the main loop");
-            #endif
         }
     }
 
@@ -710,45 +702,76 @@ namespace Mezzanine
              20 Resources
         */
 
-        Ogre::Timer* LoopTimer = new Ogre::Timer();
+        Ogre::Timer* ManagerTimer = new Ogre::Timer();
+        Ogre::Timer* FrameTimer = new Ogre::Timer();
         this->OneTimeMainLoopInit();
         //As long as all the CallBacks return true the game continues
-        bool DoNotBreak=true;
-        while (DoNotBreak)
+        bool DoNotBreak = true;
+        while(DoNotBreak)
         {
+            WorkScheduler.RunAllMonopolies(); //1
+            WorkScheduler.CreateThreads();    //2
+            WorkScheduler.RunMainThreadWork();//3
+            WorkScheduler.JoinAllThreads();   //4
+            WorkScheduler.ResetAllWorkUnits();//5
+
+            #ifdef MEZZDEBUG
+            static UInt32 FrameCounter = 0;
+
+            StringStream FrameStream;
+            FrameStream << "-------------------------- Starting Frame: " << FrameCounter << " --------------------------";
+            this->Log(FrameStream.str());
+            this->DoMainLoopLogging();
+            FrameStream.str("");
+
+            FrameTimer->reset();
+            #endif
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
                 #ifdef MEZZDEBUG
-                this->LogStream << "Current Manager: " << (*Iter)->GetInterfaceTypeAsString() << " - Priority: " << (*Iter)->GetPriority();
-                this->DoMainLoopLogging();
+                StringStream ManagerStream;
+                ManagerStream << "Current Manager: " << (*Iter)->GetInterfaceTypeAsString() << " - Priority: " << (*Iter)->GetPriority();
                 #endif
 
-                #ifdef MEZZPROFILE
-                LoopTimer->reset();
+                #ifdef MEZZDEBUG
+                ManagerTimer->reset();
                 #endif
 
                 //Actual main loop work
                 if( !(*Iter)->PreMainLoopItems() )
-                    { DoNotBreak=false; }
+                    { DoNotBreak = false; }
 
                 (*Iter)->DoMainLoopItems();
 
                 if( !(*Iter)->PostMainLoopItems() )
-                    { DoNotBreak=false; }
+                    { DoNotBreak = false; }
 
-                #ifdef MEZZPROFILE
-                this->LogStream << (*Iter)->GetInterfaceTypeAsString() << " took " << LoopTimer->getMicroseconds() << " microseconds.";
+                #ifdef MEZZDEBUG
+                ManagerStream << " - Execution Time: " << ManagerTimer->getMicroseconds() << " microseconds.";
+                this->Log(ManagerStream.str());
                 this->DoMainLoopLogging();
                 #endif
 
                 LogCommitFunc();
             }
-            if(ManualLoopBreak)
-                    break;
+
+            #ifdef MEZZDEBUG
+            FrameStream.str("");
+            FrameStream << "-------------------------- Ending Frame: " << FrameCounter << ", After " << FrameTimer->getMicroseconds() << " microseconds --------------------------";
+            this->Log(FrameStream.str());
+            this->DoMainLoopLogging();
+            ++FrameCounter;
+            #endif
+            if( ManualLoopBreak )
+                break;
+
+            WorkScheduler.WaitUntilNextFrame(); //6
+
         }//End of main loop
 
-        ManualLoopBreak = false;
-        delete LoopTimer;
+        ManualLoopBreak = 0;
+        delete ManagerTimer;
+        delete FrameTimer;
     }
 
     void Entresol::DoMainLoopLogging()
@@ -762,7 +785,9 @@ namespace Mezzanine
 
     void Entresol::BreakMainLoop()
     {
-        ManualLoopBreak = true;
+        while(!ManualLoopBreak)
+            { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,0,1); }
+        //ManualLoopBreak = true;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -841,9 +866,6 @@ namespace Mezzanine
         //DefaultActorManager
         ManIt = ManagerFactories.find("DefaultActorManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultActorManagerFactory());
-        //DefaultAudioManager
-        ManIt = ManagerFactories.find("DefaultAudioManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultAudioManagerFactory());
         //DefaultCameraManager
         ManIt = ManagerFactories.find("DefaultCameraManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultCameraManagerFactory());
@@ -883,6 +905,15 @@ namespace Mezzanine
         //DefaultUIManager
         ManIt = ManagerFactories.find("DefaultUIManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultUIManagerFactory());
+
+        #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
+        //OALSAudioManager
+        ManIt = ManagerFactories.find("OALSAudioManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Audio::OALS::OALSAudioManagerFactory());
+        //OALSSoundScapeManager
+        ManIt = ManagerFactories.find("OALSSoundScapeManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Audio::OALS::OALSSoundScapeManagerFactory());
+        #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -931,7 +962,8 @@ namespace Mezzanine
         {
             Current = (*iter);
             #ifdef MEZZDEBUG
-            this->Log("Deleting " + Current->GetInterfaceTypeAsString());
+            this->Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
+            this->DoMainLoopLogging();
             #endif
             DestroyManager(Current);
         }
@@ -941,7 +973,8 @@ namespace Mezzanine
     void Entresol::AddManager(ManagerBase* ManagerToAdd)
     {
         #ifdef MEZZDEBUG
-        this->LogStream << "Calling Entresol::AddManager("<<ManagerToAdd<<") size before:" <<this->ManagerList.size();
+        this->Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".");
+        this->DoMainLoopLogging();
         #endif
         if(!this->ManagerList.empty())
         {
@@ -953,17 +986,11 @@ namespace Mezzanine
                 if( (*ManIter)->GetPriority() > ManagerToAdd->GetPriority() )
                 {
                     this->ManagerList.insert(ManIter, ManagerToAdd);
-                    #ifdef MEZZDEBUG
-                    this->LogStream << " - Added by sorted insertion:"<<ManagerToAdd<<" - size after:" <<this->ManagerList.size() ;
-                    #endif
                     return;
                 }
             }
         }
         ManagerList.push_back(ManagerToAdd);
-        #ifdef MEZZDEBUG
-        this->LogStream << " - Added by push_back:"<<ManagerToAdd<<" - size after:" <<this->ManagerList.size() << endl;
-        #endif
     }
 
     void Entresol::RemoveManager(ManagerBase* ManagerToRemove)
@@ -1006,34 +1033,20 @@ namespace Mezzanine
 
     ManagerBase* Entresol::GetManager(const ManagerBase::ManagerType& ManagersToGet, short unsigned int WhichOne)
     {
-        #ifdef MEZZDEBUG
-        //this->LogStream << "Calling Entresol::GetManager(Type:"<<ManagersToGet<<") searching through "<<this->ManagerList.size()<<" Items.";
-        #endif
         if(this->ManagerList.empty())
         {
-            return 0;
+            return NULL;
         }else{
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
                 if( (*ManIter)->GetInterfaceType() == ManagersToGet )
                 {
-                    if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
-                    {
-                        #ifdef MEZZDEBUG
-                        //this->LogStream << " - Got:" << *ManIter;
-                        //this->Log();
-                        #endif
-                        return *ManIter;
-                    }else{
-                        --WhichOne;
-                    }
+                    if(0==WhichOne) return *ManIter; // we use our copy of WhichOne as a countdown to 0
+                    else --WhichOne;
                 }
             }
         }
-        #ifdef MEZZDEBUG
-        //this->LogStream << " - Got:Nothing" << endl;
-        #endif
-        return 0;
+        return NULL;
     }
 
     void Entresol::UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority_)
@@ -1071,72 +1084,77 @@ namespace Mezzanine
         }
     }
 
-    ActorManager* Entresol::GetActorManager(const short unsigned int &WhichOne)
+    ActorManager* Entresol::GetActorManager(const UInt16 WhichOne)
     {
         return dynamic_cast<ActorManager*> (this->GetManager(ManagerBase::ActorManager, WhichOne));
     }
 
-    AudioManager* Entresol::GetAudioManager(const short unsigned int &WhichOne)
+    Audio::AudioManager* Entresol::GetAudioManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<AudioManager*> (this->GetManager(ManagerBase::AudioManager, WhichOne));
+        return dynamic_cast<Audio::AudioManager*> (this->GetManager(ManagerBase::AudioManager, WhichOne));
     }
 
-    CameraManager* Entresol::GetCameraManager(const short unsigned int &WhichOne)
+    CameraManager* Entresol::GetCameraManager(const UInt16 WhichOne)
     {
         return dynamic_cast<CameraManager*> (this->GetManager(ManagerBase::CameraManager, WhichOne));
     }
 
-    CollisionShapeManager* Entresol::GetCollisionShapeManager(const short unsigned int &WhichOne)
+    CollisionShapeManager* Entresol::GetCollisionShapeManager(const UInt16 WhichOne)
     {
         return dynamic_cast<CollisionShapeManager*> (this->GetManager(ManagerBase::CollisionShapeManager, WhichOne));
     }
 
-    EventManager* Entresol::GetEventManager(const short unsigned int &WhichOne)
+    EventManager* Entresol::GetEventManager(const UInt16 WhichOne)
     {
         return dynamic_cast<EventManager*> (this->GetManager(ManagerBase::EventManager, WhichOne));
     }
 
-    GraphicsManager* Entresol::GetGraphicsManager(const short unsigned int &WhichOne)
+    GraphicsManager* Entresol::GetGraphicsManager(const UInt16 WhichOne)
     {
         return dynamic_cast<GraphicsManager*> (this->GetManager(ManagerBase::GraphicsManager, WhichOne));
     }
 
-    InputManager* Entresol::GetInputManager(const short unsigned int &WhichOne)
+    InputManager* Entresol::GetInputManager(const UInt16 WhichOne)
     {
         return dynamic_cast<InputManager*> (this->GetManager(ManagerBase::InputManager, WhichOne));
     }
 
-    MeshManager* Entresol::GetMeshManager(const short unsigned int &WhichOne)
+    MeshManager* Entresol::GetMeshManager(const UInt16 WhichOne)
     {
         return dynamic_cast<MeshManager*> (this->GetManager(ManagerBase::MeshManager, WhichOne));
     }
     #ifdef MEZZNETWORK
-    NetworkManager* Entresol::GetNetworkManager(const short unsigned int &WhichOne)
+    NetworkManager* Entresol::GetNetworkManager(const UInt16 WhichOne)
     {
         return dynamic_cast<NetworkManager*> (this->GetManager(ManagerBase::NetworkManager, WhichOne));
     }
     #endif
-    PhysicsManager* Entresol::GetPhysicsManager(const short unsigned int &WhichOne)
+    PhysicsManager* Entresol::GetPhysicsManager(const UInt16 WhichOne)
     {
         return dynamic_cast<PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));
     }
 
-    SceneManager* Entresol::GetSceneManager(const short unsigned int &WhichOne)
+    SceneManager* Entresol::GetSceneManager(const UInt16 WhichOne)
     {
         return dynamic_cast<SceneManager*> (this->GetManager(ManagerBase::SceneManager, WhichOne));
     }
 
-    ResourceManager* Entresol::GetResourceManager(const short unsigned int &WhichOne)
+    Audio::SoundScapeManager* Entresol::GetSoundScapeManager(const UInt16 WhichOne)
+    {
+        return dynamic_cast<Audio::SoundScapeManager*> (this->GetManager(ManagerBase::SoundScapeManager, WhichOne));
+    }
+
+    ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
     {
         return dynamic_cast<ResourceManager*> (this->GetManager(ManagerBase::ResourceManager, WhichOne));
     }
 
-    TimerManager* Entresol::GetTimerManager(const short unsigned int &WhichOne)
+    TimerManager* Entresol::GetTimerManager(const UInt16 WhichOne)
     {
         return dynamic_cast<TimerManager*> (this->GetManager(ManagerBase::TimerManager, WhichOne));
     }
 
-    UIManager* Entresol::GetUIManager(const short unsigned int &WhichOne)
+    UIManager* Entresol::GetUIManager(const UInt16 WhichOne)
     {
         return dynamic_cast<UIManager*> (this->GetManager(ManagerBase::UIManager, WhichOne));
     }

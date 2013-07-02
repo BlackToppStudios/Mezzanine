@@ -57,7 +57,7 @@ namespace Mezzanine
             /// @brief Empty constructor
             TimerCallback() {};
             /// @brief Empty deconstructor
-            ~TimerCallback() {};
+            virtual ~TimerCallback() {};
             /// @brief The function called for this callback.
             virtual void DoCallbackItems() = 0;
     };

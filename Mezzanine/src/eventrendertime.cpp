@@ -73,6 +73,9 @@ namespace Mezzanine
     {
         this->Rendertime=rhs.Rendertime;
     }
+
+    EventRenderTime::~EventRenderTime()
+    {}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

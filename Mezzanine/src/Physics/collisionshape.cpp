@@ -192,10 +192,10 @@ namespace Mezzanine
                     case CollisionShape::ST_Compound: // holy recursive batman
                         return new CompoundCollisionShape(Name_,(btCompoundShape*)ShapeToModel);
                     default:
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance."); }
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an empty Bullet Collision Shape type into a CollisionShape instance.");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an empty Bullet Collision Shape type into a CollisionShape instance.");
             }
         }
 
@@ -237,7 +237,7 @@ namespace Mezzanine
                 case CollisionShape::ST_Compound: // holy recursive batman
                     return new CompoundCollisionShape(Name_);
                 default:
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance."); }
             }
         }
 
@@ -259,7 +259,7 @@ namespace Mezzanine
                 case TRIANGLE_MESH_SHAPE_PROXYTYPE: return CollisionShape::ST_StaticTriMesh;
                 case COMPOUND_SHAPE_PROXYTYPE:      return CollisionShape::ST_Compound;
                 default:
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Bullet Collision Shape type into a Physics::CollisionShapeShapeType."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Bullet Collision Shape type into a Physics::CollisionShapeShapeType."); }
             }
         }
 
@@ -281,77 +281,77 @@ namespace Mezzanine
                 case CollisionShape::ST_StaticTriMesh:  return String("StaticMeshCollisionShape");
                 case CollisionShape::ST_Compound:       return String("CompoundCollisionShape");
                 default:
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a String."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a String."); }
             }
         }
 
         CollisionShape::ShapeType StringToShapeType(const String& TypeName)
         {
             if(TypeName.size()<5)
-                { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert a CollisionShape::ShapeType String into a CollisionShape::ShapeType which is too short to be valid."); }
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert a CollisionShape::ShapeType String into a CollisionShape::ShapeType which is too short to be valid."); }
             switch(TypeName.at(3))
             {
                 case 'C':
                     if (String("BoxCollisionShape")==TypeName)
                         { return CollisionShape::ST_Box; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'C'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'C'."); }
                 case 's':
                     if (String("CapsuleCollisionShape")==TypeName)
                         { return CollisionShape::ST_Capsule; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 's'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 's'."); }
                 case 'e':
                     if (String("SphereCollisionShape")==TypeName)
                         { return CollisionShape::ST_Sphere; }
                     else if (String("ConeCollisionShape")==TypeName)
                         { return CollisionShape::ST_Cone; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'e'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'e'."); }
                 case 'v':
                     if (String("ConvexHullCollisionShape")==TypeName)
                         { return CollisionShape::ST_ConvexHull; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'v'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'v'."); }
                 case 'i':
                     if (String("CylinderCollisionShape")==TypeName)
                         { return CollisionShape::ST_Cylinder; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'i'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'i'."); }
                 case 't':
                     if (String("StaticMeshCollisionShape")==TypeName)
                         { return CollisionShape::ST_StaticTriMesh; }
                     else if (String("MultiSphereCollisionShape")==TypeName)
                         { return CollisionShape::ST_MultiSphere; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 't'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 't'."); }
                 case 'a':
                     if (String("DynamicMeshCollisionShape")==TypeName)
                         { return CollisionShape::ST_DynamicTriMesh; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'a'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'a'."); }
                 case 'g':
                     if (String("HeightfieldCollisionShapeString")==TypeName)
                         { return CollisionShape::ST_Heightfield; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'g'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'g'."); }
                 case 'n':
                     if (String("PlaneCollisionShape")==TypeName)
                         { return CollisionShape::ST_Plane; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'n'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'n'."); }
                 case 'o':
                     if (String("ActorSoftCollisionShape")==TypeName)
                         { return CollisionShape::ST_ActorSoft; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'o'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'o'."); }
                 case 'p':
                     if (String("CompoundCollisionShape")==TypeName)
                         { return CollisionShape::ST_Compound; }
                     else
-                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'p'."); }
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'p'."); }
                 default:
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType."); }
             }
         }
 
@@ -364,7 +364,7 @@ namespace Mezzanine
             if(!Doc->Load(OneTag.c_str()))
             {
                 delete Doc;
-                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not Deserialize XML Stream which should contain a Collision Shape, XML looked Like: " + OneTag + ".");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Could not Deserialize XML Stream which should contain a Collision Shape, XML looked Like: " + OneTag + ".");
             }
 
             CollisionShape* Results = ProtoDeSerialize(Doc->GetFirstChild());

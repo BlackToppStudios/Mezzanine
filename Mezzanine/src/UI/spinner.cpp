@@ -116,7 +116,7 @@ namespace Mezzanine
                 }
                 else
                 {
-                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Spinner dimensions incompatible with this widget.");
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Spinner dimensions incompatible with this widget.");
                 }
             }
             else if(UI::Spn_Together_Left == SpinLayout || UI::Spn_Together_Right == SpinLayout)

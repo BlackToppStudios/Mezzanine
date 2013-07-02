@@ -53,8 +53,8 @@
 
 /// @page LuaManual Mezzanine::Scripting Lua Manual
 /// The file that SWIG generated was made with the following command run on an ubuntu machine from the Mezzananine/src directory:
-/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o scriptbindinglua51.cpp mezzanine.h
-///
+/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o Scripting/Lua51/scriptbindinglua51.cpp mezzanine.h
+/// swig2.0 -c++ -v -Wall -lua -importall -includeall -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindinglua51unsafe.cpp mezzanine.h
 /// Need to document "Mezzanine.", nspaces, calling conventions
 ///
 /// script class compilation
@@ -76,9 +76,11 @@ namespace Mezzanine
         namespace Lua
         {
             ///////////////////////////////////////////////////////////////////////////////////////
-            //
+            /// @brief The workhorse of the Lua scripting system. All scripts come here to be executed.
             class MEZZ_LIB Lua51ScriptingEngine : public Mezzanine::Scripting::iScriptCompilationManager
             {
+                ///////////////////////////////////////////////////////////////////////////////////////
+                // Internal Stuff first
                 private:
                     // Makes passing internal data much easier and all Lua51 are logically encapsulated as a single system still.
                     friend class Lua51Script;
@@ -87,22 +89,16 @@ namespace Mezzanine
                     lua_State *State;
 
                 protected:
-                    /// @brief Performs the compilation on a raw pointer, only used internally
-                    /// @param ScriptToCompile A pointer to the Lua51Script to compile.
-                    virtual void Compile(Lua51Script* ScriptToCompile);
-
                     /// @brief This will do nothing if the past integer
                     /// @param LuaReturn The return code from a Lua Compile or execution call
                     /// @throws This Throws ScriptLuaYieldException, ScriptLuaRuntimeException, ScriptLuaRuntimeException, ScriptLuaErrErrException, SyntaxErrorLuaException, OutOfMemoryException, FileException, ScriptLuaException with as much precision as possible when thrown.
                     virtual void ThrowFromLuaErrorCode(int LuaReturn);
 
-                    //virtual void Execute(LuaScript* ScriptToRun);
-
-
                 public:
                     /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries open a little easier.
                     enum Lua51Libraries
                     {
+                        NoLib          = 0,      ///< No libraries
                         BaseLib        = 1,      ///< Correlates to @ref Lua51ScriptingEngine::OpenBaseLibrary
                         PackageLib     = 2,      ///< Correlates to @ref Lua51ScriptingEngine::OpenPackageLibrary
                         StringLib      = 4,      ///< Correlates to @ref Lua51ScriptingEngine::OpenStringLibrary
@@ -117,22 +113,80 @@ namespace Mezzanine
                         DefaultLibs    = BaseLib | StringLib | TableLib | MathLib | MezzSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
                         AllLibs        = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
                     };
-
+                ///////////////////////////////////////////////////////////////////////////////////////
+                // Construction/Deconstruction
+                    /// @brief Constructs a Scripting engine with a set of libraries preloaded.
+                    /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to load, this defaults to DefaultLibs
                     explicit Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen=DefaultLibs);
 
+                    /// @brief Virtual Deconstructor
                     virtual ~Lua51ScriptingEngine();
 
+                ///////////////////////////////////////////////////////////////////////////////////////
+                // Execution
+                    /// @brief Compile and execute a passed string.
+                    /// @param ScriptSource A String containing the source code to be executed.
+                    /// @details This will create a CountPtr to a Lua51Script and assign both its Source and Byte code
                     virtual CountedPtr<iScript> Execute(const String& ScriptSource);
 
-                    virtual void Execute(CountedPtr<iScript> ScriptToRun);
+                    /// @brief Implements a required for iScriptManager, Calls Execute(CountedPtr<Lua51Script>)
+                    /// @param ScriptToRun A CountedPtr<iScript> to be run. This is cast to an CountedPtr<Lua51Script> and called if possible.
+                    /// @throw If this cannot be cast this throws a ParametersCastException.
+                    /// @todo fill in the kind of exception thrown.
+                    virtual void Execute(CountedPtr<iScript>& ScriptToRun);
 
-                    virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile);
+                    /// @brief This will execute the passed script, compiling it if not present
+                    /// @param ScriptToRun The script to execute.
+                    /// @details If a bytecode is present on ScriptToRun then it is executed. Otherwise the Source is
+                    /// compiled and the result is set as the bytecode and it is executed.
+                    virtual void Execute(CountedPtr<Lua51Script>& ScriptToRun);
 
+                    /// @brief Performs the compilation on a script reference
+                    /// @param ScriptToCompile A reference to the Lua51Script to compile.
+                    virtual void Execute(Lua51Script& ScriptToRun);
+
+                    /// @brief Performs the compilation on a raw pointer
+                    /// @param ScriptToCompile A pointer to the Lua51Script to compile.
+                    virtual void Execute(Lua51Script* ScriptToRun);
+
+                ///////////////////////////////////////////////////////////////////////////////////////
+                // Compilation
+                    /// @brief Calls Compile(CountedPtr<iScriptCompilable>) and returns a CountedPtr to the script created.
+                    /// @param SourceToCompile A string Containing valid lua source code.
+                    /// @return A CountedPtr<iScriptCompilable> pointing to a created Script object that contains the source and compile binary.
                     virtual CountedPtr<iScriptCompilable> Compile(const String& SourceToCompile);
 
+                    /// @brief Accepts an Counted ptr to a script and compiles it.
+                    /// @param ScriptToCompile The CountedPtr to compile
+                    /// @details The ByteCode member on the passed script is erased, if present,
+                    /// and sets it to corresponding lua binary.
+                    /// @throw If an invalid script is passed this throws ParametersCastException.
+                    virtual void Compile(CountedPtr<iScriptCompilable>& ScriptToCompile);
+
+                    /// @brief Compile a Lua51 script.
+                    /// @param ScriptToCompile A CountedPtr to a Lua51Script.
+                    /// @details Compiles the source code present in ScriptToCompile and puts the results back in
+                    /// the ByteCode member on the script.
+                    virtual void Compile(CountedPtr<Lua51Script>& ScriptToCompile);
+
+                    /// @brief Performs the compilation on a script reference
+                    /// @param ScriptToCompile A reference to the Lua51Script to compile.
+                    virtual void Compile(Lua51Script& ScriptToCompile);
+
+                    /// @brief Performs the compilation on a raw pointer.
+                    /// @param ScriptToCompile A pointer to the Lua51Script to compile.
+                    virtual void Compile(Lua51Script* ScriptToCompile);
+
+                ///////////////////////////////////////////////////////////////////////////////////////
+                // For Inheritance
                     /// @copydoc ManagerBase::GetImplementationTypeName()
+                    /// @return A String containing "Lua51ScriptingEngine".
                     virtual String GetImplementationTypeName() const;
 
+                ///////////////////////////////////////////////////////////////////////////////////////
+                // Library Manipulation
+                    /// @brief Makes Lua function calls in Lua standard libraries available for use in Lua scripts.
+                    /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to load, this defaults to DefaultLibs
                     virtual void OpenLibraries(int LibrariesToOpen);
 
                     /// @brief Prepare most Mezzanine and some Lua functionality for use in Lua scripts.
@@ -183,19 +237,23 @@ namespace Mezzanine
                     /// @brief Enable Debugging Lua features.
                     /// @details This is the only Lua library omitted from the Defaults for functionality rather than security reasons. This
                     /// unimportant for most game uses and is primarily include for completeness. More details in the
-                    /// Lua manuak at http://www.lua.org/manual/5.1/manual.html#5.9 .
+                    /// Lua manual at http://www.lua.org/manual/5.1/manual.html#5.9 .
                     virtual void OpenDebugLibrary();
 
-
+                    /// @brief Make the everything in the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @warning This makes arbitrary execution of programs and file management available to scripts. This is not suitable if untrusted scripts will be run.
                     virtual void OpenMezzanineLibrary();
+
+                    /// @brief Make a subset of the Mezzanine Library available for use in Lua51 scripts.
+                    /// @details This should not allow access to any functions, methods or classes than can execute code or manage files.
                     virtual void OpenMezzanineSafeLibrary();
             };
 
             //simplistic error checking function, to be replace with proper exception driven code later.
-            int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
+            //int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
 
             // super simple lua test
-            int MEZZ_LIB test();
+            //int MEZZ_LIB test();
 
         } // Lua
     } // Scripting

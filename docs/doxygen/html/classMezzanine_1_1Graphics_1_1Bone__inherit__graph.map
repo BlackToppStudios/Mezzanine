@@ -1,3 +1,3 @@
 <map id="Mezzanine::Graphics::Bone" name="Mezzanine::Graphics::Bone">
-<area shape="rect" id="node2" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="5,6,176,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1TransformableChildObject.xhtml" title="This is an interface for all child 3D objects that can have their full transforms manipulated..." alt="" coords="5,6,176,50"/>
 </map>

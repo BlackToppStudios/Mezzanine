@@ -38,7 +38,7 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-/// @cond 0
+/// @cond DontDocumentInternal
 
 /*
  * pugixml parser - version 1.2
@@ -3155,7 +3155,7 @@ PUGI__NS_BEGIN
 	ParseResult LoadDataStreamImpl(Document& doc, Mezzanine::Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
 	{
 	    // Copying mostly from the function below, a lot of what they try to do is not applicable with data streams since they already do it to some extent.
-	    size_t pos = stream.Tell();
+	    size_t pos = stream.GetStreamPosition();
 	    size_t length = stream.GetSize() - pos;
 
 	    if (pos < 0) return make_ParseResult(StatusIOError);
@@ -3670,6 +3670,10 @@ namespace XML
 	PUGI__FN Node::Node(): NodeData(0)
 	{
 	}
+
+    PUGI__FN Node::~Node()
+    {
+    }
 
 	PUGI__FN Node::Node(NodeStruct* p): NodeData(p)
 	{

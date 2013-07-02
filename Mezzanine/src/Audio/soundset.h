@@ -47,11 +47,11 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        class Sound;
+        class iSound;
 
         // Used by the scripting language binder to help create bindgings for this class.
         #ifdef SWIG
-        %template(VectorSoundPtr) std::vector< Sound * >;
+        %template(VectorSoundPtr) std::vector< iSound * >;
         #endif
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -59,36 +59,35 @@ namespace Mezzanine
         /// @details This is a vector and can be use to store sounds that can be grouped together
         /// for similiar purposes or similiar content for easy tracking.
         ///////////////////////////////////////////////////////////////////////////////
-        class MEZZ_LIB SoundSet : public std::vector< Sound* >
+        class MEZZ_LIB SoundSet : public std::vector< iSound* >
         {
-            private:
-                /// @brief The name of the sound
-                String Name;
-            public:
-                /// @brief a Simple counter to insure unique names of soundsets
-                static Whole UnnamedInstanceCount;
+        private:
+            /// @brief The name of the sound
+            String Name;
+        public:
+            /// @brief a Simple counter to insure unique names of soundsets
+            static Whole UnnamedInstanceCount;
 
-                /// @brief Default constructor
-                SoundSet();
+            /// @brief Default constructor
+            SoundSet();
 
-                /// @brief Default constructor
-                explicit SoundSet(const String& _Name);
+            /// @brief Default constructor
+            explicit SoundSet(const String& _Name);
 
-                /// @brief Get the name of the SoundSet
-                /// @return The Name of this SoundSet
-                const String& GetName() const;
+            /// @brief Get the name of the SoundSet
+            /// @return The Name of this SoundSet
+            const String& GetName() const;
 
-                /// @brief Create an XML::Node describing this
-                /// @return An XML::Node
-                XML::Node ProtoSerialize() const;
+            /// @brief Create an XML::Node describing this
+            /// @return An XML::Node
+            XML::Node ProtoSerialize() const;
 
-                /// @brief Create an XML::Node describing this
-                /// @return An XML::Node
-                void ProtoDeSerialize(const XML::Node&);
+            /// @brief Create an XML::Node describing this
+            /// @return An XML::Node
+            void ProtoDeSerialize(const XML::Node&);
 
-                static String SerializableName();
-
-        };//soundset
+            static String SerializableName();
+        };//SoundSet
         /// Todo de/serialize sound set
     }//Audio
 }//Mezzanine

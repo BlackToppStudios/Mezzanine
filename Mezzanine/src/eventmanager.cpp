@@ -172,9 +172,9 @@ namespace Mezzanine
             /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
             void AddMetaCodesToManualCheck(std::vector<MetaCode> Transport, PollingType _PollingCheck)
             {
-                for ( std::vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
+                for ( std::vector<MetaCode>::const_iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                 {
-                    Input::InputCode temp = Iter->GetCode();
+                    //Input::InputCode temp = Iter->GetCode();
                     AddInputCodeToManualCheck(Iter->GetCode(), _PollingCheck);
                 }
             }
@@ -446,16 +446,15 @@ namespace Mezzanine
 
         // Error conditions
                 case SDL_FIRSTEVENT:  //capture and ignore or throw error
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted."); }
-                    break;
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted.");  break; }
 
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unexpected Quit event in event manager."); }
-                    break;
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected Quit event in event manager.");  break; }
 
                 default:                //Never thrown by SDL, but could be added by a user
                     //Entresol::GetSingletonPtr()->LogAndThrow("Unknown SDL Event Inserted.");
                     Entresol::GetSingletonPtr()->Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
+                    Entresol::GetSingletonPtr()->DoMainLoopLogging();
                     break;
             }
             //free(FromSDLRaw); //Does this need to Happen?
@@ -465,13 +464,13 @@ namespace Mezzanine
             { this->_Data->DropAllKeyPresses(); }//*/
 
         #ifdef MEZZDEBUG
-        Entresol::GetSingletonPtr()->Log("User Input entered this Frame");
+        /*Entresol::GetSingletonPtr()->Log("User Input entered this Frame");
         for(EventUserInput::iterator LIter=FromSDLEvent->begin(); FromSDLEvent->end()!=LIter; ++LIter)
         {
             Entresol::GetSingletonPtr()->Log(*LIter);
         }
         Entresol::GetSingletonPtr()->Log("End Of User Input entered this Frame");
-        Entresol::GetSingletonPtr()->DoMainLoopLogging();
+        Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
         #endif
 
         //Check to see if we should add a User input event or not. We wouldn't want to pass an empty event
@@ -656,7 +655,7 @@ namespace Mezzanine
         {
             this->_Data->AddInputCodeToManualCheck(InputToTryPolling.GetCode(), Internal::EventManagerInternalData::Polling);
         }else{
-            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported Polling Check on this Platform");
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Polling Check on this Platform");
         }
     }
 
@@ -791,14 +790,14 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& 
                             Mgr.AddEvent(temp); }
                             break;
                         case 'O':{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event::Other... not sure what you are trying to serialize."); }
+                            MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event::Other... not sure what you are trying to serialize."); }
                             break;
                         default:{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event... not sure what you are trying to serialize."); }
+                            MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event... not sure what you are trying to serialize."); }
                             break;
                     }
                 }else{
-                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid event, name is not long enough to identify event.");
+                    MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Invalid event, name is not long enough to identify event.");
                 } // end if name length
                 Child = Child.GetNextSibling();
             } // end while
@@ -806,7 +805,7 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& 
             MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventManager: Not Version 1");
         } // if version
     }else{
-        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to deserialize an EventManager, event mananger not found.");
+        MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attempting to deserialize an EventManager, event mananger not found.");
     }// if event
 }
 

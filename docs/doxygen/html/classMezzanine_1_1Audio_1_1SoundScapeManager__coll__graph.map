@@ -1,0 +1,12 @@
+<map id="Mezzanine::Audio::SoundScapeManager" name="Mezzanine::Audio::SoundScapeManager">
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="23,649,191,677"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="143,547,276,575"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="224,641,365,685"/>
+<area shape="rect" id="node9" title="STL class." alt="" coords="152,454,267,482"/>
+<area shape="rect" id="node11" title="STL class." alt="" coords="133,358,285,402"/>
+<area shape="rect" id="node13" title="STL class." alt="" coords="144,262,275,306"/>
+<area shape="rect" id="node15" title="STL class." alt="" coords="60,166,183,210"/>
+<area shape="rect" id="node17" title="STL class." alt="" coords="93,86,240,114"/>
+<area shape="rect" id="node21" title="STL class." alt="" coords="207,166,335,210"/>
+<area shape="rect" id="node19" title="STL class." alt="" coords="120,6,213,34"/>
+</map>
