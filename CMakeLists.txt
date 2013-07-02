@@ -514,7 +514,7 @@ set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_A
 Message(STATUS "Starting Subproject Configuration.")
 add_subdirectory (Mezzanine)
 add_subdirectory (EngineDemo)
-#add_subdirectory (Catch!)
+add_subdirectory (Catch!)
 add_subdirectory (UnitTests)
 Message(STATUS "Finishing Subproject Configuration.")
 
