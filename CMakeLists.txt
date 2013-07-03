@@ -351,8 +351,19 @@ if (Mezz_AllWarnings)
     endif()
 endif (Mezz_AllWarnings)
 
-###############################################################################
-# Misc simple defines
+# Make sure stdint.h is found for SDL and other subprojects
+INCLUDE (${CMAKE_ROOT}/Modules/CheckIncludeFile.cmake)
+
+CHECK_INCLUDE_FILE("stdint.h" HAVE_STDINT_H)
+if(HAVE_STDINT_H)
+    add_definitions(-DHAVE_STDINT_H)
+endif(HAVE_STDINT_H)
+
+CHECK_INCLUDE_FILE("stddef.h" HAVE_STDDEF_H)
+if(HAVE_STDDEF_H)
+    add_definitions(-DHAVE_STDDEF_H)
+endif(HAVE_STDDEF_H)
+
 
 #######################################
 # Ogre3d related values

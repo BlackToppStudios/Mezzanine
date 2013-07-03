@@ -86,13 +86,13 @@ namespace Mezzanine
     ///////////////////////////////////////
 
     #ifdef _MEZZ_CPP11_PARTIAL_
-    #include <cstdint>
-    /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
-    typedef std::intptr_t ConvertiblePointer;
+        #include <cstdint>
+        /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
+        typedef std::intptr_t ConvertiblePointer;
     #else
-    #include <stdint.h>
-    /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
-    typedef intptr_t ConvertiblePointer;
+        #include <stdint.h>
+        /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
+        typedef intptr_t ConvertiblePointer;
     #endif
 
     /// @typedef Int8
@@ -165,7 +165,7 @@ namespace Mezzanine
     /// @typedef Bool
     /// @brief A single bit, true or false
     /// @details Normally just a bool, and this corrects the casing of bool
-    typedef bool Bool_;
+    typedef bool Bool;
 
     /// @typedef StringStream
     /// @brief A Datatype used for streaming operations with strings.
