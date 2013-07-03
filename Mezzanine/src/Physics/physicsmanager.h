@@ -58,12 +58,13 @@ typedef float btScalar;
 #include <map>
 #include <vector>
 
-#include "Physics/constraint.h"
 #include "datatypes.h"
 #include "managerbase.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "objectpair.h"
+#include "Physics/constraint.h"
+#include "Physics/managerconstructioninfo.h"
 
 namespace Mezzanine
 {
@@ -87,49 +88,6 @@ namespace Mezzanine
         class CollisionDispatcher;
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class PhysicsConstructionInfo
-        /// @headerfile physicsmanager.h
-        /// @brief
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB PhysicsConstructionInfo
-        {
-        public:
-            /// @enum PhysicsConstructionFlags
-            /// @brief This is an enum used by the physics manager to determine what internal
-            /// classes should be used when creating the world.
-            enum PhysicsConstructionFlags
-            {
-                PCF_SoftRigidWorld = 1,   ///< Enables support for soft bodies in the simulation.
-                PCF_LimitlessWorld = 2,   ///< Enables support for very large simulations.
-                PCF_Multithreaded = 4     ///< Enables multi-threaded acceleration structures.
-            };
-
-            /// @brief Class constructor.
-            PhysicsConstructionInfo();
-            /// @brief Class destructor.
-            ~PhysicsConstructionInfo();
-            /// @brief Assignment Operator.
-            /// @param Other The other PhysicsConstructionInfo to be copied.
-            /// @return Returns a reference to this.
-            PhysicsConstructionInfo& operator=(const PhysicsConstructionInfo& Other);
-
-            /// @brief The flags to initialize the physics system with.
-            Whole PhysicsFlags;
-            /// @brief The lower limits of the worlds AABB.
-            /// @note This member is ignored if the "PCF_LimitlessWorld" flag is passed in.
-            Vector3 GeographyLowerBounds;
-            /// @brief The upper limits of the worlds AABB.
-            /// @note This member is ignored if the "PCF_LimitlessWorld" flag is passed in.
-            Vector3 GeographyUpperBounds;
-            /// @brief The maximum number of Actors and Area Effects you expect to have in the world at one time.
-            /// @note This member is ignored if the "PCF_LimitlessWorld" flag is passed in.
-            Whole MaxProxies;
-            /// @brief The gravity to set for the world.
-            Vector3 Gravity;
-        };//PhysicsConstructionInfo
-
-        ///////////////////////////////////////////////////////////////////////////////
         /// @class PhysicsManager
         /// @headerfile physicsmanager.h
         /// @brief This is simply a place for storing all the Physics Related functions
@@ -143,7 +101,7 @@ namespace Mezzanine
             // needed for collision processing
             friend class CollisionDispatcher;
             //Some Data Items
-            PhysicsConstructionInfo WorldConstructionInfo;
+            ManagerConstructionInfo WorldConstructionInfo;
             bool SimulationPaused;
             Whole SubstepModifier;
             Real StepSize;
@@ -164,7 +122,7 @@ namespace Mezzanine
             /// @brief This takes care of all the real work in contructing this
             /// @details This method is called by all the constructors to insure consistent behavior.
             /// @param Info The construction info class with all the settings you wish the world to have.
-            void Construct(const PhysicsConstructionInfo& Info);
+            void Construct(const ManagerConstructionInfo& Info);
 
             /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect.
             /// @details This function is automatically called every step.
@@ -187,7 +145,7 @@ namespace Mezzanine
             /// @details This constructor will assign some sane default values and will create a physics
             /// world that can be used immediately
             /// @param Info The construction info class with all the settings you wish the world to have.
-            PhysicsManager(const PhysicsConstructionInfo& Info);
+            PhysicsManager(const ManagerConstructionInfo& Info);
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             PhysicsManager(XML::Node& XMLNode);
@@ -374,7 +332,7 @@ namespace Mezzanine
             /// @warning This should only be called while the world is emtpy and objects have be unloaded from it.
             /// @param Info If you want to change the configuration of the world when restarting, you can optionally
             /// provide a new set of parameters to build the world with.
-            void ResetPhysicsWorld(PhysicsConstructionInfo* Info = 0);
+            void ResetPhysicsWorld(ManagerConstructionInfo* Info = 0);
             /// @brief Clears all data relating to actors and other simulation objects from the physics world.
             /// @details This is best used with simulation cleanup.
             void ClearPhysicsMetaData();

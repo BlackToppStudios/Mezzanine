@@ -275,61 +275,37 @@ namespace Mezzanine
     namespace Physics
     {
         ///////////////////////////////////////////////////////////
-        // PhysicsConstructionInfo functions
-
-        PhysicsConstructionInfo::PhysicsConstructionInfo()
-            : PhysicsFlags(0),
-              MaxProxies(0),
-              GeographyLowerBounds(Vector3()),
-              GeographyUpperBounds(Vector3()),
-              Gravity(Vector3())
-        {
-        }
-
-        PhysicsConstructionInfo::~PhysicsConstructionInfo()
-        {
-        }
-
-        PhysicsConstructionInfo& PhysicsConstructionInfo::operator=(const PhysicsConstructionInfo& Other)
-        {
-            this->PhysicsFlags = Other.PhysicsFlags;
-            this->MaxProxies = Other.MaxProxies;
-            this->GeographyLowerBounds = Other.GeographyLowerBounds;
-            this->GeographyUpperBounds = Other.GeographyUpperBounds;
-            this->Gravity = Other.Gravity;
-        }
-
-        ///////////////////////////////////////////////////////////
         // Physicsmanager functions
 
         template<> PhysicsManager* Singleton<PhysicsManager>::SingletonPtr = 0;
 
         PhysicsManager::PhysicsManager()
             : SimulationPaused(false),
-              BulletDrawer(NULL),
               SubstepModifier(1),
-              StepSize(1.0/60.0)
+              StepSize(1.0/60.0),
+              BulletDrawer(NULL)
         {
-            PhysicsConstructionInfo Info;
-            Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_SoftRigidWorld | PhysicsConstructionInfo::PCF_LimitlessWorld);
+            ManagerConstructionInfo Info;
+            Info.PhysicsFlags = (ManagerConstructionInfo::PCF_SoftRigidWorld | ManagerConstructionInfo::PCF_LimitlessWorld);
             this->Construct(Info);
         }
 
-        PhysicsManager::PhysicsManager(const PhysicsConstructionInfo& Info)
+        PhysicsManager::PhysicsManager(const ManagerConstructionInfo& Info)
             : SimulationPaused(false),
-              BulletDrawer(NULL),
-              SubstepModifier(1)
+              SubstepModifier(1),
+              StepSize(1.0/60.0),
+              BulletDrawer(NULL)
         {
             this->Construct(Info);
         }
 
         PhysicsManager::PhysicsManager(XML::Node& XMLNode)
             : SimulationPaused(false),
-              BulletDrawer(NULL),
               SubstepModifier(1),
-              StepSize(1.0/60.0)
+              StepSize(1.0/60.0),
+              BulletDrawer(NULL)
         {
-            PhysicsConstructionInfo Info;
+            ManagerConstructionInfo Info;
             XML::Attribute CurrAttrib;
 
             XML::Node WorldSettings = XMLNode.GetChild("WorldSettings");
@@ -338,7 +314,7 @@ namespace Mezzanine
                 CurrAttrib = WorldSettings.GetAttribute("LimitlessWorld");
                 if(!CurrAttrib.Empty())
                 {
-                    Info.PhysicsFlags = (Info.PhysicsFlags | PhysicsConstructionInfo::PCF_LimitlessWorld);
+                    Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
                 }else{
                     CurrAttrib = WorldSettings.GetAttribute("WorldUpperBounds");
                     if(!CurrAttrib.Empty())
@@ -353,7 +329,7 @@ namespace Mezzanine
                 CurrAttrib = WorldSettings.GetAttribute("SoftRigidWorld");
                 if(!CurrAttrib.Empty())
                 {
-                    Info.PhysicsFlags = (Info.PhysicsFlags | PhysicsConstructionInfo::PCF_SoftRigidWorld);
+                    Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
                 }
             }
 
@@ -410,11 +386,11 @@ namespace Mezzanine
             if(BulletDrawer) delete BulletDrawer;
         }
 
-        void PhysicsManager::Construct(const PhysicsConstructionInfo& Info)
+        void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
         {
             this->Priority = 20;
 
-            if(Info.PhysicsFlags & PhysicsConstructionInfo::PCF_LimitlessWorld)
+            if(Info.PhysicsFlags & ManagerConstructionInfo::PCF_LimitlessWorld)
             {
                 this->BulletBroadphase = new btDbvtBroadphase();
             }else{
@@ -898,7 +874,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        void PhysicsManager::ResetPhysicsWorld(PhysicsConstructionInfo* Info)
+        void PhysicsManager::ResetPhysicsWorld(ManagerConstructionInfo* Info)
         {
             delete BulletDynamicsWorld;
             delete BulletDispatcher;
@@ -1138,7 +1114,7 @@ namespace Mezzanine
                 if(Params.empty()) return new PhysicsManager();
                 else
                 {
-                    PhysicsConstructionInfo PhysInfo;
+                    ManagerConstructionInfo PhysInfo;
                     for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
                     {
                         String Lower = (*ParIt).first;
@@ -1162,12 +1138,12 @@ namespace Mezzanine
                         else if( "softrigidworld" == Lower )
                         {
                             if(StringTools::ConvertToBool( (*ParIt).second ))
-                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | PhysicsConstructionInfo::PCF_SoftRigidWorld);
+                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
                         }
                         else if( "limitlessworld" == Lower )
                         {
                             if(StringTools::ConvertToBool( (*ParIt).second ))
-                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | PhysicsConstructionInfo::PCF_LimitlessWorld);
+                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
                         }
                     }
                     return new PhysicsManager(PhysInfo);

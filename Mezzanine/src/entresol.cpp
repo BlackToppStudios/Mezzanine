@@ -85,7 +85,7 @@ namespace Mezzanine
     /// @TODO In the Entrosol, reomves all references to a plugins file
     Entresol::Entresol()
     {
-        Physics::PhysicsConstructionInfo PhysicsInfo;
+        Physics::ManagerConstructionInfo PhysicsInfo;
         std::vector <ManagerBase*> temp;
 
         this->Construct(PhysicsInfo,"DefaultSceneManager",".","Mezzanine.log",temp);
@@ -114,7 +114,7 @@ namespace Mezzanine
     }
 
 
-    Entresol::Entresol( const Physics::PhysicsConstructionInfo& PhysicsInfo,
+    Entresol::Entresol( const Physics::ManagerConstructionInfo& PhysicsInfo,
                         const String& SceneType,
                         const String& EngineDataPath,
                         const String& LogFileName)
@@ -127,7 +127,7 @@ namespace Mezzanine
                         temp );
     }
 
-    Entresol::Entresol( const Physics::PhysicsConstructionInfo& PhysicsInfo,
+    Entresol::Entresol( const Physics::ManagerConstructionInfo& PhysicsInfo,
                         const String& SceneType,
                         const String& EngineDataPath,
                         const String& LogFileName,
@@ -148,7 +148,7 @@ namespace Mezzanine
         Ogre::Root* OgreCore = 0;
     }
 
-    void Entresol::Construct(   const Physics::PhysicsConstructionInfo& PhysicsInfo,
+    void Entresol::Construct(   const Physics::ManagerConstructionInfo& PhysicsInfo,
                                 const String& SceneType,
                                 const String& EngineDataPath,
                                 const String& LogFileName,

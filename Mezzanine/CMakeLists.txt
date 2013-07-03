@@ -197,6 +197,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Physics/heightfieldcollisionshape.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/hinge2constraint.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/hingeconstraint.h"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/managerconstructioninfo.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/meshcollisionshape.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/multispherecollisionshape.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/planecollisionshape.h"

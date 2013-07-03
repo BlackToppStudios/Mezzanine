@@ -275,7 +275,7 @@ namespace Mezzanine
     namespace Physics
     {
         class PhysicsManager;
-        class PhysicsConstructionInfo;
+        class ManagerConstructionInfo;
     }
 }
 
@@ -338,7 +338,7 @@ namespace Mezzanine
             /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
             /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
-            void Construct( const Physics::PhysicsConstructionInfo& PhysicsInfo,
+            void Construct( const Physics::ManagerConstructionInfo& PhysicsInfo,
                             const String& SceneType,
                             const String& EngineDataPath,
                             const String& LogFileName,
@@ -407,7 +407,7 @@ namespace Mezzanine
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially other low level resources.
             /// @param LogFileName This is the place that log messages get sent to.
-            Entresol(  const Physics::PhysicsConstructionInfo& PhysicsInfo,
+            Entresol(  const Physics::ManagerConstructionInfo& PhysicsInfo,
                        const String& SceneType,
                        const String& EngineDataPath,
                        const String& LogFileName = "Mezzanine.log" );
@@ -422,7 +422,7 @@ namespace Mezzanine
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones.
-            Entresol(  const Physics::PhysicsConstructionInfo& PhysicsInfo,
+            Entresol(  const Physics::ManagerConstructionInfo& PhysicsInfo,
                        const String& SceneType,
                        const String& EngineDataPath,
                        const String& LogFileName,
