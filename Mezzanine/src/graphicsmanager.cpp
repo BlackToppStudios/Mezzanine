@@ -78,11 +78,43 @@ namespace Mezzanine
 {
     template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = 0;
 
+
+    GraphicsWorkUnit::GraphicsWorkUnit(GraphicsManager* WhichGraphicsManager) :
+        TargetGraphicsManager(WhichGraphicsManager)
+    {}
+
+    void GraphicsWorkUnit::UseThreads(const Whole& AmountToUse)
+    {
+        //TargetGraphicsManager->SomehowTellOgreHowManyThread(AmountToUse);
+    }
+
+    Whole GraphicsWorkUnit::UsingThreadCount()
+    {
+        //return TargetGraphicsManager->GetThreadCountFromOgreSomehow();
+        return 1;
+    }
+
+    void GraphicsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+    {
+        TargetGraphicsManager->ThreadResources = &CurrentThreadStorage; // Allow this full access to any thread specific resources it needs
+        Ogre::WindowEventUtilities::messagePump();
+        TargetGraphicsManager->RenderOneFrame();
+        TargetGraphicsManager->ThreadResources = NULL;                  // Take it all away.
+    }
+
+    GraphicsWorkUnit::~GraphicsWorkUnit()
+        {}
+
+
+
+
     ///////////////////////////////////////////////////////////////////////////
     // Creation and Deletion functions
     ///////////////////////////////////
     GraphicsManager::GraphicsManager()
-        : OgreBeenInitialized(false),
+        : MainLoopWork(NULL),
+          ThreadResources(NULL),
+          OgreBeenInitialized(false),
           CurrRenderSys(Graphics::RS_OpenGL2)
     {
         Construct();
@@ -90,7 +122,9 @@ namespace Mezzanine
     }
 
     GraphicsManager::GraphicsManager(XML::Node& XMLNode)
-        : OgreBeenInitialized(false),
+        : MainLoopWork(NULL),
+          ThreadResources(NULL),
+          OgreBeenInitialized(false),
           CurrRenderSys(Graphics::RS_OpenGL2)
     {
         Construct();
@@ -155,6 +189,8 @@ namespace Mezzanine
 
     GraphicsManager::~GraphicsManager()
     {
+        //GraphicsWork is deleted by the FramScheduler
+
         if(AutoGenFiles)
             SaveAllSettings();
 
@@ -179,6 +215,8 @@ namespace Mezzanine
 
     void GraphicsManager::Construct()
     {
+        MainLoopWork = new GraphicsWorkUnit(this);
+
         UInt32 InitSDLSystems = SDL_WasInit(0);
         if( (SDL_INIT_VIDEO & InitSDLSystems) == 0 )
         {
@@ -601,6 +639,8 @@ namespace Mezzanine
 
     void GraphicsManager::Initialize()
     {
+        TheEntresol->WorkScheduler.AddWorkUnitMonopoly(MainLoopWork);
+
         if(!OgreBeenInitialized)
             InitOgreRenderSystem();
 
@@ -635,13 +675,7 @@ namespace Mezzanine
 
     void GraphicsManager::DoMainLoopItems()
     {
-        Ogre::WindowEventUtilities::messagePump();
-        RenderOneFrame();
-    }
 
-    bool GraphicsManager::PostMainLoopItems()
-    {
-        return ManagerBase::PostMainLoopItems();
     }
 
     ManagerBase::ManagerType GraphicsManager::GetInterfaceType() const
@@ -649,6 +683,9 @@ namespace Mezzanine
 
     String GraphicsManager::GetImplementationTypeName() const
         { return "DefaultGraphicsManager"; }
+
+    GraphicsWorkUnit* GraphicsManager::GetGraphicsWorkUnit()
+        { return MainLoopWork; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultGraphicsManagerFactory Methods

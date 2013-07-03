@@ -40,6 +40,7 @@
 #ifndef _graphicsmanager_h
 #define _graphicsmanager_h
 
+#include "Threading/dagframescheduler.h"
 #include "managerbase.h"
 #include "managerfactory.h"
 #include "singleton.h"
@@ -66,6 +67,44 @@ namespace Mezzanine
     %template(SingletonGraphicsManager) Singleton<GraphicsManager>;
     #endif
 
+    class GraphicsManager;
+
+    /// @brief This does the main loop for required to make the Graphics Manager function
+    class MEZZ_LIB GraphicsWorkUnit : public Threading::MonopolyWorkUnit
+    {
+        private:
+            /// @internal
+            /// @brief The GraphicsManager this will work with
+            GraphicsManager* TargetGraphicsManager;
+
+            /// @internal
+            /// @brief Private copy constructor to prevent useless copying of this,
+            GraphicsWorkUnit(const GraphicsWorkUnit&) {}
+
+            /// @internal
+            /// @brief Private assignment operator to prevent useless assignment of this,
+            void operator=(GraphicsWorkUnit) {}
+
+        public:
+            /// @brief Create a GraphicsWorkUnit
+            /// @param WhichGraphicsManager This is the Manager that this Work unit must work with.
+            GraphicsWorkUnit(GraphicsManager* WhichGraphicsManager);
+
+            /// @brief Once The graphics is properly multithread, this will set the amount of threads it should use
+            /// @param AmountToUse Currently Ignored.
+            virtual void UseThreads(const Whole& AmountToUse);
+
+            /// @brief Get the amount of threads this will attempt to sue
+            /// @return 1, this will return 1 until this Ogre threading is implemented.
+            virtual Whole UsingThreadCount();
+
+            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+
+            /// @brief virtual deconstructor
+            virtual ~GraphicsWorkUnit();
+    };
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class GraphicsManager
     /// @headerfile graphicsmanager.h
@@ -83,6 +122,19 @@ namespace Mezzanine
             typedef GameWindowContainer::const_iterator ConstGameWindowIterator;
 
         protected:
+
+            /// @internal
+            /// @brief The GraphicsWorkUnit really is an extension of the GraphicsManager, it just exists as a Functor for the sake of simplicity.
+            friend class GraphicsWorkUnit;
+
+            /// @internal
+            /// @brief The work unit that does all the rendering.
+            GraphicsWorkUnit* MainLoopWork;
+
+            /// @internal
+            /// @brief Can be used for thread safe logging and other thread Specific resources
+            Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
+
             /// @internal
             /// @brief Track all statically linked Ogre render systems, usually only one, but could be many.
             std::vector<Ogre::Plugin*> RenderSystems;
@@ -215,12 +267,13 @@ namespace Mezzanine
             virtual void Initialize();
             /// @copydoc ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
-            /// @copydoc ManagerBase::PostMainLoopItems()
-            virtual bool PostMainLoopItems();
             /// @copydoc ManagerBase::GetInterfaceType()
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
             virtual String GetImplementationTypeName() const;
+
+            // replacement for ManagerBase Main loop
+            GraphicsWorkUnit* GetGraphicsWorkUnit();
     };//GraphicsManager
 
     ///////////////////////////////////////////////////////////////////////////////
