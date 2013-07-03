@@ -61,56 +61,54 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB ConvexHullCollisionShape : public PrimitiveCollisionShape
         {
-            public:
-                /// @brief Class Constructor.
-                /// @param Name The name of this Shape.
-                /// @param Points A vector of vector3's containing all the points in local space to construct this shape from.
-                ConvexHullCollisionShape(const String& Name, const std::vector<Vector3>& Points);
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param Name The name of this Shape.
-                /// @param BulletShape The internal shape this shape is based on.
-                ConvexHullCollisionShape(const String& Name, btConvexHullShape* BulletShape);
-                /// @copydoc BoxCollisionShape::BoxCollisionShape(XML::Node OneNode)
-                ConvexHullCollisionShape(XML::Node OneNode);
-                /// @brief Class Destructor.
-                virtual ~ConvexHullCollisionShape();
-                /// @brief Adds a point to this shape.
-                /// @param Point The location in local space to be added.
-                virtual void AddPoint(const Vector3& Point);
+        public:
+            /// @brief Class Constructor.
+            /// @param Name The name of this Shape.
+            /// @param Points A vector of vector3's containing all the points in local space to construct this shape from.
+            ConvexHullCollisionShape(const String& Name, const std::vector<Vector3>& Points);
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Name The name of this Shape.
+            /// @param BulletShape The internal shape this shape is based on.
+            ConvexHullCollisionShape(const String& Name, btConvexHullShape* BulletShape);
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(XML::Node OneNode)
+            ConvexHullCollisionShape(XML::Node OneNode);
+            /// @brief Class Destructor.
+            virtual ~ConvexHullCollisionShape();
+            /// @brief Adds a point to this shape.
+            /// @param Point The location in local space to be added.
+            virtual void AddPoint(const Vector3& Point);
 
-                /// @brief Gets an unscaled stored point in this ConvexHull.
-                /// @return Returns a Vector3 representing the unscaled location in local space of the specified point.
-                /// @param Index The index of the point desired.
-                virtual Vector3 GetUnscaledPoint(const Whole& Index) const;
-                /// @brief Gets a stored point as it is scaled in this ConvexHull.
-                /// @return Returns a Vector3 representing the scaled location in local space of the specified point.
-                /// @param Index The index of the point desired.
-                virtual Vector3 GetPoint(const Whole& Index) const;
-                /// @brief Gets the total number of points being stored in this shape.
-                /// @return Returns a whole representing the current number of points in this shape.
-                virtual Whole GetNumPoints() const;
-                /// @brief Checks to see if a point in local space is inside this shape.
-                /// @return Returns a bool indicating whether or not the specified point is inside the shape.
-                /// @param Location The specified point to perform the check.
-                /// @param Tolerance The amount of leeway to give in the check.  If the distance from the
-                /// specified point is equal or less then the Tolorance provided then this will return true.
-                virtual bool IsInside(const Vector3& Location, const Real& Tolerance) const;
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual btConvexHullShape* GetBulletHullShape() const;
+            /// @brief Gets an unscaled stored point in this ConvexHull.
+            /// @return Returns a Vector3 representing the unscaled location in local space of the specified point.
+            /// @param Index The index of the point desired.
+            virtual Vector3 GetUnscaledPoint(const Whole& Index) const;
+            /// @brief Gets a stored point as it is scaled in this ConvexHull.
+            /// @return Returns a Vector3 representing the scaled location in local space of the specified point.
+            /// @param Index The index of the point desired.
+            virtual Vector3 GetPoint(const Whole& Index) const;
+            /// @brief Gets the total number of points being stored in this shape.
+            /// @return Returns a whole representing the current number of points in this shape.
+            virtual Whole GetNumPoints() const;
+            /// @brief Checks to see if a point in local space is inside this shape.
+            /// @return Returns a bool indicating whether or not the specified point is inside the shape.
+            /// @param Location The specified point to perform the check.
+            /// @param Tolerance The amount of leeway to give in the check.  If the distance from the
+            /// specified point is equal or less then the Tolorance provided then this will return true.
+            virtual bool IsInside(const Vector3& Location, const Real& Tolerance) const;
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btConvexHullShape* GetBulletHullShape() const;
 
-                // Serializable
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
-                /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-                /// @return A string containing "ConeCollisionShape"
-                static String SerializableName();
-
-        };//convexhullcollisionshape
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "ConeCollisionShape"
+            static String SerializableName();
+        };//ConvexHullCollisionShape
     }//Physics
 }//Mezzanine
 

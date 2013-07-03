@@ -59,53 +59,52 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB BoxCollisionShape : public PrimitiveCollisionShape
         {
-            public:
-                /// @brief Class Constructor.
-                /// @param Name The name of this shape.
-                /// @param HalfExtents A vector3 representing half the shapes size on each axis.
-                BoxCollisionShape(const String& Name, const Vector3& HalfExtents);
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param Name The name of this shape.
-                /// @param BulletShape The internal shape this shape is based on.
-                BoxCollisionShape(const String& Name, btBoxShape* BulletShape);
+        public:
+            /// @brief Class Constructor.
+            /// @param Name The name of this shape.
+            /// @param HalfExtents A vector3 representing half the shapes size on each axis.
+            BoxCollisionShape(const String& Name, const Vector3& HalfExtents);
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Name The name of this shape.
+            /// @param BulletShape The internal shape this shape is based on.
+            BoxCollisionShape(const String& Name, btBoxShape* BulletShape);
 
-                /// @brief DeSerializing Constructor
-                /// @param OneNode The node to use for constructing this shape
-                BoxCollisionShape(XML::Node OneNode);
+            /// @brief DeSerializing Constructor
+            /// @param OneNode The node to use for constructing this shape
+            BoxCollisionShape(XML::Node OneNode);
 
-                /// @brief Class Destructor.
-                virtual ~BoxCollisionShape();
-                /// @brief Gets the half extents used to construct this box.
-                /// @return Returns a vector3 containing the half extents of this box, with no scaling or margin (Original value).
-                virtual Vector3 GetCleanHalfExtents() const;
-                /// @brief Gets the current half extents used in collision checking.
-                /// @return Returns a vector3 containing the half extents of this box, with scaling applied, minus the size of the margin(Original value * Scaling - margin).
-                virtual Vector3 GetHalfExtents() const;
-                /// @brief Gets the half extents with padding, this is the size the shape will appear to be.
-                /// @return Returns a vector3 containing the half extents, with scaling applied, with the margin added to each axis (Original value * Scaling).
-                virtual Vector3 GetHalfExtentsWithMargin() const;
-                /// @brief Checks to see if a point in local space is inside this shape.
-                /// @return Returns a bool indicating whether or not the specified point is inside the shape.
-                /// @param Location The specified point to perform the check.
-                /// @param Tolerance The amount of leeway to give in the check.  If the distance from the
-                /// specified point is equal or less then the Tolerance provided then this will return true.
-                virtual bool IsInside(const Vector3& Location, const Real& Tolerance) const;
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual btBoxShape* GetBulletBoxShape() const;
+            /// @brief Class Destructor.
+            virtual ~BoxCollisionShape();
+            /// @brief Gets the half extents used to construct this box.
+            /// @return Returns a vector3 containing the half extents of this box, with no scaling or margin (Original value).
+            virtual Vector3 GetCleanHalfExtents() const;
+            /// @brief Gets the current half extents used in collision checking.
+            /// @return Returns a vector3 containing the half extents of this box, with scaling applied, minus the size of the margin(Original value * Scaling - margin).
+            virtual Vector3 GetHalfExtents() const;
+            /// @brief Gets the half extents with padding, this is the size the shape will appear to be.
+            /// @return Returns a vector3 containing the half extents, with scaling applied, with the margin added to each axis (Original value * Scaling).
+            virtual Vector3 GetHalfExtentsWithMargin() const;
+            /// @brief Checks to see if a point in local space is inside this shape.
+            /// @return Returns a bool indicating whether or not the specified point is inside the shape.
+            /// @param Location The specified point to perform the check.
+            /// @param Tolerance The amount of leeway to give in the check.  If the distance from the
+            /// specified point is equal or less then the Tolerance provided then this will return true.
+            virtual bool IsInside(const Vector3& Location, const Real& Tolerance) const;
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btBoxShape* GetBulletBoxShape() const;
 
-                // Serializable
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
-                /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-                /// @return A string containing "BoxCollisionShape"
-                static String SerializableName();
-
-        };//boxcollisionshape
+            // Serializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "BoxCollisionShape"
+            static String SerializableName();
+        };//BoxCollisionShape
     }//Physics
 }//Mezzanine
 

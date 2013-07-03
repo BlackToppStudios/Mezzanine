@@ -60,7 +60,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         class MEZZ_LIB DualTransformConstraint : public Constraint
         {
-            public:
+        public:
             /// @brief Set the Position and Rotation using a Transform
             /// @param TranA The new Position and rotation
             virtual void SetPivotATransform(const Transform& TranA) = 0;

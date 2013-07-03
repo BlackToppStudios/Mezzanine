@@ -58,24 +58,25 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB HeightfieldCollisionShape : public FieldCollisionShape
         {
-            protected:
-                /// @internal
-                /// @brief The internal implementation.
-                btHeightfieldTerrainShape* HeightfieldShape;
-            public:
-                /// @brief Class Constructor.
-                /// @param Name The name of this Shape.
-                HeightfieldCollisionShape(const String& Name);
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param Name The name of this Shape.
-                /// @param BulletShape The internal shape this shape is based on.
-                HeightfieldCollisionShape(const String& Name, btHeightfieldTerrainShape* BulletShape);
-                /// @brief Class Destructor.
-                virtual ~HeightfieldCollisionShape();
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const;
-        };//heightfieldcollisionshape
+        protected:
+            /// @internal
+            /// @brief The internal implementation.
+            btHeightfieldTerrainShape* HeightfieldShape;
+        public:
+            /// @brief Class Constructor.
+            /// @param Name The name of this Shape.
+            HeightfieldCollisionShape(const String& Name);
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Name The name of this Shape.
+            /// @param BulletShape The internal shape this shape is based on.
+            HeightfieldCollisionShape(const String& Name, btHeightfieldTerrainShape* BulletShape);
+            /// @brief Class Destructor.
+            virtual ~HeightfieldCollisionShape();
+
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const;
+        };//HeightfieldCollisionShape
     }//Physics
 }//Mezzanine
 

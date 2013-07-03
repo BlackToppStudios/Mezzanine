@@ -54,22 +54,22 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB PlaneCollisionShape : public FieldCollisionShape
         {
-            protected:
-                btStaticPlaneShape* PlaneShape;
-            public:
-                /// @brief Class Constructor.
-                /// @param Name The name of this Shape.
-                PlaneCollisionShape(const String& Name);
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param Name The name of this Shape.
-                /// @param BulletShape The internal shape this shape is based on.
-                PlaneCollisionShape(const String& Name, btStaticPlaneShape* BulletShape);
-                /// @brief Class Destructor.
-                virtual ~PlaneCollisionShape();
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const;
-        };//planecollisionshape
+        protected:
+            btStaticPlaneShape* PlaneShape;
+        public:
+            /// @brief Class Constructor.
+            /// @param Name The name of this Shape.
+            PlaneCollisionShape(const String& Name);
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Name The name of this Shape.
+            /// @param BulletShape The internal shape this shape is based on.
+            PlaneCollisionShape(const String& Name, btStaticPlaneShape* BulletShape);
+            /// @brief Class Destructor.
+            virtual ~PlaneCollisionShape();
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const;
+        };//PlaneCollisionShape
     }//Physics
 }//Mezzanine
 

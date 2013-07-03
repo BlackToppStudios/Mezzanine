@@ -69,120 +69,120 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Collision
         {
-            public:
-                /// @enum CollisionState
-                /// @brief Enum specifying the state change occuring in the collision.
-                enum CollisionState
-                {
-                    Col_Begin,
-                    Col_Contacts_Updated,
-                    Col_End
-                };
-                /// @enum CollisionType
-                /// @brief Enum specifying what kind of collision this class is storing.
-                enum CollisionType
-                {
-                    Col_Actor_Actor,        ///< Specifies a collision between two Actors.
-                    Col_Actor_Terrain,      ///< Specifies a collision between an Actor and some Terrain.
-                    Col_Actor_AreaEffect,   ///< Specifies a collision between an Actor and an AreaRffect.
-                    Col_AreaEffect_Terrain  ///< Specifies a collision between an AreaEffect and some Terrain.
-                };
-            protected:
-                friend class Mezzanine::Physics::CollisionDispatcher;
-                friend class Mezzanine::Physics::PhysicsManager;
-                /// @brief The internal collision class this event is based on.
-                btCollisionAlgorithm* InternalAlgo;
-                /// @brief Array of manifolds that apply to this collision.
-                CollisionInternalData* InternalData;
-                /// @brief The first Object involved in the collision.
-                WorldObject* ObjectA;
-                /// @brief The second Object invovled in the collision.
-                WorldObject* ObjectB;
-                /// @brief This stores the distance of each contact point in this collision, for using to track updates.
-                std::vector<Real> PenetrationDistances;
-                /// @internal
-                /// @brief Class Constructor.
-                /// @details This will construct a basic event class with the minimum data needed.
-                /// @param A The first Object involved in the collision.
-                /// @param B The second Object invovled in the collision.
-                /// @param PhysicsAlgo The internal algorithm used for generating collision data.
-                Collision(WorldObject* A, WorldObject* B, btCollisionAlgorithm* PhysicsAlgo);
-                /// @internal
-                /// @brief Internal function responsible for fetching the appropriate contact point.
-                btManifoldPoint& GetManifoldPoint(const Whole& Index);
-                /// @internal
-                /// @brief Updates the PenetrationDistances vector on this object.
-                void UpdatePenetrationDistances();
-            public:
-                /// @brief Default Constructor
-                Collision();
-                /// @brief Copy Constructor.
-                /// @param Other The other EventCollision to copy
-                Collision(const Collision& Other);
-                /// @brief Class Destructor.
-                /// @details Basic Class Destructor.
-                virtual ~Collision();
+        public:
+            /// @enum CollisionState
+            /// @brief Enum specifying the state change occuring in the collision.
+            enum CollisionState
+            {
+                Col_Begin,
+                Col_Contacts_Updated,
+                Col_End
+            };
+            /// @enum CollisionType
+            /// @brief Enum specifying what kind of collision this class is storing.
+            enum CollisionType
+            {
+                Col_Actor_Actor,        ///< Specifies a collision between two Actors.
+                Col_Actor_Terrain,      ///< Specifies a collision between an Actor and some Terrain.
+                Col_Actor_AreaEffect,   ///< Specifies a collision between an Actor and an AreaRffect.
+                Col_AreaEffect_Terrain  ///< Specifies a collision between an AreaEffect and some Terrain.
+            };
+        protected:
+            friend class Mezzanine::Physics::CollisionDispatcher;
+            friend class Mezzanine::Physics::PhysicsManager;
+            /// @brief The internal collision class this event is based on.
+            btCollisionAlgorithm* InternalAlgo;
+            /// @brief Array of manifolds that apply to this collision.
+            CollisionInternalData* InternalData;
+            /// @brief The first Object involved in the collision.
+            WorldObject* ObjectA;
+            /// @brief The second Object invovled in the collision.
+            WorldObject* ObjectB;
+            /// @brief This stores the distance of each contact point in this collision, for using to track updates.
+            std::vector<Real> PenetrationDistances;
+            /// @internal
+            /// @brief Class Constructor.
+            /// @details This will construct a basic event class with the minimum data needed.
+            /// @param A The first Object involved in the collision.
+            /// @param B The second Object invovled in the collision.
+            /// @param PhysicsAlgo The internal algorithm used for generating collision data.
+            Collision(WorldObject* A, WorldObject* B, btCollisionAlgorithm* PhysicsAlgo);
+            /// @internal
+            /// @brief Internal function responsible for fetching the appropriate contact point.
+            btManifoldPoint& GetManifoldPoint(const Whole& Index);
+            /// @internal
+            /// @brief Updates the PenetrationDistances vector on this object.
+            void UpdatePenetrationDistances();
+        public:
+            /// @brief Default Constructor
+            Collision();
+            /// @brief Copy Constructor.
+            /// @param Other The other EventCollision to copy
+            Collision(const Collision& Other);
+            /// @brief Class Destructor.
+            /// @details Basic Class Destructor.
+            virtual ~Collision();
 
-                /// @brief Sets the first Object this collision applies to.
-                /// @warning Collision events can't/shouldn't have the bodies they apply to changed.  This function
-                /// exists mostly just for the blank constructor when you need to set them afterward.  If you attempt
-                /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
-                /// @param A The first Object in this event.
-                virtual void SetObjectA(WorldObject* A);
-                /// @brief Gets the first Object this collision applies to.
-                /// @return Returns a pointer to the first Object in this event.
-                virtual WorldObject* GetObjectA() const;
-                /// @brief Sets the second Object this collision applies to.
-                /// @warning Collision events can't/shouldn't have the bodies they apply to changed.  This function
-                /// exists mostly just for the blank constructor when you need to set them afterward.  If you attempt
-                /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
-                /// @param B The second Object in this event.
-                virtual void SetObjectB(WorldObject* B);
-                /// @brief Gets the second Object this collision applies to.
-                /// @return Returns a pointer to the second Object in this event.
-                virtual WorldObject* GetObjectB() const;
+            /// @brief Sets the first Object this collision applies to.
+            /// @warning Collision events can't/shouldn't have the bodies they apply to changed.  This function
+            /// exists mostly just for the blank constructor when you need to set them afterward.  If you attempt
+            /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
+            /// @param A The first Object in this event.
+            virtual void SetObjectA(WorldObject* A);
+            /// @brief Gets the first Object this collision applies to.
+            /// @return Returns a pointer to the first Object in this event.
+            virtual WorldObject* GetObjectA() const;
+            /// @brief Sets the second Object this collision applies to.
+            /// @warning Collision events can't/shouldn't have the bodies they apply to changed.  This function
+            /// exists mostly just for the blank constructor when you need to set them afterward.  If you attempt
+            /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
+            /// @param B The second Object in this event.
+            virtual void SetObjectB(WorldObject* B);
+            /// @brief Gets the second Object this collision applies to.
+            /// @return Returns a pointer to the second Object in this event.
+            virtual WorldObject* GetObjectB() const;
 
-                /// @brief Gets the number of contact points this collision is storing.
-                /// @return Returns the number of contact points that currently exist for this collision.
-                virtual Whole GetNumContactPoints();
-                /// @brief Gets the location in the world where the collision occured.
-                /// @param Point The index of the contact point for this collision.
-                /// @return Returns a vector3 containing the approximate world location of the collision.
-                virtual Vector3 GetWorldLocation(const Whole& Point);
-                /// @brief Gets the location in ObjectA's local space where the collision occured.
-                /// @param Point The index of the contact point for this collision.
-                /// @return Returns a vector3 with the point of the collision in ObjectA's local space.
-                virtual Vector3 GetLocalALocation(const Whole& Point);
-                /// @brief Gets the location in ObjectB's local space where the collision occured.
-                /// @param Point The index of the contact point for this collision.
-                /// @return Returns a vector3 with the point of the collision in ObjectB's local space.
-                virtual Vector3 GetLocalBLocation(const Whole& Point);
-                /// @brief GEts the collision normal for a contact point.
-                /// @param Point The index of the contact point for this collision.
-                /// @return Returns a vector3 representing the collision normal for a contact point.
-                virtual Vector3 GetNormal(const Whole& Point);
-                /// @brief Gets the amount of force of the collision.
-                /// @param Point The index of the contact point for this collision.
-                /// @return Returns a real representing the amount of force applied from the collision.
-                virtual Real GetAppliedImpulse(const Whole& Point);
-                /// @brief Gets the penetration depth of the collision.
-                /// @remarks You should double check the return of this to verify that it is <0, sometimes a collision or contact point can be
-                /// reported while there is no actual overlap depending on your physics setup.
-                /// @param Point The index of the contact point for this collision.
-                /// @return Returns a real representing the depth of penetration between the two objects in this collision.
-                virtual Real GetDistance(const Whole& Point);
-                /// @brief Gets the number of simulation steps the contact point has existed.
-                /// @param Point The index of the contact point for this collision.
-                /// @return Returns a Whole representing the amount of simulation steps a point has existed.
-                virtual Whole GetAge(const Whole& Point);
+            /// @brief Gets the number of contact points this collision is storing.
+            /// @return Returns the number of contact points that currently exist for this collision.
+            virtual Whole GetNumContactPoints();
+            /// @brief Gets the location in the world where the collision occured.
+            /// @param Point The index of the contact point for this collision.
+            /// @return Returns a vector3 containing the approximate world location of the collision.
+            virtual Vector3 GetWorldLocation(const Whole& Point);
+            /// @brief Gets the location in ObjectA's local space where the collision occured.
+            /// @param Point The index of the contact point for this collision.
+            /// @return Returns a vector3 with the point of the collision in ObjectA's local space.
+            virtual Vector3 GetLocalALocation(const Whole& Point);
+            /// @brief Gets the location in ObjectB's local space where the collision occured.
+            /// @param Point The index of the contact point for this collision.
+            /// @return Returns a vector3 with the point of the collision in ObjectB's local space.
+            virtual Vector3 GetLocalBLocation(const Whole& Point);
+            /// @brief GEts the collision normal for a contact point.
+            /// @param Point The index of the contact point for this collision.
+            /// @return Returns a vector3 representing the collision normal for a contact point.
+            virtual Vector3 GetNormal(const Whole& Point);
+            /// @brief Gets the amount of force of the collision.
+            /// @param Point The index of the contact point for this collision.
+            /// @return Returns a real representing the amount of force applied from the collision.
+            virtual Real GetAppliedImpulse(const Whole& Point);
+            /// @brief Gets the penetration depth of the collision.
+            /// @remarks You should double check the return of this to verify that it is <0, sometimes a collision or contact point can be
+            /// reported while there is no actual overlap depending on your physics setup.
+            /// @param Point The index of the contact point for this collision.
+            /// @return Returns a real representing the depth of penetration between the two objects in this collision.
+            virtual Real GetDistance(const Whole& Point);
+            /// @brief Gets the number of simulation steps the contact point has existed.
+            /// @param Point The index of the contact point for this collision.
+            /// @return Returns a Whole representing the amount of simulation steps a point has existed.
+            virtual Whole GetAge(const Whole& Point);
 
-                /// @brief Convenience function to see if the provided pair match the pair in this class.
-                /// @param A The first object to be compared.  Will be checked against both objects in this collision.
-                /// @param B The second object to be compared.  Will be checked against both objects in this collision.
-                /// @return Returns a bool, true if the pairs match, false otherwise.
-                virtual bool PairsMatch(WorldObject* A, WorldObject* B) const;
-                /// @brief Updates this collisions contact point data if it needs updating.
-                virtual void Update();
+            /// @brief Convenience function to see if the provided pair match the pair in this class.
+            /// @param A The first object to be compared.  Will be checked against both objects in this collision.
+            /// @param B The second object to be compared.  Will be checked against both objects in this collision.
+            /// @return Returns a bool, true if the pairs match, false otherwise.
+            virtual bool PairsMatch(WorldObject* A, WorldObject* B) const;
+            /// @brief Updates this collisions contact point data if it needs updating.
+            virtual void Update();
         };//Collision
     }//Physics
 }//Mezzanine

@@ -59,64 +59,61 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB CompoundCollisionShape : public CollisionShape
         {
-            protected:
-                /// @brief Storage for Child shapes.
-                std::vector<CollisionShape*> ChildShapes;
-            public:
-                /// @brief Class Constructor.
-                /// @param Name The name of this Shape.
-                CompoundCollisionShape(const String& Name);
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param Name The name of this Shape.
-                /// @param BulletShape The internal shape this shape is based on.
-                CompoundCollisionShape(const String& Name, btCompoundShape* BulletShape);
-                /// @brief Class Destructor.
-                virtual ~CompoundCollisionShape();
+        protected:
+            /// @brief Storage for Child shapes.
+            std::vector<CollisionShape*> ChildShapes;
+        public:
+            /// @brief Class Constructor.
+            /// @param Name The name of this Shape.
+            CompoundCollisionShape(const String& Name);
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Name The name of this Shape.
+            /// @param BulletShape The internal shape this shape is based on.
+            CompoundCollisionShape(const String& Name, btCompoundShape* BulletShape);
+            /// @brief Class Destructor.
+            virtual ~CompoundCollisionShape();
 
-                /// @brief Adds a shape to this compound shape.
-                /// @param Child The shape to be added to this shape.
-                /// @param ChildLocation The location this child is to have in local space.
-                /// @param ChildRotation The rotation to apply to this child in local space.
-                virtual void AddChildShape(CollisionShape* Child, const Vector3& ChildLocation, const Quaternion& ChildRotation);
-                /// @brief Adds a shape to this compound shape.
-                /// @param Child The shape to be added to this shape.
-                /// @param ChildLocation The location this child is to have in local space.
-                virtual void AddChildShape(CollisionShape* Child, const Vector3& ChildLocation);
-                /// @brief Adds a shape to this compound shape.
-                /// @param Child The shape to be added to this shape.
-                /// @param ChildLocation The location and Rotation this child is to have in local space.
-                virtual void AddChildShape(CollisionShape* Child, const Transform& ChildLocation);
-                /// @brief Gets the number of children belonging to this compound shape.
-                /// @return Returns the number of children belonging to this shape.
-                virtual Whole GetNumChildren() const;
-                /// @brief Get a specific child
-                /// @param Index A number indicating which CollisionShape you want a pointer to.
-                /// @return A pointer to the Specified CollisionShape
-                virtual CollisionShape* GetChild(Whole Index) const;
-                /// @brief Removes a Child shape from this compound shape.
-                /// @param Child The child shape to be removed.
-                virtual void RemoveChildShape(CollisionShape* Child);
-                /// @brief Removed a Child shape from this compound shape by index.
-                /// @param ChildIndex The index of the child shape to be removed.
-                virtual void RemoveChildShape(const Whole& ChildIndex);
+            /// @brief Adds a shape to this compound shape.
+            /// @param Child The shape to be added to this shape.
+            /// @param ChildLocation The location this child is to have in local space.
+            /// @param ChildRotation The rotation to apply to this child in local space.
+            virtual void AddChildShape(CollisionShape* Child, const Vector3& ChildLocation, const Quaternion& ChildRotation);
+            /// @brief Adds a shape to this compound shape.
+            /// @param Child The shape to be added to this shape.
+            /// @param ChildLocation The location this child is to have in local space.
+            virtual void AddChildShape(CollisionShape* Child, const Vector3& ChildLocation);
+            /// @brief Adds a shape to this compound shape.
+            /// @param Child The shape to be added to this shape.
+            /// @param ChildLocation The location and Rotation this child is to have in local space.
+            virtual void AddChildShape(CollisionShape* Child, const Transform& ChildLocation);
+            /// @brief Gets the number of children belonging to this compound shape.
+            /// @return Returns the number of children belonging to this shape.
+            virtual Whole GetNumChildren() const;
+            /// @brief Get a specific child
+            /// @param Index A number indicating which CollisionShape you want a pointer to.
+            /// @return A pointer to the Specified CollisionShape
+            virtual CollisionShape* GetChild(Whole Index) const;
+            /// @brief Removes a Child shape from this compound shape.
+            /// @param Child The child shape to be removed.
+            virtual void RemoveChildShape(CollisionShape* Child);
+            /// @brief Removed a Child shape from this compound shape by index.
+            /// @param ChildIndex The index of the child shape to be removed.
+            virtual void RemoveChildShape(const Whole& ChildIndex);
 
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual btCompoundShape* GetBulletCompoundShape() const;
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btCompoundShape* GetBulletCompoundShape() const;
 
-                // Serializable
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-                // DeSerializable
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
-                /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-                /// @return A string containing "CompoundCollisionShape"
-                static String SerializableName();
-
-        };//compoundcollisionshape
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "CompoundCollisionShape"
+            static String SerializableName();
+        };//CompoundCollisionShape
     }//Physics
 }//Mezzanine
 

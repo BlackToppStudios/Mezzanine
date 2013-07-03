@@ -56,16 +56,17 @@ namespace Mezzanine
         /// @details This class is currently incomplete and is marked as internal until its completion
         class MEZZ_LIB UniversalConstraint : public Generic6DofConstraint
         {
-            protected:
-                /// @brief Bullet constraint that this class encapsulates.
-                btUniversalConstraint* Universal;
-            public:
-                UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
-                /// @brief Class destructor.
-                /// @details The class destructor.
-                virtual ~UniversalConstraint();
-                virtual void SetUpperLimit(Real Ang1Max, Real Ang2Max);
-                virtual void SetLowerLimit(Real Ang1Min, Real Ang2Min);
+        protected:
+            /// @brief Bullet constraint that this class encapsulates.
+            btUniversalConstraint* Universal;
+        public:
+            UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+            /// @brief Class destructor.
+            /// @details The class destructor.
+            virtual ~UniversalConstraint();
+
+            virtual void SetUpperLimit(Real Ang1Max, Real Ang2Max);
+            virtual void SetLowerLimit(Real Ang1Min, Real Ang2Min);
         };//UniversalConstraint
     }//Physics
 }//Mezzanine
