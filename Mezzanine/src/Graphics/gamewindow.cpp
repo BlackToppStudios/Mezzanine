@@ -40,6 +40,14 @@
 #ifndef _graphicsgamewindow_cpp
 #define _graphicsgamewindow_cpp
 
+#include "datatypes.h"
+#include "Graphics/gamewindow.h"
+#include "crossplatform.h"
+#include "Graphics/viewport.h"
+#include "camera.h"
+#include "graphicsmanager.h"
+#include "entresol.h"
+
 #ifdef WINDOWS
 #include <windows.h>
 #endif
@@ -52,14 +60,6 @@
 #ifdef MACOSX
 #include <Cocoa/Cocoa.h>
 #endif
-
-#include "datatypes.h"
-#include "Graphics/gamewindow.h"
-#include "crossplatform.h"
-#include "Graphics/viewport.h"
-#include "camera.h"
-#include "graphicsmanager.h"
-#include "entresol.h"
 
 #include <SDL.h>
 #include "../src/video/SDL_sysvideo.h"
