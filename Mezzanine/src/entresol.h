@@ -256,7 +256,6 @@ namespace Mezzanine
     class ActorContainerBase;
     class EventManager;
     class CameraManager;
-    class PhysicsManager;
     class GameWindow;
     class GraphicsManager;
     class InputManager;
@@ -265,7 +264,6 @@ namespace Mezzanine
     class UIManager;
     class MeshManager;
     class CollisionShapeManager;
-    class PhysicsConstructionInfo;
     class NetworkManager;
     class SceneManager;
     class ManagerFactory;
@@ -273,6 +271,11 @@ namespace Mezzanine
     {
         class AudioManager;
         class SoundScapeManager;
+    }
+    namespace Physics
+    {
+        class PhysicsManager;
+        class PhysicsConstructionInfo;
     }
 }
 
@@ -335,7 +338,7 @@ namespace Mezzanine
             /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
             /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
-            void Construct( const PhysicsConstructionInfo& PhysicsInfo,
+            void Construct( const Physics::PhysicsConstructionInfo& PhysicsInfo,
                             const String& SceneType,
                             const String& EngineDataPath,
                             const String& LogFileName,
@@ -404,7 +407,7 @@ namespace Mezzanine
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially other low level resources.
             /// @param LogFileName This is the place that log messages get sent to.
-            Entresol(  const PhysicsConstructionInfo& PhysicsInfo,
+            Entresol(  const Physics::PhysicsConstructionInfo& PhysicsInfo,
                        const String& SceneType,
                        const String& EngineDataPath,
                        const String& LogFileName = "Mezzanine.log" );
@@ -419,7 +422,7 @@ namespace Mezzanine
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones.
-            Entresol(  const PhysicsConstructionInfo& PhysicsInfo,
+            Entresol(  const Physics::PhysicsConstructionInfo& PhysicsInfo,
                        const String& SceneType,
                        const String& EngineDataPath,
                        const String& LogFileName,
@@ -708,7 +711,7 @@ namespace Mezzanine
             /// @brief This gets the PhysicsManager from the manager list.
             /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.
             /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
-            PhysicsManager* GetPhysicsManager(const UInt16 WhichOne = 0);
+            Physics::PhysicsManager* GetPhysicsManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the SceneManager from the manager list.
             /// @param WhichOne If you have multiple SceneManagers this will choose which one to return.

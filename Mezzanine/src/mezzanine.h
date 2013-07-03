@@ -110,8 +110,7 @@
 #include "particleaffector.h"
 #include "particleeffect.h"             // done
 #include "particleemitter.h"
-#include "physics.h"
-#include "physicsmanager.h"
+#include "Physics/physics.h"
 #include "plane.h"                      // done
 #include "quaternion.h"                 // done
 #include "ray.h"

@@ -605,6 +605,9 @@ namespace Mezzanine
             Physics::ConvexHullCollisionShape* convexShape = new Physics::ConvexHullCollisionShape(namestream.str(),decomp.m_convexShapes[i]);
             compound->AddChildShape(convexShape,centroid);
         }
+        delete[] vertices;
+        delete[] indices;
+        delete[] VertPerSubMesh;
         return compound;
     }
 

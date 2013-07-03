@@ -71,7 +71,6 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB AreaEffect : public NonStaticWorldObject, public AttachableChild
     {
-        friend class PhysicsManager;
         public:
             using WorldObject::SetLocation;
             using NonStaticWorldObject::SetOrientation;

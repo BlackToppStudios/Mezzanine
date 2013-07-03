@@ -45,7 +45,7 @@
 
 #include "entresol.h"
 #include "meshmanager.h"
-#include "physicsmanager.h"
+#include "Physics/physicsmanager.h"
 #include "scenemanager.h"
 #include "actorrigid.h"
 #include "Physics/collision.h"
@@ -84,9 +84,9 @@ namespace Mezzanine
 
     void ActorRigid::CreateRigidObject(const Real& pmass)
     {
-        btScalar bmass=pmass;
+        btScalar bmass = pmass;
         this->PhysicsRigidBody = new btRigidBody(bmass, this->MotionState, this->PhysicsShape);
-        PhysicsObject=PhysicsRigidBody;
+        PhysicsObject = PhysicsRigidBody;
         Ogre::Any OgreRef( (WorldObject*)this );
         GraphicsObject->setUserAny(OgreRef);
         PhysicsObject->setUserPointer( (WorldObject*)this );
@@ -120,7 +120,7 @@ namespace Mezzanine
     {
         if( IsInWorld() )
             return;
-        PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addRigidBody(this->PhysicsRigidBody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
+        Physics::PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addRigidBody(this->PhysicsRigidBody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
         this->AttachToGraphics();
     }
 
@@ -130,7 +130,7 @@ namespace Mezzanine
             return;
 
         try{
-            PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+            Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
             btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
             BWorld->removeRigidBody(this->PhysicsRigidBody);
             DetachAllChildren();
@@ -169,7 +169,7 @@ namespace Mezzanine
             NewSticky->SetUpperAngLimit(0.0);
             NewSticky->SetLowerLinLimit(0.0);
             NewSticky->SetLowerAngLimit(0.0);//*/
-            PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
+            Physics::PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
             CurrInfo.ActA->GetPhysicsSettings()->GetStickyData()->StickyConstraints.push_back(NewSticky);
             NewSticky->GetConstraintBase()->setOverrideNumSolverIterations(100);

@@ -42,7 +42,7 @@
 
 #include "Internal/motionstate.h.cpp"
 
-#include "physicsmanager.h"
+#include "Physics/physicsmanager.h"
 #include "areaeffect.h"
 
 // Keeps this file form being documented by doxygen

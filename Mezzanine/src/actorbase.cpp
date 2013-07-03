@@ -53,7 +53,7 @@
 #include "serialization.h"
 #include "Audio/audiomanager.h"
 #include "Audio/soundset.h"
-#include "physicsmanager.h"
+#include "Physics/physicsmanager.h"
 #include "scenemanager.h"
 #include "entresol.h"
 #include "XML/xml.h"

@@ -21,7 +21,7 @@ LevelLoader::~LevelLoader()
 void LevelLoader::LoadFerris()
 {
     // Get managers
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     ActorManager* ActMan = ActorManager::GetSingletonPtr();
@@ -277,7 +277,7 @@ void LevelLoader::LoadFerris()
 void LevelLoader::LoadBigCurve()
 {
     // Get managers
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     ActorManager* ActMan = ActorManager::GetSingletonPtr();
@@ -396,7 +396,7 @@ void LevelLoader::LoadBigCurve()
 void LevelLoader::LoadBlowsNotSucks()
 {
     // Get managers
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     ActorManager* ActMan = ActorManager::GetSingletonPtr();
@@ -597,7 +597,7 @@ void LevelLoader::LoadBlowsNotSucks()
 void LevelLoader::LoadJustice()
 {
     // Get managers
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     ActorManager* ActMan = ActorManager::GetSingletonPtr();
@@ -809,7 +809,7 @@ void LevelLoader::LoadJustice()
 void LevelLoader::LoadRollers()
 {
     // Get managers
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     ActorManager* ActMan = ActorManager::GetSingletonPtr();
@@ -944,7 +944,7 @@ void LevelLoader::LoadRollers()
 void LevelLoader::LoadJustBounce()
 {
     // Get managers
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     ActorManager* ActMan = ActorManager::GetSingletonPtr();
