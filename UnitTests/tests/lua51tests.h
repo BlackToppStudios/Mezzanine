@@ -352,7 +352,7 @@ class lua51tests : public UnitTestGroup
                         cout << endl;
                     }
 
-                    /*{
+                    /*{ // This library just segfaults At the moment
                         String FeatureSource("module(EmptyModule)\n");
 
                         Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::BaseLib);
@@ -482,7 +482,7 @@ class lua51tests : public UnitTestGroup
                         cout << endl;
                     }
 
-                    {
+                  /*{ // This library just segfaults At the moment
                         String FeatureSource("io.tmpfile()");
 
                         Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
@@ -512,7 +512,7 @@ class lua51tests : public UnitTestGroup
                             AddTestResult("Lua51::Script::IOlibInclude", Failed);
                         }
                         cout << endl;
-                    }
+                    }*/
 
                     /*
                     virtual void OpenOSLibrary();

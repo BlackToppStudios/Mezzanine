@@ -634,6 +634,7 @@ namespace Mezzanine
 
         if (&EachXSeconds==LogCommitFunc)
             return LogOncePerXSeconds;
+        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Impossible logging frequency set, cannot retrieve");
     }
 
     void Entresol::CommitLog()
@@ -877,6 +878,8 @@ namespace Mezzanine
     void Entresol::DestroyManagerFactory(const String& ImplName)
     {
         ManagerFactoryIterator ManIt = ManagerFactories.find(ImplName);
+        delete ManIt->second;
+        ManagerFactories.erase(ManIt);
     }
 
     void Entresol::DestroyAllManagerFactories()
@@ -957,6 +960,7 @@ namespace Mezzanine
         ManagerBase* NewMan = (*ManIt).second->CreateManager(Params);
         if(AddToWorld)
             AddManager(NewMan);
+        return NewMan;
     }
 
     ManagerBase* Entresol::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, bool AddToWorld)
@@ -969,6 +973,7 @@ namespace Mezzanine
         ManagerBase* NewMan = (*ManIt).second->CreateManager(XMLNode);
         if(AddToWorld)
             AddManager(NewMan);
+        return NewMan;
     }
 
     void Entresol::DestroyManager(ManagerBase* ToBeDestroyed)

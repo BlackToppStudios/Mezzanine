@@ -63,8 +63,6 @@ extern "C"
     int luaopen_Mezzanine(lua_State* L);
 }
 
-#include <iostream>
-
 namespace Mezzanine
 {
     namespace Scripting
@@ -77,15 +75,19 @@ namespace Mezzanine
             Lua51Script::Lua51Script() : FunctionCall(false)
                 { }
 
-            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler, Bool JustAFunctionCall)
-                : SourceCode(InitialSourceCode), FunctionCall(JustAFunctionCall)
+            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler, Bool JustAFunctionCall, String ScriptName)
+                : SourceCode(InitialSourceCode),
+                  Name(ScriptName),
+                  FunctionCall(JustAFunctionCall)
             {
                 if(Compiler && !FunctionCall)
                     { Compile(Compiler); }
             }
 
-            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Bool JustAFunctionCall)
-                : SourceCode(InitialSourceCode), FunctionCall(JustAFunctionCall)
+            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Bool JustAFunctionCall, String ScriptName)
+                : SourceCode(InitialSourceCode),
+                  Name(ScriptName),
+                  FunctionCall(JustAFunctionCall)
             {
                 if(!FunctionCall)
                     { Compile(&Compiler); }
@@ -188,6 +190,14 @@ namespace Mezzanine
 
             void Lua51Script::Compile(Lua51ScriptingEngine& Compiler)
                 { Compiler.Compile(this); }
+
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // Name
+            String Lua51Script::GetName() const
+                { return Name; }
+
+            void Lua51Script::SetName(const String& NewName)
+                { Name = NewName; }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // Returns

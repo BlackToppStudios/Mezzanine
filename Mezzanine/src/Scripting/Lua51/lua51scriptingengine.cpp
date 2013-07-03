@@ -78,7 +78,7 @@ namespace Mezzanine
             {
                 /// @internal
                 /// @brief Used with the Lua API when a chunk name is required.
-                const char* DefaultChunkName = "Chunk";
+                //const char* DefaultChunkName = "Chunk";
 
                 /// @internal
                 /// @brief Used in the LuaScriptingEngine to get data from lua_dump during script compilation
@@ -211,7 +211,7 @@ namespace Mezzanine
                     else
                     {
                         ThrowFromLuaErrorCode(
-                            lua_load(this->State, LuaBytecodeLoader, &ScriptToRun->GetByteCodeReference(), DefaultChunkName)
+                            lua_load(this->State, LuaBytecodeLoader, &ScriptToRun->GetByteCodeReference(), ScriptToRun->GetName().c_str())
                         );
                     }
                     // Since Lua_Dump or lua_load will leave the function on the stack then...
@@ -281,7 +281,7 @@ namespace Mezzanine
             void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
             {
                 ThrowFromLuaErrorCode(
-                            lua_load(this->State, LuaSourceLoader, ScriptToCompile, DefaultChunkName)
+                            lua_load(this->State, LuaSourceLoader, ScriptToCompile, ScriptToCompile->GetName().c_str())
                 );
 
                 ThrowFromLuaErrorCode(
