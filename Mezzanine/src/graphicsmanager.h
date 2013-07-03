@@ -69,7 +69,7 @@ namespace Mezzanine
 
     class GraphicsManager;
 
-    /// @brief This does the main loop for required to make the Graphics Manager function
+    /// @brief This does the main loop processing for required to make the Graphics Manager function
     class MEZZ_LIB GraphicsWorkUnit : public Threading::MonopolyWorkUnit
     {
         private:
@@ -263,7 +263,11 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from ManagerBase
 
-            /// @copydoc ManagerBase::Initialize()
+            /// @brief Prepares the Graphics manager for use
+            /// @details Added a GraphicWorkUnit to the WorkScheduler on the Entresol as a
+            /// Monopoly, Initializes the Render device and rendering system if that has
+            /// not already been done, if configured to will save all graphics configuration
+            /// files.
             virtual void Initialize();
             /// @copydoc ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();

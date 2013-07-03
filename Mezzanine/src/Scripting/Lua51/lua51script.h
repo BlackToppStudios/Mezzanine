@@ -47,6 +47,7 @@
 #include "Scripting/scriptargument.h"
 #include "Scripting/script.h"
 #include "Scripting/scriptingmanager.h"
+#include <boost/bind/bind.hpp>
 
 /// @file
 /// @brief This file has the interface for the Lua scripts.
@@ -96,14 +97,17 @@ namespace Mezzanine
                     /// @brief Makes passing internal data much easier and all Lua51 are logically encapsulated as a single system still.
                     friend class Lua51ScriptingEngine;
 
-                    /// @brief This will contain the source of the script
-                    String SourceCode;
-
                     /// @brief A set of the arguments being passed into the Lua script
                     ArgumentGroup Args;
 
                     /// @brief A set of all the values the Lua script returned the last time it was executed.
                     ArgumentGroup Returns;
+
+                    /// @brief This will contain the source of the script
+                    String SourceCode;
+
+                    /// @brief Stores the Name of the Lua Script
+                    String Name;
 
                     /// @brief If the script is compiled this will be used to store it.
                     FlaggedBuffer CompiledByteCode;
@@ -121,13 +125,13 @@ namespace Mezzanine
                     /// @brief Compiling Constructor
                     /// @param SourceCode The source of the script to be used in this.
                     /// @param Compiler Defaults to a null pointer. If passed a null pointer this does nothing. If passed a valid LuaScriptingEngine then that engine is used to compile (but not run) this script.
-                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0, Bool JustAFunctionCall = false);
+                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0, Bool JustAFunctionCall = false, String ScriptName = "?");
 
                     /// @brief Compiling Cosntructor without pointer
                     /// @param SourceCode The source of the script to be used in this.
                     /// @param
                     /// @param
-                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Bool JustAFunctionCall = false);
+                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Bool JustAFunctionCall = false, String ScriptName = "?");
 
                     /// @brief Virtual destructor
                     virtual ~Lua51Script();
@@ -235,6 +239,17 @@ namespace Mezzanine
                     /// @brief This will compile the Lua script
                     /// @param Compiler This will be used to compile the script, no safety checks are performed.
                     void Compile(Lua51ScriptingEngine& Compiler);
+
+                    ///////////////////////////////////////////////////////////////////////////////////////
+                    // Name
+
+                    /// @brief Get the name of the current Script
+                    /// @return A String containing the name
+                    String GetName() const;
+
+                    /// @brief change the name of the Script
+                    /// @param NewName The new value for the scripts name
+                    void SetName(const String &NewName);
 
                     ///////////////////////////////////////////////////////////////////////////////////////
                     // Returns
