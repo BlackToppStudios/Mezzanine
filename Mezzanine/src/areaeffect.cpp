@@ -110,6 +110,7 @@ namespace Mezzanine
             if ( Actor == (*c) )
             {
                 OverlappingActors.erase(c);
+                return;
             }
         }
     }
@@ -473,7 +474,7 @@ namespace Mezzanine
     {
         if(0 == Strength)
             return;
-        ActorBase* Act = NULL;
+        //ActorBase* Act = NULL;
         ActorRigid* ActRig = NULL;
         if(!AllowWorldGrav && !AddedActors.empty())
         {

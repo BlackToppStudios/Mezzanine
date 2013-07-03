@@ -353,7 +353,7 @@ namespace Mezzanine
         }
 
         bool Generic6DofConstraint::GetUseFrameOffset() const
-            { this->Generic6dof->getUseFrameOffset(); }
+            { return this->Generic6dof->getUseFrameOffset(); }
         void Generic6DofConstraint::SetUseFrameOffset(bool FrameOffset)
             { this->Generic6dof->setUseFrameOffset(FrameOffset); }
 

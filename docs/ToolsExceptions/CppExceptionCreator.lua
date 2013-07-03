@@ -63,7 +63,7 @@ for line in Input:lines() do
                 DefinitionOutput = DefinitionOutput  .. "    /// @brief " .. ClassBrief .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "    static const Whole ExceptionCode = Exception::" .. EnumIdentifier .. ";\n"
                 DefinitionOutput = DefinitionOutput  .. "\n"
-                DefinitionOutput = DefinitionOutput  .. "    /// @brief Class constructor.\n"
+                DefinitionOutput = DefinitionOutput  .. "    /// @brief " .. ClassName .. " constructor.\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @param TypeName The name of this class.\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @param Message A basic description of the error.\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @param SrcFunction The name of the function from which this originated.\n"
@@ -73,7 +73,7 @@ for line in Input:lines() do
                 DefinitionOutput = DefinitionOutput  .. "        : " .. InheritsFrom .. "(\"" .. ClassName .. "\", Message, SrcFunction, SrcFile, FileLine)\n"
                 DefinitionOutput = DefinitionOutput  .. "        {}\n"
                 DefinitionOutput = DefinitionOutput  .. "\n"
-                DefinitionOutput = DefinitionOutput  .. "    /// @brief Class constructor.\n"
+                DefinitionOutput = DefinitionOutput  .. "    /// @brief " .. ClassName .. " constructor.\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @param Message A basic description of the error.\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @param SrcFunction The name of the function from which this originated.\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @param SrcFile The name of the file from which this originated.\n"
@@ -82,7 +82,7 @@ for line in Input:lines() do
                 DefinitionOutput = DefinitionOutput  .. "        : " .. InheritsFrom .. "(\"" .. ClassName .. "\", Message, SrcFunction, SrcFile, FileLine)\n"
                 DefinitionOutput = DefinitionOutput  .. "        {}\n"
                 DefinitionOutput = DefinitionOutput  .. "\n"
-                DefinitionOutput = DefinitionOutput  .. "    /// @brief Class destructor.\n"
+                DefinitionOutput = DefinitionOutput  .. "    /// @brief " .. ClassName .. " destructor.\n"
                 DefinitionOutput = DefinitionOutput  .. "    virtual ~" .. ClassName .. "() throw() {}\n"
                 DefinitionOutput = DefinitionOutput  .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @copydoc Exception::GetExceptionCode()\n"
@@ -108,3 +108,26 @@ EnumOutput = EnumOutput .. "  " .. GetEnumRemark(ClassName, ClassBrief) .. "};"
 print(EnumOutput)
 print("\n\n")
 print(DefinitionOutput)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

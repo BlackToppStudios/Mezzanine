@@ -73,7 +73,7 @@
 
 /// @def MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION
 /// @brief The revision version number of the library. (This right/back number)
-#define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 0
+#define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 2
 
 /// @mainpage Directed Acyclic Graph Frame Scheduler.
 /// @section goal_sec Goals

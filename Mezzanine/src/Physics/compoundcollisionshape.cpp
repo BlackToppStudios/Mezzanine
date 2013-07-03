@@ -128,6 +128,7 @@ namespace Mezzanine
                 {
                     ChildShapes.erase(CSit);
                     GetBulletCompoundShape()->removeChildShape(Child->GetBulletShape());
+                    return;
                 }
             }
         }
@@ -196,7 +197,7 @@ namespace Mezzanine
                     XML::Node ChildNode = ChildShapesNode.GetFirstChild();
                     while(ChildNode)
                     {
-                        if(ChildNode.Name()=="ChildShapeFromManager")
+                        if(String(ChildNode.Name())=="ChildShapeFromManager")
                         {
                             XML::Attribute OneName = ChildNode.GetAttribute("Name");
                             if(!OneName) { DeSerializeError("find Name Attribute on ChildShapeFromManager Node",this->CompoundCollisionShape::SerializableName()); }

@@ -53,6 +53,7 @@
 #include <Cocoa/Cocoa.h>
 #endif
 
+#include "datatypes.h"
 #include "Graphics/gamewindow.h"
 #include "crossplatform.h"
 #include "Graphics/viewport.h"
@@ -74,7 +75,7 @@ namespace Mezzanine
                 bool Borderless;
                 bool Resizeable;
 
-                GameWindowInternalData() : Borderless(false), Resizeable(false) {};
+                GameWindowInternalData() : Borderless(false), Resizeable(false) {}
         };
 
         GameWindow::GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)

@@ -1083,14 +1083,21 @@ namespace Mezzanine
         }else{
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
+                if(*ManIter == ManagerToChange )
+                {
+                    this->ManagerList.erase(ManIter);
+                    ManIter = ManagerList.begin();
+                }
+            }
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
                 if( (*ManIter)->GetPriority() > ManagerToChange->GetPriority() )
                 {
                     this->ManagerList.insert(ManIter,ManagerToChange);
-                }else if(*ManIter == ManagerToChange )
-                {
-                    this->ManagerList.erase(ManIter);
                 }
             }
+            //std::sort(>ManagerList.begin(),ManIter!=this->ManagerList.end(), )
+
         }
     }
 

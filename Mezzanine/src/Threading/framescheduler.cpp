@@ -248,7 +248,7 @@ namespace Mezzanine
             if(WorkUnitsAffinity.size())
             {
                 UpdateWorkUnitKeys(WorkUnitsAffinity);
-                std::sort(WorkUnitsAffinity.begin(),WorkUnitsMain.end(),std::less<WorkUnitKey>() );
+                std::sort(WorkUnitsAffinity.begin(),WorkUnitsAffinity.end(),std::less<WorkUnitKey>() );
             }
         }
 

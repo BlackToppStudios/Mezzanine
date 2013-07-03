@@ -147,7 +147,8 @@ namespace Mezzanine
           lock_guard<Mutex> guard(ti->mThread->mDataMutex);
           ti->mThread->mNotAThread = true;
 
-          // The thread is responsible for freeing the startup information
+          // The thread is responsible for freeing the startup information if this can't, then failed threads
+          // will clean it up in the threads constructor.
           delete ti;
 
           return 0;
@@ -180,7 +181,7 @@ namespace Mezzanine
             if(!mHandle)
             {
                 mNotAThread = true;
-                delete ti;
+                delete ti; // Since there is no thread wrapper_function was never called, so it never deleted this
             }
         }
 

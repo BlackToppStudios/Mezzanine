@@ -165,7 +165,7 @@ namespace Mezzanine
     /// @typedef Bool
     /// @brief A single bit, true or false
     /// @details Normally just a bool, and this corrects the casing of bool
-    typedef bool Bool;
+    typedef bool Bool_;
 
     /// @typedef StringStream
     /// @brief A Datatype used for streaming operations with strings.

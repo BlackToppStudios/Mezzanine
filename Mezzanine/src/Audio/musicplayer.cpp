@@ -51,12 +51,12 @@ namespace Mezzanine
     namespace Audio
     {
         MusicPlayer::MusicPlayer()
-            : ManualStop(false),
+            : MusicPlaylist(NULL),
+              CurrSong(NULL),
+              ManualStop(false),
               Playing(false),
               EOPRepeat(false),
-              EOPShuffle(false),
-              MusicPlaylist(NULL),
-              CurrSong(NULL)
+              EOPShuffle(false)
         {
             MusicPlaylist = new Playlist();
         }

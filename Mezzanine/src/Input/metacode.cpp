@@ -340,7 +340,10 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::MetaCode& x)
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::MetaCode& x)
     { return DeSerialize(stream, x); }
 
-Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::MetaCode& x)
-    {x.ProtoDeSerialize(OneNode); }
+Mezzanine::XML::Node operator >> (Mezzanine::XML::Node OneNode, Mezzanine::MetaCode& x)
+{
+    x.ProtoDeSerialize(OneNode);
+    return OneNode;
+}
 
 #endif

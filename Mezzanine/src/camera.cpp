@@ -387,6 +387,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
     }else{
         MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a Camera, found a "+Mezzanine::String(OneNode.Name()));
     }
+    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_STATE_EXCEPTION,"Impossible codepath reached in when attempting to deserialize a camera named "+Mezzanine::String(OneNode.Name()));
 }
 
 

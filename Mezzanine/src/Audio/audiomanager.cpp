@@ -200,7 +200,8 @@ namespace Mezzanine
 
         void AudioManager::AddDecoderFactory(iDecoderFactory* ToBeAdded)
         {
-            std::pair<DecoderFactoryIterator,bool> Result = this->DecoderFactories.insert(std::pair<Audio::Encoding,iDecoderFactory*>(ToBeAdded->GetSupportedEncoding(),ToBeAdded));
+            this->DecoderFactories.insert(std::pair<Audio::Encoding,iDecoderFactory*>(ToBeAdded->GetSupportedEncoding(),ToBeAdded));
+            //std::pair<DecoderFactoryIterator,bool> Result = this->DecoderFactories.insert(std::pair<Audio::Encoding,iDecoderFactory*>(ToBeAdded->GetSupportedEncoding(),ToBeAdded));
             //return Result.first;
         }
 

@@ -288,7 +288,7 @@ namespace Mezzanine
                 virtual Whole GetFrameCount() const;
 
                 /// @brief Get the desired length of a frame.
-		/// @return The desired frame length as a Whole in Microseconfs
+                /// @return The desired frame length as a Whole in Microseconds
                 virtual Whole GetFrameLength() const;
 
                 /// @brief Set the desired Frate rate.
