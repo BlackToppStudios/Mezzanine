@@ -47,7 +47,6 @@
 #include "Scripting/scriptargument.h"
 #include "Scripting/script.h"
 #include "Scripting/scriptingmanager.h"
-#include <boost/bind/bind.hpp>
 
 /// @file
 /// @brief This file has the interface for the Lua scripts.

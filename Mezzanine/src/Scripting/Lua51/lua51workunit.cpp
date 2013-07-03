@@ -60,8 +60,25 @@ namespace Mezzanine
                 : LuaRuntime(TargetRuntime)
             {}
 
-            void Lua51WorkUnit::push_back(CountedPtr<Lua51Script> FreshScript)
-                { ScriptsToRun.push_back(FreshScript); }
+            Lua51WorkUnit::~Lua51WorkUnit()
+                {}
+
+            void Lua51WorkUnit::push_back(CountedPtr<Lua51Script> ScriptToAdd)
+                { ScriptsToRun.push_back(ScriptToAdd); }
+
+            void Lua51WorkUnit::AddScript(CountedPtr<iScript> ScriptToAdd)
+            {
+                CountedPtr<Lua51Script> ScriptToStow = CountedPtrCast<Lua51Script>(ScriptToAdd);
+                if(ScriptToStow)
+                {
+                    AddScript(ScriptToStow);
+                }else{
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51WorkUnit attempted to store a script, but it did not appear to bea Lua51 script.")
+                }
+            }
+
+            void Lua51WorkUnit::AddScript(CountedPtr<Lua51Script> ScriptToAdd)
+                { push_back(ScriptToAdd); }
 
             Lua51WorkUnit::iterator Lua51WorkUnit::find(CountedPtr<Lua51Script> Target)
             {
@@ -91,7 +108,24 @@ namespace Mezzanine
             }
 
             void Lua51WorkUnit::erase(Lua51WorkUnit::iterator Target)
-                { ScriptsToRun.erase(Target); }
+            { ScriptsToRun.erase(Target); }
+
+            void Lua51WorkUnit::RemoveScript(CountedPtr<iScript> ScriptToRemove)
+            {
+                CountedPtr<Lua51Script> ScriptToBtow = CountedPtrCast<Lua51Script>(ScriptToRemove);
+                if(ScriptToBtow)
+                {
+                    RemoveScript(ScriptToBtow);
+                }else{
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51WorkUnit attempted to removed a script, but it did not appear to bea Lua51 script.")
+                }
+            }
+
+            void Lua51WorkUnit::RemoveScript(CountedPtr<Lua51Script> ScriptToRemove)
+                { erase(ScriptToRemove); }
+
+            void Lua51WorkUnit::RemoveScript(Whole Index)
+                { erase(this->begin()+Index); }
 
             Lua51WorkUnit::iterator Lua51WorkUnit::begin()
                 { return ScriptsToRun.begin(); }
@@ -102,6 +136,18 @@ namespace Mezzanine
                 { return ScriptsToRun.end(); }
             Lua51WorkUnit::const_iterator Lua51WorkUnit::end() const
                 { return ScriptsToRun.end(); }
+
+            Whole Lua51WorkUnit::GetScriptCount() const
+                { return ScriptsToRun.size(); }
+
+            void Lua51WorkUnit::ClearScripts()
+                { ScriptsToRun.clear(); }
+
+            CountedPtr<iScript> Lua51WorkUnit::GetScript(Whole Index)
+                { return CountedPtrCast<iScript>(ScriptsToRun.at(Index)); }
+
+            CountedPtr<Lua51Script> Lua51WorkUnit::GetLua51Script(Whole Index) const
+                { return ScriptsToRun.at(Index); }
 
             void Lua51WorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
             {
@@ -116,8 +162,6 @@ namespace Mezzanine
                 }
             }
 
-            Lua51WorkUnit::~Lua51WorkUnit()
-                {}
 
         } // Lua
     } // Scripting
