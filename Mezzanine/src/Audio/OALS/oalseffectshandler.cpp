@@ -73,6 +73,7 @@ namespace
             case Mezzanine::Audio::FT_LowPass:    return AL_FILTER_LOWPASS;   break;
             case Mezzanine::Audio::FT_HighPass:   return AL_FILTER_HIGHPASS;  break;
             case Mezzanine::Audio::FT_BandPass:   return AL_FILTER_BANDPASS;  break;
+            default:                              return AL_FILTER_NULL;      break;
         }
     }
 
@@ -98,6 +99,7 @@ namespace
             case Mezzanine::Audio::ET_Autowah:             return AL_EFFECT_AUTOWAH;            break;
             case Mezzanine::Audio::ET_Compressor:          return AL_EFFECT_COMPRESSOR;         break;
             case Mezzanine::Audio::ET_Equalizer:           return AL_EFFECT_EQUALIZER;          break;
+            default:                                       return AL_EFFECT_NULL;               break;
         }
     }
 }

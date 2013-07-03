@@ -331,6 +331,9 @@ namespace Mezzanine
                     case Audio::BC_8Bit_Stereo:   return 2;  break;
                     case Audio::BC_16Bit_Mono:    return 2;  break;
                     case Audio::BC_16Bit_Stereo:  return 4;  break;
+                    case Audio::BC_24Bit_Mono:    return 3;  break;
+                    case Audio::BC_24Bit_Stereo:  return 6;  break;
+                    default:                      return 0;  break;
                 }
             }
         }//OALS
