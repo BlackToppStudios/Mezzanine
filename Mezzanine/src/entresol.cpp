@@ -709,6 +709,12 @@ namespace Mezzanine
         bool DoNotBreak = true;
         while(DoNotBreak)
         {
+            #ifdef MEZZDEBUG
+            static UInt32 FrameCounter = 0;
+            StringStream FrameStream;
+            FrameStream << "-------------------------- Starting DAG Part of Frame: " << FrameCounter << " --------------------------" << endl;
+            #endif
+
             WorkScheduler.RunAllMonopolies(); //1
             WorkScheduler.CreateThreads();    //2
             WorkScheduler.RunMainThreadWork();//3
@@ -716,10 +722,7 @@ namespace Mezzanine
             WorkScheduler.ResetAllWorkUnits();//5
 
             #ifdef MEZZDEBUG
-            static UInt32 FrameCounter = 0;
-
-            StringStream FrameStream;
-            FrameStream << "-------------------------- Starting Frame: " << FrameCounter << " --------------------------";
+            FrameStream << "-------------------------- Starting Legacy Part of Frame: " << FrameCounter << " --------------------------";
             this->Log(FrameStream.str());
             this->DoMainLoopLogging();
             FrameStream.str("");
