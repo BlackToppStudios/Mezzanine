@@ -95,8 +95,8 @@ namespace Mezzanine
         {
             Filter::Filter(EFXInterface* EFXMethods)
                 : EFX(EFXMethods),
-                  Valid(false),
                   Dirty(false),
+                  Valid(false),
                   Volume(1.0),
                   LFVolume(1.0),
                   HFVolume(1.0),

@@ -334,8 +334,8 @@ namespace Mezzanine
             Effect::Effect(EFXInterface* EFXMethods)
                 : EFX(EFXMethods),
                   EffectFilter(NULL),
-                  Valid(false),
                   Dirty(false),
+                  Valid(false),
                   IgnoreAtten(false),
                   Volume(1.0),
                   InternalEffect(0),

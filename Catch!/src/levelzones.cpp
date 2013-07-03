@@ -51,7 +51,7 @@ void StartArea::ApplyEffect()
 {
     Vector3 Grav(0,0,0);
     ActorBase* Act = NULL;
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
     if(!AddedActors.empty())
     {
         for( std::vector<ActorBase*>::iterator it = AddedActors.begin() ; it != AddedActors.end() ; it++ )

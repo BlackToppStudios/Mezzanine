@@ -52,10 +52,10 @@ namespace Mezzanine
 {
     class WorldObject;
     class ActorBase;
-    class PhysicsManager;
-    class CollisionDispatcher;
     namespace Physics
     {
+        class PhysicsManager;
+        class CollisionDispatcher;
         struct CollisionInternalData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Collision
@@ -88,8 +88,8 @@ namespace Mezzanine
                     Col_AreaEffect_Terrain  ///< Specifies a collision between an AreaEffect and some Terrain.
                 };
             protected:
-                friend class Mezzanine::CollisionDispatcher;
-                friend class Mezzanine::PhysicsManager;
+                friend class Mezzanine::Physics::CollisionDispatcher;
+                friend class Mezzanine::Physics::PhysicsManager;
                 /// @brief The internal collision class this event is based on.
                 btCollisionAlgorithm* InternalAlgo;
                 /// @brief Array of manifolds that apply to this collision.

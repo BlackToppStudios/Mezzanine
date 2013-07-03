@@ -85,7 +85,7 @@ namespace Mezzanine
     /// @TODO In the Entrosol, reomves all references to a plugins file
     Entresol::Entresol()
     {
-        PhysicsConstructionInfo PhysicsInfo;
+        Physics::PhysicsConstructionInfo PhysicsInfo;
         std::vector <ManagerBase*> temp;
 
         this->Construct(PhysicsInfo,"DefaultSceneManager",".","Mezzanine.log",temp);
@@ -114,7 +114,7 @@ namespace Mezzanine
     }
 
 
-    Entresol::Entresol( const PhysicsConstructionInfo& PhysicsInfo,
+    Entresol::Entresol( const Physics::PhysicsConstructionInfo& PhysicsInfo,
                         const String& SceneType,
                         const String& EngineDataPath,
                         const String& LogFileName)
@@ -127,7 +127,7 @@ namespace Mezzanine
                         temp );
     }
 
-    Entresol::Entresol( const PhysicsConstructionInfo& PhysicsInfo,
+    Entresol::Entresol( const Physics::PhysicsConstructionInfo& PhysicsInfo,
                         const String& SceneType,
                         const String& EngineDataPath,
                         const String& LogFileName,
@@ -148,7 +148,7 @@ namespace Mezzanine
         Ogre::Root* OgreCore = 0;
     }
 
-    void Entresol::Construct(   const PhysicsConstructionInfo& PhysicsInfo,
+    void Entresol::Construct(   const Physics::PhysicsConstructionInfo& PhysicsInfo,
                                 const String& SceneType,
                                 const String& EngineDataPath,
                                 const String& LogFileName,
@@ -191,7 +191,7 @@ namespace Mezzanine
         if(this->GetInputManager()==0)
             { this->AddManager(new InputManager()); }
         if(this->GetPhysicsManager()==0)
-            { this->AddManager(new PhysicsManager(PhysicsInfo)); }
+            { this->AddManager(new Physics::PhysicsManager(PhysicsInfo)); }
         if(this->GetSceneManager()==0)
             { this->AddManager(new SceneManager(SceneType)); }
         if(this->GetUIManager()==0)
@@ -468,7 +468,7 @@ namespace Mezzanine
     void Entresol::OneTimeMainLoopInit()
     {
         VerifyManagerInitializations();
-        PhysicsManager::GetSingletonPtr()->MainLoopInitialize();
+        Physics::PhysicsManager::GetSingletonPtr()->MainLoopInitialize();
     }
 
     bool Entresol::VerifyManagerInitializations()
@@ -525,7 +525,7 @@ namespace Mezzanine
 
     void Entresol::PauseWorld(bool Pause)
     {
-        PhysicsManager::GetSingletonPtr()->PauseSimulation(Pause);
+        Physics::PhysicsManager::GetSingletonPtr()->PauseSimulation(Pause);
         SceneManager::GetSingletonPtr()->PauseAllParticles(Pause);
     }
 
@@ -917,7 +917,7 @@ namespace Mezzanine
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultNetworkManagerFactory());
         //DefaultPhysicsManager
         ManIt = ManagerFactories.find("DefaultPhysicsManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultPhysicsManagerFactory());
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Physics::DefaultPhysicsManagerFactory());
         //DefaultResourceManager
         ManIt = ManagerFactories.find("DefaultResourceManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultResourceManagerFactory());
@@ -1164,9 +1164,9 @@ namespace Mezzanine
         return dynamic_cast<NetworkManager*> (this->GetManager(ManagerBase::NetworkManager, WhichOne));
     }
     #endif
-    PhysicsManager* Entresol::GetPhysicsManager(const UInt16 WhichOne)
+    Physics::PhysicsManager* Entresol::GetPhysicsManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));
+        return dynamic_cast<Physics::PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));
     }
 
     SceneManager* Entresol::GetSceneManager(const UInt16 WhichOne)

@@ -42,7 +42,7 @@
 #define _world_cpp
 
 #include "world.h"
-#include "physicsmanager.h"
+#include "Physics/physicsmanager.h"
 #include "scenemanager.h"
 //#include "pagingmanager.h"
 

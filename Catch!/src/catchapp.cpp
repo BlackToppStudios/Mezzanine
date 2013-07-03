@@ -687,7 +687,7 @@ void CatchApp::UnloadLevel()
 {
     if("MainMenu"==Loader->GetCurrentLevel())
         return;
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
     ResourceManager* ResMan = ResourceManager::GetSingletonPtr();
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ActorManager* ActorMan = ActorManager::GetSingletonPtr();
@@ -741,8 +741,8 @@ int CatchApp::GetCatchin()
 {
     EventManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreInput);
     InputManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostInput);
-    PhysicsManager::GetSingletonPtr()->SetPreMainLoopItems(&CPrePhysics);
-    PhysicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostPhysics);
+    Physics::PhysicsManager::GetSingletonPtr()->SetPreMainLoopItems(&CPrePhysics);
+    Physics::PhysicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostPhysics);
     GraphicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostRender);
     UIManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreUI);
     UIManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostUI);
@@ -851,7 +851,7 @@ bool CatchApp::PostInput()
 
     if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) )
     {
-        PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+        Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
         if(PhysMan->GetDebugPhysicsRendering())
         {
             PhysMan->SetDebugPhysicsWireCount(0);
@@ -903,7 +903,7 @@ bool CatchApp::PostUI()
                     rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
                     Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
                     Dragger->SetTAU(0.001);
-                    PhysicsManager::GetSingletonPtr()->AddConstraint(Dragger);
+                    Physics::PhysicsManager::GetSingletonPtr()->AddConstraint(Dragger);
                     Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
                     Dragger->SetParam(Physics::Con_CFM,0.8,-1);
                     //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
@@ -932,7 +932,7 @@ bool CatchApp::PostUI()
             if(Dragger && !IsInsideAnyStartZone(LastActorThrown))
             {
                 ActorRigid* Act = Dragger->GetActorA();
-                PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
+                Physics::PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
                 delete Dragger;
                 Dragger = NULL;
                 Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
@@ -949,7 +949,7 @@ bool CatchApp::PostUI()
         if(Dragger)
         {
             ActorRigid* Act = Dragger->GetActorA();
-            PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
+            Physics::PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger = NULL;
             Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);

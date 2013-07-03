@@ -45,7 +45,7 @@
 #include "Physics/collisionshape.h"
 #include "collisionshapemanager.h"
 #include "Physics/collision.h"
-#include "physicsmanager.h"
+#include "Physics/physicsmanager.h"
 #include "serialization.h"
 #include "stringtool.h"
 #include "XML/xml.h"
@@ -58,8 +58,8 @@
 namespace Mezzanine
 {
     WorldObjectPhysicsSettings::WorldObjectPhysicsSettings(WorldObject* WO, btCollisionObject* PhysicsObject)
-        : Parent(WO),
-          WorldObjectCO(PhysicsObject)
+        : WorldObjectCO(PhysicsObject),
+          Parent(WO)
     {
 
     }
