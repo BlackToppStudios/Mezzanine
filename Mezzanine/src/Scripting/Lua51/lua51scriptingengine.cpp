@@ -51,7 +51,7 @@
 
 #include <cstring>
 /// @file
-/// @brief This file has the implemetation for the Lua based Scripting system.
+/// @brief This file has the implementation for the Lua based Scripting system.
 
 extern "C"
 {
@@ -76,10 +76,6 @@ namespace Mezzanine
             // LuaScriptEngine and helpers
             namespace
             {
-                /// @internal
-                /// @brief Used with the Lua API when a chunk name is required.
-                //const char* DefaultChunkName = "Chunk";
-
                 /// @internal
                 /// @brief Used in the LuaScriptingEngine to get data from lua_dump during script compilation
                 /// @param State The Lua state as provide by lua_dump

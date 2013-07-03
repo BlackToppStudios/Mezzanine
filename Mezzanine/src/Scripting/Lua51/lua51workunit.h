@@ -59,32 +59,86 @@ namespace Mezzanine
     namespace Scripting
     {
         namespace Lua
-        {/*
+        {
+            // foraward declarations
+            class Lua51ScriptingEngine;
+
+            /// @brief This is a simple Container of script that will execute every script it is given in order each frame
+            /// @details This WorkUnit starts with no dependencies, the developer using this must set those, (see
+            /// @ref Threading::DefaultWorkUnit::AddDependency for details). This is not automatically added to the
+            /// WorkScheduler on the Entresol, and must be added manually. @n @n
+            /// Internally this uses an std::vector to store scripts and each frame it will iterate over them and execute
+            /// them one at a time. This exposes iterators and a few convience fucntion to make the script manageable. @n @n
+            /// All scripts are stored in CountedPtr to allow for shared ownership.
             class MEZZ_LIB Lua51WorkUnit : public Threading::DefaultWorkUnit
             {
                 private:
+                    /// @internal
+                    /// @brief Stores the pointers to each script to run.
                     std::vector<CountedPtr<Lua51Script> > ScriptsToRun;
 
+                    /// @brief A basic iterator.
                     typedef std::vector<CountedPtr<Lua51Script> >::iterator iterator;
 
+                    /// @brief A read only iterator .
                     typedef std::vector<CountedPtr<Lua51Script> >::const_iterator const_iterator;
+
+                    /// @brief Used to track where to run the scripts
+                    Lua51ScriptingEngine* LuaRuntime;
                 public:
 
-                    /// @brief Adds a script to be run once each frame.
-                    /// @param
-                    iterator push_back(CountedPtr<Lua51Script> FreshScript);
+                    /// @brief Create a Lua51WorkUnit
+                    /// @param TargetRuntime The Lua runtime to execute Scripts against.
+                    Lua51WorkUnit(Lua51ScriptingEngine* TargetRuntime);
 
+                    /// @brief Adds a script to be run once each frame.
+                    /// @param FreshScript A CountedPtr to a script that should be run each Frame.
+                    /// @note Consider this as Invalidating all iterators to this container.
+                    void push_back(CountedPtr<Lua51Script> FreshScript);
+
+                    /// @brief Get an Iterator to a script from the counted pointer
+                    /// @param Target a CountedPtr to convert into an iterator
+                    /// @return If the Script has been added this returns its iterator, otherwise it returns and end() iterator.
+                    /// @note Searches in Linear time, likely useless for external use, it is used internally.
+                    iterator find(CountedPtr<Lua51Script> Target);
+
+                    /// @brief Get an const_iterator to a script from the counted pointer
+                    /// @param Target a CountedPtr to convert into an const_iterator
+                    /// @return If the Script has been added this returns its const_iterator, otherwise it returns and end() const_iterator.
+                    /// @note Searches in Linear time, likely useless for external use, it is used internally.
+                    const_iterator find(CountedPtr<Lua51Script> Target) const;
+
+                    /// @brief Erase The first found Script use that pointer
+                    /// @param Target A CountedPtr to a script that has already been added. If the script has not been added this fails silently.
+                    /// @note Consider this as Invalidating all iterators to this container. This takes linear time to find the Pointer in the
+                    /// Container, then linear time to erase the entry for each Script after the target script.
+                    void erase(CountedPtr<Lua51Script> Target);
+
+                    /// @brief Remove the target script from the container
+                    /// @param Target The script to remvoe.
+                    /// @note This takes linear time to erase the entry for each Script after the target script or constant time if it is the last Script
                     void erase(iterator Target);
 
+                    /// @brief Get an iterator to the first script.
+                    /// @return An iterator.
                     iterator begin();
+                    /// @brief Get a const_iterator to the first script.
+                    /// @return A const_iterator.
                     const_iterator begin() const;
 
+                    /// @brief Get an iterator one past the last script.
+                    /// @return An iterator
                     iterator end();
+                    /// @brief Get a const_iterator one past the last script.
+                    /// @return A const_iterator
                     const_iterator end() const;
 
                     /// @brief Runs all scripts that have been added to this work unit
                     virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-            };*/
+
+                    /// @brief Virtual deconstructor
+                    virtual ~Lua51WorkUnit();
+            };
         } // Lua
     } // Scripting
 
