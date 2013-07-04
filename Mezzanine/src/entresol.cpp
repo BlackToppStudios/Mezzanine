@@ -185,7 +185,7 @@ namespace Mezzanine
         if(this->GetResourceManager()==0)
             { this->AddManager(new ResourceManager(EngineDataPath)); }
         if(this->GetGraphicsManager()==0)
-            { this->AddManager(new GraphicsManager()); }
+            { this->AddManager(new Graphics::GraphicsManager()); }
         if(this->GetEventManager()==0)
             { this->AddManager(new EventManager()); }
         if(this->GetInputManager()==0)
@@ -669,7 +669,7 @@ namespace Mezzanine
                 (*Iter)->Initialize();
             }
         }
-        GraphicsManager::GetSingletonPtr()->Initialize();
+        Graphics::GraphicsManager::GetSingletonPtr()->Initialize();
 
         if(CallMainLoop)
         {
@@ -908,7 +908,7 @@ namespace Mezzanine
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultEventManagerFactory());
         //DefaultGraphicsManager
         ManIt = ManagerFactories.find("DefaultGraphicsManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultGraphicsManagerFactory());
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Graphics::DefaultGraphicsManagerFactory());
         //DefaultInputManager
         ManIt = ManagerFactories.find("DefaultInputManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultInputManagerFactory());
@@ -1149,9 +1149,9 @@ namespace Mezzanine
         return dynamic_cast<EventManager*> (this->GetManager(ManagerBase::EventManager, WhichOne));
     }
 
-    GraphicsManager* Entresol::GetGraphicsManager(const UInt16 WhichOne)
+    Graphics::GraphicsManager* Entresol::GetGraphicsManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<GraphicsManager*> (this->GetManager(ManagerBase::GraphicsManager, WhichOne));
+        return dynamic_cast<Graphics::GraphicsManager*> (this->GetManager(ManagerBase::GraphicsManager, WhichOne));
     }
 
     InputManager* Entresol::GetInputManager(const UInt16 WhichOne)

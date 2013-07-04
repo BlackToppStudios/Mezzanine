@@ -125,7 +125,7 @@ class vector3tests : public UnitTestGroup
                     { temp=Failed; }
                 AddTestResult("Vector3::Vector3(cAudio::cVector3)", temp);            //test*/
 
-                Vector3 Vec2(Vec);
+                Vector3 Vec2(Vector3(10.0,11.0,12.0));
                 if(Vec2.X==10.0 && Vec2.Y==11.0 && Vec2.Z==12.0)
                     { temp=Success; }
                 else
@@ -209,7 +209,7 @@ class vector3tests : public UnitTestGroup
                 {
                     Vector3 Vec2(0.0,0.0,0.0);
                     Vec2=btVector3(10.0,11.0,12.0);
-                    if(Vec.X==10.0 && Vec.Y==11.0 && Vec.Z==12.0)
+                    if(Vec2.X==10.0 && Vec2.Y==11.0 && Vec2.Z==12.0)
                         { temp=Success; }
                     else
                         { temp=Failed; }
@@ -219,7 +219,7 @@ class vector3tests : public UnitTestGroup
                 {
                     Vector3 Vec2(0.0,0.0,0.0);
                     Vec2=Ogre::Vector3(10.0,11.0,12.0);
-                    if(Vec.X==10.0 && Vec.Y==11.0 && Vec.Z==12.0)
+                    if(Vec2.X==10.0 && Vec2.Y==11.0 && Vec2.Z==12.0)
                         { temp=Success; }
                     else
                         { temp=Failed; }

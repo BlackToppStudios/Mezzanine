@@ -53,7 +53,7 @@ CatchApp::~CatchApp()
 void CatchApp::MakeGUI()
 {
     UIManager* GUI = UIManager::GetSingletonPtr();
-    Graphics::Viewport* UIViewport = GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0);
+    Graphics::Viewport* UIViewport = Graphics::GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ColourValue Black(0.0,0.0,0.0,1.0);
@@ -485,7 +485,7 @@ void CatchApp::MakeGUI()
 void CatchApp::CreateLoadingScreen()
 {
     UIManager* GUI = UIManager::GetSingletonPtr();
-    GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
+    Graphics::GraphicsManager* GraphicsMan = Graphics::GraphicsManager::GetSingletonPtr();
 
     GUI->LoadMTA("Catch_Loading");
     Graphics::Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
@@ -548,7 +548,7 @@ void CatchApp::VerifySettings()
         AudioMan->SetCurrentSettingsSaveFile(AudioSaveFileName);
     }
     // Verify the Audio Settings
-    GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
+    Graphics::GraphicsManager* GraphicsMan = Graphics::GraphicsManager::GetSingletonPtr();
     // Ensure file exists
     String GraphicsSaveFileName("GraphicsSettings.mxs");
     ObjectSettingFile* GraphicsSettingFile = GraphicsMan->GetSettingFile(GraphicsSaveFileName);
@@ -743,7 +743,7 @@ int CatchApp::GetCatchin()
     InputManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostInput);
     Physics::PhysicsManager::GetSingletonPtr()->SetPreMainLoopItems(&CPrePhysics);
     Physics::PhysicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostPhysics);
-    GraphicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostRender);
+    Graphics::GraphicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostRender);
     UIManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreUI);
     UIManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostUI);
 
@@ -770,7 +770,7 @@ int CatchApp::GetCatchin()
     do{
         ChangeState(CatchApp::Catch_Loading);
         PauseGame(false);
-        GraphicsManager::GetSingletonPtr()->RenderOneFrame();
+        Graphics::GraphicsManager::GetSingletonPtr()->RenderOneFrame();
         //Actually Load the game stuff
         Loader->LoadLevel();
 
@@ -993,7 +993,7 @@ bool CatchApp::PostRender()
     ScoreAmount->SetText(StringTools::ConvertToString(CurrScore));
 
     // Update Stat information
-    GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
+    Graphics::GraphicsManager* GraphicsMan = Graphics::GraphicsManager::GetSingletonPtr();
     UI::OpenRenderableContainerWidget* StatsCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_Stats"));
     UI::Caption* CurFPS = static_cast<UI::Caption*>(StatsCont->GetAreaRenderable("CurFPS"));
     UI::Caption* AvFPS = static_cast<UI::Caption*>(StatsCont->GetAreaRenderable("AvFPS"));

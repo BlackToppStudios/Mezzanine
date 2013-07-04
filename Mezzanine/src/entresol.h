@@ -251,13 +251,13 @@
 
 namespace Mezzanine
 {
+    // Forward declarations
     class ActorBase;
     class ActorManager;
     class ActorContainerBase;
     class EventManager;
     class CameraManager;
     class GameWindow;
-    class GraphicsManager;
     class InputManager;
     class ResourceManager;
     class TimerManager;
@@ -271,6 +271,10 @@ namespace Mezzanine
     {
         class AudioManager;
         class SoundScapeManager;
+    }
+    namespace Graphics
+    {
+        class GraphicsManager;
     }
     namespace Physics
     {
@@ -691,7 +695,7 @@ namespace Mezzanine
             /// @brief This gets the GraphicsManager from the manager list.
             /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
             /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
-            GraphicsManager* GetGraphicsManager(const UInt16 WhichOne = 0);
+            Graphics::GraphicsManager* GetGraphicsManager(const UInt16 WhichOne = 0);
 
             /// @brief This gets the InputManager from the manager list.
             /// @param WhichOne If you have multiple InputManagers this will choose which one to return.

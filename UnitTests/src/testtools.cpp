@@ -118,12 +118,13 @@ namespace Mezzanine
                     );
 
             Results->SetTargetFrameRate(60);
-            GraphicsManager* GraphMan = Results->GetGraphicsManager();
+            Graphics::GraphicsManager* GraphMan = Results->GetGraphicsManager();
             GraphMan->SetAutoGenFiles(false);
             Results->GetAudioManager()->SetAutoGenFiles(false);
             Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("Window1",800,600,0);
             Camera* FirstCam = CameraManager::GetSingletonPtr()->CreateCamera("Camera1");
-            Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
+            FirstWindow->CreateViewport(FirstCam);
+            //Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
             FirstCam->SetLocation( Vector3(0,50,900) );
             FirstCam->LookAt( Vector3(0,0,0) );
 

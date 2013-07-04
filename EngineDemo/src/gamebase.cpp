@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     //TheEntresol->SetLoggingFrequency(Entresol::LogOncePerXSeconds,5);
     //TheEntresol->SetLoggingFrequency(Entresol::LogNever);
 
-    GraphicsManager* GraphMan = TheEntresol->GetGraphicsManager();
+    Graphics::GraphicsManager* GraphMan = TheEntresol->GetGraphicsManager();
 
     //Give the world functions to run before and after input and physics
     TheEntresol->GetEventManager()->SetPreMainLoopItems(&PreInput);
