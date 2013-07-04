@@ -54,6 +54,7 @@ namespace Mezzanine
 #include "Graphics/graphicsenumerations.h"
 
 #include "Graphics/gamewindow.h"
+#include "Graphics/graphicsmanager.h"
 #include "Graphics/material.h"
 #include "Graphics/mesh.h"
 #include "Graphics/pass.h"

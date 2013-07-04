@@ -45,6 +45,7 @@
 #ifdef MEZZLUA51
 
 #include "Scripting/Lua51/lua51script.h"
+#include "Scripting/scriptworkunit.h"
 
 #include "Threading/workunit.h"
 
@@ -70,16 +71,14 @@ namespace Mezzanine
             /// Internally this uses an std::vector to store scripts and each frame it will iterate over them and execute
             /// them one at a time. This exposes iterators and a few convience fucntion to make the script manageable. @n @n
             /// All scripts are stored in CountedPtr to allow for shared ownership.
-            class MEZZ_LIB Lua51WorkUnit : public Threading::DefaultWorkUnit
+            class MEZZ_LIB Lua51WorkUnit : public Scripting::iScriptWorkUnit
             {
                 private:
                     /// @internal
                     /// @brief Stores the pointers to each script to run.
                     std::vector<CountedPtr<Lua51Script> > ScriptsToRun;
-
                     /// @brief A basic iterator.
                     typedef std::vector<CountedPtr<Lua51Script> >::iterator iterator;
-
                     /// @brief A read only iterator .
                     typedef std::vector<CountedPtr<Lua51Script> >::const_iterator const_iterator;
 
@@ -90,18 +89,25 @@ namespace Mezzanine
                     /// @brief Create a Lua51WorkUnit
                     /// @param TargetRuntime The Lua runtime to execute Scripts against.
                     Lua51WorkUnit(Lua51ScriptingEngine* TargetRuntime);
+                    /// @brief Virtual deconstructor
+                    virtual ~Lua51WorkUnit();
 
                     /// @brief Adds a script to be run once each frame.
                     /// @param FreshScript A CountedPtr to a script that should be run each Frame.
                     /// @note Consider this as Invalidating all iterators to this container.
-                    void push_back(CountedPtr<Lua51Script> FreshScript);
+                    void push_back(CountedPtr<Lua51Script> ScriptToAdd);
+                    /// @brief Adds a script similar to push_back.
+                    /// @param ScriptToAdd A iScript to add.
+                    virtual void AddScript(CountedPtr<iScript> ScriptToAdd);
+                    /// @brief Adds a script similar to push_back (Actually calls it).
+                    ////// @param ScriptToAdd A Lua51Script to add.
+                    virtual void AddScript(CountedPtr<Lua51Script> ScriptToAdd);
 
                     /// @brief Get an Iterator to a script from the counted pointer
                     /// @param Target a CountedPtr to convert into an iterator
                     /// @return If the Script has been added this returns its iterator, otherwise it returns and end() iterator.
                     /// @note Searches in Linear time, likely useless for external use, it is used internally.
                     iterator find(CountedPtr<Lua51Script> Target);
-
                     /// @brief Get an const_iterator to a script from the counted pointer
                     /// @param Target a CountedPtr to convert into an const_iterator
                     /// @return If the Script has been added this returns its const_iterator, otherwise it returns and end() const_iterator.
@@ -113,11 +119,19 @@ namespace Mezzanine
                     /// @note Consider this as Invalidating all iterators to this container. This takes linear time to find the Pointer in the
                     /// Container, then linear time to erase the entry for each Script after the target script.
                     void erase(CountedPtr<Lua51Script> Target);
-
                     /// @brief Remove the target script from the container
                     /// @param Target The script to remvoe.
                     /// @note This takes linear time to erase the entry for each Script after the target script or constant time if it is the last Script
                     void erase(iterator Target);
+                    /// @brief Similar to calling erase
+                    /// @param ScriptToRemove A CountedPtr to the script to remove
+                    virtual void RemoveScript(CountedPtr<iScript> ScriptToRemove);
+                    /// @brief The Same as calling erase and passing a CountedPtr to a script
+                    /// @param ScriptToRemove A CountedPtr to the script to remove
+                    virtual void RemoveScript(CountedPtr<Lua51Script> ScriptToRemove);
+                    /// @brief Remove a script by index.
+                    /// @param Index The index of the Script to Remove.
+                    virtual void RemoveScript(Whole Index);
 
                     /// @brief Get an iterator to the first script.
                     /// @return An iterator.
@@ -133,11 +147,25 @@ namespace Mezzanine
                     /// @return A const_iterator
                     const_iterator end() const;
 
+                    /// @brief How many Scripts have been added to this workunit
+                    /// @return A Whole containing the amount of arguments passed in so far.
+                    virtual Whole GetScriptCount() const;
+
+                    /// @brief Remove all the Scripts from this workunit
+                    /// @details This should run in constant time. It still might be slower than removing and reading just one a few Scripts.
+                    virtual void ClearScripts();
+
+                    /// @brief Retrieve a Script previously passed in.
+                    /// @param Index The index of the passed parameter to retrun.
+                    /// @return A reference counted pointer to a iScript.
+                    virtual CountedPtr<iScript> GetScript(Whole Index);
+                    /// @brief Retrieve a Script previously passed in.
+                    /// @param Index The index of the passed parameter to retrun.
+                    /// @return A reference counted pointer to a Lua51Script.
+                    virtual CountedPtr<Lua51Script> GetLua51Script(Whole Index) const;
+
                     /// @brief Runs all scripts that have been added to this work unit
                     virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-
-                    /// @brief Virtual deconstructor
-                    virtual ~Lua51WorkUnit();
             };
         } // Lua
     } // Scripting
@@ -146,4 +174,4 @@ namespace Mezzanine
 
 
 #endif // MEZZLUA51
-#endif // \_scriptinglua_h
+#endif // \ Include gaurd

@@ -96,7 +96,7 @@ namespace Mezzanine
 
         void GameWindow::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
         {
-            Manager = GraphicsManager::GetSingletonPtr();
+            Manager = Graphics::GraphicsManager::GetSingletonPtr();
             Settings.RenderWidth = Width;
             Settings.RenderHeight = Height;
 

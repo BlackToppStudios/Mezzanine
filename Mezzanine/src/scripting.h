@@ -54,10 +54,10 @@ namespace Mezzanine
         {}
 }
 
-#include "Scripting/scriptargument.h"
 #include "Scripting/script.h"
+#include "Scripting/scriptargument.h"
 #include "Scripting/scriptingmanager.h"
-
+#include "Scripting/scriptworkunit.h"
 
 
 // Each one of these sections should have a complete implementation of a scripting and
@@ -66,6 +66,7 @@ namespace Mezzanine
     #include "Scripting/Lua51/lua51script.h"
     #include "Scripting/Lua51/lua51scriptargument.h"
     #include "Scripting/Lua51/lua51scriptingengine.h"
+    #include "Scripting/Lua51/lua51workunit.h"
 #endif
 
 

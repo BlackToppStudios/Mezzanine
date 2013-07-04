@@ -95,7 +95,6 @@
 #include "exception.h"
 #include "extendedtimer.h"
 #include "graphics.h"
-#include "graphicsmanager.h"
 #include "input.h"
 #include "inputmanager.h"
 #include "light.h"                      // done

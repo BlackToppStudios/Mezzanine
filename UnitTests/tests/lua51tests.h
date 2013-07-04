@@ -520,12 +520,21 @@ class lua51tests : public UnitTestGroup
                     /// Lua manual at http://www.lua.org/manual/5.1/manual.html#5.9 .
                     virtual void OpenDebugLibrary();
 
-
                     virtual void OpenMezzanineLibrary();
 
                     virtual void OpenMezzanineSafeLibrary();
                     */
 
+                    {
+                        String WorldWorldSource("print (\"Hello World!\")");
+                        Scripting::Lua::Lua51ScriptingEngine LuaRuntimeForWorkUnit;
+                        Scripting::Lua::Lua51WorkUnit TestUnit(&LuaRuntimeForWorkUnit);
+                        CountedPtr<Scripting::Lua::Lua51Script> Hello(new Scripting::Lua::Lua51Script(WorldWorldSource,LuaRuntimeForWorkUnit));
+
+
+
+
+                    }
                     cout << endl;
                 }
 

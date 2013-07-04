@@ -44,7 +44,7 @@
 #include "mathtool.h"
 #include "UI/textureatlas.h"
 #include "cameramanager.h"
-#include "graphicsmanager.h"
+#include "Graphics/graphicsmanager.h"
 #include "eventmanager.h"
 #include "eventuserinput.h"
 #include "resourcemanager.h"

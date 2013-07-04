@@ -57,10 +57,16 @@ namespace Ogre
 
 namespace Mezzanine
 {
+    // Forward Declarations
     class Camera;
     class CameraController;
     class SceneManager;
-    class GraphicsManager;
+
+    namespace Graphics
+    {
+        class GraphicsManager;
+    }
+
     namespace Internal
     {
         class SceneManagerData;
