@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _collision_h
-#define _collision_h
+#ifndef _physicscollision_h
+#define _physicscollision_h
 
 #include "vector3.h"
 #include "XML/xml.h"
