@@ -208,6 +208,7 @@ GameProfile* ProfileManager::GetProfile(const String& Name) const
             return (*it);
         }
     }
+    return NULL;
 }
 
 GameProfile* ProfileManager::GetProfile(const Whole& Index) const
