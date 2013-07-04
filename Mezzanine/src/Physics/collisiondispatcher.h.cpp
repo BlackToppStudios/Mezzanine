@@ -41,6 +41,7 @@
 #define _physicscollisiondispatcher_h_cpp
 
 #include <btBulletDynamicsCommon.h>
+#include <BulletMultiThreaded/SpuGatheringCollisionDispatcher.h>
 
 #include <list>
 
@@ -54,7 +55,7 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
-        /// @brief Used to provide better reporting of collisions
+        /// @brief Used to provide better reporting of collisions.
         /// @details
         ///////////////////////////////////////
         class CollisionDispatcher : public btCollisionDispatcher
@@ -83,7 +84,48 @@ namespace Mezzanine
             void freeCollisionAlgorithm(void* ptr);
             /// @brief Gets the list of algorithms that have been created and need processing.
             /// @return Returns a reference to the list of algorithms that need processing.
-            AlgoList& GetAlgoCreationQueue();
+            AlgoList* GetAlgoCreationQueue();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Old Implementation based on Manifold creation
+
+            /*btPersistentManifold* getNewManifold(void* b0, void* b1);
+            void releaseManifold(btPersistentManifold* manifold);
+            void releaseManifoldManual(btPersistentManifold* manifold);// */
+        };//CollisionDispatcher
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @internal
+        /// @brief Used to provide better reporting of collisions in a multithreaded environment.
+        /// @details
+        ///////////////////////////////////////
+        class ParallelCollisionDispatcher : public SpuGatheringCollisionDispatcher
+        {
+        protected:
+            /// @internal
+            /// @brief A list of all the algorithms that have been created and need processing.
+            AlgoList AlgoCreationQueue;
+        public:
+            /// @brief Class constructor.
+            /// @param CollisionConfig The collision configuration for the world being created.
+            ParallelCollisionDispatcher(btThreadSupportInterface* ThreadInterface, unsigned int MaxNumTasks, btCollisionConfiguration* CollisionConfig);
+            /// @brief Class destructor.
+            virtual ~ParallelCollisionDispatcher();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // New Implementation based on Algorithm creation
+
+            /// @brief Allocates space for a new Collision Algorithm between two objects.
+            /// @note This usually means that a collision has started between two objects.
+            /// @param size The size needed for the new Collision Algorithm.
+            void* allocateCollisionAlgorithm(int size);
+            /// @brief Frees up the space belonging to a Collision Algorithm that is no longer needed.
+            /// @note This usually means that a collision has ended between two objects.
+            /// @param ptr A pointer to Collision Algorithim that is being removed.
+            void freeCollisionAlgorithm(void* ptr);
+            /// @brief Gets the list of algorithms that have been created and need processing.
+            /// @return Returns a reference to the list of algorithms that need processing.
+            AlgoList* GetAlgoCreationQueue();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Old Implementation based on Manifold creation

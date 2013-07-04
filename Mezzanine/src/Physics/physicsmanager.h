@@ -46,12 +46,14 @@ class btDefaultCollisionConfiguration;
 class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
 class btSoftRigidDynamicsWorld;
+class btDiscreteDynamicsWorld;
 class btDynamicsWorld;
 class btCollisionShape;
 class btSoftBodyRigidBodyCollisionConfiguration;
 class btGhostPairCallback;
 class btBroadphaseInterface;
 class btCollisionConfiguration;
+class btThreadSupportInterface;
 
 typedef float btScalar;
 
@@ -65,6 +67,8 @@ typedef float btScalar;
 #include "objectpair.h"
 #include "Physics/constraint.h"
 #include "Physics/managerconstructioninfo.h"
+#include "Threading/workunit.h"
+#include "Threading/monopoly.h"
 
 namespace Mezzanine
 {
@@ -86,10 +90,82 @@ namespace Mezzanine
 
         class Collision;
         class CollisionDispatcher;
+        class ParallelCollisionDispatcher;
+        class PhysicsManager;
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class PhysicsManager
-        /// @headerfile physicsmanager.h
+        /// @brief This is a @ref iWorkUnit for the single threaded processing of physics simulations.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB SimulationWorkUnit : public Threading::DefaultWorkUnit
+        {
+        protected:
+            /// @internal
+            /// @brief A pointer to the manager this work unit is processing.
+            PhysicsManager* TargetManager;
+            /// @internal
+            /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            SimulationWorkUnit(const SimulationWorkUnit& Other);
+            /// @internal
+            /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            SimulationWorkUnit& operator=(const SimulationWorkUnit& Other);
+        public:
+            /// @brief Class constructor.
+            /// @param Target The PhysicsManager this work unit will process during the frame.
+            SimulationWorkUnit(PhysicsManager* Target);
+            /// @brief Class destructor.
+            virtual ~SimulationWorkUnit();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+        };//PhysicsWorkUnit
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a @ref iWorkUnit for the multi-threaded processing of physics simulations.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB SimulationMonopolyWorkUnit : public Threading::MonopolyWorkUnit
+        {
+        protected:
+            /// @internal
+            /// @brief A pointer to the manager this work unit is processing.
+            PhysicsManager* TargetManager;
+            /// @internal
+            /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            SimulationMonopolyWorkUnit(const SimulationMonopolyWorkUnit& Other);
+            /// @internal
+            /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            SimulationMonopolyWorkUnit& operator=(const SimulationMonopolyWorkUnit& Other);
+        public:
+            /// @brief Class constructor.
+            /// @param Target The PhysicsManager this work unit will process during the frame.
+            SimulationMonopolyWorkUnit(PhysicsManager* Target);
+            /// @brief Class destructor.
+            virtual ~SimulationMonopolyWorkUnit();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Sets the number of threads this work unit is allowed to use during it's monopoly.
+            /// @param AmountToUse The number of threads permitted for use.
+            virtual void UseThreads(const Whole& AmountToUse);
+            /// @brief Gets the number of threads this work unit will attempt to use during it's monopoly.
+            /// @return Returns a Whole representing the number of threads that will be attempted to be created during running of this monopoly.
+            virtual Whole UsingThreadCount();
+            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+        };//PhysicsMonopolyWorkUnit
+
+        ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is simply a place for storing all the Physics Related functions
         /// @details This is a place for storing items related to Debug physics
         /// drawing, Adding constraints, screwing with gravity and doing other physics
@@ -97,27 +173,54 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB PhysicsManager : public ManagerBase, public Singleton<PhysicsManager>
         {
+        public:
+            typedef std::vector< Physics::Constraint* >         ConstraintContainer;
+            typedef ConstraintContainer::iterator               ConstraintIterator;
+            typedef ConstraintContainer::const_iterator         ConstConstraintIterator;
+            typedef std::vector< AreaEffect* >                  AreaEffectContainer;
+            typedef AreaEffectContainer::iterator               AreaEffectIterator;
+            typedef AreaEffectContainer::const_iterator         ConstAreaEffectIterator;
+            typedef std::vector< WorldTrigger* >                WorldTriggerContainer;
+            typedef WorldTriggerContainer::iterator             WorldTriggerIterator;
+            typedef WorldTriggerContainer::const_iterator       ConstWorldTriggerIterator;
+            typedef std::map< ObjectPair, Physics::Collision* > CollisionContainer;
+            typedef CollisionContainer::iterator                CollisionIterator;
+            typedef CollisionContainer::const_iterator          ConstCollisionIterator;
         protected:
-            // needed for collision processing
             friend class CollisionDispatcher;
+            friend class ParallelCollisionDispatcher;
+            friend class PhysicsWorkUnit;
+            friend class PhysicsMonopolyWorkUnit;
+
             //Some Data Items
-            ManagerConstructionInfo WorldConstructionInfo;
             bool SimulationPaused;
             Whole SubstepModifier;
             Real StepSize;
-            std::vector< Physics::Constraint* > Constraints;
-            std::vector< AreaEffect* > AreaEffects;
-            std::vector< WorldTrigger* > Triggers;
-            std::map< ObjectPair,Physics::Collision* > Collisions;
+
+            ManagerConstructionInfo WorldConstructionInfo;
+
+            ConstraintContainer Constraints;
+            AreaEffectContainer AreaEffects;
+            WorldTriggerContainer Triggers;
+            CollisionContainer Collisions;
 
             // Some Items bullet requires
             btGhostPairCallback* GhostCallback;
+            btThreadSupportInterface* BulletSolverThreads;
+            btThreadSupportInterface* BulletDispatcherThreads;
             btBroadphaseInterface* BulletBroadphase;
             btCollisionConfiguration* BulletCollisionConfiguration;
             btCollisionDispatcher* BulletDispatcher;
             btSequentialImpulseConstraintSolver* BulletSolver;
             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
             debug::InternalDebugDrawer* BulletDrawer;
+
+            /// @internal
+            /// @brief The work unit that does the stepping of the simulation.
+            Threading::DefaultWorkUnit* SimulationWork;
+            /// @internal
+            /// @brief Can be used for thread safe logging and other thread specific resources.
+            Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
 
             /// @brief This takes care of all the real work in contructing this
             /// @details This method is called by all the constructors to insure consistent behavior.
@@ -284,10 +387,6 @@ namespace Mezzanine
             /// @brief Destroys all collisions currently being stored and processed in the manager.
             void DestroyAllCollisions();
 
-            /// @brief Used to make working with the Collisions easier.
-            typedef std::map< ObjectPair,Physics::Collision* >::iterator CollisionIterator;
-            /// @brief Used to make working with the Collisions easier, and avoid the risk of accidentally changing them.
-            typedef std::map< ObjectPair,Physics::Collision* >::const_iterator ConstCollisionIterator;
             /// @brief Get an CollisionIterator to the first Collision.
             /// @return An CollisionIterator to the first Collision.
             CollisionIterator BeginCollision();
@@ -328,6 +427,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
+            /// @brief Does all of the necessary configuration to prepare for a running simulation.
+            void MainLoopInitialize();
             /// @brief Resets all the internal physics structures in this manager.
             /// @warning This should only be called while the world is emtpy and objects have be unloaded from it.
             /// @param Info If you want to change the configuration of the world when restarting, you can optionally
@@ -347,15 +448,12 @@ namespace Mezzanine
             /// @param Modifier The amount of substeps per frame to perform.
             void SetSimulationSubstepModifier(const Whole& Modifier);
             /// @brief This does all the work reuired for the main loop to process physics
-            /// @details
             /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
             void DoMainLoopItems(const Real &TimeElapsed);
+
             /// @internal
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
             btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
-
-            /// @brief Does all of the necessary configuration to prepare for a running simulation.
-            void MainLoopInitialize();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Managerbase

@@ -713,8 +713,11 @@ namespace Mezzanine
             #ifdef MEZZDEBUG
             static UInt32 FrameCounter = 0;
             StringStream FrameStream;
-            FrameStream << "-------------------------- Starting DAG Part of Frame: " << FrameCounter << " --------------------------" << endl;
+            FrameStream << "-------------------------- Starting DAG Part of Frame: " << FrameCounter << " --------------------------";
+            this->Log(FrameStream.str());
+            this->DoMainLoopLogging();
             #endif
+            FrameTimer->reset();
 
             WorkScheduler.RunAllMonopolies(); //1
             WorkScheduler.CreateThreads();    //2
@@ -723,12 +726,12 @@ namespace Mezzanine
             WorkScheduler.ResetAllWorkUnits();//5
 
             #ifdef MEZZDEBUG
+            FrameStream.str("");
             FrameStream << "-------------------------- Starting Legacy Part of Frame: " << FrameCounter << " --------------------------";
             this->Log(FrameStream.str());
             this->DoMainLoopLogging();
             FrameStream.str("");
             #endif
-            FrameTimer->reset();
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
                 #ifdef MEZZDEBUG

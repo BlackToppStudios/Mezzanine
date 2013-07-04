@@ -56,6 +56,7 @@ namespace Mezzanine
     {
         class PhysicsManager;
         class CollisionDispatcher;
+        class ParallelCollisionDispatcher;
         struct CollisionInternalData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Collision
@@ -89,6 +90,7 @@ namespace Mezzanine
             };
         protected:
             friend class Mezzanine::Physics::CollisionDispatcher;
+            friend class Mezzanine::Physics::ParallelCollisionDispatcher;
             friend class Mezzanine::Physics::PhysicsManager;
             /// @brief The internal collision class this event is based on.
             btCollisionAlgorithm* InternalAlgo;
