@@ -42,7 +42,7 @@
 
 #include "cameramanager.h"
 #include "scenemanager.h"
-#include "graphicsmanager.h"
+#include "Graphics/graphicsmanager.h"
 #include "camera.h"
 #include "cameracontroller.h"
 

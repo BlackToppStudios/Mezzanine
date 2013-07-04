@@ -45,7 +45,7 @@ using namespace std;
 #include "rayquerytool.h"
 #include "actorbase.h"
 #include "actormanager.h"
-#include "graphicsmanager.h"
+#include "Graphics/graphicsmanager.h"
 #include "eventmanager.h"
 #include "entresol.h"
 #include "cameramanager.h"

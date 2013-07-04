@@ -45,7 +45,7 @@
 //Internal includes
 #include "crossplatform.h"
 #include "entresol.h"
-#include "graphicsmanager.h"
+#include "Graphics/graphicsmanager.h"
 #include "uimanager.h"
 #include "Graphics/gamewindow.h"
 
@@ -68,7 +68,6 @@
     #include <direct.h> // for _getcwd
 #else
 	#include <unistd.h>//for sleep and getcwd
-    #include "graphicsmanager.h"
     #include <sys/time.h>
 #endif
 
