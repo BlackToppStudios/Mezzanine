@@ -200,23 +200,19 @@ namespace Mezzanine
             /// @internal
             /// @brief The actual pointer to the world
             Entresol* TheEntresol;
-
             /// @internal
             /// @brief This is a function pointer to the function that should be called before running Main Loop Items
             Callback PreMainLoop;
-
             /// @internal
             /// @brief This is a function pointer to the function that should be called after running Main Loop Items
             Callback PostMainLoop;
-
+            /// @internal
+            /// @brief Simple bool indicating whether or not this manager has been initialized.
+            bool Initialized;
             /// @brief This is a weighting used by the main loop to decide what order the managers should be called in.
             /// @details A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at
             /// priority 0.
             short int Priority;
-
-            /// @internal
-            /// @brief Simple bool indicating whether or not this manager has been initialized.
-            bool Initialized;
     };//ManagerBase
 }//Mezzanine
 

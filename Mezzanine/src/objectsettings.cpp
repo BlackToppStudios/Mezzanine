@@ -99,6 +99,7 @@ namespace Mezzanine
                 else --Which;
             }
         }
+        return NULL;
     }
 
     ObjectSettingSet* ObjectSettingSetContainer::GetChildObjectSettingSet(const Whole& Index) const
@@ -315,6 +316,7 @@ namespace Mezzanine
             if( Name == (*SaveIt)->GetName() )
                 return (*SaveIt);
         }
+        return NULL;
     }
 
     void ObjectSettingFile::RemoveGroup(ObjectSettingGroup* Group)
@@ -471,6 +473,7 @@ namespace Mezzanine
     {
         ObjectSettingGroup* NewGroup = new ObjectSettingGroup(Name);
         SettingGroups.insert(std::pair<String,ObjectSettingGroup*>(Name,NewGroup));
+        return NewGroup;
     }
 
     ObjectSettingGroup* ObjectSettingsHandler::GetSettingGroup(const String& Name) const
