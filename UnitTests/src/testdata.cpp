@@ -122,6 +122,7 @@ namespace Mezzanine
                 { LongestNameLength=rhs.LongestNameLength; }
 
             insert(rhs.begin(),rhs.end());
+            return *this;
         }
 
         void UnitTestGroup::DisplayResults(std::ostream& Output, bool Summary, bool FullOutput, bool HeaderOutput)

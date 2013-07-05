@@ -66,6 +66,17 @@
 
 namespace Mezzanine
 {
+    EventWorkUnit::EventWorkUnit(EventManager *Target)
+        : TargetEventManager(Target)
+    {}
+
+    void EventWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type &CurrentThreadStorage)
+    {
+        Logger& Log = CurrentThreadStorage.GetUsableLogger();
+        Log << "Getting Events from OS." << std::endl;
+        TargetEventManager->UpdateEvents();
+    }
+
     /// @internal
     /// @namespace Mezzanine::internal
     /// @brief This namespace is used for internal helper classes, and in general it should be ignored by game developers
@@ -131,6 +142,10 @@ namespace Mezzanine
             /// @internal
             /// @brief an Iterator suitable for use with internal structures that correlate polling type and metacodes
             typedef std::map<Input::InputCode, PollingType>::iterator ManualCheckIterator;
+
+            /// @internal
+            /// @brief This is the workunit that does the work each frame.
+            EventWorkUnit* EventWork;
 
             /// @internal
             /// @brief Adds one type of polling check
@@ -232,6 +247,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Constructor, it only inits pointers to 0
             EventManagerInternalData()
+                : EventWork(NULL)
             {
 
             }
@@ -666,11 +682,15 @@ namespace Mezzanine
 
     //Inherited From ManagerBase
     void EventManager::Initialize()
-        { Initialized = true; }
+    {
+        _Data->EventWork = new EventWorkUnit(this);
+        TheEntresol->WorkScheduler.AddWorkUnit(_Data->EventWork);
+        Initialized = true;
+    }
 
     void EventManager::DoMainLoopItems()
     {
-        this->UpdateEvents();
+        //UpdateEvents();
     }
 
     ManagerBase::ManagerType EventManager::GetInterfaceType() const
@@ -717,6 +737,7 @@ namespace Mezzanine
     {
         delete ToBeDestroyed;
     }
+
 }//Mezzanine
 
 
