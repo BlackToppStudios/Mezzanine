@@ -142,9 +142,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     class MEZZ_LIB EventManager: public ManagerBase, public Singleton<EventManager>
     {
-        private:
-            friend class EventWorkUnit;
-        
+        private:       
             /// @internal
             /// @brief All the internal data for this EventManager
             Internal::EventManagerInternalData* _Data;
@@ -160,6 +158,7 @@ namespace Mezzanine
             EventManager(const EventManager& Dummy)
             {}
 
+            friend class EventWorkUnit;
             friend std::ostream& MEZZ_LIB ::operator << (std::ostream& stream, const Mezzanine::EventManager& Mgr);
             friend std::istream& MEZZ_LIB ::operator >> (std::istream& stream, Mezzanine::EventManager& Mgr);
             friend void MEZZ_LIB ::operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
