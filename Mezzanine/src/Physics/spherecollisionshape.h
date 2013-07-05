@@ -56,39 +56,38 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB SphereCollisionShape : public PrimitiveCollisionShape
         {
-            public:
-                /// @brief Class Constructor.
-                /// @param Name The name of this Shape.
-                /// @param Radius The radius of the sphere.
-                SphereCollisionShape(const String& Name, const Real& Radius);
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param Name The name of this Shape.
-                /// @param BulletShape The internal shape this shape is based on.
-                SphereCollisionShape(const String& Name, btSphereShape* BulletShape);
+        public:
+            /// @brief Class Constructor.
+            /// @param Name The name of this Shape.
+            /// @param Radius The radius of the sphere.
+            SphereCollisionShape(const String& Name, const Real& Radius);
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Name The name of this Shape.
+            /// @param BulletShape The internal shape this shape is based on.
+            SphereCollisionShape(const String& Name, btSphereShape* BulletShape);
 
-                /// @copydoc BoxCollisionShape::BoxCollisionShape(XML::Node OneNode)
-                SphereCollisionShape(XML::Node OneNode);
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(XML::Node OneNode)
+            SphereCollisionShape(XML::Node OneNode);
 
-                /// @brief Class Destructor.
-                virtual ~SphereCollisionShape();
-                /// @brief Gets the radius of the sphere.
-                /// @return Returns a real representing the radius of the sphere.
-                virtual Real GetRadius() const;
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual btSphereShape* GetSphereShape() const;
+            /// @brief Class Destructor.
+            virtual ~SphereCollisionShape();
+            /// @brief Gets the radius of the sphere.
+            /// @return Returns a real representing the radius of the sphere.
+            virtual Real GetRadius() const;
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btSphereShape* GetSphereShape() const;
 
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
-                /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-                /// @return A string containing "SphereCollisionShape"
-                static String SerializableName();
-
-        };//spherecollisionshape
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "SphereCollisionShape"
+            static String SerializableName();
+        };//SphereCollisionShape
     }//Physics
 }//Mezzanine
 

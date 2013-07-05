@@ -56,7 +56,9 @@ using namespace std;
 #include "worldobject.h"
 #include "Physics/collision.h"
 #include "scenemanager.h"
+#include "Graphics/graphicsmanager.h"
 #include "stringtool.h"
+#include "crossplatform.h"
 
 #include "Physics/collisiondispatcher.h.cpp"
 
@@ -68,8 +70,21 @@ using namespace std;
 #include <btBulletDynamicsCommon.h>
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 #include <BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h>
-#include "BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
+#include <BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h>
 #include <BulletCollision/CollisionDispatch/btGhostObject.h>
+
+// This define is needed to avoid a declaration collision for uint64_t between a bullet typedef and the one in stdint.h
+#define __PHYSICS_COMMON_H__ 1
+
+#ifdef WINDOWS
+#include <BulletMultiThreaded/Win32ThreadSupport.h>
+#else
+#include <BulletMultiThreaded/PosixThreadSupport.h>
+#endif
+
+#include <BulletMultiThreaded/btParallelConstraintSolver.h>
+#include <BulletMultiThreaded/SpuGatheringCollisionDispatcher.h>
+#include <BulletMultiThreaded/SpuNarrowPhaseCollisionTask/SpuGatheringCollisionTask.h>
 
 
 namespace Mezzanine
@@ -275,61 +290,152 @@ namespace Mezzanine
     namespace Physics
     {
         ///////////////////////////////////////////////////////////
-        // PhysicsConstructionInfo functions
+        // SimulationWorkUnit functions
 
-        PhysicsConstructionInfo::PhysicsConstructionInfo()
-            : PhysicsFlags(0),
-              MaxProxies(0),
-              GeographyLowerBounds(Vector3()),
-              GeographyUpperBounds(Vector3()),
-              Gravity(Vector3())
+        SimulationWorkUnit::SimulationWorkUnit(const SimulationWorkUnit& Other)
+            {  }
+
+        SimulationWorkUnit& SimulationWorkUnit::operator=(const SimulationWorkUnit& Other)
+            { return *this; }
+
+        SimulationWorkUnit::SimulationWorkUnit(PhysicsManager* Target) :
+            TargetManager(Target) {  }
+
+        SimulationWorkUnit::~SimulationWorkUnit()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        void SimulationWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
+            if( this->TargetManager->SimulationIsPaused() )
+                return;
+
+            this->TargetManager->ThreadResources = &CurrentThreadStorage;
+            Real FloatTime = this->TargetManager->TheEntresol->GetFrameTimeMilliseconds() * 0.001; //Convert from MilliSeconds to Seconds
+            //Real IdealStep = static_cast<Real>( this->TargetManager->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
+            //IdealStep /= this->TargetManager->SubstepModifier;
+            //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
+            int MaxSteps = ( FloatTime < this->TargetManager->StepSize ) ? 1 : int( FloatTime / this->TargetManager->StepSize ) + 1;
+            this->TargetManager->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->TargetManager->StepSize );
+            this->TargetManager->ThreadResources = NULL;
         }
 
-        PhysicsConstructionInfo::~PhysicsConstructionInfo()
+        ///////////////////////////////////////////////////////////
+        // SimulationMonopolyWorkUnit functions
+
+        SimulationMonopolyWorkUnit::SimulationMonopolyWorkUnit(const SimulationMonopolyWorkUnit& Other)
+            {  }
+
+        SimulationMonopolyWorkUnit& SimulationMonopolyWorkUnit::operator=(const SimulationMonopolyWorkUnit& Other)
+            { return *this; }
+
+        SimulationMonopolyWorkUnit::SimulationMonopolyWorkUnit(PhysicsManager* Target) :
+            TargetManager(Target) {  }
+
+        SimulationMonopolyWorkUnit::~SimulationMonopolyWorkUnit()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        void SimulationMonopolyWorkUnit::UseThreads(const Whole& AmountToUse)
         {
+            // Do nothing
         }
 
-        PhysicsConstructionInfo& PhysicsConstructionInfo::operator=(const PhysicsConstructionInfo& Other)
+        Whole SimulationMonopolyWorkUnit::UsingThreadCount()
         {
-            this->PhysicsFlags = Other.PhysicsFlags;
-            this->MaxProxies = Other.MaxProxies;
-            this->GeographyLowerBounds = Other.GeographyLowerBounds;
-            this->GeographyUpperBounds = Other.GeographyUpperBounds;
-            this->Gravity = Other.Gravity;
+            return this->TargetManager->ThreadCount;
+        }
+
+        void SimulationMonopolyWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            if( this->TargetManager->SimulationIsPaused() )
+                return;
+
+            this->TargetManager->ThreadResources = &CurrentThreadStorage;
+            Real FloatTime = this->TargetManager->TheEntresol->GetFrameTimeMilliseconds() * 0.001; //Convert from MilliSeconds to Seconds
+            //Real IdealStep = static_cast<Real>( this->TargetManager->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
+            //IdealStep /= this->TargetManager->SubstepModifier;
+            //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
+            int MaxSteps = ( FloatTime < this->TargetManager->StepSize ) ? 1 : int( FloatTime / this->TargetManager->StepSize ) + 1;
+            this->TargetManager->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->TargetManager->StepSize );
+            this->TargetManager->ThreadResources = NULL;
         }
 
         ///////////////////////////////////////////////////////////
         // Physicsmanager functions
 
-        template<> PhysicsManager* Singleton<PhysicsManager>::SingletonPtr = 0;
+        template<> PhysicsManager* Singleton<PhysicsManager>::SingletonPtr = NULL;
 
-        PhysicsManager::PhysicsManager()
-            : SimulationPaused(false),
-              BulletDrawer(NULL),
-              SubstepModifier(1),
-              StepSize(1.0/60.0)
+        PhysicsManager::PhysicsManager() :
+            SimulationPaused(false),
+            SubstepModifier(1),
+            ThreadCount(0),
+            StepSize(1.0/60.0),
+
+            GhostCallback(NULL),
+            BulletSolverThreads(NULL),
+            BulletDispatcherThreads(NULL),
+            BulletBroadphase(NULL),
+            BulletCollisionConfiguration(NULL),
+            BulletDispatcher(NULL),
+            BulletSolver(NULL),
+            BulletDynamicsWorld(NULL),
+            BulletDrawer(NULL),
+
+            SimulationWork(NULL),
+            ThreadResources(NULL)
         {
-            PhysicsConstructionInfo Info;
-            Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_SoftRigidWorld | PhysicsConstructionInfo::PCF_LimitlessWorld);
+            ManagerConstructionInfo Info;
+            Info.PhysicsFlags = (ManagerConstructionInfo::PCF_SoftRigidWorld | ManagerConstructionInfo::PCF_LimitlessWorld);
             this->Construct(Info);
         }
 
-        PhysicsManager::PhysicsManager(const PhysicsConstructionInfo& Info)
-            : SimulationPaused(false),
-              BulletDrawer(NULL),
-              SubstepModifier(1)
+        PhysicsManager::PhysicsManager(const ManagerConstructionInfo& Info) :
+            SimulationPaused(false),
+            SubstepModifier(1),
+            ThreadCount(0),
+            StepSize(1.0/60.0),
+
+            GhostCallback(NULL),
+            BulletSolverThreads(NULL),
+            BulletDispatcherThreads(NULL),
+            BulletBroadphase(NULL),
+            BulletCollisionConfiguration(NULL),
+            BulletDispatcher(NULL),
+            BulletSolver(NULL),
+            BulletDynamicsWorld(NULL),
+            BulletDrawer(NULL),
+
+            SimulationWork(NULL),
+            ThreadResources(NULL)
         {
             this->Construct(Info);
         }
 
-        PhysicsManager::PhysicsManager(XML::Node& XMLNode)
-            : SimulationPaused(false),
-              BulletDrawer(NULL),
-              SubstepModifier(1),
-              StepSize(1.0/60.0)
+        PhysicsManager::PhysicsManager(XML::Node& XMLNode) :
+            SimulationPaused(false),
+            SubstepModifier(1),
+            ThreadCount(0),
+            StepSize(1.0/60.0),
+
+            GhostCallback(NULL),
+            BulletSolverThreads(NULL),
+            BulletDispatcherThreads(NULL),
+            BulletBroadphase(NULL),
+            BulletCollisionConfiguration(NULL),
+            BulletDispatcher(NULL),
+            BulletSolver(NULL),
+            BulletDynamicsWorld(NULL),
+            BulletDrawer(NULL),
+
+            SimulationWork(NULL),
+            ThreadResources(NULL)
         {
-            PhysicsConstructionInfo Info;
+            ManagerConstructionInfo Info;
             XML::Attribute CurrAttrib;
 
             XML::Node WorldSettings = XMLNode.GetChild("WorldSettings");
@@ -338,7 +444,7 @@ namespace Mezzanine
                 CurrAttrib = WorldSettings.GetAttribute("LimitlessWorld");
                 if(!CurrAttrib.Empty())
                 {
-                    Info.PhysicsFlags = (Info.PhysicsFlags | PhysicsConstructionInfo::PCF_LimitlessWorld);
+                    Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
                 }else{
                     CurrAttrib = WorldSettings.GetAttribute("WorldUpperBounds");
                     if(!CurrAttrib.Empty())
@@ -353,7 +459,12 @@ namespace Mezzanine
                 CurrAttrib = WorldSettings.GetAttribute("SoftRigidWorld");
                 if(!CurrAttrib.Empty())
                 {
-                    Info.PhysicsFlags = (Info.PhysicsFlags | PhysicsConstructionInfo::PCF_SoftRigidWorld);
+                    Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
+                }
+                CurrAttrib = WorldSettings.GetAttribute("MultiThreaded");
+                if(!CurrAttrib.Empty())
+                {
+                    Info.PhysicsFlags = (Info.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
                 }
             }
 
@@ -392,7 +503,7 @@ namespace Mezzanine
         PhysicsManager::~PhysicsManager()
         {
             btCollisionObjectArray ObjectArray( BulletDynamicsWorld->getCollisionObjectArray() );
-            for( Whole X = 0 ; X < BulletDynamicsWorld->getNumCollisionObjects() ; ++X )
+            for( Integer X = 0 ; X < BulletDynamicsWorld->getNumCollisionObjects() ; ++X )
             {
                 WorldObject* WO = static_cast<WorldObject*>( ObjectArray[X]->getUserPointer() );
                 WO->RemoveFromWorld();
@@ -407,18 +518,22 @@ namespace Mezzanine
             delete BulletCollisionConfiguration;
             delete BulletSolver;
             delete BulletBroadphase;
+            delete GhostCallback;
             if(BulletDrawer) delete BulletDrawer;
+            if(BulletSolverThreads) delete BulletSolverThreads;
+            if(BulletDispatcherThreads) delete BulletDispatcherThreads;
         }
 
-        void PhysicsManager::Construct(const PhysicsConstructionInfo& Info)
+        void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
         {
             this->Priority = 20;
+            this->ThreadCount = ( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ? crossplatform::GetCPUCount() : 0 );
 
-            if(Info.PhysicsFlags & PhysicsConstructionInfo::PCF_LimitlessWorld)
-            {
+            // Create the broadphase
+            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_LimitlessWorld ) {
                 this->BulletBroadphase = new btDbvtBroadphase();
             }else{
-                if(Info.MaxProxies < 65536)
+                if( Info.MaxProxies < 65536 )
                 {
                     this->BulletBroadphase = new btAxisSweep3(Info.GeographyLowerBounds.GetBulletVector3(),
                                                               Info.GeographyUpperBounds.GetBulletVector3(),
@@ -430,37 +545,85 @@ namespace Mezzanine
                 }
             }
 
-            this->GhostCallback = new btGhostPairCallback();
-            this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(GhostCallback);
-            this->BulletSolver = new btSequentialImpulseConstraintSolver;
-
-            //if(Info.PhysicsFlags & PhysicsConstructionInfo::PCF_SoftRigidWorld)
-            //{
+            // Create the collision configuration
+            //if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_SoftRigidWorld ) {
                 this->BulletCollisionConfiguration = new btSoftBodyRigidBodyCollisionConfiguration();
-                this->BulletDispatcher = new CollisionDispatcher(BulletCollisionConfiguration);
-                btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
-
-                this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld(
-                                                            BulletDispatcher,
-                                                            BulletBroadphase,
-                                                            BulletSolver,
-                                                            BulletCollisionConfiguration);
-
-                this->BulletDynamicsWorld->getWorldInfo().m_dispatcher = this->BulletDispatcher;
-                this->BulletDynamicsWorld->getWorldInfo().m_broadphase = this->BulletBroadphase;
-                this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.Initialize();
             /*}else{
                 this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
-                this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
-                btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
+            }//*/
 
-                this->BulletDynamicsWorld = new btDiscreteDynamicsWorld(
-                                                            BulletDispatcher,
-                                                            BulletBroadphase,
-                                                            BulletSolver,
-                                                            BulletCollisionConfiguration);
-            }// */
+            // Create the dispatcher (narrowphase)
+            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                #ifdef WINDOWS
+                Win32ThreadSupport::Win32ThreadConstructionInfo BulletThreadInfo( "DispatcherThreads",
+                                                                                  processCollisionTask,
+                                                                                  createCollisionLocalStoreMemory,
+                                                                                  ThreadCount );
+                this->BulletDispatcherThreads = new Win32ThreadSupport(BulletThreadInfo);
+                #else //WINDOWS
+                PosixThreadSupport::ThreadConstructionInfo BulletThreadInfo( "DispatcherThreads",
+                                                                             processCollisionTask,
+                                                                             createCollisionLocalStoreMemory,
+                                                                             ThreadCount );
+                this->BulletDispatcherThreads = new PosixThreadSupport(BulletThreadInfo);
+                #endif //WINDOWS
+                this->BulletDispatcher = new ParallelCollisionDispatcher(this->BulletDispatcherThreads,ThreadCount,this->BulletCollisionConfiguration);
+            }else{
+                this->BulletDispatcher = new CollisionDispatcher(this->BulletCollisionConfiguration);
+            }
+
+            // Create the constraint solver
+            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                #ifdef WINDOWS
+                Win32ThreadSupport::Win32ThreadConstructionInfo BulletThreadInfo( "SolverThreads",
+                                                                                  SolverThreadFunc,
+                                                                                  SolverlsMemoryFunc,
+                                                                                  ThreadCount );
+                this->BulletSolverThreads = new Win32ThreadSupport(BulletThreadInfo);
+                this->BulletSolverThreads->startSPU();
+                #else //WINDOWS
+                PosixThreadSupport::ThreadConstructionInfo BulletThreadInfo( "SolverThreads",
+                                                                             SolverThreadFunc,
+                                                                             SolverlsMemoryFunc,
+                                                                             ThreadCount );
+                this->BulletSolverThreads = new PosixThreadSupport(BulletThreadInfo);
+                #endif //WINDOWS
+                this->BulletSolver = new btParallelConstraintSolver(this->BulletSolverThreads);
+            }else{
+                this->BulletSolver = new btSequentialImpulseConstraintSolver();
+            }
+
+            // Create the world
+            //if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_SoftRigidWorld ) {
+                this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld( this->BulletDispatcher,
+                                                                          this->BulletBroadphase,
+                                                                          this->BulletSolver,
+                                                                          this->BulletCollisionConfiguration);
+            /*}else{
+                this->BulletDynamicsWorld = new btDiscreteDynamicsWorld( this->BulletDispatcher,
+                                                                         this->BulletBroadphase,
+                                                                         this->BulletSolver,
+                                                                         this->BulletCollisionConfiguration);
+            }//*/
+
+            // Set up the work units
+            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                this->SimulationWork = new SimulationMonopolyWorkUnit(this);
+            }else{
+                this->SimulationWork = new SimulationWorkUnit(this);
+            }
+
+            // Configure the extra data
+            btGImpactCollisionAlgorithm::registerAlgorithm(this->BulletDispatcher);
+
+            this->GhostCallback = new btGhostPairCallback();
+            this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(this->GhostCallback);
+
             this->BulletDynamicsWorld->setInternalTickCallback((btInternalTickCallback)PhysicsManager::InternalTickCallback,0,false);
+
+            this->BulletDynamicsWorld->getWorldInfo().m_dispatcher = this->BulletDispatcher;
+            this->BulletDynamicsWorld->getWorldInfo().m_broadphase = this->BulletBroadphase;
+            this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.Initialize();
 
             this->BulletDynamicsWorld->getDispatchInfo().m_enableSPU = true;
             this->BulletDynamicsWorld->getDispatchInfo().m_useContinuous = true;
@@ -468,6 +631,7 @@ namespace Mezzanine
             //this->BulletDynamicsWorld->getSolverInfo().m_numIterations = 20;
             //this->BulletDynamicsWorld->getSolverInfo().m_globalCfm = 0.15;
             //this->BulletDynamicsWorld->getSolverInfo().m_erp = 0.4;
+
             this->SetGravity(Info.Gravity);
             this->SetSoftGravity(Info.Gravity);
             this->WorldConstructionInfo = Info;
@@ -499,21 +663,22 @@ namespace Mezzanine
 
         void PhysicsManager::ProcessAllCollisions()
         {
-            CollisionDispatcher* Dispatch = (CollisionDispatcher*)this->BulletDispatcher;
             //Update the collisions that already exist as necessary
             for( PhysicsManager::CollisionIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ColIt++ )
                 (*ColIt).second->Update();
             //Process the collisions that are in the creation queue
-            AlgoList& AlgoQueue = Dispatch->GetAlgoCreationQueue();
-            if(AlgoQueue.empty())
+            AlgoList* AlgoQueue = ( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ?
+                                    static_cast<ParallelCollisionDispatcher*>( this->BulletDispatcher )->GetAlgoCreationQueue() :
+                                    static_cast<CollisionDispatcher*>( this->BulletDispatcher )->GetAlgoCreationQueue() );
+            if(AlgoQueue->empty())
                 return;
             #ifdef MEZZDEBUG
-            /*std::stringstream logstream;
-            logstream << "Processing " << AlgoQueue.size() << " algorithms for collisions." << endl;
+            /*StringStream logstream;
+            logstream << "Processing " << AlgoQueue->size() << " algorithms for collisions.";
             Entresol::GetSingletonPtr()->Log(logstream.str());
             Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
             #endif
-            btCollisionAlgorithm* NewAlgo = AlgoQueue.front();
+            btCollisionAlgorithm* NewAlgo = AlgoQueue->front();
             while( NewAlgo != NULL )
             {
                 WorldObject* ObjectA = NULL;
@@ -521,7 +686,7 @@ namespace Mezzanine
                 /// @todo This is an absurd round-about way to get the data we need,
                 /// and bullet will probably have to be extended to change this so it's actually good.
                 btBroadphasePairArray& PairArray = BulletBroadphase->getOverlappingPairCache()->getOverlappingPairArray();
-                for( Whole X = 0 ; X < PairArray.size() ; ++X )
+                for( Integer X = 0 ; X < PairArray.size() ; ++X )
                 {
                     if( NewAlgo == PairArray[X].m_algorithm )
                     {
@@ -532,35 +697,23 @@ namespace Mezzanine
                         break;
                     }
                 }
-                // Verify we have objects to work with
-                if( !ObjectA || !ObjectB )
+
+                if( (ObjectA && ObjectA->GetPhysicsSettings()->GetCollisionResponse()) &&
+                    (ObjectB && ObjectB->GetPhysicsSettings()->GetCollisionResponse()) )
                 {
-                    AlgoQueue.pop_front();
-                    if(AlgoQueue.size() > 0) NewAlgo = AlgoQueue.front();
-                    else NewAlgo = NULL;
-                    continue;
+                    // Creat the collision
+                    ObjectPair NewPair(ObjectA,ObjectB);
+                    PhysicsManager::CollisionIterator ColIt = Collisions.find(NewPair);
+                    if(ColIt == Collisions.end())
+                    {
+                        Physics::Collision* NewCol = new Physics::Collision(ObjectA,ObjectB,NewAlgo);
+                        //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
+                        //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
+                        Collisions.insert(std::pair<ObjectPair,Physics::Collision*>(NewPair,NewCol));
+                    }
                 }
-                // Verify the objects actually collide
-                if( !ObjectA->GetPhysicsSettings()->GetCollisionResponse() ||
-                    !ObjectB->GetPhysicsSettings()->GetCollisionResponse() )
-                {
-                    AlgoQueue.pop_front();
-                    if(AlgoQueue.size() > 0) NewAlgo = AlgoQueue.front();
-                    else NewAlgo = NULL;
-                    continue;
-                }
-                // Creat the collision
-                ObjectPair NewPair(ObjectA,ObjectB);
-                PhysicsManager::CollisionIterator ColIt = Collisions.find(NewPair);
-                if(ColIt == Collisions.end())
-                {
-                    Physics::Collision* NewCol = new Physics::Collision(ObjectA,ObjectB,NewAlgo);
-                    //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
-                    //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
-                    Collisions.insert(std::pair<ObjectPair,Physics::Collision*>(NewPair,NewCol));
-                }
-                AlgoQueue.pop_front();
-                if(AlgoQueue.size() > 0) NewAlgo = AlgoQueue.front();
+                AlgoQueue->pop_front();
+                if(AlgoQueue->size() > 0) NewAlgo = AlgoQueue->front();
                 else NewAlgo = NULL;
             }//*/
         }
@@ -575,12 +728,12 @@ namespace Mezzanine
 
         void PhysicsManager::PauseSimulation(bool Pause)
         {
-            SimulationPaused = Pause;
+            this->SimulationPaused = Pause;
         }
 
         bool PhysicsManager::SimulationIsPaused()
         {
-            return SimulationPaused;
+            return this->SimulationPaused;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -610,7 +763,7 @@ namespace Mezzanine
 
         void PhysicsManager::SetIndividualGravity(ActorBase* Actor, const Vector3& igrav)
         {
-            if (Mezzanine::WSO_ActorRigid==Actor->GetType())
+            if( Mezzanine::WSO_ActorRigid==Actor->GetType() )
             {
                 btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->_GetBasePhysicsObject());
                 Rigid->setGravity(igrav.GetBulletVector3());
@@ -623,27 +776,27 @@ namespace Mezzanine
         void PhysicsManager::AddConstraint(Physics::Constraint* Con, bool DisableCollisions)
         {
             this->BulletDynamicsWorld->addConstraint(Con->GetConstraintBase(), DisableCollisions);
-            Constraints.push_back(Con);
+            this->Constraints.push_back(Con);
         }
 
         Physics::Constraint* PhysicsManager::GetConstraint(const Whole& Index)
         {
-            return Constraints[Index];
+            return this->Constraints[Index];
         }
 
         Whole PhysicsManager::GetNumConstraints()
         {
-            return Constraints.size();
+            return this->Constraints.size();
         }
 
         void PhysicsManager::RemoveConstraint(Physics::Constraint* Con)
         {
             this->BulletDynamicsWorld->removeConstraint(Con->GetConstraintBase());
-            for( std::vector<Physics::Constraint*>::iterator ConIt = Constraints.begin() ; ConIt < Constraints.end() ; ConIt++ )
+            for( ConstraintIterator ConIt = this->Constraints.begin() ; ConIt < this->Constraints.end() ; ConIt++ )
             {
                 if( (*ConIt) == Con )
                 {
-                    Constraints.erase(ConIt);
+                    this->Constraints.erase(ConIt);
                     return;
                 }
             }
@@ -651,12 +804,12 @@ namespace Mezzanine
 
         void PhysicsManager::DestroyAllConstraints()
         {
-            for( std::vector<Physics::Constraint*>::iterator Con = Constraints.begin() ; Con != Constraints.end() ; Con++ )
+            for( ConstraintIterator Con = this->Constraints.begin() ; Con != this->Constraints.end() ; Con++ )
             {
                 this->BulletDynamicsWorld->removeConstraint((*Con)->GetConstraintBase());
                 delete (*Con);
             }
-            Constraints.clear();
+            this->Constraints.clear();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -670,9 +823,9 @@ namespace Mezzanine
 
         AreaEffect* PhysicsManager::GetAreaEffect(const String& Name)
         {
-            for( vector<AreaEffect*>::iterator c = AreaEffects.begin() ; c != AreaEffects.end() ; c++ )
+            for( ConstAreaEffectIterator c = this->AreaEffects.begin() ; c != this->AreaEffects.end() ; c++ )
             {
-                if ( Name == (*c)->GetName() )
+                if( Name == (*c)->GetName() )
                 {
                     return *c;
                 }
@@ -682,22 +835,22 @@ namespace Mezzanine
 
         AreaEffect* PhysicsManager::GetAreaEffect(const Whole& Index)
         {
-            return AreaEffects[Index];
+            return this->AreaEffects[Index];
         }
 
         Whole PhysicsManager::GetNumAreaEffects()
         {
-            return AreaEffects.size();
+            return this->AreaEffects.size();
         }
 
         void PhysicsManager::RemoveAreaEffect(AreaEffect* AE)
         {
             AE->RemoveFromWorld();
-            for( vector<AreaEffect*>::iterator c = AreaEffects.begin() ; c != AreaEffects.end() ; c++ )
+            for( AreaEffectIterator c = this->AreaEffects.begin() ; c != this->AreaEffects.end() ; c++ )
             {
-                if ( AE == *c )
+                if( AE == *c )
                 {
-                    AreaEffects.erase(c);
+                    this->AreaEffects.erase(c);
                     return;
                 }
             }
@@ -705,12 +858,12 @@ namespace Mezzanine
 
         void PhysicsManager::DestroyAllAreaEffects()
         {
-            for( std::vector<AreaEffect*>::iterator AE = AreaEffects.begin() ; AE != AreaEffects.end() ; AE++ )
+            for( AreaEffectIterator AE = this->AreaEffects.begin() ; AE != this->AreaEffects.end() ; AE++ )
             {
                 this->BulletDynamicsWorld->removeCollisionObject((*AE)->_GetBulletObject());
                 delete (*AE);
             }
-            AreaEffects.clear();
+            this->AreaEffects.clear();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -718,14 +871,14 @@ namespace Mezzanine
 
         void PhysicsManager::AddWorldTrigger(WorldTrigger* Trig)
         {
-            Triggers.push_back(Trig);
+            this->Triggers.push_back(Trig);
         }
 
         WorldTrigger* PhysicsManager::GetWorldTrigger(const String& Name)
         {
-            for( vector<WorldTrigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
+            for( ConstWorldTriggerIterator Trig = this->Triggers.begin() ; Trig != this->Triggers.end() ; Trig++ )
             {
-                if ( Name == (*Trig)->GetName() )
+                if( Name == (*Trig)->GetName() )
                 {
                     return *Trig;
                 }
@@ -735,21 +888,21 @@ namespace Mezzanine
 
         WorldTrigger* PhysicsManager::GetWorldTrigger(const Whole& Index)
         {
-            return Triggers[Index];
+            return this->Triggers.at(Index);
         }
 
         Whole PhysicsManager::GetNumWorldTriggers()
         {
-            return Triggers.size();
+            return this->Triggers.size();
         }
 
         void PhysicsManager::RemoveWorldTrigger(WorldTrigger* Trig)
         {
-            for( vector<WorldTrigger*>::iterator T = Triggers.begin() ; T != Triggers.end() ; T++ )
+            for( WorldTriggerIterator T = this->Triggers.begin() ; T != this->Triggers.end() ; T++ )
             {
-                if ( Trig == (*T) )
+                if( Trig == (*T) )
                 {
-                    Triggers.erase(T);
+                    this->Triggers.erase(T);
                     return;
                 }
             }
@@ -757,9 +910,9 @@ namespace Mezzanine
 
         void PhysicsManager::DestroyAllWorldTriggers()
         {
-            for( std::vector<WorldTrigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
+            for( WorldTriggerIterator Trig = this->Triggers.begin() ; Trig != this->Triggers.end() ; Trig++ )
                 delete (*Trig);
-            Triggers.clear();
+            this->Triggers.clear();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -767,27 +920,27 @@ namespace Mezzanine
 
         Physics::Collision* PhysicsManager::GetCollision(ObjectPair* Pair)
         {
-            PhysicsManager::CollisionIterator ColIt = Collisions.find(*Pair);
-            if(ColIt != Collisions.end()) return (*ColIt).second;
+            ConstCollisionIterator ColIt = this->Collisions.find(*Pair);
+            if(ColIt != this->Collisions.end()) return (*ColIt).second;
             else return NULL;
         }
 
         Whole PhysicsManager::GetNumCollisions()
         {
-            return Collisions.size();
+            return this->Collisions.size();
         }
 
         void PhysicsManager::RemoveCollision(Physics::Collision* Col)
         {
             //((CollisionDispatcher*)BulletDispatcher)->releaseManifoldManual(Col->Manifold);
-            btBroadphasePair* btPair = BulletBroadphase->getOverlappingPairCache()->findPair(
+            btBroadphasePair* btPair = this->BulletBroadphase->getOverlappingPairCache()->findPair(
                 Col->ObjectA->_GetBasePhysicsObject()->getBroadphaseHandle(),
                 Col->ObjectB->_GetBasePhysicsObject()->getBroadphaseHandle());
-            BulletBroadphase->getOverlappingPairCache()->removeOverlappingPair(
+            this->BulletBroadphase->getOverlappingPairCache()->removeOverlappingPair(
                 Col->ObjectA->_GetBasePhysicsObject()->getBroadphaseHandle(),
                 Col->ObjectB->_GetBasePhysicsObject()->getBroadphaseHandle(),
-                BulletDispatcher);// */
-            BulletBroadphase->getOverlappingPairCache()->cleanOverlappingPair(*btPair,BulletDispatcher);
+                this->BulletDispatcher);// */
+            this->BulletBroadphase->getOverlappingPairCache()->cleanOverlappingPair(*btPair,this->BulletDispatcher);
             delete btPair;
         }
 
@@ -796,17 +949,17 @@ namespace Mezzanine
             if(!Object->IsInWorld())
                 return;
 
-            BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs(Object->_GetBasePhysicsObject()->getBroadphaseHandle(),BulletDispatcher);
+            this->BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs(Object->_GetBasePhysicsObject()->getBroadphaseHandle(),this->BulletDispatcher);
 
-            PhysicsManager::CollisionIterator ColIt = Collisions.begin();
-            while( ColIt != Collisions.end() )
+            CollisionIterator ColIt = this->Collisions.begin();
+            while( ColIt != this->Collisions.end() )
             {
                 Physics::Collision* ToBeDestroyed = (*ColIt).second;
                 if( Object == (*ColIt).second->ObjectA || Object == (*ColIt).second->ObjectB )
                 {
-                    PhysicsManager::CollisionIterator Delete = ColIt;
+                    CollisionIterator Delete = ColIt;
                     ++ColIt;
-                    Collisions.erase(Delete);
+                    this->Collisions.erase(Delete);
                     delete ToBeDestroyed;
                 }else{
                     ++ColIt;
@@ -816,32 +969,31 @@ namespace Mezzanine
 
         void PhysicsManager::DestroyAllCollisions()
         {
-            for( PhysicsManager::CollisionIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ++ColIt )
+            for( CollisionIterator ColIt = this->Collisions.begin() ; ColIt != this->Collisions.end() ; ++ColIt )
             {
-                Physics::Collision* ToBeDestroyed = (*ColIt).second;
-                //BulletDispatcher->releaseManifold(ToBeDestroyed->Manifold);
+                delete (*ColIt).second;
             }
-            Collisions.clear();
+            this->Collisions.clear();
         }
 
         PhysicsManager::CollisionIterator PhysicsManager::BeginCollision()
         {
-            return Collisions.begin();
+            return this->Collisions.begin();
         }
 
         PhysicsManager::CollisionIterator PhysicsManager::EndCollision()
         {
-            return Collisions.end();
+            return this->Collisions.end();
         }
 
         PhysicsManager::ConstCollisionIterator PhysicsManager::BeginCollision() const
         {
-            return Collisions.begin();
+            return this->Collisions.begin();
         }
 
         PhysicsManager::ConstCollisionIterator PhysicsManager::EndCollision() const
         {
-            return Collisions.end();
+            return this->Collisions.end();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -898,7 +1050,29 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        void PhysicsManager::ResetPhysicsWorld(PhysicsConstructionInfo* Info)
+        void PhysicsManager::MainLoopInitialize()
+        {
+            // Configure our area effects so they have an updated list and apply their effects immediately.
+            this->BulletDynamicsWorld->updateAabbs();
+            this->BulletBroadphase->calculateOverlappingPairs(this->BulletDispatcher);
+            this->BulletDispatcher->dispatchAllCollisionPairs(this->BulletDynamicsWorld->getPairCache(),this->BulletDynamicsWorld->getDispatchInfo(),this->BulletDispatcher);
+            for( std::vector<AreaEffect*>::iterator AE = AreaEffects.begin() ; AE != AreaEffects.end() ; AE++ )
+            {
+                //this->BulletDispatcher->dispatchAllCollisionPairs(InternalGhost->getOverlappingPairCache(),this->BulletDynamicsWorld->getDispatchInfo(),this->BulletDispatcher);
+
+                (*AE)->_Update();
+                (*AE)->ApplyEffect();
+            }
+
+            // Set our ideal simulation step size
+            //Real InvSubStepMod = 1.0 / this->SubstepModifier;
+            //Real TargetTimeSeconds = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMicroseconds() ) * 0.000001;
+            //this->StepSize = std::max( TargetTimeSeconds * InvSubStepMod, static_cast<Real>( 1.0 / 120.0 ) );
+            //this->StepSize = TargetTimeSeconds * InvSubStepMod;
+            this->StepSize = (static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMicroseconds() ) * 0.000001) / this->SubstepModifier;
+        }
+
+        void PhysicsManager::ResetPhysicsWorld(ManagerConstructionInfo* Info)
         {
             delete BulletDynamicsWorld;
             delete BulletDispatcher;
@@ -912,6 +1086,8 @@ namespace Mezzanine
                 delete BulletDrawer;
                 DebugOn = true;
             }
+            if(BulletSolverThreads) delete BulletSolverThreads;
+            if(BulletDispatcherThreads) delete BulletDispatcherThreads;
 
             if(Info) this->Construct(*Info);
             else this->Construct(WorldConstructionInfo);
@@ -928,7 +1104,7 @@ namespace Mezzanine
             btOverlappingPairCache* Pairs = BulletBroadphase->getOverlappingPairCache();
             int NumPairs = Pairs->getNumOverlappingPairs();
             btBroadphasePairArray PairArray = Pairs->getOverlappingPairArray();
-            for( Whole X = 0 ; X < NumPairs ; X++ )
+            for( Integer X = 0 ; X < NumPairs ; X++ )
             {
                 btBroadphasePair& CurrPair = PairArray.at(X);
                 Pairs->cleanOverlappingPair(CurrPair,BulletDispatcher);
@@ -959,111 +1135,21 @@ namespace Mezzanine
         {
             if(SimulationPaused)
                 return;
-            #ifdef MEZZPROFILE
-            static Ogre::Timer* Profiler = new Ogre::Timer();
-            Profiler->reset();
-            #endif
 
-            Real FloatTime = TimeElapsed * 0.001; //Convert from MilliSeconds to Seconds
-            //Real IdealStep = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
-            //IdealStep /= SubstepModifier;
-            //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
-            int MaxSteps = (FloatTime<StepSize) ? 1 : int(FloatTime/StepSize)+1;
-            #ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
-            this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, StepSize);
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
+            //ProcessAllCollisions();
 
-            /*#ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
-            ProcessAllCollisions();
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "Collisions took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
-
-            #ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
             ProcessAllEffects();
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
 
-            #ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
             ProcessAllTriggers();
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "Triggers took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
 
             // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
             //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
 
-            /*#ifdef MEZZDEBUG
-            this->TheEntresol->Log("Checking for Collisions.");
-            #endif
-
-            #ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
-            int numManifolds = BulletDynamicsWorld->getDispatcher()->getNumManifolds();
-            for (int i=0;i<numManifolds;i++)
-            {
-                btPersistentManifold* contactManifold = BulletDynamicsWorld->getDispatcher()->getManifoldByIndexInternal(i);
-                int numContacts = contactManifold->getNumContacts();
-                for (int j=0;j<numContacts;j++)
-                {
-                    btManifoldPoint& pt = contactManifold->getContactPoint(j);
-                    if (pt.m_lifeTime == CollisionAge && pt.m_appliedImpulse >= Impulse && pt.m_distance1 < 0)
-                    {
-                        /// @todo This chunk of code won't take the upcoming terrain system into account, and should be modified accordingly
-                        btCollisionObject* objectA = static_cast<btCollisionObject*>(contactManifold->getBody0());
-                        btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
-                        ActorBase* ActA = ActorManager::GetSingletonPtr()->GetActorContainer()->FindActor(objectA);
-                        ActorBase* ActB = ActorManager::GetSingletonPtr()->GetActorContainer()->FindActor(objectB);
-
-                        if( !ActA || !ActB )
-                            continue;
-
-                        Vector3 WorldLoc((pt.getPositionWorldOnA() + pt.getPositionWorldOnB()) * 0.5);
-                        Vector3 ActALoc(pt.m_localPointA);
-                        Vector3 ActBLoc(pt.m_localPointB);
-                        EventCollision* ColEvent = new EventCollision(ActA,ActB,ActALoc,ActBLoc,WorldLoc,pt.m_appliedImpulse);
-                        //create collision event
-                        EventManager::GetSingletonPtr()->AddEvent(ColEvent);
-                        #ifdef MEZZDEBUG
-                        this->TheEntresol->Log("Collision Event:");
-                        this->TheEntresol->Log(*ColEvent);
-                        #endif
-                    }
-                }
-            }
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "Contact Manifold Iteration took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
-
-            #ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
             if( this->BulletDrawer && this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
             {
                 this->BulletDrawer->PrepareForRendering();
                 this->BulletDynamicsWorld->debugDrawWorld();
             }
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
         }
 
         btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
@@ -1071,33 +1157,20 @@ namespace Mezzanine
             return this->BulletDynamicsWorld;
         }
 
-        void PhysicsManager::MainLoopInitialize()
-        {
-            // Configure our area effects so they have an updated list and apply their effects immediately.
-            this->BulletDynamicsWorld->updateAabbs();
-            this->BulletBroadphase->calculateOverlappingPairs(this->BulletDispatcher);
-            this->BulletDispatcher->dispatchAllCollisionPairs(this->BulletDynamicsWorld->getPairCache(),this->BulletDynamicsWorld->getDispatchInfo(),this->BulletDispatcher);
-            for( std::vector<AreaEffect*>::iterator AE = AreaEffects.begin() ; AE != AreaEffects.end() ; AE++ )
-            {
-                btPairCachingGhostObject* InternalGhost = (*AE)->_GetBulletObject();
-                //this->BulletDispatcher->dispatchAllCollisionPairs(InternalGhost->getOverlappingPairCache(),this->BulletDynamicsWorld->getDispatchInfo(),this->BulletDispatcher);
-
-                (*AE)->_Update();
-                (*AE)->ApplyEffect();
-            }
-
-            // Set our ideal simulation step size
-            Real InvSubStepMod = 1.0 / this->SubstepModifier;
-            Real TargetTimeSeconds = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMicroseconds() ) * 0.000001;
-            //this->StepSize = std::max( TargetTimeSeconds * InvSubStepMod, static_cast<Real>( 1.0 / 120.0 ) );
-            this->StepSize = TargetTimeSeconds * InvSubStepMod;
-        }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Inherited from Managerbase
 
         void PhysicsManager::Initialize()
         {
+            if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+            }else{
+                this->TheEntresol->GetScheduler().AddWorkUnit(this->SimulationWork);
+            }
+            Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
+            if( GraphicsMan )
+                this->SimulationWork->AddDependency( GraphicsMan->GetRenderWorkUnit() );
+
             Initialized = true;
         }
 
@@ -1138,7 +1211,7 @@ namespace Mezzanine
                 if(Params.empty()) return new PhysicsManager();
                 else
                 {
-                    PhysicsConstructionInfo PhysInfo;
+                    ManagerConstructionInfo PhysInfo;
                     for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
                     {
                         String Lower = (*ParIt).first;
@@ -1162,12 +1235,12 @@ namespace Mezzanine
                         else if( "softrigidworld" == Lower )
                         {
                             if(StringTools::ConvertToBool( (*ParIt).second ))
-                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | PhysicsConstructionInfo::PCF_SoftRigidWorld);
+                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
                         }
                         else if( "limitlessworld" == Lower )
                         {
                             if(StringTools::ConvertToBool( (*ParIt).second ))
-                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | PhysicsConstructionInfo::PCF_LimitlessWorld);
+                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
                         }
                     }
                     return new PhysicsManager(PhysInfo);

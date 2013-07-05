@@ -59,30 +59,27 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB PrimitiveCollisionShape : public CollisionShape
         {
-            protected:
-                /// @brief Sets the internal pointers on the base classes.
-                void SetPointers(btConvexInternalShape* Shape);
-            public:
-                /// @brief Class Constructor.
-                PrimitiveCollisionShape();
-                /// @brief Class Destructor.
-                virtual ~PrimitiveCollisionShape();
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const = 0;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual btConvexInternalShape* GetBulletConvexShape() const;
+        protected:
+            /// @brief Sets the internal pointers on the base classes.
+            void SetPointers(btConvexInternalShape* Shape);
+        public:
+            /// @brief Class Constructor.
+            PrimitiveCollisionShape();
+            /// @brief Class Destructor.
+            virtual ~PrimitiveCollisionShape();
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const = 0;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btConvexInternalShape* GetBulletConvexShape() const;
 
-                // Serializable
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-                // DeSerializable
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
-                /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-                /// @return A string containing "PrimitiveCollisionShape"
-                static String SerializableName();
-
-        };//primitivecollisionshape
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "PrimitiveCollisionShape"
+            static String SerializableName();
+        };//PrimitiveCollisionShape
     }//Physics
 }//Mezzanine
 

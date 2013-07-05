@@ -56,16 +56,17 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Hinge2Constraint : public Generic6DofSpringConstraint
         {
-            protected:
-                /// @brief Bullet constraint that this class encapsulates.
-                btHinge2Constraint* Hinge2;
-            public:
-                Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
-                /// @brief Class destructor.
-                /// @details The class destructor.
-                virtual ~Hinge2Constraint();
-                virtual void SetUpperLimit(Real Ang1Max);
-                virtual void SetLowerLimit(Real Ang1Min);
+        protected:
+            /// @brief Bullet constraint that this class encapsulates.
+            btHinge2Constraint* Hinge2;
+        public:
+            Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+            /// @brief Class destructor.
+            /// @details The class destructor.
+            virtual ~Hinge2Constraint();
+
+            virtual void SetUpperLimit(Real Ang1Max);
+            virtual void SetLowerLimit(Real Ang1Min);
         };//Hinge2Constraint
     }//Physics
 }//Mezzanine

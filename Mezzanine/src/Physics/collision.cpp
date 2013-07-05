@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _collision_cpp
-#define _collision_cpp
+#ifndef _physicscollision_cpp
+#define _physicscollision_cpp
 
 #include "actorbase.h"
 #include "actormanager.h"

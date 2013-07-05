@@ -5,10 +5,10 @@
 #include "catchapp.h"
 #include "levelreportcell.h"
 
-LevelScorer::LevelScorer()
-    : BonusScore(0),
-      NormalScore(0),
-      LevelTargetTime(0)
+LevelScorer::LevelScorer() :
+    NormalScore(0),
+    BonusScore(0),
+    LevelTargetTime(0)
 {
     TheEntresol = Entresol::GetSingletonPtr();
     GameApp = CatchApp::GetCatchAppPointer();

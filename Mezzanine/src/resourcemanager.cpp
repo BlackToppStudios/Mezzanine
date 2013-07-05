@@ -50,7 +50,6 @@
 #include "Resource/filestream.h"
 #include "Resource/memorystream.h"
 #include "Internal/ogredatastreambuf.h.cpp"
-#include "Internal/bulletfilemanager.h.cpp"
 
 #include "Resource/resourceenumerations.h"
 

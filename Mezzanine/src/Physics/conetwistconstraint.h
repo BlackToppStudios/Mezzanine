@@ -56,30 +56,30 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB ConeTwistConstraint : public Constraint
         {
-            protected:
-                /// @brief Bullet constraint that this class encapsulates.
-                btConeTwistConstraint* ConeTwist;
-            public:
-                ConeTwistConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& Vectorb, const Quaternion& QuaternionA, const Quaternion& QuaternionB);
-                ConeTwistConstraint(ActorRigid* ActorA, const Vector3& VectorA, const Quaternion& QuaternionA);
-                /// @brief Class destructor.
-                /// @details The class destructor.
-                virtual ~ConeTwistConstraint();
+        protected:
+            /// @brief Bullet constraint that this class encapsulates.
+            btConeTwistConstraint* ConeTwist;
+        public:
+            ConeTwistConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& Vectorb, const Quaternion& QuaternionA, const Quaternion& QuaternionB);
+            ConeTwistConstraint(ActorRigid* ActorA, const Vector3& VectorA, const Quaternion& QuaternionA);
+            /// @brief Class destructor.
+            /// @details The class destructor.
+            virtual ~ConeTwistConstraint();
 
-                virtual void SetAngularOnly(bool AngularOnly);
-                virtual void SetLimit(int LimitIndex, Real LimitValue);
-                virtual void SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness=1.0, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
-                virtual void SetDamping(Real Damping);
-                virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
-                virtual void SetMaxMotorImpulseNormalized(Real MaxMotorImpulse);
-                virtual void SetFixThresh(Real FixThresh);
-                virtual void SetMotorTarget(const Quaternion& Quat);
-                virtual void SetMotorTargetInConstraintSpace(const Quaternion& Quat);
-                virtual void EnableMotor(bool Enable);
-                virtual bool IsPassedSwingLimit();
+            virtual void SetAngularOnly(bool AngularOnly);
+            virtual void SetLimit(int LimitIndex, Real LimitValue);
+            virtual void SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness=1.0, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
+            virtual void SetDamping(Real Damping);
+            virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
+            virtual void SetMaxMotorImpulseNormalized(Real MaxMotorImpulse);
+            virtual void SetFixThresh(Real FixThresh);
+            virtual void SetMotorTarget(const Quaternion& Quat);
+            virtual void SetMotorTargetInConstraintSpace(const Quaternion& Quat);
+            virtual void EnableMotor(bool Enable);
+            virtual bool IsPassedSwingLimit();
 
-                /// @copydoc Constraint::GetConstraintBase() const
-                virtual btTypedConstraint* GetConstraintBase() const;
+            /// @copydoc Constraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
         };//ConeTwistConstraint
     }//Physics
 }//Mezzanine

@@ -78,43 +78,39 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = 0;
+        template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = NULL;
 
+        RenderWorkUnit::RenderWorkUnit(GraphicsManager* Target) :
+            TargetManager(Target)
+            {  }
 
-        GraphicsWorkUnit::GraphicsWorkUnit(GraphicsManager* WhichGraphicsManager) :
-            TargetGraphicsManager(WhichGraphicsManager)
-        {}
+        RenderWorkUnit::~RenderWorkUnit()
+            {  }
 
-        void GraphicsWorkUnit::UseThreads(const Whole& AmountToUse)
+        void RenderWorkUnit::UseThreads(const Whole& AmountToUse)
         {
             //TargetGraphicsManager->SomehowTellOgreHowManyThread(AmountToUse);
         }
 
-        Whole GraphicsWorkUnit::UsingThreadCount()
+        Whole RenderWorkUnit::UsingThreadCount()
         {
             //return TargetGraphicsManager->GetThreadCountFromOgreSomehow();
             return 1;
         }
 
-        void GraphicsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        void RenderWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
-            TargetGraphicsManager->ThreadResources = &CurrentThreadStorage; // Allow this full access to any thread specific resources it needs
+            this->TargetManager->ThreadResources = &CurrentThreadStorage; // Allow this full access to any thread specific resources it needs
             Ogre::WindowEventUtilities::messagePump();
-            TargetGraphicsManager->RenderOneFrame();
-            TargetGraphicsManager->ThreadResources = NULL;                  // Take it all away.
+            this->TargetManager->RenderOneFrame();
+            this->TargetManager->ThreadResources = NULL;                  // Take it all away.
         }
-
-        GraphicsWorkUnit::~GraphicsWorkUnit()
-            {}
-
-
-
 
         ///////////////////////////////////////////////////////////////////////////
         // Creation and Deletion functions
         ///////////////////////////////////
         GraphicsManager::GraphicsManager()
-            : MainLoopWork(NULL),
+            : RenderWork(NULL),
               ThreadResources(NULL),
               OgreBeenInitialized(false),
               CurrRenderSys(Graphics::RS_OpenGL2)
@@ -124,7 +120,7 @@ namespace Mezzanine
         }
 
         GraphicsManager::GraphicsManager(XML::Node& XMLNode)
-            : MainLoopWork(NULL),
+            : RenderWork(NULL),
               ThreadResources(NULL),
               OgreBeenInitialized(false),
               CurrRenderSys(Graphics::RS_OpenGL2)
@@ -217,7 +213,7 @@ namespace Mezzanine
 
         void GraphicsManager::Construct()
         {
-            MainLoopWork = new GraphicsWorkUnit(this);
+            RenderWork = new RenderWorkUnit(this);
 
             UInt32 InitSDLSystems = SDL_WasInit(0);
             if( (SDL_INIT_VIDEO & InitSDLSystems) == 0 )
@@ -641,7 +637,7 @@ namespace Mezzanine
 
         void GraphicsManager::Initialize()
         {
-            TheEntresol->WorkScheduler.AddWorkUnitMonopoly(MainLoopWork);
+            TheEntresol->GetScheduler().AddWorkUnitMonopoly(RenderWork);
 
             if(!OgreBeenInitialized)
                 InitOgreRenderSystem();
@@ -686,8 +682,8 @@ namespace Mezzanine
         String GraphicsManager::GetImplementationTypeName() const
             { return "DefaultGraphicsManager"; }
 
-        GraphicsWorkUnit* GraphicsManager::GetGraphicsWorkUnit()
-            { return MainLoopWork; }
+        RenderWorkUnit* GraphicsManager::GetRenderWorkUnit()
+            { return RenderWork; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultGraphicsManagerFactory Methods

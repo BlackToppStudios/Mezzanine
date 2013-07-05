@@ -63,74 +63,74 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB CollisionShape
         {
-            public:
-                /// @enum ShapeType
-                /// @brief This enum describes what kind of shape you are currently working with.
-                /// @note These are number primarily for Serialization purposes. These corresponding numbers could vary wildly. Any use of corresponding raw number in serialization will be done with object serialization version in mind.
-                enum ShapeType
-                {
-                    ST_Box=0,               ///< Indicates the class is a BoxCollisionShape
-                    ST_Capsule=1,           ///< Indicates the class is a CapsuleCollisionShape
-                    ST_Compound=2,          ///< Indicates the class is a CompoundCollisionShape
-                    ST_Cone=3,              ///< Indicates the class is a ConeCollisionShape
-                    ST_ConvexHull=4,        ///< Indicates the class is a ConvexHullCollisionShape
-                    ST_Cylinder=5,          ///< Indicates the class is a CylinderCollisionShape
-                    ST_MultiSphere=6,       ///< Indicates the class is a MultiSphereCollisionShape
-                    ST_Sphere=7,            ///< Indicates the class is a SphereCollisionShape
-                    ST_DynamicTriMesh=8,    ///< Indicates the class is a DynamicMeshCollisionShape
-                    ST_Heightfield=9,       ///< Indicates the class is a HeightfieldCollisionShape
-                    ST_Plane=10,            ///< Indicates the class is a PlaneCollisionShape
-                    ST_ActorSoft=11,        ///< Indicates the class is a ActorSoftCollisionShape
-                    ST_StaticTriMesh=12     ///< Indicates the class is a StaticMeshCollisionShape
-                };
-            protected:
-                friend class Mezzanine::CollisionShapeManager;
-                /// @brief A pointer to the bullet collision this uses.
-                btCollisionShape* ShapeBase;
-                /// @brief Storage for the name of this class instance.
-                String Name;
-            public:
-                /// @brief Class Constructor.
-                CollisionShape();
-                /// @brief Class Destructor.
-                virtual ~CollisionShape();
-                /// @brief Gets the name of this shape.
-                /// @return Returns a const reference string containing the name of this collision shape.
-                virtual const String& GetName() const;
-                /// @brief Sets the padding that will be applied when checking for collisions.
-                /// @param Margin A real in world units representing how much padding is to be applied to this shape.
-                virtual void SetMargin(const Real& Margin);
-                /// @brief Gets the amount of padding currently being applied to the collision shape.
-                /// @return Returns the amount of padding, in world units, is being applied to the collision shape.
-                virtual Real GetMargin() const;
-                /// @brief Scales the collision shape on each of it's axes.
-                /// @param Scaling A vector3 representing how much scaling should be applied on each of the shapes 3 axes.
-                virtual void SetScaling(const Vector3& Scaling);
-                /// @brief Gets the current scaling being applied to the collision shape.
-                /// @return Returns a vector3 representing the amount of scaling being applied to the shape.
-                virtual Vector3 GetScaling() const;
+        public:
+            /// @enum ShapeType
+            /// @brief This enum describes what kind of shape you are currently working with.
+            /// @note These are number primarily for Serialization purposes. These corresponding numbers could vary wildly. Any use of corresponding raw number in serialization will be done with object serialization version in mind.
+            enum ShapeType
+            {
+                ST_Box = 0,               ///< Indicates the class is a BoxCollisionShape
+                ST_Capsule = 1,           ///< Indicates the class is a CapsuleCollisionShape
+                ST_Compound = 2,          ///< Indicates the class is a CompoundCollisionShape
+                ST_Cone = 3,              ///< Indicates the class is a ConeCollisionShape
+                ST_ConvexHull = 4,        ///< Indicates the class is a ConvexHullCollisionShape
+                ST_Cylinder = 5,          ///< Indicates the class is a CylinderCollisionShape
+                ST_MultiSphere = 6,       ///< Indicates the class is a MultiSphereCollisionShape
+                ST_Sphere = 7,            ///< Indicates the class is a SphereCollisionShape
+                ST_DynamicTriMesh = 8,    ///< Indicates the class is a DynamicMeshCollisionShape
+                ST_Heightfield = 9,       ///< Indicates the class is a HeightfieldCollisionShape
+                ST_Plane = 10,            ///< Indicates the class is a PlaneCollisionShape
+                ST_ActorSoft = 11,        ///< Indicates the class is a ActorSoftCollisionShape
+                ST_StaticTriMesh = 12     ///< Indicates the class is a StaticMeshCollisionShape
+            };
+        protected:
+            friend class Mezzanine::CollisionShapeManager;
+            /// @brief A pointer to the bullet collision this uses.
+            btCollisionShape* ShapeBase;
+            /// @brief Storage for the name of this class instance.
+            String Name;
+        public:
+            /// @brief Class Constructor.
+            CollisionShape();
+            /// @brief Class Destructor.
+            virtual ~CollisionShape();
+            /// @brief Gets the name of this shape.
+            /// @return Returns a const reference string containing the name of this collision shape.
+            virtual const String& GetName() const;
+            /// @brief Sets the padding that will be applied when checking for collisions.
+            /// @param Margin A real in world units representing how much padding is to be applied to this shape.
+            virtual void SetMargin(const Real& Margin);
+            /// @brief Gets the amount of padding currently being applied to the collision shape.
+            /// @return Returns the amount of padding, in world units, is being applied to the collision shape.
+            virtual Real GetMargin() const;
+            /// @brief Scales the collision shape on each of it's axes.
+            /// @param Scaling A vector3 representing how much scaling should be applied on each of the shapes 3 axes.
+            virtual void SetScaling(const Vector3& Scaling);
+            /// @brief Gets the current scaling being applied to the collision shape.
+            /// @return Returns a vector3 representing the amount of scaling being applied to the shape.
+            virtual Vector3 GetScaling() const;
 
-                /// @brief Gets the type of Collision shape this is.
-                /// @return Returns an enum value indicating the type of collision shape this is.
-                virtual CollisionShape::ShapeType GetType() const = 0;
-                /// @internal
-                /// @brief Gets the internal shape pointer this collision shape is based on.
-                /// @return Returns a pointer to the internal collision shape.
-                virtual btCollisionShape* GetBulletShape() const;
+            /// @brief Gets the type of Collision shape this is.
+            /// @return Returns an enum value indicating the type of collision shape this is.
+            virtual CollisionShape::ShapeType GetType() const = 0;
+            /// @internal
+            /// @brief Gets the internal shape pointer this collision shape is based on.
+            /// @return Returns a pointer to the internal collision shape.
+            virtual btCollisionShape* GetBulletShape() const;
 
-                // Serializable
-                /// @brief Convert this class to an XML::Node ready for serialization
-                /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-                // DeSerializable
-                /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-                /// @param OneNode and XML::Node containing the data.
-                /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
-                /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-                /// @return A string containing "CollisionShape"
-                static String SerializableName();
-        };//collisionshape
+            // Serializable
+            /// @brief Convert this class to an XML::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and XML::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "CollisionShape"
+            static String SerializableName();
+        };//CollisionShape
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Functions
@@ -169,33 +169,33 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB CollisionShapeDeSerializer : public DeSerializer <CollisionShape>
         {
-            protected:
-                /// @internal
-                /// @brief This Performs the work of Deserializing that DeSerialize and DeSerializeAndRetrieve need to do
-                /// @param Stream the stream to deserialize from.
-                /// @return a pointer to the shape just created, this may or may not be added to the collision shape manager depending on implementation details
-                virtual CollisionShape* PerformDeSerialization(std::istream& Stream);
-            public:
-                /// @brief Convert An XML Node containing and one collision shape into a CollisionShape of the corresponding type
-                /// @param OneNode A reference to the XML node to reconstitute into a live class instance.
-                /// @details All items deserialized here will be added to the collision shape manager.
-                /// @return A pointer to the freshly deserialized and created class instance.
-                virtual CollisionShape* ProtoDeSerialize(const XML::Node& OneNode);
-                /// @brief Create a collision shape from the serialized version in a stream.
-                /// @param Stream The std::istream to get the data from.
-                /// @details This performs less checking than the original to allow for DeSerialization of multiple kinds
-                /// of xml elements. Rather all the specific checking is done closer to the actual instantion of classes.
-                /// This add the DeSerialized shape to the collsion shape manager.
-                /// @return This returns the input stream after the xml document has been extracted from it.
-                virtual std::istream& DeSerialize(std::istream& Stream);
-                /// @brief Create a collision shape from the serialized version in a stream.
-                /// @param Stream The std::istream to get the data from.
-                /// @details This adds the DeSerialized shape to the collsion shape manager.
-                /// @return This returns a pointer to the freshly created collsion shape
-                virtual CollisionShape* DeSerializeAndRetrieve(std::istream& Stream);
-                /// @brief This will return the Name of the element that Contains multiple of the items to be DeSerialized
-                /// @return A String containing "Shapes"
-                virtual String ContainerName() const;
+        protected:
+            /// @internal
+            /// @brief This Performs the work of Deserializing that DeSerialize and DeSerializeAndRetrieve need to do
+            /// @param Stream the stream to deserialize from.
+            /// @return a pointer to the shape just created, this may or may not be added to the collision shape manager depending on implementation details
+            virtual CollisionShape* PerformDeSerialization(std::istream& Stream);
+        public:
+            /// @brief Convert An XML Node containing and one collision shape into a CollisionShape of the corresponding type
+            /// @param OneNode A reference to the XML node to reconstitute into a live class instance.
+            /// @details All items deserialized here will be added to the collision shape manager.
+            /// @return A pointer to the freshly deserialized and created class instance.
+            virtual CollisionShape* ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Create a collision shape from the serialized version in a stream.
+            /// @param Stream The std::istream to get the data from.
+            /// @details This performs less checking than the original to allow for DeSerialization of multiple kinds
+            /// of xml elements. Rather all the specific checking is done closer to the actual instantion of classes.
+            /// This add the DeSerialized shape to the collsion shape manager.
+            /// @return This returns the input stream after the xml document has been extracted from it.
+            virtual std::istream& DeSerialize(std::istream& Stream);
+            /// @brief Create a collision shape from the serialized version in a stream.
+            /// @param Stream The std::istream to get the data from.
+            /// @details This adds the DeSerialized shape to the collsion shape manager.
+            /// @return This returns a pointer to the freshly created collsion shape
+            virtual CollisionShape* DeSerializeAndRetrieve(std::istream& Stream);
+            /// @brief This will return the Name of the element that Contains multiple of the items to be DeSerialized
+            /// @return A String containing "Shapes"
+            virtual String ContainerName() const;
         };//CollisionShapeDeSerializer
     }//Physics
 }//Mezzanine

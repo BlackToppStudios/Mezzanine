@@ -23,9 +23,6 @@ class CatchApp
         };
     protected:
         static CatchApp* TheRealCatchApp;
-        const Plane PlaneOfPlay;
-
-        bool Paused;
 
         Entresol* TheEntresol;
         ProfileManager* Profiles;
@@ -33,14 +30,19 @@ class CatchApp
         LevelScorer* Scorer;
         ItemShop* Shop;
         ActorBase* LastActorThrown;
-        Whole CurrScore;
-        CatchApp::GameState CurrentState;
-        std::vector<ActorBase*> ThrownItems;
-        std::vector<StartArea*> StartAreas;
-        std::vector<ScoreArea*> ScoreAreas;
 
         SimpleTimer* LevelTimer;
         SimpleTimer* EndTimer;
+
+        bool Paused;
+        Whole CurrScore;
+        CatchApp::GameState CurrentState;
+
+        const Plane PlaneOfPlay;
+
+        std::vector<ActorBase*> ThrownItems;
+        std::vector<StartArea*> StartAreas;
+        std::vector<ScoreArea*> ScoreAreas;
 
         void MakeGUI();
         void CreateLoadingScreen();

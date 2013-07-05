@@ -73,6 +73,7 @@ namespace Mezzanine
 #include "Physics/heightfieldcollisionshape.h"
 #include "Physics/hinge2constraint.h"
 #include "Physics/hingeconstraint.h"
+#include "Physics/managerconstructioninfo.h"
 #include "Physics/meshcollisionshape.h"
 #include "Physics/multispherecollisionshape.h"
 #include "Physics/planecollisionshape.h"

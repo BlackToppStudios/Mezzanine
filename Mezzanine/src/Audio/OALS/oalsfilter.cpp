@@ -69,6 +69,7 @@ namespace
             case Mezzanine::Audio::FT_LowPass:    return AL_FILTER_LOWPASS;   break;
             case Mezzanine::Audio::FT_HighPass:   return AL_FILTER_HIGHPASS;  break;
             case Mezzanine::Audio::FT_BandPass:   return AL_FILTER_BANDPASS;  break;
+            default:                              return AL_FILTER_NULL;      break;
         }
     }
     /// @internal
@@ -83,6 +84,7 @@ namespace
             case AL_FILTER_LOWPASS:   return Mezzanine::Audio::FT_LowPass;    break;
             case AL_FILTER_HIGHPASS:  return Mezzanine::Audio::FT_HighPass;   break;
             case AL_FILTER_BANDPASS:  return Mezzanine::Audio::FT_BandPass;   break;
+            default:                  return Mezzanine::Audio::FT_Null;       break;
         }
     }
 }

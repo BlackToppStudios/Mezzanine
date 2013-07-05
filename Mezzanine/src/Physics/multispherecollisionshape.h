@@ -58,57 +58,57 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB MultiSphereCollisionShape : public PrimitiveCollisionShape
         {
-            protected:
-                /// @internal
-                /// @brief Creates a btMultiSphereShape* from two vectors to help unify constructor logic
-                /// @param Name The name of this name
-                /// @param Locations An std::vector containing all the locations, this must have the same amount of locations as there are radii
-                /// @param Radii An std::vector containing all the Radiuses, this must have the same amount of radii as there are locations
-                /// @throw An out of bounds exception if the there are differing amounts of radii and locations.
-                void Construct(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii);
-                /// @internal
-                /// @brief Constructs the shape when the bullet is already prepared
-                /// @param BulletShape The bullet shape to use
-                /// @param Name The name of this name
-                void Construct(const String& Name, btMultiSphereShape* BulletShape);
-            public:
-                /// @brief Class Constructor.
-                /// @param Name The name of this Shape.
-                MultiSphereCollisionShape(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii);
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param Name The name of this Shape.
-                /// @param BulletShape The internal shape this shape is based on.
-                MultiSphereCollisionShape(const String& Name, btMultiSphereShape* BulletShape);
-                /// @copydoc BoxCollisionShape::BoxCollisionShape(XML::Node OneNode)
-                MultiSphereCollisionShape(XML::Node OneNode);
+        protected:
+            /// @internal
+            /// @brief Creates a btMultiSphereShape* from two vectors to help unify constructor logic
+            /// @param Name The name of this name
+            /// @param Locations An std::vector containing all the locations, this must have the same amount of locations as there are radii
+            /// @param Radii An std::vector containing all the Radiuses, this must have the same amount of radii as there are locations
+            /// @throw An out of bounds exception if the there are differing amounts of radii and locations.
+            void Construct(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii);
+            /// @internal
+            /// @brief Constructs the shape when the bullet is already prepared
+            /// @param BulletShape The bullet shape to use
+            /// @param Name The name of this name
+            void Construct(const String& Name, btMultiSphereShape* BulletShape);
+        public:
+            /// @brief Class Constructor.
+            /// @param Name The name of this Shape.
+            MultiSphereCollisionShape(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii);
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Name The name of this Shape.
+            /// @param BulletShape The internal shape this shape is based on.
+            MultiSphereCollisionShape(const String& Name, btMultiSphereShape* BulletShape);
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(XML::Node OneNode)
+            MultiSphereCollisionShape(XML::Node OneNode);
 
-                /// @brief Class Destructor.
-                virtual ~MultiSphereCollisionShape();
-                /// @brief Gets the location(in local space) of the sphere at the specified index.
-                /// @return Returns a vector3 representing the location of the specified sphere.
-                /// @param Index The index of the desired sphere.
-                virtual Vector3 GetSphereLocation(const Whole& Index) const;
-                /// @brief Gets the radius of the sphere at the specified index.
-                /// @return Returns a Real representing the radius of the specified sphere.
-                /// @param Index The index of the desired sphere.
-                virtual Real GetSphereRadius(const Whole& Index) const;
-                /// @brief Gets the number of spheres contained within this shape.
-                /// @return Returns a Whole representing the number of spheres in this shape.
-                virtual Whole GetNumSpheres() const;
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual btMultiSphereShape* GetMultiSphereShape() const;
+            /// @brief Class Destructor.
+            virtual ~MultiSphereCollisionShape();
+            /// @brief Gets the location(in local space) of the sphere at the specified index.
+            /// @return Returns a vector3 representing the location of the specified sphere.
+            /// @param Index The index of the desired sphere.
+            virtual Vector3 GetSphereLocation(const Whole& Index) const;
+            /// @brief Gets the radius of the sphere at the specified index.
+            /// @return Returns a Real representing the radius of the specified sphere.
+            /// @param Index The index of the desired sphere.
+            virtual Real GetSphereRadius(const Whole& Index) const;
+            /// @brief Gets the number of spheres contained within this shape.
+            /// @return Returns a Whole representing the number of spheres in this shape.
+            virtual Whole GetNumSpheres() const;
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btMultiSphereShape* GetMultiSphereShape() const;
 
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
-                /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-                /// @return A string containing "MultiSphereCollisionShape"
-                static String SerializableName();
-        };//multispherecollisionshape
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "MultiSphereCollisionShape"
+            static String SerializableName();
+        };//MultiSphereCollisionShape
     }//Physics
 }//Mezzanine
 

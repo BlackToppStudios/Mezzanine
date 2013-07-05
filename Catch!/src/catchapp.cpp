@@ -15,13 +15,13 @@ using namespace Mezzanine;
 
 CatchApp* CatchApp::TheRealCatchApp = 0;
 
-CatchApp::CatchApp()
-    : CurrScore(0),
-      LastActorThrown(NULL),
-      EndTimer(NULL),
-      Paused(false),
-      CurrentState(CatchApp::Catch_Init),
-      PlaneOfPlay(Plane(Vector3(2.0,1.0,0.0), Vector3(1.0,2.0,0.0), Vector3(1.0,1.0,0.0)))
+CatchApp::CatchApp() :
+    LastActorThrown(NULL),
+    EndTimer(NULL),
+    Paused(false),
+    CurrScore(0),
+    CurrentState(CatchApp::Catch_Init),
+    PlaneOfPlay(Plane(Vector3(2.0,1.0,0.0), Vector3(1.0,2.0,0.0), Vector3(1.0,1.0,0.0)))
 {
     assert(0==CatchApp::TheRealCatchApp);
     CatchApp::TheRealCatchApp = this;

@@ -72,25 +72,28 @@ namespace Mezzanine
         class GraphicsManager;
 
         /// @brief This does the main loop processing for required to make the Graphics Manager function
-        class MEZZ_LIB GraphicsWorkUnit : public Threading::MonopolyWorkUnit
+        class MEZZ_LIB RenderWorkUnit : public Threading::MonopolyWorkUnit
         {
             private:
                 /// @internal
                 /// @brief The GraphicsManager this will work with
-                GraphicsManager* TargetGraphicsManager;
+                GraphicsManager* TargetManager;
 
                 /// @internal
                 /// @brief Private copy constructor to prevent useless copying of this,
-                GraphicsWorkUnit(const GraphicsWorkUnit&) {}
+                RenderWorkUnit(const RenderWorkUnit&) {}
 
                 /// @internal
                 /// @brief Private assignment operator to prevent useless assignment of this,
-                void operator=(GraphicsWorkUnit) {}
+                void operator=(RenderWorkUnit) {}
 
             public:
                 /// @brief Create a GraphicsWorkUnit
                 /// @param WhichGraphicsManager This is the Manager that this Work unit must work with.
-                GraphicsWorkUnit(GraphicsManager* WhichGraphicsManager);
+                RenderWorkUnit(GraphicsManager* Target);
+
+                /// @brief virtual deconstructor
+                virtual ~RenderWorkUnit();
 
                 /// @brief Once The graphics is properly multithread, this will set the amount of threads it should use
                 /// @param AmountToUse Currently Ignored.
@@ -102,10 +105,7 @@ namespace Mezzanine
 
                 /// @brief This does any required update of the Graphical Scene graph and REnders one frame
                 virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-
-                /// @brief virtual deconstructor
-                virtual ~GraphicsWorkUnit();
-        };
+        };//RenderWorkUnit
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class GraphicsManager
@@ -126,12 +126,12 @@ namespace Mezzanine
             protected:
 
                 /// @internal
-                /// @brief The GraphicsWorkUnit really is an extension of the GraphicsManager, it just exists as a Functor for the sake of simplicity.
-                friend class GraphicsWorkUnit;
+                /// @brief The RenderWorkUnit really is an extension of the GraphicsManager, it just exists as a Functor for the sake of simplicity.
+                friend class RenderWorkUnit;
 
                 /// @internal
                 /// @brief The work unit that does all the rendering.
-                GraphicsWorkUnit* MainLoopWork;
+                RenderWorkUnit* RenderWork;
 
                 /// @internal
                 /// @brief Can be used for thread safe logging and other thread Specific resources
@@ -279,7 +279,7 @@ namespace Mezzanine
                 virtual String GetImplementationTypeName() const;
 
                 // replacement for ManagerBase Main loop
-                GraphicsWorkUnit* GetGraphicsWorkUnit();
+                RenderWorkUnit* GetRenderWorkUnit();
         };//GraphicsManager
 
         ///////////////////////////////////////////////////////////////////////////////

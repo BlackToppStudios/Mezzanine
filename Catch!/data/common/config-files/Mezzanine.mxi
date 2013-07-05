@@ -31,7 +31,7 @@
 	<DefaultMeshManager>
 	</DefaultMeshManager>
 	<DefaultPhysicsManager>
-		<WorldSettings LimitlessWorld="true" SoftRigidWorld="true" />
+		<WorldSettings LimitlessWorld="true" SoftRigidWorld="true" MultiThreaded="true" />
 		<SubStepModifier Modifier="2" />
 	</DefaultPhysicsManager>
 	<DefaultResourceManager>

@@ -85,7 +85,7 @@ namespace Mezzanine
     /// @TODO In the Entrosol, reomves all references to a plugins file
     Entresol::Entresol()
     {
-        Physics::PhysicsConstructionInfo PhysicsInfo;
+        Physics::ManagerConstructionInfo PhysicsInfo;
         std::vector <ManagerBase*> temp;
 
         this->Construct(PhysicsInfo,"DefaultSceneManager",".","Mezzanine.log",temp);
@@ -114,7 +114,7 @@ namespace Mezzanine
     }
 
 
-    Entresol::Entresol( const Physics::PhysicsConstructionInfo& PhysicsInfo,
+    Entresol::Entresol( const Physics::ManagerConstructionInfo& PhysicsInfo,
                         const String& SceneType,
                         const String& EngineDataPath,
                         const String& LogFileName)
@@ -127,7 +127,7 @@ namespace Mezzanine
                         temp );
     }
 
-    Entresol::Entresol( const Physics::PhysicsConstructionInfo& PhysicsInfo,
+    Entresol::Entresol( const Physics::ManagerConstructionInfo& PhysicsInfo,
                         const String& SceneType,
                         const String& EngineDataPath,
                         const String& LogFileName,
@@ -148,7 +148,7 @@ namespace Mezzanine
         Ogre::Root* OgreCore = 0;
     }
 
-    void Entresol::Construct(   const Physics::PhysicsConstructionInfo& PhysicsInfo,
+    void Entresol::Construct(   const Physics::ManagerConstructionInfo& PhysicsInfo,
                                 const String& SceneType,
                                 const String& EngineDataPath,
                                 const String& LogFileName,
@@ -681,6 +681,11 @@ namespace Mezzanine
     // MainLoop
     ///////////////////////////////////////
 
+    Threading::FrameScheduler& Entresol::GetScheduler()
+    {
+        return this->WorkScheduler;
+    }
+
     void Entresol::MainLoop()
     {
         /// @todo create a lighting manager and put this in there
@@ -713,8 +718,11 @@ namespace Mezzanine
             #ifdef MEZZDEBUG
             static UInt32 FrameCounter = 0;
             StringStream FrameStream;
-            FrameStream << "-------------------------- Starting DAG Part of Frame: " << FrameCounter << " --------------------------" << endl;
+            FrameStream << "-------------------------- Starting DAG Part of Frame: " << FrameCounter << " --------------------------";
+            this->Log(FrameStream.str());
+            this->DoMainLoopLogging();
             #endif
+            FrameTimer->reset();
 
             WorkScheduler.RunAllMonopolies(); //1
             WorkScheduler.CreateThreads();    //2
@@ -723,12 +731,12 @@ namespace Mezzanine
             WorkScheduler.ResetAllWorkUnits();//5
 
             #ifdef MEZZDEBUG
+            FrameStream.str("");
             FrameStream << "-------------------------- Starting Legacy Part of Frame: " << FrameCounter << " --------------------------";
             this->Log(FrameStream.str());
             this->DoMainLoopLogging();
             FrameStream.str("");
             #endif
-            FrameTimer->reset();
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
                 #ifdef MEZZDEBUG

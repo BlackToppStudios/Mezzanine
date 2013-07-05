@@ -63,18 +63,18 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB ActorSoftCollisionShape : public MeshCollisionShape
         {
-            protected:
-                btSoftBodyCollisionShape* ActorSoftShape;
-            public:
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param Name The name of this Shape.
-                /// @param BulletShape The internal shape this shape is based on.
-                ActorSoftCollisionShape(const String& Name, btSoftBodyCollisionShape* BulletShape);
-                /// @brief Class Destructor.
-                virtual ~ActorSoftCollisionShape();
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const;
+        protected:
+            btSoftBodyCollisionShape* ActorSoftShape;
+        public:
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Name The name of this Shape.
+            /// @param BulletShape The internal shape this shape is based on.
+            ActorSoftCollisionShape(const String& Name, btSoftBodyCollisionShape* BulletShape);
+            /// @brief Class Destructor.
+            virtual ~ActorSoftCollisionShape();
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const;
         };//ActorSoftCollisionShape
     }//Physics
 }//Mezzanine

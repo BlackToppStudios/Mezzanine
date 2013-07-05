@@ -56,92 +56,92 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Point2PointConstraint : public Constraint
         {
-            protected:
-                /// @brief Bullet constraint that this class encapsulates.
-                btPoint2PointConstraint* Point2Point;
-            public:
-                ////////////////////////////////////////////////////////////////////////////////
-                // Point2PointConstraint Construction and Destruction
-                /// @brief Double body constructor.  Binds the two bodies.
-                /// @param ActorA The first actor to apply this constraint to.
-                /// @param ActorB The second actor to apply this constraint to.
-                /// @param PivotA The location in ActorA's local space to apply the constraint to.
-                /// @param PivotB The location in ActorB's local space to apply the constraint to.
-                Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotA, const Vector3& PivotB);
-                /// @brief Single body constructor.  Binds the body to world space.
-                /// @param ActorA The actor to apply this constraint to.
-                /// @param PivotA The position relative to ActorA's center of gravity to "Pin" to the world.
-                Point2PointConstraint(ActorRigid* ActorA, const Vector3& PivotA);
-                /// @brief Class destructor.
-                /// @details The class destructor.
-                virtual ~Point2PointConstraint();
+        protected:
+            /// @brief Bullet constraint that this class encapsulates.
+            btPoint2PointConstraint* Point2Point;
+        public:
+            ////////////////////////////////////////////////////////////////////////////////
+            // Point2PointConstraint Construction and Destruction
 
-                ////////////////////////////////////////////////////////////////////////////////
-                // Point2PointConstraint Position and Orientation
-                /// @brief Set offset of the first actor.
-                /// @param PivotA The offset as a Vector3 relative to the center of mass of ActorA.
-                virtual void SetPivotALocation(const Vector3& PivotA);
-                /// @brief Set offset of the second actor.
-                /// @param PivotB The offset as a Vector3 relative to the center of mass of ActorB.
-                virtual void SetPivotBLocation(const Vector3& PivotB);
-                /// @brief Get offset of the first actor.
-                /// @return The offset as a Vector3 relative to the center of mass of ActorA.
-                virtual Vector3 GetPivotALocation() const;
-                /// @brief Get offset of the second actor.
-                /// @return The offset as a Vector3 relative to the center of mass of ActorB.
-                virtual Vector3 GetPivotBLocation() const;
+            /// @brief Double body constructor.  Binds the two bodies.
+            /// @param ActorA The first actor to apply this constraint to.
+            /// @param ActorB The second actor to apply this constraint to.
+            /// @param PivotA The location in ActorA's local space to apply the constraint to.
+            /// @param PivotB The location in ActorB's local space to apply the constraint to.
+            Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotA, const Vector3& PivotB);
+            /// @brief Single body constructor.  Binds the body to world space.
+            /// @param ActorA The actor to apply this constraint to.
+            /// @param PivotA The position relative to ActorA's center of gravity to "Pin" to the world.
+            Point2PointConstraint(ActorRigid* ActorA, const Vector3& PivotA);
+            /// @brief Class destructor.
+            /// @details The class destructor.
+            virtual ~Point2PointConstraint();
 
-                ////////////////////////////////////////////////////////////////////////////////
-                // Point2PointConstraint Specific Physics Settings
-                /// @brief Set the current impulse clamping on the constraint
-                /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.
-                virtual void SetImpulseClamping(Real Clamping);
-                /// @brief get the current impulse clamping value
-                /// @return A real with the Clamping
-                virtual Real GetImpulseClamping() const;
-                /// @brief Set a resistive force against the constraint, not too dissimilar to from hinge friction or Air resistance
-                /// @param Damping A real with the desired values
-                virtual void SetDamping(Real Damping);
-                /// @brief Get the current Damping
-                /// @return A Real with the Damping value.
-                virtual Real GetDamping() const;
-                /// @brief This may be a scalar for how strongly Angular momentum affects linear momemtum
-                /// @todo Research this more carefully
-                /// @details This function is a tightly wrapped bullet 3d function. No real documentation for it exists, from its responsibility/location in Bullet3d and
-                /// a basic understanding of torque ( see http://en.wikipedia.org/wiki/Torque ) It is highly likely that it is a value to adjust how torque affects momentum.
-                virtual void SetTAU(Real TAU);
-                /// @brief Retrieve the Tau Setting
-                /// @return The Tau value as a Real
-                virtual Real GetTAU() const;
+            ////////////////////////////////////////////////////////////////////////////////
+            // Point2PointConstraint Position and Orientation
 
-                /// @copydoc Constraint::ValidParamOnAxis(int) const
-                virtual Constraint::ParamList ValidParamOnAxis(int Axis) const;
-                /// @copydoc Constraint::ValidLinearAxis() const
-                virtual Constraint::AxisList ValidLinearAxis() const;
-                /// @copydoc Constraint::ValidAngularAxis() const
-                virtual Constraint::AxisList ValidAngularAxis() const;
-                /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
-                virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
+            /// @brief Set offset of the first actor.
+            /// @param PivotA The offset as a Vector3 relative to the center of mass of ActorA.
+            virtual void SetPivotALocation(const Vector3& PivotA);
+            /// @brief Set offset of the second actor.
+            /// @param PivotB The offset as a Vector3 relative to the center of mass of ActorB.
+            virtual void SetPivotBLocation(const Vector3& PivotB);
+            /// @brief Get offset of the first actor.
+            /// @return The offset as a Vector3 relative to the center of mass of ActorA.
+            virtual Vector3 GetPivotALocation() const;
+            /// @brief Get offset of the second actor.
+            /// @return The offset as a Vector3 relative to the center of mass of ActorB.
+            virtual Vector3 GetPivotBLocation() const;
 
-                /// @copydoc Constraint::GetConstraintBase() const
-                virtual btTypedConstraint* GetConstraintBase() const;
+            ////////////////////////////////////////////////////////////////////////////////
+            // Point2PointConstraint Specific Physics Settings
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Serialization
-                // Serializable
-                /// @brief Convert this class to an XML::Node ready for serialization
-                /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @brief Set the current impulse clamping on the constraint
+            /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.
+            virtual void SetImpulseClamping(Real Clamping);
+            /// @brief get the current impulse clamping value
+            /// @return A real with the Clamping
+            virtual Real GetImpulseClamping() const;
+            /// @brief Set a resistive force against the constraint, not too dissimilar to from hinge friction or Air resistance
+            /// @param Damping A real with the desired values
+            virtual void SetDamping(Real Damping);
+            /// @brief Get the current Damping
+            /// @return A Real with the Damping value.
+            virtual Real GetDamping() const;
+            /// @brief This may be a scalar for how strongly Angular momentum affects linear momemtum
+            /// @todo Research this more carefully
+            /// @details This function is a tightly wrapped bullet 3d function. No real documentation for it exists, from its responsibility/location in Bullet3d and
+            /// a basic understanding of torque ( see http://en.wikipedia.org/wiki/Torque ) It is highly likely that it is a value to adjust how torque affects momentum.
+            virtual void SetTAU(Real TAU);
+            /// @brief Retrieve the Tau Setting
+            /// @return The Tau value as a Real
+            virtual Real GetTAU() const;
 
-                // DeSerializable
-                /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-                /// @param OneNode and XML::Node containing the data.
-                /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @copydoc Constraint::ValidParamOnAxis(int) const
+            virtual Constraint::ParamList ValidParamOnAxis(int Axis) const;
+            /// @copydoc Constraint::ValidLinearAxis() const
+            virtual Constraint::AxisList ValidLinearAxis() const;
+            /// @copydoc Constraint::ValidAngularAxis() const
+            virtual Constraint::AxisList ValidAngularAxis() const;
+            /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
+            virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
 
-                /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-                /// @return A string containing "Point2PointConstraint"
-                static String SerializableName();
+            /// @copydoc Constraint::GetConstraintBase() const
+            virtual btTypedConstraint* GetConstraintBase() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and XML::Node containing the data.
+            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Point2PointConstraint"
+            static String SerializableName();
         };//Point2PointConstraint
     }//Physics
 }//Mezzanine

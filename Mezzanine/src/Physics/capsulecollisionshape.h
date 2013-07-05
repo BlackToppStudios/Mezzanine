@@ -59,78 +59,77 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB CapsuleCollisionShape : public PrimitiveCollisionShape
         {
-            protected:
-                /// @internal
-                /// @brief Performed share contructor work.
-                /// @param Name The name of this Shape.
-                /// @param Radius The radius of the capsule.
-                /// @param Height The height of the cylindrical portion of the capsule.  Total height would be Height+2*radius.
-                /// @param UpAxis Which axis the Capsule is to be oriented along.  Typical usage is for
-                /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
-                void Construct(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis);
-            public:
-                /// @brief Class Constructor.
-                /// @param Name The name of this Shape.
-                /// @param Radius The radius of the capsule.
-                /// @param Height The height of the cylindrical portion of the capsule.  Total height would be Height+2*radius.
-                /// @param UpAxis Which axis the Capsule is to be oriented along.  Typical usage is for
-                /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
-                CapsuleCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis);
-                /// @brief Class Constructor.
-                /// @param Name The name of this Shape.
-                /// @param Radius The radius of the capsule.
-                /// @param Height The height of the cylindrical portion of the capsule.  Total height would be Height+2*radius.
-                /// @param UpAxis Which axis the Capsule is to be oriented along. Uses StandardAxis enum, Axis_Y to make a
-                /// vertical capsule
-                CapsuleCollisionShape(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis);
-                /// @copydoc BoxCollisionShape::BoxCollisionShape(XML::Node OneNode)
-                CapsuleCollisionShape(XML::Node OneNode);
+        protected:
+            /// @internal
+            /// @brief Performed share contructor work.
+            /// @param Name The name of this Shape.
+            /// @param Radius The radius of the capsule.
+            /// @param Height The height of the cylindrical portion of the capsule.  Total height would be Height+2*radius.
+            /// @param UpAxis Which axis the Capsule is to be oriented along.  Typical usage is for
+            /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
+            void Construct(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis);
+        public:
+            /// @brief Class Constructor.
+            /// @param Name The name of this Shape.
+            /// @param Radius The radius of the capsule.
+            /// @param Height The height of the cylindrical portion of the capsule.  Total height would be Height+2*radius.
+            /// @param UpAxis Which axis the Capsule is to be oriented along.  Typical usage is for
+            /// a capsule to be oriented on the Y axis(0,1,0), which would make it stand upright.
+            CapsuleCollisionShape(const String& Name, const Real& Radius, const Real& Height, const Vector3& UpAxis);
+            /// @brief Class Constructor.
+            /// @param Name The name of this Shape.
+            /// @param Radius The radius of the capsule.
+            /// @param Height The height of the cylindrical portion of the capsule.  Total height would be Height+2*radius.
+            /// @param UpAxis Which axis the Capsule is to be oriented along. Uses StandardAxis enum, Axis_Y to make a
+            /// vertical capsule
+            CapsuleCollisionShape(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis);
+            /// @copydoc BoxCollisionShape::BoxCollisionShape(XML::Node OneNode)
+            CapsuleCollisionShape(XML::Node OneNode);
 
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param Name The name of this Shape.
-                /// @param BulletShape The internal shape this shape is based on.
-                CapsuleCollisionShape(const String& Name, btCapsuleShape* BulletShape);
-                /// @brief Class Destructor.
-                virtual ~CapsuleCollisionShape();
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Name The name of this Shape.
+            /// @param BulletShape The internal shape this shape is based on.
+            CapsuleCollisionShape(const String& Name, btCapsuleShape* BulletShape);
+            /// @brief Class Destructor.
+            virtual ~CapsuleCollisionShape();
 
-                /// @brief Gets the radius of the capsule, as used in collision checking, with scaling and margin subtracted.
-                /// @return Returns a real representing the radius of the capsule.
-                virtual Real GetRadius() const;
-                /// @brief Gets the height of the capsule, as used in collision checking, with scaling and margin subtracted.
-                /// @return Returns a real representing the length of the cylindrical portion of the capsule.
-                virtual Real GetHeight() const;
-                /// @brief Gets the radius of the capsule, as the original value passed, without scaling and margin applied.
-                /// @return Returns a real representing the radius of the capsule.
-                virtual Real GetCleanRadius() const;
-                /// @brief Gets the height of the capsule, as the original value passed, without scaling and margin applied.
-                /// @return Returns a real representing the length of the cylindrical portion of the capsule.
-                virtual Real GetCleanHeight() const;
-                /* /// @brief Gets the radius of the capsule, with the region of padding used to aid collision Detection, with scaling applied and margin re-added.
-                /// @return Returns a real representing the radius of the capsule.
-                virtual Real GetRadiusWithMargin() const; */
+            /// @brief Gets the radius of the capsule, as used in collision checking, with scaling and margin subtracted.
+            /// @return Returns a real representing the radius of the capsule.
+            virtual Real GetRadius() const;
+            /// @brief Gets the height of the capsule, as used in collision checking, with scaling and margin subtracted.
+            /// @return Returns a real representing the length of the cylindrical portion of the capsule.
+            virtual Real GetHeight() const;
+            /// @brief Gets the radius of the capsule, as the original value passed, without scaling and margin applied.
+            /// @return Returns a real representing the radius of the capsule.
+            virtual Real GetCleanRadius() const;
+            /// @brief Gets the height of the capsule, as the original value passed, without scaling and margin applied.
+            /// @return Returns a real representing the length of the cylindrical portion of the capsule.
+            virtual Real GetCleanHeight() const;
+            /* /// @brief Gets the radius of the capsule, with the region of padding used to aid collision Detection, with scaling applied and margin re-added.
+            /// @return Returns a real representing the radius of the capsule.
+            virtual Real GetRadiusWithMargin() const; */
 
-                /// @brief Gets which axis this capsule is oriented along.
-                /// @return Returns a Vector3 representing which local axis is oriented along the world up axis.
-                virtual Vector3 GetUpAxis() const;
-                /// @brief Gets which axis this capsule is oriented along.
-                /// @return Returns a StandardAxis representing which local axis is oriented along the world up axis.
-                virtual StandardAxis GetUpStandardAxis() const;
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual btCapsuleShape* GetBulletCapsuleShape() const;
+            /// @brief Gets which axis this capsule is oriented along.
+            /// @return Returns a Vector3 representing which local axis is oriented along the world up axis.
+            virtual Vector3 GetUpAxis() const;
+            /// @brief Gets which axis this capsule is oriented along.
+            /// @return Returns a StandardAxis representing which local axis is oriented along the world up axis.
+            virtual StandardAxis GetUpStandardAxis() const;
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual btCapsuleShape* GetBulletCapsuleShape() const;
 
-                // Serializable
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-                /// @copydoc CollisionShape::GetBulletShape
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
-                /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-                /// @return A string containing "CapsuleCollisionShape"
-                static String SerializableName();
-
-        };//capsulecollisionshape
+            // Serializable
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @copydoc CollisionShape::GetBulletShape
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "CapsuleCollisionShape"
+            static String SerializableName();
+        };//CapsuleCollisionShape
     }//Physics
 }//Mezzanine
 

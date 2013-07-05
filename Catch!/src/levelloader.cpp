@@ -743,8 +743,8 @@ void LevelLoader::LoadJustice()
     PhysMan->AddConstraint(U4T,true);
 
     // Create some throwable objects
-    ThrowableData* ClayData = ThrowableGenerator::GetThrowableData("Clay");
-    ThrowableData* LeadData = ThrowableGenerator::GetThrowableData("Lead");
+    //ThrowableData* ClayData = ThrowableGenerator::GetThrowableData("Clay");
+    //ThrowableData* LeadData = ThrowableGenerator::GetThrowableData("Lead");
     ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
     //Physics::CollisionShape* ClayCS = CShapeMan->GenerateConvexHull("ClayCS",ClayData->MeshName,CommonGroup);
     //Physics::CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LeadCS",LeadData->MeshName,CommonGroup);
@@ -1035,7 +1035,7 @@ void LevelLoader::LoadJustBounce()
     ActMan->AddActor(ElasticCase);
 
     // Create some throwable objects
-    ThrowableData* RubberData = ThrowableGenerator::GetThrowableData("Rubber");
+    //ThrowableData* RubberData = ThrowableGenerator::GetThrowableData("Rubber");
     ThrowableData* WoodData = ThrowableGenerator::GetThrowableData("Wood");
     Physics::CollisionShape* RubberCS = new Physics::SphereCollisionShape("RubberCS",11.4);//CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
     Physics::CollisionShape* WoodCS = CShapeMan->GenerateConvexHull("WoodCS",WoodData->MeshName,CommonGroup);// */

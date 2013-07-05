@@ -62,19 +62,19 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB DynamicMeshCollisionShape : public MeshCollisionShape
         {
-            protected:
-                btGImpactMeshShape* GImpactShape;
-            public:
-                /// @internal
-                /// @brief Internal Constructor.
-                /// @param Name The name of this Shape.
-                /// @param BulletShape The internal shape this shape is based on.
-                DynamicMeshCollisionShape(const String& Name, btGImpactMeshShape* BulletShape);
-                /// @brief Class Destructor.
-                virtual ~DynamicMeshCollisionShape();
-                /// @copydoc CollisionShape::GetType()
-                virtual CollisionShape::ShapeType GetType() const;
-        };//gimpactcollisionshape
+        protected:
+            btGImpactMeshShape* GImpactShape;
+        public:
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param Name The name of this Shape.
+            /// @param BulletShape The internal shape this shape is based on.
+            DynamicMeshCollisionShape(const String& Name, btGImpactMeshShape* BulletShape);
+            /// @brief Class Destructor.
+            virtual ~DynamicMeshCollisionShape();
+            /// @copydoc CollisionShape::GetType()
+            virtual CollisionShape::ShapeType GetType() const;
+        };//DynamicMeshCollisionShape
     }//Physics
 }//Mezzanine
 

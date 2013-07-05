@@ -81,6 +81,7 @@ namespace
             case Mezzanine::Audio::ET_Autowah:             return AL_EFFECT_AUTOWAH;            break;
             case Mezzanine::Audio::ET_Compressor:          return AL_EFFECT_COMPRESSOR;         break;
             case Mezzanine::Audio::ET_Equalizer:           return AL_EFFECT_EQUALIZER;          break;
+            default:                                       return AL_EFFECT_NULL;               break;
         }
     }
     /// @internal
@@ -105,6 +106,7 @@ namespace
             case AL_EFFECT_AUTOWAH:             return Mezzanine::Audio::ET_Autowah;            break;
             case AL_EFFECT_COMPRESSOR:          return Mezzanine::Audio::ET_Compressor;         break;
             case AL_EFFECT_EQUALIZER:           return Mezzanine::Audio::ET_Equalizer;          break;
+            default:                            return Mezzanine::Audio::ET_Null;               break;
         }
     }
 
