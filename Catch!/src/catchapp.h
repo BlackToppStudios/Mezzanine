@@ -65,7 +65,7 @@ class CatchApp
         bool GameIsPaused();
 
         //Callbacks AKA Functions the mainloops call
-        bool PreInput();
+        //bool PreInput();
         bool PostInput();
         bool PreUI();
         bool PostUI();

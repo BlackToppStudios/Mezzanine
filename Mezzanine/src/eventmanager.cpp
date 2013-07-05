@@ -62,8 +62,6 @@
 
 #include "SDL.h"
 
-//#include <boost/thread/thread.hpp> //will use this when this becomes multithreaded
-
 namespace Mezzanine
 {
     EventWorkUnit::EventWorkUnit(EventManager *Target)
@@ -276,6 +274,7 @@ namespace Mezzanine
                 { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
         this->_Data = new Internal::EventManagerInternalData;
+        _Data->EventWork = new EventWorkUnit(this);
 
         //this->GameWorld = Entresol::GetSingletonPtr();
     }
@@ -296,6 +295,7 @@ namespace Mezzanine
                 { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
         this->_Data = new Internal::EventManagerInternalData;
+        _Data->EventWork = new EventWorkUnit(this);
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 
@@ -364,7 +364,7 @@ namespace Mezzanine
 
     void EventManager::UpdateEvents()
     {
-        //SDL_PumpEvents();
+        SDL_PumpEvents();
         UpdateQuitEvents(); //quit events skips the preprocessing step and goes straight into the the main Queue, becuase of how we need to get them from sdl
 
         RawEvent FromSDLRaw;                                    //used to hold data as we go through loop
@@ -683,8 +683,8 @@ namespace Mezzanine
     //Inherited From ManagerBase
     void EventManager::Initialize()
     {
-        _Data->EventWork = new EventWorkUnit(this);
-        TheEntresol->WorkScheduler.AddWorkUnit(_Data->EventWork);
+
+        TheEntresol->GetScheduler().AddWorkUnit(_Data->EventWork);
         Initialized = true;
     }
 
@@ -698,6 +698,9 @@ namespace Mezzanine
 
     String EventManager::GetImplementationTypeName() const
         { return "DefaultEventManager"; }
+
+    EventWorkUnit *EventManager::GetEventWorkUnit()
+        { return _Data->EventWork; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultEventManagerFactory Methods

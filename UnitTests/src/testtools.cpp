@@ -101,8 +101,8 @@ namespace Mezzanine
 
         CountedPtr<Entresol> SimpleEngineStartup(std::vector<ManagerBase*> CustomManagers)
         {
-            Physics::PhysicsConstructionInfo Info;
-            Info.PhysicsFlags = Physics::PhysicsConstructionInfo::PCF_SoftRigidWorld;
+            Physics::ManagerConstructionInfo Info;
+            Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_SoftRigidWorld;
             Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
             Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
             Info.MaxProxies = 60;

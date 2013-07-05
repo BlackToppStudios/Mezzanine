@@ -737,6 +737,21 @@ CatchApp* CatchApp::GetCatchAppPointer()
     return TheRealCatchApp;
 }
 
+
+/// @brief Every frame the OS must be queried for changes to the state, this does that qeurying on behalf of an eventmanager
+class CatchPreInputWorkUnit : public Threading::DefaultWorkUnit
+{
+        CatchApp* CatchApplication;
+    public:
+        CatchPreInputWorkUnit(CatchApp* Target)
+            : CatchApplication(Target)
+            {}
+
+        virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+            { CatchApplication->CheckForStuff(); }
+};
+//
+
 int CatchApp::GetCatchin()
 {
     EventManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreInput);
@@ -750,8 +765,14 @@ int CatchApp::GetCatchin()
     // Verify all the settings are there, and generate defaults if they aren't.
     this->VerifySettings();
 
+    CatchPreInputWorkUnit* CatchPreInputWork = new CatchPreInputWorkUnit(this);
+    TheEntresol->GetEventManager()->GetEventWorkUnit()->AddDependency(CatchPreInputWork);
+    TheEntresol->GetScheduler().AddWorkUnit(CatchPreInputWork);
+
     // Initialize the managers.
 	TheEntresol->EngineInit(false);
+
+
 
 	this->CreateLoadingScreen();
 	this->ChangeState(CatchApp::Catch_Loading);
@@ -818,13 +839,13 @@ bool CatchApp::GameIsPaused()
     return Paused;
 }
 
-bool CatchApp::PreInput()
+/*bool CatchApp::PreInput()
 {
     // using the Raw Event Manager, and deleting the events
     if( !CheckForStuff() )
         return false;
     return true;
-}
+}*/
 
 bool CatchApp::PostInput()
 {
