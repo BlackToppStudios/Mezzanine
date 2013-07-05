@@ -56,6 +56,7 @@ using namespace std;
 #include "worldobject.h"
 #include "Physics/collision.h"
 #include "scenemanager.h"
+#include "Graphics/graphicsmanager.h"
 #include "stringtool.h"
 #include "crossplatform.h"
 
@@ -295,7 +296,7 @@ namespace Mezzanine
             {  }
 
         SimulationWorkUnit& SimulationWorkUnit::operator=(const SimulationWorkUnit& Other)
-            {  }
+            { return *this; }
 
         SimulationWorkUnit::SimulationWorkUnit(PhysicsManager* Target) :
             TargetManager(Target) {  }
@@ -308,7 +309,17 @@ namespace Mezzanine
 
         void SimulationWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
+            if( this->TargetManager->SimulationIsPaused() )
+                return;
 
+            this->TargetManager->ThreadResources = &CurrentThreadStorage;
+            Real FloatTime = this->TargetManager->TheEntresol->GetFrameTimeMilliseconds() * 0.001; //Convert from MilliSeconds to Seconds
+            //Real IdealStep = static_cast<Real>( this->TargetManager->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
+            //IdealStep /= this->TargetManager->SubstepModifier;
+            //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
+            int MaxSteps = ( FloatTime < this->TargetManager->StepSize ) ? 1 : int( FloatTime / this->TargetManager->StepSize ) + 1;
+            this->TargetManager->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->TargetManager->StepSize );
+            this->TargetManager->ThreadResources = NULL;
         }
 
         ///////////////////////////////////////////////////////////
@@ -318,7 +329,7 @@ namespace Mezzanine
             {  }
 
         SimulationMonopolyWorkUnit& SimulationMonopolyWorkUnit::operator=(const SimulationMonopolyWorkUnit& Other)
-            {  }
+            { return *this; }
 
         SimulationMonopolyWorkUnit::SimulationMonopolyWorkUnit(PhysicsManager* Target) :
             TargetManager(Target) {  }
@@ -331,27 +342,38 @@ namespace Mezzanine
 
         void SimulationMonopolyWorkUnit::UseThreads(const Whole& AmountToUse)
         {
-
+            // Do nothing
         }
 
         Whole SimulationMonopolyWorkUnit::UsingThreadCount()
         {
-
+            return this->TargetManager->ThreadCount;
         }
 
         void SimulationMonopolyWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
+            if( this->TargetManager->SimulationIsPaused() )
+                return;
 
+            this->TargetManager->ThreadResources = &CurrentThreadStorage;
+            Real FloatTime = this->TargetManager->TheEntresol->GetFrameTimeMilliseconds() * 0.001; //Convert from MilliSeconds to Seconds
+            //Real IdealStep = static_cast<Real>( this->TargetManager->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
+            //IdealStep /= this->TargetManager->SubstepModifier;
+            //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
+            int MaxSteps = ( FloatTime < this->TargetManager->StepSize ) ? 1 : int( FloatTime / this->TargetManager->StepSize ) + 1;
+            this->TargetManager->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->TargetManager->StepSize );
+            this->TargetManager->ThreadResources = NULL;
         }
 
         ///////////////////////////////////////////////////////////
         // Physicsmanager functions
 
-        template<> PhysicsManager* Singleton<PhysicsManager>::SingletonPtr = 0;
+        template<> PhysicsManager* Singleton<PhysicsManager>::SingletonPtr = NULL;
 
         PhysicsManager::PhysicsManager() :
             SimulationPaused(false),
             SubstepModifier(1),
+            ThreadCount(0),
             StepSize(1.0/60.0),
 
             GhostCallback(NULL),
@@ -362,7 +384,10 @@ namespace Mezzanine
             BulletDispatcher(NULL),
             BulletSolver(NULL),
             BulletDynamicsWorld(NULL),
-            BulletDrawer(NULL)
+            BulletDrawer(NULL),
+
+            SimulationWork(NULL),
+            ThreadResources(NULL)
         {
             ManagerConstructionInfo Info;
             Info.PhysicsFlags = (ManagerConstructionInfo::PCF_SoftRigidWorld | ManagerConstructionInfo::PCF_LimitlessWorld);
@@ -372,6 +397,7 @@ namespace Mezzanine
         PhysicsManager::PhysicsManager(const ManagerConstructionInfo& Info) :
             SimulationPaused(false),
             SubstepModifier(1),
+            ThreadCount(0),
             StepSize(1.0/60.0),
 
             GhostCallback(NULL),
@@ -382,7 +408,10 @@ namespace Mezzanine
             BulletDispatcher(NULL),
             BulletSolver(NULL),
             BulletDynamicsWorld(NULL),
-            BulletDrawer(NULL)
+            BulletDrawer(NULL),
+
+            SimulationWork(NULL),
+            ThreadResources(NULL)
         {
             this->Construct(Info);
         }
@@ -390,6 +419,7 @@ namespace Mezzanine
         PhysicsManager::PhysicsManager(XML::Node& XMLNode) :
             SimulationPaused(false),
             SubstepModifier(1),
+            ThreadCount(0),
             StepSize(1.0/60.0),
 
             GhostCallback(NULL),
@@ -400,7 +430,10 @@ namespace Mezzanine
             BulletDispatcher(NULL),
             BulletSolver(NULL),
             BulletDynamicsWorld(NULL),
-            BulletDrawer(NULL)
+            BulletDrawer(NULL),
+
+            SimulationWork(NULL),
+            ThreadResources(NULL)
         {
             ManagerConstructionInfo Info;
             XML::Attribute CurrAttrib;
@@ -494,6 +527,7 @@ namespace Mezzanine
         void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
         {
             this->Priority = 20;
+            this->ThreadCount = ( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ? crossplatform::GetCPUCount() : 0 );
 
             // Create the broadphase
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_LimitlessWorld ) {
@@ -518,23 +552,22 @@ namespace Mezzanine
                 this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
             }//*/
 
-            Whole CPUCount = crossplatform::GetCPUCount();
             // Create the dispatcher (narrowphase)
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                 #ifdef WINDOWS
                 Win32ThreadSupport::Win32ThreadConstructionInfo BulletThreadInfo( "DispatcherThreads",
                                                                                   processCollisionTask,
                                                                                   createCollisionLocalStoreMemory,
-                                                                                  CPUCount );
+                                                                                  ThreadCount );
                 this->BulletDispatcherThreads = new Win32ThreadSupport(BulletThreadInfo);
                 #else //WINDOWS
                 PosixThreadSupport::ThreadConstructionInfo BulletThreadInfo( "DispatcherThreads",
                                                                              processCollisionTask,
                                                                              createCollisionLocalStoreMemory,
-                                                                             CPUCount );
+                                                                             ThreadCount );
                 this->BulletDispatcherThreads = new PosixThreadSupport(BulletThreadInfo);
                 #endif //WINDOWS
-                this->BulletDispatcher = new ParallelCollisionDispatcher(this->BulletDispatcherThreads,CPUCount,this->BulletCollisionConfiguration);
+                this->BulletDispatcher = new ParallelCollisionDispatcher(this->BulletDispatcherThreads,ThreadCount,this->BulletCollisionConfiguration);
             }else{
                 this->BulletDispatcher = new CollisionDispatcher(this->BulletCollisionConfiguration);
             }
@@ -545,14 +578,14 @@ namespace Mezzanine
                 Win32ThreadSupport::Win32ThreadConstructionInfo BulletThreadInfo( "SolverThreads",
                                                                                   SolverThreadFunc,
                                                                                   SolverlsMemoryFunc,
-                                                                                  CPUCount );
+                                                                                  ThreadCount );
                 this->BulletSolverThreads = new Win32ThreadSupport(BulletThreadInfo);
                 this->BulletSolverThreads->startSPU();
                 #else //WINDOWS
                 PosixThreadSupport::ThreadConstructionInfo BulletThreadInfo( "SolverThreads",
                                                                              SolverThreadFunc,
                                                                              SolverlsMemoryFunc,
-                                                                             CPUCount );
+                                                                             ThreadCount );
                 this->BulletSolverThreads = new PosixThreadSupport(BulletThreadInfo);
                 #endif //WINDOWS
                 this->BulletSolver = new btParallelConstraintSolver(this->BulletSolverThreads);
@@ -572,6 +605,13 @@ namespace Mezzanine
                                                                          this->BulletSolver,
                                                                          this->BulletCollisionConfiguration);
             }//*/
+
+            // Set up the work units
+            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                this->SimulationWork = new SimulationMonopolyWorkUnit(this);
+            }else{
+                this->SimulationWork = new SimulationWorkUnit(this);
+            }
 
             // Configure the extra data
             btGImpactCollisionAlgorithm::registerAlgorithm(this->BulletDispatcher);
@@ -632,10 +672,9 @@ namespace Mezzanine
                                     static_cast<CollisionDispatcher*>( this->BulletDispatcher )->GetAlgoCreationQueue() );
             if(AlgoQueue->empty())
                 return;
-            Whole NumAlgos = AlgoQueue->size();
             #ifdef MEZZDEBUG
-            StringStream logstream;
-            logstream << "Processing " << NumAlgos << " algorithms for collisions.";
+            /*StringStream logstream;
+            logstream << "Processing " << AlgoQueue->size() << " algorithms for collisions.";
             Entresol::GetSingletonPtr()->Log(logstream.str());
             Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
             #endif
@@ -677,12 +716,6 @@ namespace Mezzanine
                 if(AlgoQueue->size() > 0) NewAlgo = AlgoQueue->front();
                 else NewAlgo = NULL;
             }//*/
-            #ifdef MEZZDEBUG
-            logstream.str("");
-            logstream << "Completed processing of algorithms for collisions.";
-            Entresol::GetSingletonPtr()->Log(logstream.str());
-            Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
-            #endif
         }
 
         void PhysicsManager::InternalTickCallback(btDynamicsWorld* world, btScalar timeStep)
@@ -1102,67 +1135,21 @@ namespace Mezzanine
         {
             if(SimulationPaused)
                 return;
-            #ifdef MEZZPROFILE
-            static Ogre::Timer* Profiler = new Ogre::Timer();
-            Profiler->reset();
-            #endif
 
-            Real FloatTime = TimeElapsed * 0.001; //Convert from MilliSeconds to Seconds
-            //Real IdealStep = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
-            //IdealStep /= SubstepModifier;
-            //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
-            int MaxSteps = (FloatTime<StepSize) ? 1 : int(FloatTime/StepSize)+1;
-            #ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
-            this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, StepSize);
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
+            //ProcessAllCollisions();
 
-            /*#ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
-            ProcessAllCollisions();
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "Collisions took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
-
-            #ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
             ProcessAllEffects();
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
 
-            #ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
             ProcessAllTriggers();
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "Triggers took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
 
             // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
             //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
 
-            #ifdef MEZZPROFILE
-            Profiler->reset();
-            #endif
             if( this->BulletDrawer && this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
             {
                 this->BulletDrawer->PrepareForRendering();
                 this->BulletDynamicsWorld->debugDrawWorld();
             }
-            #ifdef MEZZPROFILE
-            TheEntresol->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
-            TheEntresol->DoMainLoopLogging();
-            #endif // */
         }
 
         btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
@@ -1175,6 +1162,15 @@ namespace Mezzanine
 
         void PhysicsManager::Initialize()
         {
+            if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+            }else{
+                this->TheEntresol->GetScheduler().AddWorkUnit(this->SimulationWork);
+            }
+            Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
+            if( GraphicsMan )
+                this->SimulationWork->AddDependency( GraphicsMan->GetRenderWorkUnit() );
+
             Initialized = true;
         }
 

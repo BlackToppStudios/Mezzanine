@@ -681,6 +681,11 @@ namespace Mezzanine
     // MainLoop
     ///////////////////////////////////////
 
+    Threading::FrameScheduler& Entresol::GetScheduler()
+    {
+        return this->WorkScheduler;
+    }
+
     void Entresol::MainLoop()
     {
         /// @todo create a lighting manager and put this in there

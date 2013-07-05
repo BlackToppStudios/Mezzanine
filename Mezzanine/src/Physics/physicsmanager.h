@@ -189,12 +189,13 @@ namespace Mezzanine
         protected:
             friend class CollisionDispatcher;
             friend class ParallelCollisionDispatcher;
-            friend class PhysicsWorkUnit;
-            friend class PhysicsMonopolyWorkUnit;
+            friend class SimulationWorkUnit;
+            friend class SimulationMonopolyWorkUnit;
 
             //Some Data Items
             bool SimulationPaused;
             Whole SubstepModifier;
+            Whole ThreadCount;
             Real StepSize;
 
             ManagerConstructionInfo WorldConstructionInfo;
