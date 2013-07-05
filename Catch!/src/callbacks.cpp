@@ -31,7 +31,8 @@ bool CPostUI()
 
 bool CPreInput()
 {
-    return CatchApp::GetCatchAppPointer()->PreInput();
+    return true;
+    //return CatchApp::GetCatchAppPointer()->PreInput();
 }
 
 bool CPostInput()

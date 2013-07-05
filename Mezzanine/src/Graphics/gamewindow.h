@@ -72,6 +72,7 @@ namespace Mezzanine
                 typedef std::vector<Viewport*> ViewportContainer;
                 typedef ViewportContainer::iterator ViewportIterator;
                 typedef ViewportContainer::const_iterator ConstViewportIterator;
+
                 /// @enum WindowFlags
                 /// @brief A listing of potential options for configuring a game window during construction.
                 enum WindowFlags

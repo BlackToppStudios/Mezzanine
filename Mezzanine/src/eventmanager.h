@@ -50,7 +50,9 @@
 #include "eventbase.h"
 #include "singleton.h"
 #include "vector2.h"
+
 #include "XML/xml.h"
+#include "Threading/workunit.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
@@ -79,9 +81,11 @@ void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Event
 
 namespace Mezzanine
 {
+    /// Forward Declarations
     class Entresol;
     class EventCollision;
     class EventGameWindow;
+    class EventManager;
     class EventRenderTime;
     class EventUserInput;
     class EventQuit;
@@ -94,6 +98,24 @@ namespace Mezzanine
     #ifdef SWIG
     %template(SingletonEventManager) Singleton<EventManager>;
     #endif
+
+    /// @brief Every frame the OS must be queried for changes to the state, this does that qeurying on behalf of an eventmanager
+    class MEZZ_LIB EventWorkUnit : public Threading::DefaultWorkUnit
+    {
+        private:
+            /// @brief The Manager this does teh work for.
+            EventManager* TargetEventManager;
+        public:
+            /// @brief Create the WorkUnit for getting updates from the OS.
+            /// @param Target The Manager to save this data in.
+            EventWorkUnit(EventManager* Target);
+
+            /// @brief This does the actual work of the getting the data form the OS.
+            /// @param CurrentThreadStorage Only really used for the logger.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+
+    };
+
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class EventManager
@@ -120,7 +142,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     class MEZZ_LIB EventManager: public ManagerBase, public Singleton<EventManager>
     {
-        private:
+        private:       
             /// @internal
             /// @brief All the internal data for this EventManager
             Internal::EventManagerInternalData* _Data;
@@ -136,6 +158,7 @@ namespace Mezzanine
             EventManager(const EventManager& Dummy)
             {}
 
+            friend class EventWorkUnit;
             friend std::ostream& MEZZ_LIB ::operator << (std::ostream& stream, const Mezzanine::EventManager& Mgr);
             friend std::istream& MEZZ_LIB ::operator >> (std::istream& stream, Mezzanine::EventManager& Mgr);
             friend void MEZZ_LIB ::operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
@@ -420,7 +443,7 @@ namespace Mezzanine
             void RemovePollingCheck(const MetaCode &InputToStopPolling);
 
             ///////////////////////////////////////////////////////////////////////////////
-            //Inherited from ManagerBase
+            //Inherited from ManagerBase and Manager Tasks
 
             /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
@@ -430,6 +453,10 @@ namespace Mezzanine
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
             virtual String GetImplementationTypeName() const;
+
+            /// @brief Get a pointer to the workunit currently added to the framescheduler
+            /// @return A pointer to the EventWorkUnit* that will run updates each frame
+            EventWorkUnit* GetEventWorkUnit();
     };//EventManager
 
     ///////////////////////////////////////////////////////////////////////////////

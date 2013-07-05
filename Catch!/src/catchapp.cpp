@@ -737,6 +737,18 @@ CatchApp* CatchApp::GetCatchAppPointer()
     return TheRealCatchApp;
 }
 
+class CatchPreInputWorkUnit : public Threading::DefaultWorkUnit
+{
+        CatchApp* CatchApplication;
+    public:
+        CatchPreInputWorkUnit(CatchApp* Target)
+            : CatchApplication(Target)
+            {}
+
+        virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+            { CatchApplication->CheckForStuff(); }
+};
+
 int CatchApp::GetCatchin()
 {
     EventManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreInput);
@@ -749,6 +761,11 @@ int CatchApp::GetCatchin()
 
     // Verify all the settings are there, and generate defaults if they aren't.
     this->VerifySettings();
+
+    // Make sure our work runs before events are gathered from OS
+    CatchPreInputWorkUnit* CatchPreInputWork = new CatchPreInputWorkUnit(this);
+    TheEntresol->GetEventManager()->GetEventWorkUnit()->AddDependency(CatchPreInputWork);
+    TheEntresol->GetScheduler().AddWorkUnit(CatchPreInputWork);
 
     // Initialize the managers.
 	TheEntresol->EngineInit(false);
@@ -816,14 +833,6 @@ void CatchApp::PauseGame(bool Pause)
 bool CatchApp::GameIsPaused()
 {
     return Paused;
-}
-
-bool CatchApp::PreInput()
-{
-    // using the Raw Event Manager, and deleting the events
-    if( !CheckForStuff() )
-        return false;
-    return true;
 }
 
 bool CatchApp::PostInput()

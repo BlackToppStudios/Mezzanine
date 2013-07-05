@@ -62,10 +62,19 @@
 
 #include "SDL.h"
 
-//#include <boost/thread/thread.hpp> //will use this when this becomes multithreaded
-
 namespace Mezzanine
 {
+    EventWorkUnit::EventWorkUnit(EventManager *Target)
+        : TargetEventManager(Target)
+    {}
+
+    void EventWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type &CurrentThreadStorage)
+    {
+        Logger& Log = CurrentThreadStorage.GetUsableLogger();
+        Log << "Getting Events from OS." << std::endl;
+        TargetEventManager->UpdateEvents();
+    }
+
     /// @internal
     /// @namespace Mezzanine::internal
     /// @brief This namespace is used for internal helper classes, and in general it should be ignored by game developers
@@ -131,6 +140,10 @@ namespace Mezzanine
             /// @internal
             /// @brief an Iterator suitable for use with internal structures that correlate polling type and metacodes
             typedef std::map<Input::InputCode, PollingType>::iterator ManualCheckIterator;
+
+            /// @internal
+            /// @brief This is the workunit that does the work each frame.
+            EventWorkUnit* EventWork;
 
             /// @internal
             /// @brief Adds one type of polling check
@@ -232,6 +245,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Constructor, it only inits pointers to 0
             EventManagerInternalData()
+                : EventWork(NULL)
             {
 
             }
@@ -260,6 +274,7 @@ namespace Mezzanine
                 { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
         this->_Data = new Internal::EventManagerInternalData;
+        _Data->EventWork = new EventWorkUnit(this);
 
         //this->GameWorld = Entresol::GetSingletonPtr();
     }
@@ -280,6 +295,7 @@ namespace Mezzanine
                 { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
         this->_Data = new Internal::EventManagerInternalData;
+        _Data->EventWork = new EventWorkUnit(this);
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 
@@ -348,7 +364,7 @@ namespace Mezzanine
 
     void EventManager::UpdateEvents()
     {
-        //SDL_PumpEvents();
+        SDL_PumpEvents();
         UpdateQuitEvents(); //quit events skips the preprocessing step and goes straight into the the main Queue, becuase of how we need to get them from sdl
 
         RawEvent FromSDLRaw;                                    //used to hold data as we go through loop
@@ -666,11 +682,15 @@ namespace Mezzanine
 
     //Inherited From ManagerBase
     void EventManager::Initialize()
-        { Initialized = true; }
+    {
+
+        TheEntresol->GetScheduler().AddWorkUnit(_Data->EventWork);
+        Initialized = true;
+    }
 
     void EventManager::DoMainLoopItems()
     {
-        this->UpdateEvents();
+        //UpdateEvents();
     }
 
     ManagerBase::ManagerType EventManager::GetInterfaceType() const
@@ -678,6 +698,9 @@ namespace Mezzanine
 
     String EventManager::GetImplementationTypeName() const
         { return "DefaultEventManager"; }
+
+    EventWorkUnit *EventManager::GetEventWorkUnit()
+        { return _Data->EventWork; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultEventManagerFactory Methods
@@ -717,6 +740,7 @@ namespace Mezzanine
     {
         delete ToBeDestroyed;
     }
+
 }//Mezzanine
 
 
