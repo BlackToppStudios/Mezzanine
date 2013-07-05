@@ -608,6 +608,18 @@ namespace Mezzanine
             if(BulletDrawer) delete BulletDrawer;
             if(BulletSolverThreads) delete BulletSolverThreads;
             if(BulletDispatcherThreads) delete BulletDispatcherThreads;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->SimulationWork );
+            delete SimulationWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->AreaEffectUpdateWork );
+            delete AreaEffectUpdateWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->WorldTriggerUpdateWork );
+            delete WorldTriggerUpdateWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->DebugDrawWork );
+            delete DebugDrawWork;
         }
 
         void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
@@ -1177,6 +1189,22 @@ namespace Mezzanine
             }
             if(BulletSolverThreads) delete BulletSolverThreads;
             if(BulletDispatcherThreads) delete BulletDispatcherThreads;
+
+            /*Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
+            if( GraphicsMan ) {
+                this->SimulationWork->RemoveDependency( GraphicsMan->GetRenderWorkUnit() );
+            }//*/
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->SimulationWork );
+            delete SimulationWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->AreaEffectUpdateWork );
+            delete AreaEffectUpdateWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->WorldTriggerUpdateWork );
+            delete WorldTriggerUpdateWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->DebugDrawWork );
+            delete DebugDrawWork;
 
             if(Info) this->Construct(*Info);
             else this->Construct(WorldConstructionInfo);
