@@ -124,7 +124,7 @@ namespace Mezzanine
             /// @brief This does any required update of the Graphical Scene graph and REnders one frame
             /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
             virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-        };//PhysicsWorkUnit
+        };//SimulationWorkUnit
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a @ref iWorkUnit for the multi-threaded processing of physics simulations.
@@ -163,7 +163,106 @@ namespace Mezzanine
             /// @brief This does any required update of the Graphical Scene graph and REnders one frame
             /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
             virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-        };//PhysicsMonopolyWorkUnit
+        };//SimulationMonopolyWorkUnit
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a @ref iWorkUnit for the updating of AreaEffects.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB AreaEffectUpdateWorkUnit : public Threading::DefaultWorkUnit
+        {
+        protected:
+            /// @internal
+            /// @brief A pointer to the manager this work unit is processing.
+            PhysicsManager* TargetManager;
+            /// @internal
+            /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            AreaEffectUpdateWorkUnit(const AreaEffectUpdateWorkUnit& Other);
+            /// @internal
+            /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            AreaEffectUpdateWorkUnit& operator=(const AreaEffectUpdateWorkUnit& Other);
+        public:
+            /// @brief Class constructor.
+            /// @param Target The PhysicsManager this work unit will process during the frame.
+            AreaEffectUpdateWorkUnit(PhysicsManager* Target);
+            /// @brief Class destructor.
+            virtual ~AreaEffectUpdateWorkUnit();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+        };//AreaEffectUpdateWorkUnit
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a @ref iWorkUnit for the updating of WorldTriggers.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB WorldTriggerUpdateWorkUnit : public Threading::DefaultWorkUnit
+        {
+        protected:
+            /// @internal
+            /// @brief A pointer to the manager this work unit is processing.
+            PhysicsManager* TargetManager;
+            /// @internal
+            /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            WorldTriggerUpdateWorkUnit(const WorldTriggerUpdateWorkUnit& Other);
+            /// @internal
+            /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            WorldTriggerUpdateWorkUnit& operator=(const WorldTriggerUpdateWorkUnit& Other);
+        public:
+            /// @brief Class constructor.
+            /// @param Target The PhysicsManager this work unit will process during the frame.
+            WorldTriggerUpdateWorkUnit(PhysicsManager* Target);
+            /// @brief Class destructor.
+            virtual ~WorldTriggerUpdateWorkUnit();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+        };//WorldTriggerUpdateWorkUnit
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a @ref iWorkUnit for the updating of the physics debug drawer.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB DebugDrawWorkUnit : public Threading::DefaultWorkUnit
+        {
+        protected:
+            /// @internal
+            /// @brief A pointer to the manager this work unit is processing.
+            PhysicsManager* TargetManager;
+            /// @internal
+            /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            DebugDrawWorkUnit(const DebugDrawWorkUnit& Other);
+            /// @internal
+            /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            DebugDrawWorkUnit& operator=(const DebugDrawWorkUnit& Other);
+        public:
+            /// @brief Class constructor.
+            /// @param Target The PhysicsManager this work unit will process during the frame.
+            DebugDrawWorkUnit(PhysicsManager* Target);
+            /// @brief Class destructor.
+            virtual ~DebugDrawWorkUnit();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+        };//DebugDrawWorkUnit
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is simply a place for storing all the Physics Related functions
@@ -191,6 +290,9 @@ namespace Mezzanine
             friend class ParallelCollisionDispatcher;
             friend class SimulationWorkUnit;
             friend class SimulationMonopolyWorkUnit;
+            friend class AreaEffectUpdateWorkUnit;
+            friend class WorldTriggerUpdateWorkUnit;
+            friend class DebugDrawWorkUnit;
 
             //Some Data Items
             bool SimulationPaused;
@@ -219,6 +321,15 @@ namespace Mezzanine
             /// @internal
             /// @brief The work unit that does the stepping of the simulation.
             Threading::DefaultWorkUnit* SimulationWork;
+            /// @internal
+            /// @brief The work unit that updates and applies the effects of all AreaEffects.
+            AreaEffectUpdateWorkUnit* AreaEffectUpdateWork;
+            /// @internal
+            /// @brief The work unit that processes all world triggers.
+            WorldTriggerUpdateWorkUnit* WorldTriggerUpdateWork;
+            /// @internal
+            /// @brief The work unit that updates the debug drawer with the latest physics rendering.
+            DebugDrawWorkUnit* DebugDrawWork;
             /// @internal
             /// @brief Can be used for thread safe logging and other thread specific resources.
             Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
@@ -448,13 +559,26 @@ namespace Mezzanine
             /// instead of one big one during the course of one frame.
             /// @param Modifier The amount of substeps per frame to perform.
             void SetSimulationSubstepModifier(const Whole& Modifier);
-            /// @brief This does all the work reuired for the main loop to process physics
-            /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
-            void DoMainLoopItems(const Real &TimeElapsed);
+
+            /// @brief Gets a pointer to the work unit that steps the simulation.
+            /// @return Returns a pointer to the DefaultWorkUnit that steps the simulation.
+            Threading::DefaultWorkUnit* GetSimulationWork();
+            /// @brief Gets a pointer to the work unit that updates all AreaEffects.
+            /// @return Returns a pointer to the AreaEffectUpdateWorkUnit used by this manager.
+            AreaEffectUpdateWorkUnit* GetAreaEffectUpdateWork();
+            /// @brief Gets a pointer to the work unit that updates all WorldTriggers.
+            /// @return Returns a pointer to the WorldTriggerUpdateWorkUnit used by this manager.
+            WorldTriggerUpdateWorkUnit* GetWorldTriggerUpdateWork();
+            /// @brief Gets a pointer to the work unit that updates the debug drawer.
+            /// @return Returns a pointer to the DebugDrawWorkUnit used by this manager.
+            DebugDrawWorkUnit* GetDebugDrawWork();
 
             /// @internal
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
             btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
+            /// @internal
+            /// @brief This returns a pointer to the bullet physics world. This is for internal use only
+            const btSoftRigidDynamicsWorld* GetPhysicsWorldPointer() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Managerbase
