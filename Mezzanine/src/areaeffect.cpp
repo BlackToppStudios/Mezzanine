@@ -271,7 +271,7 @@ namespace Mezzanine
                 btPersistentManifold* manifold = manifoldArray[j];
                 for (int p=0;p<manifold->getNumContacts();p++)
                 {
-                    const btManifoldPoint& pt = manifold->getContactPoint(p);
+                    //const btManifoldPoint& pt = manifold->getContactPoint(p);
                     //if(pt.m_distance1 > 0)
                     //    continue;
                     btCollisionObject* ColObj = manifold->getBody0() != Ghost ? (btCollisionObject*)(manifold->getBody0()) : (btCollisionObject*)(manifold->getBody1());
