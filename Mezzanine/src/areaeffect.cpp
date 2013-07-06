@@ -459,10 +459,10 @@ namespace Mezzanine
 
     GravityWell::GravityWell(const String &name, const Vector3& Location)
         : AreaEffect(name, Location),
-          AllowWorldGrav(true),
           Strength(0),
-          AttenAmount(0),
-          AttenStyle(Mezzanine::Att_None)
+          AllowWorldGrav(true),
+          AttenStyle(Mezzanine::Att_None),
+          AttenAmount(0)
     {
     }
 
@@ -583,10 +583,10 @@ namespace Mezzanine
     FieldOfForce::FieldOfForce(const String &name, const Vector3& Location)
         : AreaEffect(name, Location),
           Strength(0),
-          AttenAmount(0),
+          Direction(Vector3(0,1,0)),
           AttenStyle(Mezzanine::Att_None),
-          AttenSource(Vector3(0,0,0)),
-          Direction(Vector3(0,1,0))
+          AttenAmount(0),
+          AttenSource(Vector3(0,0,0))
     {
     }
 
@@ -598,12 +598,13 @@ namespace Mezzanine
     {
         if(0 == Strength)
             return;
-        ActorBase* Act = NULL;
+        //ActorBase* Act = NULL;
         ActorRigid* ActRig = NULL;
         if(!OverlappingActors.empty())
         {
             Vector3 ActorLoc;
-            Real Distance, AppliedStrength, InvMass;
+            //Real Distance, AppliedStrength, InvMass;
+            Real Distance, AppliedStrength;
             for ( std::list<ActorBase*>::iterator OA = OverlappingActors.begin() ; OA != OverlappingActors.end() ; OA++ )
             {
                 if(Mezzanine::WSO_ActorRigid != (*OA)->GetType())

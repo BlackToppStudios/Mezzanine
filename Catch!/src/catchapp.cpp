@@ -79,7 +79,7 @@ void CatchApp::MakeGUI()
 
     Real MMStartLineHeight = 0.05;
     Real MMTextLineHeight = 0.04;
-    Real MMSmallTextLineHeight = 0.03;
+    //Real MMSmallTextLineHeight = 0.03;
     UI::Button* MMLevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", UI::RenderableRect(Vector2(0.05, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Level Select" );
     MMLevelSelectAccess->GetClickable()->SetBackgroundSprite("MMButton");
     MMLevelSelectAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
@@ -214,7 +214,8 @@ void CatchApp::MakeGUI()
     UI::Button* MMCreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", UI::RenderableRect(Vector2(0.51, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Credits" );
     MMCreditsAccess->GetClickable()->SetBackgroundSprite("MMButton");
     MMCreditsAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* MMCreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_CreditsWin", UI::RenderableRect(Vector2(0.01,0.01), Vector2(0.01,0.01), true), MMCreditsAccess);
+    //UI::MenuWindow* MMCreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_CreditsWin", UI::RenderableRect(Vector2(0.01,0.01), Vector2(0.01,0.01), true), MMCreditsAccess);
+    MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_CreditsWin", UI::RenderableRect(Vector2(0.01,0.01), Vector2(0.01,0.01), true), MMCreditsAccess);
 
     UI::Button* MMAppExitAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_AppExit", UI::RenderableRect(Vector2(0.74, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Exit Game" );
     MMAppExitAccess->GetClickable()->SetBackgroundSprite("MMButton");
@@ -557,7 +558,8 @@ void CatchApp::VerifySettings()
         GraphicsSettingFile = GraphicsMan->CreateSettingFile(GraphicsSaveFileName);
         // Create the window
         Graphics::GameWindow* MainWin = GraphicsMan->CreateGameWindow("Catch!",800,600,Graphics::GameWindow::WF_FSAA_4);
-        Graphics::Viewport* MainWinView = MainWin->CreateViewport(NULL,0);
+        //Graphics::Viewport* MainWinView = MainWin->CreateViewport(NULL,0);
+        MainWin->CreateViewport(NULL,0);
         // Set the file to save.
         GraphicsSettingFile->SetNeedsSave(true);
         // Make sure the file saves the "Current" setting group.
@@ -619,6 +621,8 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
             }
             break;
         }
+        case CatchApp::Catch_Init:
+            break;
     }
     CurrentState = StateToSet;
 }

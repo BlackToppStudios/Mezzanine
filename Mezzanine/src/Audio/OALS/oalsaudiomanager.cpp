@@ -78,6 +78,28 @@ namespace Mezzanine
     {
         namespace OALS
         {
+            AudioWorkUnit::AudioWorkUnit(OALS::AudioManager *TargetManager)
+                : Target(TargetManager)
+            {}
+
+            void AudioWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type &CurrentThreadStorage)
+            {
+                Logger& Log = CurrentThreadStorage.GetUsableLogger();
+                Log << "Updating Audio Items." << std::endl;
+
+                // Update our non-spacialized sounds
+                for( OALS::AudioManager::SoundIterator SoundIt = Target->Sounds.begin() ; SoundIt != Target->Sounds.end() ; ++SoundIt )
+                    { (*SoundIt)->_Update(); }
+
+                // Clean any and all effects and filters that may be dirty
+                Target->EffHandler->_CleanAll();
+                // Update our music player
+                Target->MPlayer->Update();
+            }
+
+            OALS::AudioWorkUnit::~AudioWorkUnit()
+                {}
+
             OALS::AudioManager::AudioManager()
                 : InternalDevice(NULL),
                   NonSpacialContext(NULL),
@@ -90,6 +112,7 @@ namespace Mezzanine
                 this->Priority = 55;
                 this->AutoGenFiles = false;
                 this->GetAvailableDeviceNames();
+                AudioWork = new AudioWorkUnit(this);
             }
 
             OALS::AudioManager::AudioManager(XML::Node& XMLNode)
@@ -106,6 +129,7 @@ namespace Mezzanine
                 /// Doing so would make settings files be implementation agnostic.
                 this->Priority = 55;
                 this->GetAvailableDeviceNames();
+                AudioWork = new AudioWorkUnit(this);
 
                 XML::Attribute CurrAttrib;
                 String PathPreset;
@@ -740,7 +764,10 @@ namespace Mezzanine
             void OALS::AudioManager::Initialize()
             {
                 if( this->Initialized == false)
+                {
                     this->Initialized = this->InitializePlaybackDevice(this->GetDefaultPlaybackDeviceName());
+                    TheEntresol->GetScheduler().AddWorkUnit(AudioWork);
+                }
 
                 if( this->AutoGenFiles )
                     this->SaveAllSettings();
@@ -748,22 +775,16 @@ namespace Mezzanine
 
             void OALS::AudioManager::DoMainLoopItems()
             {
-                // Update our non-spacialized sounds
-                for( SoundIterator SoundIt = this->Sounds.begin() ; SoundIt != this->Sounds.end() ; ++SoundIt )
-                {
-                    (*SoundIt)->_Update();
-                }
 
-                // Clean any and all effects and filters that may be dirty
-                this->EffHandler->_CleanAll();
-                // Update our music player
-                this->MPlayer->Update();
             }
 
             String OALS::AudioManager::GetImplementationTypeName() const
             {
                 return "OALSAudioManager";
             }
+
+            OALS::AudioWorkUnit* AudioManager::GetAudioWorkUnit()
+                { return AudioWork; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

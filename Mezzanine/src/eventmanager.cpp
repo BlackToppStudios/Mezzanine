@@ -66,7 +66,7 @@ namespace Mezzanine
 {
     EventWorkUnit::EventWorkUnit(EventManager *Target)
         : TargetEventManager(Target)
-    {}
+        {}
 
     void EventWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type &CurrentThreadStorage)
     {
@@ -74,6 +74,9 @@ namespace Mezzanine
         Log << "Getting Events from OS." << std::endl;
         TargetEventManager->UpdateEvents();
     }
+
+    EventWorkUnit::~EventWorkUnit()
+        {}
 
     /// @internal
     /// @namespace Mezzanine::internal
@@ -683,7 +686,6 @@ namespace Mezzanine
     //Inherited From ManagerBase
     void EventManager::Initialize()
     {
-
         TheEntresol->GetScheduler().AddWorkUnit(_Data->EventWork);
         Initialized = true;
     }
