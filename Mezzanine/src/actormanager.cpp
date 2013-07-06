@@ -42,6 +42,8 @@
 
 #include "actormanager.h"
 #include "actorbase.h"
+#include "Physics/physicsmanager.h"
+#include "entresol.h"
 
 #include <sstream>
 
@@ -50,24 +52,55 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // ActorUpdateWorkUnit Methods
 
+    ActorUpdateWorkUnit::ActorUpdateWorkUnit(const ActorUpdateWorkUnit& Other)
+        {  }
+
+    ActorUpdateWorkUnit& ActorUpdateWorkUnit::operator=(const ActorUpdateWorkUnit& Other)
+        { return *this; }
+
+    ActorUpdateWorkUnit::ActorUpdateWorkUnit(ActorManager* Target) :
+        TargetManager(Target) {  }
+
+    ActorUpdateWorkUnit::~ActorUpdateWorkUnit()
+        {  }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void ActorUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+    {
+        this->TargetManager->UpdateAllActors();
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // ActorManager Methods
 
     template<> ActorManager* Singleton<ActorManager>::SingletonPtr = 0;
 
-    ActorManager::ActorManager()
+    ActorManager::ActorManager() :
+        ActorUpdateWork(NULL),
+        ThreadResources(NULL)
     {
         Priority = 25;
+
+        this->ActorUpdateWork = new ActorUpdateWorkUnit(this);
     }
 
-    ActorManager::ActorManager(XML::Node& XMLNode)
+    ActorManager::ActorManager(XML::Node& XMLNode) :
+        ActorUpdateWork(NULL),
+        ThreadResources(NULL)
     {
         Priority = 25;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+
+        this->ActorUpdateWork = new ActorUpdateWorkUnit(this);
     }
 
     ActorManager::~ActorManager()
     {
+        this->TheEntresol->GetScheduler().RemoveWorkUnit( this->ActorUpdateWork );
+        delete ActorUpdateWork;
+
         DestroyAllActors();
     }
 
@@ -81,7 +114,7 @@ namespace Mezzanine
 
     ActorBase* ActorManager::GetActor(const String& Name)
     {
-        for( std::vector<ActorBase*>::iterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        for( ActorIterator it = Actors.begin() ; it != Actors.end() ; ++it )
         {
             if(Name == (*it)->GetName())
                 return (*it);
@@ -102,14 +135,14 @@ namespace Mezzanine
 
     void ActorManager::RemoveActor(const Whole& Index)
     {
-        std::vector<ActorBase*>::iterator it = Actors.begin() + Index;
+        ActorIterator it = Actors.begin() + Index;
         (*it)->RemoveFromWorld();
         Actors.erase(it);
     }
 
     void ActorManager::RemoveActor(ActorBase* ToBeRemoved)
     {
-        for( std::vector<ActorBase*>::iterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        for( ActorIterator it = Actors.begin() ; it != Actors.end() ; ++it )
         {
             if(ToBeRemoved == (*it))
             {
@@ -124,17 +157,16 @@ namespace Mezzanine
     {
         if( Actors.empty() )
             return;
-        for( std::vector<ActorBase*>::iterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        for( ActorIterator it = Actors.begin() ; it != Actors.end() ; ++it )
             (*it)->RemoveFromWorld();
         Actors.clear();
         RigidActors.clear();
         SoftActors.clear();
-        CharacterActors.clear();
     }
 
     void ActorManager::DestroyActor(const Whole& Index)
     {
-        std::vector<ActorBase*>::iterator it = Actors.begin() + Index;
+        ActorIterator it = Actors.begin() + Index;
         (*it)->RemoveFromWorld();
         delete (*it);
         Actors.erase(it);
@@ -142,7 +174,7 @@ namespace Mezzanine
 
     void ActorManager::DestroyActor(ActorBase* ToBeDestroyed)
     {
-        for( std::vector<ActorBase*>::iterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        for( ActorIterator it = Actors.begin() ; it != Actors.end() ; ++it )
         {
             if(ToBeDestroyed == (*it))
             {
@@ -158,7 +190,7 @@ namespace Mezzanine
     {
         if( Actors.empty() )
             return;
-        for( std::vector<ActorBase*>::iterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        for( ActorIterator it = Actors.begin() ; it != Actors.end() ; ++it )
         {
             (*it)->RemoveFromWorld();
             delete (*it);
@@ -166,7 +198,6 @@ namespace Mezzanine
         Actors.clear();
         RigidActors.clear();
         SoftActors.clear();
-        CharacterActors.clear();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -189,11 +220,22 @@ namespace Mezzanine
         }
     }
 
+    ActorUpdateWorkUnit* ActorManager::GetActorUpdateWork()
+    {
+        return this->ActorUpdateWork;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     //Inherited From ManagerBase
 
     void ActorManager::Initialize()
     {
+        this->TheEntresol->GetScheduler().AddWorkUnit( this->ActorUpdateWork );
+        Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
+        if( PhysicsMan ) {
+            this->ActorUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
+        }
+
         Initialized = true;
     }
 
