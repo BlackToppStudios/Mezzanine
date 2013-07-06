@@ -46,7 +46,7 @@
 #include "uimanager.h"
 #include "UI/screen.h"
 #include "UI/button.h"
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "Input/mouse.h"
 #include "Input/metacode.h"
 #include "entresol.h"
@@ -78,7 +78,7 @@ namespace Mezzanine
 
         void Menu::UpdateImpl(bool Force)
         {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredSubWidget)
             {
                 Button* button = NULL;

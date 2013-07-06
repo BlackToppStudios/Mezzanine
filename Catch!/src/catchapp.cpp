@@ -752,7 +752,7 @@ class CatchPreInputWorkUnit : public Threading::DefaultWorkUnit
 int CatchApp::GetCatchin()
 {
     EventManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreInput);
-    InputManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostInput);
+    Input::InputManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostInput);
     Physics::PhysicsManager::GetSingletonPtr()->SetPreMainLoopItems(&CPrePhysics);
     Physics::PhysicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostPhysics);
     Graphics::GraphicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostRender);
@@ -837,7 +837,7 @@ bool CatchApp::GameIsPaused()
 
 bool CatchApp::PostInput()
 {
-    InputManager* InputMan = InputManager::GetSingletonPtr();
+    Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
     CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetCamera(0));
@@ -881,7 +881,7 @@ bool CatchApp::PreUI()
 
 bool CatchApp::PostUI()
 {
-    InputManager* InputMan = InputManager::GetSingletonPtr();
+    Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     static RayQueryTool* RayQueryer = new RayQueryTool();
     static Physics::Point2PointConstraint* Dragger = NULL;

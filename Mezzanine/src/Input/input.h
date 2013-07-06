@@ -52,6 +52,7 @@ namespace Mezzanine
 }
 
 #include "Input/inputenumerations.h"
+#include "Input/inputmanager.h"
 
 #include "Input/controller.h"
 #include "Input/device.h"

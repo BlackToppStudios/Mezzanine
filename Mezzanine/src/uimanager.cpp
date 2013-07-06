@@ -53,7 +53,7 @@
 #include "UI/button.h"
 #include "UI/widget.h"
 #include "UI/glyph.h"
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "Input/mouse.h"
 
 #include <Ogre.h>
@@ -133,7 +133,7 @@ namespace Mezzanine
             HoveredWidget->Update();
         if(HoveredWidget || WidgetFocus)
         {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(Input::BUTTON_PRESSING == State)
             {
                 WidgetFocus = HoveredWidget;
@@ -154,7 +154,7 @@ namespace Mezzanine
         }
         else if(!HoveredWidget && !WidgetFocus)
         {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(LastWidgetSelected && Input::BUTTON_LIFTING == State)
                 LastWidgetSelected = NULL;
         }
@@ -180,7 +180,7 @@ namespace Mezzanine
         if(!ToCheck)
             return;
 
-        Input::Mouse* SysMouse = InputManager::GetSingletonPtr()->GetSystemMouse();
+        Input::Mouse* SysMouse = Input::InputManager::GetSingletonPtr()->GetSystemMouse();
         const std::vector<Input::InputCode>& MouseCodes = ToCheck->GetMouseActivationButtons();
         Input::ButtonState State = ToCheck->IsLiftActivation() ? Input::BUTTON_LIFTING : Input::BUTTON_PRESSING;
 

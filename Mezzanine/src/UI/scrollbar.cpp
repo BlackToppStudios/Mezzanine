@@ -46,7 +46,7 @@
 #include "UI/button.h"
 #include "UI/rectangle.h"
 #include "UI/viewportupdatetool.h"
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "Input/mouse.h"
 
 namespace Mezzanine
@@ -479,7 +479,7 @@ namespace Mezzanine
         {
             if(!ScrollBackLock)
             {
-                Vector2 MousePos = InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
+                Vector2 MousePos = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
                 Vector2 ScPos = Scroller->GetActualPosition();
                 Vector2 ScSize = Scroller->GetActualSize();
                 if(Horizontal)
@@ -511,7 +511,7 @@ namespace Mezzanine
 
         void Scrollbar::UpdateImpl(bool Force)
         {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
                 if(Input::BUTTON_PRESSING == State || Input::BUTTON_DOWN == State)
@@ -524,7 +524,7 @@ namespace Mezzanine
                         }
                         else if(Input::BUTTON_DOWN == State)
                         {
-                            Vector2 Offset = InputManager::GetSingletonPtr()->GetSystemMouse()->GetMouseDelta();
+                            Vector2 Offset = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetMouseDelta();
                             MouseScroll(Offset);
                         }
                     }
@@ -563,7 +563,7 @@ namespace Mezzanine
                 {
                     if(ScrollBackLock && !ScrollerLock)
                     {
-                        Vector2 Offset = InputManager::GetSingletonPtr()->GetSystemMouse()->GetMouseDelta();
+                        Vector2 Offset = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetMouseDelta();
                         MouseScroll(Offset);
                     }else{
                         ScrollBackScroll();
@@ -572,7 +572,7 @@ namespace Mezzanine
             }
             else if(Force && Input::BUTTON_DOWN == State)
             {
-                Vector2 Offset = InputManager::GetSingletonPtr()->GetSystemMouse()->GetMouseDelta();
+                Vector2 Offset = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetMouseDelta();
                 MouseScroll(Offset);
             }
             else if(Input::BUTTON_LIFTING == State)

@@ -47,7 +47,7 @@
 #include "entresol.h"
 #include "eventmanager.h"
 #include "mathtool.h"
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "Input/mouse.h"
 
 namespace Mezzanine
@@ -247,7 +247,7 @@ namespace Mezzanine
                 SetHovered(false);
                 return MouseHover;
             }
-            Vector2 MouseLoc = InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
+            Vector2 MouseLoc = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
             SetHovered((MouseLoc.X >= ActPosition.X && MouseLoc.X <= ActPosition.X + ActSize.X) && (MouseLoc.Y >= ActPosition.Y && MouseLoc.Y <= ActPosition.Y + ActSize.Y));
             return MouseHover;
         }

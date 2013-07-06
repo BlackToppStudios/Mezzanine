@@ -171,7 +171,7 @@ bool PostRender()
 
     }
 
-    Input::Mouse* SysMouse = InputManager::GetSingletonPtr()->GetSystemMouse();
+    Input::Mouse* SysMouse = Input::InputManager::GetSingletonPtr()->GetSystemMouse();
     // Update Stat information
     UI::OpenRenderableContainerWidget* HUD = static_cast<UI::OpenRenderableContainerWidget*>(TheEntresol->GetUIManager()->GetScreen("DefaultScreen")->GetWidget("D_HUD"));
     UI::Caption* CurFPS = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_CurFPS"));
@@ -246,7 +246,7 @@ bool PostInput()
 {
     //User Input through a WorldQueryTool
     static RayQueryTool* RayQueryer = new RayQueryTool();
-    InputManager* InputMan = InputManager::GetSingletonPtr();
+    Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
     Input::Controller* Controller1 = NULL;

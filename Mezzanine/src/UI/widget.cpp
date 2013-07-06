@@ -46,7 +46,7 @@
 #include "UI/screen.h"
 #include "uimanager.h"
 #include "entresol.h"
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "Input/mouse.h"
 
 namespace Mezzanine
@@ -140,7 +140,7 @@ namespace Mezzanine
 
         void Widget::SubWidgetUpdate(bool Force)
         {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredSubWidget)
             {
                 HoveredSubWidget->Update(Force);

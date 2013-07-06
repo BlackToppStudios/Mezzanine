@@ -54,7 +54,7 @@
 #include "eventrendertime.h"
 #include "eventuserinput.h"
 #include "Input/metacode.h"
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 
 #include <map>
 #include <memory>
@@ -307,8 +307,8 @@ namespace Mezzanine
             { delete *Iter; }
         delete _Data;
 
-        if( InputManager::SingletonValid() )
-            InputManager::GetSingletonPtr()->ReleaseAllControllers();
+        if( Input::InputManager::SingletonValid() )
+            Input::InputManager::GetSingletonPtr()->ReleaseAllControllers();
 
         UInt32 InitSDLSystems = SDL_WasInit(0);
         if( SDL_INIT_JOYSTICK | InitSDLSystems )

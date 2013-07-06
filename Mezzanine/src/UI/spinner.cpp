@@ -47,7 +47,7 @@
 #include "uimanager.h"
 #include "UI/viewportupdatetool.h"
 
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "Input/mouse.h"
 #include "stringtool.h"
 #include "entresol.h"
@@ -307,7 +307,7 @@ namespace Mezzanine
             ProcessCapturedInputs();
             if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
-                Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+                Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
                 if(Input::BUTTON_PRESSING == State)
                 {
                     if(HoveredSubWidget==Increment)

@@ -45,7 +45,7 @@
 #include "uimanager.h"
 #include "UI/button.h"
 #include "UI/caption.h"
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "Input/mouse.h"
 
 namespace Mezzanine
@@ -80,7 +80,7 @@ namespace Mezzanine
 
         void TabSet::UpdateImpl(bool Force)
         {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
                 if(Input::BUTTON_PRESSING == State)
