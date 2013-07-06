@@ -80,9 +80,7 @@ namespace Mezzanine
         }
 
         AudioManager::~AudioManager()
-        {
-            this->DestroyAllDecoderFactories();
-        }
+            { this->DestroyAllDecoderFactories(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

@@ -114,6 +114,8 @@ namespace Mezzanine
             /// @param CurrentThreadStorage Only really used for the logger.
             virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
 
+            /// @brief Virtual Deconstructor
+            virtual ~EventWorkUnit();
     };
 
 

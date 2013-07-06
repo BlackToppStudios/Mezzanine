@@ -44,6 +44,7 @@
 #define _audiooalsaudiomanager_h
 
 #include "Audio/audiomanager.h"
+#include "Threading/workunit.h"
 
 // OpenAL forward declares
 #ifndef OALS_STRUCTS_DECLARED
@@ -61,6 +62,27 @@ namespace Mezzanine
             class Recorder;
             class EffectsHandler;
             class SoundScapeManager;
+            class AudioManager;
+
+            /// @brief Do the work each frame for the AudioManager
+            class AudioWorkUnit : public Threading::DefaultWorkUnit
+            {
+                private:
+                    /// @brief The AudioManager to work with
+                    OALS::AudioManager* Target;
+                public:
+                    /// @brief Create
+                    /// @param TargetManager The manager to work with.
+                    AudioWorkUnit(OALS::AudioManager *TargetManager);
+
+                    /// @brief Do the actual
+                    /// @param CurrentThreadStorage Resources that this work unit will use.
+                    virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+
+                    /// @brief Virtual destructor
+                    virtual ~AudioWorkUnit();
+            };
+
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the base manager class for the Audio subsystem and it's operations.
             /// @details
@@ -100,6 +122,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             class MEZZ_LIB AudioManager : public Audio::AudioManager
             {
+                /// @brief The AudioWorkUnit needs access to internals of this manager
+                friend class AudioWorkUnit;
             public:
                 /// @brief Basic container type for @ref OALS::Sound storage by this class.
                 typedef std::vector<OALS::Sound*>                   SoundContainer;
@@ -168,6 +192,9 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Container storing all @ref OALS::SoundScapeManager instances registered to this manager.
                 SoundScapeManagerContainer SoundScapeManagers;
+                /// @internal
+                /// @brief The workunit this will use to complete its updates.
+                AudioWorkUnit* AudioWork;
 
                 /// @internal
                 /// @brief Gets a SoundTypeHandler by type ID if it exists, or creates a new one if it does not.
@@ -310,7 +337,7 @@ namespace Mezzanine
                 virtual String GetDefaultRecordingDeviceName();
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Inherited from Managerbase
+                // Inherited from Managerbase and Management Functions
 
                 /// @copydoc ManagerBase::Initialize()
                 virtual void Initialize();
@@ -318,6 +345,10 @@ namespace Mezzanine
                 virtual void DoMainLoopItems();
                 /// @copydoc ManagerBase::GetImplementationTypeName()
                 virtual String GetImplementationTypeName() const;
+
+                /// @brief Get the workunit this manager will use
+                /// @return An AudioWorkUnit pointer to the currently
+                AudioWorkUnit* GetAudioWorkUnit();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods

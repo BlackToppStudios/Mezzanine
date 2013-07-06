@@ -58,7 +58,8 @@ int main(int argc, char **argv)
     //Create the windows!
     Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
     Camera* FirstCam = CameraManager::GetSingletonPtr()->CreateCamera("FirstCam");
-    Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
+    //Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
+    FirstWindow->CreateViewport(FirstCam);
     FirstCam->SetLocation( Vector3(0,50,900) );
     FirstCam->LookAt( Vector3(0,0,0) );
 
