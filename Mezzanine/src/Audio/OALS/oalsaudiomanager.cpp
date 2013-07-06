@@ -783,7 +783,7 @@ namespace Mezzanine
                 return "OALSAudioManager";
             }
 
-            AudioWorkUnit *AudioManager::GetAudioWorkUnit()
+            OALS::AudioWorkUnit* AudioManager::GetAudioWorkUnit()
                 { return AudioWork; }
 
             ///////////////////////////////////////////////////////////////////////////////

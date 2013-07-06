@@ -65,7 +65,7 @@ namespace Mezzanine
             class AudioManager;
 
             /// @brief Do the work each frame for the AudioManager
-            class AudioWorkUnit : public Threading::DefaultWorkUnit
+            class MEZZ_LIB AudioWorkUnit : public Mezzanine::Audio::AudioWorkUnit
             {
                 private:
                     /// @brief The AudioManager to work with
@@ -348,7 +348,7 @@ namespace Mezzanine
 
                 /// @brief Get the workunit this manager will use
                 /// @return An AudioWorkUnit pointer to the currently
-                AudioWorkUnit* GetAudioWorkUnit();
+                virtual OALS::AudioWorkUnit* GetAudioWorkUnit();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods

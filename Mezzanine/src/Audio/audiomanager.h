@@ -51,6 +51,7 @@
 #include "audioenumerations.h"
 
 #include "Resource/datastream.h"
+#include "Threading/workunit.h"
 
 namespace Mezzanine
 {
@@ -68,6 +69,18 @@ namespace Mezzanine
         #ifdef SWIG
         %template(SingletonAudioManager) Singleton<AudioManager>;
         #endif
+
+        /// @brief Do the work each frame for some AudioManager
+        class MEZZ_LIB AudioWorkUnit : public Threading::DefaultWorkUnit
+        {
+            public:
+                /// @brief Do the work for a given AudioManager
+                /// @param CurrentThreadStorage Resources that this work unit will use.
+                virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage) = 0;
+
+                /// @brief Virtual destructor
+                virtual ~AudioWorkUnit() {}
+        };
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base manager class for the Audio subsystem and it's operations.
@@ -517,10 +530,13 @@ namespace Mezzanine
             void DestroyAllDecoderFactories();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Managerbase
+            // Inherited from Managerbase and Manager Related Tasks
 
             /// @copydoc ManagerBase::GetInterfaceType()
             virtual ManagerType GetInterfaceType() const;
+
+            /// @brief Get the WorkUnit that is currently scheduled to be run.
+            virtual AudioWorkUnit* GetAudioWorkUnit() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
