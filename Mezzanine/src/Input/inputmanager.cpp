@@ -249,9 +249,9 @@ namespace Mezzanine
         void InputManager::Initialize()
         {
             this->TheEntresol->GetScheduler().AddWorkUnit( this->DeviceUpdateWork );
-            //EventManager* EventMan = EventManager::GetSingletonPtr();
-            if( EventManager::GetSingletonPtr() )
-                this->DeviceUpdateWork->AddDependency( EventManager::GetSingletonPtr()->GetEventWorkUnit() );
+            Mezzanine::EventManager* EventMan = EventManager::GetSingletonPtr();
+            if( EventMan )
+                this->DeviceUpdateWork->AddDependency( EventMan->GetEventWorkUnit() );
 
             this->Initialized = true;
         }

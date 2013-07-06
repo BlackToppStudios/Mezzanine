@@ -1290,7 +1290,7 @@ namespace Mezzanine
             if( GraphicsMan )
                 this->SimulationWork->AddDependency( GraphicsMan->GetRenderWorkUnit() );
 
-            ActorManager* ActorMan = this->TheEntresol->GetActorManager();
+            Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
             // Debug Draw work configuration
             this->TheEntresol->GetScheduler().AddWorkUnit( this->DebugDrawWork );
             this->DebugDrawWork->AddDependency( this->SimulationWork );
