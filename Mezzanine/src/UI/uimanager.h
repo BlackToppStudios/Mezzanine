@@ -45,6 +45,7 @@
 #include "singleton.h"
 #include "UI/renderablerect.h"
 #include "Input/metacode.h"
+#include "Threading/workunit.h"
 
 namespace Mezzanine
 {
@@ -61,6 +62,40 @@ namespace Mezzanine
         class Widget;
         class Scrollbar;
         class TextureAtlas;
+        class UIManager;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a @ref iWorkUnit for the updating of widgets in the UI system.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB WidgetUpdateWorkUnit : public Threading::DefaultWorkUnit
+        {
+        protected:
+            /// @internal
+            /// @brief A pointer to the manager this work unit is processing.
+            UIManager* TargetManager;
+            /// @internal
+            /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            WidgetUpdateWorkUnit(const WidgetUpdateWorkUnit& Other);
+            /// @internal
+            /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            WidgetUpdateWorkUnit& operator=(const WidgetUpdateWorkUnit& Other);
+        public:
+            /// @brief Class constructor.
+            /// @param Target The UIManager this work unit will process during the frame.
+            WidgetUpdateWorkUnit(UIManager* Target);
+            /// @brief Class destructor.
+            virtual ~WidgetUpdateWorkUnit();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+        };//WidgetUpdateWorkUnit
 
         // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
         #ifdef SWIG
@@ -96,6 +131,8 @@ namespace Mezzanine
             typedef HotKeyContainer::const_iterator            ConstHotKeyIterator;
             typedef std::pair< Whole, Real >                   GlyphIndexResult;
         protected:
+            friend class WidgetUpdateWorkUnit;
+
             ScreenContainer Screens;
             VisibleScreenContainer VisibleScreens;
             ButtonContainer ActivatedButtons;
@@ -107,6 +144,14 @@ namespace Mezzanine
             Widget* InputCapture;
             Widget* LastWidgetSelected;
             bool ButtonAutoRegister;
+
+            /// @internal
+            /// @brief The work unit that updates all of the widgets in the UI system.
+            WidgetUpdateWorkUnit* WidgetUpdateWork;
+            /// @internal
+            /// @brief Can be used for thread safe logging and other thread specific resources.
+            Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
+
             void HoverChecks();
             void HotKeyAndInputCaptureChecks();
             void WidgetUpdates();
@@ -281,10 +326,8 @@ namespace Mezzanine
             String GetManagerTypeName() const;
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
-
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
-
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
         };//DefaultUIManagerFactory

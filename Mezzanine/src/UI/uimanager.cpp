@@ -41,6 +41,7 @@
 #define _uiuimanager_cpp
 
 #include "UI/uimanager.h"
+#include "entresol.h"
 #include "mathtool.h"
 #include "UI/textureatlas.h"
 #include "cameramanager.h"
@@ -62,33 +63,76 @@ namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // WidgetUpdateWorkUnit Methods
+
+        WidgetUpdateWorkUnit::WidgetUpdateWorkUnit(const WidgetUpdateWorkUnit& Other)
+            {  }
+
+        WidgetUpdateWorkUnit& WidgetUpdateWorkUnit::operator=(const WidgetUpdateWorkUnit& Other)
+            { return *this; }
+
+        WidgetUpdateWorkUnit::WidgetUpdateWorkUnit(UIManager* Target) :
+            TargetManager(Target) {  }
+
+        WidgetUpdateWorkUnit::~WidgetUpdateWorkUnit()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        void WidgetUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            this->TargetManager->ViewportUpdateChecks();
+            this->TargetManager->ClearButtonActivations();
+            this->TargetManager->HoverChecks();
+            this->TargetManager->HotKeyAndInputCaptureChecks();
+            this->TargetManager->WidgetUpdates();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // UIManager Methods
+
         template<> UIManager* Singleton<UIManager>::SingletonPtr = NULL;
 
-        UIManager::UIManager()
-            : HoveredWidget(NULL),
-              WidgetFocus(NULL),
-              InputCapture(NULL),
-              LastWidgetSelected(NULL),
-              ButtonAutoRegister(false)
+        UIManager::UIManager() :
+            HoveredWidget(NULL),
+            WidgetFocus(NULL),
+            InputCapture(NULL),
+            LastWidgetSelected(NULL),
+            ButtonAutoRegister(false),
+
+            WidgetUpdateWork(NULL),
+            ThreadResources(NULL)
         {
             ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
             Priority = 15;
+
+            this->WidgetUpdateWork = new WidgetUpdateWorkUnit(this);
         }
 
-        UIManager::UIManager(XML::Node& XMLNode)
-            : HoveredWidget(NULL),
-              WidgetFocus(NULL),
-              InputCapture(NULL),
-              LastWidgetSelected(NULL),
-              ButtonAutoRegister(false)
+        UIManager::UIManager(XML::Node& XMLNode) :
+            HoveredWidget(NULL),
+            WidgetFocus(NULL),
+            InputCapture(NULL),
+            LastWidgetSelected(NULL),
+            ButtonAutoRegister(false),
+
+            WidgetUpdateWork(NULL),
+            ThreadResources(NULL)
         {
             ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
             Priority = 15;
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+
+            this->WidgetUpdateWork = new WidgetUpdateWorkUnit(this);
         }
 
         UIManager::~UIManager()
         {
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->WidgetUpdateWork );
+            delete WidgetUpdateWork;
+
             DestroyAllScreens();
         }
 
@@ -489,16 +533,17 @@ namespace Mezzanine
 
         void UIManager::Initialize()
         {
+            this->TheEntresol->GetScheduler().AddWorkUnit( this->WidgetUpdateWork );
+            Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
+            if( InputMan )
+                this->WidgetUpdateWork->AddDependency( InputMan->GetDeviceUpdateWork() );
+
             Initialized = true;
         }
 
         void UIManager::DoMainLoopItems()
         {
-            ViewportUpdateChecks();
-            ClearButtonActivations();
-            HoverChecks();
-            HotKeyAndInputCaptureChecks();
-            WidgetUpdates();
+
         }
 
         ManagerBase::ManagerType UIManager::GetInterfaceType() const
