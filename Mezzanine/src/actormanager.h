@@ -50,7 +50,6 @@ namespace Mezzanine
     class ActorBase;
     class ActorRigid;
     class ActorSoft;
-    class ActorCharacter;
 
     // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
     #ifdef SWIG
@@ -65,110 +64,104 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB ActorManager : public ManagerBase, public Singleton<ActorManager>
     {
-        public:
-            typedef std::vector<ActorBase*>::iterator ActorIterator;
-            typedef std::vector<ActorBase*>::const_iterator ConstActorIterator;
-            typedef std::vector<ActorRigid*>::iterator ActorRigidIterator;
-            typedef std::vector<ActorRigid*>::const_iterator ConstActorRigidIterator;
-            typedef std::vector<ActorSoft*>::iterator ActorSoftIterator;
-            typedef std::vector<ActorSoft*>::const_iterator ConstActorSoftIterator;
-            typedef std::vector<ActorCharacter*>::iterator ActorCharacterIterator;
-            typedef std::vector<ActorCharacter*>::const_iterator ConstActorCharacterIterator;
-        protected:
-            /// @brief The actual actor container
-            std::vector<ActorBase*> Actors;
+    public:
+        typedef std::vector<ActorBase*>              ActorContainer;
+        typedef ActorContainer::iterator             ActorIterator;
+        typedef ActorContainer::const_iterator       ConstActorIterator;
+        typedef std::vector<ActorRigid*>             ActorRigidContainer;
+        typedef ActorRigidContainer::iterator        ActorRigidIterator;
+        typedef ActorRigidContainer::const_iterator  ConstActorRigidIterator;
+        typedef std::vector<ActorSoft*>              ActorSoftContainer;
+        typedef ActorSoftContainer::iterator         ActorSoftIterator;
+        typedef ActorSoftContainer::const_iterator   ConstActorSoftIterator;
+    protected:
+        /// @brief The actual actor container
+        ActorContainer Actors;
+        /// @brief A Second listing of All the Rigid actors
+        ActorRigidContainer RigidActors;
+        /// @brief A Second listing of All the Soft actors
+        ActorSoftContainer SoftActors;
+    public:
+        /// @brief Class constructor.
+        ActorManager();
+        /// @brief XML constructor.
+        /// @param XMLNode The node of the xml document to construct from.
+        ActorManager(XML::Node& XMLNode);
+        /// @brief Class destructor.
+        virtual ~ActorManager();
 
-            /// @brief A Second listing of All the Rigid actors
-            std::vector<ActorRigid*> RigidActors;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Managing all actors
 
-            /// @brief A Second listing of All the Soft actors
-            std::vector<ActorSoft*> SoftActors;
+        /// @brief Gets an Actor by Index.
+        /// @param Index The index of the actor you wish to retrieve.
+        /// @return Returns a pointer to the actor at the specified index.
+        virtual ActorBase* GetActor(const Whole& Index);
+        /// @brief Gets an Actor by Name.
+        /// @param Name The name of the actor you wish to retrieve.
+        /// @return Returns a pointer to the actor of the specified name.
+        virtual ActorBase* GetActor(const String& Name);
+        /// @brief Gets the number of actors stored in this manager.
+        /// @return Returns a whole representing the current actor count.
+        virtual Whole GetNumActors() const;
+        /// @brief Adds a pre-created actor to the manager.
+        /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
+        /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
+        /// function facilitates this. @n
+        /// This function is also necessary for anyone inheriting from our actors to add their actors to the world.
+        /// @param Actor The actor to be added to the manager.
+        virtual void AddActor(ActorBase* Actor);
+        /// @brief Removes an actor from this manager without destroying it.
+        /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
+        /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
+        /// function facilitates this. @n
+        /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
+        /// @param Index The index at which to remove the actor.
+        virtual void RemoveActor(const Whole& Index);
+        /// @brief Removes an actor from this manager without destroying it.
+        /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
+        /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
+        /// function facilitates this. @n
+        /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
+        /// @param ToBeRemoved The actor to be removed from the manager.
+        virtual void RemoveActor(ActorBase* ToBeRemoved);
+        /// @brief Removes all actors from this manager without destroying them.
+        virtual void RemoveAllActors();
+        /// @brief Destroys an actor at the specified index.
+        /// @param Index The index at which to destroy the actor.
+        virtual void DestroyActor(const Whole& Index);
+        /// @brief Destroys an actor.
+        /// @param ToBeDestroyed The actor to be destroyed.
+        virtual void DestroyActor(ActorBase* ToBeDestroyed);
+        /// @brief Destroys all actors currently within this manager.
+        virtual void DestroyAllActors();
 
-            /// @brief A Second listing of All the Character actors
-            std::vector<ActorCharacter*> CharacterActors;
-        public:
-            /// @brief Class constructor.
-            ActorManager();
+        ///////////////////////////////////////////////////////////////////////////////
+        // ActorRigid Management
 
-            /// @brief XML constructor.
-            /// @param XMLNode The node of the xml document to construct from.
-            ActorManager(XML::Node& XMLNode);
+        ///////////////////////////////////////////////////////////////////////////////
+        // ActorSoft Management
 
-            /// @brief Class destructor.
-            virtual ~ActorManager();
+        ///////////////////////////////////////////////////////////////////////////////
+        // ActorCharacter Management
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Managing all actors
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            /// @brief Gets an Actor by Index.
-            /// @param Index The index of the actor you wish to retrieve.
-            /// @return Returns a pointer to the actor at the specified index.
-            virtual ActorBase* GetActor(const Whole& Index);
-            /// @brief Gets an Actor by Name.
-            /// @param Name The name of the actor you wish to retrieve.
-            /// @return Returns a pointer to the actor of the specified name.
-            virtual ActorBase* GetActor(const String& Name);
-            /// @brief Gets the number of actors stored in this manager.
-            /// @return Returns a whole representing the current actor count.
-            virtual Whole GetNumActors() const;
-            /// @brief Adds a pre-created actor to the manager.
-            /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
-            /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
-            /// function facilitates this. @n
-            /// This function is also necessary for anyone inheriting from our actors to add their actors to the world.
-            /// @param Actor The actor to be added to the manager.
-            virtual void AddActor(ActorBase* Actor);
-            /// @brief Removes an actor from this manager without destroying it.
-            /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
-            /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
-            /// function facilitates this. @n
-            /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
-            /// @param Index The index at which to remove the actor.
-            virtual void RemoveActor(const Whole& Index);
-            /// @brief Removes an actor from this manager without destroying it.
-            /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
-            /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
-            /// function facilitates this. @n
-            /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
-            /// @param ToBeRemoved The actor to be removed from the manager.
-            virtual void RemoveActor(ActorBase* ToBeRemoved);
-            /// @brief Removes all actors from this manager without destroying them.
-            virtual void RemoveAllActors();
-            /// @brief Destroys an actor at the specified index.
-            /// @param Index The index at which to destroy the actor.
-            virtual void DestroyActor(const Whole& Index);
-            /// @brief Destroys an actor.
-            /// @param ToBeDestroyed The actor to be destroyed.
-            virtual void DestroyActor(ActorBase* ToBeDestroyed);
-            /// @brief Destroys all actors currently within this manager.
-            virtual void DestroyAllActors();
+        /// @brief Calls to update every actor currently stored in the manager.
+        virtual void UpdateAllActors();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // ActorRigid Management
+        ///////////////////////////////////////////////////////////////////////////////
+        //Inherited from ManagerBase
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // ActorSoft Management
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // ActorCharacter Management
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            /// @brief Calls to update every actor currently stored in the manager.
-            virtual void UpdateAllActors();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            //Inherited from ManagerBase
-
-            /// @copydoc ManagerBase::Initialize()
-            virtual void Initialize();
-            /// @copydoc ManagerBase::DoMainLoopItems()
-            virtual void DoMainLoopItems();
-            /// @copydoc ManagerBase::GetInterfaceType()
-            virtual ManagerType GetInterfaceType() const;
-            /// @copydoc ManagerBase::GetImplementationTypeName()
-            virtual String GetImplementationTypeName() const;
+        /// @copydoc ManagerBase::Initialize()
+        virtual void Initialize();
+        /// @copydoc ManagerBase::DoMainLoopItems()
+        virtual void DoMainLoopItems();
+        /// @copydoc ManagerBase::GetInterfaceType()
+        virtual ManagerType GetInterfaceType() const;
+        /// @copydoc ManagerBase::GetImplementationTypeName()
+        virtual String GetImplementationTypeName() const;
     };//ActorManager
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -178,22 +171,22 @@ namespace Mezzanine
     ///////////////////////////////////////
     class DefaultActorManagerFactory : public ManagerFactory
     {
-        public:
-            /// @brief Class constructor.
-            DefaultActorManagerFactory();
-            /// @brief Class destructor.
-            virtual ~DefaultActorManagerFactory();
+    public:
+        /// @brief Class constructor.
+        DefaultActorManagerFactory();
+        /// @brief Class destructor.
+        virtual ~DefaultActorManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::GetManagerTypeName()
+        String GetManagerTypeName() const;
+        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+        ManagerBase* CreateManager(NameValuePairList& Params);
 
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
+        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+        ManagerBase* CreateManager(XML::Node& XMLNode);
 
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+        void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultActorManagerFactory
 }//Mezzanine
 
