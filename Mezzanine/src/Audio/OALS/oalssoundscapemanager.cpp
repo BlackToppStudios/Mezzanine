@@ -46,6 +46,8 @@
 
 #define OALS_STRUCTS_DECLARED
 
+#include "Audio/rawdecoderfactory.h"
+
 #include "Audio/OALS/oalssoundscapemanager.h"
 #include "Audio/OALS/oalslistener.h"
 #include "Audio/OALS/oalssoundproxy.h"
@@ -53,7 +55,7 @@
 
 #include "Audio/OALS/oalsaudiomanager.h"
 
-#include "Audio/rawdecoderfactory.h"
+//#include "Audio/rawdecoderfactory.h"
 
 #include "entresol.h"
 #include "stringtool.h"
