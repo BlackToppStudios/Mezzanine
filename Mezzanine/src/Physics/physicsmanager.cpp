@@ -366,6 +366,83 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////
+        // AreaEffectUpdateWorkUnit functions
+
+        AreaEffectUpdateWorkUnit::AreaEffectUpdateWorkUnit(const AreaEffectUpdateWorkUnit& Other)
+            {  }
+
+        AreaEffectUpdateWorkUnit& AreaEffectUpdateWorkUnit::operator=(const AreaEffectUpdateWorkUnit& Other)
+            { return *this; }
+
+        AreaEffectUpdateWorkUnit::AreaEffectUpdateWorkUnit(PhysicsManager* Target) :
+            TargetManager(Target) {  }
+
+        AreaEffectUpdateWorkUnit::~AreaEffectUpdateWorkUnit()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        void AreaEffectUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            // No real logging necessary
+            this->TargetManager->ProcessAllEffects();
+        }
+
+        ///////////////////////////////////////////////////////////
+        // WorldTriggerUpdate functions
+
+        WorldTriggerUpdateWorkUnit::WorldTriggerUpdateWorkUnit(const WorldTriggerUpdateWorkUnit& Other)
+            {  }
+
+        WorldTriggerUpdateWorkUnit& WorldTriggerUpdateWorkUnit::operator=(const WorldTriggerUpdateWorkUnit& Other)
+            { return *this; }
+
+        WorldTriggerUpdateWorkUnit::WorldTriggerUpdateWorkUnit(PhysicsManager* Target) :
+            TargetManager(Target) {  }
+
+        WorldTriggerUpdateWorkUnit::~WorldTriggerUpdateWorkUnit()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        void WorldTriggerUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            // No real logging necessary
+            this->TargetManager->ProcessAllTriggers();
+        }
+
+        ///////////////////////////////////////////////////////////
+        // DebugDrawWorkUnit functions
+
+        DebugDrawWorkUnit::DebugDrawWorkUnit(const DebugDrawWorkUnit& Other)
+            {  }
+
+        DebugDrawWorkUnit& DebugDrawWorkUnit::operator=(const DebugDrawWorkUnit& Other)
+            { return *this; }
+
+        DebugDrawWorkUnit::DebugDrawWorkUnit(PhysicsManager* Target) :
+            TargetManager(Target) {  }
+
+        DebugDrawWorkUnit::~DebugDrawWorkUnit()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        void DebugDrawWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            // No real logging necessary
+            debug::InternalDebugDrawer* Drawer = this->TargetManager->BulletDrawer;
+            if( Drawer && Drawer->getDebugMode() )        //this part is responsible for drawing the wireframes
+            {
+                Drawer->PrepareForRendering();
+                this->TargetManager->BulletDynamicsWorld->debugDrawWorld();
+            }
+        }
+
+        ///////////////////////////////////////////////////////////
         // Physicsmanager functions
 
         template<> PhysicsManager* Singleton<PhysicsManager>::SingletonPtr = NULL;
@@ -387,6 +464,9 @@ namespace Mezzanine
             BulletDrawer(NULL),
 
             SimulationWork(NULL),
+            AreaEffectUpdateWork(NULL),
+            WorldTriggerUpdateWork(NULL),
+            DebugDrawWork(NULL),
             ThreadResources(NULL)
         {
             ManagerConstructionInfo Info;
@@ -411,6 +491,9 @@ namespace Mezzanine
             BulletDrawer(NULL),
 
             SimulationWork(NULL),
+            AreaEffectUpdateWork(NULL),
+            WorldTriggerUpdateWork(NULL),
+            DebugDrawWork(NULL),
             ThreadResources(NULL)
         {
             this->Construct(Info);
@@ -433,6 +516,9 @@ namespace Mezzanine
             BulletDrawer(NULL),
 
             SimulationWork(NULL),
+            AreaEffectUpdateWork(NULL),
+            WorldTriggerUpdateWork(NULL),
+            DebugDrawWork(NULL),
             ThreadResources(NULL)
         {
             ManagerConstructionInfo Info;
@@ -522,6 +608,18 @@ namespace Mezzanine
             if(BulletDrawer) delete BulletDrawer;
             if(BulletSolverThreads) delete BulletSolverThreads;
             if(BulletDispatcherThreads) delete BulletDispatcherThreads;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->SimulationWork );
+            delete SimulationWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->AreaEffectUpdateWork );
+            delete AreaEffectUpdateWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->WorldTriggerUpdateWork );
+            delete WorldTriggerUpdateWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->DebugDrawWork );
+            delete DebugDrawWork;
         }
 
         void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
@@ -612,6 +710,9 @@ namespace Mezzanine
             }else{
                 this->SimulationWork = new SimulationWorkUnit(this);
             }
+            this->AreaEffectUpdateWork = new AreaEffectUpdateWorkUnit(this);
+            this->WorldTriggerUpdateWork = new WorldTriggerUpdateWorkUnit(this);
+            this->DebugDrawWork = new DebugDrawWorkUnit(this);
 
             // Configure the extra data
             btGImpactCollisionAlgorithm::registerAlgorithm(this->BulletDispatcher);
@@ -1089,6 +1190,22 @@ namespace Mezzanine
             if(BulletSolverThreads) delete BulletSolverThreads;
             if(BulletDispatcherThreads) delete BulletDispatcherThreads;
 
+            /*Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
+            if( GraphicsMan ) {
+                this->SimulationWork->RemoveDependency( GraphicsMan->GetRenderWorkUnit() );
+            }//*/
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->SimulationWork );
+            delete SimulationWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->AreaEffectUpdateWork );
+            delete AreaEffectUpdateWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->WorldTriggerUpdateWork );
+            delete WorldTriggerUpdateWork;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->DebugDrawWork );
+            delete DebugDrawWork;
+
             if(Info) this->Construct(*Info);
             else this->Construct(WorldConstructionInfo);
             if(DebugOn)
@@ -1128,31 +1245,32 @@ namespace Mezzanine
             SubstepModifier = Modifier;
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Inherited from Managerbase
-
-        void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
+        Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()
         {
-            if(SimulationPaused)
-                return;
+            return this->SimulationWork;
+        }
 
-            //ProcessAllCollisions();
+        AreaEffectUpdateWorkUnit* PhysicsManager::GetAreaEffectUpdateWork()
+        {
+            return this->AreaEffectUpdateWork;
+        }
 
-            ProcessAllEffects();
+        WorldTriggerUpdateWorkUnit* PhysicsManager::GetWorldTriggerUpdateWork()
+        {
+            return this->WorldTriggerUpdateWork;
+        }
 
-            ProcessAllTriggers();
-
-            // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
-            //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
-
-            if( this->BulletDrawer && this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
-            {
-                this->BulletDrawer->PrepareForRendering();
-                this->BulletDynamicsWorld->debugDrawWorld();
-            }
+        DebugDrawWorkUnit* PhysicsManager::GetDebugDrawWork()
+        {
+            return this->DebugDrawWork;
         }
 
         btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
+        {
+            return this->BulletDynamicsWorld;
+        }
+
+        const btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer() const
         {
             return this->BulletDynamicsWorld;
         }
@@ -1162,21 +1280,34 @@ namespace Mezzanine
 
         void PhysicsManager::Initialize()
         {
+            // Simulation work configuration
             if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                 this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
             }else{
-                this->TheEntresol->GetScheduler().AddWorkUnit(this->SimulationWork);
+                this->TheEntresol->GetScheduler().AddWorkUnit( this->SimulationWork );
             }
             Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
             if( GraphicsMan )
                 this->SimulationWork->AddDependency( GraphicsMan->GetRenderWorkUnit() );
+
+            // Debug Draw work configuration
+            this->TheEntresol->GetScheduler().AddWorkUnit( this->DebugDrawWork );
+            this->DebugDrawWork->AddDependency( this->SimulationWork );
+
+            // World Trigger Update work configuration
+            this->TheEntresol->GetScheduler().AddWorkUnit( this->WorldTriggerUpdateWork );
+            this->WorldTriggerUpdateWork->AddDependency( this->SimulationWork );
+
+            // Area Effect Update work configuration
+            this->TheEntresol->GetScheduler().AddWorkUnit( this->AreaEffectUpdateWork );
+            this->AreaEffectUpdateWork->AddDependency( this->DebugDrawWork );
 
             Initialized = true;
         }
 
         void PhysicsManager::DoMainLoopItems()
         {
-            this->DoMainLoopItems(this->TheEntresol->GetFrameTimeMilliseconds());
+
         }
 
         ManagerBase::ManagerType PhysicsManager::GetInterfaceType() const

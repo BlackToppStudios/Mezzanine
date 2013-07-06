@@ -791,9 +791,10 @@ namespace Mezzanine
                 #endif
                 crossplatform::WaitMilliseconds( SleepTime );
             }//*/
-            this->FrameTime = FrameTimer->getMicroseconds();
 
             WorkScheduler.WaitUntilNextFrame(); //6
+
+            this->FrameTime = FrameTimer->getMicroseconds();
         }//End of main loop
 
         ManualLoopBreak = 0;
