@@ -510,6 +510,11 @@ namespace Mezzanine
             }
         }
 
+        WidgetUpdateWorkUnit* UIManager::GetWidgetUpdateWork()
+        {
+            return this->WidgetUpdateWork;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Fetch Methods
 

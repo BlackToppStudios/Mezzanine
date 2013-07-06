@@ -268,6 +268,10 @@ namespace Mezzanine
             /// @return Returns a std::pair, First is a whole for the Glyph index and second is a Real for the scaling that should be provided to it.
             GlyphIndexResult SuggestGlyphIndex(const Whole& Height, const String& Atlas);
 
+            /// @brief Gets the work unit responsible for updating the widgets in this manager.
+            /// @return Returns a pointer to the WidgetUpdateWorkUnit used by this manager.
+            WidgetUpdateWorkUnit* GetWidgetUpdateWork();
+
             ///////////////////////////////////////////////////////////////////////////////
             // Fetch Methods
 
