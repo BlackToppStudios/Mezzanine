@@ -127,8 +127,7 @@
 #include "timer.h"
 #include "timermanager.h"
 #include "transform.h"                  // done
-#include "ui.h"
-#include "uimanager.h"
+#include "UI/ui.h"
 #include "vector2.h"                    // done
 #endif // \no SWIG
 

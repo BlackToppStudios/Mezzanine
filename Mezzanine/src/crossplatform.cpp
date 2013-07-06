@@ -46,7 +46,7 @@
 #include "crossplatform.h"
 #include "entresol.h"
 #include "Graphics/graphicsmanager.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "Graphics/gamewindow.h"
 
 

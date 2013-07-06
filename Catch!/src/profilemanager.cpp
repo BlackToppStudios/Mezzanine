@@ -129,7 +129,7 @@ ProfileManager::~ProfileManager()
 void ProfileManager::PopulateLevelList(GameProfile* Profile)
 {
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    UIManager* UIMan = UIManager::GetSingletonPtr();
+    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     UI::PagedCellGrid* Grid = GetLevelGrid();
 
     Grid->DestroyAllCells();
@@ -266,7 +266,7 @@ GameProfile* ProfileManager::GetActiveProfile() const
 
 UI::PagedCellGrid* ProfileManager::GetLevelGrid() const
 {
-    UI::Menu* MainMenu = static_cast<UI::Menu*>( UIManager::GetSingletonPtr()->GetScreen("MainMenuScreen")->GetWidget("MS_Menu") );
+    UI::Menu* MainMenu = static_cast<UI::Menu*>( UI::UIManager::GetSingletonPtr()->GetScreen("MainMenuScreen")->GetWidget("MS_Menu") );
     UI::PagedCellGrid* Grid = static_cast<UI::PagedCellGrid*>( MainMenu->GetRootWindow()->GetChildMenuWindow("MS_LevelSelectWin")->GetWidget("MS_LevelGrid") );
     return Grid;
 }

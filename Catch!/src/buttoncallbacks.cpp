@@ -19,7 +19,7 @@ void GSStore::DoHoverItems()
 void GSStore::DoActivateItems()
 {
     CatchApp* App = CatchApp::GetCatchAppPointer();
-    UIManager* UIMan = UIManager::GetSingletonPtr();
+    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     UI::Screen* screen = UIMan->GetScreen("GameScreen");
     UI::Widget* itemshop = screen->GetWidget("GS_ItemShop");
 
@@ -57,7 +57,7 @@ void GSMenu::DoHoverItems()
 void GSMenu::DoActivateItems()
 {
     CatchApp* App = CatchApp::GetCatchAppPointer();
-    UIManager* UIMan = UIManager::GetSingletonPtr();
+    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     UI::Screen* screen = UIMan->GetScreen("GameScreen");
     UI::Widget* gamemenu = screen->GetWidget("GS_GameMenu");
 
@@ -95,7 +95,7 @@ void GSReturn::DoHoverItems()
 void GSReturn::DoActivateItems()
 {
     CatchApp* App = CatchApp::GetCatchAppPointer();
-    UIManager* UIMan = UIManager::GetSingletonPtr();
+    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     UI::Screen* screen = UIMan->GetScreen("GameScreen");
     UI::Widget* gamemenu = screen->GetWidget("GS_GameMenu");
     gamemenu->Hide();
@@ -131,7 +131,7 @@ void GSISReturn::DoHoverItems()
 void GSISReturn::DoActivateItems()
 {
     CatchApp* App = CatchApp::GetCatchAppPointer();
-    UIManager* UIMan = UIManager::GetSingletonPtr();
+    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     UI::Screen* screen = UIMan->GetScreen("GameScreen");
     UI::Widget* itemshop = screen->GetWidget("GS_ItemShop");
     itemshop->Hide();
@@ -321,7 +321,7 @@ void OptsVideoApply::DoActivateItems()
     // Apply the resolution and fullscreen settings
     Graphics::GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->SetRenderOptions(NewSettings);
     // Apply other settings
-    UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetWidget("GS_Stats")->SetVisible(FPSStatsBox->IsChecked());
+    UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetWidget("GS_Stats")->SetVisible(FPSStatsBox->IsChecked());
 }
 
 void OptsVideoApply::DoPreUpdateItems()

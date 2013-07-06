@@ -288,7 +288,7 @@ void OptsVideoStats::DoPostUpdateItems()
 
 void OptsVideoStats::DoVisibilityChangeItems()
 {
-    bool Stats = UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetWidget("GS_Stats")->GetVisible();
+    bool Stats = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetWidget("GS_Stats")->GetVisible();
     UI::CheckBox* StatsCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(Stats != StatsCheck->IsChecked())
         StatsCheck->ManualCheck(Stats);

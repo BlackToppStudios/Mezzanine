@@ -47,10 +47,10 @@
 
 namespace Mezzanine
 {
-    class UIManager;
     namespace UI
     {
         class ScreenVertexData;
+        class UIManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Rectangle
         /// @headerfile uirectangle.h

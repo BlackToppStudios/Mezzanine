@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uimanager_h
-#define _uimanager_h
+#ifndef _uiuimanager_h
+#define _uiuimanager_h
 
 #include "managerbase.h"
 #include "managerfactory.h"
@@ -61,41 +61,40 @@ namespace Mezzanine
         class Widget;
         class Scrollbar;
         class TextureAtlas;
-    }
 
-    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
-    #ifdef SWIG
-    %template(SingletonUIManager) Singleton<UIManager>;
-    #endif
+        // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+        #ifdef SWIG
+        %template(SingletonUIManager) Singleton<UIManager>;
+        #endif
 
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class UIManager
-    /// @headerfile uimanager.h
-    /// @brief This class is responsible for any and all user interactions with the User interface/HUD.
-    /// @details Currently, you have to create the UI/HUD in code.  Font and sprite data is loaded through a premade mta file(*.mta).
-    ///////////////////////////////////////
-    class MEZZ_LIB UIManager : public ManagerBase, public Singleton<UIManager>
-    {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class UIManager
+        /// @headerfile uimanager.h
+        /// @brief This class is responsible for any and all user interactions with the User interface/HUD.
+        /// @details Currently, you have to create the UI/HUD in code.  Font and sprite data is loaded through a premade mta file(*.mta).
+        ///////////////////////////////////////
+        class MEZZ_LIB UIManager : public ManagerBase, public Singleton<UIManager>
+        {
         public:
-            typedef std::vector< UI::Screen* >                     ScreenContainer;
-            typedef ScreenContainer::iterator                      ScreenIterator;
-            typedef ScreenContainer::const_iterator                ConstScreenIterator;
-            typedef std::map< Graphics::Viewport*, UI::Screen* >   VisibleScreenContainer;
-            typedef VisibleScreenContainer::iterator               VisibleScreenIterator;
-            typedef VisibleScreenContainer::const_iterator         ConstVisibleScreenIterator;
-            typedef std::vector< UI::Button* >                     ButtonContainer;
-            typedef ButtonContainer::iterator                      ButtonIterator;
-            typedef ButtonContainer::const_iterator                ConstButtonIterator;
-            typedef std::vector< Input::InputCode >                CodeContainer;
-            typedef CodeContainer::iterator                        CodeIterator;
-            typedef CodeContainer::const_iterator                  ConstCodeIterator;
-            typedef std::map< String, UI::TextureAtlas* >          AtlasContainer;
-            typedef AtlasContainer::iterator                       AtlasIterator;
-            typedef AtlasContainer::const_iterator                 ConstAtlasIterator;
-            typedef std::multimap< Input::InputCode, UI::Button* > HotKeyContainer;
-            typedef HotKeyContainer::iterator                      HotKeyIterator;
-            typedef HotKeyContainer::const_iterator                ConstHotKeyIterator;
-            typedef std::pair< Whole, Real >                       GlyphIndexResult;
+            typedef std::vector< Screen* >                     ScreenContainer;
+            typedef ScreenContainer::iterator                  ScreenIterator;
+            typedef ScreenContainer::const_iterator            ConstScreenIterator;
+            typedef std::map< Graphics::Viewport*, Screen* >   VisibleScreenContainer;
+            typedef VisibleScreenContainer::iterator           VisibleScreenIterator;
+            typedef VisibleScreenContainer::const_iterator     ConstVisibleScreenIterator;
+            typedef std::vector< Button* >                     ButtonContainer;
+            typedef ButtonContainer::iterator                  ButtonIterator;
+            typedef ButtonContainer::const_iterator            ConstButtonIterator;
+            typedef std::vector< Input::InputCode >            CodeContainer;
+            typedef CodeContainer::iterator                    CodeIterator;
+            typedef CodeContainer::const_iterator              ConstCodeIterator;
+            typedef std::map< String, TextureAtlas* >          AtlasContainer;
+            typedef AtlasContainer::iterator                   AtlasIterator;
+            typedef AtlasContainer::const_iterator             ConstAtlasIterator;
+            typedef std::multimap< Input::InputCode, Button* > HotKeyContainer;
+            typedef HotKeyContainer::iterator                  HotKeyIterator;
+            typedef HotKeyContainer::const_iterator            ConstHotKeyIterator;
+            typedef std::pair< Whole, Real >                   GlyphIndexResult;
         protected:
             ScreenContainer Screens;
             VisibleScreenContainer VisibleScreens;
@@ -103,40 +102,38 @@ namespace Mezzanine
             CodeContainer AutoRegisterCodes;
             AtlasContainer Atlases;
             HotKeyContainer HotKeys;
-            UI::Widget* HoveredWidget;
-            UI::Widget* WidgetFocus;
-            UI::Widget* InputCapture;
-            UI::Widget* LastWidgetSelected;
+            Widget* HoveredWidget;
+            Widget* WidgetFocus;
+            Widget* InputCapture;
+            Widget* LastWidgetSelected;
             bool ButtonAutoRegister;
             void HoverChecks();
             void HotKeyAndInputCaptureChecks();
             void WidgetUpdates();
             void ClearButtonActivations();
             void ViewportUpdateChecks();
-            void MouseActivationCheck(UI::Button* ToCheck);
+            void MouseActivationCheck(Button* ToCheck);
             void HotKeyActivationCheck(const Input::InputCode& Code);
         public:
             /// @brief Class Constructor.
             UIManager();
-
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             UIManager(XML::Node& XMLNode);
-
             /// @brief Class Destructor.
             ~UIManager();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Texture Atlas Management
 
-            /// @brief Loads a Mezzanine Texture Atlas file for use with UI::Screen's.
+            /// @brief Loads a Mezzanine Texture Atlas file for use with Screens.
             /// @param Name The name of the file to be loaded, not including the extension.
             /// @param Group The resource group where the MTA file can be found.
             void LoadMTA(const String& Name, const String& Group = "UI");
             /// @brief Gets a loaded Atlas being stored in this manager.
             /// @param AtlasName The name of the Atlas, which is usually the name of the file without the extension.
             /// @return Returns a pointer to the requested Atlas, or NULL if it doesn't exist.
-            UI::TextureAtlas* GetAtlas(const String& AtlasName);
+            TextureAtlas* GetAtlas(const String& AtlasName);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Screen Management
@@ -147,27 +144,27 @@ namespace Mezzanine
             /// @param ScreenName The name to be given to the screen.
             /// @param Atlas The name of a previously loaded mta file to be used with this screen.
             /// @param WindowViewport The viewport to create this screen in.
-            UI::Screen* CreateScreen(const String& ScreenName, const String& Atlas, Graphics::Viewport* WindowViewport);
+            Screen* CreateScreen(const String& ScreenName, const String& Atlas, Graphics::Viewport* WindowViewport);
             /// @brief Gets an already created screen by name.
             /// @return Returns a pointer to the screen of the specified name.
-            UI::Screen* GetScreen(const String& Name);
+            Screen* GetScreen(const String& Name);
             /// @brief Gets an already created screen by index.
             /// @return Returns a pointer to the screen at the specified index.
-            UI::Screen* GetScreen(const Whole& Index);
+            Screen* GetScreen(const Whole& Index);
             /// @brief Gets the number of screens created and stored in this manager.
             /// @return Returns the number of screens this manager is storing.
             Whole GetNumScreens();
             /// @brief Deletes a screen and removes all trace of it from the manager.
             /// @details Destroying a screen will also destroy all of it's layers, and everything contained in those layers.
             /// @param Screen The screen to be destroyed.
-            void DestroyScreen(UI::Screen* Screen);
+            void DestroyScreen(Screen* Screen);
             /// @brief Deletes all screens stored in this manager.
             void DestroyAllScreens();
 
             /// @brief Gets the currently visible screen on the provided viewport.
             /// @param WindowViewport The viewport to check for a visible screen.
             /// @return Returns a pointer to the screen currently being shown on the requested viewport.
-            UI::Screen* GetVisibleScreenOnViewport(Graphics::Viewport* WindowViewport);
+            Screen* GetVisibleScreenOnViewport(Graphics::Viewport* WindowViewport);
 
             ///////////////////////////////////////////////////////////////////////////////
             // HotKey and Activation Management
@@ -176,11 +173,11 @@ namespace Mezzanine
             /// @details This function allows buttons to behave like they are pressed without mouse input.
             /// @param HotKey The key or button (on the input device) to activate the button.
             /// @param BoundButton The button being bound to the hotkey.
-            void BindHotKey(const Input::InputCode& HotKey, UI::Button* BoundButton);
+            void BindHotKey(const Input::InputCode& HotKey, Button* BoundButton);
             /// @brief Removes a previously set hotkey binding.
             /// @param HotKey The key or button (on the input device) to activate the button.
             /// @param BoundButton The button currently bound to the hotkey.
-            void UnbindHotKey(const Input::InputCode& HotKey, UI::Button* BoundButton);
+            void UnbindHotKey(const Input::InputCode& HotKey, Button* BoundButton);
             /// @brief Clears all registered hotkeys.
             void RemoveAllHotKeys();
 
@@ -215,7 +212,7 @@ namespace Mezzanine
             /// @details This is called automatically once every frame.  Should only be called on manually if
             /// you need more then one check per frame.
             /// @return Returns the widget clicked if there is one, NULL if not.
-            UI::Widget* CheckWidgetMouseIsOver();
+            Widget* CheckWidgetMouseIsOver();
             /// @brief Checks to see if the mouse is over a UI element.
             /// @details This should only be called on after this manager does it's main loop items for best results.
             /// @return Returns true if the mouse is over a visable UI element, false if not.
@@ -232,16 +229,16 @@ namespace Mezzanine
             /// @brief Gets the Widget the mouse is hovering over.
             /// @details If the widget found during widget checks belongs to a widget, this will get that widget.
             /// @return Returns a pointer to the widget, or NULL if it's not over any visable buttons.
-            UI::Widget* GetHoveredWidget();
+            Widget* GetHoveredWidget();
             /// @brief Gets the current widget being controlled.
             /// @details The widget control is used mostly for manipulating widgets while the mouse is not
             /// currently hovering over them, such as the click and drag action of scrollbars and resizing windows.
             /// @return Returns a pointer to the currently controlled widget, or NULL if none are being controlled this frame.
-            UI::Widget* GetWidgetFocus();
+            Widget* GetWidgetFocus();
             /// @brief Gets the widget that is currently capturing input.
             /// @details A widget that is currently capturing input will prevent hotkeys from working while active.
             /// @return Returns a pointer to the widget that currently capturing input, or NULL if no widget is capturing input.
-            UI::Widget* GetWidgetCapturingInput();
+            Widget* GetWidgetCapturingInput();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from ManagerBase
@@ -264,16 +261,16 @@ namespace Mezzanine
             /// other screens so they are hidden when this screen becomes visible.
             /// @param BeingShown The screen being set to visible.
             /// @param Visible The state of the screen's visibility.
-            void _NotifyScreenVisibility(UI::Screen* BeingShown, bool Visible);
-    };//UIManager
+            void _NotifyScreenVisibility(Screen* BeingShown, bool Visible);
+        };//UIManager
 
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class DefaultUIManagerFactory
-    /// @headerfile uimanager.h
-    /// @brief A factory responsible for the creation and destruction of the default uimanager.
-    ///////////////////////////////////////
-    class MEZZ_LIB DefaultUIManagerFactory : public ManagerFactory
-    {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class DefaultUIManagerFactory
+        /// @headerfile uimanager.h
+        /// @brief A factory responsible for the creation and destruction of the default uimanager.
+        ///////////////////////////////////////
+        class MEZZ_LIB DefaultUIManagerFactory : public ManagerFactory
+        {
         public:
             /// @brief Class constructor.
             DefaultUIManagerFactory();
@@ -290,7 +287,8 @@ namespace Mezzanine
 
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
-    };//DefaultUIManagerFactory
+        };//DefaultUIManagerFactory
+    }//UI
 }//Mezzanine
 
 #endif

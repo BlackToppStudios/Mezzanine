@@ -42,7 +42,7 @@
 
 #include "UI/markuptext.h"
 #include "UI/screen.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/viewportupdatetool.h"
 #include "entresol.h"
 #include "stringtool.h"

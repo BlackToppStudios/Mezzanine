@@ -46,11 +46,11 @@
 
 namespace Mezzanine
 {
-    class UIManager;
     namespace UI
     {
         class VertexData;
         class ScreenVertexData;
+        class UIManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class LineList
         /// @headerfile uilinelist.h

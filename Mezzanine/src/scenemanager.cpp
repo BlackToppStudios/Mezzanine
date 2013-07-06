@@ -47,7 +47,7 @@
 #include "entresol.h"
 #include "plane.h"
 #include "particleeffect.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "stringtool.h"
 #include "worldnode.h"
 

@@ -195,7 +195,7 @@ namespace Mezzanine
         if(this->GetSceneManager()==0)
             { this->AddManager(new SceneManager(SceneType)); }
         if(this->GetUIManager()==0)
-            { this->AddManager(new UIManager()); }
+            { this->AddManager(new UI::UIManager()); }
         if(this->GetTimerManager()==0)
             { this->AddManager(new TimerManager()); }
         if(this->GetMeshManager()==0)
@@ -944,7 +944,7 @@ namespace Mezzanine
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultTimerManagerFactory());
         //DefaultUIManager
         ManIt = ManagerFactories.find("DefaultUIManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultUIManagerFactory());
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new UI::DefaultUIManagerFactory());
 
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
         //OALSAudioManager
@@ -1203,9 +1203,9 @@ namespace Mezzanine
         return dynamic_cast<TimerManager*> (this->GetManager(ManagerBase::TimerManager, WhichOne));
     }
 
-    UIManager* Entresol::GetUIManager(const UInt16 WhichOne)
+    UI::UIManager* Entresol::GetUIManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<UIManager*> (this->GetManager(ManagerBase::UIManager, WhichOne));
+        return dynamic_cast<UI::UIManager*> (this->GetManager(ManagerBase::UIManager, WhichOne));
     }
 
 }
