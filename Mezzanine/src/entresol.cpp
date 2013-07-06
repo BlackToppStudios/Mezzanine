@@ -189,7 +189,7 @@ namespace Mezzanine
         if(this->GetEventManager()==0)
             { this->AddManager(new EventManager()); }
         if(this->GetInputManager()==0)
-            { this->AddManager(new InputManager()); }
+            { this->AddManager(new Input::InputManager()); }
         if(this->GetPhysicsManager()==0)
             { this->AddManager(new Physics::PhysicsManager(PhysicsInfo)); }
         if(this->GetSceneManager()==0)
@@ -920,7 +920,7 @@ namespace Mezzanine
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Graphics::DefaultGraphicsManagerFactory());
         //DefaultInputManager
         ManIt = ManagerFactories.find("DefaultInputManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultInputManagerFactory());
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Input::DefaultInputManagerFactory());
         //DefaultMeshManager
         ManIt = ManagerFactories.find("DefaultMeshManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultMeshManagerFactory());
@@ -1163,9 +1163,9 @@ namespace Mezzanine
         return dynamic_cast<Graphics::GraphicsManager*> (this->GetManager(ManagerBase::GraphicsManager, WhichOne));
     }
 
-    InputManager* Entresol::GetInputManager(const UInt16 WhichOne)
+    Input::InputManager* Entresol::GetInputManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<InputManager*> (this->GetManager(ManagerBase::InputManager, WhichOne));
+        return dynamic_cast<Input::InputManager*> (this->GetManager(ManagerBase::InputManager, WhichOne));
     }
 
     MeshManager* Entresol::GetMeshManager(const UInt16 WhichOne)

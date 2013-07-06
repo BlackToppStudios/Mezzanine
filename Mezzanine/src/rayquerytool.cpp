@@ -50,7 +50,7 @@ using namespace std;
 #include "entresol.h"
 #include "cameramanager.h"
 #include "scenemanager.h"
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "camera.h"
 #include "Graphics/gamewindow.h"
 #include "Graphics/viewport.h"
@@ -304,8 +304,8 @@ namespace Mezzanine
     Ray* RayQueryTool::GetMouseRay(Real Length)
     {
         VerifyRayQuery();
-        Graphics::Viewport* HoveredViewport = InputManager::GetSingletonPtr()->GetSystemMouse()->GetHoveredViewport();
-        Vector2 MousePos = InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
+        Graphics::Viewport* HoveredViewport = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetHoveredViewport();
+        Vector2 MousePos = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
         Ray* MouseRay = NULL;
         if(HoveredViewport)
         {

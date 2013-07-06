@@ -151,7 +151,6 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} )
 # Windows File Copy Specific Items
 if(${WIN32})
     message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	CopyFilesFromMezzanineDuringBuild( cg.dll )
     #CopyFilesFromMezzanineDuringBuild( data/windows/plugins.cfg )
     message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )

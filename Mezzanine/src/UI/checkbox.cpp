@@ -46,7 +46,7 @@
 #include "UI/caption.h"
 #include "UI/button.h"
 #include "UI/viewportupdatetool.h"
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "Input/metacode.h"
 #include "Input/mouse.h"
 #include "entresol.h"
@@ -149,7 +149,7 @@ namespace Mezzanine
         {
             if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
-                Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+                Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
                 if(Input::BUTTON_PRESSING == State)
                 {
                     CheckLock = false;

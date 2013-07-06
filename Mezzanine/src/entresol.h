@@ -257,8 +257,6 @@ namespace Mezzanine
     class ActorContainerBase;
     class EventManager;
     class CameraManager;
-    class GameWindow;
-    class InputManager;
     class ResourceManager;
     class TimerManager;
     class UIManager;
@@ -275,6 +273,10 @@ namespace Mezzanine
     namespace Graphics
     {
         class GraphicsManager;
+    }
+    namespace Input
+    {
+        class InputManager;
     }
     namespace Physics
     {
@@ -661,7 +663,7 @@ namespace Mezzanine
             /// @brief This gets the InputManager from the manager list.
             /// @param WhichOne If you have multiple InputManagers this will choose which one to return.
             /// @return This returns a pointer to a InputManager, or a NULL pointer if no matching manager exists.
-            InputManager* GetInputManager(const UInt16 WhichOne = 0);
+            Input::InputManager* GetInputManager(const UInt16 WhichOne = 0);
             /// @brief This gets the MeshManager from the manager list.
             /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.
             /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.

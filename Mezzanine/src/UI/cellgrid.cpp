@@ -47,7 +47,7 @@
 #include "UI/scrollbar.h"
 #include "UI/viewportupdatetool.h"
 
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "Input/metacode.h"
 #include "Input/mouse.h"
 
@@ -311,7 +311,7 @@ namespace Mezzanine
 
         void CellGrid::UpdateImpl(bool Force)
         {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredSubWidget)
             {
                 if(Input::BUTTON_LIFTING == State)

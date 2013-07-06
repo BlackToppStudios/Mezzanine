@@ -49,7 +49,7 @@
 #include "UI/scrollbar.h"
 #include "UI/screen.h"
 #include "UI/viewportupdatetool.h"
-#include "inputmanager.h"
+#include "Input/inputmanager.h"
 #include "Input/mouse.h"
 
 namespace Mezzanine
@@ -153,7 +153,7 @@ namespace Mezzanine
 
         void DropDownList::UpdateImpl(bool Force)
         {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredSubWidget == ListToggle)
             {
                 if(Input::BUTTON_PRESSING == State)

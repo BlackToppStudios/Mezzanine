@@ -95,8 +95,7 @@
 #include "exception.h"
 #include "extendedtimer.h"
 #include "graphics.h"
-#include "input.h"
-#include "inputmanager.h"
+#include "Input/input.h"
 #include "light.h"                      // done
 #include "linegroup.h"
 #include "managerbase.h"
