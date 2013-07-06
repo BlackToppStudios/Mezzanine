@@ -47,10 +47,6 @@
 
 namespace Mezzanine
 {
-    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
-    #ifdef SWIG
-    %template(SingletonInputManager) Singleton<InputManager>;
-    #endif
     namespace Input
     {
         class Controller;
@@ -91,6 +87,11 @@ namespace Mezzanine
             virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
         };//DeviceUpdateWorkUnit
 
+        // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+        #ifdef SWIG
+        %template(SingletonInputManager) Singleton<InputManager>;
+        #endif
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @class InputManager
         /// @headerfile inputmanager.h
@@ -121,7 +122,7 @@ namespace Mezzanine
                 std::vector<void*> InternalControllers;
 
                 /// @internal
-                /// @brief The work unit that updates the debug drawer with the latest physics rendering.
+                /// @brief The work unit that updates the input devices with the newest data.
                 DeviceUpdateWorkUnit* DeviceUpdateWork;
                 /// @internal
                 /// @brief Can be used for thread safe logging and other thread specific resources.
