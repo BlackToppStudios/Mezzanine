@@ -43,9 +43,12 @@
 /// @file
 /// @brief TestData, TestDataStorage and UnitTestGroup class definitions.
 
-#include "mezzanine.h"
+#include "datatypes.h"
 
 #include "testenumerations.h"
+
+#include <map>
+#include <iostream>
 
 namespace Mezzanine
 {

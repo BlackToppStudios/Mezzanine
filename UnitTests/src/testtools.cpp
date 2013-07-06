@@ -43,9 +43,12 @@
 /// @file
 /// @brief The implementation of a few function to help implement tests
 
-#include "mezzanine.h"
+#include "datatypes.h"
 
 #include "testtools.h"
+
+#include <iostream>
+#include <sstream>
 
 using namespace Mezzanine;
 
@@ -99,7 +102,7 @@ namespace Mezzanine
             return true;
         }
 
-        CountedPtr<Entresol> SimpleEngineStartup(std::vector<ManagerBase*> CustomManagers)
+        /*CountedPtr<Entresol> SimpleEngineStartup(std::vector<ManagerBase*> CustomManagers)
         {
             Physics::ManagerConstructionInfo Info;
             Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_SoftRigidWorld;
@@ -131,7 +134,7 @@ namespace Mezzanine
             Results->GetEventManager()->SetPostMainLoopItems(&QuittingCallback);
 
             return Results;
-        }
+        }*/
 
     }// Testing
 }// Mezzanine

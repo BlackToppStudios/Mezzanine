@@ -43,12 +43,11 @@
 /// @file
 /// @brief The implementation of items important a commandline tool to work correctly without need to be available to test developers.
 
-#include "mezzanine.h"
-
 #include "consolelogic.h"
 #include "consolestringmanipulation.h"
 
 #include <fstream>
+#include <vector>
 
 using namespace Mezzanine;
 

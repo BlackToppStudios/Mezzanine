@@ -42,6 +42,8 @@
 
 #include "main.h"
 
+#include "mezzanine.h"
+
 #include <Ogre.h>
 #include <btBulletDynamicsCommon.h>
 //#include <cAudio.h>

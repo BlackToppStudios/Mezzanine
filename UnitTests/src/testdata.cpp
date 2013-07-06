@@ -43,10 +43,10 @@
 /// @file
 /// @brief The definition of the string manipulation functions the unit tests use
 
-#include "mezzanine.h"
-
 #include "testdata.h"
 #include "consolestringmanipulation.h"
+
+#include <vector>
 
 using namespace Mezzanine;
 

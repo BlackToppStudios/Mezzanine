@@ -462,15 +462,21 @@ class binarytoolstests : public UnitTestGroup
                 OutputS=OutputB.ToString(); //The conversion to string does not get timed, the reason for this conversion was for use as a binary buffer, not an std::String we need to moved things that allow for direct control of memory.
                 cout << "Decoding With BTS algorithm took " << BTSDecodeTime << " microseconds for " << TestCount << " iterations and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
 
-
                 cout << "The new decoding algorithm takes about " << double((BTSDecodeTime*1000)/(ReneDecodeTime))/10 << "% as long as the original." << endl;
-
 
                 if( BTSDecodeTime < ReneDecodeTime )
                     { temp=Success; }
                 else
                     { temp=Warning; }
-                AddTestResult("BinaryTools::DecodeTime", temp);
+                AddTestResult("BinaryTools::DecodeTime", temp); // If this test is warning verify you have a release build.
+                //Debug on tachyon
+                /*  Decoding With Rene's algorithm took 745425 microseconds for 10000 iterations and results like: Four score and seven...rish from the earth.
+                    Decoding With BTS algorithm took 887304 microseconds for 10000 iterations and results like: Four score and seven...rish from the earth.
+                    The new decoding algorithm takes about 119% as long as the original. */
+                //Release on tachyon
+                /*  Decoding With Rene's algorithm took 462390 microseconds for 10000 iterations and results like: Four score and seven...rish from the earth.
+                    Decoding With BTS algorithm took 344986 microseconds for 10000 iterations and results like: Four score and seven...rish from the earth.
+                    The new decoding algorithm takes about 74.6% as long as the original. */
             }else{
                 AddTestResult("BinaryTools::DecodeTime", Skipped);
             }

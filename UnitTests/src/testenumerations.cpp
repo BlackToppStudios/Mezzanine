@@ -43,9 +43,11 @@
 /// @file
 /// @brief The implmentation of a few functions used with the enumuration in the unit tests
 
-#include "mezzanine.h"
+#include "datatypes.h"
 
 #include "testenumerations.h"
+
+#include <stdexcept>
 
 namespace Mezzanine
 {
@@ -72,14 +74,14 @@ namespace Mezzanine
                 case NotApplicable:
                     return NotApplicableString;
                 default:
-                    { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to String from TestResult " + Mezzanine::ToString(Convertable)); }
+                    throw std::invalid_argument("Cannot convert to String from TestResult");
             }
         }
 
         TestResult StringToTestResult(Mezzanine::String Text)
         {
             if(Text.size()==0)
-                { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from empty String"); }
+                { throw std::invalid_argument("Cannot convert to TestResult from empty String"); }
 
             switch(Text.at(0))
             {
@@ -89,40 +91,40 @@ namespace Mezzanine
                     else if ( SkippedString == Text )
                         { return Skipped; }
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(S) " + Text); }
+                        { throw std::invalid_argument("Cannot convert to TestResult from text(S) " + Text); }
                 case 'W':
                     if ( WarningString == Text )
                         { return Warning;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(W) " + Text); }
+                        { throw std::invalid_argument("Cannot convert to TestResult from text(W) " + Text); }
                 case 'C':
                     if ( CancelledString == Text )
                         { return Cancelled;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(C) " + Text); }
+                        { throw std::invalid_argument("Cannot convert to TestResult from text(C) " + Text); }
                 case 'I':
                     if ( InconclusiveString == Text )
                         { return Inconclusive;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(I) " + Text); }
+                        { throw std::invalid_argument("Cannot convert to TestResult from text(I) " + Text); }
                 case 'U':
                     if ( UnknownString == Text )
                         { return Unknown;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(U) " + Text); }
+                        { throw std::invalid_argument("Cannot convert to TestResult from text(U) " + Text); }
                 case 'F':
                     return Failed;
                     if ( FailedString == Text )
                         { return Failed;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(F) " + Text); }
+                        { throw std::invalid_argument("Cannot convert to TestResult from text(F) " + Text); }
                 case 'N':
                     if ( NotApplicableString == Text )
                         { return NotApplicable;}
                     else
-                        { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text(N) " + Text); }
+                        { throw std::invalid_argument("Cannot convert to TestResult from text(F) " + Text); }
                 default:
-                    { MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text() " + Text); }
+                    { throw std::invalid_argument("Cannot convert to TestResult from text() " + Text); }
             }
             return Unknown;
         }

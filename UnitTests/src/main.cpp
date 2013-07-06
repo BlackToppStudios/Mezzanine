@@ -39,12 +39,15 @@
 */
 
 #include "autodetect.h"
+#include "datatypes.h"
 #include "main.h"
 
 #include <cstdlib> // For system
 #include <fstream>
+#include <vector>
+#include <stdexcept>
 
-static const String MemSpaceArg("inthismemoryspacetheworkshallbedone");
+static const Mezzanine::String MemSpaceArg("inthismemoryspacetheworkshallbedone");
 Mezzanine::String CommandName;
 
 // this does all the heavy lifting
@@ -66,7 +69,6 @@ class AllUnitTestGroups : public UnitTestGroup
         {}
 
         std::vector<Mezzanine::String> TestGroupsToRun;           //List of tests to run
-
 
         virtual void RunTests()
         {

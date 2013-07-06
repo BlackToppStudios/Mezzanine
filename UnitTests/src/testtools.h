@@ -43,7 +43,7 @@
 /// @file
 /// @brief Some random function to ease the lives of test developers.
 
-#include "mezzanine.h"
+#include "datatypes.h"
 
 #include "testenumerations.h"
 
@@ -62,14 +62,14 @@ namespace Mezzanine
         /// @return Depends on users input
         TestResult GetTestAnswerFromStdin(Mezzanine::String Question);
 
-        /// @brief Create and initialize a instance of the Entrosol, the engine
-        /// @details This creates and Entresol with one window(named "Window1"),
-        /// one camera (named "Camera1", and a postmainloops event callback that
-        /// ends execution after 120 frames. After this is called InitEngine
-        /// must be called to start the engine and have the window displayed.
-        /// @param CustomManagers
-        /// @return A pointer to intialized entrosol
-        CountedPtr<Entresol> SimpleEngineStartup(std::vector<ManagerBase*> CustomManagers = std::vector<ManagerBase*>());
+        // @brief Create and initialize a instance of the Entrosol, the engine
+        // @details This creates and Entresol with one window(named "Window1"),
+        // one camera (named "Camera1", and a postmainloops event callback that
+        // ends execution after 120 frames. After this is called InitEngine
+        // must be called to start the engine and have the window displayed.
+        // @param CustomManagers
+        // @return A pointer to intialized entrosol
+        //CountedPtr<Entresol> SimpleEngineStartup(std::vector<ManagerBase*> CustomManagers = std::vector<ManagerBase*>());
 
     }// Testing
 }// Mezzanine
