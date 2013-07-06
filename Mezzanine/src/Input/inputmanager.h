@@ -43,6 +43,7 @@
 #include "managerbase.h"
 #include "managerfactory.h"
 #include "singleton.h"
+#include "Threading/workunit.h"
 
 namespace Mezzanine
 {
@@ -55,6 +56,41 @@ namespace Mezzanine
         class Controller;
         class Keyboard;
         class Mouse;
+        class InputManager;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a @ref iWorkUnit for the updating of the physics debug drawer.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB DeviceUpdateWorkUnit : public Threading::DefaultWorkUnit
+        {
+        protected:
+            /// @internal
+            /// @brief A pointer to the manager this work unit is processing.
+            InputManager* TargetManager;
+            /// @internal
+            /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            DeviceUpdateWorkUnit(const DeviceUpdateWorkUnit& Other);
+            /// @internal
+            /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+            DeviceUpdateWorkUnit& operator=(const DeviceUpdateWorkUnit& Other);
+        public:
+            /// @brief Class constructor.
+            /// @param Target The InputManager this work unit will process during the frame.
+            DeviceUpdateWorkUnit(InputManager* Target);
+            /// @brief Class destructor.
+            virtual ~DeviceUpdateWorkUnit();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+        };//DeviceUpdateWorkUnit
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @class InputManager
         /// @headerfile inputmanager.h
@@ -64,23 +100,38 @@ namespace Mezzanine
         class MEZZ_LIB InputManager : public ManagerBase, public Singleton<InputManager>
         {
             public:
-                typedef std::vector< Controller* >    ControllerContainer;
+                typedef std::vector< Controller* >           ControllerContainer;
                 typedef ControllerContainer::iterator        ControllerIterator;
                 typedef ControllerContainer::const_iterator  ConstControllerIterator;
             protected:
+                friend class DeviceUpdateWorkUnit;
+
+                /// @internal
+                /// @brief The pointer to the object representing the system mouse.
                 Mouse* SystemMouse;
+                /// @internal
+                /// @brief The pointer to the object representing the system keyboard.
                 Keyboard* SystemKeyboard;
 
+                /// @internal
+                /// @brief Container storing all the controllers detected by the system.
                 ControllerContainer Controllers;
+                /// @internal
+                /// @brief Container storing all the internal controllers detected.
                 std::vector<void*> InternalControllers;
+
+                /// @internal
+                /// @brief The work unit that updates the debug drawer with the latest physics rendering.
+                DeviceUpdateWorkUnit* DeviceUpdateWork;
+                /// @internal
+                /// @brief Can be used for thread safe logging and other thread specific resources.
+                Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
             public:
                 /// @brief Class constructor.
                 InputManager();
-
                 /// @brief XML constructor.
                 /// @param XMLNode The node of the xml document to construct from.
                 InputManager(XML::Node& XMLNode);
-
                 /// @brief Class destructor.
                 virtual ~InputManager();
 
@@ -109,6 +160,13 @@ namespace Mezzanine
                 UInt16 DetectControllers();
                 /// @brief Releases all controller devices from this manager.
                 void ReleaseAllControllers();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @brief Gets the work unit responsible for updating the input device classes.
+                /// @return Returns a pointer to the DeviceUpdateWorkUnit used by this manager.
+                DeviceUpdateWorkUnit* GetDeviceUpdateWork();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Inherited from ManagerBase

@@ -43,6 +43,7 @@
 #include "inputmanager.h"
 #include "eventmanager.h"
 #include "eventuserinput.h"
+#include "entresol.h"
 #include "Input/mouse.h"
 #include "Input/keyboard.h"
 #include "Input/controller.h"
@@ -53,13 +54,75 @@ namespace Mezzanine
 {
     namespace Input
     {
-        template<> InputManager* Singleton<InputManager>::SingletonPtr = 0;
+        ///////////////////////////////////////////////////////////////////////////////
+        // DeviceUpdateWorkUnit Methods
+
+        DeviceUpdateWorkUnit::DeviceUpdateWorkUnit(const DeviceUpdateWorkUnit& Other)
+            {  }
+
+        DeviceUpdateWorkUnit& DeviceUpdateWorkUnit::operator=(const DeviceUpdateWorkUnit& Other)
+            { return *this; }
+
+        DeviceUpdateWorkUnit::DeviceUpdateWorkUnit(InputManager* Target) :
+            TargetManager(Target) {  }
+
+        DeviceUpdateWorkUnit::~DeviceUpdateWorkUnit()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        void DeviceUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            UInt32 NumControllers = this->TargetManager->GetNumControllers();
+            std::vector< MetaCode > MouseCodes;
+            std::vector< MetaCode > KeyboardCodes;
+            std::vector< std::vector< MetaCode > > ControllerCodes;
+            ControllerCodes.resize( NumControllers );
+
+            std::list<EventUserInput*>* UserInput = EventManager::GetSingletonPtr()->GetAllUserInputEvents();
+            EventManager::GetSingletonPtr()->RemoveAllSpecificEvents(EventBase::UserInput);
+
+            for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); !UserInput->empty(); Iter = UserInput->begin())
+            {
+                EventUserInput* CurrEvent = (*Iter);
+                for( Whole X = 0 ; X < CurrEvent->size() ; ++X )
+                {
+                    MetaCode& CurrCode = CurrEvent->at(X);
+                    if( Input::MOUSE_FIRST <= CurrCode.GetCode() && Input::MOUSE_LAST >= CurrCode.GetCode() ){
+                        MouseCodes.push_back( CurrCode );
+                    }else if( Input::KEY_FIRST <= CurrCode.GetCode() && Input::KEY_LAST >= CurrCode.GetCode() ){
+                        KeyboardCodes.push_back( CurrCode );
+                    }else if( Input::CONTROLLER_FIRST <= CurrCode.GetCode() && Input::CONTROLLER_LAST >= CurrCode.GetCode() ){
+                        ControllerCodes[ CurrCode.GetDeviceIndex() ].push_back( CurrCode );
+                    }
+                }
+
+                delete CurrEvent;
+                UserInput->remove(*Iter);
+            }
+
+            this->TargetManager->SystemMouse->_Update(MouseCodes);
+            this->TargetManager->SystemKeyboard->_Update(KeyboardCodes);
+            for( Whole X = 0 ; X < NumControllers ; ++X )
+            {
+                this->TargetManager->Controllers.at(X)->_Update( ControllerCodes.at(X) );
+            }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // InputManager Methods
 
-        InputManager::InputManager()
+        template<> InputManager* Singleton<InputManager>::SingletonPtr = NULL;
+
+        InputManager::InputManager() :
+            SystemMouse(NULL),
+            SystemKeyboard(NULL),
+
+            DeviceUpdateWork(NULL),
+            ThreadResources(NULL)
         {
+            this->Priority = 5;
             UInt32 InitSDLSystems = SDL_WasInit(0);
             if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
             {
@@ -72,14 +135,21 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
             }
 
-            SystemMouse = new Mouse();
-            SystemKeyboard = new Keyboard();
-            DetectControllers();
-            this->Priority = 5;
+            this->SystemMouse = new Mouse();
+            this->SystemKeyboard = new Keyboard();
+            this->DetectControllers();
+
+            this->DeviceUpdateWork = new DeviceUpdateWorkUnit(this);
         }
 
-        InputManager::InputManager(XML::Node& XMLNode)
+        InputManager::InputManager(XML::Node& XMLNode) :
+            SystemMouse(NULL),
+            SystemKeyboard(NULL),
+
+            DeviceUpdateWork(NULL),
+            ThreadResources(NULL)
         {
+            this->Priority = 5;
             UInt32 InitSDLSystems = SDL_WasInit(0);
             if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
             {
@@ -92,17 +162,21 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
             }
 
-            SystemMouse = new Mouse();
-            SystemKeyboard = new Keyboard();
-            DetectControllers();
-            this->Priority = 5;
+            this->SystemMouse = new Mouse();
+            this->SystemKeyboard = new Keyboard();
+            this->DetectControllers();
+
+            this->DeviceUpdateWork = new DeviceUpdateWorkUnit(this);
         }
 
         InputManager::~InputManager()
         {
+            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->DeviceUpdateWork );
+            delete DeviceUpdateWork;
+
             delete SystemMouse;
             delete SystemKeyboard;
-            ReleaseAllControllers();
+            this->ReleaseAllControllers();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -110,22 +184,22 @@ namespace Mezzanine
 
         Mouse* InputManager::GetSystemMouse() const
         {
-            return SystemMouse;
+            return this->SystemMouse;
         }
 
         Keyboard* InputManager::GetSystemKeyboard() const
         {
-            return SystemKeyboard;
+            return this->SystemKeyboard;
         }
 
         Controller* InputManager::GetController(const UInt16 Index) const
         {
-            return Controllers.at(Index);
+            return this->Controllers.at(Index);
         }
 
         UInt16 InputManager::GetNumControllers() const
         {
-            return Controllers.size();
+            return this->Controllers.size();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -162,46 +236,29 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        DeviceUpdateWorkUnit* InputManager::GetDeviceUpdateWork()
+        {
+            return this->DeviceUpdateWork;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         //Inherited from ManagerBase
 
         void InputManager::Initialize()
-            { Initialized = true; }
+        {
+            this->TheEntresol->GetScheduler().AddWorkUnit( this->DeviceUpdateWork );
+            //EventManager* EventMan = EventManager::GetSingletonPtr();
+            if( EventManager::GetSingletonPtr() )
+                this->DeviceUpdateWork->AddDependency( EventManager::GetSingletonPtr()->GetEventWorkUnit() );
+
+            this->Initialized = true;
+        }
 
         void InputManager::DoMainLoopItems()
         {
-            std::vector< MetaCode > MouseCodes;
-            std::vector< MetaCode > KeyboardCodes;
-            std::vector< std::vector< MetaCode > > ControllerCodes;
-            ControllerCodes.resize( GetNumControllers() );
 
-            std::list<EventUserInput*>* UserInput = EventManager::GetSingletonPtr()->GetAllUserInputEvents();
-            EventManager::GetSingletonPtr()->RemoveAllSpecificEvents(EventBase::UserInput);
-
-            for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); !UserInput->empty(); Iter = UserInput->begin())
-            {
-                EventUserInput* CurrEvent = (*Iter);
-                for( Whole X = 0 ; X < CurrEvent->size() ; ++X )
-                {
-                    MetaCode& CurrCode = CurrEvent->at(X);
-                    if( Input::MOUSE_FIRST <= CurrCode.GetCode() && Input::MOUSE_LAST >= CurrCode.GetCode() ){
-                        MouseCodes.push_back( CurrCode );
-                    }else if( Input::KEY_FIRST <= CurrCode.GetCode() && Input::KEY_LAST >= CurrCode.GetCode() ){
-                        KeyboardCodes.push_back( CurrCode );
-                    }else if( Input::CONTROLLER_FIRST <= CurrCode.GetCode() && Input::CONTROLLER_LAST >= CurrCode.GetCode() ){
-                        ControllerCodes[ CurrCode.GetDeviceIndex() ].push_back( CurrCode );
-                    }
-                }
-
-                delete CurrEvent;
-                UserInput->remove(*Iter);
-            }
-
-            SystemMouse->_Update(MouseCodes);
-            SystemKeyboard->_Update(KeyboardCodes);
-            for( Whole X = 0 ; X < GetNumControllers() ; ++X )
-            {
-                Controllers.at(X)->_Update( ControllerCodes.at(X) );
-            }
         }
 
         ManagerBase::ManagerType InputManager::GetInterfaceType() const
