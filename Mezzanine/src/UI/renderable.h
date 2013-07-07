@@ -45,12 +45,12 @@
 
 namespace Mezzanine
 {
-    class UIManager;
     namespace UI
     {
         class Screen;
         class ScreenVertexData;
         class Widget;
+        class UIManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Renderable
         /// @headerfile uirenderable.h

@@ -47,10 +47,10 @@
 
 namespace Mezzanine
 {
-    class UIManager;
     namespace UI
     {
         class Screen;
+        class UIManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Caption
         /// @headerfile uicaption.h

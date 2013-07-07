@@ -105,7 +105,7 @@ Whole LevelScorer::CalculateFinalScore()
     ShopScore = ((Whole)(CashRatio * 10)) * 10;
 
     // Calculate the Time Score
-    SimpleTimer* LevelTimer = App->GetLevelTimer();
+    Timer* LevelTimer = App->GetLevelTimer();
     Whole Time = LevelTimer->GetCurrentTimeInMilli() * 0.001;
     if(Time < LevelTargetTime)
     {
@@ -138,7 +138,7 @@ Whole LevelScorer::CalculateFinalScore()
     }
 
     // Update the UI to reflect the calculated scores
-    UI::Screen* GameScreen = UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+    UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
     UI::Window* ReportWin = static_cast<UI::Window*>(GameScreen->GetWidget("GS_LevelReport"));
 
     UI::Caption* TotalDisplay = static_cast<UI::Caption*>(ReportWin->GetAreaRenderable("GS_ScoreDisplay"));
@@ -205,7 +205,7 @@ void LevelScorer::SetLevelTargetTime(const Whole& TargetTime)
 
 void LevelScorer::ResetLevelData()
 {
-    UI::Screen* GameScreen = UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+    UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
     UI::Window* ReportWin = static_cast<UI::Window*>(GameScreen->GetWidget("GS_LevelReport"));
     UI::ScrolledCellGrid* BreakdownList = static_cast<UI::ScrolledCellGrid*>(ReportWin->GetWidget("GS_ScoreBreakdown"));
 

@@ -31,8 +31,8 @@ class CatchApp
         ItemShop* Shop;
         ActorBase* LastActorThrown;
 
-        SimpleTimer* LevelTimer;
-        SimpleTimer* EndTimer;
+        Timer* LevelTimer;
+        StopWatchTimer* EndTimer;
 
         bool Paused;
         Whole CurrScore;
@@ -84,8 +84,8 @@ class CatchApp
         LevelScorer* GetLevelScorer();
         ProfileManager* GetProfiles();
         ItemShop* GetItemShop();
-        SimpleTimer* GetLevelTimer();
-        SimpleTimer* GetEndTimer();
-};
+        Timer* GetLevelTimer();
+        StopWatchTimer* GetEndTimer();
+};//CatchApp
 
 #endif

@@ -47,7 +47,6 @@
 
 namespace Mezzanine
 {
-    class UIManager;
     class SceneManager;
     namespace Graphics
     {
@@ -59,6 +58,7 @@ namespace Mezzanine
         class Widget;
         class Sprite;
         class TextureAtlas;
+        class UIManager;
         struct ScreenInternalData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class AtlasAndPosition
@@ -125,7 +125,7 @@ namespace Mezzanine
                 typedef WidgetContainer::iterator        WidgetIterator;
                 typedef WidgetContainer::const_iterator  ConstWidgetIterator;
             protected:
-                friend class Mezzanine::UIManager;
+                friend class UIManager;
                 Graphics::Viewport* GameViewport;
                 ScreenInternalData* SID;
                 bool OrientationChanged;

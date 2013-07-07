@@ -37,7 +37,7 @@ CatchApp::CatchApp() :
     Shop = new ItemShop();
     ThrowableGenerator::ParseThrowables("");
 
-    LevelTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::Normal);
+    LevelTimer = new Timer();
 }
 
 CatchApp::~CatchApp()
@@ -52,7 +52,7 @@ CatchApp::~CatchApp()
 
 void CatchApp::MakeGUI()
 {
-    UIManager* GUI = UIManager::GetSingletonPtr();
+    UI::UIManager* GUI = UI::UIManager::GetSingletonPtr();
     Graphics::Viewport* UIViewport = Graphics::GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
@@ -485,7 +485,7 @@ void CatchApp::MakeGUI()
 
 void CatchApp::CreateLoadingScreen()
 {
-    UIManager* GUI = UIManager::GetSingletonPtr();
+    UI::UIManager* GUI = UI::UIManager::GetSingletonPtr();
     Graphics::GraphicsManager* GraphicsMan = Graphics::GraphicsManager::GetSingletonPtr();
 
     GUI->LoadMTA("Catch_Loading");
@@ -571,7 +571,7 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
 {
     if(CurrentState == StateToSet)
         return;
-    UIManager* UIMan = UIManager::GetSingletonPtr();
+    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     switch (StateToSet)
     {
         case CatchApp::Catch_GameScreen:
@@ -637,7 +637,7 @@ bool CatchApp::CheckEndOfLevel()
     {
         if(!EndTimer)
         {
-            EndTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::StopWatch);
+            EndTimer = new StopWatchTimer();
             EndTimer->SetInitialTime(5 * 1000000);
             EndTimer->SetCurrentTime(5 * 1000000);
             EndTimer->SetGoalTime(0);
@@ -656,7 +656,7 @@ bool CatchApp::CheckEndOfLevel()
     }else{
         if(EndTimer)
         {
-            TimerManager::GetSingletonPtr()->DestroyTimer(EndTimer);
+            delete EndTimer;
             EndTimer = NULL;
         }
         return false;
@@ -695,11 +695,10 @@ void CatchApp::UnloadLevel()
     ResourceManager* ResMan = ResourceManager::GetSingletonPtr();
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ActorManager* ActorMan = ActorManager::GetSingletonPtr();
-    TimerManager* TimeMan = TimerManager::GetSingletonPtr();
     EventManager* EventMan = EventManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
-    UIManager* UIMan = UIManager::GetSingletonPtr();
+    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
 
     PhysMan->DestroyAllConstraints();
     ActorMan->DestroyAllActors();
@@ -726,7 +725,7 @@ void CatchApp::UnloadLevel()
     }
     CurrScore = 0;
     Scorer->ResetLevelData();
-    TimeMan->DestroyTimer(EndTimer);
+    delete EndTimer;
     EndTimer = NULL;
 
     UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
@@ -760,8 +759,8 @@ int CatchApp::GetCatchin()
     Physics::PhysicsManager::GetSingletonPtr()->SetPreMainLoopItems(&CPrePhysics);
     Physics::PhysicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostPhysics);
     Graphics::GraphicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostRender);
-    UIManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreUI);
-    UIManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostUI);
+    UI::UIManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreUI);
+    UI::UIManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostUI);
 
     // Verify all the settings are there, and generate defaults if they aren't.
     this->VerifySettings();
@@ -816,7 +815,7 @@ int CatchApp::GetCatchin()
 
 void CatchApp::PauseGame(bool Pause)
 {
-    UI::Screen* GameScreen = UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+    UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
     if(Paused == Pause)
         return;
     if(CurrentState == CatchApp::Catch_ScoreScreen && !Pause)
@@ -892,7 +891,7 @@ bool CatchApp::PostUI()
 
     if( SysMouse->IsButtonPressed(1) )
     {
-        if( !UIManager::GetSingletonPtr()->MouseIsInUISystem() )
+        if( !UI::UIManager::GetSingletonPtr()->MouseIsInUISystem() )
         {
             Vector3WActor* ClickOnActor = 0;
             Ray* MouseRay = RayQueryer->GetMouseRay(5000);
@@ -985,7 +984,7 @@ bool CatchApp::PostPhysics()
 bool CatchApp::PostRender()
 {
     // Update the timer
-    UI::Screen* GameScreen = UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+    UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
     UI::OpenRenderableContainerWidget* HUDCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_HUD"));
     UI::Caption* Timer = static_cast<UI::Caption*>(HUDCont->GetAreaRenderable("GS_Timer"));
     std::stringstream time;
@@ -1138,12 +1137,12 @@ ItemShop* CatchApp::GetItemShop()
     return Shop;
 }
 
-SimpleTimer* CatchApp::GetLevelTimer()
+Timer* CatchApp::GetLevelTimer()
 {
     return LevelTimer;
 }
 
-SimpleTimer* CatchApp::GetEndTimer()
+StopWatchTimer* CatchApp::GetEndTimer()
 {
     return EndTimer;
 }

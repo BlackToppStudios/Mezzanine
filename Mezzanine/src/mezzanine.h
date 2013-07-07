@@ -93,7 +93,6 @@
 #include "eventrendertime.h"            // done
 #include "eventuserinput.h"             // done
 #include "exception.h"
-#include "extendedtimer.h"
 #include "graphics.h"
 #include "Input/input.h"
 #include "light.h"                      // done
@@ -118,17 +117,14 @@
 #include "scenemanager.h"               // Done
 #include "scripting.h"
 #include "serialization.h"              // nothing to do
-#include "simpletimer.h"
 #include "singleton.h"                  // nothing to do
 #include "smartptr.h"
 #include "stringtool.h"
 #include "terrainbase.h"
 #include "terrainmanager.h"
 #include "timer.h"
-#include "timermanager.h"
 #include "transform.h"                  // done
-#include "ui.h"
-#include "uimanager.h"
+#include "UI/ui.h"
 #include "vector2.h"                    // done
 #endif // \no SWIG
 

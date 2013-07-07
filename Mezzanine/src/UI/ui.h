@@ -53,6 +53,7 @@ namespace Mezzanine
 }
 
 #include "UI/uienumerations.h"
+#include "UI/uimanager.h"
 
 #include "UI/basicrenderable.h"
 #include "UI/button.h"

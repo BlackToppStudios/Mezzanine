@@ -43,6 +43,7 @@
 #include "managerbase.h"
 #include "managerfactory.h"
 #include "Audio/audioenumerations.h"
+#include "Threading/workunit.h"
 
 namespace Mezzanine
 {
@@ -50,6 +51,24 @@ namespace Mezzanine
     {
         class iListener;
         class SoundProxy;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the work unit for updating audio buffers as necessary for audio playback.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB iBufferUpdate3DWorkUnit : public Threading::DefaultWorkUnit
+        {
+        public:
+            /// @brief Class destructor.
+            virtual ~iBufferUpdate3DWorkUnit() {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief This does any required updating of audio buffers belonging to sound proxies in this manager.
+            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage) = 0;
+        };//iBufferUpdate3DWorkUnit
 
         // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
         #ifdef SWIG
@@ -75,6 +94,10 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
+
+            /// @brief Gets the work unit responsible for updating the buffers of soundproxies.
+            /// @return Returns a pointer to the iBufferUpdate3DWorkUnit used by this manager.
+            virtual iBufferUpdate3DWorkUnit* GetBufferUpdate3DWork() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Listener Management

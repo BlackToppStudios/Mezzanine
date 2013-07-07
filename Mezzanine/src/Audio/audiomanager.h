@@ -65,28 +65,52 @@ namespace Mezzanine
         class MusicPlayer;
         class SoundScapeManager;
 
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the work unit for updating audio buffers as necessary for audio playback.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB iBufferUpdate2DWorkUnit : public Threading::DefaultWorkUnit
+        {
+        public:
+            /// @brief Class destructor.
+            virtual ~iBufferUpdate2DWorkUnit() {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief This does any required updating of audio buffers belonging to sources in this manager.
+            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage) = 0;
+        };//iBufferUpdate2DWorkUnit
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the work unit for marking all effects and filters as clean after sounds have been processed.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB iEffectFilterCleanWorkUnit : public Threading::DefaultWorkUnit
+        {
+        public:
+            /// @brief Class destructor.
+            virtual ~iEffectFilterCleanWorkUnit() {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief This does the required cleaning of all effects and filters in use by this manager.
+            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage) = 0;
+        };//iEffectFilterCleanWorkUnit
+
         // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
         #ifdef SWIG
         %template(SingletonAudioManager) Singleton<AudioManager>;
         #endif
 
-        /// @brief Do the work each frame for some AudioManager
-        class MEZZ_LIB AudioWorkUnit : public Threading::DefaultWorkUnit
-        {
-            public:
-                /// @brief Do the work for a given AudioManager
-                /// @param CurrentThreadStorage Resources that this work unit will use.
-                virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage) = 0;
-
-                /// @brief Virtual destructor
-                virtual ~AudioWorkUnit() {}
-        };
-
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base manager class for the Audio subsystem and it's operations.
         /// @details This is a place for loading, storing, and running sound files as
         /// necessary in a given application.
-        ///////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////
         class MEZZ_LIB AudioManager : public ManagerBase, public ObjectSettingsHandler, public Singleton<AudioManager>
         {
         public:
@@ -119,6 +143,13 @@ namespace Mezzanine
             /// @brief Gets the music player for this audio subsystem.
             /// @return Returns a pointer to the Music player belonging to this system, or NULL if this manager does not support one.
             virtual MusicPlayer* GetMusicPlayer() const = 0;
+
+            /// @brief Gets the work unit responsible for updating the buffers of sounds.
+            /// @return Returns a pointer to the BufferUpdate2DWorkUnit used by this manager.
+            virtual iBufferUpdate2DWorkUnit* GetBufferUpdate2DWork() = 0;
+            /// @brief Gets the work unit responsible for cleaning all effects and filters.
+            /// @return Returns a pointer to the BufferUpdateWorkUnit used by this manager.
+            virtual iEffectFilterCleanWorkUnit* GetEffectFilterCleanWork() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Sound Management
@@ -530,13 +561,10 @@ namespace Mezzanine
             void DestroyAllDecoderFactories();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Managerbase and Manager Related Tasks
+            // Inherited from Managerbase
 
             /// @copydoc ManagerBase::GetInterfaceType()
             virtual ManagerType GetInterfaceType() const;
-
-            /// @brief Get the WorkUnit that is currently scheduled to be run.
-            virtual AudioWorkUnit* GetAudioWorkUnit() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

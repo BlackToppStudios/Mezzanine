@@ -46,7 +46,7 @@
 #include "crossplatform.h"
 #include "entresol.h"
 #include "Graphics/graphicsmanager.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "Graphics/gamewindow.h"
 
 
@@ -75,39 +75,6 @@ namespace Mezzanine
 {
     namespace crossplatform
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        //This returns a named parameter list with valid settings to use Ogre rendering
-        //on a pre-existing SDL context
-        //void* is always an ogre NameValuePairList
-        void* GetSDLOgreBinder(SDL_Window* window, const size_t& winGlContext)
-        {
-            Ogre::NameValuePairList *misc = new Ogre::NameValuePairList();
-            #ifdef WINDOWS
-                SDL_SysWMinfo wmInfo;
-                SDL_VERSION(&wmInfo.version);
-                if(SDL_GetWindowWMInfo(window,&wmInfo))
-                {
-                    size_t winHandle = reinterpret_cast<size_t>(wmInfo.info.win.window);
-                    //size_t winGlContext = reinterpret_cast<size_t>(wmInfo.hglrc);
-
-                    (*misc)["externalWindowHandle"] = Ogre::StringConverter::toString(winHandle);
-                    (*misc)["externalGLContext"] = Ogre::StringConverter::toString(winGlContext);
-                    //(*misc)["externalGLControl"] = Ogre::String("True");
-                }else{
-                    MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed to create SDL Binder.");
-                }
-            #endif
-            #ifdef LINUX
-                (*misc)["currentGLContext"] = Ogre::String("True");
-            #endif
-            #ifdef MACOSX
-                (*misc)["currentGLContext"] = Ogre::String("True");
-                (*misc)["macAPI"] = Ogre::String("cocoa");
-            #endif
-
-            return misc;
-        }
-
         void WaitMilliseconds(const Whole &WaitTime)
         {
             #ifdef WINDOWS
@@ -202,7 +169,7 @@ namespace Mezzanine
                 return sysconf( _SC_NPROCESSORS_ONLN );
             #endif
         }
-    }
-}
+    }//crossplatform
+}//Mezzanine
 
 #endif

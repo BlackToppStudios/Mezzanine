@@ -45,7 +45,7 @@
 #include "graphicsmanager.h"
 #include "cameramanager.h"
 #include "resourcemanager.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "camera.h"
 #include "cameramanager.h"
 #include "crossplatform.h"

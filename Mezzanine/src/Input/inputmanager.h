@@ -47,10 +47,6 @@
 
 namespace Mezzanine
 {
-    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
-    #ifdef SWIG
-    %template(SingletonInputManager) Singleton<InputManager>;
-    #endif
     namespace Input
     {
         class Controller;
@@ -86,10 +82,15 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            /// @brief This does any required update of the input devices detected on this system.
             /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
             virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
         };//DeviceUpdateWorkUnit
+
+        // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+        #ifdef SWIG
+        %template(SingletonInputManager) Singleton<InputManager>;
+        #endif
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class InputManager
@@ -99,86 +100,86 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB InputManager : public ManagerBase, public Singleton<InputManager>
         {
-            public:
-                typedef std::vector< Controller* >           ControllerContainer;
-                typedef ControllerContainer::iterator        ControllerIterator;
-                typedef ControllerContainer::const_iterator  ConstControllerIterator;
-            protected:
-                friend class DeviceUpdateWorkUnit;
+        public:
+            typedef std::vector< Controller* >           ControllerContainer;
+            typedef ControllerContainer::iterator        ControllerIterator;
+            typedef ControllerContainer::const_iterator  ConstControllerIterator;
+        protected:
+            friend class DeviceUpdateWorkUnit;
 
-                /// @internal
-                /// @brief The pointer to the object representing the system mouse.
-                Mouse* SystemMouse;
-                /// @internal
-                /// @brief The pointer to the object representing the system keyboard.
-                Keyboard* SystemKeyboard;
+            /// @internal
+            /// @brief The pointer to the object representing the system mouse.
+            Mouse* SystemMouse;
+            /// @internal
+            /// @brief The pointer to the object representing the system keyboard.
+            Keyboard* SystemKeyboard;
 
-                /// @internal
-                /// @brief Container storing all the controllers detected by the system.
-                ControllerContainer Controllers;
-                /// @internal
-                /// @brief Container storing all the internal controllers detected.
-                std::vector<void*> InternalControllers;
+            /// @internal
+            /// @brief Container storing all the controllers detected by the system.
+            ControllerContainer Controllers;
+            /// @internal
+            /// @brief Container storing all the internal controllers detected.
+            std::vector<void*> InternalControllers;
 
-                /// @internal
-                /// @brief The work unit that updates the debug drawer with the latest physics rendering.
-                DeviceUpdateWorkUnit* DeviceUpdateWork;
-                /// @internal
-                /// @brief Can be used for thread safe logging and other thread specific resources.
-                Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
-            public:
-                /// @brief Class constructor.
-                InputManager();
-                /// @brief XML constructor.
-                /// @param XMLNode The node of the xml document to construct from.
-                InputManager(XML::Node& XMLNode);
-                /// @brief Class destructor.
-                virtual ~InputManager();
+            /// @internal
+            /// @brief The work unit that updates the input devices with the newest data.
+            DeviceUpdateWorkUnit* DeviceUpdateWork;
+            /// @internal
+            /// @brief Can be used for thread safe logging and other thread specific resources.
+            Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
+        public:
+            /// @brief Class constructor.
+            InputManager();
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            InputManager(XML::Node& XMLNode);
+            /// @brief Class destructor.
+            virtual ~InputManager();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // InputDevice Management
+            ///////////////////////////////////////////////////////////////////////////////
+            // InputDevice Management
 
-                /// @brief Gets the system mouse.
-                /// @return Returns a pointer to the mouse device.
-                Mouse* GetSystemMouse() const;
-                /// @brief Gets the system keyboard.
-                /// @return Returns a pointer to the keyboard device.
-                Keyboard* GetSystemKeyboard() const;
+            /// @brief Gets the system mouse.
+            /// @return Returns a pointer to the mouse device.
+            Mouse* GetSystemMouse() const;
+            /// @brief Gets the system keyboard.
+            /// @return Returns a pointer to the keyboard device.
+            Keyboard* GetSystemKeyboard() const;
 
-                /// @brief Gets a controller by index.
-                /// @return Returns a pointer to the controller at the specified index.
-                Controller* GetController(const UInt16 Index) const;
-                /// @brief Gets the number of controllers detected.
-                /// @return Returns the number of controllers that have been detected on this system.
-                UInt16 GetNumControllers() const;
+            /// @brief Gets a controller by index.
+            /// @return Returns a pointer to the controller at the specified index.
+            Controller* GetController(const UInt16 Index) const;
+            /// @brief Gets the number of controllers detected.
+            /// @return Returns the number of controllers that have been detected on this system.
+            UInt16 GetNumControllers() const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // InputDevice Detection
+            ///////////////////////////////////////////////////////////////////////////////
+            // InputDevice Detection
 
-                /// @brief Gathers all of the controllers that are connected to the system and creates corresponding devices for each one.
-                /// @return Returns the number of controllers that have been detected.
-                UInt16 DetectControllers();
-                /// @brief Releases all controller devices from this manager.
-                void ReleaseAllControllers();
+            /// @brief Gathers all of the controllers that are connected to the system and creates corresponding devices for each one.
+            /// @return Returns the number of controllers that have been detected.
+            UInt16 DetectControllers();
+            /// @brief Releases all controller devices from this manager.
+            void ReleaseAllControllers();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-                /// @brief Gets the work unit responsible for updating the input device classes.
-                /// @return Returns a pointer to the DeviceUpdateWorkUnit used by this manager.
-                DeviceUpdateWorkUnit* GetDeviceUpdateWork();
+            /// @brief Gets the work unit responsible for updating the input device classes.
+            /// @return Returns a pointer to the DeviceUpdateWorkUnit used by this manager.
+            DeviceUpdateWorkUnit* GetDeviceUpdateWork();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Inherited from ManagerBase
+            ///////////////////////////////////////////////////////////////////////////////
+            // Inherited from ManagerBase
 
-                /// @copydoc ManagerBase::Initialize()
-                virtual void Initialize();
-                /// @copydoc ManagerBase::DoMainLoopItems()
-                virtual void DoMainLoopItems();
-                /// @copydoc ManagerBase::GetInterfaceType()
-                virtual ManagerType GetInterfaceType() const;
-                /// @copydoc ManagerBase::GetImplementationTypeName()
-                virtual String GetImplementationTypeName() const;
+            /// @copydoc ManagerBase::Initialize()
+            virtual void Initialize();
+            /// @copydoc ManagerBase::DoMainLoopItems()
+            virtual void DoMainLoopItems();
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
         };//InputManager
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -188,22 +189,22 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB DefaultInputManagerFactory : public ManagerFactory
         {
-            public:
-                /// @brief Class constructor.
-                DefaultInputManagerFactory();
-                /// @brief Class destructor.
-                virtual ~DefaultInputManagerFactory();
+        public:
+            /// @brief Class constructor.
+            DefaultInputManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultInputManagerFactory();
 
-                /// @copydoc ManagerFactory::GetManagerTypeName()
-                String GetManagerTypeName() const;
-                /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-                ManagerBase* CreateManager(NameValuePairList& Params);
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
 
-                /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-                ManagerBase* CreateManager(XML::Node& XMLNode);
+            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+            ManagerBase* CreateManager(XML::Node& XMLNode);
 
-                /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-                void DestroyManager(ManagerBase* ToBeDestroyed);
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
         };//DefaultInputManagerFactory
     }//Input
 }//Mezzanine

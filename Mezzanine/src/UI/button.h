@@ -46,12 +46,12 @@
 
 namespace Mezzanine
 {
-    class UIManager;
     namespace UI
     {
         class Caption;
         class Screen;
         class ButtonCallback;
+        class UIManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Button
         /// @headerfile uibutton.h

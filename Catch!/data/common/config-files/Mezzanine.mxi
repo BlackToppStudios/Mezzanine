@@ -40,8 +40,6 @@
 	</DefaultSceneManager>
 <!--<DefaultScriptingManager>
 	</DefaultScriptingManager>-->
-	<DefaultTimerManager>
-	</DefaultTimerManager>
 	<DefaultUIManager>
 	</DefaultUIManager>
 </Managers>

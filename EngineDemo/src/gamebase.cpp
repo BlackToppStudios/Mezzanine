@@ -312,7 +312,7 @@ bool PostInput()
 
     if( SysMouse->IsButtonPressed(1) )
     {
-        UIManager* UIMan = UIManager::GetSingletonPtr();
+        UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
         if(UIMan->MouseIsInUISystem())
         {
             UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
@@ -693,7 +693,7 @@ void LoadContent()
 void MakeGUI()
 {
     String DefaultScreen = "DefaultScreen";
-    UIManager* GUI = TheEntresol->GetUIManager();
+    UI::UIManager* GUI = TheEntresol->GetUIManager();
     Graphics::Viewport* UIViewport = TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetViewport(0);
     GUI->LoadMTA("dejavu");
     UI::Screen* DScreen = GUI->CreateScreen(DefaultScreen, "dejavu", UIViewport);

@@ -258,8 +258,6 @@ namespace Mezzanine
     class EventManager;
     class CameraManager;
     class ResourceManager;
-    class TimerManager;
-    class UIManager;
     class MeshManager;
     class CollisionShapeManager;
     class NetworkManager;
@@ -282,6 +280,10 @@ namespace Mezzanine
     {
         class PhysicsManager;
         class ManagerConstructionInfo;
+    }
+    namespace UI
+    {
+        class UIManager;
     }
 }
 
@@ -690,14 +692,10 @@ namespace Mezzanine
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
             /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
             ResourceManager* GetResourceManager(const UInt16 WhichOne = 0);
-            /// @brief This gets the TimerManager from the manager list.
-            /// @param WhichOne If you have multiple TimerManagers this will choose which one to return.
-            /// @return This returns a pointer to a TimerManager, or a NULL pointer if no matching manager exists.
-            TimerManager* GetTimerManager(const UInt16 WhichOne = 0);
             /// @brief This gets the UIManager from the manager list.
             /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
             /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.
-            UIManager* GetUIManager(const UInt16 WhichOne = 0);
+            UI::UIManager* GetUIManager(const UInt16 WhichOne = 0);
     };//Entresol
 }//Mezzanine
 #endif

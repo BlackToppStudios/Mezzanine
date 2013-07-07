@@ -51,6 +51,7 @@ namespace Mezzanine
         class Button;
         class WidgetListener;
         class BasicRenderable;
+        class UIManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class InputCaptureData
         /// @headerfile uiwidget.h
@@ -127,7 +128,7 @@ namespace Mezzanine
                     W_Window
                 };
             protected:
-                friend class Mezzanine::UIManager;
+                friend class UIManager;
                 friend class Screen;
                 InputCaptureData* CaptureData;
                 Widget* HoveredSubWidget;

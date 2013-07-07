@@ -1290,17 +1290,25 @@ namespace Mezzanine
             if( GraphicsMan )
                 this->SimulationWork->AddDependency( GraphicsMan->GetRenderWorkUnit() );
 
+            Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
             // Debug Draw work configuration
             this->TheEntresol->GetScheduler().AddWorkUnit( this->DebugDrawWork );
             this->DebugDrawWork->AddDependency( this->SimulationWork );
+            if( ActorMan )
+                this->DebugDrawWork->AddDependency( ActorMan->GetActorUpdateWork() );
 
             // World Trigger Update work configuration
             this->TheEntresol->GetScheduler().AddWorkUnit( this->WorldTriggerUpdateWork );
             this->WorldTriggerUpdateWork->AddDependency( this->SimulationWork );
+            if( ActorMan )
+                this->WorldTriggerUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
 
             // Area Effect Update work configuration
             this->TheEntresol->GetScheduler().AddWorkUnit( this->AreaEffectUpdateWork );
+            this->AreaEffectUpdateWork->AddDependency( this->SimulationWork );
             this->AreaEffectUpdateWork->AddDependency( this->DebugDrawWork );
+            if( ActorMan )
+                this->AreaEffectUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
 
             Initialized = true;
         }

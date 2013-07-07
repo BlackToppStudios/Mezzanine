@@ -49,24 +49,21 @@
 
 #define OALS_STRUCTS_DECLARED
 
-#include "Audio/OALS/oalsaudiomanager.h"
+#include "Audio/rawdecoderfactory.h"
+#include "Audio/musicplayer.h"
+
 #include "Audio/OALS/oalsrecorder.h"
 #include "Audio/OALS/oalssound.h"
 #include "Audio/OALS/oalseffectshandler.h"
-#include "Audio/OALS/oalssoundscapemanager.h"
 #include "Audio/OALS/oalsdefines.h"
 
-#include "Audio/rawdecoderfactory.h"
-#include "Audio/musicplayer.h"
+#include "Audio/OALS/oalsaudiomanager.h"
+#include "Audio/OALS/oalssoundscapemanager.h"
 
 #include "entresol.h"
 #include "stringtool.h"
 #include "exception.h"
 #include "resourcemanager.h"
-
-#include <AL/al.h>
-#include <AL/alc.h>
-#include <AL/alext.h>
 
 #include <memory>
 #include <algorithm>
@@ -78,58 +75,106 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            AudioWorkUnit::AudioWorkUnit(OALS::AudioManager *TargetManager)
-                : Target(TargetManager)
-            {}
+            ///////////////////////////////////////////////////////////////////////////////
+            // BufferUpdate2DWorkUnit Methods
 
-            void AudioWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type &CurrentThreadStorage)
+            BufferUpdate2DWorkUnit::BufferUpdate2DWorkUnit(const BufferUpdate2DWorkUnit& Other)
+                {  }
+
+            BufferUpdate2DWorkUnit& BufferUpdate2DWorkUnit::operator=(const BufferUpdate2DWorkUnit& Other)
+                { return *this; }
+
+            BufferUpdate2DWorkUnit::BufferUpdate2DWorkUnit(OALS::AudioManager* Target) :
+                TargetManager(Target) {  }
+
+            BufferUpdate2DWorkUnit::~BufferUpdate2DWorkUnit()
+                {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            void BufferUpdate2DWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
             {
                 Logger& Log = CurrentThreadStorage.GetUsableLogger();
                 Log << "Updating Audio Items." << std::endl;
 
                 // Update our non-spacialized sounds
-                for( OALS::AudioManager::SoundIterator SoundIt = Target->Sounds.begin() ; SoundIt != Target->Sounds.end() ; ++SoundIt )
+                for( OALS::AudioManager::SoundIterator SoundIt = this->TargetManager->Sounds.begin() ; SoundIt != this->TargetManager->Sounds.end() ; ++SoundIt )
                     { (*SoundIt)->_Update(); }
 
-                // Clean any and all effects and filters that may be dirty
-                Target->EffHandler->_CleanAll();
                 // Update our music player
-                Target->MPlayer->Update();
+                this->TargetManager->MPlayer->Update();
             }
 
-            OALS::AudioWorkUnit::~AudioWorkUnit()
-                {}
+            ///////////////////////////////////////////////////////////////////////////////
+            // EffectFilterCleanWorkUnit Methods
 
-            OALS::AudioManager::AudioManager()
-                : InternalDevice(NULL),
-                  NonSpacialContext(NULL),
-                  EffHandler(NULL),
-                  MPlayer(NULL),
-                  MasterMute(false),
-                  MasterVolume(1.0),
-                  ContextOutputFrequency(44100)
+            EffectFilterCleanWorkUnit::EffectFilterCleanWorkUnit(const EffectFilterCleanWorkUnit& Other)
+                {  }
+
+            EffectFilterCleanWorkUnit& EffectFilterCleanWorkUnit::operator=(const EffectFilterCleanWorkUnit& Other)
+                { return *this; }
+
+            EffectFilterCleanWorkUnit::EffectFilterCleanWorkUnit(OALS::AudioManager* Target) :
+                TargetManager(Target) {  }
+
+            EffectFilterCleanWorkUnit::~EffectFilterCleanWorkUnit()
+                {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            void EffectFilterCleanWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+            {
+                // Clean any and all effects and filters that may be dirty
+                this->TargetManager->EffHandler->_CleanAll();
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // AudioManager Methods
+
+            OALS::AudioManager::AudioManager() :
+                InternalDevice(NULL),
+                NonSpacialContext(NULL),
+                EffHandler(NULL),
+                MPlayer(NULL),
+
+                BufferUpdate2DWork(NULL),
+                EffectFilterCleanWork(NULL),
+                ThreadResources(NULL),
+
+                ContextOutputFrequency(44100),
+                MasterVolume(1.0),
+                MasterMute(false)
             {
                 this->Priority = 55;
                 this->AutoGenFiles = false;
                 this->GetAvailableDeviceNames();
-                AudioWork = new AudioWorkUnit(this);
+                this->BufferUpdate2DWork = new BufferUpdate2DWorkUnit(this);
+                this->EffectFilterCleanWork = new EffectFilterCleanWorkUnit(this);
             }
 
-            OALS::AudioManager::AudioManager(XML::Node& XMLNode)
-                : InternalDevice(NULL),
-                  NonSpacialContext(NULL),
-                  EffHandler(NULL),
-                  MPlayer(NULL),
-                  MasterMute(false),
-                  MasterVolume(1.0),
-                  ContextOutputFrequency(44100)
+            OALS::AudioManager::AudioManager(XML::Node& XMLNode) :
+                InternalDevice(NULL),
+                NonSpacialContext(NULL),
+                EffHandler(NULL),
+                MPlayer(NULL),
+
+                BufferUpdate2DWork(NULL),
+                EffectFilterCleanWork(NULL),
+                ThreadResources(NULL),
+
+                ContextOutputFrequency(44100),
+                MasterVolume(1.0),
+                MasterMute(false)
             {
                 /// @todo Research possibly moving XML settings serialization to the AudioManager base class.
                 /// The likelyhood of having implementation specific settings being serialized is somewhat low.
                 /// Doing so would make settings files be implementation agnostic.
                 this->Priority = 55;
                 this->GetAvailableDeviceNames();
-                AudioWork = new AudioWorkUnit(this);
+                this->BufferUpdate2DWork = new BufferUpdate2DWorkUnit(this);
+                this->EffectFilterCleanWork = new EffectFilterCleanWorkUnit(this);
 
                 XML::Attribute CurrAttrib;
                 String PathPreset;
@@ -186,6 +231,12 @@ namespace Mezzanine
 
             OALS::AudioManager::~AudioManager()
             {
+                this->TheEntresol->GetScheduler().RemoveWorkUnit( this->BufferUpdate2DWork );
+                delete BufferUpdate2DWork;
+
+                this->TheEntresol->GetScheduler().RemoveWorkUnit( this->EffectFilterCleanWork );
+                delete EffectFilterCleanWork;
+
                 if( this->AutoGenFiles )
                     this->SaveAllSettings();
 
@@ -381,14 +432,16 @@ namespace Mezzanine
             // Utility
 
             iEffectsHandler* OALS::AudioManager::GetEffectsHandler() const
-            {
-                return this->EffHandler;
-            }
+                { return this->EffHandler; }
 
             MusicPlayer* OALS::AudioManager::GetMusicPlayer() const
-            {
-                return this->MPlayer;
-            }
+                { return this->MPlayer; }
+
+            iBufferUpdate2DWorkUnit* OALS::AudioManager::GetBufferUpdate2DWork()
+                { return this->BufferUpdate2DWork; }
+
+            iEffectFilterCleanWorkUnit* OALS::AudioManager::GetEffectFilterCleanWork()
+                { return this->EffectFilterCleanWork; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Sound Management
@@ -766,7 +819,17 @@ namespace Mezzanine
                 if( this->Initialized == false)
                 {
                     this->Initialized = this->InitializePlaybackDevice(this->GetDefaultPlaybackDeviceName());
-                    TheEntresol->GetScheduler().AddWorkUnit(AudioWork);
+                }
+
+                if( this->Initialized )
+                {
+                    this->TheEntresol->GetScheduler().AddWorkUnit( this->BufferUpdate2DWork );
+
+                    this->TheEntresol->GetScheduler().AddWorkUnit( this->EffectFilterCleanWork );
+                    this->EffectFilterCleanWork->AddDependency( this->BufferUpdate2DWork );
+                    /// @todo Some of this logic may need to be moved to the registration method if we want to support dynamic created and destroyed worlds.
+                    for( SoundScapeManagerIterator SSM = this->SoundScapeManagers.begin() ; SSM != this->SoundScapeManagers.end() ; ++SSM )
+                        this->EffectFilterCleanWork->AddDependency( (*SSM)->GetBufferUpdate3DWork() );
                 }
 
                 if( this->AutoGenFiles )
@@ -782,9 +845,6 @@ namespace Mezzanine
             {
                 return "OALSAudioManager";
             }
-
-            OALS::AudioWorkUnit* AudioManager::GetAudioWorkUnit()
-                { return AudioWork; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

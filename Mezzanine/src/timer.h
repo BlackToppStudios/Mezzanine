@@ -44,85 +44,170 @@
 
 namespace Mezzanine
 {
-    class TimerManager;
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class TimerCallback
-    /// @headerfile timer.h
-    /// @brief A callback class for use automated and timed-event based timers.
-    ///////////////////////////////////////
-    class TimerCallback
-    {
-        protected:
-        public:
-            /// @brief Empty constructor
-            TimerCallback() {};
-            /// @brief Empty deconstructor
-            virtual ~TimerCallback() {};
-            /// @brief The function called for this callback.
-            virtual void DoCallbackItems() = 0;
-    };
-
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Timer
     /// @headerfile timer.h
     /// @brief A base timer class for the different timers.
     /// @details
     ///////////////////////////////////////
-    class Timer
+    class MEZZ_LIB Timer
     {
-        public:
-            /// @brief The style of timer to be used.
-            enum TimerStyle
-            {
-                Normal,     ///< Counts up forever, ignoring any goal and autoreset
-                StopWatch,  ///< Counts down, respecting any goal and autoreset
-                Alarm       ///< Counts up, respecting any goal and autoreset
-            };
+    public:
+        /// @brief The style of timer to be used.
+        enum TimerType
+        {
+            Normal,     ///< Counts up forever, ignoring any goal and autoreset
+            StopWatch,  ///< Counts down, respecting any goal and autoreset
+            Alarm       ///< Counts up, respecting any goal and autoreset
+        };
+    protected:
+        /// @internal
+        /// @brief The time stamp from when the timer first started tracking time.
+        MaxInt StartStamp;
+        /// @internal
+        /// @brief The current amount of microseconds that has elapsed since starting to track time.
+        MaxInt CurrentTime;
+        /// @internal
+        /// @brief The amount of microseconds elapsed that is considered the starting point for tracking time.
+        MaxInt InitialTime;
+        /// @internal
+        /// @brief Updates all the timings in this timer.
+        virtual void Update();
+    public:
+        /// @brief Standard Constructor.
+        /// @param Style The styling/type of timer to be constructed.
+        Timer();
+        /// @brief Class Destructor.
+        virtual ~Timer();
 
-            /// @brief The type of timer to be used.
-            enum TimerType
-            {
-                Simple,     ///< Measures only Micro Seconds, 1/1,000,000 of a second
-                Extended    ///< Measures in any unit smaller than day and larger than Micro Seconds
-            };
-        protected:
-            friend class TimerManager;
-            Timer::TimerStyle Style;
-            Timer::TimerType Type;
-            bool IsSimple;
-            bool ResetAtGoal;
-            bool Active;
-            TimerCallback* Callback;
-            virtual void Update(const Whole MicroSecondsElapsed) = 0;
-            virtual bool GoalReached() = 0;
-        public:
-            /// @brief Standard Constructor.
-            /// @param Style The styling/type of timer to be constructed.
-            Timer(const Timer::TimerStyle style) : Style(style), ResetAtGoal(false), Active(false), Callback(0) {};
-            /// @brief Class Destructor.
-            ~Timer()
-            {
-                if (Callback)
-                    { delete Callback; }
-            }
-            /// @brief Sets the callback to be used with this timer.
-            /// @details This function is called when a goal is reached on a Timer::StopWatch or a Timer::Alarm.
-            /// @param Call The callback to be set.
-            virtual void SetCallback(TimerCallback* Call) { Callback = Call; };
-            /// @brief Activates the Timer.
-            virtual void Start() { Active = true; };
-            /// @brief Deactivates the Timer.
-            virtual void Stop() { Active = false; };
-            /// @brief Gets Whether or not this timer is currently running.
-            virtual bool IsStopped() { return !Active; };
-            /// @brief Sets the current values to their initial values.
-            virtual void Reset() = 0;
-            /// @brief Gets the type of timer this is.
-            /// @return Returns an enum value representing the type of timer this is.
-            virtual Timer::TimerType GetType() { return Type; };
-    };
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
+        /// @brief Sets the current time in Microseconds.
+        /// @return Returns a reference to this timer.
+        /// @param Current The value to set as current time in Microseconds.
+        virtual void SetCurrentTime(const Whole Current);
+        /// @brief Gets the Current time in Microseconds.
+        /// @return Returns a Whole representing the current time in Microseconds.
+        virtual Whole GetCurrentTime();
+        /// @brief Gets the Current time in Milliseconds.
+        /// @return Returns a Whole representing the current time in Milliseconds.
+        virtual Whole GetCurrentTimeInMilli();
+        /// @brief Sets the initial time in Microseconds. The time that resetting sets the timer to.
+        /// @return Returns a reference to this timer.
+        /// @param Initial The value to set as initial time in Microseconds.
+        virtual void SetInitialTime(const Whole Initial);
+        /// @brief Gets the Initial time in Microseconds.
+        /// @return Returns a Whole representing the initial time in Microseconds.
+        virtual Whole GetInitialTime() const;
+        /// @brief Gets the Initial time in Milliseconds.
+        /// @return Returns a Whole representing the initial time in Milliseconds.
+        virtual Whole GetInitialTimeInMilli() const;
 
-}
+        /// @brief Activates the Timer.
+        virtual void Start();
+        /// @brief Deactivates the Timer.
+        virtual void Stop();
+        /// @brief Gets Whether or not this timer is currently running.
+        /// @return Returns true if this timer is not currently active, false otherwise.
+        virtual Bool IsStopped();
+        /// @brief Sets the current values to their initial values.
+        virtual void Reset();
+        /// @brief Gets the type of timer this is.
+        /// @return Returns an enum value representing the type of timer this is.
+        virtual Timer::TimerType GetType() const;
+    };//Timer
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is the base class for timers intended to run only until they reach a specific goal.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB GoalTimer : public Timer
+    {
+    protected:
+        /// @internal
+        /// @brief The time this timer should stop at.
+        MaxInt GoalTime;
+        /// @internal
+        /// @brief Wether or not this timer will reset itself when it reaches it's goal.
+        Bool ResetAtGoal;
+        /// @internal
+        /// @brief Checks to see if the goal has been attained as dictated by the type of timer this is.
+        virtual Bool GoalReached() = 0;
+    public:
+        /// @brief Class constructor.
+        GoalTimer();
+        /// @brief Class destructor.
+        virtual ~GoalTimer();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Sets whether or not this Timer should reset if it reaches it's goal.
+        /// @param AutoReset Should be true if you want this timer to reset itself back to it's initial time when it reaches it's goal.
+        virtual void SetAutoReset(const bool AutoReset);
+        /// @brief Gets whether or not this Timer will reset when it reaches it's goal.
+        /// @return Returns true if this timer will automatically reset when it reaches it's goal.
+        virtual Bool GetAutoReset() const;
+
+        /// @brief Sets the goal time in Microseconds.
+        /// @param Goal The value to set as goal time in Microseconds.
+        virtual void SetGoalTime(const Whole Goal);
+        /// @brief Gets the Goal time in Microseconds.
+        /// @return Returns a Whole representing the goal time in Microseconds.
+        virtual Whole GetGoalTime() const;
+        /// @brief Gets the Goal time in Milliseconds.
+        /// @return Returns a Whole representing the goal time in Milliseconds.
+        virtual Whole GetGoalTimeInMilli() const;
+    };//GoalTimer
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a timer class for counting down to a specified time.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB StopWatchTimer : public GoalTimer
+    {
+    protected:
+        /// @copydoc Timer::Update()
+        virtual void Update();
+        /// @copydoc GoalTimer::GoalReached()
+        virtual Bool GoalReached();
+    public:
+        /// @brief Class constructor.
+        StopWatchTimer();
+        /// @brief Class destructor.
+        virtual ~StopWatchTimer();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @copydoc Timer::GetType() const
+        virtual Timer::TimerType GetType() const;
+    };//StopWatchTimer
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a timer class that increments normally to a specified time.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB AlarmTimer : public GoalTimer
+    {
+    protected:
+        /// @copydoc Timer::Update()
+        virtual void Update();
+        /// @copydoc GoalTimer::GoalReached()
+        virtual Bool GoalReached();
+    public:
+        /// @brief Class constructor.
+        AlarmTimer();
+        /// @brief Class destructor.
+        virtual ~AlarmTimer();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @copydoc Timer::GetType() const
+        virtual Timer::TimerType GetType() const;
+    };//AlarmTimer
+}//Mezzanine
 
 #endif

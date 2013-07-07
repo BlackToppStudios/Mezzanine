@@ -47,7 +47,8 @@
 #include "entresol.h"
 #include "plane.h"
 #include "particleeffect.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
+#include "Physics/physicsmanager.h"
 #include "stringtool.h"
 #include "worldnode.h"
 
@@ -172,25 +173,55 @@ namespace Mezzanine
         };
     }
 
-    template<> SceneManager* Singleton<SceneManager>::SingletonPtr = 0;
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// Construction
+    // TrackingNodeUpdateWorkUnit Methods
 
-    SceneManager::SceneManager(const String& InternalManagerTypeName)
+    TrackingNodeUpdateWorkUnit::TrackingNodeUpdateWorkUnit(const TrackingNodeUpdateWorkUnit& Other)
+        {  }
+
+    TrackingNodeUpdateWorkUnit& TrackingNodeUpdateWorkUnit::operator=(const TrackingNodeUpdateWorkUnit& Other)
+        { return *this; }
+
+    TrackingNodeUpdateWorkUnit::TrackingNodeUpdateWorkUnit(SceneManager* Target) :
+        TargetManager(Target) {  }
+
+    TrackingNodeUpdateWorkUnit::~TrackingNodeUpdateWorkUnit()
+        {  }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void TrackingNodeUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
-        this->SMD = new Internal::SceneManagerData(this);
-        this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(InternalManagerTypeName);
+        this->TargetManager->UpdateTrackingNodes();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // SceneManager Methods
+
+    template<> SceneManager* Singleton<SceneManager>::SingletonPtr = NULL;
+
+    SceneManager::SceneManager(const String& InternalManagerTypeName) :
+        TrackingNodeUpdateWork(NULL),
+        ThreadResources(NULL)
+    {
         this->Priority = 30;
+        this->SMD = new Internal::SceneManagerData(this);
+        this->TrackingNodeUpdateWork = new TrackingNodeUpdateWorkUnit(this);
+        this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(InternalManagerTypeName);
         //this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
         //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
         //OgreManager->setShadowCameraSetup(ShadowCam);
     }
 
-    SceneManager::SceneManager(XML::Node& XMLNode)
+    SceneManager::SceneManager(XML::Node& XMLNode) :
+        TrackingNodeUpdateWork(NULL),
+        ThreadResources(NULL)
     {
-        this->SMD = new Internal::SceneManagerData(this);
         this->Priority = 30;
+        this->SMD = new Internal::SceneManagerData(this);
+        this->TrackingNodeUpdateWork = new TrackingNodeUpdateWorkUnit(this);
 
         XML::Attribute CurrAttrib;
         // Get the name of the manager to construct.
@@ -261,6 +292,9 @@ namespace Mezzanine
 
     SceneManager::~SceneManager()
     {
+        this->TheEntresol->GetScheduler().RemoveWorkUnit( this->TrackingNodeUpdateWork );
+        delete TrackingNodeUpdateWork;
+
         DestroyAllLights();
         DestroyAllParticleEffects();
         DestroyAllWorldNodes();
@@ -716,31 +750,46 @@ namespace Mezzanine
         { TrackingNodes.erase(TrackingNodes.find(Tracker)); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Basic Functionality
+    // Utility
 
     ConstString& SceneManager::GetName() const
         { return this->SMD->OgreManager->getName(); }
 
-    Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
-        { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
-
-    Internal::SceneManagerData* SceneManager::GetRawInternalDataPointer() const
-        { return this->SMD; }
+    TrackingNodeUpdateWorkUnit* SceneManager::GetTrackingNodeUpdateWork()
+        { return this->TrackingNodeUpdateWork; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Inherited From ManagerBase
 
     void SceneManager::Initialize()
-        { this->Initialized = true; }
+    {
+        this->TheEntresol->GetScheduler().AddWorkUnit( this->TrackingNodeUpdateWork );
+        Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
+        if( PhysicsMan ) {
+            this->TrackingNodeUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
+            this->TrackingNodeUpdateWork->AddDependency( PhysicsMan->GetAreaEffectUpdateWork() );
+        }
+
+        this->Initialized = true;
+    }
 
     void SceneManager::DoMainLoopItems()
-        { UpdateTrackingNodes(); }
+        {  }
 
     ManagerBase::ManagerType SceneManager::GetInterfaceType() const
         { return ManagerBase::SceneManager; }
 
     String SceneManager::GetImplementationTypeName() const
         { return "DefaultSceneManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal/Other
+
+    Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
+        { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
+
+    Internal::SceneManagerData* SceneManager::GetRawInternalDataPointer() const
+        { return this->SMD; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultSceneManagerFactory Methods

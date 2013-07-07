@@ -77,7 +77,7 @@ using namespace std;
 
 namespace Mezzanine
 {
-    template<> Entresol* Singleton<Entresol>::SingletonPtr = 0;
+    template<> Entresol* Singleton<Entresol>::SingletonPtr = NULL;
 
     ///////////////////////////////////////////////////////////////////////////////
     // Mezzanine constructors
@@ -195,9 +195,7 @@ namespace Mezzanine
         if(this->GetSceneManager()==0)
             { this->AddManager(new SceneManager(SceneType)); }
         if(this->GetUIManager()==0)
-            { this->AddManager(new UIManager()); }
-        if(this->GetTimerManager()==0)
-            { this->AddManager(new TimerManager()); }
+            { this->AddManager(new UI::UIManager()); }
         if(this->GetMeshManager()==0)
             { this->AddManager(new MeshManager()); }
         if(this->GetCollisionShapeManager()==0)
@@ -535,8 +533,8 @@ namespace Mezzanine
     // anonymous namespace for function pointer for logging commit mess
     namespace
     {
-        Whole FrequencyCounter__=0;     // Used by some loggin functions, and interpretted differently by each
-        SimpleTimer *LogTimer=0;
+        Whole FrequencyCounter__ = 0;     // Used by some loggin functions, and interpretted differently by each
+        StopWatchTimer* LogTimer = 0;
 
         void SetupXSecondTimer();
 
@@ -565,43 +563,33 @@ namespace Mezzanine
         void EachXSeconds() //function still exists because we need it to identify what kind of logging frequency we are using.
             { }
 
-        //helper functions and classes
-        class TimerLogInX : public TimerCallback
-        {
-            virtual void DoCallbackItems()
-            {
-                Entresol::GetSingletonPtr()->DoMainLoopLogging();
-                LogTimer->Reset();
-                LogTimer->Start();
-            }
-        };
-
         void SetupXSecondTimer()
         {
-            if (LogTimer)
+            if(LogTimer)
             {
-                TimerManager::GetSingletonPtr()->DestroyTimer(LogTimer);
-                LogTimer=0;
+                delete LogTimer;
+                LogTimer = NULL;
             }
-            LogTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::StopWatch);
+            LogTimer = new StopWatchTimer();
             LogTimer->SetInitialTime(FrequencyCounter__ * 1000000);
             LogTimer->SetGoalTime(0);
             LogTimer->Reset();
             //LogTimer->SetAutoReset(true);
             LogTimer->Start();
-            LogTimer->SetCallback(new TimerLogInX);
+            /// @todo Disabled this when callbacks on timers were removed.  This logic needs to be re-implemented somehow.
+            //LogTimer->SetCallback(new TimerLogInX);
         }
 
     }
 
     void Entresol::SetLoggingFrequency(Entresol::LoggingFrequency HowOften, Whole FrequencyCounter)
     {
-        if (LogTimer)
+        if(LogTimer)
         {
-            TimerManager::GetSingletonPtr()->DestroyTimer(LogTimer);
-            LogTimer=0;
+            delete LogTimer;
+            LogTimer = NULL;
         }
-        FrequencyCounter__=FrequencyCounter;
+        FrequencyCounter__ = FrequencyCounter;
 
         switch (HowOften)
         {
@@ -939,12 +927,9 @@ namespace Mezzanine
         //DefaultTerrainManager
         ManIt = ManagerFactories.find("DefaultTerrainManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultTerrainManagerFactory());
-        //DefaultTimerManager
-        ManIt = ManagerFactories.find("DefaultTimerManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultTimerManagerFactory());
         //DefaultUIManager
         ManIt = ManagerFactories.find("DefaultUIManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultUIManagerFactory());
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new UI::DefaultUIManagerFactory());
 
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
         //OALSAudioManager
@@ -1198,14 +1183,9 @@ namespace Mezzanine
         return dynamic_cast<ResourceManager*> (this->GetManager(ManagerBase::ResourceManager, WhichOne));
     }
 
-    TimerManager* Entresol::GetTimerManager(const UInt16 WhichOne)
+    UI::UIManager* Entresol::GetUIManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<TimerManager*> (this->GetManager(ManagerBase::TimerManager, WhichOne));
-    }
-
-    UIManager* Entresol::GetUIManager(const UInt16 WhichOne)
-    {
-        return dynamic_cast<UIManager*> (this->GetManager(ManagerBase::UIManager, WhichOne));
+        return dynamic_cast<UI::UIManager*> (this->GetManager(ManagerBase::UIManager, WhichOne));
     }
 
 }

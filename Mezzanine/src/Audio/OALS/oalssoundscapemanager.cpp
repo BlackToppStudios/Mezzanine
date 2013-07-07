@@ -48,14 +48,12 @@
 
 #include "Audio/rawdecoderfactory.h"
 
-#include "Audio/OALS/oalssoundscapemanager.h"
 #include "Audio/OALS/oalslistener.h"
 #include "Audio/OALS/oalssoundproxy.h"
 #include "Audio/OALS/oalsdefines.h"
 
 #include "Audio/OALS/oalsaudiomanager.h"
-
-//#include "Audio/rawdecoderfactory.h"
+#include "Audio/OALS/oalssoundscapemanager.h"
 
 #include "entresol.h"
 #include "stringtool.h"
@@ -68,9 +66,41 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            SoundScapeManager::SoundScapeManager()
+            ///////////////////////////////////////////////////////////////////////////////
+            // BufferUpdate3DWorkUnit Methods
+
+            BufferUpdate3DWorkUnit::BufferUpdate3DWorkUnit(const BufferUpdate3DWorkUnit& Other)
+                {  }
+
+            BufferUpdate3DWorkUnit& BufferUpdate3DWorkUnit::operator=(const BufferUpdate3DWorkUnit& Other)
+                { return *this; }
+
+            BufferUpdate3DWorkUnit::BufferUpdate3DWorkUnit(OALS::SoundScapeManager* Target) :
+                TargetManager(Target) {  }
+
+            BufferUpdate3DWorkUnit::~BufferUpdate3DWorkUnit()
+                {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            void BufferUpdate3DWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+            {
+                for( SoundScapeManager::SoundProxyIterator ProxIt = this->TargetManager->SoundProxies.begin() ; ProxIt != this->TargetManager->SoundProxies.end() ; ++ProxIt )
+                {
+                    (*ProxIt)->_Update();
+                }
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // SoundScapeManager Methods
+
+            SoundScapeManager::SoundScapeManager() :
+                BufferUpdate3DWork(NULL),
+                ThreadResources(NULL)
             {
                 this->Priority = 54; // Immediately before the AudioManager
+                this->BufferUpdate3DWork = new BufferUpdate3DWorkUnit(this);
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
                 AudioMan->_RegisterSoundScapeManager(this);
 
@@ -80,9 +110,12 @@ namespace Mezzanine
                 this->Contexts.resize(OALS_MAX_LISTENERS_PER_MANAGER,NULL);
             }
 
-            SoundScapeManager::SoundScapeManager(XML::Node& XMLNode)
+            SoundScapeManager::SoundScapeManager(XML::Node& XMLNode) :
+                BufferUpdate3DWork(NULL),
+                ThreadResources(NULL)
             {
                 this->Priority = 54; // Immediately before the AudioManager
+                this->BufferUpdate3DWork = new BufferUpdate3DWorkUnit(this);
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
                 AudioMan->_RegisterSoundScapeManager(this);
 
@@ -94,6 +127,9 @@ namespace Mezzanine
 
             SoundScapeManager::~SoundScapeManager()
             {
+                this->TheEntresol->GetScheduler().RemoveWorkUnit( this->BufferUpdate3DWork );
+                delete BufferUpdate3DWork;
+
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
                 AudioMan->_UnregisterSoundScapeManager(this);
 
@@ -175,6 +211,11 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
+
+            iBufferUpdate3DWorkUnit* SoundScapeManager::GetBufferUpdate3DWork()
+            {
+                return this->BufferUpdate3DWork;
+            }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Listener Management
@@ -368,16 +409,15 @@ namespace Mezzanine
                             { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to initialize AudioManager prior to SoundScapeManager.  An open Audio device is required."); }
                     }
 
+                    this->TheEntresol->GetScheduler().AddWorkUnit( this->BufferUpdate3DWork );
+
                     this->Initialized = true;
                 }
             }
 
             void SoundScapeManager::DoMainLoopItems()
             {
-                for( SoundProxyIterator ProxIt = this->SoundProxies.begin() ; ProxIt != this->SoundProxies.end() ; ++ProxIt )
-                {
-                    (*ProxIt)->_Update();
-                }
+
             }
 
             String SoundScapeManager::GetImplementationTypeName() const

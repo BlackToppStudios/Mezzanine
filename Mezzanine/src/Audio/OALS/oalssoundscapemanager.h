@@ -55,6 +55,41 @@ namespace Mezzanine
         {
             class Listener;
             class SoundProxy;
+            class SoundScapeManager;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief This is the work unit for updating audio buffers as necessary for audio playback.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB BufferUpdate3DWorkUnit : public Audio::iBufferUpdate3DWorkUnit
+            {
+            protected:
+                /// @internal
+                /// @brief A pointer to the manager this work unit is processing.
+                OALS::SoundScapeManager* TargetManager;
+                /// @internal
+                /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+                /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+                BufferUpdate3DWorkUnit(const BufferUpdate3DWorkUnit& Other);
+                /// @internal
+                /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+                /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+                BufferUpdate3DWorkUnit& operator=(const BufferUpdate3DWorkUnit& Other);
+            public:
+                /// @brief Class constructor.
+                /// @param Target The InputManager this work unit will process during the frame.
+                BufferUpdate3DWorkUnit(OALS::SoundScapeManager* Target);
+                /// @brief Class destructor.
+                virtual ~BufferUpdate3DWorkUnit();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @brief This does any required updating of audio buffers belonging to sound proxies in this manager.
+                /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+                virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+            };//BufferUpdate3DWorkUnit
+
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the base manager class for audio being played in a 3D environment.
             /// @details
@@ -81,6 +116,8 @@ namespace Mezzanine
                 /// @brief Const Iterator type for @ref OALS::SoundProxy instances stored by this class.
                 typedef SoundProxyContainer::const_iterator         ConstSoundProxyIterator;
             protected:
+                friend class BufferUpdate3DWorkUnit;
+
                 /// @internal
                 /// @brief Container storing all OALS context instances.
                 ContextContainer Contexts;
@@ -90,6 +127,13 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Container storing all @ref OALS::SoundProxy instances.
                 SoundProxyContainer SoundProxies;
+
+                /// @internal
+                /// @brief The workunit this will use to complete its buffer updates.
+                OALS::BufferUpdate3DWorkUnit* BufferUpdate3DWork;
+                /// @internal
+                /// @brief Can be used for thread safe logging and other thread specific resources.
+                Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
 
                 /// @internal
                 /// @brief Creates a new context for use by objects in this manager.
@@ -111,6 +155,9 @@ namespace Mezzanine
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
+
+                /// @copydoc Audio::SoundScapeManager::GetBufferUpdate3DWork()
+                virtual iBufferUpdate3DWorkUnit* GetBufferUpdate3DWork();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Listener Management
