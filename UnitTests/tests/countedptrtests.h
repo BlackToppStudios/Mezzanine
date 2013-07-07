@@ -852,9 +852,9 @@ class countedptrtests : public UnitTestGroup
 
                 CountedPtr<int> IntPtr(new int(0));
                 IntPtr.reset();
-                if( IntPtr.use_count() )
+                if( IntPtr.use_count()==0 )
                 {
-                    AddTestResult("CountedPtr::reset()", Testing::Failed);
+                    AddTestResult("CountedPtr::reset()", Testing::Success);
                 }else{
                     AddTestResult("CountedPtr::reset()", Testing::Failed);
                 }
@@ -862,7 +862,7 @@ class countedptrtests : public UnitTestGroup
                 IntPtr.reset(new int(10));
                 if( *IntPtr == 10 )
                 {
-                    AddTestResult("CountedPtr::reset(Ptr*)", Testing::Failed);
+                    AddTestResult("CountedPtr::reset(Ptr*)", Testing::Success);
                 }else{
                     AddTestResult("CountedPtr::reset(Ptr*)", Testing::Failed);
                 }
@@ -871,7 +871,7 @@ class countedptrtests : public UnitTestGroup
                 IntPtr.reset(TwentyTwo);
                 if( *IntPtr == 22 )
                 {
-                    AddTestResult("CountedPtr::reset(CountedPtr)", Testing::Failed);
+                    AddTestResult("CountedPtr::reset(CountedPtr)", Testing::Success);
                 }else{
                     AddTestResult("CountedPtr::reset(CountedPtr)", Testing::Failed);
                 }
