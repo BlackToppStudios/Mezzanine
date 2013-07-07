@@ -827,6 +827,7 @@ namespace Mezzanine
 
                     this->TheEntresol->GetScheduler().AddWorkUnit( this->EffectFilterCleanWork );
                     this->EffectFilterCleanWork->AddDependency( this->BufferUpdate2DWork );
+                    /// @todo Some of this logic may need to be moved to the registration method if we want to support dynamic created and destroyed worlds.
                     for( SoundScapeManagerIterator SSM = this->SoundScapeManagers.begin() ; SSM != this->SoundScapeManagers.end() ; ++SSM )
                         this->EffectFilterCleanWork->AddDependency( (*SSM)->GetBufferUpdate3DWork() );
                 }
