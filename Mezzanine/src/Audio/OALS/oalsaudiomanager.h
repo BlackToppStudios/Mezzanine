@@ -44,7 +44,6 @@
 #define _audiooalsaudiomanager_h
 
 #include "Audio/audiomanager.h"
-#include "Threading/workunit.h"
 
 // OpenAL forward declares
 #ifndef OALS_STRUCTS_DECLARED
@@ -64,24 +63,71 @@ namespace Mezzanine
             class SoundScapeManager;
             class AudioManager;
 
-            /// @brief Do the work each frame for the AudioManager
-            class MEZZ_LIB AudioWorkUnit : public Mezzanine::Audio::AudioWorkUnit
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief This is the work unit for updating audio buffers as necessary for audio playback.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB BufferUpdate2DWorkUnit : public Audio::iBufferUpdate2DWorkUnit
             {
-                private:
-                    /// @brief The AudioManager to work with
-                    OALS::AudioManager* Target;
-                public:
-                    /// @brief Create
-                    /// @param TargetManager The manager to work with.
-                    AudioWorkUnit(OALS::AudioManager *TargetManager);
+            protected:
+                /// @internal
+                /// @brief A pointer to the manager this work unit is processing.
+                OALS::AudioManager* TargetManager;
+                /// @internal
+                /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+                /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+                BufferUpdate2DWorkUnit(const BufferUpdate2DWorkUnit& Other);
+                /// @internal
+                /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+                /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+                BufferUpdate2DWorkUnit& operator=(const BufferUpdate2DWorkUnit& Other);
+            public:
+                /// @brief Class constructor.
+                /// @param Target The InputManager this work unit will process during the frame.
+                BufferUpdate2DWorkUnit(OALS::AudioManager* Target);
+                /// @brief Class destructor.
+                virtual ~BufferUpdate2DWorkUnit();
 
-                    /// @brief Do the actual
-                    /// @param CurrentThreadStorage Resources that this work unit will use.
-                    virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
 
-                    /// @brief Virtual destructor
-                    virtual ~AudioWorkUnit();
-            };
+                /// @brief This does any required updating of audio buffers belonging to sources in this manager.
+                /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+                virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+            };//BufferUpdate2DWorkUnit
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @brief This is the work unit for marking all effects and filters as clean after sounds have been processed.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB EffectFilterCleanWorkUnit : public Audio::iEffectFilterCleanWorkUnit
+            {
+            protected:
+                /// @internal
+                /// @brief A pointer to the manager this work unit is processing.
+                OALS::AudioManager* TargetManager;
+                /// @internal
+                /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+                /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+                EffectFilterCleanWorkUnit(const EffectFilterCleanWorkUnit& Other);
+                /// @internal
+                /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+                /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+                EffectFilterCleanWorkUnit& operator=(const EffectFilterCleanWorkUnit& Other);
+            public:
+                /// @brief Class constructor.
+                /// @param Target The InputManager this work unit will process during the frame.
+                EffectFilterCleanWorkUnit(OALS::AudioManager* Target);
+                /// @brief Class destructor.
+                virtual ~EffectFilterCleanWorkUnit();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @brief This does the required cleaning of all effects and filters in use by this manager.
+                /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+                virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+            };//EffectFilterCleanWorkUnit
 
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the base manager class for the Audio subsystem and it's operations.
@@ -122,8 +168,6 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             class MEZZ_LIB AudioManager : public Audio::AudioManager
             {
-                /// @brief The AudioWorkUnit needs access to internals of this manager
-                friend class AudioWorkUnit;
             public:
                 /// @brief Basic container type for @ref OALS::Sound storage by this class.
                 typedef std::vector<OALS::Sound*>                   SoundContainer;
@@ -150,6 +194,30 @@ namespace Mezzanine
                 /// @brief Const Iterator type for @ref OALS::SoundScapeManager instances registered to this class.
                 typedef SoundScapeManagerContainer::const_iterator  ConstSoundScapeManagerIterator;
             protected:
+                friend class BufferUpdate2DWorkUnit;
+                friend class EffectFilterCleanWorkUnit;
+
+                /// @internal
+                /// @brief Container storing all @ref OALS::SoundScapeManager instances registered to this manager.
+                SoundScapeManagerContainer SoundScapeManagers;
+                /// @internal
+                /// @brief Container storing all @ref OALS::Recorder instances.
+                RecorderContainer Recorders;
+                /// @internal
+                /// @brief Container storing all @ref OALS::Sound instances by their type.
+                mutable SoundTypesContainer SoundsByType;
+                /// @internal
+                /// @brief Container storing all @ref OALS::Sound instances.
+                SoundContainer Sounds;
+                /// @internal
+                /// @brief A vector containing the names of the available playback devices on the system.
+                StringVector AvailablePlaybackDevices;
+                /// @internal
+                /// @brief A vector containing the names of the available recording devices on the system.
+                StringVector AvailableRecorderDevices;
+                /// @internal
+                /// @brief The name of the current device being used for audio playback.
+                String CurrentDeviceName;
                 /// @internal
                 /// @brief A pointer to the internal device this manager and all it's operations take place on.
                 ALCdevice* InternalDevice;
@@ -163,38 +231,23 @@ namespace Mezzanine
                 /// @brief A pointer to the system Music Player.
                 MusicPlayer* MPlayer;
                 /// @internal
-                /// @brief Mute variable for all @ref iSound instances.
-                bool MasterMute;
+                /// @brief The workunit this will use to complete its buffer updates.
+                OALS::BufferUpdate2DWorkUnit* BufferUpdate2DWork;
                 /// @internal
-                /// @brief Volume modifier for all @ref iSound instances.
-                Real MasterVolume;
+                /// @brief The workunit this will use to complete its buffer updates.
+                OALS::EffectFilterCleanWorkUnit* EffectFilterCleanWork;
+                /// @internal
+                /// @brief Can be used for thread safe logging and other thread specific resources.
+                Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
                 /// @internal
                 /// @brief The output frequency of the rendered audio belonging to the non-spacial context.
                 Integer ContextOutputFrequency;
                 /// @internal
-                /// @brief The name of the current device being used for audio playback.
-                String CurrentDeviceName;
+                /// @brief Volume modifier for all @ref iSound instances.
+                Real MasterVolume;
                 /// @internal
-                /// @brief A vector containing
-                StringVector AvailablePlaybackDevices;
-                /// @internal
-                /// @brief
-                StringVector AvailableRecorderDevices;
-                /// @internal
-                /// @brief Container storing all @ref OALS::Sound instances.
-                SoundContainer Sounds;
-                /// @internal
-                /// @brief Container storing all @ref OALS::Sound instances by their type.
-                mutable SoundTypesContainer SoundsByType;
-                /// @internal
-                /// @brief Container storing all @ref OALS::Recorder instances.
-                RecorderContainer Recorders;
-                /// @internal
-                /// @brief Container storing all @ref OALS::SoundScapeManager instances registered to this manager.
-                SoundScapeManagerContainer SoundScapeManagers;
-                /// @internal
-                /// @brief The workunit this will use to complete its updates.
-                AudioWorkUnit* AudioWork;
+                /// @brief Mute variable for all @ref iSound instances.
+                bool MasterMute;
 
                 /// @internal
                 /// @brief Gets a SoundTypeHandler by type ID if it exists, or creates a new one if it does not.
@@ -242,102 +295,107 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @copydoc Audio::AudioMananger::GetEffectsHandler() const
+                /// @copydoc Audio::AudioManager::GetEffectsHandler() const
                 virtual iEffectsHandler* GetEffectsHandler() const;
-                /// @copydoc Audio::AudioMananger::GetMusicPlayer() const
+                /// @copydoc Audio::AudioManager::GetMusicPlayer() const
                 virtual MusicPlayer* GetMusicPlayer() const;
+
+                /// @copydoc Audio::AudioManager::GetBufferUpdate2DWork()
+                virtual iBufferUpdate2DWorkUnit* GetBufferUpdate2DWork();
+                /// @copydoc Audio::AudioManager::GetEffectFilterCleanWork()
+                virtual iEffectFilterCleanWorkUnit* GetEffectFilterCleanWork();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Sound Management
 
-                /// @copydoc Audio::AudioMananger::CreateSound(const UInt16)
+                /// @copydoc Audio::AudioManager::CreateSound(const UInt16)
                 virtual iSound* CreateSound(const UInt16 Type);
-                /// @copydoc Audio::AudioMananger::CreateSound(const UInt16, Resource::DataStreamPtr, const Audio::Encoding)
+                /// @copydoc Audio::AudioManager::CreateSound(const UInt16, Resource::DataStreamPtr, const Audio::Encoding)
                 virtual iSound* CreateSound(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode);
-                /// @copydoc Audio::AudioMananger::CreateSound(const UInt16, Resource::DataStreamPtr, const UInt32, const Audio::BitConfig)
+                /// @copydoc Audio::AudioManager::CreateSound(const UInt16, Resource::DataStreamPtr, const UInt32, const Audio::BitConfig)
                 virtual iSound* CreateSound(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
-                /// @copydoc Audio::AudioMananger::CreateSound(const UInt16, const String&, const String&, const String&)
+                /// @copydoc Audio::AudioManager::CreateSound(const UInt16, const String&, const String&, const String&)
                 virtual iSound* CreateSound(const UInt16 Type, const String& FileName, const String& Group);
-                /// @copydoc Audio::AudioMananger::CreateSound(const UInt16, const String&, const Char8*, const UInt32, const Audio::Encoding)
+                /// @copydoc Audio::AudioManager::CreateSound(const UInt16, const String&, const Char8*, const UInt32, const Audio::Encoding)
                 virtual iSound* CreateSound(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
-                /// @copydoc Audio::AudioMananger::CreateSound(const UInt16, const String&, const Char8*, const UInt32, const UInt32, const Audio::BitConfig)
+                /// @copydoc Audio::AudioManager::CreateSound(const UInt16, const String&, const Char8*, const UInt32, const UInt32, const Audio::BitConfig)
                 virtual iSound* CreateSound(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
-                /// @copydoc Audio::AudioMananger::GetSound(const UInt32) const
+                /// @copydoc Audio::AudioManager::GetSound(const UInt32) const
                 virtual iSound* GetSound(const UInt32 Index) const;
-                /// @copydoc Audio::AudioMananger::GetNumSounds() const
+                /// @copydoc Audio::AudioManager::GetNumSounds() const
                 virtual UInt32 GetNumSounds() const;
-                /// @copydoc Audio::AudioMananger::DestroySound(iSound* ToBeDestroyed)
+                /// @copydoc Audio::AudioManager::DestroySound(iSound* ToBeDestroyed)
                 virtual void DestroySound(iSound* ToBeDestroyed);
-                /// @copydoc Audio::AudioMananger::DestroyAllSounds()
+                /// @copydoc Audio::AudioManager::DestroyAllSounds()
                 virtual void DestroyAllSounds();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Volume Management
 
-                /// @copydoc Audio::AudioMananger::SetTypeVolume(const UInt16, const Real)
+                /// @copydoc Audio::AudioManager::SetTypeVolume(const UInt16, const Real)
                 virtual void SetTypeVolume(const UInt16 Type, const Real Vol);
-                /// @copydoc Audio::AudioMananger::GetTypeVolume(const UInt16) const
+                /// @copydoc Audio::AudioManager::GetTypeVolume(const UInt16) const
                 virtual Real GetTypeVolume(const UInt16 Type) const;
-                /// @copydoc Audio::AudioMananger::MuteType(const UInt16, bool)
+                /// @copydoc Audio::AudioManager::MuteType(const UInt16, bool)
                 virtual void MuteType(const UInt16 Type, bool Enable);
-                /// @copydoc Audio::AudioMananger::IsTypeMuted(const UInt16) const
+                /// @copydoc Audio::AudioManager::IsTypeMuted(const UInt16) const
                 virtual bool IsTypeMuted(const UInt16 Type) const;
 
-                /// @copydoc Audio::AudioMananger::SetMasterVolume(const Real&)
+                /// @copydoc Audio::AudioManager::SetMasterVolume(const Real&)
                 virtual void SetMasterVolume(const Real& Master);
-                /// @copydoc Audio::AudioMananger::GetMasterVolume() const
+                /// @copydoc Audio::AudioManager::GetMasterVolume() const
                 virtual Real GetMasterVolume() const;
-                /// @copydoc Audio::AudioMananger::Mute(bool)
+                /// @copydoc Audio::AudioManager::Mute(bool)
                 virtual void SetMasterMute(bool Enable);
-                /// @copydoc Audio::AudioMananger::IsMuted() const
+                /// @copydoc Audio::AudioManager::IsMuted() const
                 virtual bool IsMuted() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Recorder Management
 
-                /// @copydoc Audio::AudioMananger::CreateRecorder()
+                /// @copydoc Audio::AudioManager::CreateRecorder()
                 virtual iRecorder* CreateRecorder();
-                /// @copydoc Audio::AudioMananger::GetRecorder(const UInt32) const
+                /// @copydoc Audio::AudioManager::GetRecorder(const UInt32) const
                 virtual iRecorder* GetRecorder(const UInt32 Index) const;
-                /// @copydoc Audio::AudioMananger::GetNumRecorders() const
+                /// @copydoc Audio::AudioManager::GetNumRecorders() const
                 virtual UInt32 GetNumRecorders() const;
-                /// @copydoc Audio::AudioMananger::DestroyRecorder(iRecorder*)
+                /// @copydoc Audio::AudioManager::DestroyRecorder(iRecorder*)
                 virtual void DestroyRecorder(iRecorder* ToBeDestroyed);
-                /// @copydoc Audio::AudioMananger::DestroyAllRecorders()
+                /// @copydoc Audio::AudioManager::DestroyAllRecorders()
                 virtual void DestroyAllRecorders();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Playback Device Management
 
-                /// @copydoc Audio::AudioMananger::GetCurrentPlaybackDeviceName() const
+                /// @copydoc Audio::AudioManager::GetCurrentPlaybackDeviceName() const
                 virtual String GetCurrentPlaybackDeviceName() const;
 
-                /// @copydoc Audio::AudioMananger::GetAvailablePlaybackDeviceName(const Whole&) const
+                /// @copydoc Audio::AudioManager::GetAvailablePlaybackDeviceName(const Whole&) const
                 virtual String GetAvailablePlaybackDeviceName(const Whole& Index) const;
-                /// @copydoc Audio::AudioMananger::GetAvailablePlaybackDeviceCount() const
+                /// @copydoc Audio::AudioManager::GetAvailablePlaybackDeviceCount() const
                 virtual Whole GetAvailablePlaybackDeviceCount() const;
-                /// @copydoc Audio::AudioMananger::GetDefaultPlaybackDeviceName() const
+                /// @copydoc Audio::AudioManager::GetDefaultPlaybackDeviceName() const
                 virtual String GetDefaultPlaybackDeviceName() const;
-                /// @copydoc Audio::AudioMananger::PlaybackDeviceNameValid(const String&) const
+                /// @copydoc Audio::AudioManager::PlaybackDeviceNameValid(const String&) const
                 virtual bool PlaybackDeviceNameValid(const String& DeviceName) const;
 
-                /// @copydoc Audio::AudioMananger::InitializePlaybackDevice(const String&, const Integer)
+                /// @copydoc Audio::AudioManager::InitializePlaybackDevice(const String&, const Integer)
                 virtual bool InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency = 44100);
-                /// @copydoc Audio::AudioMananger::ShutdownPlaybackDevice()
+                /// @copydoc Audio::AudioManager::ShutdownPlaybackDevice()
                 virtual void ShutdownPlaybackDevice();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Recording Device Management
 
-                /// @copydoc Audio::AudioMananger::GetAvailableRecordingDeviceName(const UInt32)
+                /// @copydoc Audio::AudioManager::GetAvailableRecordingDeviceName(const UInt32)
                 virtual String GetAvailableRecordingDeviceName(const UInt32 Index);
-                /// @copydoc Audio::AudioMananger::GetAvailableRecordingDeviceCount()
+                /// @copydoc Audio::AudioManager::GetAvailableRecordingDeviceCount()
                 virtual UInt32 GetAvailableRecordingDeviceCount();
-                /// @copydoc Audio::AudioMananger::GetDefaultRecordingDeviceName()
+                /// @copydoc Audio::AudioManager::GetDefaultRecordingDeviceName()
                 virtual String GetDefaultRecordingDeviceName();
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Inherited from Managerbase and Management Functions
+                // Inherited from Managerbase
 
                 /// @copydoc ManagerBase::Initialize()
                 virtual void Initialize();
@@ -345,10 +403,6 @@ namespace Mezzanine
                 virtual void DoMainLoopItems();
                 /// @copydoc ManagerBase::GetImplementationTypeName()
                 virtual String GetImplementationTypeName() const;
-
-                /// @brief Get the workunit this manager will use
-                /// @return An AudioWorkUnit pointer to the currently
-                virtual OALS::AudioWorkUnit* GetAudioWorkUnit();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods
@@ -359,9 +413,9 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Gets the open audio device owned by this manager.
                 ALCdevice* _GetAudioDevice() const;
-                /// @copydoc Audio::AudioMananger::_RegisterSoundScapeManager(Audio::SoundScapeManager*)
+                /// @copydoc Audio::AudioManager::_RegisterSoundScapeManager(Audio::SoundScapeManager*)
                 void _RegisterSoundScapeManager(Audio::SoundScapeManager* Manager);
-                /// @copydoc Audio::AudioMananger::_UnregisterSoundScapeManager(Audio::SoundScapeManager*)
+                /// @copydoc Audio::AudioManager::_UnregisterSoundScapeManager(Audio::SoundScapeManager*)
                 void _UnregisterSoundScapeManager(Audio::SoundScapeManager* Manager);
             };//AudioManager
         }//OALS
