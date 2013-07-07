@@ -47,6 +47,7 @@
 #include "quaternion.h"
 #include "vector3.h"
 #include "XML/xml.h"
+#include "Threading/workunit.h"
 
 namespace Ogre
 {
@@ -61,11 +62,45 @@ namespace Mezzanine
     class ParticleEffect;
     class Entity;
     class WorldNode;
+    class SceneManager;
 
     namespace Internal
     {
         class SceneManagerData;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a @ref iWorkUnit for the updating of tracking world nodes in the world.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB TrackingNodeUpdateWorkUnit : public Threading::DefaultWorkUnit
+    {
+    protected:
+        /// @internal
+        /// @brief A pointer to the manager this work unit is processing.
+        SceneManager* TargetManager;
+        /// @internal
+        /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+        /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+        TrackingNodeUpdateWorkUnit(const TrackingNodeUpdateWorkUnit& Other);
+        /// @internal
+        /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
+        /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
+        TrackingNodeUpdateWorkUnit& operator=(const TrackingNodeUpdateWorkUnit& Other);
+    public:
+        /// @brief Class constructor.
+        /// @param Target The SceneManager this work unit will process during the frame.
+        TrackingNodeUpdateWorkUnit(SceneManager* Target);
+        /// @brief Class destructor.
+        virtual ~TrackingNodeUpdateWorkUnit();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief This does any required update of the Tracking nodes in the world.
+        /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
+        virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+    };//TrackingNodeUpdateWorkUnit
 
     // Used by the scripting language binder to help create this class. SWIG does know to creation template instances
     #ifdef SWIG
@@ -108,21 +143,37 @@ namespace Mezzanine
                 SkyBox      = 2,        ///< A box using 5 Rectangles to draw the sky.
                 SkyDome     = 3         ///< A multifaceted hemispherical dome, the most sophisticated sky background.
             };
-        private:
-            Internal::SceneManagerData* SMD;
-
         protected:
+            friend class TrackingNodeUpdateWorkUnit;
+
+            /// @internal
             /// @brief Vector storing all the nodes in use by this class.
             WorldNodeContainer WorldNodes;
+            /// @internal
             /// @brief Vector storing all the lights in use by this class.
             LightContainer Lights;
+            /// @internal
             /// @brief Vector storing all the particle effects in use by this class.
             ParticleContainer Particles;
+            /// @internal
             /// @brief Vector storing all the entities in use by this class.
             EntityContainer Entities;
 
+            /// @internal
             /// @brief Container of nodes currently tracking other objects.
             std::set< WorldNode* > TrackingNodes;
+
+            /// @internal
+            /// @brief Pointer to a class storing sensative internal data for the scene.
+            Internal::SceneManagerData* SMD;
+
+            /// @internal
+            /// @brief The work unit that updates the tracking nodes so they are directed at their targets.
+            TrackingNodeUpdateWorkUnit* TrackingNodeUpdateWork;
+            /// @internal
+            /// @brief Can be used for thread safe logging and other thread specific resources.
+            Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
+
             /// @brief Updates all nodes tracking other objects.
             void UpdateTrackingNodes();
         public:
@@ -444,7 +495,17 @@ namespace Mezzanine
             void _UnRegisterTrackingNode(WorldNode* Tracker);
 
             ///////////////////////////////////////////////////////////////////////////////
-            //Inherited from ManagerBase
+            // Utility
+
+            /// @brief Gets the name of this manager.
+            /// @return Returns the name of this manager.
+            ConstString& GetName() const;
+            /// @brief Gets the work unit responsible for updating the tracking nodes in this manager.
+            /// @return Returns a pointer to the TrackingNodeUpdateWorkUnit used by this manager.
+            TrackingNodeUpdateWorkUnit* GetTrackingNodeUpdateWork();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Inherited from ManagerBase
 
             /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
@@ -458,9 +519,6 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal/Other
 
-            /// @brief Gets the name of this manager.
-            /// @return Returns the name of this manager.
-            ConstString& GetName() const;
             /// @internal
             /// @brief Gets the internal Ogre Scene Manager pointer.
             /// @return Returns a pointer to the ogre Scene Manager.
