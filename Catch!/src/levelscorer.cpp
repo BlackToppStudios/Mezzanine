@@ -105,7 +105,7 @@ Whole LevelScorer::CalculateFinalScore()
     ShopScore = ((Whole)(CashRatio * 10)) * 10;
 
     // Calculate the Time Score
-    SimpleTimer* LevelTimer = App->GetLevelTimer();
+    Timer* LevelTimer = App->GetLevelTimer();
     Whole Time = LevelTimer->GetCurrentTimeInMilli() * 0.001;
     if(Time < LevelTargetTime)
     {

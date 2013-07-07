@@ -37,7 +37,7 @@ CatchApp::CatchApp() :
     Shop = new ItemShop();
     ThrowableGenerator::ParseThrowables("");
 
-    LevelTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::Normal);
+    LevelTimer = new Timer();
 }
 
 CatchApp::~CatchApp()
@@ -637,7 +637,7 @@ bool CatchApp::CheckEndOfLevel()
     {
         if(!EndTimer)
         {
-            EndTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::StopWatch);
+            EndTimer = new StopWatchTimer();
             EndTimer->SetInitialTime(5 * 1000000);
             EndTimer->SetCurrentTime(5 * 1000000);
             EndTimer->SetGoalTime(0);
@@ -656,7 +656,7 @@ bool CatchApp::CheckEndOfLevel()
     }else{
         if(EndTimer)
         {
-            TimerManager::GetSingletonPtr()->DestroyTimer(EndTimer);
+            delete EndTimer;
             EndTimer = NULL;
         }
         return false;
@@ -695,7 +695,6 @@ void CatchApp::UnloadLevel()
     ResourceManager* ResMan = ResourceManager::GetSingletonPtr();
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ActorManager* ActorMan = ActorManager::GetSingletonPtr();
-    TimerManager* TimeMan = TimerManager::GetSingletonPtr();
     EventManager* EventMan = EventManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
@@ -726,7 +725,7 @@ void CatchApp::UnloadLevel()
     }
     CurrScore = 0;
     Scorer->ResetLevelData();
-    TimeMan->DestroyTimer(EndTimer);
+    delete EndTimer;
     EndTimer = NULL;
 
     UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
@@ -1138,12 +1137,12 @@ ItemShop* CatchApp::GetItemShop()
     return Shop;
 }
 
-SimpleTimer* CatchApp::GetLevelTimer()
+Timer* CatchApp::GetLevelTimer()
 {
     return LevelTimer;
 }
 
-SimpleTimer* CatchApp::GetEndTimer()
+StopWatchTimer* CatchApp::GetEndTimer()
 {
     return EndTimer;
 }
