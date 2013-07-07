@@ -183,7 +183,7 @@ class binarytoolstests : public UnitTestGroup
                 if( 0==DefaultTest.Size && 0==DefaultTest.Binary)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::DefaultConstructor", temp);
 
                 DefaultTest.Size=4;
@@ -205,7 +205,7 @@ class binarytoolstests : public UnitTestGroup
                   )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::CopyConstructor", temp);
 
                 BinaryBuffer StrinTest("Strin",false);
@@ -218,13 +218,13 @@ class binarytoolstests : public UnitTestGroup
                   )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::StringConstructor", temp);
 
                 if( String("Strin") == StrinTest.ToString())
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::ToString", temp);
 
                 BinaryBuffer::Byte* CString = new BinaryBuffer::Byte[4];
@@ -236,13 +236,13 @@ class binarytoolstests : public UnitTestGroup
                 if( String("Test") == BufferConTest.ToString())
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::PointerConstructor", temp);
 
                 if( BinaryBuffer(200).Size == 200 )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::SizeConstructor", temp);
 
                 BinaryBuffer AssignmentTest;
@@ -254,19 +254,19 @@ class binarytoolstests : public UnitTestGroup
                 if( String("ABC!") == BufferConTest.ToString())
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::operator[]", temp);
 
                 if( String("Test") == AssignmentTest.ToString())
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::operator=", temp);
 
                 if( String("Test") == BinaryBuffer("VGVzdA==").ToString())
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::Base64Constructor", temp);
             }else{
                 AddTestResult("BinaryTools::BinaryBuffer::DefaultConstructor", Skipped);
@@ -302,19 +302,19 @@ class binarytoolstests : public UnitTestGroup
                   )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::Base64Encode-Short", temp);
 
                 if( GettysburgAddressBase64 == Base64Encode(GettysburgAddress) )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::Base64Encode-Long", temp);
 
                 if( UnicedeBase64 == Base64Encode(UnicodeString) )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::Base64Encode-Unicode", temp);
 
                 if( Test1String == Base64Decode(Test1Base64).ToString()          &&
@@ -323,7 +323,7 @@ class binarytoolstests : public UnitTestGroup
                   )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::Base64Decode-Short", temp);
 
 
@@ -331,13 +331,13 @@ class binarytoolstests : public UnitTestGroup
                 if(GettysburgAddress == GettyBuffAddress.ToString())
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::Base64Decode-Long", temp);
 
                 if(UnicodeString == Base64Decode(UnicedeBase64).ToString())
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::Base64Decode-Unicode", temp);
             }else{
                 AddTestResult("BinaryTools::Base64Decode-Long", Skipped);
@@ -358,19 +358,19 @@ class binarytoolstests : public UnitTestGroup
                   )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Short", temp);
 
                 if( GettysburgAddressBase64.size() == PredictBase64StringSizeFromBinarySize(GettysburgAddress.length()) )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Long", temp);
 
                 if( UnicedeBase64.size() == PredictBase64StringSizeFromBinarySize(UnicodeString.length()) )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Unicode", temp);
 
                 if( Test1String.size() == PredictBinarySizeFromBase64String(Test1Base64)          &&
@@ -379,19 +379,19 @@ class binarytoolstests : public UnitTestGroup
                   )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::PredictBinarySizeFromBase64String-Short", temp);
 
                 if( GettysburgAddress.size() == PredictBinarySizeFromBase64String(GettysburgAddressBase64) )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::PredictBinarySizeFromBase64String-Long", temp);
 
                 if( UnicodeString.size() == PredictBinarySizeFromBase64String(UnicedeBase64) )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::PredictBinarySizeFromBase64String-Unicode", temp);
             }else{
                 AddTestResult("BinaryTools::PredictBinarySizeFromBase64String-Long", Skipped);
@@ -419,7 +419,7 @@ class binarytoolstests : public UnitTestGroup
                   )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::IsBase64", temp);
             }else{
                 AddTestResult("BinaryTools::IsBase64", Skipped);
@@ -498,7 +498,7 @@ class binarytoolstests : public UnitTestGroup
                 if( String("asdf") == PartA.ToString() )
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::Concatenation", temp);
             }else{
                 AddTestResult("BinaryTools::BinaryBuffer::Concatenation", Skipped);
@@ -512,14 +512,14 @@ class binarytoolstests : public UnitTestGroup
                 if( 0 == Blank1.Binary && 0 == Blank1.Size)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::BlankDefaultConstruction", temp);
 
                 BinaryBuffer Blank2(Blank1);
                 if( 0 == Blank2.Binary && 0 == Blank2.Size)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::BlankCopyConstruction", temp);
 
                 BinaryBuffer Blank3(4);
@@ -531,10 +531,10 @@ class binarytoolstests : public UnitTestGroup
                 if( 0 == Blank3.Binary && 0 == Blank3.Size)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::BlankAssignment", temp);
 
-                temp=Failed;
+                temp=Testing::Failed;
                 try
                 {
                     Blank3.CreateBuffer();

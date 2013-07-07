@@ -123,6 +123,14 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}/testtools.h"
     "${${PROJECT_NAME}_SRC_DIR}/testtools.cpp"
 
+    "${${PROJECT_NAME}_SRC_DIR}/pugixml.h"
+    "${${PROJECT_NAME}_SRC_DIR}/pugixml.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}/pugiconfig.h"
+
+
+
+    "${${PROJECT_NAME}_SRC_DIR}/dagframescheduler.h" #exist to maintain compatibilty with DAG frameScheduler Unit tests
+
     ${${PROJECT_NAME}_test}
 )
 

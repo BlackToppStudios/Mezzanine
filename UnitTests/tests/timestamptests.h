@@ -37,52 +37,74 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _boilerplatetests_h
-#define _boilerplatetests_h
+#ifndef _timestamptests_h
+#define _timestamptests_h
 
 #include "main.h"
 
-/// @file
-/// @brief this file should be used as template for building future Unit Tests
+#include "dagframescheduler.h"
 
+/// @file
+/// @brief Basic tests of the timestamp tools in the framescheduler
+
+using namespace std;
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
+using namespace Mezzanine::Threading;
 
-/// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
-class boilerplatetests : public UnitTestGroup
+/// @brief Tests for the timestamp tools
+class timestamptests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "boilerplate"
+        /// @return Returns a String containing "timestamp"
         virtual String Name()
-            { return String("boilerplate"); }
+            { return String("timestamp"); }
 
         /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail provides on Sample interactive and one sample automatic test.
+        /// @detail Test if the timestamp tools works correctly were possible
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
+            RunInteractiveTests = false; //prevent warnings
+
             if (RunAutomaticTests)
             {
                 TestResult temp;
 
-                if(1)
-                    { temp=Success; }
+                cout << "Starting timekeeping tests." << endl;
+                cout << "Getting Timestamp1" << endl;
+                Mezzanine::MaxInt Timestamp1 = Mezzanine::GetTimeStamp();
+
+                cout << "Sleeping main thread for 300ms." << endl;
+                Mezzanine::Threading::this_thread::sleep_for(300000);
+
+                cout << "Getting Timestamp2" << endl;
+                Mezzanine::MaxInt Timestamp2 = Mezzanine::GetTimeStamp();
+
+                cout << "Timestamp1: " << Timestamp1 << endl;
+                cout << "Timestamp2: " << Timestamp2 << endl;
+                cout << "Timestamp2 - Timestamp1 = " << Timestamp2-Timestamp1 << endl;
+                cout << "Is Timestamp1 <= Timestamp2: " << (Timestamp1<=Timestamp2) << endl;
+                cout << "Timer Resolution: " << GetTimeStampResolution() << " microsecond(s)" << endl;
+                if(Timestamp1<=Timestamp2)
+                    { temp=Testing::Success; }
                 else
                     { temp=Testing::Failed; }
-                AddTestResult("BoilerPlate::Automatic", temp);
+                AddTestResult("DAGFrameScheduler::TimeStampChronology", temp);
 
+                cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2 = " << Timestamp1+300000-(2*GetTimeStampResolution()) << "<=" << Timestamp2 << endl;
+                cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2: " << (Timestamp1+300000-(2*GetTimeStampResolution())<=Timestamp2) << endl;
+                if((Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2)
+                    { temp=Testing::Success; }
+                else
+                    { temp=Testing::Failed; }
+                AddTestResult("DAGFrameScheduler::TimeStampResolution", temp);
             }else{
-                AddTestResult("BoilerPlate::Automatic", Skipped);
+                AddTestResult("DAGFrameScheduler::TimeStampChronology", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::TimeStampResolution", Testing::Skipped);
             }
 
-            if (RunInteractiveTests)
-            {
-                TestResult temp;
-                temp = GetTestAnswerFromStdin( "Is this a question? ");
-                AddTestResult("BoilerPlate::Interactive", temp);
-            }else{
-                AddTestResult("BoilerPlate::Interactive", Skipped);
-            }
+
         }
 };
 

@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+//©opyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,58 +37,46 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _threadingtests_h
-#define _threadingtests_h
+#ifndef _threaddefinetests_h
+#define _threaddefinetests_h
 
 #include "main.h"
 
-/// @file
-/// @brief this file should be used as template for building future Unit Tests
 
-using namespace Mezzanine;
-using namespace Mezzanine::Testing;
-
-/// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
-class threadingtests : public UnitTestGroup
+/// @brief A simple test to see if the threading compiler flag are set correctly
+class threaddefinetests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "boilerplate"
+        /// @return Returns a String containing "threaddefine"
         virtual String Name()
-            { return String("threading"); }
+            { return String("threaddefine"); }
 
         /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail provides on Sample interactive and one sample automatic test.
+        /// @detail A series on interactive tests allowing inspection and verification of CMake and compiler options.
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
-            {
-                Threading::FrameScheduler Test;
-            }
-
-
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
-
-                if(1)
-                    { temp=Success; }
-                else
-                    { temp=Failed; }
-                AddTestResult("Threading::Automatic", temp);
-
-            }else{
-                AddTestResult("Threading::Automatic", Skipped);
-            }
+            RunAutomaticTests = false; // unsused, this line prevents compiler warnings
 
             if (RunInteractiveTests)
-            {   
-                AddTestResult("Threading::Interactive", Success
-                              );
+            {
+                #ifdef MEZZ_USEBARRIERSEACHFRAME
+                                AddTestResult("DAGFrameScheduler::Threading::MEZZ_USEBARRIERSEACHFRAME", GetTestAnswerFromStdin( "Barriers used to absolutely minimize thread creation. Is this corrent?"));
+                #else
+                                AddTestResult("DAGFrameScheduler::Threading::MEZZ_USEBARRIERSEACHFRAME", GetTestAnswerFromStdin("Threads created and joined each frame. Barriers not set for use, is that correct?"));
+                #endif
+
+                #ifdef MEZZ_DEBUG
+                                AddTestResult("DAGFrameScheduler::Threading::MEZZDEBUG", GetTestAnswerFromStdin( "Was MEZZDEBUG set to True when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? "));
+                #else
+                                AddTestResult("DAGFrameScheduler::Threading::MEZZDEBUG", GetTestAnswerFromStdin( "Was MEZZDEBUG set to False when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? "));
+                #endif
+
             }else{
-                AddTestResult("Threading::Interactive", Skipped);
+                AddTestResult("DAGFrameScheduler::Threading::MEZZ_DEBUG", Skipped);
+                AddTestResult("DAGFrameScheduler::Threading::MEZZ_USEBARRIERSEACHFRAME", Skipped);
             }
+
         }
 };
-
 #endif
-

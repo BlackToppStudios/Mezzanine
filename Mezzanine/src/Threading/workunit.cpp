@@ -155,7 +155,7 @@ namespace Mezzanine
         {
             MaxInt Begin = Mezzanine::GetTimeStamp();
             #ifdef MEZZ_DEBUG
-            CurrentThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger).GetUsable() << "<WorkunitStart BeginTimeStamp=\"" << Begin << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << std::endl;
+            CurrentThreadStorage.GetUsableLogger() << "<WorkunitStart BeginTimeStamp=\"" << Begin << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << std::endl;
             #endif
 
             this->DoWork(CurrentThreadStorage);
@@ -164,7 +164,7 @@ namespace Mezzanine
             CurrentRunningState = Complete;
 
             #ifdef MEZZ_DEBUG
-            CurrentThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger).GetUsable() << "<WorkunitEnd EndTimeStamp=\"" << End << "\" Duration=\"" << (End-Begin) << "\" DurationStored=\"" << Whole(End-Begin) << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << std::endl;
+            CurrentThreadStorage.GetUsableLogger() << "<WorkunitEnd EndTimeStamp=\"" << End << "\" Duration=\"" << (End-Begin) << "\" DurationStored=\"" << Whole(End-Begin) << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << std::endl;
             #endif
         }
 

@@ -55,16 +55,43 @@ namespace Mezzanine
 {
     namespace Threading
     {
+        // Forward Declare
+        class FrameScheduler;
+
         /// @brief Gather all the thread specific logs and commit them to the main log.
         /// @details All the logs are double buffered. This reads from the commitable buffer
-        /// which should otherwise be unused. This task was separated.
+        /// which should otherwise be unused. This task was separated from the log swapper
+        /// top minimize contention.
         class MEZZ_LIB LogAggregator : public DefaultWorkUnit
         {
+            private:
+                /// @brief The frameScheduler to aggregate;
+                /// @note On Linux AMD64 this pointer brings the size of this class to 64 bytes a common cache line size.
+                FrameScheduler* AggregationTarget;
+
             public:
+                /// @brief Create a default log agregator with no target
+                LogAggregator();
+
+                /// @brief Virtual Deconstructor
+                virtual ~LogAggregator();
+
                 /// @brief This does the actual work of log aggregation.
-                /// @param CurrentThreadStorage Ignored, this workunits goals requires this.
+                /// @param CurrentThreadStorage This is used to retrieve the framescheduler that will have its log aggregated.
+                /// @details If there is no currently set aggregation target this sets it to whatever scheduler is in
+                /// the passed ThreadSpecificStorage
                 virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-        };//LogAggregator
+
+                /// @brief Get the current Aggregation Target
+                /// @return A FrameScheduler pointer or NULL if one is not set
+                FrameScheduler* GetAggregationTarget() const;
+
+                /// @brief Set which framescheduler will be aggregated.
+                /// @param NewTarget A pointer to the  FrameScheduler to aggregate.
+                /// @details If set to NULL this will use whatever FrameScheduler is in the next
+                /// ThreadSpecificStorage passed during DoWork. This will never delete a framescheduler.
+                void SetAggregationTarget(FrameScheduler* NewTarget);
+        }; //LogAggregator
 
         /// @brief Swaps all of the Logs so the usable logs can be commited, and the usable commitable.
         /// @note If other doublebuffered resources are used then this or another work unit like it should be adjusted/created to swap those buffers.

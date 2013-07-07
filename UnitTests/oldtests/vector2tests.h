@@ -59,21 +59,21 @@ class Vector2Tests : public UnitTestGroup
                 if(Vec.X==0.0 && Vec.Y==0.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::Vector2()", temp);                          //test
 
                 Vec=Vector2(2.0,1.0);
                 if(Vec.X==2.0 && Vec.Y==1.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::Vector2(Real,Real)", temp);                 //test
 
                 Ogre::Vector2 Ovec(Vec.GetOgreVector2());
                 if(Ovec.x==2.0 && Ovec.y==1.0)             //Make sure that terms which might be confused use different values and are tested for for clearly.
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::GetOgreVector2()", temp);                   //test
 
                 Ovec = Ogre::Vector2(3.0,4.0);
@@ -81,7 +81,7 @@ class Vector2Tests : public UnitTestGroup
                 if(Vec.X==3.0 && Vec.Y==4.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::ExtractOgreVector2()", temp);                 //test
 
                 Vector2 Vec2(3.0,4.0);
@@ -89,54 +89,54 @@ class Vector2Tests : public UnitTestGroup
                 if(Vec2==Vec && !(Vec3==Vec))       //note that I don't use the != operator, we would hate to get confused test results because of a simple oversight
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator==(Vector2)", temp);                    //test
 
                 if(!(Vec2!=Vec) && Vec3!=Vec)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator!=(Vector2)", temp);                    //test
 
                 Ogre::Vector2 Ovec2(1.0,2.0);
                 if(!(Vec==Ovec2) && Vec==Ovec)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator==(Ogre::Vector2)", temp);              //test
 
                 if(Vec!=Ovec2 && !(Vec!=Ovec))
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator!=(Ogre::Vector2)", temp);              //test
 
                 Vec=Vec*2.0;
                 if(Vec.X==6.0 && Vec.Y==8.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator*(Real)", temp);              //test
 
                 Vec=Vec/2.0;
                 if(Vec.X==3.0 && Vec.Y==4.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator/(Real)", temp);              //test
 
                 Vec*=2.0;
                 if(Vec.X==6.0 && Vec.Y==8.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator*=(Real)", temp);              //test
 
                 Vec/=2.0;
                 if(Vec.X==3.0 && Vec.Y==4.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator/=(Real)", temp);              //test
 
                 Vec2.X=2;
@@ -145,28 +145,28 @@ class Vector2Tests : public UnitTestGroup
                 if(Vec.X==5.0 && Vec.Y==7.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator+(Vector2)", temp);              //test
 
                 Vec=Vec*Vec2;
                 if(Vec.X==10.0 && Vec.Y==21.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator*(Vector2)", temp);              //test
 
                 Vec=Vec/Vec2;
                 if(Vec.X==5.0 && Vec.Y==7.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator/(Vector2)", temp);              //test
 
                 Vec=Vec-Vec2;
                 if(Vec.X==3.0 && Vec.Y==4.0)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator-(Vector2)", temp);              //test
 
 
@@ -178,7 +178,7 @@ class Vector2Tests : public UnitTestGroup
                 if(Actual==Ideal)
                     { temp=Success; }
                 else
-                    { temp=Failed; }
+                    { temp=Testing::Failed; }
                 AddTestResult("Vector2::operator<<(ostream,Vector2)", temp);            //test
 
                 try
@@ -188,10 +188,10 @@ class Vector2Tests : public UnitTestGroup
                     if(Vec4==Vec)
                         { temp=Success; }
                     else
-                        { temp=Failed; }
+                        { temp=Testing::Failed; }
                 }catch (Mezzanine::Exception& Ex){
                     std::cerr << "Failure in: Vector2::operator>>(istream,Vector2)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
-                    temp=Failed;
+                    temp=Testing::Failed;
                 }
                 AddTestResult("Vector2::operator>>(istream,Vector2)", temp);            //test
 
@@ -204,10 +204,10 @@ class Vector2Tests : public UnitTestGroup
                     if(Vec5==Vec)
                         { temp=Success; }
                     else
-                        { temp=Failed; }
+                        { temp=Testing::Failed; }
                 }catch (Mezzanine::Exception& Ex){
                     std::cerr << "Failure in: Vector2::operator>>(XML::Node,Vector2)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
-                    temp=Failed;
+                    temp=Testing::Failed;
                 }
                 AddTestResult("Vector2::operator>>(XML::Node,Vector2)", temp);          //test
 

@@ -51,13 +51,22 @@ namespace Mezzanine
 {
     namespace Threading
     {
+
+        LogAggregator::LogAggregator() : AggregationTarget(NULL)
+        {}
+
+        LogAggregator::~LogAggregator()
+        {}
+
         void LogAggregator::DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
-            FrameScheduler& CurrentFrameScheduler= * CurrentThreadStorage.GetFrameScheduler();
-            std::ostream& Log = CurrentFrameScheduler.GetLog();
-            Log << "<Frame Count=\"" << CurrentFrameScheduler.GetFrameCount() << "\">" << std::endl;
-            for(std::vector<DefaultThreadSpecificStorage::Type*>::const_iterator Iter=CurrentThreadStorage.GetFrameScheduler()->Resources.begin();
-                Iter!=CurrentFrameScheduler.Resources.end();
+            if(!AggregationTarget)
+                { AggregationTarget = CurrentThreadStorage.GetFrameScheduler(); }
+
+            std::ostream& Log = AggregationTarget->GetLog();
+            Log << "<Frame Count=\"" << AggregationTarget->GetFrameCount() << "\">" << std::endl;
+            for(std::vector<DefaultThreadSpecificStorage::Type*>::const_iterator Iter=AggregationTarget->Resources.begin();
+                Iter!=AggregationTarget->Resources.end();
                 ++Iter)
             {
                 Log << "<Thread>" << std::endl
@@ -67,6 +76,14 @@ namespace Mezzanine
             }
             Log << "</Frame>" << std::endl;
         }
+
+
+        FrameScheduler* LogAggregator::GetAggregationTarget() const
+            { return AggregationTarget; }
+
+        void LogAggregator::SetAggregationTarget(FrameScheduler* NewTarget)
+            { AggregationTarget = NewTarget; }
+
 
         void LogBufferSwapper::DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {

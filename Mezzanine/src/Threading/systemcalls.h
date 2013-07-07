@@ -48,12 +48,12 @@
 
 namespace Mezzanine
 {
-    /// @brief Get a timestamp.
+    /// @brief Get a timestamp, in microseconds. This will generally be some multiple of the GetTimeStampResolution return value.
     /// @warning On some platforms this requires a static initialization, an can cause undefined behavior if called before static initializations are complete
     /// @return The largest size integer containing a timestamp that can be compared to other timestamps, but hads no guarantees for external value.
     MaxInt MEZZ_LIB GetTimeStamp();
 
-    /// @brief Get the resolution of the timestamp in microseconds.
+    /// @brief Get the resolution of the timestamp in microseconds. This is the smallest amount of time that the GetTimeStamp can accurately track.
     /// @return A Whole which returns in millionths of a second the smallest unit of time that GetTimeStamp can measure.
     Whole MEZZ_LIB GetTimeStampResolution();
 

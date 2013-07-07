@@ -49,7 +49,7 @@ class WorldNodeTests : public UnitTestGroup
         {
 
             // These tests need a review and refactor after the attachable changes
-            /*TestResult temp=Failed;
+            /*TestResult temp=Testing::Failed;
 
             if (RunAutomaticTests)
             {
@@ -68,8 +68,8 @@ class WorldNodeTests : public UnitTestGroup
                     WorldNode* Test2 = SceneManager::GetSingletonPtr()->CreateFreeNode("Gamma", Vector3(2,0,0),Vector3(1,0,0));
 
 
-                    AddTestResult("WorldNode::AttachObject", Failed);
-                    AddTestResult("WorldNode::AttachTo", Failed);
+                    AddTestResult("WorldNode::AttachObject", Testing::Failed);
+                    AddTestResult("WorldNode::AttachTo", Testing::Failed);
                     Test1->AttachObject(Test2);
                     Test0->AttachObject(Test1);
                     AddTestResult("WorldNode::AttachObject", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
@@ -81,7 +81,7 @@ class WorldNodeTests : public UnitTestGroup
                     if (XMLstream.str() == String("<WorldNode Version=\"1\" Name=\"Beta\" AttachedTo=\"Alpha\"><Attached Name=\"Gamma\"/><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0.707107\" Z=\"0\" W=\"0.707107\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\"/></Location></WorldNode>"))
                         { AddTestResult("WorldNode::operator<<", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
                     std::cout << *Test1 << std::endl;
-                    AddTestResult("WorldNode::DetachFrom", Failed);
+                    AddTestResult("WorldNode::DetachFrom", Testing::Failed);
                     Test2->DetachFrom();
                     Test1->DetachFrom();
                     if(0==Test2->GetAttachedTo()&&0==Test1->GetAttachedTo())

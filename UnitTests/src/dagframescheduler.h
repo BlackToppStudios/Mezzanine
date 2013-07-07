@@ -37,54 +37,9 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _boilerplatetests_h
-#define _boilerplatetests_h
+#ifndef _dagdoubleinclude_h
+#define _dagdoubleinclude_h
 
-#include "main.h"
-
-/// @file
-/// @brief this file should be used as template for building future Unit Tests
-
-using namespace Mezzanine;
-using namespace Mezzanine::Testing;
-
-/// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
-class boilerplatetests : public UnitTestGroup
-{
-    public:
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "boilerplate"
-        virtual String Name()
-            { return String("boilerplate"); }
-
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail provides on Sample interactive and one sample automatic test.
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
-        {
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
-
-                if(1)
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BoilerPlate::Automatic", temp);
-
-            }else{
-                AddTestResult("BoilerPlate::Automatic", Skipped);
-            }
-
-            if (RunInteractiveTests)
-            {
-                TestResult temp;
-                temp = GetTestAnswerFromStdin( "Is this a question? ");
-                AddTestResult("BoilerPlate::Interactive", temp);
-            }else{
-                AddTestResult("BoilerPlate::Interactive", Skipped);
-            }
-        }
-};
+#include "Threading/dagframescheduler.h"
 
 #endif
-

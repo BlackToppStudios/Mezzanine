@@ -100,7 +100,7 @@ class AllUnitTestGroups : public UnitTestGroup
                     //std::cout << String(CommandName + " " + *CurrentTestName + " " + MemSpaceArg) << std::endl;
                     if(system(String(CommandName + " " + *CurrentTestName + " " + MemSpaceArg + " " + Mezzanine::String(RunAutomaticTests?"automatic ":"") + Mezzanine::String(RunInteractiveTests?"interactive ":"")).c_str()))   // Run a single unit test as another process
                     {
-                        this->AddTestResult(String("Process::" + *CurrentTestName), Failed);
+                        this->AddTestResult(String("Process::" + *CurrentTestName), Testing::Failed);
                     }else {
                         this->AddTestResult(String("Process::" + *CurrentTestName), Success);
                     }

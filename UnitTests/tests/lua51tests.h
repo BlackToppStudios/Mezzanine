@@ -75,21 +75,21 @@ class lua51tests : public UnitTestGroup
                     {
                         AddTestResult("Lua51::Engine::ImplementationName", Success);
                     }else{
-                        AddTestResult("Lua51::Engine::ImplementationName", Failed);
+                        AddTestResult("Lua51::Engine::ImplementationName", Testing::Failed);
                     }
 
                     if(541==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs)
                     {
                         AddTestResult("Lua51::Engine::LuaLibEnumDefault", Success);
                     }else{
-                        AddTestResult("Lua51::Engine::LuaLibEnumDefault", Failed);
+                        AddTestResult("Lua51::Engine::LuaLibEnumDefault", Testing::Failed);
                     }
 
                     if(511==Scripting::Lua::Lua51ScriptingEngine::AllLibs)
                     {
                         AddTestResult("Lua51::Engine::LuaLibEnumUnsafe", Success);
                     }else{
-                        AddTestResult("Lua51::Engine::LuaLibEnumUnsafe", Failed);
+                        AddTestResult("Lua51::Engine::LuaLibEnumUnsafe", Testing::Failed);
                     }
 
                     //////////////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ class lua51tests : public UnitTestGroup
                         Scripting::Lua::Lua51Script Hello(WorldWorldSource,&LuaRuntimeSafe); //From pointer
                         AddTestResult("Lua51::Script::ConstructCompilePointer", Success);
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Script::ConstructCompilePointer", Failed);
+                        AddTestResult("Lua51::Script::ConstructCompilePointer", Testing::Failed);
                     }
 
                     try
@@ -107,7 +107,7 @@ class lua51tests : public UnitTestGroup
                         Scripting::Lua::Lua51Script Hello(WorldWorldSource,LuaRuntimeSafe); // from reference
                         AddTestResult("Lua51::Script::ConstructCompileReference", Success);
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Script::ConstructCompileReference", Failed);
+                        AddTestResult("Lua51::Script::ConstructCompileReference", Testing::Failed);
                     }
 
 
@@ -119,7 +119,7 @@ class lua51tests : public UnitTestGroup
                         LuaRuntimeSafe.Execute(Hello);
                         AddTestResult("Lua51::Engine::ExecuteFromReference", Success);
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::ConstructCompileReference", Failed);
+                        AddTestResult("Lua51::Engine::ConstructCompileReference", Testing::Failed);
                     }
 
                     try
@@ -128,7 +128,7 @@ class lua51tests : public UnitTestGroup
                         LuaRuntimeSafe.Execute(&Hello);
                         AddTestResult("Lua51::Engine::ExecuteFromPointer", Success);
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::ExecuteFromPointer", Failed);
+                        AddTestResult("Lua51::Engine::ExecuteFromPointer", Testing::Failed);
                     }
 
                     try
@@ -137,7 +137,7 @@ class lua51tests : public UnitTestGroup
                         LuaRuntimeSafe.Execute(Hello);
                         AddTestResult("Lua51::Engine::ExecuteFromCountedPtr", Success);
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::ExecuteFromCountedPtr", Failed);
+                        AddTestResult("Lua51::Engine::ExecuteFromCountedPtr", Testing::Failed);
                     }
 
                     try
@@ -146,7 +146,7 @@ class lua51tests : public UnitTestGroup
                         LuaRuntimeSafe.Execute(Hello);
                         AddTestResult("Lua51::Engine::ExecuteFromCountedPtrCovariant", Success);
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::ExecuteFromCountedPtrCovariant", Failed);
+                        AddTestResult("Lua51::Engine::ExecuteFromCountedPtrCovariant", Testing::Failed);
                     }
 
                     try
@@ -154,7 +154,7 @@ class lua51tests : public UnitTestGroup
                         LuaRuntimeSafe.Execute(WorldWorldSource);
                         AddTestResult("Lua51::Engine::ExecuteFromSource", Success);
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::ExecuteFromSource", Failed);
+                        AddTestResult("Lua51::Engine::ExecuteFromSource", Testing::Failed);
                     }
 
                     //////////////////////////////////////////////////////////////////////////////////////////
@@ -178,11 +178,11 @@ class lua51tests : public UnitTestGroup
                         {
                             AddTestResult("Lua51::Engine::PassInt", Success);
                         }else{
-                            AddTestResult("Lua51::Engine::PassInt", Failed);
+                            AddTestResult("Lua51::Engine::PassInt", Testing::Failed);
                         }
 
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::PassInt", Failed);
+                        AddTestResult("Lua51::Engine::PassInt", Testing::Failed);
                     }
 
                     try
@@ -203,11 +203,11 @@ class lua51tests : public UnitTestGroup
                         {
                             AddTestResult("Lua51::Engine::PassWhole", Success);
                         }else{
-                            AddTestResult("Lua51::Engine::PassWhole", Failed);
+                            AddTestResult("Lua51::Engine::PassWhole", Testing::Failed);
                         }
 
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::PassWhole", Failed);
+                        AddTestResult("Lua51::Engine::PassWhole", Testing::Failed);
                     }
 
                     try
@@ -228,10 +228,10 @@ class lua51tests : public UnitTestGroup
                         {
                             AddTestResult("Lua51::Engine::PassReal", Success);
                         }else{
-                            AddTestResult("Lua51::Engine::PassReal", Failed);
+                            AddTestResult("Lua51::Engine::PassReal", Testing::Failed);
                         }
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::PassReal", Failed);
+                        AddTestResult("Lua51::Engine::PassReal", Testing::Failed);
                     }
 
                     try
@@ -253,10 +253,10 @@ class lua51tests : public UnitTestGroup
                         {
                             AddTestResult("Lua51::Engine::PassString", Success);
                         }else{
-                            AddTestResult("Lua51::Engine::PassString", Failed);
+                            AddTestResult("Lua51::Engine::PassString", Testing::Failed);
                         }
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::PassString", Failed);
+                        AddTestResult("Lua51::Engine::PassString", Testing::Failed);
                     }
 
                     try
@@ -278,10 +278,10 @@ class lua51tests : public UnitTestGroup
                         {
                             AddTestResult("Lua51::Engine::PassBool", Success);
                         }else{
-                            AddTestResult("Lua51::Engine::PassBool", Failed);
+                            AddTestResult("Lua51::Engine::PassBool", Testing::Failed);
                         }
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::PassBool", Failed);
+                        AddTestResult("Lua51::Engine::PassBool", Testing::Failed);
                     }
 
 
@@ -307,10 +307,10 @@ class lua51tests : public UnitTestGroup
                         {
                             AddTestResult("Lua51::Engine::PassNil", Success);
                         }else{
-                            AddTestResult("Lua51::Engine::PassNil", Failed);
+                            AddTestResult("Lua51::Engine::PassNil", Testing::Failed);
                         }
                     } catch (ScriptLuaException& e) {
-                        AddTestResult("Lua51::Engine::PassNil", Failed);
+                        AddTestResult("Lua51::Engine::PassNil", Testing::Failed);
                     }
                 }
 
@@ -331,7 +331,7 @@ class lua51tests : public UnitTestGroup
                         {
                             FeatureScript.Compile(LuaRuntimePartial);
                             LuaRuntimePartial.Execute(FeatureScript);
-                            AddTestResult("Lua51::Script::BaselibExclude", Failed); // Why does this work?
+                            AddTestResult("Lua51::Script::BaselibExclude", Testing::Failed); // Why does this work?
                         } catch (ScriptLuaException& e) {
                             cout << endl << "It failed as it should." << endl;
                             AddTestResult("Lua51::Script::BaselibExclude", Success);
@@ -347,7 +347,7 @@ class lua51tests : public UnitTestGroup
                             LuaRuntimePartial.Execute(FeatureScript);
                             AddTestResult("Lua51::Script::BaselibInclude", Success);
                         } catch (ScriptLuaException& e) {
-                            AddTestResult("Lua51::Script::BaselibInclude", Failed);
+                            AddTestResult("Lua51::Script::BaselibInclude", Testing::Failed);
                         }
                         cout << endl;
                     }
@@ -363,7 +363,7 @@ class lua51tests : public UnitTestGroup
                         {
                             FeatureScript.Compile(LuaRuntimePartial);
                             LuaRuntimePartial.Execute(FeatureScript);
-                            AddTestResult("Lua51::Script::PackagelibExclude", Failed); // Why does this work?
+                            AddTestResult("Lua51::Script::PackagelibExclude", Testing::Failed); // Why does this work?
                         } catch (ScriptLuaException& e) {
                             cout << end << "It failed as it should." << endl;
                             AddTestResult("Lua51::Script::PackagelibExclude", Success);
@@ -379,7 +379,7 @@ class lua51tests : public UnitTestGroup
                             LuaRuntimePartial.Execute(FeatureScript);
                             AddTestResult("Lua51::Script::PackagelibInclude", Success);
                         } catch (ScriptLuaException& e) {
-                            AddTestResult("Lua51::Script::PackagelibInclude", Failed);
+                            AddTestResult("Lua51::Script::PackagelibInclude", Testing::Failed);
                         }
                         cout << endl;
                     }*/
@@ -395,7 +395,7 @@ class lua51tests : public UnitTestGroup
                         {
                             FeatureScript.Compile(LuaRuntimePartial);
                             LuaRuntimePartial.Execute(FeatureScript);
-                            AddTestResult("Lua51::Script::StringlibExclude", Failed); // Why does this work?
+                            AddTestResult("Lua51::Script::StringlibExclude", Testing::Failed); // Why does this work?
                         } catch (ScriptLuaException& e) {
                             cout << endl << "It failed as it should." << endl;
                             AddTestResult("Lua51::Script::StringlibExclude", Success);
@@ -411,7 +411,7 @@ class lua51tests : public UnitTestGroup
                             LuaRuntimePartial.Execute(FeatureScript);
                             AddTestResult("Lua51::Script::StringlibInclude", Success);
                         } catch (ScriptLuaException& e) {
-                            AddTestResult("Lua51::Script::StringlibInclude", Failed);
+                            AddTestResult("Lua51::Script::StringlibInclude", Testing::Failed);
                         }
                         cout << endl;
                     }
@@ -429,7 +429,7 @@ class lua51tests : public UnitTestGroup
                         {
                             FeatureScript.Compile(LuaRuntimePartial);
                             LuaRuntimePartial.Execute(FeatureScript);
-                            AddTestResult("Lua51::Script::TablelibExclude", Failed); // Why does this work?
+                            AddTestResult("Lua51::Script::TablelibExclude", Testing::Failed); // Why does this work?
                         } catch (ScriptLuaException& e) {
                             cout << endl << "It failed as it should." << endl;
                             AddTestResult("Lua51::Script::TablelibExclude", Success);
@@ -445,7 +445,7 @@ class lua51tests : public UnitTestGroup
                             LuaRuntimePartial.Execute(FeatureScript);
                             AddTestResult("Lua51::Script::TablelibInclude", Success);
                         } catch (ScriptLuaException& e) {
-                            AddTestResult("Lua51::Script::TablelibInclude", Failed);
+                            AddTestResult("Lua51::Script::TablelibInclude", Testing::Failed);
                         }
                         cout << endl;
                     }
@@ -461,7 +461,7 @@ class lua51tests : public UnitTestGroup
                         {
                             FeatureScript.Compile(LuaRuntimePartial);
                             LuaRuntimePartial.Execute(FeatureScript);
-                            AddTestResult("Lua51::Script::MathlibExclude", Failed); // Why does this work?
+                            AddTestResult("Lua51::Script::MathlibExclude", Testing::Failed); // Why does this work?
                         } catch (ScriptLuaException& e) {
                             cout << endl << "It failed as it should." << endl;
                             AddTestResult("Lua51::Script::MathlibExclude", Success);
@@ -477,7 +477,7 @@ class lua51tests : public UnitTestGroup
                             LuaRuntimePartial.Execute(FeatureScript);
                             AddTestResult("Lua51::Script::MathlibInclude", Success);
                         } catch (ScriptLuaException& e) {
-                            AddTestResult("Lua51::Script::MathlibInclude", Failed);
+                            AddTestResult("Lua51::Script::MathlibInclude", Testing::Failed);
                         }
                         cout << endl;
                     }
@@ -493,7 +493,7 @@ class lua51tests : public UnitTestGroup
                         {
                             FeatureScript.Compile(LuaRuntimePartial);
                             LuaRuntimePartial.Execute(FeatureScript);
-                            AddTestResult("Lua51::Script::IOlibExclude", Failed); // Why does this work?
+                            AddTestResult("Lua51::Script::IOlibExclude", Testing::Failed); // Why does this work?
                         } catch (ScriptException& e) {
                             cout << endl << "It failed as it should." << endl;
                             AddTestResult("Lua51::Script::IOlibExclude", Success);
@@ -509,7 +509,7 @@ class lua51tests : public UnitTestGroup
                             LuaRuntimePartial.Execute(FeatureScript);
                             AddTestResult("Lua51::Script::IOlibInclude", Success);
                         } catch (ScriptLuaException& e) {
-                            AddTestResult("Lua51::Script::IOlibInclude", Failed);
+                            AddTestResult("Lua51::Script::IOlibInclude", Testing::Failed);
                         }
                         cout << endl;
                     }*/

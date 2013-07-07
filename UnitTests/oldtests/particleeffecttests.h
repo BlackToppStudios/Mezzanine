@@ -50,7 +50,7 @@ class ParticleEffectTests : public UnitTestGroup
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             // These tests need a review and refactor after the attachable changes
-            /* TestResult temp=Failed;
+            /* TestResult temp=Testing::Failed;
 
             if (RunAutomaticTests)
             {
