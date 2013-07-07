@@ -82,7 +82,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
+            /// @brief This does any required update of the input devices detected on this system.
             /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
             virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
         };//DeviceUpdateWorkUnit
