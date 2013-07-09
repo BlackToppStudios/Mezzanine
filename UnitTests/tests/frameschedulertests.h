@@ -45,6 +45,8 @@
 #include "dagframescheduler.h"
 #include "workunittests.h"
 
+#include "pugixml.h"
+
 /// @file
 /// @brief Test the core Framescheduler
 

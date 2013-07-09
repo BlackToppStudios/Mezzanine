@@ -410,7 +410,7 @@ namespace Mezzanine
                     }
 
                     this->TheEntresol->GetScheduler().AddWorkUnit( this->BufferUpdate3DWork );
-                    this->BufferUpdate3DWork->AddDependency( AudioMan->GetBufferUpdate2DWork );
+                    this->BufferUpdate3DWork->AddDependency( AudioMan->GetBufferUpdate2DWork() );
 
                     this->Initialized = true;
                 }

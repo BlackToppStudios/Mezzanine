@@ -93,8 +93,8 @@ class timestamptests : public UnitTestGroup
                 AddTestResult("DAGFrameScheduler::TimeStampChronology", temp);
 
                 cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2 = " << Timestamp1+300000-(2*GetTimeStampResolution()) << "<=" << Timestamp2 << endl;
-                cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2: " << (Timestamp1+300000-(2*GetTimeStampResolution())<=Timestamp2) << endl;
-                if((Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2)
+                cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2: " << (MaxInt(Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2) << endl;
+                if(MaxInt(Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2)
                     { temp=Testing::Success; }
                 else
                     { temp=Testing::Failed; }

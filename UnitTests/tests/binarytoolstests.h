@@ -41,6 +41,9 @@
 #define _binarytoolstests_h
 
 #include "main.h"
+#include "binarybuffer.h"
+#include "crossplatform.h"
+#include "exception.h"
 
 /// @file
 /// @brief Test the BinaryBuffer and associate functions
