@@ -53,16 +53,16 @@ CatchApp::CatchApp() :
 
 CatchApp::~CatchApp()
 {
-    this->TheEntresol->GetScheduler().RemoveWorkUnit( this->PreInputWork );
+    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PreInputWork );
     delete PreInputWork;
 
-    this->TheEntresol->GetScheduler().RemoveWorkUnit( this->PostInputWork );
+    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostInputWork );
     delete PostInputWork;
 
-    this->TheEntresol->GetScheduler().RemoveWorkUnit( this->PostUIWork );
+    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostUIWork );
     delete PostUIWork;
 
-    this->TheEntresol->GetScheduler().RemoveWorkUnit( this->PostGraphicsWork );
+    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostGraphicsWork );
     delete PostGraphicsWork;
 
     delete Profiles;

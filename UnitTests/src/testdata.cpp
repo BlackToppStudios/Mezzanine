@@ -168,6 +168,15 @@ namespace Mezzanine
             return Condition;
         }
 
+        void UnitTestGroup::Test(bool TestCondition, const String& TestName, TestResult IfFalse, TestResult IfTrue)
+        {
+            if(TestCondition)
+            {
+                AddTestResult(TestName, IfTrue);
+            }else{
+                AddTestResult(TestName, IfFalse);
+            }
+        }
 
     }// Testing
 }// Mezzanine

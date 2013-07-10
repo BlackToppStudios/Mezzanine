@@ -98,7 +98,7 @@ namespace Mezzanine
 
     ActorManager::~ActorManager()
     {
-        this->TheEntresol->GetScheduler().RemoveWorkUnit( this->ActorUpdateWork );
+        this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->ActorUpdateWork );
         delete ActorUpdateWork;
 
         DestroyAllActors();

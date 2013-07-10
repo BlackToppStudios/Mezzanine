@@ -171,7 +171,7 @@ namespace Mezzanine
 
         InputManager::~InputManager()
         {
-            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->DeviceUpdateWork );
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DeviceUpdateWork );
             delete DeviceUpdateWork;
 
             delete SystemMouse;

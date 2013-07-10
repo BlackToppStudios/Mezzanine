@@ -130,7 +130,7 @@ namespace Mezzanine
 
         UIManager::~UIManager()
         {
-            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->WidgetUpdateWork );
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WidgetUpdateWork );
             delete WidgetUpdateWork;
 
             DestroyAllScreens();

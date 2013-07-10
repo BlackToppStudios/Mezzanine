@@ -90,6 +90,12 @@ namespace Mezzanine
                 /// to @ref Mezzanine::Threading::FrameScheduler::SortWorkUnitsMain "SortWorkUnitsMain" or @ref Mezzanine::Threading::FrameScheduler::SortWorkUnitsAll "SortWorkUnitsAll".
                 std::vector<WorkUnitKey> WorkUnitsMain;
 
+                /// @brief An iterator suitable for iterating over the main pool of work units.
+                typedef std::vector<WorkUnitKey>::iterator MainIterator;
+
+                /// @brief A const iterator suitable for iterating over the main pool of work units.
+                typedef std::vector<WorkUnitKey>::const_iterator MainConstIterator;
+
                 /// @brief A collection of @ref Mezzanine::Threading::iWorkUnit "iWorkUnit"s that must be run on the main thread.
                 /// @details This is very similar to @ref WorkUnitsMain except that the @ref Mezzanine::Threading::iWorkUnit "iWorkUnit"s
                 /// are only run in the main thread and are sorted by calls to @ref SortWorkUnitsAll or @ref SortWorkUnitsAffinity .
@@ -246,11 +252,22 @@ namespace Mezzanine
                 /// for the appropriate times to use this.
                 virtual void SortWorkUnitsAll(bool UpdateDependentGraph_ = true);
 
-                /// @brief Remove a WorkUnit, and caller regains ownership of it.
-                /// @param LessWork A pointer to a WorkUnit that should no longer be scheduled.
-                /// @details This is relative slow compared to adding or finding a working unit, this works in linear time relative to the number of WorkUnits in the scheduler.
-                /// @warning This does not cleanup dependencies and can get you in trouble if other work units depend on the one being removed.
-                virtual void RemoveWorkUnit(iWorkUnit* LessWork);
+                // @brief Remove a WorkUnit regardless of type, and caller regains ownership of it.
+                // @param LessWork A pointer to a WorkUnit that should no longer be scheduled.
+                // @details This is relative slow compared to adding or finding a working unit, this works in linear time relative to the number of WorkUnits in the scheduler.
+                //virtual void RemoveWorkUnit(iWorkUnit* LessWork);
+
+                /// @brief Remove a WorkUnit from the main pool of WorkUnits (and not from the groups of Affinity or MonpolyWorkUnits).
+                /// @param LessWork A pointer to the workunit the calling coding will reclaim ownership of and will no longer be scheduled, and have its dependencies removed.
+                virtual void RemoveWorkUnitMain(iWorkUnit* LessWork);
+
+                /// @brief Remove a WorkUnit from the Affinity pool of WorkUnits (and not from the Main group or MonpolyWorkUnits).
+                /// @param LessWork A pointer to the workunit the calling coding will reclaim ownership of and will no longer be scheduled, and have its dependencies removed.
+                virtual void RemoveWorkUnitAffinity(iWorkUnit* LessWork);
+
+                /// @brief Remove a WorkUnit from the Monopoly pool of WorkUnits (and not from the Main or Affinity group).
+                /// @param LessWork A pointer to the MonopolyWorkUnit the calling coding will reclaim ownership of and will no longer be scheduled, and have its dependencies removed.
+                virtual void RemoveWorkUnitMonopoly(MonopolyWorkUnit* LessWork);
 
 				////////////////////////////////////////////////////////////////////////////////
 				// Algorithm essentials

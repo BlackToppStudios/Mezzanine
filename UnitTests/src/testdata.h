@@ -141,6 +141,14 @@ namespace Mezzanine
                 /// @param Condition if false converted to Failed and if true converted Success.
                 /// @return The value passed in as the condition.
                 virtual bool AddSuccessFromBool(Mezzanine::String TestName, bool Condition);
+
+                /// @brief Interpret Boolean value as a test result.
+                /// @warning IfFalse comes first in the argument list, This is because the common test cases have IfTrue = Testing::Success while IfFalse makes sense as other things
+                /// @param TestCondition The test itself or the results of it.
+                /// @param TestName The comple name of the test, used to track results.
+                /// @param IfFalse Defaults to Testing::Failed but can be whatever Testing::TestResult you want if a false passed as the TestCondition.
+                /// @param IfTrue Defaults to Testing::Success but can be whatever Testing::TestResult you want if a true passed as the TestCondition.
+                virtual void Test(bool TestCondition, const String& TestName, TestResult IfFalse = Testing::Failed, TestResult IfTrue = Testing::Success);
         };
 
 

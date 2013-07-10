@@ -292,7 +292,7 @@ namespace Mezzanine
 
     SceneManager::~SceneManager()
     {
-        this->TheEntresol->GetScheduler().RemoveWorkUnit( this->TrackingNodeUpdateWork );
+        this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->TrackingNodeUpdateWork );
         delete TrackingNodeUpdateWork;
 
         DestroyAllLights();
