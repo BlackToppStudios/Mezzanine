@@ -251,6 +251,9 @@ namespace Mezzanine
                 /// @brief Swaps all the buffers of all GameWindows.
                 /// @param WaitForVsync Whether or not the buffer should swap after the vsync interval is completed.
                 virtual void SwapAllBuffers(bool WaitForVsync);
+                /// @brief Gets the work unit responsible for performing the graphics render of all scenes.
+                /// @return Returns a pointer to the RenderWorkUnit being used by this manager.
+                RenderWorkUnit* GetRenderWork();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // SubSystem Initialization
@@ -277,9 +280,6 @@ namespace Mezzanine
                 virtual ManagerType GetInterfaceType() const;
                 /// @copydoc ManagerBase::GetImplementationTypeName()
                 virtual String GetImplementationTypeName() const;
-
-                // replacement for ManagerBase Main loop
-                RenderWorkUnit* GetRenderWorkUnit();
         };//GraphicsManager
 
         ///////////////////////////////////////////////////////////////////////////////

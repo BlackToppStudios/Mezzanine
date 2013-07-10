@@ -619,6 +619,9 @@ namespace Mezzanine
                 GetGameWindow(X)->_GetOgreWindowPointer()->swapBuffers(false);
         }
 
+        RenderWorkUnit* GraphicsManager::GetRenderWork()
+            { return RenderWork; }
+
         ///////////////////////////////////////////////////////////////////////////////
         // SubSystem Initialization
 
@@ -681,9 +684,6 @@ namespace Mezzanine
 
         String GraphicsManager::GetImplementationTypeName() const
             { return "DefaultGraphicsManager"; }
-
-        RenderWorkUnit* GraphicsManager::GetRenderWorkUnit()
-            { return RenderWork; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultGraphicsManagerFactory Methods
