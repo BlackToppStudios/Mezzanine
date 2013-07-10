@@ -17,14 +17,342 @@
 
 using namespace Mezzanine;
 
+class DemoPreEventWorkUnit;
+class DemoPostInputWorkUnit;
+class DemoPostRenderWorkUnit;
+class DemoPostPhysicsWorkUnit;
+
 //Create the Entresol.... Globally! and set it to hold some actors
-Entresol* TheEntresol;
+Entresol* TheEntresol = NULL;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
-Audio::SoundSet *Announcer, *Soundtrack;
+Audio::SoundSet* Announcer = NULL;
+Audio::SoundSet* Soundtrack = NULL;
 
-ActorBase *Robot7, *Robot8;
+ActorBase* Robot7 = NULL;
+ActorBase* Robot8 = NULL;
+
+DemoPreEventWorkUnit* DemoPreEventWork = NULL;
+DemoPostInputWorkUnit* DemoPostInputWork = NULL;
+DemoPostRenderWorkUnit* DemoPostRenderWork = NULL;
+DemoPostPhysicsWorkUnit* DemoPostPhysicsWork = NULL;
+
+class DemoPreEventWorkUnit : public Threading::DefaultWorkUnit
+{
+public:
+    DemoPreEventWorkUnit() {  }
+    virtual ~DemoPreEventWorkUnit() {  }
+
+    void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+    {
+        //this will either set the pointer to 0 or return a valid pointer to work with.
+        EventUserInput* OneInput = TheEntresol->GetEventManager()->PopNextUserInputEvent();
+
+        //We check each Event
+        while(0 != OneInput)
+        {
+            if(OneInput->GetType()!=EventBase::UserInput)
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
+
+            //we check each MetaCode in each Event
+            for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
+            {
+                //Is the key we just pushed ESCAPE
+                if(Input::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && Input::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
+                    { TheEntresol->BreakMainLoop(); }
+            }
+
+            delete OneInput;
+            OneInput = TheEntresol->GetEventManager()->PopNextUserInputEvent();
+        }
+
+        EventGameWindow* OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
+        while(0 != OneWindowEvent)
+        {
+            if(OneWindowEvent->GetType()!=EventBase::GameWindow)
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
+
+            if(!OneWindowEvent->IsEventIDValid())
+            {
+                StringStream ExceptionStream;
+                ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
+            }
+
+            if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
+            {
+                Audio::iSound* Welcome = NULL;
+                Welcome = Announcer->front();
+                if(Welcome)
+                    { Welcome->Play(); }
+            }
+
+            delete OneWindowEvent;
+            OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
+        }
+
+        EventCollision* OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
+        while(0 != OneCollision)
+        {
+            if(OneCollision->GetType() != EventBase::Collision)
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventCollision as an EventCollision."); }
+
+            delete OneCollision;
+            OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
+        }
+
+        EventRenderTime* OneRender = TheEntresol->GetEventManager()->PopNextRenderTimeEvent();
+        while(0 != OneRender)
+        {
+            if(OneCollision->GetType() != EventBase::Collision)
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventRenderTime as an EventRenderTime."); }
+
+            delete OneRender;
+            OneRender = TheEntresol->GetEventManager()->GetNextRenderTimeEvent();
+        }
+    }
+};//DemoPreEventWorkUnit
+
+class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
+{
+public:
+    DemoPostInputWorkUnit() {  }
+    virtual ~DemoPostInputWorkUnit() {  }
+
+    void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+    {
+        //User Input through a WorldQueryTool
+        static RayQueryTool* RayQueryer = new RayQueryTool();
+        Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
+        Input::Mouse* SysMouse = InputMan->GetSystemMouse();
+        Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
+        Input::Controller* Controller1 = NULL;
+        if( InputMan->GetNumControllers() > 0 )
+            Controller1 = InputMan->GetController(0);
+
+        CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
+        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
+            { DefaultControl->StrafeLeft(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001)); }
+
+        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
+            { DefaultControl->StrafeRight(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001)); }
+
+        if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
+            { DefaultControl->MoveForward(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001)); }
+
+        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
+            { DefaultControl->MoveBackward(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001)); }
+
+        static bool MouseCam = false;
+        if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
+            { MouseCam = true; }
+
+        if( SysKeyboard->IsButtonPressed(Input::KEY_END))
+            { MouseCam = false; }
+
+        Vector2 Offset = SysMouse->GetMouseDelta();
+        if( MouseCam && Vector2(0,0) != Offset )
+            DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+
+        if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) )
+        {
+            Audio::iSound* Theme = Soundtrack->at(1);
+            if(!Theme->IsPlaying())
+                { Theme->Play(); }
+        }
+
+        if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) )
+        {
+            Audio::iSound* Theme = Soundtrack->at(1);
+            if(Theme->IsPlaying())
+                { Theme->Stop(); }
+        }
+
+        // Make a declaration for a static constrain so it survives the function lifetime
+        static Physics::Point2PointConstraint* Dragger=NULL;
+
+        if( SysMouse->IsButtonPressed(1) )
+        {
+            UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
+            if(UIMan->MouseIsInUISystem())
+            {
+                UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
+                UI::Widget* Hover = UIMan->GetHoveredWidget();
+                if(Hover)
+                {
+                    Hover = Hover->GetBottomMostHoveredWidget();
+                    if("D_MenuAccess" == Hover->GetName())
+                        { DScreen->GetWidget("D_Menu")->Show(); }
+                    if("D_Return" == Hover->GetName())
+                        { DScreen->GetWidget("D_Menu")->Hide(); }
+                    if("D_Exit" == Hover->GetName())
+                        { TheEntresol->BreakMainLoop(); }
+                }
+            }else{
+                Ray* MouseRay = RayQueryer->GetMouseRay(5000);
+                Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
+
+                bool firstframe=false;
+                if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
+                {
+                    #ifdef MEZZDEBUG
+                    //TheEntresol->Log("No Actor Clicked on");
+                    #endif
+                }else{
+                    #ifdef MEZZDEBUG
+                    //TheEntresol->Log("Actor Clicked on"); TheEntresol->Log(*ClickOnActor);
+                    //TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
+                    //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
+                    //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
+                    #endif
+                    if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
+                    {
+                        if(!Dragger) //If we have a dragger, then this is dragging, not clicking
+                        {
+                            if(ClickOnActor->Actor->GetType()==Mezzanine::WSO_ActorRigid) //This is Dragging let's do some checks for sanity
+                            {
+                                Vector3 LocalPivot = ClickOnActor->Vector;
+                                ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                                rigid->GetPhysicsSettings()->SetActivationState(Physics::WOAS_DisableDeactivation);
+                                //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
+                                Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
+                                Dragger->SetTAU(0.001);
+                                TheEntresol->GetPhysicsManager()->AddConstraint(Dragger);
+                                Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
+                                Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
+                                firstframe=true;
+                            }else{  // since we don't
+                                #ifdef MEZZDEBUG
+                                //TheEntresol->Log("Actor is not an ActorRigid.  Aborting.");
+                                #endif
+                            }
+                        }
+                    }else{
+                        #ifdef MEZZDEBUG
+                        //TheEntresol->Log("Actor is Static/Kinematic.  Aborting.");
+                        #endif
+                    }
+                }
+
+                // This chunk of code calculates the 3d point that the actor needs to be dragged to
+                Vector3 *DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
+                if (0 == DragTo)
+                {
+                    #ifdef MEZZDEBUG
+                    //TheEntresol->Log("PlaneOfPlay Not Clicked on");
+                    #endif
+                }else{
+                    if(Dragger && !firstframe)
+                    {
+                        #ifdef MEZZDEBUG
+                        //TheEntresol->Log("Dragged To");
+                        //TheEntresol->Log(*DragTo);
+                        #endif
+                        //Dragger->SetOffsetALocation(*DragTo);
+                        Dragger->SetPivotBLocation(*DragTo);
+                    }
+                }
+
+                // Here we cleanup everything we needed for the clicking/dragging
+                delete DragTo;
+                delete MouseRay;
+            }
+
+        }else{  //Since we are no longer clicking we need to setup for the next clicking
+            if(Dragger)
+            {
+                ActorRigid* Act = Dragger->GetActorA();
+                TheEntresol->GetPhysicsManager()->RemoveConstraint(Dragger);
+                delete Dragger;
+                Dragger = NULL;
+                Act->GetPhysicsSettings()->SetActivationState(Physics::WOAS_Active);
+            }
+        }
+    }
+};//DemoPostInputWorkUnit
+
+class DemoPostRenderWorkUnit : public Threading::DefaultWorkUnit
+{
+public:
+    DemoPostRenderWorkUnit() {  }
+    virtual ~DemoPostRenderWorkUnit() {  }
+
+    void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+    {
+        /*ActorBase* Act1 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontLeft");
+        ActorBase* Act2 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontRight");
+        if (Act1->IsAnimated())
+        {
+            Act1->AdvanceAnimation((Real)0.001 * TheEntresol->GetFrameTimeMilliseconds() );
+        }
+
+        if (Act2->IsAnimated())
+        {
+            Act2->AdvanceAnimation((Real)0.0001 * TheEntresol->GetFrameTimeMilliseconds() );
+        }//*/
+
+        static bool notplayed = true;
+        //if (1000<gametime && notplayed)
+        if( notplayed )
+        {
+            notplayed = false;
+            Audio::iSound* Welcome = NULL;
+            Welcome = Announcer->front();
+            if(Welcome)
+                { Welcome->Play(); }
+            #ifdef MEZZDEBUG
+            //TheEntresol->Log("Played Welcome Fun:");
+            #endif
+
+        }
+
+        Input::Mouse* SysMouse = Input::InputManager::GetSingletonPtr()->GetSystemMouse();
+        // Update Stat information
+        UI::OpenRenderableContainerWidget* HUD = static_cast<UI::OpenRenderableContainerWidget*>(TheEntresol->GetUIManager()->GetScreen("DefaultScreen")->GetWidget("D_HUD"));
+        UI::Caption* CurFPS = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_CurFPS"));
+        UI::Caption* AvFPS = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_AvFPS"));
+        std::stringstream CFPSstream;
+        std::stringstream AFPSstream;
+        CFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetLastFPS();
+        AFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetAverageFPS();
+        String CFPS = CFPSstream.str();
+        String AFPS = AFPSstream.str();
+        CurFPS->SetText(CFPS);
+        AvFPS->SetText(AFPS);
+        // Update mouse positions
+        UI::Caption* IMPos = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_IMPos"));
+        std::stringstream IMPosstream;
+        IMPosstream << SysMouse->GetWindowX() << "," << SysMouse->GetWindowY();
+        String IMPosTex = IMPosstream.str();
+        IMPos->SetText(IMPosTex);
+    }
+};//DemoPostRenderWorkUnit
+
+class DemoPostPhysicsWorkUnit : public Threading::DefaultWorkUnit
+{
+public:
+    DemoPostPhysicsWorkUnit() {  }
+    virtual ~DemoPostPhysicsWorkUnit() {  }
+
+    void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+    {
+        //TheEntresol->Log("Object Locations");
+        //Replace this with something that uses the actor container and logs the location of everything
+        //TheEntresol->Log(TheEntresol->GetActorManager()->GetActor("MetalSphere2")->GetLocation());
+
+        // Updating functions to be used when a suitable mesh is found/created.
+        /*ActorSoft* ActS = static_cast< ActorSoft* > (TheEntresol->GetActorManager()->FindActor("spheresoft"));
+        ActS->UpdateSoftBody();
+        TheEntresol->Log("Soft Locations");
+        TheEntresol->Log(TheEntresol->GetActorManager()->FindActor("spheresoft")->GetLocation());
+        if(ActS->IsInWorld())
+            TheEntresol->Log("Softbody is in World");
+        else
+            TheEntresol->Log("Softbody is not in World");// */
+    }
+};//DemoPostPhysicsWorkUnit
+
 
 int main(int argc, char **argv)
 {
@@ -48,13 +376,6 @@ int main(int argc, char **argv)
 
     Graphics::GraphicsManager* GraphMan = TheEntresol->GetGraphicsManager();
 
-    //Give the world functions to run before and after input and physics
-    TheEntresol->GetEventManager()->SetPreMainLoopItems(&PreInput);
-    TheEntresol->GetEventManager()->SetPostMainLoopItems(&PostInput);
-    TheEntresol->GetPhysicsManager()->SetPreMainLoopItems(&PrePhysics);
-    TheEntresol->GetPhysicsManager()->SetPostMainLoopItems(&PostPhysics);
-    TheEntresol->GetGraphicsManager()->SetPostMainLoopItems(&PostRender);
-
     //Create the windows!
     Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
     Camera* FirstCam = CameraManager::GetSingletonPtr()->CreateCamera("FirstCam");
@@ -69,7 +390,25 @@ int main(int argc, char **argv)
     SecondCam->SetLocation( Vector3(-300,50,-50) );
     SecondCam->LookAt( Vector3(0,0,0) );//*/
 
-    //Init
+    // Setup our workunits
+    DemoPreEventWork = new DemoPreEventWorkUnit();
+    TheEntresol->GetEventManager()->GetEventWorkUnit()->AddDependency( DemoPreEventWork );
+    TheEntresol->GetScheduler().AddWorkUnit( DemoPreEventWork );
+
+    DemoPostInputWork = new DemoPostInputWorkUnit();
+    DemoPostInputWork->AddDependency( TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
+    TheEntresol->GetScheduler().AddWorkUnit( DemoPreEventWork );
+
+    DemoPostRenderWork = new DemoPostRenderWorkUnit();
+    DemoPostRenderWork->AddDependency( TheEntresol->GetGraphicsManager()->GetRenderWork() );
+    DemoPostRenderWork->AddDependency( TheEntresol->GetPhysicsManager()->GetAreaEffectUpdateWork() );
+    TheEntresol->GetScheduler().AddWorkUnit( DemoPreEventWork );
+
+    DemoPostPhysicsWork = new DemoPostPhysicsWorkUnit();
+    DemoPostPhysicsWork->AddDependency( TheEntresol->GetPhysicsManager()->GetSimulationWork() );
+    TheEntresol->GetScheduler().AddWorkUnit( DemoPostPhysicsWork );
+
+    // Init
 	TheEntresol->EngineInit(false);
 
     // Configure Shadows
@@ -117,394 +456,6 @@ int main(int argc, char **argv)
     delete Announcer;
     delete TheEntresol;
 	return 0;
-}
-
-bool PostRender()
-{
-	//Lets set a variable for the time
-	static Whole gametime = 0;
-
-	TheEntresol->Log(String("---------- Starting PosterRender CallBack -------------"));
-    TheEntresol->Log(String("Current Game Time "));
-
-	//getting a message from the event manager)
-	EventRenderTime* CurrentTime = TheEntresol->GetEventManager()->PopNextRenderTimeEvent();
-    Whole LastFrame = 0;
-
-    // Is CurrentTime a valid event?
-    while(0 != CurrentTime)
-    {
-        LastFrame = CurrentTime->getMilliSecondsSinceLastFrame();
-
-        TheEntresol->Log(gametime);
-        gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
-
-        delete CurrentTime;
-        CurrentTime = TheEntresol->GetEventManager()->GetNextRenderTimeEvent();
-    }
-
-    ActorBase* Act1 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontLeft");
-    ActorBase* Act2 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontRight");
-    if (Act1->IsAnimated())
-    {
-        Act1->AdvanceAnimation((Real)0.001 * LastFrame);
-    }
-
-    if (Act2->IsAnimated())
-    {
-        Act2->AdvanceAnimation((Real)0.0001 * LastFrame);
-    }
-
-    static bool notplayed=true;
-    //if (1000<gametime && notplayed)
-    if (notplayed)
-    {
-        notplayed=false;
-        Audio::iSound* Welcome = NULL;
-        Welcome = Announcer->front();
-        if(Welcome)
-        {
-            Welcome->Play();
-        }
-        #ifdef MEZZDEBUG
-        TheEntresol->Log("Played Welcome Fun:");
-        #endif
-
-    }
-
-    Input::Mouse* SysMouse = Input::InputManager::GetSingletonPtr()->GetSystemMouse();
-    // Update Stat information
-    UI::OpenRenderableContainerWidget* HUD = static_cast<UI::OpenRenderableContainerWidget*>(TheEntresol->GetUIManager()->GetScreen("DefaultScreen")->GetWidget("D_HUD"));
-    UI::Caption* CurFPS = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_CurFPS"));
-    UI::Caption* AvFPS = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_AvFPS"));
-    std::stringstream CFPSstream;
-    std::stringstream AFPSstream;
-    CFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetLastFPS();
-    AFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetAverageFPS();
-    String CFPS = CFPSstream.str();
-    String AFPS = AFPSstream.str();
-    CurFPS->SetText(CFPS);
-    AvFPS->SetText(AFPS);
-    // Update mouse positions
-    UI::Caption* IMPos = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_IMPos"));
-    std::stringstream IMPosstream;
-    IMPosstream << SysMouse->GetWindowX() << "," << SysMouse->GetWindowY();
-    String IMPosTex = IMPosstream.str();
-    IMPos->SetText(IMPosTex);
-
-    // Turn on the Wireframe
-    if (30000<gametime)
-        { /*TheEntresol->GetPhysicsManager()->SetDebugPhysicsRendering(1);*/ }
-
-    //IF the game has gone on for 150 or more seconds close it.
-	if (150000<gametime || (TheEntresol->GetEventManager()->GetNextQuitEvent()!=0) )
-        { return false; }
-
-    return true;
-}
-
-bool PrePhysics()
-{
-    TheEntresol->Log("Object Locations");
-    //Replace this with something that uses the actor container and logs the location of everything
-    TheEntresol->Log(TheEntresol->GetActorManager()->GetActor("MetalSphere2")->GetLocation());
-    return true;
-}
-
-bool PostPhysics()
-{
-    //// Updating functions to be used when a suitable mesh is found/created.
-    /*ActorSoft* ActS = static_cast< ActorSoft* > (TheEntresol->GetActorManager()->FindActor("spheresoft"));
-    ActS->UpdateSoftBody();
-    TheEntresol->Log("Soft Locations");
-    TheEntresol->Log(TheEntresol->GetActorManager()->FindActor("spheresoft")->GetLocation());
-    if(ActS->IsInWorld())
-        TheEntresol->Log("Softbody is in World");
-    else
-        TheEntresol->Log("Softbody is not in World");// */
-    return true;
-}
-
-bool PreUI()
-{
-    return true;
-}
-
-bool PostUI()
-{
-    return true;
-}
-
-bool PreInput()
-{
-    // using the Raw Event Manager, and deleting the events
-    if( !CheckForStuff() )
-        return false;
-    return true;
-}
-
-bool PostInput()
-{
-    //User Input through a WorldQueryTool
-    static RayQueryTool* RayQueryer = new RayQueryTool();
-    Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
-    Input::Mouse* SysMouse = InputMan->GetSystemMouse();
-    Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-    Input::Controller* Controller1 = NULL;
-    if( InputMan->GetNumControllers() > 0 )
-        Controller1 = InputMan->GetController(0);
-
-    CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
-    {
-        DefaultControl->StrafeLeft(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    }
-
-    if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
-    {
-        DefaultControl->StrafeRight(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    }
-
-    if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
-    {
-        DefaultControl->MoveForward(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    }
-
-    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
-    {
-        DefaultControl->MoveBackward(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    }
-
-    static bool MouseCam=false;
-    if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
-    {
-        MouseCam=true;
-    }
-    if( SysKeyboard->IsButtonPressed(Input::KEY_END))
-    {
-        MouseCam=false;
-    }
-
-    Vector2 Offset = SysMouse->GetMouseDelta();
-    if( MouseCam && Vector2(0,0) != Offset )
-        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
-
-    if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) )
-    {
-        Audio::iSound* Theme = Soundtrack->at(1);
-        if(!Theme->IsPlaying())
-        {
-            Theme->Play();
-        }
-    }
-
-    if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) )
-    {
-        Audio::iSound* Theme = Soundtrack->at(1);
-        if(Theme->IsPlaying())
-        {
-            Theme->Stop();
-        }
-    }
-
-    // Make a declaration for a static constrain so it survives the function lifetime
-    static Physics::Point2PointConstraint* Dragger=NULL;
-
-    if( SysMouse->IsButtonPressed(1) )
-    {
-        UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-        if(UIMan->MouseIsInUISystem())
-        {
-            UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
-            UI::Widget* Hover = UIMan->GetHoveredWidget();
-            if(Hover)
-            {
-                Hover = Hover->GetBottomMostHoveredWidget();
-                if("D_MenuAccess" == Hover->GetName())
-                {
-                    DScreen->GetWidget("D_Menu")->Show();
-                }
-                if("D_Return" == Hover->GetName())
-                {
-                    DScreen->GetWidget("D_Menu")->Hide();
-                }
-                if("D_Exit" == Hover->GetName())
-                {
-                    return false;
-                }
-            }
-        }else{
-            Ray* MouseRay = RayQueryer->GetMouseRay(5000);
-            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
-
-            bool firstframe=false;
-            if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
-            {
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("No Actor Clicked on");
-                #endif
-            }else{
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("Actor Clicked on"); TheEntresol->Log(*ClickOnActor);
-                TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
-                TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
-                TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
-                #endif
-                if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
-                {
-                    if(!Dragger) //If we have a dragger, then this is dragging, not clicking
-                    {
-                        if(ClickOnActor->Actor->GetType()==Mezzanine::WSO_ActorRigid) //This is Dragging let's do some checks for sanity
-                        {
-                            Vector3 LocalPivot = ClickOnActor->Vector;
-                            ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                            rigid->GetPhysicsSettings()->SetActivationState(Physics::WOAS_DisableDeactivation);
-                            //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
-                            Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
-                            Dragger->SetTAU(0.001);
-                            TheEntresol->GetPhysicsManager()->AddConstraint(Dragger);
-                            Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
-                            Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
-                            firstframe=true;
-                        }else{  // since we don't
-                            #ifdef MEZZDEBUG
-                            TheEntresol->Log("Actor is not an ActorRigid.  Aborting.");
-                            #endif
-                        }
-                    }
-                }else{
-                    #ifdef MEZZDEBUG
-                    TheEntresol->Log("Actor is Static/Kinematic.  Aborting.");
-                    #endif
-                }
-            }
-
-            // This chunk of code calculates the 3d point that the actor needs to be dragged to
-            Vector3 *DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
-            if (0 == DragTo)
-            {
-                #ifdef MEZZDEBUG
-                TheEntresol->Log("PlaneOfPlay Not Clicked on");
-                #endif
-            }else{
-                if(Dragger && !firstframe)
-                {
-                    #ifdef MEZZDEBUG
-                    TheEntresol->Log("Dragged To");
-                    TheEntresol->Log(*DragTo);
-                    #endif
-                    //Dragger->SetOffsetALocation(*DragTo);
-                    Dragger->SetPivotBLocation(*DragTo);
-                }
-            }
-
-            // Here we cleanup everything we needed for the clicking/dragging
-            delete DragTo;
-            delete MouseRay;
-        }
-
-    }else{  //Since we are no longer clicking we need to setup for the next clicking
-        if(Dragger)
-        {
-            ActorRigid* Act = Dragger->GetActorA();
-            TheEntresol->GetPhysicsManager()->RemoveConstraint(Dragger);
-            delete Dragger;
-            Dragger=NULL;
-            Act->GetPhysicsSettings()->SetActivationState(Physics::WOAS_Active);
-        }
-    }
-    return true;
-}
-
-///////////////////
-//Non-Callbacks
-bool CheckForStuff()
-{
-    //this will either set the pointer to 0 or return a valid pointer to work with.
-    EventUserInput* OneInput = TheEntresol->GetEventManager()->PopNextUserInputEvent();
-
-    //We check each Event
-    while(0 != OneInput)
-    {
-        #ifdef MEZZDEBUG
-        TheEntresol->LogStream << "Input Events Processed (Escape is " << Input::KEY_ESCAPE << ") : " << std::endl;
-        #endif
-
-        if(OneInput->GetType()!=EventBase::UserInput)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
-
-        #ifdef MEZZDEBUG
-        TheEntresol->Log(*OneInput);
-        EventUserInput ASecondInput;
-        StringStream UserInputXML;
-        UserInputXML << *OneInput;
-        UserInputXML >> ASecondInput;
-        TheEntresol->Log(ASecondInput);
-        #endif
-
-        //we check each MetaCode in each Event
-        for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
-        {
-            //Is the key we just pushed ESCAPE
-            if(Input::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && Input::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
-                { return false; }
-        }
-
-        delete OneInput;
-        OneInput = TheEntresol->GetEventManager()->PopNextUserInputEvent();
-    }
-
-    #ifdef MEZZDEBUG
-    TheEntresol->Log("All Game Window Changes This Frame");
-    #endif
-    EventGameWindow* OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
-    while(0 != OneWindowEvent)
-    {
-        if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
-
-        if(!OneWindowEvent->IsEventIDValid())
-        {
-            StringStream ExceptionStream;
-            ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
-        }
-
-        TheEntresol->Log(*OneWindowEvent);
-        TheEntresol->Log(EventGameWindow::GameWindowEventIDToString(OneWindowEvent->GetEventID()));
-        StringStream eventXML;
-        eventXML << *OneWindowEvent;    // Test XML conversion and reconstruction
-        EventGameWindow AnotherWindowEvent(EventGameWindow::GAME_WINDOW_NONE,0,0);
-        eventXML >> AnotherWindowEvent;
-        TheEntresol->Log(AnotherWindowEvent);
-
-        if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
-        {
-            Audio::iSound* Welcome = NULL;
-            Welcome = Announcer->front();
-            if(Welcome)
-            {
-                Welcome->Play();
-            }
-        }
-
-        delete OneWindowEvent;
-        OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
-    }
-
-    #ifdef MEZZDEBUG
-    TheEntresol->Log("All Collisions This Frame");
-    #endif
-    EventCollision* OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
-    while(0 != OneCollision)
-    {
-        if(OneCollision->GetType() != EventBase::Collision)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventCollision as an EventCollision."); }
-        delete OneCollision;
-        OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
-    }
-
-    return true;
 }
 
 void LoadContent()
