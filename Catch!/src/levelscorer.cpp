@@ -6,8 +6,6 @@
 #include "levelreportcell.h"
 
 LevelScorer::LevelScorer() :
-    NormalScore(0),
-    BonusScore(0),
     LevelTargetTime(0)
 {
     TheEntresol = Entresol::GetSingletonPtr();
@@ -28,102 +26,83 @@ Whole LevelScorer::GetItemScoreValue(ActorBase* Item)
     else return 0;
 }
 
-void LevelScorer::CalculateCurrentScore(Whole& Score)
+Whole LevelScorer::CalculateNormalScore()
 {
-    for( Whole B = 0 ; B < BonusScoreAreas.size() ; B++ )
+    Whole ScoreRet = 0;
+    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
     {
-        ScoreArea* CurrArea = BonusScoreAreas.at(B);
-        std::vector<ActorBase*>& Added = CurrArea->GetAddedActors();
-        std::vector<ActorBase*>& Removed = CurrArea->GetRemovedActors();
-        for( Whole A = 0 ; A < Added.size() ; A++ )
+        if( (*ScoreIt)->GetScoreMultiplier() == 1.0 )
         {
-            std::map<ActorBase*,ScoreAreaCache>::iterator it = ScoreCache.find(Added[A]);
-            if( it != ScoreCache.end() ) (*it).second.Bonus = CurrArea;
-            else ScoreCache.insert(std::pair<ActorBase*,ScoreAreaCache>(Added[A],ScoreAreaCache(CurrArea,NULL)));
-        }
-        for( Whole R = 0 ; R < Removed.size() ; R++ )
-        {
-            std::map<ActorBase*,ScoreAreaCache>::iterator it = ScoreCache.find(Removed[R]);
-            if( it != ScoreCache.end() ) (*it).second.Bonus = NULL;
+            ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
+            for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
+            {
+                if( this->GameApp->IsAThrowable( *It ) )
+                    ScoreRet += GetItemScoreValue( *It );
+            }
         }
     }
-
-    for( Whole S = 0 ; S < ScoreAreas.size() ; S++ )
-    {
-        ScoreArea* CurrArea = ScoreAreas.at(S);
-        std::vector<ActorBase*>& Added = CurrArea->GetAddedActors();
-        std::vector<ActorBase*>& Removed = CurrArea->GetRemovedActors();
-        for( Whole A = 0 ; A < Added.size() ; A++ )
-        {
-            std::map<ActorBase*,ScoreAreaCache>::iterator it = ScoreCache.find(Added[A]);
-            if( it != ScoreCache.end() ) (*it).second.Normal = CurrArea;
-            else ScoreCache.insert(std::pair<ActorBase*,ScoreAreaCache>(Added[A],ScoreAreaCache(NULL,CurrArea)));
-
-        }
-        for( Whole R = 0 ; R < Removed.size() ; R++ )
-        {
-            std::map<ActorBase*,ScoreAreaCache>::iterator it = ScoreCache.find(Removed[R]);
-            if( it != ScoreCache.end() ) (*it).second.Normal = NULL;
-        }
-    }
-
-    NormalScore = 0;
-    BonusScore = 0;
-    for( std::map<ActorBase*,ScoreAreaCache>::iterator SCit = ScoreCache.begin() ; SCit != ScoreCache.end() ;  )
-    {
-        if( (*SCit).second.Bonus )
-        {
-            BonusScore += (GetItemScoreValue( (*SCit).first ) * (*SCit).second.Bonus->GetScoreMultiplier() );
-            ++SCit;
-        }
-        else if( (*SCit).second.Normal )
-        {
-            NormalScore += GetItemScoreValue( (*SCit).first );
-            ++SCit;
-        }
-        else
-        {
-            std::map<ActorBase*,ScoreAreaCache>::iterator ToBeDestroyed = SCit;
-            ++SCit;
-            ScoreCache.erase(ToBeDestroyed);
-        }
-    }
-
-    Score = NormalScore + BonusScore;
+    return ScoreRet;
 }
 
-Whole LevelScorer::CalculateFinalScore()
+Whole LevelScorer::CalculateBonusScore()
 {
-    // Init non-saved scores
-    CatchApp* App = CatchApp::GetCatchAppPointer();
-    Whole ShopScore = 0;
-    Whole TimeScore = 0;
-
-    // Calculate the Shop Score
-    ItemShop* Shop = App->GetItemShop();
-    Real CashRatio = (Real)Shop->GetCurrentCash() / (Real)Shop->GetStarterCash();
-    ShopScore = ((Whole)(CashRatio * 10)) * 10;
-
-    // Calculate the Time Score
-    Timer* LevelTimer = App->GetLevelTimer();
-    Whole Time = LevelTimer->GetCurrentTimeInMilli() * 0.001;
-    if(Time < LevelTargetTime)
+    Whole ScoreRet = 0;
+    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
     {
-        std::vector<ActorBase*>& Throwables = App->GetThrowables();
+        Real ScoreMulti = (*ScoreIt)->GetScoreMultiplier();
+        if( ScoreMulti < 1.0 )
+        {
+            ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
+            for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
+            {
+                if( this->GameApp->IsAThrowable( *It ) )
+                    ScoreRet += ( this->GetItemScoreValue( *It ) * ScoreMulti );
+            }
+        }
+    }
+    return ScoreRet;
+}
+
+Whole LevelScorer::CalculateTotalThrowableScore()
+{
+    Whole ScoreRet = 0;
+    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
+    {
+        Real ScoreMulti = (*ScoreIt)->GetScoreMultiplier();
+        ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
+        for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
+        {
+            if( this->GameApp->IsAThrowable( *It ) )
+                ScoreRet += ( this->GetItemScoreValue( *It ) * ScoreMulti );
+        }
+    }
+    return ScoreRet;
+}
+
+Whole LevelScorer::CalculateTimerScore()
+{
+    // Setup the return
+    Whole TimeScore = 0;
+    // Calculate the Time Score
+    Timer* LevelTimer = this->GameApp->GetLevelTimer();
+    Whole Time = LevelTimer->GetCurrentTimeInMilli() * 0.001;
+    if(Time < this->LevelTargetTime)
+    {
+        ThrowableContainer& Throwables = this->GameApp->GetThrowables();
         Whole ActorsInScoreZones = 0;
 
-        for( Whole Areas = 0 ; Areas < ScoreAreas.size() ; ++Areas )
+        for( Whole Areas = 0 ; Areas < this->ScoreAreas.size() ; ++Areas )
         {
-            std::list<ActorBase*>& Overlapping = ScoreAreas[Areas]->GetOverlappingActors();
-            for( std::list<ActorBase*>::iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
+            ActorList& Overlapping = this->ScoreAreas[Areas]->GetOverlappingActors();
+            for( ActorList::iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
             {
-                if( App->IsAThrowable( *It ) )
+                if( this->GameApp->IsAThrowable( *It ) )
                     ActorsInScoreZones++;
             }
         }
 
         Real ThrowableRatio = ((Real)ActorsInScoreZones / (Real)Throwables.size());
-        Real SubTotal = (((Real)LevelTargetTime - (Real)Time) * 10) * ThrowableRatio;
+        Real SubTotal = (((Real)this->LevelTargetTime - (Real)Time) * 10) * ThrowableRatio;
         Real Margin = MathTool::Fmod(SubTotal,5.0);
         if( Margin >= 2.5 )
         {
@@ -136,6 +115,23 @@ Whole LevelScorer::CalculateFinalScore()
             TimeScore = (Whole)(SubTotal + 0.5);
         }
     }
+    return TimeScore;
+}
+
+Whole LevelScorer::CalculateItemCashScore()
+{
+    // Calculate the Shop Score
+    ItemShop* Shop = this->GameApp->GetItemShop();
+    Real CashRatio = (Real)Shop->GetCurrentCash() / (Real)Shop->GetStarterCash();
+    return ((Whole)(CashRatio * 10)) * 10;
+}
+
+Whole LevelScorer::PresentFinalScore()
+{
+    Whole NormalScore = this->CalculateNormalScore();
+    Whole BonusScore = this->CalculateBonusScore();
+    Whole ShopScore = this->CalculateItemCashScore();
+    Whole TimeScore = this->CalculateTimerScore();
 
     // Update the UI to reflect the calculated scores
     UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
@@ -166,6 +162,7 @@ Whole LevelScorer::CalculateFinalScore()
     TimeBonusCell->GetScore()->SetText(StringTools::ConvertToString(TimeScore));
     BreakdownList->AddCell(TimeBonusCell);
 
+    Whole ObjectiveScore = 0;
     /*for(  ;  ;  )
     {
         std::stringstream namestream;
@@ -179,17 +176,72 @@ Whole LevelScorer::CalculateFinalScore()
 
     BreakdownList->GenerateGrid();
 
-    Whole TotalScore = NormalScore+BonusScore+ShopScore+TimeScore;
+    Whole TotalScore = NormalScore+BonusScore+ShopScore+TimeScore+ObjectiveScore;
     TotalDisplay->SetText(StringTools::ConvertToString(TotalScore));
 
     ReportWin->Show();
     return TotalScore;
 }
 
+Whole LevelScorer::GetNumScoreAreas() const
+{
+    return this->ScoreAreas.size();
+}
+
+Whole LevelScorer::GetNumAddedThrowables() const
+{
+    Whole ThrowableCount = 0;
+    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
+    {
+        ActorVector& Added = (*ScoreIt)->GetAddedActors();
+        for( ActorVector::const_iterator It = Added.begin() ; It != Added.end() ; ++It )
+        {
+            if( this->GameApp->IsAThrowable( *It ) )
+                ++ThrowableCount;
+        }
+    }
+    return ThrowableCount;
+}
+
+Whole LevelScorer::GetNumOverlappingThrowables() const
+{
+    Whole ThrowableCount = 0;
+    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
+    {
+        ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
+        for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
+        {
+            if( this->GameApp->IsAThrowable( *It ) )
+                ++ThrowableCount;
+        }
+    }
+    return ThrowableCount;
+}
+
+Whole LevelScorer::GetNumRemovedThrowables() const
+{
+    Whole ThrowableCount = 0;
+    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
+    {
+        ActorVector& Removed = (*ScoreIt)->GetRemovedActors();
+        for( ActorVector::const_iterator It = Removed.begin() ; It != Removed.end() ; ++It )
+        {
+            if( this->GameApp->IsAThrowable( *It ) )
+                ++ThrowableCount;
+        }
+    }
+    return ThrowableCount;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Special Conditions
+
+///////////////////////////////////////////////////////////////////////////////
+// Configuration
+
 void LevelScorer::RegisterScoreArea(ScoreArea* Score)
 {
-    if( 1 < Score->GetScoreMultiplier() ) BonusScoreAreas.push_back(Score);
-    else ScoreAreas.push_back(Score);
+    this->ScoreAreas.push_back(Score);
 }
 
 void LevelScorer::SetThrowableScore(const String& TypeName, const Whole& Score)
@@ -210,10 +262,6 @@ void LevelScorer::ResetLevelData()
     UI::ScrolledCellGrid* BreakdownList = static_cast<UI::ScrolledCellGrid*>(ReportWin->GetWidget("GS_ScoreBreakdown"));
 
     ScoreAreas.clear();
-    BonusScoreAreas.clear();
-    ScoreCache.clear();
-    BonusScore = 0;
-    NormalScore = 0;
     LevelTargetTime = 0;
 
     BreakdownList->DestroyAllCells();

@@ -18,33 +18,49 @@ struct ScoreAreaCache
 
 class LevelScorer
 {
-    protected:
-        Entresol* TheEntresol;
-        CatchApp* GameApp;
-        Whole NormalScore;
-        Whole BonusScore;
-        Whole LevelTargetTime;
-        std::map<String,Whole> ItemScoreValues;
-        std::vector<ScoreArea*> ScoreAreas;
-        std::vector<ScoreArea*> BonusScoreAreas;
-        std::map<ActorBase*,ScoreAreaCache> ScoreCache;
-        Whole GetItemScoreValue(ActorBase* Item);
-    public:
-        LevelScorer();
-        ~LevelScorer();
-        void CalculateCurrentScore(Whole& Score);
-        Whole CalculateFinalScore();
+public:
+    typedef std::vector<ActorBase*> ThrowableContainer;
+    typedef std::vector<ScoreArea*> ScoreAreaContainer;
+    typedef std::vector<ActorBase*> ActorVector;
+    typedef std::list<ActorBase*> ActorList;
+    typedef std::map<String,Whole> ItemScoreContainer;
+protected:
+    ItemScoreContainer ItemScoreValues;
+    ScoreAreaContainer ScoreAreas;
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Special Conditions
+    Entresol* TheEntresol;
+    CatchApp* GameApp;
+    Whole LevelTargetTime;
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Configuration
-        void RegisterScoreArea(ScoreArea* Score);
-        void SetThrowableScore(const String& TypeName, const Whole& Score);
-        void SetLevelTargetTime(const Whole& TargetTime);
-        void ResetLevelData();
-        void ResetAllData();
+    Whole GetItemScoreValue(ActorBase* Item);
+public:
+    LevelScorer();
+    ~LevelScorer();
+
+    Whole CalculateNormalScore();
+    Whole CalculateBonusScore();
+    Whole CalculateTotalThrowableScore();
+    Whole CalculateTimerScore();
+    Whole CalculateItemCashScore();
+
+    Whole PresentFinalScore();
+
+    Whole GetNumScoreAreas() const;
+    Whole GetNumAddedThrowables() const;
+    Whole GetNumOverlappingThrowables() const;
+    Whole GetNumRemovedThrowables() const;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Special Conditions
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Configuration
+
+    void RegisterScoreArea(ScoreArea* Score);
+    void SetThrowableScore(const String& TypeName, const Whole& Score);
+    void SetLevelTargetTime(const Whole& TargetTime);
+    void ResetLevelData();
+    void ResetAllData();
 };//LevelScorer
 
 #endif

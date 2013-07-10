@@ -2,7 +2,6 @@
 #define _catchapp_cpp
 
 #include "catchapp.h"
-#include "callbacks.h"
 #include "buttoncallbacks.h"
 #include "levelselectcell.h"
 #include "throwablegenerator.h"
@@ -16,10 +15,22 @@ using namespace Mezzanine;
 CatchApp* CatchApp::TheRealCatchApp = 0;
 
 CatchApp::CatchApp() :
+    PreInputWork(NULL),
+    PostInputWork(NULL),
+    PostUIWork(NULL),
+    PostGraphicsWork(NULL),
+
+    TheEntresol(NULL),
+    Profiles(NULL),
+    Loader(NULL),
+    Scorer(NULL),
+    Shop(NULL),
     LastActorThrown(NULL),
+
+    LevelTimer(NULL),
     EndTimer(NULL),
+
     Paused(false),
-    CurrScore(0),
     CurrentState(CatchApp::Catch_Init),
     PlaneOfPlay(Plane(Vector3(2.0,1.0,0.0), Vector3(1.0,2.0,0.0), Vector3(1.0,1.0,0.0)))
 {
@@ -42,6 +53,18 @@ CatchApp::CatchApp() :
 
 CatchApp::~CatchApp()
 {
+    this->TheEntresol->GetScheduler().RemoveWorkUnit( this->PreInputWork );
+    delete PreInputWork;
+
+    this->TheEntresol->GetScheduler().RemoveWorkUnit( this->PostInputWork );
+    delete PostInputWork;
+
+    this->TheEntresol->GetScheduler().RemoveWorkUnit( this->PostUIWork );
+    delete PostUIWork;
+
+    this->TheEntresol->GetScheduler().RemoveWorkUnit( this->PostGraphicsWork );
+    delete PostGraphicsWork;
+
     delete Profiles;
     delete Loader;
     delete Scorer;
@@ -569,10 +592,10 @@ void CatchApp::VerifySettings()
 
 void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
 {
-    if(CurrentState == StateToSet)
+    if(this->CurrentState == StateToSet)
         return;
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-    switch (StateToSet)
+    switch(StateToSet)
     {
         case CatchApp::Catch_GameScreen:
         {
@@ -612,24 +635,24 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
         }
         case CatchApp::Catch_ScoreScreen:
         {
-            PauseGame(true);
-            Whole LevelScore = Scorer->CalculateFinalScore();
-            if(LevelScore > Profiles->GetActiveProfile()->GetHighestScore(Loader->GetCurrentLevel()))
+            this->PauseGame(true);
+            Whole LevelScore = this->Scorer->PresentFinalScore();
+            if(LevelScore > this->Profiles->GetActiveProfile()->GetHighestScore(this->Loader->GetCurrentLevel()))
             {
-                Profiles->GetActiveProfile()->SetNewHighScore(Loader->GetCurrentLevel(),LevelScore);
-                (static_cast<LevelSelectCell*>(Profiles->GetLevelGrid()->GetCell(Loader->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTools::ConvertToString(LevelScore));
+                this->Profiles->GetActiveProfile()->SetNewHighScore(this->Loader->GetCurrentLevel(),LevelScore);
+                (static_cast<LevelSelectCell*>(this->Profiles->GetLevelGrid()->GetCell(Loader->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTools::ConvertToString(LevelScore));
             }
             break;
         }
         case CatchApp::Catch_Init:
             break;
     }
-    CurrentState = StateToSet;
+    this->CurrentState = StateToSet;
 }
 
 bool CatchApp::CheckEndOfLevel()
 {
-    if(ScoreAreas.empty())
+    if( this->Scorer->GetNumScoreAreas() == 0 )
         return false;
     if(CurrentState == CatchApp::Catch_ScoreScreen)
         return true;
@@ -643,15 +666,12 @@ bool CatchApp::CheckEndOfLevel()
             EndTimer->SetGoalTime(0);
             EndTimer->Start();
         }
-        for( Whole SA = 0 ; SA < ScoreAreas.size() ; SA++ )
+
+        if( this->Scorer->GetNumAddedThrowables() > 0 )
         {
-            std::vector<ActorBase*>& FinalTest = ScoreAreas[SA]->GetAddedActors();
-            for( Whole F = 0 ; F < FinalTest.size() ; F++ )
-            {
-                if(LastActorThrown == FinalTest[F])
-                    EndTimer->Reset();
-            }
+            EndTimer->Reset();
         }
+
         return 0 == EndTimer->GetCurrentTime();
     }else{
         if(EndTimer)
@@ -673,18 +693,6 @@ bool CatchApp::AllStartZonesEmpty()
             return false;
     }
     return true;
-}
-
-bool CatchApp::IsInsideAnyStartZone(ActorBase* Actor)
-{
-    if(StartAreas.empty())
-        return false;
-    for( Whole X = 0 ; X < StartAreas.size() ; X++ )
-    {
-        if(StartAreas[X]->IsInside(Actor))
-            return true;
-    }
-    return false;
 }
 
 void CatchApp::UnloadLevel()
@@ -711,7 +719,6 @@ void CatchApp::UnloadLevel()
     SceneMan->DestroyAllWorldNodes();
     SceneMan->DisableSky();
     StartAreas.clear();
-    ScoreAreas.clear();
     ThrownItems.clear();
 
     ResMan->DestroyAssetGroup(Loader->GetCurrentLevel());
@@ -723,7 +730,6 @@ void CatchApp::UnloadLevel()
         delete OneCollision;
         OneCollision = EventMan->PopNextCollisionEvent();
     }
-    CurrScore = 0;
     Scorer->ResetLevelData();
     delete EndTimer;
     EndTimer = NULL;
@@ -740,38 +746,31 @@ CatchApp* CatchApp::GetCatchAppPointer()
     return TheRealCatchApp;
 }
 
-class CatchPreInputWorkUnit : public Threading::DefaultWorkUnit
-{
-        CatchApp* CatchApplication;
-    public:
-        CatchPreInputWorkUnit(CatchApp* Target)
-            : CatchApplication(Target)
-            {}
-
-        virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-            { CatchApplication->CheckForStuff(); }
-};
-
 int CatchApp::GetCatchin()
 {
-    EventManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreInput);
-    Input::InputManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostInput);
-    Physics::PhysicsManager::GetSingletonPtr()->SetPreMainLoopItems(&CPrePhysics);
-    Physics::PhysicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostPhysics);
-    Graphics::GraphicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostRender);
-    UI::UIManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreUI);
-    UI::UIManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostUI);
-
     // Verify all the settings are there, and generate defaults if they aren't.
     this->VerifySettings();
 
-    // Make sure our work runs before events are gathered from OS
-    CatchPreInputWorkUnit* CatchPreInputWork = new CatchPreInputWorkUnit(this);
-    TheEntresol->GetEventManager()->GetEventWorkUnit()->AddDependency(CatchPreInputWork);
-    TheEntresol->GetScheduler().AddWorkUnit(CatchPreInputWork);
+    // WorkUnit configuration
+    this->PreInputWork = new CatchPreInputWorkUnit(this);
+    this->TheEntresol->GetEventManager()->GetEventWorkUnit()->AddDependency( this->PreInputWork );
+    this->TheEntresol->GetScheduler().AddWorkUnit( this->PreInputWork );
+
+    this->PostInputWork = new CatchPostInputWorkUnit(this);
+    this->PostInputWork->AddDependency( this->TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
+    this->TheEntresol->GetScheduler().AddWorkUnit( this->PostInputWork );
+
+    this->PostUIWork = new CatchPostUIWorkUnit(this);
+    this->PostUIWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
+    this->TheEntresol->GetScheduler().AddWorkUnit( this->PostUIWork );
+
+    this->PostGraphicsWork = new CatchPostGraphicsWorkUnit(this);
+    this->PostGraphicsWork->AddDependency( this->TheEntresol->GetGraphicsManager()->GetRenderWorkUnit() );
+    this->PostGraphicsWork->AddDependency( this->TheEntresol->GetPhysicsManager()->GetAreaEffectUpdateWork() );
+    this->TheEntresol->GetScheduler().AddWorkUnit( this->PostGraphicsWork );
 
     // Initialize the managers.
-	TheEntresol->EngineInit(false);
+	this->TheEntresol->EngineInit(false);
 
 	this->CreateLoadingScreen();
 	this->ChangeState(CatchApp::Catch_Loading);
@@ -786,29 +785,29 @@ int CatchApp::GetCatchin()
         Profiles->SetActiveProfile(Profiles->GetProfile(0));
 
     Audio::AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
-    Loader->SetNextLevel("MainMenu");
+    this->Loader->SetNextLevel("MainMenu");
     do{
-        ChangeState(CatchApp::Catch_Loading);
-        PauseGame(false);
+        this->ChangeState(CatchApp::Catch_Loading);
+        this->PauseGame(false);
         Graphics::GraphicsManager::GetSingletonPtr()->RenderOneFrame();
         //Actually Load the game stuff
-        Loader->LoadLevel();
+        this->Loader->LoadLevel();
 
         if("MainMenu"==Loader->GetCurrentLevel())
             this->ChangeState(CatchApp::Catch_MenuScreen);
         else
             this->ChangeState(CatchApp::Catch_GameScreen);
-        LevelTimer->Reset();
-        LevelTimer->Start();
+        this->LevelTimer->Reset();
+        this->LevelTimer->Start();
 
         //if("Ferris"==Loader->GetCurrentLevel())
         //    UIManager::GetSingletonPtr()->GetScreen("GameScreen")->Hide();
         //PhysicsManager::GetSingletonPtr()->PauseSimulation(true);
         //Start the Main Loop
-        TheEntresol->MainLoop();
+        this->TheEntresol->MainLoop();
         this->UnloadLevel();
-        LevelTimer->Stop();
-    } while(Loader->HasALevelToLoad());
+        this->LevelTimer->Stop();
+    }while( this->Loader->HasALevelToLoad() );
 
 	return 0;
 }
@@ -833,257 +832,14 @@ void CatchApp::PauseGame(bool Pause)
     Paused = Pause;
 }
 
-bool CatchApp::GameIsPaused()
+bool CatchApp::GameIsPaused() const
 {
     return Paused;
 }
 
-bool CatchApp::PostInput()
+bool CatchApp::IsAThrowable(ActorBase* Actor) const
 {
-    Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
-    Input::Mouse* SysMouse = InputMan->GetSystemMouse();
-    Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-    CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetCamera(0));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A))
-        DefaultControl->StrafeLeft(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D))
-        DefaultControl->StrafeRight(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W))
-        DefaultControl->MoveForward(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S))
-        DefaultControl->MoveBackward(300 * (TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    static bool MouseCam=false;
-    if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
-        MouseCam=true;
-    if( SysKeyboard->IsButtonPressed(Input::KEY_END))
-        MouseCam=false;
-    Vector2 Offset = SysMouse->GetMouseDelta();
-    if( MouseCam && Vector2(0,0) != Offset )
-        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
-
-    if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) )
-    {
-        Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
-        if(PhysMan->GetDebugPhysicsRendering())
-        {
-            PhysMan->SetDebugPhysicsWireCount(0);
-            PhysMan->SetDebugPhysicsRendering(0);
-        }else{
-            PhysMan->SetDebugPhysicsWireCount(2);
-            PhysMan->SetDebugPhysicsRendering(1);
-        }
-    }
-
-    return true;
-}
-
-bool CatchApp::PreUI()
-{
-    return true;
-}
-
-bool CatchApp::PostUI()
-{
-    Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
-    Input::Mouse* SysMouse = InputMan->GetSystemMouse();
-    static RayQueryTool* RayQueryer = new RayQueryTool();
-    static Physics::Point2PointConstraint* Dragger = NULL;
-
-    if( SysMouse->IsButtonPressed(1) )
-    {
-        if( !UI::UIManager::GetSingletonPtr()->MouseIsInUISystem() )
-        {
-            Vector3WActor* ClickOnActor = 0;
-            Ray* MouseRay = RayQueryer->GetMouseRay(5000);
-            if(MouseRay)
-            {
-                ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
-            }
-            //ActorBase *temp = ClickOnActor->Actor;
-
-            bool firstframe=false;
-            if( 0 != ClickOnActor &&
-                0 != ClickOnActor->Actor &&
-                IsInsideAnyStartZone(ClickOnActor->Actor) )
-            {
-                if( !(ClickOnActor->Actor->IsStaticOrKinematic()) &&
-                    ClickOnActor->Actor->GetType() == Mezzanine::WSO_ActorRigid &&
-                    !Dragger )
-                {
-                    Vector3 LocalPivot = ClickOnActor->Vector;
-                    ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                    rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
-                    Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
-                    Dragger->SetTAU(0.001);
-                    Physics::PhysicsManager::GetSingletonPtr()->AddConstraint(Dragger);
-                    Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
-                    Dragger->SetParam(Physics::Con_CFM,0.8,-1);
-                    //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
-                    Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
-                    Dragger->SetParam(Physics::Con_ERP,0.1,-1);
-                    //Dragger->SetParam(Physics::Con_Stop_ERP,0.1,0); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
-                    firstframe = true;
-                    LastActorThrown = rigid;
-                }
-            }
-
-            Vector3* DragTo = 0;
-            if( MouseRay )
-            {
-                // This chunk of code calculates the 3d point that the actor needs to be dragged to
-                DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
-                if( DragTo != NULL )
-                {
-                    if( Dragger && !firstframe )
-                    {
-                        Dragger->SetPivotBLocation(*DragTo);
-                    }
-                }
-            }
-
-            if(Dragger && !IsInsideAnyStartZone(LastActorThrown))
-            {
-                ActorRigid* Act = Dragger->GetActorA();
-                Physics::PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
-                delete Dragger;
-                Dragger = NULL;
-                Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
-            }
-
-            // Here we cleanup everything we needed for the clicking/dragging
-            if( DragTo )
-                { delete DragTo; }
-            if( MouseRay )
-                { delete MouseRay; }
-        }
-
-    }else{  //Since we are no longer clicking we need to setup for the next clicking
-        if(Dragger)
-        {
-            ActorRigid* Act = Dragger->GetActorA();
-            Physics::PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
-            delete Dragger;
-            Dragger = NULL;
-            Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
-        }
-    }
-    return true;
-}
-
-bool CatchApp::PrePhysics()
-{
-    return true;
-}
-
-bool CatchApp::PostPhysics()
-{
-    Scorer->CalculateCurrentScore(CurrScore);
-    return true;
-}
-
-bool CatchApp::PostRender()
-{
-    // Update the timer
-    UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
-    UI::OpenRenderableContainerWidget* HUDCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_HUD"));
-    UI::Caption* Timer = static_cast<UI::Caption*>(HUDCont->GetAreaRenderable("GS_Timer"));
-    std::stringstream time;
-    Whole TotalSeconds = LevelTimer->GetCurrentTimeInMilli() / 1000;
-    Whole Minutes = TotalSeconds / 60;
-    Whole Seconds;
-
-    if(60 > TotalSeconds) Seconds = TotalSeconds;
-    else Seconds = TotalSeconds % 60;
-
-    if(10 > Seconds) time << Minutes << ":" << 0 << Seconds;
-    else time << Minutes << ":" << Seconds;
-
-    Timer->SetText(time.str());
-
-    // Update the score
-    UI::Caption* ScoreAmount = static_cast<UI::Caption*>(HUDCont->GetAreaRenderable("GS_ScoreArea"));
-    ScoreAmount->SetText(StringTools::ConvertToString(CurrScore));
-
-    // Update Stat information
-    Graphics::GraphicsManager* GraphicsMan = Graphics::GraphicsManager::GetSingletonPtr();
-    UI::OpenRenderableContainerWidget* StatsCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_Stats"));
-    UI::Caption* CurFPS = static_cast<UI::Caption*>(StatsCont->GetAreaRenderable("CurFPS"));
-    UI::Caption* AvFPS = static_cast<UI::Caption*>(StatsCont->GetAreaRenderable("AvFPS"));
-    CurFPS->SetText(StringTools::ConvertToString(GraphicsMan->GetGameWindow(0)->GetLastFPS()));
-    AvFPS->SetText(StringTools::ConvertToString(GraphicsMan->GetGameWindow(0)->GetAverageFPS()));
-
-    StringStream FPSStream;
-    FPSStream << "-------------------------- Current FPS: " << GraphicsMan->GetGameWindow(0)->GetLastFPS() << ", Average FPS: " << GraphicsMan->GetGameWindow(0)->GetAverageFPS() << " --------------------------";
-    this->TheEntresol->Log(FPSStream.str());
-    this->TheEntresol->DoMainLoopLogging();
-
-    //See if the level is over
-    if(CurrentState != CatchApp::Catch_ScoreScreen)
-    {
-        if(CheckEndOfLevel())
-        {
-            ChangeState(CatchApp::Catch_ScoreScreen);
-        }
-    }
-
-    return true;
-}
-
-bool CatchApp::CheckForStuff()
-{
-    EventManager* EventMan = EventManager::GetSingletonPtr();
-    //this will either set the pointer to 0 or return a valid pointer to work with.
-    EventUserInput* OneInput = EventMan->PopNextUserInputEvent();
-
-    //We check each Event
-    while(0 != OneInput)
-    {
-        if(OneInput->GetType()!=EventBase::UserInput)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
-
-        //we check each MetaCode in each Event
-        /*for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
-        {
-            //Is the key we just pushed ESCAPE
-            if(Input::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && Input::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
-                { return false; }
-        }// */
-
-        delete OneInput;
-        OneInput = EventMan->PopNextUserInputEvent();
-    }
-
-    EventGameWindow* OneWindowEvent = EventMan->PopNextGameWindowEvent();
-    while(0 != OneWindowEvent)
-    {
-        if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
-
-        if(!OneWindowEvent->IsEventIDValid())
-        {
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid EventID on GameWindow Event: " + OneWindowEvent->GetEventID());
-        }
-
-        delete OneWindowEvent;
-        OneWindowEvent = EventMan->PopNextGameWindowEvent();
-    }
-
-	EventRenderTime* CurrentTime = EventMan->PopNextRenderTimeEvent();
-    while(0 != CurrentTime)
-    {
-        if(CurrentTime->GetType()!=EventBase::RenderTime)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventRenderTime as an EventRenderTime."); }
-
-        delete CurrentTime;
-        CurrentTime = EventMan->GetNextRenderTimeEvent();
-    }
-
-    return true;
-}
-
-bool CatchApp::IsAThrowable(ActorBase* Actor)
-{
-    for( std::vector<ActorBase*>::iterator it = ThrownItems.begin() ; it != ThrownItems.end() ; it++ )
+    for( ThrowableContainer::const_iterator it = this->ThrownItems.begin() ; it != this->ThrownItems.end() ; it++ )
     {
         if( Actor == (*it) )
             return true;
@@ -1091,10 +847,16 @@ bool CatchApp::IsAThrowable(ActorBase* Actor)
     return false;
 }
 
-void CatchApp::RegisterScoreArea(ScoreArea* Score)
+bool CatchApp::IsInsideAnyStartZone(ActorBase* Actor) const
 {
-    ScoreAreas.push_back(Score);
-    Scorer->RegisterScoreArea(Score);
+    if(StartAreas.empty())
+        return false;
+    for( Whole X = 0 ; X < StartAreas.size() ; X++ )
+    {
+        if(StartAreas[X]->IsInside(Actor))
+            return true;
+    }
+    return false;
 }
 
 void CatchApp::RegisterStartArea(StartArea* Start)
@@ -1107,42 +869,37 @@ void CatchApp::AddThrowable(ActorBase* Throwable)
     ThrownItems.push_back(Throwable);
 }
 
-std::vector<ActorBase*>& CatchApp::GetThrowables()
+CatchApp::ThrowableContainer& CatchApp::GetThrowables()
 {
     return ThrownItems;
 }
 
-std::vector<ScoreArea*>& CatchApp::GetScoreAreas()
-{
-    return ScoreAreas;
-}
-
-LevelLoader* CatchApp::GetLevelLoader()
+LevelLoader* CatchApp::GetLevelLoader() const
 {
     return Loader;
 }
 
-LevelScorer* CatchApp::GetLevelScorer()
+LevelScorer* CatchApp::GetLevelScorer() const
 {
     return Scorer;
 }
 
-ProfileManager* CatchApp::GetProfiles()
+ProfileManager* CatchApp::GetProfiles() const
 {
     return Profiles;
 }
 
-ItemShop* CatchApp::GetItemShop()
+ItemShop* CatchApp::GetItemShop() const
 {
     return Shop;
 }
 
-Timer* CatchApp::GetLevelTimer()
+Timer* CatchApp::GetLevelTimer() const
 {
     return LevelTimer;
 }
 
-StopWatchTimer* CatchApp::GetEndTimer()
+StopWatchTimer* CatchApp::GetEndTimer() const
 {
     return EndTimer;
 }

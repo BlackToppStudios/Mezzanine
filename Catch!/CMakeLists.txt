@@ -139,8 +139,6 @@ endif(${UseCatchArchives})
 set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.cpp"
     "${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.h"
-    "${${PROJECT_NAME}_SRC_DIR}callbacks.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}callbacks.h"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.cpp"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.h"
     "${${PROJECT_NAME}_SRC_DIR}gamebase.cpp"
@@ -169,6 +167,8 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}throwablegenerator.h"
     "${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.cpp"
     "${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.h"
+    "${${PROJECT_NAME}_SRC_DIR}workunits.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}workunits.h"
 )
 
 ##############################################################################

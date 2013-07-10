@@ -696,7 +696,8 @@ namespace Mezzanine
                                                                              ThreadCount );
                 this->BulletSolverThreads = new PosixThreadSupport(BulletThreadInfo);
                 #endif //WINDOWS
-                this->BulletSolver = new btParallelConstraintSolver(this->BulletSolverThreads);
+                //this->BulletSolver = new btParallelConstraintSolver(this->BulletSolverThreads);
+                this->BulletSolver = new btSequentialImpulseConstraintSolver();
             }else{
                 this->BulletSolver = new btSequentialImpulseConstraintSolver();
             }

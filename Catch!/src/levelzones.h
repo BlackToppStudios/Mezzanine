@@ -24,7 +24,7 @@ class StartArea : public LevelZone
         StartArea(const String& name, const Vector3& Location);
         ~StartArea();
         void ApplyEffect();
-};
+};//StartArea
 
 class ScoreArea : public LevelZone
 {
@@ -37,6 +37,6 @@ class ScoreArea : public LevelZone
         bool AllObjectsAtRest();
         void SetScoreMultiplier(const Real& Multiplier);
         Real GetScoreMultiplier() const;
-};
+};//ScoreArea
 
 #endif

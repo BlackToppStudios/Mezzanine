@@ -223,8 +223,7 @@ void LevelLoader::LoadFerris()
     StartArea* StartZone = new StartArea("StartArea",Vector3(-170,0,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
-    PhysMan->AddAreaEffect(StartZone);
-    GameApp->RegisterStartArea(StartZone);// */
+    PhysMan->AddAreaEffect(StartZone);// */
     ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
     StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
@@ -238,8 +237,7 @@ void LevelLoader::LoadFerris()
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(100,0,0));
     ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
     ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
-    PhysMan->AddAreaEffect(ScoreZone);
-    GameApp->RegisterScoreArea(ScoreZone);// */
+    PhysMan->AddAreaEffect(ScoreZone);// */
 
     Vector3 BonusScoreSize(18,18,30);
     Physics::CollisionShape* BonusScoreShape = new Physics::BoxCollisionShape("BonusAreaShape",BonusScoreSize);
@@ -249,28 +247,24 @@ void LevelLoader::LoadFerris()
     BonusZone1->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
     BonusZone1->SetScoreMultiplier(2.0);
     PhysMan->AddAreaEffect(BonusZone1);
-    GameApp->RegisterScoreArea(BonusZone1);
     Tray2->AttachObject(BonusZone1);// */
     ScoreArea* BonusZone2 = new ScoreArea("BonusArea2",Vector3(30.4,-42.7,0));
     BonusZone2->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
     BonusZone2->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
     BonusZone2->SetScoreMultiplier(2.0);
     PhysMan->AddAreaEffect(BonusZone2);
-    GameApp->RegisterScoreArea(BonusZone2);
     Tray3->AttachObject(BonusZone2);// */
     ScoreArea* BonusZone3 = new ScoreArea("BonusArea3",Vector3(71.5,55.4,0));
     BonusZone3->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
     BonusZone3->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
     BonusZone3->SetScoreMultiplier(2.0);
     PhysMan->AddAreaEffect(BonusZone3);
-    GameApp->RegisterScoreArea(BonusZone3);
     Tray5->AttachObject(BonusZone3);// */
     ScoreArea* BonusZone4 = new ScoreArea("BonusArea4",Vector3(128.5,-83.8,0));
     BonusZone4->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
     BonusZone4->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
     BonusZone4->SetScoreMultiplier(2.0);
     PhysMan->AddAreaEffect(BonusZone4);
-    GameApp->RegisterScoreArea(BonusZone4);
     Tray8->AttachObject(BonusZone4);// */
 }
 
@@ -374,8 +368,7 @@ void LevelLoader::LoadBigCurve()
     StartArea* StartZone = new StartArea("StartArea",Vector3(-180,-60,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
-    PhysMan->AddAreaEffect(StartZone);
-    GameApp->RegisterStartArea(StartZone);// */
+    PhysMan->AddAreaEffect(StartZone);// */
     ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
     StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
@@ -389,8 +382,7 @@ void LevelLoader::LoadBigCurve()
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(120,-20,-10));
     ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
     ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
-    PhysMan->AddAreaEffect(ScoreZone);
-    GameApp->RegisterScoreArea(ScoreZone);// */
+    PhysMan->AddAreaEffect(ScoreZone);// */
 }
 
 void LevelLoader::LoadBlowsNotSucks()
@@ -565,8 +557,7 @@ void LevelLoader::LoadBlowsNotSucks()
     StartArea* StartZone = new StartArea("StartArea",Vector3(-170,-70,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
-    PhysMan->AddAreaEffect(StartZone);
-    GameApp->RegisterStartArea(StartZone);// */
+    PhysMan->AddAreaEffect(StartZone);// */
     ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
     StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
@@ -583,15 +574,13 @@ void LevelLoader::LoadBlowsNotSucks()
     ScoreZone1->GetPhysicsSettings()->SetCollisionShape(ScoreArea1Shape);
     ScoreZone1->GetGraphicsSettings()->SetMesh(ScoreArea1Mesh);
     PhysMan->AddAreaEffect(ScoreZone1);
-    GameApp->RegisterScoreArea(ScoreZone1);
     Vector3 Score2Size(55,48,15);
     Physics::CollisionShape* ScoreArea2Shape = new Physics::BoxCollisionShape("ScoreArea2Shape",Score2Size);
     Graphics::Mesh* ScoreArea2Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea2Mesh",ColourValue(0.2,0.2,0.8,0.8),Score2Size,4.0);
     ScoreArea* ScoreZone2 = new ScoreArea("ScoreArea2",Vector3(-170,100,0));
     ScoreZone2->GetPhysicsSettings()->SetCollisionShape(ScoreArea2Shape);
     ScoreZone2->GetGraphicsSettings()->SetMesh(ScoreArea2Mesh);
-    PhysMan->AddAreaEffect(ScoreZone2);
-    GameApp->RegisterScoreArea(ScoreZone2);// */
+    PhysMan->AddAreaEffect(ScoreZone2);// */
 }
 
 void LevelLoader::LoadJustice()
@@ -768,12 +757,10 @@ void LevelLoader::LoadJustice()
     StartZone1->GetPhysicsSettings()->SetCollisionShape(StartAreaShape);
     StartZone1->GetGraphicsSettings()->SetMesh(StartAreaMesh);
     PhysMan->AddAreaEffect(StartZone1);
-    GameApp->RegisterStartArea(StartZone1);
     StartArea* StartZone2 = new StartArea("StartArea2",Vector3(160,120,0));
     StartZone2->GetPhysicsSettings()->SetCollisionShape(StartAreaShape);
     StartZone2->GetGraphicsSettings()->SetMesh(StartAreaMesh);
-    PhysMan->AddAreaEffect(StartZone2);
-    GameApp->RegisterStartArea(StartZone2);// */
+    PhysMan->AddAreaEffect(StartZone2);// */
     ParticleEffect* StartParticle1 = SceneMan->CreateParticleEffect("StartParticle1","StartVortex");
     StartParticle1->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle1->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
@@ -797,13 +784,11 @@ void LevelLoader::LoadJustice()
     ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-113,-40,0));
     ScoreZone1->GetPhysicsSettings()->SetCollisionShape(ScoreAreaShape);
     ScoreZone1->GetGraphicsSettings()->SetMesh(ScoreAreaMesh);
-    PhysMan->AddAreaEffect(ScoreZone1);
-    GameApp->RegisterScoreArea(ScoreZone1);// */
+    PhysMan->AddAreaEffect(ScoreZone1);// */
     ScoreArea* ScoreZone2 = new ScoreArea("ScoreArea2",Vector3(113,-40,0));
     ScoreZone2->GetPhysicsSettings()->SetCollisionShape(ScoreAreaShape);
     ScoreZone2->GetGraphicsSettings()->SetMesh(ScoreAreaMesh);
-    PhysMan->AddAreaEffect(ScoreZone2);
-    GameApp->RegisterScoreArea(ScoreZone2);// */
+    PhysMan->AddAreaEffect(ScoreZone2);// */
 }
 
 void LevelLoader::LoadRollers()
@@ -922,8 +907,7 @@ void LevelLoader::LoadRollers()
     StartArea* StartZone = new StartArea("StartArea",Vector3(-140,60,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
-    PhysMan->AddAreaEffect(StartZone);
-    GameApp->RegisterStartArea(StartZone);// */
+    PhysMan->AddAreaEffect(StartZone);// */
     ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
     StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
@@ -937,8 +921,7 @@ void LevelLoader::LoadRollers()
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(140,20,0));
     ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
     ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
-    PhysMan->AddAreaEffect(ScoreZone);
-    GameApp->RegisterScoreArea(ScoreZone);// */
+    PhysMan->AddAreaEffect(ScoreZone);// */
 }
 
 void LevelLoader::LoadJustBounce()
@@ -1066,8 +1049,7 @@ void LevelLoader::LoadJustBounce()
     StartArea* StartZone = new StartArea("StartArea",Vector3(-170,90,0));
     StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
-    PhysMan->AddAreaEffect(StartZone);
-    GameApp->RegisterStartArea(StartZone);// */
+    PhysMan->AddAreaEffect(StartZone);// */
     ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
     StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
@@ -1081,8 +1063,7 @@ void LevelLoader::LoadJustBounce()
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(158,-25,0));
     ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
     ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
-    PhysMan->AddAreaEffect(ScoreZone);
-    GameApp->RegisterScoreArea(ScoreZone);// */
+    PhysMan->AddAreaEffect(ScoreZone);// */
 }
 
 bool LevelLoader::HasALevelToLoad()
