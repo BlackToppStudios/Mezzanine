@@ -258,7 +258,7 @@ namespace Mezzanine
             SortWorkUnitsMain(false);
         }
 
-        void FrameScheduler::RemoveWorkUnit(iWorkUnit *LessWork)
+        /*void FrameScheduler::RemoveWorkUnit(iWorkUnit *LessWork)
         {
             WorkUnitsAffinity.erase
                         (
@@ -283,7 +283,38 @@ namespace Mezzanine
                                     WorkUnitMonopolies.end(),
                                     LessWork
                                     )
-                        );
+                       );
+        }*/
+
+        void FrameScheduler::RemoveWorkUnitMain(iWorkUnit* LessWork)
+        {
+            if(WorkUnitsMain.size())
+            {
+                MainIterator RemovalTarget = WorkUnitsMain.end();
+                for(MainIterator Iter = WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); Iter++)
+                {
+                    if(Iter->Unit == LessWork)
+                    {
+                        if(Iter+1 == WorkUnitsMain.end())   // once we find it, push it to the back linearly.
+                            { RemovalTarget = Iter;}        // This way we can erase from the back where it is cheap
+                        else                                // to do soand still make just on pass through the list
+                        {
+                            std::swap (*Iter,*(Iter+1));
+                        }
+                    }
+                    Iter->Unit->RemoveDependency(LessWork); // This has a ton of cache miss potential I am curious what it benchmarks like?!
+                }
+                if(RemovalTarget!=WorkUnitsMain.end())
+                    { WorkUnitsMain.erase(RemovalTarget); }
+            }
+        }
+
+        void FrameScheduler::RemoveWorkUnitAffinity(iWorkUnit* LessWork)
+        {
+        }
+
+        void FrameScheduler::RemoveWorkUnitMonopoly(MonopolyWorkUnit* LessWork)
+        {
         }
 
         ////////////////////////////////////////////////////////////////////////////////

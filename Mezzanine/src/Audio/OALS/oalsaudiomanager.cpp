@@ -231,10 +231,10 @@ namespace Mezzanine
 
             OALS::AudioManager::~AudioManager()
             {
-                this->TheEntresol->GetScheduler().RemoveWorkUnit( this->BufferUpdate2DWork );
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate2DWork );
                 delete BufferUpdate2DWork;
 
-                this->TheEntresol->GetScheduler().RemoveWorkUnit( this->EffectFilterCleanWork );
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->EffectFilterCleanWork );
                 delete EffectFilterCleanWork;
 
                 if( this->AutoGenFiles )

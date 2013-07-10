@@ -599,6 +599,11 @@ namespace Mezzanine
             DestroyAllAreaEffects();
             DestroyAllWorldTriggers();
             //Destroy the physical world that we loved and cherished
+            Destroy();
+        }
+
+        void PhysicsManager::Destroy()
+        {
             delete BulletDynamicsWorld;
             delete BulletDispatcher;
             delete BulletCollisionConfiguration;
@@ -609,16 +614,21 @@ namespace Mezzanine
             if(BulletSolverThreads) delete BulletSolverThreads;
             if(BulletDispatcherThreads) delete BulletDispatcherThreads;
 
-            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->SimulationWork );
+            if(this->ThreadCount)
+            {
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+            }else{
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
+            }
             delete SimulationWork;
 
-            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->AreaEffectUpdateWork );
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->AreaEffectUpdateWork );
             delete AreaEffectUpdateWork;
 
-            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->WorldTriggerUpdateWork );
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
             delete WorldTriggerUpdateWork;
 
-            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->DebugDrawWork );
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork );
             delete DebugDrawWork;
         }
 
@@ -1175,37 +1185,10 @@ namespace Mezzanine
 
         void PhysicsManager::ResetPhysicsWorld(ManagerConstructionInfo* Info)
         {
-            delete BulletDynamicsWorld;
-            delete BulletDispatcher;
-            delete BulletCollisionConfiguration;
-            delete BulletSolver;
-            delete BulletBroadphase;
-            delete GhostCallback;
             bool DebugOn = false;
             if(BulletDrawer)
-            {
-                delete BulletDrawer;
-                DebugOn = true;
-            }
-            if(BulletSolverThreads) delete BulletSolverThreads;
-            if(BulletDispatcherThreads) delete BulletDispatcherThreads;
-
-            /*Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
-            if( GraphicsMan ) {
-                this->SimulationWork->RemoveDependency( GraphicsMan->GetRenderWorkUnit() );
-            }//*/
-            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->SimulationWork );
-            delete SimulationWork;
-
-            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->AreaEffectUpdateWork );
-            delete AreaEffectUpdateWork;
-
-            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->WorldTriggerUpdateWork );
-            delete WorldTriggerUpdateWork;
-
-            this->TheEntresol->GetScheduler().RemoveWorkUnit( this->DebugDrawWork );
-            delete DebugDrawWork;
-
+                { DebugOn = true; }
+            Destroy();
             if(Info) this->Construct(*Info);
             else this->Construct(WorldConstructionInfo);
             if(DebugOn)

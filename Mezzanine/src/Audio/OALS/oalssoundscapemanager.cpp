@@ -127,7 +127,7 @@ namespace Mezzanine
 
             SoundScapeManager::~SoundScapeManager()
             {
-                this->TheEntresol->GetScheduler().RemoveWorkUnit( this->BufferUpdate3DWork );
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate3DWork );
                 delete BufferUpdate3DWork;
 
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());

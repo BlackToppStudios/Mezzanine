@@ -368,6 +368,11 @@ namespace Mezzanine
             /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
             virtual ~PhysicsManager();
 
+        protected:
+            /// @brief Tear down this physics world
+            virtual void Destroy();
+        public:
+
             ///////////////////////////////////////////////////////////////////////////////
             // Simulation Management
 
