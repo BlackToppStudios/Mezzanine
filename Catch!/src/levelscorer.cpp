@@ -26,57 +26,55 @@ Whole LevelScorer::GetItemScoreValue(ActorBase* Item)
     else return 0;
 }
 
-Whole LevelScorer::CalculateNormalScore()
+Real LevelScorer::FindHighestMultiplier(ActorBase* Throwable)
 {
-    Whole ScoreRet = 0;
-    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
-    {
-        if( (*ScoreIt)->GetScoreMultiplier() == 1.0 )
-        {
-            ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
-            for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
-            {
-                if( this->GameApp->IsAThrowable( *It ) )
-                    ScoreRet += GetItemScoreValue( *It );
-            }
-        }
-    }
-    return ScoreRet;
-}
-
-Whole LevelScorer::CalculateBonusScore()
-{
-    Whole ScoreRet = 0;
-    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
-    {
-        Real ScoreMulti = (*ScoreIt)->GetScoreMultiplier();
-        if( ScoreMulti < 1.0 )
-        {
-            ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
-            for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
-            {
-                if( this->GameApp->IsAThrowable( *It ) )
-                    ScoreRet += ( this->GetItemScoreValue( *It ) * ScoreMulti );
-            }
-        }
-    }
-    return ScoreRet;
-}
-
-Whole LevelScorer::CalculateTotalThrowableScore()
-{
-    Whole ScoreRet = 0;
+    Real RetMulti = 0.0;
     for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
     {
         Real ScoreMulti = (*ScoreIt)->GetScoreMultiplier();
         ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
         for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
         {
-            if( this->GameApp->IsAThrowable( *It ) )
-                ScoreRet += ( this->GetItemScoreValue( *It ) * ScoreMulti );
+            if( (*It) == Throwable && ScoreMulti > RetMulti ) {
+                RetMulti = ScoreMulti;
+            }
         }
     }
-    return ScoreRet;
+    return RetMulti;
+}
+
+LevelScorer::ScorePair LevelScorer::CalculateThrowableScore()
+{
+    ScorePair Ret;
+    CatchApp::ThrowableContainer& Throwables = this->GameApp->GetThrowables();
+    for( CatchApp::ThrowableContainer::iterator ThrowIt = Throwables.begin() ; ThrowIt != Throwables.end() ; ++ThrowIt )
+    {
+        ActorBase* Throwable = (*ThrowIt);
+        Real Multiplier = this->FindHighestMultiplier( Throwable );
+        if( Multiplier == 1.0 ) {
+            Ret.first += this->GetItemScoreValue( Throwable );
+        }else if( Multiplier > 1.0 ) {
+            Ret.second += this->GetItemScoreValue( Throwable ) * Multiplier;
+        }
+    }
+    return Ret;
+    /*ScorePair Ret;
+    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
+    {
+        Real ScoreMulti = (*ScoreIt)->GetScoreMultiplier();
+        ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
+        for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
+        {
+            if( this->GameApp->IsAThrowable( *It ) ) {
+                if( ScoreMulti == 1.0 ) {
+                    Ret.first += this->GetItemScoreValue( *It );
+                }else if( ScoreMulti > 1.0 ) {
+                    Ret.second += ( this->GetItemScoreValue( *It ) * ScoreMulti );
+                }
+            }
+        }
+    }
+    return Ret;//*/
 }
 
 Whole LevelScorer::CalculateTimerScore()
@@ -128,8 +126,9 @@ Whole LevelScorer::CalculateItemCashScore()
 
 Whole LevelScorer::PresentFinalScore()
 {
-    Whole NormalScore = this->CalculateNormalScore();
-    Whole BonusScore = this->CalculateBonusScore();
+    ScorePair ThrowableScores = this->CalculateThrowableScore();
+    Whole NormalScore = ThrowableScores.first;
+    Whole BonusScore = ThrowableScores.second;
     Whole ShopScore = this->CalculateItemCashScore();
     Whole TimeScore = this->CalculateTimerScore();
 

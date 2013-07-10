@@ -147,6 +147,7 @@ ActorRigid* ThrowableGenerator::CreateThrowable(const String& Throwable)
     Created->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Created->GetPhysicsSettings()->SetFriction(ToBeCreated->Friction);
     Created->GetPhysicsSettings()->SetRestitution(ToBeCreated->Restitution);
+    //Created->GetPhysicsSettings()->SetActivationState(Physics::WOAS_DisableDeactivation);
     /*if("Rubber"==Throwable)
     {
         //generate sphere shape

@@ -234,10 +234,10 @@ void CatchPostGraphicsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::
     Timer->SetText(time.str());
 
     // Update the score
-    Whole CurrScore = this->CatchApplication->GetLevelScorer()->CalculateTotalThrowableScore();
+    LevelScorer::ScorePair Scores = this->CatchApplication->GetLevelScorer()->CalculateThrowableScore();
 
-    UI::Caption* ScoreAmount = static_cast<UI::Caption*>(HUDCont->GetAreaRenderable("GS_ScoreArea"));
-    ScoreAmount->SetText(StringTools::ConvertToString(CurrScore));
+    UI::Caption* ScoreAmount = static_cast<UI::Caption*>( HUDCont->GetAreaRenderable("GS_ScoreArea") );
+    ScoreAmount->SetText( StringTools::ConvertToString( Scores.first + Scores.second ) );
 
     // Update Stat information
     Graphics::GraphicsManager* GraphicsMan = Graphics::GraphicsManager::GetSingletonPtr();

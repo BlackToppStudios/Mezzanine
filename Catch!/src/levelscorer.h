@@ -24,6 +24,8 @@ public:
     typedef std::vector<ActorBase*> ActorVector;
     typedef std::list<ActorBase*> ActorList;
     typedef std::map<String,Whole> ItemScoreContainer;
+    typedef std::pair<ActorBase*,Whole> ThrowableScorePair;
+    typedef std::pair<Whole,Whole> ScorePair;
 protected:
     ItemScoreContainer ItemScoreValues;
     ScoreAreaContainer ScoreAreas;
@@ -33,13 +35,12 @@ protected:
     Whole LevelTargetTime;
 
     Whole GetItemScoreValue(ActorBase* Item);
+    Real FindHighestMultiplier(ActorBase* Throwable);
 public:
     LevelScorer();
     ~LevelScorer();
 
-    Whole CalculateNormalScore();
-    Whole CalculateBonusScore();
-    Whole CalculateTotalThrowableScore();
+    ScorePair CalculateThrowableScore();
     Whole CalculateTimerScore();
     Whole CalculateItemCashScore();
 
