@@ -2,14 +2,12 @@
 #define _levelzones_cpp
 
 #include "levelzones.h"
-#include "mezzanine.h"
+#include "catchapp.h"
+#include <mezzanine.h>
 
 LevelZone::LevelZone(const String& name, const Vector3& Location)
     : AreaEffect(name,Location)
 {
-    /*MeshManager* MeshMan = MeshManager::GetSingltonPtr();
-    this->SetFieldShape(new BoxCollisionShape(Name+"Shape",Size));
-    this->SetFieldMesh(MeshMan->CreateBoxMesh(Name+"Mesh",Colour,Size));// */
 }
 
 LevelZone::~LevelZone()
@@ -41,6 +39,7 @@ Mezzanine::WorldAndSceneObjectType LevelZone::GetType() const
 StartArea::StartArea(const String& name, const Vector3& Location)
     : LevelZone(name,Location)
 {
+    CatchApp::GetCatchAppPointer()->RegisterStartArea(this);
 }
 
 StartArea::~StartArea()
@@ -76,6 +75,7 @@ ScoreArea::ScoreArea(const String& name, const Vector3& Location)
     : LevelZone(name,Location),
       ScoreMultiplier(1.0)
 {
+    CatchApp::GetCatchAppPointer()->GetLevelScorer()->RegisterScoreArea(this);
 }
 
 ScoreArea::~ScoreArea()
