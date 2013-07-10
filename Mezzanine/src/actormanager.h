@@ -212,12 +212,11 @@ namespace Mezzanine
 
         /// @copydoc ManagerFactory::GetManagerTypeName()
         String GetManagerTypeName() const;
+
         /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
         ManagerBase* CreateManager(NameValuePairList& Params);
-
         /// @copydoc ManagerFactory::CreateManager(XML::Node&)
         ManagerBase* CreateManager(XML::Node& XMLNode);
-
         /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
         void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultActorManagerFactory
