@@ -46,11 +46,9 @@
 
 namespace Mezzanine
 {
-    ManagerBase::ManagerBase()
-        : PreMainLoop(NULL),
-          PostMainLoop(NULL),
-          Initialized(false),
-          Priority(0)
+    ManagerBase::ManagerBase() :
+        TheEntresol(NULL),
+        Initialized(false)
     {
         this->TheEntresol = Entresol::GetSingletonPtr();
     }
@@ -58,57 +56,32 @@ namespace Mezzanine
     ManagerBase::~ManagerBase()
         {}
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Initialization Methods
+
     bool ManagerBase::IsInitialized()
         { return Initialized; }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Type Identifier Methods
+
     String ManagerBase::GetInterfaceTypeAsString() const
     {
-        return ManagerBase::GetTypeNameAsString(GetInterfaceType());
+        return ManagerBase::GetTypeNameAsString( this->GetInterfaceType() );
     }
 
-    void ManagerBase::SetPreMainLoopItems( ManagerBase::Callback PreMainCallback )
-        { this->PreMainLoop=PreMainCallback; }
-
-    bool ManagerBase::PreMainLoopItems()
-    {
-        if(NULL != this->PreMainLoop)
-        {
-            return (*( this->PreMainLoop))();
-        }
-        return true;
-    }
-
-    ManagerBase::Callback ManagerBase::GetPreMainLoopItems() const
-        { return this->PreMainLoop; }
-
-    void ManagerBase::ErasePreMainLoopItems()
-        { this->SetPreMainLoopItems(0); }
-
-
-    void ManagerBase::SetPostMainLoopItems( ManagerBase::Callback PostMainCallback )
-        { this->PostMainLoop=PostMainCallback; }
-
-    bool ManagerBase::PostMainLoopItems()
-    {
-        if(NULL != this->PostMainLoop)
-        {
-            return (*( this->PostMainLoop))();
-        }
-        return true;
-    }
-
-    ManagerBase::Callback ManagerBase::GetPostMainLoopItems() const
-        { return this->PostMainLoop; }
-
-    void ManagerBase::ErasePostMainLoopItems()
-        { this->SetPostMainLoopItems(0); }
-
-    String ManagerBase::GetTypeNameAsString(const ManagerBase::ManagerType& ManagerType)
+    String ManagerBase::GetTypeAsString(const ManagerBase::ManagerType& ManagerType)
     {
         switch (ManagerType)
         {
             case ManagerBase::ActorManager:
                 return "ActorManager";
+                break;
+            case ManagerBase::AreaEffectManager:
+                return "AreaEffectManager";
                 break;
             case ManagerBase::AudioManager:
                 return "AudioManager";
@@ -155,11 +128,11 @@ namespace Mezzanine
             case ManagerBase::TerrainManager:
                 return "TerrainManager";
                 break;
-            case ManagerBase::TimerManager:
-                return "TimerManager";
-                break;
             case ManagerBase::UIManager:
                 return "UIManager";
+                break;
+            case ManagerBase::VehicleManager:
+                return "VehicleManager";
                 break;
             case ManagerBase::UserCreated:
                 return "UserCreated";
@@ -170,7 +143,7 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase::ManagerType ManagerBase::GetTypeNameFromString(const String& ManagerName)
+    ManagerBase::ManagerType ManagerBase::GetTypeFromString(const String& ManagerName)
     {
         String Lower = ManagerName;
         StringTools::ToLowerCase(Lower);
@@ -179,6 +152,7 @@ namespace Mezzanine
             case 'a':
             {
                 if( 'c' == Lower.at(1) ) return ManagerBase::ActorManager;
+                else if( 'r' == Lower.at(1) ) return ManagerBase::AreaEffectManager;
                 else if( 'u' == Lower.at(1) ) return ManagerBase::AudioManager;
                 break;
             }
@@ -238,8 +212,7 @@ namespace Mezzanine
             }
             case 't':
             {
-                if( 'e' == Lower.at(1) ) return ManagerBase::TerrainManager;
-                else if( 'i' == Lower.at(1) ) return ManagerBase::TimerManager;
+                return ManagerBase::TerrainManager;
                 break;
             }
             case 'u':
@@ -248,22 +221,16 @@ namespace Mezzanine
                 else if( 's' == Lower.at(1) ) return ManagerBase::UserCreated;
                 break;
             }
+            case 'v':
+            {
+                return MangerBase::VehicleManager;
+                break;
+            }
         }
 
         //If we got this far, there was a problem with the string provided.
         MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to get ManagerType from string, but no match was found.  Is the string valid?");
     }
-
-    short int ManagerBase::GetPriority()
-    {
-        return this->Priority;
-    }
-
-    void ManagerBase::SetPriority(short int Priority_)
-    {
-        this->Priority = Priority_;
-    }
-
-}// /Mezz
+}//Mezzanine
 
 #endif
