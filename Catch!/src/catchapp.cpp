@@ -765,7 +765,7 @@ int CatchApp::GetCatchin()
     this->TheEntresol->GetScheduler().AddWorkUnit( this->PostUIWork );
 
     this->PostGraphicsWork = new CatchPostGraphicsWorkUnit(this);
-    this->PostGraphicsWork->AddDependency( this->TheEntresol->GetGraphicsManager()->GetRenderWorkUnit() );
+    this->PostGraphicsWork->AddDependency( this->TheEntresol->GetGraphicsManager()->GetRenderWork() );
     this->PostGraphicsWork->AddDependency( this->TheEntresol->GetPhysicsManager()->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnit( this->PostGraphicsWork );
 
