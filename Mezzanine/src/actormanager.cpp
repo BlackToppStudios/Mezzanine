@@ -100,6 +100,8 @@ namespace Mezzanine
     {
         this->Deinitialize();
         this->DestroyAllActors();
+
+        delete ActorUpdateWork;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
