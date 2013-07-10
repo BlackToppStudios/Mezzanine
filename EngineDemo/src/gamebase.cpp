@@ -280,7 +280,7 @@ public:
 
     void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
-        /*ActorBase* Act1 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontLeft");
+        ActorBase* Act1 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontLeft");
         ActorBase* Act2 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontRight");
         if (Act1->IsAnimated())
         {
@@ -449,13 +449,17 @@ int main(int argc, char **argv)
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
     //CameraNode->AttachObject(Headlight);
 
-	//Start the Main Loop
-	TheEntresol->MainLoop();
+    //Start the Main Loop
+    TheEntresol->MainLoop();
 
     delete Soundtrack;
     delete Announcer;
     delete TheEntresol;
-	return 0;
+    //delete DemoPostInputWork;
+    //delete DemoPostPhysicsWork;
+    //delete DemoPostRenderWork;
+    //delete DemoPreEventWork;
+    return 0;
 }
 
 void LoadContent()
