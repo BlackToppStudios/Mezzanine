@@ -110,14 +110,10 @@ namespace Mezzanine
         typedef ActorSoftContainer::iterator         ActorSoftIterator;
         typedef ActorSoftContainer::const_iterator   ConstActorSoftIterator;
     protected:
-        friend class ActorUpdateWork;
+        friend class ActorUpdateWorkUnit;
 
         /// @brief The actual actor container
         ActorContainer Actors;
-        /// @brief A Second listing of All the Rigid actors
-        ActorRigidContainer RigidActors;
-        /// @brief A Second listing of All the Soft actors
-        ActorSoftContainer SoftActors;
 
         /// @internal
         /// @brief The work unit that updates all the actors stored by this manager.
@@ -137,17 +133,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Managing all actors
 
-        /// @brief Gets an Actor by Index.
-        /// @param Index The index of the actor you wish to retrieve.
-        /// @return Returns a pointer to the actor at the specified index.
-        virtual ActorBase* GetActor(const Whole& Index);
-        /// @brief Gets an Actor by Name.
-        /// @param Name The name of the actor you wish to retrieve.
-        /// @return Returns a pointer to the actor of the specified name.
-        virtual ActorBase* GetActor(const String& Name);
-        /// @brief Gets the number of actors stored in this manager.
-        /// @return Returns a whole representing the current actor count.
-        virtual Whole GetNumActors() const;
         /// @brief Adds a pre-created actor to the manager.
         /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
         /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
@@ -155,6 +140,17 @@ namespace Mezzanine
         /// This function is also necessary for anyone inheriting from our actors to add their actors to the world.
         /// @param Actor The actor to be added to the manager.
         virtual void AddActor(ActorBase* Actor);
+        /// @brief Gets an Actor by Index.
+        /// @param Index The index of the actor you wish to retrieve.
+        /// @return Returns a pointer to the actor at the specified index.
+        virtual ActorBase* GetActor(const Whole& Index) const;
+        /// @brief Gets an Actor by Name.
+        /// @param Name The name of the actor you wish to retrieve.
+        /// @return Returns a pointer to the actor of the specified name.
+        virtual ActorBase* GetActor(const String& Name) const;
+        /// @brief Gets the number of actors stored in this manager.
+        /// @return Returns a whole representing the current actor count.
+        virtual Whole GetNumActors() const;
         /// @brief Removes an actor from this manager without destroying it.
         /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
         /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
@@ -181,31 +177,20 @@ namespace Mezzanine
         virtual void DestroyAllActors();
 
         ///////////////////////////////////////////////////////////////////////////////
-        // ActorRigid Management
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // ActorSoft Management
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // ActorCharacter Management
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Calls to update every actor currently stored in the manager.
-        virtual void UpdateAllActors();
+        /// @copydoc ManagerBase::Initialize()
+        virtual void Initialize();
+        /// @copydoc ManagerBase::Deinitialize()
+        virtual void Deinitialize();
 
         /// @brief Gets the work unit responsible for updating actors stored by this manager.
         /// @return Returns a pointer to the ActorUpdateWorkUnit used by this manager.
         ActorUpdateWorkUnit* GetActorUpdateWork();
 
         ///////////////////////////////////////////////////////////////////////////////
-        //Inherited from ManagerBase
+        // Type Identifier Methods
 
-        /// @copydoc ManagerBase::Initialize()
-        virtual void Initialize();
-        /// @copydoc ManagerBase::DoMainLoopItems()
-        virtual void DoMainLoopItems();
         /// @copydoc ManagerBase::GetInterfaceType()
         virtual ManagerType GetInterfaceType() const;
         /// @copydoc ManagerBase::GetImplementationTypeName()

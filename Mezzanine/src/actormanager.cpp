@@ -69,20 +69,21 @@ namespace Mezzanine
 
     void ActorUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
-        this->TargetManager->UpdateAllActors();
+        for( ActorManager::ActorIterator ActIt = this->TargetManager->Actors.begin() ; ActIt != this->TargetManager->Actors.end() ; ++ActIt )
+        {
+            (*ActIt)->_Update();
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // ActorManager Methods
 
-    template<> ActorManager* Singleton<ActorManager>::SingletonPtr = 0;
+    template<> ActorManager* Singleton<ActorManager>::SingletonPtr = NULL;
 
     ActorManager::ActorManager() :
         ActorUpdateWork(NULL),
         ThreadResources(NULL)
     {
-        Priority = 25;
-
         this->ActorUpdateWork = new ActorUpdateWorkUnit(this);
     }
 
@@ -90,7 +91,6 @@ namespace Mezzanine
         ActorUpdateWork(NULL),
         ThreadResources(NULL)
     {
-        Priority = 25;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
 
         this->ActorUpdateWork = new ActorUpdateWorkUnit(this);
@@ -98,23 +98,27 @@ namespace Mezzanine
 
     ActorManager::~ActorManager()
     {
-        this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->ActorUpdateWork );
-        delete ActorUpdateWork;
-
-        DestroyAllActors();
+        this->Deinitialize();
+        this->DestroyAllActors();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Managing all actors
 
-    ActorBase* ActorManager::GetActor(const Whole& Index)
+    void ActorManager::AddActor(ActorBase* Actor)
     {
-        return Actors.at(Index);
+        this->Actors.push_back(Actor);
+        Actor->AddToWorld();
     }
 
-    ActorBase* ActorManager::GetActor(const String& Name)
+    ActorBase* ActorManager::GetActor(const Whole& Index) const
     {
-        for( ActorIterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        return this->Actors.at(Index);
+    }
+
+    ActorBase* ActorManager::GetActor(const String& Name) const
+    {
+        for( ConstActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
         {
             if(Name == (*it)->GetName())
                 return (*it);
@@ -124,30 +128,24 @@ namespace Mezzanine
 
     Whole ActorManager::GetNumActors() const
     {
-        return Actors.size();
-    }
-
-    void ActorManager::AddActor(ActorBase* Actor)
-    {
-        Actors.push_back(Actor);
-        Actor->AddToWorld();
+        return this->Actors.size();
     }
 
     void ActorManager::RemoveActor(const Whole& Index)
     {
-        ActorIterator it = Actors.begin() + Index;
+        ActorIterator it = this->Actors.begin() + Index;
         (*it)->RemoveFromWorld();
-        Actors.erase(it);
+        this->Actors.erase(it);
     }
 
     void ActorManager::RemoveActor(ActorBase* ToBeRemoved)
     {
-        for( ActorIterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        for( ActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
         {
             if(ToBeRemoved == (*it))
             {
                 (*it)->RemoveFromWorld();
-                Actors.erase(it);
+                this->Actors.erase(it);
                 return;
             }
         }
@@ -155,32 +153,30 @@ namespace Mezzanine
 
     void ActorManager::RemoveAllActors()
     {
-        if( Actors.empty() )
+        if( this->Actors.empty() )
             return;
-        for( ActorIterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        for( ActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
             (*it)->RemoveFromWorld();
-        Actors.clear();
-        RigidActors.clear();
-        SoftActors.clear();
+        this->Actors.clear();
     }
 
     void ActorManager::DestroyActor(const Whole& Index)
     {
-        ActorIterator it = Actors.begin() + Index;
+        ActorIterator it = this->Actors.begin() + Index;
         (*it)->RemoveFromWorld();
         delete (*it);
-        Actors.erase(it);
+        this->Actors.erase(it);
     }
 
     void ActorManager::DestroyActor(ActorBase* ToBeDestroyed)
     {
-        for( ActorIterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        for( ActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
         {
             if(ToBeDestroyed == (*it))
             {
                 (*it)->RemoveFromWorld();
                 delete (*it);
-                Actors.erase(it);
+                this->Actors.erase(it);
                 return;
             }
         }
@@ -188,35 +184,44 @@ namespace Mezzanine
 
     void ActorManager::DestroyAllActors()
     {
-        if( Actors.empty() )
+        if( this->Actors.empty() )
             return;
-        for( ActorIterator it = Actors.begin() ; it != Actors.end() ; ++it )
+        for( ActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
         {
             (*it)->RemoveFromWorld();
             delete (*it);
         }
-        Actors.clear();
-        RigidActors.clear();
-        SoftActors.clear();
+        this->Actors.clear();
     }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // ActorRigid Management
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // ActorSoft Management
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // ActorCharacter Management
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void ActorManager::UpdateAllActors()
+    void ActorManager::Initialize()
     {
-        for( ActorManager::ActorIterator ActIt = Actors.begin() ; ActIt != Actors.end() ; ++ActIt )
+        if( !this->Initialized )
         {
-            (*ActIt)->_Update();
+            this->TheEntresol->GetScheduler().AddWorkUnit( this->ActorUpdateWork );
+            Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
+            if( PhysicsMan ) {
+                this->ActorUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
+            }
+
+            this->Initialized = true;
+        }
+    }
+
+    void ActorManager::Deinitialize()
+    {
+        if( this->Initialized )
+        {
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->ActorUpdateWork );
+            Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
+            if( PhysicsMan ) {
+                this->ActorUpdateWork->RemoveDependency( PhysicsMan->GetSimulationWork() );
+            }
+
+            this->Initialized = false;
         }
     }
 
@@ -226,23 +231,7 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    //Inherited From ManagerBase
-
-    void ActorManager::Initialize()
-    {
-        this->TheEntresol->GetScheduler().AddWorkUnit( this->ActorUpdateWork );
-        Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
-        if( PhysicsMan ) {
-            this->ActorUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
-        }
-
-        Initialized = true;
-    }
-
-    void ActorManager::DoMainLoopItems()
-    {
-        UpdateAllActors();
-    }
+    // Type Identifier Methods
 
     ManagerBase::ManagerType ActorManager::GetInterfaceType() const
         { return ManagerBase::ActorManager; }
