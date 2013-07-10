@@ -1276,7 +1276,8 @@ namespace Mezzanine
 
             Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
             // Debug Draw work configuration
-            this->TheEntresol->GetScheduler().AddWorkUnit( this->DebugDrawWork );
+            // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
+            this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork );
             this->DebugDrawWork->AddDependency( this->SimulationWork );
             if( ActorMan )
                 this->DebugDrawWork->AddDependency( ActorMan->GetActorUpdateWork() );
