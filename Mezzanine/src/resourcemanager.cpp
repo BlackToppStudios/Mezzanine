@@ -89,11 +89,10 @@
 
 namespace Mezzanine
 {
-    template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = 0;
+    template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = NULL;
 
     ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType)
     {
-        this->Priority = 60;
         this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         this->EngineDataDir = EngineDataPath;
         this->AddAssetLocation(EngineDataPath, ArchType, "EngineData", false);
@@ -101,13 +100,14 @@ namespace Mezzanine
 
     ResourceManager::ResourceManager(XML::Node& XMLNode)
     {
-        this->Priority = 60;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 
     ResourceManager::~ResourceManager()
     {
+        this->Deinitialize();
+
         for(std::vector<ResourceInputStream*>::iterator Iter = DeleteList.begin(); Iter != DeleteList.end(); Iter++)
             { delete *Iter; }
     }
@@ -452,11 +452,11 @@ namespace Mezzanine
     String ResourceManager::GetPluginExtension() const
     {
         #ifdef WINDOWS
-                return ".dll";
+        return ".dll";
         #elif LINUX
-                return ".so";
+        return ".so";
         #elif MACOSX
-                return ".dylib";
+        return ".dylib";
         #endif
     }
 
@@ -472,6 +472,16 @@ namespace Mezzanine
         Entresol::GetSingletonPtr()->Log("Exiting ResourceManager::GetResourceStream(const String& FileName)");
         #endif
         return Results;
+    }
+
+    void ResourceManager::Initialize()
+    {
+        Initialized = true;
+    }
+
+    void ResourceManager::Deinitialize()
+    {
+        Initialized = false;
     }
 
     String ResourceManager::GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType)
@@ -499,16 +509,7 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Inherited from ManagerBase
-
-    void ResourceManager::Initialize()
-    {
-        Initialized = true;
-    }
-
-    void ResourceManager::DoMainLoopItems()
-    {
-    }
+    // Type Identifier Methods
 
     ManagerBase::ManagerType ResourceManager::GetInterfaceType() const
         { return ManagerBase::ResourceManager; }

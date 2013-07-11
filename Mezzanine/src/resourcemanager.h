@@ -75,210 +75,210 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB ResourceManager : public ManagerBase, public Singleton<ResourceManager>
     {
-        public:
-            /// @brief Basic container type for @ref DataStream storage by this class.
-            typedef std::vector<Resource::DataStreamPtr>       DataStreamContainer;
-            /// @brief Iterator type for @ref DataStream instances stored by this class.
-            typedef DataStreamContainer::iterator              DataStreamIterator;
-            /// @brief Const Iterator type for @ref DataStream instances stored by this class.
-            typedef DataStreamContainer::const_iterator        ConstDataStreamIterator;
-            /// @brief Basic container type for named @ref DataStream storage by this class.
-            typedef std::map<String,Resource::DataStreamPtr>   NamedDataStreamContainer;
-            /// @brief Iterator type for named @ref DataStream instances stored by this class.
-            typedef NamedDataStreamContainer::iterator         NamedDataStreamIterator;
-            /// @brief Const Iterator type for named @ref DataStream instances stored by this class.
-            typedef NamedDataStreamContainer::const_iterator   ConstNamedDataStreamIterator;
-        protected:
-            /// @internal
-            /// @brief Encapsulates the functionality of the ogre resource group manager.
-            Ogre::ResourceGroupManager* OgreResource;
-            /// @internal
-            /// @brief The location of engine data
-            String EngineDataDir;
+    public:
+        /// @brief Basic container type for @ref DataStream storage by this class.
+        typedef std::vector<Resource::DataStreamPtr>       DataStreamContainer;
+        /// @brief Iterator type for @ref DataStream instances stored by this class.
+        typedef DataStreamContainer::iterator              DataStreamIterator;
+        /// @brief Const Iterator type for @ref DataStream instances stored by this class.
+        typedef DataStreamContainer::const_iterator        ConstDataStreamIterator;
+        /// @brief Basic container type for named @ref DataStream storage by this class.
+        typedef std::map<String,Resource::DataStreamPtr>   NamedDataStreamContainer;
+        /// @brief Iterator type for named @ref DataStream instances stored by this class.
+        typedef NamedDataStreamContainer::iterator         NamedDataStreamIterator;
+        /// @brief Const Iterator type for named @ref DataStream instances stored by this class.
+        typedef NamedDataStreamContainer::const_iterator   ConstNamedDataStreamIterator;
+    protected:
+        /// @internal
+        /// @brief Encapsulates the functionality of the ogre resource group manager.
+        Ogre::ResourceGroupManager* OgreResource;
+        /// @internal
+        /// @brief The location of engine data
+        String EngineDataDir;
 
-            /// @internal
-            /// @brief A container storing all un-named, un-grouped data streams known by the resource system.
-            DataStreamContainer DataStreams;
-            /// @internal
-            /// @brief A container storing all named but un-grouped data streams known by the resource system.
-            NamedDataStreamContainer NamedDataStreams;
+        /// @internal
+        /// @brief A container storing all un-named, un-grouped data streams known by the resource system.
+        DataStreamContainer DataStreams;
+        /// @internal
+        /// @brief A container storing all named but un-grouped data streams known by the resource system.
+        NamedDataStreamContainer NamedDataStreams;
 
-            /// @internal
-            /// @brief A vector of Pointers to streams created to delete periodically.
-            std::vector<ResourceInputStream*> DeleteList;
-            /// @internal
-            /// @brief A vector of all the known internal Asset Groups.
-            std::vector<String> ResourceGroups;
+        /// @internal
+        /// @brief A vector of Pointers to streams created to delete periodically.
+        std::vector<ResourceInputStream*> DeleteList;
+        /// @internal
+        /// @brief A vector of all the known internal Asset Groups.
+        std::vector<String> ResourceGroups;
 
-            /// @internal
-            /// @brief Adds an asset group name to the list of known AssetGroups.
-            void AddAssetGroupName(String Name);
-        public:
-            /// @brief Class constructor.
-            /// @details Standard manager constructor.
-            /// @param EngineDataPath The directory for engine specific data.
-            /// @param ArchiveType The name of the type of archive at this path.
-            ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem);
-            /// @brief XML constructor.
-            /// @param XMLNode The node of the xml document to construct from.
-            ResourceManager(XML::Node& XMLNode);
-            /// @details Class Destructor.
-            virtual ~ResourceManager();
+        /// @internal
+        /// @brief Adds an asset group name to the list of known AssetGroups.
+        void AddAssetGroupName(String Name);
+    public:
+        /// @brief Class constructor.
+        /// @details Standard manager constructor.
+        /// @param EngineDataPath The directory for engine specific data.
+        /// @param ArchiveType The name of the type of archive at this path.
+        ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem);
+        /// @brief XML constructor.
+        /// @param XMLNode The node of the xml document to construct from.
+        ResourceManager(XML::Node& XMLNode);
+        /// @details Class Destructor.
+        virtual ~ResourceManager();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Directory Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // Directory Management
 
-            /// @brief Creates a single new directory.
-            /// @remarks This function will only create the directory specified at the end of the path.
-            /// @param DirectoryPath The path for the newly created directory.
-            /// @return Returns true if the directory was created, false in the case of a non-critical error.
-            bool CreateDirectory(const String& DirectoryPath);
-            /// @brief Creates all directories that do not exist in the provided path.
-            /// @param DirectoryPath The path for the newly created directory or directories.
-            /// @return Returns true if all directories were created, false in the case of a non-critical error.
-            bool CreateDirectoryPath(const String& DirectoryPath);
-            /// @brief Get a Listing of the files and subdirectories in a directory.
-            /// @details This follows normal command line conventions, "." is the current directory,
-            /// ".." is the parent directory. To access the file system root you will need to use a
-            /// leading "c:/", "c:\\", or "/" as appropriate for the operating system the software will run on.
-            /// @return This will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error.
-            /// @param Dir The directory to check.
-            StringSet* GetDirContents(const String& Dir = ".");
-            /// @brief Get the working directory as a Mezzanine::String
-            /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a Mezzanine::String
-            String GetWorkingDirectory() const;
-            /// @brief Get the pathname where engine data is stored
-            /// @return A String that contains the pathname
-            String GetEngineDataDirectory() const;
-            /// @todo Create a function to check if directory exists in the resource manager
-            // @brief Does a given directory exist
-            // @param Path
+        /// @brief Creates a single new directory.
+        /// @remarks This function will only create the directory specified at the end of the path.
+        /// @param DirectoryPath The path for the newly created directory.
+        /// @return Returns true if the directory was created, false in the case of a non-critical error.
+        bool CreateDirectory(const String& DirectoryPath);
+        /// @brief Creates all directories that do not exist in the provided path.
+        /// @param DirectoryPath The path for the newly created directory or directories.
+        /// @return Returns true if all directories were created, false in the case of a non-critical error.
+        bool CreateDirectoryPath(const String& DirectoryPath);
+        /// @brief Get a Listing of the files and subdirectories in a directory.
+        /// @details This follows normal command line conventions, "." is the current directory,
+        /// ".." is the parent directory. To access the file system root you will need to use a
+        /// leading "c:/", "c:\\", or "/" as appropriate for the operating system the software will run on.
+        /// @return This will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error.
+        /// @param Dir The directory to check.
+        StringSet* GetDirContents(const String& Dir = ".");
+        /// @brief Get the working directory as a Mezzanine::String
+        /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a Mezzanine::String
+        String GetWorkingDirectory() const;
+        /// @brief Get the pathname where engine data is stored
+        /// @return A String that contains the pathname
+        String GetEngineDataDirectory() const;
+        /// @todo Create a function to check if directory exists in the resource manager
 
-            /// @brief Resolves a string describing one of the platform data paths to the actual path it is.
-            /// @remarks Currently there are only 4 preset path variables, and depending on platform they two or more may go to the same location.
-            /// The valid variables are as follows: LocalAppData, ShareableAppData, CurrentUserData, and CommonUserData.  These are not case sensative.
-            /// @param PathVar String containing the name of the path variable.
-            /// @return Returns the actual path of the variable provided.
-            String ResolveDataPathFromString(const String& PathVar);
-            /// @brief Gets the path to the directory intended for game and engine config data that is not meant to be shared.
-            /// @return Returns a string containing the path to the Local Application Data Directory.
-            String GetLocalAppDataDir() const;
-            /// @brief Gets the path to the directory intended for game and engine config data that is allowed to be shared.
-            /// @return Returns a string containing the path to the Shareable Application Data Directory.
-            String GetShareableAppDataDir() const;
-            /// @brief Gets the path to the directory intended for game saves and user profile data for the current user.
-            /// @return Returns a string containing the path to the Current User Data Directory.
-            String GetCurrentUserDataDir() const;
-            /// @brief Gets the path to the directory intended for game saves and user profile data for all users.
-            /// @return Returns a string containing the path to the Common User Data Directory.
-            String GetCommonUserDataDir() const;
+        /// @brief Resolves a string describing one of the platform data paths to the actual path it is.
+        /// @remarks Currently there are only 4 preset path variables, and depending on platform they two or more may go to the same location.
+        /// The valid variables are as follows: LocalAppData, ShareableAppData, CurrentUserData, and CommonUserData.  These are not case sensative.
+        /// @param PathVar String containing the name of the path variable.
+        /// @return Returns the actual path of the variable provided.
+        String ResolveDataPathFromString(const String& PathVar);
+        /// @brief Gets the path to the directory intended for game and engine config data that is not meant to be shared.
+        /// @return Returns a string containing the path to the Local Application Data Directory.
+        String GetLocalAppDataDir() const;
+        /// @brief Gets the path to the directory intended for game and engine config data that is allowed to be shared.
+        /// @return Returns a string containing the path to the Shareable Application Data Directory.
+        String GetShareableAppDataDir() const;
+        /// @brief Gets the path to the directory intended for game saves and user profile data for the current user.
+        /// @return Returns a string containing the path to the Current User Data Directory.
+        String GetCurrentUserDataDir() const;
+        /// @brief Gets the path to the directory intended for game saves and user profile data for all users.
+        /// @return Returns a string containing the path to the Common User Data Directory.
+        String GetCommonUserDataDir() const;
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Stream Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // Stream Management
 
-            /// @brief Opens a stream to an asset in an AssetGroup.
-            /// @param AssetName The identity of the asset to be opened (commonly a file name).
-            /// @param AssetGroup The name of the AssetGroup where the Asset can be found.
-            Resource::DataStreamPtr OpenAssetStream(const String& AssetName, const String& AssetGroup);
+        /// @brief Opens a stream to an asset in an AssetGroup.
+        /// @param AssetName The identity of the asset to be opened (commonly a file name).
+        /// @param AssetGroup The name of the AssetGroup where the Asset can be found.
+        Resource::DataStreamPtr OpenAssetStream(const String& AssetName, const String& AssetGroup);
 
-            /// @brief Creates a stream from a memory buffer.
-            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
-            /// @param Buffer A pointer to the memory to stream from.
-            /// @param BufferSize The size of the provided buffer in bytes.
-            /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            Resource::DataStreamPtr CreateDataStream(void* Buffer, const UInt32 BufferSize);
-            /// @brief Creates a named stream from a memory buffer.
-            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
-            /// @param AssetName The name to be given to the created stream.
-            /// @param Buffer A pointer to the memory to stream from.
-            /// @param BufferSize The size of the provided buffer in bytes.
-            /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            Resource::DataStreamPtr CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize);
-            /// @brief Creates a named stream from a memory buffer and adds it to the named AssetGroup.
-            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
-            /// @param AssetName The name to be given to the created stream.
-            /// @param AssetGroup The name of the AssetGroup this stream will be added to.
-            /// @param Buffer A pointer to the memory to stream from.
-            /// @param BufferSize The size of the provided buffer in bytes.
-            /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            Resource::DataStreamPtr CreateDataStream(const String& AssetName, const String& AssetGroup, void* Buffer, const UInt32 BufferSize);
+        /// @brief Creates a stream from a memory buffer.
+        /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
+        /// @param Buffer A pointer to the memory to stream from.
+        /// @param BufferSize The size of the provided buffer in bytes.
+        /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
+        Resource::DataStreamPtr CreateDataStream(void* Buffer, const UInt32 BufferSize);
+        /// @brief Creates a named stream from a memory buffer.
+        /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
+        /// @param AssetName The name to be given to the created stream.
+        /// @param Buffer A pointer to the memory to stream from.
+        /// @param BufferSize The size of the provided buffer in bytes.
+        /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
+        Resource::DataStreamPtr CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize);
+        /// @brief Creates a named stream from a memory buffer and adds it to the named AssetGroup.
+        /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
+        /// @param AssetName The name to be given to the created stream.
+        /// @param AssetGroup The name of the AssetGroup this stream will be added to.
+        /// @param Buffer A pointer to the memory to stream from.
+        /// @param BufferSize The size of the provided buffer in bytes.
+        /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
+        Resource::DataStreamPtr CreateDataStream(const String& AssetName, const String& AssetGroup, void* Buffer, const UInt32 BufferSize);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // AssetGroup Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // AssetGroup Management
 
-            /// @brief Adds a location for graphical resources.
-            /// @details This function will add a location on the disk to find files needed to create and
-            /// manipulate graphical objects. Once an asset is added it must be initalized using
-            /// ResourceManager::InitResourceGroup(String Group).
-            /// @param Location The location on the file system the asset can be found.
-            /// @param Type The kind of file system the location can be found in. @n
-            /// Options are: filesystem, zip.
-            /// @param Group The name of the group the resources at this location belong to.  If the group does not exist it will be created.
-            /// @param Recursive Whether or not to search sub-directories.
-            void AddAssetLocation(const String& Location, const ArchiveType Type, const String& Group, const bool Recursive = false);
-            /// @brief Creates an asset group.
-            /// @param GroupName The name to be given to the created asset group.
-            void CreateAssetGroup(const String& GroupName);
-            /// @brief Destroys an asset group, unloading all of it's resources.
-            /// @param GroupName The name of the asset group to destroy.
-            void DestroyAssetGroup(const String& GroupName);
-            /// @brief Prepares the asset for use.
-            /// @details This function can be thought of as a preloader.  This will prepare the defined
-            /// asset located on the disk for use.
-            /// @param Name Name of the file/asset to be 'prepared'.
-            /// @param Type The type of asset that the file is. @n
-            /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.
-            /// @param Group Name of the group the asset belongs to.
-            void DeclareAsset(const String& Name, const String& Type, const String& Group);
-            /// @brief Makes a asset group ready to use.
-            /// @details After adding all of your assets and declaring them as nessessary, this function
-            /// is the final step.  After calling this function any and all assets within the defined group
-            /// will be ready to use.  Do not initialize any more groups then you need to however, as that will
-            /// take up memory and drop performance.
-            /// @param Name Name of the asset group.
-            void InitAssetGroup(const String& Name);
+        /// @brief Adds a location for graphical resources.
+        /// @details This function will add a location on the disk to find files needed to create and
+        /// manipulate graphical objects. Once an asset is added it must be initalized using
+        /// ResourceManager::InitResourceGroup(String Group).
+        /// @param Location The location on the file system the asset can be found.
+        /// @param Type The kind of file system the location can be found in. @n
+        /// Options are: filesystem, zip.
+        /// @param Group The name of the group the resources at this location belong to.  If the group does not exist it will be created.
+        /// @param Recursive Whether or not to search sub-directories.
+        void AddAssetLocation(const String& Location, const ArchiveType Type, const String& Group, const bool Recursive = false);
+        /// @brief Creates an asset group.
+        /// @param GroupName The name to be given to the created asset group.
+        void CreateAssetGroup(const String& GroupName);
+        /// @brief Destroys an asset group, unloading all of it's resources.
+        /// @param GroupName The name of the asset group to destroy.
+        void DestroyAssetGroup(const String& GroupName);
+        /// @brief Prepares the asset for use.
+        /// @details This function can be thought of as a preloader.  This will prepare the defined
+        /// asset located on the disk for use.
+        /// @param Name Name of the file/asset to be 'prepared'.
+        /// @param Type The type of asset that the file is. @n
+        /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.
+        /// @param Group Name of the group the asset belongs to.
+        void DeclareAsset(const String& Name, const String& Type, const String& Group);
+        /// @brief Makes a asset group ready to use.
+        /// @details After adding all of your assets and declaring them as nessessary, this function
+        /// is the final step.  After calling this function any and all assets within the defined group
+        /// will be ready to use.  Do not initialize any more groups then you need to however, as that will
+        /// take up memory and drop performance.
+        /// @param Name Name of the asset group.
+        void InitAssetGroup(const String& Name);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Asset Query
+        ///////////////////////////////////////////////////////////////////////////////
+        // Asset Query
 
-            /// @brief Gets the actual path to an asset.
-            /// @note This function currently only returns the first match, and doesn't check for multiple matches.
-            /// @param FileName The name of the file to search for.
-            /// @param Group The asset group to search in for the file.
-            /// @return Returns a string containing the path to the file.
-            String GetAssetPath(const String& FileName, const String& Group);
+        /// @brief Gets the actual path to an asset.
+        /// @note This function currently only returns the first match, and doesn't check for multiple matches.
+        /// @param FileName The name of the file to search for.
+        /// @param Group The asset group to search in for the file.
+        /// @return Returns a string containing the path to the file.
+        String GetAssetPath(const String& FileName, const String& Group);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            /// @brief Gets the dot-and-extention of this platforms plugins.
-            /// @return Returns the platform appropriate extention for plugin files.
-            String GetPluginExtension() const;
-            /// @brief Get a stream to read from the specified file
-            /// @param FileName The name of the File you want to stream data from
-            /// @return An derivative of std::istream a ResourceInputStream that will pull it's data from the desired resource
-            /// @details The returned ResourceInputStream is the Caller's responsibility to deal with. If it is not deleted it is a memory leak.
-            ResourceInputStream* GetResourceStream(const String& FileName);
-            /// @brief Gets a string that describes an @ref ArchiveType.
-            /// @param ArchType A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
-            /// @return A String that represents the @ref ArchiveType passed.
-            static String GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType);
-            /// @brief Gets an @ref ArchiveType from a string.
-            /// @param FromString The string to be converted to an archive type.
-            /// @return Returns a @ref ArchiveType corresponding to the string provided, or AT_Invalid if it is invalid.
-            static ArchiveType GetArchiveTypeFromString(const String& FromString);
+        /// @brief Gets the dot-and-extention of this platforms plugins.
+        /// @return Returns the platform appropriate extention for plugin files.
+        String GetPluginExtension() const;
+        /// @brief Get a stream to read from the specified file.
+        /// @details The returned ResourceInputStream is the Caller's responsibility to deal with. If it is not deleted it is a memory leak.
+        /// @param FileName The name of the File you want to stream data from.
+        /// @return An derivative of std::istream a ResourceInputStream that will pull it's data from the desired resource.
+        ResourceInputStream* GetResourceStream(const String& FileName);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            //Inherited from ManagerBase
+        /// @copydoc ManagerBase::Initialize()
+        virtual void Initialize();
+        /// @copydoc ManagerBase::Deinitialize()
+        virtual void Deinitialize();
 
-            /// @copydoc ManagerBase::Initialize()
-            virtual void Initialize();
-            /// @copydoc ManagerBase::DoMainLoopItems()
-            virtual void DoMainLoopItems();
-            /// @copydoc ManagerBase::GetInterfaceType()
-            virtual ManagerType GetInterfaceType() const;
-            /// @copydoc ManagerBase::GetImplementationTypeName()
-            virtual String GetImplementationTypeName() const;
+        /// @brief Gets a string that describes an @ref ArchiveType.
+        /// @param ArchType A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
+        /// @return A String that represents the @ref ArchiveType passed.
+        static String GetStringFromArchiveType(const Mezzanine::ArchiveType ArchType);
+        /// @brief Gets an @ref ArchiveType from a string.
+        /// @param FromString The string to be converted to an archive type.
+        /// @return Returns a @ref ArchiveType corresponding to the string provided, or AT_Invalid if it is invalid.
+        static ArchiveType GetArchiveTypeFromString(const String& FromString);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Type Identifier Methods
+
+        /// @copydoc ManagerBase::GetInterfaceType()
+        virtual ManagerType GetInterfaceType() const;
+        /// @copydoc ManagerBase::GetImplementationTypeName()
+        virtual String GetImplementationTypeName() const;
     };//ResourceManager
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -288,22 +288,21 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB DefaultResourceManagerFactory : public ManagerFactory
     {
-        public:
-            /// @brief Class constructor.
-            DefaultResourceManagerFactory();
-            /// @brief Class destructor.
-            virtual ~DefaultResourceManagerFactory();
+    public:
+        /// @brief Class constructor.
+        DefaultResourceManagerFactory();
+        /// @brief Class destructor.
+        virtual ~DefaultResourceManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::GetManagerTypeName()
+        String GetManagerTypeName() const;
 
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+        ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+        ManagerBase* CreateManager(XML::Node& XMLNode);
+        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+        void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultResourceManagerFactory
 }//Mezzanine
 
