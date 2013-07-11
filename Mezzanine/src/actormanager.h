@@ -54,7 +54,7 @@ namespace Mezzanine
     class ActorManager;
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a @ref iWorkUnit for the updating of the physics debug drawer.
+    /// @brief This is a @ref iWorkUnit for the updating of actors.
     /// @details
     ///////////////////////////////////////
     class MEZZ_LIB ActorUpdateWorkUnit : public Threading::DefaultWorkUnit
