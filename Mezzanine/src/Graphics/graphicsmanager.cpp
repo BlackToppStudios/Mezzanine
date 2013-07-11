@@ -78,7 +78,8 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = NULL;
+        ///////////////////////////////////////////////////////////////////////////
+        // RenderWorkUnit Methods
 
         RenderWorkUnit::RenderWorkUnit(GraphicsManager* Target) :
             TargetManager(Target)
@@ -107,25 +108,27 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////
-        // Creation and Deletion functions
-        ///////////////////////////////////
-        GraphicsManager::GraphicsManager()
-            : RenderWork(NULL),
-              ThreadResources(NULL),
-              OgreBeenInitialized(false),
-              CurrRenderSys(Graphics::RS_OpenGL2)
+        // GraphicsManager Methods
+
+        template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = NULL;
+
+        GraphicsManager::GraphicsManager() :
+            RenderWork(NULL),
+            ThreadResources(NULL),
+            OgreBeenInitialized(false),
+            CurrRenderSys(Graphics::RS_OpenGL2)
         {
-            Construct();
+            this->Construct();
             this->AutoGenFiles = false;
         }
 
-        GraphicsManager::GraphicsManager(XML::Node& XMLNode)
-            : RenderWork(NULL),
-              ThreadResources(NULL),
-              OgreBeenInitialized(false),
-              CurrRenderSys(Graphics::RS_OpenGL2)
+        GraphicsManager::GraphicsManager(XML::Node& XMLNode) :
+            RenderWork(NULL),
+            ThreadResources(NULL),
+            OgreBeenInitialized(false),
+            CurrRenderSys(Graphics::RS_OpenGL2)
         {
-            Construct();
+            this->Construct();
 
             XML::Attribute CurrAttrib;
             String PathPreset;
@@ -135,7 +138,7 @@ namespace Mezzanine
             {
                 CurrAttrib = AutoGenNode.GetAttribute("Auto");
                 if(!CurrAttrib.Empty())
-                    AutoGenPath = AutoGenFiles = StringTools::ConvertToBool( CurrAttrib.AsString() );
+                    this->AutoGenPath = this->AutoGenFiles = StringTools::ConvertToBool( CurrAttrib.AsString() );
             }
             // Get preset path to default to if a path is not provided.
             XML::Node PathNode = XMLNode.GetChild("SettingsPath");
@@ -146,7 +149,7 @@ namespace Mezzanine
                     PathPreset = CurrAttrib.AsString();
 
                 if(!PathPreset.empty())
-                    SetSettingsFilePath(PathPreset);
+                    this->SetSettingsFilePath(PathPreset);
             }
             // Get the files to be loaded, and load them.
             XML::Node FilesNode = XMLNode.GetChild("SettingsFiles");
@@ -172,27 +175,23 @@ namespace Mezzanine
 
                     if(FilePath.empty())
                     {
-                        if(FileGroup.empty()) LoadSettings(FileName);
-                        else LoadSettingsFromGroup(FileName,FileGroup);
+                        if(FileGroup.empty()) this->LoadSettings(FileName);
+                        else this->LoadSettingsFromGroup(FileName,FileGroup);
                     }
-                    else LoadSettings(FileName,FilePath);
+                    else this->LoadSettings(FileName,FilePath);
                 }
             }
             /// @todo This is currently necessary because a render window of some kind needs to exist for the loading
             /// of resources that occurs later in world construction (when this is constructed by the world, which this
             /// assumes.  If possible this should be removed, to keep construction more flexible.
-            InitOgreRenderSystem();
+            this->InitOgreRenderSystem();
         }
 
 
         GraphicsManager::~GraphicsManager()
         {
-            //GraphicsWork is deleted by the FramScheduler
-
-            if(AutoGenFiles)
-                SaveAllSettings();
-
-            DestroyAllGameWindows(false);
+            this->Deinitialize();
+            this->DestroyAllGameWindows(false);
 
             UInt32 InitSDLSystems = SDL_WasInit(0);
             if( SDL_INIT_VIDEO | InitSDLSystems )
@@ -200,20 +199,12 @@ namespace Mezzanine
                 SDL_QuitSubSystem(SDL_INIT_VIDEO);
             }
 
-            /// @todo This is commented out due to an issue with the ogre shutdown sequence.
-            /// Ogre will eventually shut these plugins down, but not until after the lifetime of this manager.
-            /*for (std::vector<Ogre::Plugin*>::iterator Iter = RenderSystems.begin();
-                 Iter != RenderSystems.end();
-                 Iter++)
-            {
-                Ogre::Root::getSingletonPtr()->uninstallPlugin(*Iter);
-                delete *Iter;
-            }//*/
+            delete RenderWork;
         }
 
         void GraphicsManager::Construct()
         {
-            RenderWork = new RenderWorkUnit(this);
+            this->RenderWork = new RenderWorkUnit(this);
 
             UInt32 InitSDLSystems = SDL_WasInit(0);
             if( (SDL_INIT_VIDEO & InitSDLSystems) == 0 )
@@ -227,63 +218,59 @@ namespace Mezzanine
             DesktopSettings.RenderWidth = DeskMode.w;
             DesktopSettings.RenderHeight = DeskMode.h;
             DesktopSettings.RefreshRate = DeskMode.refresh_rate;
-
-            this->Priority = 70;
         }
 
         void GraphicsManager::InitOgreRenderSystem()
         {
-            if(!OgreBeenInitialized)
+            if( !this->OgreBeenInitialized )
             {
                 Ogre::Root* OgreCore = Ogre::Root::getSingletonPtr();
                 Ogre::Plugin* CurrentRenderSystem = 0;
 
                 #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
-                CurrentRenderSystem = new Ogre::D3D9Plugin;
-                RenderSystems.push_back(CurrentRenderSystem);
-                OgreCore->installPlugin(CurrentRenderSystem);
-                RenderSystemTypes.push_back(Graphics::RS_DirectX9);
+                CurrentRenderSystem = new Ogre::D3D9Plugin();
+                this->RenderSystems.push_back( CurrentRenderSystem );
+                OgreCore->installPlugin( CurrentRenderSystem );
+                this->RenderSystemTypes.push_back( Graphics::RS_DirectX9 );
                 #endif
                 #ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
-                CurrentRenderSystem = new Ogre::D3D11Plugin;
-                RenderSystems.push_back(CurrentRenderSystem);
-                OgreCore->installPlugin(CurrentRenderSystem);
-                RenderSystemTypes.push_back(Graphics::RS_DirectX11);
+                CurrentRenderSystem = new Ogre::D3D11Plugin();
+                this->RenderSystems.push_back( CurrentRenderSystem );
+                OgreCore->installPlugin( CurrentRenderSystem );
+                this->RenderSystemTypes.push_back( Graphics::RS_DirectX11 );
                 #endif
                 #ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
-                CurrentRenderSystem = new Ogre::GLES2Plugin;
-                RenderSystems.push_back(CurrentRenderSystem);
-                OgreCore->installPlugin(CurrentRenderSystem);
-                RenderSystemTypes.push_back(Graphics::RS_OpenGLES2);
+                CurrentRenderSystem = new Ogre::GLES2Plugin();
+                this->RenderSystems.push_back( CurrentRenderSystem );
+                OgreCore->installPlugin( CurrentRenderSystem );
+                this->RenderSystemTypes.push_back( Graphics::RS_OpenGLES2 );
                 #endif
                 #ifdef MEZZ_BUILD_OPENGLES_SUPPORT
-                CurrentRenderSystem = new Ogre::GLESPlugin;
-                RenderSystems.push_back(CurrentRenderSystem);
-                OgreCore->installPlugin(CurrentRenderSystem);
-                RenderSystemTypes.push_back(Graphics::RS_OpenGLES1);
+                CurrentRenderSystem = new Ogre::GLESPlugin();
+                this->RenderSystems.push_back( CurrentRenderSystem );
+                OgreCore->installPlugin( CurrentRenderSystem );
+                this->RenderSystemTypes.push_back( Graphics::RS_OpenGLES1 );
                 #endif
                 #ifdef MEZZ_BUILD_OPENGL_SUPPORT
-                CurrentRenderSystem = new Ogre::GLPlugin;
-                RenderSystems.push_back(CurrentRenderSystem);
-                OgreCore->installPlugin(CurrentRenderSystem);
-                RenderSystemTypes.push_back(Graphics::RS_OpenGL2);
+                CurrentRenderSystem = new Ogre::GLPlugin();
+                this->RenderSystems.push_back( CurrentRenderSystem );
+                OgreCore->installPlugin( CurrentRenderSystem );
+                this->RenderSystemTypes.push_back( Graphics::RS_OpenGL2 );
                 #endif
 
-                if(RenderSystems.size()==1)
+                if( this->RenderSystems.size() == 1 )
                 {
-                    Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( GetRenderSystemName(RenderSystemTypes[0]) );
-                    OgreCore->setRenderSystem( OgreCore->getRenderSystemByName( GetRenderSystemName(RenderSystemTypes[0]) ) );
-                }
-                else
-                {
-                    Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( GetRenderSystemName(CurrRenderSys) );
-                    OgreCore->setRenderSystem( OgreCore->getRenderSystemByName( GetRenderSystemName(CurrRenderSys) ) );
+                    Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->RenderSystemTypes[0] ) );
+                    OgreCore->setRenderSystem( OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->RenderSystemTypes[0] ) ) );
+                }else{
+                    Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->CurrRenderSys ) );
+                    OgreCore->setRenderSystem( OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->CurrRenderSys ) ) );
                 }
 
                 OgreCore->initialise(false,"");
-                OgreBeenInitialized = true;
+                this->OgreBeenInitialized = true;
 
-                PrimaryGameWindow = new Graphics::GameWindow("Primary",1,1,Graphics::GameWindow::WF_Hidden);
+                this->PrimaryGameWindow = new Graphics::GameWindow("Primary",1,1,Graphics::GameWindow::WF_Hidden);
             }
         }
 
@@ -299,9 +286,9 @@ namespace Mezzanine
             XML::Node CurrentSettings = SettingsRootNode.AppendChild("Current");
             // Create and initialize the rendersystem settings
             XML::Node RenderSystemNode = CurrentSettings.AppendChild("RenderSystem");
-            RenderSystemNode.AppendAttribute("Name").SetValue( GetShortenedRenderSystemName(CurrRenderSys) );
+            RenderSystemNode.AppendAttribute("Name").SetValue( this->GetShortenedRenderSystemName(CurrRenderSys) );
             // Create and initialize the window configuration
-            for( GameWindowIterator WinIt = BeginGameWindow() ; WinIt != EndGameWindow() ; ++WinIt )
+            for( GameWindowIterator WinIt = this->BeginGameWindow() ; WinIt != this->EndGameWindow() ; ++WinIt )
             {
                 XML::Node WindowConfigNode = CurrentSettings.AppendChild("GameWindow");
                 WindowConfigNode.AppendAttribute("Caption").SetValue( (*WinIt)->GetWindowCaption() );
@@ -345,14 +332,15 @@ namespace Mezzanine
                     else if( GetShortenedRenderSystemName(Graphics::RS_OpenGLES2) == CurrSettingValue )
                         RenderSys = Graphics::RS_OpenGLES2;
 
-                    if(!OgreBeenInitialized)
+                    this->CurrRenderSys = RenderSys;
+
+                    if( !this->OgreBeenInitialized )
                     {
-                        SetRenderSystem(CurrRenderSys,true);
+                        this->SetRenderSystem(this->CurrRenderSys,true);
                     }else{
                         /// @todo May want to make some other data member so that people can accurately get what is set now, instead of what will be set.
                         Entresol::GetSingletonPtr()->Log("WARNING: Attempting to apply new RenderSystem settings after the GraphicsManager has been initialized.  "
                                                       "These Settings will be applied the next time settings are loaded during manager construction if current settings are saved.");
-                        CurrRenderSys = RenderSys;
                     }
                 }
                 else if( "GameWindow" == (*SubSetIt)->GetName() )
@@ -437,7 +425,7 @@ namespace Mezzanine
                         }
                     }
                     // Finally, construct the window.
-                    Graphics::GameWindow* CurrWindow = CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags);
+                    Graphics::GameWindow* CurrWindow = this->CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags);
                     // Set up the viewports
                     for( ObjectSettingSetContainer::SubSetIterator VPIt = (*SubSetIt)->SubSetBegin() ; VPIt != (*SubSetIt)->SubSetEnd() ; ++VPIt )
                     {
@@ -470,31 +458,32 @@ namespace Mezzanine
 
         Graphics::GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
         {
-            if(!OgreBeenInitialized) InitOgreRenderSystem();
+            if( !this->OgreBeenInitialized )
+                this->InitOgreRenderSystem();
 
             Graphics::GameWindow* NewWindow = new Graphics::GameWindow(WindowCaption,Width,Height,Flags);
-            GameWindows.push_back(NewWindow);
+            this->GameWindows.push_back(NewWindow);
             return NewWindow;
         }
 
         Graphics::GameWindow* GraphicsManager::GetGameWindow(const Whole& Index)
         {
-            return GameWindows.at(Index);
+            return this->GameWindows.at(Index);
         }
 
         Whole GraphicsManager::GetNumGameWindows()
         {
-            return GameWindows.size();
+            return this->GameWindows.size();
         }
 
         void GraphicsManager::DestroyGameWindow(Graphics::GameWindow* ToBeDestroyed)
         {
-            for ( std::vector<Graphics::GameWindow*>::iterator it = GameWindows.begin() ; it != GameWindows.end() ; it++ )
+            for( GameWindowIterator it = this->GameWindows.begin() ; it != this->GameWindows.end() ; it++ )
             {
-                if ( ToBeDestroyed == (*it) )
+                if( ToBeDestroyed == (*it) )
                 {
                     delete ToBeDestroyed;
-                    GameWindows.erase(it);
+                    this->GameWindows.erase(it);
                     return;
                 }
             }
@@ -502,40 +491,40 @@ namespace Mezzanine
 
         void GraphicsManager::DestroyAllGameWindows(bool ExcludePrimary)
         {
-            for(GameWindowContainer::reverse_iterator Iter = GameWindows.rbegin(); Iter!=GameWindows.rend(); Iter++)
+            for( GameWindowIterator Iter = GameWindows.begin() ; Iter != GameWindows.end() ; ++Iter )
                 { delete *Iter; }
-            GameWindows.clear();
+            this->GameWindows.clear();
 
             if(!ExcludePrimary)
             {
                 delete PrimaryGameWindow;
-                PrimaryGameWindow = 0;
+                this->PrimaryGameWindow = 0;
             }
         }
 
         Graphics::GameWindow* GraphicsManager::GetPrimaryGameWindow()
         {
-            return PrimaryGameWindow;
+            return this->PrimaryGameWindow;
         }
 
         GraphicsManager::GameWindowIterator GraphicsManager::BeginGameWindow()
         {
-            return GameWindows.begin();
+            return this->GameWindows.begin();
         }
 
         GraphicsManager::GameWindowIterator GraphicsManager::EndGameWindow()
         {
-            return GameWindows.end();
+            return this->GameWindows.end();
         }
 
         GraphicsManager::ConstGameWindowIterator GraphicsManager::BeginGameWindow() const
         {
-            return GameWindows.begin();
+            return this->GameWindows.begin();
         }
 
         GraphicsManager::ConstGameWindowIterator GraphicsManager::EndGameWindow() const
         {
-            return GameWindows.end();
+            return this->GameWindows.end();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -543,16 +532,16 @@ namespace Mezzanine
 
         void GraphicsManager::SetRenderSystem(const Graphics::RenderSystem& RenderSys, bool InitializeRenderSystem)
         {
-            if(!OgreBeenInitialized) CurrRenderSys = RenderSys;
+            if(!this->OgreBeenInitialized) this->CurrRenderSys = RenderSys;
             else { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to set RenderSystem after graphics has been initialized.  This is not supported."); }
 
-            if(InitializeRenderSystem)
-                InitOgreRenderSystem();
+            if( InitializeRenderSystem )
+                this->InitOgreRenderSystem();
         }
 
         Graphics::RenderSystem GraphicsManager::GetCurrRenderSystem()
         {
-            return CurrRenderSys;
+            return this->CurrRenderSys;
         }
 
         String GraphicsManager::GetRenderSystemName(const Graphics::RenderSystem& RenderSys)
@@ -590,17 +579,17 @@ namespace Mezzanine
 
         const StringVector* GraphicsManager::GetSupportedResolutions()
         {
-            return &SupportedResolutions;
+            return &(this->SupportedResolutions);
         }
 
         const StringVector* GraphicsManager::GetSupportedDevices()
         {
-            return &SupportedDevices;
+            return &(this->SupportedDevices);
         }
 
         const WindowSettings& GraphicsManager::GetDesktopSettings()
         {
-            return DesktopSettings;
+            return this->DesktopSettings;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -609,18 +598,75 @@ namespace Mezzanine
         void GraphicsManager::RenderOneFrame()
         {
             Ogre::Root::getSingleton().renderOneFrame();
-            if( !GetPrimaryGameWindow()->_GetOgreWindowPointer()->isVisible() )
+            if( !this->GetPrimaryGameWindow()->_GetOgreWindowPointer()->isVisible() )
                 Ogre::Root::getSingleton().clearEventTimes();
         }
 
         void GraphicsManager::SwapAllBuffers(bool WaitForVsync)
         {
-            for( Whole X = 0 ; X < GetNumGameWindows() ; X++ )
-                GetGameWindow(X)->_GetOgreWindowPointer()->swapBuffers(false);
+            for( Whole X = 0 ; X < this->GetNumGameWindows() ; X++ )
+                this->GetGameWindow(X)->_GetOgreWindowPointer()->swapBuffers(false);
+        }
+
+        void GraphicsManager::Initialize()
+        {
+            if( !this->Initialized )
+            {
+                this->TheEntresol->GetScheduler().AddWorkUnitMonopoly(RenderWork);
+
+                if( !this->OgreBeenInitialized )
+                    this->InitOgreRenderSystem();
+
+                Ogre::ConfigOptionMap& CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();
+                for( Ogre::ConfigOptionMap::iterator configItr = CurrentRendererOptions.begin() ;
+                    configItr != CurrentRendererOptions.end() ; configItr++)
+                {
+                    if( (configItr)->first == "Video Mode" )
+                    {
+                        for( Whole X = 0 ; X < (configItr)->second.possibleValues.size() ; X++ )
+                        {
+                            String NewRes = (configItr)->second.possibleValues[X];
+                            StringTools::RemoveDuplicateWhitespaces(NewRes);
+                            StringTools::Trim(NewRes);
+                            this->SupportedResolutions.push_back(NewRes);
+                        }
+                        continue;
+                    }
+                    if( (configItr)->first == "Rendering Device" )
+                    {
+                        for( Whole Y = 0 ; Y < (configItr)->second.possibleValues.size() ; Y++ )
+                            this->SupportedDevices.push_back((configItr)->second.possibleValues[Y]);
+                        continue;
+                    }
+                }
+
+                if(this->AutoGenFiles)
+                    this->SaveAllSettings();
+
+                this->Initialized = true;
+            }
+        }
+
+        void GraphicsManager::Deinitialize()
+        {
+            if( this->Initialized )
+            {
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( this->RenderWork );
+
+                /// @todo Here is where we should be shutting down the rendersystem, but Ogre in it's poorly coded ways wasn't
+                /// designed for that unless you are also deleting Ogre::Root.  Take it up with them if you don't like it.
+                /// (tell me where the thread is when you do, I'll join in)
+                /// Related: http://www.ogre3d.org/forums/viewtopic.php?f=4&t=77036&sid=a7ce7512032eb851d50da083795198f3
+
+                if(this->AutoGenFiles)
+                    this->SaveAllSettings();
+
+                this->Initialized = false;
+            }
         }
 
         RenderWorkUnit* GraphicsManager::GetRenderWork()
-            { return RenderWork; }
+            { return this->RenderWork; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // SubSystem Initialization
@@ -632,52 +678,11 @@ namespace Mezzanine
 
         bool GraphicsManager::HasOgreBeenInitialized()
         {
-            return OgreBeenInitialized;
+            return this->OgreBeenInitialized;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Inherited from ManagerBase
-
-        void GraphicsManager::Initialize()
-        {
-            TheEntresol->GetScheduler().AddWorkUnitMonopoly(RenderWork);
-
-            if(!OgreBeenInitialized)
-                InitOgreRenderSystem();
-
-            Ogre::ConfigOptionMap& CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();
-            for( Ogre::ConfigOptionMap::iterator configItr = CurrentRendererOptions.begin() ;
-                configItr != CurrentRendererOptions.end() ; configItr++)
-            {
-                if( (configItr)->first == "Video Mode" )
-                {
-                    for( Whole X = 0 ; X < (configItr)->second.possibleValues.size() ; X++ )
-                    {
-                        String NewRes = (configItr)->second.possibleValues[X];
-                        StringTools::RemoveDuplicateWhitespaces(NewRes);
-                        StringTools::Trim(NewRes);
-                        SupportedResolutions.push_back(NewRes);
-                    }
-                    continue;
-                }
-                if( (configItr)->first == "Rendering Device" )
-                {
-                    for( Whole Y = 0 ; Y < (configItr)->second.possibleValues.size() ; Y++ )
-                        SupportedDevices.push_back((configItr)->second.possibleValues[Y]);
-                    continue;
-                }
-            }
-
-            if(AutoGenFiles)
-                SaveAllSettings();
-
-            Initialized = true;
-        }
-
-        void GraphicsManager::DoMainLoopItems()
-        {
-
-        }
+        // Type Identifier Methods
 
         ManagerBase::ManagerType GraphicsManager::GetInterfaceType() const
             { return ManagerBase::GraphicsManager; }
