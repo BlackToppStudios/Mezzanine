@@ -166,39 +166,6 @@ namespace Mezzanine
         };//SimulationMonopolyWorkUnit
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a @ref iWorkUnit for the updating of AreaEffects.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB AreaEffectUpdateWorkUnit : public Threading::DefaultWorkUnit
-        {
-        protected:
-            /// @internal
-            /// @brief A pointer to the manager this work unit is processing.
-            PhysicsManager* TargetManager;
-            /// @internal
-            /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
-            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
-            AreaEffectUpdateWorkUnit(const AreaEffectUpdateWorkUnit& Other);
-            /// @internal
-            /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
-            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
-            AreaEffectUpdateWorkUnit& operator=(const AreaEffectUpdateWorkUnit& Other);
-        public:
-            /// @brief Class constructor.
-            /// @param Target The PhysicsManager this work unit will process during the frame.
-            AreaEffectUpdateWorkUnit(PhysicsManager* Target);
-            /// @brief Class destructor.
-            virtual ~AreaEffectUpdateWorkUnit();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            /// @brief This does any required update of the Graphical Scene graph and REnders one frame
-            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
-            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-        };//AreaEffectUpdateWorkUnit
-
-        ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a @ref iWorkUnit for the updating of WorldTriggers.
         /// @details
         ///////////////////////////////////////
@@ -276,9 +243,6 @@ namespace Mezzanine
             typedef std::vector< Physics::Constraint* >         ConstraintContainer;
             typedef ConstraintContainer::iterator               ConstraintIterator;
             typedef ConstraintContainer::const_iterator         ConstConstraintIterator;
-            typedef std::vector< AreaEffect* >                  AreaEffectContainer;
-            typedef AreaEffectContainer::iterator               AreaEffectIterator;
-            typedef AreaEffectContainer::const_iterator         ConstAreaEffectIterator;
             typedef std::vector< WorldTrigger* >                WorldTriggerContainer;
             typedef WorldTriggerContainer::iterator             WorldTriggerIterator;
             typedef WorldTriggerContainer::const_iterator       ConstWorldTriggerIterator;
@@ -290,7 +254,6 @@ namespace Mezzanine
             friend class ParallelCollisionDispatcher;
             friend class SimulationWorkUnit;
             friend class SimulationMonopolyWorkUnit;
-            friend class AreaEffectUpdateWorkUnit;
             friend class WorldTriggerUpdateWorkUnit;
             friend class DebugDrawWorkUnit;
 
@@ -303,7 +266,6 @@ namespace Mezzanine
             ManagerConstructionInfo WorldConstructionInfo;
 
             ConstraintContainer Constraints;
-            AreaEffectContainer AreaEffects;
             WorldTriggerContainer Triggers;
             CollisionContainer Collisions;
 
@@ -322,9 +284,6 @@ namespace Mezzanine
             /// @brief The work unit that does the stepping of the simulation.
             Threading::DefaultWorkUnit* SimulationWork;
             /// @internal
-            /// @brief The work unit that updates and applies the effects of all AreaEffects.
-            AreaEffectUpdateWorkUnit* AreaEffectUpdateWork;
-            /// @internal
             /// @brief The work unit that processes all world triggers.
             WorldTriggerUpdateWorkUnit* WorldTriggerUpdateWork;
             /// @internal
@@ -337,17 +296,16 @@ namespace Mezzanine
             /// @brief This takes care of all the real work in contructing this
             /// @details This method is called by all the constructors to insure consistent behavior.
             /// @param Info The construction info class with all the settings you wish the world to have.
-            void Construct(const ManagerConstructionInfo& Info);
+            virtual void Construct(const ManagerConstructionInfo& Info);
+            /// @brief Tear down this physics world
+            virtual void Destroy();
 
-            /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect.
-            /// @details This function is automatically called every step.
-            void ProcessAllEffects();
             /// @brief Calls the ConditionsAreMet() and ApplyTrigger() functions of every stored trigger.
             /// @details This function is automatically called every step.
-            void ProcessAllTriggers();
+            virtual void ProcessAllTriggers();
             /// @brief Checks the internal collision data and generates/updates collisions as necessary.
             /// @details This function is automatically called every step.
-            void ProcessAllCollisions();
+            virtual void ProcessAllCollisions();
 
             /// @brief Internal Callback that is called each substep of the simulation.
             static void InternalTickCallback(btDynamicsWorld* world, btScalar timeStep);
@@ -367,11 +325,6 @@ namespace Mezzanine
             /// @brief Deconstructor
             /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
             virtual ~PhysicsManager();
-
-        protected:
-            /// @brief Tear down this physics world
-            virtual void Destroy();
-        public:
 
             ///////////////////////////////////////////////////////////////////////////////
             // Simulation Management
@@ -431,31 +384,6 @@ namespace Mezzanine
             /// @brief Destroys all constraints currently in the manager.
             /// @details In practice it is cleaner to remove constraints from the world before removing any constrained actors.
             void DestroyAllConstraints();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // AreaEffect Management
-
-            /// @brief Adds an area effect to the world.
-            /// @details Adds an area effect to the world so that it can/will take effect.
-            /// @param AE The area effect to be added.
-            void AddAreaEffect(AreaEffect* AE);
-            /// @brief Gets an Area Effect by name.
-            /// @param Name The name of the area effect to find.
-            /// @return Returns a pointer to the named area effect, or NULL if it doesn't exist.
-            AreaEffect* GetAreaEffect(const String& Name);
-            /// @brief Gets an Area Effect by index.
-            /// @param Index The index of the area effect you want.
-            /// @return Returns a pointer to the area effect at the specified index.
-            AreaEffect* GetAreaEffect(const Whole& Index);
-            /// @brief Gets the number of Area Effects currently in the world.
-            /// @return Returns a whole representing the number of Area Effects in the world.
-            Whole GetNumAreaEffects();
-            /// @brief Removes an area effect from the world.
-            /// @details Removes an area effect from the world so that it will have no effect.
-            /// @param AE The area effect to be removed.
-            void RemoveAreaEffect(AreaEffect* AE);
-            /// @brief Destroys all area effects currently in the manager.
-            void DestroyAllAreaEffects();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Trigger Management
@@ -544,8 +472,6 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Does all of the necessary configuration to prepare for a running simulation.
-            void MainLoopInitialize();
             /// @brief Resets all the internal physics structures in this manager.
             /// @warning This should only be called while the world is emtpy and objects have be unloaded from it.
             /// @param Info If you want to change the configuration of the world when restarting, you can optionally
@@ -565,12 +491,16 @@ namespace Mezzanine
             /// @param Modifier The amount of substeps per frame to perform.
             void SetSimulationSubstepModifier(const Whole& Modifier);
 
+            /// @brief Does all of the necessary configuration to prepare for a running simulation.
+            void MainLoopInitialize();
+            /// @copydoc ManagerBase::Initialize()
+            virtual void Initialize();
+            /// @copydoc ManagerBase::Deinitialize()
+            virtual void Deinitialize();
+
             /// @brief Gets a pointer to the work unit that steps the simulation.
             /// @return Returns a pointer to the DefaultWorkUnit that steps the simulation.
             Threading::DefaultWorkUnit* GetSimulationWork();
-            /// @brief Gets a pointer to the work unit that updates all AreaEffects.
-            /// @return Returns a pointer to the AreaEffectUpdateWorkUnit used by this manager.
-            AreaEffectUpdateWorkUnit* GetAreaEffectUpdateWork();
             /// @brief Gets a pointer to the work unit that updates all WorldTriggers.
             /// @return Returns a pointer to the WorldTriggerUpdateWorkUnit used by this manager.
             WorldTriggerUpdateWorkUnit* GetWorldTriggerUpdateWork();
@@ -586,12 +516,8 @@ namespace Mezzanine
             const btSoftRigidDynamicsWorld* GetPhysicsWorldPointer() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Managerbase
+            // Type Identifier Methods
 
-            /// @copydoc Mezzanine::ManagerBase::Initialize()
-            virtual void Initialize();
-            /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
-            virtual void DoMainLoopItems();
             /// @copydoc ManagerBase::GetInterfaceType()
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()

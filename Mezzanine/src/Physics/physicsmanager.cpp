@@ -366,30 +366,6 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////
-        // AreaEffectUpdateWorkUnit functions
-
-        AreaEffectUpdateWorkUnit::AreaEffectUpdateWorkUnit(const AreaEffectUpdateWorkUnit& Other)
-            {  }
-
-        AreaEffectUpdateWorkUnit& AreaEffectUpdateWorkUnit::operator=(const AreaEffectUpdateWorkUnit& Other)
-            { return *this; }
-
-        AreaEffectUpdateWorkUnit::AreaEffectUpdateWorkUnit(PhysicsManager* Target) :
-            TargetManager(Target) {  }
-
-        AreaEffectUpdateWorkUnit::~AreaEffectUpdateWorkUnit()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        void AreaEffectUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-        {
-            // No real logging necessary
-            this->TargetManager->ProcessAllEffects();
-        }
-
-        ///////////////////////////////////////////////////////////
         // WorldTriggerUpdate functions
 
         WorldTriggerUpdateWorkUnit::WorldTriggerUpdateWorkUnit(const WorldTriggerUpdateWorkUnit& Other)
@@ -464,7 +440,6 @@ namespace Mezzanine
             BulletDrawer(NULL),
 
             SimulationWork(NULL),
-            AreaEffectUpdateWork(NULL),
             WorldTriggerUpdateWork(NULL),
             DebugDrawWork(NULL),
             ThreadResources(NULL)
@@ -491,7 +466,6 @@ namespace Mezzanine
             BulletDrawer(NULL),
 
             SimulationWork(NULL),
-            AreaEffectUpdateWork(NULL),
             WorldTriggerUpdateWork(NULL),
             DebugDrawWork(NULL),
             ThreadResources(NULL)
@@ -516,7 +490,6 @@ namespace Mezzanine
             BulletDrawer(NULL),
 
             SimulationWork(NULL),
-            AreaEffectUpdateWork(NULL),
             WorldTriggerUpdateWork(NULL),
             DebugDrawWork(NULL),
             ThreadResources(NULL)
@@ -596,7 +569,6 @@ namespace Mezzanine
             }
 
             DestroyAllConstraints();
-            DestroyAllAreaEffects();
             DestroyAllWorldTriggers();
             //Destroy the physical world that we loved and cherished
             Destroy();
@@ -622,9 +594,6 @@ namespace Mezzanine
             }
             delete SimulationWork;
 
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->AreaEffectUpdateWork );
-            delete AreaEffectUpdateWork;
-
             this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
             delete WorldTriggerUpdateWork;
 
@@ -634,7 +603,6 @@ namespace Mezzanine
 
         void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
         {
-            this->Priority = 20;
             this->ThreadCount = ( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ? crossplatform::GetCPUCount() : 0 );
 
             // Create the broadphase
@@ -721,7 +689,6 @@ namespace Mezzanine
             }else{
                 this->SimulationWork = new SimulationWorkUnit(this);
             }
-            this->AreaEffectUpdateWork = new AreaEffectUpdateWorkUnit(this);
             this->WorldTriggerUpdateWork = new WorldTriggerUpdateWorkUnit(this);
             this->DebugDrawWork = new DebugDrawWorkUnit(this);
 
@@ -747,18 +714,6 @@ namespace Mezzanine
             this->SetGravity(Info.Gravity);
             this->SetSoftGravity(Info.Gravity);
             this->WorldConstructionInfo = Info;
-        }
-
-        void PhysicsManager::ProcessAllEffects()
-        {
-            if( !AreaEffects.empty() )
-            {
-                for( std::vector<AreaEffect*>::iterator AE = AreaEffects.begin() ; AE != AreaEffects.end() ; AE++ )
-                {
-                    (*AE)->_Update();
-                    (*AE)->ApplyEffect();
-                }
-            }
         }
 
         void PhysicsManager::ProcessAllTriggers()
@@ -922,60 +877,6 @@ namespace Mezzanine
                 delete (*Con);
             }
             this->Constraints.clear();
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // AreaEffect Management
-
-        void PhysicsManager::AddAreaEffect(AreaEffect* AE)
-        {
-            AE->AddToWorld();
-            this->AreaEffects.push_back(AE);
-        }
-
-        AreaEffect* PhysicsManager::GetAreaEffect(const String& Name)
-        {
-            for( ConstAreaEffectIterator c = this->AreaEffects.begin() ; c != this->AreaEffects.end() ; c++ )
-            {
-                if( Name == (*c)->GetName() )
-                {
-                    return *c;
-                }
-            }
-            return NULL;
-        }
-
-        AreaEffect* PhysicsManager::GetAreaEffect(const Whole& Index)
-        {
-            return this->AreaEffects[Index];
-        }
-
-        Whole PhysicsManager::GetNumAreaEffects()
-        {
-            return this->AreaEffects.size();
-        }
-
-        void PhysicsManager::RemoveAreaEffect(AreaEffect* AE)
-        {
-            AE->RemoveFromWorld();
-            for( AreaEffectIterator c = this->AreaEffects.begin() ; c != this->AreaEffects.end() ; c++ )
-            {
-                if( AE == *c )
-                {
-                    this->AreaEffects.erase(c);
-                    return;
-                }
-            }
-        }
-
-        void PhysicsManager::DestroyAllAreaEffects()
-        {
-            for( AreaEffectIterator AE = this->AreaEffects.begin() ; AE != this->AreaEffects.end() ; AE++ )
-            {
-                this->BulletDynamicsWorld->removeCollisionObject((*AE)->_GetBulletObject());
-                delete (*AE);
-            }
-            this->AreaEffects.clear();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -1162,28 +1063,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        void PhysicsManager::MainLoopInitialize()
-        {
-            // Configure our area effects so they have an updated list and apply their effects immediately.
-            this->BulletDynamicsWorld->updateAabbs();
-            this->BulletBroadphase->calculateOverlappingPairs(this->BulletDispatcher);
-            this->BulletDispatcher->dispatchAllCollisionPairs(this->BulletDynamicsWorld->getPairCache(),this->BulletDynamicsWorld->getDispatchInfo(),this->BulletDispatcher);
-            for( std::vector<AreaEffect*>::iterator AE = AreaEffects.begin() ; AE != AreaEffects.end() ; AE++ )
-            {
-                //this->BulletDispatcher->dispatchAllCollisionPairs(InternalGhost->getOverlappingPairCache(),this->BulletDynamicsWorld->getDispatchInfo(),this->BulletDispatcher);
-
-                (*AE)->_Update();
-                (*AE)->ApplyEffect();
-            }
-
-            // Set our ideal simulation step size
-            //Real InvSubStepMod = 1.0 / this->SubstepModifier;
-            //Real TargetTimeSeconds = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMicroseconds() ) * 0.000001;
-            //this->StepSize = std::max( TargetTimeSeconds * InvSubStepMod, static_cast<Real>( 1.0 / 120.0 ) );
-            //this->StepSize = TargetTimeSeconds * InvSubStepMod;
-            this->StepSize = (static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMicroseconds() ) * 0.000001) / this->SubstepModifier;
-        }
-
         void PhysicsManager::ResetPhysicsWorld(ManagerConstructionInfo* Info)
         {
             bool DebugOn = false;
@@ -1229,38 +1108,20 @@ namespace Mezzanine
             SubstepModifier = Modifier;
         }
 
-        Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()
+        void PhysicsManager::MainLoopInitialize()
         {
-            return this->SimulationWork;
-        }
+            // Configure our area effects so they have an updated list and apply their effects immediately.
+            this->BulletDynamicsWorld->updateAabbs();
+            this->BulletBroadphase->calculateOverlappingPairs(this->BulletDispatcher);
+            this->BulletDispatcher->dispatchAllCollisionPairs(this->BulletDynamicsWorld->getPairCache(),this->BulletDynamicsWorld->getDispatchInfo(),this->BulletDispatcher);
 
-        AreaEffectUpdateWorkUnit* PhysicsManager::GetAreaEffectUpdateWork()
-        {
-            return this->AreaEffectUpdateWork;
+            // Set our ideal simulation step size
+            //Real InvSubStepMod = 1.0 / this->SubstepModifier;
+            //Real TargetTimeSeconds = static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMicroseconds() ) * 0.000001;
+            //this->StepSize = std::max( TargetTimeSeconds * InvSubStepMod, static_cast<Real>( 1.0 / 120.0 ) );
+            //this->StepSize = TargetTimeSeconds * InvSubStepMod;
+            this->StepSize = (static_cast<Real>( this->TheEntresol->GetTargetFrameTimeMicroseconds() ) * 0.000001) / this->SubstepModifier;
         }
-
-        WorldTriggerUpdateWorkUnit* PhysicsManager::GetWorldTriggerUpdateWork()
-        {
-            return this->WorldTriggerUpdateWork;
-        }
-
-        DebugDrawWorkUnit* PhysicsManager::GetDebugDrawWork()
-        {
-            return this->DebugDrawWork;
-        }
-
-        btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
-        {
-            return this->BulletDynamicsWorld;
-        }
-
-        const btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer() const
-        {
-            return this->BulletDynamicsWorld;
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Inherited from Managerbase
 
         void PhysicsManager::Initialize()
         {
@@ -1288,20 +1149,65 @@ namespace Mezzanine
             if( ActorMan )
                 this->WorldTriggerUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
 
-            // Area Effect Update work configuration
-            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AreaEffectUpdateWork );
-            this->AreaEffectUpdateWork->AddDependency( this->SimulationWork );
-            this->AreaEffectUpdateWork->AddDependency( this->DebugDrawWork );
-            if( ActorMan )
-                this->AreaEffectUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
-
-            Initialized = true;
+            this->Initialized = true;
         }
 
-        void PhysicsManager::DoMainLoopItems()
+        void PhysicsManager::Deinitialize()
         {
+            // Simulation work configuration
+            if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+            }else{
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
+            }
+            Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
+            if( GraphicsMan )
+                this->SimulationWork->RemoveDependency( GraphicsMan->GetRenderWork() );
 
+            Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
+            // Debug Draw work configuration
+            // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
+            this->TheEntresol->GetScheduler().RemoveWorkUnitAffinity( this->DebugDrawWork );
+            this->DebugDrawWork->RemoveDependency( this->SimulationWork );
+            if( ActorMan )
+                this->DebugDrawWork->RemoveDependency( ActorMan->GetActorUpdateWork() );
+
+            // World Trigger Update work configuration
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
+            this->WorldTriggerUpdateWork->RemoveDependency( this->SimulationWork );
+            if( ActorMan )
+                this->WorldTriggerUpdateWork->RemoveDependency( ActorMan->GetActorUpdateWork() );
+
+            this->Initialized = false;
         }
+
+        Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()
+        {
+            return this->SimulationWork;
+        }
+
+        WorldTriggerUpdateWorkUnit* PhysicsManager::GetWorldTriggerUpdateWork()
+        {
+            return this->WorldTriggerUpdateWork;
+        }
+
+        DebugDrawWorkUnit* PhysicsManager::GetDebugDrawWork()
+        {
+            return this->DebugDrawWork;
+        }
+
+        btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
+        {
+            return this->BulletDynamicsWorld;
+        }
+
+        const btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer() const
+        {
+            return this->BulletDynamicsWorld;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Type Identifier Methods
 
         ManagerBase::ManagerType PhysicsManager::GetInterfaceType() const
             { return ManagerBase::PhysicsManager; }
