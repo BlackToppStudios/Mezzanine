@@ -8,6 +8,8 @@
 <Managers>
 	<DefaultActorManager>
 	</DefaultActorManager>
+	<DefaultAreaEffectManager>
+	</DefaultAreaEffectManager>
 	<OALSAudioManager>
 		<SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
 		<SettingsFiles>

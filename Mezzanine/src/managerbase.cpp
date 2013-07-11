@@ -125,6 +125,9 @@ namespace Mezzanine
             case ManagerBase::ScriptingManager:
                 return "ScriptingManager";
                 break;
+            case ManagerBase::SoundScapeManager:
+                return "SoundScapeManager";
+                break;
             case ManagerBase::TerrainManager:
                 return "TerrainManager";
                 break;
@@ -205,9 +208,13 @@ namespace Mezzanine
             }
             case 's':
             {
-                // Both of these start with the same two letters, so skip to the third.
-                if( 'e' == Lower.at(2) ) return ManagerBase::SceneManager;
-                else if( 'r' == Lower.at(2) ) return ManagerBase::ScriptingManager;
+                if( 'o' == Lower.at(1) ) {
+                    return ManagerBase::SoundScapeManager;
+                }else{
+                    // Both of these start with the same two letters, so skip to the third.
+                    if( 'e' == Lower.at(2) ) return ManagerBase::SceneManager;
+                    else if( 'r' == Lower.at(2) ) return ManagerBase::ScriptingManager;
+                }
                 break;
             }
             case 't':

@@ -804,6 +804,8 @@ namespace Mezzanine
 
                     if( this->AutoGenFiles )
                         this->SaveAllSettings();
+
+                    this->Initialized = true;
                 }
             }
 
@@ -825,6 +827,8 @@ namespace Mezzanine
 
                     if( this->AutoGenFiles )
                         this->SaveAllSettings();
+
+                    this->Initialized = false;
                 }
             }
 
