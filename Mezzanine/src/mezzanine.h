@@ -72,6 +72,7 @@
 #include "actorserializer.h"            // nothing to do
 #include "actorsoft.h"
 #include "areaeffect.h"
+#include "areaeffectmanager.h"
 #include "attachable.h"                 // Target for output only
 #include "binarybuffer.h"
 #include "camera.h"                     // done, must review after Mar27 upgrades
