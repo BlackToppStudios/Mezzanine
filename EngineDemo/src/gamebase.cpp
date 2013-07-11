@@ -397,12 +397,12 @@ int main(int argc, char **argv)
 
     DemoPostInputWork = new DemoPostInputWorkUnit();
     DemoPostInputWork->AddDependency( TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
-    TheEntresol->GetScheduler().AddWorkUnit( DemoPreEventWork );
+    TheEntresol->GetScheduler().AddWorkUnit( DemoPostInputWork );
 
     DemoPostRenderWork = new DemoPostRenderWorkUnit();
     DemoPostRenderWork->AddDependency( TheEntresol->GetGraphicsManager()->GetRenderWork() );
     DemoPostRenderWork->AddDependency( TheEntresol->GetPhysicsManager()->GetAreaEffectUpdateWork() );
-    TheEntresol->GetScheduler().AddWorkUnit( DemoPreEventWork );
+    TheEntresol->GetScheduler().AddWorkUnit( DemoPostRenderWork );
 
     DemoPostPhysicsWork = new DemoPostPhysicsWorkUnit();
     DemoPostPhysicsWork->AddDependency( TheEntresol->GetPhysicsManager()->GetSimulationWork() );
