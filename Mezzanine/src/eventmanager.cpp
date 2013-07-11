@@ -64,19 +64,30 @@
 
 namespace Mezzanine
 {
-    EventWorkUnit::EventWorkUnit(EventManager *Target)
-        : TargetEventManager(Target)
-        {}
+    ///////////////////////////////////////////////////////////////////////////////
+    // EventPumpWorkUnit Methods
 
-    void EventWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type &CurrentThreadStorage)
+    EventPumpWorkUnit::EventPumpWorkUnit(const EventPumpWorkUnit& Other)
+        {  }
+
+    EventPumpWorkUnit& EventPumpWorkUnit::operator=(const EventPumpWorkUnit& Other)
+        { return *this; }
+
+    EventPumpWorkUnit::EventPumpWorkUnit(EventManager* Target) :
+        TargetManager(Target) {  }
+
+    EventPumpWorkUnit::~EventPumpWorkUnit()
+        {  }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void EventPumpWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
         Logger& Log = CurrentThreadStorage.GetUsableLogger();
         Log << "Getting Events from OS." << std::endl;
-        TargetEventManager->UpdateEvents();
+        this->TargetManager->UpdateEvents();
     }
-
-    EventWorkUnit::~EventWorkUnit()
-        {}
 
     /// @internal
     /// @namespace Mezzanine::internal
@@ -146,7 +157,7 @@ namespace Mezzanine
 
             /// @internal
             /// @brief This is the workunit that does the work each frame.
-            EventWorkUnit* EventWork;
+            EventPumpWorkUnit* EventPumpWork;
 
             /// @internal
             /// @brief Adds one type of polling check
@@ -248,23 +259,22 @@ namespace Mezzanine
             /// @internal
             /// @brief Constructor, it only inits pointers to 0
             EventManagerInternalData()
-                : EventWork(NULL)
+                : EventPumpWork(NULL)
             {
 
             }
-
         };
-
     } // /internal
 
-    template<> EventManager* Singleton<EventManager>::SingletonPtr = 0;
+    ///////////////////////////////////////////////////////////////////////////////
+    // EventManager Methods
+
+    template<> EventManager* Singleton<EventManager>::SingletonPtr = NULL;
 
     /// @todo TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
     /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
     EventManager::EventManager()
     {
-        this->Priority = 0;
-
         UInt32 InitSDLSystems = SDL_WasInit(0);
         if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
         {
@@ -276,16 +286,12 @@ namespace Mezzanine
             if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
                 { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
-        this->_Data = new Internal::EventManagerInternalData;
-        _Data->EventWork = new EventWorkUnit(this);
-
-        //this->GameWorld = Entresol::GetSingletonPtr();
+        this->_Data = new Internal::EventManagerInternalData();
+        this->_Data->EventPumpWork = new EventPumpWorkUnit(this);
     }
 
     EventManager::EventManager(XML::Node& XMLNode)
     {
-        this->Priority = 0;
-
         UInt32 InitSDLSystems = SDL_WasInit(0);
         if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
         {
@@ -297,14 +303,17 @@ namespace Mezzanine
             if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
                 { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
-        this->_Data = new Internal::EventManagerInternalData;
-        _Data->EventWork = new EventWorkUnit(this);
+        this->_Data = new Internal::EventManagerInternalData();
+        this->_Data->EventPumpWork = new EventPumpWorkUnit(this);
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 
     EventManager::~EventManager()
     {
+        this->Deinitialize();
         //EndRelativeMouseMode();
+
+        delete _Data->EventPumpWork;
 
         for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
             { delete *Iter; }
@@ -324,9 +333,25 @@ namespace Mezzanine
         }
     }
 
+    void EventManager::UpdateQuitEvents()
+    {
+//        if (NULL == SDL_GetEventFilter())                       //Verify the Event filter is installed, if not, then install it.
+        if(SDL_FALSE == SDL_GetEventFilter(0, 0))
+        {
+            SDL_SetEventFilter( Internal::MezzSDLFilter, 0);
+        }else{
+            if(4==Internal::MezzSDLFilter(0,0))                   //Pass it a null pointer to get it to "Not Callback Mode"
+            {
+                this->AddEvent(new EventQuit());                //We need to make a quit event
+            }else{
+                //all clear
+            }
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
-    //These functions will give you the next event or help you manage the events
-    ///////////////////////////////////////
+    // Management functions - Work with all events
+
     size_t EventManager::GetRemainingEventCount()
         { return _Data->EventQ.size(); }
 
@@ -501,21 +526,80 @@ namespace Mezzanine
         }
     }
 
-    void EventManager::UpdateQuitEvents()
-    {
-//        if (NULL == SDL_GetEventFilter())                       //Verify the Event filter is installed, if not, then install it.
-        if(SDL_FALSE == SDL_GetEventFilter(0, 0))
-        {
-            SDL_SetEventFilter( Internal::MezzSDLFilter, 0);
-        }else{
-            if(4==Internal::MezzSDLFilter(0,0))                   //Pass it a null pointer to get it to "Not Callback Mode"
-            {
-                this->AddEvent(new EventQuit());                //We need to make a quit event
-            }else{
-                //all clear
-            }
-        }
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Filtered management functions - Collision Events
+
+    EventCollision* EventManager::GetNextCollisionEvent()
+        { return dynamic_cast<EventCollision*> (this->GetNextSpecificEvent(EventBase::Collision)); }
+
+    EventCollision* EventManager::PopNextCollisionEvent()
+        { return dynamic_cast<EventCollision*> (this->PopNextSpecificEvent(EventBase::Collision)); }
+
+    void EventManager::RemoveNextCollisionEvent()
+        { this->RemoveNextSpecificEvent(EventBase::Collision); }
+
+    std::list<EventCollision*>* EventManager::GetAllCollisionEvents()
+        { return (std::list<EventCollision*>*)this->GetAllSpecificEvents(EventBase::Collision); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Filtered management functions - GameWindow Events
+
+    EventGameWindow* EventManager::GetNextGameWindowEvent()
+        { return dynamic_cast<EventGameWindow*> (this->GetNextSpecificEvent(EventBase::GameWindow)); }
+
+    EventGameWindow* EventManager::PopNextGameWindowEvent()
+        { return dynamic_cast<EventGameWindow*> (this->PopNextSpecificEvent(EventBase::GameWindow)); }
+
+    void EventManager::RemoveNextGameWindowEvent()
+        { this->RemoveNextSpecificEvent(EventBase::GameWindow); }
+
+    std::list<EventGameWindow*>* EventManager::GetAllGameWindowEvents()
+        { return (std::list<EventGameWindow*>*)this->GetAllSpecificEvents(EventBase::GameWindow); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Filtered management functions - RenderTime Events
+
+    EventRenderTime* EventManager::GetNextRenderTimeEvent()
+        { return dynamic_cast<EventRenderTime*> (this->GetNextSpecificEvent(EventBase::RenderTime)); }
+
+    EventRenderTime* EventManager::PopNextRenderTimeEvent()
+        { return dynamic_cast<EventRenderTime*> (this->PopNextSpecificEvent(EventBase::RenderTime)); }
+
+    void EventManager::RemoveNextRenderTimeEvent()
+        { this->RemoveNextSpecificEvent(EventBase::RenderTime); }
+
+    std::list<EventRenderTime*>* EventManager::GetAllRenderTimeEvents()
+        { return (std::list<EventRenderTime*>*)this->GetAllSpecificEvents(EventBase::RenderTime); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Filtered management functions - User Input Events
+
+    EventUserInput* EventManager::GetNextUserInputEvent()
+        { return dynamic_cast<EventUserInput*> (this->GetNextSpecificEvent(EventBase::UserInput)); }
+
+    EventUserInput* EventManager::PopNextUserInputEvent()
+        { return dynamic_cast<EventUserInput*> (this->PopNextSpecificEvent(EventBase::UserInput)); }
+
+    void EventManager::RemoveNextUserInputEvent()
+        { this->RemoveNextSpecificEvent(EventBase::UserInput); }
+
+    std::list<EventUserInput*>* EventManager::GetAllUserInputEvents()
+        { return (std::list<EventUserInput*>*)this->GetAllSpecificEvents(EventBase::UserInput); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Filtered management functions - Quit Event
+
+    EventQuit* EventManager::GetNextQuitEvent()
+        { return dynamic_cast<EventQuit*> (this->GetNextSpecificEvent(EventBase::QuitMessage)); }
+
+    EventQuit* EventManager::PopNextQuitEvent()
+        { return dynamic_cast<EventQuit*> (this->PopNextSpecificEvent(EventBase::QuitMessage)); }
+
+    void EventManager::RemoveNextQuitEvent()
+        { this->RemoveNextSpecificEvent(EventBase::QuitMessage); }
+
+    std::list<EventQuit*>* EventManager::GetAllQuitEvents()
+        { return (std::list<EventQuit*>*)this->GetAllSpecificEvents(EventBase::QuitMessage); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - You choose YAYYYY!!!
@@ -589,85 +673,8 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Filtered management functions - Collision Events
-    ///////////////////////////////////////
-    EventCollision* EventManager::GetNextCollisionEvent()
-        { return dynamic_cast<EventCollision*> (this->GetNextSpecificEvent(EventBase::Collision)); }
-
-    EventCollision* EventManager::PopNextCollisionEvent()
-        { return dynamic_cast<EventCollision*> (this->PopNextSpecificEvent(EventBase::Collision)); }
-
-    void EventManager::RemoveNextCollisionEvent()
-        { this->RemoveNextSpecificEvent(EventBase::Collision); }
-
-    std::list<EventCollision*>* EventManager::GetAllCollisionEvents()
-        { return (std::list<EventCollision*>*)this->GetAllSpecificEvents(EventBase::Collision); }
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Filtered management functions - GameWindow Events
-    ///////////////////////////////////////
-    EventGameWindow* EventManager::GetNextGameWindowEvent()
-        { return dynamic_cast<EventGameWindow*> (this->GetNextSpecificEvent(EventBase::GameWindow)); }
-
-    EventGameWindow* EventManager::PopNextGameWindowEvent()
-        { return dynamic_cast<EventGameWindow*> (this->PopNextSpecificEvent(EventBase::GameWindow)); }
-
-    void EventManager::RemoveNextGameWindowEvent()
-        { this->RemoveNextSpecificEvent(EventBase::GameWindow); }
-
-    std::list<EventGameWindow*>* EventManager::GetAllGameWindowEvents()
-        { return (std::list<EventGameWindow*>*)this->GetAllSpecificEvents(EventBase::GameWindow); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Filtered management functions - RenderTime Events
-    ///////////////////////////////////////
-    EventRenderTime* EventManager::GetNextRenderTimeEvent()
-        { return dynamic_cast<EventRenderTime*> (this->GetNextSpecificEvent(EventBase::RenderTime)); }
-
-    EventRenderTime* EventManager::PopNextRenderTimeEvent()
-        { return dynamic_cast<EventRenderTime*> (this->PopNextSpecificEvent(EventBase::RenderTime)); }
-
-    void EventManager::RemoveNextRenderTimeEvent()
-        { this->RemoveNextSpecificEvent(EventBase::RenderTime); }
-
-    std::list<EventRenderTime*>* EventManager::GetAllRenderTimeEvents()
-        { return (std::list<EventRenderTime*>*)this->GetAllSpecificEvents(EventBase::RenderTime); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Filtered management functions - User Input Events
-    ///////////////////////////////////////
-    EventUserInput* EventManager::GetNextUserInputEvent()
-        { return dynamic_cast<EventUserInput*> (this->GetNextSpecificEvent(EventBase::UserInput)); }
-
-    EventUserInput* EventManager::PopNextUserInputEvent()
-        { return dynamic_cast<EventUserInput*> (this->PopNextSpecificEvent(EventBase::UserInput)); }
-
-    void EventManager::RemoveNextUserInputEvent()
-        { this->RemoveNextSpecificEvent(EventBase::UserInput); }
-
-    std::list<EventUserInput*>* EventManager::GetAllUserInputEvents()
-        { return (std::list<EventUserInput*>*)this->GetAllSpecificEvents(EventBase::UserInput); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Filtered management functions - Quit Event
-    ///////////////////////////////////////
-
-    EventQuit* EventManager::GetNextQuitEvent()
-        { return dynamic_cast<EventQuit*> (this->GetNextSpecificEvent(EventBase::QuitMessage)); }
-
-    EventQuit* EventManager::PopNextQuitEvent()
-        { return dynamic_cast<EventQuit*> (this->PopNextSpecificEvent(EventBase::QuitMessage)); }
-
-    void EventManager::RemoveNextQuitEvent()
-        { this->RemoveNextSpecificEvent(EventBase::QuitMessage); }
-
-    std::list<EventQuit*>* EventManager::GetAllQuitEvents()
-        { return (std::list<EventQuit*>*)this->GetAllSpecificEvents(EventBase::QuitMessage); }
-
-    ///////////////////////////////////////////////////////////////////////////////
     // Polling Functions
-    ///////////////////////////////////////
+
     void EventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
     {
         if(InputToTryPolling.IsPollable())
@@ -683,26 +690,38 @@ namespace Mezzanine
         this->_Data->RemoveInputCodeToManualCheck(InputToStopPolling.GetCode(), Internal::EventManagerInternalData::Polling);
     }
 
-    //Inherited From ManagerBase
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
     void EventManager::Initialize()
     {
-        TheEntresol->GetScheduler().AddWorkUnitMain(_Data->EventWork);
-        Initialized = true;
+        if( !this->Initialized )
+        {
+            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->_Data->EventPumpWork );
+            this->Initialized = true;
+        }
     }
 
-    void EventManager::DoMainLoopItems()
+    void EventManager::Deinitialize()
     {
-        //UpdateEvents();
+        if( this->Initialized )
+        {
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->_Data->EventPumpWork );
+            this->Initialized = false;
+        }
     }
+
+    EventPumpWorkUnit* EventManager::GetEventPumpWork()
+        { return this->_Data->EventPumpWork; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Type Identifier Methods
 
     ManagerBase::ManagerType EventManager::GetInterfaceType() const
         { return ManagerBase::EventManager; }
 
     String EventManager::GetImplementationTypeName() const
         { return "DefaultEventManager"; }
-
-    EventWorkUnit *EventManager::GetEventWorkUnit()
-        { return _Data->EventWork; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultEventManagerFactory Methods
