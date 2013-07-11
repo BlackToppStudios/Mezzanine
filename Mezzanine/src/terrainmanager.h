@@ -73,11 +73,9 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             TerrainManager();
-
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             TerrainManager(XML::Node& XMLNode);
-
             /// @brief Class destructor.
             virtual ~TerrainManager();
 
@@ -137,12 +135,16 @@ namespace Mezzanine
             // VoxelTerrain Management
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Managerbase
+            // Utility
 
-            /// @copydoc Mezzanine::ManagerBase::Initialize()
+            /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
-            /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
-            virtual void DoMainLoopItems();
+            /// @copydoc ManagerBase::Deinitialize()
+            virtual void Deinitialize();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Type Identifier Methods
+
             /// @copydoc ManagerBase::GetInterfaceType()
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
@@ -156,22 +158,21 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB DefaultTerrainManagerFactory : public ManagerFactory
     {
-        public:
-            /// @brief Class constructor.
-            DefaultTerrainManagerFactory();
-            /// @brief Class destructor.
-            virtual ~DefaultTerrainManagerFactory();
+    public:
+        /// @brief Class constructor.
+        DefaultTerrainManagerFactory();
+        /// @brief Class destructor.
+        virtual ~DefaultTerrainManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::GetManagerTypeName()
+        String GetManagerTypeName() const;
 
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+        ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+        ManagerBase* CreateManager(XML::Node& XMLNode);
+        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+        void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultTerrainManagerFactory
 }//Mezzanine
 

@@ -48,22 +48,21 @@
 
 namespace Mezzanine
 {
-    template<> TerrainManager* Singleton<TerrainManager>::SingletonPtr = 0;
+    template<> TerrainManager* Singleton<TerrainManager>::SingletonPtr = NULL;
 
     TerrainManager::TerrainManager()
     {
-        Priority = 35;
     }
 
     TerrainManager::TerrainManager(XML::Node& XMLNode)
     {
-        Priority = 35;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 
     TerrainManager::~TerrainManager()
     {
-        DestroyAllTerrains();
+        this->Deinitialize();
+        this->DestroyAllTerrains();
     }
 
     TerrainBase* TerrainManager::GetTerrainByIndex(const Whole& Index)
@@ -167,15 +166,22 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Inherited from Managerbase
-    void TerrainManager::Initialize()
-    {
-        Initialized = true;
-    }
+    // HeightfieldTerrain Management
 
-    void TerrainManager::DoMainLoopItems()
-    {
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    // VectorfieldTerrain Management
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void TerrainManager::Initialize()
+        { this->Initialized = true; }
+
+    void TerrainManager::Deinitialize()
+        { this->Initialized = false; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Type Identifier Methods
 
     ManagerBase::ManagerType TerrainManager::GetInterfaceType() const
         { return ManagerBase::TerrainManager; }
