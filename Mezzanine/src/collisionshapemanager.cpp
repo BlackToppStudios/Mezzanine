@@ -76,35 +76,22 @@
 
 namespace Mezzanine
 {
-    template<> CollisionShapeManager* Singleton<CollisionShapeManager>::SingletonPtr = 0;
+    template<> CollisionShapeManager* Singleton<CollisionShapeManager>::SingletonPtr = NULL;
 
     CollisionShapeManager::CollisionShapeManager()
     {
-        this->Priority = 45;
     }
 
     CollisionShapeManager::CollisionShapeManager(XML::Node& XMLNode)
     {
-        this->Priority = 45;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 
     CollisionShapeManager::~CollisionShapeManager()
     {
-        DestroyAllShapes();
+        this->Deinitialize();
+        this->DestroyAllShapes();
     }
-
-    CollisionShapeManager::iterator CollisionShapeManager::begin()
-        { return this->CollisionShapes.begin(); }
-
-    CollisionShapeManager::const_iterator CollisionShapeManager::begin() const
-        { return this->CollisionShapes.begin(); }
-
-    CollisionShapeManager::iterator CollisionShapeManager::end()
-        { return this->CollisionShapes.end(); }
-
-    CollisionShapeManager::const_iterator CollisionShapeManager::end() const
-        { return this->CollisionShapes.end(); }
 
     btTriangleMesh* CollisionShapeManager::CreateBulletTrimesh(Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes)
     {
@@ -315,30 +302,33 @@ namespace Mezzanine
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Generic Shape Management
+
     void CollisionShapeManager::StoreShape(Physics::CollisionShape* Shape)
     {
-        std::map<String,Physics::CollisionShape*>::iterator CS = CollisionShapes.find(Shape->GetName());
-        if(CS != CollisionShapes.end())
+        CollisionShapeIterator CS = this->CollisionShapes.find(Shape->GetName());
+        if(CS != this->CollisionShapes.end())
         {
             if((*CS).second != Shape)
             {
                 MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Name of Collision Shape already exists on another object.  Names should be Unique.");
             }
         }else{
-            CollisionShapes[Shape->GetName()] = Shape;
+            this->CollisionShapes[Shape->GetName()] = Shape;
         }
     }
 
     Physics::CollisionShape* CollisionShapeManager::GetShape(const String& Name)
     {
-        std::map<String,Physics::CollisionShape*>::iterator CS = CollisionShapes.find(Name);
-        if(CS == CollisionShapes.end()) return NULL;
+        CollisionShapeIterator CS = this->CollisionShapes.find(Name);
+        if(CS == this->CollisionShapes.end()) return NULL;
         else return (*CS).second;
     }
 
     Whole CollisionShapeManager::GetNumStoredShapes()
     {
-        return CollisionShapes.size();
+        return this->CollisionShapes.size();
     }
 
     void CollisionShapeManager::RemoveShape(Physics::CollisionShape* Shape)
@@ -348,15 +338,15 @@ namespace Mezzanine
 
     void CollisionShapeManager::RemoveShape(const String& Name)
     {
-        std::map<String,Physics::CollisionShape*>::iterator CS = CollisionShapes.find(Name);
-        if(CS == CollisionShapes.end())
+        CollisionShapeIterator CS = this->CollisionShapes.find(Name);
+        if(CS == this->CollisionShapes.end())
             return;
-        CollisionShapes.erase(CS);
+        this->CollisionShapes.erase(CS);
     }
 
     void CollisionShapeManager::RemoveAllShapes()
     {
-        CollisionShapes.clear();
+        this->CollisionShapes.clear();
     }
 
     void CollisionShapeManager::DestroyShape(Physics::CollisionShape* Shape)
@@ -366,8 +356,8 @@ namespace Mezzanine
 
     void CollisionShapeManager::DestroyShape(const String& Name)
     {
-        std::map<String,Physics::CollisionShape*>::iterator CS = CollisionShapes.find(Name);
-        if(CS == CollisionShapes.end())
+        CollisionShapeIterator CS = this->CollisionShapes.find(Name);
+        if(CS == this->CollisionShapes.end())
             return;
         delete (*CS).second;
         CollisionShapes.erase(CS);
@@ -375,13 +365,28 @@ namespace Mezzanine
 
     void CollisionShapeManager::DestroyAllShapes()
     {
-        for( std::map<String,Physics::CollisionShape*>::iterator CS = CollisionShapes.begin() ; CS != CollisionShapes.end() ; CS++ )
+        for( CollisionShapeIterator CS = this->CollisionShapes.begin() ; CS != this->CollisionShapes.end() ; CS++ )
         {
             Physics::CollisionShape* CurrShape = (*CS).second;
             delete CurrShape;
         }
-        CollisionShapes.clear();
+        this->CollisionShapes.clear();
     }
+
+    CollisionShapeManager::CollisionShapeIterator CollisionShapeManager::BeginCollisionShape()
+        { return this->CollisionShapes.begin(); }
+
+    CollisionShapeManager::CollisionShapeIterator CollisionShapeManager::EndCollisionShape()
+        { return this->CollisionShapes.end(); }
+
+    CollisionShapeManager::ConstCollisionShapeIterator CollisionShapeManager::BeginCollisionShape() const
+        { return this->CollisionShapes.begin(); }
+
+    CollisionShapeManager::ConstCollisionShapeIterator CollisionShapeManager::EndCollisionShape() const
+        { return this->CollisionShapes.end(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Shape Creation Utilities
 
     Physics::ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes)
     {
@@ -617,6 +622,9 @@ namespace Mezzanine
         return this->PerformConvexDecomposition(Name,ObjectMesh,Depth,CPercent,PPercent,UseAllSubmeshes);
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Shape Saving/Loading Utilities
+
     void CollisionShapeManager::LoadAllShapesFromFile(const String& FileName, const String& Group)
     {
         btBulletWorldImporter Importer;
@@ -636,17 +644,17 @@ namespace Mezzanine
             if(MaybeAName)
             {
                 Name = String(MaybeAName);
-                CollisionShapeManager::iterator it = CollisionShapes.find(Name);
+                CollisionShapeIterator it = CollisionShapes.find(Name);
                 if(it == CollisionShapes.end())
                 {
                     Physics::CollisionShape* NewShape = WrapShape(Name,Shape);
-                    CollisionShapes.insert(std::pair<String,Physics::CollisionShape*>(Name,NewShape));
+                    this->CollisionShapes.insert(std::pair<String,Physics::CollisionShape*>(Name,NewShape));
                 }
             }else{
                 static Whole NameCount = 0;
                 Name = String("Unnamed")+=StringTools::ConvertToString(NameCount++);
                 Physics::CollisionShape* NewShape = WrapShape(Name,Shape);
-                UnnamedShapes.insert(NewShape);
+                this->UnnamedShapes.insert(NewShape);
             }
         }
     }
@@ -655,7 +663,7 @@ namespace Mezzanine
     {
         btDefaultSerializer* BulletSerializer = new btDefaultSerializer(1024*1024*5);
         BulletSerializer->startSerialization();
-        for( std::map<String,Physics::CollisionShape*>::iterator it = CollisionShapes.begin() ; it != CollisionShapes.end() ; it++ )
+        for( CollisionShapeIterator it = this->CollisionShapes.begin() ; it != this->CollisionShapes.end() ; it++ )
         {
             Physics::CollisionShape* Shape = (*it).second;
 
@@ -695,28 +703,37 @@ namespace Mezzanine
         fclose(f2);
     }
 
-    std::set<Physics::CollisionShape*>& CollisionShapeManager::GetUnnamedShapes()
+    ///////////////////////////////////////////////////////////////////////////////
+    // Unnamed Shape Management
+
+    CollisionShapeManager::UnnamedCollisionShapeContainer& CollisionShapeManager::GetUnnamedShapes()
     {
-        return UnnamedShapes;
+        return this->UnnamedShapes;
     }
 
     void CollisionShapeManager::SetNameForUnnamedShape(const String& NewName, Physics::CollisionShape* Shape)
     {
-        std::set<Physics::CollisionShape*>::iterator UnIt = UnnamedShapes.find(Shape);
-        if(UnIt == UnnamedShapes.end())
+        UnnamedCollisionShapeIterator UnIt = this->UnnamedShapes.find(Shape);
+        if(UnIt == this->UnnamedShapes.end())
             return;
-        CollisionShapeManager::iterator NaIt = CollisionShapes.find(NewName);
-        if(NaIt != CollisionShapes.end())
+        CollisionShapeIterator NaIt = this->CollisionShapes.find(NewName);
+        if(NaIt != this->CollisionShapes.end())
             { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Attempting to assign non-unique name to an unnamed Collision Shape."); }
         Shape->Name = NewName;
-        CollisionShapes[NewName] = Shape;
+        this->CollisionShapes[NewName] = Shape;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
 
     void CollisionShapeManager::Initialize()
         { Initialized = true; }
 
-    void CollisionShapeManager::DoMainLoopItems()
-        {}
+    void CollisionShapeManager::Deinitialize()
+        { Initialized = false; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Type Identifier Methods
 
     ManagerBase::ManagerType CollisionShapeManager::GetInterfaceType() const
         { return ManagerBase::CollisionShapeManager; }

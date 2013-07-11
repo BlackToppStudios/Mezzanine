@@ -80,181 +80,182 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB CollisionShapeManager : public ManagerBase, public Singleton<CollisionShapeManager>
     {
-        protected:
-            /// @brief This Stores the names and collision Shapes
-            std::map<String,Physics::CollisionShape*> CollisionShapes;
+    public:
+        typedef std::map< String, Physics::CollisionShape* >       CollisionShapeContainer;
+        typedef CollisionShapeContainer::iterator                  CollisionShapeIterator;
+        typedef CollisionShapeContainer::const_iterator            ConstCollisionShapeIterator;
+        typedef std::set< Physics::CollisionShape* >               UnnamedCollisionShapeContainer;
+        typedef UnnamedCollisionShapeContainer::iterator           UnnamedCollisionShapeIterator;
+        typedef UnnamedCollisionShapeContainer::const_iterator     ConstUnnamedCollisionShapeIterator;
+    protected:
+        /// @brief This Stores the names and collision Shapes
+        CollisionShapeContainer CollisionShapes;
 
-            /// @brief Stores shapes that have notbe given a name.
-            std::set<Physics::CollisionShape*> UnnamedShapes;
+        /// @brief Stores shapes that have notbe given a name.
+        UnnamedCollisionShapeContainer UnnamedShapes;
 
-            /// @brief Creates a TriMesh to be used in TriMesh based collision shapes.
-            btTriangleMesh* CreateBulletTrimesh(Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes);
-            /// @brief Creates a wrapper for an internal bullet shape.
-            Physics::CollisionShape* WrapShape(const String& Name, btCollisionShape* InternalShape);
-        public:
-            /// @brief Class constructor.
-            CollisionShapeManager();
+        /// @brief Creates a TriMesh to be used in TriMesh based collision shapes.
+        btTriangleMesh* CreateBulletTrimesh(Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes);
+        /// @brief Creates a wrapper for an internal bullet shape.
+        Physics::CollisionShape* WrapShape(const String& Name, btCollisionShape* InternalShape);
+    public:
+        /// @brief Class constructor.
+        CollisionShapeManager();
+        /// @brief XML constructor.
+        /// @param XMLNode The node of the xml document to construct from.
+        CollisionShapeManager(XML::Node& XMLNode);
+        /// @brief Class destructor.
+        virtual ~CollisionShapeManager();
 
-            /// @brief XML constructor.
-            /// @param XMLNode The node of the xml document to construct from.
-            CollisionShapeManager(XML::Node& XMLNode);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Generic Shape Management
 
-            /// @brief Class destructor.
-            virtual ~CollisionShapeManager();
+        /// @brief Stores a pre-made shape in this manager.
+        /// @param Shape The shape to be stored.
+        virtual void StoreShape(Physics::CollisionShape* Shape);
+        /// @brief Gets a shape already stored in this manager.
+        /// @return Returns a pointer to the desired shape.
+        /// @param Name the name of the desired shape.
+        virtual Physics::CollisionShape* GetShape(const String& Name);
+        /// @brief Gets the number of stored shapes in this manager.
+        /// @return Returns a whole representing how many shapes this manager is storing.
+        virtual Whole GetNumStoredShapes();
+        /// @brief Removes a shape from this manager without deleting it.
+        /// @param Shape Pointer to the shape to be removed.
+        virtual void RemoveShape(Physics::CollisionShape* Shape);
+        /// @brief Removes a shape from this manager without deleting it.
+        /// @param Name The name of the shape to be removed.
+        virtual void RemoveShape(const String& Name);
+        /// @brief Removes all shapes from the manager without deleting them.
+        virtual void RemoveAllShapes();
+        /// @brief Removes a shape from this manager and deletes it.
+        /// @param Shape Pointer to the shape to be destroyed.
+        virtual void DestroyShape(Physics::CollisionShape* Shape);
+        /// @brief Removes a shape from this manager and deletes it.
+        /// @param Name The name of the shape to be destroyed.
+        virtual void DestroyShape(const String& Name);
+        /// @brief Removes all shapes from the manager and then deletes them.
+        virtual void DestroyAllShapes();
 
-            ///////////////////////////////////////////////////////////////////////////////     // There are reasons why maybe this should not be public
-            // Iteration
+        /// @brief Gets an Iterator to the first CollisionShape in this manager.
+        /// @return Returns an Iterator to the first CollisionShape.
+        CollisionShapeIterator BeginCollisionShape();
+        /// @brief Gets an Iterator to one passed the last CollisionShape in this manager.
+        /// @return Returns an Iterator to one passed the last CollisionShape.
+        CollisionShapeIterator EndCollisionShape();
+        /// @brief Gets a Const Iterator to the first CollisionShape in this manager.
+        /// @return Returns a Const Iterator to the first CollisionShape.
+        ConstCollisionShapeIterator BeginCollisionShape() const;
+        /// @brief Gets a Const Iterator to one passed the last CollisionShape in this manager.
+        /// @return Returns a Const Iterator to one passed the last CollisionShape.
+        ConstCollisionShapeIterator EndCollisionShape() const;
 
-            /// @brief An iterator that should be compatible with most iterator algorithms
-            typedef std::map<String,Physics::CollisionShape*>::iterator iterator;
-            /// @brief An const_iterator that should be compatible with most iterator algorithms
-            typedef std::map<String,Physics::CollisionShape*>::const_iterator const_iterator;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Shape Creation Utilities
 
-            /// @brief Get an Iterator pointing to the first item in the container.
-            /// @return An iterator that is compatible with most std algorithms and points to the first collisionshape entry.
-            iterator begin();
-            /// @brief Get a const Iterator pointing at the first item in the container.
-            /// @return A const iterator that is compatible with most std algorithms and points to the first collisionshape entry.
-            const_iterator begin() const;
-            /// @brief Get an Iterator pointing to one past the last item in the container.
-            /// @return An iterator that is compatible with most std algorithms and points to one past the last valid collision shape entry.
-            iterator end();
-            /// @brief Get an const Iterator pointing to one past the last item in the container.
-            /// @return An const iterator that is compatible with most std algorithms and points to one past the last valid collision shape entry.
-            const_iterator end() const;
+        /// @brief Generates a Convex Hull from a provided mesh.
+        /// @return Returns a pointer to the created shape.
+        /// @param Name The name to give the created shape.
+        /// @param ObjectMesh The mesh to base this shape off of.
+        /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+        virtual Physics::ConvexHullCollisionShape* GenerateConvexHull(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+        /// @brief Generates a Convex Hull from a provided mesh.
+        /// @return Returns a pointer to the created shape.
+        /// @param Name The name to give the created shape.
+        /// @param MeshName The name of the mesh to base this shape off of.
+        /// @param Group The resource group where the mesh can be found.
+        /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+        virtual Physics::ConvexHullCollisionShape* GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
+        /// @brief Generates a mesh shape for dynamic objects.
+        /// @return Returns a pointer to the created shape.
+        /// @param Name The name to give the created shape.
+        /// @param ObjectMesh The mesh to base this shape off of.
+        /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+        virtual Physics::DynamicMeshCollisionShape* GenerateDynamicTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+        /// @brief Generates a mesh shape for dynamic objects.
+        /// @return Returns a pointer to the created shape.
+        /// @param Name The name to give the created shape.
+        /// @param MeshName The name of the mesh to base this shape off of.
+        /// @param Group The resource group where the mesh can be found.
+        /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+        virtual Physics::DynamicMeshCollisionShape* GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
+        /// @brief Generates a mesh shape for static objects.
+        /// @return Returns a pointer to the created shape.
+        /// @param Name The name to give the created shape.
+        /// @param ObjectMesh The mesh to base this shape off of.
+        /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+        virtual Physics::StaticMeshCollisionShape* GenerateStaticTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+        /// @brief Generates a mesh shape for static objects.
+        /// @return Returns a pointer to the created shape.
+        /// @param Name The name to give the created shape.
+        /// @param MeshName The name of the mesh to base this shape off of.
+        /// @param Group The resource group where the mesh can be found.
+        /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+        virtual Physics::StaticMeshCollisionShape* GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
+        /// @brief Generates a compound shape of Convex Hulls from a provided mesh.
+        /// @return Returns a pointer to the created shape.
+        /// @param Name The name to give the created shape.
+        /// @param ObjectMesh The mesh to base this shape off of.
+        /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+        virtual Physics::CompoundCollisionShape* PerformConvexDecomposition(const String& Name, Graphics::Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes = false);
+        /// @brief Generates a compound shape of Convex Hulls from a provided mesh.
+        /// @return Returns a pointer to the created shape.
+        /// @param Name The name to give the created shape.
+        /// @param MeshName The name of the mesh to base this shape off of.
+        /// @param Group The resource group where the mesh can be found.
+        /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
+        virtual Physics::CompoundCollisionShape* PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes = false);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Generic Shape Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // Shape Saving/Loading Utilities
 
-            /// @brief Stores a pre-made shape in this manager.
-            /// @param Shape The shape to be stored.
-            virtual void StoreShape(Physics::CollisionShape* Shape);
-            /// @brief Gets a shape already stored in this manager.
-            /// @return Returns a pointer to the desired shape.
-            /// @param Name the name of the desired shape.
-            virtual Physics::CollisionShape* GetShape(const String& Name);
-            /// @brief Gets the number of stored shapes in this manager.
-            /// @return Returns a whole representing how many shapes this manager is storing.
-            virtual Whole GetNumStoredShapes();
-            /// @brief Removes a shape from this manager without deleting it.
-            /// @param Shape Pointer to the shape to be removed.
-            virtual void RemoveShape(Physics::CollisionShape* Shape);
-            /// @brief Removes a shape from this manager without deleting it.
-            /// @param Name The name of the shape to be removed.
-            virtual void RemoveShape(const String& Name);
-            /// @brief Removes all shapes from the manager without deleting them.
-            virtual void RemoveAllShapes();
-            /// @brief Removes a shape from this manager and deletes it.
-            /// @param Shape Pointer to the shape to be destroyed.
-            virtual void DestroyShape(Physics::CollisionShape* Shape);
-            /// @brief Removes a shape from this manager and deletes it.
-            /// @param Name The name of the shape to be destroyed.
-            virtual void DestroyShape(const String& Name);
-            /// @brief Removes all shapes from the manager and then deletes them.
-            virtual void DestroyAllShapes();
+        /// @brief Loads all shapes saved in an existing .bullet file, and stores them in this manager.
+        /// @param FileName The name of the file to load shapes from.
+        /// @param Group The resource group the .bullet file is located in.
+        virtual void LoadAllShapesFromFile(const String& FileName, const String& Group);
+        /// @brief Takes all the shapes currently stored this manager and saves them to a .bullet file.
+        /// @param FileName The name of the file to save the shapes to.
+        virtual void SaveAllStoredShapesToFile(const String& FileName);
+        /// @brief Saves all shapes contained in a vector and saves them to a .bullet file.
+        /// @param FileName The name of the file to save the shapes to.
+        /// @param ShapesToSave A vector of collisions shapes that will be saved.
+        virtual void SaveShapesToFile(const String& FileName, std::vector<Physics::CollisionShape*>& ShapesToSave);
+        /// @brief Used to serialize and deserialize collisionshapes to xml
+        /// @details More Sophisticated shapes may reference a .bullet or a .mesh file.
+        Physics::CollisionShapeDeSerializer ShapeDeserializer;
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Shape Creation Utilities
+        ///////////////////////////////////////////////////////////////////////////////
+        // Unnamed Shape Management
 
-            /// @brief Generates a Convex Hull from a provided mesh.
-            /// @return Returns a pointer to the created shape.
-            /// @param Name The name to give the created shape.
-            /// @param ObjectMesh The mesh to base this shape off of.
-            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual Physics::ConvexHullCollisionShape* GenerateConvexHull(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes = false);
-            /// @brief Generates a Convex Hull from a provided mesh.
-            /// @return Returns a pointer to the created shape.
-            /// @param Name The name to give the created shape.
-            /// @param MeshName The name of the mesh to base this shape off of.
-            /// @param Group The resource group where the mesh can be found.
-            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual Physics::ConvexHullCollisionShape* GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
-            /// @brief Generates a mesh shape for dynamic objects.
-            /// @return Returns a pointer to the created shape.
-            /// @param Name The name to give the created shape.
-            /// @param ObjectMesh The mesh to base this shape off of.
-            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual Physics::DynamicMeshCollisionShape* GenerateDynamicTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes = false);
-            /// @brief Generates a mesh shape for dynamic objects.
-            /// @return Returns a pointer to the created shape.
-            /// @param Name The name to give the created shape.
-            /// @param MeshName The name of the mesh to base this shape off of.
-            /// @param Group The resource group where the mesh can be found.
-            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual Physics::DynamicMeshCollisionShape* GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
-            /// @brief Generates a mesh shape for static objects.
-            /// @return Returns a pointer to the created shape.
-            /// @param Name The name to give the created shape.
-            /// @param ObjectMesh The mesh to base this shape off of.
-            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual Physics::StaticMeshCollisionShape* GenerateStaticTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes = false);
-            /// @brief Generates a mesh shape for static objects.
-            /// @return Returns a pointer to the created shape.
-            /// @param Name The name to give the created shape.
-            /// @param MeshName The name of the mesh to base this shape off of.
-            /// @param Group The resource group where the mesh can be found.
-            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual Physics::StaticMeshCollisionShape* GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
-            /// @brief Generates a compound shape of Convex Hulls from a provided mesh.
-            /// @return Returns a pointer to the created shape.
-            /// @param Name The name to give the created shape.
-            /// @param ObjectMesh The mesh to base this shape off of.
-            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual Physics::CompoundCollisionShape* PerformConvexDecomposition(const String& Name, Graphics::Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes = false);
-            /// @brief Generates a compound shape of Convex Hulls from a provided mesh.
-            /// @return Returns a pointer to the created shape.
-            /// @param Name The name to give the created shape.
-            /// @param MeshName The name of the mesh to base this shape off of.
-            /// @param Group The resource group where the mesh can be found.
-            /// @param UseAllSubMeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual Physics::CompoundCollisionShape* PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes = false);
+        /// @brief Returns a vector of unnamed shapes stored in this manager.
+        /// @return Returns a reference to a vector storing all the unnamed shapes loaded from files.
+        /// @details Shapes created in code require a name to be constructed.  However, sometimes when loading a file
+        /// a shape may not have a name, since one isn't required by the .bullet file format in order for a shape
+        /// to be serialized.  When that happens those shapes go here, and from there can be handled by the game
+        /// programmer however they see fit.
+        UnnamedCollisionShapeContainer& GetUnnamedShapes();
+        /// @brief Assigns a name to an unnamed shape.
+        /// @param NewName The new name to be assigned to a shape.
+        /// @param Shape The shape to be given the new name.  This shape must be a valid shape currently stored in the
+        /// set of unnamed shapes.  Calling this fucntion will not remove it from that set, but will move it into
+        /// the named collision shape map.  If you want the shape removed from the Unnamed set, you must do it yourself.
+        void SetNameForUnnamedShape(const String& NewName, Physics::CollisionShape* Shape);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Shape Saving/Loading Utilities
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            /// @brief Loads all shapes saved in an existing .bullet file, and stores them in this manager.
-            /// @param FileName The name of the file to load shapes from.
-            /// @param Group The resource group the .bullet file is located in.
-            virtual void LoadAllShapesFromFile(const String& FileName, const String& Group);
-            /// @brief Takes all the shapes currently stored this manager and saves them to a .bullet file.
-            /// @param FileName The name of the file to save the shapes to.
-            virtual void SaveAllStoredShapesToFile(const String& FileName);
-            /// @brief Saves all shapes contained in a vector and saves them to a .bullet file.
-            /// @param FileName The name of the file to save the shapes to.
-            /// @param ShapesToSave A vector of collisions shapes that will be saved.
-            virtual void SaveShapesToFile(const String& FileName, std::vector<Physics::CollisionShape*>& ShapesToSave);
-            /// @brief Used to serialize and deserialize collisionshapes to xml
-            /// @details More Sophisticated shapes may reference a .bullet or a .mesh file.
-            Physics::CollisionShapeDeSerializer ShapeDeserializer;
+        /// @copydoc ManagerBase::Initialize()
+        virtual void Initialize();
+        /// @copydoc ManagerBase::Deinitialize()
+        virtual void Deinitialize();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Unnamed Shape Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // Type Identifier Methods
 
-            /// @brief Returns a vector of unnamed shapes stored in this manager.
-            /// @return Returns a reference to a vector storing all the unnamed shapes loaded from files.
-            /// @details Shapes created in code require a name to be constructed.  However, sometimes when loading a file
-            /// a shape may not have a name, since one isn't required by the .bullet file format in order for a shape
-            /// to be serialized.  When that happens those shapes go here, and from there can be handled by the game
-            /// programmer however they see fit.
-            std::set<Physics::CollisionShape*>& GetUnnamedShapes();
-            /// @brief Assigns a name to an unnamed shape.
-            /// @param NewName The new name to be assigned to a shape.
-            /// @param Shape The shape to be given the new name.  This shape must be a valid shape currently stored in the
-            /// set of unnamed shapes.  Calling this fucntion will not remove it from that set, but will move it into
-            /// the named collision shape map.  If you want the shape removed from the Unnamed set, you must do it yourself.
-            void SetNameForUnnamedShape(const String& NewName, Physics::CollisionShape* Shape);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Managerbase
-
-            /// @copydoc Mezzanine::ManagerBase::Initialize()
-            virtual void Initialize();
-            /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
-            virtual void DoMainLoopItems();
-            /// @copydoc ManagerBase::GetInterfaceType()
-            virtual ManagerType GetInterfaceType() const;
-            /// @copydoc ManagerBase::GetImplementationTypeName()
-            virtual String GetImplementationTypeName() const;
+        /// @copydoc ManagerBase::GetInterfaceType()
+        virtual ManagerType GetInterfaceType() const;
+        /// @copydoc ManagerBase::GetImplementationTypeName()
+        virtual String GetImplementationTypeName() const;
     };//CollisionShapeManager
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -264,22 +265,21 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB DefaultCollisionShapeManagerFactory : public ManagerFactory
     {
-        public:
-            /// @brief Class constructor.
-            DefaultCollisionShapeManagerFactory();
-            /// @brief Class destructor.
-            virtual ~DefaultCollisionShapeManagerFactory();
+    public:
+        /// @brief Class constructor.
+        DefaultCollisionShapeManagerFactory();
+        /// @brief Class destructor.
+        virtual ~DefaultCollisionShapeManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::GetManagerTypeName()
+        String GetManagerTypeName() const;
 
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+        ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+        ManagerBase* CreateManager(XML::Node& XMLNode);
+        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+        void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultCollisionShapeManagerFactory
 }//Mezzanine
 
