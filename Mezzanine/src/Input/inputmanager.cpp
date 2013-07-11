@@ -122,7 +122,6 @@ namespace Mezzanine
             DeviceUpdateWork(NULL),
             ThreadResources(NULL)
         {
-            this->Priority = 5;
             UInt32 InitSDLSystems = SDL_WasInit(0);
             if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
             {
@@ -149,7 +148,6 @@ namespace Mezzanine
             DeviceUpdateWork(NULL),
             ThreadResources(NULL)
         {
-            this->Priority = 5;
             UInt32 InitSDLSystems = SDL_WasInit(0);
             if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
             {
@@ -171,7 +169,8 @@ namespace Mezzanine
 
         InputManager::~InputManager()
         {
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DeviceUpdateWork );
+            this->Deinitialize();
+
             delete DeviceUpdateWork;
 
             delete SystemMouse;
@@ -238,28 +237,39 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
+        void InputManager::Initialize()
+        {
+            if( !this->Initialized )
+            {
+                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->DeviceUpdateWork );
+                Mezzanine::EventManager* EventMan = EventManager::GetSingletonPtr();
+                if( EventMan )
+                    this->DeviceUpdateWork->AddDependency( EventMan->GetEventPumpWork() );
+
+                this->Initialized = true;
+            }
+        }
+
+        void InputManager::Deinitialize()
+        {
+            if( this->Initialized )
+            {
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DeviceUpdateWork );
+                Mezzanine::EventManager* EventMan = EventManager::GetSingletonPtr();
+                if( EventMan )
+                    this->DeviceUpdateWork->RemoveDependency( EventMan->GetEventPumpWork() );
+
+                this->Initialized = false;
+            }
+        }
+
         DeviceUpdateWorkUnit* InputManager::GetDeviceUpdateWork()
         {
             return this->DeviceUpdateWork;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        //Inherited from ManagerBase
-
-        void InputManager::Initialize()
-        {
-            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->DeviceUpdateWork );
-            Mezzanine::EventManager* EventMan = EventManager::GetSingletonPtr();
-            if( EventMan )
-                this->DeviceUpdateWork->AddDependency( EventMan->GetEventWorkUnit() );
-
-            this->Initialized = true;
-        }
-
-        void InputManager::DoMainLoopItems()
-        {
-
-        }
+        // Type Identifier Methods
 
         ManagerBase::ManagerType InputManager::GetInterfaceType() const
             { return ManagerBase::InputManager; }

@@ -165,17 +165,18 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
+            /// @copydoc ManagerBase::Initialize()
+            virtual void Initialize();
+            /// @copydoc ManagerBase::Deinitialize()
+            virtual void Deinitialize();
+
             /// @brief Gets the work unit responsible for updating the input device classes.
             /// @return Returns a pointer to the DeviceUpdateWorkUnit used by this manager.
             DeviceUpdateWorkUnit* GetDeviceUpdateWork();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from ManagerBase
+            // Type Identifier Methods
 
-            /// @copydoc ManagerBase::Initialize()
-            virtual void Initialize();
-            /// @copydoc ManagerBase::DoMainLoopItems()
-            virtual void DoMainLoopItems();
             /// @copydoc ManagerBase::GetInterfaceType()
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
@@ -197,12 +198,11 @@ namespace Mezzanine
 
             /// @copydoc ManagerFactory::GetManagerTypeName()
             String GetManagerTypeName() const;
+
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
-
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
-
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
         };//DefaultInputManagerFactory
