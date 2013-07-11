@@ -51,22 +51,21 @@ namespace Mezzanine
     {
         iScriptingManager::iScriptingManager()
         {
-            this->Priority = 350;
         }
 
         iScriptingManager::~iScriptingManager()
         {
-
+            this->Deinitialize();
         }
 
         void iScriptingManager::Initialize()
         {
-            Initialized = true;
+            this->Initialized = true;
         }
 
-        void iScriptingManager::DoMainLoopItems()
+        void iScriptingManager::Deinitialize()
         {
-
+            this->Initialized = false;
         }
 
         ManagerBase::ManagerType iScriptingManager::GetInterfaceType() const

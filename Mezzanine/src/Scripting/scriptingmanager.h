@@ -90,13 +90,16 @@ namespace Mezzanine
                 virtual void Execute(CountedPtr<iScript>& ScriptToRun) = 0;
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Inherited from Managerbase
+                // Utility
 
-                /// @copydoc Mezzanine::ManagerBase::Initialize()
+                /// @copydoc ManagerBase::Initialize()
                 virtual void Initialize();
 
-                /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
-                virtual void DoMainLoopItems();
+                /// @copydoc ManagerBase::Deinitialize()
+                virtual void Deinitialize();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Type Identifier Methods
 
                 /// @copydoc ManagerBase::GetInterfaceType()
                 virtual ManagerType GetInterfaceType() const;
