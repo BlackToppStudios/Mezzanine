@@ -224,7 +224,7 @@ namespace Mezzanine
 			
                 /// @brief Add a normal @ref iWorkUnit to this For fcheduling.
                 /// @param MoreWork A pointer the the WorkUnit, that the FrameScheduler will take ownership of, and schedule for work.
-                virtual void AddWorkUnit(iWorkUnit* MoreWork);
+                virtual void AddWorkUnitMain(iWorkUnit* MoreWork);
 
                 /// @brief Add a normal @ref iWorkUnit to this For scheduling.
                 /// @param MoreWork A pointer the the WorkUnit, that the FrameScheduler will take ownership of, and schedule for work.

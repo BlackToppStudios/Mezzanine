@@ -763,7 +763,7 @@ namespace Mezzanine
 
     void SceneManager::Initialize()
     {
-        this->TheEntresol->GetScheduler().AddWorkUnit( this->TrackingNodeUpdateWork );
+        this->TheEntresol->GetScheduler().AddWorkUnitMain( this->TrackingNodeUpdateWork );
         Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
         if( PhysicsMan ) {
             this->TrackingNodeUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );

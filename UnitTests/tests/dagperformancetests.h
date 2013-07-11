@@ -102,7 +102,7 @@ class dagperformancetests : public UnitTestGroup
                     cout << "Creating a Scheduler with only one work unit " << *Iter << " Frame Per Second running " << *Iter << " frames. " << endl;
                     FrameScheduler TimingTest(&LogCache,1);
                     PiMakerWorkUnit* WorkUnitTT1 = new PiMakerWorkUnit(50,"ForeverAlone",false);
-                    TimingTest.AddWorkUnit(WorkUnitTT1);
+                    TimingTest.AddWorkUnitMain(WorkUnitTT1);
                     TimingTest.SetFrameRate(*Iter);
                     MaxInt TimingTestStart = GetTimeStamp();
                     for(Whole Counter=0; Counter<*Iter; ++Counter)
@@ -221,7 +221,7 @@ class dagperformancetests : public UnitTestGroup
 
                         //WorkUnit* WorkUnitTT2 = new PausesWorkUnit(0,"ForeverAlone");
                         iWorkUnit* WorkUnitTT2 = new PiMakerWorkUnit(0,"ForeverAlone",false);
-                        TimingTest.AddWorkUnit(WorkUnitTT2);
+                        TimingTest.AddWorkUnitMain(WorkUnitTT2);
                         TimingTestStart = GetTimeStamp();
                         for(Whole Counter=0; Counter<*Iter; ++Counter)
                             { TimingTest.DoOneFrame(); }
@@ -241,9 +241,9 @@ class dagperformancetests : public UnitTestGroup
                         iWorkUnit* WorkUnitTT2A = new PiMakerWorkUnit(0,"A",false);
                         iWorkUnit* WorkUnitTT2B = new PiMakerWorkUnit(0,"B",false);
                         iWorkUnit* WorkUnitTT2C = new PiMakerWorkUnit(0,"C",false);
-                        TimingTest.AddWorkUnit(WorkUnitTT2A);
-                        TimingTest.AddWorkUnit(WorkUnitTT2B);
-                        TimingTest.AddWorkUnit(WorkUnitTT2C);
+                        TimingTest.AddWorkUnitMain(WorkUnitTT2A);
+                        TimingTest.AddWorkUnitMain(WorkUnitTT2B);
+                        TimingTest.AddWorkUnitMain(WorkUnitTT2C);
                         WorkUnitTT2C->AddDependency(WorkUnitTT2B);
                         WorkUnitTT2B->AddDependency(WorkUnitTT2A);
                         TimingTest.SortWorkUnitsAll();

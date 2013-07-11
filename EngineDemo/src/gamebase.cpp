@@ -393,20 +393,20 @@ int main(int argc, char **argv)
     // Setup our workunits
     DemoPreEventWork = new DemoPreEventWorkUnit();
     TheEntresol->GetEventManager()->GetEventWorkUnit()->AddDependency( DemoPreEventWork );
-    TheEntresol->GetScheduler().AddWorkUnit( DemoPreEventWork );
+    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork );
 
     DemoPostInputWork = new DemoPostInputWorkUnit();
     DemoPostInputWork->AddDependency( TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
-    TheEntresol->GetScheduler().AddWorkUnit( DemoPreEventWork );
+    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork );
 
     DemoPostRenderWork = new DemoPostRenderWorkUnit();
     DemoPostRenderWork->AddDependency( TheEntresol->GetGraphicsManager()->GetRenderWork() );
     DemoPostRenderWork->AddDependency( TheEntresol->GetPhysicsManager()->GetAreaEffectUpdateWork() );
-    TheEntresol->GetScheduler().AddWorkUnit( DemoPreEventWork );
+    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork );
 
     DemoPostPhysicsWork = new DemoPostPhysicsWorkUnit();
     DemoPostPhysicsWork->AddDependency( TheEntresol->GetPhysicsManager()->GetSimulationWork() );
-    TheEntresol->GetScheduler().AddWorkUnit( DemoPostPhysicsWork );
+    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostPhysicsWork );
 
     // Init
 	TheEntresol->EngineInit(false);

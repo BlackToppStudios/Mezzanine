@@ -221,7 +221,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // WorkUnit management
-        void FrameScheduler::AddWorkUnit(iWorkUnit* MoreWork)
+        void FrameScheduler::AddWorkUnitMain(iWorkUnit* MoreWork)
             { this->WorkUnitsMain.push_back(MoreWork->GetSortingKey(*this)); }
 
         void FrameScheduler::AddWorkUnitAffinity(iWorkUnit* MoreWork)
