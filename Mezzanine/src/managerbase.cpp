@@ -62,7 +62,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Initialization Methods
 
-    bool ManagerBase::IsInitialized()
+    bool ManagerBase::IsInitialized() const
         { return Initialized; }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ namespace Mezzanine
 
     String ManagerBase::GetInterfaceTypeAsString() const
     {
-        return ManagerBase::GetTypeNameAsString( this->GetInterfaceType() );
+        return ManagerBase::GetTypeAsString( this->GetInterfaceType() );
     }
 
     String ManagerBase::GetTypeAsString(const ManagerBase::ManagerType& ManagerType)
@@ -223,7 +223,7 @@ namespace Mezzanine
             }
             case 'v':
             {
-                return MangerBase::VehicleManager;
+                return ManagerBase::VehicleManager;
                 break;
             }
         }
