@@ -726,6 +726,7 @@ namespace Mezzanine
             FrameStream << "-------------------------- Ending Frame: " << FrameCounter << ", After " << FrameTimer->getMicroseconds() << " microseconds --------------------------";
             this->Log(FrameStream.str());
             this->DoMainLoopLogging();
+            ++FrameCounter;
             #endif
 
             this->FrameTime = FrameTimer->getMicroseconds();
