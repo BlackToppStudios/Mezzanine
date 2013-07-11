@@ -60,7 +60,6 @@ namespace Mezzanine
     {
         if(SceneManager::SingletonValid())
             this->SceneMan = SceneManager::GetSingletonPtr();
-        this->Priority = 40;
     }
 
     CameraManager::CameraManager(XML::Node& XMLNode)
@@ -68,23 +67,23 @@ namespace Mezzanine
     {
         if(SceneManager::SingletonValid())
             this->SceneMan = SceneManager::GetSingletonPtr();
-        this->Priority = 40;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 
     CameraManager::~CameraManager()
     {
-        DestroyAllCameraControllers();
-        DestroyAllCameras();
+        this->Deinitialize();
+        this->DestroyAllCameraControllers();
+        this->DestroyAllCameras();
     }
 
     Camera* CameraManager::FindCamera(const String& Name)
     {
-        for( std::vector<Camera*>::iterator c=Cameras.begin(); c!=Cameras.end(); c++ )
+        for( CameraIterator CamIt = this->Cameras.begin() ; CamIt != this->Cameras.end() ; ++CamIt )
         {
-            if ( Name == (*c)->GetName() )
+            if( Name == (*CamIt)->GetName() )
             {
-                return *c;
+                return *CamIt;
             }
         }
         return NULL;
@@ -96,47 +95,47 @@ namespace Mezzanine
     Camera* CameraManager::CreateCamera()
     {
         StringStream CamName;
-        CamName << "Camera" << Cameras.size() + 1;
-        return CreateCamera(CamName.str());
+        CamName << "Camera" << this->Cameras.size() + 1;
+        return this->CreateCamera(CamName.str());
     }
 
     Camera* CameraManager::CreateCamera(const String& Name)
     {
-        if(!SceneMan)
+        if( !this->SceneMan )
         {
-            if(SceneManager::SingletonValid()) SceneMan = SceneManager::GetSingletonPtr();
+            if(SceneManager::SingletonValid()) this->SceneMan = SceneManager::GetSingletonPtr();
             else { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a camera before the SceneManager is created.  This is not supported."); }
         }
         Camera* tempcam = new Camera(Name, this);
-        Cameras.push_back(tempcam);
+        this->Cameras.push_back(tempcam);
         return tempcam;
     }
 
     Camera* CameraManager::GetCamera(const String& Name)
     {
-        Camera* tempcam = FindCamera(Name);
+        Camera* tempcam = this->FindCamera(Name);
         return tempcam;
     }
 
     Camera* CameraManager::GetCamera(const Whole& Index)
     {
-        return Cameras[Index];
+        return this->Cameras[Index];
     }
 
     Whole CameraManager::GetNumCameras()
     {
-        return Cameras.size();
+        return this->Cameras.size();
     }
 
     void CameraManager::DestroyAllCameras()
     {
         Camera* camera = NULL;
-        for( std::vector< Camera* >::iterator it = Cameras.begin() ; it != Cameras.end() ; it++ )
+        for( CameraIterator it = this->Cameras.begin() ; it != this->Cameras.end() ; it++ )
         {
             camera = (*it);
             delete camera;
         }
-        Cameras.clear();
+        this->Cameras.clear();
         return;
     }
 
@@ -145,11 +144,11 @@ namespace Mezzanine
 
     CameraController* CameraManager::GetOrCreateCameraController(Camera* Controlled)
     {
-        std::map<Camera*,CameraController*>::iterator CamIt = CameraControllers.find(Controlled);
-        if(CamIt == CameraControllers.end())
+        CameraControllerIterator CamIt = this->CameraControllers.find(Controlled);
+        if(CamIt == this->CameraControllers.end())
         {
             CameraController* Controller = new CameraController(Controlled);
-            CameraControllers[Controlled] = Controller;
+            this->CameraControllers[Controlled] = Controller;
             return Controller;
         }else{
             return (*CamIt).second;
@@ -158,14 +157,14 @@ namespace Mezzanine
 
     void CameraManager::DestroyCameraController(CameraController* ToBeDestroyed)
     {
-        if(CameraControllers.empty())
+        if(this->CameraControllers.empty())
             return;
-        for( std::map<Camera*,CameraController*>::iterator CamIt = CameraControllers.begin() ; CamIt != CameraControllers.end() ; CamIt++ )
+        for( CameraControllerIterator CamIt = this->CameraControllers.begin() ; CamIt != this->CameraControllers.end() ; CamIt++ )
         {
             if(ToBeDestroyed == (*CamIt).second)
             {
                 delete (*CamIt).second;
-                CameraControllers.erase(CamIt);
+                this->CameraControllers.erase(CamIt);
                 return;
             }
         }
@@ -173,55 +172,57 @@ namespace Mezzanine
 
     void CameraManager::DestroyCameraController(Camera* ControlledCam)
     {
-        if(CameraControllers.empty())
+        if(this->CameraControllers.empty())
             return;
-        std::map<Camera*,CameraController*>::iterator CamIt = CameraControllers.find(ControlledCam);
-        if(CamIt != CameraControllers.end())
+        CameraControllerIterator CamIt = this->CameraControllers.find(ControlledCam);
+        if(CamIt != this->CameraControllers.end())
         {
             delete (*CamIt).second;
-            CameraControllers.erase(CamIt);
+            this->CameraControllers.erase(CamIt);
             return;
         }
     }
 
     void CameraManager::DestroyAllCameraControllers()
     {
-        if(CameraControllers.empty())
+        if(this->CameraControllers.empty())
             return;
-        for( std::map<Camera*,CameraController*>::iterator CamIt = CameraControllers.begin() ; CamIt != CameraControllers.end() ; CamIt++ )
+        for( CameraControllerIterator CamIt = this->CameraControllers.begin() ; CamIt != this->CameraControllers.end() ; CamIt++ )
         {
             delete (*CamIt).second;
         }
-        CameraControllers.clear();
+        this->CameraControllers.clear();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    SceneManager* CameraManager::GetScene() const
-    {
-        return SceneMan;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Inherited from ManagerBase
-
     void CameraManager::Initialize()
     {
-        if(!SceneMan)
+        if( !this->SceneMan )
         {
             if(SceneManager::SingletonValid())
             {
-                SceneMan = SceneManager::GetSingletonPtr();
+                this->SceneMan = SceneManager::GetSingletonPtr();
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to initiailze CameraManager when SceneManager has not yet been constructed.  The SceneManager is a dependancy of the CameraManager.");
             }
         }
-        Initialized = true;
+        this->Initialized = true;
     }
 
-    void CameraManager::DoMainLoopItems()
-        {}
+    void CameraManager::Deinitialize()
+    {
+        this->Initialized = false;
+    }
+
+    SceneManager* CameraManager::GetScene() const
+    {
+        return this->SceneMan;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Type Identifier Methods
 
     ManagerBase::ManagerType CameraManager::GetInterfaceType() const
         { return ManagerBase::CameraManager; }

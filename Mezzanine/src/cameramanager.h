@@ -88,87 +88,93 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     class MEZZ_LIB CameraManager : public ManagerBase, public Singleton<CameraManager>
     {
-        protected:
-            friend class Internal::SceneManagerData;
-            friend class GraphicsManager;
-            friend class Entresol;
-            friend class Camera;
+    public:
+        typedef std::vector< Camera* >                     CameraContainer;
+        typedef CameraContainer::iterator                  CameraIterator;
+        typedef CameraContainer::const_iterator            ConstCameraIterator;
+        typedef std::map< Camera*, CameraController* >     CameraControllerContainer;
+        typedef CameraControllerContainer::iterator        CameraControllerIterator;
+        typedef CameraControllerContainer::const_iterator  ConstCameraControllerIterator;
+    protected:
+        friend class Internal::SceneManagerData;
+        friend class GraphicsManager;
+        friend class Entresol;
+        friend class Camera;
 
-            Camera* DefaultCamera;
-            std::vector< Camera* > Cameras;
-            std::map< Camera* , CameraController* > CameraControllers;
-            Camera* FindCamera(const String& Name);
-            /// @internal
-            /// @brief Used to reference the appropriate scene
-            Mezzanine::SceneManager* SceneMan;
-        public:
-            /// @brief Class Constructor.
-            CameraManager();
+        Camera* DefaultCamera;
+        CameraContainer Cameras;
+        CameraControllerContainer CameraControllers;
+        Camera* FindCamera(const String& Name);
+        /// @internal
+        /// @brief Used to reference the appropriate scene
+        Mezzanine::SceneManager* SceneMan;
+    public:
+        /// @brief Class Constructor.
+        CameraManager();
+        /// @brief XML constructor.
+        /// @param XMLNode The node of the xml document to construct from.
+        CameraManager(XML::Node& XMLNode);
+        /// @brief Class Destructor.
+        virtual ~CameraManager();
 
-            /// @brief XML constructor.
-            /// @param XMLNode The node of the xml document to construct from.
-            CameraManager(XML::Node& XMLNode);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Camera Management
 
-            /// @brief Class Destructor.
-            virtual ~CameraManager();
+        /// @brief Creates a camera.
+        /// @remarks This function will autogenerate the name for the camera.
+        /// @return Returns a pointer to the created camera.
+        Camera* CreateCamera();
+        /// @brief Creates a camera.
+        /// @param Name The name to be assigned to the created camera.
+        /// @return Returns a pointer to the created camera.
+        Camera* CreateCamera(const String& Name);
+        /// @brief Gets an already created camera by name.
+        /// @return Returns a pointer to the camera of the specified name.
+        Camera* GetCamera(const String& Name);
+        /// @brief Gets an already created camera by index.
+        /// @return Returns a pointer to the camera at the specified index.
+        Camera* GetCamera(const Whole& Index);
+        /// @brief Gets the number of cameras created and stored in this manager.
+        /// @return Returns the number of cameras this manager is storing.
+        Whole GetNumCameras();
+        /// @brief Destroy's all stored camera's.
+        void DestroyAllCameras();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Camera Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // Camera Controller Management
 
-            /// @brief Creates a camera.
-            /// @remarks This function will autogenerate the name for the camera.
-            /// @return Returns a pointer to the created camera.
-            Camera* CreateCamera();
-            /// @brief Creates a camera.
-            /// @param Name The name to be assigned to the created camera.
-            /// @return Returns a pointer to the created camera.
-            Camera* CreateCamera(const String& Name);
-            /// @brief Gets an already created camera by name.
-            /// @return Returns a pointer to the camera of the specified name.
-            Camera* GetCamera(const String& Name);
-            /// @brief Gets an already created camera by index.
-            /// @return Returns a pointer to the camera at the specified index.
-            Camera* GetCamera(const Whole& Index);
-            /// @brief Gets the number of cameras created and stored in this manager.
-            /// @return Returns the number of cameras this manager is storing.
-            Whole GetNumCameras();
-            /// @brief Destroy's all stored camera's.
-            void DestroyAllCameras();
+        /// @brief Gets a camera controller if it exists, otherwise creates it.
+        /// @param Controlled The camera that will be controlled by the controller returned.
+        /// @return Returns a pointer to the created or retrieved camera controller for the camera.
+        CameraController* GetOrCreateCameraController(Camera* Controlled);
+        /// @brief Destroys a cameracontroller.
+        /// @param ToBeDestroyed Pointer to the cameracontrolled you want destroyed.
+        void DestroyCameraController(CameraController* ToBeDestroyed);
+        /// @brief Destroys a cameracontroller by camera.
+        /// @param ControlledCam The camera who's controller will be destroyed.  This doesn't do anything to the camera.
+        void DestroyCameraController(Camera* ControlledCam);
+        /// @brief Destroys all camera controllers being stored in this manager.
+        void DestroyAllCameraControllers();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Camera Controller Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            /// @brief Gets a camera controller if it exists, otherwise creates it.
-            /// @param Controlled The camera that will be controlled by the controller returned.
-            /// @return Returns a pointer to the created or retrieved camera controller for the camera.
-            CameraController* GetOrCreateCameraController(Camera* Controlled);
-            /// @brief Destroys a cameracontroller.
-            /// @param ToBeDestroyed Pointer to the cameracontrolled you want destroyed.
-            void DestroyCameraController(CameraController* ToBeDestroyed);
-            /// @brief Destroys a cameracontroller by camera.
-            /// @param ControlledCam The camera who's controller will be destroyed.  This doesn't do anything to the camera.
-            void DestroyCameraController(Camera* ControlledCam);
-            /// @brief Destroys all camera controllers being stored in this manager.
-            void DestroyAllCameraControllers();
+        /// @copydoc ManagerBase::Initialize()
+        virtual void Initialize();
+        /// @copydoc ManagerBase::Deinitialize()
+        virtual void Deinitialize();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
+        /// @brief Gets the SceneManager this Camera Manager is working with.
+        /// @return Returns a pointer to the SceneManager all cameras made with this manager belong to.
+        Mezzanine::SceneManager* GetScene() const;
 
-            /// @brief Gets the SceneManager this Camera Manager is working with.
-            /// @return Returns a pointer to the SceneManager all cameras made with this manager belong to.
-            Mezzanine::SceneManager* GetScene() const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Type Identifier Methods
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from ManagerBase
-
-            /// @copydoc ManagerBase::Initialize()
-            virtual void Initialize();
-            /// @copydoc ManagerBase::DoMainLoopItems()
-            virtual void DoMainLoopItems();
-            /// @copydoc ManagerBase::GetInterfaceType()
-            virtual ManagerType GetInterfaceType() const;
-            /// @copydoc ManagerBase::GetImplementationTypeName()
-            virtual String GetImplementationTypeName() const;
+        /// @copydoc ManagerBase::GetInterfaceType()
+        virtual ManagerType GetInterfaceType() const;
+        /// @copydoc ManagerBase::GetImplementationTypeName()
+        virtual String GetImplementationTypeName() const;
     };//CameraManager
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -178,22 +184,21 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB DefaultCameraManagerFactory : public ManagerFactory
     {
-        public:
-            /// @brief Class constructor.
-            DefaultCameraManagerFactory();
-            /// @brief Class destructor.
-            virtual ~DefaultCameraManagerFactory();
+    public:
+        /// @brief Class constructor.
+        DefaultCameraManagerFactory();
+        /// @brief Class destructor.
+        virtual ~DefaultCameraManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::GetManagerTypeName()
+        String GetManagerTypeName() const;
 
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+        ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+        ManagerBase* CreateManager(XML::Node& XMLNode);
+        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+        void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultCameraManagerFactory
 }//Mezzanine
 #endif
