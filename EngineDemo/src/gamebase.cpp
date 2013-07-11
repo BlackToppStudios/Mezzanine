@@ -392,7 +392,7 @@ int main(int argc, char **argv)
 
     // Setup our workunits
     DemoPreEventWork = new DemoPreEventWorkUnit();
-    TheEntresol->GetEventManager()->GetEventWorkUnit()->AddDependency( DemoPreEventWork );
+    TheEntresol->GetEventManager()->GetEventPumpWork()->AddDependency( DemoPreEventWork );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork );
 
     DemoPostInputWork = new DemoPostInputWorkUnit();
@@ -401,7 +401,7 @@ int main(int argc, char **argv)
 
     DemoPostRenderWork = new DemoPostRenderWorkUnit();
     DemoPostRenderWork->AddDependency( TheEntresol->GetGraphicsManager()->GetRenderWork() );
-    DemoPostRenderWork->AddDependency( TheEntresol->GetPhysicsManager()->GetAreaEffectUpdateWork() );
+    DemoPostRenderWork->AddDependency( TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostRenderWork );
 
     DemoPostPhysicsWork = new DemoPostPhysicsWorkUnit();

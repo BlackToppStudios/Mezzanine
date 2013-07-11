@@ -703,6 +703,7 @@ void CatchApp::UnloadLevel()
     ResourceManager* ResMan = ResourceManager::GetSingletonPtr();
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ActorManager* ActorMan = ActorManager::GetSingletonPtr();
+    AreaEffectManager* AreaEffectMan = AreaEffectManager::GetSingletonPtr();
     EventManager* EventMan = EventManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
@@ -711,7 +712,7 @@ void CatchApp::UnloadLevel()
     PhysMan->DestroyAllConstraints();
     ActorMan->DestroyAllActors();
     PhysMan->DestroyAllWorldTriggers();
-    PhysMan->DestroyAllAreaEffects();
+    AreaEffectMan->DestroyAllAreaEffects();
     CShapeMan->DestroyAllShapes();
     MeshMan->DestroyAllGeneratedMeshes();
     SceneMan->DestroyAllLights();
@@ -753,7 +754,7 @@ int CatchApp::GetCatchin()
 
     // WorkUnit configuration
     this->PreInputWork = new CatchPreInputWorkUnit(this);
-    this->TheEntresol->GetEventManager()->GetEventWorkUnit()->AddDependency( this->PreInputWork );
+    this->TheEntresol->GetEventManager()->GetEventPumpWork()->AddDependency( this->PreInputWork );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PreInputWork );
 
     this->PostInputWork = new CatchPostInputWorkUnit(this);
@@ -766,7 +767,7 @@ int CatchApp::GetCatchin()
 
     this->PostGraphicsWork = new CatchPostGraphicsWorkUnit(this);
     this->PostGraphicsWork->AddDependency( this->TheEntresol->GetGraphicsManager()->GetRenderWork() );
-    this->PostGraphicsWork->AddDependency( this->TheEntresol->GetPhysicsManager()->GetAreaEffectUpdateWork() );
+    this->PostGraphicsWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostGraphicsWork );
 
     // Initialize the managers.
