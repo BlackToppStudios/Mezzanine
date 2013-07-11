@@ -147,7 +147,6 @@ namespace Mezzanine
                 MasterVolume(1.0),
                 MasterMute(false)
             {
-                this->Priority = 55;
                 this->AutoGenFiles = false;
                 this->GetAvailableDeviceNames();
                 this->BufferUpdate2DWork = new BufferUpdate2DWorkUnit(this);
@@ -171,7 +170,6 @@ namespace Mezzanine
                 /// @todo Research possibly moving XML settings serialization to the AudioManager base class.
                 /// The likelyhood of having implementation specific settings being serialized is somewhat low.
                 /// Doing so would make settings files be implementation agnostic.
-                this->Priority = 55;
                 this->GetAvailableDeviceNames();
                 this->BufferUpdate2DWork = new BufferUpdate2DWorkUnit(this);
                 this->EffectFilterCleanWork = new EffectFilterCleanWorkUnit(this);
@@ -231,20 +229,16 @@ namespace Mezzanine
 
             OALS::AudioManager::~AudioManager()
             {
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate2DWork );
+                this->Deinitialize();
+
                 delete BufferUpdate2DWork;
-
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->EffectFilterCleanWork );
                 delete EffectFilterCleanWork;
-
-                if( this->AutoGenFiles )
-                    this->SaveAllSettings();
 
                 this->DestroyAllSounds();
                 this->EffHandler->DestroyAllEffects();
                 this->EffHandler->DestroyAllFilters();
                 this->DestroyAllRecorders();
-                this->ShutdownPlaybackDevice();
+                //this->ShutdownPlaybackDevice();
             }
 
             SoundTypeHandler* OALS::AudioManager::GetOrCreateSoundTypeHandler(const UInt16 Type) const
@@ -427,21 +421,6 @@ namespace Mezzanine
                     }
                 }
             }
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            iEffectsHandler* OALS::AudioManager::GetEffectsHandler() const
-                { return this->EffHandler; }
-
-            MusicPlayer* OALS::AudioManager::GetMusicPlayer() const
-                { return this->MPlayer; }
-
-            iBufferUpdate2DWorkUnit* OALS::AudioManager::GetBufferUpdate2DWork()
-                { return this->BufferUpdate2DWork; }
-
-            iEffectFilterCleanWorkUnit* OALS::AudioManager::GetEffectFilterCleanWork()
-                { return this->EffectFilterCleanWork; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Sound Management
@@ -700,7 +679,7 @@ namespace Mezzanine
             bool OALS::AudioManager::InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency)
             {
                 /// @todo We should create a "reinitialize" method that preserves sources.
-                if( this->Initialized )
+                if( this->InternalDevice )
                     //this->ShutdownPlaybackDevice();
                     return false;
 
@@ -754,7 +733,7 @@ namespace Mezzanine
 
             void OALS::AudioManager::ShutdownPlaybackDevice()
             {
-                if( this->Initialized )
+                if( this->InternalDevice )
                 {
                     // Eradicate all sounds
                     this->DestroyAllSounds();
@@ -788,8 +767,6 @@ namespace Mezzanine
                         delete this->MPlayer;
                         this->MPlayer = NULL;
                     }
-
-                    this->Initialized = false;
                 }
             }
 
@@ -797,32 +774,26 @@ namespace Mezzanine
             // Recording Device Management
 
             String OALS::AudioManager::GetAvailableRecordingDeviceName(const UInt32 Index)
-            {
-                return this->AvailableRecorderDevices.at(Index);
-            }
+                { return this->AvailableRecorderDevices.at(Index); }
 
             UInt32 OALS::AudioManager::GetAvailableRecordingDeviceCount()
-            {
-                return this->AvailableRecorderDevices.size();
-            }
+                { return this->AvailableRecorderDevices.size(); }
 
             String OALS::AudioManager::GetDefaultRecordingDeviceName()
-            {
-                return alcGetString(NULL,ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER);
-            }
+                { return alcGetString(NULL,ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER); }
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Managerbase
+            // Utility
 
             void OALS::AudioManager::Initialize()
             {
-                if( this->Initialized == false)
+                if( !this->Initialized )
                 {
-                    this->Initialized = this->InitializePlaybackDevice(this->GetDefaultPlaybackDeviceName());
-                }
+                    if( this->InternalDevice == NULL ) {
+                        if( this->InitializePlaybackDevice( this->GetDefaultPlaybackDeviceName() ) == false )
+                            { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Unable to initialize an audio device."); }
+                    }
 
-                if( this->Initialized )
-                {
                     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->BufferUpdate2DWork );
 
                     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->EffectFilterCleanWork );
@@ -830,16 +801,47 @@ namespace Mezzanine
                     /// @todo Some of this logic may need to be moved to the registration method if we want to support dynamic created and destroyed worlds.
                     for( SoundScapeManagerIterator SSM = this->SoundScapeManagers.begin() ; SSM != this->SoundScapeManagers.end() ; ++SSM )
                         this->EffectFilterCleanWork->AddDependency( (*SSM)->GetBufferUpdate3DWork() );
+
+                    if( this->AutoGenFiles )
+                        this->SaveAllSettings();
                 }
-
-                if( this->AutoGenFiles )
-                    this->SaveAllSettings();
             }
 
-            void OALS::AudioManager::DoMainLoopItems()
+            void OALS::AudioManager::Deinitialize()
             {
+                if( this->Initialized )
+                {
+                    if( this->InternalDevice != NULL ) {
+                        this->ShutdownPlaybackDevice();
+                    }
 
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate2DWork );
+
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->EffectFilterCleanWork );
+                    this->EffectFilterCleanWork->RemoveDependency( this->BufferUpdate2DWork );
+                    /// @todo Some of this logic may need to be moved to the registration method if we want to support dynamic created and destroyed worlds.
+                    for( SoundScapeManagerIterator SSM = this->SoundScapeManagers.begin() ; SSM != this->SoundScapeManagers.end() ; ++SSM )
+                        this->EffectFilterCleanWork->RemoveDependency( (*SSM)->GetBufferUpdate3DWork() );
+
+                    if( this->AutoGenFiles )
+                        this->SaveAllSettings();
+                }
             }
+
+            iEffectsHandler* OALS::AudioManager::GetEffectsHandler() const
+                { return this->EffHandler; }
+
+            MusicPlayer* OALS::AudioManager::GetMusicPlayer() const
+                { return this->MPlayer; }
+
+            iBufferUpdate2DWorkUnit* OALS::AudioManager::GetBufferUpdate2DWork()
+                { return this->BufferUpdate2DWork; }
+
+            iEffectFilterCleanWorkUnit* OALS::AudioManager::GetEffectFilterCleanWork()
+                { return this->EffectFilterCleanWork; }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Type Identifier Methods
 
             String OALS::AudioManager::GetImplementationTypeName() const
             {

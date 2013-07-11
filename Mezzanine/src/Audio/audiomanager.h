@@ -135,23 +135,6 @@ namespace Mezzanine
             virtual ~AudioManager();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            /// @brief Gets the handler responsible for audio effects.
-            /// @return Returns a pointer to the @ref iEffectsHandler for this audio subsystem.
-            virtual iEffectsHandler* GetEffectsHandler() const = 0;
-            /// @brief Gets the music player for this audio subsystem.
-            /// @return Returns a pointer to the Music player belonging to this system, or NULL if this manager does not support one.
-            virtual MusicPlayer* GetMusicPlayer() const = 0;
-
-            /// @brief Gets the work unit responsible for updating the buffers of sounds.
-            /// @return Returns a pointer to the BufferUpdate2DWorkUnit used by this manager.
-            virtual iBufferUpdate2DWorkUnit* GetBufferUpdate2DWork() = 0;
-            /// @brief Gets the work unit responsible for cleaning all effects and filters.
-            /// @return Returns a pointer to the BufferUpdateWorkUnit used by this manager.
-            virtual iEffectFilterCleanWorkUnit* GetEffectFilterCleanWork() = 0;
-
-            ///////////////////////////////////////////////////////////////////////////////
             // Sound Management
 
             /// @brief Creates a blank @ref iSound without a stream attached to it.
@@ -561,7 +544,29 @@ namespace Mezzanine
             void DestroyAllDecoderFactories();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Managerbase
+            // Utility
+
+            /// @copydoc ManagerBase::Initialize()
+            virtual void Initialize() = 0;
+            /// @copydoc ManagerBase::Deinitialize()
+            virtual void Deinitialize() = 0;
+
+            /// @brief Gets the handler responsible for audio effects.
+            /// @return Returns a pointer to the @ref iEffectsHandler for this audio subsystem.
+            virtual iEffectsHandler* GetEffectsHandler() const = 0;
+            /// @brief Gets the music player for this audio subsystem.
+            /// @return Returns a pointer to the Music player belonging to this system, or NULL if this manager does not support one.
+            virtual MusicPlayer* GetMusicPlayer() const = 0;
+
+            /// @brief Gets the work unit responsible for updating the buffers of sounds.
+            /// @return Returns a pointer to the BufferUpdate2DWorkUnit used by this manager.
+            virtual iBufferUpdate2DWorkUnit* GetBufferUpdate2DWork() = 0;
+            /// @brief Gets the work unit responsible for cleaning all effects and filters.
+            /// @return Returns a pointer to the BufferUpdateWorkUnit used by this manager.
+            virtual iEffectFilterCleanWorkUnit* GetEffectFilterCleanWork() = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Type Identifier Methods
 
             /// @copydoc ManagerBase::GetInterfaceType()
             virtual ManagerType GetInterfaceType() const;

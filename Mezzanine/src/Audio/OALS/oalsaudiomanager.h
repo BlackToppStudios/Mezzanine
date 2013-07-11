@@ -293,19 +293,6 @@ namespace Mezzanine
                 virtual ~AudioManager();
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Utility
-
-                /// @copydoc Audio::AudioManager::GetEffectsHandler() const
-                virtual iEffectsHandler* GetEffectsHandler() const;
-                /// @copydoc Audio::AudioManager::GetMusicPlayer() const
-                virtual MusicPlayer* GetMusicPlayer() const;
-
-                /// @copydoc Audio::AudioManager::GetBufferUpdate2DWork()
-                virtual iBufferUpdate2DWorkUnit* GetBufferUpdate2DWork();
-                /// @copydoc Audio::AudioManager::GetEffectFilterCleanWork()
-                virtual iEffectFilterCleanWorkUnit* GetEffectFilterCleanWork();
-
-                ///////////////////////////////////////////////////////////////////////////////
                 // Sound Management
 
                 /// @copydoc Audio::AudioManager::CreateSound(const UInt16)
@@ -395,12 +382,26 @@ namespace Mezzanine
                 virtual String GetDefaultRecordingDeviceName();
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Inherited from Managerbase
+                // Utility
 
                 /// @copydoc ManagerBase::Initialize()
                 virtual void Initialize();
-                /// @copydoc ManagerBase::DoMainLoopItems()
-                virtual void DoMainLoopItems();
+                /// @copydoc ManagerBase::Deinitialize()
+                virtual void Deinitialize();
+
+                /// @copydoc Audio::AudioManager::GetEffectsHandler() const
+                virtual iEffectsHandler* GetEffectsHandler() const;
+                /// @copydoc Audio::AudioManager::GetMusicPlayer() const
+                virtual MusicPlayer* GetMusicPlayer() const;
+
+                /// @copydoc Audio::AudioManager::GetBufferUpdate2DWork()
+                virtual iBufferUpdate2DWorkUnit* GetBufferUpdate2DWork();
+                /// @copydoc Audio::AudioManager::GetEffectFilterCleanWork()
+                virtual iEffectFilterCleanWorkUnit* GetEffectFilterCleanWork();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Type Identifier Methods
+
                 /// @copydoc ManagerBase::GetImplementationTypeName()
                 virtual String GetImplementationTypeName() const;
 
