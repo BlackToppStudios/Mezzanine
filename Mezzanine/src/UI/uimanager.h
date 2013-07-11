@@ -248,6 +248,23 @@ namespace Mezzanine
             CodeContainer* GetAutoRegisteredCodes();
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Fetch Methods
+
+            /// @brief Gets the Widget the mouse is hovering over.
+            /// @details If the widget found during widget checks belongs to a widget, this will get that widget.
+            /// @return Returns a pointer to the widget, or NULL if it's not over any visable buttons.
+            Widget* GetHoveredWidget();
+            /// @brief Gets the current widget being controlled.
+            /// @details The widget control is used mostly for manipulating widgets while the mouse is not
+            /// currently hovering over them, such as the click and drag action of scrollbars and resizing windows.
+            /// @return Returns a pointer to the currently controlled widget, or NULL if none are being controlled this frame.
+            Widget* GetWidgetFocus();
+            /// @brief Gets the widget that is currently capturing input.
+            /// @details A widget that is currently capturing input will prevent hotkeys from working while active.
+            /// @return Returns a pointer to the widget that currently capturing input, or NULL if no widget is capturing input.
+            Widget* GetWidgetCapturingInput();
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
             /// @brief Forces everything loaded into the UI system to be redrawn.
@@ -268,34 +285,18 @@ namespace Mezzanine
             /// @return Returns a std::pair, First is a whole for the Glyph index and second is a Real for the scaling that should be provided to it.
             GlyphIndexResult SuggestGlyphIndex(const Whole& Height, const String& Atlas);
 
+            /// @copydoc ManagerBase::Initialize()
+            virtual void Initialize();
+            /// @copydoc ManagerBase::Deinitialize()
+            virtual void Deinitialize();
+
             /// @brief Gets the work unit responsible for updating the widgets in this manager.
             /// @return Returns a pointer to the WidgetUpdateWorkUnit used by this manager.
             WidgetUpdateWorkUnit* GetWidgetUpdateWork();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Fetch Methods
+            // Type Identifier Methods
 
-            /// @brief Gets the Widget the mouse is hovering over.
-            /// @details If the widget found during widget checks belongs to a widget, this will get that widget.
-            /// @return Returns a pointer to the widget, or NULL if it's not over any visable buttons.
-            Widget* GetHoveredWidget();
-            /// @brief Gets the current widget being controlled.
-            /// @details The widget control is used mostly for manipulating widgets while the mouse is not
-            /// currently hovering over them, such as the click and drag action of scrollbars and resizing windows.
-            /// @return Returns a pointer to the currently controlled widget, or NULL if none are being controlled this frame.
-            Widget* GetWidgetFocus();
-            /// @brief Gets the widget that is currently capturing input.
-            /// @details A widget that is currently capturing input will prevent hotkeys from working while active.
-            /// @return Returns a pointer to the widget that currently capturing input, or NULL if no widget is capturing input.
-            Widget* GetWidgetCapturingInput();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from ManagerBase
-
-            /// @copydoc ManagerBase::Initialize()
-            virtual void Initialize();
-            /// @copydoc ManagerBase::DoMainLoopItems()
-            virtual void DoMainLoopItems();
             /// @copydoc ManagerBase::GetInterfaceType()
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
@@ -328,6 +329,7 @@ namespace Mezzanine
 
             /// @copydoc ManagerFactory::GetManagerTypeName()
             String GetManagerTypeName() const;
+
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)

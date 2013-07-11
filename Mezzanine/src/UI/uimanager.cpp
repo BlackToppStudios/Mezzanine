@@ -106,7 +106,6 @@ namespace Mezzanine
             ThreadResources(NULL)
         {
             ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
-            Priority = 15;
 
             this->WidgetUpdateWork = new WidgetUpdateWorkUnit(this);
         }
@@ -122,7 +121,6 @@ namespace Mezzanine
             ThreadResources(NULL)
         {
             ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
-            Priority = 15;
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
 
             this->WidgetUpdateWork = new WidgetUpdateWorkUnit(this);
@@ -130,10 +128,11 @@ namespace Mezzanine
 
         UIManager::~UIManager()
         {
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WidgetUpdateWork );
+            this->Deinitialize();
+
             delete WidgetUpdateWork;
 
-            DestroyAllScreens();
+            this->DestroyAllScreens();
         }
 
         void UIManager::HoverChecks()
@@ -425,6 +424,24 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Fetch Methods
+
+        Widget* UIManager::GetHoveredWidget()
+        {
+            return HoveredWidget;
+        }
+
+        Widget* UIManager::GetWidgetFocus()
+        {
+            return WidgetFocus;
+        }
+
+        Widget* UIManager::GetWidgetCapturingInput()
+        {
+            return InputCapture;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         void UIManager::RedrawAll(bool Force)
@@ -510,46 +527,39 @@ namespace Mezzanine
             }
         }
 
+        void UIManager::Initialize()
+        {
+            if( !this->Initialized )
+            {
+                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WidgetUpdateWork );
+                Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
+                if( InputMan )
+                    this->WidgetUpdateWork->AddDependency( InputMan->GetDeviceUpdateWork() );
+
+                this->Initialized = true;
+            }
+        }
+
+        void UIManager::Deinitialize()
+        {
+            if( this->Initialized )
+            {
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WidgetUpdateWork );
+                Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
+                if( InputMan )
+                    this->WidgetUpdateWork->RemoveDependency( InputMan->GetDeviceUpdateWork() );
+
+                this->Initialized = false;
+            }
+        }
+
         WidgetUpdateWorkUnit* UIManager::GetWidgetUpdateWork()
         {
             return this->WidgetUpdateWork;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Fetch Methods
-
-        Widget* UIManager::GetHoveredWidget()
-        {
-            return HoveredWidget;
-        }
-
-        Widget* UIManager::GetWidgetFocus()
-        {
-            return WidgetFocus;
-        }
-
-        Widget* UIManager::GetWidgetCapturingInput()
-        {
-            return InputCapture;
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Inherited from ManagerBase
-
-        void UIManager::Initialize()
-        {
-            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WidgetUpdateWork );
-            Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
-            if( InputMan )
-                this->WidgetUpdateWork->AddDependency( InputMan->GetDeviceUpdateWork() );
-
-            Initialized = true;
-        }
-
-        void UIManager::DoMainLoopItems()
-        {
-
-        }
+        // Type Identifier Methods
 
         ManagerBase::ManagerType UIManager::GetInterfaceType() const
             { return ManagerBase::UIManager; }
