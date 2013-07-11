@@ -171,6 +171,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
+        /// @brief Does all of the necessary configuration to prepare for the start of the main loop.
+        void MainLoopInitialize();
         /// @copydoc ManagerBase::Initialize()
         virtual void Initialize();
         /// @copydoc ManagerBase::Deinitialize()

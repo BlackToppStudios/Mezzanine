@@ -71,7 +71,7 @@ namespace Mezzanine
 
     void AreaEffectUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
-        for( AreaEffectManager::AreaEffectIterator AE = this->TargetManager->AreaEffects.begin() ; AE != this->TargetManager->AreaEffects.end() ; AE++ )
+        for( AreaEffectManager::AreaEffectIterator AE = this->TargetManager->AreaEffects.begin() ; AE != this->TargetManager->AreaEffects.end() ; ++AE )
         {
             (*AE)->_Update();
             (*AE)->ApplyEffect();
@@ -202,6 +202,15 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
+    void AreaEffectManager::MainLoopInitialize()
+    {
+        for( AreaEffectManager::AreaEffectIterator AE = this->AreaEffects.begin() ; AE != this->AreaEffects.end() ; ++AE )
+        {
+            (*AE)->_Update();
+            (*AE)->ApplyEffect();
+        }
+    }
+
     void AreaEffectManager::Initialize()
     {
         if( !this->Initialized )
@@ -211,6 +220,7 @@ namespace Mezzanine
             Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
             if( PhysicsMan ) {
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
+                this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetDebugDrawWork() );
             }
 
             Mezzanine::ActorManager* ActorMan = ActorManager::GetSingletonPtr();
@@ -231,6 +241,7 @@ namespace Mezzanine
             Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
             if( PhysicsMan ) {
                 this->AreaEffectUpdateWork->RemoveDependency( PhysicsMan->GetSimulationWork() );
+                this->AreaEffectUpdateWork->RemoveDependency( PhysicsMan->GetDebugDrawWork() );
             }
 
             Mezzanine::ActorManager* ActorMan = ActorManager::GetSingletonPtr();
