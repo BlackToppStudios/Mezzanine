@@ -255,6 +255,7 @@ namespace Mezzanine
     class ActorBase;
     class ActorManager;
     class ActorContainerBase;
+    class AreaEffectManager;
     class EventManager;
     class CameraManager;
     class ResourceManager;
@@ -607,6 +608,7 @@ namespace Mezzanine
             /// @brief Destroys all managers currently in the world.
             /// @warning Do not call this in anything that is run during the main loop.  If you do you will have a bad time.
             void DestroyAllManagers();
+
             /// @brief This adds a manager, in the correct order, to the list that the world calls on
             /// @details Internally the world had a list of managers that is sorted by the ManagerBase::Priority. Everytime a manager is added,
             /// the list is searched for the sorted point to insert the manager at.
@@ -622,26 +624,23 @@ namespace Mezzanine
             /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.
             /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.
             /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
-            void RemoveManager(const ManagerBase::ManagerType& ManagersToRemoveType, short unsigned int WhichOne);
+            void RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, short unsigned int WhichOne);
             /// @brief This is will find the manager of a given type
             /// @details Specifically this will iterate from lowest priority to highest priority, and return a pointer to the first Manager
             /// with a matching type found. If you specify WhichOne, it will the Nth+1 in the list matching the type (kind of like array subscript).
             /// @param ManagersToRemoveType
             /// @param WhichOne If not getting the first/only manager of the given type, get one.
             /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists
-            ManagerBase* GetManager(const ManagerBase::ManagerType& ManagersToRemoveType, short unsigned int WhichOne=0);
-            /// @brief Changes a Manager's time of execution.
-            /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.
-            /// @param ManagerToChange A pointer to the manager that needs to be changed
-            /// @param Priority_ the new desire priority/execution order of the Manager
-            void UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority_);
-            /// @brief This forces the list of managers to be resorted.
-            /// @details This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers
-            void UpdateManagerOrder();
+            ManagerBase* GetManager(const ManagerBase::ManagerType ManagersToRemoveType, short unsigned int WhichOne=0);
+
             /// @brief This gets the ActorManager from the manager list.
             /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
             /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
             ActorManager* GetActorManager(const UInt16 WhichOne = 0);
+            /// @brief This gets the AreaEffectManager from the manager list.
+            /// @param WhichOne If you have multiple AreaEffectManagers this will choose which one to return.
+            /// @return This returns a pointer to a AreaEffectManager, or a NULL pointer if no matching manager exists.
+            AreaEffectManager* GetAreaEffectManager(const UInt16 WhichOne = 0);
             /// @brief This gets the AudioManager from the manager list.
             /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.
             /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.

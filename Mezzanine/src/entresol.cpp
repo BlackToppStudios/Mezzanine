@@ -182,6 +182,8 @@ namespace Mezzanine
         //Create and add any managers that have not been taken care of yet.
         if(this->GetActorManager()==0)
             { this->AddManager(new ActorManager()); }
+        if(this->GetAreaEffectManager()==0)
+            { this->AddManager(new AreaEffectManager()); }
         if(this->GetResourceManager()==0)
             { this->AddManager(new ResourceManager(EngineDataPath)); }
         if(this->GetGraphicsManager()==0)
@@ -696,7 +698,6 @@ namespace Mezzanine
              20 Resources
         */
 
-        Ogre::Timer* ManagerTimer = new Ogre::Timer();
         Ogre::Timer* FrameTimer = new Ogre::Timer();
         this->OneTimeMainLoopInit();
         //As long as all the CallBacks return true the game continues
@@ -706,7 +707,7 @@ namespace Mezzanine
             #ifdef MEZZDEBUG
             static UInt32 FrameCounter = 0;
             StringStream FrameStream;
-            FrameStream << "-------------------------- Starting DAG Part of Frame: " << FrameCounter << " --------------------------";
+            FrameStream << "-------------------------- Starting Frame: " << FrameCounter << " --------------------------";
             this->Log(FrameStream.str());
             this->DoMainLoopLogging();
             #endif
@@ -717,76 +718,22 @@ namespace Mezzanine
             WorkScheduler.RunMainThreadWork();//3
             WorkScheduler.JoinAllThreads();   //4
             WorkScheduler.ResetAllWorkUnits();//5
-
-            #ifdef MEZZDEBUG
-            FrameStream.str("");
-            FrameStream << "-------------------------- Starting Legacy Part of Frame: " << FrameCounter << " --------------------------";
-            this->Log(FrameStream.str());
-            this->DoMainLoopLogging();
-            FrameStream.str("");
-            #endif
-            for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
-            {
-                #ifdef MEZZDEBUG
-                StringStream ManagerStream;
-                ManagerStream << "Current Manager: " << (*Iter)->GetInterfaceTypeAsString() << " - Priority: " << (*Iter)->GetPriority();
-                #endif
-
-                #ifdef MEZZDEBUG
-                ManagerTimer->reset();
-                #endif
-
-                //Actual main loop work
-                if( !(*Iter)->PreMainLoopItems() )
-                    { DoNotBreak = false; }
-
-                (*Iter)->DoMainLoopItems();
-
-                if( !(*Iter)->PostMainLoopItems() )
-                    { DoNotBreak = false; }
-
-                #ifdef MEZZDEBUG
-                ManagerStream << " - Execution Time: " << ManagerTimer->getMicroseconds() << " microseconds.";
-                this->Log(ManagerStream.str());
-                this->DoMainLoopLogging();
-                #endif
-
-                LogCommitFunc();
-            }
+            WorkScheduler.WaitUntilNextFrame(); //6
 
             #ifdef MEZZDEBUG
             FrameStream.str("");
             FrameStream << "-------------------------- Ending Frame: " << FrameCounter << ", After " << FrameTimer->getMicroseconds() << " microseconds --------------------------";
             this->Log(FrameStream.str());
             this->DoMainLoopLogging();
-            ++FrameCounter;
             #endif
-            if( ManualLoopBreak )
-                break;
-
-            /*//Do Time Calculations to Determine Rendering Time
-            Whole SleepTime = 0;
-            if( this->TargetFrameLength > FrameTimer->getMicroseconds() )
-                SleepTime = static_cast<Whole>( (this->TargetFrameLength - FrameTimer->getMicroseconds()) * 0.001 );
-
-            if( SleepTime > 0 )
-            {
-                #ifdef MEZZDEBUG
-                StringStream SleepStream;
-                SleepStream << "-------------------------- Sleeping for " << SleepTime << " milliseconds --------------------------";
-                this->Log(SleepStream.str());
-                this->DoMainLoopLogging();
-                #endif
-                crossplatform::WaitMilliseconds( SleepTime );
-            }//*/
-
-            WorkScheduler.WaitUntilNextFrame(); //6
 
             this->FrameTime = FrameTimer->getMicroseconds();
+
+            if( ManualLoopBreak )
+                break;
         }//End of main loop
 
         ManualLoopBreak = 0;
-        delete ManagerTimer;
         delete FrameTimer;
     }
 
@@ -847,137 +794,140 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Factory Management
-    ///////////////////////////////////////
+
     void Entresol::AddManagerFactory(ManagerFactory* ToBeAdded)
     {
-        ManagerFactories.insert(std::pair<String,ManagerFactory*>(ToBeAdded->GetManagerTypeName(),ToBeAdded));
+        this->ManagerFactories.insert(std::pair<String,ManagerFactory*>(ToBeAdded->GetManagerTypeName(),ToBeAdded));
     }
 
     void Entresol::RemoveManagerFactory(ManagerFactory* ToBeRemoved)
     {
-        RemoveManagerFactory(ToBeRemoved->GetManagerTypeName());
+        this->RemoveManagerFactory(ToBeRemoved->GetManagerTypeName());
     }
 
     void Entresol::RemoveManagerFactory(const String& ImplName)
     {
-        ManagerFactoryIterator ManIt = ManagerFactories.find(ImplName);
-        if( ManIt != ManagerFactories.end() )
+        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ImplName);
+        if( ManIt != this->ManagerFactories.end() )
         {
-            ManagerFactories.erase(ManIt);
+            this->ManagerFactories.erase(ManIt);
         }
     }
 
     void Entresol::DestroyManagerFactory(ManagerFactory* ToBeRemoved)
     {
-        DestroyManagerFactory(ToBeRemoved->GetManagerTypeName());
+        this->DestroyManagerFactory(ToBeRemoved->GetManagerTypeName());
     }
 
     void Entresol::DestroyManagerFactory(const String& ImplName)
     {
-        ManagerFactoryIterator ManIt = ManagerFactories.find(ImplName);
+        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ImplName);
         delete ManIt->second;
-        ManagerFactories.erase(ManIt);
+        this->ManagerFactories.erase(ManIt);
     }
 
     void Entresol::DestroyAllManagerFactories()
     {
-        for( ManagerFactoryIterator ManIt = ManagerFactories.begin() ; ManIt != ManagerFactories.end() ; ++ManIt )
+        for( ManagerFactoryIterator ManIt = this->ManagerFactories.begin() ; ManIt != this->ManagerFactories.end() ; ++ManIt )
         {
             delete (*ManIt).second;
         }
-        ManagerFactories.clear();
+        this->ManagerFactories.clear();
     }
 
     void Entresol::AddAllEngineDefaultManagerFactories()
     {
         ManagerFactoryIterator ManIt;
         //DefaultActorManager
-        ManIt = ManagerFactories.find("DefaultActorManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultActorManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultActorManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultActorManagerFactory());
+        //DefaultAreaEffectManager
+        ManIt = this->ManagerFactories.find("DefaultAreaEffectManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultAreaEffectManagerFactory());
         //DefaultCameraManager
-        ManIt = ManagerFactories.find("DefaultCameraManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultCameraManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultCameraManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultCameraManagerFactory());
         //DefaultCollisionShapeManager
-        ManIt = ManagerFactories.find("DefaultCollisionShapeManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultCollisionShapeManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultCollisionShapeManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultCollisionShapeManagerFactory());
         //DefaultEventManager
-        ManIt = ManagerFactories.find("DefaultEventManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultEventManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultEventManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultEventManagerFactory());
         //DefaultGraphicsManager
-        ManIt = ManagerFactories.find("DefaultGraphicsManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Graphics::DefaultGraphicsManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultGraphicsManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultGraphicsManagerFactory());
         //DefaultInputManager
-        ManIt = ManagerFactories.find("DefaultInputManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Input::DefaultInputManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultInputManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Input::DefaultInputManagerFactory());
         //DefaultMeshManager
-        ManIt = ManagerFactories.find("DefaultMeshManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultMeshManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultMeshManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultMeshManagerFactory());
         //DefaultNetworkManager
-        ManIt = ManagerFactories.find("DefaultNetworkManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultNetworkManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultNetworkManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultNetworkManagerFactory());
         //DefaultPhysicsManager
-        ManIt = ManagerFactories.find("DefaultPhysicsManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Physics::DefaultPhysicsManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultPhysicsManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Physics::DefaultPhysicsManagerFactory());
         //DefaultResourceManager
-        ManIt = ManagerFactories.find("DefaultResourceManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultResourceManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultResourceManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultResourceManagerFactory());
         //DefaultSceneManager
-        ManIt = ManagerFactories.find("DefaultSceneManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultSceneManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultSceneManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultSceneManagerFactory());
         //DefaultTerrainManager
-        ManIt = ManagerFactories.find("DefaultTerrainManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultTerrainManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultTerrainManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultTerrainManagerFactory());
         //DefaultUIManager
-        ManIt = ManagerFactories.find("DefaultUIManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new UI::DefaultUIManagerFactory());
+        ManIt = this->ManagerFactories.find("DefaultUIManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new UI::DefaultUIManagerFactory());
 
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
         //OALSAudioManager
-        ManIt = ManagerFactories.find("OALSAudioManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Audio::OALS::OALSAudioManagerFactory());
+        ManIt = this->ManagerFactories.find("OALSAudioManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Audio::OALS::OALSAudioManagerFactory());
         //OALSSoundScapeManager
-        ManIt = ManagerFactories.find("OALSSoundScapeManager");
-        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new Audio::OALS::OALSSoundScapeManagerFactory());
+        ManIt = this->ManagerFactories.find("OALSSoundScapeManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Audio::OALS::OALSSoundScapeManagerFactory());
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Upper Management
-    ///////////////////////////////////////
+
     ManagerBase* Entresol::CreateManager(const String& ManagerImplName, NameValuePairList& Params, bool AddToWorld)
     {
-        ManagerFactoryIterator ManIt = ManagerFactories.find(ManagerImplName);
-        if( ManIt == ManagerFactories.end() )
+        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
+        if( ManIt == this->ManagerFactories.end() )
         {
             MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
         ManagerBase* NewMan = (*ManIt).second->CreateManager(Params);
         if(AddToWorld)
-            AddManager(NewMan);
+            this->AddManager(NewMan);
         return NewMan;
     }
 
     ManagerBase* Entresol::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, bool AddToWorld)
     {
-        ManagerFactoryIterator ManIt = ManagerFactories.find(ManagerImplName);
-        if( ManIt == ManagerFactories.end() )
+        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
+        if( ManIt == this->ManagerFactories.end() )
         {
             MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
         ManagerBase* NewMan = (*ManIt).second->CreateManager(XMLNode);
         if(AddToWorld)
-            AddManager(NewMan);
+            this->AddManager(NewMan);
         return NewMan;
     }
 
     void Entresol::DestroyManager(ManagerBase* ToBeDestroyed)
     {
-        ManagerFactoryIterator ManIt = ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
+        ManagerFactoryIterator ManIt = this->ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
         if( ManIt == ManagerFactories.end() )
         {
             MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ToBeDestroyed->GetImplementationTypeName() + "\", which has no factory registered.");
         }
-        RemoveManager(ToBeDestroyed);
+        this->RemoveManager(ToBeDestroyed);
         (*ManIt).second->DestroyManager(ToBeDestroyed);
     }
 
@@ -992,9 +942,9 @@ namespace Mezzanine
             this->Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
             this->DoMainLoopLogging();
             #endif
-            DestroyManager(Current);
+            this->DestroyManager(Current);
         }
-        DoMainLoopLogging();
+        this->DoMainLoopLogging();
     }
 
     void Entresol::AddManager(ManagerBase* ManagerToAdd)
@@ -1003,189 +953,124 @@ namespace Mezzanine
         this->Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".");
         this->DoMainLoopLogging();
         #endif
-        if(!this->ManagerList.empty())
-        {
-            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
-            {
-                // Early escape in case we try to double add a manager to the list.
-                if( (*ManIter) == ManagerToAdd )
-                    return;
-                if( (*ManIter)->GetPriority() > ManagerToAdd->GetPriority() )
-                {
-                    this->ManagerList.insert(ManIter, ManagerToAdd);
-                    return;
-                }
-            }
-        }
-        ManagerList.push_back(ManagerToAdd);
+        this->ManagerList.push_back(ManagerToAdd);
     }
 
     void Entresol::RemoveManager(ManagerBase* ManagerToRemove)
     {
-        if(this->ManagerList.empty())
+        for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {
-            // do nothing
-        }else{
-            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            if( *ManIter == ManagerToRemove )
             {
-                if( *ManIter == ManagerToRemove )
+                this->ManagerList.erase(ManIter);
+                return;
+            }
+        }
+    }
+
+    void Entresol::RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, short unsigned int WhichOne)
+    {
+        for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+        {
+            if( (*ManIter)->GetInterfaceType() == ManagersToRemoveType )
+            {
+                if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
                 {
                     this->ManagerList.erase(ManIter);
-                    break;
+                    return;
+                }else{
+                    --WhichOne;
                 }
             }
         }
     }
 
-    void Entresol::RemoveManager(const ManagerBase::ManagerType& ManagersToRemoveType, short unsigned int WhichOne)
+    ManagerBase* Entresol::GetManager(const ManagerBase::ManagerType ManagersToGet, short unsigned int WhichOne)
     {
-        if(this->ManagerList.empty())
+        for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {
-            //do nothing
-        }else{
-            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            if( (*ManIter)->GetInterfaceType() == ManagersToGet )
             {
-                if( (*ManIter)->GetInterfaceType() == ManagersToRemoveType )
-                {
-                    if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
-                    {
-                        this->ManagerList.erase(ManIter);
-                    }else{
-                        --WhichOne;
-                    }
-                }
-            }
-        }
-    }
-
-    ManagerBase* Entresol::GetManager(const ManagerBase::ManagerType& ManagersToGet, short unsigned int WhichOne)
-    {
-        if(this->ManagerList.empty())
-        {
-            return NULL;
-        }else{
-            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
-            {
-                if( (*ManIter)->GetInterfaceType() == ManagersToGet )
-                {
-                    if(0==WhichOne) return *ManIter; // we use our copy of WhichOne as a countdown to 0
-                    else --WhichOne;
-                }
+                if( 0 == WhichOne ) return *ManIter; // we use our copy of WhichOne as a countdown to 0
+                else --WhichOne;
             }
         }
         return NULL;
     }
 
-    void Entresol::UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority_)
-    {
-        ManagerToChange->SetPriority(Priority_);
-        if(this->ManagerList.empty())
-        {
-            ManagerList.push_back(ManagerToChange);
-        }else{
-            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
-            {
-                if(*ManIter == ManagerToChange )
-                {
-                    this->ManagerList.erase(ManIter);
-                    ManIter = ManagerList.begin();
-                }
-            }
-            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
-            {
-                if( (*ManIter)->GetPriority() > ManagerToChange->GetPriority() )
-                {
-                    this->ManagerList.insert(ManIter,ManagerToChange);
-                }
-            }
-            //std::sort(>ManagerList.begin(),ManIter!=this->ManagerList.end(), )
-
-        }
-    }
-
-    void Entresol::UpdateManagerOrder()
-    {
-        if(this->ManagerList.empty())
-        {
-            //do nothing
-        }else{
-            std::list< ManagerBase* > temp; //(this->ManagerList.begin(),this->ManagerList.end());
-            temp.swap(this->ManagerList);
-            for(std::list< ManagerBase* >::iterator TempIter = temp.begin(); TempIter!=temp.end(); ++TempIter )
-            {
-                this->AddManager(*TempIter);
-            }
-        }
-    }
-
     ActorManager* Entresol::GetActorManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<ActorManager*> (this->GetManager(ManagerBase::ActorManager, WhichOne));
+        return dynamic_cast<ActorManager*>( this->GetManager(ManagerBase::ActorManager, WhichOne) );
+    }
+
+    AreaEffectManager* Entresol::GetAreaEffectManager(const UInt16 WhichOne)
+    {
+        return dynamic_cast<AreaEffectManager*>( this->GetManager(ManagerBase::AreaEffectManager, WhichOne) );
     }
 
     Audio::AudioManager* Entresol::GetAudioManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<Audio::AudioManager*> (this->GetManager(ManagerBase::AudioManager, WhichOne));
+        return dynamic_cast<Audio::AudioManager*>( this->GetManager(ManagerBase::AudioManager, WhichOne) );
     }
 
     CameraManager* Entresol::GetCameraManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<CameraManager*> (this->GetManager(ManagerBase::CameraManager, WhichOne));
+        return dynamic_cast<CameraManager*>( this->GetManager(ManagerBase::CameraManager, WhichOne) );
     }
 
     CollisionShapeManager* Entresol::GetCollisionShapeManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<CollisionShapeManager*> (this->GetManager(ManagerBase::CollisionShapeManager, WhichOne));
+        return dynamic_cast<CollisionShapeManager*>( this->GetManager(ManagerBase::CollisionShapeManager, WhichOne) );
     }
 
     EventManager* Entresol::GetEventManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<EventManager*> (this->GetManager(ManagerBase::EventManager, WhichOne));
+        return dynamic_cast<EventManager*>( this->GetManager(ManagerBase::EventManager, WhichOne) );
     }
 
     Graphics::GraphicsManager* Entresol::GetGraphicsManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<Graphics::GraphicsManager*> (this->GetManager(ManagerBase::GraphicsManager, WhichOne));
+        return dynamic_cast<Graphics::GraphicsManager*>( this->GetManager(ManagerBase::GraphicsManager, WhichOne) );
     }
 
     Input::InputManager* Entresol::GetInputManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<Input::InputManager*> (this->GetManager(ManagerBase::InputManager, WhichOne));
+        return dynamic_cast<Input::InputManager*>( this->GetManager(ManagerBase::InputManager, WhichOne) );
     }
 
     MeshManager* Entresol::GetMeshManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<MeshManager*> (this->GetManager(ManagerBase::MeshManager, WhichOne));
+        return dynamic_cast<MeshManager*>( this->GetManager(ManagerBase::MeshManager, WhichOne) );
     }
     #ifdef MEZZNETWORK
     NetworkManager* Entresol::GetNetworkManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<NetworkManager*> (this->GetManager(ManagerBase::NetworkManager, WhichOne));
+        return dynamic_cast<NetworkManager*>( this->GetManager(ManagerBase::NetworkManager, WhichOne) );
     }
     #endif
     Physics::PhysicsManager* Entresol::GetPhysicsManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<Physics::PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));
+        return dynamic_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::PhysicsManager, WhichOne) );
     }
 
     SceneManager* Entresol::GetSceneManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<SceneManager*> (this->GetManager(ManagerBase::SceneManager, WhichOne));
+        return dynamic_cast<SceneManager*>( this->GetManager(ManagerBase::SceneManager, WhichOne) );
     }
 
     Audio::SoundScapeManager* Entresol::GetSoundScapeManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<Audio::SoundScapeManager*> (this->GetManager(ManagerBase::SoundScapeManager, WhichOne));
+        return dynamic_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::SoundScapeManager, WhichOne) );
     }
 
     ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<ResourceManager*> (this->GetManager(ManagerBase::ResourceManager, WhichOne));
+        return dynamic_cast<ResourceManager*>( this->GetManager(ManagerBase::ResourceManager, WhichOne) );
     }
 
     UI::UIManager* Entresol::GetUIManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<UI::UIManager*> (this->GetManager(ManagerBase::UIManager, WhichOne));
+        return dynamic_cast<UI::UIManager*>( this->GetManager(ManagerBase::UIManager, WhichOne) );
     }
 
 }
