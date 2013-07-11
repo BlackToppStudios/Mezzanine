@@ -88,6 +88,47 @@ class PausesWorkUnit : public DefaultWorkUnit
         }
 };
 
+/// @brief a monopoly version of the pausing workunit
+class PauseMonopoly : public MonopolyWorkUnit
+{
+    public:
+        /// @brief How many milliseconds should this thread block for.
+        Mezzanine::Whole Length;
+
+        /// @brief Name used for clarifying output and enhancing logging.
+        Mezzanine::String Name;
+
+        /// @brief Create one of these workunit
+        /// @param Length_ Defaults to 50 and is the number of Milliseconds to wait
+        /// @param Name Defaults to "Default" only used in output logs
+        PauseMonopoly(Mezzanine::Whole Length_ = 50, Mezzanine::String Name_ = "Default")
+            : Length(Length_), Name(Name_)
+            { }
+
+        /// @brief Virtual Deconstructor
+        virtual ~PauseMonopoly()
+            {}
+
+        /// @brief Swallows whatever value is passed
+        virtual void UseThreads(const Whole&)
+            {}
+
+        /// @brief Sleeping does not require any extra threads.
+        /// @return 1
+        virtual Whole UsingThreadCount()
+            { return 1; }
+
+        /// @brief Wait and log it.
+        /// @param CurrentThreadStorage used to retrieve a valid logger.
+        /// @brief CurrentFrameScheduler ignored
+        virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            DoubleBufferedLogger& CurrentLogger = CurrentThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger);
+            CurrentLogger.GetUsable() << "<Pause PauseLength=\"" << Length << "\" WorkUnitName=\"" << Name << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << endl;
+            Mezzanine::Threading::this_thread::sleep_for(Length);
+        }
+};
+
 /// @brief Used in @ref ThreadRestart
 class RestartMetric
 {
@@ -234,10 +275,10 @@ class frameschedulertests : public UnitTestGroup
                 WorkUnitK4->AddDependency(WorkUnitK3);
                 WorkUnitK3->AddDependency(WorkUnitK2);
                 WorkUnitK2->AddDependency(WorkUnitK1);
-                SchedulingTest1.AddWorkUnit(WorkUnitK1); // no deletes required the Scheduler takes ownership
-                SchedulingTest1.AddWorkUnit(WorkUnitK2);
-                SchedulingTest1.AddWorkUnit(WorkUnitK3);
-                SchedulingTest1.AddWorkUnit(WorkUnitK4);
+                SchedulingTest1.AddWorkUnitMain(WorkUnitK1); // no deletes required the Scheduler takes ownership
+                SchedulingTest1.AddWorkUnitMain(WorkUnitK2);
+                SchedulingTest1.AddWorkUnitMain(WorkUnitK3);
+                SchedulingTest1.AddWorkUnitMain(WorkUnitK4);
                 SchedulingTest1.SortWorkUnitsMain();
 
                 iWorkUnit* Counter = SchedulingTest1.GetNextWorkUnit();
@@ -289,9 +330,9 @@ class frameschedulertests : public UnitTestGroup
                     FiftyThousand->operator()(Storage2);
                     //FiveHundredThousand->operator()(Storage2,SchedulingTest2);
                 }
-                SchedulingTest2.AddWorkUnit(FiveHundred);
-                SchedulingTest2.AddWorkUnit(FiftyThousand);
-                SchedulingTest2.AddWorkUnit(FiveThousand);
+                SchedulingTest2.AddWorkUnitMain(FiveHundred);
+                SchedulingTest2.AddWorkUnitMain(FiftyThousand);
+                SchedulingTest2.AddWorkUnitMain(FiveThousand);
                 //SchedulingTest2.AddWorkUnit(FiveHundredThousand);
 
                 cout << "FiveHundred-ms   : " << FiveHundred->GetPerformanceLog().GetAverage() << endl;
@@ -358,10 +399,10 @@ class frameschedulertests : public UnitTestGroup
                 LogBufferSwapper Swapper2;
                 LogAggregator Agg2;
                 DefaultThreadSpecificStorage::Type SwapResource2(&ThreadCreationTest1);
-                ThreadCreationTest1.AddWorkUnit(WorkUnitR1);
-                ThreadCreationTest1.AddWorkUnit(WorkUnitR2);
-                ThreadCreationTest1.AddWorkUnit(WorkUnitR3);
-                ThreadCreationTest1.AddWorkUnit(WorkUnitR4);
+                ThreadCreationTest1.AddWorkUnitMain(WorkUnitR1);
+                ThreadCreationTest1.AddWorkUnitMain(WorkUnitR2);
+                ThreadCreationTest1.AddWorkUnitMain(WorkUnitR3);
+                ThreadCreationTest1.AddWorkUnitMain(WorkUnitR4);
 
                 cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
                 cout << "Running One Frame." << endl;
@@ -415,7 +456,7 @@ class frameschedulertests : public UnitTestGroup
                 cout << endl << "Leaving thread count alone and adding " << Work << " WorkUnits to the test scheduler" << endl;
                 cout << "Running One Frame." << endl;
                 for (Whole Counter=0; Counter<Work; ++Counter)
-                    { ThreadCreationTest1.AddWorkUnit( new PiMakerWorkUnit(50000,"Dyn"+ToString(Counter),false) ); }
+                    { ThreadCreationTest1.AddWorkUnitMain( new PiMakerWorkUnit(50000,"Dyn"+ToString(Counter),false) ); }
                 ThreadCreationTest1.DoOneFrame();
                 Swapper2(SwapResource2);
                 Agg2(SwapResource2);
@@ -470,9 +511,9 @@ class frameschedulertests : public UnitTestGroup
                 LogBufferSwapper Swapper3;
                 LogAggregator Agg3;
                 DefaultThreadSpecificStorage::Type SwapResource3(&RestartScheduler1);
-                RestartScheduler1.AddWorkUnit(RestartA);
-                RestartScheduler1.AddWorkUnit(RestartB);
-                RestartScheduler1.AddWorkUnit(RestartC);
+                RestartScheduler1.AddWorkUnitMain(RestartA);
+                RestartScheduler1.AddWorkUnitMain(RestartB);
+                RestartScheduler1.AddWorkUnitMain(RestartC);
                 RestartScheduler1.SortWorkUnitsMain();
                 RestartScheduler1.DoOneFrame();
                 Swapper3(SwapResource3);
@@ -612,11 +653,11 @@ class frameschedulertests : public UnitTestGroup
                 LogBufferSwapper Swapper1;
                 LogAggregator Agg1;
                 DefaultThreadSpecificStorage::Type SwapResource(&Scheduler1);
-                Scheduler1.AddWorkUnit(AffinityA);
-                Scheduler1.AddWorkUnit(AffinityB);
+                Scheduler1.AddWorkUnitMain(AffinityA);
+                Scheduler1.AddWorkUnitMain(AffinityB);
                 Scheduler1.AddWorkUnitAffinity(AffinityAffinity);
-                Scheduler1.AddWorkUnit(AffinityC);
-                Scheduler1.AddWorkUnit(AffinityD);
+                Scheduler1.AddWorkUnitMain(AffinityC);
+                Scheduler1.AddWorkUnitMain(AffinityD);
                 Scheduler1.SortWorkUnitsMain();
                 Scheduler1.DoOneFrame();
                 Swapper1(SwapResource);
@@ -663,16 +704,16 @@ class frameschedulertests : public UnitTestGroup
                 EraseB->AddDependency(EraseA);
 
                 cout << "Stuffing all 6 into a test frame scheduler and preparing it for a run" << endl;
-                RemovalScheduler.AddWorkUnit(EraseA);
-                RemovalScheduler.AddWorkUnit(EraseB);
-                RemovalScheduler.AddWorkUnit(EraseC);
-                RemovalScheduler.AddWorkUnit(EraseD);
-                RemovalScheduler.AddWorkUnit(EraseE);
-                RemovalScheduler.AddWorkUnit(EraseF);
+                RemovalScheduler.AddWorkUnitMain(EraseA);
+                RemovalScheduler.AddWorkUnitMain(EraseB);
+                RemovalScheduler.AddWorkUnitMain(EraseC);
+                RemovalScheduler.AddWorkUnitMain(EraseD);
+                RemovalScheduler.AddWorkUnitMain(EraseE);
+                RemovalScheduler.AddWorkUnitMain(EraseF);
 
                 RemovalScheduler.SortWorkUnitsMain();
 
-                cout << "Checking the order of the workunits (Should be \"A B C D E F\" or \"A B C D F E\"): ";
+                cout << "Checking the order of the workunits (Should be \"A B C D E F NULL\" or \"A B C D F E NULL\"): ";
                 Whole PrepCount = 0;
 
                 PausesWorkUnit* Next;
@@ -698,12 +739,17 @@ class frameschedulertests : public UnitTestGroup
                 PausesWorkUnit* OtherEF = Next;
                 if(Next->Name=="E" || Next->Name=="F") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " " << endl; //E or F Whichever was not EitherOr
+                cout << Next->Name << " "; //E or F Whichever was not EitherOr
                 Next->operator() (RemovalResource);
                 if( (Next->Name=="E" || Next->Name=="F") && OtherEF!= Next) { PrepCount++; }
-                Test((6==PrepCount),"DAGFrameScheduler::FrameScheduler::Erase::OrderingPreTest");
+                if(RemovalScheduler.GetNextWorkUnit())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test((7==PrepCount),"DAGFrameScheduler::FrameScheduler::RemoveMain::OrderingPreTest");
 
-                cout << endl << "Removing F from Scheduler then resorting and resetting it (New order should be \"A B C D E\"): ";
+                cout << endl << "Removing F from Scheduler then resorting and resetting it (New order should be \"A B C D E NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.RemoveWorkUnitMain(EraseF);
                 RemovalScheduler.SortWorkUnitsMain();
@@ -725,18 +771,276 @@ class frameschedulertests : public UnitTestGroup
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " " << endl; //E
+                cout << Next->Name << " "; //E
                 Next->operator() (RemovalResource);
                 if(Next->Name=="E") { PrepCount++; }
-                Test(5==PrepCount, "DAGFrameScheduler::FrameScheduler::Erase::Simple");
+                if(RemovalScheduler.GetNextWorkUnit())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(6==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::Simple");
 
+                cout << endl << "Removing E from Scheduler then resorting and resetting it (New order should be \"A B C D NULL\"): ";
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.RemoveWorkUnitMain(EraseE);
+                RemovalScheduler.SortWorkUnitsMain();
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
+                cout << Next->Name << " "; //A
+                Next->operator() (RemovalResource);
+                if(Next->Name=="A") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
+                cout << Next->Name << " "; //B
+                Next->operator() (RemovalResource);
+                if(Next->Name=="B") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
+                cout << Next->Name << " "; //C
+                Next->operator() (RemovalResource);
+                if(Next->Name=="C") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
+                cout << Next->Name << " "; //D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="D") { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnit())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(5==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::WithDep");
 
+                cout << endl << "Removing A from Scheduler then resorting and resetting it (New order should be \"B C D NULL\"): ";
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.RemoveWorkUnitMain(EraseA);
+                RemovalScheduler.SortWorkUnitsMain();
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
+                cout << Next->Name << " "; //B
+                Next->operator() (RemovalResource);
+                if(Next->Name=="B") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
+                cout << Next->Name << " "; //C
+                Next->operator() (RemovalResource);
+                if(Next->Name=="C") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
+                cout << Next->Name << " "; //D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="D") { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnit())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(4==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::AsDep");
 
+                cout << endl << "Removing C from Scheduler then resorting and resetting it (New order should be \"B D NULL\" or \"D B NULL\"): ";
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.RemoveWorkUnitMain(EraseC);
+                RemovalScheduler.SortWorkUnitsMain();
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
+                PausesWorkUnit* BorD = Next;
+                cout << Next->Name << " "; //B or D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="B"||Next->Name=="D") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
+                cout << Next->Name << " "; // The other
+                Next->operator() (RemovalResource);
+                if( (Next->Name=="B"||Next->Name=="D") && Next!=BorD) { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnit())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(3==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::WithAndAsDep");
 
+                delete EraseA; delete EraseC; delete EraseE; delete EraseF;
             }else{
-                AddTestResult("DAGFrameScheduler::FrameScheduler::Erase::OrderingPreTest", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::Erase::Simple", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::OrderingPreTest", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::Simple", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::WithDep", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::AsDep", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::WithAndAsDep", Testing::Skipped);
             }
+
+            if(RunAutomaticTests)
+            {
+                stringstream LogCache;
+                FrameScheduler RemovalScheduler(&LogCache,1);
+                ThreadSpecificStorage RemovalResource(&RemovalScheduler);
+
+                cout << endl << "Creating 5 workunits each depending on the next: A -> B -> C -> D -> E" << endl
+                     << "And a 6th that has no dependency relations: F" << endl;
+                PausesWorkUnit *EraseA = new PausesWorkUnit(10,"A");
+                PausesWorkUnit *EraseB = new PausesWorkUnit(10,"B");
+                PausesWorkUnit *EraseC = new PausesWorkUnit(10,"C");
+                PausesWorkUnit *EraseD = new PausesWorkUnit(10,"D");
+                PausesWorkUnit *EraseE = new PausesWorkUnit(10,"E");
+                PausesWorkUnit *EraseF = new PausesWorkUnit(10,"F");
+                EraseE->AddDependency(EraseD);
+                EraseD->AddDependency(EraseC);
+                EraseC->AddDependency(EraseB);
+                EraseB->AddDependency(EraseA);
+
+                cout << "Stuffing all 6 into a test frame scheduler as affinity workunit and preparing it for a run" << endl;
+                RemovalScheduler.AddWorkUnitAffinity(EraseA);
+                RemovalScheduler.AddWorkUnitAffinity(EraseB);
+                RemovalScheduler.AddWorkUnitAffinity(EraseC);
+                RemovalScheduler.AddWorkUnitAffinity(EraseD);
+                RemovalScheduler.AddWorkUnitAffinity(EraseE);
+                RemovalScheduler.AddWorkUnitAffinity(EraseF);
+
+                RemovalScheduler.SortWorkUnitsAffinity();
+
+                cout << "Checking the order of the workunits (Should be \"A B C D E F NULL\" or \"A B C D F E NULL\"): ";
+                Whole PrepCount = 0;
+
+                PausesWorkUnit* Next;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //A
+                Next->operator() (RemovalResource);
+                if(Next->Name=="A") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //B
+                Next->operator() (RemovalResource);
+                if(Next->Name=="B") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //C
+                Next->operator() (RemovalResource);
+                if(Next->Name=="C") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="D") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //E or F
+                Next->operator() (RemovalResource);
+                PausesWorkUnit* OtherEF = Next;
+                if(Next->Name=="E" || Next->Name=="F") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //E or F Whichever was not EitherOr
+                Next->operator() (RemovalResource);
+                if( (Next->Name=="E" || Next->Name=="F") && OtherEF!= Next) { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnitAffinity())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test((7==PrepCount),"DAGFrameScheduler::FrameScheduler::RemoveAffinity::OrderingPreTest");
+
+                cout << endl << "Removing F from Scheduler then resorting and resetting it (New order should be \"A B C D E NULL\"): ";
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.RemoveWorkUnitAffinity(EraseF);
+                RemovalScheduler.SortWorkUnitsAffinity();
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //A
+                Next->operator() (RemovalResource);
+                if(Next->Name=="A") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //B
+                Next->operator() (RemovalResource);
+                if(Next->Name=="B") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //C
+                Next->operator() (RemovalResource);
+                if(Next->Name=="C") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="D") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //E
+                Next->operator() (RemovalResource);
+                if(Next->Name=="E") { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnitAffinity())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(6==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::Simple");
+
+                cout << endl << "Removing E from Scheduler then resorting and resetting it (New order should be \"A B C D NULL\"): ";
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.RemoveWorkUnitAffinity(EraseE);
+                RemovalScheduler.SortWorkUnitsAffinity();
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //A
+                Next->operator() (RemovalResource);
+                if(Next->Name=="A") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //B
+                Next->operator() (RemovalResource);
+                if(Next->Name=="B") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //C
+                Next->operator() (RemovalResource);
+                if(Next->Name=="C") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="D") { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnitAffinity())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(5==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithDep");
+
+                cout << endl << "Removing A from Scheduler then resorting and resetting it (New order should be \"B C D NULL\"): ";
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.RemoveWorkUnitAffinity(EraseA);
+                RemovalScheduler.SortWorkUnitsAffinity();
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //B
+                Next->operator() (RemovalResource);
+                if(Next->Name=="B") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //C
+                Next->operator() (RemovalResource);
+                if(Next->Name=="C") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="D") { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnitAffinity())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(4==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::AsDep");
+
+                cout << endl << "Removing C from Scheduler then resorting and resetting it (New order should be \"B D NULL\" or \"D B NULL\"): ";
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.RemoveWorkUnitAffinity(EraseC);
+                RemovalScheduler.SortWorkUnitsAffinity();
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                PausesWorkUnit* BorD = Next;
+                cout << Next->Name << " "; //B or D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="B"||Next->Name=="D") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; // The other
+                Next->operator() (RemovalResource);
+                if( (Next->Name=="B"||Next->Name=="D") && Next!=BorD) { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnitAffinity())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(3==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithAndAsDep");
+            }else{
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::OrderingPreTest", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::Simple", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithDep", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::AsDep", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithAndAsDep", Testing::Skipped);
+            }
+
+
 
 
         }

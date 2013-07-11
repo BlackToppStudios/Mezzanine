@@ -91,15 +91,21 @@ namespace Mezzanine
                 std::vector<WorkUnitKey> WorkUnitsMain;
 
                 /// @brief An iterator suitable for iterating over the main pool of work units.
-                typedef std::vector<WorkUnitKey>::iterator MainIterator;
+                typedef std::vector<WorkUnitKey>::iterator IteratorMain;
 
                 /// @brief A const iterator suitable for iterating over the main pool of work units.
-                typedef std::vector<WorkUnitKey>::const_iterator MainConstIterator;
+                typedef std::vector<WorkUnitKey>::const_iterator ConstIteratorMain;
 
                 /// @brief A collection of @ref Mezzanine::Threading::iWorkUnit "iWorkUnit"s that must be run on the main thread.
                 /// @details This is very similar to @ref WorkUnitsMain except that the @ref Mezzanine::Threading::iWorkUnit "iWorkUnit"s
                 /// are only run in the main thread and are sorted by calls to @ref SortWorkUnitsAll or @ref SortWorkUnitsAffinity .
                 std::vector<WorkUnitKey> WorkUnitsAffinity;
+
+                /// @brief An iterator suitable for iterating over the main pool of work units.
+                typedef std::vector<WorkUnitKey>::iterator IteratorAffinity;
+
+                /// @brief A const iterator suitable for iterating over the main pool of work units.
+                typedef std::vector<WorkUnitKey>::const_iterator ConstIteratorAffinity;
 
                 /// @brief A structure designed to minimalistically represent Dependency and Reverse Dependency Graphs in work units.
                 typedef std::map<
@@ -224,7 +230,7 @@ namespace Mezzanine
 			
                 /// @brief Add a normal @ref iWorkUnit to this For fcheduling.
                 /// @param MoreWork A pointer the the WorkUnit, that the FrameScheduler will take ownership of, and schedule for work.
-                virtual void AddWorkUnit(iWorkUnit* MoreWork);
+                virtual void AddWorkUnitMain(iWorkUnit* MoreWork);
 
                 /// @brief Add a normal @ref iWorkUnit to this For scheduling.
                 /// @param MoreWork A pointer the the WorkUnit, that the FrameScheduler will take ownership of, and schedule for work.
@@ -284,7 +290,7 @@ namespace Mezzanine
                 /// @return A pointer to the WorkUnit that could be executed or a null pointer if that could not be acquired. This does not give ownership of that WorkUnit.
                 virtual iWorkUnit* GetNextWorkUnit();
 
-                /// @brief Just like @ref GetNextWorkUnit except that it searchs through and prioritizes work units with affinity.
+                /// @brief Just like @ref GetNextWorkUnit except that it also searches through and prioritizes work units with affinity too.
                 /// @return A pointer to the WorkUnit that could be executed *in the main thread* or a null pointer if that could not be acquired. This does not give ownership of that WorkUnit.
                 virtual iWorkUnit* GetNextWorkUnitAffinity();
 

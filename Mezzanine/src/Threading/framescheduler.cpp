@@ -221,7 +221,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // WorkUnit management
-        void FrameScheduler::AddWorkUnit(iWorkUnit* MoreWork)
+        void FrameScheduler::AddWorkUnitMain(iWorkUnit* MoreWork)
             { this->WorkUnitsMain.push_back(MoreWork->GetSortingKey(*this)); }
 
         void FrameScheduler::AddWorkUnitAffinity(iWorkUnit* MoreWork)
@@ -290,27 +290,52 @@ namespace Mezzanine
         {
             if(WorkUnitsMain.size())
             {
-                MainIterator RemovalTarget = WorkUnitsMain.end();
-                for(MainIterator Iter = WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); Iter++)
+                IteratorMain RemovalTarget = WorkUnitsMain.end();
+                for(IteratorMain Iter = WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); Iter++)
                 {
                     if(Iter->Unit == LessWork)
                     {
                         if(Iter+1 == WorkUnitsMain.end())   // once we find it, push it to the back linearly.
                             { RemovalTarget = Iter;}        // This way we can erase from the back where it is cheap
                         else                                // to do soand still make just on pass through the list
-                        {
-                            std::swap (*Iter,*(Iter+1));
-                        }
+                            { std::swap (*Iter,*(Iter+1)); }
                     }
                     Iter->Unit->RemoveDependency(LessWork); // This has a ton of cache miss potential I am curious what it benchmarks like?!
                 }
                 if(RemovalTarget!=WorkUnitsMain.end())
                     { WorkUnitsMain.erase(RemovalTarget); }
             }
+            if(WorkUnitsAffinity.size())
+            {
+                for(IteratorAffinity Iter = WorkUnitsAffinity.begin(); Iter!=WorkUnitsAffinity.end(); Iter++)
+                    { Iter->Unit->RemoveDependency(LessWork); }
+            }
         }
 
         void FrameScheduler::RemoveWorkUnitAffinity(iWorkUnit* LessWork)
         {
+            if(WorkUnitsAffinity.size())
+            {
+                IteratorAffinity RemovalTarget = WorkUnitsMain.end();
+                for(IteratorAffinity Iter = WorkUnitsAffinity.begin(); Iter!=WorkUnitsAffinity.end(); Iter++)
+                {
+                    if(Iter->Unit == LessWork)
+                    {
+                        if(Iter+1 == WorkUnitsAffinity.end())
+                            { RemovalTarget = Iter;}
+                        else
+                            { std::swap (*Iter,*(Iter+1)); }
+                    }
+                    Iter->Unit->RemoveDependency(LessWork);
+                }
+                if(RemovalTarget!=WorkUnitsAffinity.end())
+                    { WorkUnitsAffinity.erase(RemovalTarget); }
+            }
+            if(WorkUnitsMain.size())
+            {
+                for(IteratorMain Iter = WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); Iter++)
+                    { Iter->Unit->RemoveDependency(LessWork); }
+            }
         }
 
         void FrameScheduler::RemoveWorkUnitMonopoly(MonopolyWorkUnit* LessWork)

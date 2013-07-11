@@ -754,20 +754,20 @@ int CatchApp::GetCatchin()
     // WorkUnit configuration
     this->PreInputWork = new CatchPreInputWorkUnit(this);
     this->TheEntresol->GetEventManager()->GetEventWorkUnit()->AddDependency( this->PreInputWork );
-    this->TheEntresol->GetScheduler().AddWorkUnit( this->PreInputWork );
+    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PreInputWork );
 
     this->PostInputWork = new CatchPostInputWorkUnit(this);
     this->PostInputWork->AddDependency( this->TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
-    this->TheEntresol->GetScheduler().AddWorkUnit( this->PostInputWork );
+    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostInputWork );
 
     this->PostUIWork = new CatchPostUIWorkUnit(this);
     this->PostUIWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
-    this->TheEntresol->GetScheduler().AddWorkUnit( this->PostUIWork );
+    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostUIWork );
 
     this->PostGraphicsWork = new CatchPostGraphicsWorkUnit(this);
     this->PostGraphicsWork->AddDependency( this->TheEntresol->GetGraphicsManager()->GetRenderWork() );
     this->PostGraphicsWork->AddDependency( this->TheEntresol->GetPhysicsManager()->GetAreaEffectUpdateWork() );
-    this->TheEntresol->GetScheduler().AddWorkUnit( this->PostGraphicsWork );
+    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostGraphicsWork );
 
     // Initialize the managers.
 	this->TheEntresol->EngineInit(false);

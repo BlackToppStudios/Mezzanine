@@ -686,7 +686,7 @@ namespace Mezzanine
     //Inherited From ManagerBase
     void EventManager::Initialize()
     {
-        TheEntresol->GetScheduler().AddWorkUnit(_Data->EventWork);
+        TheEntresol->GetScheduler().AddWorkUnitMain(_Data->EventWork);
         Initialized = true;
     }
 

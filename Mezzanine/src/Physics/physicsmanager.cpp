@@ -1268,7 +1268,7 @@ namespace Mezzanine
             if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                 this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
             }else{
-                this->TheEntresol->GetScheduler().AddWorkUnit( this->SimulationWork );
+                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->SimulationWork );
             }
             Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
             if( GraphicsMan )
@@ -1283,13 +1283,13 @@ namespace Mezzanine
                 this->DebugDrawWork->AddDependency( ActorMan->GetActorUpdateWork() );
 
             // World Trigger Update work configuration
-            this->TheEntresol->GetScheduler().AddWorkUnit( this->WorldTriggerUpdateWork );
+            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WorldTriggerUpdateWork );
             this->WorldTriggerUpdateWork->AddDependency( this->SimulationWork );
             if( ActorMan )
                 this->WorldTriggerUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
 
             // Area Effect Update work configuration
-            this->TheEntresol->GetScheduler().AddWorkUnit( this->AreaEffectUpdateWork );
+            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AreaEffectUpdateWork );
             this->AreaEffectUpdateWork->AddDependency( this->SimulationWork );
             this->AreaEffectUpdateWork->AddDependency( this->DebugDrawWork );
             if( ActorMan )

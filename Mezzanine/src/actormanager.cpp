@@ -203,7 +203,7 @@ namespace Mezzanine
     {
         if( !this->Initialized )
         {
-            this->TheEntresol->GetScheduler().AddWorkUnit( this->ActorUpdateWork );
+            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->ActorUpdateWork );
             Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
             if( PhysicsMan ) {
                 this->ActorUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
