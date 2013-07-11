@@ -46,29 +46,39 @@
 
 namespace Mezzanine
 {
-    template<> NetworkManager* Singleton<NetworkManager>::SingletonPtr = 0;
+    template<> NetworkManager* Singleton<NetworkManager>::SingletonPtr = NULL;
 
     NetworkManager::NetworkManager()
     {
-        this->Priority = 65;
     }
 
     NetworkManager::NetworkManager(XML::Node& XMLNode)
     {
-        this->Priority = 65;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 
     NetworkManager::~NetworkManager()
     {
-
+        this->Deinitialize();
     }
 
-    void NetworkManager::Initialize()
-        { Initialized = true; }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Sockets Management
 
-    void NetworkManager::DoMainLoopItems()
-        {}
+    ///////////////////////////////////////////////////////////////////////////////
+    // Network Utilities
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void NetworkManager::Initialize()
+        { this->Initialized = true; }
+
+    void NetworkManager::Deinitialize()
+        { this->Initialized = false; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Type Identifier Methods
 
     ManagerBase::ManagerType NetworkManager::GetInterfaceType() const
         { return ManagerBase::NetworkManager; }

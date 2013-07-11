@@ -58,36 +58,38 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB NetworkManager : public ManagerBase, public Singleton<NetworkManager>
     {
-        protected:
-            //std::map<unsigned short int,Socket*> Sockets;
-        public:
-            /// @brief Class constructor.
-            NetworkManager();
+    protected:
+        //std::map<unsigned short int,Socket*> Sockets;
+    public:
+        /// @brief Class constructor.
+        NetworkManager();
+        /// @brief XML constructor.
+        /// @param XMLNode The node of the xml document to construct from.
+        NetworkManager(XML::Node& XMLNode);
+        /// @brief Class destructor.
+        virtual ~NetworkManager();
 
-            /// @brief XML constructor.
-            /// @param XMLNode The node of the xml document to construct from.
-            NetworkManager(XML::Node& XMLNode);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Sockets Management
 
-            /// @brief Class destructor.
-            virtual ~NetworkManager();
+        ///////////////////////////////////////////////////////////////////////////////
+        // Network Utilities
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Sockets Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Network Utilities
+        /// @copydoc ManagerBase::Initialize()
+        virtual void Initialize();
+        /// @copydoc ManagerBase::Deinitialize()
+        virtual void Deinitialize();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            //Inherited from ManagerBase
+        ///////////////////////////////////////////////////////////////////////////////
+        // Type Identifier Methods
 
-            /// @copydoc ManagerBase::Initialize()
-            virtual void Initialize();
-            /// @copydoc ManagerBase::DoMainLoopItems()
-            virtual void DoMainLoopItems();
-            /// @copydoc ManagerBase::GetInterfaceType()
-            virtual ManagerType GetInterfaceType() const;
-            /// @copydoc ManagerBase::GetImplementationTypeName()
-            virtual String GetImplementationTypeName() const;
+        /// @copydoc ManagerBase::GetInterfaceType()
+        virtual ManagerType GetInterfaceType() const;
+        /// @copydoc ManagerBase::GetImplementationTypeName()
+        virtual String GetImplementationTypeName() const;
     };//NetworkManager
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -97,22 +99,21 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB DefaultNetworkManagerFactory : public ManagerFactory
     {
-        public:
-            /// @brief Class constructor.
-            DefaultNetworkManagerFactory();
-            /// @brief Class destructor.
-            virtual ~DefaultNetworkManagerFactory();
+    public:
+        /// @brief Class constructor.
+        DefaultNetworkManagerFactory();
+        /// @brief Class destructor.
+        virtual ~DefaultNetworkManagerFactory();
 
-            /// @copydoc ManagerFactory::GetManagerTypeName()
-            String GetManagerTypeName() const;
-            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
-            ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::GetManagerTypeName()
+        String GetManagerTypeName() const;
 
-            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
-            ManagerBase* CreateManager(XML::Node& XMLNode);
-
-            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
-            void DestroyManager(ManagerBase* ToBeDestroyed);
+        /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+        ManagerBase* CreateManager(NameValuePairList& Params);
+        /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+        ManagerBase* CreateManager(XML::Node& XMLNode);
+        /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+        void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultNetworkManagerFactory
 }//Mezzanine
 
