@@ -42,6 +42,7 @@
 
 #include "cameramanager.h"
 #include "scenemanager.h"
+#include "areaeffectmanager.h"
 #include "light.h"
 #include "entity.h"
 #include "entresol.h"
@@ -206,7 +207,6 @@ namespace Mezzanine
         TrackingNodeUpdateWork(NULL),
         ThreadResources(NULL)
     {
-        this->Priority = 30;
         this->SMD = new Internal::SceneManagerData(this);
         this->TrackingNodeUpdateWork = new TrackingNodeUpdateWorkUnit(this);
         this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(InternalManagerTypeName);
@@ -219,7 +219,6 @@ namespace Mezzanine
         TrackingNodeUpdateWork(NULL),
         ThreadResources(NULL)
     {
-        this->Priority = 30;
         this->SMD = new Internal::SceneManagerData(this);
         this->TrackingNodeUpdateWork = new TrackingNodeUpdateWorkUnit(this);
 
@@ -292,12 +291,13 @@ namespace Mezzanine
 
     SceneManager::~SceneManager()
     {
-        this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->TrackingNodeUpdateWork );
+        this->Deinitialize();
+
         delete TrackingNodeUpdateWork;
 
-        DestroyAllLights();
-        DestroyAllParticleEffects();
-        DestroyAllWorldNodes();
+        this->DestroyAllLights();
+        this->DestroyAllParticleEffects();
+        this->DestroyAllWorldNodes();
         delete SMD;
     }
 
@@ -755,26 +755,51 @@ namespace Mezzanine
     ConstString& SceneManager::GetName() const
         { return this->SMD->OgreManager->getName(); }
 
+    void SceneManager::Initialize()
+    {
+        if( !this->Initialized )
+        {
+            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->TrackingNodeUpdateWork );
+
+            Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
+            if( PhysicsMan ) {
+                this->TrackingNodeUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
+            }
+
+            Mezzanine::AreaEffectManager* AreaEffectMan = AreaEffectManager::GetSingletonPtr();
+            if( AreaEffectMan ) {
+                this->TrackingNodeUpdateWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+            }
+
+            this->Initialized = true;
+        }
+    }
+
+    void SceneManager::Deinitialize()
+    {
+        if( this->Initialized )
+        {
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->TrackingNodeUpdateWork );
+
+            Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
+            if( PhysicsMan ) {
+                this->TrackingNodeUpdateWork->RemoveDependency( PhysicsMan->GetSimulationWork() );
+            }
+
+            Mezzanine::AreaEffectManager* AreaEffectMan = AreaEffectManager::GetSingletonPtr();
+            if( AreaEffectMan ) {
+                this->TrackingNodeUpdateWork->RemoveDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+            }
+
+            this->Initialized = false;
+        }
+    }
+
     TrackingNodeUpdateWorkUnit* SceneManager::GetTrackingNodeUpdateWork()
         { return this->TrackingNodeUpdateWork; }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Inherited From ManagerBase
-
-    void SceneManager::Initialize()
-    {
-        this->TheEntresol->GetScheduler().AddWorkUnitMain( this->TrackingNodeUpdateWork );
-        Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
-        if( PhysicsMan ) {
-            this->TrackingNodeUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
-            this->TrackingNodeUpdateWork->AddDependency( PhysicsMan->GetAreaEffectUpdateWork() );
-        }
-
-        this->Initialized = true;
-    }
-
-    void SceneManager::DoMainLoopItems()
-        {  }
+    // Type Identifier Methods
 
     ManagerBase::ManagerType SceneManager::GetInterfaceType() const
         { return ManagerBase::SceneManager; }
