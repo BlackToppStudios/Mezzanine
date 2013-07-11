@@ -99,7 +99,6 @@ namespace Mezzanine
                 BufferUpdate3DWork(NULL),
                 ThreadResources(NULL)
             {
-                this->Priority = 54; // Immediately before the AudioManager
                 this->BufferUpdate3DWork = new BufferUpdate3DWorkUnit(this);
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
                 AudioMan->_RegisterSoundScapeManager(this);
@@ -114,7 +113,6 @@ namespace Mezzanine
                 BufferUpdate3DWork(NULL),
                 ThreadResources(NULL)
             {
-                this->Priority = 54; // Immediately before the AudioManager
                 this->BufferUpdate3DWork = new BufferUpdate3DWorkUnit(this);
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
                 AudioMan->_RegisterSoundScapeManager(this);
@@ -127,7 +125,8 @@ namespace Mezzanine
 
             SoundScapeManager::~SoundScapeManager()
             {
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate3DWork );
+                this->Deinitialize();
+
                 delete BufferUpdate3DWork;
 
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
@@ -207,14 +206,6 @@ namespace Mezzanine
                     alcDestroyContext( (*ConIt) );
                 }
                 this->Contexts.clear();
-            }
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            iBufferUpdate3DWorkUnit* SoundScapeManager::GetBufferUpdate3DWork()
-            {
-                return this->BufferUpdate3DWork;
             }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -395,13 +386,16 @@ namespace Mezzanine
             }
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Managerbase
+            // Utility
 
             void SoundScapeManager::Initialize()
             {
-                if( this->Initialized == false )
+                if( !this->Initialized )
                 {
                     OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
+                    if( AudioMan == NULL )
+                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"A valid AudioManager is required for SoundScape operations."); }
+
                     if( AudioMan->IsInitialized() == false )
                     {
                         // Attempt to initialize
@@ -416,10 +410,28 @@ namespace Mezzanine
                 }
             }
 
-            void SoundScapeManager::DoMainLoopItems()
+            void SoundScapeManager::Deinitialize()
             {
+                if( this->Initialized )
+                {
+                    OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
+                    if( AudioMan == NULL )
+                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"A valid AudioManager is required for SoundScape operations."); }
 
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate3DWork );
+                    this->BufferUpdate3DWork->RemoveDependency( AudioMan->GetBufferUpdate2DWork() );
+
+                    this->Initialized = false;
+                }
             }
+
+            iBufferUpdate3DWorkUnit* SoundScapeManager::GetBufferUpdate3DWork()
+            {
+                return this->BufferUpdate3DWork;
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Type Identifier Methods
 
             String SoundScapeManager::GetImplementationTypeName() const
             {

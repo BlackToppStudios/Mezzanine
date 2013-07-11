@@ -154,12 +154,6 @@ namespace Mezzanine
                 virtual ~SoundScapeManager();
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Utility
-
-                /// @copydoc Audio::SoundScapeManager::GetBufferUpdate3DWork()
-                virtual iBufferUpdate3DWorkUnit* GetBufferUpdate3DWork();
-
-                ///////////////////////////////////////////////////////////////////////////////
                 // Listener Management
 
                 /// @copydoc Audio::SoundScapeManager::CreateListener()
@@ -198,20 +192,21 @@ namespace Mezzanine
                 virtual void DestroyAllSoundProxies();
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Inherited from Managerbase
+                // Utility
 
                 /// @copydoc ManagerBase::Initialize()
                 virtual void Initialize();
-                /// @copydoc ManagerBase::DoMainLoopItems()
-                virtual void DoMainLoopItems();
-                /// @copydoc ManagerBase::GetImplementationTypeName()
-                virtual String GetImplementationTypeName() const;
+                /// @copydoc ManagerBase::Deinitialize()
+                virtual void Deinitialize();
+
+                /// @copydoc Audio::SoundScapeManager::GetBufferUpdate3DWork()
+                virtual iBufferUpdate3DWorkUnit* GetBufferUpdate3DWork();
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
+                // Type Identifier Methods
 
-                void _NotifyDeviceInitialize();
-                void _NotifyDeviceShutdown();
+                /// @copydoc ManagerBase::GetImplementationTypeName()
+                virtual String GetImplementationTypeName() const;
             };//SoundScapeManager
         }//OALS
     }//Audio

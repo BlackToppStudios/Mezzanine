@@ -93,13 +93,6 @@ namespace Mezzanine
             virtual ~SoundScapeManager();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            /// @brief Gets the work unit responsible for updating the buffers of soundproxies.
-            /// @return Returns a pointer to the iBufferUpdate3DWorkUnit used by this manager.
-            virtual iBufferUpdate3DWorkUnit* GetBufferUpdate3DWork() = 0;
-
-            ///////////////////////////////////////////////////////////////////////////////
             // Listener Management
 
             /// @brief Creates a new @ref iListener.
@@ -330,7 +323,19 @@ namespace Mezzanine
             virtual SoundProxy* CreateMusicSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Managerbase
+            // Utility
+
+            /// @copydoc ManagerBase::Initialize()
+            virtual void Initialize() = 0;
+            /// @copydoc ManagerBase::Deinitialize()
+            virtual void Deinitialize() = 0;
+
+            /// @brief Gets the work unit responsible for updating the buffers of soundproxies.
+            /// @return Returns a pointer to the iBufferUpdate3DWorkUnit used by this manager.
+            virtual iBufferUpdate3DWorkUnit* GetBufferUpdate3DWork() = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Type Identifier Methods
 
             /// @copydoc ManagerBase::GetInterfaceType()
             virtual ManagerType GetInterfaceType() const;
