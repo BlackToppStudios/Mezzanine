@@ -780,16 +780,7 @@ namespace Mezzanine
         if( this->Initialized )
         {
             this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->TrackingNodeUpdateWork );
-
-            Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
-            if( PhysicsMan ) {
-                this->TrackingNodeUpdateWork->RemoveDependency( PhysicsMan->GetSimulationWork() );
-            }
-
-            Mezzanine::AreaEffectManager* AreaEffectMan = AreaEffectManager::GetSingletonPtr();
-            if( AreaEffectMan ) {
-                this->TrackingNodeUpdateWork->RemoveDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
-            }
+            this->TrackingNodeUpdateWork->ClearDependencies();
 
             this->Initialized = false;
         }

@@ -229,16 +229,16 @@ namespace Mezzanine
 
             OALS::AudioManager::~AudioManager()
             {
-                this->Deinitialize();
-
-                delete BufferUpdate2DWork;
-                delete EffectFilterCleanWork;
-
                 this->DestroyAllSounds();
                 this->EffHandler->DestroyAllEffects();
                 this->EffHandler->DestroyAllFilters();
                 this->DestroyAllRecorders();
                 //this->ShutdownPlaybackDevice();
+
+                this->Deinitialize();
+
+                delete BufferUpdate2DWork;
+                delete EffectFilterCleanWork;
             }
 
             SoundTypeHandler* OALS::AudioManager::GetOrCreateSoundTypeHandler(const UInt16 Type) const
@@ -818,12 +818,10 @@ namespace Mezzanine
                     }
 
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate2DWork );
-
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->EffectFilterCleanWork );
-                    this->EffectFilterCleanWork->RemoveDependency( this->BufferUpdate2DWork );
-                    /// @todo Some of this logic may need to be moved to the registration method if we want to support dynamic created and destroyed worlds.
-                    for( SoundScapeManagerIterator SSM = this->SoundScapeManagers.begin() ; SSM != this->SoundScapeManagers.end() ; ++SSM )
-                        this->EffectFilterCleanWork->RemoveDependency( (*SSM)->GetBufferUpdate3DWork() );
+
+                    this->BufferUpdate2DWork->ClearDependencies();
+                    this->EffectFilterCleanWork->ClearDependencies();
 
                     if( this->AutoGenFiles )
                         this->SaveAllSettings();

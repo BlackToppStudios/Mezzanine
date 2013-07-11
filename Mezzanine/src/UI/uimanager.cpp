@@ -545,9 +545,7 @@ namespace Mezzanine
             if( this->Initialized )
             {
                 this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WidgetUpdateWork );
-                Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
-                if( InputMan )
-                    this->WidgetUpdateWork->RemoveDependency( InputMan->GetDeviceUpdateWork() );
+                this->WidgetUpdateWork->ClearDependencies();
 
                 this->Initialized = false;
             }

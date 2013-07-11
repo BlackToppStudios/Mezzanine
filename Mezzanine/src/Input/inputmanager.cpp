@@ -255,9 +255,7 @@ namespace Mezzanine
             if( this->Initialized )
             {
                 this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DeviceUpdateWork );
-                Mezzanine::EventManager* EventMan = EventManager::GetSingletonPtr();
-                if( EventMan )
-                    this->DeviceUpdateWork->RemoveDependency( EventMan->GetEventPumpWork() );
+                this->DeviceUpdateWork->ClearDependencies();
 
                 this->Initialized = false;
             }
