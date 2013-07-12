@@ -91,16 +91,6 @@ public:
             delete OneWindowEvent;
             OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
         }
-
-        EventCollision* OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
-        while(0 != OneCollision)
-        {
-            if(OneCollision->GetType() != EventBase::Collision)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventCollision as an EventCollision."); }
-
-            delete OneCollision;
-            OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
-        }
     }
 };//DemoPreEventWorkUnit
 

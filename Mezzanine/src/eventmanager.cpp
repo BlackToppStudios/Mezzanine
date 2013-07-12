@@ -48,7 +48,6 @@
 #include "entresol.h"
 #include "eventmanager.h"
 #include "eventbase.h"
-#include "eventcollision.h"
 #include "eventgamewindow.h"
 #include "eventquit.h"
 #include "eventuserinput.h"
@@ -526,21 +525,6 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Filtered management functions - Collision Events
-
-    EventCollision* EventManager::GetNextCollisionEvent()
-        { return dynamic_cast<EventCollision*> (this->GetNextSpecificEvent(EventBase::Collision)); }
-
-    EventCollision* EventManager::PopNextCollisionEvent()
-        { return dynamic_cast<EventCollision*> (this->PopNextSpecificEvent(EventBase::Collision)); }
-
-    void EventManager::RemoveNextCollisionEvent()
-        { this->RemoveNextSpecificEvent(EventBase::Collision); }
-
-    std::list<EventCollision*>* EventManager::GetAllCollisionEvents()
-        { return (std::list<EventCollision*>*)this->GetAllSpecificEvents(EventBase::Collision); }
-
-    ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - GameWindow Events
 
     EventGameWindow* EventManager::GetNextGameWindowEvent()
@@ -792,11 +776,6 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& 
                                 (Child.GetAttribute("InputCode").AsInt()),
                                 (Child.GetAttribute("PollingType").AsInt())
                             );}
-                            break;
-                        case 'C':{
-                            Mezzanine::EventCollision *temp = new Mezzanine::EventCollision();
-                            Child >> *temp;
-                            Mgr.AddEvent(temp); }
                             break;
                         case 'G':{
                             Mezzanine::EventGameWindow *temp = new Mezzanine::EventGameWindow();

@@ -238,19 +238,19 @@ namespace Mezzanine
 
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::Collision& Col)
 {
-    stream  << "<EventCollision Version=\"1" //Impulse=\"" << Ev.Impulse
+    stream  << "<Collision Version=\"1" //Impulse=\"" << Ev.Impulse
             << "\" ObjectA=\"" << Col.GetObjectA()->GetName()
             << "\" ObjectB=\"" << Col.GetObjectB()->GetName()
             << "\" >"
             //<<  Ev.WorldLocation
-            << "</EventCollision>";
+            << "</Collision>";
     return stream;
 }
 
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Collision& Col)
 {
     Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
-    Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventCollision", OneTag) );
+    Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "Collision", OneTag) );
 
     Doc->GetFirstChild() >> Col;
 
@@ -261,7 +261,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Co
 
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Collision& Col)
 {
-    if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("EventCollision"))
+    if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("Collision"))
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {

@@ -41,7 +41,6 @@
 #define EVENTBASE_CPP
 
 #include "eventbase.h"
-#include "eventcollision.h"
 #include "eventgamewindow.h"
 #include "eventquit.h"
 #include "eventuserinput.h"
@@ -51,9 +50,6 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Event
 {
     switch(Ev.GetType())
     {
-        case Mezzanine::EventBase::Collision:
-            stream << *dynamic_cast<const Mezzanine::EventCollision*> (&Ev);
-            break;
         case Mezzanine::EventBase::GameWindow:
             stream << *dynamic_cast<const Mezzanine::EventGameWindow*> (&Ev);
             break;

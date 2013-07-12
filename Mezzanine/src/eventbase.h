@@ -66,7 +66,6 @@ namespace Mezzanine
             /// @details A listing of values that can be used to identify Events.
             enum EventType
             {
-                Collision,      /**< Indicates the Event is a Physics Collision Event. */
                 GameWindow,     /**< Indicates the Event is a Game Window Management Event. */
                 QuitMessage,    /**< Indicates the Event is a Mezzanine::EventQuit. */
                 UserInput,      /**< Indicates the Event is a EventUserInput. */

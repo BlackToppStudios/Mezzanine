@@ -51,7 +51,6 @@ using namespace std;
 #include "vector3wactor.h"
 #include "areaeffect.h"
 #include "eventmanager.h"
-#include "eventcollision.h"
 #include "worldtrigger.h"
 #include "worldobject.h"
 #include "Physics/collision.h"

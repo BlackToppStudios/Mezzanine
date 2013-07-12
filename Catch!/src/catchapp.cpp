@@ -704,7 +704,6 @@ void CatchApp::UnloadLevel()
     SceneManager* SceneMan = SceneManager::GetSingletonPtr();
     ActorManager* ActorMan = ActorManager::GetSingletonPtr();
     AreaEffectManager* AreaEffectMan = AreaEffectManager::GetSingletonPtr();
-    EventManager* EventMan = EventManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
@@ -724,13 +723,6 @@ void CatchApp::UnloadLevel()
 
     ResMan->DestroyAssetGroup(Loader->GetCurrentLevel());
     PhysMan->ClearPhysicsMetaData();
-    /// @todo Probably should make a "RemoveAll" for the events as well.
-    EventCollision* OneCollision = EventMan->PopNextCollisionEvent();
-    while( NULL != OneCollision )
-    {
-        delete OneCollision;
-        OneCollision = EventMan->PopNextCollisionEvent();
-    }
     Scorer->ResetLevelData();
     delete EndTimer;
     EndTimer = NULL;

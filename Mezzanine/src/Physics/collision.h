@@ -119,7 +119,7 @@ namespace Mezzanine
             /// @brief Default Constructor
             Collision();
             /// @brief Copy Constructor.
-            /// @param Other The other EventCollision to copy
+            /// @param Other The other Collision to copy
             Collision(const Collision& Other);
             /// @brief Class Destructor.
             /// @details Basic Class Destructor.

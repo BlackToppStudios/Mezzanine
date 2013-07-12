@@ -87,7 +87,6 @@
 #include "entresol.h"
 #include "enumerations.h"               // nothing to do
 #include "eventbase.h"                  // done/serializes
-#include "eventcollision.h"             // done
 #include "eventgamewindow.h"            // done
 #include "eventmanager.h"               // done
 #include "eventquit.h"                  // done
