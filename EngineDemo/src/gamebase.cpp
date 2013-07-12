@@ -101,16 +101,6 @@ public:
             delete OneCollision;
             OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
         }
-
-        EventRenderTime* OneRender = TheEntresol->GetEventManager()->PopNextRenderTimeEvent();
-        while(0 != OneRender)
-        {
-            if(OneCollision->GetType() != EventBase::Collision)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventRenderTime as an EventRenderTime."); }
-
-            delete OneRender;
-            OneRender = TheEntresol->GetEventManager()->GetNextRenderTimeEvent();
-        }
     }
 };//DemoPreEventWorkUnit
 

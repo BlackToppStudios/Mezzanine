@@ -51,16 +51,6 @@ void CatchPreInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
         delete OneWindowEvent;
         OneWindowEvent = EventMan->PopNextGameWindowEvent();
     }
-
-	EventRenderTime* CurrentTime = EventMan->PopNextRenderTimeEvent();
-    while(0 != CurrentTime)
-    {
-        if(CurrentTime->GetType()!=EventBase::RenderTime)
-            { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Trying to process a non-EventRenderTime as an EventRenderTime."); }
-
-        delete CurrentTime;
-        CurrentTime = EventMan->GetNextRenderTimeEvent();
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
