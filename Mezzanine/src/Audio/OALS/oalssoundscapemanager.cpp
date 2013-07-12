@@ -419,7 +419,7 @@ namespace Mezzanine
                         { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"A valid AudioManager is required for SoundScape operations."); }
 
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate3DWork );
-                    this->BufferUpdate3DWork->RemoveDependency( AudioMan->GetBufferUpdate2DWork() );
+                    this->BufferUpdate3DWork->ClearDependencies();
 
                     this->Initialized = false;
                 }

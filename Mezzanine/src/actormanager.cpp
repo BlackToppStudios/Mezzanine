@@ -218,10 +218,7 @@ namespace Mezzanine
         if( this->Initialized )
         {
             this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->ActorUpdateWork );
-            Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
-            if( PhysicsMan ) {
-                this->ActorUpdateWork->RemoveDependency( PhysicsMan->GetSimulationWork() );
-            }
+            this->ActorUpdateWork->ClearDependencies();
 
             this->Initialized = false;
         }

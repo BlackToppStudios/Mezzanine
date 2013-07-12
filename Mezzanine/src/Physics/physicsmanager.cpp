@@ -570,6 +570,9 @@ namespace Mezzanine
 
             DestroyAllConstraints();
             DestroyAllWorldTriggers();
+
+            this->Deinitialize();
+
             //Destroy the physical world that we loved and cherished
             Destroy();
         }
@@ -1160,23 +1163,16 @@ namespace Mezzanine
             }else{
                 this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
             }
-            Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
-            if( GraphicsMan )
-                this->SimulationWork->RemoveDependency( GraphicsMan->GetRenderWork() );
+            this->SimulationWork->ClearDependencies();
 
-            Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
             // Debug Draw work configuration
             // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
             this->TheEntresol->GetScheduler().RemoveWorkUnitAffinity( this->DebugDrawWork );
-            this->DebugDrawWork->RemoveDependency( this->SimulationWork );
-            if( ActorMan )
-                this->DebugDrawWork->RemoveDependency( ActorMan->GetActorUpdateWork() );
+            this->DebugDrawWork->ClearDependencies();
 
             // World Trigger Update work configuration
             this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
-            this->WorldTriggerUpdateWork->RemoveDependency( this->SimulationWork );
-            if( ActorMan )
-                this->WorldTriggerUpdateWork->RemoveDependency( ActorMan->GetActorUpdateWork() );
+            this->WorldTriggerUpdateWork->ClearDependencies();
 
             this->Initialized = false;
         }

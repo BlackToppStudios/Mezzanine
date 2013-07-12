@@ -726,6 +726,7 @@ namespace Mezzanine
             FrameStream << "-------------------------- Ending Frame: " << FrameCounter << ", After " << FrameTimer->getMicroseconds() << " microseconds --------------------------";
             this->Log(FrameStream.str());
             this->DoMainLoopLogging();
+            ++FrameCounter;
             #endif
 
             this->FrameTime = FrameTimer->getMicroseconds();
@@ -924,7 +925,7 @@ namespace Mezzanine
     void Entresol::DestroyManager(ManagerBase* ToBeDestroyed)
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
-        if( ManIt == ManagerFactories.end() )
+        if( ManIt == this->ManagerFactories.end() )
         {
             MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ToBeDestroyed->GetImplementationTypeName() + "\", which has no factory registered.");
         }
@@ -934,18 +935,39 @@ namespace Mezzanine
 
     void Entresol::DestroyAllManagers()
     {
-        ManagerBase* Current;
         //for( std::list<ManagerBase*>::iterator iter = --this->ManagerList.end(); !ManagerList.empty(); iter = --this->ManagerList.end() ) //Backward
-        for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); !ManagerList.empty(); iter = this->ManagerList.begin() ) //forward
+        /*for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); !ManagerList.empty(); iter = this->ManagerList.begin() ) //forward
         {
-            Current = (*iter);
+            ManagerBase* Current = (*iter);
             #ifdef MEZZDEBUG
             this->Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
             this->DoMainLoopLogging();
             #endif
-            this->DestroyManager(Current);
+            ManagerFactoryIterator ManIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
+            if( ManIt == this->ManagerFactories.end() ) {
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
+            }else{
+                (*ManIt).second->DestroyManager(Current);
+            }
         }
-        this->DoMainLoopLogging();
+        this->ManagerList.clear();//*/
+        while( !(this->ManagerList.empty()) )
+        {
+            ManagerBase* Current = this->ManagerList.front();
+            #ifdef MEZZDEBUG
+            this->Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
+            this->DoMainLoopLogging();
+            #endif
+
+            ManagerFactoryIterator ManIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
+            if( ManIt == this->ManagerFactories.end() ) {
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + Current->GetImplementationTypeName() + "\", which has no factory registered.");
+            }else{
+                (*ManIt).second->DestroyManager(Current);
+            }
+
+            this->ManagerList.pop_front();
+        }//*/
     }
 
     void Entresol::AddManager(ManagerBase* ManagerToAdd)
@@ -954,12 +976,18 @@ namespace Mezzanine
         this->Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".");
         this->DoMainLoopLogging();
         #endif
+        // We have to verify the manager is unique.  A number of issues can arriae if a manager is double inserted.
+        for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
+        {
+            if( (*ManIter) == ManagerToAdd )
+                return;
+        }
         this->ManagerList.push_back(ManagerToAdd);
     }
 
     void Entresol::RemoveManager(ManagerBase* ManagerToRemove)
     {
-        for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+        for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
         {
             if( *ManIter == ManagerToRemove )
             {
