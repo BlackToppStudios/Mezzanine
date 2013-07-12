@@ -88,8 +88,16 @@ namespace Mezzanine
 
         GameWindow::~GameWindow()
         {
-            SDL_DestroyWindow(SDLWindow);
-            OgreWindow->destroy();
+            // first lets clear out the user data manually, the alternative is using SDL's allocation methods to make it, which we can opt for later
+            if( this->SDLWindow ) {
+                SDL_WindowUserData* WindowData = this->SDLWindow->data;
+                this->SDLWindow->data = NULL;
+                delete WindowData;
+
+                SDL_DestroyWindow(this->SDLWindow);
+            }
+
+            this->OgreWindow->destroy();
             Ogre::Root::getSingleton().destroyRenderTarget(OgreWindow);
             delete GWID;
         }
