@@ -40,9 +40,8 @@
 #ifndef _graphicsmanager_cpp
 #define _graphicsmanager_cpp
 
-#include "eventmanager.h"
-#include "eventrendertime.h"
 #include "graphicsmanager.h"
+#include "eventmanager.h"
 #include "cameramanager.h"
 #include "resourcemanager.h"
 #include "UI/uimanager.h"

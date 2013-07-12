@@ -91,7 +91,6 @@
 #include "eventgamewindow.h"            // done
 #include "eventmanager.h"               // done
 #include "eventquit.h"                  // done
-#include "eventrendertime.h"            // done
 #include "eventuserinput.h"             // done
 #include "exception.h"
 #include "graphics.h"

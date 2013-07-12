@@ -86,7 +86,6 @@ namespace Mezzanine
     class EventCollision;
     class EventGameWindow;
     class EventManager;
-    class EventRenderTime;
     class EventUserInput;
     class EventQuit;
 
@@ -249,7 +248,7 @@ namespace Mezzanine
         /// this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately
         /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no Collision
         /// events in the que. This also removes the returned pointer form the Queue.
-        /// @return A pointer to a EventRenderTime, that still needs to be removed from the event manager and deleted.
+        /// @return A pointer to a EventCollision, that still needs to be removed from the event manager and deleted.
         EventCollision* PopNextCollisionEvent();
 
         /// @brief Removes the First Collision Event From the que without looking at it.
@@ -280,7 +279,7 @@ namespace Mezzanine
         /// this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately
         /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no GameWindow
         /// events in the que. This also removes the returned pointer form the Que.
-        /// @return A pointer to a EventRenderTime, that still needs to be removed from the event manager and deleted.
+        /// @return A pointer to a EventGameWindow, that still needs to be removed from the event manager and deleted.
         EventGameWindow* PopNextGameWindowEvent();
 
         /// @brief Removes the First GameWindow Event From the que without looking at it.
@@ -294,37 +293,6 @@ namespace Mezzanine
         /// @details This finds all the EventUserInput Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.
         /// @return This returns a list<EventGameWindow*> pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. This list pointer must be deleted, but not the events in it.
         std::list<EventGameWindow*>* GetAllGameWindowEvents();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Filtered management functions - RenderTime Events
-
-        /// @brief Returns a pointer to the Next Rendertime event
-        /// @details This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use
-        /// this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately
-        /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no EventRenderTime
-        /// events in the que.
-        /// @return A pointer to a EventRenderTime, that still needs to be removed from the event manager and deleted.
-        EventRenderTime* GetNextRenderTimeEvent();
-
-        /// @brief Returns a pointer to the Next Rendertime event and removes it from the Que
-        /// @details This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use
-        /// this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately
-        /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no rendertime
-        /// events in the que. This also removes the returned pointer form the Que.
-        /// @return A pointer to a EventRenderTime, that still needs to be removed from the event manager and deleted.
-        EventRenderTime* PopNextRenderTimeEvent();
-
-        /// @brief Removes the First Rendertime Event From the que without looking at it.
-        /// @details This together with GetNextRenderTimeEvent() are the pretty much same as call PopNextRenderTimeEvent().
-        /// @warning If you did not call GetNextRenderTimeEvent() and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak.
-        /// Don't use this unless you are certain you have taken care of the pointer appropriately
-        /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
-        void RemoveNextRenderTimeEvent();
-
-        /// @brief This returns a complete list of all the Render Time events.
-        /// @details This finds all the EventRenderTime Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.
-        /// @return This returns a list<EventRenderTime*> pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.
-        std::list<EventRenderTime*>* GetAllRenderTimeEvents();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - User Input Events

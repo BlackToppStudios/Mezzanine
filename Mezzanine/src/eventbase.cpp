@@ -44,7 +44,6 @@
 #include "eventcollision.h"
 #include "eventgamewindow.h"
 #include "eventquit.h"
-#include "eventrendertime.h"
 #include "eventuserinput.h"
 #include "exception.h"
 
@@ -60,9 +59,6 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Event
             break;
         case Mezzanine::EventBase::QuitMessage:
             stream << *dynamic_cast<const Mezzanine::EventQuit*> (&Ev);
-            break;
-        case Mezzanine::EventBase::RenderTime:
-            stream << *dynamic_cast<const Mezzanine::EventRenderTime*> (&Ev);
             break;
         case Mezzanine::EventBase::UserInput:
             stream << *dynamic_cast<const Mezzanine::EventUserInput*> (&Ev);

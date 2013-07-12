@@ -51,7 +51,6 @@
 #include "eventcollision.h"
 #include "eventgamewindow.h"
 #include "eventquit.h"
-#include "eventrendertime.h"
 #include "eventuserinput.h"
 #include "Input/metacode.h"
 #include "Input/inputmanager.h"
@@ -557,21 +556,6 @@ namespace Mezzanine
         { return (std::list<EventGameWindow*>*)this->GetAllSpecificEvents(EventBase::GameWindow); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Filtered management functions - RenderTime Events
-
-    EventRenderTime* EventManager::GetNextRenderTimeEvent()
-        { return dynamic_cast<EventRenderTime*> (this->GetNextSpecificEvent(EventBase::RenderTime)); }
-
-    EventRenderTime* EventManager::PopNextRenderTimeEvent()
-        { return dynamic_cast<EventRenderTime*> (this->PopNextSpecificEvent(EventBase::RenderTime)); }
-
-    void EventManager::RemoveNextRenderTimeEvent()
-        { this->RemoveNextSpecificEvent(EventBase::RenderTime); }
-
-    std::list<EventRenderTime*>* EventManager::GetAllRenderTimeEvents()
-        { return (std::list<EventRenderTime*>*)this->GetAllSpecificEvents(EventBase::RenderTime); }
-
-    ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - User Input Events
 
     EventUserInput* EventManager::GetNextUserInputEvent()
@@ -821,11 +805,6 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& 
                             break;
                         case 'Q':{
                             Mezzanine::EventQuit *temp = new Mezzanine::EventQuit();
-                            Child >> *temp;
-                            Mgr.AddEvent(temp); }
-                            break;
-                        case 'R':{
-                            Mezzanine::EventRenderTime *temp = new Mezzanine::EventRenderTime();
                             Child >> *temp;
                             Mgr.AddEvent(temp); }
                             break;

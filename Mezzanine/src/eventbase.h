@@ -69,7 +69,6 @@ namespace Mezzanine
                 Collision,      /**< Indicates the Event is a Physics Collision Event. */
                 GameWindow,     /**< Indicates the Event is a Game Window Management Event. */
                 QuitMessage,    /**< Indicates the Event is a Mezzanine::EventQuit. */
-                RenderTime,     /**< Indicates the Event is a EventRenderTime. */
                 UserInput,      /**< Indicates the Event is a EventUserInput. */
                 //SystemMessage,  /**< Indicates the Event has not been coded yet */
                 Other
