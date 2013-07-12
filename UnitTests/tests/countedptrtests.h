@@ -41,6 +41,9 @@
 #define _countedptrtests_h
 
 #include "main.h"
+
+#include "smartptr.h"
+
 #include <memory>
 
 using namespace std;
