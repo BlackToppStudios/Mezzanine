@@ -698,6 +698,7 @@ class frameschedulertests : public UnitTestGroup
                 PausesWorkUnit *EraseD = new PausesWorkUnit(10,"D");
                 PausesWorkUnit *EraseE = new PausesWorkUnit(10,"E");
                 PausesWorkUnit *EraseF = new PausesWorkUnit(10,"F");
+                PausesWorkUnit *EraseZ = new PausesWorkUnit(10,"Z");
                 EraseE->AddDependency(EraseD);
                 EraseD->AddDependency(EraseC);
                 EraseC->AddDependency(EraseB);
@@ -854,7 +855,53 @@ class frameschedulertests : public UnitTestGroup
                 cout << endl;
                 Test(3==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::WithAndAsDep");
 
-                delete EraseA; delete EraseC; delete EraseE; delete EraseF;
+
+                cout << endl << "Adding an Affinity WorkUnit Z and making it depend on B (new order should be B, Z, D, NULL): ";
+                RemovalScheduler.AddWorkUnitAffinity(EraseZ);
+                EraseZ->AddDependency(EraseB);
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.SortWorkUnitsAll(); //Sorting all on this test
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //B
+                Next->operator() (RemovalResource);
+                if(Next->Name=="B") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //Z
+                Next->operator() (RemovalResource);
+                if(Next->Name=="Z") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="D") { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnitAffinity())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(4==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::MainPreTest");
+
+                cout << endl << "Removing B and verifying no infinite loops are added(new order should be Z, D, NULL): ";
+                RemovalScheduler.RemoveWorkUnitMain(EraseB);
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.SortWorkUnitsAll(); //Sorting all on this test
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //Z
+                Next->operator() (RemovalResource);
+                if(Next->Name=="Z") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="D") { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnitAffinity())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(3==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::MainCleanup");
+
+                delete EraseA; delete EraseB; delete EraseC; delete EraseE; delete EraseF;
             }else{
                 AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::OrderingPreTest", Testing::Skipped);
                 AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::Simple", Testing::Skipped);
@@ -877,6 +924,7 @@ class frameschedulertests : public UnitTestGroup
                 PausesWorkUnit *EraseD = new PausesWorkUnit(10,"D");
                 PausesWorkUnit *EraseE = new PausesWorkUnit(10,"E");
                 PausesWorkUnit *EraseF = new PausesWorkUnit(10,"F");
+                PausesWorkUnit *EraseZ = new PausesWorkUnit(10,"Z");
                 EraseE->AddDependency(EraseD);
                 EraseD->AddDependency(EraseC);
                 EraseC->AddDependency(EraseB);
@@ -1032,15 +1080,114 @@ class frameschedulertests : public UnitTestGroup
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
                 Test(3==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithAndAsDep");
+
+                cout << endl << "Adding a non-affinity/Main WorkUnit Z and making it depend on B (new order should be B, D, Z, NULL): ";
+                RemovalScheduler.AddWorkUnitMain(EraseZ);
+                EraseZ->AddDependency(EraseB);
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.SortWorkUnitsAll(); //Sorting all on this test
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //B
+                Next->operator() (RemovalResource);
+                if(Next->Name=="B") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="D") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //Z
+                Next->operator() (RemovalResource);
+                if(Next->Name=="Z") { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnitAffinity())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(4==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::MainPreTest");
+
+                cout << endl << "Removing B and verifying no infinite loops are added(new order should be D, Z, NULL): ";
+                RemovalScheduler.RemoveWorkUnitAffinity(EraseB);
+                RemovalScheduler.ResetAllWorkUnits();
+                RemovalScheduler.SortWorkUnitsAll(); //Sorting all on this test
+                PrepCount = 0;
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //D
+                Next->operator() (RemovalResource);
+                if(Next->Name=="D") { PrepCount++; }
+                Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
+                cout << Next->Name << " "; //Z
+                Next->operator() (RemovalResource);
+                if(Next->Name=="Z") { PrepCount++; }
+                if(RemovalScheduler.GetNextWorkUnitAffinity())
+                    { cout << Next->Name << " "; }
+                else
+                    { cout << "NULL "; PrepCount++; }
+                cout << endl;
+                Test(3==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::MainCleanup");
+
+                delete EraseA; delete EraseB; delete EraseC; delete EraseE; delete EraseF;
             }else{
                 AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::OrderingPreTest", Testing::Skipped);
                 AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::Simple", Testing::Skipped);
                 AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithDep", Testing::Skipped);
                 AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::AsDep", Testing::Skipped);
                 AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithAndAsDep", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::MainPreTest", Testing::Skipped);
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithAndAsDep", Testing::Skipped);
             }
 
+            if(RunAutomaticTests)
+            {
+                stringstream LogCache;
+                FrameScheduler RemovalScheduler(&LogCache,1);
+                //ThreadSpecificStorage RemovalResource(&RemovalScheduler);
 
+                cout << endl << "Creating 3 Monopoly Workunits and an affinity Workunit and a normal/Main workunit" << endl;
+                PauseMonopoly *EraseMonoA = new PauseMonopoly(10,"MonoA");
+                PauseMonopoly *EraseMonoB = new PauseMonopoly(10,"MonoB");
+                PauseMonopoly *EraseMonoC = new PauseMonopoly(10,"MonoC");
+
+                PausesWorkUnit *EraseA = new PausesWorkUnit(10,"NeedsA");
+                PausesWorkUnit *EraseB = new PausesWorkUnit(10,"NeedsB");
+
+                EraseA->AddDependency(EraseMonoA);
+                EraseB->AddDependency(EraseMonoB);
+
+                RemovalScheduler.AddWorkUnitAffinity(EraseA);
+                RemovalScheduler.AddWorkUnitMain(EraseB);
+                RemovalScheduler.AddWorkUnitMonopoly(EraseMonoA);
+                RemovalScheduler.AddWorkUnitMonopoly(EraseMonoB);
+                RemovalScheduler.AddWorkUnitMonopoly(EraseMonoC);
+
+                cout << "Test Scheduler has " << RemovalScheduler.GetWorkUnitMonopolyCount() << " WorkUnits, and the affinity unit has " << EraseA->GetDependencyCount()
+                     << " Dependencies and the main workunit has " << EraseB->GetDependencyCount() << "." << endl;
+                Test(EraseA->GetDependencyCount()==1 &&
+                     EraseB->GetDependencyCount()==1 &&
+                     RemovalScheduler.GetWorkUnitMonopolyCount()==3, "DAGFrameScheduler::FrameScheduler::RemoveMopoly::PreTest");
+
+                RemovalScheduler.RemoveWorkUnitMonopoly(EraseMonoC);
+                cout << "Removing Monopoly is no dependent, now the are " << RemovalScheduler.GetWorkUnitMonopolyCount() << " Monopolies (should be 2)." << endl << endl;
+                Test(RemovalScheduler.GetWorkUnitMonopolyCount()==2, "DAGFrameScheduler::FrameScheduler::RemoveMopoly::Simple");
+
+                RemovalScheduler.RemoveWorkUnitMonopoly(EraseMonoA);
+                cout << "Removing Monopoly is a dependent for an Affinity unit, now the are " << RemovalScheduler.GetWorkUnitMonopolyCount() << " Monopolies (should be 1)" << endl
+                     << "and the affinity unit has " << EraseA->GetDependencyCount() << " deps (should be 0)." << endl << endl;
+                Test(RemovalScheduler.GetWorkUnitMonopolyCount()==1 &&
+                     EraseA->GetDependencyCount()==0, "DAGFrameScheduler::FrameScheduler::RemoveMopoly::AffinityDep");
+
+                RemovalScheduler.RemoveWorkUnitMonopoly(EraseMonoB);
+                cout << "Removing Monopoly is a dependent for an main unit, now the are " << RemovalScheduler.GetWorkUnitMonopolyCount() << " Monopolies (should be 0)" << endl
+                     << "and the main unit has " << EraseB->GetDependencyCount() << " deps (should be 0)." << endl << endl;
+                Test(RemovalScheduler.GetWorkUnitMonopolyCount()==0 &&
+                     EraseB->GetDependencyCount()==0, "DAGFrameScheduler::FrameScheduler::RemoveMopoly::AffinityDep");
+
+                //delete EraseA; delete EraseB; delete EraseMonoA; delete EraseMonoB; delete EraseMonoC;
+
+            }else{
+                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::OrderingPreTest", Testing::Skipped);
+
+            }
 
 
         }

@@ -129,7 +129,13 @@ namespace Mezzanine
                 std::vector<Thread*> Threads;
 
                 /// @brief A collection of all the monopolies this scheduler must run and keep ownership of.
-                std::vector<MonopolyWorkUnit*> WorkUnitMonopolies;
+                std::vector<MonopolyWorkUnit*> WorkUnitsMonopolies;
+
+                /// @brief An iterator suitable for iterating over the main pool of work units.
+                typedef std::vector<MonopolyWorkUnit*>::iterator IteratorMonoply;
+
+                /// @brief A const iterator suitable for iterating over the main pool of work units.
+                typedef std::vector<MonopolyWorkUnit*>::const_iterator ConstIteratorMonopoly;
 
                 /// @brief When the logs are aggregated, this is where they are sent
                 std::ostream* LogDestination;
@@ -412,8 +418,24 @@ namespace Mezzanine
                 /// use. If a frame took too long to execute this calculates that and returns.
                 /// @n @n
                 /// Wait 1/TargetFrame seconds, minus time already run. This also starts the timer for the next frame so
-                /// any other logic that needs to run after the frame does not interfere with frame timing.
+                /// any other logic that needs to run after the frame does not interfere with frame timing. Because
+                /// This is designed to wait fractions of a second any amount of waiting above 1 second fails automaticall.
                 void WaitUntilNextFrame();
+
+                ////////////////////////////////////////////////////////////////////////////////
+                // Basic container features
+
+                /// @brief Returns the amount of MonopolyWorkUnit ready to be scheduled
+                /// @return A Whole containing this amount
+                Whole GetWorkUnitMonopolyCount() const;
+
+                /// @brief Returns the amount of iWorkUnit ready to be scheduled in the Affinity pool
+                /// @return A Whole containing this amount
+                Whole GetWorkUnitAffinityCount() const;
+
+                /// @brief Returns the amount of iWorkUnit ready to be scheduled in the Main pool
+                /// @return A Whole containing this amount
+                Whole GetWorkUnitMainCount() const;
 
         };//FrameScheduler
     } // \Threading
