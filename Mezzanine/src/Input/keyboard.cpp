@@ -41,7 +41,9 @@
 #define _inputkeyboard_cpp
 
 #include "Input/keyboard.h"
+#include "exception.h"
 
+#include <limits>
 #include <cstring>
 
 namespace Mezzanine
@@ -50,35 +52,53 @@ namespace Mezzanine
     {
         Keyboard::Keyboard()
         {
-            Buttons.resize(Input::KEY_LAST);
-            memset( &Buttons[0],Input::BUTTON_UP,sizeof(Buttons[0]) * Buttons.size() );
+            this->Buttons.resize(Input::KEY_LAST);
+            memset( &Buttons[0],Input::BUTTON_UP,sizeof(this->Buttons[0]) * this->Buttons.size() );
         }
 
         Keyboard::~Keyboard()
         {
         }
 
-        void Keyboard::UpdateImpl(std::vector<MetaCode>& Codes)
+        void Keyboard::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)
         {
-            for( Whole X = 0 ; X < Codes.size() ; ++X )
+            for( Whole X = 0 ; X < DeltaCodes.size() ; ++X )
             {
-                TransitioningIndexes.push_back( Codes[X].GetCode() );
-                Buttons.at( Codes[X].GetCode() ) = static_cast<Input::ButtonState>(Codes[X].GetMetaValue());
+                this->TransitioningIndexes.push_back( DeltaCodes[X].GetCode() );
+                this->Buttons.at( DeltaCodes[X].GetCode() ) = static_cast<Input::ButtonState>(DeltaCodes[X].GetMetaValue());
+            }
+            this->Sequences.Update(DeltaCodes,GeneratedCodes);
+        }
+
+        void Keyboard::VerifySequenceImpl(const MetaCodeContainer& Sequence) const
+        {
+            for( ConstMetaCodeIterator MCIt = Sequence.begin() ; MCIt != Sequence.end() ; ++MCIt )
+            {
+                if( !MCIt->IsKeyboardEvent() )
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-Keyboard MetaCode detected when attempting to insert an Input Sequence into Keyboard input device."); }
+            }
+        }
+
+        void Keyboard::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const
+        {
+            for( UInt32 Index = 0 ; Index < this->Buttons.size() ; ++Index )
+            {
+                if( this->Buttons.at(Index) == Input::BUTTON_DOWN )
+                    GeneratedCodes.push_back( MetaCode(Input::BUTTON_DOWN,static_cast<Input::InputCode>(Input::KEY_FIRST + Index),GetDeviceIndex()) );
             }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Query Methods
 
+        UInt16 Keyboard::GetDeviceIndex() const
+            { return std::numeric_limits<UInt16>::max(); }
+
         const Input::ButtonState& Keyboard::GetButtonState(const UInt16 Button) const
-        {
-            return Buttons.at( Button - 1 );
-        }
+            { return this->Buttons.at( Button - 1 ); }
 
         const Input::ButtonState& Keyboard::GetButtonState(const Input::InputCode& Button) const
-        {
-            return Buttons.at(Button);
-        }
+            { return this->Buttons.at(Button); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Configuration Methods

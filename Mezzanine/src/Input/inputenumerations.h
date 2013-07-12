@@ -425,12 +425,14 @@ namespace Mezzanine
             MOUSEBUTTON_LAST    = 400,      ///< The Last mouse button event, all mouse button event will be lower or equal to this.
 
             INPUTEVENT_FIRST        = 401,  ///< The First non-button event, all Mouse and keyboard button values will be Less than this
+            MOUSEMOTION_FIRST       = 402,
             MOUSEABSOLUTEVERTICAL   = 402,
             MOUSEABSOLUTEHORIZONTAL = 403,
             MOUSEVERTICAL           = 404,
             MOUSEHORIZONTAL         = 405,
             MOUSEWHEELVERTICAL      = 406,
             MOUSEWHEELHORIZONTAL    = 407,
+            MOUSEMOTION_LAST        = 410,
             MOUSE_LAST              = 410,  ///< The last MouseEvent Code, all Mouse events will be less than this
 
             MOTION_FIRST            = 420,  ///< The first Motion event
@@ -511,8 +513,28 @@ namespace Mezzanine
 
             CONTROLLER_LAST         = 512,  ///< The last Controller Input Code, all Controller events will be less than this.
 
+            // Compound Inputs
+            COMPOUNDINPUT_FIRST                = 768,
+            COMPOUNDINPUT_MOUSEMULTICLICKFIRST = 769,
+            COMPOUNDINPUT_MOUSELEFTMULTICLICK  = 769,
+            COMPOUNDINPUT_MOUSERIGHTMULTICLICK = 770,
+            COMPOUNDINPUT_MOUSEMULTICLICKLAST  = 790,
+            COMPOUNDINPUT_CUSTOMSEQUENCE       = 799,
+            COMPOUNDINPUT_LAST                 = 800,
+
             INPUTEVENT_LAST         = 1024   ///< The last Input Code, all event codes will be less than this.
         };//InputCode
+
+        /// @enum InputDevice
+        /// @brief An enum listing containing the different kind of input devices, useful for some query functions.
+        enum InputDevice
+        {
+            DEVICE_UNKNOWN    = 0,
+            DEVICE_KEYBOARD   = 1,
+            DEVICE_MOUSE      = 2,
+            DEVICE_MULTITOUCH = 3,
+            DEVICE_CONTROLLER = 4
+        };//InputDevice
 
         /// @enum ButtonState
         /// @brief An Optional listing of value that can be used in a metacode to represent the information of a button press
@@ -520,10 +542,10 @@ namespace Mezzanine
         /// via the the event manager will all use these whereever appropriate.
         enum ButtonState
         {
-            BUTTON_LIFTING = -1,    /**< Used when the key stops being pressed. */
-            BUTTON_UP = 0,          /**< The default state of a key. */
-            BUTTON_PRESSING = 1,    /**< This is used at the exact point in time that a key goes from unpressed to pressed. */
-            BUTTON_DOWN = 2         /**< This is used the entire time a key is down.  */
+            BUTTON_LIFTING = 1,     /**< Used when the key stops being pressed. */
+            BUTTON_UP = 2,          /**< The default state of a key. */
+            BUTTON_PRESSING = 4,    /**< This is used at the exact point in time that a key goes from unpressed to pressed. */
+            BUTTON_DOWN = 8         /**< This is used the entire time a key is down.  */
         };//ButtonState
 
         /// @enum DirectionalMotionState

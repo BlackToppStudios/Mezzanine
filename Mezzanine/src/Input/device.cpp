@@ -47,91 +47,31 @@ namespace Mezzanine
     namespace Input
     {
         Device::Device()
-        {
-        }
+            {  }
 
         Device::~Device()
-        {
-        }
-
-        void Device::UpdateButtonTransitions()
-        {
-            for( std::vector<Whole>::iterator It = TransitioningIndexes.begin() ; It != TransitioningIndexes.end() ; ++It )
-            {
-                Input::ButtonState State = Buttons.at( (*It) );
-                if( Input::BUTTON_PRESSING == State )
-                    Buttons.at( (*It) ) = Input::BUTTON_DOWN;
-                else if( Input::BUTTON_LIFTING == State )
-                    Buttons.at( (*It) ) = Input::BUTTON_UP;
-            }
-            TransitioningIndexes.clear();
-        }
+            {  }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Query Methods
+        // Sequenced Input Management
 
-        UInt16 Device::GetNumButtons() const
+        void Device::AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID)
         {
-            return Buttons.size();
+            this->VerifySequenceImpl(Codes);
+            this->Sequences.AddInputSequence(Codes,SequenceID);
         }
 
-        bool Device::IsButtonPressed(const UInt16 Button) const
-        {
-            return Input::BUTTON_UP < GetButtonState(Button);
-        }
+        bool Device::InputSequenceExists(const MetaCodeContainer& Codes)
+            { return this->Sequences.InputSequenceExists(Codes); }
 
-        bool Device::IsButtonPressed(const Input::InputCode& Button) const
-        {
-            return Input::BUTTON_UP < GetButtonState(Button);
-        }
+        Int32 Device::GetIDofInputSequence(const MetaCodeContainer& Codes)
+            { return this->Sequences.GetIDofInputSequence(Codes); }
 
-        bool Device::IsButtonPressing(const UInt16 Button) const
-        {
-            return Input::BUTTON_PRESSING == GetButtonState(Button);
-        }
+        void Device::RemoveInputSequence(const MetaCodeContainer& Codes)
+            { this->Sequences.RemoveInputSequence(Codes); }
 
-        bool Device::IsButtonPressing(const Input::InputCode& Button) const
-        {
-            return Input::BUTTON_PRESSING == GetButtonState(Button);
-        }
-
-        bool Device::IsButtonLifting(const UInt16 Button) const
-        {
-            return Input::BUTTON_LIFTING == GetButtonState(Button);
-        }
-
-        bool Device::IsButtonLifting(const Input::InputCode& Button) const
-        {
-            return Input::BUTTON_LIFTING == GetButtonState(Button);
-        }
-
-        bool Device::IsButtonTransitioning(const UInt16 Button) const
-        {
-            Input::ButtonState State = GetButtonState(Button);
-            return (Input::BUTTON_LIFTING == State || Input::BUTTON_PRESSING == State);
-        }
-
-        bool Device::IsButtonTransitioning(const Input::ButtonState& Button) const
-        {
-            Input::ButtonState State = GetButtonState(Button);
-            return (Input::BUTTON_LIFTING == State || Input::BUTTON_PRESSING == State);
-        }
-
-        bool Device::CheckButtonState(const UInt16 Button, const Input::ButtonState& State) const
-        {
-            return State == GetButtonState(Button);
-        }
-
-        bool Device::CheckButtonState(const Input::InputCode& Button, const Input::ButtonState& State) const
-        {
-            return State == GetButtonState(Button);
-        }
-
-        void Device::_Update(std::vector<MetaCode>& Codes)
-        {
-            UpdateButtonTransitions();
-            UpdateImpl(Codes);
-        }
+        void Device::RemoveAllInputSequences()
+            { this->Sequences.RemoveAllInputSequences(); }
     }//Input
 }//Mezzanine
 

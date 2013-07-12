@@ -47,6 +47,7 @@
 #include "Input/mouse.h"
 #include "Input/keyboard.h"
 #include "Input/controller.h"
+#include "timer.h"
 
 #include "SDL.h"
 
@@ -54,6 +55,33 @@ namespace Mezzanine
 {
     namespace Input
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class InputManagerInternalData
+        /// @brief This is an class for the handling of internal input data.
+        /// @details
+        ///////////////////////////////////////
+        class InputManagerInternalData
+        {
+            public:
+                typedef std::pair<Input::Controller*,SDL_Joystick*> ControllerPair;
+                typedef std::vector< ControllerPair >               ControllerContainer;
+                typedef ControllerContainer::iterator               ControllerIterator;
+                typedef ControllerContainer::const_iterator         ConstControllerIterator;
+            protected:
+            public:
+                ControllerContainer Controllers;
+
+                /// @brief Class constructor.
+                InputManagerInternalData()
+                    {  }
+                /// @brief Class destructor.
+                ~InputManagerInternalData()
+                    { this->Controllers.clear(); }
+        };//InputManangerInternalData
+
+        typedef InputManagerInternalData::ControllerPair InternalControlPair;
+        typedef InputManagerInternalData::ControllerIterator InternalControlIterator;
+
         ///////////////////////////////////////////////////////////////////////////////
         // DeviceUpdateWorkUnit Methods
 
@@ -74,21 +102,27 @@ namespace Mezzanine
 
         void DeviceUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
-            UInt32 NumControllers = this->TargetManager->GetNumControllers();
-            std::vector< MetaCode > MouseCodes;
-            std::vector< MetaCode > KeyboardCodes;
-            std::vector< std::vector< MetaCode > > ControllerCodes;
-            ControllerCodes.resize( NumControllers );
+            // Set up our containers for the update
+            InputDeltas.clear();
+            std::vector< Input::MetaCode > MouseCodes;
+            std::vector< Input::MetaCode > KeyboardCodes;
+            std::vector< std::vector< Input::MetaCode > > ControllerCodes;
+            ControllerCodes.resize( GetNumControllers() );
+            // And finally our container for our generated codes
+            std::vector< Input::MetaCode > GeneratedCodes;
 
+            // Get the user input events for processing
             std::list<EventUserInput*>* UserInput = EventManager::GetSingletonPtr()->GetAllUserInputEvents();
             EventManager::GetSingletonPtr()->RemoveAllSpecificEvents(EventBase::UserInput);
 
-            for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); !UserInput->empty(); Iter = UserInput->begin())
+            // Process the aquired user input events
+            while( !UserInput->empty() )
             {
-                EventUserInput* CurrEvent = (*Iter);
+                EventUserInput* CurrEvent = UserInput->front();
                 for( Whole X = 0 ; X < CurrEvent->size() ; ++X )
                 {
-                    MetaCode& CurrCode = CurrEvent->at(X);
+                    Input::MetaCode& CurrCode = CurrEvent->at(X);
+                    InputDeltas.push_back(CurrCode);
                     if( Input::MOUSE_FIRST <= CurrCode.GetCode() && Input::MOUSE_LAST >= CurrCode.GetCode() ){
                         MouseCodes.push_back( CurrCode );
                     }else if( Input::KEY_FIRST <= CurrCode.GetCode() && Input::KEY_LAST >= CurrCode.GetCode() ){
@@ -99,15 +133,24 @@ namespace Mezzanine
                 }
 
                 delete CurrEvent;
-                UserInput->remove(*Iter);
+                UserInput->pop_front();
             }
+            delete UserInput;
+            UserInput = NULL;
 
-            this->TargetManager->SystemMouse->_Update(MouseCodes);
-            this->TargetManager->SystemKeyboard->_Update(KeyboardCodes);
-            for( Whole X = 0 ; X < NumControllers ; ++X )
+            // Update all of our devices with the processed/saved data
+            this->TargetManager->SystemMouse->_Update(MouseCodes,GeneratedCodes);
+            this->TargetManager->SystemKeyboard->_Update(KeyboardCodes,GeneratedCodes);
+            for( Whole X = 0 ; X < GetNumControllers() ; ++X )
             {
-                this->TargetManager->Controllers.at(X)->_Update( ControllerCodes.at(X) );
+                this->TargetManager->IMID->Controllers.at(X).first->_Update( ControllerCodes.at(X) , GeneratedCodes );
             }
+            // Do sub-system wide sequence checks if we've done anything
+            if( !InputDeltas.empty() )
+                this->TargetManager->Sequences.Update(InputDeltas,GeneratedCodes);
+            // Update our delta's if there is anything to update
+            if( !GeneratedCodes.empty() )
+                this->TargetManager->InputDeltas.insert(InputDeltas.end(),GeneratedCodes.begin(),GeneratedCodes.end());
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -116,6 +159,7 @@ namespace Mezzanine
         template<> InputManager* Singleton<InputManager>::SingletonPtr = NULL;
 
         InputManager::InputManager() :
+            IMID(NULL),
             SystemMouse(NULL),
             SystemKeyboard(NULL),
 
@@ -134,6 +178,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
             }
 
+            this->IMID = new Internal::InputManagerInternalData();
             this->SystemMouse = new Mouse();
             this->SystemKeyboard = new Keyboard();
             this->DetectControllers();
@@ -142,6 +187,7 @@ namespace Mezzanine
         }
 
         InputManager::InputManager(XML::Node& XMLNode) :
+            IMID(NULL),
             SystemMouse(NULL),
             SystemKeyboard(NULL),
 
@@ -160,6 +206,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
             }
 
+            this->IMID = new Internal::InputManagerInternalData();
             this->SystemMouse = new Mouse();
             this->SystemKeyboard = new Keyboard();
             this->DetectControllers();
@@ -193,12 +240,12 @@ namespace Mezzanine
 
         Controller* InputManager::GetController(const UInt16 Index) const
         {
-            return this->Controllers.at(Index);
+            return this->IMID->Controllers.at(Index).first;
         }
 
         UInt16 InputManager::GetNumControllers() const
         {
-            return this->Controllers.size();
+            return this->IMID->Controllers.size();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -211,31 +258,49 @@ namespace Mezzanine
             {
                 SDL_Joystick* InternalControl = SDL_JoystickOpen(Count);
                 Input::Controller* NewController = new Input::Controller( InternalControl, Count );
-                this->Controllers.push_back( NewController );
-                this->InternalControllers.push_back( InternalControl );
+                this->IMID->Controllers.push_back( InternalControlPair(NewController,InternalControl) );
             }
             return Count;
         }
 
         void InputManager::ReleaseAllControllers()
         {
-            if( Controllers.empty() )
+            if( this->IMID->Controllers.empty() )
                 return;
 
-            for( ControllerIterator ContIt = Controllers.begin() ; ContIt != Controllers.end() ; ++ContIt )
+            for( InternalControlIterator ContIt = this->IMID->Controllers.begin() ; ContIt != this->IMID->Controllers.end() ; ++ContIt )
             {
-                delete (*ContIt);
+                delete (*ContIt).first;
+                SDL_JoystickClose( (SDL_Joystick*)(*ContIt).second );
             }
-            for( std::vector<void*>::iterator ContIt = InternalControllers.begin() ; ContIt != InternalControllers.end() ; ++ContIt )
-            {
-                SDL_JoystickClose( (SDL_Joystick*)(*ContIt) );
-            }
-            this->Controllers.clear();
-            this->InternalControllers.clear();
+            this->IMID->Controllers.clear();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Sequenced Input Management
+
+        void InputManager::AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID)
+            { this->Sequences.AddInputSequence(Codes,SequenceID); }
+
+        bool InputManager::InputSequenceExists(const MetaCodeContainer& Codes)
+            { return this->Sequences.InputSequenceExists(Codes); }
+
+        Int32 InputManager::GetIDofInputSequence(const MetaCodeContainer& Codes)
+            { return this->Sequences.GetIDofInputSequence(Codes); }
+
+        void InputManager::RemoveInputSequence(const MetaCodeContainer& Codes)
+            { this->Sequences.RemoveInputSequence(Codes); }
+
+        void InputManager::RemoveAllInputSequences()
+            { this->Sequences.RemoveAllInputSequences(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Utility
+
+        const MetaCodeContainer& InputManager::GetInputDeltas() const
+        {
+            return InputDeltas;
+        }
 
         void InputManager::Initialize()
         {

@@ -40,7 +40,7 @@
 #ifndef _inputdevice_h
 #define _inputdevice_h
 
-#include "Input/metacode.h"
+#include "Input/sequencecontainer.h"
 
 /// @file
 /// @brief The declaration of the User input Device class.
@@ -55,87 +55,47 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Device
         {
-            protected:
-                std::vector<Whole> TransitioningIndexes;
-                std::vector<Input::ButtonState> Buttons;
-                /// @internal
-                /// @brief Updates transitioning buttons.
-                void UpdateButtonTransitions();
-                /// @internal
-                /// @brief Internal implementation of the device update.
-                virtual void UpdateImpl(std::vector<MetaCode>& Codes) = 0;
-            public:
-                /// @brief Class constructor.
-                Device();
-                /// @brief Class destructor.
-                virtual ~Device();
+        protected:
+            SequenceContainer Sequences;
+            /// @internal
+            /// @brief Provides the device specific logic for filtering code sequences.
+            /// @param Sequence The MetaCode sequence to be verified.
+            virtual void VerifySequenceImpl(const MetaCodeContainer& Sequence) const = 0;
+        public:
+            /// @brief Class constructor.
+            Device();
+            /// @brief Class destructor.
+            virtual ~Device();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Query Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Query Methods
 
-                /// @brief Gets the number of buttons on this device.
-                /// @return Returns a UInt16 representing the number of buttons on this device.
-                UInt16 GetNumButtons() const;
-                /// @brief Gets whether or not a device button is pressed down.
-                /// @remarks This function accepts a button number.  Check the number of buttons on this device to get the acceptable range.  1 is the minimum value.
-                /// @param Button The button to check the state of.
-                /// @return Returns whether or not the requested button is pressed down.
-                bool IsButtonPressed(const UInt16 Button) const;
-                /// @brief Gets whether or not a device button is pressed down.
-                /// @param Button The button to check the state of.
-                /// @return Returns whether or not the requested button is pressed down.
-                bool IsButtonPressed(const Input::InputCode& Button) const;
-                /// @brief Gets whether or not a device button was pressed this frame.
-                /// @remarks This function accepts a button number.  Check the number of buttons on this device to get the acceptable range.  1 is the minimum value.
-                /// @param Button The button to check the state of.
-                /// @return Returns true if the specified button is being pressed this frame, false otherwise.
-                bool IsButtonPressing(const UInt16 Button) const;
-                /// @brief Gets whether or not a device button was pressed this frame.
-                /// @param Button The button to check the state of.
-                /// @return Returns true if the specified button is being pressed this frame, false otherwise.
-                bool IsButtonPressing(const Input::InputCode& Button) const;
-                /// @brief Gets whether or not a device button was lifted this frame.
-                /// @remarks This function accepts a button number.  Check the number of buttons on this device to get the acceptable range.  1 is the minimum value.
-                /// @param Button The button to check the state of.
-                /// @return Returns true if the specified button is being lifted this frame, false otherwise.
-                bool IsButtonLifting(const UInt16 Button) const;
-                /// @brief Gets whether or not a device button was lifted this frame.
-                /// @param Button The button to check the state of.
-                /// @return Returns true if the specified button is being lifted this frame, false otherwise.
-                bool IsButtonLifting(const Input::InputCode& Button) const;
-                /// @brief Gets whether or not a device button was lifted or pressed this frame.
-                /// @param Button The button to check the state of.
-                /// @return Returns true if the requested button is pressing or lifting, false otherwise.
-                bool IsButtonTransitioning(const UInt16 Button) const;
-                /// @brief Gets whether or not a device button was lifted or pressed this frame.
-                /// @param Button The button to check the state of.
-                /// @return Returns true if the requested button is pressing or lifting, false otherwise.
-                bool IsButtonTransitioning(const Input::ButtonState& Button) const;
-                /// @brief Checks to see if a button on this device is a specific state.
-                /// @param Button The button to check the state of.
-                /// @param State The button state to check for.
-                /// @return Returns true if the requested button is the specified state, false otherwise.
-                bool CheckButtonState(const UInt16 Button, const Input::ButtonState& State) const;
-                /// @brief Checks to see if a button on this device is a specific state.
-                /// @param Button The button to check the state of.
-                /// @param State The button state to check for.
-                /// @return Returns true if the requested button is the specified state, false otherwise.
-                bool CheckButtonState(const Input::InputCode& Button, const Input::ButtonState& State) const;
-                /// @brief Gets the state of the requested button.
-                /// @remarks This function accepts a button number, and as such expects a number from 1 to 20.
-                /// @return Returns the actual state of the requested button.
-                virtual const Input::ButtonState& GetButtonState(const UInt16 Button) const = 0;
-                /// @brief Gets the state of the requested button.
-                /// @return Returns the actual state of the requested button.
-                virtual const Input::ButtonState& GetButtonState(const Input::InputCode& Button) const = 0;
+            /// @brief Gets the device index of this controller.
+            /// @return Returns a UInt16 representing the device index for this controller.
+            virtual UInt16 GetDeviceIndex() const = 0;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Sequenced Input Management
 
-                /// @internal
-                /// @brief Updates this device with the newest data.
-                /// @param Codes A vector of the codes to process and update this device with.
-                void _Update(std::vector<MetaCode>& Codes);
+            /// @copydoc SequenceContainer::AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID)
+            void AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID);
+            /// @copydoc SequenceContainer::InputSequenceExists(const MetaCodeContainer& Codes)
+            bool InputSequenceExists(const MetaCodeContainer& Codes);
+            /// @copydoc SequenceContainer::GetIDofInputSequence(const MetaCodeContainer& Codes)
+            Int32 GetIDofInputSequence(const MetaCodeContainer& Codes);
+            /// @copydoc SequenceContainer::RemoveInputSequence(const MetaCodeContainer& Codes)
+            void RemoveInputSequence(const MetaCodeContainer& Codes);
+            /// @copydoc SequenceContainer::RemoveAllInputSequences()
+            void RemoveAllInputSequences();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Updates this device with the newest data.
+            /// @param DeltaCodes A vector of the codes to process and update this device with.
+            /// @param GeneratedCodes A vector to which generated codes (sequence or otherwise) will be added.
+            virtual void _Update(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes) = 0;
         };//Device
     }//Input
 }//Mezzanine

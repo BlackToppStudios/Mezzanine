@@ -43,16 +43,20 @@
 #include "managerbase.h"
 #include "managerfactory.h"
 #include "singleton.h"
+#include "Input/metacode.h"
+#include "Input/sequencecontainer.h"
 #include "Threading/workunit.h"
 
 namespace Mezzanine
 {
     namespace Input
     {
+        class Timer;
         class Controller;
         class Keyboard;
         class Mouse;
         class InputManager;
+        class InputManagerInternalData;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a @ref iWorkUnit for the updating of the physics debug drawer.
@@ -96,7 +100,30 @@ namespace Mezzanine
         /// @class InputManager
         /// @headerfile inputmanager.h
         /// @brief This is the manager responsible for the handling of input devices and events.
-        /// @details
+        /// @details Inputs can be checked one of two ways in the input system.  Either you can get the class instance
+        /// for the device you want to query and use the query methods on it to check it's current state, or you can
+        /// access the inputs that were raised for the current frame by getting the container storing the Input Delta's. @n @n
+        /// Another feature of the input system is the ability to set custom input sequences that can be raised via MetaCode
+        /// for use elsewhere (such as the UI system).  These sequences can be any number of MetaCode's of any type (that is
+        /// valid) in any order.  Any sequence passed in must be terminated with a "Null" MetaCode.  A "Null" MetaCode is a
+        /// MetaCode constructed using the default constructor, having it's Input code set to "KEY_UNKNOWN", it's meta value
+        /// to 0, and it's device index set to the max value of UInt16.  If the sequence is not terminated an exception will
+        /// be thrown. @n @n
+        /// Input Sequences can be stored on the manager, or any input device, and their behavior is different based on where
+        /// it is inserted.  Input Sequences stored on the manager will look at all of the most recent inputs from all devices
+        /// and use that to compare against the stored Input Sequences.  If you have a single player game on the PC and want to
+        /// use an Input Sequence that combines input from both the mouse and keyboard, then the InputManager is the place to
+        /// store it.  If however, you have a multiplayer fighter game (or split screen shooter) and want to track inputs from
+        /// each of two or more controllers individually, then you'll want to place the Input Sequences on the proper controller
+        /// device.  @n @n
+        /// The InputManager can take any sequence, provided it is terminated.  Input devices however can only take sequences with
+        /// MetaCode's that pertain to their own device, otherwise an exception will be thrown.  At each place of storage Input
+        /// Sequences are forced to be unique(but they can exist on multiple devices).  Input Sequence ID's however are not forced
+        /// to be unique at any point in the system.  Furthermore when a MetaCode is generated after an Input Sequence occurs, it
+        /// is only given the ID the sequence, but not which sequence generated it.  In the case of controllers they will be given
+        /// a device ID, but otherwise the origin will not be reported.  This allows you to provide multiple ways to generating
+        /// the appropriate MetaCode(which could trigger something else in the UI system), but this also means great care must be
+        /// taken when deciding on the ID's for each Input Sequence.
         ///////////////////////////////////////
         class MEZZ_LIB InputManager : public ManagerBase, public Singleton<InputManager>
         {
@@ -108,18 +135,21 @@ namespace Mezzanine
             friend class DeviceUpdateWorkUnit;
 
             /// @internal
+            /// @brief Container storing all the cross-device sequences this manager is to check for.
+            SequenceContainer Sequences;
+            /// @internal
+            /// @brief Container storing all the MetaCodes generated for the current frame.
+            MetaCodeContainer InputDeltas;
+
+            /// @internal
+            /// @brief The pointer to the internal data handled by this manager.
+            InputManagerInternalData* IMID;
+            /// @internal
             /// @brief The pointer to the object representing the system mouse.
             Mouse* SystemMouse;
             /// @internal
             /// @brief The pointer to the object representing the system keyboard.
             Keyboard* SystemKeyboard;
-
-            /// @internal
-            /// @brief Container storing all the controllers detected by the system.
-            ControllerContainer Controllers;
-            /// @internal
-            /// @brief Container storing all the internal controllers detected.
-            std::vector<void*> InternalControllers;
 
             /// @internal
             /// @brief The work unit that updates the input devices with the newest data.
@@ -163,7 +193,25 @@ namespace Mezzanine
             void ReleaseAllControllers();
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Sequenced Input Management
+
+            /// @copydoc SequenceContainer::AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID)
+            void AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID);
+            /// @copydoc SequenceContainer::InputSequenceExists(const MetaCodeContainer& Codes)
+            bool InputSequenceExists(const MetaCodeContainer& Codes);
+            /// @copydoc SequenceContainer::GetIDofInputSequence(const MetaCodeContainer& Codes)
+            Int32 GetIDofInputSequence(const MetaCodeContainer& Codes);
+            /// @copydoc SequenceContainer::RemoveInputSequence(const MetaCodeContainer& Codes)
+            void RemoveInputSequence(const MetaCodeContainer& Codes);
+            /// @copydoc SequenceContainer::RemoveAllInputSequences()
+            void RemoveAllInputSequences();
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Utility
+
+            /// @brief Gets all the input codes that were generated this frame.
+            /// @return Returns a const reference to a vector containing all the inputs updated this frame.
+            const MetaCodeContainer& GetInputDeltas() const;
 
             /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();

@@ -42,7 +42,7 @@
 
 #include "datatypes.h"
 #include "Input/inputenumerations.h"
-#include "Input/device.h"
+#include "Input/buttondevice.h"
 
 namespace Mezzanine
 {
@@ -55,30 +55,36 @@ namespace Mezzanine
         /// @details
         ///////////////////////////////////////
         /// @todo SDL mentions a ModState for keys.  May want to implement that.
-        class MEZZ_LIB Keyboard : public Device
+        class MEZZ_LIB Keyboard : public ButtonDevice
         {
-            protected:
-                /// @copydoc Device::InputImpl(std::vector<MetaCode>& Codes)
-                virtual void UpdateImpl(std::vector<MetaCode>& Codes);
-            public:
-                /// @brief Class constructor.
-                Keyboard();
-                /// @brief Class destructor.
-                ~Keyboard();
+        protected:
+            /// @copydoc ButtonDevice::UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)
+            void UpdateImpl(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes);
+            /// @copydoc Device::VerifySequenceImpl(const MetaCodeContainer& Sequence)
+            void VerifySequenceImpl(const MetaCodeContainer& Sequence) const;
+            /// @copydoc Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const
+            void AddPressedButtons(MetaCodeContainer& GeneratedCodes) const;
+        public:
+            /// @brief Class constructor.
+            Keyboard();
+            /// @brief Class destructor.
+            virtual ~Keyboard();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Query Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Query Methods
 
-                /// @copydoc Device::GetButtonState(const UInt16 Button) const
-                virtual const Input::ButtonState& GetButtonState(const UInt16 Button) const;
-                /// @copydoc Device::GetButtonState(const Input::InputCode& Button) const
-                virtual const Input::ButtonState& GetButtonState(const Input::InputCode& Button) const;
+            /// @copydoc Device::GetDeviceIndex() const
+            UInt16 GetDeviceIndex() const;
+            /// @copydoc Device::GetButtonState(const UInt16 Button) const
+            const Input::ButtonState& GetButtonState(const UInt16 Button) const;
+            /// @copydoc Device::GetButtonState(const Input::InputCode& Button) const
+            const Input::ButtonState& GetButtonState(const Input::InputCode& Button) const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Configuration Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration Methods
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
         };//Keyboard
     }//Input
 }//Mezzanine
