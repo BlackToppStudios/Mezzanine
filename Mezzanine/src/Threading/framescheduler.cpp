@@ -212,7 +212,7 @@ namespace Mezzanine
             }
             for(std::vector<WorkUnitKey>::iterator Iter=WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); ++Iter)
                 { delete Iter->Unit; }
-            for(std::vector<MonopolyWorkUnit*>::iterator Iter = WorkUnitMonopolies.begin(); Iter!=WorkUnitMonopolies.end(); ++Iter)
+            for(std::vector<MonopolyWorkUnit*>::iterator Iter = WorkUnitsMonopolies.begin(); Iter!=WorkUnitsMonopolies.end(); ++Iter)
                 { delete *Iter; }
             for(std::vector<DefaultThreadSpecificStorage::Type*>::iterator Iter = Resources.begin(); Iter!=Resources.end(); ++Iter)
                 { delete *Iter; }
@@ -228,7 +228,7 @@ namespace Mezzanine
             { this->WorkUnitsAffinity.push_back(MoreWork->GetSortingKey(*this)); }
 
         void FrameScheduler::AddWorkUnitMonopoly(MonopolyWorkUnit* MoreWork)
-            { this->WorkUnitMonopolies.push_back(MoreWork); }
+            { this->WorkUnitsMonopolies.push_back(MoreWork); }
 
         void FrameScheduler::SortWorkUnitsMain(bool UpdateDependentGraph_)
         {
@@ -340,6 +340,27 @@ namespace Mezzanine
 
         void FrameScheduler::RemoveWorkUnitMonopoly(MonopolyWorkUnit* LessWork)
         {
+            if(WorkUnitsMain.size())
+            {
+                for(IteratorMain Iter = WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); Iter++)
+                    { Iter->Unit->RemoveDependency(LessWork); }
+            }
+            if(WorkUnitsAffinity.size())
+            {
+                for(IteratorAffinity Iter = WorkUnitsAffinity.begin(); Iter!=WorkUnitsAffinity.end(); Iter++)
+                    { Iter->Unit->RemoveDependency(LessWork); }
+            }
+            if(WorkUnitsMonopolies.size())
+            {
+                for(IteratorMonoply Iter = WorkUnitsMonopolies.begin(); Iter!=WorkUnitsMonopolies.end(); Iter++)
+                {
+                    if(*Iter==LessWork)
+                    {
+                        WorkUnitsMonopolies.erase(Iter);
+                        return;
+                    }
+                }
+            }
         }
 
         ////////////////////////////////////////////////////////////////////////////////
@@ -501,7 +522,7 @@ namespace Mezzanine
 
         void FrameScheduler::RunAllMonopolies()
         {
-            for(std::vector<MonopolyWorkUnit*>::iterator Iter = WorkUnitMonopolies.begin(); Iter!=WorkUnitMonopolies.end(); ++Iter)
+            for(std::vector<MonopolyWorkUnit*>::iterator Iter = WorkUnitsMonopolies.begin(); Iter!=WorkUnitsMonopolies.end(); ++Iter)
                 { (*Iter)->operator()(*(Resources.at(0))); }
         }
 
@@ -574,21 +595,6 @@ namespace Mezzanine
             FrameCount++;
             if(TargetFrameLength)
             {
-                /*Whole TargetFrameEnd = 1000000/TargetFrameRate + CurrentFrameStart;  // original Timing algorithm is usually about 8 milliseconds longer than 60 seconds on Sqeaky's workstation Mercury
-                Whole WaitTime = TargetFrameEnd - GetTimeStamp();
-                if(WaitTime>1000000)
-                    { WaitTime = 0; }
-                Mezzanine::Threading::this_thread::sleep_for( WaitTime );*/
-                /*Whole TargetFrameEnd = TargetFrameLength + CurrentFrameStart;         //Second algorithm works great in debug but it is not
-                Whole WaitTime = Whole(TargetFrameEnd - GetTimeStamp()) - TimingCostAllowance;
-                if(WaitTime>1000000)
-                    { WaitTime = 0; }
-                Mezzanine::Threading::this_thread::sleep_for( WaitTime );
-                MaxInt AdjustmentTime = GetTimeStamp();
-                if(AdjustmentTime<TargetFrameEnd-TimingCostAllowanceGap)
-                    { TimingCostAllowance-=(TargetFrameEnd-AdjustmentTime)/2; }
-                if(AdjustmentTime>TargetFrameEnd)
-                    { TimingCostAllowance+=(AdjustmentTime-TargetFrameEnd)/2; }*/
                 Whole TargetFrameEnd = TargetFrameLength + CurrentFrameStart;
                 Whole WaitTime = Whole(TargetFrameEnd - GetTimeStamp()) + TimingCostAllowance;
                 if(WaitTime>1000000)
@@ -599,6 +605,19 @@ namespace Mezzanine
 
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // Basic container features
+
+        Whole FrameScheduler::GetWorkUnitMonopolyCount() const
+            { return this->WorkUnitsMonopolies.size(); }
+
+        Whole FrameScheduler::GetWorkUnitAffinityCount() const
+            { return this->WorkUnitsAffinity.size(); }
+
+        Whole FrameScheduler::GetWorkUnitMainCount() const
+            { return this->WorkUnitsMain.size(); }
+
     } // \Threading
 }// \Mezanine
 
