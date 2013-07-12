@@ -570,6 +570,9 @@ namespace Mezzanine
 
             DestroyAllConstraints();
             DestroyAllWorldTriggers();
+
+            this->Deinitialize();
+
             //Destroy the physical world that we loved and cherished
             Destroy();
         }
