@@ -69,9 +69,12 @@ namespace Mezzanine
         class MEZZ_LIB GameWindow
         {
             public:
-                typedef std::vector<Viewport*> ViewportContainer;
+                typedef std::pair<Integer,Viewport*> ViewportEntry;
+                typedef std::list<ViewportEntry> ViewportContainer;
                 typedef ViewportContainer::iterator ViewportIterator;
                 typedef ViewportContainer::const_iterator ConstViewportIterator;
+                typedef ViewportContainer::reverse_iterator ReverseViewportIterator;
+                typedef ViewportContainer::const_reverse_iterator ConstReverseViewportIterator;
 
                 /// @enum WindowFlags
                 /// @brief A listing of potential options for configuring a game window during construction.
@@ -116,10 +119,10 @@ namespace Mezzanine
                 /// @param VeiwportCamera The camera that is to be attached to this Viewport.
                 /// @param ZOrder The render order of this viewport relative to other viewports in this window.
                 /// 0 means it'll use the current viewport count to determine the ZOrder.
-                Viewport* CreateViewport(Camera* ViewportCamera, const Whole& ZOrder = 0);
+                Viewport* CreateViewport(Camera* ViewportCamera, const Integer ZOrder = 0);
                 /// @brief Gets a viewport by index.
                 /// @return Returns a pointer to the viewport requested.
-                Viewport* GetViewport(const Whole& Index) const;
+                Viewport* GetViewport(const Whole Index) const;
                 /// @brief Gets the number of viewports within this window.
                 /// @return Returns a Whole representing the number of viewports within this window.
                 Whole GetNumViewports() const;
@@ -136,13 +139,22 @@ namespace Mezzanine
                 /// @brief Gets a const iterator to one passed the last viewport in this window.
                 ConstViewportIterator EndViewport() const;
 
+                /// @brief Gets an iterator to the last viewport in this window.
+                ReverseViewportIterator ReverseBeginViewport();
+                /// @brief Gets an iterator to one before the first viewport in this window.
+                ReverseViewportIterator ReverseEndViewport();
+                /// @brief Gets a const iterator to the last viewport in this window.
+                ConstReverseViewportIterator ReverseBeginViewport() const;
+                /// @brief Gets a const iterator to one before the first viewport in this window.
+                ConstReverseViewportIterator ReverseEndViewport() const;
+
                 ///////////////////////////////////////////////////////////////////////////////
                 // Window Metrics Management
 
                 /// @brief Sets the Width.
                 /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
                 /// @param Width This accepts a Whole.
-                void SetRenderWidth(const Whole &Width);
+                void SetRenderWidth(const Whole& Width);
                 /// @brief Gets the Width of the Rendering Area
                 /// @details Gets the Width of the Rendering Area
                 /// @return This returns the Width of the Rendering Area
@@ -150,7 +162,7 @@ namespace Mezzanine
                 /// @brief Sets the Height.
                 /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
                 /// @param Height This accepts a Whole.
-                void SetRenderHeight(const Whole &Height);
+                void SetRenderHeight(const Whole& Height);
                 /// @brief Gets the Height of the Rendering Area
                 /// @details Gets the Height of the Rendering Area
                 /// @return This returns the Height of the Rendering Area
@@ -159,11 +171,11 @@ namespace Mezzanine
                 /// @details This should be useful in situations where it is not possible to update the width and height separately.
                 /// @param Width The new desired Width for the rendering area as a whole number
                 /// @param Height The new desired Width for the rendering area as a whole number
-                void SetRenderResolution(const Whole &Width, const Whole &Height);
+                void SetRenderResolution(const Whole& Width, const Whole& Height);
                  /// @brief Set the Fullscreen Setting
                 /// @details Set the Fullscreen Setting
                 /// @param Fullscreen This accepts a bool. True for fullscreen, false for windowed
-                void SetFullscreen(const bool &Fullscreen);
+                void SetFullscreen(const bool Fullscreen);
                 /// @brief Gets the Fullscreen Setting
                 /// @details Gets the Fullscreen Setting
                 /// @return This returns a bool, true if fullscreen is set, false otherwise

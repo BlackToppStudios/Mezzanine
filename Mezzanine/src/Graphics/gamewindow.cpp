@@ -71,19 +71,19 @@ namespace Mezzanine
     {
         class GameWindowInternalData
         {
-            public:
-                bool Borderless;
-                bool Resizeable;
+        public:
+            bool Borderless;
+            bool Resizeable;
 
-                GameWindowInternalData() : Borderless(false), Resizeable(false) {}
+            GameWindowInternalData() : Borderless(false), Resizeable(false) {  }
         };
 
         GameWindow::GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
             : OgreWindow(NULL),
               SDLWindow(NULL)
         {
-            GWID = new GameWindowInternalData();
-            CreateGameWindow(WindowCaption,Width,Height,Flags);
+            this->GWID = new GameWindowInternalData();
+            this->CreateGameWindow(WindowCaption,Width,Height,Flags);
         }
 
         GameWindow::~GameWindow()
@@ -104,14 +104,14 @@ namespace Mezzanine
 
         void GameWindow::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
         {
-            Manager = Graphics::GraphicsManager::GetSingletonPtr();
-            Settings.RenderWidth = Width;
-            Settings.RenderHeight = Height;
+            this->Manager = Graphics::GraphicsManager::GetSingletonPtr();
+            this->Settings.RenderWidth = Width;
+            this->Settings.RenderHeight = Height;
 
             Ogre::NameValuePairList Opts;
             if(WF_Fullscreen & Flags)
             {
-                Settings.Fullscreen = true;
+                this->Settings.Fullscreen = true;
             }
             if(WF_Hidden & Flags)
             {
@@ -120,7 +120,7 @@ namespace Mezzanine
             if(WF_VsyncEnabled & Flags)
             {
                 Opts["vsync"] = "true";
-                Settings.VSync = true;
+                this->Settings.VSync = true;
             }
             if(WF_FSAA_16 & Flags)
             {
@@ -141,12 +141,12 @@ namespace Mezzanine
             if(WF_Resizeable & Flags)
             {
                 Opts["border"] = "resize";
-                GWID->Resizeable = true;
+                this->GWID->Resizeable = true;
             }
             else if(WF_Borderless & Flags)
             {
                 Opts["border"] = "none";
-                GWID->Borderless = true;
+                this->GWID->Borderless = true;
             }
             else
             {
@@ -159,7 +159,7 @@ namespace Mezzanine
             //#ifdef LINUX
             //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(ResourceManager::GetSingletonPtr()->GetEngineDataDirectory(),"FileSystem");
             //#endif
-            OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);//*/
+            this->OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, this->Settings.RenderWidth, this->Settings.RenderHeight, this->Settings.Fullscreen, &Opts);//*/
 
             if( !(WF_Hidden & Flags) )
             {
@@ -172,22 +172,22 @@ namespace Mezzanine
                 #ifdef MACOSX
                 NSWindow* Data = 0;
                 #endif
-                OgreWindow->getCustomAttribute("WINDOW",&Data);
-                SDLWindow = SDL_CreateWindowFrom((void*)Data);
-                SDLWindow->data = new SDL_WindowUserData();
-                SDLWindow->data->name = NULL;
-                SDLWindow->data->data = this;
-                SDLWindow->data->next = NULL;
+                this->OgreWindow->getCustomAttribute("WINDOW",&Data);
+                this->SDLWindow = SDL_CreateWindowFrom((void*)Data);
+                this->SDLWindow->data = new SDL_WindowUserData();
+                this->SDLWindow->data->name = NULL;
+                this->SDLWindow->data->data = this;
+                this->SDLWindow->data->next = NULL;
             }
         }
 
         void GameWindow::UpdateViewportsAndCameras()
         {
-            for( std::vector<Viewport*>::iterator ViewIt = Viewports.begin() ; ViewIt != Viewports.end() ; ++ViewIt )
+            for( ViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
             {
-                Camera* Cam = (*ViewIt)->GetViewportCamera();
+                Camera* Cam = (*ViewIt).second->GetViewportCamera();
                 if(Cam)
-                    Cam->SetAspectRatio((Real)((*ViewIt)->GetActualWidth()) / (Real)((*ViewIt)->GetActualHeight()));
+                    Cam->SetAspectRatio((Real)((*ViewIt).second->GetActualWidth()) / (Real)((*ViewIt).second->GetActualHeight()));
             }
         }
 
@@ -206,91 +206,109 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Viewport Management
 
-        Viewport* GameWindow::CreateViewport(Camera* ViewportCamera, const Whole& ZOrder)
+        Viewport* GameWindow::CreateViewport(Camera* ViewportCamera, const Integer ZOrder)
         {
-            Whole Order = ZOrder == 0 ? Viewports.size() : ZOrder;
+            Whole Order = ( ZOrder == 0 ? this->Viewports.size() : ZOrder );
             Viewport* NewViewport = new Viewport(ViewportCamera,Order,this);
-            Viewports.push_back(NewViewport);
+
+            for( ViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
+            {
+                if( (*ViewIt).second->GetZOrder() > ZOrder ) {
+                    this->Viewports.insert( ViewIt, ViewportEntry( ZOrder, NewViewport ) );
+                    return NewViewport;
+                }
+            }
+
+            this->Viewports.push_back( ViewportEntry(ZOrder,NewViewport) );
             return NewViewport;
         }
 
-        Viewport* GameWindow::GetViewport(const Whole& Index) const
+        Viewport* GameWindow::GetViewport(const Whole Index) const
         {
-            return Viewports.at(Index);
+            Whole Count = Index;
+            ConstViewportIterator ViewIt = this->Viewports.begin();
+            while( Count-- )
+                ++ViewIt;
+
+            return (*ViewIt).second;
         }
 
         Whole GameWindow::GetNumViewports() const
         {
-            return Viewports.size();
+            return this->Viewports.size();
         }
 
         void GameWindow::DestroyViewport(Viewport* ToBeDestroyed)
         {
-            for ( std::vector<Viewport*>::iterator it = Viewports.begin() ; it != Viewports.end() ; it++ )
+            for ( ViewportIterator it = this->Viewports.begin() ; it != this->Viewports.end() ; it++ )
             {
-                if ( ToBeDestroyed == (*it) )
+                if ( ToBeDestroyed == (*it).second )
                 {
                     delete ToBeDestroyed;
-                    Viewports.erase(it);
+                    this->Viewports.erase(it);
                     return;
                 }
             }
         }
 
         GameWindow::ViewportIterator GameWindow::BeginViewport()
-        {
-            return Viewports.begin();
-        }
+            { return this->Viewports.begin(); }
 
         GameWindow::ViewportIterator GameWindow::EndViewport()
-        {
-            return Viewports.end();
-        }
+            { return this->Viewports.end(); }
 
         GameWindow::ConstViewportIterator GameWindow::BeginViewport() const
-        {
-            return Viewports.begin();
-        }
+            { return this->Viewports.begin(); }
 
         GameWindow::ConstViewportIterator GameWindow::EndViewport() const
-        {
-            return Viewports.end();
-        }
+            { return this->Viewports.end(); }
+
+        GameWindow::ReverseViewportIterator GameWindow::ReverseBeginViewport()
+            { return this->Viewports.rbegin(); }
+
+        GameWindow::ReverseViewportIterator GameWindow::ReverseEndViewport()
+            { return this->Viewports.rend(); }
+
+        GameWindow::ConstReverseViewportIterator GameWindow::ReverseBeginViewport() const
+            { return this->Viewports.rbegin(); }
+
+        GameWindow::ConstReverseViewportIterator GameWindow::ReverseEndViewport() const
+            { return this->Viewports.rend(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Window Metrics Management
 
-        void GameWindow::SetRenderWidth(const Whole &Width)
+        void GameWindow::SetRenderWidth(const Whole& Width)
         {
-            if(Settings.RenderWidth == Width)
+            if( this->Settings.RenderWidth == Width )
                 return;
-            SetRenderResolution(Width,Settings.RenderHeight);
-            Settings.RenderWidth = Width;
+            this->SetRenderResolution(Width,this->Settings.RenderHeight);
+            this->Settings.RenderWidth = Width;
         }
 
         Whole GameWindow::GetRenderWidth() const
         {
-            return Settings.RenderWidth;
+            return this->Settings.RenderWidth;
         }
 
-        void GameWindow::SetRenderHeight(const Whole &Height)
+        void GameWindow::SetRenderHeight(const Whole& Height)
         {
-            if(Settings.RenderHeight == Height)
+            if( this->Settings.RenderHeight == Height )
                 return;
-            SetRenderResolution(Settings.RenderWidth,Height);
-            Settings.RenderHeight = Height;
+            this->SetRenderResolution(this->Settings.RenderWidth,Height);
+            this->Settings.RenderHeight = Height;
         }
 
         Whole GameWindow::GetRenderHeight() const
         {
-            return Settings.RenderHeight;
+            return this->Settings.RenderHeight;
         }
 
-        void GameWindow::SetRenderResolution(const Whole &Width, const Whole &Height)
+        void GameWindow::SetRenderResolution(const Whole& Width, const Whole& Height)
         {
-            if(Settings.RenderWidth == Width && Settings.RenderHeight == Height)
+            if( this->Settings.RenderWidth == Width && this->Settings.RenderHeight == Height )
                 return;
-            if(Settings.Fullscreen)
+            if( this->Settings.Fullscreen )
             {
                 SDL_DisplayMode CurrentDisplay;
                 SDL_GetWindowDisplayMode(SDLWindow,&CurrentDisplay);
@@ -299,87 +317,87 @@ namespace Mezzanine
                 //CurrentDisplay.refresh_rate = 60;
                 if(SDL_SetWindowDisplayMode(SDLWindow,&CurrentDisplay) == 0)
                 {
-                    OgreWindow->setFullscreen(true,Width,Height);
-                    UpdateViewportsAndCameras();
-                    Settings.RenderWidth = Width;
-                    Settings.RenderHeight = Height;
+                    this->OgreWindow->setFullscreen(true,Width,Height);
+                    this->UpdateViewportsAndCameras();
+                    this->Settings.RenderWidth = Width;
+                    this->Settings.RenderHeight = Height;
                     return;
                 }
             }else{
-                int Result = IsLargerThenDesktop(Width,Height);
+                int Result = this->IsLargerThenDesktop(Width,Height);
                 if(Result == 0)
                 {
                     Whole ResultWidth, ResultHeight;
                     crossplatform::SanitizeWindowedRes(Width,Height,ResultWidth,ResultHeight);
                     SDL_SetWindowSize(SDLWindow,ResultWidth,ResultHeight);
-                    OgreWindow->setFullscreen(false,ResultWidth,ResultHeight);
+                    this->OgreWindow->setFullscreen(false,ResultWidth,ResultHeight);
                 }else if(Result == 1){
                     Entresol::GetSingletonPtr()->Log("Cannot create a window larger then the desktop resolution.");
                     return;
                 }else{
                     SDL_SetWindowSize(SDLWindow,Width,Height);
-                    OgreWindow->setFullscreen(false,Width,Height);
+                    this->OgreWindow->setFullscreen(false,Width,Height);
                 }
-                UpdateViewportsAndCameras();
-                Settings.RenderWidth = Width;
-                Settings.RenderHeight = Height;
+                this->UpdateViewportsAndCameras();
+                this->Settings.RenderWidth = Width;
+                this->Settings.RenderHeight = Height;
             }
         }
 
-        void GameWindow::SetFullscreen(const bool &Fullscreen)
+        void GameWindow::SetFullscreen(const bool Fullscreen)
         {
             static SDL_DisplayMode FSDisplayMode;
 
-            if(Fullscreen == Settings.Fullscreen)
+            if( Fullscreen == this->Settings.Fullscreen )
                 return;
 
-            if(!Fullscreen && Settings.Fullscreen)
+            if( !Fullscreen && this->Settings.Fullscreen )
             {
-                const WindowSettings& DeskSet = Manager->GetDesktopSettings();
-                if( Settings.RenderWidth > DeskSet.RenderWidth || Settings.RenderHeight > DeskSet.RenderHeight )
+                const WindowSettings& DeskSet = this->Manager->GetDesktopSettings();
+                if( this->Settings.RenderWidth > DeskSet.RenderWidth || this->Settings.RenderHeight > DeskSet.RenderHeight )
                 {
-                    Settings.RenderWidth = DeskSet.RenderWidth;
-                    Settings.RenderHeight = DeskSet.RenderHeight;
+                    this->Settings.RenderWidth = DeskSet.RenderWidth;
+                    this->Settings.RenderHeight = DeskSet.RenderHeight;
                 }
-                if( Settings.RenderWidth == DeskSet.RenderWidth || Settings.RenderHeight == DeskSet.RenderHeight )
+                if( this->Settings.RenderWidth == DeskSet.RenderWidth || this->Settings.RenderHeight == DeskSet.RenderHeight )
                 {
                     Whole ResultWidth, ResultHeight;
                     crossplatform::SanitizeWindowedRes(Settings.RenderWidth,Settings.RenderHeight,ResultWidth,ResultHeight);
-                    SetRenderResolution(ResultWidth,ResultHeight);
-                    Settings.RenderWidth = DeskSet.RenderWidth;
-                    Settings.RenderHeight = DeskSet.RenderHeight;
+                    this->SetRenderResolution(ResultWidth,ResultHeight);
+                    this->Settings.RenderWidth = DeskSet.RenderWidth;
+                    this->Settings.RenderHeight = DeskSet.RenderHeight;
                 }
             }
             else if(Fullscreen && !Settings.Fullscreen)
             {
-                FSDisplayMode.w = Settings.RenderWidth;
-                FSDisplayMode.h = Settings.RenderHeight;
+                FSDisplayMode.w = this->Settings.RenderWidth;
+                FSDisplayMode.h = this->Settings.RenderHeight;
                 FSDisplayMode.refresh_rate = Settings.RefreshRate;
                 SDL_SetWindowDisplayMode(SDLWindow,&FSDisplayMode);
             }
 
             if(SDL_SetWindowFullscreen(SDLWindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0)
             {
-                OgreWindow->setFullscreen(Fullscreen,Settings.RenderWidth,Settings.RenderHeight);
-                UpdateViewportsAndCameras();
-                Settings.Fullscreen = Fullscreen;
+                this->OgreWindow->setFullscreen(Fullscreen,this->Settings.RenderWidth,this->Settings.RenderHeight);
+                this->UpdateViewportsAndCameras();
+                this->Settings.Fullscreen = Fullscreen;
             }
         }
 
         bool GameWindow::GetFullscreen() const
         {
-            return Settings.Fullscreen;
+            return this->Settings.Fullscreen;
         }
 
         void GameWindow::SetRenderOptions(const WindowSettings& NewSettings)
         {
-            SetFullscreen(NewSettings.Fullscreen);
-            SetRenderResolution(NewSettings.RenderWidth,NewSettings.RenderHeight);
+            this->SetFullscreen( NewSettings.Fullscreen );
+            this->SetRenderResolution( NewSettings.RenderWidth, NewSettings.RenderHeight );
         }
 
         const WindowSettings& GameWindow::GetSettings()
         {
-            return Settings;
+            return this->Settings;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -387,42 +405,42 @@ namespace Mezzanine
 
         const String& GameWindow::GetWindowCaption()
         {
-            return OgreWindow->getName();
+            return this->OgreWindow->getName();
         }
 
         Whole GameWindow::GetFSAALevel() const
         {
-            return OgreWindow->getFSAA();
+            return this->OgreWindow->getFSAA();
         }
 
         void GameWindow::EnableVsync(bool Enable)
         {
-            OgreWindow->setVSyncEnabled(Enable);
+            this->OgreWindow->setVSyncEnabled(Enable);
         }
 
         bool GameWindow::VsyncEnabled() const
         {
-            return OgreWindow->isVSyncEnabled();
+            return this->OgreWindow->isVSyncEnabled();
         }
 
         void GameWindow::SetHidden(bool Hidden)
         {
-            OgreWindow->setHidden(Hidden);
+            this->OgreWindow->setHidden(Hidden);
         }
 
         bool GameWindow::IsHidden() const
         {
-            return OgreWindow->isHidden();
+            return this->OgreWindow->isHidden();
         }
 
         bool GameWindow::BorderIsResizeable() const
         {
-            return GWID->Resizeable;
+            return this->GWID->Resizeable;
         }
 
         bool GameWindow::IsBorderless() const
         {
-            return GWID->Borderless;
+            return this->GWID->Borderless;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -430,32 +448,32 @@ namespace Mezzanine
 
         Real GameWindow::GetLastFPS() const
         {
-            return OgreWindow->getLastFPS();
+            return this->OgreWindow->getLastFPS();
         }
 
         Real GameWindow::GetAverageFPS() const
         {
-            return OgreWindow->getAverageFPS();
+            return this->OgreWindow->getAverageFPS();
         }
 
         Real GameWindow::GetBestFPS() const
         {
-            return OgreWindow->getBestFPS();
+            return this->OgreWindow->getBestFPS();
         }
 
         Real GameWindow::GetWorstFPS() const
         {
-            return OgreWindow->getWorstFPS();
+            return this->OgreWindow->getWorstFPS();
         }
 
         Real GameWindow::GetBestFrameTime() const
         {
-            return OgreWindow->getBestFrameTime();
+            return this->OgreWindow->getBestFrameTime();
         }
 
         Real GameWindow::GetWorstFrameTime() const
         {
-            return OgreWindow->getWorstFrameTime();
+            return this->OgreWindow->getWorstFrameTime();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -463,12 +481,12 @@ namespace Mezzanine
 
         Ogre::RenderWindow* GameWindow::_GetOgreWindowPointer()
         {
-            return OgreWindow;
+            return this->OgreWindow;
         }
 
         SDL_Window* GameWindow::_GetSDLWindowPointer()
         {
-            return SDLWindow;
+            return this->SDLWindow;
         }
     }//Graphics
 }//Mezzanine
