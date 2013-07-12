@@ -262,6 +262,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}track.h"
         "${${PROJECT_NAME}_SRC_DIR}transform.h"
         "${${PROJECT_NAME}_SRC_DIR}transformableobject.h"
+        "${${PROJECT_NAME}_SRC_DIR}trie.h"
         "${${PROJECT_NAME}_SRC_DIR}UI/ui.h"
         "${${PROJECT_NAME}_SRC_DIR}UI/uimanager.h"
         "${${PROJECT_NAME}_SRC_DIR}UI/uienumerations.h"
