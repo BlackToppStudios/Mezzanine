@@ -375,13 +375,13 @@ namespace Mezzanine
         /// that happened, and it will also have a meta code for each time this function was called. The added metacode may be partialky ignored, the
         /// Metavalue is almost always ignored, and in a situation where the can only be one of a given input on a system, the ID is ignore and 0 is assumed.
         /// @exception "Unsupported Polling Check on this Platform" When the metacode passed cannot be polled on this platform
-        void AddPollingCheck(const MetaCode &InputToTryPolling);
+        void AddPollingCheck(const Input::MetaCode& InputToTryPolling);
 
         /// @brief Removes Events from the list(s) of what needs to be polled
         /// @param InputToStopPolling This accepts a MetaCode and will try to Remove Watches like this one
         /// @details This will remove any check for polling that share the same inputcode and ID. This
         /// @exception "Polling check not present" Is thrown
-        void RemovePollingCheck(const MetaCode &InputToStopPolling);
+        void RemovePollingCheck(const Input::MetaCode& InputToStopPolling);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

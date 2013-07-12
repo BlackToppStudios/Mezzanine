@@ -83,7 +83,7 @@ Whole LevelScorer::CalculateTimerScore()
     Whole TimeScore = 0;
     // Calculate the Time Score
     Timer* LevelTimer = this->GameApp->GetLevelTimer();
-    Whole Time = LevelTimer->GetCurrentTimeInMilli() * 0.001;
+    Whole Time = LevelTimer->GetCurrentTimeInMilliseconds() * 0.001;
     if(Time < this->LevelTargetTime)
     {
         ThrowableContainer& Throwables = this->GameApp->GetThrowables();

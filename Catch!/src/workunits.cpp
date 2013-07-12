@@ -211,7 +211,7 @@ void CatchPostGraphicsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::
     UI::OpenRenderableContainerWidget* HUDCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_HUD"));
     UI::Caption* Timer = static_cast<UI::Caption*>(HUDCont->GetAreaRenderable("GS_Timer"));
     std::stringstream time;
-    Whole TotalSeconds = this->CatchApplication->GetLevelTimer()->GetCurrentTimeInMilli() / 1000;
+    Whole TotalSeconds = this->CatchApplication->GetLevelTimer()->GetCurrentTimeInMilliseconds() / 1000;
     Whole Minutes = TotalSeconds / 60;
     Whole Seconds;
 

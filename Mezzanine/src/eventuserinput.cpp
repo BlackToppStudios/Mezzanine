@@ -70,54 +70,54 @@ namespace Mezzanine
     EventUserInput::EventUserInput()
         {}
 
-    EventUserInput::EventUserInput(const MetaCode &Code_)
+    EventUserInput::EventUserInput(const Input::MetaCode& Code_)
         { this->push_back(Code_); }
 
-    EventUserInput::EventUserInput(const vector<MetaCode> &Code_)
+    EventUserInput::EventUserInput(const vector<Input::MetaCode>& Code_)
         { AddCodes(Code_); }
 
     EventUserInput::~EventUserInput()
         {}
 
-    const MetaCode& EventUserInput::GetMetaCode(const unsigned int &Index)
+    const Input::MetaCode& EventUserInput::GetMetaCode(const unsigned int& Index)
         { return this->at(Index); }
 
     size_t EventUserInput::GetMetaCodeCount()
         { return this->size(); }
 
-    MetaCode EventUserInput::AddCode(const MetaCode &Code_)
+    Input::MetaCode EventUserInput::AddCode(const Input::MetaCode& Code_)
     {
         this->push_back(Code_);
         return Code_;
     }
 
-    MetaCode EventUserInput::AddCode(const RawEvent &RawEvent_)
+    Input::MetaCode EventUserInput::AddCode(const RawEvent& RawEvent_)
     {
-        MetaCode CurrentMetaCode( RawEvent_ );
+        Input::MetaCode CurrentMetaCode( RawEvent_ );
         return this->AddCode(CurrentMetaCode);
     }
 
-    MetaCode EventUserInput::AddCode(const int &MetaValue_, const Input::InputCode &Code_)
+    Input::MetaCode EventUserInput::AddCode(const int& MetaValue_, const Input::InputCode& Code_)
     {
-        MetaCode CurrentMetaCode( MetaValue_, Code_ );
+        Input::MetaCode CurrentMetaCode( MetaValue_, Code_ );
         return this->AddCode(CurrentMetaCode);
     }
 
-    MetaCode EventUserInput::AddCode(const int &MetaValue_, const Input::InputCode &Code_, const UInt16& DeviceIndex_)
+    Input::MetaCode EventUserInput::AddCode(const int& MetaValue_, const Input::InputCode& Code_, const UInt16& DeviceIndex_)
     {
-        MetaCode CurrentMetaCode( MetaValue_, Code_, DeviceIndex_ );
+        Input::MetaCode CurrentMetaCode( MetaValue_, Code_, DeviceIndex_ );
         return this->AddCode(CurrentMetaCode);
     }
 
-    void EventUserInput::AddCodes(const vector<MetaCode> &Codes)
+    void EventUserInput::AddCodes(const vector<Input::MetaCode>& Codes)
     {
         for(unsigned int c=0; Codes.size()>c ; c++)
             { this->push_back(Codes.at(c)); }
     }
 
-    void EventUserInput::EraseCode(const MetaCode &Code_)
+    void EventUserInput::EraseCode(const Input::MetaCode& Code_)
     {
-        vector<MetaCode>::iterator iter;
+        vector<Input::MetaCode>::iterator iter;
 
         for(iter=this->begin(); this->end()!=iter ; iter++)
         {
@@ -128,15 +128,15 @@ namespace Mezzanine
         }
     }
 
-    void EventUserInput::EraseCode(const unsigned int &Index)
+    void EventUserInput::EraseCode(const unsigned int& Index)
         { this->erase(this->begin()+Index); }
 
     EventBase::EventType EventUserInput::GetType() const
         { return UserInput; }
 
-    vector<MetaCode> EventUserInput::AddCodesFromRawEvent(const RawEvent &RawEvent_)
+    vector<Input::MetaCode> EventUserInput::AddCodesFromRawEvent(const RawEvent& RawEvent_)
     {
-        vector<MetaCode> Results;
+        vector<Input::MetaCode> Results;
         switch(RawEvent_.type)
         {
             case SDL_KEYUP:         case SDL_KEYDOWN:
@@ -146,22 +146,22 @@ namespace Mezzanine
                 break;
 
             case SDL_MOUSEMOTION:{       //Can contain Multiple Metacodes
-                std::vector<MetaCode> Transport(this->AddCodesFromSDLMouseMotion(RawEvent_));
+                std::vector<Input::MetaCode> Transport(this->AddCodesFromSDLMouseMotion(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
 
             case SDL_JOYAXISMOTION: {       //Can contain Multiple Metacodes
-                std::vector<MetaCode> Transport(this->AddCodesFromSDLJoyStickMotion(RawEvent_));
+                std::vector<Input::MetaCode> Transport(this->AddCodesFromSDLJoyStickMotion(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
 
             case SDL_JOYBALLMOTION:{
-                std::vector<MetaCode> Transport(this->AddCodeFromSDLJoyStickBall(RawEvent_));
+                std::vector<Input::MetaCode> Transport(this->AddCodeFromSDLJoyStickBall(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
 
             case SDL_JOYHATMOTION:{
-                std::vector<MetaCode> Transport(this->AddCodeFromSDLJoyStickHat(RawEvent_));
+                std::vector<Input::MetaCode> Transport(this->AddCodeFromSDLJoyStickHat(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
 
@@ -177,9 +177,9 @@ namespace Mezzanine
     // EventUserInput Private Methods
     ///////////////////////////////////////
 
-    vector<MetaCode> EventUserInput::AddCodesFromSDLMouseMotion(const RawEvent& RawEvent_)
+    vector<Input::MetaCode> EventUserInput::AddCodesFromSDLMouseMotion(const RawEvent& RawEvent_)
     {
-        vector<MetaCode> Results;
+        vector<Input::MetaCode> Results;
 
         Results.push_back(this->AddCode(RawEvent_.motion.x, Input::MOUSEABSOLUTEHORIZONTAL));
         Results.push_back(this->AddCode(RawEvent_.motion.y, Input::MOUSEABSOLUTEVERTICAL));
@@ -192,32 +192,32 @@ namespace Mezzanine
         return Results;
     }
 
-    vector<MetaCode> EventUserInput::AddCodesFromSDLJoyStickMotion(const RawEvent& RawEvent_)
+    vector<Input::MetaCode> EventUserInput::AddCodesFromSDLJoyStickMotion(const RawEvent& RawEvent_)
     {
-        vector<MetaCode> Results;
+        vector<Input::MetaCode> Results;
 
-        Results.push_back(this->AddCode(RawEvent_.jaxis.value, MetaCode::GetJoystickAxisCode(RawEvent_.jaxis.axis+1), RawEvent_.jaxis.which));
+        Results.push_back(this->AddCode(RawEvent_.jaxis.value, Input::MetaCode::GetControllerAxisCode(RawEvent_.jaxis.axis+1), RawEvent_.jaxis.which));
 
         return Results;
     }
 
-    vector<MetaCode> EventUserInput::AddCodeFromSDLJoyStickHat(const RawEvent& RawEvent_)
+    vector<Input::MetaCode> EventUserInput::AddCodeFromSDLJoyStickHat(const RawEvent& RawEvent_)
     {
-        vector<MetaCode> Results;
+        vector<Input::MetaCode> Results;
         Input::InputCode Hat = (Input::InputCode)(RawEvent_.jhat.hat + Input::CONTROLLERHAT_FIRST);
 
         if( Input::CONTROLLERHAT_FIRST > Hat || Input::CONTROLLERHAT_LAST < Hat )
         {
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Unsupported Joystick Hat Event");
+            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Unsupported Controller Hat Event");
         }
 
         Results.push_back(this->AddCode( RawEvent_.jhat.value, Hat, RawEvent_.jhat.which ));
         return Results;
     }
 
-    vector<MetaCode> EventUserInput::AddCodeFromSDLJoyStickBall(const RawEvent& RawEvent_)
+    vector<Input::MetaCode> EventUserInput::AddCodeFromSDLJoyStickBall(const RawEvent& RawEvent_)
     {
-        vector<MetaCode> Results;
+        vector<Input::MetaCode> Results;
 
         if( 0 == RawEvent_.jball.ball )
         {
@@ -244,7 +244,7 @@ namespace Mezzanine
 std::ostream& operator << (std::ostream& stream, const Mezzanine::EventUserInput& Ev)
 {
     stream << "<EventUserInput Version=\"1\">";
-    for (vector<Mezzanine::MetaCode>::const_iterator Iter = Ev.begin(); Iter!=Ev.end(); ++Iter)
+    for (vector<Mezzanine::Input::MetaCode>::const_iterator Iter = Ev.begin(); Iter!=Ev.end(); ++Iter)
     {
         stream << *Iter;
     }
@@ -272,7 +272,7 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventUserInput
 
             //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
             Mezzanine::XML::Node Child = OneNode.GetFirstChild();
-            Mezzanine::MetaCode ACode;
+            Mezzanine::Input::MetaCode ACode;
             while(Child)
             {
                 Child >> ACode;

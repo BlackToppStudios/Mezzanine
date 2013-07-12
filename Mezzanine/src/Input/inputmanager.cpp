@@ -103,11 +103,11 @@ namespace Mezzanine
         void DeviceUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
             // Set up our containers for the update
-            InputDeltas.clear();
+            this->TargetManager->InputDeltas.clear();
             std::vector< Input::MetaCode > MouseCodes;
             std::vector< Input::MetaCode > KeyboardCodes;
             std::vector< std::vector< Input::MetaCode > > ControllerCodes;
-            ControllerCodes.resize( GetNumControllers() );
+            ControllerCodes.resize( this->TargetManager->GetNumControllers() );
             // And finally our container for our generated codes
             std::vector< Input::MetaCode > GeneratedCodes;
 
@@ -122,7 +122,7 @@ namespace Mezzanine
                 for( Whole X = 0 ; X < CurrEvent->size() ; ++X )
                 {
                     Input::MetaCode& CurrCode = CurrEvent->at(X);
-                    InputDeltas.push_back(CurrCode);
+                    this->TargetManager->InputDeltas.push_back(CurrCode);
                     if( Input::MOUSE_FIRST <= CurrCode.GetCode() && Input::MOUSE_LAST >= CurrCode.GetCode() ){
                         MouseCodes.push_back( CurrCode );
                     }else if( Input::KEY_FIRST <= CurrCode.GetCode() && Input::KEY_LAST >= CurrCode.GetCode() ){
@@ -141,16 +141,16 @@ namespace Mezzanine
             // Update all of our devices with the processed/saved data
             this->TargetManager->SystemMouse->_Update(MouseCodes,GeneratedCodes);
             this->TargetManager->SystemKeyboard->_Update(KeyboardCodes,GeneratedCodes);
-            for( Whole X = 0 ; X < GetNumControllers() ; ++X )
+            for( Whole X = 0 ; X < this->TargetManager->GetNumControllers() ; ++X )
             {
                 this->TargetManager->IMID->Controllers.at(X).first->_Update( ControllerCodes.at(X) , GeneratedCodes );
             }
             // Do sub-system wide sequence checks if we've done anything
-            if( !InputDeltas.empty() )
-                this->TargetManager->Sequences.Update(InputDeltas,GeneratedCodes);
+            if( !this->TargetManager->InputDeltas.empty() )
+                this->TargetManager->Sequences.Update(this->TargetManager->InputDeltas,GeneratedCodes);
             // Update our delta's if there is anything to update
             if( !GeneratedCodes.empty() )
-                this->TargetManager->InputDeltas.insert(InputDeltas.end(),GeneratedCodes.begin(),GeneratedCodes.end());
+                this->TargetManager->InputDeltas.insert(this->TargetManager->InputDeltas.end(),GeneratedCodes.begin(),GeneratedCodes.end());
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -178,7 +178,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
             }
 
-            this->IMID = new Internal::InputManagerInternalData();
+            this->IMID = new InputManagerInternalData();
             this->SystemMouse = new Mouse();
             this->SystemKeyboard = new Keyboard();
             this->DetectControllers();
@@ -206,7 +206,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
             }
 
-            this->IMID = new Internal::InputManagerInternalData();
+            this->IMID = new InputManagerInternalData();
             this->SystemMouse = new Mouse();
             this->SystemKeyboard = new Keyboard();
             this->DetectControllers();

@@ -188,16 +188,16 @@ namespace Mezzanine
             /// @brief Adds one type of polling check where the data is only available as Ints
             /// @param OneCode The metacode that contains the input that will be checked for each frame
             /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
-            void AddMetaCodesToManualCheck(const MetaCode& OneCode, PollingType _PollingCheck)
+            void AddMetaCodesToManualCheck(const Input::MetaCode& OneCode, PollingType _PollingCheck)
             { AddInputCodesToManualCheck(OneCode.GetCode(),_PollingCheck); }
 
             /// @internal
             /// @brief Used to insert Codes into the list of items to be manually checked
             /// @param Transport A vector of every Meta that may need to be added to the list
             /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
-            void AddMetaCodesToManualCheck(std::vector<MetaCode> Transport, PollingType _PollingCheck)
+            void AddMetaCodesToManualCheck(std::vector<Input::MetaCode> Transport, PollingType _PollingCheck)
             {
-                for ( std::vector<MetaCode>::const_iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
+                for ( std::vector<Input::MetaCode>::const_iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                 {
                     //Input::InputCode temp = Iter->GetCode();
                     AddInputCodeToManualCheck(Iter->GetCode(), _PollingCheck);
@@ -233,16 +233,16 @@ namespace Mezzanine
             /// @brief Removes one type of polling check
             /// @param OneCode A metacode that contains the the inputcode to remove
             /// @param _PollingCheck If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed.
-            void RemoveMetaCodesToManualCheck(const MetaCode& OneCode, PollingType _PollingCheck)
+            void RemoveMetaCodesToManualCheck(const Input::MetaCode& OneCode, PollingType _PollingCheck)
                 { RemoveInputCodeToManualCheck(OneCode.GetCode(),_PollingCheck); }
 
             /// @internal
             /// @brief Remove Items form the internal manual check list
             /// @param Transport A vector of every MetaCode that may need to be removed to the list
             /// @param _PollingCheck If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed.
-            void RemoveMetaCodesToManualCheck(std::vector<MetaCode> Transport, PollingType _PollingCheck)
+            void RemoveMetaCodesToManualCheck(std::vector<Input::MetaCode> Transport, PollingType _PollingCheck)
             {
-                for ( std::vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
+                for ( std::vector<Input::MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                     { RemoveInputCodeToManualCheck(Iter->GetCode(), _PollingCheck); }
             }
 
@@ -457,12 +457,12 @@ namespace Mezzanine
             {
         //Events and User input sorted by estimate frequency
                 case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:/*{
-                    MetaCode ResultCode(FromSDLRaw);
+                    Input::MetaCode ResultCode(FromSDLRaw);
                     _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), Internal::EventManagerInternalData::Keypress);
                     break;}//*/
 
                 case SDL_KEYDOWN: /*{
-                    MetaCode ResultCode(FromSDLRaw);
+                    Input::MetaCode ResultCode(FromSDLRaw);
                     if ( !(_Data->ManualCheck[ResultCode.GetCode()]) )              //This checks for operating system level key repititions and skips adding them
                         { _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), Internal::EventManagerInternalData::Keypress); }
                     break; }//*/
@@ -643,7 +643,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Polling Functions
 
-    void EventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
+    void EventManager::AddPollingCheck(const Input::MetaCode& InputToTryPolling)
     {
         if(InputToTryPolling.IsPollable())
         {
@@ -653,7 +653,7 @@ namespace Mezzanine
         }
     }
 
-    void EventManager::RemovePollingCheck(const MetaCode &InputToStopPolling)
+    void EventManager::RemovePollingCheck(const Input::MetaCode& InputToStopPolling)
     {
         this->_Data->RemoveInputCodeToManualCheck(InputToStopPolling.GetCode(), Internal::EventManagerInternalData::Polling);
     }

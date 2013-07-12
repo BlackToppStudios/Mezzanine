@@ -76,7 +76,7 @@ namespace Mezzanine
         {
             for( Whole X = 0 ; X < DeltaCodes.size() ; ++X )
             {
-                MetaCode& CurrCode = DeltaCodes[X];
+                const MetaCode& CurrCode = DeltaCodes[X];
                 if(CurrCode.GetCode() >= Input::CONTROLLERAXIS_FIRST && CurrCode.GetCode() <= Input::CONTROLLERAXIS_LAST)
                 {
                     this->Axes.at( CurrCode.GetCode() - Input::CONTROLLERAXIS_FIRST ) = CurrCode.GetMetaValue();

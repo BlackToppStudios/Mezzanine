@@ -342,7 +342,6 @@ namespace Mezzanine
         }
 
         // Mike's portion of adding serializable to the metacode starts here
-        // Serializable
         void MetaCode::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             Mezzanine::XML::Node MetaNode = CurrentRoot.AppendChild(SerializableName());
@@ -365,7 +364,6 @@ namespace Mezzanine
             }
         }
 
-        // DeSerializable
         void MetaCode::ProtoDeSerialize(const XML::Node& OneNode)
         {
             if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
@@ -384,7 +382,6 @@ namespace Mezzanine
 
         String MetaCode::SerializableName() const
             { return String("MetaCode"); }
-        #endif // end MEZZXML
         // end of mike's serializable
     }//Input
 }//Mezzanine
@@ -396,13 +393,10 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Input::MetaCod
     return stream;
 }
 
-#ifdef MEZZXML
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Input::MetaCode& x)
-
-
-{ return Mezzanine::DeSerialize(stream, x); }
+    { return Mezzanine::DeSerialize(stream, x); }
 
 Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Input::MetaCode& x)
-{x.ProtoDeSerialize(OneNode); }
+    {x.ProtoDeSerialize(OneNode); }
 
 #endif

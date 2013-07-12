@@ -42,6 +42,7 @@
 
 #include "Input/sequencecontainer.h"
 #include "timer.h"
+#include "exception.h"
 
 #include <limits>
 
@@ -205,7 +206,7 @@ namespace Mezzanine
                     // Compare current cache to existing stored sequences
                     MetaCode New = this->ProcessSequence(this->CurrSequenceCache.begin(),this->CurrSequenceCache.end());
                     if( NullMetaCode != New )
-                        this->SequenceCodes.push_back(New);
+                        SequenceCodes.push_back(New);
                 }
             }
         }

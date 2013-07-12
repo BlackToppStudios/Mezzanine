@@ -396,7 +396,7 @@ int main(int argc, char **argv)
     TheEntresol->GetSceneManager()->SetShadowFarDistance(3000);
 
     //Set up polling for the letter Q
-    TheEntresol->GetEventManager()->AddPollingCheck( MetaCode(0, Input::KEY_Q) );
+    TheEntresol->GetEventManager()->AddPollingCheck( Input::MetaCode(0, Input::KEY_Q) );
 
     //Actually Load the game stuff
     LoadContent();
