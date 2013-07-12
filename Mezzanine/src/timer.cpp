@@ -69,19 +69,25 @@ namespace Mezzanine
     void Timer::SetCurrentTime(const Whole Current)
         { this->CurrentTime = static_cast<MaxInt>( Current ); }
 
+    void Timer::SetCurrentTimeInMilliseconds(const Whole Current)
+        { this->CurrentTime = static_cast<MaxInt>( Current ) * 1000; }
+
     Whole Timer::GetCurrentTime()
         { this->Update();  return static_cast<Whole>( this->CurrentTime ); }
 
-    Whole Timer::GetCurrentTimeInMilli()
+    Whole Timer::GetCurrentTimeInMilliseconds()
         { return this->GetCurrentTime() * 0.001; }
 
     void Timer::SetInitialTime(const Whole Initial)
         { this->InitialTime = static_cast<MaxInt>( Initial ); }
 
+    void Timer::SetInitialTimeInMilliseconds(const Whole Initial)
+        { this->InitialTime = static_cast<MaxInt>( Initial ) * 1000; }
+
     Whole Timer::GetInitialTime() const
         { return static_cast<Whole>( this->InitialTime ); }
 
-    Whole Timer::GetInitialTimeInMilli() const
+    Whole Timer::GetInitialTimeInMilliseconds() const
         { return this->GetInitialTime() * 0.001; }
 
     void Timer::Start()
@@ -138,10 +144,13 @@ namespace Mezzanine
     void GoalTimer::SetGoalTime(const Whole Goal)
         { this->GoalTime = static_cast<MaxInt>( Goal ); }
 
+    void GoalTimer::SetGoalTimeInMilliseconds(const Whole Goal)
+        { this->GoalTime = static_cast<MaxInt>( Goal ) * 1000; }
+
     Whole GoalTimer::GetGoalTime() const
         { return static_cast<Whole>( this->GoalTime ); }
 
-    Whole GoalTimer::GetGoalTimeInMilli() const
+    Whole GoalTimer::GetGoalTimeInMilliseconds() const
         { return this->GetGoalTime() * 0.001; }
 
     ///////////////////////////////////////////////////////////////////////////////

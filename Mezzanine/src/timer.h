@@ -87,22 +87,30 @@ namespace Mezzanine
         /// @return Returns a reference to this timer.
         /// @param Current The value to set as current time in Microseconds.
         virtual void SetCurrentTime(const Whole Current);
+        /// @brief Sets the current time in Milliseconds. The time that resetting sets the timer to.
+        /// @return Returns a reference to this timer.
+        /// @param Current The value to set as current time in Milliseconds.
+        virtual void SetCurrentTimeInMilliseconds(const Whole Current);
         /// @brief Gets the Current time in Microseconds.
         /// @return Returns a Whole representing the current time in Microseconds.
         virtual Whole GetCurrentTime();
         /// @brief Gets the Current time in Milliseconds.
         /// @return Returns a Whole representing the current time in Milliseconds.
-        virtual Whole GetCurrentTimeInMilli();
+        virtual Whole GetCurrentTimeInMilliseconds();
         /// @brief Sets the initial time in Microseconds. The time that resetting sets the timer to.
         /// @return Returns a reference to this timer.
         /// @param Initial The value to set as initial time in Microseconds.
         virtual void SetInitialTime(const Whole Initial);
+        /// @brief Sets the initial time in Milliseconds. The time that resetting sets the timer to.
+        /// @return Returns a reference to this timer.
+        /// @param Initial The value to set as initial time in Milliseconds.
+        virtual void SetInitialTimeInMilliseconds(const Whole Initial);
         /// @brief Gets the Initial time in Microseconds.
         /// @return Returns a Whole representing the initial time in Microseconds.
         virtual Whole GetInitialTime() const;
         /// @brief Gets the Initial time in Milliseconds.
         /// @return Returns a Whole representing the initial time in Milliseconds.
-        virtual Whole GetInitialTimeInMilli() const;
+        virtual Whole GetInitialTimeInMilliseconds() const;
 
         /// @brief Activates the Timer.
         virtual void Start();
@@ -153,12 +161,15 @@ namespace Mezzanine
         /// @brief Sets the goal time in Microseconds.
         /// @param Goal The value to set as goal time in Microseconds.
         virtual void SetGoalTime(const Whole Goal);
+        /// @brief Sets the goal time in Milliseconds.
+        /// @param Goal The value to set as goal time in Milliseconds.
+        virtual void SetGoalTimeInMilliseconds(const Whole Goal);
         /// @brief Gets the Goal time in Microseconds.
         /// @return Returns a Whole representing the goal time in Microseconds.
         virtual Whole GetGoalTime() const;
         /// @brief Gets the Goal time in Milliseconds.
         /// @return Returns a Whole representing the goal time in Milliseconds.
-        virtual Whole GetGoalTimeInMilli() const;
+        virtual Whole GetGoalTimeInMilliseconds() const;
     };//GoalTimer
 
     ///////////////////////////////////////////////////////////////////////////////
