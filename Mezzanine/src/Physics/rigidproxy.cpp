@@ -41,218 +41,238 @@ John Blackwood - makoenergy02@gmail.com
 #define _rigidproxy_cpp
 
 #include "rigidproxy.h"
-#include "btBulletDynamicsCommon.h"
+
+#include "collisionshapemanager.h"
+#include "Physics/collisionshape.h"
+
+#include "Internal/motionstate.h.cpp"
+
+#include <btBulletDynamicsCommon.h>
 
 namespace Mezzanine
 {
-	namespace Physics
-	{
-		RigidProxy::RigidProxy(WorldObject* WO, const Real& mass)
-		{
-			this->PhysicsProxy(WO);
-			this->CreateRigidObject(mass);
-		}
-		RigidProxy::~RigidProxy()
-		{
-			delete PhysicsRigidBody;
-		}
-		
-		void RigidProxy::SetCollisionShape(CollisionShape* Shape)
-		{
-			if(CollisionShape::ST_StaticTriMesh != Shape->GetType())
-			{
-				btScalar mass = this->PhysicsRigidBody->getInvMass();
-				if(0 != mass)
-					mass=1/mass;
-				btVector3 inertia(0,0,0);
-				Shape->GetBulletShape()->calculateLocalInertia(mass, inertia);
-				this->PhysicsRigidBody->setMassProps(mass,inertia);
-				this->PhysicsRigidBody->setCollisionShape(Shape->GetBulletShape());
-				this->PhysicsRigidBody->updateInertiaTensor();
-			}else{
-				this->PhysicsRigidBody->setCollisionShape(Shape->GetBulletShape());
-			}
-			CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////
-		// Movement Factors
-		
-		void RigidProxy::SetAngularMovementFactor(const Vector3& Factor)
-		{
-			this->PhysicsRigidBody->setAngularFactor(Factor.GetBulletVector3());
-		}	
-		Vector3 RigidProxy::GetAngularMovementFactor() const
-		{
-			Vector3 AngFact(this->PhysicsRigidBody->getAngularFactor());
-			return AngFact;
-		}
-		void RigidProxy::SetLinearMovementFactor(const Vector3& Factor)
-		{
-			this->PhysicsRigidBody->setLinearFactor(Factor.GetBulletVector3());
-		}
-		Vector3 RigidProxy::GetLinearMovementFactor() const
-		{
-			Vector3 LinFact(this->PhysicsRigidBody->getLinearFactor());
-			return LinFact;
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////
-		// Rigid Physics Properties
+    namespace Physics
+    {
+        RigidProxy::RigidProxy(const Real& Mass)
+        {
+            this->CreateRigidObject(Mass);
+        }
 
-		void RigidProxy::SetDamping(const Real& LinDamping, const Real& AngDamping)
-		{
-			this->PhysicsRigidBody->setDamping(LinDamping, AngDamping);
-		}
-		Real RigidProxy::GetLinearDamping() const
-		{
-			Vector3 LinDamping(this->PhysicsRigidBody->getLinearDamping());
-			return LinDamping;
-		}
-		Real RigidProxy::GetAngularDamping() const
-		{
-			Vector3 AngDamping(this->PhysicsRigidBody->getAngularDamping());
-			return AngDamping;
-		}
-		
-		void RigidProxy::SetLinearVelocity(const Vector3& LinVel)
-		{
-			this->PhysicsRigidBody->setLinearVelocity(LinVel.GetBulletVector3());
-		}
-		Vector3 RigidProxy::GetLinearVelocity() const
-		{
-			Vector3 LinVel(this->PhysicsRigidBody->getLinearVelocity());
-			return LinVel;
-		}
-		void RigidProxy::SetAngularVelocity(const Vector3& AngVel)
-		{
-			this->PhysicsRigidBody->setAngularVelocity(AngVel.GetBulletVector3());
-		}
-		Vector3 RigidProxy::GetAngularVelocity() const
-		{
-			Vector3 AngVel(this->PhysicsRigidBody->getAngularVelocity());
-			return AngVel;
-		}
+        RigidProxy::~RigidProxy()
+        {
+            delete PhysicsRigidBody;
+        }
 
-		void RigidProxy::SetIndividualGravity(const Vector3& Gravity)
-		{
-			this->PhysicsRigidBody->setGravity(Gravity.GetBulletVector3());
-		}
-		Vector3 RigidProxy::GetIndivudualGravity() const
-		{
-			Vector3 Gravity(this->PhysicsRigidBody->getGravity());
-			return Gravity;
-		}
+        void RigidProxy::CreateRigidObject(const Real& Mass)
+        {
+            this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
+            PhysicsRigidBody->setUserPointer(this);
+            if(0.0 == Mass) {
+                PhysicsRigidBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+            }else{
+                PhysicsRigidBody->setCollisionFlags(PhysicsRigidBody->getCollisionFlags() & (~btCollisionObject::CF_STATIC_OBJECT));
+            }
+        }
 
-		Vector3 RigidProxy::GetForce() const
-		{
-			Vector3 Force(PhysicsRigidBody->getTotalForce());
-			return Force;
-		}
-		Vector3 RigidProxy::GetTorque() const;
-		{
-			Vector3 Torque(PhysicsRigidBody->getTotalTorque());
-			return Torque;
-		}
-		void RigidProxy::ApplyForce(const Vector3& Force);
-		{
-			this->PhysicsRigidBody->applyCentralForce(Force.GetBulletVector3());
-		}
-		void RigidProxy::ApplyTorque(const Vector3& Torque)
-		{
-			this->PhysicsRigidBody->applyTorque(Torque.GetBulletVector3());
-		}
+        ///////////////////////////////////////////////////////////////////////////////
+        // Collision Settings
 
-		Real RigidProxy::GetMass() const
-		{
-			return  this->PhysicsRigidBody->getInvMass() != 0 ? 1/this->PhysicsRigidBody->getInvMass() : 0;
-		}
-		Vector3 RigidProxy::GetLocalInertia() const
-		{
-			return  Vector3(this->PhysicsRigidBody->getInvInertiaDiagLocal()).Inverse() ;
-		}
-		void RigidProxy::SetMass(Real NewMass)
-        { 
-			this->PhysicsRigidBody->setMassProps(NewMass, GetLocalInertia().GetBulletVector3()); 
-		}		
-		void ActorRigidPhysicsSettings::SetMass(Real NewMass,const Vector3& NewInertia)
-		{ 
-			this->PhysicsRigidBody->setMassProps(NewMass, NewInertia.GetBulletVector3()); 
-		}
+        void RigidProxy::SetCollisionShape(CollisionShape* Shape)
+        {
+            if(CollisionShape::ST_StaticTriMesh != Shape->GetType())
+            {
+            btScalar mass = this->PhysicsRigidBody->getInvMass();
+                if(0 != mass)
+                    mass=1/mass;
+                btVector3 inertia(0,0,0);
+                Shape->GetBulletShape()->calculateLocalInertia(mass, inertia);
+                this->PhysicsRigidBody->setMassProps(mass,inertia);
+                this->PhysicsRigidBody->setCollisionShape(Shape->GetBulletShape());
+                this->PhysicsRigidBody->updateInertiaTensor();
+            }else{
+                this->PhysicsRigidBody->setCollisionShape(Shape->GetBulletShape());
+            }
+            CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
+        }
 
-		///////////////////////////////////////////////////////////////////////////////
-		// Sticky Data
-		
-		// virtual void SetStickyData(const Whole& MaxNumContacts);
-		// virtual void ClearStickyContacts();
-		// virtual StickyData* GetStickyData() const;
-		
-		/*
-			void ActorRigidPhysicsSettings::SetStickyData(const Whole& MaxNumContacts)
-			{
-				if(MaxNumContacts > 0) StickyContacts->MaxNumContacts = MaxNumContacts;
-				else ClearStickyContacts();
-			}
-		 
-			void ActorRigidPhysicsSettings::ClearStickyContacts()
-			{
-				if(0 == StickyContacts->StickyConstraints.size())
-					return;
-				btDiscreteDynamicsWorld* BulletWorld = PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer();
-				for( std::vector<StickyConstraint*>::iterator SCit = StickyContacts->StickyConstraints.begin() ; SCit != StickyContacts->StickyConstraints.end() ; ++SCit )
-				{
-					BulletWorld->removeConstraint((*SCit)->GetConstraintBase());
-		 
-					ActorRigid* OtherActor = (*SCit)->GetActorA() != Parent ? (*SCit)->GetActorA() : (*SCit)->GetActorB();
-					StickyData* OtherSettings = OtherActor->GetPhysicsSettings()->GetStickyData();
-					for( std::vector<StickyConstraint*>::iterator SCit2 = OtherSettings->StickyConstraints.begin() ; SCit2 != OtherSettings->StickyConstraints.end() ; ++SCit2 )
-					{
-						if( (*SCit) == (*SCit2) )
-						{
-							OtherSettings->StickyConstraints.erase(SCit2);
-							break;
-						}
-					}
-		 
-					delete (*SCit);
-				}
-				StickyContacts->StickyConstraints.clear();
-				StickyContacts->CreationQueue.clear();
-			}
-		 
-			StickyData* ActorRigidPhysicsSettings::GetStickyData() const
-			{ return StickyContacts; }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Movement Factors
+
+        void RigidProxy::SetAngularMovementFactor(const Vector3& Factor)
+        {
+            this->PhysicsRigidBody->setAngularFactor(Factor.GetBulletVector3());
+        }
+
+        Vector3 RigidProxy::GetAngularMovementFactor() const
+        {
+            Vector3 AngFact(this->PhysicsRigidBody->getAngularFactor());
+            return AngFact;
+        }
+
+        void RigidProxy::SetLinearMovementFactor(const Vector3& Factor)
+        {
+            this->PhysicsRigidBody->setLinearFactor(Factor.GetBulletVector3());
+        }
+
+        Vector3 RigidProxy::GetLinearMovementFactor() const
+        {
+            Vector3 LinFact(this->PhysicsRigidBody->getLinearFactor());
+            return LinFact;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Rigid Physics Properties
+
+        void RigidProxy::SetDamping(const Real& LinDamping, const Real& AngDamping)
+        {
+            this->PhysicsRigidBody->setDamping(LinDamping, AngDamping);
+        }
+
+        Real RigidProxy::GetLinearDamping() const
+        {
+            return this->PhysicsRigidBody->getLinearDamping();
+        }
+
+        Real RigidProxy::GetAngularDamping() const
+        {
+            return this->PhysicsRigidBody->getAngularDamping();
+        }
+
+        void RigidProxy::SetLinearVelocity(const Vector3& LinVel)
+        {
+            this->PhysicsRigidBody->setLinearVelocity(LinVel.GetBulletVector3());
+        }
+
+        Vector3 RigidProxy::GetLinearVelocity() const
+        {
+            Vector3 LinVel(this->PhysicsRigidBody->getLinearVelocity());
+            return LinVel;
+        }
+
+        void RigidProxy::SetAngularVelocity(const Vector3& AngVel)
+        {
+            this->PhysicsRigidBody->setAngularVelocity(AngVel.GetBulletVector3());
+        }
+
+        Vector3 RigidProxy::GetAngularVelocity() const
+        {
+            Vector3 AngVel(this->PhysicsRigidBody->getAngularVelocity());
+            return AngVel;
+        }
+
+        void RigidProxy::SetIndividualGravity(const Vector3& Gravity)
+        {
+            this->PhysicsRigidBody->setGravity(Gravity.GetBulletVector3());
+        }
+
+        Vector3 RigidProxy::GetIndividualGravity() const
+        {
+            Vector3 Gravity(this->PhysicsRigidBody->getGravity());
+            return Gravity;
+        }
+
+        Vector3 RigidProxy::GetForce() const
+        {
+            Vector3 Force(this->PhysicsRigidBody->getTotalForce());
+            return Force;
+        }
+
+        Vector3 RigidProxy::GetTorque() const
+        {
+            Vector3 Torque(this->PhysicsRigidBody->getTotalTorque());
+            return Torque;
+        }
+
+        void RigidProxy::ApplyForce(const Vector3& Force)
+        {
+            this->PhysicsRigidBody->applyCentralForce(Force.GetBulletVector3());
+        }
+
+        void RigidProxy::ApplyTorque(const Vector3& Torque)
+        {
+            this->PhysicsRigidBody->applyTorque(Torque.GetBulletVector3());
+        }
+
+        Real RigidProxy::GetMass() const
+        {
+            return  this->PhysicsRigidBody->getInvMass() != 0 ? 1/this->PhysicsRigidBody->getInvMass() : 0;
+        }
+
+        Vector3 RigidProxy::GetLocalInertia() const
+        {
+            return  Vector3(this->PhysicsRigidBody->getInvInertiaDiagLocal()).Inverse() ;
+        }
+
+        void RigidProxy::SetMass(Real NewMass)
+        {
+            this->PhysicsRigidBody->setMassProps(NewMass, GetLocalInertia().GetBulletVector3());
+        }
+
+        void RigidProxy::SetMass(Real NewMass,const Vector3& NewInertia)
+        {
+            this->PhysicsRigidBody->setMassProps(NewMass, NewInertia.GetBulletVector3());
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Sticky Data
+
+        // virtual void SetStickyData(const Whole& MaxNumContacts);
+        // virtual void ClearStickyContacts();
+        // virtual StickyData* GetStickyData() const;
+
+        /*
+        void RigidProxy::SetStickyData(const Whole& MaxNumContacts)
+        {
+            if(MaxNumContacts > 0) StickyContacts->MaxNumContacts = MaxNumContacts;
+            else ClearStickyContacts();
+        }
+
+        void RigidProxy::ClearStickyContacts()
+        {
+            if(0 == StickyContacts->StickyConstraints.size())
+                return;
+            btDiscreteDynamicsWorld* BulletWorld = PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer();
+            for( std::vector<StickyConstraint*>::iterator SCit = StickyContacts->StickyConstraints.begin() ; SCit != StickyContacts->StickyConstraints.end() ; ++SCit )
+            {
+                BulletWorld->removeConstraint((*SCit)->GetConstraintBase());
+
+                ActorRigid* OtherActor = (*SCit)->GetActorA() != Parent ? (*SCit)->GetActorA() : (*SCit)->GetActorB();
+                StickyData* OtherSettings = OtherActor->GetPhysicsSettings()->GetStickyData();
+                for( std::vector<StickyConstraint*>::iterator SCit2 = OtherSettings->StickyConstraints.begin() ; SCit2 != OtherSettings->StickyConstraints.end() ; ++SCit2 )
+                {
+                    if( (*SCit) == (*SCit2) )
+                    {
+                        OtherSettings->StickyConstraints.erase(SCit2);
+                        break;
+                    }
+                }
+
+                delete (*SCit);
+            }
+            StickyContacts->StickyConstraints.clear();
+            StickyContacts->CreationQueue.clear();
+        }
+
+        StickyData* RigidProxy::GetStickyData() const
+            { return StickyContacts; }
 		*/
 
-		///////////////////////////////////////////////////////////////////////////////
-		// Internal Methods
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
 
-		btRigidBody* RigidProxy::_GetBaseRigidBody() const
-		{
-			return this->PhysicsRigidBody;
-		}
-		
-		void RigidProxy::CreateRigidObject(const Real& pmass)
-		{
-			btScalar bmass=pmass;
-			this->PhysicsRigidBody = new btRigidBody(bmass, new internal::AttachableMotionState(this), Shape->GetBulletShape());
-			PhysicsRigidBody->setUserPointer(this);
-			if(0.0 == bmass)
-			{
-				PhysicsRigidBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
-			}else{
-				PhysicsRigidBody->setCollisionFlags(PhysicsRigidBody->getCollisionFlags() & (~btCollisionObject::CF_STATIC_OBJECT));
-			}
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////
-		// Inherited from PhysicsProxy
-		
-		btCollisionObject* RigidProxy::_GetBasePhysicsObject() const
-		{
-			return this->_GetBaseRigidBody();
-		}
-	}// Physics
+        btRigidBody* RigidProxy::_GetPhysicsObject() const
+        {
+            return this->PhysicsRigidBody;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Inherited from PhysicsProxy
+
+        btCollisionObject* RigidProxy::_GetBasePhysicsObject() const
+        {
+            return this->PhysicsRigidBody;
+        }
+    }// Physics
 }// Mezzanine
 
 #endif

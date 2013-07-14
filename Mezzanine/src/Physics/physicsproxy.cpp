@@ -41,208 +41,246 @@ John Blackwood - makoenergy02@gmail.com
 #define _physicsproxy_cpp
 
 #include "physicsproxy.h"
-#include "btBulletDynamicsCommon.h"
+#include "Physics/collisionshape.h"
+
+#include <btBulletDynamicsCommon.h>
 
 namespace Mezzanine
 {
-	namespace Physics
-	{
-		PhysicsProxy::PhysicsProxy(WorldObject* WO)
-			:	WorldObjectShape(NULL),
-				CollisionGroup(NULL),
-				CollisionMask(NULL),
-				Parent(WO)
-		{
-		}
-		
-		PhysicsProxy::~PhysicsProxy()
-		{
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////
-		// Collision Settings
-		
-		void PhysicsProxy::SetCollisionGroupAndMask(const Whole& Group, const Whole& Mask)
-		{
-			CollisionGroup = Group;
-			CollisionMask = Mask;
-			if(Parent->IsInWorld())
-			{
-				Parent->RemoveFromWorld();
-				Parent->AddToWorld();
-			}
-		}
+    namespace Physics
+    {
+        PhysicsProxy::PhysicsProxy() :
+            WorldObjectShape(NULL),
+            CollisionGroup(0),
+            CollisionMask(0)
+        {
+        }
 
-		
-		Whole PhysicsProxy::GetCollisionGroup()
-		{
-			return CollisionGroup;
-		}
-		
-		Whole PhysicsProxy::GetCollisionMask()
-		{
-			return CollisionMask;
-		}
-		
-		void PhysicsProxy::SetCollisionShape(CollisionShape* Shape)
-		{
-			this->WorldObjectShape = Shape;
-			this->_GetBasePhysicsObject()->setCollisionShape(Shape->GetBulletShape);
-		}
-		
-		CollisionShape* PhysicsProxy::GetCollisionShape()
-		{
-			return WorldObjectShape;
-		}
-		
-		void PhysicsProxy::SetCollisionResponse(bool Enable)
-		{
-			if(Enable == this->GetCollisionResponse())
-				return;
-			switch (Parent->GetType())
-			{
-				case Mezzanine::WSO_ActorRigid:
-				case Mezzanine::WSO_ActorSoft:
-				{
-					if(Enable) this->_GetBasePhysicsObject()->setCollisionFlags(_GetBasePhysicsObject()->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-					else GetBasePhysicsObject()->setCollisionFlags(_GetBasePhysicsObject()->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-					break;
-				}
-				case Mezzanine::WSO_ActorCharacter:
-				{
-					return;
-					break;
-				}
-				default:
-					return;
-			}
-		}
+        PhysicsProxy::~PhysicsProxy()
+        {
+        }
 
-		bool PhysicsProxy::GetCollisionResponse() const
-		{
-			return !(this->_GetBasePhysicsObject()->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////
-		// Static or Kinematic Properties
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-		void PhysicsProxy::SetKinematic()
-		{
-			this->_GetBasePhysicsObject()->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
-		}
+        ///////////////////////////////////////////////////////////////////////////////
+        // Collision Settings
 
-		void PhysicsProxy::SetStatic()
-		{
-			this->_GetBasePhysicsObject()->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
-		}
-		
-		bool PhysicsProxy::IsKinematic() const
-		{
-			return this->_GetBasePhysicsObject()->isKinematicObject();
-		}
+        void PhysicsProxy::SetCollisionGroupAndMask(const Whole& Group, const Whole& Mask)
+        {
+            this->CollisionGroup = Group;
+            this->CollisionMask = Mask;
+        }
 
-		bool PhysicsProxy::IsStatic() const
-		{
-			return this->_GetBasePhysicsObject()->isStaticObject();
-		}
+        Whole PhysicsProxy::GetCollisionGroup() const
+        {
+            return this->CollisionGroup;
+        }
 
-		bool PhysicsProxy::IsStaticOrKinematic() const
-		{
-			return this->_GetBasePhysicsObject()->isStaticOrKinematicObject();
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////
-		// Utility
-		
-		void PhysicsProxy::GetLocation() const
-		{
-			Vector3 Location(this->_GetBasePhysicsObject()->getWorldTransform().getOrigin());
-			return Location;
-		}
-	
-		Quaternion* PhysicsProxy::GetOrientation() const
-		{
-			Quaternion Rotation(this->_GetBasePhysicsObject()->getWorldTransform().getRotation());
-			return Rotation;
-		}
-		
-		Vector3 PhysicsProxy::GetScaling() const
-		{
-			Vector3 Scale(this->_GetBasePhysicsObject()->getCollisionShape()->getLocalScaling());
-			return Scale;
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////
-		// Physics Properties
-		
-		void PhysicsProxy::SetFriction(const Real& Friction)
-		{
-			this->_GetBasePhysicsObject()->SetFriction(Friction);
-		}
-		
-		Real PhysicsProxy::GetFriction() const
-		{
-			return this->_GetBasePhysicsObject()->GetFriction();
-		}
-		
-		void PhysicsProxy::SetRestitution(const Real& Restitution)
-		{
-			this->_GetBasePhysicsObject()->SetRestitution(Restitution);
-		}
-		
-		Real PhysicsProxy::GetRestitution() const
-		{
-			this->_GetBasePhysicsObject()->GetRestitution();
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////
-		// Activation State
-		
-		bool PhysicsProxy::isActive() const
-		{
-			int Activation = this->_GetBasePhysicsObject()->getActivationState();
-			if( ACTIVE_TAG == Activation ) return true;
-			else return false;
-		}
-		
-		void PhysicsProxy::SetActivationState(const WorldObjectActivationState& State, bool Force = false)
-		{
-			if(Force) this->_GetBasePhysicsObject()-->forceActivationState(State);
-			else this->_GetBasePhysicsObject()-->setActivationState(State);
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////
-		// Internal Methods
-		
-		void PhysicsProxy::_SetLocation(const Real &x, const Real &y, const Real &z)
-		{
-			Vecter3 Location(x, y, z);
-			this->SetLocation(Location);
-		}
-		
-		void PhysicsProxy::_SetLocation(const Vector3 &Location)
-		{
-			this->_GetBasePhysicsObject()->getWorldTransform().setOrigin(Location.GetBulletVector3());
-			this->_GetBasePhysicsObject()->getInterpolationWorldTransform().setOrigin(Location.GetBulletVector3());
-		}
-		
-		void PhysicsProxy::_SetOrientation(const Real& x, const Real& y, const Real& z, const Real& w)
-		{
-			Quaternion Rotation(x, y, z, w);
-			this->_SetOrientation(Rotation);
-		}
-	
-		void PhysicsProxy::_SetOrientation(const Quaternion &Rotation)
-		{
-			this->_GetBasePhysicsObject()->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
-			this->_GetBasePhysicsObject()->getInterpolationWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
-		}		
-		
-		void PhysicsProxy::_SetScaling(const Vector3 &Scale)
-		{
-			this->_GetBasePhysicsObject()->getCollisionShape()->setLocalScaling(Scale.GetBulletVector3());
-		}
-	}// Physics
+        Whole PhysicsProxy::GetCollisionMask() const
+        {
+            return this->CollisionMask;
+        }
+
+        void PhysicsProxy::SetCollisionShape(CollisionShape* Shape)
+        {
+            this->WorldObjectShape = Shape;
+            this->_GetBasePhysicsObject()->setCollisionShape( Shape->GetBulletShape() );
+        }
+
+        CollisionShape* PhysicsProxy::GetCollisionShape() const
+        {
+            return this->WorldObjectShape;
+        }
+
+        void PhysicsProxy::SetCollisionResponse(bool Enable)
+        {
+            if( Enable == this->GetCollisionResponse() )
+                return;
+
+            btCollisionObject* Base = this->_GetBasePhysicsObject();
+            if(Enable) {
+                Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE );
+            }else{
+                Base->setCollisionFlags( Base->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE );
+            }
+        }
+
+        bool PhysicsProxy::GetCollisionResponse() const
+        {
+            return !(this->_GetBasePhysicsObject()->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Static or Kinematic Properties
+
+        void PhysicsProxy::SetKinematic()
+        {
+            btCollisionObject* Base = this->_GetBasePhysicsObject();
+            Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT );
+        }
+
+        void PhysicsProxy::SetStatic()
+        {
+            btCollisionObject* Base = this->_GetBasePhysicsObject();
+            Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_STATIC_OBJECT );
+        }
+
+        bool PhysicsProxy::IsKinematic() const
+        {
+            return this->_GetBasePhysicsObject()->isKinematicObject();
+        }
+
+        bool PhysicsProxy::IsStatic() const
+        {
+            return this->_GetBasePhysicsObject()->isStaticObject();
+        }
+
+        bool PhysicsProxy::IsStaticOrKinematic() const
+        {
+            return this->_GetBasePhysicsObject()->isStaticOrKinematicObject();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Physics Properties
+
+        void PhysicsProxy::SetFriction(const Real& Friction)
+        {
+            this->_GetBasePhysicsObject()->setFriction(Friction);
+        }
+
+        Real PhysicsProxy::GetFriction() const
+        {
+            return this->_GetBasePhysicsObject()->getFriction();
+        }
+
+        void PhysicsProxy::SetRestitution(const Real& Restitution)
+        {
+            this->_GetBasePhysicsObject()->setRestitution(Restitution);
+        }
+
+        Real PhysicsProxy::GetRestitution() const
+        {
+            return this->_GetBasePhysicsObject()->getRestitution();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Activation State
+
+        bool PhysicsProxy::IsActive() const
+        {
+            return ( ACTIVE_TAG == this->_GetBasePhysicsObject()->getActivationState() );
+        }
+
+        void PhysicsProxy::SetActivationState(const Physics::WorldObjectActivationState State, bool Force)
+        {
+            if(Force) this->_GetBasePhysicsObject()->forceActivationState(State);
+            else this->_GetBasePhysicsObject()->setActivationState(State);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Transform Methods
+
+        void PhysicsProxy::SetLocation(const Vector3& Loc)
+        {
+            this->SetLocation(Loc.X,Loc.Y,Loc.Z);
+        }
+
+        void PhysicsProxy::SetLocation(const Real X, const Real Y, const Real Z)
+        {
+            btVector3 NewLoc(X,Y,Z);
+            this->_GetBasePhysicsObject()->getWorldTransform().setOrigin(NewLoc);
+            this->_GetBasePhysicsObject()->getInterpolationWorldTransform().setOrigin(NewLoc);
+        }
+
+        Vector3 PhysicsProxy::GetLocation() const
+        {
+            return Vector3( this->_GetBasePhysicsObject()->getWorldTransform().getOrigin() );
+        }
+
+        void PhysicsProxy::SetOrientation(const Quaternion& Ori)
+        {
+            this->SetOrientation(Ori.X,Ori.Y,Ori.Z,Ori.W);
+        }
+
+        void PhysicsProxy::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
+        {
+            btQuaternion NewRot(X,Y,Z,W);
+            this->_GetBasePhysicsObject()->getWorldTransform().setRotation(NewRot);
+            this->_GetBasePhysicsObject()->getInterpolationWorldTransform().setRotation(NewRot);
+        }
+
+        Quaternion PhysicsProxy::GetOrientation() const
+        {
+            return Quaternion( this->_GetBasePhysicsObject()->getWorldTransform().getRotation() );
+        }
+
+        void PhysicsProxy::SetScale(const Vector3& Sc)
+        {
+
+        }
+
+        void PhysicsProxy::SetScale(const Real X, const Real Y, const Real Z)
+        {
+
+        }
+
+        Vector3 PhysicsProxy::GetScale() const
+        {
+
+        }
+
+        void PhysicsProxy::Translate(const Vector3& Trans)
+        {
+            this->SetLocation( this->GetLocation() + Trans );
+        }
+
+        void PhysicsProxy::Translate(const Real X, const Real Y, const Real Z)
+        {
+            Vector3 Trans(X,Y,Z);
+            this->SetLocation( this->GetLocation() + Trans );
+        }
+
+        void PhysicsProxy::Yaw(const Real Angle)
+        {
+            Quaternion NewRot = this->GetOrientation() * Quaternion(Angle,Vector3::Unit_Y());
+            this->SetOrientation(NewRot);
+        }
+
+        void PhysicsProxy::Pitch(const Real Angle)
+        {
+            Quaternion NewRot = this->GetOrientation() * Quaternion(Angle,Vector3::Unit_X());
+            this->SetOrientation(NewRot);
+        }
+
+        void PhysicsProxy::Roll(const Real Angle)
+        {
+            Quaternion NewRot = this->GetOrientation() * Quaternion(Angle,Vector3::Unit_Z());
+            this->SetOrientation(NewRot);
+        }
+
+        void PhysicsProxy::Rotate(const Vector3& Axis, const Real Angle)
+        {
+            Quaternion NewRot = this->GetOrientation() * Quaternion(Angle,Axis);
+            this->SetOrientation(NewRot);
+        }
+
+        void PhysicsProxy::Rotate(const Quaternion& Rotation)
+        {
+            Quaternion NewRot = this->GetOrientation() * Rotation;
+            this->SetOrientation(NewRot);
+        }
+
+        void PhysicsProxy::Scale(const Vector3& Scale)
+        {
+
+        }
+
+        void PhysicsProxy::Scale(const Real X, const Real Y, const Real Z)
+        {
+
+        }
+    }// Physics
 }// Mezzanine
 
 #endif

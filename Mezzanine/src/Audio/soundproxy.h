@@ -150,6 +150,13 @@ namespace Mezzanine
             /// @brief Gets the current velocity of this sound proxy.
             /// @return Returns a Vector3 representing this proxy's current velocity.
             virtual Vector3 GetVelocity() const = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String SerializableName() { return "SoundProxy"; }
         };//SoundProxy
     }//Audio
 }//Mezzanine

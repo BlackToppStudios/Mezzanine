@@ -67,6 +67,15 @@ namespace Mezzanine
             CF_UserFilter2 = 128
         };
 
+        /// @enum ProxyType
+        /// @brief This is used by the PhysicsProxy child classes to describe which proxy type they are.
+        enum ProxyType
+        {
+            PT_Rigid = 1,
+            PT_Soft = 2,
+            PT_Ghost = 3
+        };
+
         /// @enum WorldObjectActivationState
         /// @brief This is used by all the world objects to monitor and set their physics activation.
         enum WorldObjectActivationState

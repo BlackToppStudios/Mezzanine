@@ -51,6 +51,8 @@
 
 #include "Audio/OALS/oalslistener.h"
 
+#include "exception.h"
+
 namespace Mezzanine
 {
     namespace Audio
@@ -250,6 +252,31 @@ namespace Mezzanine
             void Listener::Scale(const Real X, const Real Y, const Real Z)
             {
                 // Currently you can't scale a listener
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            void Listener::ProtoSerialize(XML::Node& CurrentRoot) const
+            {
+                /// @todo Implement this.
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
+            }
+
+            void Listener::ProtoDeSerialize(const XML::Node& OneNode)
+            {
+                /// @todo Implement this.
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for Listeners.");
+            }
+
+            String Listener::GetDerivedSerializableName() const
+            {
+                return this->Listener::SerializableName();
+            }
+
+            String Listener::SerializableName()
+            {
+                return "OALSListener";
             }
 
             ///////////////////////////////////////////////////////////////////////////////

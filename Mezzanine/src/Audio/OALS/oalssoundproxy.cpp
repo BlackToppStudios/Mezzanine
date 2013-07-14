@@ -931,6 +931,31 @@ namespace Mezzanine
             }
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            void OALS::SoundProxy::ProtoSerialize(XML::Node& CurrentRoot) const
+            {
+                /// @todo Implement this.
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for SoundProxies.");
+            }
+
+            void OALS::SoundProxy::ProtoDeSerialize(const XML::Node& OneNode)
+            {
+                /// @todo Implement this.
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for SoundProxies.");
+            }
+
+            String OALS::SoundProxy::GetDerivedSerializableName() const
+            {
+                return this->OALS::SoundProxy::SerializableName();
+            }
+
+            String OALS::SoundProxy::SerializableName()
+            {
+                return "OALSSoundProxy";
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
             void OALS::SoundProxy::_Update()

@@ -62,6 +62,14 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    String WorldProxy::SerializableName()
+    {
+        return "WorldProxy";
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
     void WorldProxy::_Bind(WorldObject* NewParent)
