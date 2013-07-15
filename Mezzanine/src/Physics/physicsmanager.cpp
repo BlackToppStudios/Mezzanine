@@ -100,152 +100,122 @@ namespace Mezzanine
         /// @brief This is used to draw wireframse for the Physics subsystem
         class InternalDebugDrawer : public btIDebugDraw
         {
-            private:
-                /// @internal
-                /// @brief A pointer to Mezzanine::Entresol that this Debug Drawer works with
-                Entresol* TheEntresol;
+        private:
+            /// @internal
+            /// @brief This stores the wireframe being used for rendering.
+            Mezzanine::LineGroup* WireFrame;
+            /// @internal
+            /// @brief This stores whether or not to render physics debug lines
+            /// @details This stores whether or not to render physics debud lines. 0 = Do not draw anything. 1 = Draw model wireframes.
+            /// Later we will add support for contact drawing, individual modeling drawing, etc...
+            int DebugDrawing;
+        public:
+            /// @internal
+            /// @brief Basic Constructor
+            InternalDebugDrawer();
+            /// @internal
+            /// @brief Destructor
+            virtual ~InternalDebugDrawer();
 
-                /// @internal
-                /// @brief How many wireframes do you want to keep around on the screen.
-                Whole WireFrameCount;
+            /// @internal
+            /// @brief Clears data as necessary for updating debug geometry.
+            virtual void PrepareForUpdate();
+            /// @internal
+            /// @brief Copies all the line data to render buffers so they can be seen on screen.
+            virtual void FinalizeUpdate();
 
-                /// @internal
-                /// @brief This queue stores The listing of of the wireframes still to be rendered.
-                /// @details This stores an amount of wireframes up to the WireFrameCount. When this class is created or a
-                /// new frame rendered a new Line group is a added to this queue.
-                std::queue<Mezzanine::LineGroup*> WireFrames;
+            /// @internal
+            /// @brief This will prepare a line segment for being drawn
+            /// @details This adds the points for a line to the internal list of points to be rendered.
+            /// @param from The first point of the line
+            /// @param to The second point of the line
+            /// @param color Currently ignored
+            virtual void drawLine(const btVector3& from,const btVector3& to,const btVector3& color);
+            /// @internal
+            /// @brief Currently Unused
+            /// @details Currently Unused
+            /// @param PointOnB Currently Unused
+            /// @param normalOnB Currently Unused
+            /// @param distance Currently Unused
+            /// @param lifeTime Currently Unused
+            /// @param color Currently Unused
+            virtual void drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color);
+            /// @internal
+            /// @brief Currently Unused
+            /// @details Currently Unused
+            /// @param location Currently Unused
+            /// @param textString Currently Unused
+            virtual void draw3dText(const btVector3& location, const char* textString);
 
-                /// @internal
-                /// @brief This stores whether or not to render physics debug lines
-                /// @details This stores whether or not to render physics debud lines. 0 = Do not draw anything. 1 = Draw model wireframes.
-                /// Later we will add support for contact drawing, individual modeling drawing, etc...
-                int DebugDrawing;
-            public:
-                /// @internal
-                /// @brief Basic Constructor
-                /// @param ParentWorld_ This is a Pointer to the world to be rendered
-                /// @param WireFrameCount_ This sets the amount of previous Wireframes to be rendered, see InternalDebugDrawer::SetWireFrameCount for details.
-                /// @details This creates a basic Debug Drawer which works with the Mezzanine::Entresol that was passed. With a new
-                InternalDebugDrawer(Mezzanine::Entresol* ParentEntresol_, Whole WireFrameCount_ = 2);
+            /// @internal
+            /// @brief This is used to decide how much the debug render should draw
+            /// @details Currently this accepts btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe and setting these will either start or stop
+            /// Wireframe rendering. All other btIDebugDraw values are ignored.
+            /// @param debugMode An Int which contains either btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
+            virtual void setDebugMode(int debugMode);
+            /// @internal
+            /// @brief This will return the current debug mode.
+            /// @details Currently this can only return btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
+            /// @return Returns the Current debug mode, currently either btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
+            virtual int getDebugMode() const;
 
-                /// @internal
-                /// @brief Destructor
-                /// @details This deletes all the Wireframes and will stop wireframe rendering
-                ~InternalDebugDrawer();
-
-                /// @internal
-                /// @brief This will prepare a line segment for being drawn
-                /// @details This adds the points for a line to the internal list of points to be rendered.
-                /// @param from The first point of the line
-                /// @param to The second point of the line
-                /// @param color Currently ignored
-                virtual void drawLine(const btVector3& from,const btVector3& to,const btVector3& color);
-
-                /// @internal
-                /// @brief This add all the rendering information to the graphics subsystem
-                /// @details This sends all the points in the list of lines to the rendering subsystem(currently ogre), where they will stay until deleted
-                virtual void PrepareForRendering();
-
-                /// @internal
-                /// @brief Sets the amount of previous wireframes to leave visible.
-                /// @details This will limit the amount of previous wireframes drawn. Setting this will cause all the extra wireframes to be deleted
-                /// InternalDebugDrawer::PrepareForRendering() is next called, which should happen just before everything is rendered.
-                /// @param WireFrameCount_ This is a whole number which is limit.
-                virtual void SetWireFrameCount(Whole WireFrameCount_);
-
-                /// @internal
-                /// @brief This returns the amount of wireframes to be drawn
-                /// @details This returns either 2 or the amount last set by InternalDebugDrawer::SetWireFrameCount .
-                /// @return This returns a whole number with the wireframe limit.
-                virtual Whole GetWireFrameCount();
-
-                /// @internal
-                /// @brief Currently Unused
-                /// @details Currently Unused
-                /// @param PointOnB Currently Unused
-                /// @param normalOnB Currently Unused
-                /// @param distance Currently Unused
-                /// @param lifeTime Currently Unused
-                /// @param color Currently Unused
-                virtual void drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color);
-
-                /// @internal
-                /// @brief Used by the physics subsystem to report errors using the renderer
-                /// @details We *Believe* that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we
-                /// Have redirected all input from this function to the Entresol::Log function.
-                /// @param warningString We *Believe* These are messagesfrom the physics subsystem, and that this should not directly called otherwise
-                virtual void reportErrorWarning(const char* warningString);
-
-                /// @internal
-                /// @brief Currently Unused
-                /// @details Currently Unused
-                /// @param location Currently Unused
-                /// @param textString Currently Unused
-                virtual void draw3dText(const btVector3& location, const char* textString);
-
-                /// @internal
-                /// @brief This is used to decide how much the debug render should draw
-                /// @details Currently this accepts btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe and setting these will either start or stop
-                /// Wireframe rendering. All other btIDebugDraw values are ignored.
-                /// @param debugMode An Int which contains either btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
-                virtual void setDebugMode(int debugMode);
-
-                /// @internal
-                /// @brief This will return the current debug mode.
-                /// @details Currently this can only return btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
-                /// @return Returns the Current debug mode, currently either btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
-                virtual int getDebugMode() const;
+            /// @internal
+            /// @brief Used by the physics subsystem to report errors using the renderer
+            /// @details We *Believe* that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we
+            /// Have redirected all input from this function to the Entresol::Log function.
+            /// @param warningString We *Believe* These are messagesfrom the physics subsystem, and that this should not directly called otherwise
+            virtual void reportErrorWarning(const char* warningString);
         };
 
-        InternalDebugDrawer::InternalDebugDrawer( Mezzanine::Entresol* ParentEntresol_, Whole WireFrameCount_ )
+        InternalDebugDrawer::InternalDebugDrawer()
         {
-            this->DebugDrawing = 0;
-            this->TheEntresol = ParentEntresol_;
-
-            this->WireFrameCount = WireFrameCount_;
-
-            //Mezzanine::LineGroup* temp = new Mezzanine::LineGroup();
-            this->WireFrames.push(new Mezzanine::LineGroup());
+            this->DebugDrawing = Physics::DDM_NoDebug;
+            this->WireFrame = new Mezzanine::LineGroup();
         }
 
         InternalDebugDrawer::~InternalDebugDrawer()
         {
-            while ( ! this->WireFrames.empty() )
-            {
-                delete this->WireFrames.front();
-                this->WireFrames.pop();
+            delete this->WireFrame;
+        }
+
+        void InternalDebugDrawer::PrepareForUpdate()
+        {
+            if( this->WireFrame != NULL ) {
+                this->WireFrame->AddToWorld();
+                this->WireFrame->ClearLines();
+            }
+        }
+
+        void InternalDebugDrawer::FinalizeUpdate()
+        {
+            if( this->WireFrame != NULL ) {
+                this->WireFrame->DrawLines();
             }
         }
 
         void InternalDebugDrawer::drawLine(const btVector3& from,const btVector3& to,const btVector3& color)
         {
-            Mezzanine::LineGroup *myLine = this->WireFrames.back();
-
-            //Convert btVectors to Vector3s
-            Vector3 LineStart(from);
-            Vector3 LineEnd(to);
-
-            myLine->addPoint(LineStart);
-            myLine->addPoint(LineEnd);
+            this->WireFrame->DrawLine( Vector3(from), Vector3(to), ColourValue(color.getX(),color.getY(),color.getZ()) );
         }
 
         void InternalDebugDrawer::drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color)
         {
-
-        }
-
-        void InternalDebugDrawer::reportErrorWarning(const char* warningString)
-        {
-            String temp(warningString);
-            this->TheEntresol->Log(temp);
         }
 
         void InternalDebugDrawer::draw3dText(const btVector3& location,const char* textString)
-        {}
+        {
+        }
 
         void InternalDebugDrawer::setDebugMode(int debugMode)
         {
             this->DebugDrawing = debugMode;
+            if( this->WireFrame != NULL ) {
+                if( this->DebugDrawing != Physics::DDM_NoDebug ) {
+                    this->WireFrame->AddToWorld();
+                }else{
+                    this->WireFrame->RemoveFromWorld();
+                }
+            }
         }
 
         int InternalDebugDrawer::getDebugMode() const
@@ -253,33 +223,10 @@ namespace Mezzanine
             return this->DebugDrawing;
         }
 
-        void InternalDebugDrawer::PrepareForRendering()
+        void InternalDebugDrawer::reportErrorWarning(const char* warningString)
         {
-            if(!this->WireFrames.empty())
-            {
-                this->WireFrames.back()->drawLines();
-            }
-
-            //Delete extra wireframes
-            while ( this->WireFrames.size() > this->WireFrameCount )
-            {
-                delete this->WireFrames.front();
-                this->WireFrames.pop();
-            }
-
-            //This will add the Ogre Scene Nodes to the world and set up a
-            this->WireFrames.back()->PrepareForRendering();
-            this->WireFrames.push(new Mezzanine::LineGroup());
-        }
-
-        void InternalDebugDrawer::SetWireFrameCount(Whole WireFrameCount_)
-        {
-            this->WireFrameCount = WireFrameCount_;
-        }
-
-        Whole InternalDebugDrawer::GetWireFrameCount()
-        {
-            return this->WireFrameCount;
+            String temp(warningString);
+            Mezzanine::Entresol::GetSingletonPtr()->Log(temp);
         }
     }// debug
 
@@ -412,8 +359,9 @@ namespace Mezzanine
             debug::InternalDebugDrawer* Drawer = this->TargetManager->BulletDrawer;
             if( Drawer && Drawer->getDebugMode() )        //this part is responsible for drawing the wireframes
             {
-                Drawer->PrepareForRendering();
+                Drawer->PrepareForUpdate();
                 this->TargetManager->BulletDynamicsWorld->debugDrawWorld();
+                Drawer->FinalizeUpdate();
             }
         }
 
@@ -424,6 +372,7 @@ namespace Mezzanine
 
         PhysicsManager::PhysicsManager() :
             SimulationPaused(false),
+            DebugRenderMode(0),
             SubstepModifier(1),
             ThreadCount(0),
             StepSize(1.0/60.0),
@@ -450,6 +399,7 @@ namespace Mezzanine
 
         PhysicsManager::PhysicsManager(const ManagerConstructionInfo& Info) :
             SimulationPaused(false),
+            DebugRenderMode(0),
             SubstepModifier(1),
             ThreadCount(0),
             StepSize(1.0/60.0),
@@ -474,6 +424,7 @@ namespace Mezzanine
 
         PhysicsManager::PhysicsManager(XML::Node& XMLNode) :
             SimulationPaused(false),
+            DebugRenderMode(0),
             SubstepModifier(1),
             ThreadCount(0),
             StepSize(1.0/60.0),
@@ -532,8 +483,7 @@ namespace Mezzanine
             if(!StepModifier.Empty())
             {
                 CurrAttrib = WorldSettings.GetAttribute("Modifier");
-                if(!CurrAttrib.Empty())
-                {
+                if(!CurrAttrib.Empty()) {
                     SetSimulationSubstepModifier(CurrAttrib.AsWhole());
                 }
             }
@@ -542,18 +492,12 @@ namespace Mezzanine
             if(!DebugRender.Empty())
             {
                 int RenderMode = 0;
-                Whole WireCount = 2;
                 CurrAttrib = WorldSettings.GetAttribute("RenderingMode");
                 if(!CurrAttrib.Empty())
                     RenderMode = CurrAttrib.AsInt();
-                CurrAttrib = WorldSettings.GetAttribute("WireCount");
-                if(!CurrAttrib.Empty())
-                    WireCount = CurrAttrib.AsWhole();
 
-                if(0 != RenderMode)
-                {
-                    SetDebugPhysicsRendering(RenderMode);
-                    SetDebugPhysicsWireCount(WireCount);
+                if(0 != RenderMode) {
+                    this->SetDebugRenderingMode(RenderMode);
                 }
             }
         }
@@ -574,33 +518,6 @@ namespace Mezzanine
 
             //Destroy the physical world that we loved and cherished
             Destroy();
-        }
-
-        void PhysicsManager::Destroy()
-        {
-            delete BulletDynamicsWorld;
-            delete BulletDispatcher;
-            delete BulletCollisionConfiguration;
-            delete BulletSolver;
-            delete BulletBroadphase;
-            delete GhostCallback;
-            if(BulletDrawer) delete BulletDrawer;
-            if(BulletSolverThreads) delete BulletSolverThreads;
-            if(BulletDispatcherThreads) delete BulletDispatcherThreads;
-
-            if(this->ThreadCount)
-            {
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
-            }else{
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
-            }
-            delete SimulationWork;
-
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
-            delete WorldTriggerUpdateWork;
-
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork );
-            delete DebugDrawWork;
         }
 
         void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
@@ -716,6 +633,51 @@ namespace Mezzanine
             this->SetGravity(Info.Gravity);
             this->SetSoftGravity(Info.Gravity);
             this->WorldConstructionInfo = Info;
+        }
+
+        void PhysicsManager::Destroy()
+        {
+            delete this->BulletDynamicsWorld;
+            this->BulletDynamicsWorld = NULL;
+            delete this->BulletDispatcher;
+            this->BulletDispatcher = NULL;
+            delete this->BulletCollisionConfiguration;
+            this->BulletCollisionConfiguration = NULL;
+            delete this->BulletSolver;
+            this->BulletSolver = NULL;
+            delete this->BulletBroadphase;
+            this->BulletBroadphase = NULL;
+            delete this->GhostCallback;
+            this->GhostCallback = NULL;
+            if(BulletDrawer) {
+                delete this->BulletDrawer;
+                this->BulletDrawer = NULL;
+            }
+            if(BulletSolverThreads) {
+                delete this->BulletSolverThreads;
+                this->BulletSolverThreads = NULL;
+            }
+            if(BulletDispatcherThreads) {
+                delete this->BulletDispatcherThreads;
+                this->BulletDispatcherThreads = NULL;
+            }
+
+            if(this->ThreadCount)
+            {
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+            }else{
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
+            }
+            delete this->SimulationWork;
+            this->SimulationWork = NULL;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
+            delete this->WorldTriggerUpdateWork;
+            this->WorldTriggerUpdateWork = NULL;
+
+            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork );
+            delete this->DebugDrawWork;
+            this->DebugDrawWork = NULL;
         }
 
         void PhysicsManager::ProcessAllTriggers()
@@ -1014,52 +976,17 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Debug Management
 
-        void PhysicsManager::SetDebugPhysicsRendering(int ToBeEnabled)
+        void PhysicsManager::SetDebugRenderingMode(const Integer DebugRenderingMode)
         {
-            if(!BulletDrawer)
-            {
-                this->BulletDrawer = new debug::InternalDebugDrawer(this->TheEntresol);
-                this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
-            }
-
-            if(ToBeEnabled)
-            {
-                this->BulletDynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
-            }else{
-                this->BulletDynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_NoDebug);
+            if( this->BulletDrawer ) {
+                this->DebugRenderMode = DebugRenderingMode;
+                this->BulletDrawer->setDebugMode( DebugRenderingMode );
             }
         }
 
-        int PhysicsManager::GetDebugPhysicsRendering()
+        Integer PhysicsManager::GetDebugRenderingMode() const
         {
-            if(!BulletDrawer)
-                return 0;
-
-            if(this->BulletDrawer->getDebugMode()==btIDebugDraw::DBG_DrawWireframe)
-            {
-                return 1;
-            }else{
-                return 0;
-            }
-        }
-
-        void PhysicsManager::SetDebugPhysicsWireCount(Whole WireFrameCount_)
-        {
-            if(!BulletDrawer)
-            {
-                this->BulletDrawer = new debug::InternalDebugDrawer(this->TheEntresol);
-                this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
-            }
-
-            this->BulletDrawer->SetWireFrameCount(WireFrameCount_);
-        }
-
-        Whole PhysicsManager::GetDebugPhysicsWireCount()
-        {
-            if(BulletDrawer)
-                return this->BulletDrawer->GetWireFrameCount();
-            else
-                return 0;
+            return this->DebugRenderMode;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -1067,42 +994,40 @@ namespace Mezzanine
 
         void PhysicsManager::ResetPhysicsWorld(ManagerConstructionInfo* Info)
         {
-            bool DebugOn = false;
-            if(BulletDrawer)
-                { DebugOn = true; }
-            Destroy();
+            this->Destroy();
             if(Info) this->Construct(*Info);
             else this->Construct(WorldConstructionInfo);
-            if(DebugOn)
-            {
-                this->BulletDrawer = new debug::InternalDebugDrawer(this->TheEntresol);
-                this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
+
+            if( this->Initialized && this->BulletDrawer == NULL ) {
+                this->BulletDrawer = new debug::InternalDebugDrawer();
+                this->BulletDrawer->setDebugMode( this->DebugRenderMode );
+                this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
             }
         }
 
         void PhysicsManager::ClearPhysicsMetaData()
         {
             // Clean the broadphase of AABB data
-            btOverlappingPairCache* Pairs = BulletBroadphase->getOverlappingPairCache();
+            btOverlappingPairCache* Pairs = this->BulletBroadphase->getOverlappingPairCache();
             int NumPairs = Pairs->getNumOverlappingPairs();
             btBroadphasePairArray PairArray = Pairs->getOverlappingPairArray();
             for( Integer X = 0 ; X < NumPairs ; X++ )
             {
                 btBroadphasePair& CurrPair = PairArray.at(X);
-                Pairs->cleanOverlappingPair(CurrPair,BulletDispatcher);
-                Pairs->removeOverlappingPair(CurrPair.m_pProxy0,CurrPair.m_pProxy1,BulletDispatcher);
+                Pairs->cleanOverlappingPair(CurrPair,this->BulletDispatcher);
+                Pairs->removeOverlappingPair(CurrPair.m_pProxy0,CurrPair.m_pProxy1,this->BulletDispatcher);
             }
 
             // Clean the dispatcher(narrowphase) of shape data
-            int numManifolds = BulletDynamicsWorld->getDispatcher()->getNumManifolds();
+            int numManifolds = this->BulletDispatcher->getNumManifolds();
             for ( int i = 0 ; i < numManifolds ; i++ )
             {
-                BulletDispatcher->releaseManifold(BulletDispatcher->getManifoldByIndexInternal(i));
+                this->BulletDispatcher->releaseManifold(this->BulletDispatcher->getManifoldByIndexInternal(i));
             }
 
-            BulletBroadphase->resetPool(BulletDispatcher);
-            BulletSolver->reset();
-            BulletDynamicsWorld->stepSimulation(1.f/60.f,1,1.f/60.f);
+            this->BulletBroadphase->resetPool(this->BulletDispatcher);
+            this->BulletSolver->reset();
+            this->BulletDynamicsWorld->stepSimulation(1.f/60.f,1,1.f/60.f);
         }
 
         void PhysicsManager::SetSimulationSubstepModifier(const Whole& Modifier)
@@ -1127,6 +1052,11 @@ namespace Mezzanine
 
         void PhysicsManager::Initialize()
         {
+            // Create the debugdrawer
+            this->BulletDrawer = new debug::InternalDebugDrawer();
+            this->BulletDrawer->setDebugMode( this->DebugRenderMode );
+            this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
+
             // Simulation work configuration
             if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                 this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
@@ -1156,6 +1086,11 @@ namespace Mezzanine
 
         void PhysicsManager::Deinitialize()
         {
+            // Destroy the debugdrawer
+            delete this->BulletDrawer;
+            this->BulletDrawer = NULL;
+            this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
+
             // Simulation work configuration
             if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                 this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );

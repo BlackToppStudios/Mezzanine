@@ -43,6 +43,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "vector3.h"
+#include "colourvalue.h"
 
 namespace Mezzanine
 {
@@ -50,7 +51,7 @@ namespace Mezzanine
     class Entresol;
     namespace Internal
     {
-            class Line3D;
+        class Line3D;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -63,61 +64,49 @@ namespace Mezzanine
     {
         /// @todo TODO: This class really should support rotation, the underlying implementation does.
         public:
-            /// @brief Basic Constructor
-            /// @details This creates a basic, empty, LineGroup.
+            /// @brief Basic Constructor.
             LineGroup();
+            /// @brief Default Destructor.
+            ~LineGroup();
 
-            /// @brief Default Destructor
-            /// @details This safely tears down, and removes from the graphics system the LineGroup
-            ~LineGroup(void);
-
-            /// @brief This add Either a start pointing, or a line segment to the next point
-            /// @details This adds a point that will be rendered as the endpoint of a line
-            /// @param p The Point to be added.
-            void addPoint(const Vector3 &p);
-
+            /// @brief This add Either a start pointing, or a line segment to the next point.
+            /// @details This adds a point that will be rendered as the endpoint of a line.
+            /// @param NewPoint The Point to be added.
+            /// @param Colour The colour to be given to the new point.
+            void AddPoint(const Vector3& NewPoint, const ColourValue& Colour);
             /// @brief Access points by order they were added.
-            /// @details This returns the point indicated by index. They start at 0, and increment from there
-            /// @param index A Whole number which indicates which point to retrieve.
-            const Vector3 getPoint(Whole index) const;
+            /// @details This returns the point indicated by index. They start at 0, and increment from there.
+            /// @param Index A Whole number which indicates which point to retrieve.
+            const Vector3 GetPoint(const Whole Index) const;
+            /// @brief Get the amount of points used to define Line Segments.
+            /// @return A Whole Number which indicates the amount of points used to make the lines in this LineGroup.
+            Whole GetNumPoints() const;
+            /// @brief This changes a specific point.
+            /// @details This replaces a point specified by index with a new point.
+            /// @param Index The index of the point to replace.
+            /// @param NewValue A point to replace the existing point with.
+            void UpdatePoint(const Whole Index, const Vector3& NewValue);
+            /// @brief Clears all data pertaining to points in this line group.
+            void ClearLines();
 
-            /// @brief Get the amount of points used to define Line Segments
-            /// @details This return the amount of points and therefore line segments. There will always be one more point
-            /// Than line segments.
-            /// @return A Whole Number which indicates the amount of points.
-            Whole getNumPoints(void) const;
+            /// @brief This adds Two points to the list.
+            /// @param Start The first point to be added.
+            /// @param End The second point to be added.
+            /// @param Colour The colour of the line being added.
+            void DrawLine(const Vector3& Start, const Vector3& End, const ColourValue& Colour);
+            /// @brief Updates the render buffers with the needed data to draw the lines in this LineGroup.
+            void DrawLines();
 
-            /// @brief This changes a specific point
-            /// @details This replaces a point specified by index with a new point
-            /// @param index The index of the point to replace.
-            /// @param value A point to replace the existing point with
-            void updatePoint(Whole index, const Vector3 &value);
+            /// @brief Configures this LineGroup to render in the scene.
+            void AddToWorld();
+            /// @brief Unhooks this LineGroup from the scene, stopping it from rendering.
+            void RemoveFromWorld();
 
-            /// @brief This adds Two points to the list
-            /// @details This could add 2 line segments, be it simply adds two lines to the list, but if you don't care then this is an
-            /// easy way to guarantee that a specific line segment be rendered.
-            /// @todo TODO: In the future we will add a break in the line segment chain when this is called.
-            /// @param start The first point to be added
-            /// @param end The first point to be added
-            void drawLine(const Vector3 &start, const Vector3 &end);
-
-            /// @brief Renders the line segment chain.
-            /// @details This send the Line segment information to the rending subsystem. PrepareForRendering() should be called first
-            /// @todo TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention.
-            void drawLines(void);
-
-            /// @brief This assists in the rendering process
-            /// @details This sends some of the data to the rendering subsystem to aid drawLines
-            void PrepareForRendering();
-
-            //Real getSquaredViewDepth(const Camera *cam) const;
-
-            /// @brief How big would a circle need to be to encapsulate this
-            /// @details This returns the radius the a circle would need to have to surround this line group.
+            /// @brief How big would a circle need to be to encapsulate this.
             /// @return This returns a real number which indicates the radius.
-            Real getBoundingRadius(void) const;
-
+            Real GetBoundingRadius() const;
         private:
+            /// @internal
             /// @brief A Pointer to the internal class that actually does the work.
             Internal::Line3D *LineData;
     };//LineGroup

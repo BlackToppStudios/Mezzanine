@@ -259,6 +259,7 @@ namespace Mezzanine
 
             //Some Data Items
             bool SimulationPaused;
+            Integer DebugRenderMode;
             Whole SubstepModifier;
             Whole ThreadCount;
             Real StepSize;
@@ -451,23 +452,12 @@ namespace Mezzanine
             /// @brief Enables and Disables Physics Debug Drawing
             /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics
             /// subsytem pixel for pixel.
-            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control
-            void SetDebugPhysicsRendering(int ToBeEnabled);
+            /// @param DebugRenderingMode 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control
+            void SetDebugRenderingMode(const Integer DebugRenderingMode);
             /// @brief Is Physics Debug Drawing currently enabled?
             /// @details lets you check if Physics Debug Drawing is enabled or not.
             /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features
-            int GetDebugPhysicsRendering();
-            /// @brief How many Wireframes do you want drawn from previous events
-            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount
-            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use Entresol::GetTargetFrameTime()
-            /// In conjunction with this to specify an amout of seconds worth of wireframes.
-            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate,
-            /// Any amount more than just a few seconds worth can be cumbersome.
-            void SetDebugPhysicsWireCount(Whole WireFrameCount_);
-            /// @brief This gets how many WireFrames are being drawn.
-            /// @details This will tell you how many frames worth of previous in game events are being drawn.
-            /// @return This returns either 2 or the last amount passed into Entresol::SetDebugPhysicsWireCount .
-            Whole GetDebugPhysicsWireCount();
+            Integer GetDebugRenderingMode() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility

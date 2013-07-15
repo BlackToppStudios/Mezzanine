@@ -68,19 +68,19 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
     CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetCamera(0));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A) )
         DefaultControl->StrafeLeft(300 * (this->CatchApplication->TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D) )
         DefaultControl->StrafeRight(300 * (this->CatchApplication->TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W) )
         DefaultControl->MoveForward(300 * (this->CatchApplication->TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S) )
         DefaultControl->MoveBackward(300 * (this->CatchApplication->TheEntresol->GetFrameTimeMilliseconds() * 0.001));
-    static bool MouseCam=false;
-    if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
-        MouseCam=true;
-    if( SysKeyboard->IsButtonPressed(Input::KEY_END))
-        MouseCam=false;
+    static bool MouseCam = false;
+    if( SysKeyboard->IsButtonPressing(Input::KEY_HOME) )
+        MouseCam = true;
+    if( SysKeyboard->IsButtonPressing(Input::KEY_END) )
+        MouseCam = false;
     Vector2 Offset = SysMouse->GetMouseDelta();
     if( MouseCam && Vector2(0,0) != Offset )
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
@@ -88,13 +88,11 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
     if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) )
     {
         Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
-        if(PhysMan->GetDebugPhysicsRendering())
+        if(PhysMan->GetDebugRenderingMode())
         {
-            PhysMan->SetDebugPhysicsWireCount(0);
-            PhysMan->SetDebugPhysicsRendering(0);
+            PhysMan->SetDebugRenderingMode(Physics::DDM_NoDebug);
         }else{
-            PhysMan->SetDebugPhysicsWireCount(2);
-            PhysMan->SetDebugPhysicsRendering(1);
+            PhysMan->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
         }
     }
 }

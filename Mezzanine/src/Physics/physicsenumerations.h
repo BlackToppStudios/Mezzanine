@@ -64,7 +64,34 @@ namespace Mezzanine
 
             // Non-Standard Filters
             CF_UserFilter1 = 64,
-            CF_UserFilter2 = 128
+            CF_UserFilter2 = 128,
+            CF_UserFilter3 = 256,
+            CF_UserFilter4 = 512
+        };
+
+        /// @enum DebugDrawMode
+        /// @brief This is a collection of flags designed to describe what to draw when the Debug Drawer is enabled.
+        /// @details Most of these options work, with the exception of text-based modes and contact point modes.
+        enum DebugDrawMode
+        {
+            DDM_NoDebug = 0,
+            DDM_DrawWireframe = 1,
+            DDM_DrawAABB = 2,
+            DDM_DrawFeaturesText = 4,
+            DDM_DrawContactPoints = 8,
+            DDM_NoDeactivation = 16,
+            DDM_NoHelpText = 32,
+            DDM_DrawText = 64,
+            DDM_ProfileTimings = 128,
+            DDM_EnableSatComparison = 256,
+            DDM_DisableBulletLCP = 512,
+            DDM_EnableCCD = 1024,
+            DDM_DrawConstraints = 2048,
+            DDM_DrawConstraintLimits = 4096,
+            DDM_FastWireframe = 8192,
+            DDM_DrawNormals = 16384,
+
+            DDM_All = -1
         };
 
         /// @enum WorldObjectActivationState

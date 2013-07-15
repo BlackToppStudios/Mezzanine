@@ -47,11 +47,6 @@
 #include <Ogre.h>
 #include <vector>
 
-using namespace std;
-
-#define POSITION_BINDING 0
-#define TEXCOORD_BINDING 1
-
 namespace Mezzanine
 {
 
@@ -63,244 +58,288 @@ namespace Mezzanine
     namespace Internal
     {
         /// @internal
+        /// @brief A small declaration of what our vertexs look like for when we write to the buffers.
+        struct LineVertex
+        {
+            /// @internal
+            /// @brief Vertex position.
+            Vector3 Position;
+            /// @internal
+            /// @brief Vertex colour.
+            ColourValue Colour;
+
+            /// @internal
+            /// @brief Class constructor.
+            /// @param Pos The position to be assigned to this vertex.
+            /// @param Col The colour of this vertex.
+            LineVertex(const Vector3& Pos, const ColourValue& Col)
+                : Position(Pos), Colour(Col) {  }
+            /// @internal
+            /// @brief Class destructor.
+            ~LineVertex() {  }
+        };//LineVertex
+
+        /// @internal
         /// @brief Does the bulk of the work that that the Mezzanine::LineGroup performs
         /// @details Mezzanine::LineGroup is a simple wrapper around this to perform precise
         /// low level interactions with Ogre, the rendering subsystem. This uses too much stuff
         /// from ogre to use publicly. so we need to hide it here in the Mezzanine::internal namespace.
         class Line3D: public Ogre::SimpleRenderable
         {
-            public:
-                /// @internal
-                /// @brief Default Constructor
-                /// @details This creates an empty Line3D.
-                Line3D(void);
+        public:
+            /// @internal
+            /// @brief Default Constructor
+            Line3D();
+            /// @internal
+            /// @brief Destructor
+            ~Line3D();
 
-                /// @internal
-                /// @brief Destructor
-                /// @details This safely tears down the Line3D.
-                ~Line3D(void);
+            /// @internal
+            /// @brief This adds a point to the list of what should be rendered.
+            /// @param NewPoint The point to be added.
+            void AddPoint(const Vector3& NewPoint, const ColourValue& Colour);
+            /// @internal
+            /// @brief Access a specific point by index
+            /// @param index The index.
+            /// @details This really does just access the underlying vector.
+            /// @return This Returns the specific Vector3 requested.
+            const Vector3& GetPoint(const Whole Index) const;
+            /// @internal
+            /// @brief How many points are in this Line3D.
+            /// @return This returns the amount of points stored in this class.
+            Whole GetNumPoints() const;
+            /// @internal
+            /// @brief This changes a specific point.
+            /// @details This replaces a point specified by index with a new point.
+            /// @param Index The index of the point to replace.
+            /// @param NewValue A point to replace the existing point with.
+            void UpdatePoint(const Whole Index, const Vector3& NewValue);
+            /// @brief Clears all data pertaining to points in this line group.
+            void ClearPoints();
 
-                /// @internal
-                /// @brief This adds a point to the list of what should be rendered.
-                /// @param p The point to be added.
-                void addPoint(const Vector3 &p);
+            /// @internal
+            /// @brief This adds Two points to the list.
+            /// @param Start The first point to be added.
+            /// @param End The second point to be added.
+            /// @param Colour The colour of the line being added.
+            void DrawLine(const Vector3& Start, const Vector3& End, const ColourValue& Colour);
+            /// @internal
+            /// @brief Updates the internal buffers as necessary for rendering.
+            void DrawLines();
 
-                /// @internal
-                /// @brief Access a specific point by index
-                /// @param index The index.
-                /// @details This really does just access the underlying vector.
-                /// @return This Returns the specific Vector3 requested.
-                const Vector3 &getPoint(Whole index) const;
+            /// @internal
+            /// @brief Not Used
+            /// @param Cam Not Used
+            /// @return This returns a Real.
+            Real getSquaredViewDepth(const Ogre::Camera* Cam) const;
+            /// @internal
+            /// @brief How big would a circle need to be to encapsulate this
+            /// @details This returns the radius the a circle would need to have to surround this line group.
+            /// @return This returns a real number which indicates the radius.
+            Real getBoundingRadius(void) const;
 
-                /// @internal
-                /// @brief How many points are in this Line3D.
-                /// @return This returns the amount of points stored in this class.
-                Whole getNumPoints(void) const;
+            /// @internal
+            /// @brief Retrieves the scene node that will be used to attach this object to the scenegraph.
+            /// @return Returns a pointer to this LineDatas scenenode.
+            Ogre::SceneNode* GetNode() const;
+        protected:
+            /// @internal
+            /// @brief Gets how rotated this is currently
+            /// @details Returns a quaternion with the rotation
+            /// @return Is a Ogre::Quaternion which stores the rotation information of this Line3D
+            const Ogre::Quaternion getWorldOrientation(void) const;
+            /// @internal
+            /// @brief Get the position of this Line3d
+            /// @return This returns a Ogre::Vector3 with the Position relative to the world Origin
+            const Ogre::Vector3 getWorldPosition(void) const;
 
-                /// @internal
-                /// @brief Change an existing point.
-                /// @details This replaces a point specified by index with a new point
-                /// @param index The index of the point to replace.
-                /// @param value A point to replace the existing point with
-                void updatePoint(Whole index, const Vector3 &value);
-
-                /// @internal
-                /// @brief Adds two points
-                /// @details This adds to points, to guarantee that a specific line segment is drawn.
-                /// @param start The first point to be added
-                /// @param end The first point to be added
-                void drawLine(const Vector3 &start, const Vector3 &end);
-
-                /// @internal
-                /// @brief Renders this
-                /// @details This does the actual rendering.
-                void drawLines(void);        //Render this
-
-                /// @internal
-                /// @brief Not Used
-                /// @details Not Used
-                /// @param cam Not Used
-                /// @return This returns a Real.
-                Real getSquaredViewDepth(const Ogre::Camera *cam) const;
-
-                /// @internal
-                /// @brief How big would a circle need to be to encapsulate this
-                /// @details This returns the radius the a circle would need to have to surround this line group.
-                /// @return This returns a real number which indicates the radius.
-                Real getBoundingRadius(void) const;
-            protected:
-                //void getWorldTransforms(Matrix4 *xform) const;
-                /// @internal
-                /// @brief Gets how rotated this is currently
-                /// @details Returns a quaternion with the rotation
-                /// @return Is a Ogre::Quaternion which stores the rotation information of this Line3D
-                const Ogre::Quaternion &getWorldOrientation(void) const;
-
-                /// @internal
-                /// @brief Get the position of this Line3d
-                /// @return This returns a Vector3 with the Position relative to the world Origin
-                const Vector3 &getWorldPosition(void) const;
-
-                /// @internal
-                /// @brief This is a vector which stores the point data
-                std::vector<Vector3> mPoints;
-
-                /// @internal
-                /// @brief This indicates whether or not the the line have been done yet.
-                bool mDrawn;     //Has this been rendered yet?
+            /// @internal
+            /// @brief This is a vector which stores the point data
+            std::vector<LineVertex> Points;
+            /// @internal
+            /// @brief Internal pointer to the vertex buffer for this object.
+            Ogre::HardwareVertexBufferSharedPtr VertexBuffer;
+            /// @internal
+            /// @brief Pointer to the node that will be used exclusively for this renderable.
+            Ogre::SceneNode* SelfNode;
         };
 
-        Line3D::Line3D(void)
+        Line3D::Line3D()
         {
-           mRenderOp.vertexData = new Ogre::VertexData();
-           mDrawn = false;
-
-           this->setMaterial("BaseWhiteNoLighting");
-        }
-
-        Line3D::~Line3D(void)
-        {
-           delete mRenderOp.vertexData;
-        }
-
-        void Line3D::addPoint(const Vector3 &p)
-        {
-           mPoints.push_back(p);
-        }
-
-        const Vector3 &Line3D::getPoint(Whole index) const
-        {
-           assert(index < mPoints.size() && "Point index is out of bounds!!");
-
-           return mPoints[index];
-        }
-
-        Whole Line3D::getNumPoints(void) const
-        {
-           return mPoints.size();
-        }
-
-        void Line3D::updatePoint(Whole index, const Vector3 &value)
-        {
-           assert(index < mPoints.size() && "Point index is out of bounds!!");
-
-           mPoints[index] = value;
-        }
-
-        void Line3D::drawLine(const Vector3 &start, const Vector3 &end)
-        {
-           /// @todo TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen
-           if(mPoints.size())
-              mPoints.clear();
-
-           mPoints.push_back(start);
-           mPoints.push_back(end);
-
-           drawLines();
-        }
-
-        void Line3D::drawLines(void)
-        {
-            if(mDrawn)
-                return;
-            else
-                mDrawn = true;
+            mRenderOp.vertexData = new Ogre::VertexData();
+            this->SelfNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
 
             // Initialization stuff
             mRenderOp.indexData = 0;
-            mRenderOp.vertexData->vertexCount = mPoints.size();
+            mRenderOp.vertexData->vertexCount = 1024;
             mRenderOp.vertexData->vertexStart = 0;
-            mRenderOp.operationType = Ogre::RenderOperation::OT_LINE_STRIP; // OT_LINE_LIST, OT_LINE_STRIP
+            mRenderOp.operationType = Ogre::RenderOperation::OT_LINE_LIST;
             mRenderOp.useIndexes = false;
 
-            Ogre::VertexDeclaration *decl = mRenderOp.vertexData->vertexDeclaration;
-            Ogre::VertexBufferBinding *bind = mRenderOp.vertexData->vertexBufferBinding;
+            Ogre::VertexDeclaration* VDecl = mRenderOp.vertexData->vertexDeclaration;
+            Ogre::VertexBufferBinding* VBind = mRenderOp.vertexData->vertexBufferBinding;
 
-            decl->addElement(POSITION_BINDING, 0, Ogre::VET_FLOAT3, Ogre::VES_POSITION);
+            size_t Offset = 0;
+            // Position.
+            VDecl->addElement(0,0,Ogre::VET_FLOAT3,Ogre::VES_POSITION);
+            Offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
 
-            Ogre::HardwareVertexBufferSharedPtr vbuf =
-              Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
-                 decl->getVertexSize(POSITION_BINDING),
-                 mRenderOp.vertexData->vertexCount,
-                 Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
+            // Colour
+            VDecl->addElement(0,Offset,Ogre::VET_FLOAT4,Ogre::VES_DIFFUSE);
+            Offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT4);
 
-            bind->setBinding(POSITION_BINDING, vbuf);
+            this->VertexBuffer = Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+                    VDecl->getVertexSize(0),
+                    mRenderOp.vertexData->vertexCount,
+                    Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
+                    false);
 
-            // Drawing stuff
-            int size = mPoints.size();
-            if( size > 0 )
-            {
-               Vector3 vaabMin = mPoints[0];
-               Vector3 vaabMax = mPoints[0];
+            VBind->setBinding(0,this->VertexBuffer);
 
-               Real *prPos = static_cast<Real*>(vbuf->lock(Ogre::HardwareBuffer::HBL_DISCARD));
-
-               for(int i = 0; i < size; i++)
-               {
-                  *prPos++ = mPoints[i].X;
-                  *prPos++ = mPoints[i].Y;
-                  *prPos++ = mPoints[i].Z;
-
-                  if(mPoints[i].X < vaabMin.X)
-                     vaabMin.X = mPoints[i].X;
-                  if(mPoints[i].Y < vaabMin.Y)
-                     vaabMin.Y = mPoints[i].Y;
-                  if(mPoints[i].Z < vaabMin.Z)
-                     vaabMin.Z = mPoints[i].Z;
-
-                  if(mPoints[i].X > vaabMax.X)
-                     vaabMax.X = mPoints[i].X;
-                  if(mPoints[i].Y > vaabMax.Y)
-                     vaabMax.Y = mPoints[i].Y;
-                  if(mPoints[i].Z > vaabMax.Z)
-                     vaabMax.Z = mPoints[i].Z;
-               }
-
-               vbuf->unlock();
-
-               mBox.setExtents(vaabMin.GetOgreVector3(), vaabMax.GetOgreVector3());
-            }
-
+            this->setMaterial("BaseWhiteNoLighting");
         }
 
-        Real Line3D::getSquaredViewDepth(const Ogre::Camera *cam) const
+        Line3D::~Line3D()
+        {
+            SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->destroySceneNode(this->SelfNode);
+            delete mRenderOp.vertexData;
+        }
+
+        void Line3D::AddPoint(const Vector3& NewPoint, const ColourValue& Colour)
+        {
+            this->Points.push_back( LineVertex(NewPoint,Colour) );
+        }
+
+        const Vector3& Line3D::GetPoint(const Whole Index) const
+        {
+            assert(Index < this->Points.size() && "Point index is out of bounds!!");
+
+            return this->Points[Index].Position;
+        }
+
+        Whole Line3D::GetNumPoints() const
+        {
+            return this->Points.size();
+        }
+
+        void Line3D::UpdatePoint(const Whole Index, const Vector3& NewValue)
+        {
+            assert(Index < this->Points.size() && "Point index is out of bounds!!");
+
+            this->Points[Index].Position = NewValue;
+        }
+
+        void Line3D::ClearPoints()
+        {
+            this->Points.clear();
+        }
+
+        void Line3D::DrawLine(const Vector3& Start, const Vector3& End, const ColourValue& Colour)
+        {
+            this->Points.push_back( LineVertex(Start,Colour) );
+            this->Points.push_back( LineVertex(End,Colour) );
+        }
+
+        void Line3D::DrawLines()
+        {
+            // Drawing stuff
+            Whole NumPoints = this->Points.size();
+            if( NumPoints > 0 )
+            {
+                if( mRenderOp.vertexData->vertexCount < NumPoints )
+                {
+                    Whole NewVertexBufferSize = 1;
+                    while(NewVertexBufferSize < NumPoints)
+                        NewVertexBufferSize <<= 1;
+
+                    this->VertexBuffer = Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+                        mRenderOp.vertexData->vertexDeclaration->getVertexSize(0),
+                        NewVertexBufferSize,
+                        Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
+                        false);
+
+                    mRenderOp.vertexData->vertexBufferBinding->setBinding(0,this->VertexBuffer);
+                    mRenderOp.vertexData->vertexCount = NewVertexBufferSize;
+                    mRenderOp.vertexData->vertexStart = 0;
+                }
+
+                Vector3 vaabMin = this->Points[0].Position;
+                Vector3 vaabMax = this->Points[0].Position;
+
+                Real* prPos = static_cast<Real*>(this->VertexBuffer->lock(Ogre::HardwareBuffer::HBL_DISCARD));
+                for( Whole Index = 0 ; Index < NumPoints ; ++Index )
+                {
+                    const LineVertex& CurrVertex = this->Points.at(Index);
+
+                    // Position assignment
+                    *prPos++ = CurrVertex.Position.X;
+                    *prPos++ = CurrVertex.Position.Y;
+                    *prPos++ = CurrVertex.Position.Z;
+
+                    // Colour assignment
+                    *prPos++ = CurrVertex.Colour.R;
+                    *prPos++ = CurrVertex.Colour.G;
+                    *prPos++ = CurrVertex.Colour.B;
+                    *prPos++ = CurrVertex.Colour.A;
+
+                    // Bounds checking
+                    if(CurrVertex.Position.X < vaabMin.X)
+                        vaabMin.X = CurrVertex.Position.X;
+                    if(CurrVertex.Position.Y < vaabMin.Y)
+                        vaabMin.Y = CurrVertex.Position.Y;
+                    if(CurrVertex.Position.Z < vaabMin.Z)
+                        vaabMin.Z = CurrVertex.Position.Z;
+
+                    if(CurrVertex.Position.X > vaabMax.X)
+                        vaabMax.X = CurrVertex.Position.X;
+                    if(CurrVertex.Position.Y > vaabMax.Y)
+                        vaabMax.Y = CurrVertex.Position.Y;
+                    if(CurrVertex.Position.Z > vaabMax.Z)
+                        vaabMax.Z = CurrVertex.Position.Z;
+                }
+                this->VertexBuffer->unlock();
+
+                mBox.setExtents(vaabMin.GetOgreVector3(), vaabMax.GetOgreVector3());
+            }
+        }
+
+        Real Line3D::getSquaredViewDepth(const Ogre::Camera* Cam) const
         {
            Ogre::Vector3 vMin, vMax, vMid, vDist;
            vMin = mBox.getMinimum();
            vMax = mBox.getMaximum();
            vMid = ((vMin - vMax) * 0.5) + vMin;
-           vDist = cam->getDerivedPosition() - vMid;
+           vDist = Cam->getDerivedPosition() - vMid;
 
            return vDist.squaredLength();
         }
 
-        Real Line3D::getBoundingRadius(void) const
+        Real Line3D::getBoundingRadius() const
         {
-           return Ogre::Math::Sqrt(max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength()));
-           //return mRadius;
-        }
-        /*
-        void Line3D::getWorldTransforms(Matrix4 *xform) const
-        {
-           // return identity matrix to prevent parent transforms
-           *xform = Matrix4::IDENTITY;
-        }
-        */
-        const Ogre::Quaternion &Line3D::getWorldOrientation(void) const
-        {
-           return Ogre::Quaternion::IDENTITY;
+            return Ogre::Math::Sqrt(std::max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength()));
+            //return mRadius;
         }
 
-        /*const Vector3 &Line3D::getWorldPosition(void) const
+        Ogre::SceneNode* Line3D::GetNode() const
         {
-           return Vector3::ZERO;
-        }*/
+            return this->SelfNode;
+        }
+
+        const Ogre::Quaternion Line3D::getWorldOrientation() const
+        {
+            return this->SelfNode->_getDerivedOrientation();
+        }
+
+        const Ogre::Vector3 Line3D::getWorldPosition() const
+        {
+            return this->SelfNode->_getDerivedPosition();
+        }
     }// /internal
 
 
-///////////////////////////////////////////////////////////////////////////////
-// Mezzanine::LineGroup
-///////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
+    // Mezzanine::LineGroup
+
     LineGroup::LineGroup()
     {
         this->LineData = new Internal::Line3D();
@@ -308,51 +347,61 @@ namespace Mezzanine
 
     LineGroup::~LineGroup(void)
     {
+        this->RemoveFromWorld();
         delete this->LineData;
     }
 
-    void LineGroup::addPoint(const Vector3 &p)
+    void LineGroup::AddPoint(const Vector3& NewPoint, const ColourValue& Colour)
     {
-        this->LineData->addPoint( p);
+        this->LineData->AddPoint(NewPoint,Colour);
     }
 
-    const Vector3 LineGroup::getPoint(Whole index) const
+    const Vector3 LineGroup::GetPoint(const Whole Index) const
     {
-        Vector3 temp(this->LineData->getPoint(index));
+        Vector3 temp(this->LineData->GetPoint(Index));
         return temp;
     }
 
-    Whole LineGroup::getNumPoints(void) const
+    Whole LineGroup::GetNumPoints(void) const
     {
-        return this->LineData->getNumPoints();
+        return this->LineData->GetNumPoints();
     }
 
-    void LineGroup::updatePoint(Whole index, const Vector3 &value)
+    void LineGroup::UpdatePoint(const Whole Index, const Vector3& NewValue)
     {
-        return this->LineData->updatePoint(index, value);
+        return this->LineData->UpdatePoint(Index,NewValue);
     }
 
-    void LineGroup::drawLine(const Vector3 &start, const Vector3 &end)
+    void LineGroup::ClearLines()
     {
-        //Ogre::Vector3 Ostart = start.GetOgreVector3();
-        //Ogre::Vector3 Oend = end.GetOgreVector3();
-        this->LineData->drawLine(start, end);
+        this->LineData->ClearPoints();
     }
 
-    void LineGroup::drawLines(void)
+    void LineGroup::DrawLine(const Vector3& Start, const Vector3& End, const ColourValue& Colour)
     {
-        this->LineData->drawLines();
+        this->LineData->DrawLine(Start,End,Colour);
     }
 
-    Real LineGroup::getBoundingRadius(void) const
+    void LineGroup::DrawLines()
+    {
+        this->LineData->DrawLines();
+    }
+
+    void LineGroup::AddToWorld()
+    {
+        if( this->LineData->isAttached() == false )
+            this->LineData->GetNode()->attachObject(this->LineData);
+    }
+
+    void LineGroup::RemoveFromWorld()
+    {
+        if( this->LineData->isAttached() != false )
+            this->LineData->GetNode()->detachObject(this->LineData);
+    }
+
+    Real LineGroup::GetBoundingRadius() const
     {
         return this->LineData->getBoundingRadius();
-    }
-
-    void LineGroup::PrepareForRendering()
-    {
-        Ogre::SceneNode *myNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
-        myNode->attachObject(this->LineData);
     }
 }
 
