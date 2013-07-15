@@ -354,6 +354,19 @@ namespace Mezzanine
                 virtual void RemoveFilter();
 
                 ///////////////////////////////////////////////////////////////////////////////
+                // Serialization
+
+                /// @copydoc WorldProxy::ProtoSerialize(XML::Node& CurrentRoot) const
+                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+                /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node& OneNode)
+                virtual void ProtoDeSerialize(const XML::Node& OneNode);
+                /// @copydoc WorldProxy::GetDerivedSerializableName() const
+                virtual String GetDerivedSerializableName() const;
+                /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+                /// @return A string containing the name of this class.
+                static String SerializableName();
+
+                ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods
 
                 /// @internal

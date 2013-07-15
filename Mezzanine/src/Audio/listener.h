@@ -83,6 +83,13 @@ namespace Mezzanine
             /// @brief Gets the currently set number of meters in a single unit of world space.
             /// @return Returns a Real representing the number of meters in a unit of world space.
             virtual Real GetMetersPerUnit() const = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String SerializableName() { return "iListener"; }
         };//iListener
     }//Audio
 }//Mezzanine
