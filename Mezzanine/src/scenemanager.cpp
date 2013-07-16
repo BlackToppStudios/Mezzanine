@@ -793,7 +793,7 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType SceneManager::GetInterfaceType() const
-        { return ManagerBase::SceneManager; }
+        { return ManagerBase::MT_SceneManager; }
 
     String SceneManager::GetImplementationTypeName() const
         { return "DefaultSceneManager"; }

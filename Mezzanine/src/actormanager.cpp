@@ -233,7 +233,7 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType ActorManager::GetInterfaceType() const
-        { return ManagerBase::ActorManager; }
+        { return ManagerBase::MT_ActorManager; }
 
     String ActorManager::GetImplementationTypeName() const
         { return "DefaultActorManager"; }

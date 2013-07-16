@@ -686,7 +686,7 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType EventManager::GetInterfaceType() const
-        { return ManagerBase::EventManager; }
+        { return ManagerBase::MT_EventManager; }
 
     String EventManager::GetImplementationTypeName() const
         { return "DefaultEventManager"; }

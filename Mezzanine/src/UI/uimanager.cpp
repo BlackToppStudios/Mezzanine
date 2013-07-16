@@ -560,7 +560,7 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType UIManager::GetInterfaceType() const
-            { return ManagerBase::UIManager; }
+            { return ManagerBase::MT_UIManager; }
 
         String UIManager::GetImplementationTypeName() const
             { return "DefaultUIManager"; }

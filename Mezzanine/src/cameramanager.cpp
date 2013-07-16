@@ -225,7 +225,7 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType CameraManager::GetInterfaceType() const
-        { return ManagerBase::CameraManager; }
+        { return ManagerBase::MT_CameraManager; }
 
     String CameraManager::GetImplementationTypeName() const
         { return "DefaultCameraManager"; }

@@ -253,7 +253,7 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType AreaEffectManager::GetInterfaceType() const
-        { return ManagerBase::AreaEffectManager; }
+        { return ManagerBase::MT_AreaEffectManager; }
 
     String AreaEffectManager::GetImplementationTypeName() const
         { return "DefaultAreaEffectManager"; }

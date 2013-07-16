@@ -335,7 +335,7 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType InputManager::GetInterfaceType() const
-            { return ManagerBase::InputManager; }
+            { return ManagerBase::MT_InputManager; }
 
         String InputManager::GetImplementationTypeName() const
             { return "DefaultInputManager"; }

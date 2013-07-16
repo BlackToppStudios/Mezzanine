@@ -736,7 +736,7 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType CollisionShapeManager::GetInterfaceType() const
-        { return ManagerBase::CollisionShapeManager; }
+        { return ManagerBase::MT_CollisionShapeManager; }
 
     String CollisionShapeManager::GetImplementationTypeName() const
         { return "DefaultCollisionShapeManager"; }

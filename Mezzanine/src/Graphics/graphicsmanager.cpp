@@ -684,7 +684,7 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType GraphicsManager::GetInterfaceType() const
-            { return ManagerBase::GraphicsManager; }
+            { return ManagerBase::MT_GraphicsManager; }
 
         String GraphicsManager::GetImplementationTypeName() const
             { return "DefaultGraphicsManager"; }

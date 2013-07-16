@@ -258,7 +258,7 @@ namespace Mezzanine
         // Inherited from Managerbase
 
         ManagerBase::ManagerType AudioManager::GetInterfaceType() const
-            { return ManagerBase::AudioManager; }
+            { return ManagerBase::MT_AudioManager; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods

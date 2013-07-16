@@ -77,67 +77,67 @@ namespace Mezzanine
     {
         switch (ManagerType)
         {
-            case ManagerBase::ActorManager:
+            case ManagerBase::MT_ActorManager:
                 return "ActorManager";
                 break;
-            case ManagerBase::AreaEffectManager:
+            case ManagerBase::MT_AreaEffectManager:
                 return "AreaEffectManager";
                 break;
-            case ManagerBase::AudioManager:
+            case ManagerBase::MT_AudioManager:
                 return "AudioManager";
                 break;
-            case ManagerBase::CameraManager:
+            case ManagerBase::MT_CameraManager:
                 return "CameraManager";
                 break;
-            case ManagerBase::CollisionShapeManager:
+            case ManagerBase::MT_CollisionShapeManager:
                 return "CollisionShapeManager";
                 break;
-            case ManagerBase::EventManager:
+            case ManagerBase::MT_EventManager:
                 return "EventManager";
                 break;
-            case ManagerBase::GraphicsManager:
+            case ManagerBase::MT_GraphicsManager:
                 return "GraphicsManager";
                 break;
-            case ManagerBase::InputManager:
+            case ManagerBase::MT_InputManager:
                 return "InputManager";
                 break;
-            case ManagerBase::LogManager:
+            case ManagerBase::MT_LogManager:
                 return "LogManager";
                 break;
-            case ManagerBase::MeshManager:
+            case ManagerBase::MT_MeshManager:
                 return "MeshManager";
                 break;
-            case ManagerBase::NetworkManager:
+            case ManagerBase::MT_NetworkManager:
                 return "NetworkManager";
                 break;
-            case ManagerBase::PagingManager:
+            case ManagerBase::MT_PagingManager:
                 return "PagingManager";
                 break;
-            case ManagerBase::PhysicsManager:
+            case ManagerBase::MT_PhysicsManager:
                 return "PhysicsManager";
                 break;
-            case ManagerBase::ResourceManager:
+            case ManagerBase::MT_ResourceManager:
                 return "ResourceManager";
                 break;
-            case ManagerBase::SceneManager:
+            case ManagerBase::MT_SceneManager:
                 return "SceneManager";
                 break;
-            case ManagerBase::ScriptingManager:
+            case ManagerBase::MT_ScriptingManager:
                 return "ScriptingManager";
                 break;
-            case ManagerBase::SoundScapeManager:
+            case ManagerBase::MT_SoundScapeManager:
                 return "SoundScapeManager";
                 break;
-            case ManagerBase::TerrainManager:
+            case ManagerBase::MT_TerrainManager:
                 return "TerrainManager";
                 break;
-            case ManagerBase::UIManager:
+            case ManagerBase::MT_UIManager:
                 return "UIManager";
                 break;
-            case ManagerBase::VehicleManager:
+            case ManagerBase::MT_VehicleManager:
                 return "VehicleManager";
                 break;
-            case ManagerBase::UserCreated:
+            case ManagerBase::MT_UserCreated:
                 return "UserCreated";
                 break;
             default:
@@ -154,83 +154,83 @@ namespace Mezzanine
         {
             case 'a':
             {
-                if( 'c' == Lower.at(1) ) return ManagerBase::ActorManager;
-                else if( 'r' == Lower.at(1) ) return ManagerBase::AreaEffectManager;
-                else if( 'u' == Lower.at(1) ) return ManagerBase::AudioManager;
+                if( 'c' == Lower.at(1) ) return ManagerBase::MT_ActorManager;
+                else if( 'r' == Lower.at(1) ) return ManagerBase::MT_AreaEffectManager;
+                else if( 'u' == Lower.at(1) ) return ManagerBase::MT_AudioManager;
                 break;
             }
             case 'c':
             {
-                if( 'a' == Lower.at(1) ) return ManagerBase::CameraManager;
-                else if( 'o' == Lower.at(1) ) return ManagerBase::CollisionShapeManager;
+                if( 'a' == Lower.at(1) ) return ManagerBase::MT_CameraManager;
+                else if( 'o' == Lower.at(1) ) return ManagerBase::MT_CollisionShapeManager;
                 break;
             }
             case 'e':
             {
-                return ManagerBase::EventManager;
+                return ManagerBase::MT_EventManager;
                 break;
             }
             case 'g':
             {
-                return ManagerBase::GraphicsManager;
+                return ManagerBase::MT_GraphicsManager;
                 break;
             }
             case 'i':
             {
-                return ManagerBase::InputManager;
+                return ManagerBase::MT_InputManager;
                 break;
             }
             case 'l':
             {
-                return ManagerBase::LogManager;
+                return ManagerBase::MT_LogManager;
                 break;
             }
             case 'm':
             {
-                return ManagerBase::MeshManager;
+                return ManagerBase::MT_MeshManager;
                 break;
             }
             case 'n':
             {
-                return ManagerBase::NetworkManager;
+                return ManagerBase::MT_NetworkManager;
                 break;
             }
             case 'p':
             {
-                if( 'a' == Lower.at(1) ) return ManagerBase::PagingManager;
-                else if( 'h' == Lower.at(1) ) return ManagerBase::PhysicsManager;
+                if( 'a' == Lower.at(1) ) return ManagerBase::MT_PagingManager;
+                else if( 'h' == Lower.at(1) ) return ManagerBase::MT_PhysicsManager;
                 break;
             }
             case 'r':
             {
-                return ManagerBase::ResourceManager;
+                return ManagerBase::MT_ResourceManager;
                 break;
             }
             case 's':
             {
                 if( 'o' == Lower.at(1) ) {
-                    return ManagerBase::SoundScapeManager;
+                    return ManagerBase::MT_SoundScapeManager;
                 }else{
                     // Both of these start with the same two letters, so skip to the third.
-                    if( 'e' == Lower.at(2) ) return ManagerBase::SceneManager;
-                    else if( 'r' == Lower.at(2) ) return ManagerBase::ScriptingManager;
+                    if( 'e' == Lower.at(2) ) return ManagerBase::MT_SceneManager;
+                    else if( 'r' == Lower.at(2) ) return ManagerBase::MT_ScriptingManager;
                 }
                 break;
             }
             case 't':
             {
-                return ManagerBase::TerrainManager;
+                return ManagerBase::MT_TerrainManager;
                 break;
             }
             case 'u':
             {
-                if( 'i' == Lower.at(1) ) return ManagerBase::UIManager;
-                else if( 's' == Lower.at(1) ) return ManagerBase::UserCreated;
+                if( 'i' == Lower.at(1) ) return ManagerBase::MT_UIManager;
+                else if( 's' == Lower.at(1) ) return ManagerBase::MT_UserCreated;
                 break;
             }
             case 'v':
             {
-                return ManagerBase::VehicleManager;
+                return ManagerBase::MT_VehicleManager;
                 break;
             }
         }

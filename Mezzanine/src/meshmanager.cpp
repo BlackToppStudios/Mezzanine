@@ -669,7 +669,7 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType MeshManager::GetInterfaceType() const
-        { return ManagerBase::MeshManager; }
+        { return ManagerBase::MT_MeshManager; }
 
     String MeshManager::GetImplementationTypeName() const
         { return "DefaultMeshManager"; }

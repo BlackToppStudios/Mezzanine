@@ -184,7 +184,7 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType TerrainManager::GetInterfaceType() const
-        { return ManagerBase::TerrainManager; }
+        { return ManagerBase::MT_TerrainManager; }
 
     String TerrainManager::GetImplementationTypeName() const
         { return "DefaultTerrainManager"; }

@@ -512,7 +512,7 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType ResourceManager::GetInterfaceType() const
-        { return ManagerBase::ResourceManager; }
+        { return ManagerBase::MT_ResourceManager; }
 
     String ResourceManager::GetImplementationTypeName() const
         { return "DefaultResourceManager"; }

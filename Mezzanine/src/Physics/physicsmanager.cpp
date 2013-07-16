@@ -1140,7 +1140,7 @@ namespace Mezzanine
         // Type Identifier Methods
 
         ManagerBase::ManagerType PhysicsManager::GetInterfaceType() const
-            { return ManagerBase::PhysicsManager; }
+            { return ManagerBase::MT_PhysicsManager; }
 
         String PhysicsManager::GetImplementationTypeName() const
             { return "DefaultPhysicsManager"; }

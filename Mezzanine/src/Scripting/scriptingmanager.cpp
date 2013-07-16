@@ -69,7 +69,7 @@ namespace Mezzanine
         }
 
         ManagerBase::ManagerType iScriptingManager::GetInterfaceType() const
-            { return ManagerBase::ScriptingManager; }
+            { return ManagerBase::MT_ScriptingManager; }
 
 
         iScriptCompilationManager::~iScriptCompilationManager()

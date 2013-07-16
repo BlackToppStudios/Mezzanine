@@ -81,7 +81,7 @@ namespace Mezzanine
     // Type Identifier Methods
 
     ManagerBase::ManagerType NetworkManager::GetInterfaceType() const
-        { return ManagerBase::NetworkManager; }
+        { return ManagerBase::MT_NetworkManager; }
 
     String NetworkManager::GetImplementationTypeName() const
         { return "DefaultNetworkManager"; }
