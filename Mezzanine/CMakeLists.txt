@@ -156,6 +156,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Internal/ogredatastreambuf.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}light.h"
         "${${PROJECT_NAME}_SRC_DIR}linegroup.h"
+        "${${PROJECT_NAME}_SRC_DIR}macros.h"
         "${${PROJECT_NAME}_SRC_DIR}managerbase.h"
         "${${PROJECT_NAME}_SRC_DIR}managerfactory.h"
         "${${PROJECT_NAME}_SRC_DIR}mathtool.h"
