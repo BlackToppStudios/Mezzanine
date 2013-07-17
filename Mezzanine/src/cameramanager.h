@@ -41,7 +41,7 @@
 #define _CameraManager_h
 
 #include "datatypes.h"
-#include "managerbase.h"
+#include "worldmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "quaternion.h"
@@ -86,14 +86,20 @@ namespace Mezzanine
     /// one camera you should never have to name the camera you want to use. @n
     /// This class should only be created after the SceneManager has been created.
     ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB CameraManager : public ManagerBase, public Singleton<CameraManager>
+    class MEZZ_LIB CameraManager : public WorldManager
     {
     public:
+        /// @brief Basic container type for @ref Camera storage by this class.
         typedef std::vector< Camera* >                     CameraContainer;
+        /// @brief Iterator type for @ref Camera instances stored by this class.
         typedef CameraContainer::iterator                  CameraIterator;
+        /// @brief Const Iterator type for @ref Camera instances stored by this class.
         typedef CameraContainer::const_iterator            ConstCameraIterator;
+        /// @brief Basic container type for @ref CameraController storage by this class.
         typedef std::map< Camera*, CameraController* >     CameraControllerContainer;
+        /// @brief Iterator type for @ref CameraController instances stored by this class.
         typedef CameraControllerContainer::iterator        CameraControllerIterator;
+        /// @brief Const Iterator type for @ref CameraController instances stored by this class.
         typedef CameraControllerContainer::const_iterator  ConstCameraControllerIterator;
     protected:
         friend class Internal::SceneManagerData;
@@ -158,6 +164,9 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
+
+        /// @copydoc WorldManager::Pause(const UInt32)
+        virtual void Pause(const UInt32 PL);
 
         /// @copydoc ManagerBase::Initialize()
         virtual void Initialize();

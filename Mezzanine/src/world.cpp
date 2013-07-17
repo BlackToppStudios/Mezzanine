@@ -185,6 +185,12 @@ namespace Mezzanine
         //return dynamic_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) );
         return NULL;
     }
+
+    TerrainManager* World::GetTerrainManager()
+    {
+        //return dynamic_cast<TerrainManager*>( this->GetManager(ManagerBase::MT_TerrainManager) );
+        return NULL;
+    }
 }//Mezzanine
 
 #endif

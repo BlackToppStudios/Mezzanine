@@ -49,6 +49,7 @@ namespace Mezzanine
     class AreaEffectManager;
     class CameraManager;
     class SceneManager;
+    class TerrainManager;
     namespace Audio
     {
         class SoundScapeManager;
@@ -146,6 +147,9 @@ namespace Mezzanine
         /// @brief This gets the SoundScapeManager from the manager list.
         /// @return This returns a pointer to a SoundScapeManager, or a NULL pointer if no matching manager exists.
         Audio::SoundScapeManager* GetSoundScapeManager();
+        /// @brief This gets the TerrainManager from the manager list.
+        /// @return This returns a pointer to a TerrainManager, or a NULL pointer if no matching manager exists.
+        TerrainManager* GetTerrainManager();
     };//World
 }//Mezzanine
 

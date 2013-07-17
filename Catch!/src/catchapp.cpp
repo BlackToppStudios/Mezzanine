@@ -513,7 +513,7 @@ void CatchApp::CreateLoadingScreen()
 
     GUI->LoadMTA("Catch_Loading");
     Graphics::Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
-    UIViewport->SetCamera(CameraManager::GetSingletonPtr()->CreateCamera("Main"));
+    UIViewport->SetCamera(this->TheEntresol->GetCameraManager()->CreateCamera("Main"));
 
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::OpenRenderableContainerWidget* LoadContainer = LoadScreen->CreateOpenRenderableContainerWidget("Load_Rect");

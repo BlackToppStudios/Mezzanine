@@ -125,7 +125,7 @@ namespace Mezzanine
             GraphMan->SetAutoGenFiles(false);
             Results->GetAudioManager()->SetAutoGenFiles(false);
             Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("Window1",800,600,0);
-            Camera* FirstCam = CameraManager::GetSingletonPtr()->CreateCamera("Camera1");
+            Camera* FirstCam = Entresol::GetSingletonPtr()->GetCameraManager()->CreateCamera("Camera1");
             FirstWindow->CreateViewport(FirstCam);
             //Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
             FirstCam->SetLocation( Vector3(0,50,900) );

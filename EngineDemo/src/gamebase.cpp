@@ -358,14 +358,14 @@ int main(int argc, char **argv)
 
     //Create the windows!
     Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
-    Camera* FirstCam = CameraManager::GetSingletonPtr()->CreateCamera("FirstCam");
+    Camera* FirstCam = TheEntresol->GetCameraManager()->CreateCamera("FirstCam");
     //Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
     FirstWindow->CreateViewport(FirstCam);
     FirstCam->SetLocation( Vector3(0,50,900) );
     FirstCam->LookAt( Vector3(0,0,0) );
 
     /*Graphics::GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
-    Camera* SecondCam = CameraManager::GetSingletonPtr()->CreateCamera("SecondCam");
+    Camera* SecondCam = TheEntresol->GetCameraManager()->CreateCamera("SecondCam");
     Graphics::Viewport* SecondViewport = SecondWindow->CreateViewport(SecondCam);
     SecondCam->SetLocation( Vector3(-300,50,-50) );
     SecondCam->LookAt( Vector3(0,0,0) );//*/

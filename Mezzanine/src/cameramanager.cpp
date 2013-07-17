@@ -43,6 +43,7 @@
 #include "cameramanager.h"
 #include "scenemanager.h"
 #include "Graphics/graphicsmanager.h"
+#include "entresol.h"
 #include "camera.h"
 #include "cameracontroller.h"
 
@@ -53,20 +54,20 @@
 
 namespace Mezzanine
 {
-    template<> CameraManager* Singleton<CameraManager>::SingletonPtr = 0;
-
     CameraManager::CameraManager()
         : SceneMan(NULL)
     {
-        if(SceneManager::SingletonValid())
-            this->SceneMan = SceneManager::GetSingletonPtr();
+        SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
+        if( SceneCheck )
+            this->SceneMan = SceneCheck;
     }
 
     CameraManager::CameraManager(XML::Node& XMLNode)
         : SceneMan(NULL)
     {
-        if(SceneManager::SingletonValid())
-            this->SceneMan = SceneManager::GetSingletonPtr();
+        SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
+        if( SceneCheck )
+            this->SceneMan = SceneCheck;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 
@@ -197,13 +198,20 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
+    void CameraManager::Pause(const UInt32 PL)
+    {
+        // Do Nothing currently
+    }
+
     void CameraManager::Initialize()
     {
         if( !this->SceneMan )
         {
-            if(SceneManager::SingletonValid())
-            {
-                this->SceneMan = SceneManager::GetSingletonPtr();
+            //WorldManager::Initialize();
+
+            SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
+            if( SceneCheck ) {
+                this->SceneMan = SceneCheck;
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to initiailze CameraManager when SceneManager has not yet been constructed.  The SceneManager is a dependancy of the CameraManager.");
             }
@@ -248,20 +256,12 @@ namespace Mezzanine
 
     ManagerBase* DefaultCameraManagerFactory::CreateManager(NameValuePairList& Params)
     {
-        if(CameraManager::SingletonValid())
-        {
-            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-            return CameraManager::GetSingletonPtr();
-        }else return new CameraManager();
+        return new CameraManager();
     }
 
     ManagerBase* DefaultCameraManagerFactory::CreateManager(XML::Node& XMLNode)
     {
-        if(CameraManager::SingletonValid())
-        {
-            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-            return CameraManager::GetSingletonPtr();
-        }else return new CameraManager(XMLNode);
+        return new CameraManager(XMLNode);
     }
 
     void DefaultCameraManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)

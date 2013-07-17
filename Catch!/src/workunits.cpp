@@ -64,10 +64,11 @@ CatchPostInputWorkUnit::~CatchPostInputWorkUnit()
 
 void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
+    CameraManager* CamMan = Entresol::GetSingletonPtr()->GetCameraManager();
     Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-    CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetCamera(0));
+    CameraController* DefaultControl = CamMan->GetOrCreateCameraController(CamMan->GetCamera(0));
     if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A) )
         DefaultControl->StrafeLeft(300 * (this->CatchApplication->TheEntresol->GetFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D) )
