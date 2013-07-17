@@ -976,7 +976,7 @@ namespace Mezzanine
         this->Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".");
         this->DoMainLoopLogging();
         #endif
-        // We have to verify the manager is unique.  A number of issues can arriae if a manager is double inserted.
+        // We have to verify the manager is unique.  A number of issues can arrise if a manager is double inserted.
         for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
         {
             if( (*ManIter) == ManagerToAdd )
