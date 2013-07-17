@@ -243,9 +243,9 @@ namespace Mezzanine
         Ogre::ManualObject* cylinder = new Ogre::ManualObject("TempMan");
         cylinder->begin(MaterialName);
 
-        for(int i = 0; i <= Segments; i++)
+        for( Whole i = 0 ; i <= Segments ; i++ )
         {
-            for(int j = 0; j < CircleRes; j++)
+            for( Whole j = 0 ; j < CircleRes ; j++ )
             {
                 Real x0 = radius * cosf(j*deltaAngle);
                 Real z0 = radius * sinf(j*deltaAngle);
@@ -278,12 +278,12 @@ namespace Mezzanine
 		}
 
 		//low cap
-		int centerIndex = offset;
+		Whole centerIndex = offset;
 		cylinder->position( RotationModifier * Ogre::Vector3(0,-Half.Y,0) );
 		cylinder->normal( RotationModifier * Ogre::Vector3::NEGATIVE_UNIT_Y );
 		cylinder->textureCoord(0,1);
 		offset++;
-		for (int j=0;j<=CircleRes;j++)
+		for( Whole j = 0 ; j <= CircleRes ; j++ )
 		{
 			Real x0 = radius * cosf(j*deltaAngle);
 			Real z0 = radius * sinf(j*deltaAngle);
@@ -291,7 +291,7 @@ namespace Mezzanine
 			cylinder->position( RotationModifier * Ogre::Vector3(x0,-Half.Y, z0) );
 			cylinder->normal( RotationModifier * Ogre::Vector3::NEGATIVE_UNIT_Y );
 			cylinder->textureCoord(j/(Real)CircleRes,0.0);
-			if (j!=CircleRes)
+			if( j != CircleRes )
 			{
 				cylinder->index(centerIndex);
 				cylinder->index(offset);
@@ -306,7 +306,7 @@ namespace Mezzanine
 		cylinder->normal( RotationModifier * Ogre::Vector3::UNIT_Y );
 		cylinder->textureCoord(0,0);
 		offset++;
-		for (int j=0;j<=CircleRes;j++)
+		for(Whole j = 0 ; j <= CircleRes ; j++ )
 		{
 			Real x0 = radius * cosf(j*deltaAngle);
 			Real z0 = radius * sinf(j*deltaAngle);
@@ -314,7 +314,7 @@ namespace Mezzanine
 			cylinder->position( RotationModifier * Ogre::Vector3(x0, Half.Y, z0) );
 			cylinder->normal( RotationModifier * Ogre::Vector3::UNIT_Y );
 			cylinder->textureCoord(j/(Real)CircleRes,1);
-			if (j!=CircleRes)
+			if( j != CircleRes )
 			{
 				cylinder->index(centerIndex);
 				cylinder->index(offset+1);
