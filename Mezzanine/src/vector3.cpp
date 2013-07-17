@@ -187,6 +187,7 @@ namespace Mezzanine
         this->X=Vec.getX();
         this->Y=Vec.getY();
         this->Z=Vec.getZ();
+        return *this;
     }
 
     Vector3& Vector3::operator= (const Ogre::Vector3 &Vec)
@@ -194,6 +195,7 @@ namespace Mezzanine
         this->X=Vec.x;
         this->Y=Vec.y;
         this->Z=Vec.z;
+        return *this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
