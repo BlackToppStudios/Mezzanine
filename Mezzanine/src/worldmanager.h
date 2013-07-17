@@ -81,9 +81,6 @@ namespace Mezzanine
         /// @return Returns true if this manager has some or all of it's operations paused currently.
         virtual bool IsPaused() const;
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Initialization Methods
-
         /// @copydoc ManagerBase::Initialize()
         /// @exception If this is called while no valid world is set, this will throw an "INVALID_STATE_EXCEPTION".
         virtual void Initialize();

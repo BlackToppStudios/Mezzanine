@@ -41,7 +41,7 @@
 #define actormanager_h
 
 #include "datatypes.h"
-#include "managerbase.h"
+#include "worldmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "Threading/workunit.h"
@@ -94,21 +94,18 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorManager
     /// @headerfile actormanager.h
-    /// @brief A manager responsible for the storage and management of all actors in use.
+    /// @brief A manager responsible for the storage and management of all actors that exist in a world.
     /// @details More or less Management point for a container of actors to help keep them sorted.
     ///////////////////////////////////////
-    class MEZZ_LIB ActorManager : public ManagerBase, public Singleton<ActorManager>
+    class MEZZ_LIB ActorManager : public WorldManager
     {
     public:
+        /// @brief Basic container type for @ref ActorBase storage by this class.
         typedef std::vector<ActorBase*>              ActorContainer;
+        /// @brief Iterator type for @ref ActorBase instances stored by this class.
         typedef ActorContainer::iterator             ActorIterator;
+        /// @brief Const Iterator type for @ref ActorBase instances stored by this class.
         typedef ActorContainer::const_iterator       ConstActorIterator;
-        typedef std::vector<ActorRigid*>             ActorRigidContainer;
-        typedef ActorRigidContainer::iterator        ActorRigidIterator;
-        typedef ActorRigidContainer::const_iterator  ConstActorRigidIterator;
-        typedef std::vector<ActorSoft*>              ActorSoftContainer;
-        typedef ActorSoftContainer::iterator         ActorSoftIterator;
-        typedef ActorSoftContainer::const_iterator   ConstActorSoftIterator;
     protected:
         friend class ActorUpdateWorkUnit;
 
@@ -179,7 +176,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @copydoc ManagerBase::Initialize()
+        /// @copydoc WorldManager::Pause(const UInt32)
+        virtual void Pause(const UInt32 PL);
+
+        /// @copydoc WorldManager::Initialize()
         virtual void Initialize();
         /// @copydoc ManagerBase::Deinitialize()
         virtual void Deinitialize();

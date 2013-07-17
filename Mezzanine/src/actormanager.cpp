@@ -78,8 +78,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // ActorManager Methods
 
-    template<> ActorManager* Singleton<ActorManager>::SingletonPtr = NULL;
-
     ActorManager::ActorManager() :
         ActorUpdateWork(NULL),
         ThreadResources(NULL)
@@ -199,6 +197,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
+    void ActorManager::Pause(const UInt32 PL)
+    {
+        // Do nothing currently
+    }
+
     void ActorManager::Initialize()
     {
         if( !this->Initialized )
@@ -256,20 +259,12 @@ namespace Mezzanine
 
     ManagerBase* DefaultActorManagerFactory::CreateManager(NameValuePairList& Params)
     {
-        if(ActorManager::SingletonValid())
-        {
-            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-            return ActorManager::GetSingletonPtr();
-        }else return new ActorManager();
+        return new ActorManager();
     }
 
     ManagerBase* DefaultActorManagerFactory::CreateManager(XML::Node& XMLNode)
     {
-        if(ActorManager::SingletonValid())
-        {
-            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-            return ActorManager::GetSingletonPtr();
-        }else return new ActorManager(XMLNode);
+        return new ActorManager(XMLNode);
     }
 
     void DefaultActorManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)

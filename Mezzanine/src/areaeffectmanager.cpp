@@ -217,14 +217,14 @@ namespace Mezzanine
         {
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AreaEffectUpdateWork );
 
-            Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
+            Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
             if( PhysicsMan ) {
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetWorldTriggerUpdateWork() );
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetDebugDrawWork() );
             }
 
-            Mezzanine::ActorManager* ActorMan = ActorManager::GetSingletonPtr();
+            Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
             if( ActorMan ) {
                 this->AreaEffectUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
             }
