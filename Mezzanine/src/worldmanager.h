@@ -41,6 +41,7 @@
 #define _worldmanager_h
 
 #include "managerbase.h"
+#include "enumerations.h"
 
 namespace Mezzanine
 {
@@ -57,10 +58,12 @@ namespace Mezzanine
         /// @internal
         /// @brief A pointer to the world that created this manager.
         World* ParentWorld;
+        /// @internal
+        /// @brief This stores whether or not processing for some or all objects in this manager has been paused.
+        bool OperationsPaused;
     public:
         /// @brief Class constructor.
-        /// @param Parent A pointer to the parent world that created this manager.
-        WorldManager(World* Parent);
+        WorldManager();
         /// @brief Class destructor.
         virtual ~WorldManager();
 
@@ -69,7 +72,31 @@ namespace Mezzanine
 
         /// @brief Gets the world this manager belongs to.
         /// @return Returns a pointer to the world that created this manager.
-        World* GetWorld() const;
+        virtual World* GetWorld() const;
+
+        /// @brief Sets the pause state of this manager, or has no effect depending on the value passed in.
+        /// @param PL A bitfield describing the pause level being assigned to the parent world of this manager.
+        virtual void Pause(const UInt32 PL) = 0;
+        /// @brief Gets whether or not this manager is currently paused.
+        /// @return Returns true if this manager has some or all of it's operations paused currently.
+        virtual bool IsPaused() const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Initialization Methods
+
+        /// @copydoc ManagerBase::Initialize()
+        /// @exception If this is called while no valid world is set, this will throw an "INVALID_STATE_EXCEPTION".
+        virtual void Initialize();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        /// @internal
+        /// @brief Sets the world this manager belongs to.
+        /// @exception If this manager is already initialized, this method will throw an "INVALID_STATE_EXCEPTION".
+        /// @note When hooking up to other subsystems this will be the world used to retrieve the other managers for those systems.
+        /// @param Parent The world that this manager will belong to.
+        virtual void _SetWorld(World* Parent);
     };//WorldManager
 }//Mezzanine
 

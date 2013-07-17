@@ -43,11 +43,13 @@
 #include "worldmanager.h"
 
 #include "world.h"
+#include "exception.h"
 
 namespace Mezzanine
 {
-    WorldManager::WorldManager(World* Parent) :
-        ParentWorld(Parent)
+    WorldManager::WorldManager() :
+        ParentWorld(NULL),
+        OperationsPaused(false)
         {  }
 
     WorldManager::~WorldManager()
@@ -58,6 +60,31 @@ namespace Mezzanine
 
     World* WorldManager::GetWorld() const
         { return this->ParentWorld; }
+
+    bool WorldManager::IsPaused() const
+        { return this->OperationsPaused; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Initialization Methods
+
+    void WorldManager::Initialize()
+    {
+        if( this->ParentWorld == NULL ) {
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot initialize a world manager without a valid world.");
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
+
+    void WorldManager::_SetWorld(World* Parent)
+    {
+        if( this->IsInitialized() ) {
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot assign new world while a world manager is in operation/initialized.");
+        }
+
+        this->ParentWorld = Parent;
+    }
 }//Mezzanine
 
 #endif

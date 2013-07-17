@@ -50,12 +50,140 @@ namespace Mezzanine
 {
     World::World()
     {
+        // Setup our default parameters
+        //NameValuePairList Params;
+        //Params.push_back( NameValuePair("InternalManagerTypeName","DefaultSceneManager") );
+
+
+    }
+
+    World::World(const WorldManagerContainer& Managers)
+    {
+
+    }
+
+    World::World(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType)
+    {
+
+    }
+
+    World::World(const WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType)
+    {
+
+    }
+
+    World::World(const XML::Node& SelfNode)
+    {
 
     }
 
     World::~World()
     {
+        this->Deinitialize();
+    }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Initialization
+
+    void World::Initialize()
+    {
+        for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
+        {
+            (*ManIter)->Initialize();
+        }
+    }
+
+    void World::Deinitialize()
+    {
+        for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
+        {
+            (*ManIter)->Deinitialize();
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Upper Management
+
+    Bool World::AddManager(WorldManager* ManagerToAdd)
+    {
+        ManagerBase::ManagerType IType = ManagerToAdd->GetInterfaceType();
+        for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
+        {
+            if( (*ManIter)->GetInterfaceType() == IType )
+                return false;
+        }
+        this->WorldManagers.push_back(ManagerToAdd);
+        return true;
+    }
+
+    WorldManager* World::GetManager(const ManagerBase::ManagerType ManagerToGet)
+    {
+        for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
+        {
+            if( (*ManIter)->GetInterfaceType() == ManagerToGet )
+                return *ManIter;
+        }
+        return NULL;
+    }
+
+    void World::RemoveManager(WorldManager* ToBeRemoved)
+    {
+        for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
+        {
+            if( (*ManIter) == ToBeRemoved )
+            {
+                this->WorldManagers.erase(ManIter);
+                return;
+            }
+        }
+    }
+
+    void World::RemoveManager(const ManagerBase::ManagerType ToBeRemoved)
+    {
+        for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )
+        {
+            if( (*ManIter)->GetInterfaceType() == ToBeRemoved )
+            {
+                this->WorldManagers.erase(ManIter);
+                return;
+            }
+        }
+    }
+
+    ActorManager* World::GetActorManager()
+    {
+        //return dynamic_cast<ActorManager*>( this->GetManager(ManagerBase::MT_ActorManager) );
+        return NULL;
+    }
+
+    AreaEffectManager* World::GetAreaEffectManager()
+    {
+        //return dynamic_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) );
+        return NULL;
+    }
+
+    CameraManager* World::GetCameraManager()
+    {
+        //return dynamic_cast<CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager) );
+        return NULL;
+    }
+
+    Physics::PhysicsManager* World::GetPhysicsManager()
+    {
+        //return dynamic_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) );
+        return NULL;
+    }
+
+    SceneManager* World::GetSceneManager()
+    {
+        //return dynamic_cast<SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) );
+        return NULL;
+    }
+
+    Audio::SoundScapeManager* World::GetSoundScapeManager()
+    {
+        //return dynamic_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager) );
+        return NULL;
     }
 }//Mezzanine
 

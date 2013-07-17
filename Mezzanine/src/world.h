@@ -41,31 +41,111 @@
 #ifndef _world_h
 #define _world_h
 
-#include "datatypes.h"
+#include "worldmanager.h"
 
 namespace Mezzanine
 {
-    class PhysicsManager;
+    class ActorManager;
+    class AreaEffectManager;
+    class CameraManager;
     class SceneManager;
-    class PagingManager;
+    namespace Audio
+    {
+        class SoundScapeManager;
+    }
+    namespace Graphics
+    {
+    }
+    namespace Physics
+    {
+        class PhysicsManager;
+        class ManagerConstructionInfo;
+    }
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorBase
-    /// @headerfile actorbase.h
+    /// @class World
+    /// @headerfile world.h
     /// @brief This class represents a world for objects to interact within.
     /// @details Objects can be inserted and removed from worlds in order to simulate them.  Multiple worlds can
     /// exist but objects can only belong to one world at a time.
     ///////////////////////////////////////
     class MEZZ_LIB World
     {
-        protected:
-            PhysicsManager* PhysicsMan;
-            SceneManager* SceneMan;
-            PagingManager* PagingMan;
-        public:
-            /// @brief Class constructor.
-            World();
-            /// @brief class destructor.
-            ~World();
+    public:
+        /// @brief Basic container type for @ref WorldManager storage by this class.
+        typedef std::vector< WorldManager* >       WorldManagerContainer;
+        /// @brief Iterator type for @ref WorldManager instances stored by this class.
+        typedef WorldManagerContainer::iterator            WorldManagerIterator;
+        /// @brief Const Iterator type for @ref WorldManager instances stored by this class.
+        typedef WorldManagerContainer::const_iterator      ConstWorldManagerContainer;
+    protected:
+        /// @internal
+        /// @brief A container storing all the managers belonging to this world.
+        WorldManagerContainer WorldManagers;
+    public:
+        /// @brief Class constructor.
+        World();
+        /// @brief Pre-made manager constructor.
+        /// @param Managers A container of pre-made managers to be used by this world.
+        World(const WorldManagerContainer& Managers);
+        /// @brief Descriptive constructor.
+        /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
+        /// @param SceneType A string containing the name of the underlying scene type for this world.
+        World(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+        /// @brief Descriptive pre-made manager constructor.
+        /// @param Managers A container of pre-made managers to be used by this world.
+        /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
+        /// @param SceneType A string containing the name of the underlying scene type for this world.
+        World(const WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+        /// @brief XML constructor.
+        /// @param SelfNode The node that represents the data to populate this world with.
+        World(const XML::Node& SelfNode);
+        /// @brief class destructor.
+        virtual ~World();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Initialization
+
+        /// @brief Initializes all managers in this world and performs all the necessary hooks to enable this world.
+        void Initialize();
+        /// @brief Deinitializes all managers in this world and unhooks all of it's systems, disabling this world.
+        void Deinitialize();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Upper Management
+
+        /// @brief This adds a manager, in the correct order, to the list that the world calls on.
+        /// @param ManagerToAdd The pointer to the manager to be added.
+        /// @return Returns true if the manager was successfully added, false if the manager or it's type was non-unique.
+        Bool AddManager(WorldManager* ManagerToAdd);
+        /// @brief This is will find the manager of a given type.
+        /// @param ManagerToGet The ManagerBase::ManagerTypeName of the manager to get.
+        /// @return This returns a pointer to a WorldManager, or a NULL pointer if no matching manager exists.
+        WorldManager* GetManager(const ManagerBase::ManagerType ManagerToGet);
+        /// @brief This removes a manager by finding the matching pointer.
+        /// @param ToBeRemoved A pointer to the manager to be removed.
+        void RemoveManager(WorldManager* ToBeRemoved);
+        /// @brief This removes a manager of a specific type from the list
+        /// @param ToBeRemoved The ManagerBase::ManagerTypeName of the manager to remove.
+        void RemoveManager(const ManagerBase::ManagerType ToBeRemoved);
+
+        /// @brief This gets the ActorManager from the manager list.
+        /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
+        ActorManager* GetActorManager();
+        /// @brief This gets the AreaEffectManager from the manager list.
+        /// @return This returns a pointer to a AreaEffectManager, or a NULL pointer if no matching manager exists.
+        AreaEffectManager* GetAreaEffectManager();
+        /// @brief This gets the CameraManager from the manager list.
+        /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
+        CameraManager* GetCameraManager();
+        /// @brief This gets the PhysicsManager from the manager list.
+        /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
+        Physics::PhysicsManager* GetPhysicsManager();
+        /// @brief This gets the SceneManager from the manager list.
+        /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
+        SceneManager* GetSceneManager();
+        /// @brief This gets the SoundScapeManager from the manager list.
+        /// @return This returns a pointer to a SoundScapeManager, or a NULL pointer if no matching manager exists.
+        Audio::SoundScapeManager* GetSoundScapeManager();
     };//World
 }//Mezzanine
 
