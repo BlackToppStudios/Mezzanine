@@ -96,6 +96,7 @@
 #include "Input/input.h"
 #include "light.h"                      // done
 #include "linegroup.h"
+#include "macros.h"
 #include "managerbase.h"
 #include "mathtool.h"
 #include "meshmanager.h"

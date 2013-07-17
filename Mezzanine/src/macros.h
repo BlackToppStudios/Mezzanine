@@ -45,17 +45,23 @@
 /// @brief All convience/utility macros for the Mezzanine are to be placed here.
 ///////////////////////////////////////
 
+#include "datatypes.h"
+
 namespace Mezzanine
 {
-    #ifndef MEZZ_BITMASK(X)
-    // This returns the value of the nth bit.  Passing in zero always returns zero.
-    #define MEZZ_BITMASK(X) ( X > 0 ? ( 1u << X - 1 ) : 0 )
+    #ifndef MEZZ_BITMASK32MAX
+    #define MEZZ_BITMASK32MAX ( ~(UInt32(0)) )
     #endif
 
-    #ifndef MEZZ_BITMASK_INDEX(X)
-    // This returns the value of a bit at the specified index. Passing in zero returns one.
-    #define MEZZ_BITMASK_INDEX(X) ( 1u << X )
+    // This returns the value of the nth bit.  Passing in zero always returns zero.
+    #ifndef MEZZ_BITMASK
+    #define MEZZ_BITMASK(X) ( X > 0 ? ( 1u << ( X - 1 ) ) : 0 )
     #endif
+
+    // This returns the value of a bit at the specified index. Passing in zero returns one.
+    /*#ifndef MEZZ_BITMASK_INDEX(X)
+    #define MEZZ_BITMASK_INDEX(X) ( 1u << X )
+    #endif//*/
 }//Mezzanine
 
 #endif
