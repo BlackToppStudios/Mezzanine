@@ -699,14 +699,14 @@ void CatchApp::UnloadLevel()
 {
     if("MainMenu"==Loader->GetCurrentLevel())
         return;
-    Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
     ResourceManager* ResMan = ResourceManager::GetSingletonPtr();
-    SceneManager* SceneMan = SceneManager::GetSingletonPtr();
-    ActorManager* ActorMan = this->TheEntresol->GetActorManager();
-    AreaEffectManager* AreaEffectMan = AreaEffectManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
+    SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
+    ActorManager* ActorMan = this->TheEntresol->GetActorManager();
+    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
 
     PhysMan->DestroyAllConstraints();
     ActorMan->DestroyAllActors();
