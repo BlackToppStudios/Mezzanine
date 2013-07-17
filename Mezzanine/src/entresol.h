@@ -415,9 +415,9 @@ namespace Mezzanine
                        const String& EngineDataPath,
                        const String& LogFileName = "Mezzanine.log" );
             /// @brief Descriptive constructor
-            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
+            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the entresol.
             /// This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other
-            /// constructors this one can accept a vector of pointers to managers. They will be add
+            /// constructors this one can accept a vector of pointers to managers which will be added.
             /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
             /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.
             /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
@@ -429,13 +429,13 @@ namespace Mezzanine
                        const String& EngineDataPath,
                        const String& LogFileName,
                        const std::vector <ManagerBase*>& ManagerToBeAdded);
-            /// @brief Default constructor
-            /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Actors
-            /// @warning Do not make a new world if one already exists. This can only cause problems
+            /// @brief Default constructor.
+            /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a entresol which expands for 100 units from the Origin, and only allows 10 Actors.
+            /// @warning Do not make a new entresol if one already exists. This can only cause problems.
             Entresol();
-            /// @brief Deconstructor
-            /// @details This Tears down all the items created by the world, and safely frees any graphical resources, we will also delete any Objects passed into the
-            /// world by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager)
+            /// @brief Deconstructor.
+            /// @details This Tears down all the items created by the entresol, and safely frees any graphical resources, we will also delete any Objects passed into the
+            /// entresol by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager).
             ~Entresol();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -539,7 +539,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Initialization
 
-            /// @brief This initializes all the managers currently in the world.
+            /// @brief This initializes all managers and worlds currently in the Entresol.
             /// @param CallMainLoop Should the main loop be called.
             void EngineInit(const bool& CallMainLoop = false);
 
@@ -550,8 +550,7 @@ namespace Mezzanine
             /// @return Returns a reference to the FrameScheduler being used by this Entresol.
             Threading::FrameScheduler& GetScheduler();
 
-            /// @brief This Function house the main loop
-            /// @details By default this is called from the function World.GameInit() this is were the bulk of the simulation is ran from, see @ref mainloop1
+            /// @brief This Function house the main loop.
             void MainLoop();
             /// @brief This commits the log stream to the log
             /// @details This is called automatically at the end of each main loop iteration. You only need to call it if you are using your own main loop.
@@ -564,25 +563,25 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Factory Management
 
-            /// @brief Adds/registers a manager factory with this world, allowing it to be constructed through this API.
+            /// @brief Adds/registers a manager factory with this Entresol, allowing it to be constructed through this API.
             /// @param ToBeAdded The manager factory to be added.
             void AddManagerFactory(ManagerFactory* ToBeAdded);
-            /// @brief Removes a manager factory from this world.
+            /// @brief Removes a manager factory from this Entresol.
             /// @param ToBeRemoved A pointer to the manager factory that is to be removed.
             void RemoveManagerFactory(ManagerFactory* ToBeRemoved);
-            /// @brief Removes a manager factory from this world.
+            /// @brief Removes a manager factory from this Entresol.
             /// @param ImplName The name of the manager implementation created by the factory to be removed.
             void RemoveManagerFactory(const String& ImplName);
-            /// @brief Removes and destroys a manager factory in this world.
+            /// @brief Removes and destroys a manager factory in this Entresol.
             /// @param ToBeRemoved A pointer to the manager factory that is to be removed and destroyed.
             void DestroyManagerFactory(ManagerFactory* ToBeRemoved);
-            /// @brief Removes and destroys a manager factory in this world.
+            /// @brief Removes and destroys a manager factory in this Entresol.
             /// @param ImplName The name of the manager implementation created by the factory to be removed and destroyed.
             void DestroyManagerFactory(const String& ImplName);
-            /// @brief Destroys all manager factories in this world.
+            /// @brief Destroys all manager factories in this Entresol.
             /// @warning The destruction of manager factories should only be done after the corresponding managers have been destroyed, otherwise this will cause an exception.
             void DestroyAllManagerFactories();
-            /// @brief Adds all the default manager factories provided by the engine to the world.
+            /// @brief Adds all the default manager factories provided by the engine to the Entresol.
             void AddAllEngineDefaultManagerFactories();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -591,23 +590,23 @@ namespace Mezzanine
             /// @brief Creates a new manager.
             /// @param ManagerImplName The name of the manager implementation to create.
             /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
-            /// @param AddToWorld Whether or not to add the created manager to the world after creation.
+            /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
             /// @return Returns a pointer to the created manager.
-            ManagerBase* CreateManager(const String& ManagerImplName, NameValuePairList& Params, bool AddToWorld = true);
+            ManagerBase* CreateManager(const String& ManagerImplName, NameValuePairList& Params, bool AddToEntresol = true);
             /// @brief Creates a new manager.
             /// @param ManagerImplName The name of the manager implementation to create.
             /// @param XMLNode An XML node containing all construction and initialization info for the manager to be created.
-            /// @param AddToWorld Whether or not to add the created manager to the world after creation.
+            /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
             /// @return Returns a pointer to the created manager.
-            ManagerBase* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, bool AddToWorld = true);
+            ManagerBase* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, bool AddToEntresol = true);
             /// @brief Destroys a manager.
             /// @param ToBeDestroyed The manager to be destroyed.
             void DestroyManager(ManagerBase* ToBeDestroyed);
-            /// @brief Destroys all managers currently in the world.
+            /// @brief Destroys all managers currently in the Entresol.
             /// @warning Do not call this in anything that is run during the main loop.  If you do you will have a bad time.
             void DestroyAllManagers();
 
-            /// @brief This adds a manager, in the correct order, to the list that the world calls on.
+            /// @brief This adds a manager, in the correct order, to the list that the Entresol calls on.
             /// @param ManagerToAdd The pointer to the manager to be added.
             void AddManager(ManagerBase* ManagerToAdd);
             /// @brief This removes a manager by finding the matching pointer.
