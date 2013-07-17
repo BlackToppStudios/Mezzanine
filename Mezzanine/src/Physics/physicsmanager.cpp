@@ -461,7 +461,7 @@ namespace Mezzanine
                     CurrAttrib = WorldSettings.GetAttribute("WorldLowerBounds");
                     if(!CurrAttrib.Empty())
                         Info.GeographyLowerBounds = StringTools::ConvertToVector3(CurrAttrib.AsString());
-                    CurrAttrib = WorldSettings.GetAttribute("MaxObjects");
+                    CurrAttrib = WorldSettings.GetAttribute("MaxProxies");
                     if(!CurrAttrib.Empty())
                         Info.MaxProxies = CurrAttrib.AsWhole();
                 }
@@ -1201,6 +1201,11 @@ namespace Mezzanine
                         {
                             if(StringTools::ConvertToBool( (*ParIt).second ))
                                 PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
+                        }
+                        else if( "multithreaded" == Lower )
+                        {
+                            if(StringTools::ConvertToBool( (*ParIt).second ))
+                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
                         }
                     }
                     return new PhysicsManager(PhysInfo);
