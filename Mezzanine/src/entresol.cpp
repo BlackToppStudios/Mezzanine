@@ -469,7 +469,7 @@ namespace Mezzanine
     {
         VerifyManagerInitializations();
         Physics::PhysicsManager::GetSingletonPtr()->MainLoopInitialize();
-        AreaEffectManager::GetSingletonPtr()->MainLoopInitialize();
+        this->GetAreaEffectManager()->MainLoopInitialize();
     }
 
     bool Entresol::VerifyManagerInitializations()

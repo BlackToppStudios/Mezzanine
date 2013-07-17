@@ -81,8 +81,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // AreaEffectManager Methods
 
-    template<> AreaEffectManager* Singleton<AreaEffectManager>::SingletonPtr = NULL;
-
     AreaEffectManager::AreaEffectManager() :
         AreaEffectUpdateWork(NULL),
         ThreadResources(NULL)
@@ -202,6 +200,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
+    void AreaEffectManager::Pause(const UInt32 PL)
+    {
+        // Do nothing currently
+    }
+
     void AreaEffectManager::MainLoopInitialize()
     {
         for( AreaEffectManager::AreaEffectIterator AE = this->AreaEffects.begin() ; AE != this->AreaEffects.end() ; ++AE )
@@ -215,6 +218,8 @@ namespace Mezzanine
     {
         if( !this->Initialized )
         {
+            //WorldManager::Initialize();
+
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AreaEffectUpdateWork );
 
             Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
@@ -276,20 +281,12 @@ namespace Mezzanine
 
     ManagerBase* DefaultAreaEffectManagerFactory::CreateManager(NameValuePairList& Params)
     {
-        if(AreaEffectManager::SingletonValid())
-        {
-            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-            return AreaEffectManager::GetSingletonPtr();
-        }else return new AreaEffectManager();
+        return new AreaEffectManager();
     }
 
     ManagerBase* DefaultAreaEffectManagerFactory::CreateManager(XML::Node& XMLNode)
     {
-        if(AreaEffectManager::SingletonValid())
-        {
-            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-            return AreaEffectManager::GetSingletonPtr();
-        }else return new AreaEffectManager(XMLNode);
+        return new AreaEffectManager(XMLNode);
     }
 
     void DefaultAreaEffectManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)

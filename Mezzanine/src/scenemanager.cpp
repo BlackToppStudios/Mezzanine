@@ -766,7 +766,7 @@ namespace Mezzanine
                 this->TrackingNodeUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
             }
 
-            Mezzanine::AreaEffectManager* AreaEffectMan = AreaEffectManager::GetSingletonPtr();
+            Mezzanine::AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
             if( AreaEffectMan ) {
                 this->TrackingNodeUpdateWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
             }

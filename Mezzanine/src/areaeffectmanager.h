@@ -41,7 +41,7 @@
 #define _areaeffectmanager_h
 
 #include "datatypes.h"
-#include "managerbase.h"
+#include "worldmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "Threading/workunit.h"
@@ -95,11 +95,14 @@ namespace Mezzanine
     /// @brief A manager responsible for the storage and management of all areaeffects in use.
     /// @details More or less Management point for a container of areaeffects to help keep them sorted.
     ///////////////////////////////////////
-    class MEZZ_LIB AreaEffectManager : public ManagerBase, public Singleton<AreaEffectManager>
+    class MEZZ_LIB AreaEffectManager : public WorldManager
     {
     public:
+        /// @brief Basic container type for @ref AreaEffect storage by this class.
         typedef std::vector<AreaEffect*>              AreaEffectContainer;
+        /// @brief Iterator type for @ref AreaEffect instances stored by this class.
         typedef AreaEffectContainer::iterator         AreaEffectIterator;
+        /// @brief Const Iterator type for @ref AreaEffect instances stored by this class.
         typedef AreaEffectContainer::const_iterator   ConstAreaEffectIterator;
     protected:
         friend class AreaEffectUpdateWorkUnit;
@@ -171,9 +174,12 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
+        /// @copydoc WorldManager::Pause(const UInt32)
+        virtual void Pause(const UInt32 PL);
+
         /// @brief Does all of the necessary configuration to prepare for the start of the main loop.
         void MainLoopInitialize();
-        /// @copydoc ManagerBase::Initialize()
+        /// @copydoc WorldManager::Initialize()
         virtual void Initialize();
         /// @copydoc ManagerBase::Deinitialize()
         virtual void Deinitialize();
