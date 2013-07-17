@@ -39,6 +39,9 @@
 */
 #ifndef _enumerations_h
 #define _enumerations_h
+
+#include "macros.h"
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @file
 /// @brief Any global enumerations shared between multiple classes is to be declared here.
@@ -85,6 +88,19 @@ namespace Mezzanine
         OM_LandscapeLeft = OM_Degree_270
     };
 
+    /// @enum PauseLevel
+    /// @brief Used by the world class to describe the extent of pausing a world.
+    enum PauseLevel
+    {
+        PL_Unpaused          = MEZZ_BITMASK(0),
+
+        PL_PausePhysics      = MEZZ_BITMASK(1),
+        PL_PauseParticles    = MEZZ_BITMASK(2),
+        PL_PauseAnimations   = MEZZ_BITMASK(3),
+
+        PL_PauseAll          = MEZZ_BITMASK32MAX
+    };
+
     /// @enum StandardAxis
     /// @brief Used to identify different Axis in a 3d coordinate system.
     /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.
@@ -119,76 +135,42 @@ namespace Mezzanine
     /// @details This enum can be used to express any object which could be considered "insertable" into the game world.
     enum WorldAndSceneObjectType
     {
-        // Bit Reference //
-        // 1st bit// 1
-        // 2nd bit// 2
-        // 3rd bit// 4
-        // 4th bit// 8
-        // 5th bit// 16
-        // 6th bit// 32
-        // 7th bit// 64
-        // 8th bit// 128
-        // 9th bit// 256
-        //10th bit// 512
-        //11th bit// 1,024
-        //12th bit// 2,048
-        //13th bit// 4,096
-        //14th bit// 8,192
-        //15th bit// 16,384
-        //16th bit// 32,768
-        //17th bit// 65,536
-        //18th bit// 131,072
-        //19th bit// 262,144
-        //20th bit// 524,288
-        //21st bit// 1,048,576
-        //22nd bit// 2,097,152
-        //23th bit// 4,194,304
-        //24th bit// 8,388,608
-        //25th bit// 16,777,216
-        //26th bit// 33,554,432
-        //27th bit// 67,108,864
-        //28th bit// 134,217,728
-        //29th bit// 268,435,456
-        //30th bit// 536,870,912
-        //31st bit// 1,073,741,824
-        //32nd bit// 2,147,483,648
-
         // Actors
-        WSO_ActorFirst = 1,
-        WSO_ActorRigid = 1,
-        WSO_ActorSoft = 2,
-        WSO_ActorCharacter = 4,
-        WSO_ActorUnknown = 8,
-        WSO_ActorLast = 8,
+        WSO_ActorFirst             = MEZZ_BITMASK(1),//1,
+        WSO_ActorRigid             = MEZZ_BITMASK(1),//1,
+        WSO_ActorSoft              = MEZZ_BITMASK(2),//2,
+        WSO_ActorCharacter         = MEZZ_BITMASK(3),//4,
+        WSO_ActorUnknown           = MEZZ_BITMASK(4),//8,
+        WSO_ActorLast              = MEZZ_BITMASK(4),//8,
 
         // Terrains go here
-        WSO_TerrainFirst = 16,
-        WSO_MeshTerrain = 16,
-        WSO_UnimplementedTerrain1 = 32, // should rename to Heightfield terrain
-        WSO_UnimplementedTerrain2 = 64, // should rename to Vectorfield terrain
-        WSO_UnimplementedTerrain3 = 128, // should rename to Voxel Terrain
-        WSO_UnimplementedTerrain4 = 256, // should rename to MarchingCube Terrain
-        WSO_UnknownTerrain = 512,
-        WSO_TerrainLast = 512,
+        WSO_TerrainFirst           = MEZZ_BITMASK(5),//16,
+        WSO_MeshTerrain            = MEZZ_BITMASK(5),//16,
+        WSO_UnimplementedTerrain1  = MEZZ_BITMASK(6),//32, // should rename to Heightfield terrain
+        WSO_UnimplementedTerrain2  = MEZZ_BITMASK(7),//64, // should rename to Vectorfield terrain
+        WSO_UnimplementedTerrain3  = MEZZ_BITMASK(8),//128, // should rename to Voxel Terrain
+        WSO_UnimplementedTerrain4  = MEZZ_BITMASK(9),//256, // should rename to MarchingCube Terrain
+        WSO_UnknownTerrain         = MEZZ_BITMASK(10),//512,
+        WSO_TerrainLast            = MEZZ_BITMASK(10),//512,
 
         // AE Fields
-        WSO_AEFirst = 1024,
-        WSO_AEGravityField = 1024,
-        WSO_AEGravityWell = 2048,
-        WSO_AEFieldOfForce = 4096,
-        WSO_AEPlaceHolder1 = 8192,
-        WSO_AEPlaceHolder2 = 16384,
-        WSO_AEUnknown = 32768,
-        WSO_AELast = 32768,
+        WSO_AEFirst                = MEZZ_BITMASK(11),//1024,
+        WSO_AEGravityField         = MEZZ_BITMASK(11),//1024,
+        WSO_AEGravityWell          = MEZZ_BITMASK(12),//2048,
+        WSO_AEFieldOfForce         = MEZZ_BITMASK(13),//4096,
+        WSO_AEPlaceHolder1         = MEZZ_BITMASK(14),//8192,
+        WSO_AEPlaceHolder2         = MEZZ_BITMASK(15),//16384,
+        WSO_AEUnknown              = MEZZ_BITMASK(16),//32768,
+        WSO_AELast                 = MEZZ_BITMASK(16),//32768,
 
         // Scene Objects
-        WSO_Camera = 65536,
-        WSO_Entity = 131072,
-        WSO_Light = 262144,
-        WSO_ParticleEffect = 524288,
+        WSO_Camera                 = MEZZ_BITMASK(17),//65536,
+        WSO_Entity                 = MEZZ_BITMASK(18),//131072,
+        WSO_Light                  = MEZZ_BITMASK(19),//262144,
+        WSO_ParticleEffect         = MEZZ_BITMASK(20),//524288,
 
         // Other Objects
-        WSO_WorldNode = 1048576
+        WSO_WorldNode              = MEZZ_BITMASK(21)//1048576
     };
 }
 
