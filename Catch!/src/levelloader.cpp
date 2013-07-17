@@ -24,7 +24,7 @@ void LevelLoader::LoadFerris()
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* this->TheEntresol->GetPhysicsManager();
+    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
     ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
@@ -275,7 +275,7 @@ void LevelLoader::LoadBigCurve()
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* this->TheEntresol->GetPhysicsManager();
+    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
     ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
@@ -393,7 +393,7 @@ void LevelLoader::LoadBlowsNotSucks()
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* this->TheEntresol->GetPhysicsManager();
+    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
     ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
@@ -592,7 +592,7 @@ void LevelLoader::LoadJustice()
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* this->TheEntresol->GetPhysicsManager();
+    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
     ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
@@ -801,7 +801,7 @@ void LevelLoader::LoadRollers()
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* this->TheEntresol->GetPhysicsManager();
+    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
     ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
@@ -935,7 +935,7 @@ void LevelLoader::LoadJustBounce()
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* this->TheEntresol->GetPhysicsManager();
+    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
     ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
