@@ -997,7 +997,7 @@ namespace Mezzanine
         }
     }
 
-    void Entresol::RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, short unsigned int WhichOne)
+    void Entresol::RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne)
     {
         for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {
@@ -1014,7 +1014,7 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase* Entresol::GetManager(const ManagerBase::ManagerType ManagersToGet, short unsigned int WhichOne)
+    ManagerBase* Entresol::GetManager(const ManagerBase::ManagerType ManagersToGet, UInt16 WhichOne)
     {
         for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {

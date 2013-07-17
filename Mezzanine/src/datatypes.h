@@ -43,7 +43,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Any Special data types that we need will get declared right here
 /// @file
-/// @brief All the definitions for datatypes as well as some basic conversion functions are defined here. Additionally, this is where all of the other singular header inclusions go as well
+/// @brief All the definitions for datatypes as well as some basic conversion functions are defined here. Additionally, this is where all of the other singular header inclusions go as well.
 ///////////////////////////////////////
 
 #include "crossplatformexport.h"
@@ -309,7 +309,7 @@ namespace Mezzanine
     /// @details This exists for interacting with other libraies, in situations where changing the Typedefs could break things.
     template<class T> double Todouble( const T& Datum )
         { return ConvertTo<double>(Datum); }
-} // \Mezzanine
+}//Mezzanine
 
 #ifndef MEZZLUA51
 #define MEZZLUA51

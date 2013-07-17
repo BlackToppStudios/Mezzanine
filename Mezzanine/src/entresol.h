@@ -252,9 +252,7 @@
 namespace Mezzanine
 {
     // Forward declarations
-    class ActorBase;
     class ActorManager;
-    class ActorContainerBase;
     class AreaEffectManager;
     class EventManager;
     class CameraManager;
@@ -609,29 +607,21 @@ namespace Mezzanine
             /// @warning Do not call this in anything that is run during the main loop.  If you do you will have a bad time.
             void DestroyAllManagers();
 
-            /// @brief This adds a manager, in the correct order, to the list that the world calls on
-            /// @details Internally the world had a list of managers that is sorted by the ManagerBase::Priority. Everytime a manager is added,
-            /// the list is searched for the sorted point to insert the manager at.
-            /// @param ManagerToAdd The pointer to the manager to be added
+            /// @brief This adds a manager, in the correct order, to the list that the world calls on.
+            /// @param ManagerToAdd The pointer to the manager to be added.
             void AddManager(ManagerBase* ManagerToAdd);
             /// @brief This removes a manager by finding the matching pointer.
-            /// @details Currently this just iterates through the list looking for the matching pointer, at some future point
-            /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.
-            /// @param ManagerToRemove A pointer to the manager to be removed
+            /// @param ManagerToRemove A pointer to the manager to be removed.
             void RemoveManager(ManagerBase* ManagerToRemove);
             /// @brief This removes a manager of a specific type from the list
-            /// @details This starts at the beginning (should be the lowest priority)of the list and iterates through looking for a matching type, at some future point
-            /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.
             /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.
             /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
-            void RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, short unsigned int WhichOne);
-            /// @brief This is will find the manager of a given type
-            /// @details Specifically this will iterate from lowest priority to highest priority, and return a pointer to the first Manager
-            /// with a matching type found. If you specify WhichOne, it will the Nth+1 in the list matching the type (kind of like array subscript).
-            /// @param ManagersToRemoveType
+            void RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne = 0);
+            /// @brief This is will find the manager of a given type.
+            /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to get.
             /// @param WhichOne If not getting the first/only manager of the given type, get one.
-            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists
-            ManagerBase* GetManager(const ManagerBase::ManagerType ManagersToRemoveType, short unsigned int WhichOne=0);
+            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists.
+            ManagerBase* GetManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne = 0);
 
             /// @brief This gets the ActorManager from the manager list.
             /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
