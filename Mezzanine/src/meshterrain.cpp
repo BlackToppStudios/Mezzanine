@@ -43,10 +43,8 @@
 
 #include "meshterrain.h"
 
-
 namespace Mezzanine
 {
-    // Actor Terrain Remnants
     MeshTerrain::MeshTerrain(Vector3 InitPosition, String name, String file, String group)
     {
 

@@ -48,8 +48,6 @@
 
 namespace Mezzanine
 {
-    template<> TerrainManager* Singleton<TerrainManager>::SingletonPtr = NULL;
-
     TerrainManager::TerrainManager()
     {
     }
@@ -119,7 +117,6 @@ namespace Mezzanine
         for( std::vector<TerrainBase*>::iterator it = Terrains.begin() ; it != Terrains.end() ; ++it )
             (*it)->RemoveFromWorld();
         Terrains.clear();
-        MeshTerrains.clear();
     }
 
     void TerrainManager::DestroyTerrain(const Whole& Index)
@@ -154,13 +151,12 @@ namespace Mezzanine
             delete (*it);
         }
         Terrains.clear();
-        MeshTerrains.clear();
     }
 
     MeshTerrain* TerrainManager::CreateMeshTerrain(const Vector3& InitPosition, const String& name, const String& file, const String& group)
     {
         /*MeshTerrain* Terrain = new MeshTerrain(InitPosition, name, file, group);
-        MeshTerrains.push_back(Terrain);
+        Terrains.push_back(Terrain);
         Terrain->AddTerrainToWorld();
         return Terrain;//*/
     }
@@ -174,11 +170,28 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
+    void TerrainManager::Pause(const UInt32 PL)
+    {
+        // Do nothing currently
+    }
+
     void TerrainManager::Initialize()
-        { this->Initialized = true; }
+    {
+        if( !this->Initialized )
+        {
+            //WorldManager::Initialize();
+
+            this->Initialized = true;
+        }
+    }
 
     void TerrainManager::Deinitialize()
-        { this->Initialized = false; }
+    {
+        if( this->Initialized )
+        {
+            this->Initialized = false;
+        }
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Type Identifier Methods
@@ -207,20 +220,12 @@ namespace Mezzanine
 
     ManagerBase* DefaultTerrainManagerFactory::CreateManager(NameValuePairList& Params)
     {
-        if(TerrainManager::SingletonValid())
-        {
-            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-            return TerrainManager::GetSingletonPtr();
-        }else return new TerrainManager();
+        return new TerrainManager();
     }
 
     ManagerBase* DefaultTerrainManagerFactory::CreateManager(XML::Node& XMLNode)
     {
-        if(TerrainManager::SingletonValid())
-        {
-            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-            return TerrainManager::GetSingletonPtr();
-        }else return new TerrainManager(XMLNode);
+        return new TerrainManager(XMLNode);
     }
 
     void DefaultTerrainManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)

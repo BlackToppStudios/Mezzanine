@@ -43,9 +43,8 @@
 
 #include "datatypes.h"
 #include "vector3.h"
-#include "managerbase.h"
+#include "worldmanager.h"
 #include "managerfactory.h"
-#include "singleton.h"
 
 namespace Mezzanine
 {
@@ -63,92 +62,100 @@ namespace Mezzanine
     /// @brief This is manager for terrains and their functions.
     /// @details
     ///////////////////////////////////////
-    class MEZZ_LIB TerrainManager : public ManagerBase, public Singleton<TerrainManager>
+    class MEZZ_LIB TerrainManager : public WorldManager
     {
-        protected:
-            /// @brief A container of all terrain instances.
-            std::vector<TerrainBase*> Terrains;
-            /// @brief A container of created MeshTerrain objects.
-            std::vector<MeshTerrain*> MeshTerrains;
-        public:
-            /// @brief Class constructor.
-            TerrainManager();
-            /// @brief XML constructor.
-            /// @param XMLNode The node of the xml document to construct from.
-            TerrainManager(XML::Node& XMLNode);
-            /// @brief Class destructor.
-            virtual ~TerrainManager();
+    public:
+        /// @brief Basic container type for @ref TerrainBase storage by this class.
+        typedef std::vector< TerrainBase* >              TerrainContainer;
+        /// @brief Iterator type for @ref TerrainBase instances stored by this class.
+        typedef TerrainContainer::iterator               TerrainIterator;
+        /// @brief Const Iterator type for @ref TerrainBase instances stored by this class.
+        typedef TerrainContainer::const_iterator         ConstTerrainIterator;
+    protected:
+        /// @brief A container of all terrain instances.
+        TerrainContainer Terrains;
+    public:
+        /// @brief Class constructor.
+        TerrainManager();
+        /// @brief XML constructor.
+        /// @param XMLNode The node of the xml document to construct from.
+        TerrainManager(XML::Node& XMLNode);
+        /// @brief Class destructor.
+        virtual ~TerrainManager();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Managing all terrains
+        ///////////////////////////////////////////////////////////////////////////////
+        // Managing all terrains
 
-            /// @brief Retrieves a MeshTerrain from the list of terrains.
-            /// @param index Index of desired terrain in MeshTerrains.
-            /// @return Returns a pointer to the MeshTerrain at the given index.
-            virtual TerrainBase* GetTerrainByIndex(const Whole& Index);
-            /// @brief Retrieves a Meshterrain from the list of terrains.
-            /// @param name The name of the terrain.
-            /// @return Returns a pointer to the named MeshTerrain, or NULL if no MeshTerrain exists with given name.
-            virtual TerrainBase* GetTerrainByName(const String& Name);
-            /// @brief Gets the number of terrains being stored in this manager.
-            /// @return Returns a whole representing the number of terrains in this manager.
-            virtual Whole GetNumTerrains() const;
-            /// @brief Adds a pre-made terrain to the world and the manager.
-            /// @param Terrain The terrain to be added.
-            virtual void AddTerrain(TerrainBase* Terrain);
-            /// @brief Removes a terrain from the world and this manager by index.
-            /// @param Index The index at which to remove the terrain.
-            virtual void RemoveTerrain(const Whole& Index);
-            /// @brief Removes a terrain from the world and this manager.
-            /// @param ToBeRemoved The terrain to be removed.
-            virtual void RemoveTerrain(TerrainBase* ToBeRemoved);
-            /// @brief Removes all terrains currently in this manager from the world and the manager.
-            virtual void RemoveAllTerrains();
-            /// @brief Destroys a terrain and removes it from world.
-            /// @param Index Index of desired terrain in MeshTerrains.
-            virtual void DestroyTerrain(const Whole& Index);
-            /// @brief Destroys a terrain and removes it from world.
-            /// @param Name name of desired terrain in MeshTerrains.
-            virtual void DestroyTerrain(TerrainBase* ToBeDestroyed);
-            /// @brief Removes and deletes all terrains currently in this manager from the world and the manager.
-            virtual void DestroyAllTerrains();
+        /// @brief Retrieves a MeshTerrain from the list of terrains.
+        /// @param index Index of desired terrain in MeshTerrains.
+        /// @return Returns a pointer to the MeshTerrain at the given index.
+        virtual TerrainBase* GetTerrainByIndex(const Whole& Index);
+        /// @brief Retrieves a Meshterrain from the list of terrains.
+        /// @param name The name of the terrain.
+        /// @return Returns a pointer to the named MeshTerrain, or NULL if no MeshTerrain exists with given name.
+        virtual TerrainBase* GetTerrainByName(const String& Name);
+        /// @brief Gets the number of terrains being stored in this manager.
+        /// @return Returns a whole representing the number of terrains in this manager.
+        virtual Whole GetNumTerrains() const;
+        /// @brief Adds a pre-made terrain to the world and the manager.
+        /// @param Terrain The terrain to be added.
+        virtual void AddTerrain(TerrainBase* Terrain);
+        /// @brief Removes a terrain from the world and this manager by index.
+        /// @param Index The index at which to remove the terrain.
+        virtual void RemoveTerrain(const Whole& Index);
+        /// @brief Removes a terrain from the world and this manager.
+        /// @param ToBeRemoved The terrain to be removed.
+        virtual void RemoveTerrain(TerrainBase* ToBeRemoved);
+        /// @brief Removes all terrains currently in this manager from the world and the manager.
+        virtual void RemoveAllTerrains();
+        /// @brief Destroys a terrain and removes it from world.
+        /// @param Index Index of desired terrain in MeshTerrains.
+        virtual void DestroyTerrain(const Whole& Index);
+        /// @brief Destroys a terrain and removes it from world.
+        /// @param Name name of desired terrain in MeshTerrains.
+        virtual void DestroyTerrain(TerrainBase* ToBeDestroyed);
+        /// @brief Removes and deletes all terrains currently in this manager from the world and the manager.
+        virtual void DestroyAllTerrains();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // MeshTerrain Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // MeshTerrain Management
 
-            /// @brief Creates a terrain based on a given mesh.
-            /// @details This method creates a terrain object and handles adding it to the world.
-            /// @param InitPosition The location of the terrain.
-            /// @param name The name of the terrain.
-            /// @param file The 3d mesh file that contains the 3d model the actor will use.
-            /// @param group The resource group where the 3d mesh and other related files can be found.
-            /// @return Returns a pointer to the created MeshTerrain object.
-            virtual MeshTerrain* CreateMeshTerrain(const Vector3& InitPosition, const String& name, const String& file, const String& group);
+        /// @brief Creates a terrain based on a given mesh.
+        /// @details This method creates a terrain object and handles adding it to the world.
+        /// @param InitPosition The location of the terrain.
+        /// @param name The name of the terrain.
+        /// @param file The 3d mesh file that contains the 3d model the actor will use.
+        /// @param group The resource group where the 3d mesh and other related files can be found.
+        /// @return Returns a pointer to the created MeshTerrain object.
+        virtual MeshTerrain* CreateMeshTerrain(const Vector3& InitPosition, const String& name, const String& file, const String& group);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // HeightfieldTerrain Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // HeightfieldTerrain Management
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // VectorfieldTerrain Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // VectorfieldTerrain Management
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // VoxelTerrain Management
+        ///////////////////////////////////////////////////////////////////////////////
+        // VoxelTerrain Management
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            /// @copydoc ManagerBase::Initialize()
-            virtual void Initialize();
-            /// @copydoc ManagerBase::Deinitialize()
-            virtual void Deinitialize();
+        /// @copydoc WorldManager::Pause(const UInt32)
+        virtual void Pause(const UInt32 PL);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Type Identifier Methods
+        /// @copydoc WorldManager::Initialize()
+        virtual void Initialize();
+        /// @copydoc ManagerBase::Deinitialize()
+        virtual void Deinitialize();
 
-            /// @copydoc ManagerBase::GetInterfaceType()
-            virtual ManagerType GetInterfaceType() const;
-            /// @copydoc ManagerBase::GetImplementationTypeName()
-            virtual String GetImplementationTypeName() const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Type Identifier Methods
+
+        /// @copydoc ManagerBase::GetInterfaceType()
+        virtual ManagerType GetInterfaceType() const;
+        /// @copydoc ManagerBase::GetImplementationTypeName()
+        virtual String GetImplementationTypeName() const;
     };//TerrainManager
 
     ///////////////////////////////////////////////////////////////////////////////
