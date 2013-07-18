@@ -468,7 +468,7 @@ namespace Mezzanine
     void Entresol::OneTimeMainLoopInit()
     {
         VerifyManagerInitializations();
-        Physics::PhysicsManager::GetSingletonPtr()->MainLoopInitialize();
+        this->GetPhysicsManager()->MainLoopInitialize();
         this->GetAreaEffectManager()->MainLoopInitialize();
     }
 
@@ -526,7 +526,7 @@ namespace Mezzanine
 
     void Entresol::PauseWorld(bool Pause)
     {
-        Physics::PhysicsManager::GetSingletonPtr()->PauseSimulation(Pause);
+        this->GetPhysicsManager()->PauseSimulation(Pause);
         SceneManager::GetSingletonPtr()->PauseAllParticles(Pause);
     }
 

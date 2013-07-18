@@ -231,7 +231,7 @@ namespace Mezzanine
         {
             if(0 == StickyContacts->StickyConstraints.size())
                 return;
-            btDiscreteDynamicsWorld* BulletWorld = PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer();
+            btDiscreteDynamicsWorld* BulletWorld = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer();
             for( std::vector<StickyConstraint*>::iterator SCit = StickyContacts->StickyConstraints.begin() ; SCit != StickyContacts->StickyConstraints.end() ; ++SCit )
             {
                 BulletWorld->removeConstraint((*SCit)->GetConstraintBase());

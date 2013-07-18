@@ -48,6 +48,7 @@
 #include "Physics/collisionshape.h"
 #include "Physics/generic6dofconstraint.h"
 #include "Physics/physicsmanager.h"
+#include "entresol.h"
 #include "serialization.h"
 #include "stringtool.h"
 
@@ -216,7 +217,7 @@ namespace Mezzanine
     {
         if(0 == StickyContacts->StickyConstraints.size())
             return;
-        btDiscreteDynamicsWorld* BulletWorld = Physics::PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer();
+        btDiscreteDynamicsWorld* BulletWorld = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer();
         for( std::vector<StickyConstraint*>::iterator SCit = StickyContacts->StickyConstraints.begin() ; SCit != StickyContacts->StickyConstraints.end() ; ++SCit )
         {
             BulletWorld->removeConstraint((*SCit)->GetConstraintBase());

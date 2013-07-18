@@ -61,7 +61,7 @@ typedef float btScalar;
 #include <vector>
 
 #include "datatypes.h"
-#include "managerbase.h"
+#include "worldmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "objectpair.h"
@@ -237,17 +237,26 @@ namespace Mezzanine
         /// drawing, Adding constraints, screwing with gravity and doing other physics
         /// Related features.
         ///////////////////////////////////////
-        class MEZZ_LIB PhysicsManager : public ManagerBase, public Singleton<PhysicsManager>
+        class MEZZ_LIB PhysicsManager : public WorldManager
         {
         public:
-            typedef std::vector< Physics::Constraint* >         ConstraintContainer;
+            /// @brief Basic container type for @ref Constraint storage by this class.
+            typedef std::vector< Constraint* >         ConstraintContainer;
+            /// @brief Iterator type for @ref Constraint instances stored by this class.
             typedef ConstraintContainer::iterator               ConstraintIterator;
+            /// @brief Const Iterator type for @ref Constraint instances stored by this class.
             typedef ConstraintContainer::const_iterator         ConstConstraintIterator;
+            /// @brief Basic container type for @ref WorldTrigger storage by this class.
             typedef std::vector< WorldTrigger* >                WorldTriggerContainer;
+            /// @brief Iterator type for @ref WorldTrigger instances stored by this class.
             typedef WorldTriggerContainer::iterator             WorldTriggerIterator;
+            /// @brief Const Iterator type for @ref WorldTrigger instances stored by this class.
             typedef WorldTriggerContainer::const_iterator       ConstWorldTriggerIterator;
-            typedef std::map< ObjectPair, Physics::Collision* > CollisionContainer;
+            /// @brief Basic container type for @ref Collision storage by this class.
+            typedef std::map< ObjectPair, Collision* > CollisionContainer;
+            /// @brief Iterator type for @ref Collision instances stored by this class.
             typedef CollisionContainer::iterator                CollisionIterator;
+            /// @brief Const Iterator type for @ref Collision instances stored by this class.
             typedef CollisionContainer::const_iterator          ConstCollisionIterator;
         protected:
             friend class CollisionDispatcher;
@@ -480,6 +489,9 @@ namespace Mezzanine
             /// instead of one big one during the course of one frame.
             /// @param Modifier The amount of substeps per frame to perform.
             void SetSimulationSubstepModifier(const Whole& Modifier);
+
+            /// @copydoc WorldManager::Pause(const UInt32)
+            virtual void Pause(const UInt32 PL);
 
             /// @brief Does all of the necessary configuration to prepare for a running simulation.
             void MainLoopInitialize();

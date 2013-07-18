@@ -368,8 +368,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////
         // Physicsmanager functions
 
-        template<> PhysicsManager* Singleton<PhysicsManager>::SingletonPtr = NULL;
-
         PhysicsManager::PhysicsManager() :
             SimulationPaused(false),
             DebugRenderMode(0),
@@ -751,7 +749,7 @@ namespace Mezzanine
 
         void PhysicsManager::InternalTickCallback(btDynamicsWorld* world, btScalar timeStep)
         {
-            PhysicsManager::GetSingletonPtr()->ProcessAllCollisions();
+            Entresol::GetSingletonPtr()->GetPhysicsManager()->ProcessAllCollisions();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -1035,6 +1033,11 @@ namespace Mezzanine
             SubstepModifier = Modifier;
         }
 
+        void PhysicsManager::Pause(const UInt32 PL)
+        {
+            // Implement later
+        }
+
         void PhysicsManager::MainLoopInitialize()
         {
             // Configure our area effects so they have an updated list and apply their effects immediately.
@@ -1052,63 +1055,71 @@ namespace Mezzanine
 
         void PhysicsManager::Initialize()
         {
-            // Create the debugdrawer
-            this->BulletDrawer = new debug::InternalDebugDrawer();
-            this->BulletDrawer->setDebugMode( this->DebugRenderMode );
-            this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
+            if( !this->Initialized )
+            {
+                //WorldManager::Initialize();
 
-            // Simulation work configuration
-            if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
-                this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
-            }else{
-                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->SimulationWork );
+                // Create the debugdrawer
+                this->BulletDrawer = new debug::InternalDebugDrawer();
+                this->BulletDrawer->setDebugMode( this->DebugRenderMode );
+                this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
+
+                // Simulation work configuration
+                if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                    this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+                }else{
+                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->SimulationWork );
+                }
+                Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
+                if( GraphicsMan )
+                    this->SimulationWork->AddDependency( GraphicsMan->GetRenderWork() );
+
+                Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
+                // Debug Draw work configuration
+                // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
+                this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork );
+                this->DebugDrawWork->AddDependency( this->SimulationWork );
+                if( ActorMan )
+                    this->DebugDrawWork->AddDependency( ActorMan->GetActorUpdateWork() );
+
+                // World Trigger Update work configuration
+                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WorldTriggerUpdateWork );
+                this->WorldTriggerUpdateWork->AddDependency( this->SimulationWork );
+                if( ActorMan )
+                    this->WorldTriggerUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
+
+                this->Initialized = true;
             }
-            Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
-            if( GraphicsMan )
-                this->SimulationWork->AddDependency( GraphicsMan->GetRenderWork() );
-
-            Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
-            // Debug Draw work configuration
-            // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
-            this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork );
-            this->DebugDrawWork->AddDependency( this->SimulationWork );
-            if( ActorMan )
-                this->DebugDrawWork->AddDependency( ActorMan->GetActorUpdateWork() );
-
-            // World Trigger Update work configuration
-            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WorldTriggerUpdateWork );
-            this->WorldTriggerUpdateWork->AddDependency( this->SimulationWork );
-            if( ActorMan )
-                this->WorldTriggerUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
-
-            this->Initialized = true;
         }
 
         void PhysicsManager::Deinitialize()
         {
-            // Destroy the debugdrawer
-            delete this->BulletDrawer;
-            this->BulletDrawer = NULL;
-            this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
+            if( this->Initialized )
+            {
+                // Destroy the debugdrawer
+                delete this->BulletDrawer;
+                this->BulletDrawer = NULL;
+                this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
 
-            // Simulation work configuration
-            if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
-            }else{
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
+                // Simulation work configuration
+                if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+                }else{
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
+                }
+                this->SimulationWork->ClearDependencies();
+
+                // Debug Draw work configuration
+                // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
+                this->TheEntresol->GetScheduler().RemoveWorkUnitAffinity( this->DebugDrawWork );
+                this->DebugDrawWork->ClearDependencies();
+
+                // World Trigger Update work configuration
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
+                this->WorldTriggerUpdateWork->ClearDependencies();
+
+                this->Initialized = false;
             }
-            this->SimulationWork->ClearDependencies();
-
-            // Debug Draw work configuration
-            // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
-            this->TheEntresol->GetScheduler().RemoveWorkUnitAffinity( this->DebugDrawWork );
-            this->DebugDrawWork->ClearDependencies();
-
-            // World Trigger Update work configuration
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
-            this->WorldTriggerUpdateWork->ClearDependencies();
-
-            this->Initialized = false;
         }
 
         Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()
@@ -1163,63 +1174,53 @@ namespace Mezzanine
 
         ManagerBase* DefaultPhysicsManagerFactory::CreateManager(NameValuePairList& Params)
         {
-            if(PhysicsManager::SingletonValid())
+            if(Params.empty()) return new PhysicsManager();
+            else
             {
-                /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-                return PhysicsManager::GetSingletonPtr();
-            }else{
-                if(Params.empty()) return new PhysicsManager();
-                else
+                ManagerConstructionInfo PhysInfo;
+                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
                 {
-                    ManagerConstructionInfo PhysInfo;
-                    for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+                    String Lower = (*ParIt).first;
+                    StringTools::ToLowerCase(Lower);
+                    if( "geographyupperbounds" == Lower )
                     {
-                        String Lower = (*ParIt).first;
-                        StringTools::ToLowerCase(Lower);
-                        if( "geographyupperbounds" == Lower )
-                        {
-                            PhysInfo.GeographyUpperBounds = StringTools::ConvertToVector3( (*ParIt).second );
-                        }
-                        else if( "geographylowerbounds" == Lower )
-                        {
-                            PhysInfo.GeographyLowerBounds = StringTools::ConvertToVector3( (*ParIt).second );
-                        }
-                        else if( "maxproxies" == Lower )
-                        {
-                            PhysInfo.MaxProxies = StringTools::ConvertToUInt32( (*ParIt).second );
-                        }
-                        else if( "gravity" == Lower )
-                        {
-                            PhysInfo.Gravity = StringTools::ConvertToVector3( (*ParIt).second );
-                        }
-                        else if( "softrigidworld" == Lower )
-                        {
-                            if(StringTools::ConvertToBool( (*ParIt).second ))
-                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
-                        }
-                        else if( "limitlessworld" == Lower )
-                        {
-                            if(StringTools::ConvertToBool( (*ParIt).second ))
-                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
-                        }
-                        else if( "multithreaded" == Lower )
-                        {
-                            if(StringTools::ConvertToBool( (*ParIt).second ))
-                                PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
-                        }
+                        PhysInfo.GeographyUpperBounds = StringTools::ConvertToVector3( (*ParIt).second );
                     }
-                    return new PhysicsManager(PhysInfo);
+                    else if( "geographylowerbounds" == Lower )
+                    {
+                        PhysInfo.GeographyLowerBounds = StringTools::ConvertToVector3( (*ParIt).second );
+                    }
+                    else if( "maxproxies" == Lower )
+                    {
+                        PhysInfo.MaxProxies = StringTools::ConvertToUInt32( (*ParIt).second );
+                    }
+                    else if( "gravity" == Lower )
+                    {
+                        PhysInfo.Gravity = StringTools::ConvertToVector3( (*ParIt).second );
+                    }
+                    else if( "softrigidworld" == Lower )
+                    {
+                        if(StringTools::ConvertToBool( (*ParIt).second ))
+                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_SoftRigidWorld);
+                    }
+                    else if( "limitlessworld" == Lower )
+                    {
+                        if(StringTools::ConvertToBool( (*ParIt).second ))
+                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_LimitlessWorld);
+                    }
+                    else if( "multithreaded" == Lower )
+                    {
+                        if(StringTools::ConvertToBool( (*ParIt).second ))
+                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | ManagerConstructionInfo::PCF_Multithreaded);
+                    }
                 }
+                return new PhysicsManager(PhysInfo);
             }
         }
 
         ManagerBase* DefaultPhysicsManagerFactory::CreateManager(XML::Node& XMLNode)
         {
-            if(PhysicsManager::SingletonValid())
-            {
-                /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-                return PhysicsManager::GetSingletonPtr();
-            }else return new PhysicsManager(XMLNode);
+            return new PhysicsManager(XMLNode);
         }
 
         void DefaultPhysicsManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)

@@ -83,7 +83,7 @@ namespace Mezzanine
         Internal::MeshTools::GetMeshTextures(GraphicsObject,CurMesh);
         Internal::MeshTools::GetOtherMeshInfo(GraphicsObject,CurMesh);
 
-        this->PhysicsSoftBody = btSoftBodyHelpers::CreateFromTriMesh(Physics::PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
+        this->PhysicsSoftBody = btSoftBodyHelpers::CreateFromTriMesh(Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         PhysicsObject=PhysicsSoftBody;
         PhysicsObject->setUserPointer( (WorldObject*)this );
         PhysicsShape = PhysicsSoftBody->getCollisionShape();
@@ -233,13 +233,13 @@ namespace Mezzanine
 
     void ActorSoft::AddToWorld()
     {
-        Physics::PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addSoftBody(this->PhysicsSoftBody,PhysicsSettings->GetCollisionGroup(),PhysicsSettings->GetCollisionMask());
+        Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->addSoftBody(this->PhysicsSoftBody,PhysicsSettings->GetCollisionGroup(),PhysicsSettings->GetCollisionMask());
         this->AttachToGraphics();
     }
 
     void ActorSoft::RemoveFromWorld()
     {
-        Physics::PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->removeSoftBody(this->PhysicsSoftBody);
+        Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->removeSoftBody(this->PhysicsSoftBody);
         this->DetachFromGraphics();
         DetachAllChildren();
     }

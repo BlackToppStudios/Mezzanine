@@ -795,7 +795,7 @@ int CatchApp::GetCatchin()
 
         //if("Ferris"==Loader->GetCurrentLevel())
         //    UIManager::GetSingletonPtr()->GetScreen("GameScreen")->Hide();
-        //PhysicsManager::GetSingletonPtr()->PauseSimulation(true);
+        //this->TheEntresol->GetPhysicsManager()->PauseSimulation(true);
         //Start the Main Loop
         this->TheEntresol->MainLoop();
         this->UnloadLevel();

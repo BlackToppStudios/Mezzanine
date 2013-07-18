@@ -209,7 +209,7 @@ namespace Mezzanine
             //WorldManager::Initialize();
 
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->ActorUpdateWork );
-            Physics::PhysicsManager* PhysicsMan = Physics::PhysicsManager::GetSingletonPtr();
+            Physics::PhysicsManager* PhysicsMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
             if( PhysicsMan ) {
                 this->ActorUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
             }

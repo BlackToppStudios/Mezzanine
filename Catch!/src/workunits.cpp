@@ -88,7 +88,7 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
 
     if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) )
     {
-        Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
+        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
         if(PhysMan->GetDebugRenderingMode())
         {
             PhysMan->SetDebugRenderingMode(Physics::DDM_NoDebug);
@@ -140,7 +140,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                     rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
                     Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
                     Dragger->SetTAU(0.001);
-                    Physics::PhysicsManager::GetSingletonPtr()->AddConstraint(Dragger);
+                    Entresol::GetSingletonPtr()->GetPhysicsManager()->AddConstraint(Dragger);
                     Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
                     Dragger->SetParam(Physics::Con_CFM,0.8,-1);
                     //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
@@ -169,7 +169,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
             if(Dragger && !this->CatchApplication->IsInsideAnyStartZone(this->CatchApplication->LastActorThrown))
             {
                 ActorRigid* Act = Dragger->GetActorA();
-                Physics::PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
+                Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
                 delete Dragger;
                 Dragger = NULL;
                 Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
@@ -186,7 +186,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
         if(Dragger)
         {
             ActorRigid* Act = Dragger->GetActorA();
-            Physics::PhysicsManager::GetSingletonPtr()->RemoveConstraint(Dragger);
+            Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger = NULL;
             Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);

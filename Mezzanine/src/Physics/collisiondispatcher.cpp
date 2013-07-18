@@ -43,6 +43,7 @@
 #include "Physics/collisiondispatcher.h.cpp"
 #include "Physics/physicsmanager.h"
 #include "Physics/collision.h"
+#include "entresol.h"
 
 namespace Mezzanine
 {
@@ -87,7 +88,7 @@ namespace Mezzanine
                 }
             }
             // now check the already generated collisions
-            Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
+            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
             for( Physics::PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
             {
                 if(Casted == (*ColIt).second->InternalAlgo)
@@ -134,7 +135,7 @@ namespace Mezzanine
                 }
             }
             // now check the already generated collisions
-            PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+            PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
             for( PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
             {
                 if(manifold == (*ColIt).second->InternalAlgo)
@@ -153,7 +154,7 @@ namespace Mezzanine
         }
         void CollisionDispatcher::releaseManifoldManual(btPersistentManifold* manifold)
         {
-            PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+            PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
             for( PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
             {
                 if(manifold == (*ColIt).second->Manifold)
@@ -208,7 +209,7 @@ namespace Mezzanine
                 }
             }
             // now check the already generated collisions
-            Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
+            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
             for( Physics::PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
             {
                 if(Casted == (*ColIt).second->InternalAlgo)
@@ -255,7 +256,7 @@ namespace Mezzanine
                 }
             }
             // now check the already generated collisions
-            PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+            PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
             for( PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
             {
                 if(manifold == (*ColIt).second->InternalAlgo)
@@ -274,7 +275,7 @@ namespace Mezzanine
         }
         void ParallelCollisionDispatcher::releaseManifoldManual(btPersistentManifold* manifold)
         {
-            PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+            PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
             for( PhysicsManager::CollisionIterator ColIt = PhysMan->Collisions.begin() ; ColIt != PhysMan->Collisions.end() ; ++ColIt )
             {
                 if(manifold == (*ColIt).second->Manifold)

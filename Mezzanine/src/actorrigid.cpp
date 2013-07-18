@@ -120,7 +120,7 @@ namespace Mezzanine
     {
         if( IsInWorld() )
             return;
-        Physics::PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addRigidBody(this->PhysicsRigidBody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
+        Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->addRigidBody(this->PhysicsRigidBody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
         this->AttachToGraphics();
     }
 
@@ -130,7 +130,7 @@ namespace Mezzanine
             return;
 
         try{
-            Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
+            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
             btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
             BWorld->removeRigidBody(this->PhysicsRigidBody);
             DetachAllChildren();
@@ -158,8 +158,8 @@ namespace Mezzanine
         {
             StickyConstraintConstructionInfo& CurrInfo = StickyD->CreationQueue[X];
             /*ObjectPair NewPair(CurrInfo.ActA,CurrInfo.ActB);
-            Collision* Col = PhysicsManager::GetSingletonPtr()->GetCollision(&NewPair);
-            if(Col) PhysicsManager::GetSingletonPtr()->RemoveCollision(Col);//*/
+            Collision* Col = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetCollision(&NewPair);
+            if(Col) Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveCollision(Col);//*/
             StickyConstraint* NewSticky = new StickyConstraint(CurrInfo.ActA,CurrInfo.ActB,CurrInfo.TransA,CurrInfo.TransB);
             NewSticky->SetAngularLimitLower(Vector3());
             NewSticky->SetAngularLimitUpper(Vector3());
@@ -169,7 +169,7 @@ namespace Mezzanine
             NewSticky->SetUpperAngLimit(0.0);
             NewSticky->SetLowerLinLimit(0.0);
             NewSticky->SetLowerAngLimit(0.0);//*/
-            Physics::PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
+            Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
             CurrInfo.ActA->GetPhysicsSettings()->GetStickyData()->StickyConstraints.push_back(NewSticky);
             NewSticky->GetConstraintBase()->setOverrideNumSolverIterations(100);
@@ -244,7 +244,7 @@ namespace Mezzanine
             StickyD->CreationQueue.push_back(NewInfo);
 
             /*ObjectPair CollisionPair(ActorA,this);
-            PhysicsManager::GetSingletonPtr()->RemoveCollision(PhysicsManager::GetSingletonPtr()->GetCollision(&CollisionPair));
+            Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveCollision(PhysicsManager::GetSingletonPtr()->GetCollision(&CollisionPair));
 
             // Create and configure the constraint.
             StickyConstraint* NewSticky = new StickyConstraint(ActorA,this,TransA,TransB);
@@ -253,7 +253,7 @@ namespace Mezzanine
             NewSticky->SetLowerLinLimit(0.0);
             NewSticky->SetLowerAngLimit(0.0);
             // Add the constraint to the world and other necessary structures.
-            PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
+            Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
             ActorAStickyData->StickyConstraints.push_back(NewSticky);// */
         }

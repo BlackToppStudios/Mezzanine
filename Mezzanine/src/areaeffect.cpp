@@ -217,13 +217,13 @@ namespace Mezzanine
 
     void AreaEffect::AddToWorld()
     {
-        Physics::PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addCollisionObject(this->PhysicsObject,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
+        Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->addCollisionObject(this->PhysicsObject,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
         this->AttachToGraphics();
     }
 
     void AreaEffect::RemoveFromWorld()
     {
-        Physics::PhysicsManager* PhysMan = Physics::PhysicsManager::GetSingletonPtr();
+        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
         btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
         //first remove any collision metadata
         /*if( !CurrentCollisions.empty() )
@@ -241,7 +241,7 @@ namespace Mezzanine
             this->AddedActors.clear();
         if ( !RemovedActors.empty() )
             this->RemovedActors.clear();
-        btSoftRigidDynamicsWorld* PhysWorld = Physics::PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer();
+        btSoftRigidDynamicsWorld* PhysWorld = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer();
 
         std::list<ActorBase*>::iterator it = OverlappingActors.begin();
         // Make a bool vector to keep track of which actors to keep when updating.
@@ -418,7 +418,7 @@ namespace Mezzanine
     void GravityField::ApplyEffect()
     {
         std::vector<ActorBase*>::iterator It;
-        Physics::PhysicsManager* Physics = Physics::PhysicsManager::GetSingletonPtr();
+        Physics::PhysicsManager* Physics = Entresol::GetSingletonPtr()->GetPhysicsManager();
         ActorBase* Act = NULL;
 
         if ( !AddedActors.empty() )
@@ -525,7 +525,7 @@ namespace Mezzanine
         }
         if(!AllowWorldGrav && !RemovedActors.empty())
         {
-            Vector3 WorldGrav = Physics::PhysicsManager::GetSingletonPtr()->GetGravity();
+            Vector3 WorldGrav = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetGravity();
             for ( std::vector<ActorBase*>::iterator RA = RemovedActors.begin() ; RA != RemovedActors.end() ; RA++ )
             {
                 if(Mezzanine::WSO_ActorRigid != (*RA)->GetType())
