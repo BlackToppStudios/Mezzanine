@@ -65,7 +65,7 @@ namespace Mezzanine
           PhysicsSettings(NULL),
           ObjectSounds(NULL)
     {
-        this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        this->GraphicsNode = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
     }
 
     WorldObject::~WorldObject()
@@ -370,7 +370,7 @@ namespace Mezzanine
         this->GetOrientation().ProtoSerialize(OrientationNode);
 
         // if actor node is in scenemanager just save a name
-        /*if( SceneManager::GetSingletonPtr()->GetNode( this->ObjectWorldNode->GetName() ) )
+        /*if( Entresol::GetSingletonPtr()->GetSceneManager()->GetNode( this->ObjectWorldNode->GetName() ) )
         {
             XML::Attribute NonStaticWorldObjectNodeAttrib = NonStaticWorldObjectNode.AppendAttribute("WorldNode");
             if(!NonStaticWorldObjectNodeAttrib.SetValue(this->ObjectWorldNode->GetName()))
@@ -403,15 +403,15 @@ namespace Mezzanine
                     XML::Node ObjectWorldNode = OneNode.GetChild("WorldNode");                               // Assumption made base on old style serialization
                     if(!ObjectWorldNode)
                         { DeSerializeError("locate ObjectWorldNode node",SerializableName()); }
-                    if (0!=this->ObjectWorldNode && !SceneManager::GetSingletonPtr()->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+                    if (0!=this->ObjectWorldNode && !Entresol::GetSingletonPtr()->GetSceneManager()->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
                         { delete this->ObjectWorldNode; }
                     this->ObjectWorldNode = new WorldNode(ObjectWorldNode.GetAttribute("Name").AsString(),0);
                     ObjectWorldNode >> *(this->ObjectWorldNode);                                              // Deserialized with old style serialization
                 }else{
-                    WorldNode *TempWorldNode = SceneManager::GetSingletonPtr()->GetNode(OneNode.GetAttribute("WorldNode").AsString());
+                    WorldNode *TempWorldNode = Entresol::GetSingletonPtr()->GetSceneManager()->GetNode(OneNode.GetAttribute("WorldNode").AsString());
                     if( TempWorldNode == this->ObjectWorldNode )
                         { return; }                                                                         //This already has the correct node we are done
-                    if (0!=this->ObjectWorldNode && !SceneManager::GetSingletonPtr()->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
+                    if (0!=this->ObjectWorldNode && !Entresol::GetSingletonPtr()->GetSceneManager()->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
                         { delete this->ObjectWorldNode; }
                     this->ObjectWorldNode = TempWorldNode;                                                   // The old node has bee cleaned up and the new node is in place
                     if (0==this->ObjectWorldNode)

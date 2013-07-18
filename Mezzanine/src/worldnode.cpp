@@ -49,6 +49,7 @@
 #include "particleeffect.h"
 #include "actorbase.h"
 #include "stringtool.h"
+#include "entresol.h"
 
 #include <Ogre.h>
 
@@ -364,7 +365,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            Mezzanine::WorldNode * AttachPtr = Mezzanine::SceneManager::GetSingletonPtr()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            Mezzanine::WorldNode * AttachPtr = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
                 { AttachPtr->AttachObject(&Ev); }
 
@@ -379,7 +380,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                         if(Name==Mezzanine::String("Attached"))
                         {
                             Mezzanine::String AttributeName(OneNode.GetAttribute("Name").AsString());
-                            Mezzanine::WorldNode * AttachPtr = Mezzanine::SceneManager::GetSingletonPtr()->GetNode( Child.GetAttribute("Name").AsString() );
+                            Mezzanine::WorldNode * AttachPtr = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->GetNode( Child.GetAttribute("Name").AsString() );
                             /// @todo This doesn't account for other objects aside from world nodes to be attached.  Additional checks that fetch other types by name in the case of a null pointer should be implemented.
 
                             if (AttachPtr)  // fail silently, because if we don't find it then that means it just hasn't been deserialized yeat

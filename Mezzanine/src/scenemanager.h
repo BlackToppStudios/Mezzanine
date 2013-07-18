@@ -41,7 +41,7 @@
 #define _scenemanager_h
 
 #include "colourvalue.h"
-#include "managerbase.h"
+#include "worldmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
 #include "quaternion.h"
@@ -115,13 +115,33 @@ namespace Mezzanine
     /// @details This class contains functions that allow the manipulation of lighting, skyboxes, internal
     /// scenemanager types, and more.
     ///////////////////////////////////////
-    class MEZZ_LIB SceneManager : public ManagerBase, public Singleton<SceneManager>
+    class MEZZ_LIB SceneManager : public WorldManager
     {
     public:
-        typedef std::vector< WorldNode* > WorldNodeContainer;
-        typedef std::vector< Light* > LightContainer;
-        typedef std::vector< ParticleEffect* > ParticleContainer;
-        typedef std::vector< Entity* > EntityContainer;
+        /// @brief Basic container type for @ref WorldNode storage by this class.
+        typedef std::vector< WorldNode* >                     WorldNodeContainer;
+        /// @brief Iterator type for @ref WorldNode instances stored by this class.
+        typedef WorldNodeContainer::iterator                  WorldNodeIterator;
+        /// @brief Const Iterator type for @ref WorldNode instances stored by this class.
+        typedef WorldNodeContainer::const_iterator            ConstWorldNodeIterator;
+        /// @brief Basic container type for @ref Light storage by this class.
+        typedef std::vector< Light* >                         LightContainer;
+        /// @brief Iterator type for @ref Light instances stored by this class.
+        typedef LightContainer::iterator                      LightIterator;
+        /// @brief Const Iterator type for @ref Light instances stored by this class.
+        typedef LightContainer::const_iterator                ConstLightIterator;
+        /// @brief Basic container type for @ref ParticleEffect storage by this class.
+        typedef std::vector< ParticleEffect* >                ParticleContainer;
+        /// @brief Iterator type for @ref ParticleEffect instances stored by this class.
+        typedef ParticleContainer::iterator                   ParticleIterator;
+        /// @brief Const Iterator type for @ref ParticleEffect instances stored by this class.
+        typedef ParticleContainer::const_iterator             ConstParticleIterator;
+        /// @brief Basic container type for @ref Entity storage by this class.
+        typedef std::vector< Entity* >                        EntityContainer;
+        /// @brief Iterator type for @ref Entity instances stored by this class.
+        typedef EntityContainer::iterator                     EntityIterator;
+        /// @brief Const Iterator type for @ref Entity instances stored by this class.
+        typedef EntityContainer::const_iterator               ConstEntityIterator;
 
         /// @brief needs to be documented
         enum SceneShadowTechnique
@@ -177,18 +197,13 @@ namespace Mezzanine
         /// @brief Updates all nodes tracking other objects.
         void UpdateTrackingNodes();
     public:
-        ///////////////////////////////////////////////////////////////////////////////
-        // Construction
-
         /// @brief Class Constructor.
         /// @details Standard class initialization constructor.
         /// @param InternalManagerTypeName The name of the scenemanager type to be constructed.
         SceneManager(const String& InternalManagerTypeName = "DefaultSceneManager");
-
         /// @brief XML constructor.
         /// @param XMLNode The node of the xml document to construct from.
         SceneManager(XML::Node& XMLNode);
-
         /// @brief Class Destructor.
         /// @details The class destructor.
         ~SceneManager();
@@ -342,10 +357,6 @@ namespace Mezzanine
         /// @brief Destroys all lights currently in the manager.
         void DestroyAllLights();
 
-        /// @brief Used to make working with the Lights easier.
-        typedef LightContainer::iterator LightIterator;
-        /// @brief Used to make working with the Lights easier, and avoid the risk of accidentally changing them.
-        typedef LightContainer::const_iterator ConstLightIterator;
         /// @brief Get a LightIterator to the first Light*
         /// @return A LightIterator to the first Light*
         LightIterator BeginLight();
@@ -387,22 +398,18 @@ namespace Mezzanine
         /// @param Pause Will pause all Particles if true, unpause if false.
         void PauseAllParticles(bool Pause);
 
-        /// @brief Used to make working with the Particle Effects easier.
-        typedef ParticleContainer::iterator ParticleEffectIterator;
-        /// @brief Used to make working with the Particle Effects easier, and avoid the risk of accidentally changing them.
-        typedef ParticleContainer::const_iterator ConstParticleEffectIterator;
         /// @brief Get a ParticleEffectIterator to the first ParticleEffect*
         /// @return A ParticleEffectIterator to the first ParticleEffect*
-        ParticleEffectIterator BeginParticleEffect();
+        ParticleIterator BeginParticleEffect();
         /// @brief Get a ParticleEffectIterator to one past the last ParticleEffect*
         /// @return A ParticleEffectIterator to one past the last ParticleEffect*
-        ParticleEffectIterator EndParticleEffect();
+        ParticleIterator EndParticleEffect();
         /// @brief Get a ConstParticleEffectIterator to the first ParticleEffect*
         /// @return A ConstParticleEffectIterator to the first ParticleEffect*
-        ConstParticleEffectIterator BeginParticleEffect() const;
+        ConstParticleIterator BeginParticleEffect() const;
         /// @brief Get a ConstParticleEffectIterator to one past the last ParticleEffect*
         /// @return A ConstParticleEffectIterator to one past the last ParticleEffect*
-        ConstParticleEffectIterator EndParticleEffect() const;
+        ConstParticleIterator EndParticleEffect() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Entity Management
@@ -429,10 +436,6 @@ namespace Mezzanine
         /// @brief Destroys all entities currently in the manager.
         void DestroyAllEntities();
 
-        /// @brief Used to make working with the Entities easier.
-        typedef EntityContainer::iterator EntityIterator;
-        /// @brief Used to make working with the Entities easier, and avoid the risk of accidentally changing them.
-        typedef EntityContainer::const_iterator ConstEntityIterator;
         /// @brief Get an EntityIterator to the first Entity*
         /// @return An EntityIterator to the first Entity*
         EntityIterator BeginEntity();
@@ -470,10 +473,6 @@ namespace Mezzanine
         /// @brief Destroys all world nodes currently in the manager.
         void DestroyAllWorldNodes();
 
-        /// @brief Used to make working with the WorldNodes easier.
-        typedef WorldNodeContainer::iterator WorldNodeIterator;
-        /// @brief Used to make working with the WorldNodes easier, and avoid the risk of accidentally changing them.
-        typedef WorldNodeContainer::const_iterator ConstWorldNodeIterator;
         /// @brief Get a WorldNodeIterator to the first WorldNode*
         /// @return A WorldNodeIterator to the first WorldNode*
         WorldNodeIterator BeginWorldNode();
@@ -500,6 +499,9 @@ namespace Mezzanine
         /// @brief Gets the name of this manager.
         /// @return Returns the name of this manager.
         ConstString& GetName() const;
+
+        /// @copydoc WorldManager::Pause(const UInt32)
+        virtual void Pause(const UInt32 PL);
 
         /// @copydoc ManagerBase::Initialize()
         virtual void Initialize();

@@ -48,6 +48,7 @@
 #include "meshmanager.h"
 #include "scenemanager.h"
 #include "stringtool.h"
+#include "entresol.h"
 
 #include <map>
 #include <memory>
@@ -110,7 +111,7 @@ namespace Mezzanine
 
     void WorldObjectGraphicsSettings::SetMesh(Graphics::Mesh* ObjectMesh)
     {
-        Ogre::SceneManager* OgreManager = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer();
+        Ogre::SceneManager* OgreManager = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer();
         if(IWOGS->WorldObjectEnt)
         {
             OgreManager->destroyEntity(IWOGS->WorldObjectEnt);

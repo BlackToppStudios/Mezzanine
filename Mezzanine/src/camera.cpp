@@ -46,6 +46,7 @@
 #include "stringtool.h"
 #include "exception.h"
 #include "scenemanager.h"
+#include "entresol.h"
 #include "Graphics/viewport.h"
 #include "XML/xml.h"
 
@@ -334,7 +335,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
             Ev.SetCameraType(static_cast<Mezzanine::Camera::ProjectionType>(OneNode.GetAttribute("CameraPerspective").AsInt()));
-            Mezzanine::WorldNode * AttachPtr = Mezzanine::SceneManager::GetSingletonPtr()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            Mezzanine::WorldNode * AttachPtr = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
                 { AttachPtr->AttachObject(&Ev); }
 

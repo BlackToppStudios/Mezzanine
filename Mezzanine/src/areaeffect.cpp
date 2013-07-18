@@ -64,7 +64,7 @@ namespace Mezzanine
     AreaEffect::AreaEffect(const String &name, const Vector3& Location)
     {
         Name = name;
-        this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        this->GraphicsNode = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         CreateGhostObject(Location);
 
         short CollisionGroup = btBroadphaseProxy::SensorTrigger;
@@ -78,7 +78,7 @@ namespace Mezzanine
         delete GraphicsSettings;
         delete PhysicsSettings;
 
-        Ogre::SceneManager* OgreManager = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer();
+        Ogre::SceneManager* OgreManager = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer();
         if(GraphicsObject)
             OgreManager->destroyEntity(GraphicsObject);
         OgreManager->destroySceneNode(GraphicsNode);

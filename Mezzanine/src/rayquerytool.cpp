@@ -323,7 +323,7 @@ namespace Mezzanine
     {
         if(!RayQuery)
         {
-            RayQuery = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+            RayQuery = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
             RayQuery->setSortByDistance(true);
         }
     }

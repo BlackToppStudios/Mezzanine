@@ -527,7 +527,7 @@ namespace Mezzanine
     void Entresol::PauseWorld(bool Pause)
     {
         this->GetPhysicsManager()->PauseSimulation(Pause);
-        SceneManager::GetSingletonPtr()->PauseAllParticles(Pause);
+        this->GetSceneManager()->PauseAllParticles(Pause);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -8,12 +8,12 @@ ItemShop::ItemShop()
       CurrentCash(0)
 {
     //Mesh* SelectSphereMesh = MeshManager::GetSingletonPtr()->CreateSphereMesh("SelectSphereMesh",ColourValue(0.15,0.15,1.0),50.0);
-    //SelectionSphere = SceneManager::GetSingletonPtr()->CreateEntity("SelectionSphere",SelectSphereMesh->GetName(),SelectSphereMesh->GetGroup());
+    //SelectionSphere = Entresol::GetSingletonPtr()->GetSceneManager()->CreateEntity("SelectionSphere",SelectSphereMesh->GetName(),SelectSphereMesh->GetGroup());
 }
 
 ItemShop::~ItemShop()
 {
-    //SceneManager::GetSingletonPtr()->DestroyEntity(SelectionSphere);
+    //Entresol::GetSingletonPtr()->GetSceneManager()->DestroyEntity(SelectionSphere);
 }
 
 Whole ItemShop::GetCurrentCash()

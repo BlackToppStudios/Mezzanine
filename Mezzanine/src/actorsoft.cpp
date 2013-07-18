@@ -96,7 +96,7 @@ namespace Mezzanine
 
         CreateManualMesh(CurMesh);
 
-        this->GraphicsObject = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
+        this->GraphicsObject = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
         Ogre::Any OgreRef( (WorldObject*)this );
         GraphicsObject->setUserAny(OgreRef);
 

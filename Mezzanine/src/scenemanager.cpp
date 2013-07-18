@@ -201,8 +201,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // SceneManager Methods
 
-    template<> SceneManager* Singleton<SceneManager>::SingletonPtr = NULL;
-
     SceneManager::SceneManager(const String& InternalManagerTypeName) :
         TrackingNodeUpdateWork(NULL),
         ThreadResources(NULL)
@@ -546,7 +544,7 @@ namespace Mezzanine
     {
         if(Particles.empty())
             return 0;
-        for( SceneManager::ConstParticleEffectIterator it = Particles.begin() ; it != Particles.end() ; it++ )
+        for( SceneManager::ConstParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
         {
             if( Name == (*it)->GetName() )
             {
@@ -570,7 +568,7 @@ namespace Mezzanine
     {
         if(Particles.empty())
             return;
-        for( SceneManager::ParticleEffectIterator it = Particles.begin() ; it != Particles.end() ; it++ )
+        for( SceneManager::ParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
         {
             if( ToBeDestroyed == (*it) )
             {
@@ -590,20 +588,20 @@ namespace Mezzanine
 
     void SceneManager::PauseAllParticles(bool Pause)
     {
-        for( SceneManager::ParticleEffectIterator it = Particles.begin() ; it != Particles.end() ; it++ )
+        for( SceneManager::ParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
             (*it)->PauseParticleEffect(Pause);
     }
 
-    SceneManager::ParticleEffectIterator SceneManager::BeginParticleEffect()
+    SceneManager::ParticleIterator SceneManager::BeginParticleEffect()
         { return this->Particles.begin(); }
 
-    SceneManager::ParticleEffectIterator SceneManager::EndParticleEffect()
+    SceneManager::ParticleIterator SceneManager::EndParticleEffect()
         { return this->Particles.end(); }
 
-    SceneManager::ConstParticleEffectIterator SceneManager::BeginParticleEffect() const
+    SceneManager::ConstParticleIterator SceneManager::BeginParticleEffect() const
         { return this->Particles.begin(); }
 
-    SceneManager::ConstParticleEffectIterator SceneManager::EndParticleEffect() const
+    SceneManager::ConstParticleIterator SceneManager::EndParticleEffect() const
         { return this->Particles.end(); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -755,10 +753,17 @@ namespace Mezzanine
     ConstString& SceneManager::GetName() const
         { return this->SMD->OgreManager->getName(); }
 
+    void SceneManager::Pause(const UInt32 PL)
+    {
+        // Do nothing for now
+    }
+
     void SceneManager::Initialize()
     {
         if( !this->Initialized )
         {
+            //WorldManager::Initialize();
+
             this->TheEntresol->GetScheduler().AddWorkUnitMain( this->TrackingNodeUpdateWork );
 
             Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
@@ -825,36 +830,26 @@ namespace Mezzanine
 
     ManagerBase* DefaultSceneManagerFactory::CreateManager(NameValuePairList& Params)
     {
-        if(SceneManager::SingletonValid())
+        if(Params.empty()) return new SceneManager();
+        else
         {
-            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-            return SceneManager::GetSingletonPtr();
-        }else{
-            if(Params.empty()) return new SceneManager();
-            else
+            String InternalManagerTypeName;
+            for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
             {
-                String InternalManagerTypeName;
-                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+                String Lower = (*ParIt).first;
+                StringTools::ToLowerCase(Lower);
+                if( "internalmanagertypename" == Lower )
                 {
-                    String Lower = (*ParIt).first;
-                    StringTools::ToLowerCase(Lower);
-                    if( "internalmanagertypename" == Lower )
-                    {
-                        InternalManagerTypeName = (*ParIt).second;
-                    }
+                    InternalManagerTypeName = (*ParIt).second;
                 }
-                return new SceneManager(InternalManagerTypeName);
             }
+            return new SceneManager(InternalManagerTypeName);
         }
     }
 
     ManagerBase* DefaultSceneManagerFactory::CreateManager(XML::Node& XMLNode)
     {
-        if(SceneManager::SingletonValid())
-        {
-            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
-            return SceneManager::GetSingletonPtr();
-        }else return new SceneManager(XMLNode);
+        return new SceneManager(XMLNode);
     }
 
     void DefaultSceneManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
@@ -935,16 +930,16 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& 
                 }
                 /*  Sky Cache Member - String SkyMaterialName; Quaternion SkyOrientation; String SkyMaterialGroupName; bool SkyDrawnFirst; Plane SkyThePlane; */
 
-                for (Mezzanine::SceneManager::ConstLightIterator Iter = Mezzanine::SceneManager::GetSingletonPtr()->BeginLight();
-                        Mezzanine::SceneManager::GetSingletonPtr()->EndLight()!=Iter;
+                for (Mezzanine::SceneManager::ConstLightIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginLight();
+                        Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndLight()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
-                for (Mezzanine::SceneManager::ConstParticleEffectIterator Iter = Mezzanine::SceneManager::GetSingletonPtr()->BeginParticleEffect();
-                        Mezzanine::SceneManager::GetSingletonPtr()->EndParticleEffect()!=Iter;
+                for (Mezzanine::SceneManager::ConstParticleIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginParticleEffect();
+                        Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndParticleEffect()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
-                for (Mezzanine::SceneManager::ConstWorldNodeIterator Iter = Mezzanine::SceneManager::GetSingletonPtr()->BeginWorldNode();
-                        Mezzanine::SceneManager::GetSingletonPtr()->EndWorldNode()!=Iter;
+                for (Mezzanine::SceneManager::ConstWorldNodeIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginWorldNode();
+                        Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndWorldNode()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
     stream      << "</SceneManager>";

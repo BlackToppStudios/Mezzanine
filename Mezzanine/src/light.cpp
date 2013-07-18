@@ -44,6 +44,7 @@
 #include "scenemanager.h"
 #include "stringtool.h"
 #include "worldnode.h"
+#include "entresol.h"
 
 #include <Ogre.h>
 
@@ -303,7 +304,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
             Ev.SetSpotlightInnerAngle(OneNode.GetAttribute("SpotlightInnerAngle").AsReal());
             Ev.SetSpotlightOuterAngle(OneNode.GetAttribute("SpotlightOuterAngle").AsReal());
             Ev.SetSpotlightFalloff(OneNode.GetAttribute("SpotlightFalloff").AsReal());
-            Mezzanine::WorldNode * AttachPtr = Mezzanine::SceneManager::GetSingletonPtr()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            Mezzanine::WorldNode * AttachPtr = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
                 { AttachPtr->AttachObject(&Ev); }
 

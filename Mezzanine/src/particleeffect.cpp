@@ -44,6 +44,7 @@
 #include "scenemanager.h"
 #include "stringtool.h"
 #include "worldnode.h"
+#include "entresol.h"
 
 #include "particleaffector.h"
 #include "particleemitter.h"
@@ -356,7 +357,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                 Ev.RemoveFromWorld();
             }
 
-            Mezzanine::WorldNode * AttachPtr = Mezzanine::SceneManager::GetSingletonPtr()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            Mezzanine::WorldNode * AttachPtr = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
                 { AttachPtr->AttachObject(&Ev); }
 

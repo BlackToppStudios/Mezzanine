@@ -104,7 +104,8 @@ namespace Mezzanine
     {
         if( !this->SceneMan )
         {
-            if(SceneManager::SingletonValid()) this->SceneMan = SceneManager::GetSingletonPtr();
+            SceneManager* SceneTest = Entresol::GetSingletonPtr()->GetSceneManager();
+            if( SceneTest ) this->SceneMan = SceneTest;
             else { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a camera before the SceneManager is created.  This is not supported."); }
         }
         Camera* tempcam = new Camera(Name, this);
