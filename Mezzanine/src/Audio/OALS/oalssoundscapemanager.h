@@ -194,6 +194,9 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
+                /// @copydoc WorldManager::Pause(const UInt32)
+                virtual void Pause(const UInt32 PL);
+
                 /// @copydoc WorldManager::Initialize()
                 virtual void Initialize();
                 /// @copydoc ManagerBase::Deinitialize()

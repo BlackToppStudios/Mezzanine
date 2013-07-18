@@ -40,7 +40,7 @@
 #ifndef _audiosoundscapemanager_h
 #define _audiosoundscapemanager_h
 
-#include "managerbase.h"
+#include "worldmanager.h"
 #include "managerfactory.h"
 #include "Audio/audioenumerations.h"
 #include "Threading/workunit.h"
@@ -74,7 +74,7 @@ namespace Mezzanine
         /// @brief This is the base manager class for audio being played in a 3D environment.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB SoundScapeManager : public ManagerBase
+        class MEZZ_LIB SoundScapeManager : public WorldManager
         {
         public:
         protected:
@@ -319,6 +319,9 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
+
+            /// @copydoc WorldManager::Pause(const UInt32)
+            virtual void Pause(const UInt32 PL) = 0;
 
             /// @copydoc WorldManager::Initialize()
             virtual void Initialize() = 0;

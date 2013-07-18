@@ -388,10 +388,17 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
+            void SoundScapeManager::Pause(const UInt32 PL)
+            {
+                // Do nothing currently
+            }
+
             void SoundScapeManager::Initialize()
             {
                 if( !this->Initialized )
                 {
+                    //WorldManager::Initialize();
+
                     OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
                     if( AudioMan == NULL )
                         { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"A valid AudioManager is required for SoundScape operations."); }
