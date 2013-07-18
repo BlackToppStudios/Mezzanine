@@ -90,6 +90,9 @@ namespace Mezzanine
             this->GraphicsNode->detachObject(this->GraphicsObject);
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Transform Methods
+
     void WorldObject::SetLocation(const Real& x, const Real& y, const Real& z)
     {
         Vector3 temp(x,y,z);
@@ -111,9 +114,21 @@ namespace Mezzanine
         return temp;
     }
 
+    void WorldObject::SetScaling(const Vector3& Scale)
+    {
+        this->GraphicsNode->setScale(Scale.GetOgreVector3());
+        this->PhysicsShape->setLocalScaling(Scale.GetBulletVector3());
+    }
+
+    Vector3 WorldObject::GetScaling() const
+    {
+        Vector3 Scale(this->PhysicsShape->getLocalScaling());
+        return Scale;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
-    ///////////////////////////////////////
+
 
     ConstString& WorldObject::GetName() const
     {
@@ -128,18 +143,6 @@ namespace Mezzanine
     bool WorldObject::IsInWorld() const
     {
         return PhysicsObject->getBroadphaseHandle() != 0;
-    }
-
-    void WorldObject::SetScaling(const Vector3& Scale)
-    {
-        this->GraphicsNode->setScale(Scale.GetOgreVector3());
-        this->PhysicsShape->setLocalScaling(Scale.GetBulletVector3());
-    }
-
-    Vector3 WorldObject::GetScaling() const
-    {
-        Vector3 Scale(this->PhysicsShape->getLocalScaling());
-        return Scale;
     }
 
     WorldObjectGraphicsSettings* WorldObject::GetGraphicsSettings() const
@@ -162,8 +165,8 @@ namespace Mezzanine
         return ObjectSounds;
     }
 
-    ///////////////////////////////////
-    // Internal Object Access functions
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
 
     void WorldObject::_NotifyCollisionState(Physics::Collision* Col, const Physics::Collision::CollisionState& State)
     {
@@ -192,9 +195,10 @@ namespace Mezzanine
     {
         return GraphicsNode;
     }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
-    ///////////////////////////////////////
+
     void WorldObject::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
 
@@ -285,8 +289,7 @@ namespace Mezzanine
         {   return String("WorldObject"); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // NonStaticWorldObject functions
-    ///////////////////////////////////////
+    // NonStaticWorldObject Methods
 
     NonStaticWorldObject::NonStaticWorldObject()
     {
@@ -304,6 +307,9 @@ namespace Mezzanine
         //Ogre
         this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Transform Methods
 
     void NonStaticWorldObject::SetLocation(const Vector3& Location)
     {
@@ -336,11 +342,6 @@ namespace Mezzanine
         return temp;
     }
 
-    ConstString& NonStaticWorldObject::GetName() const
-    {
-        return WorldObject::GetName();
-    }
-
     void NonStaticWorldObject::SetScaling(const Vector3& Scale)
     {
         WorldObject::SetScaling(Scale);
@@ -352,6 +353,17 @@ namespace Mezzanine
     {
         return WorldObject::GetScaling();
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility and Configuration
+
+    ConstString& NonStaticWorldObject::GetName() const
+    {
+        return WorldObject::GetName();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
 
     void NonStaticWorldObject::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
