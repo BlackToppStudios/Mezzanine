@@ -102,11 +102,6 @@ namespace Mezzanine
         virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
     };//TrackingNodeUpdateWorkUnit
 
-    // Used by the scripting language binder to help create this class. SWIG does know to creation template instances
-    #ifdef SWIG
-    %template(SingletonSceneManager) Singleton<SceneManager>;
-    #endif
-
     ///////////////////////////////////////////////////////////////////////////////
     /// @class SceneManager
     /// @headerfile scenemanager.h
@@ -503,7 +498,7 @@ namespace Mezzanine
         /// @copydoc WorldManager::Pause(const UInt32)
         virtual void Pause(const UInt32 PL);
 
-        /// @copydoc ManagerBase::Initialize()
+        /// @copydoc WorldManager::Initialize()
         virtual void Initialize();
         /// @copydoc ManagerBase::Deinitialize()
         virtual void Deinitialize();

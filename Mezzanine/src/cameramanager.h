@@ -72,11 +72,6 @@ namespace Mezzanine
         class SceneManagerData;
     }
 
-    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
-    #ifdef SWIG
-    %template(SingletonCameraManager) Singleton<CameraManager>;
-    #endif
-
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CameraManager
     /// @headerfile cameramanager.h
@@ -168,7 +163,7 @@ namespace Mezzanine
         /// @copydoc WorldManager::Pause(const UInt32)
         virtual void Pause(const UInt32 PL);
 
-        /// @copydoc ManagerBase::Initialize()
+        /// @copydoc WorldManager::Initialize()
         virtual void Initialize();
         /// @copydoc ManagerBase::Deinitialize()
         virtual void Deinitialize();

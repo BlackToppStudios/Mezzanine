@@ -70,11 +70,6 @@ namespace Mezzanine
             virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage) = 0;
         };//iBufferUpdate3DWorkUnit
 
-        // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
-        #ifdef SWIG
-        %template(SingletonSoundScapeManager) Singleton<SoundScapeManager>;
-        #endif
-
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base manager class for audio being played in a 3D environment.
         /// @details
@@ -325,7 +320,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc ManagerBase::Initialize()
+            /// @copydoc WorldManager::Initialize()
             virtual void Initialize() = 0;
             /// @copydoc ManagerBase::Deinitialize()
             virtual void Deinitialize() = 0;

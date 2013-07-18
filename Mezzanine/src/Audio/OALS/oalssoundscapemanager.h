@@ -194,7 +194,7 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @copydoc ManagerBase::Initialize()
+                /// @copydoc WorldManager::Initialize()
                 virtual void Initialize();
                 /// @copydoc ManagerBase::Deinitialize()
                 virtual void Deinitialize();

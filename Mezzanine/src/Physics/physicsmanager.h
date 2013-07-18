@@ -83,11 +83,6 @@ namespace Mezzanine
     }
     namespace Physics
     {
-        // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
-        #ifdef SWIG
-        %template(SingletonPhysicsManager) Singleton<PhysicsManager>;
-        #endif
-
         class Collision;
         class CollisionDispatcher;
         class ParallelCollisionDispatcher;
@@ -495,7 +490,7 @@ namespace Mezzanine
 
             /// @brief Does all of the necessary configuration to prepare for a running simulation.
             void MainLoopInitialize();
-            /// @copydoc ManagerBase::Initialize()
+            /// @copydoc WorldManager::Initialize()
             virtual void Initialize();
             /// @copydoc ManagerBase::Deinitialize()
             virtual void Deinitialize();

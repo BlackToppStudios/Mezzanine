@@ -84,11 +84,6 @@ namespace Mezzanine
         virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
     };//AreaEffectUpdateWorkUnit
 
-    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
-    #ifdef SWIG
-    %template(SingletonAreaEffectManager) Singleton<AreaEffectManager>;
-    #endif
-
     ///////////////////////////////////////////////////////////////////////////////
     /// @class AreaEffectManager
     /// @headerfile areaeffectmanager.h
