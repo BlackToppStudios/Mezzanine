@@ -62,8 +62,7 @@ namespace Mezzanine
           PhysicsObject(NULL),
           PhysicsShape(NULL),
           GraphicsSettings(NULL),
-          PhysicsSettings(NULL),
-          ObjectSounds(NULL)
+          PhysicsSettings(NULL)
     {
         this->GraphicsNode = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
     }
@@ -153,16 +152,6 @@ namespace Mezzanine
     WorldObjectPhysicsSettings* WorldObject::GetPhysicsSettings() const
     {
         return PhysicsSettings;
-    }
-
-    void WorldObject::SetSounds(Audio::SoundSet* Sounds)
-    {
-        ObjectSounds = Sounds;
-    }
-
-    Audio::SoundSet* WorldObject::GetSounds() const
-    {
-        return ObjectSounds;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
