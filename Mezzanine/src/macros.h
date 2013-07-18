@@ -55,7 +55,7 @@ namespace Mezzanine
 
     // This returns the value of the nth bit.  Passing in zero always returns zero.
     #ifndef MEZZ_BITMASK
-    #define MEZZ_BITMASK(X) ( X > 0 ? ( 1u << ( X - 1 ) ) : 0 )
+    #define MEZZ_BITMASK(X) ( (X) > 0 ? ( 1u << ( (X) - 1 ) ) : 0 )
     #endif
 
     // This returns the value of a bit at the specified index. Passing in zero returns one.
