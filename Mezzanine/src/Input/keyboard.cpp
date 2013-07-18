@@ -44,7 +44,6 @@
 #include "exception.h"
 
 #include <limits>
-#include <cstring>
 
 namespace Mezzanine
 {
@@ -52,8 +51,7 @@ namespace Mezzanine
     {
         Keyboard::Keyboard()
         {
-            this->Buttons.resize(Input::KEY_LAST);
-            memset( &Buttons[0],Input::BUTTON_UP,sizeof(this->Buttons[0]) * this->Buttons.size() );
+            this->Buttons.resize(Input::KEY_LAST,Input::BUTTON_UP);
         }
 
         Keyboard::~Keyboard()

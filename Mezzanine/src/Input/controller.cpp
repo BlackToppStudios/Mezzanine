@@ -40,8 +40,6 @@
 #ifndef _inputcontroller_cpp
 #define _inputcontroller_cpp
 
-#include <cstring>
-
 #include "Input/controller.h"
 
 #include "exception.h"
@@ -55,14 +53,10 @@ namespace Mezzanine
         Controller::Controller(void* InternalControl, int Count)
         {
             SDL_Joystick* InternalController = (SDL_Joystick*)InternalControl;
-            this->Axes.resize( SDL_JoystickNumAxes(InternalController) );
-            this->Trackballs.resize( SDL_JoystickNumBalls(InternalController) );
-            this->Buttons.resize( SDL_JoystickNumButtons(InternalController) );
-            this->Hats.resize( SDL_JoystickNumHats(InternalController) );
-            memset( &Axes[0],0,sizeof(Axes[0]) * Axes.size() );
-            memset( &Trackballs[0],0,sizeof(this->Trackballs[0]) * this->Trackballs.size() );
-            memset( &Buttons[0],Input::BUTTON_UP,sizeof(this->Buttons[0]) * this->Buttons.size() );
-            memset( &Hats[0],Input::CONTROLLERHAT_CENTERED,sizeof(this->Hats[0]) * this->Hats.size() );
+            this->Axes.resize( SDL_JoystickNumAxes(InternalController), 0 );
+            this->Trackballs.resize( SDL_JoystickNumBalls(InternalController), Vector2(0,0) );
+            this->Buttons.resize( SDL_JoystickNumButtons(InternalController), Input::BUTTON_UP );
+            this->Hats.resize( SDL_JoystickNumHats(InternalController), Input::CONTROLLERHAT_CENTERED );
             this->Index = Count; //SDL_JoystickIndex(InternalController);
             this->DeviceName = SDL_JoystickName(InternalController);
             //DeviceName = "DefaultName";

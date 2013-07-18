@@ -48,7 +48,6 @@
 #include "timer.h"
 
 #include <limits>
-#include <cstring>
 
 #include "SDL.h"
 #include "../src/video/SDL_sysvideo.h"
@@ -62,8 +61,7 @@ namespace Mezzanine
             VerticalWheelState(Input::DIRECTIONALMOTION_UNCHANGED),
             HorizontalWheelState(Input::DIRECTIONALMOTION_UNCHANGED)
         {
-            this->Buttons.resize( (Input::MOUSEBUTTON_LAST - Input::MOUSEBUTTON_FIRST) + 1 );
-            memset( &Buttons[0],Input::BUTTON_UP,sizeof(this->Buttons[0]) * this->Buttons.size() );
+            this->Buttons.resize( (Input::MOUSEBUTTON_LAST - Input::MOUSEBUTTON_FIRST) + 1, Input::BUTTON_UP );
 
             this->MulticlickTimer = new StopWatchTimer();
             this->MulticlickTimer->SetInitialTimeInMilliseconds(500);
