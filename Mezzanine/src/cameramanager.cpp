@@ -206,23 +206,30 @@ namespace Mezzanine
 
     void CameraManager::Initialize()
     {
-        if( !this->SceneMan )
+        if( !this->Initialized )
         {
             //WorldManager::Initialize();
 
-            SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
-            if( SceneCheck ) {
-                this->SceneMan = SceneCheck;
-            }else{
-                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to initiailze CameraManager when SceneManager has not yet been constructed.  The SceneManager is a dependancy of the CameraManager.");
+            if( !this->SceneMan )
+            {
+                SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
+                if( SceneCheck ) {
+                    this->SceneMan = SceneCheck;
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to initiailze CameraManager when SceneManager has not yet been constructed.  The SceneManager is a dependancy of the CameraManager.");
+                }
             }
+
+            this->Initialized = true;
         }
-        this->Initialized = true;
     }
 
     void CameraManager::Deinitialize()
     {
-        this->Initialized = false;
+        if( this->Initialized )
+        {
+            this->Initialized = false;
+        }
     }
 
     SceneManager* CameraManager::GetScene() const
