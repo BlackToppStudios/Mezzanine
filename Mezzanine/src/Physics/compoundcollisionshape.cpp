@@ -88,7 +88,7 @@ namespace Mezzanine
         void CompoundCollisionShape::AddChildShape(CollisionShape* Child, const Vector3& ChildLocation, const Quaternion& ChildRotation)
         {
             btTransform ChildTrans(ChildRotation.GetBulletQuaternion(),ChildLocation.GetBulletVector3());
-            GetBulletCompoundShape()->addChildShape(ChildTrans,Child->GetBulletShape());
+            GetBulletCompoundShape()->addChildShape(ChildTrans,Child->_GetInternalShape());
             ChildShapes.push_back(Child);
             CollisionShapeManager::GetSingletonPtr()->StoreShape(Child);
         }
@@ -98,14 +98,14 @@ namespace Mezzanine
             btTransform ChildTrans;
             ChildTrans.setIdentity();
             ChildTrans.setOrigin(ChildLocation.GetBulletVector3());
-            GetBulletCompoundShape()->addChildShape(ChildTrans,Child->GetBulletShape());
+            GetBulletCompoundShape()->addChildShape(ChildTrans,Child->_GetInternalShape());
             ChildShapes.push_back(Child);
             CollisionShapeManager::GetSingletonPtr()->StoreShape(Child);
         }
 
         void CompoundCollisionShape::AddChildShape(CollisionShape* Child, const Transform& ChildLocation)
         {
-            GetBulletCompoundShape()->addChildShape(ChildLocation.GetBulletTransform(),Child->GetBulletShape());
+            GetBulletCompoundShape()->addChildShape(ChildLocation.GetBulletTransform(),Child->_GetInternalShape());
             ChildShapes.push_back(Child);
             CollisionShapeManager::GetSingletonPtr()->StoreShape(Child);
         }
@@ -127,7 +127,7 @@ namespace Mezzanine
                 if(Child == (*CSit))
                 {
                     ChildShapes.erase(CSit);
-                    GetBulletCompoundShape()->removeChildShape(Child->GetBulletShape());
+                    GetBulletCompoundShape()->removeChildShape(Child->_GetInternalShape());
                     return;
                 }
             }

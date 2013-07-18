@@ -672,11 +672,11 @@ namespace Mezzanine
             Entresol::GetSingletonPtr()->Log(logstream.str());
             Entresol::GetSingletonPtr()->DoMainLoopLogging();
 
-            BulletSerializer->registerNameForPointer((void*)Shape->GetBulletShape(),(*it).first.c_str());
-            int len = Shape->GetBulletShape()->calculateSerializeBufferSize();
+            BulletSerializer->registerNameForPointer((void*)Shape->_GetInternalShape(),(*it).first.c_str());
+            int len = Shape->_GetInternalShape()->calculateSerializeBufferSize();
             btChunk* chunk = BulletSerializer->allocate(len,1);
-            const char* structType = Shape->GetBulletShape()->serialize(chunk->m_oldPtr, BulletSerializer);
-            BulletSerializer->finalizeChunk(chunk,structType,BT_SHAPE_CODE,Shape->GetBulletShape());
+            const char* structType = Shape->_GetInternalShape()->serialize(chunk->m_oldPtr, BulletSerializer);
+            BulletSerializer->finalizeChunk(chunk,structType,BT_SHAPE_CODE,Shape->_GetInternalShape());
         }
         BulletSerializer->finishSerialization();
         FILE* f2 = fopen(FileName.c_str(),"wb");
@@ -691,11 +691,11 @@ namespace Mezzanine
         for( std::vector<Physics::CollisionShape*>::iterator it = ShapesToSave.begin() ; it != ShapesToSave.end() ; it++ )
         {
             Physics::CollisionShape* Shape = (*it);
-            BulletSerializer->registerNameForPointer((void*)Shape->GetBulletShape(),(*it)->GetName().c_str());
-            int len = Shape->GetBulletShape()->calculateSerializeBufferSize();
+            BulletSerializer->registerNameForPointer((void*)Shape->_GetInternalShape(),(*it)->GetName().c_str());
+            int len = Shape->_GetInternalShape()->calculateSerializeBufferSize();
             btChunk* chunk = BulletSerializer->allocate(len,1);
-            const char* structType = Shape->GetBulletShape()->serialize(chunk->m_oldPtr, BulletSerializer);
-            BulletSerializer->finalizeChunk(chunk,structType,BT_SHAPE_CODE,Shape->GetBulletShape());
+            const char* structType = Shape->_GetInternalShape()->serialize(chunk->m_oldPtr, BulletSerializer);
+            BulletSerializer->finalizeChunk(chunk,structType,BT_SHAPE_CODE,Shape->_GetInternalShape());
         }
         BulletSerializer->finishSerialization();
         FILE* f2 = fopen(FileName.c_str(),"wb");

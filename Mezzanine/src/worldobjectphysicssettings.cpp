@@ -72,13 +72,13 @@ namespace Mezzanine
     void WorldObjectPhysicsSettings::AssignShape(Physics::CollisionShape* Shape)
     {
         this->WorldObjectShape = Shape;
-        Parent->PhysicsShape = Shape->GetBulletShape();
+        Parent->PhysicsShape = Shape->_GetInternalShape();
     }
 
     void WorldObjectPhysicsSettings::SetCollisionShape(Physics::CollisionShape* Shape)
     {
         AssignShape(Shape);
-        WorldObjectCO->setCollisionShape(Shape->GetBulletShape());
+        WorldObjectCO->setCollisionShape(Shape->_GetInternalShape());
     }
 
     Physics::CollisionShape* WorldObjectPhysicsSettings::GetCollisionShape() const

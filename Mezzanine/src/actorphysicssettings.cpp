@@ -82,7 +82,7 @@ namespace Mezzanine
                 {
                     btTransform Trans;
                     btVector3 AABBmin, AABBmax, AABBsize;
-                    WorldObjectShape->GetBulletShape()->getAabb(Trans,AABBmin,AABBmax);
+                    WorldObjectShape->_GetInternalShape()->getAabb(Trans,AABBmin,AABBmax);
                     AABBsize = AABBmax - AABBmin;
                     Real ResultRadius = AABBsize.getX() < AABBsize.getY() ? (AABBsize.getX() < AABBsize.getZ() ? AABBsize.getX() : AABBsize.getZ()) : (AABBsize.getY() < AABBsize.getZ() ? AABBsize.getY() : AABBsize.getZ());
                     WorldObjectCO->setCcdSweptSphereRadius(ResultRadius*0.2);
@@ -197,12 +197,12 @@ namespace Mezzanine
             if(0 != mass)
                 mass=1/mass;
             btVector3 inertia(0,0,0);
-            Shape->GetBulletShape()->calculateLocalInertia(mass, inertia);
+            Shape->_GetInternalShape()->calculateLocalInertia(mass, inertia);
             this->ActorRB->setMassProps(mass,inertia);
-            this->ActorRB->setCollisionShape(Shape->GetBulletShape());
+            this->ActorRB->setCollisionShape(Shape->_GetInternalShape());
             this->ActorRB->updateInertiaTensor();
         }else{
-            this->ActorRB->setCollisionShape(Shape->GetBulletShape());
+            this->ActorRB->setCollisionShape(Shape->_GetInternalShape());
         }
         CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
     }

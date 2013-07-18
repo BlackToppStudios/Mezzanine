@@ -94,9 +94,20 @@ namespace Mezzanine
             CollisionShape();
             /// @brief Class Destructor.
             virtual ~CollisionShape();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
             /// @brief Gets the name of this shape.
             /// @return Returns a const reference string containing the name of this collision shape.
             virtual const String& GetName() const;
+            /// @brief Gets the type of Collision shape this is.
+            /// @return Returns an enum value indicating the type of collision shape this is.
+            virtual CollisionShape::ShapeType GetType() const = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration Methods
+
             /// @brief Sets the padding that will be applied when checking for collisions.
             /// @param Margin A real in world units representing how much padding is to be applied to this shape.
             virtual void SetMargin(const Real& Margin);
@@ -110,19 +121,12 @@ namespace Mezzanine
             /// @return Returns a vector3 representing the amount of scaling being applied to the shape.
             virtual Vector3 GetScaling() const;
 
-            /// @brief Gets the type of Collision shape this is.
-            /// @return Returns an enum value indicating the type of collision shape this is.
-            virtual CollisionShape::ShapeType GetType() const = 0;
-            /// @internal
-            /// @brief Gets the internal shape pointer this collision shape is based on.
-            /// @return Returns a pointer to the internal collision shape.
-            virtual btCollisionShape* GetBulletShape() const;
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
 
-            // Serializable
             /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
             virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-            // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
             /// @param OneNode and XML::Node containing the data.
             /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
@@ -130,6 +134,14 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "CollisionShape"
             static String SerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Gets the internal shape pointer this collision shape is based on.
+            /// @return Returns a pointer to the internal collision shape.
+            virtual btCollisionShape* _GetInternalShape() const;
         };//CollisionShape
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -141,18 +153,18 @@ namespace Mezzanine
         /// @param Name the name of the new shape.
         /// @param ShapeToModel An optional pointer to a bullet shape to include instead of creating one.
         /// @return A new Mezzanine::CollisionShape with either default Values or the values of the bullet shape if one is provided.
-        /// @warning The only checking done on the bullet shape is to verify it is not a null pointer. If the Bullet shape fails to be of the appropriate kind correlating to ShapeToCreate then *undefined behavior* will occur.
+        /// @warning The only checking done on the bullet shape is to verify it is not a null pointer. If the Internal shape fails to be of the appropriate kind correlating to ShapeToCreate then *undefined behavior* will occur.
         CollisionShape* MEZZ_LIB CreateShape(CollisionShape::ShapeType ShapeToCreate, const String& Name_, btCollisionShape* ShapeToModel);
         /// @brief Create a CollisionShape from a snippet of xml
         /// @param OneNode A Node for any Collision Shape that can be instanstiated
         /// @return A pointer to a CollisionShape of the Correct Type with the values stored in the XML.
         CollisionShape* MEZZ_LIB CreateShape(XML::Node OneNode);
         /// @internal
-        /// @brief Convert from a Bullet Collision Shape to a CollisionShape::ShapeType
+        /// @brief Convert from a Internal Collision Shape to a CollisionShape::ShapeType
         /// @param BulletShapeType The ShapeType to Convert
         /// @return The corresponding CollisionShape::ShapeType to the passed in bullet Shape Type if asuitable match exists
         /// @throw The Mezzanine engine only uses a subset of Bullets shapes, a Mezzanine::Exception with be thrown in the event an unsupported one is passed in.
-        CollisionShape::ShapeType MEZZ_LIB BulletSapeTypeToShapeType(int BulletShapeType);
+        CollisionShape::ShapeType MEZZ_LIB InternalShapeTypeToShapeType(int InternalShapeType);
         /// @brief Get a string suitable for human eyes from a CollisionShape::ShapeType, may not be suitable for endusers.
         /// @param ShapeToConvert The kind of shape you want a string for.
         /// @return A String with human readable contents corresponding to the passed in type.

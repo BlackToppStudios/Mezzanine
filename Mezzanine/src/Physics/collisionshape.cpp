@@ -68,8 +68,8 @@ namespace Mezzanine
         /////////////////////////////////////////
         // CollisionShape Functions
 
-        CollisionShape::CollisionShape()
-            : ShapeBase(NULL)
+        CollisionShape::CollisionShape() :
+            ShapeBase(NULL)
         {
         }
 
@@ -77,35 +77,39 @@ namespace Mezzanine
         {
         }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
         const String& CollisionShape::GetName() const
         {
-            return Name;
+            return this->Name;
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Configuration Methods
 
         void CollisionShape::SetMargin(const Real& Margin)
         {
-            ShapeBase->setMargin(Margin);
+            this->ShapeBase->setMargin(Margin);
         }
 
         Real CollisionShape::GetMargin() const
         {
-            return ShapeBase->getMargin();
+            return this->ShapeBase->getMargin();
         }
 
         void CollisionShape::SetScaling(const Vector3& Scaling)
         {
-            ShapeBase->setLocalScaling(Scaling.GetBulletVector3());
+            this->ShapeBase->setLocalScaling(Scaling.GetBulletVector3());
         }
 
         Vector3 CollisionShape::GetScaling() const
         {
-            return Vector3(ShapeBase->getLocalScaling());
+            return Vector3(this->ShapeBase->getLocalScaling());
         }
 
-        btCollisionShape* CollisionShape::GetBulletShape() const
-        {
-            return ShapeBase;
-        }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
 
         void CollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
@@ -156,9 +160,19 @@ namespace Mezzanine
         }
 
         String CollisionShape::SerializableName()
-            {   return String("CollisionShape"); }
+            { return String("CollisionShape"); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        btCollisionShape* CollisionShape::_GetInternalShape() const
+        {
+            return this->ShapeBase;
+        }
+
         /////////////////////////////////////////
         // Utility Functions
+
         CollisionShape* CreateShape(CollisionShape::ShapeType ShapeToCreate, const String& Name_, btCollisionShape* ShapeToModel)
         {
             if (ShapeToModel)
@@ -195,7 +209,7 @@ namespace Mezzanine
                         { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance."); }
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an empty Bullet Collision Shape type into a CollisionShape instance.");
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an empty Internal Collision Shape type into a CollisionShape instance.");
             }
         }
 
@@ -241,9 +255,9 @@ namespace Mezzanine
             }
         }
 
-        CollisionShape::ShapeType BulletSapeTypeToShapeType(int BulletShapeType)
+        CollisionShape::ShapeType InternalShapeTypeToShapeType(int InternalShapeType)
         {
-            switch(BulletShapeType)
+            switch(InternalShapeType)
             {
                 case BOX_SHAPE_PROXYTYPE:           return CollisionShape::ST_Box;
                 case CAPSULE_SHAPE_PROXYTYPE:       return CollisionShape::ST_Capsule;
@@ -259,7 +273,7 @@ namespace Mezzanine
                 case TRIANGLE_MESH_SHAPE_PROXYTYPE: return CollisionShape::ST_StaticTriMesh;
                 case COMPOUND_SHAPE_PROXYTYPE:      return CollisionShape::ST_Compound;
                 default:
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Bullet Collision Shape type into a Physics::CollisionShapeShapeType."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Internal Collision Shape type into a Physics::CollisionShapeShapeType."); }
             }
         }
 
