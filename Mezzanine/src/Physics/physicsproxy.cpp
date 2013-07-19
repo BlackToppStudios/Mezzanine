@@ -51,7 +51,7 @@ namespace Mezzanine
     {
         PhysicsProxy::PhysicsProxy() :
             WorldObjectShape(NULL),
-            ScaleerShape(NULL),
+            ScalerShape(NULL),
             CollisionGroup(0),
             CollisionMask(0)
         {

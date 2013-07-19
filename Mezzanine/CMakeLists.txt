@@ -701,6 +701,19 @@ set(OGRE_CONFIG_THREADS 0 CACHE INT "Forcing minimal build for Mezzanine build."
 set(OGRE_CONFIG_THREAD_PROVIDER "" CACHE STRING "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_BUILD_PLUGIN_CG FALSE CACHE BOOL "Forcing Ogre to disable CG, because it is disgusting." FORCE)
 
+# Bullet related values
+set(BUILD_AMD_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(BUILD_INTEL_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(BUILD_NVIDIA_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(BUILD_MINICL_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(BUILD_CPU_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(USE_GLUT OFF CACHE BOOL "Do not build demos!" FORCE)
+set(BUILD_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(INSTALL_LIBS OFF CACHE BOOL "Do not install libs!" FORCE)
+set(INSTALL_EXTRA_LIBS OFF CACHE BOOL "Do not install libs!" FORCE)
+set(BUILD_UNIT_TESTS OFF CACHE BOOL "Do not build unit tests!" FORCE)
+set(BUILD_MULTITHREADING ON CACHE BOOL "Do build multithreading constructs!" FORCE)
+
 #######################################
 # Windows Build Specific Items
 if(${WIN32})

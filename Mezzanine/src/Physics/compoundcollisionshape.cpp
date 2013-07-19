@@ -44,7 +44,7 @@
 #include "collisionshapemanager.h"
 #include "stringtool.h"
 
-#include "btBulletDynamicsCommon.h"
+#include <btBulletDynamicsCommon.h>
 
 namespace Mezzanine
 {
@@ -68,7 +68,7 @@ namespace Mezzanine
             for( Whole X = 0 ; X < NumChildren ; X++ )
             {
                 btCollisionShape* CurrChild = GetBulletCompoundShape()->getChildShape(X);
-                CollisionShape* CreatedShape = CreateShape(BulletSapeTypeToShapeType(CurrChild->getShapeType()), this->Name+"Child"+StringTools::ConvertToString(X), CurrChild);
+                CollisionShape* CreatedShape = CreateShape(InternalShapeTypeToShapeType(CurrChild->getShapeType()), this->Name+"Child"+StringTools::ConvertToString(X), CurrChild);
                 ChildShapes.push_back(CreatedShape);
                 CollisionShapeManager::GetSingletonPtr()->StoreShape(CreatedShape);
             }

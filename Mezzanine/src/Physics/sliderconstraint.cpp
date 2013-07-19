@@ -306,22 +306,22 @@ namespace Mezzanine
 
             if( Con_Stop_ERP == Param )
             {
-                if( this->Slider->m_flags & BT_SLIDER_FLAGS_ERP_LIMLIN ) return true;
-                if( this->Slider->m_flags & BT_SLIDER_FLAGS_ERP_ORTLIN ) return true;
-                if( this->Slider->m_flags & BT_SLIDER_FLAGS_ERP_LIMANG ) return true;
-                if( this->Slider->m_flags & BT_SLIDER_FLAGS_ERP_ORTANG ) return true;
+                if( this->Slider->getFlags() & BT_SLIDER_FLAGS_ERP_LIMLIN ) return true;
+                if( this->Slider->getFlags() & BT_SLIDER_FLAGS_ERP_ORTLIN ) return true;
+                if( this->Slider->getFlags() & BT_SLIDER_FLAGS_ERP_LIMANG ) return true;
+                if( this->Slider->getFlags() & BT_SLIDER_FLAGS_ERP_ORTANG ) return true;
             }
             else if( Con_Stop_CFM == Param )
             {
-                if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_DIRLIN ) return true;
-                if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_DIRANG ) return true;
+                if( this->Slider->getFlags() & BT_SLIDER_FLAGS_CFM_DIRLIN ) return true;
+                if( this->Slider->getFlags() & BT_SLIDER_FLAGS_CFM_DIRANG ) return true;
             }
             else if( Con_CFM == Param )
             {
-                if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_LIMLIN ) return true;
-                if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_ORTLIN ) return true;
-                if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_LIMANG ) return true;
-                if( this->Slider->m_flags & BT_SLIDER_FLAGS_CFM_ORTANG ) return true;
+                if( this->Slider->getFlags() & BT_SLIDER_FLAGS_CFM_LIMLIN ) return true;
+                if( this->Slider->getFlags() & BT_SLIDER_FLAGS_CFM_ORTLIN ) return true;
+                if( this->Slider->getFlags() & BT_SLIDER_FLAGS_CFM_LIMANG ) return true;
+                if( this->Slider->getFlags() & BT_SLIDER_FLAGS_CFM_ORTANG ) return true;
             }
             return false;
         }

@@ -137,8 +137,8 @@ namespace Mezzanine
             // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btPoint2PointConstraint_8cpp_source.html#l00202
             if (-1!=Axis)
                 { return false; }
-            return  ( (Con_ERP==Param||Con_Stop_ERP==Param) && this->Point2Point->m_flags & BT_P2P_FLAGS_ERP )     ||   //If we are checking erp OR we are checking stoperp AND the erp Flag is set OR
-                    ( (Con_CFM==Param||Con_Stop_CFM==Param) && this->Point2Point->m_flags & BT_P2P_FLAGS_CFM )      ;   //   we are checking cfm OR we are checking stopcfm AND the cfm Flag is set
+            return  ( (Con_ERP==Param||Con_Stop_ERP==Param) && this->Point2Point->getFlags() & BT_P2P_FLAGS_ERP )     ||   //If we are checking erp OR we are checking stoperp AND the erp Flag is set OR
+                    ( (Con_CFM==Param||Con_Stop_CFM==Param) && this->Point2Point->getFlags() & BT_P2P_FLAGS_CFM )      ;   //   we are checking cfm OR we are checking stopcfm AND the cfm Flag is set
         }
 
         void Point2PointConstraint::ProtoSerialize(XML::Node& CurrentRoot) const

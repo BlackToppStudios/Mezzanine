@@ -159,7 +159,7 @@ namespace Mezzanine
             { this->Hinge->setMotorTarget(TargetAngle, Dt); }
 
         void HingeConstraint::SetMotorTargetVelocity(Real TargetVelocity)
-            { this->Hinge->m_motorTargetVelocity = TargetVelocity; }
+            { this->Hinge->setMotorTargetVelocity(TargetVelocity); }
 
         Real HingeConstraint::GetMotorTargetVelocity() const
             { return this->Hinge->getMotorTargetVelosity(); }
@@ -176,13 +176,13 @@ namespace Mezzanine
             { return this->Hinge->getUpperLimit(); }
 
         Real HingeConstraint::GetLimitSoftness() const
-            { return this->Hinge->m_limitSoftness; }
+            { return this->Hinge->getLimitSoftness(); }
 
         Real HingeConstraint::GetLimitBiasFactor() const
-            { return this->Hinge->m_biasFactor; }
+            { return this->Hinge->getLimitBiasFactor(); }
 
         Real HingeConstraint::GetLimitRelaxationFactor() const
-            { return this->Hinge->m_relaxationFactor; }
+            { return this->Hinge->getLimitRelaxationFactor(); }
 
         ////////////////////////////////////////////////////////////////////////////////
         // HingeConstraint Details
@@ -228,16 +228,16 @@ namespace Mezzanine
             // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btHingeConstraint_8cpp_source.html#l00962
             if ( -1!=Axis && 5!=Axis )
                 { return false; }
-            return  ( Con_Stop_ERP==Param && this->Hinge->m_flags & BT_HINGE_FLAGS_ERP_STOP )   ||  //if we are checking the stop_erp AND the stop_erp bit is set
-                    ( Con_Stop_CFM==Param && this->Hinge->m_flags & BT_HINGE_FLAGS_CFM_STOP )   ||  //if we are checking the stop_cfm AND the stop_cfm bit is set
-                    ( Con_CFM==Param      && this->Hinge->m_flags & BT_HINGE_FLAGS_CFM_NORM )   ;   //if we are checking the cfm AND the cfm bit is set
+            return  ( Con_Stop_ERP==Param && this->Hinge->getFlags() & BT_HINGE_FLAGS_ERP_STOP )   ||  //if we are checking the stop_erp AND the stop_erp bit is set
+                    ( Con_Stop_CFM==Param && this->Hinge->getFlags() & BT_HINGE_FLAGS_CFM_STOP )   ||  //if we are checking the stop_cfm AND the stop_cfm bit is set
+                    ( Con_CFM==Param      && this->Hinge->getFlags() & BT_HINGE_FLAGS_CFM_NORM )   ;   //if we are checking the cfm AND the cfm bit is set
         }
 
         bool HingeConstraint::GetUseReferenceFrameA() const
-            { return this->Hinge->m_useReferenceFrameA; }
+            { return this->Hinge->getUseReferenceFrameA(); }
 
         void HingeConstraint::SetUseReferenceFrameA(bool UseReferenceFrameA)
-            { this->Hinge->m_useReferenceFrameA = UseReferenceFrameA; }
+            { this->Hinge->setUseReferenceFrameA(UseReferenceFrameA); }
 
         bool HingeConstraint::GetUseFrameOffset() const
             { return this->Hinge->getUseFrameOffset(); }

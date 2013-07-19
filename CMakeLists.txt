@@ -464,20 +464,6 @@ Message(STATUS "Looking for Ogre3d headers in: ${OgreHeaderIncludeDir}")
 #set(OgrePluginRenderGL ${StaticLibPrefix}RenderSystem_GL${OgresD}${StaticLibSuffix})
 #set(OgrePluginParticle ${StaticLibPrefix}Plugin_ParticleFX${OgresD}${StaticLibSuffix})
 
-#######################################
-# Bullet related values
-
-set(BUILD_AMD_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_INTEL_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_NVIDIA_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_MINICL_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_CPU_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(USE_GLUT OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(INSTALL_LIBS OFF CACHE BOOL "Do not install libs!" FORCE)
-set(INSTALL_EXTRA_LIBS OFF CACHE BOOL "Do not install libs!" FORCE)
-set(BUILD_UNIT_TESTS OFF CACHE BOOL "Do not build unit tests!" FORCE)
-
 ###############################################################################
 # Doxygen options
 option (Mezz_Doc "Refresh Doxygen documentation during a build" OFF)
@@ -608,6 +594,20 @@ mark_as_advanced( FORCE
     NVIDIA_OPENCL_ICD_CFG
     INTERNAL_UPDATE_SERIALIZATION_STRUCTURES
     BUILD_EXTRAS
+    BUILD_MULTITHREADING
+    AMD_OPENCL_BASE_DIR
+    USE_MULTITHREADED_BENCHMARK
+    
+    BUILD_AMD_OPENCL_DEMOS
+    BUILD_INTEL_OPENCL_DEMOS
+    BUILD_NVIDIA_OPENCL_DEMOS
+    BUILD_MINICL_OPENCL_DEMOS
+    BUILD_CPU_DEMOS
+    USE_GLUT
+    BUILD_DEMOS
+    INSTALL_LIBS
+    INSTALL_EXTRA_LIBS
+    BUILD_UNIT_TESTS
 
     # Ogre indirect
     Boost_DIR Boost_LIB_DIAGNOSTIC_DEFINITIONS OGRE_SET_USE_BOOST

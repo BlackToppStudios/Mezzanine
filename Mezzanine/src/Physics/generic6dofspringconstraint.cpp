@@ -141,13 +141,13 @@ namespace Mezzanine
             { this->Generic6dofSpring()->enableSpring(Index, Enable); }
 
         Real Generic6DofSpringConstraint::GetSpringStiffness(int Index) const
-            { return this->Generic6dofSpring()->m_springStiffness[Index]; }
+            { return this->Generic6dofSpring()->getStiffness(Index); }
 
         Real Generic6DofSpringConstraint::GetSpringDamping(int Index) const
-            { return this->Generic6dofSpring()->m_springDamping[Index]; }
+            { return this->Generic6dofSpring()->getDamping(Index); }
 
         bool Generic6DofSpringConstraint::GetSpringEnabled(int Index) const
-            { return this->Generic6dofSpring()->m_springEnabled[Index]; }
+            { return this->Generic6dofSpring()->isSpringEnabled(Index); }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofSpringConstraint Calculated Items
@@ -164,7 +164,7 @@ namespace Mezzanine
             { return Vector3(GetCurrentSpringEquilibriumPoint(LinearX),GetCurrentSpringEquilibriumPoint(LinearY),GetCurrentSpringEquilibriumPoint(LinearZ)); }
 
         Real Generic6DofSpringConstraint::GetCurrentSpringEquilibriumPoint(int Index) const
-            { return this->Generic6dofSpring()->m_equilibriumPoint[Index]; }
+            { return this->Generic6dofSpring()->getEquilibriumPoint(Index); }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofSpringConstraint Serialization
