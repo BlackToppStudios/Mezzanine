@@ -40,7 +40,7 @@
 #ifndef _countedptrtests_h
 #define _countedptrtests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "smartptr.h"
 

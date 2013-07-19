@@ -77,12 +77,22 @@ namespace Mezzanine
 
         char* AllLower(char* StringToConvert)
         {
-            std::locale loc;
-            for(int c=0; StringToConvert[c]!='\0'; ++c)
-            {
-                StringToConvert[c]=tolower(StringToConvert[c],loc);
-            }
+            char* CharIter;
+            for(CharIter = StringToConvert; 0 != *CharIter; CharIter++)
+                { *CharIter = tolower(*CharIter); }
             return StringToConvert;
+        }
+
+        String AllLower(String StringToConvert)
+        {
+            char* temp = new char[StringToConvert.size()+1];
+            char* CharIter = temp;
+            for(String::iterator Iter = StringToConvert.begin(); Iter!=StringToConvert.end(); Iter++)
+                { *CharIter++ = tolower(*Iter); }
+            *CharIter=0;
+            String Results(temp);
+            delete[] temp;
+            return Results;
         }
 
         Mezzanine::String BoolToString(bool i)

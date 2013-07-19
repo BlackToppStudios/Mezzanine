@@ -40,7 +40,7 @@
 #ifndef _lua51tests_h
 #define _lua51tests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "scripting.h"
 

@@ -46,7 +46,7 @@
 
 #include <map>
 
-#include "main.h"
+#include "mezztest.h"
 
 // Automatically generated test inclusion ${CppIncludes}
 // End Automatically generated test inclusion

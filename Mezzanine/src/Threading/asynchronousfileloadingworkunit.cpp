@@ -47,7 +47,7 @@
 #include <iterator>
 
 /// @file
-/// @brief The implemtation of the @ref Mezzanine::Threading::AsynchronousFileLoadWorkUnit "AsynchronousFileLoadWorkUnit" a workunit that loads a listing of files asynchronously.
+/// @brief The implementation of the @ref Mezzanine::Threading::AsynchronousFileLoadWorkUnit "AsynchronousFileLoadWorkUnit" a workunit that loads a listing of files asynchronously.
 
 namespace Mezzanine
 {

@@ -69,7 +69,7 @@ namespace Mezzanine
     namespace Threading
     {
 
-        /// @cond 0
+        /// @cond false
 
         /// @brief This is the function that all threads will run, except the main.
         /// @param ThreadStorage A pointer to a ThreadSpecificStorage that has the required data for a thread after it launches.

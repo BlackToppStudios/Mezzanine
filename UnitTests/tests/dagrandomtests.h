@@ -40,7 +40,7 @@
 #ifndef _randomtests_h
 #define _randomtests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "dagframescheduler.h"
 
@@ -48,7 +48,7 @@
 #include <iostream>
 
 /// @file
-/// @brief this file should be used as template for building future Unit Tests
+/// @brief Random number are used to aid in the testing of some heuristics, this tests those random number facilities
 
 using namespace std;
 using namespace Mezzanine;
@@ -72,89 +72,79 @@ class dagrandomtests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "random"
+        /// @return Returns a String containing "DAGRandom"
         virtual String Name()
-            { return String("dagrandom"); }
+            { return String("DAGRandom"); }
 
-        /// @detail provides on Sample interactive and one sample automatic test.
-        virtual void RunTests(bool RunAutomaticTests, bool)
+        /// @brief Tests the random number facility used in other tests.
+        void RunAutomaticTests()
         {
-            if (RunAutomaticTests)
+            cout << endl << "Starting random number generation tests. Not part of the library, but required for testing." << endl;
+            Mezzanine::MaxInt Timestamp1 = Mezzanine::GetTimeStamp();
+            srand((int)Timestamp1);
+            Whole TestRuns = 10000000;
+            vector<Whole> D20Rolls;
+            vector<Whole> D2d3Rolls;
+            vector<Whole> D20Histogram;
+            vector<Whole> D2d3Histogram;
+
+            cout <<  "Doing " << TestRuns << " iterations of generatining numbers with each function, and initializing random seed with " << Timestamp1 << "." << endl;
+            for (Whole Counter=0; Counter<TestRuns; ++Counter)
             {
-                TestResult temp;
-
-                cout << endl << "Starting random number generation tests. Not part of the library, but required for testing." << endl;
-                Mezzanine::MaxInt Timestamp1 = Mezzanine::GetTimeStamp();
-                srand((int)Timestamp1);
-                Whole TestRuns = 10000000;
-                vector<Whole> D20Rolls;
-                vector<Whole> D2d3Rolls;
-                vector<Whole> D20Histogram;
-                vector<Whole> D2d3Histogram;
-
-                cout <<  "Doing " << TestRuns << " iterations of generatining numbers with each function, and initializing random seed with " << Timestamp1 << "." << endl;
-                for (Whole Counter=0; Counter<TestRuns; ++Counter)
-                {
-                    D20Rolls.push_back(DiceD20());
-                    D2d3Rolls.push_back(Dice2D3());
-                }
-
-                cout << "Preparing counts of the rolls." << endl;
-                // init some 0s
-                for (Whole Counter=0; Counter<=21; ++Counter) //providing a small amount of buffer space on either side in case dice algorithm has off by one issue.
-                    { D20Histogram.push_back(0); }
-                for (Whole Counter=0; Counter<=7; ++Counter)
-                    { D2d3Histogram.push_back(0); }
-
-                // count the actual rolls
-                for(vector<Whole>::iterator Iter=D20Rolls.begin(); Iter!=D20Rolls.end(); ++Iter)
-                    { D20Histogram[*Iter]++; }
-                for(vector<Whole>::iterator Iter=D2d3Rolls.begin(); Iter!=D2d3Rolls.end(); ++Iter)
-                    { D2d3Histogram[*Iter]++; }
-
-                bool EvenDist = true;
-                bool HistDist = true;
-
-                // display chart
-                cout << "D20 rolls should be distributed evenly between 1 and 20 inclusive:" << endl;
-                for (Whole Counter=1; Counter<=20; ++Counter) //providing a small amount of buffer space on either side in case dice algorithm has off by one issue.
-                {
-                    double Output = (((double)D20Histogram[Counter])/((double)TestRuns))*100;
-                    cout << Counter << ": " << D20Histogram[Counter] << " \t" << Output << "% " << endl;
-                    if(Output<4.9 || 5.1<Output )
-                        { EvenDist = false; }
-                }
-
-                cout << "2d3 rolls should be distributed on a bell curve 2 and 6 inclusive:" << endl;
-                for (Whole Counter=0; Counter<=7; ++Counter)
-                    { cout << Counter << ": " << D2d3Histogram[Counter] << " \t" << (((double)D2d3Histogram[Counter])/((double)TestRuns))*100 << "% " <<  endl; }
-                if(D2d3Histogram[2]<1100000 || 1200000<D20Histogram[2] )
-                    { HistDist = false; }
-                if(D2d3Histogram[3]<2200000 || 2300000<D20Histogram[3] )
-                    { HistDist = false; }
-                if(D2d3Histogram[4]<3300000 || 3400000<D20Histogram[4] )
-                    { HistDist = false; }
-                if(D2d3Histogram[5]<2200000 || 2300000<D20Histogram[5] )
-                    { HistDist = false; }
-                if(D2d3Histogram[6]<1100000 || 1200000<D20Histogram[6] )
-                    { HistDist = false; }
-
-                if(EvenDist)
-                    { temp=Success; }
-                else
-                    { temp=Warning; }
-                AddTestResult("DAGFrameScheduler::Random::D20", temp);
-
-                if(HistDist)
-                    { temp=Success; }
-                else
-                    { temp=Warning; }
-                AddTestResult("DAGFrameScheduler::Random::2D3", temp);
-
-            }else{
-                AddTestResult("DAGFrameScheduler::Random::D20", Skipped);
+                D20Rolls.push_back(DiceD20());
+                D2d3Rolls.push_back(Dice2D3());
             }
+
+            cout << "Preparing counts of the rolls." << endl;
+            // init some 0s
+            for (Whole Counter=0; Counter<=21; ++Counter) //providing a small amount of buffer space on either side in case dice algorithm has off by one issue.
+                { D20Histogram.push_back(0); }
+            for (Whole Counter=0; Counter<=7; ++Counter)
+                { D2d3Histogram.push_back(0); }
+
+            // count the actual rolls
+            for(vector<Whole>::iterator Iter=D20Rolls.begin(); Iter!=D20Rolls.end(); ++Iter)
+                { D20Histogram[*Iter]++; }
+            for(vector<Whole>::iterator Iter=D2d3Rolls.begin(); Iter!=D2d3Rolls.end(); ++Iter)
+                { D2d3Histogram[*Iter]++; }
+
+            bool EvenDist = true;
+            bool HistDist = true;
+
+            // display chart
+            cout << "D20 rolls should be distributed evenly between 1 and 20 inclusive:" << endl;
+            for (Whole Counter=1; Counter<=20; ++Counter) //providing a small amount of buffer space on either side in case dice algorithm has off by one issue.
+            {
+                double Output = (((double)D20Histogram[Counter])/((double)TestRuns))*100;
+                cout << Counter << ": " << D20Histogram[Counter] << " \t" << Output << "% " << endl;
+                if(Output<4.9 || 5.1<Output )
+                    { EvenDist = false; }
+            }
+
+            cout << "2d3 rolls should be distributed on a bell curve 2 and 6 inclusive:" << endl;
+            for (Whole Counter=0; Counter<=7; ++Counter)
+                { cout << Counter << ": " << D2d3Histogram[Counter] << " \t" << (((double)D2d3Histogram[Counter])/((double)TestRuns))*100 << "% " <<  endl; }
+            if(D2d3Histogram[2]<1100000 || 1200000<D20Histogram[2] )
+                { HistDist = false; }
+            if(D2d3Histogram[3]<2200000 || 2300000<D20Histogram[3] )
+                { HistDist = false; }
+            if(D2d3Histogram[4]<3300000 || 3400000<D20Histogram[4] )
+                { HistDist = false; }
+            if(D2d3Histogram[5]<2200000 || 2300000<D20Histogram[5] )
+                { HistDist = false; }
+            if(D2d3Histogram[6]<1100000 || 1200000<D20Histogram[6] )
+                { HistDist = false; }
+
+            TEST_WARN(EvenDist, "DAGFrameScheduler::Random::D20");
+            TEST_WARN(HistDist, "DAGFrameScheduler::Random::2D3");
+
+
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
 };
 
 #endif

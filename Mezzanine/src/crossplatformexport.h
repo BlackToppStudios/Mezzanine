@@ -101,7 +101,20 @@
     /// @def MEZZ_LIB
     /// @brief Some platforms require special decorations to denote what is exported/imported in a share library. This is that decoration if when it is needed.
     #ifdef WINDOWS
+        /// @def _MEZZ_THREAD_WIN32_
+        /// @brief Defined if this is running on windows.
         #define _MEZZ_THREAD_WIN32_
+
+        #ifdef _MSC_VER
+            #pragma warning( disable : 4251) // Disable the dll import/export warnings on items that are set correctly.
+            #pragma warning( disable : 4244) // Disable the double to float conversions, they are in their by design to minimize floating point rounding during intermediate calculations.
+            #pragma warning( disable : 4127) // Disable conditional expression is constant
+            #pragma warning( disable : 4800) // pugi xml unspecified bool type coercion has performance cost, used only in unit tests
+            #pragma warning( disable : 4221) // interfaces don't generate linkable symbols, well of course they don't
+            #pragma warning( disable : 4512) // Could not generate assignment operator for class that doesn't need one
+        #endif
+
+        /// @details if this is not defined, then most likely _MEZZ_THREAD_POSIX_ is.
         #ifdef EXPORTINGMEZZANINEDLL
             #define MEZZ_LIB __declspec(dllexport)
         #else
@@ -109,7 +122,15 @@
         #endif      // \EXPORTINGMEZZANINEDLL
     #else
         #define MEZZ_LIB
+        /// @def _MEZZ_THREAD_POSIX_
+        /// @brief Defined if this is running on Linux, Mac OS X, Android, or any other sane platform.
+        /// @details if this is not defined, then most likely _MEZZ_THREAD_WIN32_ is.
         #define _MEZZ_THREAD_POSIX_
+        #if defined(__APPLE__) || defined(__MACH__) || defined(__OSX__)
+            /// @def _MEZZ_THREAD_APPLE_
+            /// @brief Sometimes specific workarounds are required for Mac OS this is how we detect it.
+            #define _MEZZ_THREAD_APPLE_
+        #endif
     #endif  // \WINDOWS
 
     #define _MEZZ_PLATFORM_DEFINED_

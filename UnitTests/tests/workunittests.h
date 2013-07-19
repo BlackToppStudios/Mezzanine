@@ -40,7 +40,7 @@
 #ifndef _workunittests_h
 #define _workunittests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "dagframescheduler.h"
 #include "dagrandomtests.h"
@@ -124,153 +124,76 @@ class workunittests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "workunit"
+        /// @return Returns a String containing "WorkUnit"
         virtual String Name()
-            { return String("workunit"); }
+            { return String("WorkUnit"); }
 
         /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Test if the WorkUnit
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        /// @detail Mostly tests whether or not dependencies are tracked correctly.
+        void RunAutomaticTests()
         {
-            RunInteractiveTests = false; //prevent warnings
+            cout << "Starting WorkUnit Tests, 20 runs with WorkUnitSample1" << endl;
+            PiMakerWorkUnit WorkUnitSample1(5000,"WorkUnitSample1",false);
+            FrameScheduler TestScheduler(&cout,1);
+            Mezzanine::Threading::DefaultThreadSpecificStorage::Type TestThreadStorage(&TestScheduler);
+            // run work unit
+            for(Whole Counter=0; Counter<20; Counter++)
+                { WorkUnitSample1(TestThreadStorage); }
+            cout << "Here is the complete log of Twenty Test Runs" << endl
+                 << TestThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger).GetUsable().str() // << endl // logs ends with a newline
+                 << "Average Execution Time (Microseconds): " << WorkUnitSample1.GetPerformanceLog().GetAverage() << endl;
 
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
+            cout << endl << "Starting WorkUnit Dependent and Dependency count Tests. Creating a chain in which C depends on B which depends on A."
+                 << endl << "C --> B --> A" << endl;
+            PiMakerWorkUnit* WorkUnitA = new PiMakerWorkUnit(50,"A",false);
+            PiMakerWorkUnit* WorkUnitB = new PiMakerWorkUnit(50,"B",false);
+            PiMakerWorkUnit* WorkUnitC = new PiMakerWorkUnit(50,"C",false);
+            WorkUnitC->AddDependency(WorkUnitB);
+            WorkUnitB->AddDependency(WorkUnitA);
+            TestScheduler.AddWorkUnitMain(WorkUnitA);
+            TestScheduler.AddWorkUnitMain(WorkUnitB);
+            TestScheduler.AddWorkUnitMain(WorkUnitC);
+            TestScheduler.UpdateDependentGraph();
+            cout << "A dependency count: " << WorkUnitA->GetDependencyCount() << " \t A dependent count: " << WorkUnitA->GetDependentCount(TestScheduler) << endl;
+            cout << "B dependency count: " << WorkUnitB->GetDependencyCount() << " \t B dependent count: " << WorkUnitB->GetDependentCount(TestScheduler) << endl;
+            cout << "C dependency count: " << WorkUnitC->GetDependencyCount() << " \t C dependent count: " << WorkUnitC->GetDependentCount(TestScheduler) << endl;
+            TEST(WorkUnitA->GetDependencyCount()==0,"ADependencyCount");
+            TEST(WorkUnitA->GetDependentCount(TestScheduler)==2,"ADependentCount");
+            TEST(WorkUnitB->GetDependencyCount()==1,"BDependencyCount");
+            TEST(WorkUnitB->GetDependentCount(TestScheduler)==1,"BDependentCount");
+            TEST(WorkUnitC->GetDependencyCount()==2,"CDependencyCount");
+            TEST(WorkUnitC->GetDependentCount(TestScheduler)==0,"CDependentCount");
 
-                cout << "Starting WorkUnit Tests, 20 runs with WorkUnitSample1" << endl;
-                PiMakerWorkUnit WorkUnitSample1(5000,"WorkUnitSample1",false);
-                FrameScheduler TestScheduler(&cout,1);
-                Mezzanine::Threading::DefaultThreadSpecificStorage::Type TestThreadStorage(&TestScheduler);
-                // run work unit
-                for(Whole Counter=0; Counter<20; Counter++)
-                    { WorkUnitSample1(TestThreadStorage); }
-                cout << "Here is the complete log of Twenty Test Runs" << endl
-                     << TestThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger).GetUsable().str() // << endl // logs ends with a newline
-                     << "Average Execution Time (Microseconds): " << WorkUnitSample1.GetPerformanceLog().GetAverage() << endl;
-
-                cout << endl << "Starting WorkUnit Dependent and Dependency count Tests. Creating a chain in which C depends on B which depends on A."
-                     << endl << "C --> B --> A" << endl;
-                PiMakerWorkUnit* WorkUnitA = new PiMakerWorkUnit(50,"A",false);
-                PiMakerWorkUnit* WorkUnitB = new PiMakerWorkUnit(50,"B",false);
-                PiMakerWorkUnit* WorkUnitC = new PiMakerWorkUnit(50,"C",false);
-                WorkUnitC->AddDependency(WorkUnitB);
-                WorkUnitB->AddDependency(WorkUnitA);
-                TestScheduler.AddWorkUnitMain(WorkUnitA);
-                TestScheduler.AddWorkUnitMain(WorkUnitB);
-                TestScheduler.AddWorkUnitMain(WorkUnitC);
-                TestScheduler.UpdateDependentGraph();
-                cout << "A dependency count: " << WorkUnitA->GetDependencyCount() << " \t A dependent count: " << WorkUnitA->GetDependentCount(TestScheduler) << endl;
-                cout << "B dependency count: " << WorkUnitB->GetDependencyCount() << " \t B dependent count: " << WorkUnitB->GetDependentCount(TestScheduler) << endl;
-                cout << "C dependency count: " << WorkUnitC->GetDependencyCount() << " \t C dependent count: " << WorkUnitC->GetDependentCount(TestScheduler) << endl;
-                if(WorkUnitA->GetDependencyCount()==0)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::ADependencyCount", temp);
-                if(WorkUnitA->GetDependentCount(TestScheduler)==2)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::ADependentCount", temp);
-                if(WorkUnitB->GetDependencyCount()==1)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::BDependencyCount", temp);
-                if(WorkUnitB->GetDependentCount(TestScheduler)==1)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::BDependentCount", temp);
-                if(WorkUnitC->GetDependencyCount()==2)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::CDependencyCount", temp);
-                if(WorkUnitC->GetDependentCount(TestScheduler)==0)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::CDependentCount", temp);
-
-                cout << "Creating a WorkUnit D which depends on B, So we should have:"
-                        << endl << "D --"
-                        << endl << "   |"
-                        << endl << "   v"
-                        << endl << "   B --> A"
-                        << endl << "   ^"
-                        << endl << "   |"
-                        << endl << "C --" << endl;
-                PiMakerWorkUnit* WorkUnitD = new PiMakerWorkUnit(50,"D",false);
-                WorkUnitD->AddDependency(WorkUnitB);
-                TestScheduler.AddWorkUnitMain(WorkUnitD);
-                TestScheduler.UpdateDependentGraph();
-                cout << "A dependency count: " << WorkUnitA->GetDependencyCount() << " \t A dependent count: " << WorkUnitA->GetDependentCount(TestScheduler) << endl;
-                cout << "B dependency count: " << WorkUnitB->GetDependencyCount() << " \t B dependent count: " << WorkUnitB->GetDependentCount(TestScheduler) << endl;
-                cout << "C dependency count: " << WorkUnitC->GetDependencyCount() << " \t C dependent count: " << WorkUnitC->GetDependentCount(TestScheduler) << endl;
-                cout << "D dependency count: " << WorkUnitD->GetDependencyCount() << " \t D dependent count: " << WorkUnitD->GetDependentCount(TestScheduler) << endl;
-                if(WorkUnitA->GetDependencyCount()==0)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::A2DependencyCount", temp);
-                if(WorkUnitA->GetDependentCount(TestScheduler)==3)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::A2DependentCount", temp);
-                if(WorkUnitB->GetDependencyCount()==1)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::B2DependencyCount", temp);
-                if(WorkUnitB->GetDependentCount(TestScheduler)==2)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::B2DependentCount", temp);
-                if(WorkUnitC->GetDependencyCount()==2)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::C2DependencyCount", temp);
-                if(WorkUnitC->GetDependentCount(TestScheduler)==0)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::C2DependentCount", temp);
-                if(WorkUnitD->GetDependencyCount()==2)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::D2DependencyCount", temp);
-                if(WorkUnitD->GetDependentCount(TestScheduler)==0)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::D2DependentCount", temp);
-
-            }else{
-                AddTestResult("DAGFrameScheduler::WorkUnit::ADependencyCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::ADependentCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::BDependencyCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::BDependentCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::CDependencyCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::CDependentCount", Testing::Skipped);
-
-                AddTestResult("DAGFrameScheduler::WorkUnit::A2DependencyCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::A2DependentCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::B2DependencyCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::B2DependentCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::C2DependencyCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::C2DependentCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::D2DependencyCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::WorkUnit::D2DependentCount", Testing::Skipped);
-            }
-
-
+            cout << "Creating a WorkUnit D which depends on B, So we should have:"
+                    << endl << "D --"
+                    << endl << "   |"
+                    << endl << "   v"
+                    << endl << "   B --> A"
+                    << endl << "   ^"
+                    << endl << "   |"
+                    << endl << "C --" << endl;
+            PiMakerWorkUnit* WorkUnitD = new PiMakerWorkUnit(50,"D",false);
+            WorkUnitD->AddDependency(WorkUnitB);
+            TestScheduler.AddWorkUnitMain(WorkUnitD);
+            TestScheduler.UpdateDependentGraph();
+            cout << "A dependency count: " << WorkUnitA->GetDependencyCount() << " \t A dependent count: " << WorkUnitA->GetDependentCount(TestScheduler) << endl;
+            cout << "B dependency count: " << WorkUnitB->GetDependencyCount() << " \t B dependent count: " << WorkUnitB->GetDependentCount(TestScheduler) << endl;
+            cout << "C dependency count: " << WorkUnitC->GetDependencyCount() << " \t C dependent count: " << WorkUnitC->GetDependentCount(TestScheduler) << endl;
+            cout << "D dependency count: " << WorkUnitD->GetDependencyCount() << " \t D dependent count: " << WorkUnitD->GetDependentCount(TestScheduler) << endl;
+            TEST(WorkUnitA->GetDependencyCount()==0,"A2DependencyCount");
+            TEST(WorkUnitA->GetDependentCount(TestScheduler)==3,"A2DependentCount");
+            TEST(WorkUnitB->GetDependencyCount()==1,"B2DependencyCount");
+            TEST(WorkUnitB->GetDependentCount(TestScheduler)==2,"B2DependentCount");
+            TEST(WorkUnitC->GetDependencyCount()==2,"C2DependencyCount");
+            TEST(WorkUnitC->GetDependentCount(TestScheduler)==0,"C2DependentCount");
+            TEST(WorkUnitD->GetDependencyCount()==2,"D2DependencyCount");
+            TEST(WorkUnitD->GetDependentCount(TestScheduler)==0,"D2DependentCount");
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
 };
 
 #endif

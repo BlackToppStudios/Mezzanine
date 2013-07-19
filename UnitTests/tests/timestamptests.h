@@ -40,7 +40,7 @@
 #ifndef _timestamptests_h
 #define _timestamptests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "dagframescheduler.h"
 
@@ -57,55 +57,41 @@ class timestamptests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "timestamp"
+        /// @return Returns a String containing "TimeStamp"
         virtual String Name()
-            { return String("timestamp"); }
+            { return String("TimeStamp"); }
 
         /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
         /// @detail Test if the timestamp tools works correctly were possible
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        void RunAutomaticTests()
         {
-            RunInteractiveTests = false; //prevent warnings
+            cout << "Starting timekeeping tests." << endl;
+            cout << "Getting Timestamp1" << endl;
+            Mezzanine::MaxInt Timestamp1 = Mezzanine::GetTimeStamp();
 
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
+            cout << "Sleeping main thread for 300ms." << endl;
+            Mezzanine::Threading::this_thread::sleep_for(300000);
 
-                cout << "Starting timekeeping tests." << endl;
-                cout << "Getting Timestamp1" << endl;
-                Mezzanine::MaxInt Timestamp1 = Mezzanine::GetTimeStamp();
+            cout << "Getting Timestamp2" << endl;
+            Mezzanine::MaxInt Timestamp2 = Mezzanine::GetTimeStamp();
 
-                cout << "Sleeping main thread for 300ms." << endl;
-                Mezzanine::Threading::this_thread::sleep_for(300000);
+            cout << "Timestamp1: " << Timestamp1 << endl;
+            cout << "Timestamp2: " << Timestamp2 << endl;
+            cout << "Timestamp2 - Timestamp1 = " << Timestamp2-Timestamp1 << endl;
+            cout << "Is Timestamp1 <= Timestamp2: " << (Timestamp1<=Timestamp2) << endl;
+            cout << "Timer Resolution: " << GetTimeStampResolution() << " microsecond(s)" << endl;
+            TEST(Timestamp1<=Timestamp2,"TimeStampChronology")
 
-                cout << "Getting Timestamp2" << endl;
-                Mezzanine::MaxInt Timestamp2 = Mezzanine::GetTimeStamp();
-
-                cout << "Timestamp1: " << Timestamp1 << endl;
-                cout << "Timestamp2: " << Timestamp2 << endl;
-                cout << "Timestamp2 - Timestamp1 = " << Timestamp2-Timestamp1 << endl;
-                cout << "Is Timestamp1 <= Timestamp2: " << (Timestamp1<=Timestamp2) << endl;
-                cout << "Timer Resolution: " << GetTimeStampResolution() << " microsecond(s)" << endl;
-                if(Timestamp1<=Timestamp2)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::TimeStampChronology", temp);
-
-                cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2 = " << Timestamp1+300000-(2*GetTimeStampResolution()) << "<=" << Timestamp2 << endl;
-                cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2: " << (MaxInt(Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2) << endl;
-                if(MaxInt(Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::TimeStampResolution", temp);
-            }else{
-                AddTestResult("DAGFrameScheduler::TimeStampChronology", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::TimeStampResolution", Testing::Skipped);
-            }
-
-
+            cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2 = " << Timestamp1+300000-(2*GetTimeStampResolution()) << "<=" << Timestamp2 << endl;
+            cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2: " << (MaxInt(Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2) << endl;
+            TEST(MaxInt(Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2,"TimeStampResolution")
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
+
 };
 
 #endif

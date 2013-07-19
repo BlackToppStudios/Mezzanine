@@ -40,7 +40,7 @@
 #ifndef _vector3tests_h
 #define _vector3tests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "mezzanine.h"
 

@@ -119,8 +119,8 @@ namespace Mezzanine
             return sysconf( _SC_NPROCESSORS_ONLN );
         #endif
     }
-/*
-    Whole GetCacheSize()
+
+    /*Whole GetCacheSizebyLevel(Whole Level)
     {
         #ifdef _MEZZ_THREAD_WIN32_
             size_t Size = 0;
@@ -142,6 +142,7 @@ namespace Mezzanine
             free(buffer);
             return Size;
         #else
+
             Whole Size = sysconf(_SC_LEVEL4_CACHE_SIZE);
             if(!Size)
             {
@@ -155,29 +156,83 @@ namespace Mezzanine
             }
             return Size;
         #endif
+    }*/
+
+    Whole GetCacheSize()
+    {
+        #ifdef _MEZZ_THREAD_WIN32_
+            #ifdef _MSC_VER
+                size_t Size = 0;
+                DWORD buffer_size = 0;
+                DWORD i = 0;
+                SYSTEM_LOGICAL_PROCESSOR_INFORMATION * buffer = 0;
+
+                GetLogicalProcessorInformation(0, &buffer_size);
+                buffer = (SYSTEM_LOGICAL_PROCESSOR_INFORMATION *)malloc(buffer_size);
+                GetLogicalProcessorInformation(&buffer[0], &buffer_size);
+
+                for (i = 0; i != buffer_size / sizeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION); ++i) {
+                    if (buffer[i].Relationship == RelationCache && buffer[i].Cache.Level == 1) {
+                        Size = buffer[i].Cache.Size;
+                        break;
+                    }
+                }
+
+                free(buffer);
+                return Size;
+            #else
+                //mingw can't do this, see bug http://sourceforge.net/p/mingw/bugs/1626/
+                // assume 32k
+                return 32768;
+            #endif
+        #else
+            #ifdef _MEZZ_THREAD_APPLE_
+                // this can be done, but it is not cleanly documented, more experimentation is needed.
+                return 0;
+            #else
+                Whole Size = sysconf(_SC_LEVEL4_CACHE_SIZE);
+                if(!Size)
+                {
+                    Size = sysconf(_SC_LEVEL3_CACHE_SIZE);
+                    if(!Size)
+                    {
+                        Size = sysconf(_SC_LEVEL2_CACHE_SIZE);
+                        if(!Size)
+                            { Size = sysconf(_SC_LEVEL1_DCACHE_SIZE); }
+                    }
+                }
+                return Size;
+           #endif
+        #endif
     }
 
     Whole GetCachelineSize()
     {
         #ifdef _MEZZ_THREAD_WIN32_
-            size_t Size = 0;
-            DWORD buffer_size = 0;
-            DWORD i = 0;
-            SYSTEM_LOGICAL_PROCESSOR_INFORMATION * buffer = 0;
+            #ifdef _MSC_VER
+                size_t Size = 0;
+                DWORD buffer_size = 0;
+                DWORD i = 0;
+                SYSTEM_LOGICAL_PROCESSOR_INFORMATION * buffer = 0;
 
-            GetLogicalProcessorInformation(0, &buffer_size);
-            buffer = (SYSTEM_LOGICAL_PROCESSOR_INFORMATION *)malloc(buffer_size);
-            GetLogicalProcessorInformation(&buffer[0], &buffer_size);
+                GetLogicalProcessorInformation(0, &buffer_size);
+                buffer = (SYSTEM_LOGICAL_PROCESSOR_INFORMATION *)malloc(buffer_size);
+                GetLogicalProcessorInformation(&buffer[0], &buffer_size);
 
-            for (i = 0; i != buffer_size / sizeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION); ++i) {
-                if (buffer[i].Relationship == RelationCache && buffer[i].Cache.Level == 1) {
-                    Size = buffer[i].Cache.LineSize;
-                    break;
+                for (i = 0; i != buffer_size / sizeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION); ++i) {
+                    if (buffer[i].Relationship == RelationCache && buffer[i].Cache.Level == 1) {
+                        Size = buffer[i].Cache.LineSize;
+                        break;
+                    }
                 }
-            }
 
-            free(buffer);
-            return Size;
+                free(buffer);
+                return Size;
+            #else
+                //mingw can't do this, see bug http://sourceforge.net/p/mingw/bugs/1626/
+                // assume 64
+                return 64;
+            #endif
         #else
             Whole Size = sysconf(_SC_LEVEL1_DCACHE_LINESIZE);
             if(!Size)
@@ -193,7 +248,7 @@ namespace Mezzanine
             return Size;
         #endif
     }
-*/
+
 }//Mezzanine
 
 #endif

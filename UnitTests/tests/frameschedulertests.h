@@ -40,7 +40,7 @@
 #ifndef _frameschedulertests_h
 #define _frameschedulertests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "dagframescheduler.h"
 #include "workunittests.h"
@@ -249,20 +249,14 @@ class frameschedulertests : public UnitTestGroup
         }
 
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "framescheduler"
+        /// @return Returns a String containing "FrameScheduler"
         virtual String Name()
-            { return String("framescheduler"); }
+            { return String("FrameScheduler"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Test if the Framescheduler works correctly
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        /// @brief Performs a number of tests on the Framescheduler and the core algorithm
+        virtual void RunAutomaticTests()
         {
-            RunInteractiveTests = false; //prevent warnings
-
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
-
+            { // Basic sorting
                 cout <<  "Creating a simple dependency chain in 4 WorkUnits and inserting them into a Test FrameScheduler. Then they will be pulled out one at a time and mark them as completed: " << endl;
 
                 PiMakerWorkUnit *WorkUnitK1 = new PiMakerWorkUnit(500,"First",false);
@@ -283,35 +277,23 @@ class frameschedulertests : public UnitTestGroup
 
                 iWorkUnit* Counter = SchedulingTest1.GetNextWorkUnit();
                 cout << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
-                if(((PiMakerWorkUnit*)Counter)->Name == String("First"))
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Sorting::First", temp);
+                TEST(((PiMakerWorkUnit*)Counter)->Name == String("First"),"BasicSorting::First");
+
                 Counter->operator()(Storage1);
                 Counter = SchedulingTest1.GetNextWorkUnit();
                 cout << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
-                if(((PiMakerWorkUnit*)Counter)->Name == String("Second"))
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Sorting::Second", temp);
+                TEST(((PiMakerWorkUnit*)Counter)->Name == String("Second"),"BasicSorting::Second");
+
                 Counter->operator()(Storage1);
                 Counter = SchedulingTest1.GetNextWorkUnit();
                 cout << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
-                if(((PiMakerWorkUnit*)Counter)->Name == String("Third"))
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Sorting::Third", temp);
+                TEST(((PiMakerWorkUnit*)Counter)->Name == String("Third"),"BasicSorting::Third");
+
                 Counter->operator()(Storage1);
                 Counter = SchedulingTest1.GetNextWorkUnit();
                 cout << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
-                if(((PiMakerWorkUnit*)Counter)->Name == String("Fourth"))
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Sorting::Fourth", temp);
+                TEST(((PiMakerWorkUnit*)Counter)->Name == String("Fourth"),"BasicSorting::Fourth");
+
                 Counter->operator()(Storage1);
 
                 cout << endl << "Creating 3 WorkUnits with precise runtimes and inserting them into a Test FrameScheduler. Then they will be pulled out one at a time and mark them as completed: " << endl;
@@ -353,39 +335,20 @@ class frameschedulertests : public UnitTestGroup
                 //Counter->operator()(Storage2, SchedulingTest2);
                 Counter = SchedulingTest2.GetNextWorkUnit();
                 cout << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
-                if(((PausesWorkUnit*)Counter)->Name == String("FiftyThousand-ms"))
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Sorting::FiftyThousand-ms", temp);
-                Counter->operator()(Storage2);
-                Counter = SchedulingTest2.GetNextWorkUnit();
-                cout << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
-                if(((PausesWorkUnit*)Counter)->Name == String("FiveThousand-ms"))
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Sorting::FiveThousand-ms", temp);
-                Counter->operator()(Storage2);
-                Counter = SchedulingTest2.GetNextWorkUnit();
-                cout << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
-                if(((PausesWorkUnit*)Counter)->Name == String("FiveHundred-ms"))
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Sorting::FiveHundred-ms", temp);
-                Counter->operator()(Storage2);
-            }else{
-                AddTestResult("DAGFrameScheduler::Sorting::First", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Sorting::Second", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Sorting::Third", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Sorting::Fourth", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Sorting::FiftyThousand-ms", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Sorting::FiveThousand-ms", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Sorting::FiveHundred-ms", Testing::Skipped);
-            }
+                TEST(((PausesWorkUnit*)Counter)->Name == String("FiftyThousand-ms"),"TimedSort::FiftyThousand-ms")
 
-            if (RunAutomaticTests)
+                Counter->operator()(Storage2);
+                Counter = SchedulingTest2.GetNextWorkUnit();
+                cout << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
+                TEST(((PausesWorkUnit*)Counter)->Name == String("FiveThousand-ms"),"TimedSort::FiveThousand-ms")
+
+                Counter->operator()(Storage2);
+                Counter = SchedulingTest2.GetNextWorkUnit();
+                cout << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
+                TEST(((PausesWorkUnit*)Counter)->Name == String("FiveHundred-ms"),"TimedSort::FiveHundred-ms")
+                Counter->operator()(Storage2);
+            } // \Basic Sorting
+
             {
                 //TestResult temp;
 
@@ -411,7 +374,7 @@ class frameschedulertests : public UnitTestGroup
                 Agg2(SwapResource2);
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
-                CheckSchedulerLog(LogCache,1,4,"DAGFrameScheduler::FrameScheduler::SingleThread");
+                CheckSchedulerLog(LogCache,1,4,"ThreadTests::SingleThread");
                 cout << "It ran correctly." << endl;
                 LogCache.str("");
 
@@ -423,7 +386,7 @@ class frameschedulertests : public UnitTestGroup
                 Agg2(SwapResource2);
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
-                CheckSchedulerLog(LogCache,2,4,"DAGFrameScheduler::FrameScheduler::DualThread");
+                CheckSchedulerLog(LogCache,2,4,"ThreadTests::DualThread");
                 cout << "It ran correctly." << endl;
                 LogCache.str("");
 
@@ -435,7 +398,7 @@ class frameschedulertests : public UnitTestGroup
                 Agg2(SwapResource2);
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
-                CheckSchedulerLog(LogCache,3,4,"DAGFrameScheduler::FrameScheduler::TripleThread");
+                CheckSchedulerLog(LogCache,3,4,"ThreadTests::TripleThread");
                 cout << "It ran correctly." << endl;
                 LogCache.str("");
 
@@ -447,7 +410,7 @@ class frameschedulertests : public UnitTestGroup
                 Agg2(SwapResource2);
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
-                CheckSchedulerLog(LogCache,4,4,"DAGFrameScheduler::FrameScheduler::QuadThread");
+                CheckSchedulerLog(LogCache,4,4,"ThreadTests::QuadThread");
                 cout << "It ran correctly." << endl;
                 LogCache.str("");
 
@@ -462,36 +425,12 @@ class frameschedulertests : public UnitTestGroup
                 Agg2(SwapResource2);
                 //CheckSchedulerLog(LogCache,4,12);
                 //cout << LogCache.str() << endl;
-                CheckSchedulerLog(LogCache,4,1004,"DAGFrameScheduler::FrameScheduler::ThousandUnit");
+                CheckSchedulerLog(LogCache,4,1004,"ThousandUnitStress");
                 cout << "It ran correctly." << endl;
                 LogCache.str("");
+            } // \threading tests
 
-            }else{
-                AddTestResult("DAGFrameScheduler::FrameScheduler::DualThread::LogcheckNames", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::DualThread::LogcheckSizes", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::DualThread::TestLog", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::DualThread::ThreadCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::QuadThread::LogcheckNames", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::QuadThread::LogcheckSizes", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::QuadThread::TestLog", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::QuadThread::ThreadCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::SingleThread::LogcheckNames", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::SingleThread::LogcheckSizes", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::SingleThread::TestLog", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::SingleThread::ThreadCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::ThousandUnit::LogcheckNames", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::ThousandUnit::LogcheckSizes", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::ThousandUnit::TestLog", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::ThousandUnit::ThreadCount", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::TripleThread::LogcheckNames", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::TripleThread::LogcheckSizes", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::TripleThread::TestLog", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::TripleThread::ThreadCount", Testing::Skipped);
-            }
-
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
+            { // Dependency
                 cout << "Creating a few WorkUnits with a " << endl;
                 stringstream LogCache;
                 cout << "Creating WorkUnits a Dependency chain as follows: "
@@ -526,16 +465,8 @@ class frameschedulertests : public UnitTestGroup
 
                 pugi::xml_node Thread1Node = Doc.child("Frame").first_child();
                 pugi::xml_node Thread2Node = Doc.child("Frame").last_child();
-                if(Thread1Node)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::FrameScheduler::LogNode1", temp);
-                if(Thread2Node)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::FrameScheduler::LogNode2", temp);
+                TEST(Thread1Node,"BasicDependency::LogNode1");
+                TEST(Thread2Node,"BasicDependency::LogNode2");
 
                 #ifdef MEZZ_DEBUG
                     vector<RestartMetric> UnitTracking;
@@ -594,98 +525,19 @@ class frameschedulertests : public UnitTestGroup
                     cout << "The timer cannot resolve times less then: " << GetTimeStampResolution() << endl;
                     cout << "Was A complete before B started: " << (ToWhatever<MaxInt>(AEnd)<=ToWhatever<MaxInt>(BStart)+GetTimeStampResolution()) << endl;
                     cout << "Was A complete before B started if the clock resolution could cause error: " << (ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(BStart)+GetTimeStampResolution())) << endl;
-                    if(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(BStart)+GetTimeStampResolution()))
-                        { temp=Testing::Success; }
-                    else
-                        { temp=Testing::Failed; }
-                    AddTestResult("DAGFrameScheduler::FrameScheduler::ABeforeB", temp);
+                    TEST(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(BStart)+GetTimeStampResolution()),"BasicSorting::ABeforeB");
                     cout << "Was A complete before C started: " << (ToWhatever<MaxInt>(AEnd)<=ToWhatever<MaxInt>(CStart)) << endl;
                     cout << "Was A complete before C started if the clock resolution could cause error: " << (ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+GetTimeStampResolution())) << endl;
-                    if(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+GetTimeStampResolution()))
-                        { temp=Testing::Success; }
-                    else
-                        { temp=Testing::Failed; }
-                    AddTestResult("DAGFrameScheduler::FrameScheduler::ABeforeC", temp);
+                    TEST(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+GetTimeStampResolution()),"BasicSorting::ABeforeC");
                     cout << "Were B and C run in different threads: " << (BThread!=CThread) << endl;
-                    if(BThread!=CThread)
-                        { temp=Testing::Success; }
-                    else
-                        { temp=Testing::Failed; }
-                    AddTestResult("DAGFrameScheduler::FrameScheduler::BNotInCThread", temp);
+                    TEST(BThread!=CThread,"BasicSorting::BNotInCThread");
                 #else
                     cout << "This test does not validate when not in debug mode. The log is missing much meta data.";
                     // can still do some tests here
                 #endif
-            }else{
-                AddTestResult("DAGFrameScheduler::FrameScheduler::LogNode1", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::LogNode2", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::ABeforeB", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::ABeforeC", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::BNotInCThread", Testing::Skipped);
             }
 
-            if(RunAutomaticTests)
-            {
-                stringstream LogCache;
-                cout << "Creating WorkUnits a Dependency chain as follows: "
-                        << endl << "A---+                  +--->B"
-                        << endl << "    |                  |"
-                        << endl << "    +-->AffinityUnit---+"
-                        << endl << "    |                  |"
-                        << endl << "B---+                  +--->C"
-                        << endl;
-                PausesWorkUnit *AffinityA = new PausesWorkUnit(10000,"A");
-                PausesWorkUnit *AffinityB = new PausesWorkUnit(10000,"B");
-                PausesWorkUnit *AffinityAffinity = new PausesWorkUnit(10000,"Affinity");
-                PausesWorkUnit *AffinityC = new PausesWorkUnit(10000,"C");
-                PausesWorkUnit *AffinityD = new PausesWorkUnit(10000,"D");
-                /*PiMakerWorkUnit *AffinityA = new PiMakerWorkUnit(100000,"A",false);
-                PiMakerWorkUnit *AffinityB = new PiMakerWorkUnit(100000,"B",false);
-                PiMakerWorkUnit *AffinityAffinity = new PiMakerWorkUnit(10000,"Affinity",false);
-                PiMakerWorkUnit *AffinityC = new PiMakerWorkUnit(100000,"C",false);
-                PiMakerWorkUnit *AffinityD = new PiMakerWorkUnit(100000,"D",false);*/
-                AffinityAffinity->AddDependency(AffinityA);
-                AffinityAffinity->AddDependency(AffinityB);
-                AffinityC->AddDependency(AffinityAffinity);
-                AffinityD->AddDependency(AffinityAffinity);
-
-                FrameScheduler Scheduler1(&LogCache,2);
-                LogBufferSwapper Swapper1;
-                LogAggregator Agg1;
-                DefaultThreadSpecificStorage::Type SwapResource(&Scheduler1);
-                Scheduler1.AddWorkUnitMain(AffinityA);
-                Scheduler1.AddWorkUnitMain(AffinityB);
-                Scheduler1.AddWorkUnitAffinity(AffinityAffinity);
-                Scheduler1.AddWorkUnitMain(AffinityC);
-                Scheduler1.AddWorkUnitMain(AffinityD);
-                Scheduler1.SortWorkUnitsMain();
-                Scheduler1.DoOneFrame();
-                Swapper1(SwapResource);
-                Agg1(SwapResource);
-                // Check that two threads exist and that B and C run in different thread, and after A finished
-                cout << "Affinity should run in this This thread and this thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-                cout << LogCache.str() << "Parsing log to determine if everything happened correctly" << endl;
-
-                #ifdef MEZZ_DEBUG
-                    /// @todo make a function that checks the order works units ran in returns that as a vector
-                #else
-                    cout << "This test does not validate when not in debug mode. The log is missing much meta data.";
-                    // can still do some tests here
-                #endif
-
-
-                /*if(true)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Warning; }
-                AddTestResult("DAGFrameScheduler::temp", temp);*/
-            }else{
-                //AddTestResult("DAGFrameScheduler::temp", Testing::Skipped);
-
-            }
-
-            if(RunAutomaticTests)
-            {
+            { // Removal
                 stringstream LogCache;
                 FrameScheduler RemovalScheduler(&LogCache,1);
                 ThreadSpecificStorage RemovalResource(&RemovalScheduler);
@@ -748,7 +600,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test((7==PrepCount),"DAGFrameScheduler::FrameScheduler::RemoveMain::OrderingPreTest");
+                TEST((7==PrepCount),"RemoveMain::OrderingPreTest");
 
                 cout << endl << "Removing F from Scheduler then resorting and resetting it (New order should be \"A B C D E NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
@@ -780,7 +632,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(6==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::Simple");
+                TEST(6==PrepCount, "RemoveMain::Simple");
 
                 cout << endl << "Removing E from Scheduler then resorting and resetting it (New order should be \"A B C D NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
@@ -808,7 +660,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(5==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::WithDep");
+                TEST(5==PrepCount, "RemoveMain::WithDep");
 
                 cout << endl << "Removing A from Scheduler then resorting and resetting it (New order should be \"B C D NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
@@ -832,7 +684,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(4==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::AsDep");
+                TEST(4==PrepCount, "RemoveMain::AsDep");
 
                 cout << endl << "Removing C from Scheduler then resorting and resetting it (New order should be \"B D NULL\" or \"D B NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
@@ -853,7 +705,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(3==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::WithAndAsDep");
+                TEST(3==PrepCount, "RemoveMain::WithAndAsDep");
 
 
                 cout << endl << "Adding an Affinity WorkUnit Z and making it depend on B (new order should be B, Z, D, NULL): ";
@@ -879,7 +731,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(4==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::MainPreTest");
+                TEST(4==PrepCount, "RemoveMain::MainPreTest");
 
                 cout << endl << "Removing B and verifying no infinite loops are added(new order should be Z, D, NULL): ";
                 RemovalScheduler.RemoveWorkUnitMain(EraseB);
@@ -899,19 +751,56 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(3==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveMain::MainCleanup");
+                TEST(3==PrepCount, "RemoveMain::MainCleanup");
 
                 delete EraseA; delete EraseB; delete EraseC; delete EraseE; delete EraseF;
-            }else{
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::OrderingPreTest", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::Simple", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::WithDep", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::AsDep", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveMain::WithAndAsDep", Testing::Skipped);
-            }
+            } // \Removal
 
-            if(RunAutomaticTests)
-            {
+            { // Affinty
+                stringstream LogCache;
+                cout << "Creating WorkUnits a Dependency chain as follows: "
+                        << endl << "A---+                  +--->B"
+                        << endl << "    |                  |"
+                        << endl << "    +-->AffinityUnit---+"
+                        << endl << "    |                  |"
+                        << endl << "B---+                  +--->C"
+                        << endl;
+                PausesWorkUnit *AffinityA = new PausesWorkUnit(10000,"A");
+                PausesWorkUnit *AffinityB = new PausesWorkUnit(10000,"B");
+                PausesWorkUnit *AffinityAffinity = new PausesWorkUnit(10000,"Affinity");
+                PausesWorkUnit *AffinityC = new PausesWorkUnit(10000,"C");
+                PausesWorkUnit *AffinityD = new PausesWorkUnit(10000,"D");
+                AffinityAffinity->AddDependency(AffinityA);
+                AffinityAffinity->AddDependency(AffinityB);
+                AffinityC->AddDependency(AffinityAffinity);
+                AffinityD->AddDependency(AffinityAffinity);
+
+                FrameScheduler Scheduler1(&LogCache,2);
+                LogBufferSwapper Swapper1;
+                LogAggregator Agg1;
+                DefaultThreadSpecificStorage::Type SwapResource(&Scheduler1);
+                Scheduler1.AddWorkUnitMain(AffinityA);
+                Scheduler1.AddWorkUnitMain(AffinityB);
+                Scheduler1.AddWorkUnitAffinity(AffinityAffinity);
+                Scheduler1.AddWorkUnitMain(AffinityC);
+                Scheduler1.AddWorkUnitMain(AffinityD);
+                Scheduler1.SortWorkUnitsMain();
+                Scheduler1.DoOneFrame();
+                Swapper1(SwapResource);
+                Agg1(SwapResource);
+                // Check that two threads exist and that B and C run in different thread, and after A finished
+                cout << "Affinity should run in this This thread and this thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+                cout << LogCache.str() << "Parsing log to determine if everything happened correctly" << endl;
+
+                #ifdef MEZZ_DEBUG
+                    /// @todo make a function that checks the order works units ran in returns that as a vector
+                #else
+                    cout << "This test does not validate when not in debug mode. The log is missing much meta data.";
+                    // can still do some tests here
+                #endif
+            } // \Affinity
+
+            { // \ Removal Affinity
                 stringstream LogCache;
                 FrameScheduler RemovalScheduler(&LogCache,1);
                 ThreadSpecificStorage RemovalResource(&RemovalScheduler);
@@ -974,7 +863,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test((7==PrepCount),"DAGFrameScheduler::FrameScheduler::RemoveAffinity::OrderingPreTest");
+                TEST((7==PrepCount),"RemoveAffinity::OrderingPreTest");
 
                 cout << endl << "Removing F from Scheduler then resorting and resetting it (New order should be \"A B C D E NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
@@ -1006,7 +895,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(6==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::Simple");
+                TEST((6==PrepCount),"RemoveAffinity::Simple");
 
                 cout << endl << "Removing E from Scheduler then resorting and resetting it (New order should be \"A B C D NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
@@ -1034,7 +923,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(5==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithDep");
+                TEST((5==PrepCount),"RemoveAffinity::WithDep");
 
                 cout << endl << "Removing A from Scheduler then resorting and resetting it (New order should be \"B C D NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
@@ -1058,7 +947,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(4==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::AsDep");
+                TEST((4==PrepCount),"RemoveAffinity::AsDep");
 
                 cout << endl << "Removing C from Scheduler then resorting and resetting it (New order should be \"B D NULL\" or \"D B NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
@@ -1079,7 +968,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(3==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithAndAsDep");
+                TEST((3==PrepCount),"RemoveAffinity::WithAndAsDep");
 
                 cout << endl << "Adding a non-affinity/Main WorkUnit Z and making it depend on B (new order should be B, D, Z, NULL): ";
                 RemovalScheduler.AddWorkUnitMain(EraseZ);
@@ -1104,7 +993,7 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(4==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::MainPreTest");
+                TEST((4==PrepCount),"RemoveAffinity::MainPreTest");
 
                 cout << endl << "Removing B and verifying no infinite loops are added(new order should be D, Z, NULL): ";
                 RemovalScheduler.RemoveWorkUnitAffinity(EraseB);
@@ -1124,21 +1013,12 @@ class frameschedulertests : public UnitTestGroup
                 else
                     { cout << "NULL "; PrepCount++; }
                 cout << endl;
-                Test(3==PrepCount, "DAGFrameScheduler::FrameScheduler::RemoveAffinity::MainCleanup");
+                TEST((3==PrepCount),"RemoveAffinity::MainCleanup");
 
                 delete EraseA; delete EraseB; delete EraseC; delete EraseE; delete EraseF;
-            }else{
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::OrderingPreTest", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::Simple", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithDep", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::AsDep", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithAndAsDep", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::MainPreTest", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::WithAndAsDep", Testing::Skipped);
-            }
+            }// \ Removal Affinity
 
-            if(RunAutomaticTests)
-            {
+            { // Removal Monopoly
                 stringstream LogCache;
                 FrameScheduler RemovalScheduler(&LogCache,1);
                 //ThreadSpecificStorage RemovalResource(&RemovalScheduler);
@@ -1182,15 +1062,14 @@ class frameschedulertests : public UnitTestGroup
                 Test(RemovalScheduler.GetWorkUnitMonopolyCount()==0 &&
                      EraseB->GetDependencyCount()==0, "DAGFrameScheduler::FrameScheduler::RemoveMopoly::AffinityDep");
 
-                //delete EraseA; delete EraseB; delete EraseMonoA; delete EraseMonoB; delete EraseMonoC;
-
-            }else{
-                AddTestResult("DAGFrameScheduler::FrameScheduler::RemoveAffinity::OrderingPreTest", Testing::Skipped);
-
-            }
-
-
+                delete EraseMonoA; delete EraseMonoB; delete EraseMonoC;
+            } // \Removal Monopoly
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
 };
 
 #endif

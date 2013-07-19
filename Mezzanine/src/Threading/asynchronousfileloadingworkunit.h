@@ -95,7 +95,7 @@ namespace Mezzanine
         /// testing to determine how good automatic mechanisms work.
         class MEZZ_LIB AsynchronousFileLoadWorkUnit : public iAsynchronousWorkUnit
         {
-            /// @cond 0
+            /// @cond false
             // If only there was a way to pass member function to the thread constructor.
             friend void ThreadLoading(void* WU);
             /// @endcond

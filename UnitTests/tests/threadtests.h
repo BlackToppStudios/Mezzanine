@@ -40,7 +40,7 @@
 #ifndef _threadtests_h
 #define _threadtests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "dagframescheduler.h"
 
@@ -84,19 +84,15 @@ class threadtests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "thread"
+        /// @return Returns a String containing "Thread"
         virtual String Name()
-            { return String("thread"); }
+            { return String("Thread"); }
 
         /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
         /// @detail Test if the thread works correctly were possible
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        void RunAutomaticTests()
         {
-            RunInteractiveTests = false; //prevent warnings
-
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
+            { // Basic Thread
                 HelloID = 0;
                 Thread::id ActualID = 0;
 
@@ -109,48 +105,24 @@ class threadtests : public UnitTestGroup
                 ActualID = T1.get_id();
 
                 cout << "Is T1 joinable: " << T1.joinable() << endl;
-                if(T1.joinable())
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; } // In theory this could spuriosly fail but it seems unlikely with the 2/10 second pause in the thread
-                AddTestResult("DAGFrameScheduler::Thread::joinable", temp);
+                TEST(T1.joinable(),"joinable")// In theory this could spuriosly fail but it seems unlikely with the 2/10 second pause in the thread
 
                 MaxInt BeginSleep = GetTimeStamp();
                 cout << "Sleeping main thread for 300ms." << endl;
                 Mezzanine::Threading::this_thread::sleep_for(300000);
                 MaxInt SleepDuration = GetTimeStamp() - BeginSleep;
-                if(SleepDuration>=300000)
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Thread::sleep_for", temp);
+                TEST(SleepDuration>=300000,"sleep_for")
 
                 cout << "Joining T1" << endl;
                 T1.join();
                 cout << "Is T1 joinable: " << T1.joinable() << endl;
-
-
-                if(HelloID==ActualID)
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Thread::get_id", temp);
+                TEST(HelloID==ActualID,"get_id")
 
                 cout << "Yielding thread to OS scheduler." << endl;
                 Mezzanine::Threading::this_thread::yield();
+            } // \Basic Thread
 
-
-            }else{
-                AddTestResult("DAGFrameScheduler::Thread::get_id", Skipped);
-                AddTestResult("DAGFrameScheduler::Thread::joinable", Skipped);
-                AddTestResult("DAGFrameScheduler::Thread::sleep_for", Skipped);
-            }
-
-
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
-
+            { // Thread Arg passing
                 cout << "Testing passing to thread functionality" << endl;
                 cout << "Locking ThreadPassLock in thread: " << Mezzanine::Threading::this_thread::get_id() << endl;
                 ThreadPassLock.Lock();
@@ -167,28 +139,19 @@ class threadtests : public UnitTestGroup
                 ThreadPassLock.Lock();
                 cout << "Thread gives us: " << ThreadPassTest << endl;
                 cout << "Does the thread give us the square of what we passed it: " << (Value*Value == ThreadPassTest) << endl;
-                if(Value*Value == ThreadPassTest)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Thread::Passing", temp);
+                TEST(Value*Value == ThreadPassTest, "Passing")
                 ThreadPassLock.Unlock();
 
                 cout << "Joining T3" << endl;
                 T3.join();
-            }else{
-                AddTestResult("DAGFrameScheduler::Thread::Passing", Skipped);
-            }
-
-
-            /*if (RunInteractiveTests)
-            {   
-                AddTestResult("Threading::Interactive", Success
-                              );
-            }else{
-                AddTestResult("Threading::Interactive", Skipped);
-            }*/
+            } // Thread Arg Passing
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
+
 };
 
 #endif

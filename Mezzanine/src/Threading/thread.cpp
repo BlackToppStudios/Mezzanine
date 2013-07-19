@@ -89,7 +89,7 @@ namespace Mezzanine
         // This method should be portable across different POSIX implementations.
         //------------------------------------------------------------------------------
 
-        /// @cond 0
+        /// @cond false
         #if defined(_MEZZ_THREAD_POSIX_)
         /// @internal
         /// @brief This converts the id in thread::id into a native thread handle

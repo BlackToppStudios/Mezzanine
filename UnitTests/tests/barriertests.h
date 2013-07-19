@@ -40,7 +40,7 @@
 #ifndef _barriertests_h
 #define _barriertests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "dagframescheduler.h"
 
@@ -100,9 +100,9 @@ class barriertests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "barrier"
+        /// @return Returns a String containing "Barrier"
         virtual String Name()
-            { return String("barrier"); }
+            { return String("Barrier"); }
 
         /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
         /// @detail Test if the barrier works properly

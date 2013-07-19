@@ -73,7 +73,7 @@
 
 /// @def MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION
 /// @brief The revision version number of the library. (This right/back number)
-#define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 0
+#define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 2
 
 /// @mainpage Directed Acyclic Graph Frame Scheduler.
 /// @section goal_sec Goals
@@ -104,7 +104,7 @@
 /// @n @n
 /// With this algorithm very few, if any,
 /// calls will need to be made to the underlying system for synchronization of the actual work to be performed.
-/// Instead, this library will provide limited
+/// Instead, this library will provide limited (not always, but for constistent workloads)
 /// deterministic ordering of @ref Mezzanine::Threading::iWorkUnit "iWorkUnit" execution through a dependency
 /// feature. Having the knowledge that one @ref Mezzanine::Threading::iWorkUnit "iWorkUnit" will complete after
 /// another allows for resources to be used without using expensive and complex synchronization mechansisms
@@ -130,7 +130,7 @@
 ///  or how they aren't ideal for the kinds of work this algorithm is intended for. This overview is
 /// intentionally simplified. There are variations on many of these algorithms that can fix some of
 /// the problems presented. Despite these workarounds there are fundamental limitations that prevent
-/// these algorithms from being ideal for video games and similar tasks.
+/// these algorithms from being ideal for video games, simulations and similar tasks.
 /// These threading models aren't necessarily broken, as some of these clearly have a place in software
 /// development. Many of these require complex algorithms, require subtle knowledge, or simply aren't
 /// performant enough for realtime environments.
@@ -383,7 +383,7 @@
 /// Regardless of the amount of threads created, all but one of them will start executing work units as
 /// described in the section @ref algorithm_sec "The Algorithm". This will execute as much work as possible
 /// (work units with affinity can affect how much work can be done with out waiting) that was added by
-/// @ref Mezzanine::Threading::FrameScheduler::AddWorkUnit(iWorkUnit*) "FrameScheduler::AddWorkUnit(iWorkUnit*)".
+/// @ref Mezzanine::Threading::FrameScheduler::AddWorkUnitMain(iWorkUnit*) "FrameScheduler::AddWorkUnitMain(iWorkUnit*)".
 /// If there is only one thread, the main thread, then this will return immediately and no work will be done.
 /// @subsection integrate3 Step 3 - Main Thread Work
 /// The call to
