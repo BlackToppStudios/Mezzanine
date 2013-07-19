@@ -85,12 +85,12 @@ namespace Mezzanine
                 if(0 != mass)
                     mass=1/mass;
                 btVector3 inertia(0,0,0);
-                Shape->GetBulletShape()->calculateLocalInertia(mass, inertia);
+                Shape->_GetInternalShape()->calculateLocalInertia(mass, inertia);
                 this->PhysicsRigidBody->setMassProps(mass,inertia);
-                this->PhysicsRigidBody->setCollisionShape(Shape->GetBulletShape());
+                this->PhysicsRigidBody->setCollisionShape(Shape->_GetInternalShape());
                 this->PhysicsRigidBody->updateInertiaTensor();
             }else{
-                this->PhysicsRigidBody->setCollisionShape(Shape->GetBulletShape());
+                this->PhysicsRigidBody->setCollisionShape(Shape->_GetInternalShape());
             }
             CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
         }
