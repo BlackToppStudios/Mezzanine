@@ -40,7 +40,7 @@
 #ifndef _compilerflagtests_h
 #define _compilerflagtests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 
 /// @brief A simple test to see if the compiler flag are set correctly

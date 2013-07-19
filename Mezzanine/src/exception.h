@@ -2134,7 +2134,7 @@ namespace Mezzanine
 
 
 
-#ifndef MEZZ_EXCEPTION
+    #ifndef MEZZ_EXCEPTION
     /// @brief An easy way to throw exception with rich information.
     /// @details An important part of troubleshooting errors from the users perspective is being able to
     /// tie a specific 'fix' to a specific error message. An important part of ensuring correct exceptional

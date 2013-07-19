@@ -40,7 +40,7 @@
 #ifndef _threaddefinetests_h
 #define _threaddefinetests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 
 /// @brief A simple test to see if the threading compiler flag are set correctly
@@ -48,35 +48,33 @@ class threaddefinetests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "threaddefine"
+        /// @return Returns a String containing "ThreadDefine"
         virtual String Name()
-            { return String("threaddefine"); }
+            { return String("ThreadDefine"); }
 
         /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
         /// @detail A series on interactive tests allowing inspection and verification of CMake and compiler options.
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        void RunInteractiveTests()
         {
-            RunAutomaticTests = false; // unsused, this line prevents compiler warnings
+            TestResult Answer;
+            #ifdef MEZZ_USEBARRIERSEACHFRAME
+                Answer = GetTestAnswerFromStdin( "Barriers used to minimize thread creation. Is this corrent?");
+            #else
+                Answer = GetTestAnswerFromStdin("Threads created and joined each frame. Barriers not set for use, is that correct?");
+            #endif
+            TEST_RESULT(Answer, "MEZZ_USEBARRIERSEACHFRAME");
 
-            if (RunInteractiveTests)
-            {
-                #ifdef MEZZ_USEBARRIERSEACHFRAME
-                                AddTestResult("DAGFrameScheduler::Threading::MEZZ_USEBARRIERSEACHFRAME", GetTestAnswerFromStdin( "Barriers used to absolutely minimize thread creation. Is this corrent?"));
-                #else
-                                AddTestResult("DAGFrameScheduler::Threading::MEZZ_USEBARRIERSEACHFRAME", GetTestAnswerFromStdin("Threads created and joined each frame. Barriers not set for use, is that correct?"));
-                #endif
-
-                #ifdef MEZZ_DEBUG
-                                AddTestResult("DAGFrameScheduler::Threading::MEZZDEBUG", GetTestAnswerFromStdin( "Was MEZZDEBUG set to True when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? "));
-                #else
-                                AddTestResult("DAGFrameScheduler::Threading::MEZZDEBUG", GetTestAnswerFromStdin( "Was MEZZDEBUG set to False when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? "));
-                #endif
-
-            }else{
-                AddTestResult("DAGFrameScheduler::Threading::MEZZ_DEBUG", Skipped);
-                AddTestResult("DAGFrameScheduler::Threading::MEZZ_USEBARRIERSEACHFRAME", Skipped);
-            }
-
+            #ifdef MEZZ_DEBUG
+                Answer = GetTestAnswerFromStdin( "Was MEZZ_DEBUG set to True when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? ");
+            #else
+                Answer = GetTestAnswerFromStdin( "Was MEZZ_DEBUG set to False when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? ");
+            #endif
+            TEST_RESULT(Answer, "MEZZ_DEBUG");
         }
+
+        /// @brief Since RunInteractiveTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasInteractiveTests() const
+            { return true; }
 };
 #endif

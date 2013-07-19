@@ -95,6 +95,7 @@ namespace Mezzanine
         }else{
             DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),"ActorRigidDeSerializer");
         }
+        //MEZZ_EXCEPTION() // Finish this
     }
 
     String ActorRigidDeSerializer::ContainerName() const

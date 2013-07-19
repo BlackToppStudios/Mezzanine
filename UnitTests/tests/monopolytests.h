@@ -40,7 +40,7 @@
 #ifndef _monopolytests_h
 #define _monopolytests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "dagframescheduler.h"
 #include "workunittests.h"
@@ -119,7 +119,7 @@ class PiMakerMonopoly : public MonopolyWorkUnit
 
         /// @brief Spawns several the amount of threads indicated by HowManyThreads then calculates Pi in each and logs teh results
         /// @param CurrentFrameScheduler
-        virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        virtual void DoWork(DefaultThreadSpecificStorage::Type&)
         {
             vector<Thread*> ThreadIndex;
             vector<PiMakerThreadData*> ThreadData;
@@ -155,34 +155,29 @@ class monopolytests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "monopoly"
+        /// @return Returns a String containing "Monopoly"
         virtual String Name()
-            { return String("monopoly"); }
+            { return String("Monopoly"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Test if the Monopoly workunit works properly.
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        /// @brief Only a smoke test, to see if this compiles
+        virtual void RunAutomaticTests()
         {
-            RunInteractiveTests = false; //prevent warnings
-
-            if (RunAutomaticTests)
-            {
-                /// that the monopoly does not segfault is all that is really tested here.
-                cout << "Starting MonopolyWorkUnit test. Creating a monopoly that will calculate pi in a number of threads simultaneously." << endl;
-                PiMakerMonopoly Pioply(50,"Pioply",false,4);
-                FrameScheduler TestSchedulerMono(&cout,1);
-                DefaultThreadSpecificStorage::Type PioplyStorage(&TestSchedulerMono);
-                for(Whole Counter=0; Counter<20; Counter++)
-                    { Pioply(PioplyStorage); }
-                cout << "Here is the un-aggregated (main thread only) log of Twenty Test Runs" << endl
-                     << PioplyStorage.GetResource<DoubleBufferedLogger>(DBRLogger).GetUsable().str() // << endl // logs ends with a newline
-                     << "Average Execution Time (Microseconds): " << Pioply.GetPerformanceLog().GetAverage() << endl;
-            }else{
-                AddTestResult("DAGFrameScheduler::Monopoly::xxx", Testing::Skipped);
-            }
-
-
+            cout << "Starting MonopolyWorkUnit test. Creating a monopoly that will calculate pi in a number of threads simultaneously." << endl;
+            PiMakerMonopoly Pioply(50,"Pioply",false,4);
+            FrameScheduler TestSchedulerMono(&cout,1);
+            DefaultThreadSpecificStorage::Type PioplyStorage(&TestSchedulerMono);
+            for(Whole Counter=0; Counter<20; Counter++)
+                { Pioply(PioplyStorage); }
+            cout << "Here is the un-aggregated (main thread only) log of Twenty Test Runs" << endl
+                 << PioplyStorage.GetResource<DoubleBufferedLogger>(DBRLogger).GetUsable().str() // << endl // logs ends with a newline
+                 << "Average Execution Time (Microseconds): " << Pioply.GetPerformanceLog().GetAverage() << endl;
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns false, because no tests are recorded.
+        virtual bool HasAutomaticTests() const
+            { return false; }
+
 };
 
 #endif

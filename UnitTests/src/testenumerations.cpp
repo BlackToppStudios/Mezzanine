@@ -113,7 +113,6 @@ namespace Mezzanine
                     else
                         { throw std::invalid_argument("Cannot convert to TestResult from text(U) " + Text); }
                 case 'F':
-                    return Failed;
                     if ( FailedString == Text )
                         { return Failed;}
                     else
@@ -126,7 +125,6 @@ namespace Mezzanine
                 default:
                     { throw std::invalid_argument("Cannot convert to TestResult from text() " + Text); }
             }
-            return Unknown;
         }
 
     }// Testing

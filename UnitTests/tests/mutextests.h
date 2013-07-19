@@ -40,7 +40,7 @@
 #ifndef _mutextests_h
 #define _mutextests_h
 
-#include "main.h"
+#include "mezztest.h"
 
 #include "dagframescheduler.h"
 
@@ -92,20 +92,15 @@ class mutextests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "thread"
+        /// @return Returns a String containing "Mutex"
         virtual String Name()
-            { return String("mutex"); }
+            { return String("Mutex"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Test if the mutex works correctly were possible
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        /// @brief Even though the framescheduler does not use Mutexes, any library providing multithreading capabilites without them would be lacking, so we must test them.
+        virtual void RunAutomaticTests()
         {
-            RunInteractiveTests = false; //prevent warnings
 
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
-
+            { // Lock
                 cout << "Testing basic mutex functionality" << endl;
                 cout << "Locking ThreadIDLock in thread: " << Mezzanine::Threading::this_thread::get_id() << endl;
                 ThreadIDLock.Lock();
@@ -121,31 +116,18 @@ class mutextests : public UnitTestGroup
 
                 ThreadIDLock.Lock();
                 cout << "Does the thread report the same ID as we gathered: " << (ThreadIDTest == T2id) << endl;
-                if(ThreadIDTest == T2id)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::mutex::lock", temp);
+                TEST(ThreadIDTest == T2id,"lock")
                 ThreadIDLock.Unlock();
 
                 cout << "Joining T2" << endl;
                 T2.join();
-            }else{
-                AddTestResult("DAGFrameScheduler::mutex::lock", Testing::Skipped);
+            } // \ Lock
 
-            }
-
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
+            { // Trylock
                 cout << "Testing Mutex try_lock()" << endl;
 
                 cout << "Locking TryLock in main thread with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-                if(TryLock.TryLock())
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Thread::TryLock", temp);
+                TEST(TryLock.TryLock(),"TryLock");
 
                 Mezzanine::Integer Value = 9;
                 cout << "Creating a thread with identifier T4 and unkown id." << endl;
@@ -162,25 +144,16 @@ class mutextests : public UnitTestGroup
                 TryLock.Unlock();
                 cout << "Value from thread's return point is " << TryLockTest << " it should be " << Value << " if it wasn't able to get mutex" << endl;
                 cout << "Did T4 not get the mutex and proceed past mutex as expected: " << (TryLockTest == Value) << endl;
-                if(TryLockTest == Value)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Thread::TryLockExclude", temp);
+                TEST(TryLockTest == Value,"TryLockExclude");
+            } // Trylock
 
-            }else{
-                AddTestResult("DAGFrameScheduler::Thread::TryLock", Skipped);
-                AddTestResult("DAGFrameScheduler::Thread::TryLockExclude", Skipped);
-            }
-
-            /*if (RunInteractiveTests)
-            {   
-                AddTestResult("Threading::Interactive", Success
-                              );
-            }else{
-                AddTestResult("Threading::Interactive", Skipped);
-            }*/
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
+
 };
 
 #endif

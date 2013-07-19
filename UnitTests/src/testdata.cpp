@@ -47,13 +47,48 @@
 #include "consolestringmanipulation.h"
 
 #include <vector>
+#include <stdexcept>
+#include <sstream>
 
 using namespace Mezzanine;
+using namespace std;
 
 namespace Mezzanine
 {
     namespace Testing
     {
+        TestData::TestData(const String& Name,
+                 TestResult Result,
+                 const String& FuncName,
+                 const String& File,
+                 Mezzanine::Whole Line)
+            : TestName(Name), Results(Result), FunctionName(FuncName), FileName(File), LineNumber(Line)
+        {}
+
+        TestData::TestData(pugi::xml_node Node)
+            : TestName( Node.attribute("TestName").as_string() ),
+              Results( StringToTestResult(Node.attribute ("Results").as_string())),
+              FunctionName( Node.attribute("FunctionName").as_string() ),
+              FileName( Node.attribute("FileName").as_string() ),
+              LineNumber( Node.attribute("LineNumber").as_uint() )
+        {}
+
+        bool TestData::operator<(const TestData& Rhs) const
+            { return this->TestName < Rhs.TestName; }
+
+        String TestData::GetAsXML() const
+        {
+            std::stringstream Snippet;
+            Snippet << "<TestData "
+                    << "TestName=\"" << TestName << "\" "
+                    << "Results=\"" << TestResultToString(Results) << "\" "
+                    << "FunctionName=\"" << FunctionName << "\" "
+                    << "FileName=\"" << FileName << "\" "
+                    << "LineNumber=\"" << LineNumber << "\" "
+                    << "/>";
+            return Snippet.str();
+        }
+
         int PrintList(CoreTestGroup& TestGroups)
         {
             for(CoreTestGroup::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
@@ -65,8 +100,8 @@ namespace Mezzanine
         {
             TestData Results;
             size_t LastSpace=Line.rfind(' ');
-            Results.second=StringToTestResult(Line.substr(LastSpace+1,100)); // No testdata should be longer than 100
-            Results.first=rtrim(Line.substr(0,LastSpace));
+            Results.Results = StringToTestResult(Line.substr(LastSpace+1));
+            Results.TestName=rtrim(Line.substr(0,LastSpace));
             return Results;
         }
 
@@ -74,45 +109,116 @@ namespace Mezzanine
             LongestNameLength(0)
         {}
 
-        void UnitTestGroup::AddTestResult(TestData FreshMeat, OverWriteResults Behavior)
+        void UnitTestGroup::RunTests(bool RunAuto, bool RunInteractive)
+        {
+            try
+            {
+                if(RunAuto)
+                    { RunAutomaticTests(); }
+                else if(HasAutomaticTests())
+                    { AddTestResult( TestData("AutomaticTests",Testing::Skipped, "RunTests") );}
+            }catch(exception& e){
+                cerr << "Caught an unhandled exception while doing RunAutomaticTests()." << endl
+                     << "Message: " << e.what() << endl;
+                AddTestResult( TestData("UnhandledException", Testing::Failed) );
+            }
+
+            try
+            {
+                if(RunInteractive)
+                    { RunInteractiveTests(); }
+                else if(HasInteractiveTests())
+                    { AddTestResult( TestData("InteractiveTests",Testing::Skipped, "RunTests") );}
+            }catch(exception& e){
+                cerr << "Caught an unhandled exception while doing RunInteractiveTests()." << endl
+                     << "Message: " << e.what() << endl;
+                AddTestResult( TestData("UnhandledException", Testing::Failed) );
+            }
+        }
+
+        void UnitTestGroup::RunAutomaticTests()
+        {
+
+        }
+
+        bool UnitTestGroup::HasAutomaticTests() const
+            { return false; }
+
+        void UnitTestGroup::RunInteractiveTests()
+        {
+
+        }
+
+        bool UnitTestGroup::HasInteractiveTests() const
+            { return false; }
+
+        Mezzanine::String UnitTestGroup::Name()
+            { return ""; }
+
+
+        void UnitTestGroup::AddTestResult(TestData CurrentTest, OverWriteResults Behavior)
         {
             bool Added=false;
 
-            TestDataStorage::iterator PreExisting = this->find(FreshMeat.first);
+            if(CurrentTest.TestName.npos != CurrentTest.TestName.find(" "))
+                { throw std::invalid_argument("Invalid Test Name, contains one or more space character ( ), TestName: \"" + CurrentTest.TestName + "\""); }
+            if(CurrentTest.TestName.npos != CurrentTest.TestName.find("\""))
+                { throw std::invalid_argument("Invalid Test Name, contains one or more double quote (\") character(s), TestName: \"" + CurrentTest.TestName + "\""); }
+
+            if(this->Name().length())
+            {
+                if(this->Name().npos != this->Name().find(" "))
+                    { throw std::invalid_argument("Invalid UnitTestGroup Name, contains one or more space character ( ), name: \"" + this->Name() + "\""); }
+                if(this->Name().npos != this->Name().find("\""))
+                    { throw std::invalid_argument("Invalid UnitTestGroup Name, contains one or more double quote (\"), name: \"" + this->Name() + "\""); }
+                CurrentTest.TestName = this->Name() + "::" + CurrentTest.TestName;
+            }
+
+
+            TestDataStorage::iterator PreExisting = this->find(CurrentTest.TestName);
             if(this->end()!=PreExisting)
             {
                 switch(Behavior)
                 {
                     case OverWriteIfLessSuccessful:
-                        if (PreExisting->second <= FreshMeat.second)
-                            { PreExisting->second = FreshMeat.second; Added=true; }
+                        if (PreExisting->Results <= CurrentTest.Results)
+                        {
+                            this->erase(PreExisting);
+                            this->insert(CurrentTest);
+                            Added=true;
+                        }
                         break;
                     case OverWrite:
-                        PreExisting->second = FreshMeat.second;
+                        this->erase(PreExisting);
+                        this->insert(CurrentTest);
                         Added=true;
                         break;
                     case OverWriteIfMoreSuccessful:
-                        if (PreExisting->second >= FreshMeat.second)
-                            { PreExisting->second = FreshMeat.second; Added=true; }
+                        if (PreExisting->Results >= CurrentTest.Results)
+                        {
+                            this->erase(PreExisting);
+                            this->insert(CurrentTest);
+                            Added=true;
+                        }
                         break;
                     case DoNotOverWrite:
                         break;
                 }
             }else{
-                this->insert(FreshMeat);
+                this->insert(CurrentTest);
                 Added=true;
             }
 
             if (Added)
             {
-                if(FreshMeat.first.length()>LongestNameLength)
-                    { LongestNameLength=FreshMeat.first.length(); }
+                if(CurrentTest.TestName.length()>LongestNameLength)
+                    { LongestNameLength=CurrentTest.TestName.length(); }
             }
         }
 
         void UnitTestGroup::AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior)
         {
-            std::cout << "Noting result of " << Fresh << " as " << TestResultToString(Meat) << std::endl;
+            std::cout << "Noting result of " << this->Name() + "::" + Fresh << " as " << TestResultToString(Meat) << std::endl;
             AddTestResult(TestData(Fresh,Meat),Behavior);
         }
 
@@ -123,6 +229,23 @@ namespace Mezzanine
 
             insert(rhs.begin(),rhs.end());
             return *this;
+        }
+
+        void UnitTestGroup::AddTestsFromXML(pugi::xml_node Node)
+        {
+            if(String("UnitTestGroup")!=Node.name())
+                { throw std::invalid_argument("UnitTestGroup::AddTestsFromXML can only handle XML with \"UnitTestGroup\" as passed element"); }
+            for(pugi::xml_node::iterator Iter = Node.begin(); Iter!=Node.end(); Iter++)
+                { this->AddTestResult(TestData(*Iter)); }
+        }
+
+        String UnitTestGroup::GetAsXML() const
+        {
+            String Results("<UnitTestGroup>");
+            for (iterator Iter=this->begin(); Iter!=this->end(); Iter++)
+                { Results += "\n  " + Iter->GetAsXML(); }
+            Results += "\n</UnitTestGroup>";
+            return Results;
         }
 
         void UnitTestGroup::DisplayResults(std::ostream& Output, bool Summary, bool FullOutput, bool HeaderOutput)
@@ -140,9 +263,22 @@ namespace Mezzanine
             {
                 if(FullOutput)
                 {
-                    Output << Iter->first << MakePadding(Iter->first, LongestNameLength+1) << TestResultToString(Iter->second) << std::endl;
+                    Output << Iter->TestName << MakePadding(Iter->TestName, LongestNameLength+1) << TestResultToString(Iter->Results);
+                    if(Iter->Results) // Not Testing::Success
+                    {
+                        Output << "\t";
+                        if(Iter->FileName.length())
+                            { Output << " File: " << Iter->FileName; }
+                        if(Iter->FunctionName.length())
+                            { Output << " Function: " << Iter->FunctionName; }
+                        if(Iter->LineNumber)
+                            { Output << " Line: " << Iter->LineNumber; }
+                        if(Iter->FileName.length()==0 && Iter->FunctionName.length() == 0 && Iter->LineNumber==0)
+                            { Output << " No Metadata available able issue, use TEST to capture"; }
+                    }
+                    Output << std::endl;
                 }
-                TestCounts.at((unsigned int)Iter->second)++; // Count this test result
+                TestCounts.at((unsigned int)Iter->Results)++; // Count this test result
             }
 
             if(Summary)
@@ -157,26 +293,23 @@ namespace Mezzanine
             }
         }
 
-        bool UnitTestGroup::AddSuccessFromBool(Mezzanine::String TestName, bool Condition)
+        void UnitTestGroup::Test(bool TestCondition, const String& TestName, TestResult IfFalse, TestResult IfTrue, const String& FuncName, const String& File, Whole Line )
         {
-            if(Condition)
+            try
             {
-                AddTestResult(TestName, Success, OverWrite);
-            }else{
-                AddTestResult(TestName, Failed, OverWrite);
+                if(TestCondition)
+                {
+                    AddTestResult( TestData(TestName, IfTrue, FuncName, File, Line) );
+                }else{
+                    AddTestResult( TestData(TestName, IfFalse, FuncName, File, Line) );
+                }
+            }catch(exception& e){
+                cerr << "Caught an unhandled exception while adding results for " << TestName << endl
+                     << "Message: " << e.what() << endl;
+                AddTestResult( TestData("UnhandledException", Testing::Failed, FuncName, File, Line) );
             }
-            return Condition;
         }
 
-        void UnitTestGroup::Test(bool TestCondition, const String& TestName, TestResult IfFalse, TestResult IfTrue)
-        {
-            if(TestCondition)
-            {
-                AddTestResult(TestName, IfTrue);
-            }else{
-                AddTestResult(TestName, IfFalse);
-            }
-        }
 
     }// Testing
 }// Mezzanine

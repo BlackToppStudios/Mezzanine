@@ -64,6 +64,7 @@ namespace Mezzanine
         /// @param StringToConvert This string is actually changed.
         /// @return for convience purposes the string is also returned.
         char* AllLower(char* StringToConvert);
+        String AllLower(String StringToConvert);
 
         /// @brief Get a String Corresponding to a passed bool
         /// @param i A bool

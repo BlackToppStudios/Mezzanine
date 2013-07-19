@@ -50,18 +50,18 @@ namespace Mezzanine
     namespace BinaryTools
     {
         ///////////////////////////////////////////////////////////////////////////////////////////////////
-        /// @brief A way to store and pass binary buffers like compiled bytcode.
+        /// @brief A way to store and pass binary buffers, for example compiled bytecode.
         /// @details Originally intended for use with ScriptCompilable as a basic way to store and pass bytecode around.
-        /// This deletes the passed binary on destruction. to prevent this behavior set the Binary pointer to null.
+        /// This deletes the passed binary on destruction. To prevent this behavior set the Binary pointer to null.
         /// @n @n
         /// This is designed to be fairly minimalistic but passing by value causes the buffer to be copied.
         /// @n @n
-        /// Where possible this class performs no speculative allocation unless explicitly requested to. In other
+        /// Where possible this class performs no speculative allocation unless explicitly requested to. In other words
         /// this should have allocated exactly as many bytes are indicated by the member Size, no more and no less.
         /// This will tend to not allocate memory unless an operation on it is specified that it does so.
         /// @n @n
         /// Whenever this needs to allocated memory it will use the Size member for determining the amount to allocate. If that
-        /// is 0 an InvalidStateException exception is thrown. Bounds checking, if performed, only occur
+        /// is 0 an InvalidStateException exception is thrown. Bounds checking, if performed, only occurs when
         /// MEZZ_DEBUG is enabled.
         class MEZZ_LIB BinaryBuffer
         {

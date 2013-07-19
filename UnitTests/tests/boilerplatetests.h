@@ -40,10 +40,12 @@
 #ifndef _boilerplatetests_h
 #define _boilerplatetests_h
 
-#include "main.h"
+#include "mezztest.h"
+
+#include <stdexcept> //only used to throw for TEST_THROW
 
 /// @file
-/// @brief this file should be used as template for building future Unit Tests
+/// @brief This file should be used as template/example for building future Unit Tests
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
@@ -53,37 +55,50 @@ class boilerplatetests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "boilerplate"
+        /// @return Returns a String containing "BoilerPlate"
         virtual String Name()
-            { return String("boilerplate"); }
+            { return String("BoilerPlate"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail provides on Sample interactive and one sample automatic test.
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+
+
+        /// @brief This is called when Automatic tests are run
+        void RunAutomaticTests()
         {
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
+            // The TEST macro will capture Line, function file Metadata while
+            TEST(true,"AutomaticTest");
+            //TEST(false,"AutomaticFail");
 
-                if(1)
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BoilerPlate::Automatic", temp);
+            TEST_WARN(false,"AutomaticWarn");
 
-            }else{
-                AddTestResult("BoilerPlate::Automatic", Skipped);
-            }
+            TestResult Answer = Testing::Success;
+            TEST_RESULT(Answer, "AutomaticTestResult");
 
-            if (RunInteractiveTests)
-            {
-                TestResult temp;
-                temp = GetTestAnswerFromStdin( "Is this a question? ");
-                AddTestResult("BoilerPlate::Interactive", temp);
-            }else{
-                AddTestResult("BoilerPlate::Interactive", Skipped);
-            }
+            // Multiline example
+            TEST_THROW( std::runtime_error&, \
+                        throw std::runtime_error("oh noes!"); \
+                        , "AutomaticTestThrow");
+            //TEST_THROW(std::runtime_error, throw "oh noes!";, "AutomaticTestThrow"); //Throws unexpected type so it fails
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
+
+
+
+        /// @brief This is called when Interactive tests are run
+        void RunInteractiveTests()
+        {
+            TestResult Answer = GetTestAnswerFromStdin( "Is this a question? ");
+            TEST_RESULT(Answer, "Interactive");
+        }
+
+        /// @brief Since RunInteractiveTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasInteractiveTests() const
+            { return true; }
+
 };
 
 #endif

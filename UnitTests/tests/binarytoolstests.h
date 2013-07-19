@@ -40,7 +40,7 @@
 #ifndef _binarytoolstests_h
 #define _binarytoolstests_h
 
-#include "main.h"
+#include "mezztest.h"
 #include "binarybuffer.h"
 #include "crossplatform.h"
 #include "exception.h"

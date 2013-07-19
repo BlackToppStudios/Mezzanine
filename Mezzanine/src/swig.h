@@ -44,7 +44,7 @@
 /// @file
 /// @brief Used to give commands specifically to the SWIG preprocessor
 /// @details SWIG is a C/C++ source code preprocessor that reads source files
-/// and produces an implemtation of bindings for that language. Currently it
+/// and produces an implementation of bindings for that language. Currently it
 /// is only used for Lua. It can be used for other items in the future.
 /// \n This file defines a number of messages to make troubleshooting SWIG
 /// and the script bindings a little easier.

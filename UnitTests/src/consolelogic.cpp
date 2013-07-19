@@ -46,8 +46,8 @@
 #include "consolelogic.h"
 #include "consolestringmanipulation.h"
 
-#include <fstream>
 #include <vector>
+#include <sstream>
 
 using namespace Mezzanine;
 
@@ -55,7 +55,6 @@ namespace Mezzanine
 {
     namespace Testing
     {
-
         int Usage(Mezzanine::String ThisName, CoreTestGroup& TestGroups)
         {
             std::cout   << std::endl << "Usage: " << ThisName << " [help] [summary] [testlist] [interactive|automatic] [all]\n\t[skipfile] Test Group Names ..." << std::endl << std::endl
@@ -70,59 +69,84 @@ namespace Mezzanine
                         << "If only test group names are entered, then all tests in those groups are run." << std::endl
                         << "This command is not case sensitive." << std::endl << std::endl
                         << "Current Test Groups: " << std::endl;
-            Mezzanine::Whole c = 0;
+            Mezzanine::Whole LongestName = 0;
             for(std::map<Mezzanine::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
             {
-                std::cout << "\t" << Iter->first << (Iter->first.size()<7?"\t":"") << " ";
-                ++c;        //enforce 4 names per line
-                if (4==c)
-                    { std::cout << std::endl; c=0; }
+                if(Iter->first.size()>LongestName)
+                    { LongestName=Iter->first.size();}
+            }
+
+            // This presumes the console it 80 chars wide
+            Mezzanine::Whole TargetWidth=80;
+            Mezzanine::Whole ColumnWidth = LongestName+1;
+            Mezzanine::Whole Column = 0;
+            Mezzanine::Whole CurrentWidth=0;
+            for(std::map<Mezzanine::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+            {
+                if(0==Column)
+                {
+                    std::cout << "  ";
+                    CurrentWidth = 2;
+                } else {
+                    std::cout << " ";
+                    CurrentWidth ++;
+                }
+
+                std::cout << Iter->second->Name() << " ";
+                CurrentWidth += Iter->first.size() + 1;
+                Column++;
+                for(Mezzanine::Whole SpaceD=Iter->first.size()+1; SpaceD<=ColumnWidth; SpaceD++)
+                {
+                    std::cout << " ";
+                    CurrentWidth++;
+                }
+
+                if(CurrentWidth>TargetWidth-LongestName-1)
+                {
+                    std::cout << std::endl;
+                    Column = 0;
+                    CurrentWidth = 0;
+                }
+
             }
             std::cout << std::endl;
 
             return ExitInvalidArguments;
         }
 
-        void ClearTempFile()
+        TestResult GetTestAnswerFromStdin(Mezzanine::String Question)
         {
-            std::ofstream FileToClear;
-            FileToClear.open(TempFile.c_str(),std::ios_base::out|std::ios_base::trunc); // Clear the work file.
-            FileToClear.close();
-        }
+            Mezzanine::String Input;
+            char Answer;
 
-        UnitTestGroup GetResultsFromTempFile()
-        {
-            UnitTestGroup Results;
-            std::vector<Mezzanine::String> FileContents;
-
-            char SingleLine[1024];
-            std::ifstream TheSourceFile(TempFile.c_str());
-            while( TheSourceFile.good() )
+            while(true)
             {
-                TheSourceFile.getline(SingleLine,1024);
-                FileContents.push_back(Mezzanine::String(SingleLine));
-            }
-
-            if(TheSourceFile.eof()) // We successfully reached the end of the file
-                { }
-            if(TheSourceFile.bad()) // We fail somehow
-                { std::cerr << "Error reading temp file." << std::endl; }
-            TheSourceFile.close();
-
-            for(std::vector<Mezzanine::String>::iterator Iter=FileContents.begin(); FileContents.end()!=Iter; ++Iter) // for each line in the file, that is now loaded in RAM
-            {
-                if(rtrim(*Iter).size()) // If there is more than whitespace
+                std::cout << Question;
+                getline(std::cin, Input);
+                std::stringstream InputStream(Input);
+                if (InputStream >> Answer)
                 {
-                    Results.AddTestResult(StringToTestData(*Iter));
+                    Answer=tolower(Answer);
+                    if (Answer=='t' || Answer=='y' || Answer=='f' || Answer=='n' || Answer=='c' || Answer=='u' || Answer=='i')
+                        { break; }
                 }
+
+                std::cout << std::endl << "Expected (T)rue/(Y)es for Success, (F)alse/(N)o for Failure," << std::endl << " (C)anceled to cancel this test, or (U)nsure/(I)nconclusive if you don't know." << std::endl << std::endl;
             }
 
-            return Results;
-        }
-
-        void DeleteTempFile()
-        {
-            remove(TempFile.c_str());
+            switch(Answer)
+            {
+                case 't': case 'y':
+                    return Success;
+                case 'f': case 'n':
+                    return Failed;
+                case 'c':
+                    return Cancelled;
+                case 'u': case 'i':
+                    return Inconclusive;
+                default:
+                    return Unknown;
+            }
         }
 
     }// Testing
