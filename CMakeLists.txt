@@ -464,6 +464,20 @@ Message(STATUS "Looking for Ogre3d headers in: ${OgreHeaderIncludeDir}")
 #set(OgrePluginRenderGL ${StaticLibPrefix}RenderSystem_GL${OgresD}${StaticLibSuffix})
 #set(OgrePluginParticle ${StaticLibPrefix}Plugin_ParticleFX${OgresD}${StaticLibSuffix})
 
+#######################################
+# Bullet related values
+
+set(BUILD_AMD_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(BUILD_INTEL_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(BUILD_NVIDIA_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(BUILD_MINICL_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(BUILD_CPU_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(USE_GLUT OFF CACHE BOOL "Do not build demos!" FORCE)
+set(BUILD_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
+set(INSTALL_LIBS OFF CACHE BOOL "Do not install libs!" FORCE)
+set(INSTALL_EXTRA_LIBS OFF CACHE BOOL "Do not install libs!" FORCE)
+set(BUILD_UNIT_TESTS OFF CACHE BOOL "Do not build unit tests!" FORCE)
+
 ###############################################################################
 # Doxygen options
 option (Mezz_Doc "Refresh Doxygen documentation during a build" OFF)
@@ -573,6 +587,27 @@ mark_as_advanced( FORCE
 
     # SDL Indirect Options
     ARTS_CONFIG D_NAS_LIB XCURSOR_LIB XEXT_LIB XI_LIB XINERAMA_LIB XRANDR_LIB XRENDER_LIB XSS_LIB XXF86VM_LIB X11_LIB
+    
+    # Bullet options
+    
+    USE_DOUBLE_PRECISION
+    USE_MSVC_RUNTIME_LIBRARY_DLL
+    USE_MSVC_INCREMENTAL_LINKING
+    USE_CUSTOM_VECTOR_MATH
+    USE_DX11
+    USE_MSVC_SSE
+    USE_MSVC_FAST_FLOATINGPOINT
+    INTERNAL_CREATE_DISTRIBUTABLE_MSVC_PROJECTFILES
+    INTERNAL_CREATE_MSVC_RELATIVE_PATH_PROJECTFILES
+    INTERNAL_ADD_POSTFIX_EXECUTABLE_NAMES
+    INTEL_OPENCL_INCLUDES
+    INTEL_OPENCL_LIBRARIES
+    INTEL_OPENCL_ICD_CFG
+    NVIDIA_OPENCL_INCLUDES
+    NVIDIA_OPENCL_LIBRARIES
+    NVIDIA_OPENCL_ICD_CFG
+    INTERNAL_UPDATE_SERIALIZATION_STRUCTURES
+    BUILD_EXTRAS
 
     # Ogre indirect
     Boost_DIR Boost_LIB_DIAGNOSTIC_DEFINITIONS OGRE_SET_USE_BOOST
