@@ -65,8 +65,8 @@ void VoronoiFractureDemo::attachFixedConstraints()
 		
 		btCollisionObject* colObj0 = (btCollisionObject*)manifold->getBody0();
 		btCollisionObject* colObj1 = (btCollisionObject*)manifold->getBody1();
-		int tag0 = (colObj0)->getIslandTag();
-		int tag1 = (colObj1)->getIslandTag();
+	//	int tag0 = (colObj0)->getIslandTag();
+//		int tag1 = (colObj1)->getIslandTag();
 		btRigidBody* body0 = btRigidBody::upcast(colObj0);
 		btRigidBody* body1 = btRigidBody::upcast(colObj1);
 		if (bodies.findLinearSearch(body0)==bodies.size())
@@ -178,7 +178,7 @@ void VoronoiFractureDemo::getVerticesInsidePlanes(const btAlignedObjectArray<btV
 	}
 }
 
-static btVector3 curVoronoiPoint; // Here for btAlignedObjectArray.quickSort pointCmp scope
+static btVector3 curVoronoiPoint; 
 
 struct pointCmp
 {
@@ -230,7 +230,7 @@ void VoronoiFractureDemo::voronoiBBShatter(const btAlignedObjectArray<btVector3>
 		planes[4] = -bbvy; planes[4][3] = nrbb.y();
 		planes[5] = -bbvz; planes[5][3] = nrbb.z();
 		maxDistance = SIMD_INFINITY;
-		sortedVoronoiPoints.quickSort(pointCmp());
+		sortedVoronoiPoints.heapSort(pointCmp());
 		for (j=1; j < numpoints; j++) {
 			normal = sortedVoronoiPoints[j] - curVoronoiPoint;
 			nlength = normal.length();
@@ -375,7 +375,7 @@ void VoronoiFractureDemo::voronoiConvexHullShatter(const btAlignedObjectArray<bt
 			planes[j][3] += planes[j].dot(curVoronoiPoint);
 		}
 		maxDistance = SIMD_INFINITY;
-		sortedVoronoiPoints.quickSort(pointCmp());
+		sortedVoronoiPoints.heapSort(pointCmp());
 		for (j=1; j < numpoints; j++) {
 			normal = sortedVoronoiPoints[j] - curVoronoiPoint;
 			nlength = normal.length();

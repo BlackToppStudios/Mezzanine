@@ -29,6 +29,7 @@
 #include "BulletSoftBody/btSoftBodyHelpers.h"
 
 #include "GLDebugDrawer.h"
+static GLDebugDrawer dDebugDraw2;
 
 #include "LinearMath/btQuickprof.h"
 
@@ -46,7 +47,7 @@ namespace
 	int framePeriod;//todo: test if this value should be 0
 	int mainWindow;
 	GLUI *glui;
-	float hz;
+	//float hz;
 	float viewZoom=20.f;
 	float viewX;
 	float viewY;
@@ -99,12 +100,12 @@ void	setDefaultSettings()
 	gDrawClusters=0;
 
 	gDebugNoDeactivation = 0;
-	gUseSplitImpulse = 0;
+	gUseSplitImpulse = 1;
 	gUseWarmstarting = 1;
-	gRandomizeConstraints = 1;
+	gRandomizeConstraints = 0;
 	gErp = 0.2f;
 	gSlop=0.0f;
-	gErp2 = 0.1f;
+	gErp2 = 0.81f;
 	gWarmStartingParameter = 0.85f;
 	
 }
@@ -173,7 +174,7 @@ DemoApplication* CreatDemo(btDemoEntry* entry)
 	btAssert(demo);
 	if (demo->getDynamicsWorld())
 	{
-		demo->getDynamicsWorld()->setDebugDrawer(new GLDebugDrawer());
+		demo->getDynamicsWorld()->setDebugDrawer(&dDebugDraw2);
 		gDrawTextures = demo->getTexturing();
 		gDrawShadows = demo->getShadows();
 		if (glui)
@@ -339,8 +340,6 @@ void SimulationLoop()
         	}
 
 		testIndex = testSelection;
-		if (demo->getDynamicsWorld() && demo->getDynamicsWorld()->getDebugDrawer())
-			delete demo->getDynamicsWorld()->getDebugDrawer();
 		delete demo;
 		entry = g_demoEntries + testIndex;
 		demo = CreatDemo(entry);
@@ -353,8 +352,6 @@ void SimulationLoop()
 
 void	RestartScene()
 {
-	if (demo->getDynamicsWorld() && demo->getDynamicsWorld()->getDebugDrawer())
-			delete demo->getDynamicsWorld()->getDebugDrawer();
 	delete demo;
 	entry = g_demoEntries + testIndex;
 	demo = CreatDemo(entry);
@@ -378,8 +375,6 @@ void Keyboard(unsigned char key, int x, int y)
 
 		// Press 'r' to reset.
 	case 'r':
-		if (demo->getDynamicsWorld() && demo->getDynamicsWorld()->getDebugDrawer())
-			delete demo->getDynamicsWorld()->getDebugDrawer();
 		delete demo;
 		demo = CreatDemo(entry);
 		Resize(width,height);

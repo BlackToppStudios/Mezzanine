@@ -17,13 +17,6 @@ IF(WIN32)
 ADD_DEFINITIONS(-DGLEW_STATIC)
 ENDIF(WIN32)
 
-IF (CMAKE_CL_64)
-	SET(CMAK_GLEW_LIBRARY
-		${BULLET_PHYSICS_SOURCE_DIR}/Glut/glew64s.lib		)
-ELSE(CMAKE_CL_64)
-	SET(CMAK_GLEW_LIBRARY		${BULLET_PHYSICS_SOURCE_DIR}/Glut/glew32s.lib		)
-ENDIF(CMAKE_CL_64)
-
 
 IF (USE_GLUT)
 	LINK_LIBRARIES(
@@ -40,7 +33,7 @@ IF (USE_GLUT)
 			${OPENGL_gl_LIBRARY} 
 			${OPENGL_glu_LIBRARY}
 			${CMAK_GLEW_LIBRARY}
-			${CMAKE_ATISTREAMSDK_LIBPATH}/OpenCL.lib
+			${CMAKE_ATISTREAMSDK_LIBRARY}
 	)
 
 	IF (WIN32)
@@ -48,7 +41,7 @@ IF (USE_GLUT)
 			../main.cpp
 			../SerializeDemo.cpp 
 			../SerializeDemo.h
-			${BULLET_PHYSICS_SOURCE_DIR}/msvc/bullet.rc
+			${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
 		${BULLET_PHYSICS_SOURCE_DIR}/Demos/SharedOpenCL/btOpenCLUtils.cpp
 		${BULLET_PHYSICS_SOURCE_DIR}/Demos/SharedOpenCL/btOpenCLUtils.h
 		${BULLET_PHYSICS_SOURCE_DIR}/Demos/SharedOpenCL/btOpenCLInclude.h
@@ -99,8 +92,8 @@ ELSE (USE_GLUT)
 		BulletMultiThreaded
 		${OPENGL_gl_LIBRARY} 
 		${OPENGL_glu_LIBRARY}
-		${CMAK_GLEW_LIBRARY}
-		${CMAKE_ATISTREAMSDK_LIBPATH}/OpenCL.lib
+		${CMAKE_GLEW_LIBRARY}
+		${CMAKE_ATISTREAMSDK_LIBRARY}
 	)
 
 	ADD_EXECUTABLE(AppSerializeDemo_AMD
@@ -109,7 +102,7 @@ ELSE (USE_GLUT)
 		../Win32SerializeDemo.cpp
 		../SerializeDemo.cpp 
 		../SerializeDemo.h
-		${BULLET_PHYSICS_SOURCE_DIR}/msvc/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
 		${BULLET_PHYSICS_SOURCE_DIR}/Demos/SharedOpenCL/btOpenCLUtils.cpp
 		${BULLET_PHYSICS_SOURCE_DIR}/Demos/SharedOpenCL/btOpenCLUtils.h
 		${BULLET_PHYSICS_SOURCE_DIR}/Demos/SharedOpenCL/btOpenCLInclude.h

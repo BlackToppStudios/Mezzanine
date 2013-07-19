@@ -51,7 +51,9 @@ namespace bParse {
 		btAlignedObjectArray<bStructHandle*>	m_bvhs;
 
 		btAlignedObjectArray<bStructHandle*>	m_triangleInfoMaps;
-		
+
+		btAlignedObjectArray<bStructHandle*>	m_dynamicsWorldInfo;
+
 		btAlignedObjectArray<char*>				m_dataBlocks;
 		btBulletFile();
 
@@ -67,7 +69,7 @@ namespace bParse {
 		// experimental
 		virtual int		write(const char* fileName, bool fixupPointers=false);
 
-		virtual	void	parse(bool verboseDumpAllTypes);
+		virtual	void	parse(int verboseMode);
 
 		virtual	void parseData();
 

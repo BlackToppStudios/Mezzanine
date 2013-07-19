@@ -98,8 +98,8 @@ void SerializeDemo::keyboardCallback(unsigned char key, int x, int y)
 		
 			btCollisionObject* colObj0 = (btCollisionObject*)manifold->getBody0();
 			btCollisionObject* colObj1 = (btCollisionObject*)manifold->getBody1();
-			int tag0 = (colObj0)->getIslandTag();
-			int tag1 = (colObj1)->getIslandTag();
+		//	int tag0 = (colObj0)->getIslandTag();
+		//	int tag1 = (colObj1)->getIslandTag();
 			btRigidBody* body0 = btRigidBody::upcast(colObj0);
 			btRigidBody* body1 = btRigidBody::upcast(colObj1);
 			if (bodies.findLinearSearch(body0)==bodies.size())
@@ -165,6 +165,7 @@ void SerializeDemo::clientMoveAndDisplay()
 	{
 		m_dynamicsWorld->stepSimulation(ms / 1000000.f);
 
+		
 #ifdef DESERIALIZE_SOFT_BODIES
 		if (fSoftBodySolver)
             fSoftBodySolver->copyBackToSoftBodies();
@@ -289,6 +290,7 @@ void	SerializeDemo::setupEmptyDynamicsWorld()
 
 	///use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
 	m_dispatcher = new	btCollisionDispatcher(m_collisionConfiguration);
+	btGImpactCollisionAlgorithm::registerAlgorithm(m_dispatcher);
 
 	m_broadphase = new btDbvtBroadphase();
 	
@@ -350,6 +352,7 @@ void	SerializeDemo::setupEmptyDynamicsWorld()
     btSoftRigidDynamicsWorld* world = new btSoftRigidDynamicsWorld(m_dispatcher, m_broadphase, m_solver,
                                           m_collisionConfiguration, fSoftBodySolver);
 	m_dynamicsWorld = world;
+
 
 	//world->setDrawFlags(world->getDrawFlags()^fDrawFlags::Clusters);
 #else
@@ -729,7 +732,13 @@ public:
 };
 #endif //DESERIALIZE_SOFT_BODIES
 
+SerializeDemo::SerializeDemo()
+:m_verboseMode(0),
+m_fileName("testFile.bullet")
+{
+	m_idle=true;
 
+}
 SerializeDemo::~SerializeDemo()
 {
 	m_fileLoader->deleteAllData();
@@ -740,7 +749,7 @@ SerializeDemo::~SerializeDemo()
 void	SerializeDemo::initPhysics()
 {
 	setTexturing(true);
-	setShadows(true);
+	setShadows(false);//true);
 
 	setCameraDistance(btScalar(SCALING*30.));
 
@@ -751,7 +760,10 @@ void	SerializeDemo::initPhysics()
 #else
 	m_fileLoader = new btBulletWorldImporter(m_dynamicsWorld);
 #endif //DESERIALIZE_SOFT_BODIES
-//	fileLoader->setVerboseMode(true);
+	
+	m_fileLoader->setVerboseMode(m_verboseMode);
+	
+
 
 	if (!m_fileLoader->loadFile("testFile.bullet"))
 //	if (!m_fileLoader->loadFile("../SoftDemo/testFile.bullet"))

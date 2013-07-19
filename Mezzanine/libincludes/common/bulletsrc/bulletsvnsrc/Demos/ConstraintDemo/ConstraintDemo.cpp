@@ -28,6 +28,10 @@ subject to the following restrictions:
 #include "GL_ShapeDrawer.h"
 #include "GlutStuff.h"
 
+#include "GLDebugDrawer.h"
+static GLDebugDrawer	gDebugDrawer;
+
+
 
 const int numObjects = 3;
 
@@ -85,6 +89,11 @@ void	ConstraintDemo::setupEmptyDynamicsWorld()
 
 }
 
+void	ConstraintDemo::clientResetScene()
+{
+	exitPhysics();
+	initPhysics();
+}
 void	ConstraintDemo::initPhysics()
 {
 	setTexturing(true);
@@ -94,6 +103,9 @@ void	ConstraintDemo::initPhysics()
 	m_Time = 0;
 
 	setupEmptyDynamicsWorld();
+
+	m_dynamicsWorld->setDebugDrawer(&gDebugDrawer);
+
 
 	//btCollisionShape* groundShape = new btBoxShape(btVector3(btScalar(50.),btScalar(40.),btScalar(50.)));
 	btCollisionShape* groundShape = new btStaticPlaneShape(btVector3(0,1,0),40);
@@ -115,6 +127,76 @@ void	ConstraintDemo::initPhysics()
 
 	float mass = 1.f;
 
+#if ENABLE_ALL_DEMOS
+///gear constraint demo
+
+#define THETA SIMD_PI/4.f
+#define L_1 (2 - tan(THETA))
+#define L_2 (1 / cos(THETA))
+#define RATIO L_2 / L_1
+
+	btRigidBody* bodyA=0;
+	btRigidBody* bodyB=0;
+
+	{
+		btCollisionShape* cylA = new btCylinderShape(btVector3(0.2,0.25,0.2));
+		btCollisionShape* cylB = new btCylinderShape(btVector3(L_1,0.025,L_1));
+		btCompoundShape* cyl0 = new btCompoundShape();
+		cyl0->addChildShape(btTransform::getIdentity(),cylA);
+		cyl0->addChildShape(btTransform::getIdentity(),cylB);
+
+		btScalar mass = 6.28;
+		btVector3 localInertia;
+		cyl0->calculateLocalInertia(mass,localInertia);
+		btRigidBody::btRigidBodyConstructionInfo ci(mass,0,cyl0,localInertia);
+		ci.m_startWorldTransform.setOrigin(btVector3(-8,1,-8));
+
+		btRigidBody* body = new btRigidBody(ci);//1,0,cyl0,localInertia);
+		m_dynamicsWorld->addRigidBody(body);
+		body->setLinearFactor(btVector3(0,0,0));
+		body->setAngularFactor(btVector3(0,1,0));
+		bodyA = body;
+	}
+
+	{
+		btCollisionShape* cylA = new btCylinderShape(btVector3(0.2,0.26,0.2));
+		btCollisionShape* cylB = new btCylinderShape(btVector3(L_2,0.025,L_2));
+		btCompoundShape* cyl0 = new btCompoundShape();
+		cyl0->addChildShape(btTransform::getIdentity(),cylA);
+		cyl0->addChildShape(btTransform::getIdentity(),cylB);
+
+		btScalar mass = 6.28;
+		btVector3 localInertia;
+		cyl0->calculateLocalInertia(mass,localInertia);
+		btRigidBody::btRigidBodyConstructionInfo ci(mass,0,cyl0,localInertia);
+		ci.m_startWorldTransform.setOrigin(btVector3(-10,2,-8));
+
+
+		btQuaternion orn(btVector3(0,0,1),-THETA);
+		ci.m_startWorldTransform.setRotation(orn);
+
+		btRigidBody* body = new btRigidBody(ci);//1,0,cyl0,localInertia);
+		body->setLinearFactor(btVector3(0,0,0));
+		btHingeConstraint* hinge = new btHingeConstraint(*body,btVector3(0,0,0),btVector3(0,1,0),true);
+		m_dynamicsWorld->addConstraint(hinge);
+		bodyB= body;
+		body->setAngularVelocity(btVector3(0,3,0));
+
+		m_dynamicsWorld->addRigidBody(body);
+	}
+
+	btVector3	axisA(0,1,0);
+	btVector3	axisB(0,1,0);
+	btQuaternion orn(btVector3(0,0,1),-THETA);
+	btMatrix3x3 mat(orn);
+	axisB = mat.getRow(1);
+
+	btGearConstraint* gear = new btGearConstraint(*bodyA,*bodyB, axisA,axisB,RATIO);
+	m_dynamicsWorld->addConstraint(gear,true);
+
+
+#endif
+
 
 #if ENABLE_ALL_DEMOS
 	//point to point constraint with a breaking threshold
@@ -127,7 +209,7 @@ void	ConstraintDemo::initPhysics()
 		btRigidBody* body0 = localCreateRigidBody( mass,trans,shape);
 		trans.setOrigin(btVector3(2*CUBE_HALF_EXTENTS,20,0));
 		mass = 1.f;
-		btRigidBody* body1 = 0;//localCreateRigidBody( mass,trans,shape);
+	//	btRigidBody* body1 = 0;//localCreateRigidBody( mass,trans,shape);
 		btVector3 pivotInA(CUBE_HALF_EXTENTS,CUBE_HALF_EXTENTS,0);
 		btTypedConstraint* p2p = new btPoint2PointConstraint(*body0,pivotInA);
 		m_dynamicsWorld->addConstraint(p2p);
@@ -145,7 +227,7 @@ void	ConstraintDemo::initPhysics()
 		trans.setOrigin(btVector3(2*CUBE_HALF_EXTENTS,20,0));
 
 		mass = 1.f;
-		btRigidBody* body1 = 0;//localCreateRigidBody( mass,trans,shape);
+//		btRigidBody* body1 = 0;//localCreateRigidBody( mass,trans,shape);
 //		btRigidBody* body1 = localCreateRigidBody( 0.0,trans,0);
 		//body1->setActivationState(DISABLE_DEACTIVATION);
 		//body1->setDamping(0.3,0.3);
@@ -153,9 +235,9 @@ void	ConstraintDemo::initPhysics()
 		btVector3 pivotInA(CUBE_HALF_EXTENTS,-CUBE_HALF_EXTENTS,-CUBE_HALF_EXTENTS);
 		btVector3 axisInA(0,0,1);
 
-		btVector3 pivotInB = body1 ? body1->getCenterOfMassTransform().inverse()(body0->getCenterOfMassTransform()(pivotInA)) : pivotInA;
-		btVector3 axisInB = body1? 
-			(body1->getCenterOfMassTransform().getBasis().inverse()*(body1->getCenterOfMassTransform().getBasis() * axisInA)) : 
+	//	btVector3 pivotInB = body1 ? body1->getCenterOfMassTransform().inverse()(body0->getCenterOfMassTransform()(pivotInA)) : pivotInA;
+//		btVector3 axisInB = body1?
+//			(body1->getCenterOfMassTransform().getBasis().inverse()*(body1->getCenterOfMassTransform().getBasis() * axisInA)) :
 		body0->getCenterOfMassTransform().getBasis() * axisInA;
 
 #define P2P

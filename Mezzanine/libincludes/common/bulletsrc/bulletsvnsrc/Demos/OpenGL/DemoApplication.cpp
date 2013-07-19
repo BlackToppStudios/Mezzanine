@@ -33,7 +33,7 @@ subject to the following restrictions:
 #include "LinearMath/btSerializer.h"
 #include "GLDebugFont.h"
 
-static bool use6Dof = false;
+
 extern bool gDisableDeactivation;
 int numObjects = 0;
 const int maxNumObjects = 16384;
@@ -534,8 +534,8 @@ void	DemoApplication::setShootBoxShape ()
 {
 	if (!m_shootBoxShape)
 	{
-		btBoxShape* box = new btBoxShape(btVector3(.5f,.5f,.5f));
-		box->initializePolyhedralFeatures();
+		btBoxShape* box = new btBoxShape(btVector3(0.5,0.5,0.5));
+      //  box->initializePolyhedralFeatures();
 		m_shootBoxShape = box;
 	}
 }
@@ -566,7 +566,7 @@ void	DemoApplication::shootBox(const btVector3& destination)
 		body->setLinearVelocity(linVel);
 		body->setAngularVelocity(btVector3(0,0,0));
 		body->setCcdMotionThreshold(0.5);
-		body->setCcdSweptSphereRadius(0.9f);
+		body->setCcdSweptSphereRadius(0.4f);//value should be smaller (embedded) than the half extends of the box (see ::setShootBoxShape)
 //		printf("shootBox uid=%d\n", body->getBroadphaseHandle()->getUid());
 //		printf("camPos=%f,%f,%f\n",camPos.getX(),camPos.getY(),camPos.getZ());
 //		printf("destination=%f,%f,%f\n",destination.getX(),destination.getY(),destination.getZ());
@@ -755,7 +755,7 @@ void DemoApplication::mouseFunc(int button, int state, int x, int y)
 					{
 
 
-						btRigidBody* body = btRigidBody::upcast(rayCallback.m_collisionObject);
+						btRigidBody* body = (btRigidBody*)btRigidBody::upcast(rayCallback.m_collisionObject);
 						if (body)
 						{
 							//other exclusions?
@@ -776,7 +776,7 @@ void DemoApplication::mouseFunc(int button, int state, int x, int y)
 								
 
 
-								if (use6Dof)
+								if ((m_modifierKeys& BT_ACTIVE_SHIFT)==0)
 								{
 									btTransform tr;
 									tr.setIdentity();
@@ -787,7 +787,7 @@ void DemoApplication::mouseFunc(int button, int state, int x, int y)
 									dof6->setAngularLowerLimit(btVector3(0,0,0));
 									dof6->setAngularUpperLimit(btVector3(0,0,0));
 
-									m_dynamicsWorld->addConstraint(dof6);
+									m_dynamicsWorld->addConstraint(dof6,true);
 									m_pickConstraint = dof6;
 
 									dof6->setParam(BT_CONSTRAINT_STOP_CFM,0.8,0);
@@ -806,7 +806,7 @@ void DemoApplication::mouseFunc(int button, int state, int x, int y)
 								} else
 								{
 									btPoint2PointConstraint* p2p = new btPoint2PointConstraint(*body,localPivot);
-									m_dynamicsWorld->addConstraint(p2p);
+									m_dynamicsWorld->addConstraint(p2p,true);
 									m_pickConstraint = p2p;
 									p2p->m_setting.m_impulseClamp = mousePickClamping;
 									//very weak constraint for picking
@@ -822,8 +822,7 @@ void DemoApplication::mouseFunc(int button, int state, int x, int y)
 									
 
 								}
-								use6Dof = !use6Dof;
-
+					
 								//save mouse position for dragging
 								gOldPickingPos = rayTo;
 								gHitPos = pickPos;

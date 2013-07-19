@@ -210,7 +210,8 @@ void MyConvex::Render(bool only_wireframe, const btVector3& wire_color) const
 	const float Scale = 1.0f;
 	glPushMatrix();
 
-	btScalar glmat[16];	//4x4 column major matrix for OpenGL.
+	ATTRIBUTE_ALIGNED16(btScalar) glmat[16];	//4x4 column major matrix for OpenGL.
+
 	mTransform.getOpenGLMatrix(glmat);
 #ifndef BT_USE_DOUBLE_PRECISION
 	glMultMatrixf(&(glmat[0]));
@@ -384,9 +385,9 @@ static bool TestSepAxis(const btVector3& sep_axis, const MyConvex& hull0, const 
 		return false;
 
 	float d0 = Max0 - Min1;
-	assert(d0>=0.0f);
+	btAssert(d0>=0.0f);
 	float d1 = Max1 - Min0;
-	assert(d1>=0.0f);
+	btAssert(d1>=0.0f);
 	depth = d0<d1 ? d0:d1;
 	return true;
 }

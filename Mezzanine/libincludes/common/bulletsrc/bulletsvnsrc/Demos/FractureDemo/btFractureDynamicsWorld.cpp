@@ -29,7 +29,7 @@ void btFractureDynamicsWorld::glueCallback()
 		for (i=0;i<getCollisionObjectArray().size(); i++)
 		{
 			btCollisionObject*   collisionObject= getCollisionObjectArray()[i];
-			btRigidBody* body = btRigidBody::upcast(collisionObject);
+		//	btRigidBody* body = btRigidBody::upcast(collisionObject);
 			//Adding filtering here
 #ifdef STATIC_SIMULATION_ISLAND_OPTIMIZATION
 			if (!collisionObject->isStaticOrKinematicObject())
@@ -68,8 +68,8 @@ void btFractureDynamicsWorld::glueCallback()
 		btCollisionObject* colObj1 = (btCollisionObject*)manifold->getBody1();
 		int tag0 = (colObj0)->getIslandTag();
 		int tag1 = (colObj1)->getIslandTag();
-		btRigidBody* body0 = btRigidBody::upcast(colObj0);
-		btRigidBody* body1 = btRigidBody::upcast(colObj1);
+		//btRigidBody* body0 = btRigidBody::upcast(colObj0);
+		//btRigidBody* body1 = btRigidBody::upcast(colObj1);
 
 
 		if (!colObj0->isStaticOrKinematicObject() && !colObj1->isStaticOrKinematicObject())
@@ -336,8 +336,22 @@ void	btFractureDynamicsWorld::removeRigidBody(btRigidBody* body)
 	if (body->getInternalType() & CUSTOM_FRACTURE_TYPE)
 	{
 		btFractureBody* fbody = (btFractureBody*)body;
+		btAlignedObjectArray<btTypedConstraint*> tmpConstraints;
+
+		for (int i=0;i<fbody->getNumConstraintRefs();i++)
+		{
+			tmpConstraints.push_back(fbody->getConstraintRef(i));
+		}
+
+		//remove all constraints attached to this rigid body too		
+		for (int i=0;i<tmpConstraints.size();i++)
+			btDiscreteDynamicsWorld::removeConstraint(tmpConstraints[i]);
+
 		m_fractureBodies.remove(fbody);
 	}
+	
+
+
 	btDiscreteDynamicsWorld::removeRigidBody(body);
 }
 
@@ -410,7 +424,7 @@ void	btFractureDynamicsWorld::breakDisconnectedParts( btFractureBody* fracObj)
 		{
 		}
 
-		int fractureObjectIndex = -1;
+	//	int fractureObjectIndex = -1;
 
 		int numShapes=0;
 
@@ -422,7 +436,7 @@ void	btFractureDynamicsWorld::breakDisconnectedParts( btFractureBody* fracObj)
 		for (idx=startIslandIndex;idx<endIslandIndex;idx++)
 		{
 			int i = unionFind.getElement(idx).m_sz;
-			btCollisionShape* shape = compound->getChildShape(i);
+	//		btCollisionShape* shape = compound->getChildShape(i);
 			newCompound->addChildShape(compound->getChildTransform(i),compound->getChildShape(i));
 			masses.push_back(fracObj->m_masses[i]);
 			numShapes++;
@@ -516,7 +530,7 @@ void btFractureDynamicsWorld::fractureCallback( )
 			int j=f0;
 
 			btCollisionObject* colOb = (btCollisionObject*)manifold->getBody1();
-			btRigidBody* otherOb = btRigidBody::upcast(colOb);
+	//		btRigidBody* otherOb = btRigidBody::upcast(colOb);
 			//	if (!otherOb->getInvMass())
 			//		continue;
 

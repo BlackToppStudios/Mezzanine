@@ -11,7 +11,7 @@ SET(GLUT_ROOT ${BULLET_PHYSICS_SOURCE_DIR}/Glut)
 # You shouldn't have to modify anything below this line 
 ########################################################
 
-IF(BUILD_AMD_OPENCL_DEMOS)
+IF(BUILD_AMD_OPENCL_DEMOS AND BUILD_MULTITHREADING)
 	SUBDIRS(AMD)
 ENDIF()
 
@@ -34,7 +34,7 @@ IF (USE_GLUT)
 			main.cpp
 			SerializeDemo.cpp 
 			SerializeDemo.h
-			${BULLET_PHYSICS_SOURCE_DIR}/msvc/bullet.rc
+			${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
 		)
 	ELSE()
 		ADD_EXECUTABLE(AppSerializeDemo
@@ -73,7 +73,7 @@ ELSE (USE_GLUT)
 		Win32SerializeDemo.cpp
 		SerializeDemo.cpp 
 		SerializeDemo.h
-		${BULLET_PHYSICS_SOURCE_DIR}/msvc/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
 	)
 ENDIF (USE_GLUT)
 

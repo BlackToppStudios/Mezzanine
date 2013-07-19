@@ -176,7 +176,7 @@ void MultiThreadedDemo::clientMoveAndDisplay()
 
 
 
-	float dt = getDeltaTimeMicroseconds() * 0.000001f;
+//	float dt = getDeltaTimeMicroseconds() * 0.000001f;
 	
 //	printf("dt = %f: ",dt);
 	
@@ -490,6 +490,7 @@ void	MultiThreadedDemo::exitPhysics()
 	delete m_dispatcher;
 
 #ifdef USE_PARALLEL_DISPATCHER
+	deleteCollisionLocalStoreMemory();
 	if (m_threadSupportCollision)
 	{
 		delete m_threadSupportCollision;

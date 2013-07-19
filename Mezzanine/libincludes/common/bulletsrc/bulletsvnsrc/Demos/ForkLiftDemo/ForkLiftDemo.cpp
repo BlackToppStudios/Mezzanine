@@ -107,11 +107,11 @@ m_carChassis(0),
 m_liftBody(0),
 m_forkBody(0),
 m_loadBody(0),
+m_indexVertexArrays(0),
+m_vertices(0),
 m_cameraHeight(4.f),
 m_minCameraDistance(3.f),
-m_maxCameraDistance(10.f),
-m_indexVertexArrays(0),
-m_vertices(0)
+m_maxCameraDistance(10.f)
 {
 	m_vehicle = 0;
 	m_wheelShape = 0;
@@ -420,7 +420,7 @@ void ForkLiftDemo::renderme()
 	
 	updateCamera();
 
-	btScalar m[16];
+	ATTRIBUTE_ALIGNED16(btScalar) m[16];
 	int i;
 
 	btVector3 wheelColor(1,0,0);
@@ -507,12 +507,13 @@ void ForkLiftDemo::clientMoveAndDisplay()
 		if (m_idle)
 			dt = 1.0/420.f;
 
-		int numSimSteps = m_dynamicsWorld->stepSimulation(dt,maxSimSubSteps);
-		
+		int numSimSteps;
+        numSimSteps = m_dynamicsWorld->stepSimulation(dt,maxSimSubSteps);
+
 
 //#define VERBOSE_FEEDBACK
 #ifdef VERBOSE_FEEDBACK
-		if (!numSimSteps)
+				if (!numSimSteps)
 			printf("Interpolated transforms\n");
 		else
 		{

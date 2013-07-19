@@ -31,7 +31,7 @@ ADD_EXECUTABLE(AppFractureDemo
 		btFractureBody.cpp
 		btFractureDynamicsWorld.cpp
 		btFractureDynamicsWorld.h
-		${BULLET_PHYSICS_SOURCE_DIR}/msvc/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
 	)
 ELSE()
 	ADD_EXECUTABLE(AppFractureDemo
@@ -62,6 +62,7 @@ ENDIF()
 					POST_BUILD
 #		  		COMMAND copy /Y ${BULLET_PHYSICS_SOURCE_DIR}/GLUT32.DLL ${CMAKE_CURRENT_BINARY_DIR}
 					COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different ${BULLET_PHYSICS_SOURCE_DIR}/GLUT32.DLL ${CMAKE_CURRENT_BINARY_DIR}
+					COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different ${BULLET_PHYSICS_SOURCE_DIR}/GLUT32.DLL ${CMAKE_CURRENT_BINARY_DIR}/Debug
 				)
 			ENDIF(CMAKE_CL_64)
 		ENDIF (NOT INTERNAL_CREATE_DISTRIBUTABLE_MSVC_PROJECTFILES)
@@ -82,7 +83,7 @@ ELSE (USE_GLUT)
 		Win32FractureDemo.cpp
 		FractureDemo.cpp 
 		FractureDemo.h
-		${BULLET_PHYSICS_SOURCE_DIR}/msvc/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
 	)
 	
 	

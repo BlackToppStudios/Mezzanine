@@ -114,9 +114,9 @@ btBulletFile::~btBulletFile()
 // ----------------------------------------------------- //
 void btBulletFile::parseData()
 {
-	printf ("Building datablocks");
-	printf ("Chunk size = %d",CHUNK_HEADER_LEN);
-	printf ("File chunk size = %d",ChunkUtils::getOffset(mFlags));
+//	printf ("Building datablocks");
+//	printf ("Chunk size = %d",CHUNK_HEADER_LEN);
+//	printf ("File chunk size = %d",ChunkUtils::getOffset(mFlags));
 
 	const bool brokenDNA = (mFlags&FD_BROKEN_DNA)!=0;
 
@@ -172,6 +172,11 @@ void btBulletFile::parseData()
 				if (dataChunk.code == BT_RIGIDBODY_CODE)
 				{
 					m_rigidBodies.push_back((bStructHandle*) id);
+				}
+
+				if (dataChunk.code == BT_DYNAMICSWORLD_CODE)
+				{
+					m_dynamicsWorldInfo.push_back((bStructHandle*) id);
 				}
 
 				if (dataChunk.code == BT_CONSTRAINT_CODE)
@@ -282,7 +287,7 @@ void	btBulletFile::writeDNA(FILE* fp)
 }
 
 
-void	btBulletFile::parse(bool verboseDumpAllTypes)
+void	btBulletFile::parse(int verboseMode)
 {
 #ifdef BT_INTERNAL_UPDATE_SERIALIZATION_STRUCTURES
 	if (VOID_IS_8)
@@ -293,7 +298,7 @@ void	btBulletFile::parse(bool verboseDumpAllTypes)
 			delete m_DnaCopy;
 		m_DnaCopy = (char*)btAlignedAlloc(sBulletDNAlen64,16);
 		memcpy(m_DnaCopy,sBulletDNAstr64,sBulletDNAlen64);
-		parseInternal(verboseDumpAllTypes,(char*)sBulletDNAstr64,sBulletDNAlen64);
+		parseInternal(verboseMode,(char*)sBulletDNAstr64,sBulletDNAlen64);
 #else
 		btAssert(0);
 #endif
@@ -306,7 +311,7 @@ void	btBulletFile::parse(bool verboseDumpAllTypes)
 			delete m_DnaCopy;
 		m_DnaCopy = (char*)btAlignedAlloc(sBulletDNAlen,16);
 		memcpy(m_DnaCopy,sBulletDNAstr,sBulletDNAlen);
-		parseInternal(verboseDumpAllTypes,m_DnaCopy,sBulletDNAlen);
+		parseInternal(verboseMode,m_DnaCopy,sBulletDNAlen);
 #else
 		btAssert(0);
 #endif
@@ -318,7 +323,7 @@ void	btBulletFile::parse(bool verboseDumpAllTypes)
 			delete m_DnaCopy;
 		m_DnaCopy = (char*)btAlignedAlloc(sBulletDNAlen64,16);
 		memcpy(m_DnaCopy,sBulletDNAstr64,sBulletDNAlen64);
-		parseInternal(verboseDumpAllTypes,m_DnaCopy,sBulletDNAlen64);
+		parseInternal(verboseMode,m_DnaCopy,sBulletDNAlen64);
 	}
 	else
 	{
@@ -326,7 +331,7 @@ void	btBulletFile::parse(bool verboseDumpAllTypes)
 			delete m_DnaCopy;
 		m_DnaCopy = (char*)btAlignedAlloc(sBulletDNAlen,16);
 		memcpy(m_DnaCopy,sBulletDNAstr,sBulletDNAlen);
-		parseInternal(verboseDumpAllTypes,m_DnaCopy,sBulletDNAlen);
+		parseInternal(verboseMode,m_DnaCopy,sBulletDNAlen);
 	}
 #endif//BT_INTERNAL_UPDATE_SERIALIZATION_STRUCTURES
 }

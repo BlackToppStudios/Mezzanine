@@ -144,6 +144,8 @@ typedef unsigned long uintptr_t;
 #include "BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h"
 #include "BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h"
 #include "BulletDynamics/ConstraintSolver/btSliderConstraint.h"
+#include "BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+#include "BulletDynamics/Dynamics/btDynamicsWorld.h"
 
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 #include "BulletSoftBody/btSoftBodyData.h"
@@ -179,6 +181,7 @@ char *includefiles[] = {
 	"../../../src/BulletCollision/Gimpact/btGImpactShape.h",
 	"../../../src/BulletCollision/CollisionShapes/btConvexHullShape.h",
 	"../../../src/BulletCollision/CollisionDispatch/btCollisionObject.h",
+	"../../../src/BulletDynamics/Dynamics/btDynamicsWorld.h",
 	"../../../src/BulletDynamics/Dynamics/btRigidBody.h",
 	"../../../src/BulletDynamics/ConstraintSolver/btTypedConstraint.h",
 	"../../../src/BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h",
@@ -187,6 +190,7 @@ char *includefiles[] = {
 	"../../../src/BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h",
 	"../../../src/BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h",
 	"../../../src/BulletDynamics/ConstraintSolver/btSliderConstraint.h",
+	"../../../src/BulletDynamics/ConstraintSolver/btContactSolverInfo.h",
 	"../../../src/BulletSoftBody/btSoftBodyData.h",	
 	// empty string to indicate end of includefiles
 	""
@@ -563,6 +567,7 @@ static void *read_file_data(char *filename, int *len_r)
 
 const char* skipStructTypes[]=
 {
+	"btContactSolverInfoData",
 	"btRigidBodyConstructionInfo",
 	"Euler",
 	"btConstraintInfo2",
@@ -910,7 +915,7 @@ void dna_write(FILE *file, void *pntr, int size)
 	
 	for (i = 0 ; i < size ; i++)
 	{
-		fprintf(file, "%d,", data[i]);
+		fprintf(file, "char(%d),", data[i]);
 		linelength++;
 		if (linelength >= MAX_DNA_LINE_LENGTH) {
 			fprintf(file, "\n");
@@ -1212,10 +1217,10 @@ int main(int argc, char ** argv)
 
 			if (sizeof(void*)==8)
 			{
-				fprintf (file, "unsigned char sBulletDNAstr64[]= {\n");
+				fprintf (file, "char sBulletDNAstr64[]= {\n");
 			} else
 			{
-				fprintf (file, "unsigned char sBulletDNAstr[]= {\n");
+				fprintf (file, "char sBulletDNAstr[]= {\n");
 			}
 
 			if (make_structDNA(baseDirectory, file)) {
