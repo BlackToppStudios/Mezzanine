@@ -1,0 +1,28 @@
+--- CMakeLists.old.txt	Fri Sep 28 14:32:30 2012
++++ CMakeLists.new.txt	Fri Jul 19 03:27:43 2013
+@@ -7,6 +7,9 @@
+ PROJECT(BULLET_PHYSICS)
+ SET(BULLET_VERSION 2.81)
+ 
++#Added by BTS to make compiler flags the same across the board
++add_definitions( ${CommonBuildFlags} )
++
+ IF(COMMAND cmake_policy)
+    cmake_policy(SET CMP0003 NEW)
+ ENDIF(COMMAND cmake_policy)
+@@ -21,7 +24,8 @@
+ #MESSAGE("CMAKE_CXX_FLAGS_DEBUG="+${CMAKE_CXX_FLAGS_DEBUG})
+ 
+ OPTION(USE_DOUBLE_PRECISION "Use double precision"	OFF)
+-OPTION(USE_GRAPHICAL_BENCHMARK "Use Graphical Benchmark" ON)
++#OPTION(USE_GRAPHICAL_BENCHMARK "Use Graphical Benchmark" ON)
++SET(USE_GRAPHICAL_BENCHMARK OFF)
+ 
+ 
+ OPTION(USE_MSVC_RUNTIME_LIBRARY_DLL "Use MSVC Runtime Library DLL (/MD or /MDd)" OFF)
+@@ -418,3 +422,5 @@
+ IF (BUILD_UNIT_TESTS)
+ 	SUBDIRS(UnitTests)
+ ENDIF()
++
++SET (LIBRARY_OUTPUT_PATH ${Bullet_BINARY_DIR})
