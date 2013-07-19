@@ -44,6 +44,7 @@ John Blackwood - makoenergy02@gmail.com
 #include "worldproxy.h"
 
 class btCollisionObject;
+class btCollisionShape;
 
 namespace Mezzanine
 {
@@ -65,6 +66,9 @@ namespace Mezzanine
             /// @internal
             /// @brief The physics shape of the World Object.
             CollisionShape* WorldObjectShape;
+            /// @internal
+            /// @brief This is an internal only shape that provides the ability for a collision shape to be scaled locally (to this object alone).
+            btCollisionShape* ScalerShape;
             /// @internal
             /// @brief The classifications pertaining to this object in regards to collisions.
             Whole CollisionGroup;

@@ -51,6 +51,7 @@ namespace Mezzanine
     {
         PhysicsProxy::PhysicsProxy() :
             WorldObjectShape(NULL),
+            ScaleerShape(NULL),
             CollisionGroup(0),
             CollisionMask(0)
         {
@@ -84,8 +85,41 @@ namespace Mezzanine
 
         void PhysicsProxy::SetCollisionShape(CollisionShape* Shape)
         {
+            /*if( this->WorldObjectShape != Shape )
+            {
+                if( this->ScalerShape != NULL ) {
+                    delete this->ScalerShape;
+                    this->ScalerShape = NULL;
+                }
+
+                switch( Shape->GetType() )
+                {
+                    // All the basic convex shapes
+                    case CollisionShape::ST_Box:
+                    case CollisionShape::ST_Capsule:
+                    case CollisionShape::ST_Compound:
+                    case CollisionShape::ST_Cone:
+                    case CollisionShape::ST_ConvexHull:
+                    case CollisionShape::ST_Cylinder:
+                    case CollisionShape::ST_MultiSphere:
+                    case CollisionShape::ST_Sphere:
+                    {
+
+                    }
+
+                    case CollisionShape::ST_Compound:
+
+                    case CollisionShape::ST_DynamicTriMesh:
+                    case CollisionShape::ST_Heightfield:
+                    case CollisionShape::ST_Plane:
+                    case CollisionShape::ST_ActorSoft:
+                    case CollisionShape::ST_StaticTriMesh:
+                }
+            }//*/
+
+
             this->WorldObjectShape = Shape;
-            this->_GetBasePhysicsObject()->setCollisionShape( Shape->GetBulletShape() );
+            this->_GetBasePhysicsObject()->setCollisionShape( Shape->_GetInternalShape() );
         }
 
         CollisionShape* PhysicsProxy::GetCollisionShape() const
