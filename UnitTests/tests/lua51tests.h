@@ -42,6 +42,8 @@
 
 #include "main.h"
 
+#include "scripting.h"
+
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
