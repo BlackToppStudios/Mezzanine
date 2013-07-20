@@ -1,0 +1,67 @@
+--- btGearConstraint.old.h	Thu Sep 13 17:40:40 2012
++++ btGearConstraint.new.h	Fri Jul 19 21:18:24 2013
+@@ -4,8 +4,8 @@
+ 
+ This software is provided 'as-is', without any express or implied warranty.
+ In no event will the authors be held liable for any damages arising from the use of this software.
+-Permission is granted to anyone to use this software for any purpose, 
+-including commercial applications, and to alter it and redistribute it freely, 
++Permission is granted to anyone to use this software for any purpose,
++including commercial applications, and to alter it and redistribute it freely,
+ subject to the following restrictions:
+ 
+ 1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
+@@ -33,20 +33,50 @@
+ 	btGearConstraint(btRigidBody& rbA, btRigidBody& rbB, const btVector3& axisInA,const btVector3& axisInB, btScalar ratio=1.f);
+ 	virtual ~btGearConstraint ();
+ 
++	virtual void setAxisInA(const btVector3& axisInA)
++	{
++	    m_axisInA = axisInA;
++	}
++
++	virtual btVector3 getAxisInA() const
++	{
++	    return m_axisInA;
++	}
++
++	virtual void setAxisInB(const btVector3& axisInB)
++	{
++	    m_axisInB = axisInB;
++	}
++
++	virtual btVector3 getAxisInB() const
++	{
++	    return m_axisInB;
++	}
++
++	virtual void setRatio(btScalar ratio)
++	{
++	    m_ratio = ratio;
++	}
++
++	virtual btScalar getRatio() const
++	{
++	    return m_ratio;
++	}
++
+ 	///internal method used by the constraint solver, don't use them directly
+ 	virtual void getInfo1 (btConstraintInfo1* info);
+ 
+ 	///internal method used by the constraint solver, don't use them directly
+ 	virtual void getInfo2 (btConstraintInfo2* info);
+ 
+-	virtual	void	setParam(int num, btScalar value, int axis = -1) 
++	virtual	void	setParam(int num, btScalar value, int axis = -1)
+ 	{
+ 		btAssert(0);
+ 	};
+ 
+ 	///return the local value of parameter
+-	virtual	btScalar getParam(int num, int axis = -1) const 
+-	{ 
++	virtual	btScalar getParam(int num, int axis = -1) const
++	{
+ 		btAssert(0);
+ 		return 0.f;
+ 	}
