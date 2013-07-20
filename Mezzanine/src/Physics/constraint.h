@@ -155,23 +155,6 @@ namespace Mezzanine
             /// @return Returns a pointer to the second actor this constraint applies to.
             virtual ActorRigid* GetActorB() const;
 
-            ////////////////////////////////////////////////////////////////////////////////
-            // Constraint Position and Orientation
-            /// @brief Set offset of the first actor.
-            /// @param PivotA The offset as a Vector3 relative to the center of mass of ActorA.
-            virtual void SetPivotALocation(const Vector3& PivotA) = 0;
-            /// @brief Set offset of the second actor.
-            /// @param PivotB The offset as a Vector3 relative to the center of mass of ActorB.
-            virtual void SetPivotBLocation(const Vector3& PivotA) = 0;
-            /// @brief Get offset of the first actor.
-            /// @return The offset as a Vector3 relative to the center of mass of ActorA.
-            virtual Vector3 GetPivotALocation() const = 0;
-            /// @brief Get offset of the second actor.
-            /// @return The offset as a Vector3 relative to the center of mass of ActorB.
-            virtual Vector3 GetPivotBLocation() const = 0;
-            /// @brief Set the current impulse clamping on the constraint
-            /// @param Clamping This is a value that the constraint solver can use to adjust accumlated values when solving the constraint.
-
             ///////////////////////////////////////////////////////////////////////////////
             // Constraint Parameters
             /// @brief Used to Store lists of param for return types
