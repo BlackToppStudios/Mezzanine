@@ -260,9 +260,16 @@ namespace Mezzanine
             ExceptionStream << "Failed to parse XML file \"" << InitializerFile << "\".";
             MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
         }
+        XML::Node InitRoot = InitDoc.GetChild("InitializerRoot");
+        if( InitRoot.Empty() )
+        {
+            StringStream ExceptionStream;
+            ExceptionStream << "Failed to find expected Root node in \"" << InitializerFile << "\".";
+            MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+        }
 
         // Get the world settings and set them.
-        XML::Node WorldSettings = InitDoc.GetChild("WorldSettings");
+        XML::Node WorldSettings = InitRoot.GetChild("WorldSettings");
         for( XML::NodeIterator SetIt = WorldSettings.begin() ; SetIt != WorldSettings.end() ; ++SetIt )
         {
             String SecName = (*SetIt).Name();
@@ -316,7 +323,7 @@ namespace Mezzanine
         else OgreLogs->createLog("Mezzanine.log",true,true);
 
         // Get the other initializer files we'll be using, since we'll need the plugins initializer.
-        XML::Node InitFiles = InitDoc.GetChild("OtherInitializers");
+        XML::Node InitFiles = InitRoot.GetChild("OtherInitializers");
         for( XML::NodeIterator InitIt = InitFiles.begin() ; InitIt != InitFiles.end() ; ++InitIt )
         {
             String InitFileName = (*InitIt).Name();
@@ -385,7 +392,7 @@ namespace Mezzanine
         }//*/
 
         // Create the requested managers and set their necessary values.
-        XML::Node Managers = InitDoc.GetChild("Managers");
+        XML::Node Managers = InitRoot.GetChild("Managers");
         for( XML::NodeIterator ManIt = Managers.begin() ; ManIt != Managers.end() ; ++ManIt )
         {
             CreateManager( (*ManIt).Name(), (*ManIt) );
