@@ -54,20 +54,20 @@ namespace Mezzanine
         // Point2PointConstraint Position and Orientation
         Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotA, const Vector3& PivotB)
         {
-            SetBodies(ActorA,ActorB);
+            this->SetBodies(ActorA,ActorB);
 
-            Point2Point = new btPoint2PointConstraint(*BodyA, *BodyB, PivotA.GetBulletVector3(), PivotB.GetBulletVector3());
+            this->Point2Point = new btPoint2PointConstraint(*BodyA, *BodyB, PivotA.GetBulletVector3(), PivotB.GetBulletVector3());
         }
 
         Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, const Vector3& PivotA)
         {
-            SetBodies(ActorA);
+            this->SetBodies(ActorA);
 
-            Point2Point = new btPoint2PointConstraint(*BodyA, PivotA.GetBulletVector3());
+            this->Point2Point = new btPoint2PointConstraint(*BodyA, PivotA.GetBulletVector3());
         }
 
         Point2PointConstraint::~Point2PointConstraint()
-            { delete Point2Point; }
+            { delete this->Point2Point; }
 
         btTypedConstraint* Point2PointConstraint::GetConstraintBase() const
             { return this->Point2Point; }
