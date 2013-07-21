@@ -65,8 +65,6 @@ namespace Mezzanine
     /// @return A Whole containing the amount of processors.
     Whole MEZZ_LIB GetCPUCount();
 
-    //Whole GetCacheSizebyLevel(Whole Level);
-
     /// @brief How much storage can be used before RAM must be used.
     /// @details In many modern system cache (of all levels) is signifigantly faster than main
     /// memory. For this reason the most useful cache value is the largest cache. This attempts
@@ -75,12 +73,14 @@ namespace Mezzanine
     /// package. This is useful for tuning alogrithms in a specific places and only in a single
     /// thread.
     /// @return The size of the largest CPU cache in bytes.
+    /// @warning There is a bug in MinGw which prevents this from working on windows. This always returns 32768 in such situations.
     Whole MEZZ_LIB GetCacheSize();
 
     /// @brief Get the size of one unit of storage on the CPU cache for purposes of tuning alogrithms.
     /// @details This gets the smallest line size amongst available caches on the current system, it
     /// assumes that L1 cache lines are smaller than L2 and those are smaller than L3 and so if required.
     /// @return The size of a single cache line/cache unit
+    /// @warning There is a bug in MinGw which prevents this from working on windows. This always returns 64 in such situations.
     Whole MEZZ_LIB GetCachelineSize();
 
 }//Mezzanine

@@ -171,7 +171,31 @@ class binarytoolstests : public UnitTestGroup
 {
     public:
         virtual String Name()
-            { return String("binarytools"); }
+            { return String("BinaryTools"); }
+
+        /// @brief This is called when Automatic tests are run
+        void RunAutomaticTests()
+        {
+            // The TEST macro will capture Line, function file Metadata while
+            TEST(true,"AutomaticTest");
+            //TEST(false,"AutomaticFail");
+
+            TEST_WARN(false,"AutomaticWarn");
+
+            TestResult Answer = Testing::Success;
+            TEST_RESULT(Answer, "AutomaticTestResult");
+
+            // Multiline example
+            TEST_THROW( std::runtime_error&, \
+                        throw std::runtime_error("oh noes!"); \
+                        , "AutomaticTestThrow");
+            //TEST_THROW(std::runtime_error, throw "oh noes!";, "AutomaticTestThrow"); //Throws unexpected type so it fails
+        }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
 
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {

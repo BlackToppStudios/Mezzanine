@@ -44,7 +44,6 @@
 
 #include "dagframescheduler.h"
 #include "dagrandomtests.h"
-#include "workunittests.h"
 
 #include "workunittests.h"
 

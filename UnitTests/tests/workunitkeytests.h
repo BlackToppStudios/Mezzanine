@@ -62,8 +62,7 @@ class workunitkeytests : public UnitTestGroup
         virtual String Name()
             { return String("WorkUnitKey"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Test if the WorkUnit
+        /// @brief Test if the WorkUnit
         void RunAutomaticTests()
         {
             cout << "Creating a number of WorkUnitKeys and tesing their ability to sort: " << endl;

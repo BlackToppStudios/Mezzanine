@@ -86,7 +86,6 @@ class boilerplatetests : public UnitTestGroup
             { return true; }
 
 
-
         /// @brief This is called when Interactive tests are run
         void RunInteractiveTests()
         {

@@ -88,143 +88,94 @@ class asyncworkunittests : public UnitTestGroup
         virtual String Name()
             { return String("AsyncWorkUnit"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Test if the asyncronous workunits
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+
+
+        /// @brief Test if the asyncronous workunits
+        void RunAutomaticTests()
         {
-            RunInteractiveTests = false; //prevent warnings
+            cout << "Creating three files that might take whole seconds to write." << endl;
+            MaxInt MaxTime = 10000000;
+            Whole MaxFileWrites = 10000000;
+            Whole CurrentCount = 0;
+            MaxInt TimeStarted = GetTimeStamp();
 
-            if (RunAutomaticTests)
+            vector<String> Files;
+            Files.push_back(String("File1.txt"));
+            Files.push_back(String("File2.txt"));
+            Files.push_back(String("File3.txt"));
+
+            ofstream File1a(Files[0].c_str());
+            ofstream File2a(Files[1].c_str());
+            ofstream File3a(Files[2].c_str());
+            while(GetTimeStamp()<TimeStarted+MaxTime && CurrentCount<MaxFileWrites)
             {
-                TestResult temp;
-
-                cout << "Creating three files that might take whole seconds to write." << endl;
-                MaxInt MaxTime = 10000000;
-                Whole MaxFileWrites = 10000000;
-                Whole CurrentCount = 0;
-                MaxInt TimeStarted = GetTimeStamp();
-
-                vector<String> Files;
-                Files.push_back(String("File1.txt"));
-                Files.push_back(String("File2.txt"));
-                Files.push_back(String("File3.txt"));
-
-                ofstream File1a(Files[0].c_str());
-                ofstream File2a(Files[1].c_str());
-                ofstream File3a(Files[2].c_str());
-                while(GetTimeStamp()<TimeStarted+MaxTime && CurrentCount<MaxFileWrites)
-                {
-                    CurrentCount++;
-                    File1a.write("Packets1Packets2Packets3", 24);
-                    File2a.write("01", 2);
-                    File3a.write("-", 1);
-                }
-                Whole Duration = GetTimeStamp()-TimeStarted;
-                Whole WriteSize = 27*CurrentCount;
-                String PerfString(GetPerfString(WriteSize,Duration));
-                File1a.close();
-                File2a.close();
-                File3a.close();
-                cout << fixed << showpoint << setprecision(2);
-                cout << "Creating files took " << Duration << " microseconds " << endl;
-                cout << "A total of " << WriteSize << " Bytes were written or " << PerfString << endl;
-
-                cout << "Creating an AsynchronousFileLoadWorkUnit to load the contents of these files." << endl;
-                AsynchronousFileLoadWorkUnit Testable;
-                Testable.BeginLoading(Files);
-
-                FrameScheduler Scheduler1(&cout,2);
-                DefaultThreadSpecificStorage::Type AResource(&Scheduler1);
-                temp = Testing::Success;
-                TimeStarted = GetTimeStamp();
-                while(Complete!=Testable.IsWorkDone())
-                {
-                    Testable.DoWork(AResource);
-                    if(GetTimeStamp()>TimeStarted+MaxTime*20)
-                    {
-                        temp=Testing::Failed;
-                        break;
-                    }
-                }
-                AddTestResult("DAGFrameScheduler::Async::ReadWriteTimeParity", temp);
-
-                Duration = GetTimeStamp()-TimeStarted;
-                Whole ReadSize = Testable.GetFile(0)->Size+Testable.GetFile(1)->Size+Testable.GetFile(2)->Size;
-                PerfString = GetPerfString(ReadSize,Duration);
-                cout << "Reading file took " << Duration << " microseconds " << endl;
-                cout << "A total of " << ReadSize << " Bytes were read or " << PerfString << endl;
-
-
-                cout << "The files have been loaded. performing a basic consistency check." << endl;
-                if(ReadSize == WriteSize )
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Async::Read1Valid", temp);
-                if(Testable.GetFile(0)->Size>0)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Async::Read1Present", temp);
-                if(Testable.GetFile(0)->Data[0]=='P')
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Async::Read1Valid", temp);
-
-
-                if(Testable.GetFile(1)->Size>0)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Async::Read2Present", temp);
-                if(Testable.GetFile(1)->Data[0]=='0')
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Async::Read2Valid", temp);
-
-
-                if(Testable.GetFile(2)->Size>0)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Async::Read3Present", temp);
-                if(Testable.GetFile(2)->Data[0]=='-')
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::Async::Read3Valid", temp);
-
-                cout << "Files seem at least superficially consistent, trunctating files on disk to conserve space." << endl;
-
-                ofstream File1b(Files[0].c_str());
-                ofstream File2b(Files[1].c_str());
-                ofstream File3b(Files[2].c_str());
-                File1b.close();
-                File2b.close();
-                File3b.close();
-
-                if(true)
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::WorkUnit::true", temp);
-
-            }else{
-                AddTestResult("DAGFrameScheduler::WorkUnit::true", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Async::ReadWriteTimeParity", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Async::Read1Valid", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Async::Read1Present", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Async::Read1Valid", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Async::Read2Present", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Async::Read2Valid", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Async::Read3Present", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::Async::Read3Valid", Testing::Skipped);
+                CurrentCount++;
+                File1a.write("Packets1Packets2Packets3", 24);
+                File2a.write("01", 2);
+                File3a.write("-", 1);
             }
+            Whole Duration = GetTimeStamp()-TimeStarted;
+            Whole WriteSize = 27*CurrentCount;
+            String PerfString(GetPerfString(WriteSize,Duration));
+            File1a.close();
+            File2a.close();
+            File3a.close();
+            cout << fixed << showpoint << setprecision(2);
+            cout << "Creating files took " << Duration << " microseconds " << endl;
+            cout << "A total of " << WriteSize << " Bytes were written or " << PerfString << endl;
+
+            cout << "Creating an AsynchronousFileLoadWorkUnit to load the contents of these files." << endl;
+            AsynchronousFileLoadWorkUnit Testable;
+            Testable.BeginLoading(Files);
+
+            FrameScheduler Scheduler1(&cout,2);
+            DefaultThreadSpecificStorage::Type AResource(&Scheduler1);
+            TestResult temp = Testing::Success;
+            TimeStarted = GetTimeStamp();
+            while(Complete!=Testable.IsWorkDone())
+            {
+                Testable.DoWork(AResource);
+                if(GetTimeStamp()>TimeStarted+MaxTime*20)
+                {
+                    temp=Testing::Failed;
+                    break;
+                }
+            }
+            //AddTestResult("DAGFrameScheduler::Async::ReadWriteTimeParity", temp);
+            TEST_RESULT(temp,"ReadWriteTimeParity")
+
+            Duration = GetTimeStamp()-TimeStarted;
+            Whole ReadSize = Testable.GetFile(0)->Size+Testable.GetFile(1)->Size+Testable.GetFile(2)->Size;
+            PerfString = GetPerfString(ReadSize,Duration);
+            cout << "Reading file took " << Duration << " microseconds " << endl;
+            cout << "A total of " << ReadSize << " Bytes were read or " << PerfString << endl;
 
 
+            cout << "The files have been loaded. performing a basic consistency check." << endl;
+            TEST(ReadSize == WriteSize,"Read1ValidA")
+            TEST(Testable.GetFile(0)->Size>0,"Read1Present")
+            TEST(Testable.GetFile(0)->Data[0]=='P',"Read1ValidB")
+
+            TEST(Testable.GetFile(1)->Size>0,"Read2Present")
+            TEST(Testable.GetFile(1)->Data[0]=='0',"Read2Valid")
+
+            TEST(Testable.GetFile(2)->Size>0,"Read3Present")
+            TEST(Testable.GetFile(2)->Data[0]=='-',"Read3Valid")
+
+            cout << "Files seem at least superficially consistent, trunctating files on disk to conserve space." << endl;
+
+            ofstream File1b(Files[0].c_str());
+            ofstream File2b(Files[1].c_str());
+            ofstream File3b(Files[2].c_str());
+            File1b.close();
+            File2b.close();
+            File3b.close();
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return true
+        virtual bool HasAutomaticTests() const
+            { return true; }
 };
 
 #endif

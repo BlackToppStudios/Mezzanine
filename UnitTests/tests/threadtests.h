@@ -88,8 +88,7 @@ class threadtests : public UnitTestGroup
         virtual String Name()
             { return String("Thread"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Test if the thread works correctly were possible
+        /// @brief Test if the thread works correctly were possible
         void RunAutomaticTests()
         {
             { // Basic Thread
