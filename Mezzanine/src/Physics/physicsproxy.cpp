@@ -49,6 +49,167 @@ namespace Mezzanine
 {
     namespace Physics
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // ScalingShape Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class ScalingShape
+        /// @brief This is a custom scaling shape that permits scaling specific to the object it is applied to.
+        /// @details Scaling portion of a transform does not exist on RigidBodies in Bullet.  For an object to be
+        /// scaled it has to be done on the collision shape.  However collision shapes can be shared and if they are
+        /// it would scale all other objects it is shared with as well.  This shape is a simple scaling wrapper for
+        /// collision shapes that can be created just for a single object that allows re-use and sharing of
+        /// collision shapes when scaling them for different objects. @n @n
+        /// Bullet does have another scaling shape built in for different types of shapes.  GImpact lacks one, but
+        /// BVHTriangleMesh have an appropriate wrapper.  All the collision shapes under the Convex branch of the
+        /// inheritance tree have another that only applies custom scaling uniformly on all axes.  This is
+        /// unacceptable and one that allows independant scaling on each axis is needed.  That is where this class
+        /// comes in.
+        ///////////////////////////////////////
+        ATTRIBUTE_ALIGNED16(class) MEZZ_LIB ScalingShape : public btConvexShape
+        {
+        protected:
+            btConvexShape* ChildConvexShape;
+            btVector3 ChildScaling;
+        public:
+            BT_DECLARE_ALIGNED_ALLOCATOR();
+
+            /// @brief Class constructor.
+            ScalingShape(btConvexShape* ChildShape, const btVector3& Scaling) :
+                ChildConvexShape(ChildShape),
+                ChildScaling(Scaling)
+                { this->m_shapeType = UNIFORM_SCALING_SHAPE_PROXYTYPE; }
+            /// @brief Class destructor.
+            virtual ~ScalingShape()
+                {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration Methods
+
+            /// @brief Gets the child shape being scaled by this wrapper.
+            virtual btConvexShape* GetChildShape() const
+            {
+                return this->ChildConvexShape;
+            }
+            /// @brief Gets the amount of scaling being applied to the child shape.
+            virtual btVector3 GetChildScaling() const
+            {
+                return this->ChildScaling;
+            }
+            /// @brief Gets the serialization name of this shape.
+            virtual const char*	getName()const
+            {
+                return "UniformScalingShape";
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Transform Methods
+
+            /// @brief No Idea.
+            virtual btVector3 localGetSupportingVertexWithoutMargin(const btVector3& vec)const
+            {
+                btVector3 tmpVertex;
+                tmpVertex = this->ChildConvexShape->localGetSupportingVertexWithoutMargin(vec);
+                return tmpVertex * this->ChildScaling;
+            }
+            /// @brief No Idea.
+            virtual btVector3 localGetSupportingVertex(const btVector3& vec)const
+            {
+                btVector3 tmpVertex;
+                btScalar ChildMargin = this->ChildConvexShape->getMargin();
+                tmpVertex = this->ChildConvexShape->localGetSupportingVertexWithoutMargin(vec);
+                return (tmpVertex * this->ChildScaling) + btVector3(ChildMargin,ChildMargin,ChildMargin);
+            }
+            /// @brief No Idea.
+            virtual void batchedUnitVectorGetSupportingVertexWithoutMargin(const btVector3* vectors,btVector3* supportVerticesOut,int numVectors) const
+            {
+                this->ChildConvexShape->batchedUnitVectorGetSupportingVertexWithoutMargin(vectors,supportVerticesOut,numVectors);
+                for( int i = 0 ; i < numVectors ; i++ )
+                {
+                    supportVerticesOut[i] = supportVerticesOut[i] * this->ChildScaling;
+                }
+            }
+            /// @brief Calculates the local inertia for this shape and it's child shape.
+            virtual void calculateLocalInertia(btScalar mass,btVector3& inertia) const
+            {
+                btVector3 tmpInertia;
+                this->ChildConvexShape->calculateLocalInertia(mass,tmpInertia);
+                inertia = tmpInertia * this->ChildScaling;
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Inherited from btCollisionShape
+
+            /// @brief Gets the AABB of this shape.
+            virtual void getAabb(const btTransform& trans,btVector3& aabbMin,btVector3& aabbMax) const
+            {
+                this->getAabbSlow(trans,aabbMin,aabbMax);
+            }
+            /// @brief Gets the AABB of this shape.
+            virtual void getAabbSlow(const btTransform& t,btVector3& aabbMin,btVector3& aabbMax) const
+            {
+                btVector3 _directions[] =
+                {
+                    btVector3( 1.,  0.,  0.),
+                    btVector3( 0.,  1.,  0.),
+                    btVector3( 0.,  0.,  1.),
+                    btVector3( -1., 0.,  0.),
+                    btVector3( 0., -1.,  0.),
+                    btVector3( 0.,  0., -1.)
+                };
+
+                btVector3 _supporting[] =
+                {
+                    btVector3( 0., 0., 0.),
+                    btVector3( 0., 0., 0.),
+                    btVector3( 0., 0., 0.),
+                    btVector3( 0., 0., 0.),
+                    btVector3( 0., 0., 0.),
+                    btVector3( 0., 0., 0.)
+                };
+
+                for( int i = 0 ; i < 6 ; i++ )
+                {
+                    _directions[i] = _directions[i] * t.getBasis();
+                }
+
+                this->batchedUnitVectorGetSupportingVertexWithoutMargin(_directions, _supporting, 6);
+
+                btVector3 aabbMin1(0,0,0),aabbMax1(0,0,0);
+
+                for ( int i = 0; i < 3; ++i )
+                {
+                    aabbMax1[i] = t(_supporting[i])[i];
+                    aabbMin1[i] = t(_supporting[i + 3])[i];
+                }
+                btVector3 marginVec(this->getMargin(),this->getMargin(),this->getMargin());
+                aabbMin = aabbMin1-marginVec;
+                aabbMax = aabbMax1+marginVec;
+            }
+
+            /// @brief Sets the scaling to be applied to the sharable/global child collision shape.
+            virtual void setLocalScaling(const btVector3& scaling)
+                { this->ChildConvexShape->setLocalScaling(scaling); }
+            /// @brief Gets the scaling being applied to the sharable/global child collision shape.
+            virtual const btVector3& getLocalScaling() const
+                { return this->ChildConvexShape->getLocalScaling(); }
+            /// @brief Sets the collision margin of the sharable/global child collision shape.
+            virtual void setMargin(btScalar margin)
+                { this->ChildConvexShape->setMargin(margin); }
+            /// @brief Gets the collision margin of the sharable/global child collision shape.
+            virtual btScalar getMargin() const
+                { return this->ChildConvexShape->getMargin(); }
+            /// @brief Gets the number of directions available for the first parameter in "getPreferredPenetrationDirection".
+            virtual int	getNumPreferredPenetrationDirections() const
+                { return this->ChildConvexShape->getNumPreferredPenetrationDirections(); }
+            /// @brief Gets the direction objects should follow for penetration recovery at the specified index.
+            virtual void getPreferredPenetrationDirection(int index, btVector3& penetrationVector) const
+                { this->ChildConvexShape->getPreferredPenetrationDirection(index,penetrationVector); }
+        };//ScalingShape
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // PhysicsProxy Methods
+
         PhysicsProxy::PhysicsProxy() :
             WorldObjectShape(NULL),
             ScalerShape(NULL),
