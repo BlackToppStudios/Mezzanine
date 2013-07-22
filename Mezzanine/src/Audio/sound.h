@@ -60,16 +60,6 @@ namespace Mezzanine
         class iSound
         {
         public:
-            /// @enum PlaybackState
-            /// @brief This enum describes a set of boolean options common for objects playing back audio.
-            enum PlaybackState
-            {
-                PS_Playing = 1,
-                PS_Paused  = 2,
-                PS_Stopped = 4,
-                PS_Looping = 8
-            };//PlaybackState
-        public:
             /// @brief Class constructor.
             iSound() {  }
             /// @brief Class destructor.

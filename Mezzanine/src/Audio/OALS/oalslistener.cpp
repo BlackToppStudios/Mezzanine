@@ -59,11 +59,14 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            Listener::Listener(ALCcontext* ListenContext)
-                : Context(ListenContext),
-                  VolumeModifier(1.0),
-                  MPU(1.0)
+            Listener::Listener(ALCcontext* ListenContext) :
+                MPU(1.0),
+                VolumeModifier(1.0),
+                Context(ListenContext),
+                InWorld(false)
             {
+                this->MakeCurrent();
+                alListenerf(AL_GAIN,0.0);
             }
 
             Listener::~Listener()
@@ -112,15 +115,17 @@ namespace Mezzanine
             {
                 if( this->VolumeModifier != Vol )
                 {
-                    this->MakeCurrent();
-                    alListenerf(AL_GAIN,Vol);
+                    if( this->IsInWorld() ) {
+                        this->MakeCurrent();
+                        alListenerf(AL_GAIN,Vol);
+                    }
                     this->VolumeModifier = Vol;
                 }
             }
 
             Real Listener::GetVolumeModifier() const
             {
-                return this->VolumeModifier;
+                return ( this->InWorld ? this->VolumeModifier : 0 );
             }
 
             void Listener::SetMetersPerUnit(const Real Meters)
@@ -136,6 +141,29 @@ namespace Mezzanine
             Real Listener::GetMetersPerUnit() const
             {
                 return this->MPU;
+            }
+
+            void Listener::AddToWorld()
+            {
+                if( !this->IsInWorld() ) {
+                    this->MakeCurrent();
+                    alListenerf(AL_GAIN,this->VolumeModifier);
+                    this->InWorld = true;
+                }
+            }
+
+            void Listener::RemoveFromWorld()
+            {
+                if( this->IsInWorld() ) {
+                    this->MakeCurrent();
+                    alListenerf(AL_GAIN,0.0);
+                    this->InWorld = false;
+                }
+            }
+
+            bool Listener::IsInWorld() const
+            {
+                return this->InWorld;
             }
 
             ///////////////////////////////////////////////////////////////////////////////

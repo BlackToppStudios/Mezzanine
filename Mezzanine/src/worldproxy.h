@@ -64,9 +64,16 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
+        /// @brief Performs all the necessary task to ensure this object is connected to it's respective world and ready for use.
+        virtual void AddToWorld() = 0;
+        /// @brief Unhooks this proxy from it's respective world.
+        virtual void RemoveFromWorld() = 0;
+        /// @brief Gets whether or not this object is inside of it's world.
+        /// @return Returns true if this proxy is inserted in it's respective subsystems world.
+        virtual bool IsInWorld() const = 0;
         /// @brief Gets a pointer to the parent object that owns this proxy.
         /// @return Returns a pointer to the WorldObject this proxy belongs to, or NULL if this proxy isn't bound to a WorldObject.
-        WorldObject* GetParentObject() const;
+        virtual WorldObject* GetParentObject() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
