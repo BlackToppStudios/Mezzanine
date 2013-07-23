@@ -64,8 +64,8 @@ namespace Mezzanine
         {
         protected:
             /// @internal
-            /// @brief The physics shape of the World Object.
-            CollisionShape* WorldObjectShape;
+            /// @brief The physics shape of this proxy.
+            CollisionShape* ProxyShape;
             /// @internal
             /// @brief This is an internal only shape that provides the ability for a collision shape to be scaled locally (to this object alone).
             btCollisionShape* ScalerShape;
@@ -75,6 +75,9 @@ namespace Mezzanine
             /// @internal
             /// @brief  Stores the kind of World Objects that can collide with each other.
             Whole CollisionMask;
+            /// @internal
+            /// @brief Provides common logic for updating the collision shape or it's scaling.
+            virtual void UpdateShapeData(CollisionShape* Shape, const Vector3& Scaling);
         public:
             /// @brief Standard Constructor.
             PhysicsProxy();
@@ -87,6 +90,13 @@ namespace Mezzanine
             /// @brief Accessor for the type of physics object.
             /// @return Returns enum value for the type of proxy this object is.
             virtual ProxyType GetPhysicsProxyType() const = 0;
+
+            /// @copydoc WorldProxy::AddToWorld()
+            virtual void AddToWorld() = 0;
+            /// @copydoc WorldProxy::RemoveFromWorld()
+            virtual void RemoveFromWorld() = 0;
+            /// @copydoc WorldProxy::IsInWorld() const
+            virtual bool IsInWorld() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Settings

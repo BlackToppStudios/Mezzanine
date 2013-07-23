@@ -45,6 +45,48 @@ John Blackwood - makoenergy02@gmail.com
 
 #include <btBulletDynamicsCommon.h>
 
+namespace
+{
+    Mezzanine::Bool IsConvex(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    {
+        switch( Type )
+        {
+            // All the basic convex shapes
+            case Mezzanine::Physics::CollisionShape::ST_Box:
+            case Mezzanine::Physics::CollisionShape::ST_Capsule:
+            case Mezzanine::Physics::CollisionShape::ST_Cone:
+            case Mezzanine::Physics::CollisionShape::ST_ConvexHull:
+            case Mezzanine::Physics::CollisionShape::ST_Cylinder:
+            case Mezzanine::Physics::CollisionShape::ST_MultiSphere:
+            case Mezzanine::Physics::CollisionShape::ST_Sphere:
+            {
+                return true;
+                break;
+            }
+            default:
+            {
+                return false;
+                break;
+            }
+        }
+    }
+
+    Mezzanine::Bool IsCompound(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    {
+        return Type == Mezzanine::Physics::CollisionShape::ST_Compound;
+    }
+
+    Mezzanine::Bool IsStaticTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    {
+        return Type == Mezzanine::Physics::CollisionShape::ST_StaticTriMesh;
+    }
+
+    Mezzanine::Bool IsDynamicTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    {
+        return Type == Mezzanine::Physics::CollisionShape::ST_DynamicTriMesh;
+    }
+}
+
 namespace Mezzanine
 {
     namespace Physics
@@ -86,10 +128,20 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration Methods
 
+            /// @brief Sets the child shape to be scaled by this wrapper.
+            virtual void SetChildShape(btConvexShape* ChildShape)
+            {
+                this->ChildConvexShape = ChildShape;
+            }
             /// @brief Gets the child shape being scaled by this wrapper.
             virtual btConvexShape* GetChildShape() const
             {
                 return this->ChildConvexShape;
+            }
+            /// @brief Sets the amount of scaling to be applied to the child shape.
+            virtual void SetChildScaling(const btVector3& Scaling)
+            {
+                this->ChildScaling = Scaling;
             }
             /// @brief Gets the amount of scaling being applied to the child shape.
             virtual btVector3 GetChildScaling() const
@@ -211,7 +263,7 @@ namespace Mezzanine
         // PhysicsProxy Methods
 
         PhysicsProxy::PhysicsProxy() :
-            WorldObjectShape(NULL),
+            ProxyShape(NULL),
             ScalerShape(NULL),
             CollisionGroup(0),
             CollisionMask(0)
@@ -222,8 +274,72 @@ namespace Mezzanine
         {
         }
 
+        void PhysicsProxy::UpdateShapeData(CollisionShape* Shape, const Vector3& Scaling)
+        {
+            if( this->ProxyShape != Shape || this->GetScale() != Scaling )
+            {
+                if( this->ScalerShape != NULL ) {
+                    delete this->ScalerShape;
+                    this->ScalerShape = NULL;
+                }
+
+                switch( Shape->GetType() )
+                {
+                    // All the basic convex shapes
+                    case CollisionShape::ST_Box:
+                    case CollisionShape::ST_Capsule:
+                    case CollisionShape::ST_Cone:
+                    case CollisionShape::ST_ConvexHull:
+                    case CollisionShape::ST_Cylinder:
+                    case CollisionShape::ST_MultiSphere:
+                    case CollisionShape::ST_Sphere:
+                    {
+                        this->ProxyShape = Shape;
+                        btConvexShape* ScaledShape = static_cast<btConvexShape*>( Shape->_GetInternalShape() );
+                        this->ScalerShape = new ScalingShape( ScaledShape, Scaling.GetBulletVector3() );
+                        this->_GetBasePhysicsObject()->setCollisionShape( this->ScalerShape );
+                        break;
+                    }
+                    // The static bvh trimesh
+                    case CollisionShape::ST_StaticTriMesh:
+                    {
+                        this->ProxyShape = Shape;
+                        btBvhTriangleMeshShape* ScaledShape = static_cast<btBvhTriangleMeshShape*>( Shape->_GetInternalShape() );
+                        this->ScalerShape = new btScaledBvhTriangleMeshShape( ScaledShape, Scaling.GetBulletVector3() );
+                        this->_GetBasePhysicsObject()->setCollisionShape( this->ScalerShape );
+                        break;
+                    }
+                    // No idea what to do about compound shapes
+                    case CollisionShape::ST_Compound:
+                    // GImpact doesn't have anything to give it suppost for per object scaling
+                    case CollisionShape::ST_DynamicTriMesh:
+                    // These shapes are either specifically taylored to the object or just don't make sense to scale
+                    case CollisionShape::ST_Heightfield:
+                    case CollisionShape::ST_Plane:
+                    case CollisionShape::ST_ActorSoft:
+                    default:
+                    {
+                        this->ProxyShape = Shape;
+                        this->_GetBasePhysicsObject()->setCollisionShape( this->ProxyShape->_GetInternalShape() );
+                        break;
+                    }
+                }
+
+                // Gotta flicker to update the AABB appropriately
+                if( this->IsInWorld() ) {
+                    this->RemoveFromWorld();
+                    this->AddToWorld();
+                }
+            }
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
+
+        bool PhysicsProxy::IsInWorld() const
+        {
+            return ( this->_GetBasePhysicsObject()->getBroadphaseHandle() != NULL );
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Collision Settings
@@ -246,46 +362,12 @@ namespace Mezzanine
 
         void PhysicsProxy::SetCollisionShape(CollisionShape* Shape)
         {
-            /*if( this->WorldObjectShape != Shape )
-            {
-                if( this->ScalerShape != NULL ) {
-                    delete this->ScalerShape;
-                    this->ScalerShape = NULL;
-                }
-
-                switch( Shape->GetType() )
-                {
-                    // All the basic convex shapes
-                    case CollisionShape::ST_Box:
-                    case CollisionShape::ST_Capsule:
-                    case CollisionShape::ST_Compound:
-                    case CollisionShape::ST_Cone:
-                    case CollisionShape::ST_ConvexHull:
-                    case CollisionShape::ST_Cylinder:
-                    case CollisionShape::ST_MultiSphere:
-                    case CollisionShape::ST_Sphere:
-                    {
-
-                    }
-
-                    case CollisionShape::ST_Compound:
-
-                    case CollisionShape::ST_DynamicTriMesh:
-                    case CollisionShape::ST_Heightfield:
-                    case CollisionShape::ST_Plane:
-                    case CollisionShape::ST_ActorSoft:
-                    case CollisionShape::ST_StaticTriMesh:
-                }
-            }//*/
-
-
-            this->WorldObjectShape = Shape;
-            this->_GetBasePhysicsObject()->setCollisionShape( Shape->_GetInternalShape() );
+            this->UpdateShapeData(Shape,this->GetScale());
         }
 
         CollisionShape* PhysicsProxy::GetCollisionShape() const
         {
-            return this->WorldObjectShape;
+            return this->ProxyShape;
         }
 
         void PhysicsProxy::SetCollisionResponse(bool Enable)
@@ -412,17 +494,52 @@ namespace Mezzanine
 
         void PhysicsProxy::SetScale(const Vector3& Sc)
         {
-
+            this->UpdateShapeData(this->ProxyShape,Sc);
         }
 
         void PhysicsProxy::SetScale(const Real X, const Real Y, const Real Z)
         {
-
+            this->SetScale( Vector3(X,Y,Z) );
         }
 
         Vector3 PhysicsProxy::GetScale() const
         {
-
+            switch( this->ProxyShape->GetType() )
+            {
+                // All the basic convex shapes
+                case CollisionShape::ST_Box:
+                case CollisionShape::ST_Capsule:
+                case CollisionShape::ST_Cone:
+                case CollisionShape::ST_ConvexHull:
+                case CollisionShape::ST_Cylinder:
+                case CollisionShape::ST_MultiSphere:
+                case CollisionShape::ST_Sphere:
+                {
+                    ScalingShape* ScaleShape = static_cast<ScalingShape*>( this->ScalerShape );
+                    return Vector3( ScaleShape->GetChildScaling() );
+                    break;
+                }
+                // The static bvh trimesh
+                case CollisionShape::ST_StaticTriMesh:
+                {
+                    btScaledBvhTriangleMeshShape* ScaleShape = static_cast<btScaledBvhTriangleMeshShape*>( this->ScalerShape );
+                    return Vector3( ScaleShape->getLocalScaling() );
+                    break;
+                }
+                // No idea what to do about compound shapes
+                case CollisionShape::ST_Compound:
+                // GImpact doesn't have anything to give it suppost for per object scaling
+                case CollisionShape::ST_DynamicTriMesh:
+                // These shapes are either specifically taylored to the object or just don't make sense to scale
+                case CollisionShape::ST_Heightfield:
+                case CollisionShape::ST_Plane:
+                case CollisionShape::ST_ActorSoft:
+                default:
+                {
+                    return Vector3( this->ProxyShape->GetScaling() );
+                    break;
+                }
+            }
         }
 
         void PhysicsProxy::Translate(const Vector3& Trans)
@@ -468,12 +585,14 @@ namespace Mezzanine
 
         void PhysicsProxy::Scale(const Vector3& Scale)
         {
-
+            Vector3 NewScale = this->GetScale() * Scale;
+            this->SetScale(NewScale);
         }
 
         void PhysicsProxy::Scale(const Real X, const Real Y, const Real Z)
         {
-
+            Vector3 NewScale(X,Y,Z);
+            this->Scale(NewScale);
         }
     }// Physics
 }// Mezzanine
