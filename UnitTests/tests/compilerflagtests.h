@@ -53,76 +53,69 @@ class compilerflagtests : public UnitTestGroup
         virtual String Name()
             { return String("compilerflags"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail A series on interactive tests allowing inspection and verification of CMake and compiler options.
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        /// @brief This is called when Interactive tests are run
+        void RunInteractiveTests()
         {
-            RunAutomaticTests = false; // unsused, this line prevents compiler warnings
+            TestResult temp;
 
-            if (RunInteractiveTests)
-            {
-                TestResult temp;
-#ifdef MEZZDEBUG
+            #ifdef MEZZDEBUG
                 temp = GetTestAnswerFromStdin( "Was MEZZDEBUG set to True when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? ");
-#else
+            #else
                 temp = GetTestAnswerFromStdin( "Was MEZZDEBUG set to False when this was configured with CMake(where it is called Mezz_BuildTypeDebug) or other config tool? ");
-#endif
-                AddTestResult("CompilerFlag::MEZZDEBUG", temp);
+            #endif
+            TEST_RESULT(temp, "CompilerFlag::MEZZDEBUG");
 
 
-#ifdef MEZZRELEASE
+            #ifdef MEZZRELEASE
                 temp = GetTestAnswerFromStdin( "Was MEZZRELEASE set to True when this was configured with CMake(where it is called Mezz_BuildTypeRelease) or other config tool? ");
-#else
+            #else
                 temp = GetTestAnswerFromStdin( "Was MEZZRELEASE set to False when this was configured with CMake(where it is called Mezz_BuildTypeRelease) or other config tool? ");
-#endif
-                AddTestResult("CompilerFlag::MEZZRELEASE", temp);
+            #endif
+            TEST_RESULT(temp, "CompilerFlag::MEZZRELEASE");
 
-#ifdef MEZZSMALL
+            #ifdef MEZZSMALL
                 temp = GetTestAnswerFromStdin( "Was MEZZSMALL set to True when this was configured with CMake(where it is called Mezz_BuildTypeRelease) or other config tool? ");
-#else
+            #else
                 temp = GetTestAnswerFromStdin( "Was MEZZSMALL set to False when this was configured with CMake(where it is called Mezz_BuildTypeRelease) or other config tool? ");
-#endif
-                AddTestResult("CompilerFlag::MEZZSMALL", temp);
+            #endif
+            TEST_RESULT(temp, "CompilerFlag::MEZZSMALL");
 
-#ifdef MEZZPROFILE
+            #ifdef MEZZPROFILE
                 temp = GetTestAnswerFromStdin( "Was MEZZPROFILE set to True when this was configured with CMake(where it is called Mezz_Profile) or other config tool? ");
-#else
+            #else
                 temp = GetTestAnswerFromStdin( "Was MEZZPROFILE set to False when this was configured with CMake(where it is called Mezz_Debug) or other config tool? ");
-#endif
-                AddTestResult("CompilerFlag::MEZZPROFILE", temp);
+            #endif
+            TEST_RESULT(temp, "CompilerFlag::MEZZPROFILE");
 
-#ifdef MEZZNETWORK
+            #ifdef MEZZNETWORK
                 temp = GetTestAnswerFromStdin( "Was MEZZNETWORK set to True when this was configured with CMake(where it is called Mezz_Network) or other config tool? ");
-#else
+            #else
                 temp = GetTestAnswerFromStdin( "Was MEZZNETWORK set to False when this was configured with CMake(where it is called Mezz_Network) or other config tool? ");
-#endif
-                AddTestResult("CompilerFlag::MEZZNETWORK", temp);
+            #endif
+            TEST_RESULT(temp, "CompilerFlag::MEZZNETWORK");
 
-#ifdef MEZZLUA51
+            #ifdef MEZZLUA51
                 temp = GetTestAnswerFromStdin( "Was MEZZLUA51 set to True when this was configured with CMake(where it is called Mezz_Lua51) or other config tool? ");
-#else
+            #else
                 temp = GetTestAnswerFromStdin( "Was MEZZLUA51 set to False when this was configured with CMake(where it is called Mezz_Lua51) or other config tool? ");
-#endif
-                AddTestResult("CompilerFlag::MEZZLUA51", temp);
+            #endif
+            TEST_RESULT(temp, "CompilerFlag::MEZZLUA51");
 
-#ifdef THROW_ON_FETCH_FAIL
+            #ifdef THROW_ON_FETCH_FAIL
                 temp = GetTestAnswerFromStdin( "Was THROW_ON_FETCH_FAIL set to True when this was configured with CMake(where it is called Mezz_ThrowOnSingletonFetch) or other config tool? ");
-#else
+            #else
                 temp = GetTestAnswerFromStdin( "Was THROW_ON_FETCH_FAIL set to False when this was configured with CMake(where it is called Mezz_ThrowOnSingletonFetch) or other config tool? ");
-#endif
-                AddTestResult("CompilerFlag::THROW_ON_FETCH_FAIL", temp);
+            #endif
+            TEST_RESULT(temp, "CompilerFlag::THROW_ON_FETCH_FAIL");
 
             /// @todo Add compiler unit tests for the cpu type flag and the 5 maybe more rendersystems
-
-            }else{
-                AddTestResult("CompilerFlag::MEZZDEBUG", Skipped);
-                AddTestResult("CompilerFlag::MEZZRELEASE", Skipped);
-                AddTestResult("CompilerFlag::MEZZSMALL", Skipped);
-                AddTestResult("CompilerFlag::MEZZPROFILE", Skipped);
-                AddTestResult("CompilerFlag::MEZZNETWORK", Skipped);
-                AddTestResult("CompilerFlag::THROW_ON_FETCH_FAIL", Skipped);
-            }
-
         }
+
+        /// @brief Since RunInteractiveTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasInteractiveTests() const
+            { return true; }
+
+
 };
 #endif

@@ -176,42 +176,24 @@ class binarytoolstests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            // The TEST macro will capture Line, function file Metadata while
-            TEST(true,"AutomaticTest");
-            //TEST(false,"AutomaticFail");
+            TEST( IsBase64('a') && IsBase64('b') && IsBase64('c') && IsBase64('d') && IsBase64('e') && IsBase64('f') && IsBase64('g') && IsBase64('h') && IsBase64('i') && IsBase64('j') && IsBase64('k') && IsBase64('l') && IsBase64('m') &&
+                  IsBase64('n') && IsBase64('o') && IsBase64('p') && IsBase64('q') && IsBase64('r') && IsBase64('s') && IsBase64('t') && IsBase64('u') && IsBase64('v') && IsBase64('w') && IsBase64('x') && IsBase64('y') && IsBase64('z') &&
+                  IsBase64('A') && IsBase64('B') && IsBase64('C') && IsBase64('D') && IsBase64('E') && IsBase64('F') && IsBase64('G') && IsBase64('H') && IsBase64('I') && IsBase64('J') && IsBase64('K') && IsBase64('L') && IsBase64('M') &&
+                  IsBase64('N') && IsBase64('O') && IsBase64('P') && IsBase64('Q') && IsBase64('R') && IsBase64('S') && IsBase64('T') && IsBase64('U') && IsBase64('V') && IsBase64('W') && IsBase64('X') && IsBase64('Y') && IsBase64('Z') &&
+                  IsBase64('0') && IsBase64('1') && IsBase64('2') && IsBase64('3') && IsBase64('4') && IsBase64('5') && IsBase64('6') && IsBase64('7') && IsBase64('8') && IsBase64('9') &&
+                  IsBase64('/') && IsBase64('=') && IsBase64('+') &&
+                  !IsBase64('\n') && !IsBase64('.') &&!IsBase64('^') &&!IsBase64(' ') &&!IsBase64(':') &&!IsBase64('@') &&
+                  !IsBase64('\t') && !IsBase64('`') &&!IsBase64('[') &&!IsBase64('<') &&!IsBase64('>') &&!IsBase64(']') &&
+                  !IsBase64(0) && !IsBase64(127) &&!IsBase64(150) &&!IsBase64(255) &&!IsBase64(7) &&!IsBase64(10) &&
+                  !IsBase64(16) && !IsBase64(27) &&!IsBase64(180) &&!IsBase64(128) &&!IsBase64(32) &&!IsBase64(34)
+                  , "IsBase64")
 
-            TEST_WARN(false,"AutomaticWarn");
-
-            TestResult Answer = Testing::Success;
-            TEST_RESULT(Answer, "AutomaticTestResult");
-
-            // Multiline example
-            TEST_THROW( std::runtime_error&, \
-                        throw std::runtime_error("oh noes!"); \
-                        , "AutomaticTestThrow");
-            //TEST_THROW(std::runtime_error, throw "oh noes!";, "AutomaticTestThrow"); //Throws unexpected type so it fails
-        }
-
-        /// @brief Since RunAutomaticTests is implemented so is this.
-        /// @return returns true
-        virtual bool HasAutomaticTests() const
-            { return true; }
-
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
-        {
             const String Test1String("Test");
             const String Test1Base64("VGVzdA==");
 
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
-
+            {  // Basic Buffer Consistency
                 BinaryBuffer DefaultTest;
-                if( 0==DefaultTest.Size && 0==DefaultTest.Binary)
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::DefaultConstructor", temp);
+                TEST( 0==DefaultTest.Size && 0==DefaultTest.Binary,"BinaryBuffer::DefaultConstructor");
 
                 DefaultTest.Size=4;
                 DefaultTest.Binary = new BinaryBuffer::Byte[4];
@@ -224,35 +206,23 @@ class binarytoolstests : public UnitTestGroup
                 *(DefaultTest.Binary+1) = 'l';
                 *(DefaultTest.Binary+2) = 'd';
                 *(DefaultTest.Binary+3) = '.';
-                if( 4==Copied.Size &&
+                TEST( 4==Copied.Size &&
                     (*(Copied.Binary+0) == 'T') &&
                     (*(Copied.Binary+1) == 'e') &&
                     (*(Copied.Binary+2) == 's') &&
                     (*(Copied.Binary+3) == 't')
-                  )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::CopyConstructor", temp);
+                      ,"BinaryBuffer::CopyConstructor");
+
 
                 BinaryBuffer StrinTest("Strin",false);
-                if( 5==StrinTest.Size  &&
+                TEST( 5==StrinTest.Size  &&
                         (*(StrinTest.Binary+0) == 'S') &&
                         (*(StrinTest.Binary+1) == 't') &&
                         (*(StrinTest.Binary+2) == 'r') &&
                         (*(StrinTest.Binary+3) == 'i') &&
                         (*(StrinTest.Binary+4) == 'n')
-                  )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::StringConstructor", temp);
-
-                if( String("Strin") == StrinTest.ToString())
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::ToString", temp);
+                      , "BinaryBuffer::StringConstructor");
+                TEST( String("Strin") == StrinTest.ToString(), "BinaryBuffer::ToString")
 
                 BinaryBuffer::Byte* CString = new BinaryBuffer::Byte[4];
                 CString[0] = 'T';
@@ -260,17 +230,9 @@ class binarytoolstests : public UnitTestGroup
                 CString[2] = 's';
                 CString[3] = 't';
                 BinaryBuffer BufferConTest(CString,4);
-                if( String("Test") == BufferConTest.ToString())
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::PointerConstructor", temp);
+                TEST( String("Test") == BufferConTest.ToString(), "BinaryBuffer::PointerConstructor");
 
-                if( BinaryBuffer(200).Size == 200 )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::SizeConstructor", temp);
+                TEST( BinaryBuffer(200).Size == 200, "BinaryBuffer::SizeConstructor");
 
                 BinaryBuffer AssignmentTest;
                 AssignmentTest = BufferConTest;
@@ -278,34 +240,39 @@ class binarytoolstests : public UnitTestGroup
                 BufferConTest[1]='B';
                 BufferConTest[2]='C';
                 BufferConTest[3]='!';
-                if( String("ABC!") == BufferConTest.ToString())
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::operator[]", temp);
+                TEST( String("ABC!") == BufferConTest.ToString(), "BinaryBuffer::operator[]");
 
-                if( String("Test") == AssignmentTest.ToString())
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::operator=", temp);
+                TEST( String("Test") == AssignmentTest.ToString(), "BinaryBuffer::operator=");
+                TEST( String("Test") == BinaryBuffer("VGVzdA==").ToString(), "BinaryBuffer::Base64Constructor");
 
-                if( String("Test") == BinaryBuffer("VGVzdA==").ToString())
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::Base64Constructor", temp);
-            }else{
-                AddTestResult("BinaryTools::BinaryBuffer::DefaultConstructor", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::CopyConstructor", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::StringConstructor", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::ToString", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::PointerConstructor", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::SizeConstructor", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::operator[]", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::operator=", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::Base64Constructor", Skipped);
-            }
+                BinaryBuffer PartA(2);
+                BinaryBuffer PartB(2);
+                PartA[0]='a';
+                PartA[1]='s';
+                PartB[0]='d';
+                PartB[1]='f';
+                PartA+=PartB;
+                TEST( String("asdf") == PartA.ToString(), "BinaryBuffer::Concatenation" );
+
+                // Empty Behavior
+                BinaryBuffer Blank1;
+                TEST( 0 == Blank1.Binary && 0 == Blank1.Size, "BinaryBuffer::BlankDefaultConstruction");
+
+                BinaryBuffer Blank2(Blank1);
+                TEST( 0 == Blank2.Binary && 0 == Blank2.Size, "BinaryBuffer::BlankCopyConstruction");
+
+                BinaryBuffer Blank3(4);
+                Blank3[0]='F';
+                Blank3[1]='u';
+                Blank3[2]='l';
+                Blank3[3]='l';
+                Blank3=Blank1;
+                TEST( 0 == Blank3.Binary && 0 == Blank3.Size, "BinaryBuffer::BlankAssignment");
+
+                cout << " Exception test: " << endl;
+                TEST_THROW(InvalidStateException&, Blank3.CreateBuffer(), "BinaryBuffer::BlankBufferCreation");
+                cout << endl << " End Exception test. " << endl;
+            } // \Basic Buffer Consistency
 
             const String Test2String("Mover");
             const String Test2Base64("TW92ZXI=");
@@ -317,145 +284,49 @@ class binarytoolstests : public UnitTestGroup
             const String GettysburgAddressBase64("Rm91ciBzY29yZSBhbmQgc2V2ZW4geWVhcnMgYWdvIG91ciBmYXRoZXJzIGJyb3VnaHQgZm9ydGggb24gdGhpcyBjb250aW5lbnQgYSBuZXcgbmF0aW9uLCBjb25jZWl2ZWQgaW4gbGliZXJ0eSwgYW5kIGRlZGljYXRlZCB0byB0aGUgcHJvcG9zaXRpb24gdGhhdCBhbGwgbWVuIGFyZSBjcmVhdGVkIGVxdWFsLiBOb3cgd2UgYXJlIGVuZ2FnZWQgaW4gYSBncmVhdCBjaXZpbCB3YXIsIHRlc3Rpbmcgd2hldGhlciB0aGF0IG5hdGlvbiwgb3IgYW55IG5hdGlvbiwgc28gY29uY2VpdmVkIGFuZCBzbyBkZWRpY2F0ZWQsIGNhbiBsb25nIGVuZHVyZS4gV2UgYXJlIG1ldCBvbiBhIGdyZWF0IGJhdHRsZS1maWVsZCBvZiB0aGF0IHdhci4gV2UgaGF2ZSBjb21lIHRvIGRlZGljYXRlIGEgcG9ydGlvbiBvZiB0aGF0IGZpZWxkLCBhcyBhIGZpbmFsIHJlc3RpbmcgcGxhY2UgZm9yIHRob3NlIHdobyBoZXJlIGdhdmUgdGhlaXIgbGl2ZXMgdGhhdCB0aGF0IG5hdGlvbiBtaWdodCBsaXZlLiBJdCBpcyBhbHRvZ2V0aGVyIGZpdHRpbmcgYW5kIHByb3BlciB0aGF0IHdlIHNob3VsZCBkbyB0aGlzLiBCdXQsIGluIGEgbGFyZ2VyIHNlbnNlLCB3ZSBjYW4gbm90IGRlZGljYXRlLCB3ZSBjYW4gbm90IGNvbnNlY3JhdGUsIHdlIGNhbiBub3QgaGFsbG93IHRoaXMgZ3JvdW5kLiBUaGUgYnJhdmUgbWVuLCBsaXZpbmcgYW5kIGRlYWQsIHdobyBzdHJ1Z2dsZWQgaGVyZSwgaGF2ZSBjb25zZWNyYXRlZCBpdCwgZmFyIGFib3ZlIG91ciBwb29yIHBvd2VyIHRvIGFkZCBvciBkZXRyYWN0LiBUaGUgd29ybGQgd2lsbCBsaXR0bGUgbm90ZSwgbm9yIGxvbmcgcmVtZW1iZXIgd2hhdCB3ZSBzYXkgaGVyZSwgYnV0IGl0IGNhbiBuZXZlciBmb3JnZXQgd2hhdCB0aGV5IGRpZCBoZXJlLiBJdCBpcyBmb3IgdXMgdGhlIGxpdmluZywgcmF0aGVyLCB0byBiZSBkZWRpY2F0ZWQgaGVyZSB0byB0aGUgdW5maW5pc2hlZCB3b3JrIHdoaWNoIHRoZXkgd2hvIGZvdWdodCBoZXJlIGhhdmUgdGh1cyBmYXIgc28gbm9ibHkgYWR2YW5jZWQuIEl0IGlzIHJhdGhlciBmb3IgdXMgdG8gYmUgaGVyZSBkZWRpY2F0ZWQgdG8gdGhlIGdyZWF0IHRhc2sgcmVtYWluaW5nIGJlZm9yZSB1cy10aGF0IGZyb20gdGhlc2UgaG9ub3JlZCBkZWFkIHdlIHRha2UgaW5jcmVhc2VkIGRldm90aW9uIHRvIHRoYXQgY2F1c2UgZm9yIHdoaWNoIHRoZXkgZ2F2ZSB0aGUgbGFzdCBmdWxsIG1lYXN1cmUgb2YgZGV2b3Rpb24tdGhhdCB3ZSBoZXJlIGhpZ2hseSByZXNvbHZlIHRoYXQgdGhlc2UgZGVhZCBzaGFsbCBub3QgaGF2ZSBkaWVkIGluIHZhaW4tdGhhdCB0aGlzIG5hdGlvbiwgdW5kZXIgR29kLCBzaGFsbCBoYXZlIGEgbmV3IGJpcnRoIG9mIGZyZWVkb20tYW5kIHRoYXQgZ292ZXJubWVudCBvZiB0aGUgcGVvcGxlLCBieSB0aGUgcGVvcGxlLCBmb3IgdGhlIHBlb3BsZSwgc2hhbGwgbm90IHBlcmlzaCBmcm9tIHRoZSBlYXJ0aC4=");
 
             const String UnicodeString("Iｎｔèｒｎáｔìｏｎàｌïｚâｔｉòｎ");
-            const String UnicedeBase64("Se+9ju+9lMOo772S772Ow6HvvZTDrO+9j++9jsOg772Mw6/vvZrDou+9lO+9icOy772O");
+            const String UnicodeBase64("Se+9ju+9lMOo772S772Ow6HvvZTDrO+9j++9jsOg772Mw6/vvZrDou+9lO+9icOy772O");
 
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
+            { // Base64
+                //Encoding
+                TEST( Test1Base64 == Base64Encode(Test1String) &&
+                      Test2Base64 == Base64Encode(Test2String) &&
+                      Test3Base64 == Base64Encode(Test3String)
+                      , "Base64Encode-Short");
+                TEST( GettysburgAddressBase64 == Base64Encode(GettysburgAddress), "Base64Encode-Long" );
+                TEST( UnicodeBase64 == Base64Encode(UnicodeString) , "Base64Encode-Unicode");
 
-                if( Test1Base64 == Base64Encode(Test1String)    &&
-                    Test2Base64 == Base64Encode(Test2String)    &&
-                    Test3Base64 == Base64Encode(Test3String)
-                  )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::Base64Encode-Short", temp);
-
-                if( GettysburgAddressBase64 == Base64Encode(GettysburgAddress) )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::Base64Encode-Long", temp);
-
-                if( UnicedeBase64 == Base64Encode(UnicodeString) )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::Base64Encode-Unicode", temp);
-
-                if( Test1String == Base64Decode(Test1Base64).ToString()          &&
-                    Test2String == Base64Decode(Test2Base64).ToString()          &&
-                    Test3String == Base64Decode(Test3Base64).ToString()
-                  )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::Base64Decode-Short", temp);
-
-
+                // Decode
+                TEST( Test1String == Base64Decode(Test1Base64).ToString() &&
+                      Test2String == Base64Decode(Test2Base64).ToString() &&
+                      Test3String == Base64Decode(Test3Base64).ToString()
+                      , "Base64Decode-Short");
                 BinaryBuffer GettyBuffAddress(Base64Decode(GettysburgAddressBase64));
-                if(GettysburgAddress == GettyBuffAddress.ToString())
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::Base64Decode-Long", temp);
+                TEST(GettysburgAddress == GettyBuffAddress.ToString(), "Base64Decode-Long");
+                TEST(UnicodeString == Base64Decode(UnicodeBase64).ToString(), "Base64Decode-Unicode");
 
-                if(UnicodeString == Base64Decode(UnicedeBase64).ToString())
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::Base64Decode-Unicode", temp);
-            }else{
-                AddTestResult("BinaryTools::Base64Decode-Long", Skipped);
-                AddTestResult("BinaryTools::Base64Decode-Short", Skipped);
-                AddTestResult("BinaryTools::Base64Decode-Unicode", Skipped);
-                AddTestResult("BinaryTools::Base64Encode-Long", Skipped);
-                AddTestResult("BinaryTools::Base64Encode-Short", Skipped);
-                AddTestResult("BinaryTools::Base64Encode-Unicode", Skipped);
-            }
+                // Constant Time Size Prediction
+                TEST( Test1Base64.size() == PredictBase64StringSizeFromBinarySize(Test1String.length()) &&
+                      Test2Base64.size() == PredictBase64StringSizeFromBinarySize(Test2String.length()) &&
+                      Test3Base64.size() == PredictBase64StringSizeFromBinarySize(Test3String.length())
+                        , "PredictBase64StringSizeFromBinarySize-Short");
 
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
+                TEST( GettysburgAddressBase64.size() == PredictBase64StringSizeFromBinarySize(GettysburgAddress.length())
+                      , "PredictBase64StringSizeFromBinarySize-Long")
 
-                if( Test1Base64.size() == PredictBase64StringSizeFromBinarySize(Test1String.length())    &&
-                    Test2Base64.size() == PredictBase64StringSizeFromBinarySize(Test2String.length())    &&
-                    Test3Base64.size() == PredictBase64StringSizeFromBinarySize(Test3String.length())
-                  )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Short", temp);
+                TEST( UnicodeBase64.size() == PredictBase64StringSizeFromBinarySize(UnicodeString.length())
+                      , "PredictBase64StringSizeFromBinarySize-Unicode")
 
-                if( GettysburgAddressBase64.size() == PredictBase64StringSizeFromBinarySize(GettysburgAddress.length()) )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Long", temp);
+                TEST( Test1String.size() == PredictBinarySizeFromBase64String(Test1Base64) &&
+                      Test2String.size() == PredictBinarySizeFromBase64String(Test2Base64) &&
+                      Test3String.size() == PredictBinarySizeFromBase64String(Test3Base64)
+                      , "PredictBinarySizeFromBase64String-Short");
 
-                if( UnicedeBase64.size() == PredictBase64StringSizeFromBinarySize(UnicodeString.length()) )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Unicode", temp);
+                TEST( GettysburgAddress.size() == PredictBinarySizeFromBase64String(GettysburgAddressBase64), "PredictBinarySizeFromBase64String-Long" );
+                TEST( UnicodeString.size() == PredictBinarySizeFromBase64String(UnicodeBase64), "PredictBinarySizeFromBase64String-Unicode" );
 
-                if( Test1String.size() == PredictBinarySizeFromBase64String(Test1Base64)          &&
-                    Test2String.size() == PredictBinarySizeFromBase64String(Test2Base64)          &&
-                    Test3String.size() == PredictBinarySizeFromBase64String(Test3Base64)
-                  )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::PredictBinarySizeFromBase64String-Short", temp);
+            } // \ Base64
 
-                if( GettysburgAddress.size() == PredictBinarySizeFromBase64String(GettysburgAddressBase64) )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::PredictBinarySizeFromBase64String-Long", temp);
-
-                if( UnicodeString.size() == PredictBinarySizeFromBase64String(UnicedeBase64) )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::PredictBinarySizeFromBase64String-Unicode", temp);
-            }else{
-                AddTestResult("BinaryTools::PredictBinarySizeFromBase64String-Long", Skipped);
-                AddTestResult("BinaryTools::PredictBinarySizeFromBase64String-Short", Skipped);
-                AddTestResult("BinaryTools::PredictBinarySizeFromBase64String-Unicode", Skipped);
-                AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Long", Skipped);
-                AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Short", Skipped);
-                AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Unicode", Skipped);
-            }
-
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
-
-                if( IsBase64('a') && IsBase64('b') && IsBase64('c') && IsBase64('d') && IsBase64('e') && IsBase64('f') && IsBase64('g') && IsBase64('h') && IsBase64('i') && IsBase64('j') && IsBase64('k') && IsBase64('l') && IsBase64('m') &&
-                    IsBase64('n') && IsBase64('o') && IsBase64('p') && IsBase64('q') && IsBase64('r') && IsBase64('s') && IsBase64('t') && IsBase64('u') && IsBase64('v') && IsBase64('w') && IsBase64('x') && IsBase64('y') && IsBase64('z') &&
-                    IsBase64('A') && IsBase64('B') && IsBase64('C') && IsBase64('D') && IsBase64('E') && IsBase64('F') && IsBase64('G') && IsBase64('H') && IsBase64('I') && IsBase64('J') && IsBase64('K') && IsBase64('L') && IsBase64('M') &&
-                    IsBase64('N') && IsBase64('O') && IsBase64('P') && IsBase64('Q') && IsBase64('R') && IsBase64('S') && IsBase64('T') && IsBase64('U') && IsBase64('V') && IsBase64('W') && IsBase64('X') && IsBase64('Y') && IsBase64('Z') &&
-                    IsBase64('0') && IsBase64('1') && IsBase64('2') && IsBase64('3') && IsBase64('4') && IsBase64('5') && IsBase64('6') && IsBase64('7') && IsBase64('8') && IsBase64('9') &&
-                    IsBase64('/') && IsBase64('=') && IsBase64('+') &&
-                    !IsBase64('\n') && !IsBase64('.') &&!IsBase64('^') &&!IsBase64(' ') &&!IsBase64(':') &&!IsBase64('@') &&
-                    !IsBase64('\t') && !IsBase64('`') &&!IsBase64('[') &&!IsBase64('<') &&!IsBase64('>') &&!IsBase64(']') &&
-                    !IsBase64(0) && !IsBase64(127) &&!IsBase64(150) &&!IsBase64(255) &&!IsBase64(7) &&!IsBase64(10) &&
-                    !IsBase64(16) && !IsBase64(27) &&!IsBase64(180) &&!IsBase64(128) &&!IsBase64(32) &&!IsBase64(34)
-                  )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::IsBase64", temp);
-            }else{
-                AddTestResult("BinaryTools::IsBase64", Skipped);
-            }
-
-
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
+            { // Base64 performance
                 Whole TestCount = 10000;
 
                 MaxInt Begin;
@@ -471,9 +342,7 @@ class binarytoolstests : public UnitTestGroup
 
                 Begin = crossplatform::GetTimeStamp();
                 for(Whole c=0; c<TestCount; c++)
-                {
-                    OutputS = ReneBase64Decode(GettysburgAddressBase64);
-                }
+                    { OutputS = ReneBase64Decode(GettysburgAddressBase64); }
                 End = crossplatform::GetTimeStamp();
                 ReneDecodeTime = End - Begin;
                 cout << "Decoding With Rene's algorithm took " << ReneDecodeTime << " microseconds for " << TestCount << " iterations and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
@@ -491,11 +360,8 @@ class binarytoolstests : public UnitTestGroup
 
                 cout << "The new decoding algorithm takes about " << double((BTSDecodeTime*1000)/(ReneDecodeTime))/10 << "% as long as the original." << endl;
 
-                if( BTSDecodeTime < ReneDecodeTime )
-                    { temp=Success; }
-                else
-                    { temp=Warning; }
-                AddTestResult("BinaryTools::DecodeTime", temp); // If this test is warning verify you have a release build.
+                TEST_WARN( BTSDecodeTime < ReneDecodeTime, "DecodeTime" );
+
                 //Debug on tachyon
                 /*  Decoding With Rene's algorithm took 745425 microseconds for 10000 iterations and results like: Four score and seven...rish from the earth.
                     Decoding With BTS algorithm took 887304 microseconds for 10000 iterations and results like: Four score and seven...rish from the earth.
@@ -504,84 +370,13 @@ class binarytoolstests : public UnitTestGroup
                 /*  Decoding With Rene's algorithm took 462390 microseconds for 10000 iterations and results like: Four score and seven...rish from the earth.
                     Decoding With BTS algorithm took 344986 microseconds for 10000 iterations and results like: Four score and seven...rish from the earth.
                     The new decoding algorithm takes about 74.6% as long as the original. */
-            }else{
-                AddTestResult("BinaryTools::DecodeTime", Skipped);
-            }
-
-
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
-
-                BinaryBuffer PartA(2);
-                BinaryBuffer PartB(2);
-                PartA[0]='a';
-                PartA[1]='s';
-                PartB[0]='d';
-                PartB[1]='f';
-
-                PartA+=PartB;
-
-                if( String("asdf") == PartA.ToString() )
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::Concatenation", temp);
-            }else{
-                AddTestResult("BinaryTools::BinaryBuffer::Concatenation", Skipped);
-            }
-
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
-
-                BinaryBuffer Blank1;
-                if( 0 == Blank1.Binary && 0 == Blank1.Size)
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::BlankDefaultConstruction", temp);
-
-                BinaryBuffer Blank2(Blank1);
-                if( 0 == Blank2.Binary && 0 == Blank2.Size)
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::BlankCopyConstruction", temp);
-
-                BinaryBuffer Blank3(4);
-                Blank3[0]='F';
-                Blank3[1]='u';
-                Blank3[2]='l';
-                Blank3[3]='l';
-                Blank3=Blank1;
-                if( 0 == Blank3.Binary && 0 == Blank3.Size)
-                    { temp=Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("BinaryTools::BinaryBuffer::BlankAssignment", temp);
-
-                temp=Testing::Failed;
-                try
-                {
-                    Blank3.CreateBuffer();
-                }catch(const InvalidStateException& e){
-                    temp=Success;
-                }
-                AddTestResult("BinaryTools::BinaryBuffer::BlankBufferCreation", temp);
-
-            }else{
-                AddTestResult("BinaryTools::BinaryBuffer::BlankDefaultConstruction", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::BlankCopyConstruction", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::BlankAssignment", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::BlankBufferCreation", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::", Skipped);
-                AddTestResult("BinaryTools::BinaryBuffer::", Skipped);
-            }
-
+            } // \Base64 performance
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
 };
 
 #endif
