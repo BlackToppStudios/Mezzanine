@@ -217,14 +217,14 @@ namespace Mezzanine
 
     void AreaEffect::AddToWorld()
     {
-        Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->addCollisionObject(this->PhysicsObject,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
+        Entresol::GetSingletonPtr()->GetPhysicsManager()->_GetPhysicsWorldPointer()->addCollisionObject(this->PhysicsObject,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
         this->AttachToGraphics();
     }
 
     void AreaEffect::RemoveFromWorld()
     {
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-        btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
+        btSoftRigidDynamicsWorld* BWorld = PhysMan->_GetPhysicsWorldPointer();
         //first remove any collision metadata
         /*if( !CurrentCollisions.empty() )
         {
@@ -241,7 +241,7 @@ namespace Mezzanine
             this->AddedActors.clear();
         if ( !RemovedActors.empty() )
             this->RemovedActors.clear();
-        btSoftRigidDynamicsWorld* PhysWorld = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer();
+        btSoftRigidDynamicsWorld* PhysWorld = Entresol::GetSingletonPtr()->GetPhysicsManager()->_GetPhysicsWorldPointer();
 
         std::list<ActorBase*>::iterator it = OverlappingActors.begin();
         // Make a bool vector to keep track of which actors to keep when updating.

@@ -505,13 +505,6 @@ namespace Mezzanine
             /// @return Returns a pointer to the DebugDrawWorkUnit used by this manager.
             DebugDrawWorkUnit* GetDebugDrawWork();
 
-            /// @internal
-            /// @brief This returns a pointer to the bullet physics world. This is for internal use only
-            btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
-            /// @internal
-            /// @brief This returns a pointer to the bullet physics world. This is for internal use only
-            const btSoftRigidDynamicsWorld* GetPhysicsWorldPointer() const;
-
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods
 
@@ -519,6 +512,16 @@ namespace Mezzanine
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
             virtual String GetImplementationTypeName() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief This returns a pointer to the bullet physics world. This is for internal use only
+            btSoftRigidDynamicsWorld* _GetPhysicsWorldPointer();
+            /// @internal
+            /// @brief This returns a pointer to the bullet physics world. This is for internal use only
+            const btSoftRigidDynamicsWorld* _GetPhysicsWorldPointer() const;
         };//PhysicsManager
 
         ///////////////////////////////////////////////////////////////////////////////

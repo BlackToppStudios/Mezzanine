@@ -1137,16 +1137,6 @@ namespace Mezzanine
             return this->DebugDrawWork;
         }
 
-        btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
-        {
-            return this->BulletDynamicsWorld;
-        }
-
-        const btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer() const
-        {
-            return this->BulletDynamicsWorld;
-        }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Type Identifier Methods
 
@@ -1155,6 +1145,15 @@ namespace Mezzanine
 
         String PhysicsManager::GetImplementationTypeName() const
             { return "DefaultPhysicsManager"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        btSoftRigidDynamicsWorld* PhysicsManager::_GetPhysicsWorldPointer()
+            { return this->BulletDynamicsWorld; }
+
+        const btSoftRigidDynamicsWorld* PhysicsManager::_GetPhysicsWorldPointer() const
+            { return this->BulletDynamicsWorld; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // DefaultPhysicsManagerFactory Methods
