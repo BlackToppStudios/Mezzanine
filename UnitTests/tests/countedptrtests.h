@@ -400,13 +400,12 @@ class countedptrtests : public UnitTestGroup
 {
     public:
         virtual String Name()
-            { return String("countedptr"); }
+            { return String("CountedPtr"); }
 
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+
+        void RunAutomaticTests()
         {
-
-            if (RunAutomaticTests)
-            {
+            { // Simple automated desctruction
                 TestResult ResultE = NotApplicable;
                 TestResult ResultI = NotApplicable;
 
@@ -415,16 +414,11 @@ class countedptrtests : public UnitTestGroup
                     CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
                 } // When pointers fall out of scope
 
-                AddTestResult("CountedPtr::External::AutomaticDestruction", ResultE);
-                AddTestResult("CountedPtr::Internal::AutomaticDestruction", ResultI);
-
-            }else{
-                AddTestResult("CountedPtr::External::AutomaticDestruction", Skipped);
-                AddTestResult("CountedPtr::Internal::AutomaticDestruction", Skipped);
+                TEST_RESULT(ResultE, "External::AutomaticDestruction");
+                TEST_RESULT(ResultI, "Internal::AutomaticDestruction");
             }
 
-            if (RunAutomaticTests)
-            {
+            { // Use count and dual handle  delete
                 TestResult ResultE = NotApplicable;
                 TestResult ResultM = NotApplicable;
 
@@ -440,19 +434,11 @@ class countedptrtests : public UnitTestGroup
                         { ResultM = Testing::Failed; }
                 } // When pointers fall out of scope
 
-                AddTestResult("CountedPtr::External::use_count", ResultE);
-                AddTestResult("CountedPtr::Internal::use_count", ResultM);
-
-            }else{
-                AddTestResult("CountedPtr::External::use_count", Skipped);
-                AddTestResult("CountedPtr::Internal::use_count", Skipped);
+                TEST_RESULT(ResultE, "External::use_count");
+                TEST_RESULT(ResultM, "Internal::use_count");
             }
 
-
-
-
-            if (RunAutomaticTests)
-            {
+            { // release and dual handles
                 TestResult ResultE = NotApplicable;
                 TestResult ResultI = NotApplicable;
 
@@ -472,25 +458,13 @@ class countedptrtests : public UnitTestGroup
                     PtrI2.Reset();
                 }
 
-                AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
-                AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultI);
-
-            }else{
-                AddTestResult("CountedPtr::External::NonDestructionRelease", Skipped);
-                AddTestResult("CountedPtr::Internal::NonDestructionRelease", Skipped);
+                TEST_RESULT(ResultE, "External::NonDestructionRelease");
+                TEST_RESULT(ResultI, "Internal::NonDestructionRelease");
             }
 
-
-
-
-            if (RunAutomaticTests)
-            {
+            { // Dereferencing
                 TestResult ResultE = NotApplicable;
                 TestResult ResultI = NotApplicable;
-                TestResult ResultEDereference = NotApplicable;
-                TestResult ResultIDereference = NotApplicable;
-                TestResult ResultEDereference2 = NotApplicable;
-                TestResult ResultIDereference2 = NotApplicable;
 
                 {
                     CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
@@ -499,52 +473,15 @@ class countedptrtests : public UnitTestGroup
                     CountedPtr<FooExternal>   PtrE2( PtrE );
                     CountedPtr<FooInternal>   PtrI2( PtrI );
 
-                    if( 1!=(*PtrE2).Value )
-                    {
-                        ResultEDereference = Testing::Failed;
-                    }else{
-                        ResultEDereference = Success;
-                    }
+                    TEST( 1==(*PtrE2).Value, "External::operator*" );
+                    TEST( 3==(*PtrI2).Value, "Internal::operator*" );
 
-                    if( 3!=(*PtrI2).Value )
-                    {
-                        ResultIDereference = Testing::Failed;
-                    }else{
-                        ResultIDereference = Success;
-                    }
-
-                    if( 1!=PtrE2->Value )
-                    {
-                        ResultEDereference2 = Testing::Failed;
-                    }else{
-                        ResultEDereference2 = Success;
-                    }
-
-                    if( 3!=PtrI2->Value )
-                    {
-                        ResultIDereference2 = Testing::Failed;
-                    }else{
-                        ResultIDereference2 = Success;
-                    }
-
-
-                } // When pointers fall out of scope
-
-                AddTestResult("CountedPtr::External::operator*", ResultEDereference);
-                AddTestResult("CountedPtr::Internal::operator*", ResultIDereference);
-                AddTestResult("CountedPtr::External::operator->", ResultEDereference2);
-                AddTestResult("CountedPtr::Internal::operator->", ResultIDereference2);
-
-            }else{
-                AddTestResult("CountedPtr::External::operator*", Skipped);
-                AddTestResult("CountedPtr::Internal::operator*", Skipped);
-                AddTestResult("CountedPtr::External::operator->", Skipped);
-                AddTestResult("CountedPtr::Internal::operator->", Skipped);
+                    TEST( 1==PtrE2->Value, "External::operator->" );
+                    TEST( 3==PtrI2->Value, "Internal::operator->" );
+                }
             }
 
-
-            if (RunAutomaticTests)
-            {
+            { // reseating pointers
                 TestResult ResultE = NotApplicable; // Not reported
                 TestResult ResultI = NotApplicable; // Not reported
 
@@ -552,10 +489,6 @@ class countedptrtests : public UnitTestGroup
                 TestResult ResultIa = Success;
                 TestResult ResultEr = NotApplicable;
                 TestResult ResultIr = NotApplicable;
-                TestResult ResultEq = Success;
-                TestResult ResultIq = Success;
-                TestResult ResultEq2 = Testing::Failed;
-                TestResult ResultIq2 = Testing::Failed;
 
                 {
                     CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
@@ -564,29 +497,17 @@ class countedptrtests : public UnitTestGroup
                     CountedPtr<FooExternal>   PtrE2( new FooExternal(&ResultEr, 2) );
                     CountedPtr<FooInternal>   PtrI2( new FooInternal(&ResultIr, 4) );
 
-                    if(PtrE==PtrE2)
-                        { ResultEq = Testing::Failed; }
-                    if(PtrI==PtrI2)
-                        { ResultIq = Testing::Failed; }
-                    AddTestResult("CountedPtr::External::operator==inequality", ResultEq);
-                    AddTestResult("CountedPtr::Internal::operator==inequality", ResultIq);
+                    TEST(PtrE!=PtrE2, "External::operator==inequality");
+                    TEST(PtrI!=PtrI2, "Internal::operator==inequality");
 
 
-                    PtrE2 = PtrE; //Should be released here
-                    PtrI2 = PtrI; //Should be released here
-                    if (NotApplicable == ResultEr)
-                        { ResultEr = Testing::Failed; }
-                    if (NotApplicable == ResultIr)
-                        { ResultIr = Testing::Failed; }
-                    AddTestResult("CountedPtr::External::operator=release", ResultEr);
-                    AddTestResult("CountedPtr::Internal::operator=release", ResultIr);
+                    PtrE2 = PtrE; //Should be released here calling destructor which changes results
+                    PtrI2 = PtrI; //Should be released here, and destructor yadda yadda....
+                    TEST(NotApplicable != ResultEr,"External::operator=release");
+                    TEST(NotApplicable != ResultIr, "Internal::operator=release");
+                    TEST(PtrE==PtrE2, "External::operator==equality");
+                    TEST(PtrI==PtrI2, "Internal::operator==equality");
 
-                    if(PtrE==PtrE2)
-                        { ResultEq2 = Success; }
-                    if(PtrI==PtrI2)
-                        { ResultIq2 = Success; }
-                    AddTestResult("CountedPtr::External::operator==equality", ResultEq2);
-                    AddTestResult("CountedPtr::Internal::operator==equality", ResultIq2);
 
                     if( 1!=(*PtrE2).Value )
                         { ResultEa = Testing::Failed; }
@@ -594,24 +515,23 @@ class countedptrtests : public UnitTestGroup
                         { ResultIa = Testing::Failed; }
                 } // When pointers fall out of scope
 
-                AddTestResult("CountedPtr::External::operator=acquire", ResultEa);
-                AddTestResult("CountedPtr::Internal::operator=acquire", ResultIa);
-                AddTestResult("CountedPtr::External::operator=release", ResultEr);
-                AddTestResult("CountedPtr::Internal::operator=release", ResultIr);
-            }else{
-                AddTestResult("CountedPtr::External::operator=acquire", Skipped);
-                AddTestResult("CountedPtr::Internal::operator=acquire", Skipped);
-                AddTestResult("CountedPtr::External::operator=release", Skipped);
-                AddTestResult("CountedPtr::Internal::operator=release", Skipped);
-                AddTestResult("CountedPtr::External::operator==inequality", Skipped);
-                AddTestResult("CountedPtr::Internal::operator==inequality", Skipped);
-                AddTestResult("CountedPtr::External::operator==equality", Skipped);
-                AddTestResult("CountedPtr::Internal::operator==equality", Skipped);
+                TEST_RESULT(ResultEa, "CountedPtr::External::operator=acquire");
+                TEST_RESULT(ResultIa, "CountedPtr::Internal::operator=acquire");
+                TEST_RESULT(ResultEr, "CountedPtr::External::operator=release");
+                TEST_RESULT(ResultIr, "CountedPtr::Internal::operator=release");
             }
+        }
 
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
 
+        virtual void RunTests(bool RunAutoTests, bool RunInteractiveTests)
+        {
+            RunAutomaticTests();
 
-            if (RunAutomaticTests)
+            if (RunAutoTests)
             {
                 TestResult ResultE = NotApplicable; // unused
                 TestResult ResultI = NotApplicable; // unused
@@ -698,7 +618,7 @@ class countedptrtests : public UnitTestGroup
             Integer OutputE = 0;
             Integer OutputI = 0;
             Integer OutputS = 0;
-            if (RunAutomaticTests)
+            if (RunAutoTests)
             {
                 TestResult ResultE = NotApplicable;
                 TestResult ResultI = NotApplicable;
@@ -848,7 +768,7 @@ class countedptrtests : public UnitTestGroup
             }
 
 
-            if (RunAutomaticTests)
+            if (RunAutoTests)
             {
 
                 //TestResult Result = NotApplicable;
@@ -886,7 +806,7 @@ class countedptrtests : public UnitTestGroup
                 AddTestResult("CountedPtr::reset(CountedPtr)", Skipped);
             }
 
-            if (RunAutomaticTests)
+            if (RunAutoTests)
             {
                 CountedPtr<FooDiamond> DiamondPtr(new FooDiamond);
                 DiamondPtr->Value = 0;// Things typical segfault here if the casting inconsiste
@@ -948,7 +868,7 @@ class countedptrtests : public UnitTestGroup
                 AddTestResult("CountedPtr::CountedPtrDynamicCast", Skipped);
             }
 
-            if (RunAutomaticTests)
+            if (RunAutoTests)
             {
 
 

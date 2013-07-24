@@ -176,18 +176,18 @@ class binarytoolstests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            TEST( IsBase64('a') && IsBase64('b') && IsBase64('c') && IsBase64('d') && IsBase64('e') && IsBase64('f') && IsBase64('g') && IsBase64('h') && IsBase64('i') && IsBase64('j') && IsBase64('k') && IsBase64('l') && IsBase64('m') &&
-                  IsBase64('n') && IsBase64('o') && IsBase64('p') && IsBase64('q') && IsBase64('r') && IsBase64('s') && IsBase64('t') && IsBase64('u') && IsBase64('v') && IsBase64('w') && IsBase64('x') && IsBase64('y') && IsBase64('z') &&
-                  IsBase64('A') && IsBase64('B') && IsBase64('C') && IsBase64('D') && IsBase64('E') && IsBase64('F') && IsBase64('G') && IsBase64('H') && IsBase64('I') && IsBase64('J') && IsBase64('K') && IsBase64('L') && IsBase64('M') &&
-                  IsBase64('N') && IsBase64('O') && IsBase64('P') && IsBase64('Q') && IsBase64('R') && IsBase64('S') && IsBase64('T') && IsBase64('U') && IsBase64('V') && IsBase64('W') && IsBase64('X') && IsBase64('Y') && IsBase64('Z') &&
-                  IsBase64('0') && IsBase64('1') && IsBase64('2') && IsBase64('3') && IsBase64('4') && IsBase64('5') && IsBase64('6') && IsBase64('7') && IsBase64('8') && IsBase64('9') &&
-                  IsBase64('/') && IsBase64('=') && IsBase64('+') &&
-                  !IsBase64('\n') && !IsBase64('.') &&!IsBase64('^') &&!IsBase64(' ') &&!IsBase64(':') &&!IsBase64('@') &&
-                  !IsBase64('\t') && !IsBase64('`') &&!IsBase64('[') &&!IsBase64('<') &&!IsBase64('>') &&!IsBase64(']') &&
-                  !IsBase64(0) && !IsBase64(127) &&!IsBase64(150) &&!IsBase64(255) &&!IsBase64(7) &&!IsBase64(10) &&
-                  !IsBase64(16) && !IsBase64(27) &&!IsBase64(180) &&!IsBase64(128) &&!IsBase64(32) &&!IsBase64(34)
-                  , "IsBase64")
-
+            bool EveryChar =
+                    IsBase64('a') && IsBase64('b') && IsBase64('c') && IsBase64('d') && IsBase64('e') && IsBase64('f') && IsBase64('g') && IsBase64('h') && IsBase64('i') && IsBase64('j') && IsBase64('k') && IsBase64('l') && IsBase64('m') &&
+                    IsBase64('n') && IsBase64('o') && IsBase64('p') && IsBase64('q') && IsBase64('r') && IsBase64('s') && IsBase64('t') && IsBase64('u') && IsBase64('v') && IsBase64('w') && IsBase64('x') && IsBase64('y') && IsBase64('z') &&
+                    IsBase64('A') && IsBase64('B') && IsBase64('C') && IsBase64('D') && IsBase64('E') && IsBase64('F') && IsBase64('G') && IsBase64('H') && IsBase64('I') && IsBase64('J') && IsBase64('K') && IsBase64('L') && IsBase64('M') &&
+                    IsBase64('N') && IsBase64('O') && IsBase64('P') && IsBase64('Q') && IsBase64('R') && IsBase64('S') && IsBase64('T') && IsBase64('U') && IsBase64('V') && IsBase64('W') && IsBase64('X') && IsBase64('Y') && IsBase64('Z') &&
+                    IsBase64('0') && IsBase64('1') && IsBase64('2') && IsBase64('3') && IsBase64('4') && IsBase64('5') && IsBase64('6') && IsBase64('7') && IsBase64('8') && IsBase64('9') &&
+                    IsBase64('/') && IsBase64('=') && IsBase64('+') &&
+                    !IsBase64('\n') && !IsBase64('.') &&!IsBase64('^') &&!IsBase64(' ') &&!IsBase64(':') &&!IsBase64('@') &&
+                    !IsBase64('\t') && !IsBase64('`') &&!IsBase64('[') &&!IsBase64('<') &&!IsBase64('>') &&!IsBase64(']') &&
+                    !IsBase64(0) && !IsBase64(127) &&!IsBase64(150) &&!IsBase64(255) &&!IsBase64(7) &&!IsBase64(10) &&
+                    !IsBase64(16) && !IsBase64(27) &&!IsBase64(180) &&!IsBase64(128) &&!IsBase64(32) &&!IsBase64(34);
+            TEST( EveryChar, "IsBase64");
             const String Test1String("Test");
             const String Test1Base64("VGVzdA==");
 
@@ -212,7 +212,6 @@ class binarytoolstests : public UnitTestGroup
                     (*(Copied.Binary+2) == 's') &&
                     (*(Copied.Binary+3) == 't')
                       ,"BinaryBuffer::CopyConstructor");
-
 
                 BinaryBuffer StrinTest("Strin",false);
                 TEST( 5==StrinTest.Size  &&

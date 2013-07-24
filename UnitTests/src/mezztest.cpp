@@ -222,10 +222,12 @@ class AllUnitTestGroups : public UnitTestGroup
         /// @internal
         /// @brief Display the results either to the console or to the temp file for the main process to pick up.
         /// @param Output Where to present the output, this only works for the main process. Defaults to std::cout.
+        /// @param Error A stream to send all errors to, defailts to std::cerr
         /// @param Summary Passed onto the UnitTests UnitTestGroup::DisplayResults if run from the main process.
         /// @param FullOutput Passed onto the UnitTests UnitTestGroup::DisplayResults if run from the main process.
         /// @param HeaderOutput Passed onto the UnitTests UnitTestGroup::DisplayResults if run from the main process.
         virtual void DisplayResults(std::ostream& Output=std::cout,
+                                    std::ostream& Error=std::cerr,
                                     bool Summary = true,
                                     bool FullOutput = true,
                                     bool HeaderOutput = true)
@@ -237,7 +239,7 @@ class AllUnitTestGroups : public UnitTestGroup
                 //UnitTestGroup::DisplayResults(OutputFile,false,true,false);
                 //OutputFile.close();
             }else{
-                UnitTestGroup::DisplayResults(Output, Summary, FullOutput, HeaderOutput);
+                UnitTestGroup::DisplayResults(Output, Error, Summary, FullOutput, HeaderOutput);
             }
         }
 };
@@ -317,10 +319,10 @@ int main (int argc, char** argv)
     {
         String FileName("TestResults.txt");
         std::ofstream OutFile(FileName.c_str());
-        Runner.DisplayResults(OutFile,SummaryDisplay,FullDisplay);
+        Runner.DisplayResults(OutFile, OutFile, SummaryDisplay,FullDisplay);
         OutFile.close();
     }
-    Runner.DisplayResults(std::cout,SummaryDisplay,FullDisplay);
+    Runner.DisplayResults(std::cout, std::cerr, SummaryDisplay,FullDisplay);
 
     return ExitSuccess;
  }
