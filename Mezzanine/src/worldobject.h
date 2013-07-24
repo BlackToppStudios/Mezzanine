@@ -92,6 +92,15 @@ namespace Mezzanine
         friend class WorldObjectGraphicsSettings;
         friend class WorldObjectPhysicsSettings;
 
+        /// @brief This member stores all existing collision events referencing this actor.
+        std::set<Physics::Collision*> CurrentCollisions;
+        /// @brief The name of the terrain
+        String Name;
+
+        /// @internal
+        /// @brief This is the world this object belongs to and will be inserted in/removed from.
+        World* ParentWorld;
+
         /// @brief This class encapsulates the functionality of the Ogre::Entity using this
         Ogre::Entity* GraphicsObject;
         /// @brief This class encapsulates the functionality of the Ogre::SceneNode using this
@@ -104,11 +113,6 @@ namespace Mezzanine
         WorldObjectGraphicsSettings* GraphicsSettings;
         /// @brief This class encapsulates physics specific configuration for this actor.
         WorldObjectPhysicsSettings* PhysicsSettings;
-
-        /// @brief The name of the terrain
-        String Name;
-        /// @brief This member stores all existing collision events referencing this actor.
-        std::set<Physics::Collision*> CurrentCollisions;
 
         /// @brief Makes the terrain visible.
         virtual void AttachToGraphics();
@@ -164,6 +168,9 @@ namespace Mezzanine
         /// @brief Gets whether or not this object is currently in the world.
         /// @return Returns a bool indicating if this object has been added to the world.
         virtual bool IsInWorld() const;
+        /// @brief Gets the world this object currently belongs to.
+        /// @return Returns a pointer to the world that owns this object.
+        virtual World* GetWorld() const;
 
         /// @brief Gets the graphics settings class associated with this World Object.
         /// @return Returns a pointer to the graphics settings class in use by this World Object.
