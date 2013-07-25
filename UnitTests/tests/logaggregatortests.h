@@ -64,8 +64,7 @@ class logaggregatortests : public UnitTestGroup
         virtual String Name()
             { return String("LogAggregator"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Test if the log aggregator aggregates
+        /// @brief Test if the log aggregator aggregates
         virtual void RunAutomaticTests()
         {
             stringstream TempLog;

@@ -204,8 +204,8 @@ class dagsizestests : public UnitTestGroup
                  << "DefaultThreadSpecificStorage::Type: " << sizeof(DefaultThreadSpecificStorage::Type) << endl
                  << "FrameScheduler: " << sizeof(FrameScheduler) << endl
                  << "WorkSorter: " << sizeof(WorkSorter) << endl
-                 << "thread: " << sizeof(Thread) << endl
-                 << "mutex: " << sizeof(Mutex) << endl
+                 << "Thread: " << sizeof(Thread) << endl
+                 << "Mutex: " << sizeof(Mutex) << endl
                  << "Barrier: " << sizeof(Barrier) << endl
                  << "vector<Whole>: " << sizeof(vector<Whole>) << endl
                  << "vector<WorkUnit*>: " << sizeof(vector<Whole*>) << endl
@@ -215,23 +215,44 @@ class dagsizestests : public UnitTestGroup
                  << "MaxInt: " << sizeof(MaxInt) << endl
                  << "Whole: " << sizeof(Whole) << endl << endl;
 
-            cout << "CPU cache size: " << GetCacheSize() << endl;
+            Whole TCount = GetCPUCount() * 4;
+            Whole FSSize = sizeof(FrameScheduler);
+            Whole MSize = sizeof(MonopolyWorkUnit) * 12;
+            Whole WSize = sizeof(DefaultWorkUnit) * 100;
+            Whole KSize = sizeof(WorkUnitKey) * 100;
+            Whole LASize = sizeof(LogAggregator) * TCount;
+            Whole TSize = sizeof(Thread) * TCount;
+            Whole WPSize = sizeof(DefaultWorkUnit*) * 300;
+            Whole TotalSize = FSSize + MSize + WSize + KSize + LASize + TSize + WPSize;
+
+            cout << "CPU cache size: " << GetCacheSize() << endl
+                 << "Checking cache against a large set of work:" << endl
+                 << "1 Framescheduler: " << FSSize << endl
+                 << "12 monopolies: " << MSize << endl
+                 << TCount << " LogAggregators: " << LASize << endl
+                 << TCount << " Threads: " << TSize << endl
+                 << "100 WorkUnits: " << WSize << endl
+                 << "100 WorkUnitKeys: " << KSize << endl
+                 << "300 Workunit pointers (representing dependencies): " << WPSize << endl
+                 << "Total sample workload (should be much smaller than cache): " << TotalSize << endl << endl;
+            TEST_WARN(TotalSize<=GetCacheSize(), "WorkloadFitsInCache");
+
             Whole CachLineSize = GetCachelineSize();
             cout << "CPU cache line size: " << CachLineSize << endl;
-            cout << "Checking Line size against frequently used types." << endl;
-            TEST_WARN(sizeof(iWorkUnit)<CachLineSize,"iWorkUnitFitsInCacheLine");
-            TEST_WARN(sizeof(DefaultWorkUnit)<CachLineSize,"DefaultWorkUnitFitsInCacheLine");
-            TEST_WARN(sizeof(WorkUnitKey)<CachLineSize,"WorkUnitKeyFitsInCacheLine");
+            cout << "Checking Line size against frequently used types." << endl << endl;
+            TEST_WARN(sizeof(iWorkUnit)<=CachLineSize,"iWorkUnitFitsInCacheLine");
+            TEST_WARN(sizeof(DefaultWorkUnit)<=CachLineSize,"DefaultWorkUnitFitsInCacheLine");
+            TEST_WARN(sizeof(WorkUnitKey)<=CachLineSize,"WorkUnitKeyFitsInCacheLine");
             TEST_WARN(sizeof(DefaultRollingAverage<Whole>::Type)<CachLineSize,"DefaultRollingAverageFitsInCacheLine");
 
             cout << "This algorithm presumes that vectors under a certain size are just faster than sets/trees/maps below that size. This checks where that stops being true." << endl;
             stringstream trash;
             Whole Count1 = WhenIsVectorSlowerThanSet(trash);
-            cout << "Elemement count 1: " << Count1 << endl;
+            cout << "Element count 1: " << Count1 << endl;
             Whole Count2 = WhenIsVectorSlowerThanSet(trash);
-            cout << "Elemement count 2: " << Count2 << endl;
+            cout << "Element count 2: " << Count2 << endl;
             Whole Count3 = WhenIsVectorSlowerThanSet(trash);
-            cout << "Elemement count 3: " << Count3 << endl;
+            cout << "Element count 3: " << Count3 << endl;
             cout << "Are These higher than 800? " << ((Count1+Count2+Count3)/3>800) << " - If not the DAG scheduling algorithm may need to be revised" << endl;
             TEST_WARN((Count1+Count2+Count3)/3>800,"VectorSpeed");
         }

@@ -52,8 +52,7 @@ class threaddefinetests : public UnitTestGroup
         virtual String Name()
             { return String("ThreadDefine"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail A series on interactive tests allowing inspection and verification of CMake and compiler options.
+        /// @brief A series on interactive tests allowing inspection and verification of CMake and compiler options.
         void RunInteractiveTests()
         {
             TestResult Answer;

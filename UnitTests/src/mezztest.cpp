@@ -47,6 +47,14 @@
 #include <vector>
 #include <stdexcept>
 
+/// @file
+/// @brief This file is the entry point for the unit test framework.
+/// @details If you need to change the nature of the executable this is the
+/// file to change. This is where the simple (but robust) sub process
+/// mechanism is implemented. Very little of the rest of the code in the
+/// unit test frame work makes calls to file, and everything that does
+/// does so through the UnitTestGroup class via polymorphism.
+
 /// @internal
 /// @brief If this is passed to the command line the test is executed without launching a separate processs.
 /// @details In most cases each test is launched as a separate process and this is passed to it.
@@ -214,10 +222,12 @@ class AllUnitTestGroups : public UnitTestGroup
         /// @internal
         /// @brief Display the results either to the console or to the temp file for the main process to pick up.
         /// @param Output Where to present the output, this only works for the main process. Defaults to std::cout.
+        /// @param Error A stream to send all errors to, defailts to std::cerr
         /// @param Summary Passed onto the UnitTests UnitTestGroup::DisplayResults if run from the main process.
         /// @param FullOutput Passed onto the UnitTests UnitTestGroup::DisplayResults if run from the main process.
         /// @param HeaderOutput Passed onto the UnitTests UnitTestGroup::DisplayResults if run from the main process.
         virtual void DisplayResults(std::ostream& Output=std::cout,
+                                    std::ostream& Error=std::cerr,
                                     bool Summary = true,
                                     bool FullOutput = true,
                                     bool HeaderOutput = true)
@@ -229,7 +239,7 @@ class AllUnitTestGroups : public UnitTestGroup
                 //UnitTestGroup::DisplayResults(OutputFile,false,true,false);
                 //OutputFile.close();
             }else{
-                UnitTestGroup::DisplayResults(Output, Summary, FullOutput, HeaderOutput);
+                UnitTestGroup::DisplayResults(Output, Error, Summary, FullOutput, HeaderOutput);
             }
         }
 };
@@ -239,7 +249,10 @@ class AllUnitTestGroups : public UnitTestGroup
 /// available from autodetect.h. It will then interpret any command line arguments
 /// and direct the created AllUnitTestGroups about which tests to run and how to run
 /// them. In addition to sending the results to the standard output a copy of the
-/// test results will be written to TestResults.txt, if configured to do so.
+/// test results will be written to TestResults.txt, if not configure not to.
+/// @n @n
+/// If no arguments are passed this will add all the tests to the AllUnitTestGroups
+/// and execute all tests that are not interactive. Print out a default report of them.
 /// @return This will return EXIT_SUCCESS if the tests ran, even if some or all failed,
 /// even if a child process segfaulted, but will return other statuses only if the main
 /// process fails. If the main process cannot create child processes it will return EXIT_FAILURE.
@@ -306,10 +319,10 @@ int main (int argc, char** argv)
     {
         String FileName("TestResults.txt");
         std::ofstream OutFile(FileName.c_str());
-        Runner.DisplayResults(OutFile,SummaryDisplay,FullDisplay);
+        Runner.DisplayResults(OutFile, OutFile, SummaryDisplay,FullDisplay);
         OutFile.close();
     }
-    Runner.DisplayResults(std::cout,SummaryDisplay,FullDisplay);
+    Runner.DisplayResults(std::cout, std::cerr, SummaryDisplay,FullDisplay);
 
     return ExitSuccess;
  }

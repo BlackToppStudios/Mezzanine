@@ -104,72 +104,47 @@ class barriertests : public UnitTestGroup
         virtual String Name()
             { return String("Barrier"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Test if the barrier works properly
-        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        /// @brief Test if the barrier works properly
+        void RunAutomaticTests()
         {
-            RunInteractiveTests = false; //prevent warnings
+            cout << "Testing Basic Thread Barrier functionality." << endl
+                 << "This Threads id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
+                 << "A group of data has been populated with 5,10,15 and 20, this should be doubled and copied into a new field of data and will be done by 4 threads. Each thread will be indexed, and will adjust the data from some other thread then synchronize and copy its own data." << endl;
 
-            if (RunAutomaticTests)
-            {
-                TestResult temp;
+            Int32 One = 1;
+            Int32 Two = 2;
+            Int32 Three = 3;
+            Int32 Four = 4;
+            BarrierData1.push_back(5);
+            BarrierData1.push_back(10);
+            BarrierData1.push_back(15);
+            BarrierData1.push_back(20);
+            BarrierData2.push_back(0);
+            BarrierData2.push_back(0);
+            BarrierData2.push_back(0);
+            BarrierData2.push_back(0);
 
-                cout << "Testing Basic Thread Barrier functionality." << endl
-                     << "This Threads id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
-                     << "A group of data has been populated with 5,10,15 and 20, this should be doubled and copied into a new field of data and will be done by 4 threads. Each thread will be indexed, and will adjust the data from some other thread then synchronize and copy its own data." << endl;
+            Mezzanine::Threading::Thread T1(BarrierTestHelper,&One);
+            Mezzanine::Threading::Thread T2(BarrierTestHelper,&Two);
+            Mezzanine::Threading::Thread T3(BarrierTestHelper,&Three);
+            Mezzanine::Threading::Thread T4(BarrierTestHelper,&Four);
+            T1.join();
+            T2.join();
+            T3.join();
+            T4.join();
 
-                Int32 One = 1;
-                Int32 Two = 2;
-                Int32 Three = 3;
-                Int32 Four = 4;
-                BarrierData1.push_back(5);
-                BarrierData1.push_back(10);
-                BarrierData1.push_back(15);
-                BarrierData1.push_back(20);
-                BarrierData2.push_back(0);
-                BarrierData2.push_back(0);
-                BarrierData2.push_back(0);
-                BarrierData2.push_back(0);
-
-                Mezzanine::Threading::Thread T1(BarrierTestHelper,&One);
-                Mezzanine::Threading::Thread T2(BarrierTestHelper,&Two);
-                Mezzanine::Threading::Thread T3(BarrierTestHelper,&Three);
-                Mezzanine::Threading::Thread T4(BarrierTestHelper,&Four);
-                T1.join();
-                T2.join();
-                T3.join();
-                T4.join();
-
-                if(10==BarrierData2[0])
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::BarrierThread1", temp);
-                if(20==BarrierData2[1])
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::BarrierThread2", temp);
-                if(30==BarrierData2[2])
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::BarrierThread3", temp);
-                if(40==BarrierData2[3])
-                    { temp=Testing::Success; }
-                else
-                    { temp=Testing::Failed; }
-                AddTestResult("DAGFrameScheduler::BarrierThread4", temp);
-
-            }else{
-                AddTestResult("DAGFrameScheduler::BarrierThread1", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::BarrierThread2", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::BarrierThread3", Testing::Skipped);
-                AddTestResult("DAGFrameScheduler::BarrierThread4", Testing::Skipped);
-            }
-
-
+            TEST(10==BarrierData2[0], "BarrierThread1")
+            TEST(20==BarrierData2[1], "BarrierThread2")
+            TEST(30==BarrierData2[2], "BarrierThread3")
+            TEST(40==BarrierData2[3], "BarrierThread4")
         }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
+
+
 };
 
 #endif

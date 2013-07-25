@@ -128,8 +128,7 @@ class workunittests : public UnitTestGroup
         virtual String Name()
             { return String("WorkUnit"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Mostly tests whether or not dependencies are tracked correctly.
+        /// @brief Mostly tests whether or not dependencies are tracked correctly.
         void RunAutomaticTests()
         {
             cout << "Starting WorkUnit Tests, 20 runs with WorkUnitSample1" << endl;

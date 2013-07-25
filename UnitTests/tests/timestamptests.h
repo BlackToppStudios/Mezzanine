@@ -61,8 +61,7 @@ class timestamptests : public UnitTestGroup
         virtual String Name()
             { return String("TimeStamp"); }
 
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::RunTests
-        /// @detail Test if the timestamp tools works correctly were possible
+        /// @brief Test if the timestamp tools works correctly were possible
         void RunAutomaticTests()
         {
             cout << "Starting timekeeping tests." << endl;
