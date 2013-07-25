@@ -77,6 +77,7 @@ class boilerplatetests : public UnitTestGroup
                         , "AutomaticTestThrow");
             //TEST_THROW(std::runtime_error, throw "oh noes!";, "AutomaticTestThrow"); //Throws unexpected type so it fails
 
+            TEST_NO_THROW( int x = 0; x++; , "ShouldNotThrow");
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
