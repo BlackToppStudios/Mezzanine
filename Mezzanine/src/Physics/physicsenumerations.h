@@ -47,6 +47,16 @@ namespace Mezzanine
 {
     namespace Physics
     {
+        /// @enum AnistropicFrictionFlags
+        /// @brief This is used by physics proxies to help determine the behavior of it's anistropic friction behavior.
+        /// @details See the documentation on the PhysicsProxy class for more details.
+        enum AnistropicFrictionFlags
+        {
+            AFF_AnisotropicFrictionDisabled  = 0,
+            AFF_AnisotropicFriction          = 1,
+            AFF_AnisotropicRollingFriction   = 2
+        };
+
         /// @enum CollisionFilter
         /// @brief These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with.
         /// @details You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with
@@ -67,6 +77,19 @@ namespace Mezzanine
             CF_UserFilter2 = 128,
             CF_UserFilter3 = 256,
             CF_UserFilter4 = 512
+        };
+
+        /// @enum CollisionFlags
+        /// @brief This is used by physics proxies to help determine collision response behavior of a proxy.
+        enum CollisionFlags
+        {
+            CF_StaticObject                   = 1,
+            CF_KinematicObject                = 2,
+            CF_NoContactResponse              = 4,
+            CF_CustomMaterialCallback         = 8,
+            CF_CharacterObject                = 16,
+            CF_DisableVisualizeObject         = 32,
+            CF_DisableSPUCollisionProcessing  = 64
         };
 
         /// @enum DebugDrawMode
@@ -103,15 +126,15 @@ namespace Mezzanine
             PT_Ghost = 3
         };
 
-        /// @enum WorldObjectActivationState
-        /// @brief This is used by all the world objects to monitor and set their physics activation.
-        enum WorldObjectActivationState
+        /// @enum ActivationState
+        /// @brief This is used by physics proxies to monitor and set their physics activation.
+        enum ActivationState
         {
-            WOAS_Active = 1,
-            WOAS_Island_Sleeping = 2,
-            WOAS_Wants_Deactivation = 3,
-            WOAS_DisableDeactivation = 4,
-            WOAS_DisableSimulation = 5
+            AS_Active = 1,
+            AS_Island_Sleeping = 2,
+            AS_Wants_Deactivation = 3,
+            AS_DisableDeactivation = 4,
+            AS_DisableSimulation = 5
         };
     }//physics
 }//Mezzanine

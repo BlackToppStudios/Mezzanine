@@ -194,7 +194,7 @@ public:
                             {
                                 Vector3 LocalPivot = ClickOnActor->Vector;
                                 ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                                rigid->GetPhysicsSettings()->SetActivationState(Physics::WOAS_DisableDeactivation);
+                                rigid->GetPhysicsSettings()->SetActivationState(Physics::AS_DisableDeactivation);
                                 //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                                 Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
                                 Dragger->SetTAU(0.001);
@@ -246,7 +246,7 @@ public:
                 TheEntresol->GetPhysicsManager()->RemoveConstraint(Dragger);
                 delete Dragger;
                 Dragger = NULL;
-                Act->GetPhysicsSettings()->SetActivationState(Physics::WOAS_Active);
+                Act->GetPhysicsSettings()->SetActivationState(Physics::AS_Active);
             }
         }
     }

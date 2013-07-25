@@ -139,8 +139,8 @@ namespace Mezzanine
             ActB = Act2;
             BodyA = Act1->PhysicsRigidBody;
             BodyB = Act2->PhysicsRigidBody;
-            BodyA->setActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
-            BodyB->setActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
+            BodyA->setActivationState(Mezzanine::Physics::AS_DisableDeactivation);
+            BodyB->setActivationState(Mezzanine::Physics::AS_DisableDeactivation);
         }
 
         void Constraint::SetBodies(ActorRigid* Act1)
@@ -149,7 +149,7 @@ namespace Mezzanine
             ActB = NULL;
             BodyA = Act1->PhysicsRigidBody;
             BodyB = NULL;
-            BodyA->setActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
+            BodyA->setActivationState(Mezzanine::Physics::AS_DisableDeactivation);
         }
 
         ////////////////////////////////////////////////////////////////////////////////

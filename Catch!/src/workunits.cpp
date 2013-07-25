@@ -137,7 +137,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                 {
                     Vector3 LocalPivot = ClickOnActor->Vector;
                     ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                    rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
+                    rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
                     Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
                     Dragger->SetTAU(0.001);
                     Entresol::GetSingletonPtr()->GetPhysicsManager()->AddConstraint(Dragger);
@@ -172,7 +172,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                 Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
                 delete Dragger;
                 Dragger = NULL;
-                Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
+                Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
             }
 
             // Here we cleanup everything we needed for the clicking/dragging
@@ -189,7 +189,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
             Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger = NULL;
-            Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
+            Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
         }
     }
 }
