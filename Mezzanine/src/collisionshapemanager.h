@@ -228,9 +228,6 @@ namespace Mezzanine
         /// @param FileName The name of the file to save the shapes to.
         /// @param ShapesToSave A vector of collisions shapes that will be saved.
         virtual void SaveShapesToFile(const String& FileName, std::vector<Physics::CollisionShape*>& ShapesToSave);
-        /// @brief Used to serialize and deserialize collisionshapes to xml
-        /// @details More Sophisticated shapes may reference a .bullet or a .mesh file.
-        Physics::CollisionShapeDeSerializer ShapeDeserializer;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Unnamed Shape Management
