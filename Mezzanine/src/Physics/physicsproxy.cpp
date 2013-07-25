@@ -40,8 +40,9 @@ John Blackwood - makoenergy02@gmail.com
 #ifndef _physicsproxy_cpp
 #define _physicsproxy_cpp
 
-#include "physicsproxy.h"
+#include "Physics/physicsproxy.h"
 #include "Physics/collisionshape.h"
+#include "collisionshapemanager.h"
 
 #include <btBulletDynamicsCommon.h>
 
@@ -331,6 +332,9 @@ namespace Mezzanine
                     this->AddToWorld();
                 }
             }
+
+            if( Shape != NULL )
+                CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -388,6 +392,16 @@ namespace Mezzanine
             return !(this->_GetBasePhysicsObject()->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
         }
 
+        void PhysicsProxy::SetCollisionFlags(const Whole Flags)
+        {
+            this->_GetBasePhysicsObject()->setCollisionFlags(Flags);
+        }
+
+        Whole PhysicsProxy::GetCollisionFlags() const
+        {
+            return this->_GetBasePhysicsObject()->getCollisionFlags();
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Static or Kinematic Properties
 
@@ -421,38 +435,60 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Physics Properties
 
-        void PhysicsProxy::SetFriction(const Real& Friction)
-        {
-            this->_GetBasePhysicsObject()->setFriction(Friction);
-        }
+        void PhysicsProxy::SetFriction(const Real Friction)
+            { this->_GetBasePhysicsObject()->setFriction(Friction); }
 
         Real PhysicsProxy::GetFriction() const
-        {
-            return this->_GetBasePhysicsObject()->getFriction();
-        }
+            { return this->_GetBasePhysicsObject()->getFriction(); }
+
+        void PhysicsProxy::SetRollingFriction(const Real Friction)
+            { this->_GetBasePhysicsObject()->setRollingFriction(Friction); }
+
+        Real PhysicsProxy::GetRollingFriction() const
+            { return this->_GetBasePhysicsObject()->getRollingFriction(); }
+
+        void PhysicsProxy::SetAnisotropicFriction(const Vector3& Friction, const Whole Mode)
+            { this->_GetBasePhysicsObject()->setAnisotropicFriction(Friction.GetBulletVector3(),Mode); }
+
+        Bool PhysicsProxy::IsAnisotropicFrictionModeSet(const Whole Mode) const
+            { return this->_GetBasePhysicsObject()->hasAnisotropicFriction(Mode); }
+
+        Vector3 PhysicsProxy::GetAnisotropicFriction() const
+            { return Vector3( this->_GetBasePhysicsObject()->getAnisotropicFriction() ); }
 
         void PhysicsProxy::SetRestitution(const Real& Restitution)
-        {
-            this->_GetBasePhysicsObject()->setRestitution(Restitution);
-        }
+            { this->_GetBasePhysicsObject()->setRestitution(Restitution); }
 
         Real PhysicsProxy::GetRestitution() const
-        {
-            return this->_GetBasePhysicsObject()->getRestitution();
-        }
+            { return this->_GetBasePhysicsObject()->getRestitution(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Activation State
 
-        bool PhysicsProxy::IsActive() const
-        {
-            return ( ACTIVE_TAG == this->_GetBasePhysicsObject()->getActivationState() );
-        }
-
-        void PhysicsProxy::SetActivationState(const Physics::WorldObjectActivationState State, bool Force)
+        void PhysicsProxy::SetActivationState(const Physics::ActivationState State, bool Force)
         {
             if(Force) this->_GetBasePhysicsObject()->forceActivationState(State);
             else this->_GetBasePhysicsObject()->setActivationState(State);
+        }
+
+        Physics::ActivationState PhysicsProxy::GetActivationState() const
+        {
+            return static_cast<Physics::ActivationState>( this->_GetBasePhysicsObject()->getActivationState() );
+        }
+
+        bool PhysicsProxy::IsActive() const
+        {
+            return this->_GetBasePhysicsObject()->isActive();
+        }
+
+        void PhysicsProxy::SetDeactivationTime(const Real Time)
+        {
+            this->_GetBasePhysicsObject()->setDeactivationTime(Time);
+        }
+
+        Real PhysicsProxy::GetDeactivationTime() const
+        {
+            return this->_GetBasePhysicsObject()->getDeactivationTime();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -594,6 +630,34 @@ namespace Mezzanine
             Vector3 NewScale(X,Y,Z);
             this->Scale(NewScale);
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void PhysicsProxy::ProtoSerialize(XML::Node& CurrentRoot) const
+        {
+            // We're at the base implementation, so no calling of child implementations
+        }
+
+        void PhysicsProxy::ProtoDeSerialize(const XML::Node& OneNode)
+        {
+
+        }
+
+        String PhysicsProxy::GetDerivedSerializableName() const
+            { return PhysicsProxy::SerializableName(); }
+
+        String PhysicsProxy::SerializableName()
+            { return "PhysicsProxy"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        void PhysicsProxy::_SetContactProcessingThreshold(const Real Threshold)
+            { this->_GetBasePhysicsObject()->setContactProcessingThreshold(Threshold); }
+
+        Real PhysicsProxy::_GetContactProcessingThreshold() const
+            { return this->_GetBasePhysicsObject()->getContactProcessingThreshold(); }
     }// Physics
 }// Mezzanine
 

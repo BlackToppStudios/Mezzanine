@@ -89,7 +89,7 @@ namespace Mezzanine
 
             /// @brief Accessor for the type of physics object.
             /// @return Returns enum value for the type of proxy this object is.
-            virtual ProxyType GetPhysicsProxyType() const = 0;
+            virtual Physics::ProxyType GetPhysicsProxyType() const = 0;
 
             /// @copydoc WorldProxy::AddToWorld()
             virtual void AddToWorld() = 0;
@@ -112,12 +112,14 @@ namespace Mezzanine
             /// @brief Gets the object's collision mask.
             /// @return Returns a Whole representing what collision groups this object should collide with.
             virtual Whole GetCollisionMask() const;
+
             /// @brief Sets the collision shape to be used.
             /// @param Shape The shape to be applied.
             virtual void SetCollisionShape(CollisionShape* Shape);
             /// @brief Gets the collision shape currently in use by this object.
             /// @return Returns a pointer to the collision shape being used.
             virtual CollisionShape* GetCollisionShape() const;
+
             /// @brief Sets the World Object to be able to collide with other objects in the world.
             /// @details By default collision response is enabled.  Only call this function if you have disabled collision response.
             /// @param Enable Whether or not to enable collision response.
@@ -125,6 +127,14 @@ namespace Mezzanine
             /// @brief Will this respond to 3d collisions.
             /// @return False is it does not respond to collisions, True if it will
             virtual bool GetCollisionResponse() const;
+
+            /// @brief Sets the collection of flags that help determine collision response for this object.
+            /// @details See Physics::CollisionFlags enum for more details on the available flags.
+            /// @param Flags A bitmask containing all the flags to be applied to this object.
+            virtual void SetCollisionFlags(const Whole Flags);
+            /// @brief Gets the collection of flags that help determine collision response for this object.
+            /// @return Returns a bitmask containing all the flags used to determine collision reponse for this object.
+            virtual Whole GetCollisionFlags() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Static or Kinematic Properties
@@ -151,15 +161,40 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Physics Properties
 
-            /// @brief Sets the friction coefficient.
+            /// @brief Sets the sliding friction coefficient.
             /// @details Higher values will resist sliding across surfaces.  This number is the
             /// coefficient of friction.  Range is from 0.0 to 2.0.  Behavior in this regard is determined by the friction of both
             /// colliding bodies.  @n Default: 0.5
-            /// @param Friction A Real that is the friction coefficient desired.
-            virtual void SetFriction(const Real& Friction);
-            /// @brief Gets the friction coefficient.
-            /// @return Returns a Real representing the World Object friction coefficient.
+            /// @param Friction A Real that is the sliding friction coefficient desired.
+            virtual void SetFriction(const Real Friction);
+            /// @brief Gets the sliding friction coefficient.
+            /// @return Returns a Real representing the sliding friction coefficient.
             virtual Real GetFriction() const;
+
+            /// @brief Sets the rolling friction coefficient.
+            /// @details This works on the same basic idea as "normal" friction but this is the coefficient to be used when the object
+            /// rolls across the surface instead of slides across.
+            /// @param Friction A Real that is the rolling friction coefficient desired.
+            virtual void SetRollingFriction(const Real Friction);
+            /// @brief Gets the rolling friction coefficient.
+            /// @return Returns a Real representing the rolling friction coefficient.
+            virtual Real GetRollingFriction() const;
+
+            /// @brief Sets the anisotropic friction factor.
+            /// @details Anisotropic friction is when an object has different behaviors for sliding or rolling on different axes.  An
+            /// example would be a skateboard that rolls easily back and forth, but resists side to side. @n @n
+            /// Note that only one Anisotropic Friction Flag can be set at a time.
+            /// @param Friction A Vector3 expressing the coefficients on each of this objects local axes that will be applied to the global friction value.
+            /// @param Mode The type of friction the passed in value should be set as.  See Physics::AnisotropicFrictionFlags enum for more details.
+            virtual void SetAnisotropicFriction(const Vector3& Friction, const Whole Mode);
+            /// @brief Gets whether or not anisotropic friction is being used in a specified mode.
+            /// @param Mode The Physics::AnisotropicFrictionFlags value to check for.
+            /// @return Returns true if the specified mode is the current mode of Anisotropic Friction being used.
+            virtual Bool IsAnisotropicFrictionModeSet(const Whole Mode) const;
+            /// @brief Gets the anisotropic friction factor.
+            /// @return Returns a Vector3 representing the anisotropic friction factors on each of the linear axes.
+            virtual Vector3 GetAnisotropicFriction() const;
+
             /// @brief Sets the restitution coefficient.
             /// @details Restitution determines how much energy is left after a collision with an object.
             /// Range is from 0.0 to 1.0.  Behavior in this regard is determined by the restitution of both colliding bodies.
@@ -173,13 +208,26 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Activation State
 
+            /// @brief Sets the activation state of the world object.
+            /// @param State The activation state to set for this proxy.  See the ActivationState enum for more info.
+            /// @param Force Whether or not you want to force the state.  Some states may not apply based on the condition of the proxy if this is set to false.
+            virtual void SetActivationState(const Physics::ActivationState State, bool Force = false);
+            /// @brief Gets the current activation state of this proxy.
+            /// @return Returns a Physics::ActivationState value representing the current state of this proxy.
+            virtual Physics::ActivationState GetActivationState() const;
             /// @brief Checks if the object is active in the simulation.
             /// @return Returns true if the object is active, false if it's deactivated(at rest).
             virtual bool IsActive() const;
-            /// @brief Sets the activation state of the world object.
-            /// @param State The activation state to set for the world object.  See the world objectActivationState enum for more info.
-            /// @param Force Whether or not you want to force the state.  Some states may not apply based on the condition of the world object if this is set to false.
-            virtual void SetActivationState(const Physics::WorldObjectActivationState State, bool Force = false);
+
+            /// @brief Sets the amount of time this object needs to have no forces enacted upon it to be deactivated.
+            /// @details This deactivate simply means it is skipped on more robust checks and force checking.  It does not mean
+            /// that it has to be manually reactivated by the user.  A force being applied to it will re-activate it automatically.
+            /// This setting is a simple optimization.
+            /// @param Time The amount of time in seconds this object needs to deactivate.
+            virtual void SetDeactivationTime(const Real Time);
+            /// @brief Gets the current deactivation time for this object.
+            /// @return Returns a Real representing the current amount of time in seconds this object needs to be stationary to deactivate.
+            virtual Real GetDeactivationTime() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Methods
@@ -223,10 +271,32 @@ namespace Mezzanine
             virtual void Scale(const Real X, const Real Y, const Real Z);
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String SerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            ///@internal
-            ///@brief Accessor for the internal physics object.
+            /// @internal
+            /// @brief Sets the maximum distance to be considered for processing collisions with this object.
+            /// @param Threshold The maximum distance in world units that will be considered a collision with this object.
+            virtual void _SetContactProcessingThreshold(const Real Threshold);
+            /// @internal
+            /// @brief Gets the maximum distance to be considered for processing collisions with this object.
+            /// @return Returns a Real represnting the maximum distance in world units that is considered a collision with this object.
+            virtual Real _GetContactProcessingThreshold() const;
+            /// @internal
+            /// @brief Accessor for the internal physics object.
+            /// @return Returns a pointer to the internal object of this proxy.
             virtual btCollisionObject* _GetBasePhysicsObject() const = 0;
         };// PhysicsProxy
     }// Physics
