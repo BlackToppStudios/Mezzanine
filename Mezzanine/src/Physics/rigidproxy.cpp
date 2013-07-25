@@ -40,14 +40,16 @@ John Blackwood - makoenergy02@gmail.com
 #ifndef _rigidproxy_cpp
 #define _rigidproxy_cpp
 
-#include "rigidproxy.h"
-
-#include "collisionshapemanager.h"
+#include "Physics/rigidproxy.h"
 #include "Physics/collisionshape.h"
+#include "Physics/physicsmanager.h"
+#include "collisionshapemanager.h"
+#include "world.h"
 
 #include "Internal/motionstate.h.cpp"
 
 #include <btBulletDynamicsCommon.h>
+#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 
 namespace Mezzanine
 {
@@ -75,22 +77,50 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        Physics::ProxyType RigidProxy::GetPhysicsProxyType() const
+        {
+            return Physics::PT_Rigid;
+        }
+
+        void RigidProxy::AddToWorld()
+        {
+            if( !this->IsInWorld() && this->ParentObject ) {
+                World* ParentWorld = this->ParentObject->GetWorld();
+                if( ParentWorld ) {
+                    ParentWorld->GetPhysicsManager()->_GetPhysicsWorldPointer()->addRigidBody( this->PhysicsRigidBody );
+                }
+            }
+        }
+
+        void RigidProxy::RemoveFromWorld()
+        {
+            if( this->IsInWorld() && this->ParentObject ) {
+                World* ParentWorld = this->ParentObject->GetWorld();
+                if( ParentWorld ) {
+                    ParentWorld->GetPhysicsManager()->_GetPhysicsWorldPointer()->removeRigidBody( this->PhysicsRigidBody );
+                }
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Collision Settings
 
         void RigidProxy::SetCollisionShape(CollisionShape* Shape)
         {
             if(CollisionShape::ST_StaticTriMesh != Shape->GetType())
             {
-            btScalar mass = this->PhysicsRigidBody->getInvMass();
-                if(0 != mass)
-                    mass=1/mass;
-                btVector3 inertia(0,0,0);
-                Shape->_GetInternalShape()->calculateLocalInertia(mass, inertia);
-                this->PhysicsRigidBody->setMassProps(mass,inertia);
-                this->PhysicsRigidBody->setCollisionShape(Shape->_GetInternalShape());
+                btScalar Mass = this->PhysicsRigidBody->getInvMass();
+                if(0 != Mass)
+                    Mass = 1 / Mass;
+                btVector3 Inertia(0,0,0);
+                Shape->_GetInternalShape()->calculateLocalInertia(Mass,Inertia);
+                this->PhysicsRigidBody->setMassProps(Mass,Inertia);
+                this->PhysicsProxy::SetCollisionShape(Shape);
                 this->PhysicsRigidBody->updateInertiaTensor();
             }else{
-                this->PhysicsRigidBody->setCollisionShape(Shape->_GetInternalShape());
+                this->PhysicsProxy::SetCollisionShape(Shape);
             }
             CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
         }
