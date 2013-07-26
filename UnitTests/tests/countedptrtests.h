@@ -656,7 +656,6 @@ class countedptrtests : public UnitTestGroup
                 Whole CountPtrCopyInternalTime = 0;
                 Whole CountPtrCopyExternalTime = 0;
 
-
                 #ifdef SHAREDPTRTEST
                   TestResult ResultS = NotApplicable;
                   Whole SharedPtrTime = 0;
@@ -664,7 +663,6 @@ class countedptrtests : public UnitTestGroup
                   Whole SharedPtrCopyTime = 0;
                   Whole MakeSharedCopyTime = 0;
                 #endif
-
 
                 {
                     cout << "The objects being created all change a variable on destruction and have initializing, but otherwise trivial constructors. This is useful only for comparing the speeds of the point constructs on this platform, not for providing objective pointer dereferencing costs." << std::endl;
