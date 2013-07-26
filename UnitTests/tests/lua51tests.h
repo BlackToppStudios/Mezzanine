@@ -371,16 +371,85 @@ class lua51tests : public UnitTestGroup
                 cout << endl;
             }
 
+            {
+                String FeatureSource("x = 3\n"
+                                     "Vec=MezzanineSafe.Vector3(3,2,1)\n"
+                                     "Vec.X=10.0\n"
+                                     //"print(Vec)\n" // would need to include io for this right?
+                                    );
+
+                Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
+                Scripting::Lua::Lua51Script FeatureScript(FeatureSource);
+
+                cout << endl << "Attempting creation of a Vector3 from the MezzanineSafe Library in a Lua51 Script without that library being loaded." << endl;
+                try
+                {
+                    FeatureScript.Compile(LuaRuntimePartial);
+                    LuaRuntimePartial.Execute(FeatureScript);
+                    TEST_RESULT(Testing::Failed, "Lua51::Script::MezzanineSafelibExclude"); // Why does this work?
+                } catch (ScriptLuaException&) {
+                    cout << endl << "It failed as it should." << endl;
+                    TEST_RESULT(Success, "Lua51::Script::MezzanineSafelibExclude");
+                }
+
+                LuaRuntimePartial.OpenLibraries(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);
+                //LuaRuntimePartial.OpenMezzanineSafeLibrary();
+
+                cout << "Attempting normal execution of properly loaded Mezzanine library function." << endl;
+                try
+                {
+                    FeatureScript.Compile(LuaRuntimePartial);
+                    LuaRuntimePartial.Execute(FeatureScript);
+                    cout << endl << "Attempting creation of a Vector3 from the MezzanineSafe Library in a Lua51 Script." << endl;
+                    TEST_RESULT(Success, "Lua51::Script::MezzanineSafelibInclude");
+                } catch (ScriptLuaException& e) {
+                    TEST_RESULT(Testing::Failed,"Lua51::Script::MezzanineSafelibInclude");
+                }
+                cout << endl;
+            }
+
+            {
+                String FeatureSource("x = 3\n"
+                                     "Vec=Mezzanine.Vector3(3,2,1)\n"
+                                     "Vec.X=10.0\n"
+                                    );
+
+                Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
+                Scripting::Lua::Lua51Script FeatureScript(FeatureSource);
+
+                cout << endl << "Attempting creation of a Vector3 from the Mezzanine Library in a Lua51 Script without that library being loaded." << endl;
+                try
+                {
+                    FeatureScript.Compile(LuaRuntimePartial);
+                    LuaRuntimePartial.Execute(FeatureScript);
+                    TEST_RESULT(Testing::Failed, "Lua51::Script::MezzaninelibExclude"); // Why does this work?
+                } catch (ScriptLuaException&) {
+                    cout << endl << "It failed as it should." << endl;
+                    TEST_RESULT(Success, "Lua51::Script::MezzaninelibExclude");
+                }
+
+                LuaRuntimePartial.OpenLibraries(Scripting::Lua::Lua51ScriptingEngine::MezzLib);
+                //LuaRuntimePartial.OpenMezzanineLibrary();
+
+                cout << "Attempting normal execution of properly loaded Mezzanine library function." << endl;
+                try
+                {
+                    FeatureScript.Compile(LuaRuntimePartial);
+                    LuaRuntimePartial.Execute(FeatureScript);
+                    cout << endl << "Attempting creation of a Vector3 from the Mezzanine Library in a Lua51 Script." << endl;
+                    TEST_RESULT(Success, "Lua51::Script::MezzaninelibInclude");
+                } catch (ScriptLuaException& e) {
+                    TEST_RESULT(Testing::Failed,"Lua51::Script::MezzaninelibInclude");
+                }
+                cout << endl;
+            }
+
             /// @TODO still need to test OS, Debug, Mezz and MezzSafe
             /*
             virtual void OpenOSLibrary();
 
             /// Lua manual at http://www.lua.org/manual/5.1/manual.html#5.9 .
             virtual void OpenDebugLibrary();
-
-            virtual void OpenMezzanineLibrary();
-
-            virtual void OpenMezzanineSafeLibrary();
             */
         }
 
