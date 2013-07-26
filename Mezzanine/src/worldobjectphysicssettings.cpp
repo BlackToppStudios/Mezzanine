@@ -134,15 +134,15 @@ namespace Mezzanine
         else return false;
     }
 
-    void WorldObjectPhysicsSettings::SetActivationState(const Physics::WorldObjectActivationState& State, bool Force)
+    void WorldObjectPhysicsSettings::SetActivationState(const Physics::ActivationState& State, bool Force)
     {
         if(Force) WorldObjectCO->forceActivationState(State);
         else WorldObjectCO->setActivationState(State);
     }
 
-    Physics::WorldObjectActivationState WorldObjectPhysicsSettings::GetActivationState() const
+    Physics::ActivationState WorldObjectPhysicsSettings::GetActivationState() const
     {
-        return (Mezzanine::Physics::WorldObjectActivationState)WorldObjectCO->getActivationState();
+        return (Mezzanine::Physics::ActivationState)WorldObjectCO->getActivationState();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -215,7 +215,7 @@ namespace Mezzanine
                         WorldObjectCO->setCollisionFlags(Flags | btCollisionObject::CF_STATIC_OBJECT);
                     }
                     this->SetCollisionGroupAndMask(OneNode.GetAttribute("CollisionGroup").AsWhole(),OneNode.GetAttribute("CollisionMask").AsWhole());
-                    this->SetActivationState((Mezzanine::Physics::WorldObjectActivationState)OneNode.GetAttribute("ActivationState").AsInt());
+                    this->SetActivationState((Mezzanine::Physics::ActivationState)OneNode.GetAttribute("ActivationState").AsInt());
                 }else{
                     MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for" + WorldObjectPhysicsSettings::SerializableName() + ": Not Version 1.");
                 }

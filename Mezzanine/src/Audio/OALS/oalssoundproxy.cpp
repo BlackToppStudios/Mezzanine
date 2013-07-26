@@ -88,12 +88,26 @@ namespace Mezzanine
     {
         namespace OALS
         {
+            /// @enum ProxyState
+            /// @brief This enum describes a set of boolean options common for objects playing back audio in a 3D world.
+            enum ProxyState
+            {
+                PS_Playing = 1,
+                PS_Paused  = 2,
+                PS_Stopped = 4,
+                PS_Looping = 8,
+                PS_InWorld = 16
+            };//PlaybackState
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Sound Methods
+
             OALS::SoundProxy::SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts)
                 : SoundFilter(NULL),
                   SoundDecoder(Decode),
                   DirectSound(false),
                   SType(Type),
-                  State(iSound::PS_Stopped),
+                  State(OALS::PS_Stopped),
                   SoundPitch(1.0),
                   BaseVolume(1.0),
                   MinVolume(0.0),
@@ -307,13 +321,43 @@ namespace Mezzanine
                 return this->DirectSound;
             }
 
+            void OALS::SoundProxy::AddToWorld()
+            {
+                if( !this->IsInWorld() )
+                {
+                    this->State = ( this->State | OALS::PS_InWorld );
+                    if( this->IsPaused() ) {
+                        this->Play();
+                    }
+                }
+            }
+
+            void OALS::SoundProxy::RemoveFromWorld()
+            {
+                if( this->IsInWorld() )
+                {
+                    this->State = ( this->State & ~OALS::PS_InWorld );
+                    if( this->IsPlaying() ) {
+                        this->Pause();
+                    }
+                }
+            }
+
+            bool OALS::SoundProxy::IsInWorld() const
+            {
+                return (this->State & OALS::PS_InWorld);
+            }
+
             ///////////////////////////////////////////////////////////////////////////////
             // Playback
 
             bool OALS::SoundProxy::Play()
             {
+                if( !this->IsInWorld() )
+                    return false;
+
                 // Setup the buffers for playback
-                if( !IsPaused() )
+                if( !this->IsPaused() )
                 {
                     UInt32 QueueSize = 0;
                     /// @todo Currently in this method we iterate over all the sources for each context twice due to the order in which these
@@ -350,18 +394,21 @@ namespace Mezzanine
                         alSourcePlay((*CSI).second);
                     }
                 }
-                this->State = ( this->IsLooping() ? iSound::PS_Playing | iSound::PS_Looping : iSound::PS_Playing );
+                // Remove Stopped state if it exists
+                this->State = ( this->State & ~(OALS::PS_Stopped | OALS::PS_Paused) );
+                // Add the Playing state
+                this->State = ( this->State | OALS::PS_Playing );
                 return true;
             }
 
             bool OALS::SoundProxy::IsPlaying() const
             {
-                return (this->State & iSound::PS_Playing);
+                return (this->State & OALS::PS_Playing);
             }
 
             void OALS::SoundProxy::Pause()
             {
-                if( !(this->IsPaused()) )
+                if( this->IsPlaying() )
                 {
                     // Pause the source
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
@@ -371,13 +418,16 @@ namespace Mezzanine
                             alSourcePause((*CSI).second);
                         }
                     }
-                    this->State = ( this->IsLooping() ? iSound::PS_Paused | iSound::PS_Looping : iSound::PS_Paused );
+                    // Remove Playing state if it exists
+                    this->State = ( this->State & ~OALS::PS_Playing );
+                    // Add the Paused state
+                    this->State = ( this->State | OALS::PS_Paused );
                 }
             }
 
             bool OALS::SoundProxy::IsPaused() const
             {
-                return (this->State & iSound::PS_Paused);
+                return (this->State & OALS::PS_Paused);
             }
 
             void OALS::SoundProxy::Stop()
@@ -393,24 +443,27 @@ namespace Mezzanine
                     }
                     // Inform the decoder
                     this->SoundDecoder->SetPosition(0,false);
-                    this->State = ( this->IsLooping() ? iSound::PS_Stopped | iSound::PS_Looping : iSound::PS_Stopped );
+                    // Remove Playing state if it exists
+                    this->State = ( this->State & ~(OALS::PS_Playing | OALS::PS_Paused) );
+                    // Add the Stopped state
+                    this->State = ( this->State | OALS::PS_Stopped );
                 }
             }
 
             bool OALS::SoundProxy::IsStopped() const
             {
-                return (this->State & iSound::PS_Stopped);
+                return (this->State & OALS::PS_Stopped);
             }
 
             void OALS::SoundProxy::Loop(bool ToLoop)
             {
-                if(ToLoop) this->State = ( this->State | iSound::PS_Looping );
-                else this->State = ( this->State & ~iSound::PS_Looping );
+                if(ToLoop) this->State = ( this->State | OALS::PS_Looping );
+                else this->State = ( this->State & ~OALS::PS_Looping );
             }
 
             bool OALS::SoundProxy::IsLooping() const
             {
-                return (this->State & iSound::PS_Looping);
+                return (this->State & OALS::PS_Looping);
             }
 
             bool OALS::SoundProxy::Seek(const Real Seconds, bool Relative)
@@ -1037,7 +1090,7 @@ namespace Mezzanine
                     if( OALSState == AL_STOPPED && !IsStopped() )
                     {
                         this->SoundDecoder->SetPosition(0,false);
-                        this->State = ( this->IsLooping() ? iSound::PS_Stopped | iSound::PS_Looping : iSound::PS_Stopped );
+                        this->State = ( this->IsLooping() ? OALS::PS_Stopped | OALS::PS_Looping : OALS::PS_Stopped );
                         break;
                     }
                 }

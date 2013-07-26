@@ -64,23 +64,26 @@ namespace Mezzanine
             {
             protected:
                 /// @internal
-                /// @brief This is a pointer to the OALS context this listener belongs to.
-                ALCcontext* Context;
-                /// @internal
-                /// @brief This stores the modifier to be applied to the volume of all sounds heard by this listener.
-                Real VolumeModifier;
-                /// @internal
-                /// @brief This stores the amount of meters to be assumed in one unit of world space.
-                Real MPU;
-                /// @internal
-                /// @brief This stores the current location of this listener in 3D space.
-                Vector3 Location;
+                /// @brief This stores the current orientation of this listener.
+                Quaternion Orientation;
                 /// @internal
                 /// @brief This stores the current velocity of this listener.
                 Vector3 Velocity;
                 /// @internal
-                /// @brief This stores the current orientation of this listener.
-                Quaternion Orientation;
+                /// @brief This stores the current location of this listener in 3D space.
+                Vector3 Location;
+                /// @internal
+                /// @brief This stores the amount of meters to be assumed in one unit of world space.
+                Real MPU;
+                /// @internal
+                /// @brief This stores the modifier to be applied to the volume of all sounds heard by this listener.
+                Real VolumeModifier;
+                /// @internal
+                /// @brief This is a pointer to the OALS context this listener belongs to.
+                ALCcontext* Context;
+                /// @internal
+                /// @brief This tracks whether this listener is in the world and active or not.
+                Bool InWorld;
 
                 /// @internal
                 /// @brief Converts our orientation into something OpanAL can read/use.
@@ -111,6 +114,13 @@ namespace Mezzanine
                 virtual void SetMetersPerUnit(const Real Meters);
                 /// @copydoc iListener::GetMetersPerUnit() const
                 virtual Real GetMetersPerUnit() const;
+
+                /// @copydoc WorldProxy::AddToWorld()
+                virtual void AddToWorld();
+                /// @copydoc WorldProxy::RemoveFromWorld()
+                virtual void RemoveFromWorld();
+                /// @copydoc WorldProxy::IsInWorld()
+                virtual bool IsInWorld() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Transform Methods

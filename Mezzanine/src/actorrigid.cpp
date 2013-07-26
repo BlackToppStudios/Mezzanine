@@ -120,7 +120,7 @@ namespace Mezzanine
     {
         if( IsInWorld() )
             return;
-        Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->addRigidBody(this->PhysicsRigidBody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
+        Entresol::GetSingletonPtr()->GetPhysicsManager()->_GetPhysicsWorldPointer()->addRigidBody(this->PhysicsRigidBody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
         this->AttachToGraphics();
     }
 
@@ -131,7 +131,7 @@ namespace Mezzanine
 
         try{
             Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-            btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
+            btSoftRigidDynamicsWorld* BWorld = PhysMan->_GetPhysicsWorldPointer();
             BWorld->removeRigidBody(this->PhysicsRigidBody);
             DetachAllChildren();
         }catch (...) {
@@ -169,7 +169,7 @@ namespace Mezzanine
             NewSticky->SetUpperAngLimit(0.0);
             NewSticky->SetLowerLinLimit(0.0);
             NewSticky->SetLowerAngLimit(0.0);//*/
-            Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
+            Entresol::GetSingletonPtr()->GetPhysicsManager()->_GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
             CurrInfo.ActA->GetPhysicsSettings()->GetStickyData()->StickyConstraints.push_back(NewSticky);
             NewSticky->GetConstraintBase()->setOverrideNumSolverIterations(100);
@@ -253,7 +253,7 @@ namespace Mezzanine
             NewSticky->SetLowerLinLimit(0.0);
             NewSticky->SetLowerAngLimit(0.0);
             // Add the constraint to the world and other necessary structures.
-            Entresol::GetSingletonPtr()->GetPhysicsManager()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
+            Entresol::GetSingletonPtr()->GetPhysicsManager()->_GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
             ActorAStickyData->StickyConstraints.push_back(NewSticky);// */
         }

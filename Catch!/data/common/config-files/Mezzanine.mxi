@@ -1,52 +1,54 @@
 <?xml version="1.0"?>
-<WorldSettings>
-	<FrameSettings TargetFrameRate="60" />
-	<LoggingSettings Frequency="PerFrame" >
-		<LogFile FileName="Catch.log" />
-	</LoggingSettings>
-</WorldSettings>
-<Managers>
-	<DefaultActorManager>
-	</DefaultActorManager>
-	<DefaultAreaEffectManager>
-	</DefaultAreaEffectManager>
-	<OALSAudioManager>
-		<SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
-		<SettingsFiles>
-			<SettingsFile FileName="AudioSettings.mxs" />
-		</SettingsFiles>
-	</OALSAudioManager>
-	<DefaultCameraManager>
-	</DefaultCameraManager>
-	<DefaultCollisionShapeManager>
-	</DefaultCollisionShapeManager>
-	<DefaultEventManager>
-	</DefaultEventManager>
-	<DefaultGraphicsManager>
-		<SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
-		<SettingsFiles>
-			<SettingsFile FileName="GraphicsSettings.mxs" />
-		</SettingsFiles>
-	</DefaultGraphicsManager>
-	<DefaultInputManager>
-	</DefaultInputManager>
-	<DefaultMeshManager>
-	</DefaultMeshManager>
-	<DefaultPhysicsManager>
-		<WorldSettings LimitlessWorld="true" SoftRigidWorld="true" MultiThreaded="true" />
-		<SubStepModifier Modifier="2" />
-	</DefaultPhysicsManager>
-	<DefaultResourceManager>
-	</DefaultResourceManager>
-	<DefaultSceneManager>
-	</DefaultSceneManager>
-<!--<DefaultScriptingManager>
-	</DefaultScriptingManager>-->
-	<DefaultUIManager>
-	</DefaultUIManager>
-</Managers>
-<OtherInitializers>
-	<ResourceInit FileName="Resources.mxi" />
-	<PluginInit FileName="Plugins.mxi" />
-	<!-- <GUIInit FileName="GUI.mxi" /> -->
-</OtherInitializers>
+<InitializerRoot>
+    <WorldSettings>
+        <FrameSettings TargetFrameRate="60" />
+        <LoggingSettings Frequency="PerFrame" >
+            <LogFile FileName="Catch.log" />
+        </LoggingSettings>
+    </WorldSettings>
+    <Managers>
+        <DefaultActorManager>
+        </DefaultActorManager>
+        <DefaultAreaEffectManager>
+        </DefaultAreaEffectManager>
+        <OALSAudioManager>
+            <SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
+            <SettingsFiles>
+                <SettingsFile FileName="AudioSettings.mxs" />
+            </SettingsFiles>
+        </OALSAudioManager>
+        <DefaultCameraManager>
+        </DefaultCameraManager>
+        <DefaultCollisionShapeManager>
+        </DefaultCollisionShapeManager>
+        <DefaultEventManager>
+        </DefaultEventManager>
+        <DefaultGraphicsManager>
+            <SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
+            <SettingsFiles>
+                <SettingsFile FileName="GraphicsSettings.mxs" />
+            </SettingsFiles>
+        </DefaultGraphicsManager>
+        <DefaultInputManager>
+        </DefaultInputManager>
+        <DefaultMeshManager>
+        </DefaultMeshManager>
+        <DefaultPhysicsManager>
+            <WorldSettings LimitlessWorld="true" SoftRigidWorld="true" MultiThreaded="true" />
+            <SubStepModifier Modifier="2" />
+        </DefaultPhysicsManager>
+        <DefaultResourceManager>
+        </DefaultResourceManager>
+        <DefaultSceneManager>
+        </DefaultSceneManager>
+    <!--<DefaultScriptingManager>
+        </DefaultScriptingManager>-->
+        <DefaultUIManager>
+        </DefaultUIManager>
+    </Managers>
+    <OtherInitializers>
+        <ResourceInit FileName="Resources.mxi" />
+        <PluginInit FileName="Plugins.mxi" />
+        <!-- <GUIInit FileName="GUI.mxi" /> -->
+    </OtherInitializers>
+</InitializerRoot>

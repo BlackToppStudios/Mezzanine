@@ -51,7 +51,7 @@ Roll_Roll::Roll_Roll(const String& name, std::vector<Physics::HingeConstraint*>&
 {
     Rollers.swap(TheRollers);
     for( Whole X = 0 ; X < Rollers.size() ; ++X )
-        Rollers[X]->GetActorA()->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
+        Rollers[X]->GetActorA()->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
 }
 
 Roll_Roll::~Roll_Roll()

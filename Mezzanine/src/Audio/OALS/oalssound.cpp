@@ -87,12 +87,25 @@ namespace Mezzanine
     {
         namespace OALS
         {
+            /// @enum PlaybackState
+            /// @brief This enum describes a set of boolean options common for objects playing back audio.
+            enum PlaybackState
+            {
+                PS_Playing = 1,
+                PS_Paused  = 2,
+                PS_Stopped = 4,
+                PS_Looping = 8
+            };//PlaybackState
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Sound Methods
+
             Sound::Sound(const UInt16 Type, iDecoder* Decode, ALCcontext* PlayContext)
                 : Context(PlayContext),
                   SoundFilter(NULL),
                   SoundDecoder(Decode),
                   SType(Type),
-                  State(iSound::PS_Stopped),
+                  State(OALS::PS_Stopped),
                   SoundPitch(1.0),
                   BaseVolume(1.0),
                   MinVolume(0.0),
@@ -264,25 +277,25 @@ namespace Mezzanine
                 }
 
                 alSourcePlay(this->InternalSource);
-                this->State = ( this->IsLooping() ? iSound::PS_Playing | iSound::PS_Looping : iSound::PS_Playing );
+                this->State = ( this->IsLooping() ? OALS::PS_Playing | OALS::PS_Looping : OALS::PS_Playing );
                 return true;
             }
 
             bool Sound::IsPlaying() const
             {
-                return (this->State & iSound::PS_Playing);
+                return (this->State & OALS::PS_Playing);
             }
 
             void Sound::Pause()
             {
                 // Pause the source
                 alSourcePause(this->InternalSource);
-                this->State = ( this->IsLooping() ? iSound::PS_Paused | iSound::PS_Looping : iSound::PS_Paused );
+                this->State = ( this->IsLooping() ? OALS::PS_Paused | OALS::PS_Looping : OALS::PS_Paused );
             }
 
             bool Sound::IsPaused() const
             {
-                return (this->State & iSound::PS_Paused);
+                return (this->State & OALS::PS_Paused);
             }
 
             void Sound::Stop()
@@ -291,23 +304,23 @@ namespace Mezzanine
                 alSourceStop(this->InternalSource);
                 // Inform the decoder
                 this->SoundDecoder->SetPosition(0,false);
-                this->State = ( this->IsLooping() ? iSound::PS_Stopped | iSound::PS_Looping : iSound::PS_Stopped );
+                this->State = ( this->IsLooping() ? OALS::PS_Stopped | OALS::PS_Looping : OALS::PS_Stopped );
             }
 
             bool Sound::IsStopped() const
             {
-                return (this->State & iSound::PS_Stopped);
+                return (this->State & OALS::PS_Stopped);
             }
 
             void Sound::Loop(bool ToLoop)
             {
-                if(ToLoop) this->State = ( this->State | iSound::PS_Looping );
-                else this->State = ( this->State & ~iSound::PS_Looping );
+                if(ToLoop) this->State = ( this->State | OALS::PS_Looping );
+                else this->State = ( this->State & ~OALS::PS_Looping );
             }
 
             bool Sound::IsLooping() const
             {
-                return (this->State & iSound::PS_Looping);
+                return (this->State & OALS::PS_Looping);
             }
 
             bool Sound::Seek(const Real Seconds, bool Relative)
@@ -514,7 +527,7 @@ namespace Mezzanine
                 if( OALSState == AL_STOPPED && !IsStopped() )
                 {
                     this->SoundDecoder->SetPosition(0,false);
-                    this->State = ( this->IsLooping() ? iSound::PS_Stopped | iSound::PS_Looping : iSound::PS_Stopped );
+                    this->State = ( this->IsLooping() ? OALS::PS_Stopped | OALS::PS_Looping : OALS::PS_Stopped );
                 }
                 return Active;
             }

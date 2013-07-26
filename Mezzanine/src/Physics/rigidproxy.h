@@ -56,8 +56,8 @@ namespace Mezzanine
         class Generic6DofConstraint;
 
         // Sticky Stuff
-
         typedef Generic6DofConstraint StickyConstraint;
+
         /// @struct StickyConstraintConstructionInfo
         /// @headerfile rigidproxy.h
         /// @brief Simple struct for holding information on how sticky constraints should be constructed.
@@ -81,6 +81,7 @@ namespace Mezzanine
                 this->ActB = Other.ActB;
             }
         };//stickyconstraintconstructioninfo
+
         /// @struct StickyData
         /// @headerfile rigidproxy.h
         /// @brief This is a basic class for storing the data related to the sticky behavior available to rigid bodies.
@@ -121,6 +122,17 @@ namespace Mezzanine
             RigidProxy(const Real& Mass);
             /// @brief Class Destructor
             virtual ~RigidProxy();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @copydoc PhysicsProxy::GetPhysicsProxyType() const
+            virtual Physics::ProxyType GetPhysicsProxyType() const;
+
+            /// @copydoc WorldProxy::AddToWorld()
+            virtual void AddToWorld();
+            /// @copydoc WorldProxy::RemoveFromWorld()
+            virtual void RemoveFromWorld();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Settings

@@ -56,13 +56,14 @@
 
 namespace Mezzanine
 {
-    WorldObject::WorldObject()
-        : GraphicsObject(NULL),
-          GraphicsNode(NULL),
-          PhysicsObject(NULL),
-          PhysicsShape(NULL),
-          GraphicsSettings(NULL),
-          PhysicsSettings(NULL)
+    WorldObject::WorldObject() :
+        ParentWorld(NULL),
+        GraphicsObject(NULL),
+        GraphicsNode(NULL),
+        PhysicsObject(NULL),
+        PhysicsShape(NULL),
+        GraphicsSettings(NULL),
+        PhysicsSettings(NULL)
     {
         this->GraphicsNode = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
     }
@@ -128,30 +129,34 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-
     ConstString& WorldObject::GetName() const
     {
-        return Name;
+        return this->Name;
     }
 
     bool WorldObject::IsStaticOrKinematic() const
     {
-        return PhysicsSettings->IsStaticOrKinematic();
+        return this->PhysicsSettings->IsStaticOrKinematic();
     }
 
     bool WorldObject::IsInWorld() const
     {
-        return PhysicsObject->getBroadphaseHandle() != 0;
+        return this->PhysicsObject->getBroadphaseHandle() != 0;
+    }
+
+    World* WorldObject::GetWorld() const
+    {
+        return this->ParentWorld;
     }
 
     WorldObjectGraphicsSettings* WorldObject::GetGraphicsSettings() const
     {
-        return GraphicsSettings;
+        return this->GraphicsSettings;
     }
 
     WorldObjectPhysicsSettings* WorldObject::GetPhysicsSettings() const
     {
-        return PhysicsSettings;
+        return this->PhysicsSettings;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

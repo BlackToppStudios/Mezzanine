@@ -207,6 +207,13 @@ namespace Mezzanine
                 /// @copydoc Audio::SoundProxy::IsDirectingSound() const
                 virtual bool IsDirectingSound() const;
 
+                /// @copydoc Audio::SoundProxy::AddToWorld()
+                virtual void AddToWorld();
+                /// @copydoc Audio::SoundProxy::RemoveFromWorld()
+                virtual void RemoveFromWorld();
+                /// @copydoc WorldProxy::IsInWorld()
+                virtual bool IsInWorld() const;
+
                 ///////////////////////////////////////////////////////////////////////////////
                 // Playback
 
