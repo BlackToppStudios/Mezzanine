@@ -513,18 +513,6 @@ class vector3tests : public UnitTestGroup
         /// @return returns true
         virtual bool HasAutomaticTests() const
             { return true; }
-
-
-        virtual void RunTests(bool RunAutoTests, bool RunInteractiveTests)
-        {
-            RunAutomaticTests();
-            if (RunAutoTests)
-            {
-                TestResult temp;
-
-
-            }
-        }
 };
 
 #endif
