@@ -1705,20 +1705,21 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_std__istream swig_types[41]
 #define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[42]
 #define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[43]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[44]
-#define SWIGTYPE_p_std__string swig_types[45]
-#define SWIGTYPE_p_std__stringstream swig_types[46]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[47]
-#define SWIGTYPE_p_std__wstring swig_types[48]
-#define SWIGTYPE_p_unsigned_char swig_types[49]
-#define SWIGTYPE_p_unsigned_int swig_types[50]
-#define SWIGTYPE_p_unsigned_long swig_types[51]
-#define SWIGTYPE_p_unsigned_long_long swig_types[52]
-#define SWIGTYPE_p_unsigned_short swig_types[53]
-#define SWIGTYPE_p_value_type swig_types[54]
-#define SWIGTYPE_p_wchar_t swig_types[55]
-static swig_type_info *swig_types[57];
-static swig_module_info swig_module = {swig_types, 56, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[44]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[45]
+#define SWIGTYPE_p_std__string swig_types[46]
+#define SWIGTYPE_p_std__stringstream swig_types[47]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[48]
+#define SWIGTYPE_p_std__wstring swig_types[49]
+#define SWIGTYPE_p_unsigned_char swig_types[50]
+#define SWIGTYPE_p_unsigned_int swig_types[51]
+#define SWIGTYPE_p_unsigned_long swig_types[52]
+#define SWIGTYPE_p_unsigned_long_long swig_types[53]
+#define SWIGTYPE_p_unsigned_short swig_types[54]
+#define SWIGTYPE_p_value_type swig_types[55]
+#define SWIGTYPE_p_wchar_t swig_types[56]
+static swig_type_info *swig_types[58];
+static swig_module_info swig_module = {swig_types, 57, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -23197,6 +23198,7 @@ static swig_lua_var_info swig_variables[] = {
 };
 
 static swig_lua_const_info swig_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("MEZZ_FRAMESTOTRACK", 10)},
     {SWIG_LUA_CONSTTAB_INT("AT_FileSystem", Mezzanine::AT_FileSystem)},
     {SWIG_LUA_CONSTTAB_INT("AT_Zip", Mezzanine::AT_Zip)},
     {SWIG_LUA_CONSTTAB_INT("AT_Invalid", Mezzanine::AT_Invalid)},
@@ -23210,6 +23212,11 @@ static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("OM_Portrait", Mezzanine::OM_Portrait)},
     {SWIG_LUA_CONSTTAB_INT("OM_LandscapeRight", Mezzanine::OM_LandscapeRight)},
     {SWIG_LUA_CONSTTAB_INT("OM_LandscapeLeft", Mezzanine::OM_LandscapeLeft)},
+    {SWIG_LUA_CONSTTAB_INT("PL_Unpaused", Mezzanine::PL_Unpaused)},
+    {SWIG_LUA_CONSTTAB_INT("PL_PausePhysics", Mezzanine::PL_PausePhysics)},
+    {SWIG_LUA_CONSTTAB_INT("PL_PauseParticles", Mezzanine::PL_PauseParticles)},
+    {SWIG_LUA_CONSTTAB_INT("PL_PauseAnimations", Mezzanine::PL_PauseAnimations)},
+    {SWIG_LUA_CONSTTAB_INT("PL_PauseAll", Mezzanine::PL_PauseAll)},
     {SWIG_LUA_CONSTTAB_INT("Axis_Invalid", Mezzanine::Axis_Invalid)},
     {SWIG_LUA_CONSTTAB_INT("Axis_X", Mezzanine::Axis_X)},
     {SWIG_LUA_CONSTTAB_INT("Axis_Y", Mezzanine::Axis_Y)},
@@ -23228,10 +23235,10 @@ static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("WSO_ActorLast", Mezzanine::WSO_ActorLast)},
     {SWIG_LUA_CONSTTAB_INT("WSO_TerrainFirst", Mezzanine::WSO_TerrainFirst)},
     {SWIG_LUA_CONSTTAB_INT("WSO_MeshTerrain", Mezzanine::WSO_MeshTerrain)},
-    {SWIG_LUA_CONSTTAB_INT("WSO_UnimplementedTerrain1", Mezzanine::WSO_UnimplementedTerrain1)},
-    {SWIG_LUA_CONSTTAB_INT("WSO_UnimplementedTerrain2", Mezzanine::WSO_UnimplementedTerrain2)},
-    {SWIG_LUA_CONSTTAB_INT("WSO_UnimplementedTerrain3", Mezzanine::WSO_UnimplementedTerrain3)},
-    {SWIG_LUA_CONSTTAB_INT("WSO_UnimplementedTerrain4", Mezzanine::WSO_UnimplementedTerrain4)},
+    {SWIG_LUA_CONSTTAB_INT("WSO_HeightfieldTerrain", Mezzanine::WSO_HeightfieldTerrain)},
+    {SWIG_LUA_CONSTTAB_INT("WSO_VectorFieldTerrain", Mezzanine::WSO_VectorFieldTerrain)},
+    {SWIG_LUA_CONSTTAB_INT("WSO_VoxelTerrain", Mezzanine::WSO_VoxelTerrain)},
+    {SWIG_LUA_CONSTTAB_INT("WSO_MarchingCubeTerrain", Mezzanine::WSO_MarchingCubeTerrain)},
     {SWIG_LUA_CONSTTAB_INT("WSO_UnknownTerrain", Mezzanine::WSO_UnknownTerrain)},
     {SWIG_LUA_CONSTTAB_INT("WSO_TerrainLast", Mezzanine::WSO_TerrainLast)},
     {SWIG_LUA_CONSTTAB_INT("WSO_AEFirst", Mezzanine::WSO_AEFirst)},
@@ -23342,6 +23349,7 @@ static swig_type_info _swigt__p_std__basic_stringT_wchar_t_std__char_traitsT_wch
 static swig_type_info _swigt__p_std__istream = {"_p_std__istream", "std::istream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__listT_std__pairT_std__string_std__string_t_t = {"_p_std__listT_std__pairT_std__string_std__string_t_t", "Mezzanine::NameValuePairList *|std::list< std::pair< std::string,std::string > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_t = {"_p_std__mapT_std__string_std__string_t", "Mezzanine::NameValuePairMap *|std::map< std::string,std::string > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__pairT_std__string_std__string_t = {"_p_std__pairT_std__string_std__string_t", "Mezzanine::NameValuePair *|std::pair< std::string,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__setT_std__string_t = {"_p_std__setT_std__string_t", "std::set< std::string > *|Mezzanine::StringSet *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *|Mezzanine::String *|Mezzanine::ConstString *", 0, 0, (void*)&_wrap_class_std_string, 0};
 static swig_type_info _swigt__p_std__stringstream = {"_p_std__stringstream", "Mezzanine::Logger *|std::stringstream *|Mezzanine::StringStream *", 0, 0, (void*)0, 0};
@@ -23400,6 +23408,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__istream,
   &_swigt__p_std__listT_std__pairT_std__string_std__string_t_t,
   &_swigt__p_std__mapT_std__string_std__string_t,
+  &_swigt__p_std__pairT_std__string_std__string_t,
   &_swigt__p_std__setT_std__string_t,
   &_swigt__p_std__string,
   &_swigt__p_std__stringstream,
@@ -23458,6 +23467,7 @@ static swig_cast_info _swigc__p_std__basic_stringT_wchar_t_std__char_traitsT_wch
 static swig_cast_info _swigc__p_std__istream[] = {  {&_swigt__p_std__istream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__listT_std__pairT_std__string_std__string_t_t[] = {  {&_swigt__p_std__listT_std__pairT_std__string_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__pairT_std__string_std__string_t[] = {  {&_swigt__p_std__pairT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__setT_std__string_t[] = {  {&_swigt__p_std__setT_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__stringstream[] = {  {&_swigt__p_std__stringstream, 0, 0, 0},{0, 0, 0, 0}};
@@ -23516,6 +23526,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__istream,
   _swigc__p_std__listT_std__pairT_std__string_std__string_t_t,
   _swigc__p_std__mapT_std__string_std__string_t,
+  _swigc__p_std__pairT_std__string_std__string_t,
   _swigc__p_std__setT_std__string_t,
   _swigc__p_std__string,
   _swigc__p_std__stringstream,

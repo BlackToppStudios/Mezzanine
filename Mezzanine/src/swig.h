@@ -56,6 +56,8 @@
 // Prevent doxygen parsing of the items to insert in the bindings files
 
 #ifdef SWIG
+    // This block of code is only read by swig.
+
     // Tell SWIG to create a module that scripting languages can use called "mezzanine"
     // and insert a minimum of documentation into the bindingfile
     %{
@@ -80,6 +82,9 @@
     %include std_string.i
     %include std_vector.i
 
+    // Since swig will process only on language and only the safe or unsafe version of it at a time
+    // this is where the naming of the Mezzanine library should occur. This does not affect the
+    // ability to load Multiple libraries or even scripting languages at the same time if required.
     #ifdef SWIG_UNSAFE
         %module Mezzanine
     #else

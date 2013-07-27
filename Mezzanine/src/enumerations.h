@@ -92,13 +92,13 @@ namespace Mezzanine
     /// @brief Used by the world class to describe the extent of pausing a world.
     enum PauseLevel
     {
-        PL_Unpaused          = MEZZ_BITMASK(0),
+        PL_Unpaused          = 0, //MEZZ_BITMASK(0),
 
-        PL_PausePhysics      = MEZZ_BITMASK(1),
-        PL_PauseParticles    = MEZZ_BITMASK(2),
-        PL_PauseAnimations   = MEZZ_BITMASK(3),
+        PL_PausePhysics      = 1,//MEZZ_BITMASK(1),
+        PL_PauseParticles    = 2,//MEZZ_BITMASK(2),
+        PL_PauseAnimations   = 4,//MEZZ_BITMASK(3),
 
-        PL_PauseAll          = MEZZ_BITMASK32MAX
+        PL_PauseAll          = PL_PausePhysics | PL_PauseParticles | PL_PauseAnimations//  MEZZ_BITMASK32MAX
     };
 
     /// @enum StandardAxis
@@ -136,41 +136,41 @@ namespace Mezzanine
     enum WorldAndSceneObjectType
     {
         // Actors
-        WSO_ActorFirst             = MEZZ_BITMASK(1),//1,
-        WSO_ActorRigid             = MEZZ_BITMASK(1),//1,
-        WSO_ActorSoft              = MEZZ_BITMASK(2),//2,
-        WSO_ActorCharacter         = MEZZ_BITMASK(3),//4,
-        WSO_ActorUnknown           = MEZZ_BITMASK(4),//8,
-        WSO_ActorLast              = MEZZ_BITMASK(4),//8,
+        WSO_ActorFirst             = 1,//MEZZ_BITMASK(1),//1,
+        WSO_ActorRigid             = 1,//MEZZ_BITMASK(1),//1,
+        WSO_ActorSoft              = 2,//MEZZ_BITMASK(2),//2,
+        WSO_ActorCharacter         = 4,//MEZZ_BITMASK(3),//4,
+        WSO_ActorUnknown           = 8,//MEZZ_BITMASK(4),//8,
+        WSO_ActorLast              = 8,//MEZZ_BITMASK(4),//8,
 
         // Terrains go here
-        WSO_TerrainFirst           = MEZZ_BITMASK(5),//16,
-        WSO_MeshTerrain            = MEZZ_BITMASK(5),//16,
-        WSO_UnimplementedTerrain1  = MEZZ_BITMASK(6),//32, // should rename to Heightfield terrain
-        WSO_UnimplementedTerrain2  = MEZZ_BITMASK(7),//64, // should rename to Vectorfield terrain
-        WSO_UnimplementedTerrain3  = MEZZ_BITMASK(8),//128, // should rename to Voxel Terrain
-        WSO_UnimplementedTerrain4  = MEZZ_BITMASK(9),//256, // should rename to MarchingCube Terrain
-        WSO_UnknownTerrain         = MEZZ_BITMASK(10),//512,
-        WSO_TerrainLast            = MEZZ_BITMASK(10),//512,
+        WSO_TerrainFirst           = 16,//MEZZ_BITMASK(5),//16,
+        WSO_MeshTerrain            = 16,//MEZZ_BITMASK(5),//16,
+        WSO_HeightfieldTerrain     = 32,//MEZZ_BITMASK(6),//32, // should rename to Heightfield terrain
+        WSO_VectorFieldTerrain     = 64,//MEZZ_BITMASK(7),//64, // should rename to Vectorfield terrain
+        WSO_VoxelTerrain           = 128,//MEZZ_BITMASK(8),//128, // should rename to Voxel Terrain
+        WSO_MarchingCubeTerrain    = 256,//MEZZ_BITMASK(9),//256, // should rename to MarchingCube Terrain
+        WSO_UnknownTerrain         = 512,//MEZZ_BITMASK(10),//512,
+        WSO_TerrainLast            = 512,//MEZZ_BITMASK(10),//512,
 
         // AE Fields
-        WSO_AEFirst                = MEZZ_BITMASK(11),//1024,
-        WSO_AEGravityField         = MEZZ_BITMASK(11),//1024,
-        WSO_AEGravityWell          = MEZZ_BITMASK(12),//2048,
-        WSO_AEFieldOfForce         = MEZZ_BITMASK(13),//4096,
-        WSO_AEPlaceHolder1         = MEZZ_BITMASK(14),//8192,
-        WSO_AEPlaceHolder2         = MEZZ_BITMASK(15),//16384,
-        WSO_AEUnknown              = MEZZ_BITMASK(16),//32768,
-        WSO_AELast                 = MEZZ_BITMASK(16),//32768,
+        WSO_AEFirst                = 1024,//MEZZ_BITMASK(11),//1024,
+        WSO_AEGravityField         = 1024,//MEZZ_BITMASK(11),//1024,
+        WSO_AEGravityWell          = 2048,//MEZZ_BITMASK(12),//2048,
+        WSO_AEFieldOfForce         = 4069,//MEZZ_BITMASK(13),//4096,
+        WSO_AEPlaceHolder1         = 8192,//MEZZ_BITMASK(14),//8192,
+        WSO_AEPlaceHolder2         = 16384,//MEZZ_BITMASK(15),//16384,
+        WSO_AEUnknown              = 32768,//MEZZ_BITMASK(16),//32768,
+        WSO_AELast                 = 32768,// MEZZ_BITMASK(16),//32768,
 
         // Scene Objects
-        WSO_Camera                 = MEZZ_BITMASK(17),//65536,
-        WSO_Entity                 = MEZZ_BITMASK(18),//131072,
-        WSO_Light                  = MEZZ_BITMASK(19),//262144,
-        WSO_ParticleEffect         = MEZZ_BITMASK(20),//524288,
+        WSO_Camera                 = 65536,//MEZZ_BITMASK(17),//65536,
+        WSO_Entity                 = 131072,//MEZZ_BITMASK(18),//131072,
+        WSO_Light                  = 262144,//MEZZ_BITMASK(19),//262144,
+        WSO_ParticleEffect         = 524288,//MEZZ_BITMASK(20),//524288,
 
         // Other Objects
-        WSO_WorldNode              = MEZZ_BITMASK(21)//1048576
+        WSO_WorldNode              = 1048576//MEZZ_BITMASK(21)//1048576
     };
 }
 

@@ -86,11 +86,15 @@ namespace Mezzanine
     ///////////////////////////////////////
 
     #ifdef _MEZZ_CPP11_PARTIAL_
-        #include <cstdint>
+        #ifndef SWIG
+            #include <cstdint>
+        #endif
         /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
         typedef std::intptr_t ConvertiblePointer;
     #else
-        #include <stdint.h>
+        #ifndef SWIG
+            #include <stdint.h>
+        #endif
         /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
         typedef intptr_t ConvertiblePointer;
     #endif
@@ -223,12 +227,6 @@ namespace Mezzanine
     /// @brief This is an internal datatype use to communicate with the User input Subsystem.
     /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details.
     typedef SDL_Event RawEvent;
-
-    /// @brief In case we ever replace the stringstream with another class, this will allow us to swap it out.
-    /// @details This will always support <<, str() but may lose support for formatting functions like std::hex.
-    typedef std::stringstream Logger;
-
-
 
     ///////////////////////////////////////////////////////////////////////////////
     // Simple conversion functions

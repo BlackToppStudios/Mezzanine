@@ -308,11 +308,11 @@ namespace Mezzanine
 
         /// @brief This is used to calculate the crossproduct of this and another vector
         /// @details This creates a third vector, which should be on a line perpendicular
-        /// to lines that contain the origin and the other vectors \n\n
+        /// to the line that contains the origin and the other vector \n\n
         /// Thanks to the guys at Ogre3d for the well written version of this function
         /// that we based this on.
         /// @param Vec the Vector to work with to create the cross product
-        /// @return This is the crossproduct of this vector and Vec
+        /// @return A Vector3 containing crossproduct of this vector and Vec
         Vector3 CrossProduct(const Vector3& Vec) const;
         /// @brief This is used to calculate the dotproduct of this and another vector
         /// @details This calculates the sum of the products of X, Y and Z. \n\n

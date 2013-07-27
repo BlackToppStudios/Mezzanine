@@ -374,7 +374,11 @@ class lua51tests : public UnitTestGroup
             {
                 String FeatureSource("x = 3\n"
                                      "Vec=MezzanineSafe.Vector3(3,2,1)\n"
-                                     "Vec.X=10.0\n"
+                                     "Vec.X = 10.0\n"
+                                     "HeroSizedVec = Vec * 2 --Should be 20,4,2\n"
+                                     "HeroSizedVec.Y = 10\n"
+                                     "HeroSizedVec.Z = 30\n"
+                                     "CrossVec = Vec:CrossProduct(HeroSizedVec)\n"
                                      //"print(Vec)\n" // would need to include io for this right?
                                     );
 
@@ -412,6 +416,10 @@ class lua51tests : public UnitTestGroup
                 String FeatureSource("x = 3\n"
                                      "Vec=Mezzanine.Vector3(3,2,1)\n"
                                      "Vec.X=10.0\n"
+                                     "HeroSizedVec = Vec * 2 --Should be 20,4,2\n"
+                                     "HeroSizedVec.Y = 10\n"
+                                     "HeroSizedVec.Z = 30\n"
+                                     "CrossVec = Vec:CrossProduct(HeroSizedVec)\n"
                                     );
 
                 Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);

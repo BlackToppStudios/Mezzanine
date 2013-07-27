@@ -60,8 +60,10 @@
 #include "Audio/audio.h"
 #include "Threading/dagframescheduler.h"
 #include "Graphics/viewport.h"
-#include "XML/xml.h"
 
+//#endif // \no SWIG
+#include "XML/xml.h"
+//#ifndef SWIG
 
 // We put headers in our headers so we can include while we include
 #include "actorbase.h"                  // serializes
