@@ -330,7 +330,9 @@ namespace Mezzanine
             typedef ManagerFactoryMap::iterator ManagerFactoryIterator;
             typedef ManagerFactoryMap::const_iterator ConstManagerFactoryIterator;
         private:
-            //friend class PhysicsManager;
+            /// @internal
+            /// @brief The core structure responsible for our multi-threaded main loop.
+            Threading::FrameScheduler WorkScheduler;
 
             //Used by the constructors
             /// @internal
@@ -362,6 +364,13 @@ namespace Mezzanine
             bool VerifyManagerInitializations();
 
             /// @internal
+            /// @brief This is a map containing all the registered manager factories.
+            ManagerFactoryMap ManagerFactories;
+            /// @internal
+            /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+            std::list< ManagerBase* > ManagerList;
+
+            /// @internal
             /// @brief Used to track Ogre specific details for the statically linked Particle plugin
             Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
 
@@ -371,18 +380,16 @@ namespace Mezzanine
             //Used to break the mainloop
             Int32 ManualLoopBreak;
 
-            /// @internal
-            /// @brief This is a map containing all the registered manager factories.
-            ManagerFactoryMap ManagerFactories;
-            /// @internal
-            /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
-            std::list< ManagerBase* > ManagerList;
-            /// @internal
-            /// @brief The core structure responsible for our multi-threaded main loop.
-            Threading::FrameScheduler WorkScheduler;
+            Threading::LogBufferSwapper* BufferSwapper;
+            Threading::LogAggregator* Aggregator;
 
-            // A pointer to the function that actually commits log messages.
-            void (*LogCommitFunc)();
+            //must be called after Ogre
+            void SetupLogging(const String& LogFileName);
+            void DestroyLogging();
+
+            void SetupOgre();
+            void DestroyOgre();
+
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // Creation and Deletion methods
@@ -448,51 +455,25 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Logging
 
-            /// @brief Used to indicate the frequency of logging.
-            enum LoggingFrequency
-            {
-                LogNever = 0,               ///< Never log
-                LogOncePerFrame = 1,        ///< The Default, log each and every frame
-                LogOncePerXFrames = 2,      ///< Log once per every Xth frame, X is the FrequencyCounter Value passed in with this
-                LogOncePerXSeconds = 3      ///< Log once per every Xth second, X is the FrequencyCounter Value passed in with this
-            };
-
-            /// @brief Set how often log message should be commited to disk (or network, or whatever).
-            /// @param HowOften The actual setting for how often.
-            /// @param FrequencyCounter For settings that use X this is X, this defaults to 5
-            /// @details By default this is set to LogOncePerFrame. \n \n
-            /// There are a series of functions internally that represent each of the LoggingFrequency values. When
-            /// You pass in one of these values you are setting which of these functions will be called. This way the
-            /// only cost that is guaranteed to be incurred is the dereferencing of a function pointer (constant time).
-            /// Additionally the members of the enum are sorted by the amount of time they are expected to take to run,
-            /// of course your performance will vary, the best way to know how it will perform is to test.
-            void SetLoggingFrequency(LoggingFrequency HowOften, Whole FrequencyCounter = 5);
-            /// @brief Returns the frequency of logging commits
-            /// @return A Entresol::LoggingFrequency containing the requested information.
-            LoggingFrequency GetLoggingFrequency();
-
-            /// @brief Forces the log to commit to disk (or whereever)
-            /// @details Any outstanding log messages or entries into the logstream will be written in chronological order to
-            /// to the appropriate place.
-            void CommitLog();
             /// @brief Runtime event and message logging.
             /// @param Message This is what will be streamed to the log
-            /// @details This also gathers any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the
-            /// Only ones to produce meaningul log messages.
+            /// @throws Anything GetLogStream could throw.
             template <class T> void Log(const T& Message)
                 { this->LogString(StringTools::ConvertToString(Message)); }
-            /// @brief Force any outstanding logs to be commited to logs
-            void Log();
             /// @brief Log String directly with no conversion
             /// @param message The string to log
+            /// @throws Anything GetLogStream could throw.
             void LogString(const String& message);
+            /// @brief A nearly threadsafe logging sink.
+            /// @details If ID is not supplied and the thread is managed by the framescheduler this should be thread safe.
+            /// @param ID Defaults to the id of the current thread, but can be used to retrieve the logger for any thread.
+            /// @return A Logger that can be used by the thread with given ID or outside of Framescheduling in a non-threadsafe way.
+            /// @throws A ParametersRangeException if the thread is not managed by the frame scheduler or it Threading::FrameScheduler::CreateThreads() has not
+            /// been called (It creates the ThreadSpecific resources that contain the Loggers).
+            Logger& GetLogStream(Threading::Thread::id ID = Threading::this_thread::get_id());
 
-            /// @brief This is another way to put data in the log.
-            /// @details The contents of this will be commited to the log as per the logging frequency.
-            /// Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely
-            /// to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs
-            /// and gameworld recreations.
-            std::stringstream LogStream;
+            Threading::LogAggregator* GetLogAggregator();
+            Threading::LogBufferSwapper* GetLogBufferSwapper();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Timing system methods
@@ -552,9 +533,6 @@ namespace Mezzanine
 
             /// @brief This Function house the main loop.
             void MainLoop();
-            /// @brief This commits the log stream to the log
-            /// @details This is called automatically at the end of each main loop iteration. You only need to call it if you are using your own main loop.
-            void DoMainLoopLogging();
             /// @brief This makes the main loop end after it's current iteration.
             /// @details If called while not in the main loop, it will simply cause the next call to the main loop to do a single iteration and then exit.
             /// This function is thread safe and can be called from any work unit at any time.

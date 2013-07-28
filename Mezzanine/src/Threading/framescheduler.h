@@ -120,9 +120,14 @@ namespace Mezzanine
                 /// @todo write this warning, it is important, but not easy to lay out.
                 DependentGraphType DependentGraph;
 
+            public:
+                /// @brief The kind of Resource the frame scheduler will use
+                typedef DefaultThreadSpecificStorage::Type Resource;
+
+            protected:
                 /// @brief This maintains ownership of all the thread specific resources.
                 /// @note There should be the same amount or more of these than entries in the Threads vector.
-                std::vector<DefaultThreadSpecificStorage::Type*> Resources;
+                std::vector<Resource*> Resources;
 
                 /// @brief A way to track an arbitrary number of threads.
                 /// @note There should never be more of these than Resources, and if there are more at the beginning of a frame the resources will be created in CreateThreads().
@@ -180,6 +185,9 @@ namespace Mezzanine
                 /// @brief To prevent frame time drift this many microseconds is subtracted from the wait period to allow time for calculations.
                 Integer TimingCostAllowance;
 
+                /// @brief For some task it is important to know the ID of the main thread.
+                Thread::id MainThreadID;
+
                 /// @brief Set based on which constructor is called, and only used during destruction.
                 bool LoggingToAnOwnedFileStream;
 
@@ -214,7 +222,7 @@ namespace Mezzanine
                 /// @param StartingThreadCount How many threads. Defaults to the value returned by @ref Mezzanine::GetCPUCount "GetCPUCount()".
                 /// @warning This must be constructed from the Main(only) thread for any features with thread affinity to work correctly.
                 FrameScheduler(
-                        std::fstream* _LogDestination = new std::fstream("Log.txt", std::ios::out | std::ios::app),
+                        std::fstream* _LogDestination = new std::fstream("Mezzanine.log", std::ios::out | std::ios::app),
                         Whole StartingThreadCount = GetCPUCount()
                     );
 
@@ -367,7 +375,7 @@ namespace Mezzanine
                 /// allow maximum integration with existing projects. It can also be used to prevent a giant migration and replace it with a piecemeal upgrade.
                 /// @warning Do not call this on an unsorted set of WorkUnits. Use @ref FrameScheduler::SortWorkUnitsAll() and the @ref DependentGraph to sort WorkUnits after
                 /// they are inserted into the frame scheduler for the first time. This doesn't need to happen each frame, just after any new work units are added or removed
-                /// (except Monopolies).
+                /// (except Monopolies) or you want to take the most recent performance number into account.
                 virtual void DoOneFrame();
 
                 /// @brief This is the 1st step (of 6) in a frame.
@@ -436,6 +444,32 @@ namespace Mezzanine
                 /// @brief Returns the amount of iWorkUnit ready to be scheduled in the Main pool
                 /// @return A Whole containing this amount
                 Whole GetWorkUnitMainCount() const;
+
+                ////////////////////////////////////////////////////////////////////////////////
+                // Other Utility Features
+
+                /// @brief Get the Resource to go with a thread of a given ID.
+                /// @details This gets the Resource that goes with a given thread
+                /// by performing a linear search through the available threads.
+                /// @n @n
+                /// This is cheap computationly but will likely perform much slower
+                /// than other methods of getting the resource, because the ID is
+                /// unlikely be be cached and it may require a system call to
+                /// retrieve. If used consider wrapppin it in #MEZZ_DEBUG/#ENDIF
+                /// to disable for release builds.
+                /// @param ID This uses the current Threads ID by default but can search for any thread.
+                /// @return A pointer to ThreadSpecificResource or a null pointer on error.
+                /// @warning The thread that 'owns' this resource could do just about anything
+                /// with it while the frame is running, so this should only outside a frame
+                /// and carefully or inside a frame and only from the owning thread.
+                Resource* GetThreadResource(Thread::id ID = this_thread::get_id());
+
+                /// @brief Get the logger safe to use this thread.
+                /// @warning This is written in terms of GetThreadResource and has all the
+                /// same limitations.
+                /// @param ID This uses the current Threads ID by default but can search for any thread.
+                /// @return A null pointer if there is an error or a pointer to the Logger that goes with the passed Thread::Id
+                Logger* GetThreadUsableLogger(Thread::id ID = this_thread::get_id());
 
         };//FrameScheduler
     } // \Threading

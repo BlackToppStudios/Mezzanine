@@ -239,7 +239,6 @@ void CatchPostGraphicsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::
     StringStream FPSStream;
     FPSStream << "-------------------------- Current FPS: " << GraphicsMan->GetGameWindow(0)->GetLastFPS() << ", Average FPS: " << GraphicsMan->GetGameWindow(0)->GetAverageFPS() << " --------------------------";
     this->CatchApplication->TheEntresol->Log(FPSStream.str());
-    this->CatchApplication->TheEntresol->DoMainLoopLogging();
 
     //See if the level is over
     if(this->CatchApplication->CurrentState != CatchApp::Catch_ScoreScreen)

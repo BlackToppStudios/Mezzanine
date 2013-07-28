@@ -301,26 +301,6 @@ namespace Mezzanine
             /// @param MicroSeconds Minimum time to put the thread to sleep.
             void MEZZ_LIB sleep_for(UInt32 MicroSeconds);
 
-            // At some point I would like an overload of this function
-            /*
-            // Blocks the calling thread for a period of time.
-            // @param aTime Minimum time to put the thread to sleep.
-            // Example usage:
-            // @code
-            // // Sleep for 100 milliseconds
-            // this_thread::sleep_for(chrono::milliseconds(100));
-            // @endcode
-            // @note Supported duration types are: nanoseconds, microseconds,
-            // milliseconds, seconds, minutes and hours.
-            template <class _Rep, class _Period> void sleep_for(const chrono::duration<_Rep, _Period>& aTime)
-            {
-            #if defined(_MEZZ_THREAD_WIN32_)
-                Sleep(int(double(aTime.count()) * (1000.0 * _Period::_as_double()) + 0.5));
-            #else
-                usleep(int(double(aTime.count()) * (1000000.0 * _Period::_as_double()) + 0.5));
-            #endif
-            }
-            */
         } // namespace this_thread
     }//Threading
 }//Mezzanine

@@ -2,9 +2,6 @@
 <InitializerRoot>
     <WorldSettings>
         <FrameSettings TargetFrameRate="60" />
-        <LoggingSettings Frequency="PerFrame" >
-            <LogFile FileName="Catch.log" />
-        </LoggingSettings>
     </WorldSettings>
     <Managers>
         <DefaultActorManager>

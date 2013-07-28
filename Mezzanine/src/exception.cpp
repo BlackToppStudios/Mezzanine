@@ -52,8 +52,8 @@
 namespace Mezzanine
 {
     Exception::Exception(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-        : ExceptionTypeName(TypeName),
-          ErrorMessage(Message),
+        : ErrorMessage(Message),
+          ExceptionTypeName(TypeName),
           Function(SrcFunction),
           File(SrcFile),
           Line(FileLine)
@@ -61,7 +61,6 @@ namespace Mezzanine
         if(Entresol::SingletonValid())
         {
             Entresol::GetSingletonPtr()->Log(GetCompleteMessage());
-            Entresol::GetSingletonPtr()->DoMainLoopLogging();
         }else{
             #ifdef MEZZDEBUG
             std::cout << GetCompleteMessage();

@@ -670,7 +670,6 @@ namespace Mezzanine
             std::stringstream logstream;
             logstream << "Serializing Shape: " << Shape->GetName();
             Entresol::GetSingletonPtr()->Log(logstream.str());
-            Entresol::GetSingletonPtr()->DoMainLoopLogging();
 
             BulletSerializer->registerNameForPointer((void*)Shape->_GetInternalShape(),(*it).first.c_str());
             int len = Shape->_GetInternalShape()->calculateSerializeBufferSize();

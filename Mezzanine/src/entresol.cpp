@@ -79,6 +79,64 @@ namespace Mezzanine
 {
     template<> Entresol* Singleton<Entresol>::SingletonPtr = NULL;
 
+    namespace
+    {
+        // Since there doesn't seem to be anyway to check if the ogre root exists yet.
+        // if a you haven't made an ogre root, then Ogre::Root::getSingletonPtr(); appears to return gibberish rather that a zero.
+        Ogre::Root* OgreCore = NULL;
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Construction and Destruction Helpers
+
+    void Entresol::SetupLogging(const String& LogFileName)
+    {
+        /// @todo Allow the FrameScheduler Log target to be inspected and changed here
+        Ogre::LogManager* OgreLogs = Ogre::LogManager::getSingletonPtr();
+        if( NULL == OgreLogs )
+            { OgreLogs = new Ogre::LogManager(); }
+
+        if(!LogFileName.empty())
+        {
+            OgreLogs->createLog(String("Graphics")+LogFileName,true,true);
+        }
+        else
+        {
+            OgreLogs->createLog("GraphicsMezzanine.log",true,true);
+        }
+        this->BufferSwapper = new Threading::LogBufferSwapper();
+        this->Aggregator = new Threading::LogAggregator();
+        Aggregator->AddDependency(BufferSwapper);
+        Aggregator->SetAggregationTarget(&WorkScheduler);
+        this->WorkScheduler.AddWorkUnitMain(BufferSwapper);
+        this->WorkScheduler.AddWorkUnitMain(Aggregator);
+    }
+
+    void Entresol::DestroyLogging()
+    {
+        this->WorkScheduler.RemoveWorkUnitMain(BufferSwapper);
+        this->WorkScheduler.RemoveWorkUnitMain(Aggregator);
+        delete BufferSwapper;
+        delete Aggregator;
+    }
+
+    void Entresol::SetupOgre()
+    {
+        if ( NULL == OgreCore )
+            { OgreCore = new Ogre::Root("","",""); }
+        else
+            { OgreCore = Ogre::Root::getSingletonPtr(); }
+    }
+
+    void Entresol::DestroyOgre()
+    {
+        //Ogre::Root::getSingleton().shutdown();
+        delete Ogre::Root::getSingletonPtr(); // This should be done by the shutdown method shouldn't it?
+        OgreCore = 0;
+        delete SubSystemParticleFXPlugin;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Mezzanine constructors
 
@@ -141,13 +199,6 @@ namespace Mezzanine
 
     }
 
-    namespace
-    {
-        // Since there doesn't seem to be anyway to check if the ogre root exists yet.
-        // if a you haven't made an ogre root, then Ogre::Root::getSingletonPtr(); appears to return gibberish rather that a zero.
-        Ogre::Root* OgreCore = 0;
-    }
-
     void Entresol::Construct(   const Physics::ManagerConstructionInfo& PhysicsInfo,
                                 const String& SceneType,
                                 const String& EngineDataPath,
@@ -162,12 +213,8 @@ namespace Mezzanine
         this->FrameTime = 0;
         this->ManualLoopBreak = 0;
 
-        this->SetLoggingFrequency(LogOncePerFrame);
-
-        if ( 0 == OgreCore )
-            { OgreCore = new Ogre::Root("","",LogFileName); }
-        else
-            { OgreCore = Ogre::Root::getSingletonPtr(); }
+        SetupOgre();
+        SetupLogging(LogFileName);
 
         // Load the necessary plugins.
         SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
@@ -223,13 +270,9 @@ namespace Mezzanine
         this->TargetFrameLength = 16667;
         this->FrameTime = 0;
         this->ManualLoopBreak = false;
-        this->SetLoggingFrequency(LogNever);
 
         // Create Ogre.
-        Ogre::LogManager* OgreLogs = Ogre::LogManager::getSingletonPtr();
-        if( NULL == OgreLogs ) OgreLogs = new Ogre::LogManager();
-        if( NULL == OgreCore ) OgreCore = new Ogre::Root("","","");
-        else OgreCore = Ogre::Root::getSingletonPtr();
+        SetupOgre();
 
         // Load the necessary plugins.
         SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
@@ -285,42 +328,14 @@ namespace Mezzanine
                     this->SetTargetFrameRate(CurrAttrib.AsWhole());
                 }
             }
-            else if( "LoggingSettings" == SecName )
+            else
             {
-                XML::Attribute Frequency = (*SetIt).GetAttribute("Frequency");
-                if(!Frequency.Empty())
-                {
-                    String FrequencyStr = Frequency.AsString();
-                    StringTools::ToLowerCase(FrequencyStr);
-                    if( "perframe" == FrequencyStr )
-                    {
-                        this->SetLoggingFrequency(LogOncePerFrame);
-                    }
-                    else if( "perxframes" == FrequencyStr )
-                    {
-                        CurrAttrib = (*SetIt).GetAttribute("Counter");
-                        this->SetLoggingFrequency(LogOncePerXFrames,CurrAttrib.Empty() ? 5 : CurrAttrib.AsWhole() );
-                    }
-                    else if( "perxseconds" == FrequencyStr )
-                    {
-                        CurrAttrib = (*SetIt).GetAttribute("Counter");
-                        this->SetLoggingFrequency(LogOncePerXSeconds,CurrAttrib.Empty() ? 5 : CurrAttrib.AsWhole() );
-                    }
-                }
-
-                XML::Node LogFile = (*SetIt).GetChild("LogFile");
-                if(!LogFile.Empty())
-                {
-                    CurrAttrib = LogFile.GetAttribute("FileName");
-                    if(!CurrAttrib.Empty())
-                        LogFileName = CurrAttrib.AsString();
-                }
+                MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,String("Unknown WorldSetting ")+SecName);
             }
+
         }
 
-        // Setup the log.
-        if(!LogFileName.empty()) OgreLogs->createLog(LogFileName,true,true);
-        else OgreLogs->createLog("Mezzanine.log",true,true);
+        SetupLogging(LogFileName);
 
         // Get the other initializer files we'll be using, since we'll need the plugins initializer.
         XML::Node InitFiles = InitRoot.GetChild("OtherInitializers");
@@ -519,13 +534,11 @@ namespace Mezzanine
     {
         DestroyAllManagers();
         DestroyAllManagerFactories();
+        DestroyLogging();
 
         SDL_Quit();
 
-        //Ogre::Root::getSingleton().shutdown();
-        delete Ogre::Root::getSingletonPtr(); // This should be done by the shutdown method shouldn't it?
-        OgreCore = 0;
-        delete SubSystemParticleFXPlugin;
+        DestroyOgre();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -540,115 +553,27 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Logging
 
-    // anonymous namespace for function pointer for logging commit mess
-    namespace
-    {
-        Whole FrequencyCounter__ = 0;     // Used by some loggin functions, and interpretted differently by each
-        StopWatchTimer* LogTimer = 0;
-
-        void SetupXSecondTimer();
-
-        void Never()
-        {
-            Entresol::GetSingletonPtr()->LogStream.str("");
-        }
-
-        void EachFrame()
-        {
-            Entresol::GetSingletonPtr()->DoMainLoopLogging();
-        }
-
-        void EachXFrame()
-        {
-            static Whole X=0;
-            if (X>FrequencyCounter__)
-            {
-                Entresol::GetSingletonPtr()->DoMainLoopLogging();
-                X=0;
-            }else{
-                ++X;
-            }
-        }
-
-        void EachXSeconds() //function still exists because we need it to identify what kind of logging frequency we are using.
-            { }
-
-        void SetupXSecondTimer()
-        {
-            if(LogTimer)
-            {
-                delete LogTimer;
-                LogTimer = NULL;
-            }
-            LogTimer = new StopWatchTimer();
-            LogTimer->SetInitialTime(FrequencyCounter__ * 1000000);
-            LogTimer->SetGoalTime(0);
-            LogTimer->Reset();
-            //LogTimer->SetAutoReset(true);
-            LogTimer->Start();
-            /// @todo Disabled this when callbacks on timers were removed.  This logic needs to be re-implemented somehow.
-            //LogTimer->SetCallback(new TimerLogInX);
-        }
-
-    }
-
-    void Entresol::SetLoggingFrequency(Entresol::LoggingFrequency HowOften, Whole FrequencyCounter)
-    {
-        if(LogTimer)
-        {
-            delete LogTimer;
-            LogTimer = NULL;
-        }
-        FrequencyCounter__ = FrequencyCounter;
-
-        switch (HowOften)
-        {
-            case LogNever:
-                LogCommitFunc=&Never;
-                break;
-            case LogOncePerFrame:
-                LogCommitFunc=&EachFrame;
-                break;
-            case LogOncePerXFrames:
-                LogCommitFunc=&EachXFrame;
-                break;
-            case LogOncePerXSeconds:
-                SetupXSecondTimer();
-                LogCommitFunc=&EachXSeconds;
-                break;
-        }
-    }
-
-    Entresol::LoggingFrequency Entresol::GetLoggingFrequency()
-    {
-        if (&Never==LogCommitFunc)
-            return LogNever;
-
-        if (&EachFrame==LogCommitFunc)
-            return LogOncePerFrame;
-
-        if (&EachXFrame==LogCommitFunc)
-            return LogOncePerXFrames;
-
-        if (&EachXSeconds==LogCommitFunc)
-            return LogOncePerXSeconds;
-        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Impossible logging frequency set, cannot retrieve");
-    }
-
-    void Entresol::CommitLog()
-        { this->DoMainLoopLogging(); }
-
     void Entresol::LogString(const String& Message)
     {
         // if it is in the Audiologs then it has already happened so it needs to be logged first
         if(Message.size()>0)
-            { this->LogStream << Message; }
+            { this->GetLogStream() << Message; }
     }
 
-    void Entresol::Log()
+    Logger& Entresol::GetLogStream(Threading::Thread::id ID)
     {
-        this->LogString("");
+        Threading::FrameScheduler::Resource* AlmostResults = this->WorkScheduler.GetThreadResource(ID);
+        if(AlmostResults)
+            { return AlmostResults->GetUsableLogger(); }
+        else
+            { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not access thread Specific Logger from invalid thread."); }
     }
+
+    Threading::LogAggregator* Entresol::GetLogAggregator()
+        { return this->Aggregator; }
+
+    Threading::LogBufferSwapper* Entresol::GetLogBufferSwapper()
+        { return this->BufferSwapper; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Initialization
@@ -661,7 +586,6 @@ namespace Mezzanine
             StringStream InitStream;
             InitStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << ".";
             this->Log(InitStream.str());
-            this->DoMainLoopLogging();
             if((*Iter)->GetInterfaceType() != ManagerBase::MT_GraphicsManager)
             {
                 (*Iter)->Initialize();
@@ -717,7 +641,6 @@ namespace Mezzanine
             StringStream FrameStream;
             FrameStream << "-------------------------- Starting Frame: " << FrameCounter << " --------------------------";
             this->Log(FrameStream.str());
-            this->DoMainLoopLogging();
             #endif
             FrameTimer->reset();
 
@@ -732,7 +655,6 @@ namespace Mezzanine
             FrameStream.str("");
             FrameStream << "-------------------------- Ending Frame: " << FrameCounter << ", After " << FrameTimer->getMicroseconds() << " microseconds --------------------------";
             this->Log(FrameStream.str());
-            this->DoMainLoopLogging();
             ++FrameCounter;
             #endif
 
@@ -744,15 +666,6 @@ namespace Mezzanine
 
         ManualLoopBreak = 0;
         delete FrameTimer;
-    }
-
-    void Entresol::DoMainLoopLogging()
-    {
-        if( this->LogStream.str().size() > 0 )
-        {
-            Ogre::LogManager::getSingleton().logMessage(this->LogStream.str());
-            this->LogStream.str("");
-        }
     }
 
     void Entresol::BreakMainLoop()
@@ -963,7 +876,6 @@ namespace Mezzanine
             ManagerBase* Current = this->ManagerList.front();
             #ifdef MEZZDEBUG
             this->Log("Deleting " + Current->GetInterfaceTypeAsString() + ".");
-            this->DoMainLoopLogging();
             #endif
 
             ManagerFactoryIterator ManIt = this->ManagerFactories.find(Current->GetImplementationTypeName());
@@ -981,7 +893,6 @@ namespace Mezzanine
     {
         #ifdef MEZZDEBUG
         this->Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".");
-        this->DoMainLoopLogging();
         #endif
         // We have to verify the manager is unique.  A number of issues can arrise if a manager is double inserted.
         for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )

@@ -179,6 +179,7 @@ namespace Mezzanine
 			CurrentThreadCount(StartingThreadCount),
             FrameCount(0), TargetFrameLength(16666),
             TimingCostAllowance(0),
+            MainThreadID(this_thread::get_id()),
 			LoggingToAnOwnedFileStream(true)
         { Resources.push_back(new DefaultThreadSpecificStorage::Type(this)); }
 
@@ -198,6 +199,7 @@ namespace Mezzanine
             CurrentThreadCount(StartingThreadCount),
             FrameCount(0), TargetFrameLength(16666),
             TimingCostAllowance(0),
+            MainThreadID(this_thread::get_id()),
 			LoggingToAnOwnedFileStream(false)
         { Resources.push_back(new DefaultThreadSpecificStorage::Type(this)); }
 
@@ -597,7 +599,7 @@ namespace Mezzanine
             {
                 Whole TargetFrameEnd = TargetFrameLength + CurrentFrameStart;
                 Whole WaitTime = Whole(TargetFrameEnd - GetTimeStamp()) + TimingCostAllowance;
-                if(WaitTime>1000000)
+                if(WaitTime>1000000) /// @todo Replace hard-code timeout with compiler/define/cmake_option
                     { WaitTime = 0; }
                 Mezzanine::Threading::this_thread::sleep_for( WaitTime );
                 CurrentFrameStart=GetTimeStamp();
@@ -618,7 +620,35 @@ namespace Mezzanine
         Whole FrameScheduler::GetWorkUnitMainCount() const
             { return this->WorkUnitsMain.size(); }
 
-    } // \Threading
+        ////////////////////////////////////////////////////////////////////////////////
+        // Other Utility Features
+
+        FrameScheduler::Resource* FrameScheduler::GetThreadResource(Thread::id ID)
+        {
+            std::vector<Resource*>::iterator Results = Resources.begin();
+            if(ID == MainThreadID)
+                { return *Results; } // Main Thread Resources are stored in slot 0
+
+            for(std::vector<Thread*>::iterator Iter=Threads.begin(); Iter!=Threads.end(); ++Iter)
+            {
+                Results++;
+                if ( (*Iter)->get_id()==ID)
+                    { return *Results; }
+            }
+            return NULL;
+        }
+
+        Logger* FrameScheduler::GetThreadUsableLogger(Thread::id ID)
+        {
+            Resource* AlmostResults = GetThreadResource(ID);
+            if(AlmostResults)
+                { return &AlmostResults->GetUsableLogger(); }
+            return 0;
+        }
+
+
+
+    } // \FrameScheduler
 }// \Mezanine
 
 

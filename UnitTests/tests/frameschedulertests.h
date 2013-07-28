@@ -154,6 +154,38 @@ ostream& operator<< (ostream& out, RestartMetric Lhs)
     return out;
 }
 
+
+/// @brief Perform Basic tests of the functions to acquire resources
+class LoggerCheckWorkUnit : public DefaultWorkUnit
+{
+    public:
+        /// @brief Empty Virtual Deconstructor
+        virtual ~LoggerCheckWorkUnit()
+            { }
+
+        DefaultThreadSpecificStorage::Type* FromGetResource;
+        DefaultThreadSpecificStorage::Type* FromArgs;
+
+        Logger* LogFromGet;
+        Logger* LogFromArgs;
+
+        Thread::id InThread;
+
+        virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+        {
+            FromGetResource = CurrentThreadStorage.GetFrameScheduler()->GetThreadResource();
+            FromArgs = &CurrentThreadStorage;
+
+            LogFromGet = &CurrentThreadStorage.GetFrameScheduler()->GetThreadResource()->GetUsableLogger();
+            LogFromArgs = &CurrentThreadStorage.GetUsableLogger();
+
+            InThread = this_thread::get_id();
+
+            this_thread::sleep_for(100000); // wait 1/10th of a second.
+        }
+};
+
+
 /// @brief Tests for the Framescheduler class
 class frameschedulertests : public UnitTestGroup
 {
@@ -1064,6 +1096,57 @@ class frameschedulertests : public UnitTestGroup
 
                 delete EraseMonoA; delete EraseMonoB; delete EraseMonoC;
             } // \Removal Monopoly
+
+            {
+                stringstream LogCache;
+                FrameScheduler Scheduler1(&LogCache,4);
+                LoggerCheckWorkUnit* Checker1 = new LoggerCheckWorkUnit;
+                LoggerCheckWorkUnit* Checker2 = new LoggerCheckWorkUnit;
+                LoggerCheckWorkUnit* Checker3 = new LoggerCheckWorkUnit;
+                LoggerCheckWorkUnit* Checker4 = new LoggerCheckWorkUnit;
+                Scheduler1.AddWorkUnitMain(Checker1); //scheduler should delete workunit
+                Scheduler1.AddWorkUnitMain(Checker2);
+                Scheduler1.AddWorkUnitMain(Checker3); // There is no guarantee these will run in different threads, but unless there is
+                Scheduler1.AddWorkUnitMain(Checker4); // a huge delay in starting these workunits the FS really should
+
+                Scheduler1.SortWorkUnitsAll();
+                Scheduler1.DoOneFrame();
+
+                cout << "Checking that FrameScheduler::GetThreadResource produces the same results as what is passed into WorkUnit::DoWork: "
+                     << endl
+                     << dec << "from thread :" << Checker1->InThread << " - " << hex
+                        << (Checker1->FromArgs) << " == " << (Checker1->FromGetResource) << " : " << (Checker1->FromArgs==Checker1->FromGetResource) << endl
+                     << dec << "from thread :" << Checker2->InThread << " - " << hex
+                        << (Checker2->FromArgs) << " == " << (Checker2->FromGetResource) << " : " << (Checker2->FromArgs==Checker2->FromGetResource) << endl
+                     << dec << "from thread :" << Checker3->InThread << " - " << hex
+                        << (Checker3->FromArgs) << " == " << (Checker3->FromGetResource) << " : " << (Checker3->FromArgs==Checker3->FromGetResource) << endl
+                     << dec << "from thread :" << Checker4->InThread << " - " << hex
+                        << (Checker4->FromArgs) << " == " << (Checker4->FromGetResource) << " : " << (Checker4->FromArgs==Checker4->FromGetResource) << endl
+                     << endl;
+                TEST(Checker1->FromArgs==Checker1->FromGetResource &&
+                     Checker2->FromArgs==Checker2->FromGetResource &&
+                     Checker3->FromArgs==Checker3->FromGetResource &&
+                     Checker4->FromArgs==Checker4->FromGetResource
+                     ,"GetThreadResource");
+
+                cout << "Checking that FrameScheduler::GetThreadUsableLogger produces the same results as what is passed into WorkUnit::DoWork: "
+                     << endl
+                     << dec << "from thread :" << Checker1->InThread << " - " << hex
+                        << (Checker1->LogFromArgs) << " == " << (Checker1->LogFromGet) << " : " << (Checker1->LogFromArgs==Checker1->LogFromGet) << endl
+                     << dec << "from thread :" << Checker2->InThread << " - " << hex
+                        << (Checker2->LogFromArgs) << " == " << (Checker2->LogFromGet) << " : " << (Checker2->LogFromArgs==Checker2->LogFromGet) << endl
+                     << dec << "from thread :" << Checker3->InThread << " - " << hex
+                        << (Checker3->LogFromArgs) << " == " << (Checker3->LogFromGet) << " : " << (Checker3->LogFromArgs==Checker3->LogFromGet) << endl
+                     << dec << "from thread :" << Checker4->InThread << " - " << hex
+                        << (Checker4->LogFromArgs) << " == " << (Checker4->LogFromGet) << " : " << (Checker4->LogFromArgs==Checker4->LogFromGet) << endl
+                     << endl;
+                TEST(Checker1->LogFromArgs==Checker1->LogFromGet &&
+                     Checker2->LogFromArgs==Checker2->LogFromGet &&
+                     Checker3->LogFromArgs==Checker3->LogFromGet &&
+                     Checker4->LogFromArgs==Checker4->LogFromGet
+                     ,"GetThreadUsableLogger");
+
+            }
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
