@@ -95,7 +95,8 @@ namespace Mezzanine
         }else{
             DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),"ActorRigidDeSerializer");
         }
-        DeSerializeError(String("Failed to deserialize "),"ActorRigidDeSerializer");
+        // unreachable, DeSerializeError Always throws, but this quashes that warning.
+        return 0;
     }
 
     String ActorRigidDeSerializer::ContainerName() const

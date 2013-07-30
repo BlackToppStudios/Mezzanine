@@ -44,6 +44,7 @@
 
 #include "datatypes.h"
 #include "workunit.h"
+#include "monopoly.h"
 #include "workunitkey.h"
 
 #include <vector>
@@ -97,9 +98,17 @@ namespace Mezzanine
         /// @note If other doublebuffered resources are used then this or another work unit like it should be adjusted/created to swap those buffers.
         /// @details This needs to have every other workunit that uses the logger as a dependency. If you use the log in a work unit
         /// that work unit needs to depend on this one, or this one needs to depend on that one.
-        class MEZZ_LIB LogBufferSwapper : public DefaultWorkUnit
+        class MEZZ_LIB LogBufferSwapper : public MonopolyWorkUnit
         {
             public:
+                /// @brief Ignored, This will always using on thread per thread state in the framescheduler, or 1
+                /// @param AmountToUse The amount of threads you would like the monopoly to consume.
+                virtual void UseThreads(const Whole& AmountToUse);
+
+                /// @brief Will match the amount of resources in the framescheduler.
+                /// @return A whole with the amount of threads to be used.
+                virtual Whole UsingThreadCount();
+
                 /// @brief This does the swapping of buffers.
                 /// @param CurrentThreadStorage Just to get a reference to the framescheduler.
                 virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage);

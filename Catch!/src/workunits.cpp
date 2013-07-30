@@ -237,7 +237,7 @@ void CatchPostGraphicsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::
     AvFPS->SetText(StringTools::ConvertToString(GraphicsMan->GetGameWindow(0)->GetAverageFPS()));
 
     StringStream FPSStream;
-    FPSStream << "-------------------------- Current FPS: " << GraphicsMan->GetGameWindow(0)->GetLastFPS() << ", Average FPS: " << GraphicsMan->GetGameWindow(0)->GetAverageFPS() << " --------------------------";
+    FPSStream << "<FPSReport CurrentFPS=\"" << GraphicsMan->GetGameWindow(0)->GetLastFPS() << "\" AverageFPS=\"" << GraphicsMan->GetGameWindow(0)->GetAverageFPS() << "\" />" << std::endl;
     this->CatchApplication->TheEntresol->Log(FPSStream.str());
 
     //See if the level is over

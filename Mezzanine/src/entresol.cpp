@@ -107,9 +107,8 @@ namespace Mezzanine
         }
         this->BufferSwapper = new Threading::LogBufferSwapper();
         this->Aggregator = new Threading::LogAggregator();
-        Aggregator->AddDependency(BufferSwapper);
         Aggregator->SetAggregationTarget(&WorkScheduler);
-        this->WorkScheduler.AddWorkUnitMain(BufferSwapper);
+        this->WorkScheduler.AddWorkUnitMonopoly(BufferSwapper);
         this->WorkScheduler.AddWorkUnitMain(Aggregator);
     }
 
@@ -639,7 +638,7 @@ namespace Mezzanine
             #ifdef MEZZDEBUG
             static UInt32 FrameCounter = 0;
             StringStream FrameStream;
-            FrameStream << "-------------------------- Starting Frame: " << FrameCounter << " --------------------------";
+            FrameStream << "<FrameCounterStart StartingFrame=\"" << FrameCounter << "\" />" << endl;
             this->Log(FrameStream.str());
             #endif
             FrameTimer->reset();
@@ -649,11 +648,16 @@ namespace Mezzanine
             WorkScheduler.RunMainThreadWork();//3
             WorkScheduler.JoinAllThreads();   //4
             WorkScheduler.ResetAllWorkUnits();//5
+            #ifdef MEZZDEBUG
+            FrameStream.str("");
+            FrameStream << "<FrameCounterPrePause Frame=\"" << FrameCounter << "\"" << "PrePauseLength=\"" << FrameTimer->getMicroseconds() << "\" />" << endl;
+            this->Log(FrameStream.str());
+            #endif
             WorkScheduler.WaitUntilNextFrame(); //6
 
             #ifdef MEZZDEBUG
             FrameStream.str("");
-            FrameStream << "-------------------------- Ending Frame: " << FrameCounter << ", After " << FrameTimer->getMicroseconds() << " microseconds --------------------------";
+            FrameStream << "<FrameCounterEnd Frame=\"" << FrameCounter << "\"" << "Length=\"" << FrameTimer->getMicroseconds() << "\" />" << endl;
             this->Log(FrameStream.str());
             ++FrameCounter;
             #endif

@@ -170,7 +170,7 @@ namespace Mezzanine
         WSO_ParticleEffect         = 524288,//MEZZ_BITMASK(20),//524288,
 
         // Other Objects
-        WSO_WorldNode              = 1048576//MEZZ_BITMASK(21)//1048576
+        WSO_WorldNode              = 1048576//x MEZZ_BITMASK(21)//1048576
     };
 }
 
