@@ -233,24 +233,9 @@ class frameschedulertests : public UnitTestGroup
             //sort(WorkUnitNames.begin(),WorkUnitNames.end());
             for(set<String>::iterator Iter=WorkUnitNames.begin(); Iter!=WorkUnitNames.end(); Iter++)
                 { cout << *Iter << "\t"; }
-            //ThrowOnFalse(ThreadCount==TargetThreadCount_, "Thread count wrong");
-            if(ThreadCount==TargetThreadCount_)
-                { temp=Testing::Success; }
-            else
-                { temp=Testing::Failed; }
-            AddTestResult(TestName+"::ThreadCount", temp);
-            //ThrowOnFalse(WorkUnitCount_==WorkUnitNames.size(),"Wrong number of Unique WorkUnit Names");
-            if(WorkUnitCount_==WorkUnitNames.size())
-                { temp=Testing::Success; }
-            else
-                { temp=Testing::Failed; }
-            AddTestResult(TestName+"::LogcheckSizes", temp);
-            //ThrowOnFalse(WorkUnitCount_==WorkUnitCount,"Wrong number of WorkUnit Names");
-            if(WorkUnitCount_==WorkUnitCount)
-                { temp=Testing::Success; }
-            else
-                { temp=Testing::Failed; }
-            AddTestResult(TestName+"::LogcheckNames", temp);
+            TEST(ThreadCount==TargetThreadCount_,TestName+"::ThreadCount");
+            TEST(WorkUnitCount_==WorkUnitNames.size(),TestName+"::LogcheckSizes");
+            TEST(WorkUnitCount_==WorkUnitCount,TestName+"::LogcheckNamecount");
             return WorkUnitNames;
         }
 

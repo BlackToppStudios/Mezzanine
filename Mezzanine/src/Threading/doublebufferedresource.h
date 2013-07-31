@@ -184,6 +184,10 @@ namespace Mezzanine
                 FrameScheduler* GetFrameScheduler()
                     { return Scheduler; }
 
+                /// @brief The commitable and usable version of every double buffered resource for this thread specific storage will be swapped.
+                void SwapAllBufferedResources()
+                    { GetResource<DoubleBufferedLogger>(DBRLogger).SwapUsableAndCommitable(); }
+
                 /// @brief Deletes all the resources.
                 virtual ~ThreadSpecificStorage()
                 {

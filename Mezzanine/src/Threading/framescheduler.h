@@ -390,7 +390,12 @@ namespace Mezzanine
                 /// call does not block and tends to return very quickly.
                 /// @n @n
                 /// This checks the amount of threads as set by @ref SetFrameLength "SetFrameLength". It creates any
-                /// @ref ThreadSpecificStorage instances required and creates threads if they are required. If the build option
+                /// @ref ThreadSpecificStorage instances required and creates threads if they are required. SwapAllBufferedResources() Is called on
+                /// each ThreadSpecificStorage before being passed into the thread. If extra double buffered resources are required per thread
+                /// and they need to be swapped each frame, SwapAllBufferedResources() should be inherited or adjusted to account for these new
+                /// resources.
+                /// @n @n
+                /// If the build option
                 /// @ref MEZZ_USEBARRIERSEACHFRAME Mezz_MinimizeThreadsEachFrame was enabled then this will reuse threads from previous frames,
                 /// otherwise this will re-use thread specific resources and create a new set of threads. Re-use of threads is synchronized
                 /// with the @ref Barrier StartFrameSync member variable. It is unclear, and likely platform specific, which option has

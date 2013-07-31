@@ -96,17 +96,20 @@ namespace Mezzanine
 
         void LogBufferSwapper::DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
-            #ifdef MEZZ_DEBUG
-            CurrentThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger).GetUsable() << "<LogRotation ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << std::endl;
-            #endif
+            //#ifdef MEZZ_DEBUG
+            //CurrentThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger).GetUsable() << "<LogRotation ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << std::endl;
+            //#endif
             /// @todo Use a parrelel for loop instead
-            FrameScheduler& CurrentFrameScheduler= * CurrentThreadStorage.GetFrameScheduler();
-            for(std::vector<DefaultThreadSpecificStorage::Type*>::const_iterator Iter=CurrentFrameScheduler.Resources.begin();
-                Iter!=CurrentFrameScheduler.Resources.end();
-                ++Iter)
-            {
-                (*Iter)->GetResource<DoubleBufferedLogger>(DBRLogger).SwapUsableAndCommitable();
-            }
+            //FrameScheduler& CurrentFrameScheduler= * CurrentThreadStorage.GetFrameScheduler();
+            //for(std::vector<DefaultThreadSpecificStorage::Type*>::const_iterator Iter=CurrentFrameScheduler.Resources.begin();
+            //    Iter!=CurrentFrameScheduler.Resources.end();
+            //    ++Iter)
+            //{
+            //    (*Iter)->GetResource<DoubleBufferedLogger>(DBRLogger).SwapUsableAndCommitable();
+            //}
+
+
+
         }
 
         WorkSorter::WorkSorter() :

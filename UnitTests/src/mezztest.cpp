@@ -58,7 +58,7 @@
 /// @internal
 /// @brief If this is passed to the command line the test is executed without launching a separate processs.
 /// @details In most cases each test is launched as a separate process and this is passed to it.
-static const Mezzanine::String MemSpaceArg("inthismemoryspacetheworkshallbedone");
+static const Mezzanine::String MemSpaceArg("debugtests");
 
 /// @internal
 /// @brief This is the name of the file used to communicate results from child processes
