@@ -213,7 +213,13 @@ class AllUnitTestGroups : public UnitTestGroup
                         this->AddTestResult(String("Process::" + *CurrentTestName), Success);
                     }
 
-                    (*this) += GetResultsFromTempFile();
+                    try
+                    {
+                        (*this) += GetResultsFromTempFile();
+                    } catch (std::exception& e) {
+                        cerr << e.what() << endl;
+                    }
+
                 }
                 DeleteTempFile();
             } // \if(ExecuteInThisMemorySpace)

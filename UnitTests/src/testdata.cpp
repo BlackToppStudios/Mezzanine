@@ -241,8 +241,20 @@ namespace Mezzanine
 
         void UnitTestGroup::AddTestsFromXML(pugi::xml_node Node)
         {
+            if(!Node)
+            {
+                throw std::invalid_argument(
+                        String("UnitTestGroup::AddTestsFromXML can only handle XML but was passed an empty file. Expected results from ")
+                        + Node.name()
+                    );
+            }
             if(String("UnitTestGroup")!=Node.name())
-                { throw std::invalid_argument("UnitTestGroup::AddTestsFromXML can only handle XML with \"UnitTestGroup\" as passed element"); }
+            {
+                throw std::invalid_argument(
+                        String("UnitTestGroup::AddTestsFromXML can only handle XML with \"UnitTestGroup\" as passed element.  Expected results from ")
+                        + Node.name()
+                    );
+            }
             for(pugi::xml_node::iterator Iter = Node.begin(); Iter!=Node.end(); Iter++)
                 { this->AddTestResult(TestData(*Iter)); }
         }

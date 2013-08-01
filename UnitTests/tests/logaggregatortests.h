@@ -80,13 +80,11 @@ class logaggregatortests : public UnitTestGroup
             TestSchedulerMono.SetFrameLength(0);                    // run as fast as allowable
 
             LogAggregator Agg;
-            LogBufferSwapper Swapper;                               //create an aggreator and swapper
 
             ThreadSpecificStorage SwapResource(&TestSchedulerMono); //This will only be used for its pointer to the Framescheduler
             for(Whole Counter=0; Counter<100; Counter++)
             {
                 TestSchedulerMono.DoOneFrame(); // Framescheduler pass its own resources into each Pimaker each frame
-                Swapper(SwapResource);          // Swap the active logs and bufferable logs
                 Agg(SwapResource);              // Aggregate buferrable logs and send them to the Framescheduler Logger output TempLog
             }
             TempLog << "</Log>" << endl;

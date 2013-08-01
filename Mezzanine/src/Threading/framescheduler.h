@@ -194,10 +194,6 @@ namespace Mezzanine
 				////////////////////////////////////////////////////////////////////////////////
 				// Protected Methods
 
-                /// @brief Get the endpoint for the logs.
-                /// @return An std:ostream reference which can be streamed to commit log entries.
-                std::ostream& GetLog();
-
                 /// @brief Used in destruction to tear down threads.
                 void CleanUpThreads();
 
@@ -222,7 +218,7 @@ namespace Mezzanine
                 /// @param StartingThreadCount How many threads. Defaults to the value returned by @ref Mezzanine::GetCPUCount "GetCPUCount()".
                 /// @warning This must be constructed from the Main(only) thread for any features with thread affinity to work correctly.
                 FrameScheduler(
-                        std::fstream* _LogDestination = new std::fstream("Mezzanine.log", std::ios::out | std::ios::app),
+                        std::fstream* _LogDestination = new std::fstream("Mezzanine.log", std::ios::out | std::ios::trunc),
                         Whole StartingThreadCount = GetCPUCount()
                     );
 
@@ -451,7 +447,7 @@ namespace Mezzanine
                 Whole GetWorkUnitMainCount() const;
 
                 ////////////////////////////////////////////////////////////////////////////////
-                // Other Utility Features
+                // Logging Features
 
                 /// @brief Get the Resource to go with a thread of a given ID.
                 /// @details This gets the Resource that goes with a given thread
@@ -475,6 +471,11 @@ namespace Mezzanine
                 /// @param ID This uses the current Threads ID by default but can search for any thread.
                 /// @return A null pointer if there is an error or a pointer to the Logger that goes with the passed Thread::Id
                 Logger* GetThreadUsableLogger(Thread::id ID = this_thread::get_id());
+
+                /// @warning This is not thread safe at all. Any time during the frame using this can send gibberish to the log. Use GetThreadUsableLogger instead.
+                /// @brief Get the endpoint for the logs.
+                /// @return An std:ostream reference which can be streamed to commit log entries.
+                std::ostream& GetLog();
 
         };//FrameScheduler
     } // \Threading

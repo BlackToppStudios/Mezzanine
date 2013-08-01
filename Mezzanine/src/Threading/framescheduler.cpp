@@ -123,8 +123,6 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Protected Methods
-        std::ostream& FrameScheduler::GetLog()
-            { return *LogDestination; }
 
         void FrameScheduler::CleanUpThreads()
         {
@@ -181,7 +179,10 @@ namespace Mezzanine
             TimingCostAllowance(0),
             MainThreadID(this_thread::get_id()),
 			LoggingToAnOwnedFileStream(true)
-        { Resources.push_back(new DefaultThreadSpecificStorage::Type(this)); }
+        {
+            Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
+            GetLog() << "<MezzanineLog>" << std::endl;
+        }
 
         FrameScheduler::FrameScheduler(std::ostream *_LogDestination, Whole StartingThreadCount) :
 			LogDestination(_LogDestination),
@@ -201,11 +202,17 @@ namespace Mezzanine
             TimingCostAllowance(0),
             MainThreadID(this_thread::get_id()),
 			LoggingToAnOwnedFileStream(false)
-        { Resources.push_back(new DefaultThreadSpecificStorage::Type(this)); }
+        {
+            Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
+            (*LogDestination) << "<MezzanineLog>" << std::endl;
+        }
 
         FrameScheduler::~FrameScheduler()
         {            
             CleanUpThreads();
+
+            (*LogDestination) << "</MezzanineLog>" << std::endl;
+            LogDestination->flush();
 
             if(LoggingToAnOwnedFileStream)
             {
@@ -619,6 +626,9 @@ namespace Mezzanine
                 { return &AlmostResults->GetUsableLogger(); }
             return 0;
         }
+
+        std::ostream& FrameScheduler::GetLog()
+            { return *LogDestination; }
 
 
 

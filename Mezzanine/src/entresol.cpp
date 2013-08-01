@@ -105,18 +105,14 @@ namespace Mezzanine
         {
             OgreLogs->createLog("GraphicsMezzanine.log",true,true);
         }
-        this->BufferSwapper = new Threading::LogBufferSwapper();
         this->Aggregator = new Threading::LogAggregator();
         Aggregator->SetAggregationTarget(&WorkScheduler);
-        this->WorkScheduler.AddWorkUnitMonopoly(BufferSwapper);
         this->WorkScheduler.AddWorkUnitMain(Aggregator);
     }
 
     void Entresol::DestroyLogging()
     {
-        this->WorkScheduler.RemoveWorkUnitMain(BufferSwapper);
         this->WorkScheduler.RemoveWorkUnitMain(Aggregator);
-        delete BufferSwapper;
         delete Aggregator;
     }
 

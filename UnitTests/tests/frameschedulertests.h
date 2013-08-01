@@ -376,18 +376,21 @@ class frameschedulertests : public UnitTestGroup
                 PiMakerWorkUnit* WorkUnitR2 = new PiMakerWorkUnit(50000,"Run2",false);
                 PiMakerWorkUnit* WorkUnitR3 = new PiMakerWorkUnit(50000,"Run3",false);
                 PiMakerWorkUnit* WorkUnitR4 = new PiMakerWorkUnit(50000,"Run4",false);
-                LogBufferSwapper Swapper2;
                 LogAggregator Agg2;
                 DefaultThreadSpecificStorage::Type SwapResource2(&ThreadCreationTest1);
+
                 ThreadCreationTest1.AddWorkUnitMain(WorkUnitR1);
                 ThreadCreationTest1.AddWorkUnitMain(WorkUnitR2);
                 ThreadCreationTest1.AddWorkUnitMain(WorkUnitR3);
                 ThreadCreationTest1.AddWorkUnitMain(WorkUnitR4);
-
                 cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
                 cout << "Running One Frame." << endl;
-                ThreadCreationTest1.DoOneFrame();
-                Swapper2(SwapResource2);
+                ThreadCreationTest1.DoOneFrame(); // Do the work
+                ThreadCreationTest1.RemoveWorkUnitMain(WorkUnitR1);
+                ThreadCreationTest1.RemoveWorkUnitMain(WorkUnitR2);
+                ThreadCreationTest1.RemoveWorkUnitMain(WorkUnitR3);
+                ThreadCreationTest1.RemoveWorkUnitMain(WorkUnitR4);
+                ThreadCreationTest1.DoOneFrame(); // Remove the work, but swap the log buffers.
                 Agg2(SwapResource2);
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
@@ -399,7 +402,6 @@ class frameschedulertests : public UnitTestGroup
                 cout << endl << "Thread count after setting to: " << ThreadCreationTest1.GetThreadCount() << endl;
                 cout << "Running One Frame." << endl;
                 ThreadCreationTest1.DoOneFrame();
-                Swapper2(SwapResource2);
                 Agg2(SwapResource2);
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
@@ -411,7 +413,6 @@ class frameschedulertests : public UnitTestGroup
                 cout << endl << "Thread count after setting to: " << ThreadCreationTest1.GetThreadCount() << endl;
                 cout << "Running One Frame." << endl;
                 ThreadCreationTest1.DoOneFrame();
-                Swapper2(SwapResource2);
                 Agg2(SwapResource2);
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
@@ -423,7 +424,6 @@ class frameschedulertests : public UnitTestGroup
                 cout << endl << "Thread count after setting to: " << ThreadCreationTest1.GetThreadCount() << endl;
                 cout << "Running One Frame." << endl;
                 ThreadCreationTest1.DoOneFrame();
-                Swapper2(SwapResource2);
                 Agg2(SwapResource2);
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
@@ -438,13 +438,13 @@ class frameschedulertests : public UnitTestGroup
                 for (Whole Counter=0; Counter<Work; ++Counter)
                     { ThreadCreationTest1.AddWorkUnitMain( new PiMakerWorkUnit(50000,"Dyn"+ToString(Counter),false) ); }
                 ThreadCreationTest1.DoOneFrame();
-                Swapper2(SwapResource2);
                 Agg2(SwapResource2);
                 //CheckSchedulerLog(LogCache,4,12);
                 //cout << LogCache.str() << endl;
                 CheckSchedulerLog(LogCache,4,1004,"ThousandUnitStress");
                 cout << "It ran correctly." << endl;
                 LogCache.str("");
+
             } // \threading tests
 
             { // Dependency
@@ -464,7 +464,6 @@ class frameschedulertests : public UnitTestGroup
                 RestartC->AddDependency(RestartA);
                 LogCache.str("");
                 FrameScheduler RestartScheduler1(&LogCache,2);
-                LogBufferSwapper Swapper3;
                 LogAggregator Agg3;
                 DefaultThreadSpecificStorage::Type SwapResource3(&RestartScheduler1);
                 RestartScheduler1.AddWorkUnitMain(RestartA);
@@ -472,7 +471,6 @@ class frameschedulertests : public UnitTestGroup
                 RestartScheduler1.AddWorkUnitMain(RestartC);
                 RestartScheduler1.SortWorkUnitsMain();
                 RestartScheduler1.DoOneFrame();
-                Swapper3(SwapResource3);
                 Agg3(SwapResource3);
                 // Check that two threads exist and that B and C run in different thread, and after A finished
 
@@ -793,7 +791,6 @@ class frameschedulertests : public UnitTestGroup
                 AffinityD->AddDependency(AffinityAffinity);
 
                 FrameScheduler Scheduler1(&LogCache,2);
-                LogBufferSwapper Swapper1;
                 LogAggregator Agg1;
                 DefaultThreadSpecificStorage::Type SwapResource(&Scheduler1);
                 Scheduler1.AddWorkUnitMain(AffinityA);
@@ -803,7 +800,6 @@ class frameschedulertests : public UnitTestGroup
                 Scheduler1.AddWorkUnitMain(AffinityD);
                 Scheduler1.SortWorkUnitsMain();
                 Scheduler1.DoOneFrame();
-                Swapper1(SwapResource);
                 Agg1(SwapResource);
                 // Check that two threads exist and that B and C run in different thread, and after A finished
                 cout << "Affinity should run in this This thread and this thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
