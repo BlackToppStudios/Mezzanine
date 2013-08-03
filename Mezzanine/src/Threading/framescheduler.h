@@ -476,7 +476,6 @@ namespace Mezzanine
                 /// @brief Get the endpoint for the logs.
                 /// @return An std:ostream reference which can be streamed to commit log entries.
                 std::ostream& GetLog();
-
         };//FrameScheduler
     } // \Threading
 }// \Mezanine

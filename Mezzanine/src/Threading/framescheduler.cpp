@@ -102,7 +102,7 @@ namespace Mezzanine
             #endif
         }
 
-        /// @brief This is the function that the main thread rungs.
+        /// @brief This is the function that the main thread runs.
         /// @param ThreadStorage A pointer to a ThreadSpecificStorage that has the required data for a thread after it launches.
         void ThreadWorkAffinity(void* ThreadStorage)
         {
@@ -205,6 +205,7 @@ namespace Mezzanine
         {
             Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
             (*LogDestination) << "<MezzanineLog>" << std::endl;
+            LogDestination->flush();
         }
 
         FrameScheduler::~FrameScheduler()
@@ -535,6 +536,7 @@ namespace Mezzanine
 
         void FrameScheduler::RunMainThreadWork()
         {
+            Resources[0]->SwapAllBufferedResources();
             ThreadWorkAffinity(Resources[0]); // Do work in this thread and get the units with affinity
         }
 
@@ -629,8 +631,6 @@ namespace Mezzanine
 
         std::ostream& FrameScheduler::GetLog()
             { return *LogDestination; }
-
-
 
     } // \FrameScheduler
 }// \Mezanine

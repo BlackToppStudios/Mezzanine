@@ -62,10 +62,11 @@ namespace Mezzanine
                         << "Interactive: Only interactive tests will be performed on specified test groups." << std::endl
                         << "Automatic:   Only automated tests will be performed on specified test groups." << std::endl
                         //<< "Interactive and Automatic: All tests will be run on specificied test groups." << std::endl << std::endl
-                        << "Summary:     Only display a count of failures and successes" << std::endl
-                        << "testlist:    Output a list of all tests, one per line" << std::endl
-                        << "skipfile:    Do not store a copy of the results in TestResults.txt" << std::endl
-                        << "Help:        Display this message"<< std::endl << std::endl
+                        << "Summary:     Only display a count of failures and successes." << std::endl
+                        << "testlist:    Output a list of all tests, one per line." << std::endl
+                        << "skipfile:    Do not store a copy of the results in TestResults.txt." << std::endl
+                        << "debugtests:  Run tests in the current process. Skips crash protection, but eases test debugging." << std::endl
+                        << "Help:        Display this message." << std::endl << std::endl
                         << "If only test group names are entered, then all tests in those groups are run." << std::endl
                         << "This command is not case sensitive." << std::endl << std::endl
                         << "Current Test Groups: " << std::endl;

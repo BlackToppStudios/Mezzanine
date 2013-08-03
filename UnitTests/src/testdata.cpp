@@ -53,13 +53,6 @@
 using namespace Mezzanine;
 using namespace std;
 
-
-#include <unistd.h>
-#include <ios>
-#include <iostream>
-#include <fstream>
-#include <string>
-
 namespace Mezzanine
 {
     namespace Testing
