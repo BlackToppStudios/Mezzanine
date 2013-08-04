@@ -96,7 +96,7 @@ namespace Mezzanine
             return ret;
         #else
             return (pthread_mutex_trylock(&mHandle) == 0) ? true : false;
-#endif
+        #endif
         }
 
         void Mutex::Unlock()
@@ -108,6 +108,24 @@ namespace Mezzanine
             pthread_mutex_unlock(&mHandle);
         #endif
         }
+
+        SpinLock::SpinLock() : Locked(0)
+        {}
+
+        SpinLock::~SpinLock()
+        {}
+
+        void SpinLock::Lock()
+        {
+            while(AtomicCompareAndSwap32(&Locked,0,1))
+                {}
+        }
+
+        bool SpinLock::TryLock()
+            { return !AtomicCompareAndSwap32(&Locked,0,1); }
+
+        void SpinLock::Unlock()
+            { AtomicCompareAndSwap32(&Locked,1,0); }
 
 
 

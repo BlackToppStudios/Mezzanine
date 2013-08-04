@@ -230,6 +230,13 @@ namespace Mezzanine
                 /////////////////////////////////////////////////////////////////////////////////////////////
                 // Deciding when to and doing the work
             public:
+                /// @brief This does everything required to track metadata and log work
+                /// @param CurrentThreadStorage The FrameScheduler passes this in
+                /// @details This wraps the log output in a WorkUnit element with a unique ID
+                /// as and an attribute. This causes all the log output to be valid xml as long
+                /// no '<' or '>' are emitted.
+                /// @n @n
+                ///
                 virtual void operator() (DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
 
                 virtual WorkUnitKey GetSortingKey(FrameScheduler &SchedulerToCount);

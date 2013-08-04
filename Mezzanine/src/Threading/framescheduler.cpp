@@ -162,30 +162,7 @@ namespace Mezzanine
         ////////////////////////////////////////////////////////////////////////////////
         // Construction and Destruction
         FrameScheduler::FrameScheduler(std::fstream *_LogDestination, Whole StartingThreadCount) :
-			LogDestination(_LogDestination),
-            CurrentFrameStart(GetTimeStamp()),
-            Sorter(0),
-            #ifdef MEZZ_USEBARRIERSEACHFRAME
-            StartFrameSync(StartingThreadCount),
-            EndFrameSync(StartingThreadCount),
-            LastFrame(0),
-            #endif
-            #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
-            DecacheMain(0),
-            DecacheAffinity(0),
-            #endif
-			CurrentThreadCount(StartingThreadCount),
-            FrameCount(0), TargetFrameLength(16666),
-            TimingCostAllowance(0),
-            MainThreadID(this_thread::get_id()),
-			LoggingToAnOwnedFileStream(true)
-        {
-            Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
-            GetLog() << "<MezzanineLog>" << std::endl;
-        }
-
-        FrameScheduler::FrameScheduler(std::ostream *_LogDestination, Whole StartingThreadCount) :
-			LogDestination(_LogDestination),
+            LogDestination(_LogDestination),
             CurrentFrameStart(GetTimeStamp()),
             Sorter(0),
             #ifdef MEZZ_USEBARRIERSEACHFRAME
@@ -201,7 +178,30 @@ namespace Mezzanine
             FrameCount(0), TargetFrameLength(16666),
             TimingCostAllowance(0),
             MainThreadID(this_thread::get_id()),
-			LoggingToAnOwnedFileStream(false)
+            LoggingToAnOwnedFileStream(true)
+        {
+            Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
+            GetLog() << "<MezzanineLog>" << std::endl;
+        }
+
+        FrameScheduler::FrameScheduler(std::ostream *_LogDestination, Whole StartingThreadCount) :
+            LogDestination(_LogDestination),
+            CurrentFrameStart(GetTimeStamp()),
+            Sorter(0),
+            #ifdef MEZZ_USEBARRIERSEACHFRAME
+            StartFrameSync(StartingThreadCount),
+            EndFrameSync(StartingThreadCount),
+            LastFrame(0),
+            #endif
+            #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
+            DecacheMain(0),
+            DecacheAffinity(0),
+            #endif
+            CurrentThreadCount(StartingThreadCount),
+            FrameCount(0), TargetFrameLength(16666),
+            TimingCostAllowance(0),
+            MainThreadID(this_thread::get_id()),
+            LoggingToAnOwnedFileStream(false)
         {
             Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
             (*LogDestination) << "<MezzanineLog>" << std::endl;
@@ -209,7 +209,7 @@ namespace Mezzanine
         }
 
         FrameScheduler::~FrameScheduler()
-        {            
+        {
             CleanUpThreads();
 
             (*LogDestination) << "</MezzanineLog>" << std::endl;
@@ -484,7 +484,7 @@ namespace Mezzanine
             { return CurrentThreadCount; }
 
         void FrameScheduler::SetThreadCount(const Whole& NewThreadCount)
-			{ CurrentThreadCount = NewThreadCount; }
+            { CurrentThreadCount = NewThreadCount; }
 
         MaxInt FrameScheduler::GetCurrentFrameStart() const
             { return CurrentFrameStart; }
@@ -510,6 +510,7 @@ namespace Mezzanine
 
         void FrameScheduler::CreateThreads()
         {
+            LogResources.Lock(); //Unlocks in FrameScheduler::RunMainThreadWork() after last resource is swapped
             #ifdef MEZZ_USEBARRIERSEACHFRAME
                 StartFrameSync.SetThreadSyncCount(CurrentThreadCount);
                 EndFrameSync.SetThreadSyncCount(CurrentThreadCount);
@@ -537,7 +538,9 @@ namespace Mezzanine
         void FrameScheduler::RunMainThreadWork()
         {
             Resources[0]->SwapAllBufferedResources();
+            LogResources.Unlock();
             ThreadWorkAffinity(Resources[0]); // Do work in this thread and get the units with affinity
+
         }
 
         void FrameScheduler::JoinAllThreads()

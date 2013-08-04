@@ -80,8 +80,8 @@ namespace Mezzanine
 
             protected:
 
-				////////////////////////////////////////////////////////////////////////////////
-				// Data Members
+                ////////////////////////////////////////////////////////////////////////////////
+                // Data Members
 
                 /// @brief A collection of all the work units that are not Monopolies and do not have affinity for a given thread.
                 /// @details This stores a sorted listing(currently a vector) of @ref Mezzanine::Threading::WorkUnitKey "WorkUnitKey" instances.
@@ -164,6 +164,10 @@ namespace Mezzanine
             protected:
                 #endif
 
+                /// @internal
+                /// @brief Protects DoubleBufferedResources during creation from being accessed by the LogAggregator.
+                SpinLock LogResources;
+
                 #ifdef MEZZ_USEATOMICSTODECACHECOMPLETEWORK
                 /// @brief Indicates the beginning of work that must be searched when starting a fresh search for work in WorkUnitsMain.
                 Int32 DecacheMain;
@@ -191,8 +195,8 @@ namespace Mezzanine
                 /// @brief Set based on which constructor is called, and only used during destruction.
                 bool LoggingToAnOwnedFileStream;
 
-				////////////////////////////////////////////////////////////////////////////////
-				// Protected Methods
+                ////////////////////////////////////////////////////////////////////////////////
+                // Protected Methods
 
                 /// @brief Used in destruction to tear down threads.
                 void CleanUpThreads();
@@ -210,9 +214,9 @@ namespace Mezzanine
 
             public:
 
-				////////////////////////////////////////////////////////////////////////////////
-				// Construction and Destruction
-			
+                ////////////////////////////////////////////////////////////////////////////////
+                // Construction and Destruction
+
                 /// @brief Create a Framescheduler that owns a filestream for logging.
                 /// @param _LogDestination An fstream that will be closed and deleted when this framescheduler is destroyed. Defaults to a new Filestream Logging to 'Log.txt'.
                 /// @param StartingThreadCount How many threads. Defaults to the value returned by @ref Mezzanine::GetCPUCount "GetCPUCount()".
@@ -235,9 +239,9 @@ namespace Mezzanine
                 /// @details Deletes all std::fstream, WorkUnit, MonopolyWorkUnit and ThreadSpecificStorage objects that this was passed or created during its lifetime.
                 virtual ~FrameScheduler();
 
-				////////////////////////////////////////////////////////////////////////////////
-				// WorkUnit management
-			
+                ////////////////////////////////////////////////////////////////////////////////
+                // WorkUnit management
+
                 /// @brief Add a normal @ref iWorkUnit to this For fcheduling.
                 /// @param MoreWork A pointer the the WorkUnit, that the FrameScheduler will take ownership of, and schedule for work.
                 virtual void AddWorkUnitMain(iWorkUnit* MoreWork);
@@ -285,9 +289,9 @@ namespace Mezzanine
                 /// @param LessWork A pointer to the MonopolyWorkUnit the calling coding will reclaim ownership of and will no longer be scheduled, and have its dependencies removed.
                 virtual void RemoveWorkUnitMonopoly(MonopolyWorkUnit* LessWork);
 
-				////////////////////////////////////////////////////////////////////////////////
-				// Algorithm essentials
-			
+                ////////////////////////////////////////////////////////////////////////////////
+                // Algorithm essentials
+
                 /// @brief How many other WorkUnit instances must wait on this one.
                 /// @param Work The WorkUnit to get the updated count of.
                 /// @param UsedCachedDepedentGraph If the cache is already up to date leaving this false, and not updating it can save significant time.
@@ -313,8 +317,8 @@ namespace Mezzanine
                 /// These place include create a @ref WorkUnitKey or Sorting the work units in a framescheduler.
                 virtual void UpdateDependentGraph();
 
-				////////////////////////////////////////////////////////////////////////////////
-				// Algorithm Configuration and Introspection
+                ////////////////////////////////////////////////////////////////////////////////
+                // Algorithm Configuration and Introspection
 
                 /// @brief Get the current number of frames that have elapsed
                 /// @return A Whole containing the frame count.
@@ -351,8 +355,8 @@ namespace Mezzanine
                 /// @return A MaxInt with the timestamp corresponding to when this frame started.
                 virtual MaxInt GetCurrentFrameStart() const;
 
-				////////////////////////////////////////////////////////////////////////////////
-				// Executing a Frame
+                ////////////////////////////////////////////////////////////////////////////////
+                // Executing a Frame
 
                 /// @brief Do one frame worth of work.
                 /// @details This just calls the following functions in the order presented:
@@ -374,11 +378,18 @@ namespace Mezzanine
                 /// (except Monopolies) or you want to take the most recent performance number into account.
                 virtual void DoOneFrame();
 
+                // Image that the next 6 functions should be call in sequence for ideal performance.
+                // Do preparation here.
+
+                // Setup anything monopolies need, though it would be better if the monopolies could do it themselves in a multithreaded way.
+
                 /// @brief This is the 1st step (of 6) in a frame.
                 /// @details This iterates over the listing of @ref MonopolyWorkUnit "MonopolyWorkUnit"s and executes each one in the order
                 /// it was added. This should be considered as consuming all available CPU time until it returns. This call blocks until execution
                 /// of monopolies is complete.
                 virtual void RunAllMonopolies();
+
+                // If the monopolies need some cleanup, it could be done here. Not much should be done here, most work is better as a work unit.
 
                 /// @brief This is the 2nd step (of 6) in a frame.
                 /// @details This starts all the threads on their work. Until @ref JoinAllThreads() is called some thread may still be working.
@@ -396,17 +407,27 @@ namespace Mezzanine
                 /// otherwise this will re-use thread specific resources and create a new set of threads. Re-use of threads is synchronized
                 /// with the @ref Barrier StartFrameSync member variable. It is unclear, and likely platform specific, which option has
                 /// better performance characteristics.
-                /// @warning While this is running any changes to the @ref FrameScheduler be made with an atomic operation like the
+                /// @warning While this is running any changes to the @ref FrameScheduler must be made with an atomic operation like the
                 /// @ref AtomicCompareAndSwap32 "AtomicCompareAndSwap32" or @ref AtomicAdd "AtomicAdd". Any other threads
-                /// @ref ThreadSpecificStorage or workunit may be accessed as long as they are protected by some kind of synchronization
-                /// mechanism.
+                /// workunit may be accessed as any normal shared data, but Thread specific Resources should not be accessed while this runs.
+                /// @warning This uses a Spinlock to prevent accesss to ThreadSpecifivResources that the LogAggregator needs. This is unlocked
+                /// in RunMainThreadWork.
                 virtual void CreateThreads();
+
+                // If it must be run on the main thread and must be run first each frame it could go here, but I think you should
+                // just make a work unit out of it and make other work units depend on it. Right now all the other thread are working.
 
                 /// @brief This is the 3rd step (of 6) in a frame.
                 /// @details This runs the main portion of the @ref algorithm_sec "scheduling algorithm" on the main thread. This call
                 /// blocks until the execution of all workunits with main thread affinity are complete and all other work units have at
                 /// least started. This could return and other threads could still be working.
+                /// @warning This uses a Spinlock to prevent accesss to ThreadSpecifivResources that the LogAggregator needs.  This should
+                /// be called immediately after CreateThreads to minimize any possible contention.
                 virtual void RunMainThreadWork();
+
+                // Alled the work units have at least been started, and quite possible most have finished. It is possible a few threads
+                // have finished. But if you must do something after all the workunits have started and most finished, while the threads
+                // remain in memory, then this is the place to do it.
 
                 /// @brief This is the 4th step (of 6) in a frame.
                 /// @details Used when completing the work of a frame, to cleaning end the execution of the threads. This function will
@@ -415,11 +436,17 @@ namespace Mezzanine
                 /// made to timeout or interupt a work unit before it finishes.
                 void JoinAllThreads();
 
+                // All the threads have been cleaned up or paused. All the work units have finished. This is a reasonable place for heuristics
+                // and maybe other kinds of work. but maybe that stuff could go in a monopoly instead. This might be a good place to check
+                // statuses of work units, but all the interesting statuses kill the program.
+
                 /// @brief This is the 5th step (of 6) in a frame.
                 /// @details Take any steps required to prepare all owned WorkUnits for execution next frame. This usually includes reseting
                 /// all the work units running state to @ref NotStarted "NotStarted". This can cause work units to be executed multiple times
                 /// if a thread is still executing.
                 virtual void ResetAllWorkUnits();
+
+                // All the work units are ready for the next frame, but no real waiting has occurred yet.
 
                 /// @brief This is the final step (of 6) in a frame.
                 /// @details Wait until this frame has consumed its fair share of a second. This uses the value passed in
@@ -430,6 +457,8 @@ namespace Mezzanine
                 /// any other logic that needs to run after the frame does not interfere with frame timing. Because
                 /// This is designed to wait fractions of a second any amount of waiting above 1 second fails automaticall.
                 void WaitUntilNextFrame();
+
+                // This is the same place as before the monopolies, except for whatever one time setup code you might have.
 
                 ////////////////////////////////////////////////////////////////////////////////
                 // Basic container features

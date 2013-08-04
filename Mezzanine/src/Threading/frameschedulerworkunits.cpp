@@ -62,6 +62,7 @@ namespace Mezzanine
         {
             if(!AggregationTarget)
                 { AggregationTarget = CurrentThreadStorage.GetFrameScheduler(); }
+            AggregationTarget->LogResources.Lock();
 
             std::ostream& Log = AggregationTarget->GetLog();
             Log << "<Frame Count=\"" << AggregationTarget->GetFrameCount() << "\">" << std::endl;
@@ -69,11 +70,12 @@ namespace Mezzanine
                 Iter!=AggregationTarget->Resources.end();
                 ++Iter)
             {
-                Log << "<Thread>" << std::endl
+                Log << "<Thread Main=\"" << (AggregationTarget->Resources.begin()==Iter?1:0)<< "\">" << std::endl
                     << (*Iter)->GetResource<DoubleBufferedLogger>(DBRLogger).GetCommittable().str()
                     << "</Thread>" << std::endl;
                 (*Iter)->GetResource<DoubleBufferedLogger>(DBRLogger).GetCommittable().str("");
             }
+            AggregationTarget->LogResources.Unlock();
             Log << "</Frame>" << std::endl;
         }
 
