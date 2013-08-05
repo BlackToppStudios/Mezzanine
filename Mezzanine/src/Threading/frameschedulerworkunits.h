@@ -44,7 +44,6 @@
 
 #include "datatypes.h"
 #include "workunit.h"
-#include "monopoly.h"
 #include "workunitkey.h"
 
 #include <vector>

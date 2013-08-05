@@ -37,27 +37,27 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _boilerplatetests_h
-#define _boilerplatetests_h
+#ifndef _entrsoltests_h
+#define _entrsoltests_h
 
 #include "mezztest.h"
 
 #include <stdexcept> //only used to throw for TEST_THROW
 
 /// @file
-/// @brief This file should be used as template/example for building future Unit Tests
+/// @brief Tests some of the simplr features on the entresol, will test more in the future
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
-/// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
-class boilerplatetests : public UnitTestGroup
+/// @brief Test the manager container in the Mezzanine
+class entresoltests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "BoilerPlate"
+        /// @return Returns a String containing "Entresol"
         virtual String Name()
-            { return String("BoilerPlate"); }
+            { return String("Entresol"); }
 
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
@@ -66,8 +66,6 @@ class boilerplatetests : public UnitTestGroup
             TEST(true,"AutomaticTest");
             //TEST(false,"AutomaticFail");
 
-            TEST_WARN(true,"AutomaticDoNotWarn");
-            //TEST_WARN(false,"AutomaticWarn");
 
             TestResult Answer = Testing::Success;
             TEST_RESULT(Answer, "AutomaticTestResult");
@@ -84,19 +82,6 @@ class boilerplatetests : public UnitTestGroup
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
         virtual bool HasAutomaticTests() const
-            { return true; }
-
-
-        /// @brief This is called when Interactive tests are run
-        void RunInteractiveTests()
-        {
-            TestResult Answer = GetTestAnswerFromStdin( "Is this a question? ");
-            TEST_RESULT(Answer, "Interactive");
-        }
-
-        /// @brief Since RunInteractiveTests is implemented so is this.
-        /// @return returns true
-        virtual bool HasInteractiveTests() const
             { return true; }
 
 };
