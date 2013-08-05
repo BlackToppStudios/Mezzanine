@@ -42,6 +42,8 @@
 
 #include "mezztest.h"
 
+#include "entresol.h"
+
 #include <stdexcept> //only used to throw for TEST_THROW
 
 /// @file
@@ -62,21 +64,12 @@ class entresoltests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            // The TEST macro will capture Line, function file Metadata while
-            TEST(true,"AutomaticTest");
-            //TEST(false,"AutomaticFail");
+            {
+                Mezzanine::Entresol TimingEnt;
+                cout << "Default Entresol Timing" << TimingEnt.GetTargetFrameTimeMicroseconds();
+                TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==16667, "DefaultFrameTime")
+            }
 
-
-            TestResult Answer = Testing::Success;
-            TEST_RESULT(Answer, "AutomaticTestResult");
-
-            // Multiline example
-            TEST_THROW( std::runtime_error&, \
-                        throw std::runtime_error("oh noes!"); \
-                        , "AutomaticTestThrow");
-            //TEST_THROW(std::runtime_error, throw "oh noes!";, "AutomaticTestThrow"); //Throws unexpected type so it fails
-
-            TEST_NO_THROW( int x = 0; x++; , "ShouldNotThrow");
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

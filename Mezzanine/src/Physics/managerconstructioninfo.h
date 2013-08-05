@@ -78,7 +78,7 @@ namespace Mezzanine
             /// @brief Class constructor.
             ManagerConstructionInfo() :
                 PhysicsFlags(0),
-                MaxProxies(0),
+                MaxProxies(10),
                 GeographyLowerBounds(Vector3()),
                 GeographyUpperBounds(Vector3()),
                 Gravity(Vector3()) {  }
