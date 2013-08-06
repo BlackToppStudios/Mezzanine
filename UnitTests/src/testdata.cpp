@@ -93,7 +93,7 @@ namespace Mezzanine
         int PrintList(CoreTestGroup& TestGroups)
         {
             for(CoreTestGroup::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
-                { std::cout << Iter->first << std::endl; }
+                { cout << Iter->first << std::endl; }
             return ExitSuccess;
         }
 

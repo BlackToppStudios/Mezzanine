@@ -60,6 +60,8 @@ namespace Mezzanine
             /// @def TEST
             /// @brief The easiest way to add a test to the currently running UnitTestGroup.
             /// This captures test location meta data and should be considered the default way to record tests
+            /// @note This calls a member function on the UnitTestGroup class, so it can only be used in UnitTestGroup Functions
+            /// like UnitTestGroup::RunInteractiveTests or UnitTestGroup::RunAutomaticTests
             /// @param Cond A boolean operand of some kind
             /// @param Name The name of the current test
             #ifdef __FUNCTION__
@@ -73,6 +75,8 @@ namespace Mezzanine
             /// @def TEST_WARN
             /// @brief Just like TEST but if the test fails only a warning is added.
             /// This captures test location meta data and should be considered the default way to record tests that warn instead of fail
+            /// @note This calls a member function on the UnitTestGroup class, so it can only be used in UnitTestGroup Functions
+            /// like UnitTestGroup::RunInteractiveTests or UnitTestGroup::RunAutomaticTests
             /// @param Cond A boolean operand of some kind
             /// @param Name The name of the current test
             #ifdef __FUNCTION__
@@ -86,6 +90,8 @@ namespace Mezzanine
             /// @def TEST_RESULT
             /// @brief An easy way to add a test and associated data to the currently running UnitTestGroup
             /// This captures test location meta data and should be considered a good way to record tests that do not easily break down to a single conditional.
+            /// @note This calls a member function on the UnitTestGroup class, so it can only be used in UnitTestGroup Functions
+            /// like UnitTestGroup::RunInteractiveTests or UnitTestGroup::RunAutomaticTests
             /// @param ExistingResult A TestResult To be added directy
             /// @param Name The name of the current test
             #ifdef __FUNCTION__
@@ -99,7 +105,9 @@ namespace Mezzanine
         #ifndef TEST_THROW
             /// @def TEST_THROW
             /// @brief An easy way to add a test whether or not a function/code snippet throws exceptions (or whatever) the way planned.
-            /// @details This captures test location meta data and should be considered the default way to capture exception tests
+            /// @details This captures test location meta data and should be considered the default way to capture exception tests.
+            /// @note This calls a member function on the UnitTestGroup class, so it can only be used in UnitTestGroup Functions
+            /// like UnitTestGroup::RunInteractiveTests or UnitTestGroup::RunAutomaticTests
             /// @param ExpectThrown The type of the thing that should be thrown
             /// @param CodeThatThrows A snippet of code that throws an exception
             /// @param Name The name of the current test
@@ -108,9 +116,9 @@ namespace Mezzanine
                 try {                                                                                       \
                     CodeThatThrows;                                                                         \
                 } catch (ExpectThrown) {                                                                    \
-                    AddTestResult( TestData( (Name), Testing::Success, __FUNCTION__, __FILE__, __LINE__)) ;     \
+                    AddTestResult( TestData( (Name), Testing::Success, __FUNCTION__, __FILE__, __LINE__)) ; \
                 } catch (...) {                                                                             \
-                    AddTestResult( TestData( (Name), Testing::Failed, __FUNCTION__, __FILE__, __LINE__)) ;      \
+                    AddTestResult( TestData( (Name), Testing::Failed, __FUNCTION__, __FILE__, __LINE__)) ;  \
                 }
             #else
                 #define TEST_THROW(ExpectThrown, CodeThatThrows, Name)                                      \
@@ -128,6 +136,8 @@ namespace Mezzanine
             /// @def TEST_THROW
             /// @brief An easy way to add a test whether or not a function/code snippet throws exceptions (or whatever) the way planned.
             /// @details This captures test location meta data and should be considered the default way to capture exception tests
+            /// @note This calls a member function on the UnitTestGroup class, so it can only be used in UnitTestGroup Functions
+            /// like UnitTestGroup::RunInteractiveTests or UnitTestGroup::RunAutomaticTests
             /// @param CodeThatMightThrow The type of the thing that should be thrown
             /// @param Name The name of the current test
             #ifdef __FUNCTION__

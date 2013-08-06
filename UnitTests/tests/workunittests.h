@@ -114,8 +114,11 @@ class PiMakerWorkUnit : public Mezzanine::Threading::DefaultWorkUnit
         /// @brief CurrentFrameScheduler ignored
         virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
-            DoubleBufferedLogger& CurrentLogger = CurrentThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger);
-            CurrentLogger.GetUsable() << "<MakePi Pi=\"" << MakePi(Length,SpikesOn) << "\" WorkUnitName=\"" << Name << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << endl;
+            CurrentThreadStorage.GetUsableLogger()
+                    << "<MakePi Pi=\"" << MakePi(Length,SpikesOn)
+                    << "\" WorkUnitName=\"" << Name
+                    << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id()
+                    << "\" />" << endl;
         }
 };
 

@@ -154,8 +154,11 @@ namespace Mezzanine
         void DefaultWorkUnit::operator() (DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
             MaxInt Begin = Mezzanine::GetTimeStamp();
+
+            std::ostream& Out = CurrentThreadStorage.GetUsableLogger();
+            Out << "<WorkUnit id=\"" << std::hex << this << std::dec << "\">" << std::endl;
             #ifdef MEZZ_DEBUG
-            CurrentThreadStorage.GetUsableLogger() << "<WorkunitStart BeginTimeStamp=\"" << Begin << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << std::endl;
+            Out << "<WorkUnitStart BeginTimeStamp=\"" << Begin << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << std::endl;
             #endif
 
             this->DoWork(CurrentThreadStorage);
@@ -164,8 +167,9 @@ namespace Mezzanine
             CurrentRunningState = Complete;
 
             #ifdef MEZZ_DEBUG
-            CurrentThreadStorage.GetUsableLogger() << "<WorkunitEnd EndTimeStamp=\"" << End << "\" Duration=\"" << (End-Begin) << "\" DurationStored=\"" << Whole(End-Begin) << "\" ThreadID=\"" << Mezzanine::Threading::this_thread::get_id() << "\" />" << std::endl;
+            Out << "<WorkUnitEnd EndTimeStamp=\"" << End << "\" Duration=\"" << (End-Begin) << "\" DurationStored=\"" << Whole(End-Begin) << "\" />" << std::endl;
             #endif
+            Out << "</WorkUnit>" << std::endl;
         }
 
         WorkUnitKey DefaultWorkUnit::GetSortingKey(FrameScheduler& SchedulerToCount)

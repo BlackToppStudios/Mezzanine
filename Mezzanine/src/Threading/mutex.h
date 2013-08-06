@@ -69,6 +69,7 @@ freely, subject to the following restrictions:
 */
 
 #include "crossplatformincludes.h"
+#include "atomicoperations.h"
 
 #include <string>
 
@@ -79,7 +80,10 @@ namespace Mezzanine
 {
     namespace Threading
     {
-        /// @brief A cross-platform abstraction of the OS's mutex
+        /// @brief A cross-platform abstraction of the OS's mutex.
+        /// @details Use this for potentially long delays, like making multiple system calls. This is likely slower
+        /// than a spinlock, but it informs the OS of delay and could allow another thread to be scheduled, making use
+        /// of the time the current thread would otherwise spin.
         class MEZZ_LIB Mutex
         {
             private:
@@ -134,6 +138,43 @@ namespace Mezzanine
                 void Unlock();
         };//Mutex
 
+        /// @brief A mutex like construct that never makes a system call and uses CPU instructions instead.
+        /// @details This should be used when delay is likely to be measured in CPUs cycles and almost
+        /// certainly a short while. For pauses of unknown length use a Mutex so that the OS is informed it
+        /// could schedule another thread.
+        class MEZZ_LIB SpinLock
+        {
+            private:
+                /// @internal
+                /// 0 if unlocked, any other value if locked.
+                Int32 Locked;
+
+            public:
+                ///@brief Constructor, creates an unlocked mutex
+                SpinLock();
+
+                ///@brief Destructor.
+                ~SpinLock();
+
+                /// @brief Lock the SpinLoc.
+                /// @details The method will block the calling thread until a lock on the SpinLock can
+                /// be obtained. The SpinLock remains locked until @c unlock() is called.
+                /// @see lock_guard
+                void Lock();
+
+                /// @brief Try to lock the spinlock.
+                /// @details The method will try to lock the SpinLock. If it fails, the function will
+                /// return immediately (non-blocking).
+                /// @return @c true if the lock was acquired, or @c false if the lock could
+                /// not be acquired.
+                bool TryLock();
+
+                /// @brief Unlock the splinlock.
+                /// @details If any threads are waiting for the lock on this mutex, one of them will
+                /// be unblocked.
+                void Unlock();
+        };//Mutex
+
         /// @brief Lock guard class.
         /// @details The constructor locks the mutex, and the destructor unlocks the mutex, so
         /// the mutex will automatically be unlocked when the lock guard goes out of
@@ -145,7 +186,7 @@ namespace Mezzanine
         /// void increment()
         /// {
         ///   lock_guard<mutex> guard(m);
-        ///   ++ counter;
+        ///   ++counter;
         /// }
         /// @endcode
         template <class T>
@@ -173,7 +214,7 @@ namespace Mezzanine
                 }
 
             private:
-				/// @internal
+                /// @internal
                 /// @brief A non-owning pointer to the mutex.
                 mutex_type* mMutex;
         };//lock_guard

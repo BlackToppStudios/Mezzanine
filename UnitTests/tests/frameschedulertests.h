@@ -195,48 +195,30 @@ class frameschedulertests : public UnitTestGroup
         /// @param Log The Log to check
         /// @param TargetThreadCount there better be this many threads.
         /// @param WorkUnitCount There better be this many uniquely named WorkUnits.
-        /// @return A Set of WorkUnit names in case extra work needs to be performed on it.
-        set<String> CheckSchedulerLog(Mezzanine::Logger& Log, Whole TargetThreadCount_, Whole WorkUnitCount_, String TestName)
+        void CheckSchedulerLog(Mezzanine::Logger& Log, Whole TargetThreadCount_, Whole WorkUnitCount_, String TestName)
         {
-            TestResult temp;
             pugi::xml_document Doc;
             Doc.load(Log);
-            pugi::xml_node TestLog = Doc.child("Frame");
-            if(TestLog)
-                { temp=Testing::Success; }
-            else
-                { temp=Testing::Failed; }
-            AddTestResult(TestName+"::TestLog", temp);
-            Whole ThreadCount = 0;
-            Whole WorkUnitCount = 0;
-            pugi::xml_node LogCommit = TestLog.child("Thread");
+            pugi::xml_node TestFrame = Doc.child("MezzanineLog").child("Frame");
+            TEST(TestFrame, TestName+"::TestLog")
 
-            set<String> WorkUnitNames;
-            while(LogCommit)
-            {
-                pugi::xml_node OneUnit = LogCommit.child("MakePi");
-                while(OneUnit)
-                {
-                    pugi::xml_attribute CurrentName = OneUnit.attribute("WorkUnitName");
-                    WorkUnitNames.insert(CurrentName.value());
+            pugi::xpath_node_set Results = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit/MakePi");
+            cout << "Found " << Results.size() << " WorkUnits expected " << WorkUnitCount_ << "." << endl;
+            TEST(WorkUnitCount_==Results.size(),TestName+"::WorkUnitCount");
 
-                    WorkUnitCount++;
-                    OneUnit = OneUnit.next_sibling("MakePi");
-                }
-                ThreadCount++;
-                LogCommit = LogCommit.next_sibling("Thread");
-            }
-            cout << "Log inspection results: " << endl
-                 << "\t Found " << ThreadCount << " threads, expected " << TargetThreadCount_ << "." << endl
-                 << "\t Found " << WorkUnitNames.size() << " total WorkUnits run with " << WorkUnitCount << " different names and expected " << WorkUnitCount_ << "." << endl
-                 << "WorkUnit Names:" << endl;
-            //sort(WorkUnitNames.begin(),WorkUnitNames.end());
-            for(set<String>::iterator Iter=WorkUnitNames.begin(); Iter!=WorkUnitNames.end(); Iter++)
-                { cout << *Iter << "\t"; }
-            TEST(ThreadCount==TargetThreadCount_,TestName+"::ThreadCount");
-            TEST(WorkUnitCount_==WorkUnitNames.size(),TestName+"::LogcheckSizes");
-            TEST(WorkUnitCount_==WorkUnitCount,TestName+"::LogcheckNamecount");
-            return WorkUnitNames;
+            Results = Doc.select_nodes("MezzanineLog/Frame[1]/Thread");
+            cout << "Found " << Results.size() << " threads expected " << TargetThreadCount_ << "." << endl;
+            TEST(TargetThreadCount_==Results.size(),TestName+"::ThreadCount");
+
+            Results = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit/MakePi/@WorkUnitName");
+            cout << "Found " << Results.size() << " WorkUnitNames expected " << WorkUnitCount_ << ", with the following names: ";
+            for(pugi::xpath_node_set::const_iterator Iter = Results.begin();
+                Results.end()!=Iter;
+                ++Iter)
+            { cout << "\t" <<Iter->attribute().as_string(); }
+            cout << endl << endl;
+            TEST(WorkUnitCount_==Results.size(),TestName+"::NameCount");
+
         }
 
         /// @brief Converts anything streamable to a Mezzanine::String
@@ -367,82 +349,105 @@ class frameschedulertests : public UnitTestGroup
             } // \Basic Sorting
 
             {
-                //TestResult temp;
+                cout << std::endl << "Creating a FrameScheduler with 4 WorkUnits and a LogAggregator WorkUnit an Running one frame then redoing it with different thread counts: " << endl;
 
-                cout << "Creating a FrameScheduler with 4 WorkUnits Running one frame with different thread counts: " << endl;
+                PiMakerWorkUnit WorkUnitR1(50000,"Run1",false);
+                PiMakerWorkUnit WorkUnitR2(50000,"Run2",false);
+                PiMakerWorkUnit WorkUnitR3(50000,"Run3",false);
+                PiMakerWorkUnit WorkUnitR4(50000,"Run4",false);
+                LogAggregator Agg;
+
                 stringstream LogCache;
-                FrameScheduler ThreadCreationTest1(&LogCache,1);
-                PiMakerWorkUnit* WorkUnitR1 = new PiMakerWorkUnit(50000,"Run1",false);
-                PiMakerWorkUnit* WorkUnitR2 = new PiMakerWorkUnit(50000,"Run2",false);
-                PiMakerWorkUnit* WorkUnitR3 = new PiMakerWorkUnit(50000,"Run3",false);
-                PiMakerWorkUnit* WorkUnitR4 = new PiMakerWorkUnit(50000,"Run4",false);
-                LogAggregator Agg2;
-                DefaultThreadSpecificStorage::Type SwapResource2(&ThreadCreationTest1);
-
-                ThreadCreationTest1.AddWorkUnitMain(WorkUnitR1);
-                ThreadCreationTest1.AddWorkUnitMain(WorkUnitR2);
-                ThreadCreationTest1.AddWorkUnitMain(WorkUnitR3);
-                ThreadCreationTest1.AddWorkUnitMain(WorkUnitR4);
-                cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
-                cout << "Running One Frame." << endl;
-                ThreadCreationTest1.DoOneFrame(); // Do the work
-                ThreadCreationTest1.RemoveWorkUnitMain(WorkUnitR1);
-                ThreadCreationTest1.RemoveWorkUnitMain(WorkUnitR2);
-                ThreadCreationTest1.RemoveWorkUnitMain(WorkUnitR3);
-                ThreadCreationTest1.RemoveWorkUnitMain(WorkUnitR4);
-                ThreadCreationTest1.DoOneFrame(); // Remove the work, but swap the log buffers.
-                Agg2(SwapResource2);
+                {
+                    FrameScheduler ThreadCreationTest1(&LogCache,1);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4);
+                    ThreadCreationTest1.AddWorkUnitMain(&Agg);
+                    cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
+                    cout << "Running One Frame." << endl;
+                    ThreadCreationTest1.DoOneFrame(); // Do the work
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR1);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR2);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR3);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR4);
+                    ThreadCreationTest1.DoOneFrame(); // Remove the work, but swap the log buffers.
+                    ThreadCreationTest1.RemoveWorkUnitMain(&Agg);
+                }
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
                 CheckSchedulerLog(LogCache,1,4,"ThreadTests::SingleThread");
-                cout << "It ran correctly." << endl;
+                cout << endl << endl;
                 LogCache.str("");
 
-                ThreadCreationTest1.SetThreadCount(2);
-                cout << endl << "Thread count after setting to: " << ThreadCreationTest1.GetThreadCount() << endl;
-                cout << "Running One Frame." << endl;
-                ThreadCreationTest1.DoOneFrame();
-                Agg2(SwapResource2);
+                {
+                    FrameScheduler ThreadCreationTest1(&LogCache,2);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4);
+                    ThreadCreationTest1.AddWorkUnitMain(&Agg);
+                    cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
+                    cout << "Running One Frame." << endl;
+                    ThreadCreationTest1.DoOneFrame(); // Do the work
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR1);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR2);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR3);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR4);
+                    ThreadCreationTest1.DoOneFrame(); // Remove the work, but swap the log buffers.
+                    ThreadCreationTest1.RemoveWorkUnitMain(&Agg);
+                }
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
                 CheckSchedulerLog(LogCache,2,4,"ThreadTests::DualThread");
-                cout << "It ran correctly." << endl;
+                cout << endl << endl;
                 LogCache.str("");
 
-                ThreadCreationTest1.SetThreadCount(3);
-                cout << endl << "Thread count after setting to: " << ThreadCreationTest1.GetThreadCount() << endl;
-                cout << "Running One Frame." << endl;
-                ThreadCreationTest1.DoOneFrame();
-                Agg2(SwapResource2);
+                {
+                    FrameScheduler ThreadCreationTest1(&LogCache,3);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4);
+                    ThreadCreationTest1.AddWorkUnitMain(&Agg);
+                    cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
+                    cout << "Running One Frame." << endl;
+                    ThreadCreationTest1.DoOneFrame(); // Do the work
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR1);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR2);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR3);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR4);
+                    ThreadCreationTest1.DoOneFrame(); // Remove the work, but swap the log buffers.
+                    ThreadCreationTest1.RemoveWorkUnitMain(&Agg);
+                }
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
                 CheckSchedulerLog(LogCache,3,4,"ThreadTests::TripleThread");
-                cout << "It ran correctly." << endl;
+                cout << endl << endl;
                 LogCache.str("");
 
-                ThreadCreationTest1.SetThreadCount(4);
-                cout << endl << "Thread count after setting to: " << ThreadCreationTest1.GetThreadCount() << endl;
-                cout << "Running One Frame." << endl;
-                ThreadCreationTest1.DoOneFrame();
-                Agg2(SwapResource2);
+                {
+                    FrameScheduler ThreadCreationTest1(&LogCache,4);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4);
+                    ThreadCreationTest1.AddWorkUnitMain(&Agg);
+                    cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
+                    cout << "Running One Frame." << endl;
+                    ThreadCreationTest1.DoOneFrame(); // Do the work
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR1);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR2);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR3);
+                    ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR4);
+                    ThreadCreationTest1.DoOneFrame(); // Remove the work, but swap the log buffers.
+                    ThreadCreationTest1.RemoveWorkUnitMain(&Agg);
+                }
                 cout << "Emitting log:" << endl;
                 cout << LogCache.str() << endl;
-                CheckSchedulerLog(LogCache,4,4,"ThreadTests::QuadThread");
-                cout << "It ran correctly." << endl;
-                LogCache.str("");
-
-                //Whole Work = 8;
-                Whole Work = 1000;
-                cout << endl << "Leaving thread count alone and adding " << Work << " WorkUnits to the test scheduler" << endl;
-                cout << "Running One Frame." << endl;
-                for (Whole Counter=0; Counter<Work; ++Counter)
-                    { ThreadCreationTest1.AddWorkUnitMain( new PiMakerWorkUnit(50000,"Dyn"+ToString(Counter),false) ); }
-                ThreadCreationTest1.DoOneFrame();
-                Agg2(SwapResource2);
-                //CheckSchedulerLog(LogCache,4,12);
-                //cout << LogCache.str() << endl;
-                CheckSchedulerLog(LogCache,4,1004,"ThousandUnitStress");
-                cout << "It ran correctly." << endl;
+                CheckSchedulerLog(LogCache,4,4,"ThreadTests::DualThread");
+                cout << endl << endl;
                 LogCache.str("");
 
             } // \threading tests
@@ -457,33 +462,46 @@ class frameschedulertests : public UnitTestGroup
                         << endl << "    |"
                         << endl << "    +--->C"
                         << endl;
-                PausesWorkUnit *RestartA = new PausesWorkUnit(100000,"A");
-                PausesWorkUnit *RestartB = new PausesWorkUnit(100000,"B");
-                PausesWorkUnit *RestartC = new PausesWorkUnit(100000,"C");
-                RestartB->AddDependency(RestartA);
-                RestartC->AddDependency(RestartA);
-                LogCache.str("");
-                FrameScheduler RestartScheduler1(&LogCache,2);
+                PausesWorkUnit RestartA(100000,"A");
+                PausesWorkUnit RestartB(100000,"B");
+                PausesWorkUnit RestartC(100000,"C");
                 LogAggregator Agg3;
-                DefaultThreadSpecificStorage::Type SwapResource3(&RestartScheduler1);
-                RestartScheduler1.AddWorkUnitMain(RestartA);
-                RestartScheduler1.AddWorkUnitMain(RestartB);
-                RestartScheduler1.AddWorkUnitMain(RestartC);
-                RestartScheduler1.SortWorkUnitsMain();
-                RestartScheduler1.DoOneFrame();
-                Agg3(SwapResource3);
-                // Check that two threads exist and that B and C run in different thread, and after A finished
+                RestartB.AddDependency(&RestartA);
+                RestartC.AddDependency(&RestartA);
+                LogCache.str("");
 
-                cout << LogCache.str() << "Parsing log to determine if everything happened correctly" << endl;
+                {
+                    FrameScheduler RestartScheduler1(&LogCache,2);
+                    RestartScheduler1.AddWorkUnitMain(&RestartA);
+                    RestartScheduler1.AddWorkUnitMain(&RestartB);
+                    RestartScheduler1.AddWorkUnitMain(&RestartC);
+                    RestartScheduler1.SortWorkUnitsMain();
+                    RestartScheduler1.DoOneFrame();
+                    RestartScheduler1.RemoveWorkUnitMain(&RestartA); // Remove work to prevent multiple execution
+                    RestartScheduler1.RemoveWorkUnitMain(&RestartB);
+                    RestartScheduler1.RemoveWorkUnitMain(&RestartC);
+                    RestartScheduler1.AddWorkUnitMain(&Agg3);        // To get the logs
+                    RestartScheduler1.DoOneFrame();
+                    RestartScheduler1.RemoveWorkUnitMain(&Agg3);
+                }
+                cout << LogCache.str() << endl << "Parsing log to determine if everything happened correctly" << endl;
                 pugi::xml_document Doc;
                 Doc.load(LogCache);
 
-                pugi::xml_node Thread1Node = Doc.child("Frame").first_child();
-                pugi::xml_node Thread2Node = Doc.child("Frame").last_child();
+                pugi::xml_node Thread1Node = Doc.child("MezzanineLog").child("Frame").first_child();
+                pugi::xml_node Thread2Node = Doc.child("MezzanineLog").child("Frame").last_child();
                 TEST(Thread1Node,"BasicDependency::LogNode1");
                 TEST(Thread2Node,"BasicDependency::LogNode2");
 
-                #ifdef MEZZ_DEBUG
+
+                pugi::xpath_node_set Results;
+                Results = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit[Pause/@WorkUnitName='A']/WorkUnitEnd/@EndTimeStamp");
+                cout << "|" << Results.first().attribute().as_string() << "|";
+                Results = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit[Pause/@WorkUnitName='B']/WorkUnitStart/@EndTimeStamp");
+                Results = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit[Pause/@WorkUnitName='C']/WorkUnitStart/@EndTimeStamp");
+
+                Results = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit[Pause/@WorkUnitName='B']/Pause/@ThreadID");
+                Results = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit[Pause/@WorkUnitName='C']/Pause/@ThreadID");
                     vector<RestartMetric> UnitTracking;
                     UnitTracking.push_back(RestartMetric());
                     UnitTracking.push_back(RestartMetric());
@@ -492,25 +510,25 @@ class frameschedulertests : public UnitTestGroup
 
 
                     // gather all the data that might be useful in this test.
-                    UnitTracking[0].UnitStart = String(Thread1Node.child("WorkunitStart").attribute("BeginTimeStamp").as_string());
-                    UnitTracking[0].Name = String(Thread1Node.child("WorkunitStart").next_sibling().attribute("WorkUnitName").as_string());
-                    UnitTracking[0].Threadid = String(Thread1Node.child("WorkunitStart").next_sibling().attribute("ThreadID").as_string());
-                    UnitTracking[0].UnitEnd = String(Thread1Node.child("WorkunitStart").next_sibling().next_sibling().attribute("EndTimeStamp").as_string());
+                    UnitTracking[0].UnitStart = String(Thread1Node.child("WorkUnit").child("WorkUnitStart").attribute("BeginTimeStamp").as_string());
+                    UnitTracking[0].Name =      String(Thread1Node.child("WorkUnit").child("WorkUnitStart").next_sibling().attribute("WorkUnitName").as_string());
+                    UnitTracking[0].Threadid =  String(Thread1Node.child("WorkUnit").child("WorkUnitStart").next_sibling().attribute("ThreadID").as_string());
+                    UnitTracking[0].UnitEnd =   String(Thread1Node.child("WorkUnit").child("WorkUnitStart").next_sibling().next_sibling().attribute("EndTimeStamp").as_string());
                     cout << UnitTracking[0] << endl;
-                    UnitTracking[1].UnitStart = String(Thread1Node.child("WorkunitEnd").next_sibling().attribute("BeginTimeStamp").as_string());
-                    UnitTracking[1].Name = String(Thread1Node.child("WorkunitEnd").next_sibling().next_sibling().attribute("WorkUnitName").as_string());
-                    UnitTracking[1].Threadid = String(Thread1Node.child("WorkunitEnd").next_sibling().next_sibling().attribute("ThreadID").as_string());
-                    UnitTracking[1].UnitEnd = String(Thread1Node.child("WorkunitEnd").next_sibling().next_sibling().next_sibling().attribute("EndTimeStamp").as_string());
+                    UnitTracking[1].UnitStart = String(Thread1Node.child("WorkUnit").next_sibling().child("WorkUnitEnd").attribute("BeginTimeStamp").as_string());
+                    UnitTracking[1].Name =      String(Thread1Node.child("WorkUnit").next_sibling().name());// .child("WorkUnitEnd").next_sibling().attribute("WorkUnitName").as_string());
+                    UnitTracking[1].Threadid =  String(Thread1Node.child("WorkUnit").next_sibling().child("WorkUnitEnd").next_sibling().attribute("ThreadID").as_string());
+                    UnitTracking[1].UnitEnd =   String(Thread1Node.child("WorkUnit").next_sibling().child("WorkUnitEnd").next_sibling().next_sibling().attribute("EndTimeStamp").as_string());
                     cout << UnitTracking[1] << endl;
-                    UnitTracking[2].UnitStart = String(Thread2Node.child("WorkunitStart").attribute("BeginTimeStamp").as_string());
-                    UnitTracking[2].Name = String(Thread2Node.child("WorkunitStart").next_sibling().attribute("WorkUnitName").as_string());
-                    UnitTracking[2].Threadid = String(Thread2Node.child("WorkunitStart").next_sibling().attribute("ThreadID").as_string());
-                    UnitTracking[2].UnitEnd = String(Thread2Node.child("WorkunitStart").next_sibling().next_sibling().attribute("EndTimeStamp").as_string());
+                    UnitTracking[2].UnitStart = String(Thread2Node.child("WorkUnit").child("WorkUnitStart").attribute("BeginTimeStamp").as_string());
+                    UnitTracking[2].Name =      String(Thread2Node.child("WorkUnit").child("WorkUnitStart").next_sibling().attribute("WorkUnitName").as_string());
+                    UnitTracking[2].Threadid =  String(Thread2Node.child("WorkUnit").child("WorkUnitStart").next_sibling().attribute("ThreadID").as_string());
+                    UnitTracking[2].UnitEnd =   String(Thread2Node.child("WorkUnit").child("WorkUnitStart").next_sibling().next_sibling().attribute("EndTimeStamp").as_string());
                     cout << UnitTracking[2] << endl;
-                    UnitTracking[3].UnitStart = String(Thread2Node.child("WorkunitEnd").next_sibling().attribute("BeginTimeStamp").as_string());
-                    UnitTracking[3].Name = String(Thread2Node.child("WorkunitEnd").next_sibling().next_sibling().attribute("WorkUnitName").as_string());
-                    UnitTracking[3].Threadid = String(Thread2Node.child("WorkunitEnd").next_sibling().next_sibling().attribute("ThreadID").as_string());
-                    UnitTracking[3].UnitEnd = String(Thread2Node.child("WorkunitEnd").next_sibling().next_sibling().next_sibling().attribute("EndTimeStamp").as_string());
+                    UnitTracking[3].UnitStart = String(Thread2Node.child("WorkUnit").next_sibling().child("WorkUnitEnd").attribute("BeginTimeStamp").as_string());
+                    UnitTracking[3].Name =      String(Thread2Node.child("WorkUnit").next_sibling().child("WorkUnitEnd").attribute("WorkUnitName").as_string());
+                    UnitTracking[3].Threadid =  String(Thread2Node.child("WorkUnit").next_sibling().child("WorkUnitEnd").next_sibling().attribute("ThreadID").as_string());
+                    UnitTracking[3].UnitEnd =   String(Thread2Node.child("WorkUnit").next_sibling().child("WorkUnitEnd").next_sibling().next_sibling().attribute("EndTimeStamp").as_string());
                     cout << UnitTracking[3] << endl;
 
                     // Get exactly what we need.
@@ -546,10 +564,6 @@ class frameschedulertests : public UnitTestGroup
                     TEST(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+GetTimeStampResolution()),"BasicSorting::ABeforeC");
                     cout << "Were B and C run in different threads: " << (BThread!=CThread) << endl;
                     TEST(BThread!=CThread,"BasicSorting::BNotInCThread");
-                #else
-                    cout << "This test does not validate when not in debug mode. The log is missing much meta data.";
-                    // can still do some tests here
-                #endif
             }
 
             { // Removal
@@ -780,37 +794,47 @@ class frameschedulertests : public UnitTestGroup
                         << endl << "    |                  |"
                         << endl << "B---+                  +--->C"
                         << endl;
-                PausesWorkUnit *AffinityA = new PausesWorkUnit(10000,"A");
-                PausesWorkUnit *AffinityB = new PausesWorkUnit(10000,"B");
-                PausesWorkUnit *AffinityAffinity = new PausesWorkUnit(10000,"Affinity");
-                PausesWorkUnit *AffinityC = new PausesWorkUnit(10000,"C");
-                PausesWorkUnit *AffinityD = new PausesWorkUnit(10000,"D");
-                AffinityAffinity->AddDependency(AffinityA);
-                AffinityAffinity->AddDependency(AffinityB);
-                AffinityC->AddDependency(AffinityAffinity);
-                AffinityD->AddDependency(AffinityAffinity);
+                PausesWorkUnit AffinityA(10000,"A");
+                PausesWorkUnit AffinityB(10000,"B");
+                PausesWorkUnit AffinityAffinity(10000,"Affinity");
+                PausesWorkUnit AffinityC(10000,"C");
+                PausesWorkUnit AffinityD(10000,"D");
+                AffinityAffinity.AddDependency(&AffinityA);
+                AffinityAffinity.AddDependency(&AffinityB);
+                AffinityC.AddDependency(&AffinityAffinity);
+                AffinityD.AddDependency(&AffinityAffinity);
 
                 FrameScheduler Scheduler1(&LogCache,2);
                 LogAggregator Agg1;
-                DefaultThreadSpecificStorage::Type SwapResource(&Scheduler1);
-                Scheduler1.AddWorkUnitMain(AffinityA);
-                Scheduler1.AddWorkUnitMain(AffinityB);
-                Scheduler1.AddWorkUnitAffinity(AffinityAffinity);
-                Scheduler1.AddWorkUnitMain(AffinityC);
-                Scheduler1.AddWorkUnitMain(AffinityD);
+
+                Scheduler1.AddWorkUnitMain(&AffinityA);
+                Scheduler1.AddWorkUnitMain(&AffinityB);
+                Scheduler1.AddWorkUnitAffinity(&AffinityAffinity);
+                Scheduler1.AddWorkUnitMain(&AffinityC);
+                Scheduler1.AddWorkUnitMain(&AffinityD);
                 Scheduler1.SortWorkUnitsMain();
                 Scheduler1.DoOneFrame();
-                Agg1(SwapResource);
+                Scheduler1.AddWorkUnitMain(&Agg1);
+                Scheduler1.RemoveWorkUnitMain(&AffinityA);
+                Scheduler1.RemoveWorkUnitMain(&AffinityB);
+                Scheduler1.RemoveWorkUnitAffinity(&AffinityAffinity);
+                Scheduler1.RemoveWorkUnitMain(&AffinityC);
+                Scheduler1.RemoveWorkUnitMain(&AffinityD);
+                Scheduler1.DoOneFrame();
+                Scheduler1.RemoveWorkUnitMain(&Agg1);
+
                 // Check that two threads exist and that B and C run in different thread, and after A finished
                 cout << "Affinity should run in this This thread and this thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-                cout << LogCache.str() << "Parsing log to determine if everything happened correctly" << endl;
+                cout << LogCache.str() << endl << "Parsing log to determine if everything happened correctly" << endl;
 
-                #ifdef MEZZ_DEBUG
-                    /// @todo make a function that checks the order works units ran in returns that as a vector
-                #else
-                    cout << "This test does not validate when not in debug mode. The log is missing much meta data.";
-                    // can still do some tests here
-                #endif
+                pugi::xml_document Doc;
+                Doc.load(LogCache);
+
+                pugi::xpath_node_set MakePiNodes = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit/MakePi");
+                //cout << "Found " << MakePiNodes.size() << " MakePI workUnits executed, expected " << Expected << "." << endl;
+                //TEST(MakePiNodes.size()==Expected,"WorkLogged");
+
+
             } // \Affinity
 
             { // \ Removal Affinity

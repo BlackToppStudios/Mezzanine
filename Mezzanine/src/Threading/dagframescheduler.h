@@ -69,7 +69,7 @@
 
 /// @def MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION
 /// @brief The Minor version number of the library. (The middle number)
-#define MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION 6
+#define MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION 7
 
 /// @def MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION
 /// @brief The revision version number of the library. (This right/back number)
@@ -440,8 +440,8 @@ namespace Mezzanine
     /// intended to be used in game code.
     namespace Threading
     {
-	
-	}//Threading
+
+    }//Threading
 }//Mezzanine
 
 #endif

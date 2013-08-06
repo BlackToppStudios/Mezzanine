@@ -66,16 +66,18 @@ class boilerplatetests : public UnitTestGroup
             TEST(true,"AutomaticTest");
             //TEST(false,"AutomaticFail");
 
-            TEST_WARN(true,"AutomaticDoNotWarn");
+            TEST_WARN(true,"AutomaticWillNotWarn");
             //TEST_WARN(false,"AutomaticWarn");
 
             TestResult Answer = Testing::Success;
             TEST_RESULT(Answer, "AutomaticTestResult");
 
             // Multiline example
-            TEST_THROW( std::runtime_error&, \
-                        throw std::runtime_error("oh noes!"); \
-                        , "AutomaticTestThrow");
+            TEST_THROW  (
+                            std::runtime_error&,
+                            throw std::runtime_error("oh noes!");
+                            , "AutomaticTestThrow"
+                        );
             //TEST_THROW(std::runtime_error, throw "oh noes!";, "AutomaticTestThrow"); //Throws unexpected type so it fails
 
             TEST_NO_THROW( int x = 0; x++; , "ShouldNotThrow");
