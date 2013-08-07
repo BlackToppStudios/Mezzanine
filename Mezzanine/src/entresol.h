@@ -374,13 +374,11 @@ namespace Mezzanine
             /// @brief Used to track Ogre specific details for the statically linked Particle plugin
             Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
 
-            //Settings for Engine Functionality
-            Whole TargetFrameLength;
-            Whole FrameTime;
             //Used to break the mainloop
             Int32 ManualLoopBreak;
 
-            Threading::LogBufferSwapper* BufferSwapper;
+            /// @internal
+            /// @brief Responsible for asynchronously flushing the logs to disk (or wherever they sync to).
             Threading::LogAggregator* Aggregator;
 
             /// @internal
@@ -484,8 +482,9 @@ namespace Mezzanine
             /// been called (It creates the ThreadSpecific resources that contain the Loggers).
             Logger& GetLogStream(Threading::Thread::id ID = Threading::this_thread::get_id());
 
+            /// @internal
+            /// @brief This is used to asynchronously handle log messages.
             Threading::LogAggregator* GetLogAggregator();
-            Threading::LogBufferSwapper* GetLogBufferSwapper();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Timing system methods

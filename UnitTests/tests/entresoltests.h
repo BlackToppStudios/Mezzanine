@@ -64,29 +64,28 @@ public:
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            {
+            { // Target Times
                 Mezzanine::Entresol TimingEnt;
                 cout << endl << "Default Entresol Timing in microseconds: " << TimingEnt.GetTargetFrameTimeMicroseconds() << endl;
-                TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==16667, "DefaultFrameTimeMicro");
+                TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==16666, "DefaultFrameTimeMicro");
 
-                cout << "Default Entresol Timing in milliseconds: " << TimingEnt.GetFrameTimeMilliseconds() << endl;
-                TEST(TimingEnt.GetFrameTimeMilliseconds()==16, "DefaultFrameTimeMilli");
+                cout << "Default Entresol Timing in milliseconds: " << TimingEnt.GetTargetFrameTimeMilliseconds() << endl;
+                TEST(TimingEnt.GetTargetFrameTimeMilliseconds()==16, "DefaultFrameTimeMilli");
 
                 cout << "Attemping to set Entresol timing to have a single frame last 10 microseconds: ";
-                TimingEnt.SetTargetFrameTimeMicroseconds(1);
-                cout << TimingEnt.GetFrameTimeMicroseconds() << endl;
+                TimingEnt.SetTargetFrameTimeMicroseconds(10);
+                cout << TimingEnt.GetTargetFrameTimeMicroseconds() << endl;
                 TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==10, "SetFrameTimeMicro");
 
                 cout << "Attemping to set Entresol timing to have a single frame last 10 milliseconds: ";
                 TimingEnt.SetTargetFrameTimeMilliseconds(10);
-                cout << TimingEnt.GetFrameTimeMilliseconds() << endl;
+                cout << TimingEnt.GetTargetFrameTimeMilliseconds() << endl;
                 TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==10000, "SetFrameTimeMilli");
 
                 cout << "Attemping to set Entresol timing to 40 frames per second (should be 2500): ";
                 TimingEnt.SetTargetFrameRate(40);
-                cout << TimingEnt.GetFrameTimeMilliseconds() << endl;
+                cout << TimingEnt.GetTargetFrameTimeMicroseconds() << endl;
                 TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==25000, "SetFrameTimeMilli");
-
             }
 
         }

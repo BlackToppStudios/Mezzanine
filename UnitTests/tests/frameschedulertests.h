@@ -556,12 +556,12 @@ class frameschedulertests : public UnitTestGroup
                     }
 
                     cout << "The timer cannot resolve times less then: " << GetTimeStampResolution() << endl;
-                    cout << "Was A complete before B started: " << (ToWhatever<MaxInt>(AEnd)<=ToWhatever<MaxInt>(BStart)+GetTimeStampResolution()) << endl;
-                    cout << "Was A complete before B started if the clock resolution could cause error: " << (ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(BStart)+GetTimeStampResolution())) << endl;
-                    TEST(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(BStart)+GetTimeStampResolution()),"BasicSorting::ABeforeB");
+                    cout << "Was A complete before B started: " << (ToWhatever<MaxInt>(AEnd)<=ToWhatever<MaxInt>(BStart)+ToWhatever<MaxInt>(GetTimeStampResolution())) << endl;
+                    cout << "Was A complete before B started if the clock resolution could cause error: " << (ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(BStart)+ToWhatever<MaxInt>(GetTimeStampResolution()))) << endl;
+                    TEST(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(BStart)+ToWhatever<MaxInt>(GetTimeStampResolution())),"BasicSorting::ABeforeB");
                     cout << "Was A complete before C started: " << (ToWhatever<MaxInt>(AEnd)<=ToWhatever<MaxInt>(CStart)) << endl;
-                    cout << "Was A complete before C started if the clock resolution could cause error: " << (ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+GetTimeStampResolution())) << endl;
-                    TEST(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+GetTimeStampResolution()),"BasicSorting::ABeforeC");
+                    cout << "Was A complete before C started if the clock resolution could cause error: " << (ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+ToWhatever<MaxInt>(GetTimeStampResolution()))) << endl;
+                    TEST(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+ToWhatever<MaxInt>(GetTimeStampResolution())),"BasicSorting::ABeforeC");
                     cout << "Were B and C run in different threads: " << (BThread!=CThread) << endl;
                     TEST(BThread!=CThread,"BasicSorting::BNotInCThread");
             }

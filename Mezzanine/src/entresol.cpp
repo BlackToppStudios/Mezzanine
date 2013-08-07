@@ -204,8 +204,6 @@ namespace Mezzanine
         //Add default manager factories
         AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values
-        this->TargetFrameLength = 16667;
-        this->FrameTime = 0;
         this->ManualLoopBreak = 0;
 
         SetupOgre();
@@ -262,8 +260,6 @@ namespace Mezzanine
         //Add default manager factories
         AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values.
-        this->TargetFrameLength = 16667;
-        this->FrameTime = 0;
         this->ManualLoopBreak = false;
 
         // Create Ogre.
@@ -567,9 +563,6 @@ namespace Mezzanine
     Threading::LogAggregator* Entresol::GetLogAggregator()
         { return this->Aggregator; }
 
-    Threading::LogBufferSwapper* Entresol::GetLogBufferSwapper()
-        { return this->BufferSwapper; }
-
     ///////////////////////////////////////////////////////////////////////////////
     // Initialization
     ///////////////////////////////////////
@@ -658,8 +651,6 @@ namespace Mezzanine
             ++FrameCounter;
             #endif
 
-            this->FrameTime = FrameTimer->getMicroseconds();
-
             if( ManualLoopBreak )
                 break;
         }//End of main loop
@@ -680,38 +671,28 @@ namespace Mezzanine
     ///////////////////////////////////////
 
     void Entresol::SetTargetFrameRate(const Whole NewFrameRate)
-    {
-        this->SetTargetFrameTimeMicroseconds( 1000000 / static_cast<Real>( NewFrameRate ) );
-    }
+        { this->SetTargetFrameTimeMicroseconds( Real(1000000) / Real(NewFrameRate) ); }
 
     void Entresol::SetTargetFrameTimeMilliseconds(const Whole NewTargetTime)
-    {
-        this->SetTargetFrameTimeMicroseconds( NewTargetTime * 1000 );
-    }
+        { this->SetTargetFrameTimeMicroseconds( NewTargetTime * 1000 ); }
 
     void Entresol::SetTargetFrameTimeMicroseconds(const Whole NewTargetTime)
-    {
-        this->TargetFrameLength = NewTargetTime;
-    }
+        { WorkScheduler.SetFrameLength(NewTargetTime); }
 
     Whole Entresol::GetTargetFrameTimeMilliseconds() const
-    {
-        return this->TargetFrameLength * 0.001;
-    }
+        { return WorkScheduler.GetFrameLength()/1000; }
 
     Whole Entresol::GetTargetFrameTimeMicroseconds() const
-    {
-        return this->TargetFrameLength;
-    }
+        { return WorkScheduler.GetFrameLength(); }
 
     Whole Entresol::GetFrameTimeMilliseconds() const
     {
-        return this->FrameTime * 0.001;
+        return 0;
     }
 
     Whole Entresol::GetFrameTimeMicroseconds() const
     {
-        return this->FrameTime;
+        return 0;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
