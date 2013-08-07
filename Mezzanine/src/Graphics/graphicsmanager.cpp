@@ -203,6 +203,7 @@ namespace Mezzanine
 
         void GraphicsManager::Construct()
         {
+            this->PrimaryGameWindow=0;
             this->RenderWork = new RenderWorkUnit(this);
 
             UInt32 InitSDLSystems = SDL_WasInit(0);
@@ -217,6 +218,7 @@ namespace Mezzanine
             DesktopSettings.RenderWidth = DeskMode.w;
             DesktopSettings.RenderHeight = DeskMode.h;
             DesktopSettings.RefreshRate = DeskMode.refresh_rate;
+
         }
 
         void GraphicsManager::InitOgreRenderSystem()

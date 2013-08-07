@@ -383,11 +383,23 @@ namespace Mezzanine
             Threading::LogBufferSwapper* BufferSwapper;
             Threading::LogAggregator* Aggregator;
 
-            //must be called after Ogre
+            /// @internal
+            /// @brief Create and direct streams used for logging that are not part of the FrameScheduler
+            /// @details This sets the name of the Ogre log file (so must be called after the SetupOgre
+            /// function is called). This will be changed in the future to change/set the framescheduler
+            /// log, in the meantime its only interaction with the framescheduler is adding a
+            /// LogAggregator WorkUnit.
+            /// @param LogFileName The name of the file to log to. Some Subsystems will use this in addition to some other descriptor
             void SetupLogging(const String& LogFileName);
+            /// @internal
+            /// @brief Closes log files/streams and removes any WorkUnits from Scheduling dedicated to logging.
             void DestroyLogging();
 
+            /// @internal
+            /// @brief If not already created create an instance of Ogre.
             void SetupOgre();
+            /// @internal
+            /// @brief Do any teardown required for Ogre, then destroy Ogre.
             void DestroyOgre();
 
         public:
@@ -508,6 +520,7 @@ namespace Mezzanine
             /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.
             /// @return This returns a Whole with the current value in microseconds.
             Whole GetTargetFrameTimeMicroseconds() const;
+
             /// @brief Gets the amount of time since the last time the last frame took to run.
             /// @details This returns, in milliseconds the amount of time since the frame started.
             /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.

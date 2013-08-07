@@ -66,7 +66,7 @@ class boilerplatetests : public UnitTestGroup
             TEST(true,"AutomaticTest");
             //TEST(false,"AutomaticFail");
 
-            TEST_WARN(true,"AutomaticWillNotWarn");
+            TEST_WARN(true,"AutomaticDoNotWarn");
             //TEST_WARN(false,"AutomaticWarn");
 
             TestResult Answer = Testing::Success;

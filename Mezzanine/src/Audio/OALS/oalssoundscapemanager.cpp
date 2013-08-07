@@ -130,7 +130,10 @@ namespace Mezzanine
                 delete BufferUpdate3DWork;
 
                 OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
-                AudioMan->_UnregisterSoundScapeManager(this);
+                if(AudioMan)
+                {
+                    AudioMan->_UnregisterSoundScapeManager(this);
+                }
 
                 this->DestroyAllSoundProxies();
                 this->DestroyAllListeners();
@@ -202,7 +205,8 @@ namespace Mezzanine
                         (*ProxIt)->_OnContextDestroyed( ContextIndex, (*ConIt) );
                     }
 
-                    alcMakeContextCurrent( AudioMan->_GetNonSpacialContext() );
+                    if(AudioMan)
+                        { alcMakeContextCurrent( AudioMan->_GetNonSpacialContext() ); }
                     alcDestroyContext( (*ConIt) );
                 }
                 this->Contexts.clear();

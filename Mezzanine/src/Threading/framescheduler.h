@@ -65,7 +65,6 @@ namespace Mezzanine
         class MonopolyWorkUnit;
         class iWorkUnit;
         class LogAggregator;
-        class LogBufferSwapper;
         class FrameScheduler;
         class WorkSorter;
 
@@ -75,7 +74,6 @@ namespace Mezzanine
         class MEZZ_LIB FrameScheduler
         {
             friend class LogAggregator;
-            friend class LogBufferSwapper;
             friend class WorkSorter;
 
             protected:

@@ -230,8 +230,11 @@ namespace Mezzanine
             OALS::AudioManager::~AudioManager()
             {
                 this->DestroyAllSounds();
-                this->EffHandler->DestroyAllEffects();
-                this->EffHandler->DestroyAllFilters();
+                if( this->EffHandler )
+                {
+                    this->EffHandler->DestroyAllEffects();
+                    this->EffHandler->DestroyAllFilters();
+                }
                 this->DestroyAllRecorders();
                 //this->ShutdownPlaybackDevice();
 
