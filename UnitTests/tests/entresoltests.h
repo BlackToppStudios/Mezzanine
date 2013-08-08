@@ -52,10 +52,23 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
+class TimedTest
+{
+    MaxInt BeginTimer;
+    public:
+        TimedTest()
+            : BeginTimer(Mezzanine::GetTimeStamp())
+            {}
+
+        MaxInt GetLength()
+            { return BeginTimer-Mezzanine::GetTimeStamp(); }
+
+};
+
 /// @brief Test the manager container in the Mezzanine
 class entresoltests : public UnitTestGroup
 {
-public:
+    public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
         /// @return Returns a String containing "Entresol"
         virtual String Name()
@@ -86,6 +99,18 @@ public:
                 TimingEnt.SetTargetFrameRate(40);
                 cout << TimingEnt.GetTargetFrameTimeMicroseconds() << endl;
                 TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==25000, "SetFrameTimeMilli");
+            }
+
+            {
+                Mezzanine::Entresol TimingEnt;
+                TimingEnt.SetTargetFrameTimeMicroseconds(100);
+                TimedTest HundredFrames;
+                for(Whole I=0; I<100; I++)
+                {
+
+                }
+                Whole Length = HundredFrames.GetLength();
+
             }
 
         }

@@ -572,7 +572,7 @@ namespace Mezzanine
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
             StringStream InitStream;
-            InitStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << ".";
+            InitStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << "." << endl;
             this->Log(InitStream.str());
             if((*Iter)->GetInterfaceType() != ManagerBase::MT_GraphicsManager)
             {
@@ -598,37 +598,14 @@ namespace Mezzanine
 
     void Entresol::MainLoop()
     {
-        /// @todo create a lighting manager and put this in there
-        //this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
-
-        /*! @page mainloop1 Main Loop Structure and Flow
-         The MainLoop is heart of most video games and simulations.
-
-         @section mainloopoverview1 Main loop Overview
-         The Main loop runs in World.MainLoop() which is called by default from @ref World.GameInit(). By default this Method also starts the render, the physics andthe input systems. It does very
-         little on it's own. The main loop then calls the PreMainLoopItems(), DoMainLoopItems and PreMainLoopItems(), for each manager in the order of their priority from Lowest to Highest.
-         \n Here is a listing of  default priorities for each of the managers the a world intantiates by default:
-            -50	User Input and events
-            -40	Actors
-            -30	Physics
-            -20 Camera
-            -10 Lighting (Not yet implemented)
-              0 Graphics
-             10	Sound
-             20 Resources
-        */
-
         Ogre::Timer* FrameTimer = new Ogre::Timer();
         this->OneTimeMainLoopInit();
-        //As long as all the CallBacks return true the game continues
-        bool DoNotBreak = true;
-        while(DoNotBreak)
+
+        ostream& Log = WorkScheduler.GetLog();
+        while(!ManualLoopBreak)
         {
             #ifdef MEZZDEBUG
-            static UInt32 FrameCounter = 0;
-            StringStream FrameStream;
-            FrameStream << "<FrameCounterStart StartingFrame=\"" << FrameCounter << "\" />" << endl;
-            this->Log(FrameStream.str());
+            Log << "<FrameCounterStart StartingFrame=\"" << WorkScheduler.GetFrameCount() << "\" />" << endl;
             #endif
             FrameTimer->reset();
 
@@ -638,32 +615,29 @@ namespace Mezzanine
             WorkScheduler.JoinAllThreads();   //4
             WorkScheduler.ResetAllWorkUnits();//5
             #ifdef MEZZDEBUG
-            FrameStream.str("");
-            FrameStream << "<FrameCounterPrePause Frame=\"" << FrameCounter << "\"" << "PrePauseLength=\"" << FrameTimer->getMicroseconds() << "\" />" << endl;
-            this->Log(FrameStream.str());
+            Log << "<FrameCounterPrePause Frame=\"" << WorkScheduler.GetFrameCount() << "\"" << "PrePauseLength=\"" << FrameTimer->getMicroseconds() << "\" />" << endl;
             #endif
             WorkScheduler.WaitUntilNextFrame(); //6
 
             #ifdef MEZZDEBUG
-            FrameStream.str("");
-            FrameStream << "<FrameCounterEnd Frame=\"" << FrameCounter << "\"" << "Length=\"" << FrameTimer->getMicroseconds() << "\" />" << endl;
-            this->Log(FrameStream.str());
-            ++FrameCounter;
+            Log << "<FrameCounterEnd Frame=\"" << WorkScheduler.GetFrameCount() << "\"" << "Length=\"" << FrameTimer->getMicroseconds() << "\" />" << endl;
             #endif
-
-            if( ManualLoopBreak )
-                break;
         }//End of main loop
 
         ManualLoopBreak = 0;
         delete FrameTimer;
     }
 
-    void Entresol::BreakMainLoop()
+    void Entresol::BreakMainLoop(Bool Break)
     {
-        while(!ManualLoopBreak)
-            { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,0,1); }
-        //ManualLoopBreak = true;
+        if(Break)
+        {
+            while(!ManualLoopBreak)
+                { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,0,1); }
+        } else {
+            while(ManualLoopBreak)
+                { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,1,0); }
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -687,12 +661,12 @@ namespace Mezzanine
 
     Whole Entresol::GetFrameTimeMilliseconds() const
     {
-        return 0;
+        return 16; //temporary, until FrameScheduler time is integrated
     }
 
     Whole Entresol::GetFrameTimeMicroseconds() const
     {
-        return 0;
+        return 16666;//temporary, until FrameScheduler time is integrated
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -873,7 +847,7 @@ namespace Mezzanine
     void Entresol::AddManager(ManagerBase* ManagerToAdd)
     {
         #ifdef MEZZDEBUG
-        this->Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".");
+        this->Log("Adding " + ManagerToAdd->GetInterfaceTypeAsString() + ".\n");
         #endif
         // We have to verify the manager is unique.  A number of issues can arrise if a manager is double inserted.
         for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )

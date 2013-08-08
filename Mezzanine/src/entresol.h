@@ -545,10 +545,11 @@ namespace Mezzanine
 
             /// @brief This Function house the main loop.
             void MainLoop();
-            /// @brief This makes the main loop end after it's current iteration.
-            /// @details If called while not in the main loop, it will simply cause the next call to the main loop to do a single iteration and then exit.
+            /// @brief This makes the main loop end after it's current frame (or cancels a previous attempt to do so).
+            /// @param Break If true this will break the main loop after the next iteration or the end of the current one. If false the main loop will just keep running.
+            /// @details If called while not in the main loop, it will affect the next main loop iteration.
             /// This function is thread safe and can be called from any work unit at any time.
-            void BreakMainLoop();
+            void BreakMainLoop(Bool Break = true);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Factory Management
