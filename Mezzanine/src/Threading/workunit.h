@@ -219,7 +219,7 @@ namespace Mezzanine
                 virtual void PrepareForNextFrame();
 
                 /////////////////////////////////////////////////////////////////////////////////////////////
-                // Work with the preformance log
+                // Work with the performance log
             public:
                 virtual Whole GetPerformance() const;
 

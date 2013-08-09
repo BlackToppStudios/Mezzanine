@@ -46,6 +46,8 @@
 #include "thread.h"
 #include "workunitkey.h"
 #include "systemcalls.h"
+#include "rollingaverage.h"
+
 #ifdef MEZZ_USEBARRIERSEACHFRAME
     #include "barrier.h"
 #endif
@@ -140,11 +142,20 @@ namespace Mezzanine
                 /// @brief A const iterator suitable for iterating over the main pool of work units.
                 typedef std::vector<MonopolyWorkUnit*>::const_iterator ConstIteratorMonopoly;
 
-                /// @brief When the logs are aggregated, this is where they are sent
-                std::ostream* LogDestination;
+                /// @brief A rolling average of Frame times.
+                DefaultRollingAverage<Whole>::Type FrameTimeLog;
+
+                /// @brief A rolling average of Frame Pause times.
+                DefaultRollingAverage<Whole>::Type PauseTimeLog;
 
                 /// @brief What time did the current Frame Start at.
                 MaxInt CurrentFrameStart;
+
+                /// @brief What time did the current Frame Start at.
+                MaxInt CurrentPauseStart;
+
+                /// @brief When the logs are aggregated, this is where they are sent
+                std::ostream* LogDestination;
 
                 /// @brief If this pointer is non-zero then the @ref WorkSorter it points at will be used to sort WorkUnits.
                 WorkSorter* Sorter;
@@ -344,7 +355,7 @@ namespace Mezzanine
                 /// @return A Whole with the current desired thread count.
                 virtual Whole GetThreadCount();
 
-                /// @brief Set the amount of thread to use.
+                /// @brief Set the amount of threads to use.
                 /// @param NewThreadCount The amount of threads to use starting at the begining of the next frame.
                 /// @note Currently the thread count cannot be reduced if Mezz_MinimizeThreadsEachFrame is selected in cmake configuration.
                 virtual void SetThreadCount(const Whole& NewThreadCount);
@@ -352,6 +363,8 @@ namespace Mezzanine
                 /// @brief When did this frame start?
                 /// @return A MaxInt with the timestamp corresponding to when this frame started.
                 virtual MaxInt GetCurrentFrameStart() const;
+
+                /// @todo add functions for getting LastPauseTime, PauseTineAverages, LastFrameTime, FrameTimeAverage
 
                 ////////////////////////////////////////////////////////////////////////////////
                 // Executing a Frame
