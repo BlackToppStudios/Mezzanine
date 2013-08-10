@@ -70,6 +70,12 @@ namespace Mezzanine
             /// @details The is no gaurantee on the time this runs in. It run in linear time relative to the amount of records or it could run in constant time
             virtual RecordType GetAverage() const = 0;
 
+            /// @brief Get a 0 indexed record of the past few insertions.
+            /// @detail This returns one insertion, with RecordCapacity()-1 being the newest, and 0 being the oldest.
+            /// @warning This is not guaranteed to accurate in all rolling averages.
+            /// @return A reference to something the resembles an inserted record.
+            virtual RecordType& operator[] (Whole Index) = 0;
+
             /// @brief Empty virtual Destructor.
             virtual ~RollingAverage(){}
     };//RollingAverage
@@ -150,6 +156,22 @@ namespace Mezzanine
                 this->Records(Rhs->Records);
             }
 
+            /// @brief Get an accurate record of insertions up to RecordCapacity()
+            /// @return A reference to an insertion.
+            /// @param Index Which insertion to retrieve? 0 being the oldest still tracked and RecordCapacity()-1 begin the newest
+            virtual RecordType& operator[] (Whole Index)
+            {
+                typename std::vector<RecordType>::iterator  Iter = this->Current;
+
+                for(Whole C = 0; C<=Index; C++)
+                {
+                    if(Records.end() == ++Iter)
+                        { Iter = Records.begin(); }
+                }
+
+                return *Iter;
+            }
+
             /// @brief Deconstructor.
             virtual ~BufferedRollingAverage(){}
     };//BufferedRollingAverage
@@ -167,6 +189,9 @@ namespace Mezzanine
             /// @brief Replaces the capacity of normal rolling averages.
             Whole WeightCount;
 
+            /// @brief Sometimes retrieving the value just inserted is too useful.
+            RecordType LastEntry;
+
         public:
             /// @brief Used for accessing the derived type when it may not be directly known.
             typedef RecordType Type;
@@ -175,7 +200,8 @@ namespace Mezzanine
             /// @param RecordCount How many records should this emulate.
             WeightedRollingAverage(const Whole& RecordCount = MEZZ_FRAMESTOTRACK) :
                 CurrentAverage(0),
-				WeightCount(RecordCount)
+                WeightCount(RecordCount),
+                LastEntry(1)
                 {}
 
             /// @brief Returns how many records this is emulating.
@@ -187,15 +213,21 @@ namespace Mezzanine
             /// @param Datum Update the Current Average according to the following formula CurrentAverage = CurrentAverage * ((RecordCount-1)/RecordCount) + Datum/RecordCount.
             virtual void Insert(RecordType Datum)
             {
+                LastEntry = Datum;
                 CurrentAverage = ( MathType(this->CurrentAverage) ? MathType(this->CurrentAverage) : MathType(1)) // A zero really screws with averages that tend to move away from zero
-                        * ((MathType(WeightCount)-MathType(1))/MathType(WeightCount))                             //Get weight of all the older members
-                        + MathType(Datum)/MathType(WeightCount);                                                  //Get the Weight of the Current Member
+                        * ((MathType(WeightCount)-MathType(1))/MathType(WeightCount))                             // Get weight of all the older members
+                        + MathType(Datum)/MathType(WeightCount);                                                  // wGet the Weight of the Current Member
             }
 
             /// @brief Get the current rolling average.
             /// @return Get the Current Rolling average as a RecordType.
             virtual RecordType GetAverage() const
                 { return CurrentAverage; }
+
+            /// @brief Get the last insertion
+            /// @return The last insertion, always the last one, it is the only one stored.
+            virtual RecordType& operator[] (Whole)
+                { return LastEntry; }
 
             /// @brief Class Destructor.
             virtual ~WeightedRollingAverage(){}

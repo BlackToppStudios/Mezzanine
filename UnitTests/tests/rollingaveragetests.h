@@ -110,8 +110,17 @@ class rollingaveragetests : public UnitTestGroup
             TEST(RollingB2.GetAverage()>15.4 && RollingB2.GetAverage()<15.6,"Buffered2")
             cout << "WeightedRollingAverage Result, should be ~12.2158: " << RollingW2.GetAverage() << endl;
             TEST(RollingW2.GetAverage()>12.1 && RollingW2.GetAverage()<15.6,"Weighted2")
-
             cout << "DefaultRollingAverage Result, should match its underlying type : " << RollingD2.GetAverage() << endl;
+
+            cout << "BufferedRollingAverage Last inserted value, should be 20: " << RollingB2[RollingB2.RecordCapacity()-1] << endl;
+            TEST(20.0 == RollingB2[RollingB2.RecordCapacity()-1], "BufferedLastEntry");
+            cout << "WeightedRollingAverage Last inserted value, should be 20: " << RollingW2[RollingW2.RecordCapacity()-1] << endl;
+            TEST(20.0 == RollingW2[RollingW2.RecordCapacity()-1], "WieghtLastEntry");
+
+            cout << "BufferedRollingAverage oldest inserted value, should be 11: " << RollingB2[0] << endl;
+            TEST(11.0 == RollingB2[0], "BufferedOldestEntry");
+            cout << "WeightedRollingAverage oldest inserted value, should be 20: " << RollingW2[0] << endl;
+            TEST(20.0 == RollingW2[0], "WieghtOldestEntry");
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
