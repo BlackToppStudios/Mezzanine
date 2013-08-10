@@ -478,13 +478,6 @@ namespace Mezzanine
         }
     }
 
-    void Entresol::OneTimeMainLoopInit()
-    {
-        VerifyManagerInitializations();
-        this->GetPhysicsManager()->MainLoopInitialize();
-        this->GetAreaEffectManager()->MainLoopInitialize();
-    }
-
     bool Entresol::VerifyManagerInitializations()
     {
         std::vector<String> ManagerNames;
@@ -592,40 +585,44 @@ namespace Mezzanine
     ///////////////////////////////////////
 
     Threading::FrameScheduler& Entresol::GetScheduler()
-    {
-        return this->WorkScheduler;
-    }
+        { return this->WorkScheduler; }
 
     void Entresol::MainLoop()
     {
-        Ogre::Timer* FrameTimer = new Ogre::Timer();
-        this->OneTimeMainLoopInit();
+        this->PreMainLoopInit();
 
-        ostream& Log = WorkScheduler.GetLog();
         while(!ManualLoopBreak)
         {
-            #ifdef MEZZDEBUG
-            Log << "<FrameCounterStart StartingFrame=\"" << WorkScheduler.GetFrameCount() << "\" />" << endl;
-            #endif
-            FrameTimer->reset();
-
-            WorkScheduler.RunAllMonopolies(); //1
-            WorkScheduler.CreateThreads();    //2
-            WorkScheduler.RunMainThreadWork();//3
-            WorkScheduler.JoinAllThreads();   //4
-            WorkScheduler.ResetAllWorkUnits();//5
-            #ifdef MEZZDEBUG
-            Log << "<FrameCounterPrePause Frame=\"" << WorkScheduler.GetFrameCount() << "\"" << "PrePauseLength=\"" << FrameTimer->getMicroseconds() << "\" />" << endl;
-            #endif
-            WorkScheduler.WaitUntilNextFrame(); //6
-
-            #ifdef MEZZDEBUG
-            Log << "<FrameCounterEnd Frame=\"" << WorkScheduler.GetFrameCount() << "\"" << "Length=\"" << FrameTimer->getMicroseconds() << "\" />" << endl;
-            #endif
+            DoOneFrame();
         }//End of main loop
 
         ManualLoopBreak = 0;
-        delete FrameTimer;
+    }
+
+    void Entresol::PreMainLoopInit()
+    {
+        VerifyManagerInitializations();
+        this->GetPhysicsManager()->MainLoopInitialize();
+        this->GetAreaEffectManager()->MainLoopInitialize();
+    }
+
+    void Entresol::DoOneFrame()
+    {
+        #ifdef MEZZDEBUG
+        WorkScheduler.GetLog() << "<FrameCounterStart StartingFrame=\" Time=\"" << GetTimeStamp()<< "\" />" << endl;
+        #endif
+        WorkScheduler.RunAllMonopolies(); //1
+        WorkScheduler.CreateThreads();    //2
+        WorkScheduler.RunMainThreadWork();//3
+        WorkScheduler.JoinAllThreads();   //4
+        WorkScheduler.ResetAllWorkUnits();//5
+        #ifdef MEZZDEBUG
+        WorkScheduler.GetLog() << "<FrameCounterPrePause Frame=\"" << WorkScheduler.GetFrameCount() << "\" Time=\"" << GetTimeStamp()<< "\" />" << endl;
+        #endif
+        WorkScheduler.WaitUntilNextFrame(); //6
+        #ifdef MEZZDEBUG
+        WorkScheduler.GetLog() << "<FrameCounterEnd Frame=\"" << WorkScheduler.GetFrameCount() << "\"Time=\"" << GetTimeStamp()<< "\" />" << endl;
+        #endif
     }
 
     void Entresol::BreakMainLoop(Bool Break)
@@ -639,6 +636,9 @@ namespace Mezzanine
                 { Threading::AtomicCompareAndSwap32(&ManualLoopBreak,1,0); }
         }
     }
+
+    Whole Entresol::GetFrameCount() const
+        { return WorkScheduler.GetFrameCount(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Simple get and Set functions
@@ -659,13 +659,15 @@ namespace Mezzanine
     Whole Entresol::GetTargetFrameTimeMicroseconds() const
         { return WorkScheduler.GetFrameLength(); }
 
-    Whole Entresol::GetFrameTimeMilliseconds() const
+    Whole Entresol::GetLastFrameTimeMilliseconds() const
     {
+        //return WorkScheduler.GetLastFrameTime()/1000;
         return 16; //temporary, until FrameScheduler time is integrated
     }
 
-    Whole Entresol::GetFrameTimeMicroseconds() const
+    Whole Entresol::GetLastFrameTimeMicroseconds() const
     {
+        ///return WorkScheduler.GetLastFrameTime(); // not producing correct numbers yet.
         return 16666;//temporary, until FrameScheduler time is integrated
     }
 

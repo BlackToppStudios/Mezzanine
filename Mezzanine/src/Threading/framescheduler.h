@@ -364,7 +364,22 @@ namespace Mezzanine
                 /// @return A MaxInt with the timestamp corresponding to when this frame started.
                 virtual MaxInt GetCurrentFrameStart() const;
 
-                /// @todo add functions for getting LastPauseTime, PauseTineAverages, LastFrameTime, FrameTimeAverage
+                /// @brief Get The complete record of the past durations of the Pauses Each frame.
+                /// @return A Rolling average of the default type.
+                DefaultRollingAverage<Whole>::Type& GetPauseTimeRollingAverage();
+
+                /// @brief How long was the pause, if any, last frame?
+                /// @return A whole containing the duration of the last pause.
+                Whole GetLastPauseTime() const;
+
+                /// @brief Get The complete record of the durations of the last few frames.
+                /// @return A Rolling average of the default type.
+                DefaultRollingAverage<Whole>::Type& GetFrameTimeRollingAverage();
+
+                /// @brief How long was the previous frame?
+                /// @return A Whole containing the duration of the last frame.
+                Whole GetLastFrameTime() const;
+
 
                 ////////////////////////////////////////////////////////////////////////////////
                 // Executing a Frame

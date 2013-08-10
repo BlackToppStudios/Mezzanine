@@ -76,6 +76,11 @@ namespace Mezzanine
             /// @return A reference to something the resembles an inserted record.
             virtual RecordType& operator[] (Whole Index) = 0;
 
+            /// @brief Get a 0 indexed record of the past few insertions.
+            /// @detail This returns one insertion, with RecordCapacity()-1 being the newest, and 0 being the oldest.
+            /// @return A copy to something the resembles an inserted record.
+            virtual RecordType operator[] (Whole Index) const = 0;
+
             /// @brief Empty virtual Destructor.
             virtual ~RollingAverage(){}
     };//RollingAverage
@@ -172,6 +177,22 @@ namespace Mezzanine
                 return *Iter;
             }
 
+            /// @brief Get an accurate record of insertions up to RecordCapacity()
+            /// @return A copy of an inserted value.
+            /// @param Index Which insertion to retrieve? 0 being the oldest still tracked and RecordCapacity()-1 begin the newest
+            virtual RecordType operator[] (Whole Index) const
+            {
+                typename std::vector<RecordType>::const_iterator Iter = this->Current;
+
+                for(Whole C = 0; C<=Index; C++)
+                {
+                    if(Records.end() == ++Iter)
+                        { Iter = Records.begin(); }
+                }
+
+                return *Iter;
+            }
+
             /// @brief Deconstructor.
             virtual ~BufferedRollingAverage(){}
     };//BufferedRollingAverage
@@ -227,6 +248,11 @@ namespace Mezzanine
             /// @brief Get the last insertion
             /// @return The last insertion, always the last one, it is the only one stored.
             virtual RecordType& operator[] (Whole)
+                { return LastEntry; }
+
+            /// @brief Get the last insertion
+            /// @return The last insertion, always the last one, it is the only one stored.
+            virtual RecordType operator[] (Whole) const
                 { return LastEntry; }
 
             /// @brief Class Destructor.

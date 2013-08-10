@@ -70,13 +70,13 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
     CameraController* DefaultControl = CamMan->GetOrCreateCameraController(CamMan->GetCamera(0));
     if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A) )
-        DefaultControl->StrafeLeft(300 * (this->CatchApplication->TheEntresol->GetFrameTimeMilliseconds() * 0.001));
+        DefaultControl->StrafeLeft(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D) )
-        DefaultControl->StrafeRight(300 * (this->CatchApplication->TheEntresol->GetFrameTimeMilliseconds() * 0.001));
+        DefaultControl->StrafeRight(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W) )
-        DefaultControl->MoveForward(300 * (this->CatchApplication->TheEntresol->GetFrameTimeMilliseconds() * 0.001));
+        DefaultControl->MoveForward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S) )
-        DefaultControl->MoveBackward(300 * (this->CatchApplication->TheEntresol->GetFrameTimeMilliseconds() * 0.001));
+        DefaultControl->MoveBackward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     static bool MouseCam = false;
     if( SysKeyboard->IsButtonPressing(Input::KEY_HOME) )
         MouseCam = true;

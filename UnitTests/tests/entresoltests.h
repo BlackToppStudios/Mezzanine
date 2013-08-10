@@ -102,15 +102,19 @@ class entresoltests : public UnitTestGroup
             }
 
             {
-                Mezzanine::Entresol TimingEnt;
+                /*Mezzanine::Entresol TimingEnt;
                 TimingEnt.SetTargetFrameTimeMicroseconds(100);
+                TimingEnt.PreMainLoopInit();
+
                 TimedTest HundredFrames;
                 for(Whole I=0; I<100; I++)
                 {
-
+                    TimingEnt.DoOneFrame();
                 }
                 Whole Length = HundredFrames.GetLength();
-
+                Whole TimePerFrame = Length/100;
+                TEST(9800 < TimePerFrame && TimePerFrame < 10200, "FrameTiming2%Variance");
+*/
             }
 
         }

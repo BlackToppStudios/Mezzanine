@@ -360,7 +360,6 @@ namespace Mezzanine
             /// @brief Perform a series of checks that could change on certain system or from certain codechanges to alert us to any problems early.
             void SanityChecks();
 
-            void OneTimeMainLoopInit();
             bool VerifyManagerInitializations();
 
             /// @internal
@@ -523,11 +522,11 @@ namespace Mezzanine
             /// @brief Gets the amount of time since the last time the last frame took to run.
             /// @details This returns, in milliseconds the amount of time since the frame started.
             /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
-            Whole GetFrameTimeMilliseconds() const;
+            Whole GetLastFrameTimeMilliseconds() const;
             /// @brief Gets the amount of time since the last time the last frame took to run.
             /// @details This returns, in microseconds the amount of time since the frame started.
             /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
-            Whole GetFrameTimeMicroseconds() const;
+            Whole GetLastFrameTimeMicroseconds() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Initialization
@@ -544,12 +543,25 @@ namespace Mezzanine
             Threading::FrameScheduler& GetScheduler();
 
             /// @brief This Function house the main loop.
+            /// @details If using this you don't need to worry about initialization of managers or other pre main loop items.
             void MainLoop();
+
+            /// @brief Initialize any default managers and any added after construction. This should be called before DoOneFrame()
+            void PreMainLoopInit();
+
+            /// @brief Run one frame
+            /// @details This should only be called after Managers and other Pre Main loop items
+            void DoOneFrame();
+
             /// @brief This makes the main loop end after it's current frame (or cancels a previous attempt to do so).
             /// @param Break If true this will break the main loop after the next iteration or the end of the current one. If false the main loop will just keep running.
             /// @details If called while not in the main loop, it will affect the next main loop iteration.
             /// This function is thread safe and can be called from any work unit at any time.
             void BreakMainLoop(Bool Break = true);
+
+            /// @brief How many frames have elasped?
+            /// @return A Whole containing the currect 0 based frame number.
+            Whole GetFrameCount() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Factory Management
