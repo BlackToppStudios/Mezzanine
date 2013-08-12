@@ -43,6 +43,7 @@
 #include "consolelogic.h"
 #include "consolestringmanipulation.h"
 #include "testdata.h"
+#include "testdatatools.h"
 #include "testenumerations.h"
 
 #endif

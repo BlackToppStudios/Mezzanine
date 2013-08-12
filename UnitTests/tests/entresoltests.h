@@ -52,19 +52,6 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
-class TimedTest
-{
-    MaxInt BeginTimer;
-    public:
-        TimedTest()
-            : BeginTimer(Mezzanine::GetTimeStamp())
-            {}
-
-        MaxInt GetLength()
-            { return BeginTimer-Mezzanine::GetTimeStamp(); }
-
-};
-
 /// @brief Test the manager container in the Mezzanine
 class entresoltests : public UnitTestGroup
 {

@@ -118,6 +118,8 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}/mezztest.cpp"
     "${${PROJECT_NAME}_SRC_DIR}/testdata.h"
     "${${PROJECT_NAME}_SRC_DIR}/testdata.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}/testdatatools.h"
+    "${${PROJECT_NAME}_SRC_DIR}/testdatatools.cpp"
     "${${PROJECT_NAME}_SRC_DIR}/testenumerations.h"
     "${${PROJECT_NAME}_SRC_DIR}/testenumerations.cpp"
 
