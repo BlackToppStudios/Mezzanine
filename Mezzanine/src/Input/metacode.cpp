@@ -68,10 +68,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion Methods
 
-        MetaCode::MetaCode() : MetaValue(0), Code(Input::KEY_UNKNOWN), DeviceIndex( numeric_limits<UInt16>::max() )
+        MetaCode::MetaCode() : MetaValue(0), DeviceIndex( numeric_limits<UInt16>::max() ), Code(Input::KEY_UNKNOWN)
         {}
 
-        MetaCode::MetaCode(const MetaCode& Other) : MetaValue(Other.MetaValue), Code(Other.Code), DeviceIndex(Other.DeviceIndex)
+        MetaCode::MetaCode(const MetaCode& Other) : MetaValue(Other.MetaValue), DeviceIndex(Other.DeviceIndex), Code(Other.Code)
         {}
 
         MetaCode::MetaCode(const Int32& Value, const Input::InputCode& NewCode) : DeviceIndex( numeric_limits<UInt16>::max() )
@@ -396,7 +396,10 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Input::MetaCod
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Input::MetaCode& x)
     { return Mezzanine::DeSerialize(stream, x); }
 
-Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Input::MetaCode& x)
-    {x.ProtoDeSerialize(OneNode); }
+Mezzanine::XML::Node& operator >> (Mezzanine::XML::Node& OneNode, Mezzanine::Input::MetaCode& x)
+{
+    x.ProtoDeSerialize(OneNode);
+    return OneNode;
+}
 
 #endif

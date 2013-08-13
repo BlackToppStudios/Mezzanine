@@ -1092,12 +1092,38 @@ class frameschedulertests : public UnitTestGroup
                         << (Checker3->LogFromArgs) << " == " << (Checker3->LogFromGet) << " : " << (Checker3->LogFromArgs==Checker3->LogFromGet) << endl
                      << dec << "from thread :" << Checker4->InThread << " - " << hex
                         << (Checker4->LogFromArgs) << " == " << (Checker4->LogFromGet) << " : " << (Checker4->LogFromArgs==Checker4->LogFromGet) << endl
-                     << endl;
+                     << endl << fixed << dec ;
                 TEST(Checker1->LogFromArgs==Checker1->LogFromGet &&
                      Checker2->LogFromArgs==Checker2->LogFromGet &&
                      Checker3->LogFromArgs==Checker3->LogFromGet &&
                      Checker4->LogFromArgs==Checker4->LogFromGet
                      ,"GetThreadUsableLogger");
+            }
+
+            {
+                stringstream LogCache;
+                FrameScheduler Scheduler1(&LogCache);
+                MaxInt FrameLength=10000;
+                MaxInt FrameCount=100;
+                MaxInt TargetLength = FrameCount*FrameLength;
+                Scheduler1.SetFrameLength(FrameLength);
+
+                cout << "Creating a Framescheduler and running it empty for brief period to measure its accuracy." << endl;
+                TEST_TIMED (
+                                for(MaxInt Counter = 0; Counter<FrameCount; Counter++)
+                                    { Scheduler1.DoOneFrame(); }
+                            ,TargetLength, 0.02, "MultiFrameTiming"
+                            );
+
+                // get the last inserted frame length
+                Whole ActualLength = Scheduler1.GetFrameTimeRollingAverage()[Scheduler1.GetFrameTimeRollingAverage().RecordCapacity()-1];
+                cout << "Expected last frame to be " << FrameLength << " microseconds and it was " << ActualLength << " microseconds." << endl;
+                TEST( (FrameLength-200<ActualLength) && (ActualLength<FrameLength+200),"LastFrameData" );
+
+                Whole PauseLength = Scheduler1.GetPauseTimeRollingAverage()[Scheduler1.GetPauseTimeRollingAverage().RecordCapacity()-1];
+                cout << "Without know the performance of this machine ahead of time, knowing the size of the pause is impossible, how it can be tested for sane values, it is: "
+                     << PauseLength<< "  microseconds." << endl;
+                TEST( (0<=PauseLength) && (PauseLength<=FrameLength+1),"LastPauseData" );
 
             }
         }

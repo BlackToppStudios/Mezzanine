@@ -178,10 +178,50 @@ namespace Mezzanine
                 /// @brief How long since this started.
                 /// @return A MaxInt containing the Now - BeginTimer.
                 MaxInt GetLength()
-                    { return BeginTimer-Mezzanine::Testing::Now(); }
+                    { return Mezzanine::Testing::Now() - BeginTimer; }
 
         };
 
+        #ifndef TEST_TIMED
+            /// @def TEST_TIMED
+            /// @brief An easy way to add a test whether or not a function/code snippet takes the expected amount of time
+            /// @details This starts a timer just before the CodeToTime is execute and stops that time right after it finishes
+            /// @note This calls a member function on the UnitTestGroup class, so it can only be used in UnitTestGroup Functions
+            /// like UnitTestGroup::RunInteractiveTests or UnitTestGroup::RunAutomaticTests
+            /// @param CodeToTime The code to time
+            /// @param ExpectedTime The Expected amount if time in microseconds.
+            /// @param Variance A fraction 0.00 of how far off, long or short, the execution time can be and still pass. For example .02 is 2%
+            /// @param Name The name of the current test
+            #ifdef __FUNCTION__
+                #define TEST_TIMED(CodeToTime, ExpectedTime, Variance, Name)                                \
+                {                                                                                           \
+                    TimedTest TESTDuration;                                                                 \
+                    CodeToTime;                                                                             \
+                    MaxInt TESTLength = TESTDuration.GetLength();                                           \
+                    MaxInt TESTTargetTime = ExpectedTime;                                                   \
+                    MaxInt TESTVariance= Variance * double(ExpectedTime);                                   \
+                    if( MaxInt(TESTTargetTime-TESTVariance) < TESTLength &&                                 \
+                        TESTLength < MaxInt(TESTTargetTime+TESTVariance))                                   \
+                    { AddTestResult( TestData( (Name), Testing::Success, __FUNCTION__, __FILE__, __LINE__) ); } \
+                    else                                                                                    \
+                    { AddTestResult( TestData( (Name), Testing::Failed, __FUNCTION__, __FILE__, __LINE__) ); }  \
+                }
+            #else
+                #define TEST_TIMED(CodeToTime, ExpectedTime, Variance, Name)                                \
+                {                                                                                           \
+                    TimedTest TESTDuration;                                                                 \
+                    CodeToTime;                                                                             \
+                    MaxInt TESTLength = TESTDuration.GetLength();                                           \
+                    MaxInt TESTTargetTime = ExpectedTime;                                                   \
+                    MaxInt TESTVariance= Variance * double(ExpectedTime);                                   \
+                    if( MaxInt(TESTTargetTime-TESTVariance) < TESTLength &&                                 \
+                        TESTLength < MaxInt(TESTTargetTime+TESTVariance))                                   \
+                    { AddTestResult( TestData( (Name), Testing::Success, __func__, __FILE__, __LINE__) ); } \
+                    else                                                                                    \
+                    { AddTestResult( TestData( (Name), Testing::Failed, __func__, __FILE__, __LINE__) ); }  \
+                }
+            #endif
+        #endif
     }// Testing
 }// Mezzanine
 

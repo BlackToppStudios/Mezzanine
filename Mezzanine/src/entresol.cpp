@@ -661,14 +661,14 @@ namespace Mezzanine
 
     Whole Entresol::GetLastFrameTimeMilliseconds() const
     {
-        //return WorkScheduler.GetLastFrameTime()/1000;
-        return 16; //temporary, until FrameScheduler time is integrated
+        return WorkScheduler.GetLastFrameTime()/1000;
+        //return 16; //temporary, until FrameScheduler time is integrated
     }
 
     Whole Entresol::GetLastFrameTimeMicroseconds() const
     {
-        ///return WorkScheduler.GetLastFrameTime(); // not producing correct numbers yet.
-        return 16666;//temporary, until FrameScheduler time is integrated
+        return WorkScheduler.GetLastFrameTime();
+        //return 16666;//temporary, until FrameScheduler time is integrated
     }
 
     ///////////////////////////////////////////////////////////////////////////////
