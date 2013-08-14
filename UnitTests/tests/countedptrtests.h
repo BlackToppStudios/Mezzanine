@@ -41,6 +41,7 @@
 #define _countedptrtests_h
 
 #include "mezztest.h"
+#include "mezzanine.h"
 
 #include "smartptr.h"
 

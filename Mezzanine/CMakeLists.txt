@@ -215,6 +215,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Physics/staticmeshcollisionshape.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/universalconstraint.h"
         "${${PROJECT_NAME}_SRC_DIR}plane.h"
+        "${${PROJECT_NAME}_SRC_DIR}pstdint.h"
         "${${PROJECT_NAME}_SRC_DIR}quaternion.h"
         "${${PROJECT_NAME}_SRC_DIR}ray.h"
         "${${PROJECT_NAME}_SRC_DIR}rayquerytool.h"
