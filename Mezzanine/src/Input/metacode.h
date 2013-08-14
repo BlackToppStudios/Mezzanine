@@ -333,6 +333,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Input::Meta
 /// @param x the Mezzanine::MetaCode to store the deserialized MetaCode
 /// @return This returns a reference to the XML::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
-Mezzanine::XML::Node& MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Input::MetaCode& x);
+Mezzanine::XML::Node& MEZZ_LIB  operator >> (Mezzanine::XML::Node& OneNode, Mezzanine::Input::MetaCode& x);
 
 #endif

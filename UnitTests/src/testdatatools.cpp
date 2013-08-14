@@ -37,13 +37,78 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mezztests_h
-#define _mezztests_h
+#ifndef _testdatatools_cpp
+#define _testdatatools_cpp
 
-#include "consolelogic.h"
-#include "consolestringmanipulation.h"
+/// @file
+/// @brief The implementation of stuff that must be run in the context of a TestData
+
 #include "testdata.h"
-#include "testdatatools.h"
-#include "testenumerations.h"
+
+#include <vector>
+#include <stdexcept>
+#include <sstream>
+
+#ifdef _MEZZ_THREAD_WIN32_
+    #include <windows.h>
+#else
+    #ifdef _MEZZ_THREAD_APPLE_
+        #include <sys/sysctl.h>
+    #endif
+    #include <sys/time.h>
+    #include <unistd.h>
+#endif
+
+using namespace Mezzanine;
+using namespace std;
+
+namespace Mezzanine
+{
+    namespace Testing
+    {
+        #ifdef _MEZZ_THREAD_WIN32_
+            namespace
+            {
+                /// @internal
+                class Timer
+                {
+                    public:
+                        LARGE_INTEGER frequency;
+
+                        Timer()
+                            { QueryPerformanceFrequency(&frequency); }
+
+                        MaxInt GetTimeStamp()
+                        {
+                            LARGE_INTEGER Current;
+                            QueryPerformanceCounter(&Current);
+                            return MaxInt(Current.QuadPart * (1000000.0 / frequency.QuadPart));
+                        }
+                };
+
+                static Timer ATimer;
+            }
+
+            MaxInt GetTimeStamp()
+                { return ATimer.GetTimeStamp(); }
+
+            Whole GetTimeStampResolution()
+                { return Whole(ATimer.frequency.QuadPart/1000); }
+
+        #else
+            MaxInt Now()
+            {
+                timeval Now;
+                gettimeofday(&Now, NULL); // Posix says this must return 0, so it seems it can't fail
+                return (Now.tv_sec * 1000000) + Now.tv_usec;
+            }
+
+            Whole NowResolution()
+                { return 1; } // barring kernel bugs
+
+        #endif
+    }// Testing
+}// Mezzanine
 
 #endif
+
