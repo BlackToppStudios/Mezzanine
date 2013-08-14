@@ -50,5 +50,8 @@ The following Licenses are applicable to the libraries that comprise the Mezzani
 	The "René Nyffenegger MIT License" as described in RenéNyffenegger-MIT.txt
 		Base64 encoding and decoding functions.
 
+	The BSD License as described in pstdint-BSD.txt
+		pstdint.h
+
 Any required identifying information is presented in the original copies of the license in the appropriate directory in libincludes/ .
 
