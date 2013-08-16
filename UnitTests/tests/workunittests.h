@@ -152,9 +152,9 @@ class workunittests : public UnitTestGroup
             PiMakerWorkUnit* WorkUnitC = new PiMakerWorkUnit(50,"C",false);
             WorkUnitC->AddDependency(WorkUnitB);
             WorkUnitB->AddDependency(WorkUnitA);
-            TestScheduler.AddWorkUnitMain(WorkUnitA);
-            TestScheduler.AddWorkUnitMain(WorkUnitB);
-            TestScheduler.AddWorkUnitMain(WorkUnitC);
+            TestScheduler.AddWorkUnitMain(WorkUnitA, WorkUnitA->Name);
+            TestScheduler.AddWorkUnitMain(WorkUnitB, WorkUnitB->Name);
+            TestScheduler.AddWorkUnitMain(WorkUnitC, WorkUnitC->Name);
             TestScheduler.UpdateDependentGraph();
             cout << "A dependency count: " << WorkUnitA->GetDependencyCount() << " \t A dependent count: " << WorkUnitA->GetDependentCount(TestScheduler) << endl;
             cout << "B dependency count: " << WorkUnitB->GetDependencyCount() << " \t B dependent count: " << WorkUnitB->GetDependentCount(TestScheduler) << endl;
@@ -176,7 +176,7 @@ class workunittests : public UnitTestGroup
                     << endl << "C --" << endl;
             PiMakerWorkUnit* WorkUnitD = new PiMakerWorkUnit(50,"D",false);
             WorkUnitD->AddDependency(WorkUnitB);
-            TestScheduler.AddWorkUnitMain(WorkUnitD);
+            TestScheduler.AddWorkUnitMain(WorkUnitD, WorkUnitD->Name);
             TestScheduler.UpdateDependentGraph();
             cout << "A dependency count: " << WorkUnitA->GetDependencyCount() << " \t A dependent count: " << WorkUnitA->GetDependentCount(TestScheduler) << endl;
             cout << "B dependency count: " << WorkUnitB->GetDependencyCount() << " \t B dependent count: " << WorkUnitB->GetDependentCount(TestScheduler) << endl;

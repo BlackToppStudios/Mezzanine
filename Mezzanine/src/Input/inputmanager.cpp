@@ -306,7 +306,7 @@ namespace Mezzanine
         {
             if( !this->Initialized )
             {
-                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->DeviceUpdateWork );
+                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->DeviceUpdateWork, "DeviceUpdateWork" );
                 Mezzanine::EventManager* EventMan = EventManager::GetSingletonPtr();
                 if( EventMan )
                     this->DeviceUpdateWork->AddDependency( EventMan->GetEventPumpWork() );

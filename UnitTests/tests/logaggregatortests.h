@@ -73,10 +73,10 @@ class logaggregatortests : public UnitTestGroup
             {
                 cout << endl << "Creating a FrameScheduler with a few PiMakerWorkUnits Testing the logger workunits to get a handle multiple logs, logging to cout: " << endl;
                 FrameScheduler TestScheduler(&TempLog,4);           // Create a frame scheduler with 4 threads
-                TestScheduler.AddWorkUnitMain(new PiMakerWorkUnit(5000,"A",false));
-                TestScheduler.AddWorkUnitMain(new PiMakerWorkUnit(5000,"A",false));
-                TestScheduler.AddWorkUnitMain(new PiMakerWorkUnit(5000,"A",false)); // Add 4 workunit one for each
-                TestScheduler.AddWorkUnitMain(new PiMakerWorkUnit(5000,"A",false)); // Hopefully there is enough work that each thread gets on each frame
+                TestScheduler.AddWorkUnitMain(new PiMakerWorkUnit(5000,"A",false),"A");
+                TestScheduler.AddWorkUnitMain(new PiMakerWorkUnit(5000,"B",false),"B");
+                TestScheduler.AddWorkUnitMain(new PiMakerWorkUnit(5000,"C",false),"C"); // Add 4 workunit one for each
+                TestScheduler.AddWorkUnitMain(new PiMakerWorkUnit(5000,"D",false),"D"); // Hopefully there is enough work that each thread gets on each frame
                 WorkUnitCount = TestScheduler.GetWorkUnitMainCount();
                 TestScheduler.SetFrameLength(0);                    // run as fast as allowable
 

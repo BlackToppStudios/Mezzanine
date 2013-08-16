@@ -268,10 +268,10 @@ class frameschedulertests : public UnitTestGroup
                 WorkUnitK4->AddDependency(WorkUnitK3);
                 WorkUnitK3->AddDependency(WorkUnitK2);
                 WorkUnitK2->AddDependency(WorkUnitK1);
-                SchedulingTest1.AddWorkUnitMain(WorkUnitK1); // no deletes required the Scheduler takes ownership
-                SchedulingTest1.AddWorkUnitMain(WorkUnitK2);
-                SchedulingTest1.AddWorkUnitMain(WorkUnitK3);
-                SchedulingTest1.AddWorkUnitMain(WorkUnitK4);
+                SchedulingTest1.AddWorkUnitMain(WorkUnitK1, WorkUnitK1->Name); // no deletes required the Scheduler takes ownership
+                SchedulingTest1.AddWorkUnitMain(WorkUnitK2, WorkUnitK2->Name);
+                SchedulingTest1.AddWorkUnitMain(WorkUnitK3, WorkUnitK3->Name);
+                SchedulingTest1.AddWorkUnitMain(WorkUnitK4, WorkUnitK4->Name);
                 SchedulingTest1.SortWorkUnitsMain();
 
                 iWorkUnit* Counter = SchedulingTest1.GetNextWorkUnit();
@@ -311,9 +311,9 @@ class frameschedulertests : public UnitTestGroup
                     FiftyThousand->operator()(Storage2);
                     //FiveHundredThousand->operator()(Storage2,SchedulingTest2);
                 }
-                SchedulingTest2.AddWorkUnitMain(FiveHundred);
-                SchedulingTest2.AddWorkUnitMain(FiftyThousand);
-                SchedulingTest2.AddWorkUnitMain(FiveThousand);
+                SchedulingTest2.AddWorkUnitMain(FiveHundred, FiveHundred->Name);
+                SchedulingTest2.AddWorkUnitMain(FiftyThousand, FiftyThousand->Name);
+                SchedulingTest2.AddWorkUnitMain(FiveThousand, FiftyThousand->Name);
                 //SchedulingTest2.AddWorkUnit(FiveHundredThousand);
 
                 cout << "FiveHundred-ms   : " << FiveHundred->GetPerformanceLog().GetAverage() << endl;
@@ -360,11 +360,11 @@ class frameschedulertests : public UnitTestGroup
                 stringstream LogCache;
                 {
                     FrameScheduler ThreadCreationTest1(&LogCache,1);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4);
-                    ThreadCreationTest1.AddWorkUnitMain(&Agg);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1, WorkUnitR1.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2, WorkUnitR2.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3, WorkUnitR3.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4, WorkUnitR4.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&Agg,"Agg");
                     cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
                     cout << "Running One Frame." << endl;
                     ThreadCreationTest1.DoOneFrame(); // Do the work
@@ -383,11 +383,11 @@ class frameschedulertests : public UnitTestGroup
 
                 {
                     FrameScheduler ThreadCreationTest1(&LogCache,2);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4);
-                    ThreadCreationTest1.AddWorkUnitMain(&Agg);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1, WorkUnitR1.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2, WorkUnitR2.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3, WorkUnitR3.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4, WorkUnitR4.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&Agg,"Agg");
                     cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
                     cout << "Running One Frame." << endl;
                     ThreadCreationTest1.DoOneFrame(); // Do the work
@@ -406,11 +406,11 @@ class frameschedulertests : public UnitTestGroup
 
                 {
                     FrameScheduler ThreadCreationTest1(&LogCache,3);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4);
-                    ThreadCreationTest1.AddWorkUnitMain(&Agg);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1, WorkUnitR1.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2, WorkUnitR2.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3, WorkUnitR3.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4, WorkUnitR4.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&Agg,"Agg");
                     cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
                     cout << "Running One Frame." << endl;
                     ThreadCreationTest1.DoOneFrame(); // Do the work
@@ -429,11 +429,11 @@ class frameschedulertests : public UnitTestGroup
 
                 {
                     FrameScheduler ThreadCreationTest1(&LogCache,4);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3);
-                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4);
-                    ThreadCreationTest1.AddWorkUnitMain(&Agg);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR1, WorkUnitR1.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR2, WorkUnitR2.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3, WorkUnitR3.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4, WorkUnitR4.Name);
+                    ThreadCreationTest1.AddWorkUnitMain(&Agg,"Agg");
                     cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
                     cout << "Running One Frame." << endl;
                     ThreadCreationTest1.DoOneFrame(); // Do the work
@@ -472,15 +472,15 @@ class frameschedulertests : public UnitTestGroup
 
                 {
                     FrameScheduler RestartScheduler1(&LogCache,2);
-                    RestartScheduler1.AddWorkUnitMain(&RestartA);
-                    RestartScheduler1.AddWorkUnitMain(&RestartB);
-                    RestartScheduler1.AddWorkUnitMain(&RestartC);
+                    RestartScheduler1.AddWorkUnitMain(&RestartA, RestartA.Name);
+                    RestartScheduler1.AddWorkUnitMain(&RestartB, RestartB.Name);
+                    RestartScheduler1.AddWorkUnitMain(&RestartC, RestartC.Name);
                     RestartScheduler1.SortWorkUnitsMain();
                     RestartScheduler1.DoOneFrame();
                     RestartScheduler1.RemoveWorkUnitMain(&RestartA); // Remove work to prevent multiple execution
                     RestartScheduler1.RemoveWorkUnitMain(&RestartB);
                     RestartScheduler1.RemoveWorkUnitMain(&RestartC);
-                    RestartScheduler1.AddWorkUnitMain(&Agg3);        // To get the logs
+                    RestartScheduler1.AddWorkUnitMain(&Agg3,"Agg");        // To get the logs
                     RestartScheduler1.DoOneFrame();
                     RestartScheduler1.RemoveWorkUnitMain(&Agg3);
                 }
@@ -534,12 +534,12 @@ class frameschedulertests : public UnitTestGroup
                 EraseB->AddDependency(EraseA);
 
                 cout << "Stuffing all 6 into a test frame scheduler and preparing it for a run" << endl;
-                RemovalScheduler.AddWorkUnitMain(EraseA);
-                RemovalScheduler.AddWorkUnitMain(EraseB);
-                RemovalScheduler.AddWorkUnitMain(EraseC);
-                RemovalScheduler.AddWorkUnitMain(EraseD);
-                RemovalScheduler.AddWorkUnitMain(EraseE);
-                RemovalScheduler.AddWorkUnitMain(EraseF);
+                RemovalScheduler.AddWorkUnitMain(EraseA, EraseA->Name);
+                RemovalScheduler.AddWorkUnitMain(EraseB, EraseB->Name);
+                RemovalScheduler.AddWorkUnitMain(EraseC, EraseC->Name);
+                RemovalScheduler.AddWorkUnitMain(EraseD, EraseD->Name);
+                RemovalScheduler.AddWorkUnitMain(EraseE, EraseE->Name);
+                RemovalScheduler.AddWorkUnitMain(EraseF, EraseF->Name);
 
                 RemovalScheduler.SortWorkUnitsMain();
 
@@ -686,7 +686,7 @@ class frameschedulertests : public UnitTestGroup
 
 
                 cout << endl << "Adding an Affinity WorkUnit Z and making it depend on B (new order should be B, Z, D, NULL): ";
-                RemovalScheduler.AddWorkUnitAffinity(EraseZ);
+                RemovalScheduler.AddWorkUnitAffinity(EraseZ, EraseZ->Name);
                 EraseZ->AddDependency(EraseB);
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.SortWorkUnitsAll(); //Sorting all on this test
@@ -755,14 +755,14 @@ class frameschedulertests : public UnitTestGroup
                 FrameScheduler Scheduler1(&LogCache,2);
                 LogAggregator Agg1;
 
-                Scheduler1.AddWorkUnitMain(&AffinityA);
-                Scheduler1.AddWorkUnitMain(&AffinityB);
-                Scheduler1.AddWorkUnitAffinity(&AffinityAffinity);
-                Scheduler1.AddWorkUnitMain(&AffinityC);
-                Scheduler1.AddWorkUnitMain(&AffinityD);
+                Scheduler1.AddWorkUnitMain(&AffinityA, AffinityA.Name);
+                Scheduler1.AddWorkUnitMain(&AffinityB, AffinityB.Name);
+                Scheduler1.AddWorkUnitAffinity(&AffinityAffinity, AffinityAffinity.Name);
+                Scheduler1.AddWorkUnitMain(&AffinityC, AffinityC.Name);
+                Scheduler1.AddWorkUnitMain(&AffinityD, AffinityD.Name);
                 Scheduler1.SortWorkUnitsMain();
                 Scheduler1.DoOneFrame();
-                Scheduler1.AddWorkUnitMain(&Agg1);
+                Scheduler1.AddWorkUnitMain(&Agg1,"Agg1");
                 Scheduler1.RemoveWorkUnitMain(&AffinityA);
                 Scheduler1.RemoveWorkUnitMain(&AffinityB);
                 Scheduler1.RemoveWorkUnitAffinity(&AffinityAffinity);
@@ -805,12 +805,12 @@ class frameschedulertests : public UnitTestGroup
                 EraseB->AddDependency(EraseA);
 
                 cout << "Stuffing all 6 into a test frame scheduler as affinity workunit and preparing it for a run" << endl;
-                RemovalScheduler.AddWorkUnitAffinity(EraseA);
-                RemovalScheduler.AddWorkUnitAffinity(EraseB);
-                RemovalScheduler.AddWorkUnitAffinity(EraseC);
-                RemovalScheduler.AddWorkUnitAffinity(EraseD);
-                RemovalScheduler.AddWorkUnitAffinity(EraseE);
-                RemovalScheduler.AddWorkUnitAffinity(EraseF);
+                RemovalScheduler.AddWorkUnitAffinity(EraseA, EraseA->Name);
+                RemovalScheduler.AddWorkUnitAffinity(EraseB, EraseB->Name);
+                RemovalScheduler.AddWorkUnitAffinity(EraseC, EraseC->Name);
+                RemovalScheduler.AddWorkUnitAffinity(EraseD, EraseD->Name);
+                RemovalScheduler.AddWorkUnitAffinity(EraseE, EraseE->Name);
+                RemovalScheduler.AddWorkUnitAffinity(EraseF, EraseF->Name);
 
                 RemovalScheduler.SortWorkUnitsAffinity();
 
@@ -956,7 +956,7 @@ class frameschedulertests : public UnitTestGroup
                 TEST((3==PrepCount),"RemoveAffinity::WithAndAsDep");
 
                 cout << endl << "Adding a non-affinity/Main WorkUnit Z and making it depend on B (new order should be B, D, Z, NULL): ";
-                RemovalScheduler.AddWorkUnitMain(EraseZ);
+                RemovalScheduler.AddWorkUnitMain(EraseZ, EraseZ->Name);
                 EraseZ->AddDependency(EraseB);
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.SortWorkUnitsAll(); //Sorting all on this test
@@ -1019,11 +1019,11 @@ class frameschedulertests : public UnitTestGroup
                 EraseA->AddDependency(EraseMonoA);
                 EraseB->AddDependency(EraseMonoB);
 
-                RemovalScheduler.AddWorkUnitAffinity(EraseA);
-                RemovalScheduler.AddWorkUnitMain(EraseB);
-                RemovalScheduler.AddWorkUnitMonopoly(EraseMonoA);
-                RemovalScheduler.AddWorkUnitMonopoly(EraseMonoB);
-                RemovalScheduler.AddWorkUnitMonopoly(EraseMonoC);
+                RemovalScheduler.AddWorkUnitAffinity(EraseA, EraseA->Name);
+                RemovalScheduler.AddWorkUnitMain(EraseB, EraseB->Name);
+                RemovalScheduler.AddWorkUnitMonopoly(EraseMonoA, EraseMonoA->Name);
+                RemovalScheduler.AddWorkUnitMonopoly(EraseMonoB, EraseMonoB->Name);
+                RemovalScheduler.AddWorkUnitMonopoly(EraseMonoC, EraseMonoC->Name);
 
                 cout << "Test Scheduler has " << RemovalScheduler.GetWorkUnitMonopolyCount() << " WorkUnits, and the affinity unit has " << EraseA->GetDependencyCount()
                      << " Dependencies and the main workunit has " << EraseB->GetDependencyCount() << "." << endl;
@@ -1057,10 +1057,10 @@ class frameschedulertests : public UnitTestGroup
                 LoggerCheckWorkUnit* Checker2 = new LoggerCheckWorkUnit;
                 LoggerCheckWorkUnit* Checker3 = new LoggerCheckWorkUnit;
                 LoggerCheckWorkUnit* Checker4 = new LoggerCheckWorkUnit;
-                Scheduler1.AddWorkUnitMain(Checker1); //scheduler should delete workunit
-                Scheduler1.AddWorkUnitMain(Checker2);
-                Scheduler1.AddWorkUnitMain(Checker3); // There is no guarantee these will run in different threads, but unless there is
-                Scheduler1.AddWorkUnitMain(Checker4); // a huge delay in starting these workunits the FS really should
+                Scheduler1.AddWorkUnitMain(Checker1, "Checker1"); //scheduler should delete workunit
+                Scheduler1.AddWorkUnitMain(Checker2, "Checker2");
+                Scheduler1.AddWorkUnitMain(Checker3, "Checker3"); // There is no guarantee these will run in different threads, but unless there is
+                Scheduler1.AddWorkUnitMain(Checker4, "Checker4"); // a huge delay in starting these workunits the FS really should
 
                 Scheduler1.SortWorkUnitsAll();
                 Scheduler1.DoOneFrame();
@@ -1126,6 +1126,8 @@ class frameschedulertests : public UnitTestGroup
                 TEST( (0<=PauseLength) && (PauseLength<=FrameLength+1),"LastPauseData" );
 
             }
+
+
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

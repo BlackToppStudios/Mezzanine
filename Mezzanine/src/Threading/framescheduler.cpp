@@ -54,6 +54,8 @@
 #include <iostream>
 #include <algorithm>
 
+using namespace std;
+
 /// @file
 /// @brief This is the core object implementation for this algorithm
 
@@ -237,14 +239,23 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // WorkUnit management
-        void FrameScheduler::AddWorkUnitMain(iWorkUnit* MoreWork)
-            { this->WorkUnitsMain.push_back(MoreWork->GetSortingKey(*this)); }
+        void FrameScheduler::AddWorkUnitMain(iWorkUnit* MoreWork, const String& WorkUnitName)
+        {
+            this->WorkUnitsMain.push_back(MoreWork->GetSortingKey(*this));
+            (*this->LogDestination) << "<WorkUnitMainInsertion ID=\"" << hex << MoreWork << "\" Name=\"" << WorkUnitName << "\" />" << endl;
+        }
 
-        void FrameScheduler::AddWorkUnitAffinity(iWorkUnit* MoreWork)
-            { this->WorkUnitsAffinity.push_back(MoreWork->GetSortingKey(*this)); }
+        void FrameScheduler::AddWorkUnitAffinity(iWorkUnit* MoreWork, const String& WorkUnitName)
+        {
+            this->WorkUnitsAffinity.push_back(MoreWork->GetSortingKey(*this));
+            (*this->LogDestination) << "<WorkUnitAffinityInsertion ID=\"" << hex << MoreWork << "\" Name=\"" << WorkUnitName << "\" />" << endl;
+        }
 
-        void FrameScheduler::AddWorkUnitMonopoly(MonopolyWorkUnit* MoreWork)
-            { this->WorkUnitsMonopolies.push_back(MoreWork); }
+        void FrameScheduler::AddWorkUnitMonopoly(MonopolyWorkUnit* MoreWork, const String& WorkUnitName)
+        {
+            this->WorkUnitsMonopolies.push_back(MoreWork);
+            (*this->LogDestination) << "<WorkUnitMonopolyInsertion ID=\"" << hex << MoreWork << "\" Name=\"" << WorkUnitName << "\" />" << endl;
+        }
 
         void FrameScheduler::SortWorkUnitsMain(bool UpdateDependentGraph_)
         {

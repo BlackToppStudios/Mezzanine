@@ -613,7 +613,7 @@ namespace Mezzanine
         {
             if( !this->Initialized )
             {
-                this->TheEntresol->GetScheduler().AddWorkUnitMonopoly(RenderWork);
+                this->TheEntresol->GetScheduler().AddWorkUnitMonopoly(RenderWork, "RenderWork");
 
                 if( !this->OgreBeenInitialized )
                     this->InitOgreRenderSystem();

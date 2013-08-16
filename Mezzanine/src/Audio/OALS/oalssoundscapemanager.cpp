@@ -414,7 +414,7 @@ namespace Mezzanine
                             { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to initialize AudioManager prior to SoundScapeManager.  An open Audio device is required."); }
                     }
 
-                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->BufferUpdate3DWork );
+                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->BufferUpdate3DWork, "AudioBufferUpdate3DWork" );
                     this->BufferUpdate3DWork->AddDependency( AudioMan->GetBufferUpdate2DWork() );
 
                     this->Initialized = true;

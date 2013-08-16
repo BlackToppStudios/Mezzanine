@@ -373,20 +373,20 @@ int main(int argc, char **argv)
     // Setup our workunits
     DemoPreEventWork = new DemoPreEventWorkUnit();
     TheEntresol->GetEventManager()->GetEventPumpWork()->AddDependency( DemoPreEventWork );
-    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork );
+    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork, "DemoPreEventWork" );
 
     DemoPostInputWork = new DemoPostInputWorkUnit();
     DemoPostInputWork->AddDependency( TheEntresol->GetInputManager()->GetDeviceUpdateWork() );
-    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostInputWork );
+    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostInputWork, "DemoPostInputWork" );
 
     DemoPostRenderWork = new DemoPostRenderWorkUnit();
     DemoPostRenderWork->AddDependency( TheEntresol->GetGraphicsManager()->GetRenderWork() );
     DemoPostRenderWork->AddDependency( TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
-    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostRenderWork );
+    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostRenderWork, "DemoPostRenderWork" );
 
     DemoPostPhysicsWork = new DemoPostPhysicsWorkUnit();
     DemoPostPhysicsWork->AddDependency( TheEntresol->GetPhysicsManager()->GetSimulationWork() );
-    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostPhysicsWork );
+    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostPhysicsWork, "DemoPostPhysicsWork" );
 
     // Init
 	TheEntresol->EngineInit(false);

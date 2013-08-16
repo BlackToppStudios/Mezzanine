@@ -531,7 +531,7 @@ namespace Mezzanine
         {
             if( !this->Initialized )
             {
-                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WidgetUpdateWork );
+                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WidgetUpdateWork, "WidgetUpdateWork" );
                 Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
                 if( InputMan )
                     this->WidgetUpdateWork->AddDependency( InputMan->GetDeviceUpdateWork() );

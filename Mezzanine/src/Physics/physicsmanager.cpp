@@ -1066,9 +1066,9 @@ namespace Mezzanine
 
                 // Simulation work configuration
                 if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
-                    this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+                    this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ), "RenderWorkMonopoly"   );
                 }else{
-                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->SimulationWork );
+                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->SimulationWork, "RenderWorkMain" );
                 }
                 Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
                 if( GraphicsMan )
@@ -1077,13 +1077,13 @@ namespace Mezzanine
                 Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
-                this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork );
+                this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork, "DebugDrawWork" );
                 this->DebugDrawWork->AddDependency( this->SimulationWork );
                 if( ActorMan )
                     this->DebugDrawWork->AddDependency( ActorMan->GetActorUpdateWork() );
 
                 // World Trigger Update work configuration
-                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WorldTriggerUpdateWork );
+                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WorldTriggerUpdateWork, "WorldTriggerUpdateWork" );
                 this->WorldTriggerUpdateWork->AddDependency( this->SimulationWork );
                 if( ActorMan )
                     this->WorldTriggerUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );

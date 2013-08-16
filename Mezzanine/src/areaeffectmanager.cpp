@@ -220,7 +220,7 @@ namespace Mezzanine
         {
             //WorldManager::Initialize();
 
-            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AreaEffectUpdateWork );
+            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->AreaEffectUpdateWork, "AreaEffectUpdateWork" );
 
             Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
             if( PhysicsMan ) {

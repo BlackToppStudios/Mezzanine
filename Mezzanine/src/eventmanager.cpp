@@ -664,7 +664,7 @@ namespace Mezzanine
     {
         if( !this->Initialized )
         {
-            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->_Data->EventPumpWork );
+            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->_Data->EventPumpWork, "EventPumpWork" );
             this->Initialized = true;
         }
     }

@@ -107,7 +107,7 @@ namespace Mezzanine
         }
         this->Aggregator = new Threading::LogAggregator();
         Aggregator->SetAggregationTarget(&WorkScheduler);
-        this->WorkScheduler.AddWorkUnitMain(Aggregator);
+        this->WorkScheduler.AddWorkUnitMain(Aggregator, "LogAggregator");
     }
 
     void Entresol::DestroyLogging()

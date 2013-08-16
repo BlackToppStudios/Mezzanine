@@ -764,7 +764,7 @@ namespace Mezzanine
         {
             //WorldManager::Initialize();
 
-            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->TrackingNodeUpdateWork );
+            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->TrackingNodeUpdateWork, "TrackingNodeUpdateWork" );
 
             Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
             if( PhysicsMan ) {

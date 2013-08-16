@@ -253,15 +253,18 @@ namespace Mezzanine
 
                 /// @brief Add a normal @ref iWorkUnit to this For fcheduling.
                 /// @param MoreWork A pointer the the WorkUnit, that the FrameScheduler will take ownership of, and schedule for work.
-                virtual void AddWorkUnitMain(iWorkUnit* MoreWork);
+                /// @param WorkUnitName A name to uniquely identify this work unit in the logs
+                virtual void AddWorkUnitMain(iWorkUnit* MoreWork, const String& WorkUnitName);
 
                 /// @brief Add a normal @ref iWorkUnit to this For scheduling.
                 /// @param MoreWork A pointer the the WorkUnit, that the FrameScheduler will take ownership of, and schedule for work.
-                virtual void AddWorkUnitAffinity(iWorkUnit* MoreWork);
+                /// @param WorkUnitName A name to uniquely identify this work unit in the logs
+                virtual void AddWorkUnitAffinity(iWorkUnit* MoreWork, const String& WorkUnitName);
 
                 /// @brief Add a @ref MonopolyWorkUnit for execution at the beginning of the frame.
                 /// @param MoreWork A pointer to the @ref MonopolyWorkUnit to add.
-                virtual void AddWorkUnitMonopoly(MonopolyWorkUnit* MoreWork);
+                /// @param WorkUnitName A name to uniquely identify this work unit in the logs
+                virtual void AddWorkUnitMonopoly(MonopolyWorkUnit* MoreWork, const String& WorkUnitName);
 
                 /// @brief Sort the the main pool of WorkUnits to allow them to be used more efficiently in the next frame executed.
                 /// @param UpdateDependentGraph_ Should the internal cache of reverse dependents be updated.

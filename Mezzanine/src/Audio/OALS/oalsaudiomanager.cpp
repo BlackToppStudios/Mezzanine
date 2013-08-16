@@ -797,9 +797,9 @@ namespace Mezzanine
                             { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Unable to initialize an audio device."); }
                     }
 
-                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->BufferUpdate2DWork );
+                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->BufferUpdate2DWork, "AudioBufferUpdate2DWork" );
 
-                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->EffectFilterCleanWork );
+                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->EffectFilterCleanWork, "AudioEffectFilterCleanWork" );
                     this->EffectFilterCleanWork->AddDependency( this->BufferUpdate2DWork );
                     /// @todo Some of this logic may need to be moved to the registration method if we want to support dynamic created and destroyed worlds.
                     for( SoundScapeManagerIterator SSM = this->SoundScapeManagers.begin() ; SSM != this->SoundScapeManagers.end() ; ++SSM )
