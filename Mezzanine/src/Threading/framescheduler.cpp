@@ -624,6 +624,7 @@ namespace Mezzanine
             MaxInt Now = GetTimeStamp();
             FrameTimeLog.Insert(Now-CurrentFrameStart); //Track Frame Time for the past while
             PauseTimeLog.Insert(Now-CurrentPauseStart); //Track Pause Time for the past while
+            (*LogDestination) << dec << "<FrameTimes Frame=\"" << (FrameCount-1) << "\" PauseTimeLog=\"" << (Now-CurrentPauseStart) << "\" FrameLength=\"" << (Now-CurrentFrameStart) << "\" />" << endl;
             CurrentFrameStart=Now;
             TimingCostAllowance -= (CurrentFrameStart-TargetFrameEnd);
         }
