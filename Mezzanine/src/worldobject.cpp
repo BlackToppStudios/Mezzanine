@@ -60,8 +60,8 @@ namespace Mezzanine
         ParentWorld(NULL),
         GraphicsObject(NULL),
         GraphicsNode(NULL),
-        PhysicsObject(NULL),
         PhysicsShape(NULL),
+        PhysicsObject(NULL),
         GraphicsSettings(NULL),
         PhysicsSettings(NULL)
     {

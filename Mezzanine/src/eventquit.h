@@ -90,7 +90,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventQuit& 
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventQuit.
 /// @param Ev the Mezzanine::EventQuit to be reset.
 /// @return This returns theXML::Node that was passed in.
-Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventQuit& Ev);
+const Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventQuit& Ev);
 
 
 #endif

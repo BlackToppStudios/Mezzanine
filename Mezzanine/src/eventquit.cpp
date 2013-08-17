@@ -74,7 +74,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventQuit& 
     return stream;
 }
 
-Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventQuit& Ev)
+const Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventQuit& Ev)
 {
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("EventQuit") )
     {
@@ -87,7 +87,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
     }else{
         MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventQuit, found a " + Mezzanine::String(OneNode.Name()));
     }
-
+    return OneNode;
 }
 
 
