@@ -1116,11 +1116,11 @@ class frameschedulertests : public UnitTestGroup
                             );
 
                 // get the last inserted frame length
-                Whole ActualLength = Scheduler1.GetFrameTimeRollingAverage()[Scheduler1.GetFrameTimeRollingAverage().RecordCapacity()-1];
+                MaxInt ActualLength = Scheduler1.GetFrameTimeRollingAverage()[Scheduler1.GetFrameTimeRollingAverage().RecordCapacity()-1];
                 cout << "Expected last frame to be " << FrameLength << " microseconds and it was " << ActualLength << " microseconds." << endl;
                 TEST( (FrameLength-200<ActualLength) && (ActualLength<FrameLength+200),"LastFrameData" );
 
-                Whole PauseLength = Scheduler1.GetPauseTimeRollingAverage()[Scheduler1.GetPauseTimeRollingAverage().RecordCapacity()-1];
+                MaxInt PauseLength = Scheduler1.GetPauseTimeRollingAverage()[Scheduler1.GetPauseTimeRollingAverage().RecordCapacity()-1];
                 cout << "Without know the performance of this machine ahead of time, knowing the size of the pause is impossible, how it can be tested for sane values, it is: "
                      << PauseLength<< "  microseconds." << endl;
                 TEST( (0<=PauseLength) && (PauseLength<=FrameLength+1),"LastPauseData" );
