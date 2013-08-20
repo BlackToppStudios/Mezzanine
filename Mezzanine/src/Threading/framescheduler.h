@@ -79,7 +79,6 @@ namespace Mezzanine
             friend class WorkSorter;
 
             protected:
-
                 ////////////////////////////////////////////////////////////////////////////////
                 // Data Members
 
@@ -203,6 +202,12 @@ namespace Mezzanine
 
                 /// @brief Set based on which constructor is called, and only used during destruction.
                 bool LoggingToAnOwnedFileStream;
+
+                /// @brief Brief Do we have to log  ependencies have they changed since last logged?
+                /// @details Since each workunit tracks its own dependencies this cannot easily be directly checked. There
+                /// is a function to set and since dependencies are likely to be between adding a working and runninf a
+                /// frame, adding a workunit sets this flag.
+                bool NeedToLogDeps;
 
                 ////////////////////////////////////////////////////////////////////////////////
                 // Protected Methods
@@ -439,7 +444,7 @@ namespace Mezzanine
                 /// @warning While this is running any changes to the @ref FrameScheduler must be made with an atomic operation like the
                 /// @ref AtomicCompareAndSwap32 "AtomicCompareAndSwap32" or @ref AtomicAdd "AtomicAdd". Any other threads
                 /// workunit may be accessed as any normal shared data, but Thread specific Resources should not be accessed while this runs.
-                /// @warning This uses a Spinlock to prevent accesss to ThreadSpecifivResources that the LogAggregator needs. This is unlocked
+                /// @warning This uses a Spinlock to prevent accesss to ThreadSpecificResources that the LogAggregator needs. This is unlocked
                 /// in RunMainThreadWork.
                 virtual void CreateThreads();
 
@@ -450,7 +455,11 @@ namespace Mezzanine
                 /// @details This runs the main portion of the @ref algorithm_sec "scheduling algorithm" on the main thread. This call
                 /// blocks until the execution of all workunits with main thread affinity are complete and all other work units have at
                 /// least started. This could return and other threads could still be working.
-                /// @warning This uses a Spinlock to prevent accesss to ThreadSpecifivResources that the LogAggregator needs.  This should
+                /// @n @n
+                /// Before executing any work this checks a flag to determine if it should log the current work unit dependencies. After
+                /// this check or logging has occurred this then this releases the spinlock on the log, so there is a chance of brief
+                /// contention between a LogAggregator and this if depedencies have just changed or change frequently.
+                /// @warning This uses a Spinlock to prevent accesss to ThreadSpecificResources that the LogAggregator needs.  This should
                 /// be called immediately after CreateThreads to minimize any possible contention.
                 virtual void RunMainThreadWork();
 
@@ -529,6 +538,15 @@ namespace Mezzanine
                 /// @param ID This uses the current Threads ID by default but can search for any thread.
                 /// @return A null pointer if there is an error or a pointer to the Logger that goes with the passed Thread::Id
                 Logger* GetThreadUsableLogger(Thread::id ID = this_thread::get_id());
+
+                /// @brief Indicate to the framescheduler if dependencies need to be logged
+                /// @param Changed Defaults to true, and sets a flag that tells the framescheduler if it needs to log dependencies.
+                /// @details If false is passed, this prevents the FrameScheduler from logging until the next change.
+                void DependenciesChanged(bool Changed=true);
+
+                /// @brief This sends the dependencies to the LogDestination (Skipping any thread specific resources)
+                /// @warning This should not be executed during the frame, unless the FrameScheduler is calling it.
+                void LogDependencies();
 
                 /// @warning This is not thread safe at all. Any time during the frame using this can send gibberish to the log. Use GetThreadUsableLogger instead.
                 /// @brief Get the endpoint for the logs.

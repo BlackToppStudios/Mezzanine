@@ -183,7 +183,8 @@ namespace Mezzanine
             FrameCount(0), TargetFrameLength(16666),
             TimingCostAllowance(0),
             MainThreadID(this_thread::get_id()),
-            LoggingToAnOwnedFileStream(true)
+            LoggingToAnOwnedFileStream(true),
+            NeedToLogDeps(true)
         {
             Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
             GetLog() << "<MezzanineLog>" << std::endl;
@@ -209,7 +210,8 @@ namespace Mezzanine
             FrameCount(0), TargetFrameLength(16666),
             TimingCostAllowance(0),
             MainThreadID(this_thread::get_id()),
-            LoggingToAnOwnedFileStream(false)
+            LoggingToAnOwnedFileStream(false),
+            NeedToLogDeps(true)
         {
             Resources.push_back(new DefaultThreadSpecificStorage::Type(this));
             (*LogDestination) << "<MezzanineLog>" << std::endl;
@@ -241,18 +243,21 @@ namespace Mezzanine
         // WorkUnit management
         void FrameScheduler::AddWorkUnitMain(iWorkUnit* MoreWork, const String& WorkUnitName)
         {
+            DependenciesChanged();
             this->WorkUnitsMain.push_back(MoreWork->GetSortingKey(*this));
             (*this->LogDestination) << "<WorkUnitMainInsertion ID=\"" << hex << MoreWork << "\" Name=\"" << WorkUnitName << "\" />" << endl;
         }
 
         void FrameScheduler::AddWorkUnitAffinity(iWorkUnit* MoreWork, const String& WorkUnitName)
         {
+            DependenciesChanged();
             this->WorkUnitsAffinity.push_back(MoreWork->GetSortingKey(*this));
             (*this->LogDestination) << "<WorkUnitAffinityInsertion ID=\"" << hex << MoreWork << "\" Name=\"" << WorkUnitName << "\" />" << endl;
         }
 
         void FrameScheduler::AddWorkUnitMonopoly(MonopolyWorkUnit* MoreWork, const String& WorkUnitName)
         {
+            DependenciesChanged();
             this->WorkUnitsMonopolies.push_back(MoreWork);
             (*this->LogDestination) << "<WorkUnitMonopolyInsertion ID=\"" << hex << MoreWork << "\" Name=\"" << WorkUnitName << "\" />" << endl;
         }
@@ -451,18 +456,14 @@ namespace Mezzanine
         bool FrameScheduler::AreAllWorkUnitsComplete()
         {
             // start reading from units likely to be executed last.
-            for(std::vector<WorkUnitKey>::iterator Iter = WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); ++Iter)
+            for(IteratorMain Iter = WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); ++Iter)
             {
-                //if(!Iter->Unit->IsEveryDependencyComplete())
-                    //{ return false; }
                 if(Complete!=Iter->Unit->GetRunningState())
                     { return false; }
             }
 
-            for(std::vector<WorkUnitKey>::iterator Iter = WorkUnitsAffinity.begin(); Iter!=WorkUnitsAffinity.end(); ++Iter)
+            for(IteratorAffinity Iter = WorkUnitsAffinity.begin(); Iter!=WorkUnitsAffinity.end(); ++Iter)
             {
-                //if(!Iter->Unit->IsEveryDependencyComplete())
-                //    { return false; }
                 if(Complete!=Iter->Unit->GetRunningState())
                     { return false; }
             }
@@ -533,7 +534,7 @@ namespace Mezzanine
 
         void FrameScheduler::RunAllMonopolies()
         {
-            for(std::vector<MonopolyWorkUnit*>::iterator Iter = WorkUnitsMonopolies.begin(); Iter!=WorkUnitsMonopolies.end(); ++Iter)
+            for(IteratorMonoply Iter = WorkUnitsMonopolies.begin(); Iter!=WorkUnitsMonopolies.end(); ++Iter)
                 { (*Iter)->operator()(*(Resources.at(0))); }
         }
 
@@ -567,6 +568,7 @@ namespace Mezzanine
         void FrameScheduler::RunMainThreadWork()
         {
             Resources[0]->SwapAllBufferedResources();
+            LogDependencies();
             LogResources.Unlock();
             ThreadWorkAffinity(Resources[0]); // Do work in this thread and get the units with affinity
 
@@ -665,6 +667,52 @@ namespace Mezzanine
             if(AlmostResults)
                 { return &AlmostResults->GetUsableLogger(); }
             return 0;
+        }
+
+        void FrameScheduler::DependenciesChanged(bool Changed)
+            { this->NeedToLogDeps = Changed; }
+
+        void FrameScheduler::LogDependencies()
+        {
+            if(this->NeedToLogDeps)
+            {
+                this->NeedToLogDeps = false;
+                for(IteratorMain Iter = WorkUnitsMain.begin(); Iter!=WorkUnitsMain.end(); ++Iter)
+                {
+                    Whole MainCount = Iter->Unit->GetImmediateDependencyCount();
+                    for(Whole Counter = 0; Counter<MainCount; Counter++)
+                    {
+                        *(this->LogDestination) << "<WorkUnitDependency "
+                                                   "Unit=\"" << hex << Iter->Unit
+                                                << "\" DependsOn=\"" << Iter->Unit->GetDependency(Counter) << "\" "
+                                                   "/>" << endl;
+                    }
+                }
+
+                for(IteratorAffinity Iter = WorkUnitsAffinity.begin(); Iter!=WorkUnitsAffinity.end(); ++Iter)
+                {
+                    Whole AffinityCount = Iter->Unit->GetImmediateDependencyCount();
+                    for(Whole Counter = 0; Counter<AffinityCount; Counter++)
+                    {
+                        *(this->LogDestination) << "<WorkUnitDependency "
+                                                   "Unit=\"" << hex << Iter->Unit
+                                                << "\" DependsOn=\"" << Iter->Unit->GetDependency(Counter) << "\" "
+                                                   "/>" << endl;
+                    }
+                }
+
+                for(IteratorMonoply Iter = WorkUnitsMonopolies.begin(); Iter!=WorkUnitsMonopolies.end(); ++Iter)
+                {
+                    Whole MonopolyCount = (*Iter)->GetImmediateDependencyCount();
+                    for(Whole Counter = 0; Counter<MonopolyCount; Counter++)
+                    {
+                        *(this->LogDestination) << "<WorkUnitDependency "
+                                                   "Unit=\"" << hex << (*Iter)
+                                                << "\" DependsOn=\"" << (*Iter)->GetDependency(Counter) << "\" "
+                                                   "/>" << endl;
+                    }
+                }
+            }
         }
 
         std::ostream& FrameScheduler::GetLog()

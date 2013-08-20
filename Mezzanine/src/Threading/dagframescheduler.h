@@ -54,6 +54,7 @@
 #include "doublebufferedresource.h"
 #include "framescheduler.h"
 #include "frameschedulerworkunits.h"
+#include "logtools.h"
 #include "monopoly.h"
 #include "mutex.h"
 #include "rollingaverage.h"
@@ -69,11 +70,11 @@
 
 /// @def MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION
 /// @brief The Minor version number of the library. (The middle number)
-#define MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION 9
+#define MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION 10
 
 /// @def MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION
 /// @brief The revision version number of the library. (This right/back number)
-#define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 2
+#define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 0
 
 /// @mainpage Directed Acyclic Graph Frame Scheduler.
 /// @section goal_sec Goals
