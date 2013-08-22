@@ -23,7 +23,7 @@ btBoxShape::btBoxShape( const btVector3& boxHalfExtents)
 
 	btVector3 margin(getMargin(),getMargin(),getMargin());
 	m_implicitShapeDimensions = (boxHalfExtents * m_localScaling) - margin;
-};
+}
 
 
 

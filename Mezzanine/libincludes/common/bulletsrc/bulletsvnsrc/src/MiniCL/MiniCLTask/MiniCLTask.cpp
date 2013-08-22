@@ -69,6 +69,6 @@ void* createMiniCLLocalStoreMemory()
 void* createMiniCLLocalStoreMemory()
 {
 	return new MiniCLTask_LocalStoreMemory;
-};
+}
 
 #endif

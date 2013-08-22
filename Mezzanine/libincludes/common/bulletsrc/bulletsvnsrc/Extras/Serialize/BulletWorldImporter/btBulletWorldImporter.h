@@ -30,7 +30,7 @@ namespace bParse
 {
 	class btBulletFile;
 	
-};
+}
 
 
 
