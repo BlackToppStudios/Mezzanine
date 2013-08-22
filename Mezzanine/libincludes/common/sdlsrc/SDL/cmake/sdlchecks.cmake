@@ -449,16 +449,20 @@ endmacro(CheckX11)
 #
 macro(CheckCOCOA)
   if(SDL_VIDEO_COCOA)
+    set(OldFlags ${CMAKE_REQUIRED_FLAGS})
+    set(CMAKE_REQUIRED_FLAGS "-x objective-c")
     check_objc_source_compiles("
         #import <Cocoa/Cocoa.h>
         int main (int argc, char** argv) {}" HAVE_VIDEO_COCOA)
     if(HAVE_VIDEO_COCOA)
       file(GLOB COCOA_SOURCES ${SDL2_SOURCE_DIR}/src/video/cocoa/*.m)
-      set_source_files_properties(${COCOA_SOURCES} PROPERTIES LANGUAGE C)
+      #set_source_files_properties(${COCOA_SOURCES} PROPERTIES LANGUAGE C)
+      set_source_files_properties(${COCOA_SOURCES} PROPERTY COMPILE_FLAGS "-x objective-c")
       set(SOURCE_FILES ${SOURCE_FILES} ${COCOA_SOURCES})
       set(SDL_VIDEO_DRIVER_COCOA 1)
       set(HAVE_SDL_VIDEO TRUE)
     endif(HAVE_VIDEO_COCOA)
+    set(CMAKE_REQUIRED_FLAGS OldFlags)
   endif(SDL_VIDEO_COCOA)
 endmacro(CheckCOCOA)
 
