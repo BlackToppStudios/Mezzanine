@@ -51,10 +51,10 @@ set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 message ( STATUS "Looking build resources in: ${${PROJECT_NAME}_ROOT_DIR}")
 
-set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}/Data/")
+set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}Data/")
 message ( STATUS "Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 
-set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
+set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
 message ( STATUS "Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
 set (${PROJECT_NAME}_MEZZANINE_DIR "${ProjectRootDir}/Mezzanine/")
@@ -170,6 +170,7 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}workunits.cpp"
     "${${PROJECT_NAME}_SRC_DIR}workunits.h"
 )
+message( "Catch Sources - ${${PROJECT_NAME}_sources}" )
 
 ##############################################################################
 # Functions to use to copy files at build time
@@ -222,7 +223,6 @@ link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine )
 target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName} )
-
 
 ##############################################################################
 # File copies during all builds
