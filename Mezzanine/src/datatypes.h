@@ -47,14 +47,19 @@
 ///////////////////////////////////////
 
 #include "crossplatformexport.h"
-#include "pstdint.h" // A reimplimentation of the C99 stdint.h for all compilers
+//#include "pstdint.h" // A reimplimentation of the C99 stdint.h for all compilers
 
 // Standard Headers are not included in SWIG preprocessing
 // Most std includes are centralized here to make modifying this list as simple as possible. Other standard includes that
 // are not included here are in places that they are required and conditionally may not be compiled in. For example,
 
 #ifndef SWIG
-    //#include <stdint.h> //Not available in all version of mscv
+    //Dunno if SWIG needs the header, I hope not!
+    #if defined( _MSC_VER )
+        #include "pstdint.h"
+    #else
+        #include <stdint.h> //Not available in all version of mscv
+    #endif
     #include <cstddef>
 
     #include <algorithm>
