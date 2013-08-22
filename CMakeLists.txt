@@ -526,8 +526,20 @@ endif(OPENMP_FOUND)
 
 ###############################################################################
 # Perform Common Tasks for build options and configuration.
+
 set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Ogre_Arguments} ${FPIC}")
 #message(FATAL_ERROR ${CommonBuildFlags})
+
+###############################################################################
+# Perform Platform Specific Tasks for build options and configuration.
+
+# Fprce cmake to use Clang on MacOS
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    include(CMakeForceCompiler)
+    CMAKE_FORCE_C_COMPILER(clang GNU)
+    CMAKE_FORCE_CXX_COMPILER(clang++ GNU)
+    set(CMAKE_XCODE_ATTRIBUTE_GCC_VERSION "com.apple.compilers.llvm.clang.1_0")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
 # Add subprojects
@@ -553,6 +565,20 @@ mark_as_advanced( FORCE
     EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH
     NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_ICD_CFG NVIDIA_OPENCL_LIBRARIES
     OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY
+
+    # Stuff that only appears on MacOS, I think
+    AUDIOTOOLBOX_LIBRARY
+    AUDIOUNIT
+    OpenGL_LIBRARY
+    CARBON_LIBRARY
+    COCOA_LIBRARY
+    COREAUDIO
+    FORCEFEEDBACK
+    IOKIT
+    CMAKE_CONFIGURATION_TYPES
+    CMAKE_OSX_ARCHITECTURES
+    CMAKE_OSX_DEPLOYMENT_TARGET
+    CMAKE_OSX_SYSROOT
 
     # Open AL soft options
     ALSOFT_WINE ALSOFT_FORCE_STATIC_VCRT
