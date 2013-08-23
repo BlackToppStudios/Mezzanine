@@ -162,6 +162,10 @@ namespace Mezzanine
             if(WF_Maximized & Flags)
             {
             }
+			
+            #ifdef MACOSX
+			Opts["macAPI"] = "cocoa";
+            #endif
 
             //#ifdef LINUX
             //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(ResourceManager::GetSingletonPtr()->GetEngineDataDirectory(),"FileSystem");
