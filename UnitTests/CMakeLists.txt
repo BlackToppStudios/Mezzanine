@@ -144,31 +144,43 @@ function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
         TARGET ${PROJECT_NAME}
         PRE_LINK
         COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_DATA_DIR}${TargetFileInBinaryTree}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/${TargetFileInBinaryTree}"
         VERBATIM
     )
 endfunction(CopyFilesDuringBuild)
 
-#Description: This function copies items from the Data/lib directory in Mezzanine into it's expected location in the output directory for Unittests during build time. It does not need leading slashes
+#Description: This function copies items from the output directory in Mezzanine into the location of the Catch executable. 
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
-function(CopyFilesFromMezzanineDuringBuild FileName)
+function(CopyLibraryFromMezzanineDuringBuild TargetName)
     add_custom_command(
         TARGET ${PROJECT_NAME}
         PRE_LINK
-        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${FileName}"
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: $<TARGET_FILE:${TargetName}>"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:${TargetName}>" "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+        VERBATIM
+    )
+endfunction(CopyLibraryFromMezzanineDuringBuild)
+
+#Description: This function copies items from the Data/lib directory in Mezzanine into it's renamed location in the output directory for Unittests during build time. It does not need leading slashes
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
+function(CopyFilesFromMezzanineDuringBuild TargetPath)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${TargetPath}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${TargetPath}" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/${TargetPath}"
         VERBATIM
     )
 endfunction(CopyFilesFromMezzanineDuringBuild)
 
 #Description: This function copies items from the Data/lib directory in Mezzanine into it's renamed location in the output directory for Unittests during build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
-function(CopyFilesFromMezzanineDuringBuildAndRename FileName NewFileName)
+function(CopyFilesFromMezzanineDuringBuildAndRename TargetPath NewPath)
     add_custom_command(
         TARGET ${PROJECT_NAME}
         PRE_LINK
-        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${NewFileName}"
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${TargetPath}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${TargetPath}" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/${NewPath}"
         VERBATIM
     )
 endfunction(CopyFilesFromMezzanineDuringBuildAndRename)
@@ -271,7 +283,7 @@ CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt )
 
 #The Engine itself
-CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${MezzanineLibFileName} )
+CopyLibraryFromMezzanineDuringBuild( "Mezzanine" )
 
 ##############################################################################
 #Copy System Dependant files during build time
@@ -279,7 +291,6 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${Mezzanine
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	#CopyFilesFromMezzanineDuringBuild( Mezzanine.dll )
 	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 

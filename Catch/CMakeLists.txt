@@ -78,33 +78,32 @@ set (GameDir "${${PROJECT_NAME}_BINARY_DIR}")
 message ( STATUS "Catch! Complete Output: ${GameDir}")
 
 # Levels
-set (LevelDir "${GameDir}Levels/")
+set (LevelDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Levels/")
 message ( STATUS "Catch! Levels Output: ${LevelDir}")
 
 # Common Data
-set (CommonDataDir "${GameDir}Data/")
+set (CommonDataDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Data/")
 message ( STATUS "Catch! Common Data Output: ${CommonDataDir}")
 
 # Fonts
-set (FontDir "${GameDir}Fonts/")
+set (FontDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Fonts/")
 message ( STATUS "Catch! Font Output: ${FontDir}")
 
 # Licenses
-set (LicenseDir "${GameDir}Licenses/")
+set (LicenseDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Licenses/")
 message ( STATUS "Catch! Licenses Output: ${LicenseDir}")
 
 # Plugins
-set (PluginDir "${GameDir}Plugins/")
+set (PluginDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Plugins/")
 message ( STATUS "Catch! Plugins Output: ${PluginDir}")
 
 # Previews
-set (PreviewDir "${GameDir}Previews/")
+set (PreviewDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Previews/")
 message ( STATUS "Catch! Preview Output: ${PreviewDir}")
 
 # Profiles
-set (ProfileDir "${GameDir}Profiles/")
+set (ProfileDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Profiles/")
 message ( STATUS "Catch! Profile Output: ${ProfileDir}")
-# ${GameDir} ${LevelDir} ${CommonDataDir} ${FontDir} ${LicenseDir} ${PluginDir} ${PreviewDir} ${ProfileDir}
 
 # Content Archive Cache
 set(Catch_ArchiveDir "" CACHE FILEPATH "The Directory that contains The Content Archives for Catch!")
@@ -187,17 +186,29 @@ function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
     )
 endfunction(CopyFilesDuringBuild)
 
-#Description: This function copies items from the output directory in Mezzanine into the location specified. The output is not relative to the Binary Path, the caller must be explicit.
+#Description: This function copies items from the output directory in Mezzanine into the location of the Catch executable. 
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
-function(CopyFilesFromMezzanineDuringBuild FileName Target)
+function(CopyLibraryFromMezzanineDuringBuild TargetName)
     add_custom_command(
         TARGET ${PROJECT_NAME}
         PRE_LINK
-        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${Target}"
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: $<TARGET_FILE:${TargetName}>"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:${TargetName}>" "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
         VERBATIM
     )
-endfunction(CopyFilesFromMezzanineDuringBuild)
+endfunction(CopyLibraryFromMezzanineDuringBuild)
+
+#Description: This function copies license files in Mezzanine into the Catch License folder. 
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
+function(CopyLicenseFromMezzanineDuringBuild TargetPath DestName)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${TargetPath}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${TargetPath}" "${LicenseDir}${DestName}"
+        VERBATIM
+    )
+endfunction(CopyLicenseFromMezzanineDuringBuild)
 
 function(CreateDirectoryStructure)
     add_custom_command(
@@ -241,34 +252,23 @@ CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-R.ttf ${FontDir}Ubun
 #####################################
 # Config Files
 CopyFilesDuringBuild( data/common/config-files/Mezzanine.mxi ${CommonDataDir}Mezzanine.mxi )
-#CopyFilesDuringBuild( data/common/config-files/Plugins.mxi ${CommonDataDir}Plugins.mxi )
 CopyFilesDuringBuild( data/common/config-files/Resources.mxi ${CommonDataDir}Resources.mxi )
 
 #####################################
 # Licences
-#CopyFilesFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt ${LicenseDir}BulletZLibLicense.txt )
-#CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt ${LicenseDir}lgpl-3.0.txt )
-#CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt ${LicenseDir}Ogre-MITLicense.txt )
-#CopyFilesFromMezzanineDuringBuild( data/common/SDL-MITLicense.txt ${LicenseDir}SDL-MITLicense.txt )
-#CopyFilesFromMezzanineDuringBuild( data/common/zlib-libpngLicense.txt ${LicenseDir}zlib-libpngLicense.txt )
-#CopyFilesFromMezzanineDuringBuild( data/common/gpl-3.0.txt ${LicenseDir}gpl-3.0.txt )
-#CopyFilesFromMezzanineDuringBuild( data/common/Licenses.txt ${LicenseDir}Licenses.txt )
-#CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt ${LicenseDir}PugiXML-MITLicense.txt )
-#CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt ${LicenseDir}XiphCopyrightNotice.txt )
-
-CopyFilesFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt ${LicenseDir}BulletZLibLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/gpl-2.0.txt ${LicenseDir}/gpl-2.0.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/gpl-3.0.txt ${LicenseDir}/gpl-3.0.txt)
-CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt ${LicenseDir}/lgpl-3.0.tx)
-CopyFilesFromMezzanineDuringBuild( data/common/Licenses.txt ${LicenseDir}/Licenses.txt)
-CopyFilesFromMezzanineDuringBuild( data/common/Lua-MIT.txt ${LicenseDir}/Lua-MIT.txt)
-CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt ${LicenseDir}/Ogre-MITLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt ${LicenseDir}/PugiXML-MITLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/ReneNyffenegger-MIT.txt ${LicenseDir}/ReneNyffenegger-MIT.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/SDL-MITLicense.txt ${LicenseDir}/SDL-MITLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt ${LicenseDir}/XiphCopyrightNotice.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/zlib-libpngLicense.txt ${LicenseDir}/zlib-libpngLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/zlib-zliblicense.txt ${LicenseDir}/zlib-zliblicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt BulletZLibLicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/gpl-2.0.txt gpl-2.0.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/gpl-3.0.txt gpl-3.0.txt)
+CopyLicenseFromMezzanineDuringBuild( data/common/lgpl-3.0.txt lgpl-3.0.tx)
+CopyLicenseFromMezzanineDuringBuild( data/common/Licenses.txt Licenses.txt)
+CopyLicenseFromMezzanineDuringBuild( data/common/Lua-MIT.txt Lua-MIT.txt)
+CopyLicenseFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt Ogre-MITLicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt PugiXML-MITLicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/ReneNyffenegger-MIT.txt ReneNyffenegger-MIT.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/SDL-MITLicense.txt SDL-MITLicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt XiphCopyrightNotice.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/zlib-libpngLicense.txt zlib-libpngLicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/zlib-zliblicense.txt zlib-zliblicense.txt )
 
 #####################################
 # Common Data
@@ -288,7 +288,7 @@ CopyFilesFromMezzanineDuringBuild( data/common/zlib-zliblicense.txt ${LicenseDir
 #CopyFilesDuringBuild( data/${BuildPlatform}/plugins${OgresD}.cfg ${PluginDir}plugins.cfg)
 
 #The Engine itself
-CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${MezzanineLibFileName} )
+CopyLibraryFromMezzanineDuringBuild( "Mezzanine" )
 
 ##############################################################################
 #Copy System Dependant files during build time

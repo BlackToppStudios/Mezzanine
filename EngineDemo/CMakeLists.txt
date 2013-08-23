@@ -85,22 +85,34 @@ function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
         TARGET ${PROJECT_NAME}
         PRE_LINK
         COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_DATA_DIR}${TargetFileInBinaryTree}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/${TargetFileInBinaryTree}"
         VERBATIM
     )
 endfunction(CopyFilesDuringBuild)
 
-#Description: This function copies items from the Data/lib directory in Mezzanine into it's expected location in the output directory  for catch during build time. It does not need leading slashes
+#Description: This function copies items from the output directory in Mezzanine into the location of the Catch executable. 
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
-function(CopyFilesFromMezzanineDuringBuild FileName)
+function(CopyLibraryFromMezzanineDuringBuild TargetName)
     add_custom_command(
         TARGET ${PROJECT_NAME}
         PRE_LINK
-        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${FileName}"
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: $<TARGET_FILE:${TargetName}>"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:${TargetName}>" "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
         VERBATIM
     )
-endfunction(CopyFilesFromMezzanineDuringBuild)
+endfunction(CopyLibraryFromMezzanineDuringBuild)
+
+#Description: This function copies license files in Mezzanine into the Catch License folder. 
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
+function(CopyLicenseFromMezzanineDuringBuild TargetPath DestName)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${TargetPath}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${TargetPath}" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/data/common/${DestName}"
+        VERBATIM
+    )
+endfunction(CopyLicenseFromMezzanineDuringBuild)
 
 
 ##############################################################################
@@ -140,10 +152,9 @@ CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioThem
 CopyFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
 CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/common/sounds/welcomefun-1.ogg )
 
-#CopyFilesFromMezzanineDuringBuild( data/common/Ogre-lgpl-3.0.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt PugiXML-MITLicense.txt )
 
-CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} )
+CopyLibraryFromMezzanineDuringBuild( "Mezzanine" )
 
 ##############################################################################
 #Copy System Dependant files during build time
@@ -151,7 +162,6 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} )
 # Windows File Copy Specific Items
 if(${WIN32})
     message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-    #CopyFilesFromMezzanineDuringBuild( data/windows/plugins.cfg )
     message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
 endif(${WIN32})
@@ -159,7 +169,6 @@ endif(${WIN32})
 # Linux File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
-    #CopyFilesFromMezzanineDuringBuild( data/linux/plugins.cfg )
     CopyFilesFromMezzanineDuringBuild( data/linux/GLX_icon.png )
     message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -167,8 +176,6 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 # Mac File Copy Specific Items
 if(${APPLE})
     message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-    #CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg )
-    #CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
     message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 
