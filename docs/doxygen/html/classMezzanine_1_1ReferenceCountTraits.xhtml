@@ -118,7 +118,7 @@ class Mezzanine::ReferenceCountTraits&lt; T &gt;</h3>
 <p>This is used to deduce at compile if a specific class has built-in reference counting or needs an external reference count. </p>
 <p>Every class that does not implement its own reference count gets this default one. The Default reference count is not thread-safe, and requires that every dereferencing of the smart pointer has the cost of a double dereference. The double dereference is caused because the reference counter has to store a native pointer to the managed object. In benchmarks included with the Unit tests this seems to increase dereference time by about double. <br/>
  <br/>
- <a class="el" href="classMezzanine_1_1Any.xhtml" title="This is a simple class used for type-safe casting of any type of data.">Any</a> class that provides TypePointedTo* GetReferenceCountTargetAsPointer(), Whole GetReferenceCount(), Whole IncrementReferenceCount(), Whole DecrementReferenceCount() and something* GetMostDerived() (which need to be virtual if inheritance is used to be useful) can be used as a reference counter. If it provides these then a specialization of <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml" title="This is used to deduce at compile if a specific class has built-in reference counting or needs an ext...">ReferenceCountTraits</a> should be implemented for a given class and <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> will use the type defined by <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml#abcc7e0da881f56261552049b1ce25223" title="This is type of the ReferenceCounter, The type of the class if reference counting is instrusive...">ReferenceCountTraits&lt;T&gt;::RefCountType</a> as the counter. <br/>
+ Any class that provides TypePointedTo* GetReferenceCountTargetAsPointer(), Whole GetReferenceCount(), Whole IncrementReferenceCount(), Whole DecrementReferenceCount() and something* GetMostDerived() (which need to be virtual if inheritance is used to be useful) can be used as a reference counter. If it provides these then a specialization of <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml" title="This is used to deduce at compile if a specific class has built-in reference counting or needs an ext...">ReferenceCountTraits</a> should be implemented for a given class and <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> will use the type defined by <a class="el" href="classMezzanine_1_1ReferenceCountTraits.xhtml#abcc7e0da881f56261552049b1ce25223" title="This is type of the ReferenceCounter, The type of the class if reference counting is instrusive...">ReferenceCountTraits&lt;T&gt;::RefCountType</a> as the counter. <br/>
  <br/>
  The <a class="el" href="namespaceMezzanine.xhtml" title="The bulk of the engine components go in this namspace.">Mezzanine</a> provides a Reference count class that can be used with any type at the cost of extra dereferences. Some types (Scripts) have their own internal reference count that when used will increase the locality (since the reference count is part of the managed object) and reduce dereferences to exactly one. Since the <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> is the size of a native pointer if it is used with an internal reference count, the only signifigant overhead should be the counting itself. </p>
 
@@ -139,7 +139,7 @@ template&lt;typename T&gt; </div>
 <p>Used to determine if the data a <a class="el" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr</a> is managing can be cast. </p>
 <p>This uses the <a class="el" href="namespaceMezzanine.xhtml#ad937b4d169586b963a9545c39fe66739">CountedPointerCastingState</a> to enter a value the Template MetaProgramming Machinery will understand. </p>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00219">219</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00222">222</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -178,7 +178,7 @@ template&lt;typename T&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>This will return a pointer to a valid reference counter. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The default implemetation call new with a matching delete in CounterPtr::~CountedPtr . If no allocations are required this may simply return the passed parameter. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00214">214</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="smartptr_8h_source.xhtml#l00217">217</a> of file <a class="el" href="smartptr_8h_source.xhtml">smartptr.h</a>.</p>
 
 </div>
 </div>
@@ -187,6 +187,6 @@ template&lt;typename T&gt; </div>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:58 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

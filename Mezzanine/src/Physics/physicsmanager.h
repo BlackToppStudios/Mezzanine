@@ -89,7 +89,7 @@ namespace Mezzanine
         class PhysicsManager;
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a @ref iWorkUnit for the single threaded processing of physics simulations.
+        /// @brief This is a Mezzanine::Threading::iWorkUnit for the single threaded processing of physics simulations.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB SimulationWorkUnit : public Threading::DefaultWorkUnit
@@ -122,7 +122,7 @@ namespace Mezzanine
         };//SimulationWorkUnit
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a @ref iWorkUnit for the multi-threaded processing of physics simulations.
+        /// @brief This is a Mezzanine::Threading::iWorkUnit for the multi-threaded processing of physics simulations.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB SimulationMonopolyWorkUnit : public Threading::MonopolyWorkUnit
@@ -161,7 +161,7 @@ namespace Mezzanine
         };//SimulationMonopolyWorkUnit
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a @ref iWorkUnit for the updating of WorldTriggers.
+        /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB WorldTriggerUpdateWorkUnit : public Threading::DefaultWorkUnit
@@ -194,7 +194,7 @@ namespace Mezzanine
         };//WorldTriggerUpdateWorkUnit
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a @ref iWorkUnit for the updating of the physics debug drawer.
+        /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB DebugDrawWorkUnit : public Threading::DefaultWorkUnit

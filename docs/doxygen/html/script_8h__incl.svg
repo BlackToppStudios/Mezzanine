@@ -42,46 +42,46 @@ var sectionId = 'dynsection-0';
 <title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="553.5,-233 553.5,-277 704.5,-277 704.5,-233 553.5,-233"/>
-<text text-anchor="start" x="561.5" y="-264" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="start" x="561.5" y="-252" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Scripting</text>
-<text text-anchor="middle" x="629" y="-240" font-family="FreeSans" font-size="10.00">/script.h</text>
+<polygon fill="#bfbfbf" stroke="black" points="552.5,-233 552.5,-277 703.5,-277 703.5,-233 552.5,-233"/>
+<text text-anchor="start" x="560.5" y="-264" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="start" x="560.5" y="-252" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Scripting</text>
+<text text-anchor="middle" x="628" y="-240" font-family="FreeSans" font-size="10.00">/script.h</text>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="binarytool_8h_source.xhtml" target="_top" xlink:title="binarytool.h">
-<polygon fill="none" stroke="black" points="527.5,-117 527.5,-137 592.5,-137 592.5,-117 527.5,-117"/>
-<text text-anchor="middle" x="560" y="-124" font-family="FreeSans" font-size="10.00">binarytool.h</text>
+<a xlink:href="binarybuffer_8h_source.xhtml" target="_top" xlink:title="binarybuffer.h">
+<polygon fill="none" stroke="black" points="521.5,-117 521.5,-137 594.5,-137 594.5,-117 521.5,-117"/>
+<text text-anchor="middle" x="558" y="-124" font-family="FreeSans" font-size="10.00">binarybuffer.h</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M604.315,-232.982C594.154,-222.682 583.119,-209.68 576,-196 568.116,-180.851 564.077,-161.833 562.032,-147.601"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="565.47,-146.881 560.784,-137.379 558.522,-147.729 565.47,-146.881"/>
+<path fill="none" stroke="midnightblue" d="M603.404,-232.936C593.259,-222.627 582.213,-209.63 575,-196 566.986,-180.856 562.664,-161.837 560.387,-147.604"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="563.809,-146.804 558.967,-137.381 556.876,-147.767 563.809,-146.804"/>
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
 <a xlink:href="scriptargument_8h.xhtml" target="_top" xlink:title="This file has the interfaces for Script Arguments and the associated dependency chain.">
-<polygon fill="none" stroke="black" points="585,-175 585,-195 673,-195 673,-175 585,-175"/>
-<text text-anchor="middle" x="629" y="-182" font-family="FreeSans" font-size="10.00">scriptargument.h</text>
+<polygon fill="none" stroke="black" points="584,-175 584,-195 672,-195 672,-175 584,-175"/>
+<text text-anchor="middle" x="628" y="-182" font-family="FreeSans" font-size="10.00">scriptargument.h</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node20 -->
 <g id="edge38" class="edge"><title>Node1&#45;&gt;Node20</title>
-<path fill="none" stroke="midnightblue" d="M629,-232.852C629,-224.051 629,-213.991 629,-205.374"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="632.5,-205.104 629,-195.104 625.5,-205.104 632.5,-205.104"/>
+<path fill="none" stroke="midnightblue" d="M628,-232.852C628,-224.051 628,-213.991 628,-205.374"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="631.5,-205.104 628,-195.104 624.5,-205.104 631.5,-205.104"/>
 </g>
 <!-- Node21 -->
 <g id="node42" class="node"><title>Node21</title>
 <a xlink:href="smartptr_8h.xhtml" target="_top" xlink:title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e...">
-<polygon fill="none" stroke="black" points="663.5,-117 663.5,-137 722.5,-137 722.5,-117 663.5,-117"/>
-<text text-anchor="middle" x="693" y="-124" font-family="FreeSans" font-size="10.00">smartptr.h</text>
+<polygon fill="none" stroke="black" points="662.5,-117 662.5,-137 721.5,-137 721.5,-117 662.5,-117"/>
+<text text-anchor="middle" x="692" y="-124" font-family="FreeSans" font-size="10.00">smartptr.h</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node21 -->
 <g id="edge48" class="edge"><title>Node1&#45;&gt;Node21</title>
-<path fill="none" stroke="midnightblue" d="M654.417,-232.935C664.583,-222.72 675.421,-209.795 682,-196 689.251,-180.794 691.872,-161.781 692.753,-147.565"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="696.258,-147.484 693.141,-137.358 689.263,-147.218 696.258,-147.484"/>
+<path fill="none" stroke="midnightblue" d="M653.417,-232.935C663.583,-222.72 674.421,-209.795 681,-196 688.251,-180.794 690.872,-161.781 691.753,-147.565"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="695.258,-147.484 692.141,-137.358 688.263,-147.218 695.258,-147.484"/>
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
@@ -92,8 +92,8 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge4" class="edge"><title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M565.226,-116.897C569.262,-109.093 574.972,-98.0536 579.893,-88.5401"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="583.147,-89.8678 584.632,-79.3776 576.929,-86.6518 583.147,-89.8678"/>
+<path fill="none" stroke="midnightblue" d="M563.574,-116.897C567.925,-109.01 574.099,-97.8209 579.385,-88.2401"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="582.508,-89.8242 584.274,-79.3776 576.379,-86.4426 582.508,-89.8242"/>
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
@@ -261,23 +261,23 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20&#45;&gt;Node3 -->
 <g id="edge40" class="edge"><title>Node20&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M625.539,-174.706C619.047,-155.396 604.945,-113.451 596.588,-88.5955"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="599.902,-87.4688 593.398,-79.1055 593.267,-89.6996 599.902,-87.4688"/>
+<path fill="none" stroke="midnightblue" d="M624.628,-174.706C618.33,-155.482 604.684,-113.825 596.529,-88.9294"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="599.75,-87.519 593.31,-79.1055 593.097,-89.6982 599.75,-87.519"/>
 </g>
 <!-- Node20&#45;&gt;Node21 -->
 <g id="edge42" class="edge"><title>Node20&#45;&gt;Node21</title>
-<path fill="none" stroke="midnightblue" d="M640.148,-174.897C649.485,-166.435 663.018,-154.172 674.052,-144.172"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="676.489,-146.686 681.549,-137.378 671.789,-141.499 676.489,-146.686"/>
+<path fill="none" stroke="midnightblue" d="M639.148,-174.897C648.485,-166.435 662.018,-154.172 673.052,-144.172"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="675.489,-146.686 680.549,-137.378 670.789,-141.499 675.489,-146.686"/>
 </g>
 <!-- Node21&#45;&gt;Node3 -->
 <g id="edge44" class="edge"><title>Node21&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M675.059,-116.897C658.985,-107.846 635.185,-94.4442 616.846,-84.117"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="618.512,-81.0386 608.081,-79.1817 615.077,-87.1381 618.512,-81.0386"/>
+<path fill="none" stroke="midnightblue" d="M674.233,-116.897C658.388,-107.887 634.962,-94.5665 616.834,-84.2586"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="618.329,-81.0822 607.906,-79.1817 614.869,-87.1673 618.329,-81.0822"/>
 </g>
 <!-- Node21&#45;&gt;Node17 -->
 <g id="edge46" class="edge"><title>Node21&#45;&gt;Node17</title>
-<path fill="none" stroke="midnightblue" d="M720.664,-116.909C778.468,-95.8229 911.967,-47.1251 975.785,-23.8458"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="977.211,-27.051 985.407,-20.336 974.813,-20.4749 977.211,-27.051"/>
+<path fill="none" stroke="midnightblue" d="M719.751,-116.909C777.737,-95.8229 911.656,-47.1251 975.674,-23.8458"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="977.124,-27.0428 985.326,-20.336 974.732,-20.4642 977.124,-27.0428"/>
 </g>
 </g>
 </svg>

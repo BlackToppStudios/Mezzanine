@@ -59,7 +59,7 @@ namespace Mezzanine
         class InputManagerInternalData;
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a @ref iWorkUnit for the updating of the physics debug drawer.
+        /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB DeviceUpdateWorkUnit : public Threading::DefaultWorkUnit

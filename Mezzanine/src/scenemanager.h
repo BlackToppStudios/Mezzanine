@@ -70,7 +70,7 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a @ref iWorkUnit for the updating of tracking world nodes in the world.
+    /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world.
     /// @details
     ///////////////////////////////////////
     class MEZZ_LIB TrackingNodeUpdateWorkUnit : public Threading::DefaultWorkUnit

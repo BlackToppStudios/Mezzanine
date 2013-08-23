@@ -131,7 +131,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;entresol.h&quot;</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;eventmanager.h&quot;</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;mathtool.h&quot;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;inputmanager.h&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;Input/inputmanager.h&quot;</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#include &quot;Input/mouse.h&quot;</span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
@@ -331,7 +331,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.xhtml#a408bbcbdc321f48b4cbbfef427410596" title="Sets the hovered state of this renderable. ">SetHovered</a>(<span class="keyword">false</span>);</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                <span class="keywordflow">return</span> MouseHover;</div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            }</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <a class="code" href="classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> MouseLoc = <a class="code" href="classMezzanine_1_1Singleton.xhtml#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">InputManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1InputManager.xhtml#a932f1872e10404fd60b33c7e8c77326b" title="Gets the system mouse.">GetSystemMouse</a>()-&gt;<a class="code" href="classMezzanine_1_1Input_1_1Mouse.xhtml#ac26ac190eb0231d35d0b6ca9f995dda1" title="Gets the position of the mouse cursor relative to the origin of the viewport in the window with the m...">GetViewportPosition</a>();</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <a class="code" href="classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> MouseLoc = <a class="code" href="classMezzanine_1_1Singleton.xhtml#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Input::InputManager::GetSingletonPtr</a>()-&gt;GetSystemMouse()-&gt;GetViewportPosition();</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.xhtml#a408bbcbdc321f48b4cbbfef427410596" title="Sets the hovered state of this renderable. ">SetHovered</a>((MouseLoc.<a class="code" href="classMezzanine_1_1Vector2.xhtml#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> &gt;= ActPosition.<a class="code" href="classMezzanine_1_1Vector2.xhtml#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> &amp;&amp; MouseLoc.<a class="code" href="classMezzanine_1_1Vector2.xhtml#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> &lt;= ActPosition.<a class="code" href="classMezzanine_1_1Vector2.xhtml#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + ActSize.<a class="code" href="classMezzanine_1_1Vector2.xhtml#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>) &amp;&amp; (MouseLoc.<a class="code" href="classMezzanine_1_1Vector2.xhtml#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> &gt;= ActPosition.<a class="code" href="classMezzanine_1_1Vector2.xhtml#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> &amp;&amp; MouseLoc.<a class="code" href="classMezzanine_1_1Vector2.xhtml#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> &lt;= ActPosition.<a class="code" href="classMezzanine_1_1Vector2.xhtml#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + ActSize.<a class="code" href="classMezzanine_1_1Vector2.xhtml#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            <span class="keywordflow">return</span> MouseHover;</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        }</div>
@@ -627,7 +627,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;            {</div>
 <div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;                <span class="keywordflow">case</span> UI::RP_Low:</div>
 <div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;                {</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;                    <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; RenderVertices.size() ; ++X )</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;                    <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> X = 0 ; X &lt; RenderVertices.size() ; ++X )</div>
 <div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;                    {</div>
 <div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;                        Vertices.LowVertices.push_back(RenderVertices[X]);</div>
 <div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;                    }</div>
@@ -635,7 +635,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;                }</div>
 <div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;                <span class="keywordflow">case</span> UI::RP_Medium:</div>
 <div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;                {</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;                    <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; RenderVertices.size() ; ++X )</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;                    <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> X = 0 ; X &lt; RenderVertices.size() ; ++X )</div>
 <div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;                    {</div>
 <div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;                        Vertices.MediumVertices.push_back(RenderVertices[X]);</div>
 <div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;                    }</div>
@@ -643,7 +643,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;                }</div>
 <div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;                <span class="keywordflow">case</span> UI::RP_High:</div>
 <div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;                {</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;                    <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; RenderVertices.size() ; ++X )</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;                    <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> X = 0 ; X &lt; RenderVertices.size() ; ++X )</div>
 <div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;                    {</div>
 <div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;                        Vertices.HighVertices.push_back(RenderVertices[X]);</div>
 <div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;                    }</div>
@@ -657,6 +657,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:05 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

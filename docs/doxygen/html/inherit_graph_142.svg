@@ -10,10 +10,10 @@
 <title>Graphical Class Hierarchy</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1ReferenceCountTraits_3_01FooDerived2_01_4.xhtml" target="_top" xlink:title="Mezzanine::ReferenceCount\lTraits\&lt; FooDerived2 \&gt;">
+<a xlink:href="classMezzanine_1_1ReferenceCount.xhtml" target="_top" xlink:title="This exists once per object managed by a group of shared pointer to track items in memory...">
 <polygon fill="none" stroke="black" points="0.5,-0 0.5,-32 137.5,-32 137.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::ReferenceCount</text>
-<text text-anchor="middle" x="69" y="-7" font-family="FreeSans" font-size="10.00">Traits&lt; FooDerived2 &gt;</text>
+<text text-anchor="middle" x="69" y="-7" font-family="FreeSans" font-size="10.00">&lt; TypePointedTo &gt;</text>
 </a>
 </g>
 </g>

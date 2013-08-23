@@ -1,7 +1,6 @@
 var searchData=
 [
   ['renderingapi_5fexception',['RENDERINGAPI_EXCEPTION',['../classMezzanine_1_1Exception.xhtml#a4ee7e60ac53783c4975240c57071d420ab4c00120cb10d40d40db2c375d1e1e4d',1,'Mezzanine::Exception']]],
-  ['rendertime',['RenderTime',['../classMezzanine_1_1EventBase.xhtml#ab85e31e97753b7e7ecb098f82526baefadd50d906767833b4676aa2cb2e232de2',1,'Mezzanine::EventBase']]],
   ['rpm_5fabsolute_5fquadrents',['RPM_Absolute_Quadrents',['../classMezzanine_1_1UI_1_1ViewportUpdateTool.xhtml#ad2de82a6fc57859d914845ce676ff67eaad6d1e0cde23b744226a1ae7548eedee',1,'Mezzanine::UI::ViewportUpdateTool']]],
   ['rpm_5fnothing',['RPM_Nothing',['../classMezzanine_1_1UI_1_1ViewportUpdateTool.xhtml#ad2de82a6fc57859d914845ce676ff67eafb9556e4bf207e5b7becd3c289e75fea',1,'Mezzanine::UI::ViewportUpdateTool']]],
   ['rpm_5fscale_5fall',['RPM_Scale_All',['../classMezzanine_1_1UI_1_1ViewportUpdateTool.xhtml#ad2de82a6fc57859d914845ce676ff67ea33c6541a0f70ab3e2476b46d1535245f',1,'Mezzanine::UI::ViewportUpdateTool']]],

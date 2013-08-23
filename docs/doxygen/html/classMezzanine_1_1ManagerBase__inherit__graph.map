@@ -1,19 +1,20 @@
 <map id="Mezzanine::ManagerBase" name="Mezzanine::ManagerBase">
-<area shape="rect" id="node3" href="$classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors in use." alt="" coords="241,5,412,33"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1Audio_1_1AudioManager.xhtml" title="This is the base manager class for the Audio subsystem and it&#39;s operations." alt="" coords="221,55,432,83"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Audio_1_1SoundScapeManager.xhtml" title="This is the base manager class for audio being played in a 3D environment." alt="" coords="225,106,428,150"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1CameraManager.xhtml" title="This is the manager class for all camera functions." alt="" coords="235,173,419,201"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1CollisionShapeManager.xhtml" title="This manager is for the storage of all shapes and creation of mesh shapes." alt="" coords="240,223,413,267"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1EventManager.xhtml" title="This is a container for Events and facilitates the transfer of data." alt="" coords="241,290,412,318"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1GraphicsManager.xhtml" title="This is intended to store basic graphics setting for the user." alt="" coords="232,341,421,369"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1InputManager.xhtml" title="This is the manager responsible for the handling of input devices and events." alt="" coords="243,391,411,419"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1MeshManager.xhtml" title="This manager handles the storage, generation, and query of of Graphics Meshes." alt="" coords="241,442,412,470"/>
-<area shape="rect" id="node21" href="$classMezzanine_1_1PhysicsManager.xhtml" title="This is simply a place for storing all the Physics Related functions." alt="" coords="236,493,417,521"/>
-<area shape="rect" id="node23" href="$classMezzanine_1_1ResourceManager.xhtml" title="This is the manager responsible for the loading and unloading of files." alt="" coords="231,543,423,571"/>
-<area shape="rect" id="node25" href="$classMezzanine_1_1SceneManager.xhtml" title="This class contains utilities and functions to allow the manipulation of the Graphical scene..." alt="" coords="239,594,415,622"/>
-<area shape="rect" id="node27" href="$classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml" title="What a scripting manager should look like." alt="" coords="257,645,396,689"/>
-<area shape="rect" id="node31" href="$classMezzanine_1_1TerrainManager.xhtml" title="This is manager for terrains and their functions." alt="" coords="237,711,416,739"/>
-<area shape="rect" id="node33" href="$classMezzanine_1_1TimerManager.xhtml" title="A manager responsible for the updating of all timers in use by this engine." alt="" coords="241,762,412,790"/>
-<area shape="rect" id="node35" href="$classMezzanine_1_1UIManager.xhtml" title="This class is responsible for any and all user interactions with the User interface/HUD." alt="" coords="251,813,403,841"/>
-<area shape="rect" id="node29" href="$classMezzanine_1_1Scripting_1_1iScriptCompilationManager.xhtml" title="What a scripting manager should look like." alt="" coords="481,645,663,689"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Audio_1_1AudioManager.xhtml" title="This is the base manager class for the Audio subsystem and it&#39;s operations." alt="" coords="221,5,432,33"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1CollisionShapeManager.xhtml" title="This manager is for the storage of all shapes and creation of mesh shapes." alt="" coords="240,55,413,99"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1EventManager.xhtml" title="This is a container for Events and facilitates the transfer of data." alt="" coords="241,122,412,150"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" title="This is intended to store basic graphics setting for the user." alt="" coords="257,173,396,217"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Input_1_1InputManager.xhtml" title="This is the manager responsible for the handling of input devices and events." alt="" coords="225,239,428,267"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1MeshManager.xhtml" title="This manager handles the storage, generation, and query of of Graphics Meshes." alt="" coords="241,290,412,318"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1ResourceManager.xhtml" title="This is the manager responsible for the loading and unloading of files." alt="" coords="231,341,423,369"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml" title="What a scripting manager should look like." alt="" coords="257,391,396,435"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1UI_1_1UIManager.xhtml" title="This class is responsible for any and all user interactions with the User interface/HUD." alt="" coords="241,458,412,486"/>
+<area shape="rect" id="node23" href="$classMezzanine_1_1WorldManager.xhtml" title="This is the base class for all managers that belong to a single world instance." alt="" coords="241,567,412,595"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1Scripting_1_1iScriptCompilationManager.xhtml" title="What a scripting manager should look like." alt="" coords="491,362,672,406"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors that exist in a world..." alt="" coords="496,429,667,457"/>
+<area shape="rect" id="node27" href="$classMezzanine_1_1AreaEffectManager.xhtml" title="A manager responsible for the storage and management of all areaeffects in use." alt="" coords="483,479,680,507"/>
+<area shape="rect" id="node29" href="$classMezzanine_1_1Audio_1_1SoundScapeManager.xhtml" title="This is the base manager class for audio being played in a 3D environment." alt="" coords="480,530,683,574"/>
+<area shape="rect" id="node31" href="$classMezzanine_1_1CameraManager.xhtml" title="This is the manager class for all camera functions." alt="" coords="489,597,673,625"/>
+<area shape="rect" id="node33" href="$classMezzanine_1_1Physics_1_1PhysicsManager.xhtml" title="This is simply a place for storing all the Physics Related functions." alt="" coords="515,647,648,691"/>
+<area shape="rect" id="node35" href="$classMezzanine_1_1SceneManager.xhtml" title="This class contains utilities and functions to allow the manipulation of the Graphical scene..." alt="" coords="493,714,669,742"/>
+<area shape="rect" id="node37" href="$classMezzanine_1_1TerrainManager.xhtml" title="This is manager for terrains and their functions." alt="" coords="492,765,671,793"/>
 </map>

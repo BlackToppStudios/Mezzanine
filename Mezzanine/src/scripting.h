@@ -40,7 +40,11 @@
 #ifndef _scripting_h
 #define _scripting_h
 
-
+#ifdef MEZZLUA51
+    #define LINKLUAMANUAL ///   - @ref LuaManual
+#else
+    #define LINKLUAMANUAL ///   - Lua Not Compiled in this build - @ref LuaManual
+#endif
 
 namespace Mezzanine
 {
@@ -49,7 +53,10 @@ namespace Mezzanine
     /// @details The system for integrating scripting languages into the engine.
     /// @n @n
     /// In general each languages Interpretter/Engine/Compiler/VM is locating in its own
-    /// subnamespace in the associated manager.
+    /// subnamespace in the associated manager. Here is a list of Languages compiled in
+    /// this build.
+    LINKLUAMANUAL
+
     namespace Scripting
         {}
 }

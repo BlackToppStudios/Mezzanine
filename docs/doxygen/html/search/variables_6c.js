@@ -9,7 +9,6 @@ var searchData=
   ['lights',['Lights',['../classMezzanine_1_1SceneManager.xhtml#ad80ecee7efce608a526befc597b3d613',1,'Mezzanine::SceneManager']]],
   ['lineheight',['LineHeight',['../classMezzanine_1_1UI_1_1GlyphData.xhtml#a11ea4040f0a854226a39f7f3a5dacf58',1,'Mezzanine::UI::GlyphData']]],
   ['location',['Location',['../classMezzanine_1_1Transform.xhtml#a93498c9bcba2298f199f9ab04671a944',1,'Mezzanine::Transform']]],
-  ['logstream',['LogStream',['../classMezzanine_1_1Entresol.xhtml#ae11d3d584419c09ce38aa1c4b646cf86',1,'Mezzanine::Entresol']]],
   ['lowcutoff',['LowCutoff',['../structMezzanine_1_1Audio_1_1EqualizerParameters.xhtml#a4e80ee549935f8531c295a33aef263f4',1,'Mezzanine::Audio::EqualizerParameters']]],
   ['lowgain',['LowGain',['../structMezzanine_1_1Audio_1_1EqualizerParameters.xhtml#a008184e88636d55bd511c430ad5605b2',1,'Mezzanine::Audio::EqualizerParameters']]],
   ['lowpasscutoff',['LowpassCutoff',['../structMezzanine_1_1Audio_1_1DistortionParameters.xhtml#a4361dc865ab2dbe501a83181a79c1fa1',1,'Mezzanine::Audio::DistortionParameters']]],

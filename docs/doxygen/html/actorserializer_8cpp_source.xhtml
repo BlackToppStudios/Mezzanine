@@ -179,16 +179,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }<span class="keywordflow">else</span>{</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <a class="code" href="namespaceMezzanine.xhtml#aec75a8a3369287cb02f331c62b32df73" title="Simply does some string concatenation, then throws an Exception.">DeSerializeError</a>(<a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;find correct class to deserialize, found a &quot;</span>)+OneNode.<a class="code" href="classMezzanine_1_1XML_1_1Node.xhtml#ac1b2f6b9c5b1380c524e6a77011aeda4" title="ptrdiff_tGet the name of this Node.">Name</a>(),<span class="stringliteral">&quot;ActorRigidDeSerializer&quot;</span>);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ActorRigidDeSerializer.xhtml#a4f28a9c4679891e249f9f5e4381a3f93">  100</a></span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1ActorRigidDeSerializer.xhtml#a4f28a9c4679891e249f9f5e4381a3f93" title="Should indicate the Name of the node that ProtoDeSerializeAll all accepts (when deserializing raw xml...">ActorRigidDeSerializer::ContainerName</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;RigidActors&quot;</span>); }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="comment">// unreachable, DeSerializeError Always throws, but this quashes that warning.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ActorRigidDeSerializer.xhtml#a4f28a9c4679891e249f9f5e4381a3f93">  102</a></span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1ActorRigidDeSerializer.xhtml#a4f28a9c4679891e249f9f5e4381a3f93" title="Should indicate the Name of the node that ProtoDeSerializeAll all accepts (when deserializing raw xml...">ActorRigidDeSerializer::ContainerName</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;RigidActors&quot;</span>); }</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:04 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

@@ -3,8 +3,6 @@ var searchData=
   ['feedback',['Feedback',['../structMezzanine_1_1Audio_1_1ChorusParameters.xhtml#a6e393b70ee5334cbbabd995ee8f2710c',1,'Mezzanine::Audio::ChorusParameters::Feedback()'],['../structMezzanine_1_1Audio_1_1EchoParameters.xhtml#a58564429d5ff3ac7e4e806ea8616003c',1,'Mezzanine::Audio::EchoParameters::Feedback()'],['../structMezzanine_1_1Audio_1_1FlangerParameters.xhtml#aa4b8054436bc92a8d6693fc2c8a26acf',1,'Mezzanine::Audio::FlangerParameters::Feedback()']]],
   ['finetune',['FineTune',['../structMezzanine_1_1Audio_1_1PitchShifterParameters.xhtml#ab7dc7e1070d78d9eae8b35775a7e1ea5',1,'Mezzanine::Audio::PitchShifterParameters']]],
   ['first',['First',['../classMezzanine_1_1EventGameWindowData.xhtml#a6427a05b03ab986af6efe93494bd1f43',1,'Mezzanine::EventGameWindowData']]],
-  ['first_5fattribute',['first_attribute',['../structpugi_1_1xml__node__struct.xhtml#a482d2daf97ce0745661cb2c57d8f6fb3',1,'pugi::xml_node_struct']]],
-  ['first_5fchild',['first_child',['../structpugi_1_1xml__node__struct.xhtml#af72c49a0f81928ef664d9d2f0260f23d',1,'pugi::xml_node_struct']]],
   ['formatdefault',['FormatDefault',['../namespaceMezzanine_1_1XML.xhtml#a9a9b9245ea32348c78817d002ecd61fc',1,'Mezzanine::XML']]],
   ['formatindent',['FormatIndent',['../namespaceMezzanine_1_1XML.xhtml#a8c0eb20115e575906a663bc7fe5ba356',1,'Mezzanine::XML']]],
   ['formatnodeclaration',['FormatNoDeclaration',['../namespaceMezzanine_1_1XML.xhtml#a965e10fd6db7e52461671ce5a05da1e6',1,'Mezzanine::XML']]],

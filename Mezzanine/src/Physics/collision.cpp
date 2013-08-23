@@ -57,6 +57,7 @@ namespace Mezzanine
         /// @brief Used to insulate the interface from the implementation details for bullet.
         struct CollisionInternalData
         {
+            /// @brief Wrapped Data, An array of Collision Manifolds
             btManifoldArray Manifolds;
         };
 

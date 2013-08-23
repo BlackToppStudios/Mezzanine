@@ -256,12 +256,12 @@ namespace Mezzanine
                 ////////////////////////////////////////////////////////////////////////////////
                 // WorkUnit management
 
-                /// @brief Add a normal @ref iWorkUnit to this For fcheduling.
+                /// @brief Add a normal Mezzanine::Threading::iWorkUnit to this For fcheduling.
                 /// @param MoreWork A pointer the the WorkUnit, that the FrameScheduler will take ownership of, and schedule for work.
                 /// @param WorkUnitName A name to uniquely identify this work unit in the logs
                 virtual void AddWorkUnitMain(iWorkUnit* MoreWork, const String& WorkUnitName);
 
-                /// @brief Add a normal @ref iWorkUnit to this For scheduling.
+                /// @brief Add a normal Mezzanine::Threading::iWorkUnit to this For scheduling.
                 /// @param MoreWork A pointer the the WorkUnit, that the FrameScheduler will take ownership of, and schedule for work.
                 /// @param WorkUnitName A name to uniquely identify this work unit in the logs
                 virtual void AddWorkUnitAffinity(iWorkUnit* MoreWork, const String& WorkUnitName);
@@ -329,7 +329,7 @@ namespace Mezzanine
                 /// @return This returns true if all the WorkUnit instances are complete, and false otherwise.
                 virtual bool AreAllWorkUnitsComplete();
 
-                /// @brief Create a reverse depedent graph that can be used for sorting @ref iWorkUnit "iWorkUnit"s to optimize execution each frame.
+                /// @brief Create a reverse depedent graph that can be used for sorting Mezzanine::Threading::iWorkUnit "iWorkUnit"s to optimize execution each frame.
                 /// @details This can be called automatically from any of several places that make sense by passing a boolean true value.
                 /// These place include create a @ref WorkUnitKey or Sorting the work units in a framescheduler.
                 virtual void UpdateDependentGraph();

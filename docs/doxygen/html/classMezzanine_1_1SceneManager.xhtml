@@ -85,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classMezzanine_1_1SceneManager-members.xhtml">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Mezzanine::SceneManager Class Reference</div>  </div>
@@ -100,7 +101,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1SceneManager__inherit__graph.svg" width="344" height="134"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1SceneManager__inherit__graph.svg" width="187" height="195"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.xhtml">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::SceneManager:</div>
@@ -115,45 +116,48 @@ Public Types</h2></td></tr>
 <tr class="memitem:a6837ab4cd75f30af8159f18db973e497"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6837ab4cd75f30af8159f18db973e497"></a>
 typedef <br class="typebreak"/>
 EntityContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a6837ab4cd75f30af8159f18db973e497">ConstEntityIterator</a></td></tr>
-<tr class="memdesc:a6837ab4cd75f30af8159f18db973e497"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Entities easier, and avoid the risk of accidentally changing them. <br/></td></tr>
+<tr class="memdesc:a6837ab4cd75f30af8159f18db973e497"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1Entity.xhtml">Entity</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:a6837ab4cd75f30af8159f18db973e497"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04a257d3df126110aa545e856853a663"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04a257d3df126110aa545e856853a663"></a>
 typedef <br class="typebreak"/>
 LightContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a04a257d3df126110aa545e856853a663">ConstLightIterator</a></td></tr>
-<tr class="memdesc:a04a257d3df126110aa545e856853a663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Lights easier, and avoid the risk of accidentally changing them. <br/></td></tr>
+<tr class="memdesc:a04a257d3df126110aa545e856853a663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1Light.xhtml">Light</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:a04a257d3df126110aa545e856853a663"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1213cec08b0bc15ea58ed0d3617b887"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1213cec08b0bc15ea58ed0d3617b887"></a>
+<tr class="memitem:a8efb7f6a2858d15ad5b038aa78cf43cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8efb7f6a2858d15ad5b038aa78cf43cc"></a>
 typedef <br class="typebreak"/>
-ParticleContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ab1213cec08b0bc15ea58ed0d3617b887">ConstParticleEffectIterator</a></td></tr>
-<tr class="memdesc:ab1213cec08b0bc15ea58ed0d3617b887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Particle Effects easier, and avoid the risk of accidentally changing them. <br/></td></tr>
-<tr class="separator:ab1213cec08b0bc15ea58ed0d3617b887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+ParticleContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a8efb7f6a2858d15ad5b038aa78cf43cc">ConstParticleIterator</a></td></tr>
+<tr class="memdesc:a8efb7f6a2858d15ad5b038aa78cf43cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1ParticleEffect.xhtml">ParticleEffect</a> instances stored by this class. <br/></td></tr>
+<tr class="separator:a8efb7f6a2858d15ad5b038aa78cf43cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad60b6e15daa2395944d395b4e307b905"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad60b6e15daa2395944d395b4e307b905"></a>
 typedef <br class="typebreak"/>
 WorldNodeContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ad60b6e15daa2395944d395b4e307b905">ConstWorldNodeIterator</a></td></tr>
-<tr class="memdesc:ad60b6e15daa2395944d395b4e307b905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the WorldNodes easier, and avoid the risk of accidentally changing them. <br/></td></tr>
+<tr class="memdesc:ad60b6e15daa2395944d395b4e307b905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1WorldNode.xhtml">WorldNode</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:ad60b6e15daa2395944d395b4e307b905"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaefae7eaf587b826c524f9aae4b35aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acaefae7eaf587b826c524f9aae4b35aa"></a>
-typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Entity.xhtml">Entity</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>EntityContainer</b></td></tr>
+typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Entity.xhtml">Entity</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#acaefae7eaf587b826c524f9aae4b35aa">EntityContainer</a></td></tr>
+<tr class="memdesc:acaefae7eaf587b826c524f9aae4b35aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for <a class="el" href="classMezzanine_1_1Entity.xhtml">Entity</a> storage by this class. <br/></td></tr>
 <tr class="separator:acaefae7eaf587b826c524f9aae4b35aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e2d6cd6454bb900b31762eab8effc8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e2d6cd6454bb900b31762eab8effc8b"></a>
 typedef EntityContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a1e2d6cd6454bb900b31762eab8effc8b">EntityIterator</a></td></tr>
-<tr class="memdesc:a1e2d6cd6454bb900b31762eab8effc8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Entities easier. <br/></td></tr>
+<tr class="memdesc:a1e2d6cd6454bb900b31762eab8effc8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="classMezzanine_1_1Entity.xhtml">Entity</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:a1e2d6cd6454bb900b31762eab8effc8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4daf4d485947df11f8d5e949ec17fa5c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4daf4d485947df11f8d5e949ec17fa5c"></a>
-typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Light.xhtml">Light</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>LightContainer</b></td></tr>
+typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Light.xhtml">Light</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a4daf4d485947df11f8d5e949ec17fa5c">LightContainer</a></td></tr>
+<tr class="memdesc:a4daf4d485947df11f8d5e949ec17fa5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for <a class="el" href="classMezzanine_1_1Light.xhtml">Light</a> storage by this class. <br/></td></tr>
 <tr class="separator:a4daf4d485947df11f8d5e949ec17fa5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70382bc80d3905971a04a77d5c6bcb33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70382bc80d3905971a04a77d5c6bcb33"></a>
 typedef LightContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a70382bc80d3905971a04a77d5c6bcb33">LightIterator</a></td></tr>
-<tr class="memdesc:a70382bc80d3905971a04a77d5c6bcb33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Lights easier. <br/></td></tr>
+<tr class="memdesc:a70382bc80d3905971a04a77d5c6bcb33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="classMezzanine_1_1Light.xhtml">Light</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:a70382bc80d3905971a04a77d5c6bcb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5903b96af0232de66608c9f84f8c6d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5903b96af0232de66608c9f84f8c6d0"></a>
 typedef std::vector<br class="typebreak"/>
-&lt; <a class="el" href="classMezzanine_1_1ParticleEffect.xhtml">ParticleEffect</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ParticleContainer</b></td></tr>
+&lt; <a class="el" href="classMezzanine_1_1ParticleEffect.xhtml">ParticleEffect</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ad5903b96af0232de66608c9f84f8c6d0">ParticleContainer</a></td></tr>
+<tr class="memdesc:ad5903b96af0232de66608c9f84f8c6d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for <a class="el" href="classMezzanine_1_1ParticleEffect.xhtml">ParticleEffect</a> storage by this class. <br/></td></tr>
 <tr class="separator:ad5903b96af0232de66608c9f84f8c6d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f3bd65fb09c7a08202083cc48e46fe7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f3bd65fb09c7a08202083cc48e46fe7"></a>
-typedef ParticleContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a5f3bd65fb09c7a08202083cc48e46fe7">ParticleEffectIterator</a></td></tr>
-<tr class="memdesc:a5f3bd65fb09c7a08202083cc48e46fe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Particle Effects easier. <br/></td></tr>
-<tr class="separator:a5f3bd65fb09c7a08202083cc48e46fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa893cc18c91c406b913d72b445019cbd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa893cc18c91c406b913d72b445019cbd"></a>
+typedef ParticleContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#aa893cc18c91c406b913d72b445019cbd">ParticleIterator</a></td></tr>
+<tr class="memdesc:aa893cc18c91c406b913d72b445019cbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="classMezzanine_1_1ParticleEffect.xhtml">ParticleEffect</a> instances stored by this class. <br/></td></tr>
+<tr class="separator:aa893cc18c91c406b913d72b445019cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8149cd1ec188e0d57935d71c6a7134c6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a8149cd1ec188e0d57935d71c6a7134c6">SceneShadowTechnique</a> { <br/>
 &#160;&#160;<a class="el" href="classMezzanine_1_1SceneManager.xhtml#a8149cd1ec188e0d57935d71c6a7134c6aeedc28307131c43b9ae0bff12c8b1cda">SST_None</a> = 0, 
 <a class="el" href="classMezzanine_1_1SceneManager.xhtml#a8149cd1ec188e0d57935d71c6a7134c6a616375ae458dbd612ff9745895d7e1f1">SST_Stencil_Modulative</a> = 1, 
@@ -175,46 +179,14 @@ typedef ParticleContainer::iterator&#160;</td><td class="memItemRight" valign="b
 <tr class="memdesc:a80fac0c0b67191cb5450bddde74b470e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to help identify which method is used to draw the sky, if any.  <a href="classMezzanine_1_1SceneManager.xhtml#a80fac0c0b67191cb5450bddde74b470e">More...</a><br/></td></tr>
 <tr class="separator:a80fac0c0b67191cb5450bddde74b470e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a84880768c2dd0ad8a73ae32bf07a97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a84880768c2dd0ad8a73ae32bf07a97"></a>
-typedef std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.xhtml">WorldNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNodeContainer</b></td></tr>
+typedef std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.xhtml">WorldNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a0a84880768c2dd0ad8a73ae32bf07a97">WorldNodeContainer</a></td></tr>
+<tr class="memdesc:a0a84880768c2dd0ad8a73ae32bf07a97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for <a class="el" href="classMezzanine_1_1WorldNode.xhtml">WorldNode</a> storage by this class. <br/></td></tr>
 <tr class="separator:a0a84880768c2dd0ad8a73ae32bf07a97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a498b2390acb176a185e1026d23b773f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a498b2390acb176a185e1026d23b773f0"></a>
 typedef <br class="typebreak"/>
 WorldNodeContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a498b2390acb176a185e1026d23b773f0">WorldNodeIterator</a></td></tr>
-<tr class="memdesc:a498b2390acb176a185e1026d23b773f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the WorldNodes easier. <br/></td></tr>
+<tr class="memdesc:a498b2390acb176a185e1026d23b773f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="classMezzanine_1_1WorldNode.xhtml">WorldNode</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:a498b2390acb176a185e1026d23b773f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_types_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1ManagerBase.xhtml">Mezzanine::ManagerBase</a></td></tr>
-<tr class="memitem:ab23a9aa27c4e3cb58d902a149d3c6de2 inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab23a9aa27c4e3cb58d902a149d3c6de2"></a>
-typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab23a9aa27c4e3cb58d902a149d3c6de2">Callback</a> )()</td></tr>
-<tr class="memdesc:ab23a9aa27c4e3cb58d902a149d3c6de2 inherit pub_types_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This makes working with Callback function pointer a bit easier. <br/></td></tr>
-<tr class="separator:ab23a9aa27c4e3cb58d902a149d3c6de2 inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> { <br/>
-&#160;&#160;<b>ActorManager</b> = 1, 
-<b>AudioManager</b>, 
-<b>CameraManager</b>, 
-<b>CollisionShapeManager</b>, 
-<br/>
-&#160;&#160;<b>EventManager</b>, 
-<b>GraphicsManager</b>, 
-<b>InputManager</b>, 
-<b>LogManager</b>, 
-<br/>
-&#160;&#160;<b>MeshManager</b>, 
-<b>NetworkManager</b>, 
-<b>PagingManager</b>, 
-<b>PhysicsManager</b>, 
-<br/>
-&#160;&#160;<b>ResourceManager</b>, 
-<b>SceneManager</b>, 
-<b>ScriptingManager</b>, 
-<b>SoundScapeManager</b>, 
-<br/>
-&#160;&#160;<b>TerrainManager</b>, 
-<b>TimerManager</b>, 
-<b>UIManager</b>, 
-<a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6caa58e48b5e043dfdaf6e2cd17b79a3194">UserCreated</a> = 512
-<br/>
- }</td></tr>
-<tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -245,12 +217,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5a50580c0389d0881dc8c1fb787370b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a04a257d3df126110aa545e856853a663">ConstLightIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a5a50580c0389d0881dc8c1fb787370b2">BeginLight</a> () const </td></tr>
 <tr class="memdesc:a5a50580c0389d0881dc8c1fb787370b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstLightIterator to the first Light*.  <a href="#a5a50580c0389d0881dc8c1fb787370b2">More...</a><br/></td></tr>
 <tr class="separator:a5a50580c0389d0881dc8c1fb787370b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97940bd86436528fdbdad5992bad4e0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a5f3bd65fb09c7a08202083cc48e46fe7">ParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a97940bd86436528fdbdad5992bad4e0c">BeginParticleEffect</a> ()</td></tr>
-<tr class="memdesc:a97940bd86436528fdbdad5992bad4e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ParticleEffectIterator to the first ParticleEffect*.  <a href="#a97940bd86436528fdbdad5992bad4e0c">More...</a><br/></td></tr>
-<tr class="separator:a97940bd86436528fdbdad5992bad4e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9e454fc20bdb1e1f118754994ff39e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ab1213cec08b0bc15ea58ed0d3617b887">ConstParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ac9e454fc20bdb1e1f118754994ff39e0">BeginParticleEffect</a> () const </td></tr>
-<tr class="memdesc:ac9e454fc20bdb1e1f118754994ff39e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstParticleEffectIterator to the first ParticleEffect*.  <a href="#ac9e454fc20bdb1e1f118754994ff39e0">More...</a><br/></td></tr>
-<tr class="separator:ac9e454fc20bdb1e1f118754994ff39e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1237cbb73eb1db6a47bee633b0302dd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#aa893cc18c91c406b913d72b445019cbd">ParticleIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a1237cbb73eb1db6a47bee633b0302dd9">BeginParticleEffect</a> ()</td></tr>
+<tr class="memdesc:a1237cbb73eb1db6a47bee633b0302dd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ParticleEffectIterator to the first ParticleEffect*.  <a href="#a1237cbb73eb1db6a47bee633b0302dd9">More...</a><br/></td></tr>
+<tr class="separator:a1237cbb73eb1db6a47bee633b0302dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb4b3368794c51247de713bbe0627506"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a8efb7f6a2858d15ad5b038aa78cf43cc">ConstParticleIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#adb4b3368794c51247de713bbe0627506">BeginParticleEffect</a> () const </td></tr>
+<tr class="memdesc:adb4b3368794c51247de713bbe0627506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstParticleEffectIterator to the first ParticleEffect*.  <a href="#adb4b3368794c51247de713bbe0627506">More...</a><br/></td></tr>
+<tr class="separator:adb4b3368794c51247de713bbe0627506"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b3844dcb5e3e4df4e50b47fb6158960"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a498b2390acb176a185e1026d23b773f0">WorldNodeIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a6b3844dcb5e3e4df4e50b47fb6158960">BeginWorldNode</a> ()</td></tr>
 <tr class="memdesc:a6b3844dcb5e3e4df4e50b47fb6158960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a WorldNodeIterator to the first WorldNode*.  <a href="#a6b3844dcb5e3e4df4e50b47fb6158960">More...</a><br/></td></tr>
 <tr class="separator:a6b3844dcb5e3e4df4e50b47fb6158960"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -278,6 +250,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0b10c04c8d89926c8a7a0cf21da5a293"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1WorldNode.xhtml">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a0b10c04c8d89926c8a7a0cf21da5a293">CreateWorldNode</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
 <tr class="memdesc:a0b10c04c8d89926c8a7a0cf21da5a293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a world node that can be manipulated.  <a href="#a0b10c04c8d89926c8a7a0cf21da5a293">More...</a><br/></td></tr>
 <tr class="separator:a0b10c04c8d89926c8a7a0cf21da5a293"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc577e7ed56ea741ed1363f5ae705081"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#adc577e7ed56ea741ed1363f5ae705081">Deinitialize</a> ()</td></tr>
+<tr class="memdesc:adc577e7ed56ea741ed1363f5ae705081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes this manager from any necessary configuration so it can be safely disposed of.  <a href="#adc577e7ed56ea741ed1363f5ae705081">More...</a><br/></td></tr>
+<tr class="separator:adc577e7ed56ea741ed1363f5ae705081"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c2637be3ad7af57f2cc194f305e87ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c2637be3ad7af57f2cc194f305e87ff"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a7c2637be3ad7af57f2cc194f305e87ff">DestroyAllEntities</a> ()</td></tr>
 <tr class="memdesc:a7c2637be3ad7af57f2cc194f305e87ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all entities currently in the manager. <br/></td></tr>
@@ -319,9 +294,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ac60ecdd9745803cf7d99af3a87fa6a36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ac60ecdd9745803cf7d99af3a87fa6a36">DisableSkyPlane</a> ()</td></tr>
 <tr class="memdesc:ac60ecdd9745803cf7d99af3a87fa6a36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the currently active skyplane.  <a href="#ac60ecdd9745803cf7d99af3a87fa6a36">More...</a><br/></td></tr>
 <tr class="separator:ac60ecdd9745803cf7d99af3a87fa6a36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae75aa9deb4bbc8ee1f979e240070309f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ae75aa9deb4bbc8ee1f979e240070309f">DoMainLoopItems</a> ()</td></tr>
-<tr class="memdesc:ae75aa9deb4bbc8ee1f979e240070309f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main loop calls this once per frame.  <a href="#ae75aa9deb4bbc8ee1f979e240070309f">More...</a><br/></td></tr>
-<tr class="separator:ae75aa9deb4bbc8ee1f979e240070309f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e9325351566464d9009d1d6ce299f75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a1e2d6cd6454bb900b31762eab8effc8b">EntityIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a9e9325351566464d9009d1d6ce299f75">EndEntity</a> ()</td></tr>
 <tr class="memdesc:a9e9325351566464d9009d1d6ce299f75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a EntityIterator to one past the last Entity*.  <a href="#a9e9325351566464d9009d1d6ce299f75">More...</a><br/></td></tr>
 <tr class="separator:a9e9325351566464d9009d1d6ce299f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -334,12 +306,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ae51e93a3fdf6d996adc9806bb25d8ca6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a04a257d3df126110aa545e856853a663">ConstLightIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ae51e93a3fdf6d996adc9806bb25d8ca6">EndLight</a> () const </td></tr>
 <tr class="memdesc:ae51e93a3fdf6d996adc9806bb25d8ca6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstLightIterator to one past the last Light*.  <a href="#ae51e93a3fdf6d996adc9806bb25d8ca6">More...</a><br/></td></tr>
 <tr class="separator:ae51e93a3fdf6d996adc9806bb25d8ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fa8eca256c321e1eaa10e935c89feb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a5f3bd65fb09c7a08202083cc48e46fe7">ParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a9fa8eca256c321e1eaa10e935c89feb1">EndParticleEffect</a> ()</td></tr>
-<tr class="memdesc:a9fa8eca256c321e1eaa10e935c89feb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ParticleEffectIterator to one past the last ParticleEffect*.  <a href="#a9fa8eca256c321e1eaa10e935c89feb1">More...</a><br/></td></tr>
-<tr class="separator:a9fa8eca256c321e1eaa10e935c89feb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27b7aab28a19e1ff92f09828b731877e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ab1213cec08b0bc15ea58ed0d3617b887">ConstParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a27b7aab28a19e1ff92f09828b731877e">EndParticleEffect</a> () const </td></tr>
-<tr class="memdesc:a27b7aab28a19e1ff92f09828b731877e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstParticleEffectIterator to one past the last ParticleEffect*.  <a href="#a27b7aab28a19e1ff92f09828b731877e">More...</a><br/></td></tr>
-<tr class="separator:a27b7aab28a19e1ff92f09828b731877e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4819073d0784ae86d5a15cb417f52a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#aa893cc18c91c406b913d72b445019cbd">ParticleIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ae4819073d0784ae86d5a15cb417f52a6">EndParticleEffect</a> ()</td></tr>
+<tr class="memdesc:ae4819073d0784ae86d5a15cb417f52a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ParticleEffectIterator to one past the last ParticleEffect*.  <a href="#ae4819073d0784ae86d5a15cb417f52a6">More...</a><br/></td></tr>
+<tr class="separator:ae4819073d0784ae86d5a15cb417f52a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad537bf5b21dd5ceeaa4d58acd662aca9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a8efb7f6a2858d15ad5b038aa78cf43cc">ConstParticleIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ad537bf5b21dd5ceeaa4d58acd662aca9">EndParticleEffect</a> () const </td></tr>
+<tr class="memdesc:ad537bf5b21dd5ceeaa4d58acd662aca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstParticleEffectIterator to one past the last ParticleEffect*.  <a href="#ad537bf5b21dd5ceeaa4d58acd662aca9">More...</a><br/></td></tr>
+<tr class="separator:ad537bf5b21dd5ceeaa4d58acd662aca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a659a0804a38a84627b3d8bec1021e6e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a498b2390acb176a185e1026d23b773f0">WorldNodeIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a659a0804a38a84627b3d8bec1021e6e3">EndWorldNode</a> ()</td></tr>
 <tr class="memdesc:a659a0804a38a84627b3d8bec1021e6e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a WorldNodeIterator to one past the last WorldNode*.  <a href="#a659a0804a38a84627b3d8bec1021e6e3">More...</a><br/></td></tr>
 <tr class="separator:a659a0804a38a84627b3d8bec1021e6e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -415,10 +387,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aece91693b0d176d0c6ec80f3384ee834"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#aece91693b0d176d0c6ec80f3384ee834">GetShadowTextureSize</a> () const </td></tr>
 <tr class="memdesc:aece91693b0d176d0c6ec80f3384ee834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the size of textures.  <a href="#aece91693b0d176d0c6ec80f3384ee834">More...</a><br/></td></tr>
 <tr class="separator:aece91693b0d176d0c6ec80f3384ee834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8bb47a57793eb308c4cfb2deeee2f3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml">TrackingNodeUpdateWorkUnit</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ac8bb47a57793eb308c4cfb2deeee2f3f">GetTrackingNodeUpdateWork</a> ()</td></tr>
+<tr class="memdesc:ac8bb47a57793eb308c4cfb2deeee2f3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the work unit responsible for updating the tracking nodes in this manager.  <a href="#ac8bb47a57793eb308c4cfb2deeee2f3f">More...</a><br/></td></tr>
+<tr class="separator:ac8bb47a57793eb308c4cfb2deeee2f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a3b5cb55a06669d0fe64510c1b1a854"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a8a3b5cb55a06669d0fe64510c1b1a854">Initialize</a> ()</td></tr>
-<tr class="memdesc:a8a3b5cb55a06669d0fe64510c1b1a854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure Items requiring other Managers.  <a href="#a8a3b5cb55a06669d0fe64510c1b1a854">More...</a><br/></td></tr>
+<tr class="memdesc:a8a3b5cb55a06669d0fe64510c1b1a854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures this manager for use prior to entering the main loop.  <a href="#a8a3b5cb55a06669d0fe64510c1b1a854">More...</a><br/></td></tr>
 <tr class="separator:a8a3b5cb55a06669d0fe64510c1b1a854"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae14c8c163f1d17eeebf698f7326f1840"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ae14c8c163f1d17eeebf698f7326f1840">PauseAllParticles</a> (bool Pause)</td></tr>
+<tr class="memitem:a050e1021418283893e3dd7aed6caae3f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a050e1021418283893e3dd7aed6caae3f">Pause</a> (const <a class="el" href="namespaceMezzanine.xhtml#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> PL)</td></tr>
+<tr class="memdesc:a050e1021418283893e3dd7aed6caae3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pause state of this manager, or has no effect depending on the value passed in.  <a href="#a050e1021418283893e3dd7aed6caae3f">More...</a><br/></td></tr>
+<tr class="separator:a050e1021418283893e3dd7aed6caae3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae14c8c163f1d17eeebf698f7326f1840"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ae14c8c163f1d17eeebf698f7326f1840">PauseAllParticles</a> (bool <a class="el" href="classMezzanine_1_1SceneManager.xhtml#a050e1021418283893e3dd7aed6caae3f">Pause</a>)</td></tr>
 <tr class="memdesc:ae14c8c163f1d17eeebf698f7326f1840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses(or unpauses) all particles stored in this manager.  <a href="#ae14c8c163f1d17eeebf698f7326f1840">More...</a><br/></td></tr>
 <tr class="separator:ae14c8c163f1d17eeebf698f7326f1840"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4b889a919e490edcc3a7d0c32135a82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ae4b889a919e490edcc3a7d0c32135a82">SetAmbientLight</a> (<a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Red=1.0, <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Green=1.0, <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Blue=1.0, <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Alpha=1.0)</td></tr>
@@ -445,61 +423,46 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a53459adabe43b627fae6c1cdad5094f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a80fac0c0b67191cb5450bddde74b470e">SkyMethod</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a53459adabe43b627fae6c1cdad5094f6">WhichSky</a> () const </td></tr>
 <tr class="memdesc:a53459adabe43b627fae6c1cdad5094f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the kind of sy in use  <a href="#a53459adabe43b627fae6c1cdad5094f6">More...</a><br/></td></tr>
 <tr class="separator:a53459adabe43b627fae6c1cdad5094f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classMezzanine_1_1WorldManager"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1WorldManager')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1WorldManager.xhtml">Mezzanine::WorldManager</a></td></tr>
+<tr class="memitem:a6320f79153f709a46378e30a728d0d74 inherit pub_methods_classMezzanine_1_1WorldManager"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6320f79153f709a46378e30a728d0d74"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldManager.xhtml#a6320f79153f709a46378e30a728d0d74">WorldManager</a> ()</td></tr>
+<tr class="memdesc:a6320f79153f709a46378e30a728d0d74 inherit pub_methods_classMezzanine_1_1WorldManager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor. <br/></td></tr>
+<tr class="separator:a6320f79153f709a46378e30a728d0d74 inherit pub_methods_classMezzanine_1_1WorldManager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93a174fb52b61df6c20f37b7a2e215bf inherit pub_methods_classMezzanine_1_1WorldManager"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93a174fb52b61df6c20f37b7a2e215bf"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldManager.xhtml#a93a174fb52b61df6c20f37b7a2e215bf">~WorldManager</a> ()</td></tr>
+<tr class="memdesc:a93a174fb52b61df6c20f37b7a2e215bf inherit pub_methods_classMezzanine_1_1WorldManager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr class="separator:a93a174fb52b61df6c20f37b7a2e215bf inherit pub_methods_classMezzanine_1_1WorldManager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a3c9d7719bdfff980ff3d5c1aa4558c inherit pub_methods_classMezzanine_1_1WorldManager"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldManager.xhtml#a8a3c9d7719bdfff980ff3d5c1aa4558c">_SetWorld</a> (<a class="el" href="classMezzanine_1_1World.xhtml">World</a> *Parent)</td></tr>
+<tr class="memdesc:a8a3c9d7719bdfff980ff3d5c1aa4558c inherit pub_methods_classMezzanine_1_1WorldManager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the world this manager belongs to. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">If</td><td>this manager is already initialized, this method will throw an "INVALID_STATE_EXCEPTION". </td></tr>
+  </table>
+  </dd>
+</dl>
+ <a href="#a8a3c9d7719bdfff980ff3d5c1aa4558c">More...</a><br/></td></tr>
+<tr class="separator:a8a3c9d7719bdfff980ff3d5c1aa4558c inherit pub_methods_classMezzanine_1_1WorldManager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af566d5c3c88c05c6b149c97b76d8d2b7 inherit pub_methods_classMezzanine_1_1WorldManager"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1World.xhtml">World</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldManager.xhtml#af566d5c3c88c05c6b149c97b76d8d2b7">GetWorld</a> () const </td></tr>
+<tr class="memdesc:af566d5c3c88c05c6b149c97b76d8d2b7 inherit pub_methods_classMezzanine_1_1WorldManager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the world this manager belongs to.  <a href="#af566d5c3c88c05c6b149c97b76d8d2b7">More...</a><br/></td></tr>
+<tr class="separator:af566d5c3c88c05c6b149c97b76d8d2b7 inherit pub_methods_classMezzanine_1_1WorldManager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6761538d30323851f493aed70c1528da inherit pub_methods_classMezzanine_1_1WorldManager"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldManager.xhtml#a6761538d30323851f493aed70c1528da">IsPaused</a> () const </td></tr>
+<tr class="memdesc:a6761538d30323851f493aed70c1528da inherit pub_methods_classMezzanine_1_1WorldManager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this manager is currently paused.  <a href="#a6761538d30323851f493aed70c1528da">More...</a><br/></td></tr>
+<tr class="separator:a6761538d30323851f493aed70c1528da inherit pub_methods_classMezzanine_1_1WorldManager"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1ManagerBase.xhtml">Mezzanine::ManagerBase</a></td></tr>
 <tr class="memitem:a6ee3249f71f330394e81e349370d57a8 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ee3249f71f330394e81e349370d57a8"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a6ee3249f71f330394e81e349370d57a8">ManagerBase</a> ()</td></tr>
-<tr class="memdesc:a6ee3249f71f330394e81e349370d57a8 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Constructor. <br/></td></tr>
+<tr class="memdesc:a6ee3249f71f330394e81e349370d57a8 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor. <br/></td></tr>
 <tr class="separator:a6ee3249f71f330394e81e349370d57a8 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04cb832dc79f4559cc5b2f57cabfa70d inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a04cb832dc79f4559cc5b2f57cabfa70d">~ManagerBase</a> ()</td></tr>
-<tr class="memdesc:a04cb832dc79f4559cc5b2f57cabfa70d inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructor.  <a href="#a04cb832dc79f4559cc5b2f57cabfa70d">More...</a><br/></td></tr>
+<tr class="memitem:a04cb832dc79f4559cc5b2f57cabfa70d inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04cb832dc79f4559cc5b2f57cabfa70d"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a04cb832dc79f4559cc5b2f57cabfa70d">~ManagerBase</a> ()</td></tr>
+<tr class="memdesc:a04cb832dc79f4559cc5b2f57cabfa70d inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr class="separator:a04cb832dc79f4559cc5b2f57cabfa70d inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acff151003c2370c857dadb67148faffc inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acff151003c2370c857dadb67148faffc"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#acff151003c2370c857dadb67148faffc">ErasePostMainLoopItems</a> ()</td></tr>
-<tr class="memdesc:acff151003c2370c857dadb67148faffc inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This simply calls <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a4ec52058f4c8a3f1c5fb20230b4fc301" title="This assigns a function to be the callback function to run prior to the main loop.">SetPostMainLoopItems()</a> passing it 0. <br/></td></tr>
-<tr class="separator:acff151003c2370c857dadb67148faffc inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f1b8b02c34ccfd72040a7183fc3cba1 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f1b8b02c34ccfd72040a7183fc3cba1"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a1f1b8b02c34ccfd72040a7183fc3cba1">ErasePreMainLoopItems</a> ()</td></tr>
-<tr class="memdesc:a1f1b8b02c34ccfd72040a7183fc3cba1 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This simply calls <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a84dd669c15e9db08c9efbc84c4fa3b0b" title="This assigns a function to be the callback function to run prior to the main loop.">SetPreMainLoopItems()</a> passing it 0. <br/></td></tr>
-<tr class="separator:a1f1b8b02c34ccfd72040a7183fc3cba1 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70b61244d5182ad40dd056b2664a6aa7 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a70b61244d5182ad40dd056b2664a6aa7">GetInterfaceTypeAsString</a> () const </td></tr>
+<tr class="memitem:a70b61244d5182ad40dd056b2664a6aa7 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a70b61244d5182ad40dd056b2664a6aa7">GetInterfaceTypeAsString</a> () const </td></tr>
 <tr class="memdesc:a70b61244d5182ad40dd056b2664a6aa7 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a string of the interface type of this manager.  <a href="#a70b61244d5182ad40dd056b2664a6aa7">More...</a><br/></td></tr>
 <tr class="separator:a70b61244d5182ad40dd056b2664a6aa7 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa02a9788d7a83de123083ce3bfdcef4b inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab23a9aa27c4e3cb58d902a149d3c6de2">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#aa02a9788d7a83de123083ce3bfdcef4b">GetPostMainLoopItems</a> () const </td></tr>
-<tr class="memdesc:aa02a9788d7a83de123083ce3bfdcef4b inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the Callback that would be called before the main loop items.  <a href="#aa02a9788d7a83de123083ce3bfdcef4b">More...</a><br/></td></tr>
-<tr class="separator:aa02a9788d7a83de123083ce3bfdcef4b inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1ede605b127aeb1a96e226284c318ce inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab23a9aa27c4e3cb58d902a149d3c6de2">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#af1ede605b127aeb1a96e226284c318ce">GetPreMainLoopItems</a> () const </td></tr>
-<tr class="memdesc:af1ede605b127aeb1a96e226284c318ce inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the Callback that would be called before the main loop items.  <a href="#af1ede605b127aeb1a96e226284c318ce">More...</a><br/></td></tr>
-<tr class="separator:af1ede605b127aeb1a96e226284c318ce inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9acb88dc379867430e76d328028862f0 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual short int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9acb88dc379867430e76d328028862f0">GetPriority</a> ()</td></tr>
-<tr class="memdesc:a9acb88dc379867430e76d328028862f0 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the Priority of this manager.  <a href="#a9acb88dc379867430e76d328028862f0">More...</a><br/></td></tr>
-<tr class="separator:a9acb88dc379867430e76d328028862f0 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade516a30e6d24b4ffd1accf1b1efd948 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ade516a30e6d24b4ffd1accf1b1efd948">IsInitialized</a> ()</td></tr>
-<tr class="memdesc:ade516a30e6d24b4ffd1accf1b1efd948 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this manager has been initialized.  <a href="#ade516a30e6d24b4ffd1accf1b1efd948">More...</a><br/></td></tr>
-<tr class="separator:ade516a30e6d24b4ffd1accf1b1efd948 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a1bfb2a137c6013a8a5e5fae4c4bb85 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a2a1bfb2a137c6013a8a5e5fae4c4bb85">PostMainLoopItems</a> ()</td></tr>
-<tr class="memdesc:a2a1bfb2a137c6013a8a5e5fae4c4bb85 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This runs any callback that is required after the mainloop items are run.  <a href="#a2a1bfb2a137c6013a8a5e5fae4c4bb85">More...</a><br/></td></tr>
-<tr class="separator:a2a1bfb2a137c6013a8a5e5fae4c4bb85 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e0f19b5472eab47fbcd986656838070 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9e0f19b5472eab47fbcd986656838070">PreMainLoopItems</a> ()</td></tr>
-<tr class="memdesc:a9e0f19b5472eab47fbcd986656838070 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This runs any callback that is required before the mainloop items are run.  <a href="#a9e0f19b5472eab47fbcd986656838070">More...</a><br/></td></tr>
-<tr class="separator:a9e0f19b5472eab47fbcd986656838070 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ec52058f4c8a3f1c5fb20230b4fc301 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a4ec52058f4c8a3f1c5fb20230b4fc301">SetPostMainLoopItems</a> (<a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab23a9aa27c4e3cb58d902a149d3c6de2">Callback</a> PostMainCallback)</td></tr>
-<tr class="memdesc:a4ec52058f4c8a3f1c5fb20230b4fc301 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This assigns a function to be the callback function to run prior to the main loop.  <a href="#a4ec52058f4c8a3f1c5fb20230b4fc301">More...</a><br/></td></tr>
-<tr class="separator:a4ec52058f4c8a3f1c5fb20230b4fc301 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84dd669c15e9db08c9efbc84c4fa3b0b inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a84dd669c15e9db08c9efbc84c4fa3b0b">SetPreMainLoopItems</a> (<a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab23a9aa27c4e3cb58d902a149d3c6de2">Callback</a> PreMainCallback)</td></tr>
-<tr class="memdesc:a84dd669c15e9db08c9efbc84c4fa3b0b inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This assigns a function to be the callback function to run prior to the main loop.  <a href="#a84dd669c15e9db08c9efbc84c4fa3b0b">More...</a><br/></td></tr>
-<tr class="separator:a84dd669c15e9db08c9efbc84c4fa3b0b inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac71cd03e0a60427a1ee22637a3cc1b3e inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ac71cd03e0a60427a1ee22637a3cc1b3e">SetPriority</a> (short int Priority_)</td></tr>
-<tr class="memdesc:ac71cd03e0a60427a1ee22637a3cc1b3e inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets the Priority of this manager.  <a href="#ac71cd03e0a60427a1ee22637a3cc1b3e">More...</a><br/></td></tr>
-<tr class="separator:ac71cd03e0a60427a1ee22637a3cc1b3e inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classMezzanine_1_1Singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1Singleton')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Singleton.xhtml">Mezzanine::Singleton&lt; SceneManager &gt;</a></td></tr>
-<tr class="memitem:a7174af94e201bdaeab717cdbcbb2e565 inherit pub_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7174af94e201bdaeab717cdbcbb2e565"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.xhtml#a7174af94e201bdaeab717cdbcbb2e565">Singleton</a> ()</td></tr>
-<tr class="memdesc:a7174af94e201bdaeab717cdbcbb2e565 inherit pub_methods_classMezzanine_1_1Singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor. <br/></td></tr>
-<tr class="separator:a7174af94e201bdaeab717cdbcbb2e565 inherit pub_methods_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e45fc3969b0fae3d095676cc515da1d inherit pub_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e45fc3969b0fae3d095676cc515da1d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.xhtml#a5e45fc3969b0fae3d095676cc515da1d">~Singleton</a> ()</td></tr>
-<tr class="memdesc:a5e45fc3969b0fae3d095676cc515da1d inherit pub_methods_classMezzanine_1_1Singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
-<tr class="separator:a5e45fc3969b0fae3d095676cc515da1d inherit pub_methods_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc9433deb9026dbbb0b51f35a3a10f02 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#adc9433deb9026dbbb0b51f35a3a10f02">IsInitialized</a> () const </td></tr>
+<tr class="memdesc:adc9433deb9026dbbb0b51f35a3a10f02 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this manager has been initialized.  <a href="#adc9433deb9026dbbb0b51f35a3a10f02">More...</a><br/></td></tr>
+<tr class="separator:adc9433deb9026dbbb0b51f35a3a10f02 inherit pub_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -510,69 +473,66 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:af76f840b982cf140cebe9398b7caedb3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af76f840b982cf140cebe9398b7caedb3"></a>
-EntityContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#af76f840b982cf140cebe9398b7caedb3">Entities</a></td></tr>
-<tr class="memdesc:af76f840b982cf140cebe9398b7caedb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the entities in use by this class. <br/></td></tr>
+<tr class="memitem:af76f840b982cf140cebe9398b7caedb3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#acaefae7eaf587b826c524f9aae4b35aa">EntityContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#af76f840b982cf140cebe9398b7caedb3">Entities</a></td></tr>
+<tr class="memdesc:af76f840b982cf140cebe9398b7caedb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the entities in use by this class.  <a href="#af76f840b982cf140cebe9398b7caedb3">More...</a><br/></td></tr>
 <tr class="separator:af76f840b982cf140cebe9398b7caedb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad80ecee7efce608a526befc597b3d613"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad80ecee7efce608a526befc597b3d613"></a>
-LightContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ad80ecee7efce608a526befc597b3d613">Lights</a></td></tr>
-<tr class="memdesc:ad80ecee7efce608a526befc597b3d613"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the lights in use by this class. <br/></td></tr>
+<tr class="memitem:ad80ecee7efce608a526befc597b3d613"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a4daf4d485947df11f8d5e949ec17fa5c">LightContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ad80ecee7efce608a526befc597b3d613">Lights</a></td></tr>
+<tr class="memdesc:ad80ecee7efce608a526befc597b3d613"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the lights in use by this class.  <a href="#ad80ecee7efce608a526befc597b3d613">More...</a><br/></td></tr>
 <tr class="separator:ad80ecee7efce608a526befc597b3d613"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacac613a9a842967e1383f5004f76a77"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacac613a9a842967e1383f5004f76a77"></a>
-ParticleContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#aacac613a9a842967e1383f5004f76a77">Particles</a></td></tr>
-<tr class="memdesc:aacac613a9a842967e1383f5004f76a77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the particle effects in use by this class. <br/></td></tr>
+<tr class="memitem:aacac613a9a842967e1383f5004f76a77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ad5903b96af0232de66608c9f84f8c6d0">ParticleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#aacac613a9a842967e1383f5004f76a77">Particles</a></td></tr>
+<tr class="memdesc:aacac613a9a842967e1383f5004f76a77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the particle effects in use by this class.  <a href="#aacac613a9a842967e1383f5004f76a77">More...</a><br/></td></tr>
 <tr class="separator:aacac613a9a842967e1383f5004f76a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19cb85bda03fce0115a62869b5e819a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19cb85bda03fce0115a62869b5e819a5"></a>
-std::set&lt; <a class="el" href="classMezzanine_1_1WorldNode.xhtml">WorldNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a19cb85bda03fce0115a62869b5e819a5">TrackingNodes</a></td></tr>
-<tr class="memdesc:a19cb85bda03fce0115a62869b5e819a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container of nodes currently tracking other objects. <br/></td></tr>
+<tr class="memitem:a979552d4e7d71ab8374b3df5f8c119eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Internal_1_1SceneManagerData.xhtml">Internal::SceneManagerData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a979552d4e7d71ab8374b3df5f8c119eb">SMD</a></td></tr>
+<tr class="memdesc:a979552d4e7d71ab8374b3df5f8c119eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a class storing sensative internal data for the scene.  <a href="#a979552d4e7d71ab8374b3df5f8c119eb">More...</a><br/></td></tr>
+<tr class="separator:a979552d4e7d71ab8374b3df5f8c119eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa06b9fcb652a06418a71927f60334f69"><td class="memItemLeft" align="right" valign="top">Threading::DefaultThreadSpecificStorage::Type *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#aa06b9fcb652a06418a71927f60334f69">ThreadResources</a></td></tr>
+<tr class="memdesc:aa06b9fcb652a06418a71927f60334f69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be used for thread safe logging and other thread specific resources.  <a href="#aa06b9fcb652a06418a71927f60334f69">More...</a><br/></td></tr>
+<tr class="separator:aa06b9fcb652a06418a71927f60334f69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19cb85bda03fce0115a62869b5e819a5"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="classMezzanine_1_1WorldNode.xhtml">WorldNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a19cb85bda03fce0115a62869b5e819a5">TrackingNodes</a></td></tr>
+<tr class="memdesc:a19cb85bda03fce0115a62869b5e819a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container of nodes currently tracking other objects.  <a href="#a19cb85bda03fce0115a62869b5e819a5">More...</a><br/></td></tr>
 <tr class="separator:a19cb85bda03fce0115a62869b5e819a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7550a9ecf7060db5abef99d66c4ef757"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7550a9ecf7060db5abef99d66c4ef757"></a>
-WorldNodeContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a7550a9ecf7060db5abef99d66c4ef757">WorldNodes</a></td></tr>
-<tr class="memdesc:a7550a9ecf7060db5abef99d66c4ef757"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the nodes in use by this class. <br/></td></tr>
+<tr class="memitem:aee59e6f83a2c915fe12715e5abccd8da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml">TrackingNodeUpdateWorkUnit</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#aee59e6f83a2c915fe12715e5abccd8da">TrackingNodeUpdateWork</a></td></tr>
+<tr class="memdesc:aee59e6f83a2c915fe12715e5abccd8da"><td class="mdescLeft">&#160;</td><td class="mdescRight">The work unit that updates the tracking nodes so they are directed at their targets.  <a href="#aee59e6f83a2c915fe12715e5abccd8da">More...</a><br/></td></tr>
+<tr class="separator:aee59e6f83a2c915fe12715e5abccd8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7550a9ecf7060db5abef99d66c4ef757"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a0a84880768c2dd0ad8a73ae32bf07a97">WorldNodeContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a7550a9ecf7060db5abef99d66c4ef757">WorldNodes</a></td></tr>
+<tr class="memdesc:a7550a9ecf7060db5abef99d66c4ef757"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the nodes in use by this class.  <a href="#a7550a9ecf7060db5abef99d66c4ef757">More...</a><br/></td></tr>
 <tr class="separator:a7550a9ecf7060db5abef99d66c4ef757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classMezzanine_1_1WorldManager"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1WorldManager')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1WorldManager.xhtml">Mezzanine::WorldManager</a></td></tr>
+<tr class="memitem:a0e6cc195d20c2a7f97e4b17143c3d232 inherit pro_attribs_classMezzanine_1_1WorldManager"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldManager.xhtml#a0e6cc195d20c2a7f97e4b17143c3d232">OperationsPaused</a></td></tr>
+<tr class="memdesc:a0e6cc195d20c2a7f97e4b17143c3d232 inherit pro_attribs_classMezzanine_1_1WorldManager"><td class="mdescLeft">&#160;</td><td class="mdescRight">This stores whether or not processing for some or all objects in this manager has been paused.  <a href="#a0e6cc195d20c2a7f97e4b17143c3d232">More...</a><br/></td></tr>
+<tr class="separator:a0e6cc195d20c2a7f97e4b17143c3d232 inherit pro_attribs_classMezzanine_1_1WorldManager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ebe6d65692b0c520ffb4cbdcac5a11c inherit pro_attribs_classMezzanine_1_1WorldManager"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1World.xhtml">World</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldManager.xhtml#a7ebe6d65692b0c520ffb4cbdcac5a11c">ParentWorld</a></td></tr>
+<tr class="memdesc:a7ebe6d65692b0c520ffb4cbdcac5a11c inherit pro_attribs_classMezzanine_1_1WorldManager"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the world that created this manager.  <a href="#a7ebe6d65692b0c520ffb4cbdcac5a11c">More...</a><br/></td></tr>
+<tr class="separator:a7ebe6d65692b0c520ffb4cbdcac5a11c inherit pro_attribs_classMezzanine_1_1WorldManager"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1ManagerBase.xhtml">Mezzanine::ManagerBase</a></td></tr>
 <tr class="memitem:ada3bad0fe77ff2fa7404eea7a5c16264 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ada3bad0fe77ff2fa7404eea7a5c16264">Initialized</a></td></tr>
 <tr class="memdesc:ada3bad0fe77ff2fa7404eea7a5c16264 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple bool indicating whether or not this manager has been initialized.  <a href="#ada3bad0fe77ff2fa7404eea7a5c16264">More...</a><br/></td></tr>
 <tr class="separator:ada3bad0fe77ff2fa7404eea7a5c16264 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab27f3f7458b9a6f2a08974d096125ed5 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab23a9aa27c4e3cb58d902a149d3c6de2">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab27f3f7458b9a6f2a08974d096125ed5">PostMainLoop</a></td></tr>
-<tr class="memdesc:ab27f3f7458b9a6f2a08974d096125ed5 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a function pointer to the function that should be called after running Main Loop Items.  <a href="#ab27f3f7458b9a6f2a08974d096125ed5">More...</a><br/></td></tr>
-<tr class="separator:ab27f3f7458b9a6f2a08974d096125ed5 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1652110258237bc313a02757229d0f47 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab23a9aa27c4e3cb58d902a149d3c6de2">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a1652110258237bc313a02757229d0f47">PreMainLoop</a></td></tr>
-<tr class="memdesc:a1652110258237bc313a02757229d0f47 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a function pointer to the function that should be called before running Main Loop Items.  <a href="#a1652110258237bc313a02757229d0f47">More...</a><br/></td></tr>
-<tr class="separator:a1652110258237bc313a02757229d0f47 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96fb02bf2f4e8b4afe70dedd0d8c6ac9 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">short int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a96fb02bf2f4e8b4afe70dedd0d8c6ac9">Priority</a></td></tr>
-<tr class="memdesc:a96fb02bf2f4e8b4afe70dedd0d8c6ac9 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a weighting used by the main loop to decide what order the managers should be called in.  <a href="#a96fb02bf2f4e8b4afe70dedd0d8c6ac9">More...</a><br/></td></tr>
-<tr class="separator:a96fb02bf2f4e8b4afe70dedd0d8c6ac9 inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae619b4bd732d7345e0ef59ecde6d03cc inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Entresol.xhtml">Entresol</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ae619b4bd732d7345e0ef59ecde6d03cc">TheEntresol</a></td></tr>
-<tr class="memdesc:ae619b4bd732d7345e0ef59ecde6d03cc inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual pointer to the world.  <a href="#ae619b4bd732d7345e0ef59ecde6d03cc">More...</a><br/></td></tr>
+<tr class="memdesc:ae619b4bd732d7345e0ef59ecde6d03cc inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual pointer to the <a class="el" href="classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library.">Entresol</a> core class.  <a href="#ae619b4bd732d7345e0ef59ecde6d03cc">More...</a><br/></td></tr>
 <tr class="separator:ae619b4bd732d7345e0ef59ecde6d03cc inherit pro_attribs_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a99fb40d59d6b7c4fbbbc099c32bb0a82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99fb40d59d6b7c4fbbbc099c32bb0a82"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>TrackingNodeUpdateWorkUnit</b></td></tr>
+<tr class="separator:a99fb40d59d6b7c4fbbbc099c32bb0a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_classMezzanine_1_1ManagerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1ManagerBase')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1ManagerBase.xhtml">Mezzanine::ManagerBase</a></td></tr>
-<tr class="memitem:a6e93778e4b8cead1d8fc57ed386a012a inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a6e93778e4b8cead1d8fc57ed386a012a">GetTypeNameAsString</a> (const <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> &amp;<a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>)</td></tr>
-<tr class="memdesc:a6e93778e4b8cead1d8fc57ed386a012a inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the string form of the type of manager.  <a href="#a6e93778e4b8cead1d8fc57ed386a012a">More...</a><br/></td></tr>
-<tr class="separator:a6e93778e4b8cead1d8fc57ed386a012a inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5388364067d067e43136ab948af5451b inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a5388364067d067e43136ab948af5451b">GetTypeNameFromString</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ManagerName)</td></tr>
-<tr class="memdesc:a5388364067d067e43136ab948af5451b inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of manager requested from a string.  <a href="#a5388364067d067e43136ab948af5451b">More...</a><br/></td></tr>
-<tr class="separator:a5388364067d067e43136ab948af5451b inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_static_methods_classMezzanine_1_1Singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1Singleton')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Singleton.xhtml">Mezzanine::Singleton&lt; SceneManager &gt;</a></td></tr>
-<tr class="memitem:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.xhtml#a78fc425584913f0b2c615ec440871a67">GetSingletonPtr</a> ()</td></tr>
-<tr class="memdesc:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetches a pointer to the singleton.  <a href="#a78fc425584913f0b2c615ec440871a67">More...</a><br/></td></tr>
-<tr class="separator:a78fc425584913f0b2c615ec440871a67 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a554165fe3e4b594b678d64215fd7a6f9 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Singleton.xhtml#a554165fe3e4b594b678d64215fd7a6f9">SingletonValid</a> ()</td></tr>
-<tr class="memdesc:a554165fe3e4b594b678d64215fd7a6f9 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the singleton pointer is valid.  <a href="#a554165fe3e4b594b678d64215fd7a6f9">More...</a><br/></td></tr>
-<tr class="separator:a554165fe3e4b594b678d64215fd7a6f9 inherit pub_static_methods_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_static_attribs_classMezzanine_1_1Singleton"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classMezzanine_1_1Singleton')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classMezzanine_1_1Singleton.xhtml">Mezzanine::Singleton&lt; SceneManager &gt;</a></td></tr>
-<tr class="memitem:a0db9959ccd7daa1345f4567aa0b0655d inherit pro_static_attribs_classMezzanine_1_1Singleton"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0db9959ccd7daa1345f4567aa0b0655d"></a>
-static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>SingletonPtr</b></td></tr>
-<tr class="separator:a0db9959ccd7daa1345f4567aa0b0655d inherit pro_static_attribs_classMezzanine_1_1Singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa148d67ebe4538adcd74d3f02f7ddc97 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#aa148d67ebe4538adcd74d3f02f7ddc97">GetTypeAsString</a> (const <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a> &amp;<a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>)</td></tr>
+<tr class="memdesc:aa148d67ebe4538adcd74d3f02f7ddc97 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the string form of the type of manager.  <a href="#aa148d67ebe4538adcd74d3f02f7ddc97">More...</a><br/></td></tr>
+<tr class="separator:aa148d67ebe4538adcd74d3f02f7ddc97 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb0c0b9192f8ce94c725d5550e8439f6 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ManagerBase.xhtml#acb0c0b9192f8ce94c725d5550e8439f6">GetTypeFromString</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ManagerName)</td></tr>
+<tr class="memdesc:acb0c0b9192f8ce94c725d5550e8439f6 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of manager requested from a string.  <a href="#acb0c0b9192f8ce94c725d5550e8439f6">More...</a><br/></td></tr>
+<tr class="separator:acb0c0b9192f8ce94c725d5550e8439f6 inherit pub_static_methods_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class contains utilities and functions to allow the manipulation of the Graphical scene, rather then the physics inside, or the object inside. </p>
 <p>This class contains functions that allow the manipulation of lighting, skyboxes, internal scenemanager types, and more. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00083">83</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00113">113</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a8149cd1ec188e0d57935d71c6a7134c6"></a>
 <div class="memitem">
@@ -609,7 +569,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00092">92</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00142">142</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
 
 </div>
 </div>
@@ -639,7 +599,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00104">104</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00154">154</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
 
 </div>
 </div>
@@ -662,13 +622,12 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Standard class initialization constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">InternalManagerTypeName</td><td>The name of the scenemanager type to be constructed.</td></tr>
+    <tr><td class="paramname">InternalManagerTypeName</td><td>The name of the scenemanager type to be constructed. </td></tr>
   </table>
   </dd>
 </dl>
-<p>Construction </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00180">180</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00204">204</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -694,7 +653,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00190">190</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00216">216</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -714,7 +673,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Class Destructor. </p>
 <p>The class destructor. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00262">262</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00290">290</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -741,7 +700,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00712">712</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00744">744</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -767,7 +726,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00715">715</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00747">747</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -787,7 +746,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get an EntityIterator to the first Entity*. </p>
 <dl class="section return"><dt>Returns</dt><dd>An EntityIterator to the first Entity* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00631">631</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00663">663</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -807,7 +766,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a ConstEntityIterator to the first Entity*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ConstEntityIterator to the first Entity* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00637">637</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00669">669</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -827,7 +786,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a LightIterator to the first Light*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A LightIterator to the first Light* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00489">489</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00521">521</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -847,16 +806,16 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a ConstLightIterator to the first Light*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ConstLightIterator to the first Light* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00495">495</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00527">527</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a97940bd86436528fdbdad5992bad4e0c"></a>
+<a class="anchor" id="a1237cbb73eb1db6a47bee633b0302dd9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a5f3bd65fb09c7a08202083cc48e46fe7">SceneManager::ParticleEffectIterator</a> Mezzanine::SceneManager::BeginParticleEffect </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#aa893cc18c91c406b913d72b445019cbd">SceneManager::ParticleIterator</a> Mezzanine::SceneManager::BeginParticleEffect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -867,16 +826,16 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a ParticleEffectIterator to the first ParticleEffect*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ParticleEffectIterator to the first ParticleEffect* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00563">563</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00595">595</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac9e454fc20bdb1e1f118754994ff39e0"></a>
+<a class="anchor" id="adb4b3368794c51247de713bbe0627506"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ab1213cec08b0bc15ea58ed0d3617b887">SceneManager::ConstParticleEffectIterator</a> Mezzanine::SceneManager::BeginParticleEffect </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a8efb7f6a2858d15ad5b038aa78cf43cc">SceneManager::ConstParticleIterator</a> Mezzanine::SceneManager::BeginParticleEffect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -887,7 +846,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a ConstParticleEffectIterator to the first ParticleEffect*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ConstParticleEffectIterator to the first ParticleEffect* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00569">569</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00601">601</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -907,7 +866,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a WorldNodeIterator to the first WorldNode*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A WorldNodeIterator to the first WorldNode* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00700">700</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00732">732</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -927,7 +886,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a ConstWorldNodeIterator to the first WorldNode*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ConstWorldNodeIterator to the first WorldNode* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00706">706</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00738">738</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -973,7 +932,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the entity class which was created by this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00578">578</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00610">610</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1000,7 +959,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the light class which was created by this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00436">436</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00468">468</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1039,7 +998,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the particle effect class which was created by this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00504">504</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00536">536</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1098,7 +1057,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00383">383</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00415">415</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1185,7 +1144,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00395">395</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00427">427</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1272,7 +1231,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00371">371</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00403">403</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1298,7 +1257,36 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00646">646</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00678">678</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adc577e7ed56ea741ed1363f5ae705081"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::SceneManager::Deinitialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes this manager from any necessary configuration so it can be safely disposed of. </p>
+
+<p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ab13bf1e752c3b54c7c392ba9a869fb72">Mezzanine::ManagerBase</a>.</p>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00783">783</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1324,7 +1312,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00609">609</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00641">641</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1350,7 +1338,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00467">467</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00499">499</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1376,7 +1364,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00678">678</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00710">710</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1402,7 +1390,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00535">535</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00567">567</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1422,7 +1410,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Disables the currently active skybox. </p>
 <p>Using this function effectively deletes the skybox, so you will have to provide a new set of parameters if you wish to re-create the skybox. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00390">390</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00422">422</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1442,7 +1430,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Disables the currently active skydome. </p>
 <p>Using this function effectively deletes the skydome, so you will have to provide a new set of parameters if you wish to re-create the skydome. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00403">403</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00435">435</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1462,37 +1450,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Disables the currently active skyplane. </p>
 <p>Using this function effectively deletes the skyplane, so you will have to provide a new set of parameters if you wish to re-create the skyplane. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00378">378</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae75aa9deb4bbc8ee1f979e240070309f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::SceneManager::DoMainLoopItems </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The main loop calls this once per frame. </p>
-<p>This is where each manager is expected to put anything that needs to be run each iteration of the main loop </p>
-
-<p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a4ee29e4baf6c4b9a3bfec1b2258d5cd2">Mezzanine::ManagerBase</a>.</p>
-
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00736">736</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00410">410</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1512,7 +1470,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a EntityIterator to one past the last Entity*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A EntityIterator to one past the last Entity* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00634">634</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00666">666</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1532,7 +1490,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a ConstEntityIterator to one past the last Entity*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ConstEntityIterator to one past the last Entity* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00640">640</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00672">672</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1552,7 +1510,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a LightIterator to one past the last Light*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A LightIterator to one past the last Light* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00492">492</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00524">524</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1572,16 +1530,16 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a ConstLightIterator to one past the last Light*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ConstLightIterator to one past the last Light* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00498">498</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00530">530</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9fa8eca256c321e1eaa10e935c89feb1"></a>
+<a class="anchor" id="ae4819073d0784ae86d5a15cb417f52a6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a5f3bd65fb09c7a08202083cc48e46fe7">SceneManager::ParticleEffectIterator</a> Mezzanine::SceneManager::EndParticleEffect </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#aa893cc18c91c406b913d72b445019cbd">SceneManager::ParticleIterator</a> Mezzanine::SceneManager::EndParticleEffect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1592,16 +1550,16 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a ParticleEffectIterator to one past the last ParticleEffect*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ParticleEffectIterator to one past the last ParticleEffect* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00566">566</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00598">598</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a27b7aab28a19e1ff92f09828b731877e"></a>
+<a class="anchor" id="ad537bf5b21dd5ceeaa4d58acd662aca9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ab1213cec08b0bc15ea58ed0d3617b887">SceneManager::ConstParticleEffectIterator</a> Mezzanine::SceneManager::EndParticleEffect </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a8efb7f6a2858d15ad5b038aa78cf43cc">SceneManager::ConstParticleIterator</a> Mezzanine::SceneManager::EndParticleEffect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1612,7 +1570,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a ConstParticleEffectIterator to one past the last ParticleEffect*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ConstParticleEffectIterator to one past the last ParticleEffect* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00572">572</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00604">604</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1632,7 +1590,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a WorldNodeIterator to one past the last WorldNode*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A WorldNodeIterator to one past the last WorldNode* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00703">703</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00735">735</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1652,7 +1610,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Get a ConstWorldNodeIterator to one past the last WorldNode*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ConstWorldNodeIterator to one past the last WorldNode* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00709">709</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00741">741</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1672,7 +1630,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Retrieve the level of the ambient light. </p>
 <dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classMezzanine_1_1ColourValue.xhtml" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> with the ambient light levels </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00430">430</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00462">462</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1693,7 +1651,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets an already created entity by name. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the entity of the specified name. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00585">585</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00617">617</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1714,7 +1672,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets an already created entity by index. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the entity at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00599">599</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00631">631</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1734,7 +1692,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets the internal <a class="el" href="namespaceOgre.xhtml">Ogre</a> Scene Manager pointer. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the ogre Scene Manager. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00724">724</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00809">809</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1764,7 +1722,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#ac41d60f674e75d3d16b5544f4feb199c">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00742">742</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00803">803</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1790,12 +1748,12 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 </div><div class="memdoc">
 
 <p>This returns the type of this manager. </p>
-<p>This is intended to make using and casting from Manager base easier. With this is is possible to cast from <a class="el" href="classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit.">ManagerBase</a> to the correct Manager Type. </p>
+<p>This is intended to make using and casting from Manager base easier. With this is is possible to cast from <a class="el" href="classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the Entresol and World Managers inherit.">ManagerBase</a> to the correct Manager Type. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns a ManagerTypeName to identify what this can be safely cast to. </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a388aa37ed71b8667785b789c137aa8c6">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00739">739</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00800">800</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1816,7 +1774,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets an already created light by name. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the light of the specified name. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00443">443</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00475">475</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1837,7 +1795,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets an already created light by index. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the light at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00457">457</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00489">489</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1857,7 +1815,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets the name of this manager. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the name of this manager. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00721">721</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00753">753</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1879,7 +1837,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the node of the specified name, or 0 if no matching <a class="el" href="classMezzanine_1_1WorldNode.xhtml" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a> could be Found.</dd></dl>
 <p>This runs in Linear time </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00653">653</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00685">685</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1901,7 +1859,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the node at the specified index.</dd></dl>
 <p>This runs in constant time. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00668">668</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00700">700</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1921,7 +1879,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets the number of entities created and stored in this manager. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of entities this manager is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00604">604</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00636">636</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1941,7 +1899,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets the number of lights created and stored in this manager. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of lights this manager is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00462">462</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00494">494</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1962,7 +1920,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of nodes this manager is storing.</dd></dl>
 <p>This runs in constant time, this data is cached constantly. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00673">673</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00705">705</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1982,7 +1940,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets the number of particle effects created and stored in this manager. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of particle effects this manager is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00530">530</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00562">562</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2003,7 +1961,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets an already created particle effect by name. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the particle effect of the specified name. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00511">511</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00543">543</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2024,7 +1982,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets an already created particle effect by index. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the particle effect at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00525">525</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00557">557</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2044,7 +2002,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets the raw internal internal data. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a to the raw internal data. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00727">727</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00812">812</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2064,7 +2022,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets the currently set shadow technique. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a SceneShadowTechnique enum value representing the currently set shadow technique. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00310">310</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00342">342</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2084,7 +2042,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets the colour being used when casting shadows. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1ColourValue.xhtml" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> representing the colour used when casting shadows. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00362">362</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00394">394</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2104,7 +2062,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets the maximum distance from the camera that shadows will be visible. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the maximum distance from the camera shadows will be rendered. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00356">356</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00388">388</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2124,7 +2082,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Gets the currently set number of textures being used to make texture shadows. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Whole indicating the number of textures used to make texture shadows. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00341">341</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00373">373</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2144,7 +2102,27 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>Retrieve the size of textures. </p>
 <dl class="section return"><dt>Returns</dt><dd>An unsigned short which is the size of the textures. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00350">350</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00382">382</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac8bb47a57793eb308c4cfb2deeee2f3f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml">TrackingNodeUpdateWorkUnit</a> * Mezzanine::SceneManager::GetTrackingNodeUpdateWork </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the work unit responsible for updating the tracking nodes in this manager. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world...">TrackingNodeUpdateWorkUnit</a> used by this manager. </dd></dl>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00794">794</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2169,14 +2147,47 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 </table>
 </div><div class="memdoc">
 
-<p>Configure Items requiring other Managers. </p>
-<p>If you are using the <a class="el" href="classMezzanine_1_1World.xhtml">Mezzanine::World</a> this is called when Mezzanine::World::GameInit() is called. It is expected that by the time this is called either ManagerBase::ManagerBase(World*) or ManagerBase::SetGameWorld(World*) will have been called. This is where all configuration that requires atleast one other manager on the <a class="el" href="classMezzanine_1_1World.xhtml">Mezzanine::World</a> to exist.<br/>
-<br/>
- Yes we know it is spelled wrong, but are Zs cooler anyway. </p>
+<p>Configures this manager for use prior to entering the main loop. </p>
 
-<p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.xhtml#a864e3cac11928a602c1db28fa2d52ee2">Mezzanine::ManagerBase</a>.</p>
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1WorldManager.xhtml#aff20d85e7c60f85b7e9b7bb909262bac">Mezzanine::WorldManager</a>.</p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00733">733</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00761">761</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a050e1021418283893e3dd7aed6caae3f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::SceneManager::Pause </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>&#160;</td>
+          <td class="paramname"><em>PL</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the pause state of this manager, or has no effect depending on the value passed in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PL</td><td>A bitfield describing the pause level being assigned to the parent world of this manager. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classMezzanine_1_1WorldManager.xhtml#aed3eada3b6c854199f0f1ee8a92e8087">Mezzanine::WorldManager</a>.</p>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00756">756</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2202,7 +2213,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00557">557</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00589">589</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2254,7 +2265,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00420">420</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00452">452</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2280,7 +2291,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00425">425</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00457">457</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2307,7 +2318,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00281">281</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00313">313</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2333,7 +2344,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00359">359</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00391">391</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2359,7 +2370,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00353">353</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00385">385</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2386,7 +2397,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00338">338</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00370">370</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2413,7 +2424,7 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00344">344</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00376">376</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2433,7 +2444,200 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 <p>get the kind of sy in use </p>
 <dl class="section return"><dt>Returns</dt><dd>The kind of sky in use </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00414">414</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.xhtml#l00446">446</a> of file <a class="el" href="scenemanager_8cpp_source.xhtml">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="af76f840b982cf140cebe9398b7caedb3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#acaefae7eaf587b826c524f9aae4b35aa">EntityContainer</a> Mezzanine::SceneManager::Entities</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector storing all the entities in use by this class. </p>
+
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00175">175</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad80ecee7efce608a526befc597b3d613"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a4daf4d485947df11f8d5e949ec17fa5c">LightContainer</a> Mezzanine::SceneManager::Lights</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector storing all the lights in use by this class. </p>
+
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00169">169</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aacac613a9a842967e1383f5004f76a77"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#ad5903b96af0232de66608c9f84f8c6d0">ParticleContainer</a> Mezzanine::SceneManager::Particles</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector storing all the particle effects in use by this class. </p>
+
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00172">172</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a979552d4e7d71ab8374b3df5f8c119eb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Internal_1_1SceneManagerData.xhtml">Internal::SceneManagerData</a>* Mezzanine::SceneManager::SMD</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointer to a class storing sensative internal data for the scene. </p>
+
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00183">183</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa06b9fcb652a06418a71927f60334f69"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Threading::DefaultThreadSpecificStorage::Type* Mezzanine::SceneManager::ThreadResources</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Can be used for thread safe logging and other thread specific resources. </p>
+
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00190">190</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a19cb85bda03fce0115a62869b5e819a5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt; <a class="el" href="classMezzanine_1_1WorldNode.xhtml">WorldNode</a>* &gt; Mezzanine::SceneManager::TrackingNodes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Container of nodes currently tracking other objects. </p>
+
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00179">179</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aee59e6f83a2c915fe12715e5abccd8da"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml">TrackingNodeUpdateWorkUnit</a>* Mezzanine::SceneManager::TrackingNodeUpdateWork</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The work unit that updates the tracking nodes so they are directed at their targets. </p>
+
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00187">187</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7550a9ecf7060db5abef99d66c4ef757"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.xhtml#a0a84880768c2dd0ad8a73ae32bf07a97">WorldNodeContainer</a> Mezzanine::SceneManager::WorldNodes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector storing all the nodes in use by this class. </p>
+
+<p>Definition at line <a class="el" href="scenemanager_8h_source.xhtml#l00166">166</a> of file <a class="el" href="scenemanager_8h_source.xhtml">scenemanager.h</a>.</p>
 
 </div>
 </div>
@@ -2443,6 +2647,6 @@ static <a class="el" href="classMezzanine_1_1SceneManager.xhtml">SceneManager</a
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:58 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
