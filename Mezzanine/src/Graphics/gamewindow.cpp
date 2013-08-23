@@ -69,14 +69,21 @@ namespace Mezzanine
 {
     namespace Graphics
     {
+        /// @cond false
+        /// @class The impl part of the Mezzanine::Graphics::GameWindows class.
         class GameWindowInternalData
         {
         public:
+            /// @brief A flag indicating if there should be a border on the window.
             bool Borderless;
+
+            /// @brief A flag indicating the user can resize this window.
             bool Resizeable;
 
+            /// @brief Default constructor sets all flags to false.
             GameWindowInternalData() : Borderless(false), Resizeable(false) {  }
         };
+        /// @endcond
 
         GameWindow::GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
             : OgreWindow(NULL),

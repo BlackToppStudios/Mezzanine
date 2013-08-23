@@ -15,7 +15,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
 <polygon fill="none" stroke="black" points="3,-100 3,-120 129,-120 129,-100 3,-100"/>
 <text text-anchor="middle" x="66" y="-107" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>

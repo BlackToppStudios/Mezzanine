@@ -416,9 +416,9 @@ IndexMap&#160;</td><td class="memItemRight" valign="bottom"><b>WidgetsRoot</b></
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:ae6711b8bde3fabca2b5e61f955d3d13f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6711b8bde3fabca2b5e61f955d3d13f"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::UIManager</b></td></tr>
-<tr class="separator:ae6711b8bde3fabca2b5e61f955d3d13f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab811b36cd63b54fe42b6acb231ea21bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab811b36cd63b54fe42b6acb231ea21bc"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>UIManager</b></td></tr>
+<tr class="separator:ab811b36cd63b54fe42b6acb231ea21bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class is a helper class for creating <a class="el" href="namespaceMezzanine_1_1UI.xhtml" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem.">UI</a>'s. It is responsible for storing and keeping track of all the elements of a single <a class="el" href="namespaceMezzanine_1_1UI.xhtml" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem.">UI</a> screen. </p>
@@ -901,7 +901,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::UIManager
     <tr><td class="paramname">Name</td><td>The name of the button. </td></tr>
     <tr><td class="paramname">Rect</td><td>The Rect representing the position and size of the button. </td></tr>
     <tr><td class="paramname"><a class="el" href="classMezzanine_1_1UI_1_1Glyph.xhtml" title="Class used to describe a single glyph or character available for text operations.">Glyph</a></td><td>One of the glyphs specified in your mta file. Must be valid. </td></tr>
-    <tr><td class="paramname">Text</td><td><a class="el" href="classMezzanine_1_1Any.xhtml" title="This is a simple class used for type-safe casting of any type of data.">Any</a> text you want printed on the button. </td></tr>
+    <tr><td class="paramname">Text</td><td>Any text you want printed on the button. </td></tr>
   </table>
   </dd>
 </dl>
@@ -963,7 +963,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::UIManager
     <tr><td class="paramname">Name</td><td>The name of the button. </td></tr>
     <tr><td class="paramname">Rect</td><td>The Rect representing the position and size of the button. </td></tr>
     <tr><td class="paramname">LineHeight</td><td>The lineheight you want the text to have in relative units. This will automatically select the glyph and scale it for you. </td></tr>
-    <tr><td class="paramname">Text</td><td><a class="el" href="classMezzanine_1_1Any.xhtml" title="This is a simple class used for type-safe casting of any type of data.">Any</a> text you want printed on the button. </td></tr>
+    <tr><td class="paramname">Text</td><td>Any text you want printed on the button. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1838,7 +1838,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::UIManager
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000110">Todo:</a></b></dt><dd>This function exists (as opposed to storing a pointer that doesn't change) so that if changes in the viewport configuration occur this will pick up on that. However the render queue listener that is added in this class' constructor never gets re-assigned. This needs to be fixed. Until then if a change does occur the <a class="el" href="namespaceMezzanine_1_1UI.xhtml" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem.">UI</a> will be rendered at a different time then it needs to be, potentially overwritten by the scene render. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000100">Todo:</a></b></dt><dd>This function exists (as opposed to storing a pointer that doesn't change) so that if changes in the viewport configuration occur this will pick up on that. However the render queue listener that is added in this class' constructor never gets re-assigned. This needs to be fixed. Until then if a change does occur the <a class="el" href="namespaceMezzanine_1_1UI.xhtml" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem.">UI</a> will be rendered at a different time then it needs to be, potentially overwritten by the scene render. </dd></dl>
 
 <p>Definition at line <a class="el" href="screen_8cpp_source.xhtml#l00168">168</a> of file <a class="el" href="screen_8cpp_source.xhtml">screen.cpp</a>.</p>
 
@@ -2249,6 +2249,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::UIManager
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:57:00 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:09 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

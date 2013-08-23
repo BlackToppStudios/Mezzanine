@@ -73,19 +73,19 @@ namespace Mezzanine
             /// @param Type The effect type to be checked.
             /// @return Returns true if the effect is supported, false if the effect isn't supported.
             virtual bool IsEffectSupported(const EffectType Type) const = 0;
-            /// @brief Creates an Audio Effect for use with @ref Sound instances.
+            /// @brief Creates an Audio Effect for use with Audio::Sound instances.
             /// @return Returns a pointer to the created Effect, or NULL if there was an error.
             virtual iEffect* CreateEffect() = 0;
-            /// @brief Gets an @ref iEffect instance by index.
-            /// @return Returns a pointer to the @ref iEffect at the specified index.
+            /// @brief Gets an Audio::iEffect instance by index.
+            /// @return Returns a pointer to the Audio::iEffect at the specified index.
             virtual iEffect* GetEffect(const UInt32 Index) const = 0;
-            /// @brief Gets the number of @ref iEffect instances being stored by this handler.
-            /// @return Returns a UInt32 representing the number of @ref iEffect instances contained in this handler.
+            /// @brief Gets the number of Audio::iEffect instances being stored by this handler.
+            /// @return Returns a UInt32 representing the number of Audio::iEffect instances contained in this handler.
             virtual UInt32 GetNumEffects() const = 0;
-            /// @brief Destroys a single @ref iEffect instance.
-            /// @param ToBeDestroyed A pointer to the @ref iEffect to be destroyed.
+            /// @brief Destroys a single Audio::iEffect instance.
+            /// @param ToBeDestroyed A pointer to the Audio::iEffect to be destroyed.
             virtual void DestroyEffect(iEffect* ToBeDestroyed) = 0;
-            /// @brief Destroys all @ref iEffect instances being stored by this handler.
+            /// @brief Destroys all Audio::iEffect instances being stored by this handler.
             virtual void DestroyAllEffects() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////

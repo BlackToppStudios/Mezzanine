@@ -52,7 +52,7 @@ namespace Mezzanine
     class AreaEffectManager;
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a @ref iWorkUnit for the updating of AreaEffects.
+    /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of AreaEffects.
     /// @details
     ///////////////////////////////////////
     class MEZZ_LIB AreaEffectUpdateWorkUnit : public Threading::DefaultWorkUnit

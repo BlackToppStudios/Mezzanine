@@ -209,9 +209,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a58bc7d514090f3043c9f63f470ccc547 inherit pub_types_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.xhtml#a58bc7d514090f3043c9f63f470ccc547">AxisList</a></td></tr>
 <tr class="memdesc:a58bc7d514090f3043c9f63f470ccc547 inherit pub_types_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to Store lists of Int Axis for return types.  <a href="#a58bc7d514090f3043c9f63f470ccc547">More...</a><br/></td></tr>
 <tr class="separator:a58bc7d514090f3043c9f63f470ccc547 inherit pub_types_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab434efbcfdfe803d6f7cc014e7794868 inherit pub_types_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">typedef std::vector<br class="typebreak"/>
+<tr class="memitem:ab434efbcfdfe803d6f7cc014e7794868 inherit pub_types_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab434efbcfdfe803d6f7cc014e7794868"></a>
+typedef std::vector<br class="typebreak"/>
 &lt; <a class="el" href="namespaceMezzanine_1_1Physics.xhtml#aa640f4c4b2baf4a4039db76fd792d2c1">ConstraintParam</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.xhtml#ab434efbcfdfe803d6f7cc014e7794868">ParamList</a></td></tr>
-<tr class="memdesc:ab434efbcfdfe803d6f7cc014e7794868 inherit pub_types_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current impulse clamping on the constraint.  <a href="#ab434efbcfdfe803d6f7cc014e7794868">More...</a><br/></td></tr>
+<tr class="memdesc:ab434efbcfdfe803d6f7cc014e7794868 inherit pub_types_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to Store lists of param for return types. <br/></td></tr>
 <tr class="separator:ab434efbcfdfe803d6f7cc014e7794868 inherit pub_types_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMezzanine_1_1Physics_1_1Constraint')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMezzanine_1_1Physics_1_1Constraint.xhtml">Mezzanine::Physics::Constraint</a></td></tr>
 <tr class="memitem:a6bc5779694ddc3c7166694c258f6611a inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.xhtml#a6bc5779694ddc3c7166694c258f6611a">Constraint</a> ()</td></tr>
@@ -247,7 +248,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="textblock"><p>All constraints that track rotation and location of the Pivot relative to each Actor inherit from this. </p>
 <p>Since not all contraints provide tracking for the Actor <a class="el" href="classMezzanine_1_1Transform.xhtml" title="Stores information about relative location and rotation in 3d space.">Transform</a> (location/rotation of the pivot) we subdivided the constraints to unify the interface of those that could be unified. This stores nothing, but provides uniform access to the transform and rotation functions. <br/>
  <br/>
- <a class="el" href="classMezzanine_1_1Any.xhtml" title="This is a simple class used for type-safe casting of any type of data.">Any</a> deriving class must implement every thing from TypedConstraint and the four set/get <a class="el" href="classMezzanine_1_1Transform.xhtml" title="Stores information about relative location and rotation in 3d space.">Transform</a> function. It is expected that more derived classes will implement the Set/Get Pivot/Rotation Functino in a more efficient Manner if a more efficient way exists. The non-transform get/set function are implmented in terms of the get/set transform function extra copies of values and extra reading/writing may occur if the compiler weakly optimizes. Of course, implementing more functions could slow down the software if it no longer fits in CPU caches. As always benchmark if this is something that may be critically slowing you down. </p>
+ Any deriving class must implement every thing from TypedConstraint and the four set/get <a class="el" href="classMezzanine_1_1Transform.xhtml" title="Stores information about relative location and rotation in 3d space.">Transform</a> function. It is expected that more derived classes will implement the Set/Get Pivot/Rotation Functino in a more efficient Manner if a more efficient way exists. The non-transform get/set function are implmented in terms of the get/set transform function extra copies of values and extra reading/writing may occur if the compiler weakly optimizes. Of course, implementing more functions could slow down the software if it no longer fits in CPU caches. As always benchmark if this is something that may be critically slowing you down. </p>
 
 <p>Definition at line <a class="el" href="dualtransformconstraint_8h_source.xhtml#l00061">61</a> of file <a class="el" href="dualtransformconstraint_8h_source.xhtml">dualtransformconstraint.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -274,8 +275,6 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 <p>Get the location of the pivot relative to ActorA's Center of gravity. </p>
 <dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the pivot location. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1Constraint.xhtml#adcdf9d886dc120871a385d0355aeeddd">Mezzanine::Physics::Constraint</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml#a31631cadbf28af5d2453f97f20e65f99">Mezzanine::Physics::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.xhtml#ae1948dd6a05f2385b9bdef0875e3e28a">Mezzanine::Physics::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SliderConstraint.xhtml#a06f332347ab5bbfbbb5245d7a6372d99">Mezzanine::Physics::SliderConstraint</a>.</p>
 
@@ -364,8 +363,6 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 <p>Get the location of the pivot relative to ActorB's Center of gravity. </p>
 <dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the pivot location. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1Constraint.xhtml#ac97e6c3b9a4a199f1c2a22d5c70b82ec">Mezzanine::Physics::Constraint</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml#a4aa36cdfdbb58d8eaf37d38afbc684ca">Mezzanine::Physics::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.xhtml#ad6dac476f6aa5954792255f8a06e1c3a">Mezzanine::Physics::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SliderConstraint.xhtml#a47a1877764e3a3a20c57d6845d9bbc37">Mezzanine::Physics::SliderConstraint</a>.</p>
 
@@ -567,8 +564,6 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </dl>
 <p>Ultimately this information winds up being stored in the TransformA. </p>
 
-<p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1Constraint.xhtml#af3365eaaf3e39041b39c74dcbb74ff13">Mezzanine::Physics::Constraint</a>.</p>
-
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml#a934373b57060718bc7cd6b3ffc2654b4">Mezzanine::Physics::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.xhtml#ac6d01f853df57b1524522111a2f463af">Mezzanine::Physics::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SliderConstraint.xhtml#aca865fbd3823965144bb848c25cd2488">Mezzanine::Physics::SliderConstraint</a>.</p>
 
 <p>Definition at line <a class="el" href="dualtransformconstraint_8h_source.xhtml#l00080">80</a> of file <a class="el" href="dualtransformconstraint_8h_source.xhtml">dualtransformconstraint.h</a>.</p>
@@ -677,8 +672,6 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </dl>
 <p>Ultimately this information winds up being stored in the TransformB </p>
 
-<p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1Constraint.xhtml#af5cd897fb7ca593d9fda7f1b196cd8c5">Mezzanine::Physics::Constraint</a>.</p>
-
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml#a9141b078dc01d770534cacc17139457e">Mezzanine::Physics::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.xhtml#a3a9c39b51d720c8df8c2a64b35ed8c7b">Mezzanine::Physics::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SliderConstraint.xhtml#ad4f22ea7535c20035852578d4da41c01">Mezzanine::Physics::SliderConstraint</a>.</p>
 
 <p>Definition at line <a class="el" href="dualtransformconstraint_8h_source.xhtml#l00085">85</a> of file <a class="el" href="dualtransformconstraint_8h_source.xhtml">dualtransformconstraint.h</a>.</p>
@@ -762,6 +755,6 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:59 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

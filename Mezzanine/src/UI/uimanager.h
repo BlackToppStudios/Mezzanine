@@ -65,7 +65,7 @@ namespace Mezzanine
         class UIManager;
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a @ref iWorkUnit for the updating of widgets in the UI system.
+        /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of widgets in the UI system.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB WidgetUpdateWorkUnit : public Threading::DefaultWorkUnit

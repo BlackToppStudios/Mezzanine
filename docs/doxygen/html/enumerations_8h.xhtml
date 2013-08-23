@@ -88,11 +88,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Any global enumerations shared between multiple classes is to be declared here.  
 <a href="#details">More...</a></p>
-<div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div class="textblock"><code>#include &quot;<a class="el" href="macros_8h_source.xhtml">macros.h</a>&quot;</code><br/>
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for enumerations.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="enumerations_8h__incl.svg" width="100%" height="516"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="enumerations_8h__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div>
@@ -131,6 +139,17 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a8892173bd6aaf7d0e34a07b2b30aad33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple enum for communicating the orientation the UI and Camera have relative to the world it is rendering.  <a href="namespaceMezzanine.xhtml#a8892173bd6aaf7d0e34a07b2b30aad33">More...</a><br/></td></tr>
 <tr class="separator:a8892173bd6aaf7d0e34a07b2b30aad33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84bd521b90ded70d55bbc6ae3ec9723f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#a84bd521b90ded70d55bbc6ae3ec9723f">Mezzanine::PauseLevel</a> { <br/>
+&#160;&#160;<b>PL_Unpaused</b> = 0, 
+<b>PL_PausePhysics</b> = 1, 
+<b>PL_PauseParticles</b> = 2, 
+<b>PL_PauseAnimations</b> = 4, 
+<br/>
+&#160;&#160;<b>PL_PauseAll</b> = PL_PausePhysics | PL_PauseParticles | PL_PauseAnimations
+<br/>
+ }</td></tr>
+<tr class="memdesc:a84bd521b90ded70d55bbc6ae3ec9723f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the world class to describe the extent of pausing a world. <br/></td></tr>
+<tr class="separator:a84bd521b90ded70d55bbc6ae3ec9723f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab41a00a8c6a47b576dc987ec34e16ba1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1">Mezzanine::StandardAxis</a> { <a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1aa96a3c4582e394fe76d3288fdfee9107">Mezzanine::Axis_Invalid</a> = -1, 
 <a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1a823c8f182393aef96f017c7279d49126">Mezzanine::Axis_X</a> = 0, 
 <a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1a935c7afe0104697553cf85e9214fb3fb">Mezzanine::Axis_Y</a> = 1, 
@@ -161,10 +180,10 @@ Enumerations</h2></td></tr>
 <b>WSO_TerrainFirst</b> = 16, 
 <b>WSO_MeshTerrain</b> = 16, 
 <br/>
-&#160;&#160;<b>WSO_UnimplementedTerrain1</b> = 32, 
-<b>WSO_UnimplementedTerrain2</b> = 64, 
-<b>WSO_UnimplementedTerrain3</b> = 128, 
-<b>WSO_UnimplementedTerrain4</b> = 256, 
+&#160;&#160;<b>WSO_HeightfieldTerrain</b> = 32, 
+<b>WSO_VectorFieldTerrain</b> = 64, 
+<b>WSO_VoxelTerrain</b> = 128, 
+<b>WSO_MarchingCubeTerrain</b> = 256, 
 <br/>
 &#160;&#160;<b>WSO_UnknownTerrain</b> = 512, 
 <b>WSO_TerrainLast</b> = 512, 
@@ -172,7 +191,7 @@ Enumerations</h2></td></tr>
 <b>WSO_AEGravityField</b> = 1024, 
 <br/>
 &#160;&#160;<b>WSO_AEGravityWell</b> = 2048, 
-<b>WSO_AEFieldOfForce</b> = 4096, 
+<b>WSO_AEFieldOfForce</b> = 4069, 
 <b>WSO_AEPlaceHolder1</b> = 8192, 
 <b>WSO_AEPlaceHolder2</b> = 16384, 
 <br/>
@@ -195,6 +214,6 @@ Enumerations</h2></td></tr>
 <p>Definition in file <a class="el" href="enumerations_8h_source.xhtml">enumerations.h</a>.</p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:06 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

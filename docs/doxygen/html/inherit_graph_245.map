@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classxpath__variable.xhtml" title="xpath_variable" alt="" coords="5,5,109,33"/>
+<area shape="rect" id="node1" href="$classxml__writer.xhtml" title="xml_writer" alt="" coords="5,30,85,58"/>
+<area shape="rect" id="node3" href="$classxml__writer__file.xhtml" title="xml_writer_file" alt="" coords="147,5,248,33"/>
+<area shape="rect" id="node5" href="$classxml__writer__stream.xhtml" title="xml_writer_stream" alt="" coords="135,55,260,83"/>
 </map>

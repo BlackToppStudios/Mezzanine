@@ -213,18 +213,21 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf35
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:ae86ec919bbcade66c4f112145cdb53db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae86ec919bbcade66c4f112145cdb53db"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::CollisionDispatcher</b></td></tr>
-<tr class="separator:ae86ec919bbcade66c4f112145cdb53db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcdc567008022dde41bcda7b20c7e055"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcdc567008022dde41bcda7b20c7e055"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsManager</b></td></tr>
-<tr class="separator:adcdc567008022dde41bcda7b20c7e055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d9acfedbb45e420ec6b6b46a297723c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d9acfedbb45e420ec6b6b46a297723c"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::CollisionDispatcher</b></td></tr>
+<tr class="separator:a7d9acfedbb45e420ec6b6b46a297723c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4291377e9cc2d74fe6bacacb84d730e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4291377e9cc2d74fe6bacacb84d730e5"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::ParallelCollisionDispatcher</b></td></tr>
+<tr class="separator:a4291377e9cc2d74fe6bacacb84d730e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed77afd1cade6124ef2cd382ae701925"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed77afd1cade6124ef2cd382ae701925"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::PhysicsManager</b></td></tr>
+<tr class="separator:aed77afd1cade6124ef2cd382ae701925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an event class used to track collsions in the physics world. </p>
 <p>This class will be used for tracking collisions in the physics world and will keep track of basic data related to the collision. This class stores the information in the form of contact points. Often when a collision occurs there will be more then one place where the collision occured, this is a contact point. Internally collisions only store up to a maximum of 4 contact points. When querying for collision information, you have to provide the desired contact point index, and it must be valid. If the requested index isn't valid an exception will be thrown. So always make sure to verify with <a class="el" href="classMezzanine_1_1Physics_1_1Collision.xhtml#aa59132582c677f785722f399136fd15b" title="Gets the number of contact points this collision is storing.">GetNumContactPoints()</a>. </p>
 
-<p>Definition at line <a class="el" href="collision_8h_source.xhtml#l00070">70</a> of file <a class="el" href="collision_8h_source.xhtml">collision.h</a>.</p>
+<p>Definition at line <a class="el" href="collision_8h_source.xhtml#l00071">71</a> of file <a class="el" href="collision_8h_source.xhtml">collision.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a8edd5e33671b8d36beba784461c467fa"></a>
 <div class="memitem">
@@ -252,7 +255,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="collision_8h_source.xhtml#l00083">83</a> of file <a class="el" href="collision_8h_source.xhtml">collision.h</a>.</p>
+<p>Definition at line <a class="el" href="collision_8h_source.xhtml#l00084">84</a> of file <a class="el" href="collision_8h_source.xhtml">collision.h</a>.</p>
 
 </div>
 </div>
@@ -306,7 +309,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00063">63</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00064">64</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,12 +330,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 <p>Copy Constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1EventCollision.xhtml" title="This is an event class used to track collsions in the physics world.">EventCollision</a> to copy </td></tr>
+    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world.">Collision</a> to copy </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00084">84</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00085">85</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -360,7 +363,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 <p>Class Destructor. </p>
 <p>Basic Class Destructor. </p>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00097">97</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00098">98</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -396,7 +399,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Whole representing the amount of simulation steps a point has existed. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00199">199</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00200">200</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -431,7 +434,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a real representing the amount of force applied from the collision. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00189">189</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00190">190</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +470,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a real representing the depth of penetration between the two objects in this collision. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00194">194</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00195">195</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -502,7 +505,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a vector3 with the point of the collision in ObjectA's local space. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00174">174</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00175">175</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -537,7 +540,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a vector3 with the point of the collision in ObjectB's local space. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00179">179</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00180">180</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -565,7 +568,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 
 <p>Internal function responsible for fetching the appropriate contact point. </p>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00104">104</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00105">105</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -600,7 +603,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a vector3 representing the collision normal for a contact point. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00184">184</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00185">185</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -628,7 +631,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 <p>Gets the number of contact points this collision is storing. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of contact points that currently exist for this collision. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00162">162</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00163">163</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -656,7 +659,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 <p>Gets the first Object this collision applies to. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the first Object in this event. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00141">141</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00142">142</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -684,7 +687,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 <p>Gets the second Object this collision applies to. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the second Object in this event. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00157">157</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00158">158</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -719,7 +722,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a vector3 containing the approximate world location of the collision. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00167">167</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00168">168</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -765,7 +768,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a bool, true if the pairs match, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00204">204</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00205">205</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -800,7 +803,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00130">130</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00131">131</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -835,7 +838,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00146">146</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00147">147</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -862,7 +865,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 
 <p>Updates the PenetrationDistances vector on this object. </p>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00119">119</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.xhtml#l00120">120</a> of file <a class="el" href="collision_8cpp_source.xhtml">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -872,6 +875,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::PhysicsMa
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:59 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

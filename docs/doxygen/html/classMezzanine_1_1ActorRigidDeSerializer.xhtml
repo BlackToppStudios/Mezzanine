@@ -89,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>This creates Rigid body actors and inserts them into a given <a class="el" href="classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors in use.">ActorManager</a>.  
+<p>This creates Rigid body actors and inserts them into a given <a class="el" href="classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors that exist in a world...">ActorManager</a>.  
  <a href="classMezzanine_1_1ActorRigidDeSerializer.xhtml#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="actorserializer_8h_source.xhtml">actorserializer.h</a>&gt;</code></p>
@@ -138,7 +138,7 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a2721883c45e41b5a1b7992feb57750bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This creates Rigid body actors and inserts them into a given <a class="el" href="classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors in use.">ActorManager</a>. </p>
+<div class="textblock"><p>This creates Rigid body actors and inserts them into a given <a class="el" href="classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors that exist in a world...">ActorManager</a>. </p>
 
 <p>Definition at line <a class="el" href="actorserializer_8h_source.xhtml#l00061">61</a> of file <a class="el" href="actorserializer_8h_source.xhtml">actorserializer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -199,12 +199,12 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Should indicate the Name of the node that ProtoDeSerializeAll all accepts (when deserializing raw xml text). </p>
-<dl class="section warning"><dt>Warning</dt><dd>If The <a class="el" href="classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors in use.">ActorManager</a> Passed in at construction is null, this will do very little other than eat cpu and memory bandwidth. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>If The <a class="el" href="classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors that exist in a world...">ActorManager</a> Passed in at construction is null, this will do very little other than eat cpu and memory bandwidth. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A String containing "RigidActors". </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1DeSerializer.xhtml#a99e25b2dab4cde22af1c77fa31665bae">Mezzanine::DeSerializer&lt; ActorRigid &gt;</a>.</p>
 
-<p>Definition at line <a class="el" href="actorserializer_8cpp_source.xhtml#l00100">100</a> of file <a class="el" href="actorserializer_8cpp_source.xhtml">actorserializer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorserializer_8cpp_source.xhtml#l00102">102</a> of file <a class="el" href="actorserializer_8cpp_source.xhtml">actorserializer.cpp</a>.</p>
 
 </div>
 </div>
@@ -231,7 +231,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Accepts one <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> with an actor in it and create a new <a class="el" href="classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects.">ActorRigid</a>. </p>
-<p>In addition to returning the created actor it's pointer is also added to the Target <a class="el" href="classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors in use.">ActorManager</a> </p>
+<p>In addition to returning the created actor it's pointer is also added to the Target <a class="el" href="classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors that exist in a world...">ActorManager</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OneNode</td><td>The node that should have an <a class="el" href="classMezzanine_1_1ActorRigid.xhtml" title="This is the actor class for Rigid Objects.">ActorRigid</a> in it </td></tr>
@@ -239,7 +239,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the freshly created actor </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000006">Todo:</a></b></dt><dd>TODO: Why is gravity done here, can it be done elsewhere? Apparently the addind to the world removed what is deserialized here and this should how be used if it is different from the default </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000004">Todo:</a></b></dt><dd>TODO: Why is gravity done here, can it be done elsewhere? Apparently the addind to the world removed what is deserialized here and this should how be used if it is different from the default </dd></dl>
 
 <p>Implements <a class="el" href="classMezzanine_1_1DeSerializer.xhtml#af1a7d10744ae974c985ad762e7dd55bd">Mezzanine::DeSerializer&lt; ActorRigid &gt;</a>.</p>
 
@@ -253,6 +253,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

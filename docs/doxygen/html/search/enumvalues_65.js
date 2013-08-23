@@ -38,6 +38,5 @@ var searchData=
   ['et_5fpitch_5fshifter',['ET_Pitch_Shifter',['../namespaceMezzanine_1_1Audio.xhtml#ac76e1a0a0871bf406c318afa3e3135bba113b4210d7123ea9191ea9635e6f2d46',1,'Mezzanine::Audio']]],
   ['et_5freverb',['ET_Reverb',['../namespaceMezzanine_1_1Audio.xhtml#ac76e1a0a0871bf406c318afa3e3135bbaee7b0ed20ece445b8bc434b8eee85596',1,'Mezzanine::Audio']]],
   ['et_5fring_5fmodulator',['ET_Ring_Modulator',['../namespaceMezzanine_1_1Audio.xhtml#ac76e1a0a0871bf406c318afa3e3135bba6a86549d141f9bb0efa7be6fa55d1e4d',1,'Mezzanine::Audio']]],
-  ['et_5fvocal_5fmorpher',['ET_Vocal_Morpher',['../namespaceMezzanine_1_1Audio.xhtml#ac76e1a0a0871bf406c318afa3e3135bbae07c5630bad7dfef9080228b89fb2732',1,'Mezzanine::Audio']]],
-  ['extended',['Extended',['../classMezzanine_1_1Timer.xhtml#afdc9cac008cfe642ce8a11d090f29ec6a737fc1c906a893c9d905eedd4a3c17a5',1,'Mezzanine::Timer']]]
+  ['et_5fvocal_5fmorpher',['ET_Vocal_Morpher',['../namespaceMezzanine_1_1Audio.xhtml#ac76e1a0a0871bf406c318afa3e3135bbae07c5630bad7dfef9080228b89fb2732',1,'Mezzanine::Audio']]]
 ];

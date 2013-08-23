@@ -130,11 +130,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">class </span>UIManager;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">namespace </span>UI</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">class </span>VertexData;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">class </span>ScreenVertexData;<span class="comment"></span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">namespace </span>UI</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">class </span>VertexData;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">class </span>ScreenVertexData;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">class </span>UIManager;<span class="comment"></span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">        /// @class LineList</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">        /// @headerfile uilinelist.h</span></div>
@@ -147,7 +147,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        {</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classMezzanine_1_1UI_1_1ExtendedRenderableFactory.xhtml" title="This class is responsible for the creation and destruction of all UI renderables.">ExtendedRenderableFactory</a>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <a class="code" href="classMezzanine_1_1UIManager.xhtml" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>* Manager;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <a class="code" href="classMezzanine_1_1UI_1_1UIManager.xhtml" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>* Manager;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                <span class="keywordtype">bool</span> IsClosed;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Thickness;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <a class="code" href="classMezzanine_1_1ColourValue.xhtml" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> Colour;</div>
@@ -165,7 +165,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">                /// clear the current list of lines and start a new list.</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">                /// @param LineThickness The thickness of the line to draw in pixels.</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">                /// @param LineColour The colour of the line.</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>                <span class="keywordtype">void</span> Begin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="A datatype used to represent an postive integer numbers.">Whole</a>&amp; LineThickness, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.xhtml" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; LineColour);<span class="comment"></span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>                <span class="keywordtype">void</span> Begin(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a>&amp; LineThickness, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.xhtml" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; LineColour);<span class="comment"></span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">                /// @brief Adds a new point/line to the list via 2 reals.</span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">                /// @param X Relative coordinate on the X vector.</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">                /// @param Y Relative coordinate on the Y vector.</span></div>
@@ -202,6 +202,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:05 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

@@ -13,6 +13,7 @@ var searchData=
   ['mousebutton_5f3',['MOUSEBUTTON_3',['../namespaceMezzanine_1_1Input.xhtml#ab722ac9d149cd84c0db5080b46a3721aaa28c91b856075685f1ab7721c38d932d',1,'Mezzanine::Input']]],
   ['mousebutton_5ffirst',['MOUSEBUTTON_FIRST',['../namespaceMezzanine_1_1Input.xhtml#ab722ac9d149cd84c0db5080b46a3721aa97523db31ff56775fc062a1a8eb39734',1,'Mezzanine::Input']]],
   ['mousebutton_5flast',['MOUSEBUTTON_LAST',['../namespaceMezzanine_1_1Input.xhtml#ab722ac9d149cd84c0db5080b46a3721aa547c296f31f43dad02a8c39150f4a77d',1,'Mezzanine::Input']]],
+  ['mt_5fusercreated',['MT_UserCreated',['../classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e',1,'Mezzanine::ManagerBase']]],
   ['multitouch_5ffirst',['MULTITOUCH_FIRST',['../namespaceMezzanine_1_1Input.xhtml#ab722ac9d149cd84c0db5080b46a3721aa36e1c36ffe19a2102c32f5480d4b7135',1,'Mezzanine::Input']]],
   ['multitouch_5flast',['MULTITOUCH_LAST',['../namespaceMezzanine_1_1Input.xhtml#ab722ac9d149cd84c0db5080b46a3721aa2c807272de1543fb11dd8ac974e52885',1,'Mezzanine::Input']]]
 ];

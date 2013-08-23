@@ -1,7 +1,8 @@
 <map id="Mezzanine::Physics::Constraint" name="Mezzanine::Physics::Constraint">
 <area shape="rect" id="node3" href="$classMezzanine_1_1Physics_1_1ConeTwistConstraint.xhtml" title="Mezzanine::Physics\l::ConeTwistConstraint" alt="" coords="199,38,345,82"/>
 <area shape="rect" id="node5" href="$classMezzanine_1_1Physics_1_1DualTransformConstraint.xhtml" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi..." alt="" coords="187,105,357,149"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1Physics_1_1Point2PointConstraint.xhtml" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation..." alt="" coords="196,171,348,215"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1Physics_1_1GearConstraint.xhtml" title="This is a constraint that duplicate the angular motion of one object to another, adjusted by the prov..." alt="" coords="205,171,339,215"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1Physics_1_1Point2PointConstraint.xhtml" title="Tries to make a point relative to each of two actors match in 3d space, without regard to rotation..." alt="" coords="196,238,348,282"/>
 <area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml" title="Create simple but specific limits on any axis of movement or rotation." alt="" coords="407,38,564,82"/>
 <area shape="rect" id="node15" href="$classMezzanine_1_1Physics_1_1HingeConstraint.xhtml" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a..." alt="" coords="419,105,552,149"/>
 <area shape="rect" id="node17" href="$classMezzanine_1_1Physics_1_1SliderConstraint.xhtml" title="Mezzanine::Physics\l::SliderConstraint" alt="" coords="419,171,552,215"/>

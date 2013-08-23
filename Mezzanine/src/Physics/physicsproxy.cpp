@@ -112,10 +112,15 @@ namespace Mezzanine
         ATTRIBUTE_ALIGNED16(class) MEZZ_LIB ScalingShape : public btConvexShape
         {
         protected:
+            /// @brief The actual data in bullet this represents
             btConvexShape* ChildConvexShape;
+
+            /// @brief The actual data in bullet this represents
             btVector3 ChildScaling;
         public:
+            /// @cond false
             BT_DECLARE_ALIGNED_ALLOCATOR();
+            /// @endcond
 
             /// @brief Class constructor.
             ScalingShape(btConvexShape* ChildShape, const btVector3& Scaling) :

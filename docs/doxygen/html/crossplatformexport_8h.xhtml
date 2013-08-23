@@ -99,14 +99,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a5bb9db1007992ddf82788a528b397225"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bb9db1007992ddf82788a528b397225"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>_MEZZ_PLATFORM_DEFINED_</b></td></tr>
+<tr class="separator:a5bb9db1007992ddf82788a528b397225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2a7603e57df066520c2ddd6bdd14be5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crossplatformexport_8h.xhtml#af2a7603e57df066520c2ddd6bdd14be5">_MEZZ_THREAD_POSIX_</a></td></tr>
+<tr class="memdesc:af2a7603e57df066520c2ddd6bdd14be5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defined if this is running on Linux, Mac OS X, Android, or any other sane platform.  <a href="#af2a7603e57df066520c2ddd6bdd14be5">More...</a><br/></td></tr>
+<tr class="separator:af2a7603e57df066520c2ddd6bdd14be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14a9b1d6925edc7dfe269635bf2c861b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14a9b1d6925edc7dfe269635bf2c861b"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crossplatformexport_8h.xhtml#a14a9b1d6925edc7dfe269635bf2c861b">MEZZ_DEPRECATED</a></td></tr>
 <tr class="memdesc:a14a9b1d6925edc7dfe269635bf2c861b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to mark old functionality that should not be used as such. In supported compilers using such functionality should produce warnings. <br/></td></tr>
 <tr class="separator:a14a9b1d6925edc7dfe269635bf2c861b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac384449f00498b42a495646c6aecfb8f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac384449f00498b42a495646c6aecfb8f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crossplatformexport_8h.xhtml#ac384449f00498b42a495646c6aecfb8f">MEZZ_FRAMESTOTRACK</a>&#160;&#160;&#160;10</td></tr>
+<tr class="memdesc:ac384449f00498b42a495646c6aecfb8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to control how long frames track length and other similar values. This is controlled by the CMake (or other build system) option Mezz_FramesToTrack. <br/></td></tr>
+<tr class="separator:ac384449f00498b42a495646c6aecfb8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a455f91aab9e6a1cf4286f5cdfa74c7bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a455f91aab9e6a1cf4286f5cdfa74c7bc"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a></td></tr>
 <tr class="memdesc:a455f91aab9e6a1cf4286f5cdfa74c7bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Some platforms require special decorations to denote what is exported/imported in a share library. This is that decoration if when it is needed. <br/></td></tr>
 <tr class="separator:a455f91aab9e6a1cf4286f5cdfa74c7bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a491f7cf4e0e45f1f6e9a0098eff815a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crossplatformexport_8h.xhtml#a491f7cf4e0e45f1f6e9a0098eff815a0">MEZZ_USEATOMICSTODECACHECOMPLETEWORK</a></td></tr>
+<tr class="memdesc:a491f7cf4e0e45f1f6e9a0098eff815a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used to configure whether to atomically store a shortcut to skip checking all workunits.  <a href="#a491f7cf4e0e45f1f6e9a0098eff815a0">More...</a><br/></td></tr>
+<tr class="separator:a491f7cf4e0e45f1f6e9a0098eff815a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a922f06bad05fd18425c1c933801686d3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crossplatformexport_8h.xhtml#a922f06bad05fd18425c1c933801686d3">MEZZ_USEBARRIERSEACHFRAME</a></td></tr>
+<tr class="memdesc:a922f06bad05fd18425c1c933801686d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used to configure whether to re-create threads each frame of or synchronize.  <a href="#a922f06bad05fd18425c1c933801686d3">More...</a><br/></td></tr>
+<tr class="separator:a922f06bad05fd18425c1c933801686d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file is used on some platforms to determine what data should be read and written to and from a shared/dynamic library. </p>
@@ -125,8 +141,60 @@ Macros</h2></td></tr>
 </p>
 
 <p>Definition in file <a class="el" href="crossplatformexport_8h_source.xhtml">crossplatformexport.h</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="af2a7603e57df066520c2ddd6bdd14be5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _MEZZ_THREAD_POSIX_</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defined if this is running on Linux, Mac OS X, Android, or any other sane platform. </p>
+<p>if this is not defined, then most likely <em>MEZZ_THREAD_WIN32</em> is. </p>
+
+<p>Definition at line <a class="el" href="crossplatformexport_8h_source.xhtml#l00128">128</a> of file <a class="el" href="crossplatformexport_8h_source.xhtml">crossplatformexport.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a491f7cf4e0e45f1f6e9a0098eff815a0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MEZZ_USEATOMICSTODECACHECOMPLETEWORK</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This is used to configure whether to atomically store a shortcut to skip checking all workunits. </p>
+<p>When this is enabled Atomic CAS operations are used to maintain a count of the number of complete workunits at the beginning of the work unit listings. Normally these listings are read-only during frame execution, and the work units store whether or not they are complete. The default algorithm forces iteration over a large number of work units to simply check for completion in some situations. If memory bandwidth is slow or limited this can be a large source of of contention. Enable this option when there are many work units trades atomic operations for memory bandwidth. This must be tested on a per system basis to determine full preformance ramifications. This is controlled by the CMake (or other build system) option Mezz_DecacheWorkUnits. </p>
+
+<p>Definition at line <a class="el" href="crossplatformexport_8h_source.xhtml#l00173">173</a> of file <a class="el" href="crossplatformexport_8h_source.xhtml">crossplatformexport.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a922f06bad05fd18425c1c933801686d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MEZZ_USEBARRIERSEACHFRAME</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This is used to configure whether to re-create threads each frame of or synchronize. </p>
+<p>Any synchronization will be done with atomic Barrier. This is controlled by the CMake (or other build system) option Mezz_MinimizeThreadsEachFrame. </p>
+
+<p>Definition at line <a class="el" href="crossplatformexport_8h_source.xhtml#l00156">156</a> of file <a class="el" href="crossplatformexport_8h_source.xhtml">crossplatformexport.h</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:06 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

@@ -1,5 +1,9 @@
 <map id="Mezzanine::TransformableObject" name="Mezzanine::TransformableObject">
-<area shape="rect" id="node3" href="$classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems." alt="" coords="121,99,276,127"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1Audio_1_1iListener.xhtml" title="This is an interface class for a listener (such as a player) in the 3D audio world." alt="" coords="5,177,181,205"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Audio_1_1SoundProxy.xhtml" title="This is a proxy class for representing a sound being played in 3D space." alt="" coords="205,177,403,205"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems." alt="" coords="224,55,379,83"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Audio_1_1iListener.xhtml" title="This is an interface class for a listener (such as a player) in the 3D audio world." alt="" coords="437,5,613,33"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Audio_1_1SoundProxy.xhtml" title="This is a proxy class for representing a sound being played in 3D space." alt="" coords="427,55,624,83"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml" title="This is a proxy from which physics objects are handled." alt="" coords="459,106,592,150"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1GhostProxy.xhtml" title="This is the proxy object for ghost objects with no contact response." alt="" coords="672,39,805,83"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1RigidProxy.xhtml" title="This is a proxy from which rigid body objects are handled." alt="" coords="672,106,805,150"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1Physics_1_1SoftProxy.xhtml" title="This is the proxy object for soft/compressable bodies." alt="" coords="672,173,805,217"/>
 </map>

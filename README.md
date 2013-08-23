@@ -24,6 +24,6 @@ We have a number of features we are still working on and will not declare a 1.0 
 * And a more stuff that would be tedious to list here.
 
 ## More Info ##
-For more information please see our website at [blacktoppstudios.com][http://www.BlackToppStudios.com] for more details. We have thorough [Doxygen API Docs][http://www.blacktoppstudios.com/docs/Mezzanine/] and a walkthrough for [Building the Engine][http://www.blacktoppstudios.com/?page_id=817].
+For more information please see our website at http://www.BlackToppStudios.com for more details. We have thorough API docs at http://www.blacktoppstudios.com/docs/Mezzanine/ and a walkthrough for Building the Engine at http://www.blacktoppstudios.com/?page_id=817.
 
 

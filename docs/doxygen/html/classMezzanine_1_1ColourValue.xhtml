@@ -122,10 +122,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa34c9250ff2cd729596bb1cbd62cd26a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ColourValue.xhtml#aa34c9250ff2cd729596bb1cbd62cd26a">operator==</a> (const <a class="el" href="classMezzanine_1_1ColourValue.xhtml">ColourValue</a> &amp;Colour) const </td></tr>
 <tr class="memdesc:aa34c9250ff2cd729596bb1cbd62cd26a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality Comparison Operator.  <a href="#aa34c9250ff2cd729596bb1cbd62cd26a">More...</a><br/></td></tr>
 <tr class="separator:aa34c9250ff2cd729596bb1cbd62cd26a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf36a3b2668a34d68a8f34bf3af73b25"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ColourValue.xhtml#acf36a3b2668a34d68a8f34bf3af73b25">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;OneNode)</td></tr>
+<tr class="memitem:acf36a3b2668a34d68a8f34bf3af73b25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ColourValue.xhtml#acf36a3b2668a34d68a8f34bf3af73b25">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;OneNode)</td></tr>
 <tr class="memdesc:acf36a3b2668a34d68a8f34bf3af73b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it.  <a href="#acf36a3b2668a34d68a8f34bf3af73b25">More...</a><br/></td></tr>
 <tr class="separator:acf36a3b2668a34d68a8f34bf3af73b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4153dab679ff9f7a515a21bcf2efc643"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ColourValue.xhtml#a4153dab679ff9f7a515a21bcf2efc643">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr class="memitem:a4153dab679ff9f7a515a21bcf2efc643"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ColourValue.xhtml#a4153dab679ff9f7a515a21bcf2efc643">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr class="memdesc:a4153dab679ff9f7a515a21bcf2efc643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#a4153dab679ff9f7a515a21bcf2efc643">More...</a><br/></td></tr>
 <tr class="separator:a4153dab679ff9f7a515a21bcf2efc643"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -3928,9 +3928,6 @@ Public Attributes</h2></td></tr>
 <a class="anchor" id="acf36a3b2668a34d68a8f34bf3af73b25"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::ColourValue::ProtoDeSerialize </td>
@@ -3940,11 +3937,6 @@ Public Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it. </p>
@@ -3962,9 +3954,6 @@ Public Attributes</h2></td></tr>
 <a class="anchor" id="a4153dab679ff9f7a515a21bcf2efc643"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::ColourValue::ProtoSerialize </td>
@@ -3974,11 +3963,6 @@ Public Attributes</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
@@ -4839,6 +4823,6 @@ Public Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 21:56:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Aug 22 2013 23:34:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
