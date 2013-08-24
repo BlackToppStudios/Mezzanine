@@ -169,7 +169,14 @@ endif(${WIN32})
 # Linux File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
-    CopyFilesFromMezzanineDuringBuild( data/linux/GLX_icon.png )
+    set(GLXIcon data/linux/GLX_icon.png )
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${GLXIcon}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${GLXIcon}" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/${DestName}"
+        VERBATIM
+    )
     message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
