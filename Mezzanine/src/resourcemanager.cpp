@@ -109,7 +109,29 @@ namespace Mezzanine
         this->Deinitialize();
 
         for(std::vector<ResourceInputStream*>::iterator Iter = DeleteList.begin(); Iter != DeleteList.end(); Iter++)
-            { delete *Iter; }
+        { delete *Iter; }
+    }
+
+    bool ResourceManager::DoesDirectoryExist(const String& DirectoryPath)
+    {
+        struct stat st;
+        if((stat(DirectoryPath.c_str(),&st) == 0))
+        {
+            return S_ISDIR(st.st_mode);
+        }else{
+            //MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error getting directory information.");
+            return false;
+        }
+    }
+
+    void ResourceManager::RemoveDirectory(const String& DirectoryPath)
+    {
+        if(!rmdir(DirectoryPath.c_str()))
+        {
+            return;
+        }else{
+            MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error removing directory.");
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

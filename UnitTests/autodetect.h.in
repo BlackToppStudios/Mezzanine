@@ -49,7 +49,7 @@
 #include "mezztest.h"
 
 // Automatically Generated directory for filesystem tests
-char* TestingScratchDir = "${TestingScratchDir}";
+const Mezzanine::String TestingScratchDir("${TestingScratchDir}");
 // End Automatically Generated directory for filesystem tests
 
 // Automatically generated test inclusion ${CppIncludes}

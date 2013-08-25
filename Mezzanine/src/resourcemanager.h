@@ -128,6 +128,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Directory Management
 
+        static bool DoesDirectoryExist(const String& DirectoryPath);
+        static void RemoveDirectory(const String& DirectoryPath);
+
         /// @brief Creates a single new directory.
         /// @remarks This function will only create the directory specified at the end of the path.
         /// @param DirectoryPath The path for the newly created directory.

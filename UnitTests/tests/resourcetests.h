@@ -58,14 +58,59 @@ class resourcetests : public UnitTestGroup
         virtual String Name()
             { return String("Resource"); }
 
+        /// @brief Test only directory creation and removal
+        /// @param TestDirString the directory to attempt to create and remove
+        /// @details To get to a know
+        void CreateRemoveDirectory(const String& TestDirString)
+        {
+            Bool Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
+            cout << "Does testing directory exists: " << Exists << endl;
+            if(Exists)
+            {
+                cout << "Removing " << TestDirString << endl;
+                Mezzanine::ResourceManager::RemoveDirectory(TestDirString);
+            }else{
+                cout << "No cleanup required" << endl;
+            }
+
+            Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
+            if(Exists)
+            {
+                TEST(false, "RemoveDirectory");
+                TEST_RESULT(Testing::Skipped, "CreateDirectory");
+            }else{
+                cout << "Attempting to create a directory: " << TestDirString << endl;
+                Mezzanine::ResourceManager::CreateDirectory(TestDirString);
+                Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
+                TEST(Exists, "CreateDirectory");
+                cout << "Did it work: " << Exists << endl;
+
+                if(Exists)
+                {
+                    cout << "Testing removal of: " << TestDirString << endl;
+                    Mezzanine::ResourceManager::RemoveDirectory(TestDirString);
+                    Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
+                    TEST(!Exists, "RemoveDirectory");
+                    cout << "Did it work: " << !Exists << endl;
+                }else{
+                    TEST_RESULT(Testing::Skipped, "RemoveDirectory");
+                }
+            }
+        }
+
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            String TempDirString(TestingScratchDir);
-            TempDirString += "resourcetesting";
-            cout << "Attempting to create a folder: " << TempDirString << endl;
-            Mezzanine::ResourceManager::CreateDirectory(TempDirString);
+            String TestDirString(TestingScratchDir);
+            TestDirString += "resourcetesting";
 
+            try
+            {
+                CreateRemoveDirectory(TestDirString);
+            } catch (Mezzanine::IOException& e) {
+                cout << "Error testing directory creation and removal: " << e.what() << endl;
+            }
+            cout << endl;
 
 
             //cout << "Attempting to create a Mezzanine::ResourceManager" << endl;
