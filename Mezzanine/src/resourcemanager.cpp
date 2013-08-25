@@ -185,24 +185,23 @@ namespace Mezzanine
         return Result;
     }
 
-    StringSet* ResourceManager::GetDirContents(const String& Dir)
+    StringSet ResourceManager::GetDirContents(const String& Dir)
     {
-        StringSet* Results = new StringSet;
+        StringSet Results;
         DIR *Directory;
         struct dirent *DirEntry;
-        if(Directory = opendir(Dir.c_str()))
+        if((Directory = opendir(Dir.c_str())))
         {
-            while(DirEntry = readdir(Directory))
+            while((DirEntry = readdir(Directory)))
             {
-                Results->insert(DirEntry->d_name);
+                Results.insert(DirEntry->d_name);
                 //DirEntry->d_type Later this can be modified to include the type of file entry it is, like a file, block device, directory, socket etc...
             }
 
             closedir(Directory);
             return Results;
         }else{
-            delete Results;
-            return NULL;
+            MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Error listing directory contents"));
         }
     }
 

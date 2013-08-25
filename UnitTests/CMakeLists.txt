@@ -106,6 +106,7 @@ foreach(CurrentTest ${FoundTests})
                 this->operator[](AllLower(${CurrentTest}Implementation.Name())) = &${CurrentTest}Implementation;")
 endforeach(CurrentTest ${FoundTests})
 
+set(TestingScratchDir ${${PROJECT_NAME}_BINARY_DIR})
 configure_file( "${${PROJECT_NAME}_ROOT_DIR}/autodetect.h.in"  "${${PROJECT_NAME}_BINARY_DIR}autodetect.h")
 
 set(${PROJECT_NAME}_sources

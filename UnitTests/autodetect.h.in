@@ -48,6 +48,10 @@
 
 #include "mezztest.h"
 
+// Automatically Generated directory for filesystem tests
+char* TestingScratchDir = "${TestingScratchDir}";
+// End Automatically Generated directory for filesystem tests
+
 // Automatically generated test inclusion ${CppIncludes}
 // End Automatically generated test inclusion
 
