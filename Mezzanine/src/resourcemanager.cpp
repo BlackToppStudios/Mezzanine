@@ -134,6 +134,47 @@ namespace Mezzanine
         }
     }
 
+    String ResourceManager::DirName(const String& FileName)
+    {
+        Whole Last(FileName.find_last_of("\\/"));
+        if(FileName.npos == Last)
+            { return String(""); }
+        else
+        {
+            if(Last<FileName.size())
+                { return FileName.substr(0,Last+1); }
+            else
+                { return FileName.substr(0,Last+1); }
+        }
+    }
+
+    String ResourceManager::BaseName(const String& FileName)
+    {
+        Whole Last(FileName.find_last_of("\\/"));
+        if(FileName.npos == Last)
+            { return FileName; }
+        else
+        {
+            if(Last<FileName.size())
+                { return FileName.substr(Last+1,FileName.npos); }
+            else
+            { return String(""); }
+        }
+    }
+
+    String ResourceManager::GetExecutableDirFromArg(int ArgCount, char** ArgVars)
+    {
+        if(ArgCount>0)
+        {
+            return String(".");
+        }else{
+            return String("");
+        }
+    }
+
+    String ResourceManager::GetExecutableDirFromArg()
+        { return GetExecutableDirFromArg(ArgC,ArgV); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Directory Management
 

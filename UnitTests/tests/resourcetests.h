@@ -60,7 +60,8 @@ class resourcetests : public UnitTestGroup
 
         /// @brief Test only directory creation and removal
         /// @param TestDirString the directory to attempt to create and remove
-        /// @details To get to a know
+        /// @details The functions under test are required to test one another. This creates an unusual
+        /// set of checks that need to happen and some situations in which tests will be skipped.
         void CreateRemoveDirectory(const String& TestDirString)
         {
             Bool Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
@@ -98,6 +99,37 @@ class resourcetests : public UnitTestGroup
             }
         }
 
+        /// @brief Verify the basename and dirname functions does their jobs right
+        /// set of checks that need to happen and some situations in which tests will be skipped.
+        void TestBaseAndDirName()
+        {
+            cout << "Testing DirName: " << endl
+                 << "Passing:\t\"File.txt\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::DirName("File.txt") << "\"" << endl
+                 << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"c:\\\"\n\tActual:\t\"" << Mezzanine::ResourceManager::DirName("c:\\untitled doc.txt") << "\"" << endl
+                 << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::DirName("") << "\"" << endl
+                 << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"/a/b/\"\n\tActual:\t\"" << Mezzanine::ResourceManager::DirName("/a/b/c") << "\"" << endl
+                 << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"/a/b/c/\"\n\tActual:\t\"" << Mezzanine::ResourceManager::DirName("/a/b/c/") << "\"" << endl
+                 << endl;
+            Test(Mezzanine::ResourceManager::DirName("File.txt")=="","DirNameShouldBeEmpty");
+            Test(Mezzanine::ResourceManager::DirName("c:\\untitled doc.txt")=="c:\\","DirNamewindows");
+            Test(Mezzanine::ResourceManager::DirName("")=="","DirNameEmptyNotCrash");
+            Test(Mezzanine::ResourceManager::DirName("/a/b/c")=="/a/b/","DirNameUnix");
+            Test(Mezzanine::ResourceManager::DirName("/a/b/c/")=="/a/b/c/","DirNameUnixDir");
+
+            cout << "Testing BaseName: " << endl
+                 << "Passing:\t\"File.txt\"\n\tExpecting:\t\"File.txt\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("File.txt") << "\"" << endl
+                 << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"untitled doc.txt\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("c:\\untitled doc.txt") << "\"" << endl
+                 << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("") << "\"" << endl
+                 << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"c\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("/a/b/c") << "\"" << endl
+                 << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("/a/b/c/") << "\"" << endl
+                 << endl;
+            Test(Mezzanine::ResourceManager::BaseName("File.txt")=="File.txt","BaseNameShouldCopy");
+            Test(Mezzanine::ResourceManager::BaseName("c:\\untitled doc.txt")=="untitled doc.txt","BaseNamewindows");
+            Test(Mezzanine::ResourceManager::BaseName("")=="","BaseNameEmptyNotCrash");
+            Test(Mezzanine::ResourceManager::BaseName("/a/b/c")=="c","BaseNameUnix");
+            Test(Mezzanine::ResourceManager::BaseName("/a/b/c/")=="","BaseNameUnixDir");
+        }
+
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
@@ -111,6 +143,11 @@ class resourcetests : public UnitTestGroup
                 cout << "Error testing directory creation and removal: " << e.what() << endl;
             }
             cout << endl;
+
+            TestBaseAndDirName();
+
+            ArgC;
+            ArgV;
 
 
             //cout << "Attempting to create a Mezzanine::ResourceManager" << endl;

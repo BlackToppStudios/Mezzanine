@@ -266,6 +266,8 @@ class AllUnitTestGroups : public UnitTestGroup
 /// @param argv Is interpretted as the arguments passed in from the launching shell.
 int main (int argc, char** argv)
 {
+    ArgC = argc;
+    ArgV = argv;
     GlobalCoreTestGroup TestGroups;
     bool WriteFile = true;
 

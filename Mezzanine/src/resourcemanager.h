@@ -110,6 +110,16 @@ namespace Mezzanine
         /// @brief A vector of all the known internal Asset Groups.
         std::vector<String> ResourceGroups;
 
+        /// @brief ArgC as it was passed into Main.
+        /// @details This cannot be set statically, it must wait for main(int, char**) to
+        /// be initialized, then call the appropriate function to set this.
+        int ArgC;
+
+        /// @brief ArgC as it was passed into Main.
+        /// @details This cannot be set statically, it must wait for main(int, char**) to
+        /// be initialized, then call the appropriate function to set this.
+        char** ArgV;
+
         /// @internal
         /// @brief Adds an asset group name to the list of known AssetGroups.
         void AddAssetGroupName(String Name);
@@ -126,10 +136,37 @@ namespace Mezzanine
         virtual ~ResourceManager();
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Directory Management
+        // Directory/Path Management
 
+        /// @brief Checks to see if the given path exists and if it is a folder.
+        /// @param DirectoryPath A String containing the path to test.
+        /// @return True if the item indicated by DirectoryPath exists and it is a directory, false if it does not exist or exists but is a file.
+        /// @throws On Error this might throw a Mezzanine::IOException with detail about why it failed
         static bool DoesDirectoryExist(const String& DirectoryPath);
+        /// @brief Remove an empty directory.
+        /// @param DirectoryPath Directory to remove.
+        /// @throws On Error this might throw a Mezzanine::IOException with details about why it failed.
         static void RemoveDirectory(const String& DirectoryPath);
+
+        /// @brief Get the directory portion of a string
+        /// @param FileName A whole path and filename
+        /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "/a/b/" or "c:\windirs\"
+        static String DirName(const String& FileName);
+        /// @brief Get the filename portion of a string
+        /// @param FileName A whole path and filename
+        /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "c.txt" or "crash.exe"
+        static String BaseName(const String& FileName);
+
+        /// @brief Attempt to get the executable directory from the a set of variables like those passed into Main
+        /// @param ArgCount How many arguments will be passed in ArgVars
+        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings
+        /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
+        /// @warning Not all system provide all the needed information to determine the executable directory
+        /// @return If a whole path is present in ArgVars[0] this returns the BaseName of that path, if this uses the executable file this returns '.', otherwise this with return "" indicating it is not usable.
+        static String GetExecutableDirFromArg(int ArgCount, char** ArgVars);
+        /// @brief Uses the main parameters stored on an instance of Mezzanine::ResourceManager to attempt determine executable directory
+        /// @return Either a valid Path, '.' if the working dir is likely correct or "" if nothing could be determined.
+        String GetExecutableDirFromArg();
 
         /// @brief Creates a single new directory.
         /// @remarks This function will only create the directory specified at the end of the path.
