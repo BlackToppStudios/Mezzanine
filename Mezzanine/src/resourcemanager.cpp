@@ -91,11 +91,12 @@ namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = NULL;
 
-    ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType)
+    ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, int ArgCount, char** ArgVars)
     {
         this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         this->EngineDataDir = EngineDataPath;
         this->AddAssetLocation(EngineDataPath, ArchType, "EngineData", false);
+        this->SetMainArgs(ArgCount, ArgVars);
     }
 
     ResourceManager::ResourceManager(XML::Node& XMLNode)
@@ -110,6 +111,12 @@ namespace Mezzanine
 
         for(std::vector<ResourceInputStream*>::iterator Iter = DeleteList.begin(); Iter != DeleteList.end(); Iter++)
         { delete *Iter; }
+    }
+
+    void ResourceManager::SetMainArgs(int ArgCount, char** ArgVars)
+    {
+        this->ArgC=ArgCount;
+        this->ArgV=ArgVars;
     }
 
     bool ResourceManager::DoesDirectoryExist(const String& DirectoryPath)
@@ -166,7 +173,23 @@ namespace Mezzanine
     {
         if(ArgCount>0)
         {
-            return String(".");
+            if(String("") == BaseName(ArgVars[0])) // No command is clearly bogus, must bail
+                { return ""; }
+
+
+            String Results(DirName(ArgVars[0]));
+
+            // strip ./ ../ .\ ..\ and
+            //String::iterator From=Results.begin();
+            //for(String::iterator Iter=Results.begin(); Iter!=Results.end();)
+            //{}
+
+            if( String("")==Results || String("./")==Results || String(".\\")==Results)// common cases of exe existing but dir is empty
+                { return "."; }
+
+            if(String("")!=Results) // and exe is empty.
+                { return Results; }
+            return String("");
         }else{
             return String("");
         }

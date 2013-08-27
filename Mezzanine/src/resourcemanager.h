@@ -128,12 +128,19 @@ namespace Mezzanine
         /// @details Standard manager constructor.
         /// @param EngineDataPath The directory for engine specific data.
         /// @param ArchiveType The name of the type of archive at this path.
-        ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem);
+        ////// @param ArgCount How many arguments will be passed in ArgVars. Defaults to 0
+        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings. Defaults to NULL.
+        ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem, int ArgCount=0, char** ArgVars=NULL);
         /// @brief XML constructor.
         /// @param XMLNode The node of the xml document to construct from.
         ResourceManager(XML::Node& XMLNode);
         /// @details Class Destructor.
         virtual ~ResourceManager();
+
+        /// @brief Store the Main arguments for later use.
+        /// @param ArgCount How many arguments will be passed in ArgVars.
+        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
+        void SetMainArgs(int ArgCount, char** ArgVars);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Directory/Path Management
@@ -158,8 +165,8 @@ namespace Mezzanine
         static String BaseName(const String& FileName);
 
         /// @brief Attempt to get the executable directory from the a set of variables like those passed into Main
-        /// @param ArgCount How many arguments will be passed in ArgVars
-        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings
+        /// @param ArgCount How many arguments will be passed in ArgVars.
+        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
         /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
         /// @warning Not all system provide all the needed information to determine the executable directory
         /// @return If a whole path is present in ArgVars[0] this returns the BaseName of that path, if this uses the executable file this returns '.', otherwise this with return "" indicating it is not usable.

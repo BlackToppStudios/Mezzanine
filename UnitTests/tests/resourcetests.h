@@ -122,12 +122,53 @@ class resourcetests : public UnitTestGroup
                  << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("") << "\"" << endl
                  << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"c\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("/a/b/c") << "\"" << endl
                  << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("/a/b/c/") << "\"" << endl
-                 << endl;
+                 << endl << endl;
             Test(Mezzanine::ResourceManager::BaseName("File.txt")=="File.txt","BaseNameShouldCopy");
             Test(Mezzanine::ResourceManager::BaseName("c:\\untitled doc.txt")=="untitled doc.txt","BaseNamewindows");
             Test(Mezzanine::ResourceManager::BaseName("")=="","BaseNameEmptyNotCrash");
             Test(Mezzanine::ResourceManager::BaseName("/a/b/c")=="c","BaseNameUnix");
             Test(Mezzanine::ResourceManager::BaseName("/a/b/c/")=="","BaseNameUnixDir");
+
+        }
+
+        void TestGetExeDir()
+        {
+            char* ExeOnly = const_cast<char *>("game.exe");
+            char** ExePtr = &ExeOnly;
+            char* ExeWithDotSlash = const_cast<char *>("./game");
+            char** ExeDSPtr = &ExeWithDotSlash;
+            char* ExeWithwindDotSlash = const_cast<char *>(".\\game");
+            char** ExewDSPtr = &ExeWithwindDotSlash;
+            char* wPath = const_cast<char *>("c:\\progra~1\\fungamedir\\");
+            char** PtrwPath = &wPath;
+            char* uPath = const_cast<char *>("/usr/bin/");
+            char** PtruPath = &uPath;
+            char* Reasonablew = const_cast<char *>("c:\\fungamedir\\game.exe");
+            char** PtrReasonablew = &Reasonablew;
+            char* Reasonableu = const_cast<char *>("/usr/share/bin/game");
+            char** PtrReasonableu = &Reasonableu;
+            cout << "Testing GetExecutableDirFromArg(ArgC,ArgV)" << endl
+                 << "On your system with the real args this provides:\n\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(ArgC,ArgV) << "\"" << endl
+                 << "With empty records \n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(0,0) << "\"" << endl
+                 << "With \"" << ExePtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,ExePtr) << "\"" << endl
+                 << "With \"" << ExeDSPtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,ExeDSPtr) << "\"" << endl
+                 << "With \"" << ExewDSPtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,ExewDSPtr) << "\"" << endl
+                 << "With \"" << PtrwPath[0] << "\" \n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrwPath) << "\"" << endl
+                 << "With \"" << PtruPath[0] << "\" \n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtruPath) << "\"" << endl
+                 << "With \"" << PtrReasonablew[0] << "\" \n\tExpecting:\t\"c:\\fungamedir\\\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonablew) << "\"" << endl
+                 << "With \"" << PtrReasonableu[0] << "\" \n\tExpecting:\t\"/usr/share/bin/\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonableu) << "\"" << endl
+                 << endl << endl;
+            TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(0,0) == String(""),"GetExeDirEmpty");
+            TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,ExePtr) == String("."),"GetExeExeOnly");
+            TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,ExeDSPtr) == String("."),"GetExeDothSlash");
+            TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,ExewDSPtr) == String("."),"GetExewinDotSlash");
+            TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrwPath) == String(""),"GetExeNoExewin");
+            TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtruPath) == String(""),"GetExeNoExenix");
+            TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonablew) == String("c:\\fungamedir\\"),"GetExeValidwin");
+            TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonableu) == String("/usr/share/bin/"),"GetExeValidnix");
+
+
+
         }
 
         /// @brief This is called when Automatic tests are run
@@ -146,8 +187,7 @@ class resourcetests : public UnitTestGroup
 
             TestBaseAndDirName();
 
-            ArgC;
-            ArgV;
+            TestGetExeDir();
 
 
             //cout << "Attempting to create a Mezzanine::ResourceManager" << endl;
@@ -159,19 +199,6 @@ class resourcetests : public UnitTestGroup
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
         virtual bool HasAutomaticTests() const
-            { return true; }
-
-
-        /// @brief This is called when Interactive tests are run
-        void RunInteractiveTests()
-        {
-            TestResult Answer = GetTestAnswerFromStdin( "Is this a question? ");
-            TEST_RESULT(Answer, "Interactive");
-        }
-
-        /// @brief Since RunInteractiveTests is implemented so is this.
-        /// @return returns true
-        virtual bool HasInteractiveTests() const
             { return true; }
 
 };
