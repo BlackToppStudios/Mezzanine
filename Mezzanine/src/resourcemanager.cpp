@@ -42,6 +42,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 #include "resourcemanager.h"
 #include "meshmanager.h"
@@ -169,6 +170,60 @@ namespace Mezzanine
         }
     }
 
+    char ResourceManager::GetDirectorySeparator()
+    {
+        #ifdef WINDOWS
+        return '\\';
+        #else
+        return '/';
+        #endif
+    }
+
+    char ResourceManager::GetPathSeparator()
+    {
+        #ifdef WINDOWS
+        return ';';
+        #else
+        return ':';
+        #endif
+    }
+
+    StringVector ResourceManager::GetSystemPATH(const String& PATH)
+    {
+        StringVector Results;
+        const char Sep=GetPathSeparator();
+        String OneEntry;
+
+        for(String::const_iterator Current = PATH.begin();
+            PATH.end()!=Current;
+            Current++)
+        {
+            if(Sep==*Current)
+            {
+                Results.push_back(OneEntry);
+                OneEntry.clear();
+            }else{
+                OneEntry+=*Current;
+            }
+        }
+        return Results;
+    }
+
+    String ResourceManager::Which(String ExecutableName)
+    {
+        StringVector PATH(ResourceManager::GetSystemPATH());
+
+        for(StringVector::const_iterator Iter = PATH.begin();
+            Iter!=PATH.end();
+            Iter++)
+        {
+            StringSet Entries(GetDirContents(*Iter));
+            if(Entries.find(ExecutableName)!=Entries.end())
+                { return *Iter; }
+        }
+        return String();
+    }
+
     String ResourceManager::GetExecutableDirFromArg(int ArgCount, char** ArgVars)
     {
         if(ArgCount>0)
@@ -246,11 +301,7 @@ namespace Mezzanine
         CountedPtr<StringVector> FolderVec = StringTools::Split(DirectoryPath,"/\\");
         size_t StartIndex = 0;
         String PathAttempt;
-        #ifdef WINDOWS
-        char SysSlash = '\\';
-        #else
-        char SysSlash = '/';
-        #endif
+        char SysSlash = GetDirectorySeparator();
         #ifdef WINDOWS
         // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
         if(FolderVec->at(0).find(':') != String::npos)

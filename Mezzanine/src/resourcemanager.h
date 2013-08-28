@@ -164,7 +164,26 @@ namespace Mezzanine
         /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "c.txt" or "crash.exe"
         static String BaseName(const String& FileName);
 
-        /// @brief Attempt to get the executable directory from the a set of variables like those passed into Main
+        /// @brief Get the character used to separate directories
+        /// @return Backslash '\' on windows and Forward slash '/' on other operating systems.
+        static char GetDirectorySeparator();
+        /// @brief Get the character used to separate entries in the system PATH
+        /// @return Semicolon ';' on windows and Forward slash ':' on other operating systems.
+        static char GetPathSeparator();
+
+        /// @brief Get the $PATH or %PATH% split and order for easy checking of how the OS does it.
+        /// @param PATH Defaults to the PATH environment variable. But any value like a system path will be split the return of GetPathSeparator().
+        /// @return A collection of directories that this system will for executables in the order they will be checked.
+        static StringVector GetSystemPATH(const String& PATH = String(getenv("PATH")));
+        /// @brief Search the system path the same way most systems do to find an executable.
+        /// @param ExecutableName The executable to look for.
+        /// @return If the executable is not found "" is returned otherwise the first directory in the PATH containing it is returned.
+        /// @warning This function is case sensitive and not all operating systems are.
+        /// @todo Add support for extension handling on windows. "cmd" should find "cmd.exe" in system32, but currently "cmd.exe" needs to be searched
+        static String Which(String ExecutableName);
+
+        /// @brief Attempt to get the executable directory from the a set of variables like those passed into Main.
+        /// @details This is the fastest way to get the Executable location, but might not work on all platforms.
         /// @param ArgCount How many arguments will be passed in ArgVars.
         /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
         /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
@@ -191,7 +210,7 @@ namespace Mezzanine
         /// leading "c:/", "c:\\", or "/" as appropriate for the operating system the software will run on.
         /// @return This will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error.
         /// @param Dir The directory to check.
-        StringSet GetDirContents(const String& Dir = ".");
+        static StringSet GetDirContents(const String& Dir = ".");
 
         /// @brief Get the working directory as a Mezzanine::String
         /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a Mezzanine::String

@@ -43,6 +43,8 @@
 #include "mezztest.h"
 #include "resourcemanager.h"
 
+#include <fstream>
+
 /// @file
 /// @brief A few tests of the resource system, only partial coverage
 
@@ -166,9 +168,55 @@ class resourcetests : public UnitTestGroup
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtruPath) == String(""),"GetExeNoExenix");
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonablew) == String("c:\\fungamedir\\"),"GetExeValidwin");
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonableu) == String("/usr/share/bin/"),"GetExeValidnix");
+        }
+
+        String GetCommandResults(String Command)
+        {
+            Command += " > CommandResults.txt";
+            system(Command.c_str());
+            std::ifstream File("CommandResults.txt");
+            return String( std::istreambuf_iterator<char>(File), std::istreambuf_iterator<char>());
+        }
+
+        void TestPath()
+        {
+            cout << "Your Current PATH as parsed by GetSystemPATH():" << endl;
+            StringVector PATH(ResourceManager::GetSystemPATH());
+            for(StringVector::const_iterator Iter = PATH.begin();
+                Iter!=PATH.end();
+                Iter++)
+            {
+                cout << "\t\"" << *Iter << "\"" << endl;
+            }
+            cout << "End of current system PATH" << endl;
 
 
+            std::stringstream SamplePath;
+            SamplePath << "/a/b/c" << ResourceManager::GetPathSeparator()
+                       << "/bin" << ResourceManager::GetPathSeparator()
+                       << ResourceManager::GetPathSeparator();
 
+            cout << "Test parsing a sample PATH: " << SamplePath.str() << endl
+                 << "Becomes: ";
+            PATH=ResourceManager::GetSystemPATH(SamplePath.str());
+            for(StringVector::const_iterator Iter = PATH.begin();
+                Iter!=PATH.end();
+                Iter++)
+            {
+                cout << "\t\"" << *Iter << "\"" << endl;
+            }
+            TEST(PATH[0]=="/a/b/c"&&PATH[1]=="/bin"&&PATH[2]=="", "PATHParsing");
+
+            cout << "looking for \"ls\" and comparing our results to the system"  << endl
+                 << "\t\"" << (ResourceManager::Which("ls")) << "\"" << endl
+                 << "\t\"" << ResourceManager::DirName(GetCommandResults("which ls")) << "\"" << endl;
+            TEST_WARN((ResourceManager::Which("ls"))==ResourceManager::DirName(GetCommandResults("which ls")),"Whichls")
+
+            //Does Windows have where, what does which's output look like
+            cout << "looking for \"cmd.exe\" and comparing our results to the system"  << endl
+                 << "\t\"" << (ResourceManager::Which("cmd.exe")) << "\"" << endl
+                 << "\t\"" << ResourceManager::DirName(GetCommandResults("which cmd.exe")) << "\"" << endl;
+            TEST_WARN((ResourceManager::Which("cmd.exe"))==ResourceManager::DirName(GetCommandResults("which cmd.exe")),"Whichcmd")
         }
 
         /// @brief This is called when Automatic tests are run
@@ -189,6 +237,7 @@ class resourcetests : public UnitTestGroup
 
             TestGetExeDir();
 
+            TestPath();
 
             //cout << "Attempting to create a Mezzanine::ResourceManager" << endl;
             //Mezzanine::ResourceManager res;
