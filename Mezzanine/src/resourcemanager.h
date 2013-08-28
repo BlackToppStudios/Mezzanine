@@ -188,11 +188,21 @@ namespace Mezzanine
         /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
         /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
         /// @warning Not all system provide all the needed information to determine the executable directory
-        /// @return If a whole path is present in ArgVars[0] this returns the BaseName of that path, if this uses the executable file this returns '.', otherwise this with return "" indicating it is not usable.
+        /// @return If a whole path is present in ArgVars[0] this returns the directory part of that path, if this uses the executable file this returns '.', otherwise this with return "" indicating it is not usable.
         static String GetExecutableDirFromArg(int ArgCount, char** ArgVars);
         /// @brief Uses the main parameters stored on an instance of Mezzanine::ResourceManager to attempt determine executable directory
         /// @return Either a valid Path, '.' if the working dir is likely correct or "" if nothing could be determined.
-        String GetExecutableDirFromArg();
+        String GetExecutableDirFromArg() const;
+        /// @brief If the system shell sets the PATH Variable this can sometime be use to locate this executable.
+        /// @param ArgCount How many arguments will be passed in ArgVars.
+        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
+        /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
+        /// @warning Not all system provide all the needed information to determine the executable directory
+        /// @return If a whole path is present in ArgVars[0] this returns the directory part of that path, barring that this will traverse the system PATH and look for this executable otherwise this with return "" indicating it is not usable.
+        static String StringGetExecutableDirFromEnv(int ArgCount, char** ArgVars);
+        /// @brief Uses the main parameters stored on an instance of Mezzanine::ResourceManager to attempt determine executable directory
+        /// @return Same the static StringGetExecutableDirFromEnv(int ArgCount, char** ArgVars);
+        String StringGetExecutableDirFromEnv() const;
 
         /// @brief Creates a single new directory.
         /// @remarks This function will only create the directory specified at the end of the path.

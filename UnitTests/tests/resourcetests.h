@@ -159,7 +159,7 @@ class resourcetests : public UnitTestGroup
                  << "With \"" << PtruPath[0] << "\" \n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtruPath) << "\"" << endl
                  << "With \"" << PtrReasonablew[0] << "\" \n\tExpecting:\t\"c:\\fungamedir\\\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonablew) << "\"" << endl
                  << "With \"" << PtrReasonableu[0] << "\" \n\tExpecting:\t\"/usr/share/bin/\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonableu) << "\"" << endl
-                 << endl << endl;
+                 << endl;
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(0,0) == String(""),"GetExeDirEmpty");
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,ExePtr) == String("."),"GetExeExeOnly");
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,ExeDSPtr) == String("."),"GetExeDothSlash");
@@ -168,6 +168,10 @@ class resourcetests : public UnitTestGroup
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtruPath) == String(""),"GetExeNoExenix");
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonablew) == String("c:\\fungamedir\\"),"GetExeValidwin");
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonableu) == String("/usr/share/bin/"),"GetExeValidnix");
+
+            cout << "Testing GetExecutableDirFromEnv(ArgC,ArgV)" << endl
+                 << "On your system with the real args this provides:\n\t\"" << Mezzanine::ResourceManager::StringGetExecutableDirFromEnv(ArgC,ArgV) << "\"" << endl
+                 << endl << endl;
         }
 
         String GetCommandResults(String Command)
@@ -210,13 +214,13 @@ class resourcetests : public UnitTestGroup
             cout << "looking for \"ls\" and comparing our results to the system"  << endl
                  << "\t\"" << (ResourceManager::Which("ls")) << "\"" << endl
                  << "\t\"" << ResourceManager::DirName(GetCommandResults("which ls")) << "\"" << endl;
-            TEST_WARN((ResourceManager::Which("ls"))==ResourceManager::DirName(GetCommandResults("which ls")),"Whichls")
+            TEST_WARN((ResourceManager::Which("ls"))==ResourceManager::DirName(GetCommandResults("which ls")),"Whichls");
 
-            //Does Windows have where, what does which's output look like
+            //Does Windows have which, what does where's output look like?
             cout << "looking for \"cmd.exe\" and comparing our results to the system"  << endl
                  << "\t\"" << (ResourceManager::Which("cmd.exe")) << "\"" << endl
                  << "\t\"" << ResourceManager::DirName(GetCommandResults("which cmd.exe")) << "\"" << endl;
-            TEST_WARN((ResourceManager::Which("cmd.exe"))==ResourceManager::DirName(GetCommandResults("which cmd.exe")),"Whichcmd")
+            TEST_WARN((ResourceManager::Which("cmd.exe"))==ResourceManager::DirName(GetCommandResults("which cmd.exe")),"Whichcmd");
         }
 
         /// @brief This is called when Automatic tests are run

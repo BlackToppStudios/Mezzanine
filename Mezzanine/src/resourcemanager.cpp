@@ -219,7 +219,7 @@ namespace Mezzanine
         {
             StringSet Entries(GetDirContents(*Iter));
             if(Entries.find(ExecutableName)!=Entries.end())
-                { return *Iter; }
+                { return *Iter + GetDirectorySeparator(); }
         }
         return String();
     }
@@ -250,8 +250,22 @@ namespace Mezzanine
         }
     }
 
-    String ResourceManager::GetExecutableDirFromArg()
+    String ResourceManager::GetExecutableDirFromArg() const
         { return GetExecutableDirFromArg(ArgC,ArgV); }
+
+    String ResourceManager::StringGetExecutableDirFromEnv(int ArgCount, char** ArgVars)
+    {
+        String Results(GetExecutableDirFromArg(ArgCount,ArgVars));
+        if(String(".")==Results) // Means it might have valid exename
+        {
+            return Which(BaseName(ArgVars[0]));
+        }else{
+            return Results;
+        }
+    }
+
+    String ResourceManager::StringGetExecutableDirFromEnv() const
+        { return StringGetExecutableDirFromEnv(ArgC,ArgV); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Directory Management
