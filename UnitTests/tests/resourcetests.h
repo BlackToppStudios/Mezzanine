@@ -169,14 +169,79 @@ class resourcetests : public UnitTestGroup
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonablew) == String("c:\\fungamedir\\"),"GetExeValidwin");
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonableu) == String("/usr/share/bin/"),"GetExeValidnix");
 
+            Whole Count = 10000; // set to 100000 or higher and remark out env test for faster results
+            MaxInt ArgTime = 0;
+            MaxInt EnvTime = 0;
+            MaxInt SyscallTime = 0;
+            MaxInt GetTime = 0;
+
+            cout << "Not testing GetExecutableDirFromArg(ArgC,ArgV) but here is the output so you can check if you want" << endl
+                 << "On your system with the real args this provides:\n\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(ArgC,ArgV) << "\"" << endl
+                 << endl;
+            {
+                std::vector<String> CacheDefeater;
+                CacheDefeater.reserve(Count);
+                cout << "Calling GetExecutableDirFromArg(ArgC,ArgV) " << Count << " times and timing it." << endl;
+                TimedTest Timed;
+                for(Whole C=0; C<Count; C++)
+                    { CacheDefeater.push_back(Mezzanine::ResourceManager::GetExecutableDirFromArg(ArgC,ArgV)); }
+                Whole N = (rand()%Count);
+                cout << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
+                ArgTime = Timed.GetLength();
+                cout << ArgTime << " microseconds." << endl << endl;
+            }
+
             cout << "Not testing GetExecutableDirFromEnv(ArgC,ArgV) but here is the output so you can check if you want" << endl
                  << "On your system with the real args this provides:\n\t\"" << Mezzanine::ResourceManager::StringGetExecutableDirFromEnv(ArgC,ArgV) << "\"" << endl
-                 << endl << endl;
+                 << endl;
+            {
+                std::vector<String> CacheDefeater;
+                CacheDefeater.reserve(Count);
+                cout << "Calling StringGetExecutableDirFromEnv(ArgC,ArgV) " << Count << " times and timing it(forcing it to check PATH)." << endl;
+                TimedTest Timed;
+                for(Whole C=0; C<Count; C++)
+                    { CacheDefeater.push_back(Mezzanine::ResourceManager::StringGetExecutableDirFromEnv(1,ExePtr)); }
+                Whole N = (rand()%Count);
+                cout << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
+                EnvTime = Timed.GetLength();
+                cout << EnvTime << " microseconds." << endl << endl;
+            }
+
 
             cout << "Not testing GetExecutableDirFromSystem() but here is the output so you can check if you want" << endl
                  << "On your system this provides:\n\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromSystem() << "\"" << endl
-                 << endl << endl;
+                 << endl;
+            {
+                std::vector<String> CacheDefeater;
+                CacheDefeater.reserve(Count);
+                cout << "Calling GetExecutableDirFromSystem() " << Count << " times and timing it." << endl;
+                TimedTest Timed;
+                for(Whole C=0; C<Count; C++)
+                    { CacheDefeater.push_back(Mezzanine::ResourceManager::GetExecutableDirFromSystem()); }
+                Whole N = (rand()%Count);
+                cout << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
+                SyscallTime = Timed.GetLength();
+                cout << SyscallTime << " microseconds." << endl << endl;
+            }
 
+
+            cout << "Not testing GetExecutableDir(ArgC,ArgV) but here is the output so you can check if you want" << endl
+                 << "On your system this provides:\n\t\"" << Mezzanine::ResourceManager::GetExecutableDir(ArgC,ArgV) << "\"" << endl
+                 << endl << endl;
+            {
+                std::vector<String> CacheDefeater;
+                CacheDefeater.reserve(Count);
+                cout << "Calling GetExecutableDir(ArgC,ArgV) " << Count << " times and timing it." << endl;
+                TimedTest Timed;
+                for(Whole C=0; C<Count; C++)
+                    { CacheDefeater.push_back(Mezzanine::ResourceManager::GetExecutableDir(ArgC,ArgV)); }
+                Whole N = (rand()%Count);
+                cout << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
+                GetTime = Timed.GetLength();
+                cout << GetTime << " microseconds." << endl << endl;
+            }
+
+            TEST_WARN(ArgTime<SyscallTime,"ArgIsFastest")
         }
 
         String GetCommandResults(String Command)
@@ -274,6 +339,12 @@ class resourcetests : public UnitTestGroup
                  << Mezzanine::ResourceManager::GetExecutableDirFromSystem() << "\"" << endl
                  << "Is that location correct? " ;
             TEST_RESULT(GetTestAnswerFromStdin(Temp.str()), "GetExecutableDirFromSystem()");
+
+            Temp.str("");
+            Temp << "GetExecutableDir(ArgC,ArgV) - On your system with the real args this provides:\n\t\""
+                 << Mezzanine::ResourceManager::GetExecutableDir(ArgC,ArgV) << "\"" << endl
+                 << "Is that location correct? " ;
+            TEST_RESULT(GetTestAnswerFromStdin(Temp.str()), "GetExecutableDir(ArgC,ArgV)");
         }
 
         /// @brief Since RunInteractiveTests is implemented so is this.

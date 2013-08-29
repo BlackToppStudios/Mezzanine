@@ -206,8 +206,16 @@ namespace Mezzanine
         /// @brief Used a system call to get the curent Directory the executable is in. This make an external system call and is likely slower than GetExecutableDirFromArg
         /// @return This will return the current path this executable is stored in.
         static String GetExecutableDirFromSystem();
-        // Add GetExecutableDir and GetExecutableDir(int,char**);
-
+        /// @brief Get the Path to the current executable, fast from Args if Possible or from a system call otherwise.
+        /// @param ArgCount How many arguments will be passed in ArgVars.
+        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
+        /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
+        /// @warning Not all system provide all the needed information to determine the executable directory
+        /// @return A String containing the path to the current executable.
+        static String GetExecutableDir(int ArgCount, char** ArgVars);
+        /// @brief Get the Path to the current executable, in a fast way if possible.
+        /// @return A String containing the path to the current executable.
+        String GetExecutableDir() const;
 
         /// @brief Creates a single new directory.
         /// @remarks This function will only create the directory specified at the end of the path.
