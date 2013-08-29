@@ -71,6 +71,7 @@
 	#include <sys/stat.h>
 	#include <sys/types.h>
     #include "pwd.h"
+    #include <mach-o/dyld.h> // for _NSGetExecutablePath
 #else
 	#include <unistd.h>//for sleep and getcwd
 	#include <errno.h>
@@ -265,7 +266,36 @@ namespace Mezzanine
     }
 
     String ResourceManager::StringGetExecutableDirFromEnv() const
-        { return StringGetExecutableDirFromEnv(ArgC,ArgV); }
+    { return StringGetExecutableDirFromEnv(ArgC,ArgV); }
+
+    String ResourceManager::GetExecutableDirFromSystem()
+    {
+        char Results[FILENAME_MAX];
+        #ifdef LINUX
+            MaxInt Length = ::readlink("/proc/self/exe", Results, sizeof(Results)-1);
+            if (Length != -1)
+            {
+                Results[Length] = '\0';
+                return DirName(String(Results));
+            } else {
+                return "";
+            }
+        #endif
+        #ifdef WINDOWS
+            GetModuleFileName( NULL, Results, FILENAME_MAX );
+            return DirName(String(Results));
+        #endif
+        #ifdef MACOSX
+            MaxInt size = sizeof(Results);
+            if (_NSGetExecutablePath(Results, &size) == 0)
+            {
+                return DirName(String(Results));
+            } else{
+                return "";
+            }
+        #endif
+
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Directory Management

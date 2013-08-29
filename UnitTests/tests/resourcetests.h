@@ -169,9 +169,14 @@ class resourcetests : public UnitTestGroup
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonablew) == String("c:\\fungamedir\\"),"GetExeValidwin");
             TEST(Mezzanine::ResourceManager::GetExecutableDirFromArg(1,PtrReasonableu) == String("/usr/share/bin/"),"GetExeValidnix");
 
-            cout << "Testing GetExecutableDirFromEnv(ArgC,ArgV)" << endl
+            cout << "Not testing GetExecutableDirFromEnv(ArgC,ArgV) but here is the output so you can check if you want" << endl
                  << "On your system with the real args this provides:\n\t\"" << Mezzanine::ResourceManager::StringGetExecutableDirFromEnv(ArgC,ArgV) << "\"" << endl
                  << endl << endl;
+
+            cout << "Not testing GetExecutableDirFromSystem() but here is the output so you can check if you want" << endl
+                 << "On your system this provides:\n\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromSystem() << "\"" << endl
+                 << endl << endl;
+
         }
 
         String GetCommandResults(String Command)
@@ -252,6 +257,28 @@ class resourcetests : public UnitTestGroup
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
         virtual bool HasAutomaticTests() const
+            { return true; }
+
+
+        /// @brief asks a few question about the location of the executable dir, because otherwise we don't know
+        void RunInteractiveTests()
+        {
+            Logger Temp;
+            Temp << "GetExecutableDirFromEnv(ArgC,ArgV) - On your system with the real args this provides:\n\t\""
+                 << Mezzanine::ResourceManager::StringGetExecutableDirFromEnv(ArgC,ArgV) << "\"" << endl
+                 << "Is that location correct? " ;
+            TEST_RESULT(GetTestAnswerFromStdin(Temp.str()), "GetExecutableDirFromEnv(ArgC,ArgV)");
+
+            Temp.str("");
+            Temp << "GetExecutableDirFromSystem() - On your system with the real args this provides:\n\t\""
+                 << Mezzanine::ResourceManager::GetExecutableDirFromSystem() << "\"" << endl
+                 << "Is that location correct? " ;
+            TEST_RESULT(GetTestAnswerFromStdin(Temp.str()), "GetExecutableDirFromSystem()");
+        }
+
+        /// @brief Since RunInteractiveTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasInteractiveTests() const
             { return true; }
 
 };

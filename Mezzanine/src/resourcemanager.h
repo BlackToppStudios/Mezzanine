@@ -203,6 +203,11 @@ namespace Mezzanine
         /// @brief Uses the main parameters stored on an instance of Mezzanine::ResourceManager to attempt determine executable directory
         /// @return Same the static StringGetExecutableDirFromEnv(int ArgCount, char** ArgVars);
         String StringGetExecutableDirFromEnv() const;
+        /// @brief Used a system call to get the curent Directory the executable is in. This make an external system call and is likely slower than GetExecutableDirFromArg
+        /// @return This will return the current path this executable is stored in.
+        static String GetExecutableDirFromSystem();
+        // Add GetExecutableDir and GetExecutableDir(int,char**);
+
 
         /// @brief Creates a single new directory.
         /// @remarks This function will only create the directory specified at the end of the path.
