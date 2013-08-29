@@ -267,7 +267,7 @@ class resourcetests : public UnitTestGroup
             Temp << "GetExecutableDirFromEnv(ArgC,ArgV) - On your system with the real args this provides:\n\t\""
                  << Mezzanine::ResourceManager::StringGetExecutableDirFromEnv(ArgC,ArgV) << "\"" << endl
                  << "Is that location correct? " ;
-            TEST_RESULT(GetTestAnswerFromStdin(Temp.str()), "GetExecutableDirFromEnv(ArgC,ArgV)");
+            TEST_RESULT(GetTestAnswerFromStdin(Temp.str(),false), "GetExecutableDirFromEnv(ArgC,ArgV)");
 
             Temp.str("");
             Temp << "GetExecutableDirFromSystem() - On your system with the real args this provides:\n\t\""

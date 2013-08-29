@@ -117,7 +117,7 @@ namespace Mezzanine
             return ExitInvalidArguments;
         }
 
-        TestResult GetTestAnswerFromStdin(Mezzanine::String Question)
+        TestResult GetTestAnswerFromStdin(Mezzanine::String Question, Bool FailStatusOnIncorrect)
         {
             Mezzanine::String Input;
             char Answer;
@@ -140,15 +140,18 @@ namespace Mezzanine
             switch(Answer)
             {
                 case 't': case 'y':
-                    return Success;
+                    return Testing::Success;
                 case 'f': case 'n':
-                    return Failed;
+                    if(FailStatusOnIncorrect)
+                        { return Testing::Failed; }
+                    else
+                        { return Testing::Warning; }
                 case 'c':
-                    return Cancelled;
+                    return Testing::Cancelled;
                 case 'u': case 'i':
-                    return Inconclusive;
+                    return Testing::Inconclusive;
                 default:
-                    return Unknown;
+                    return Testing::Unknown;
             }
         }
 
