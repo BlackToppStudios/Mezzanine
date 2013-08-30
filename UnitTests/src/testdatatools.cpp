@@ -89,10 +89,10 @@ namespace Mezzanine
                 static Timer ATimer;
             }
 
-            MaxInt GetTimeStamp()
+            MaxInt Now()
                 { return ATimer.GetTimeStamp(); }
 
-            Whole GetTimeStampResolution()
+            Whole NowResolution()
                 { return Whole(ATimer.frequency.QuadPart/1000); }
 
         #else
