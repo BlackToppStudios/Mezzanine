@@ -299,21 +299,6 @@ namespace Mezzanine
     String ResourceManager::GetExecutableDirFromArg() const
         { return GetExecutableDirFromArg(ArgC,ArgV); }
 
-    String ResourceManager::StringGetExecutableDirFromEnv(int ArgCount, char** ArgVars)
-    {
-        String Results(GetExecutableDirFromArg(ArgCount,ArgVars));
-        if( (String(".")==Results || String("")==Results)
-            && ArgCount>0 && ArgVars) // Means it might have valid exename
-        {
-            return Which(BaseName(ArgVars[0]));
-        }else{
-            return Results;
-        }
-    }
-
-    String ResourceManager::StringGetExecutableDirFromEnv() const
-        { return StringGetExecutableDirFromEnv(ArgC,ArgV); }
-
     String ResourceManager::GetExecutableDirFromSystem()
     {
         char Results[FILENAME_MAX];

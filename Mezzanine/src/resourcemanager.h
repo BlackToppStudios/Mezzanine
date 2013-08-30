@@ -153,38 +153,38 @@ namespace Mezzanine
         /// @param DirectoryPath A String containing the path to test.
         /// @return True if the item indicated by DirectoryPath exists and it is a directory, false if it does not exist or exists but is a file.
         /// @throws On Error this might throw a Mezzanine::IOException with detail about why it failed
-        static bool DoesDirectoryExist(const String& DirectoryPath);
+        static bool MEZZ_LIB DoesDirectoryExist(const String& DirectoryPath);
         /// @brief Remove an empty directory.
         /// @param DirectoryPath Directory to remove.
         /// @throws On Error this might throw a Mezzanine::IOException with details about why it failed.
-        static void RemoveDirectory(const String& DirectoryPath);
+        static void MEZZ_LIB RemoveDirectory(const String& DirectoryPath);
 
         /// @brief Get the directory portion of a string
         /// @param FileName A whole path and filename
         /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "/a/b/" or "c:\windirs\"
-        static String DirName(const String& FileName);
+        static String MEZZ_LIB DirName(const String& FileName);
         /// @brief Get the filename portion of a string
         /// @param FileName A whole path and filename
         /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "c.txt" or "crash.exe"
-        static String BaseName(const String& FileName);
+        static String MEZZ_LIB BaseName(const String& FileName);
 
         /// @brief Get the character used to separate directories
         /// @return Backslash '\' on windows and Forward slash '/' on other operating systems.
-        static char GetDirectorySeparator();
+        static char MEZZ_LIB GetDirectorySeparator();
         /// @brief Get the character used to separate entries in the system PATH
         /// @return Semicolon ';' on windows and Forward slash ':' on other operating systems.
-        static char GetPathSeparator();
+        static char MEZZ_LIB GetPathSeparator();
 
         /// @brief Get the $PATH or %PATH% split and order for easy checking of how the OS does it.
         /// @param PATH Defaults to the PATH environment variable. But any value like a system path will be split the return of GetPathSeparator().
         /// @return A collection of directories that this system will for executables in the order they will be checked.
-        static StringVector GetSystemPATH(const String& PATH = String(getenv("PATH")));
+        static StringVector MEZZ_LIB GetSystemPATH(const String& PATH = String(getenv("PATH")));
         /// @brief Search the system path the same way most systems do to find an executable.
         /// @param ExecutableName The executable to look for.
         /// @return If the executable is not found "" is returned otherwise the first directory in the PATH containing it is returned.
         /// @warning This function is case sensitive and not all operating systems are.
         /// @todo Add support for extension handling on windows. "cmd" should find "cmd.exe" in system32, but currently "cmd.exe" needs to be searched
-        static String Which(String ExecutableName);
+        static String MEZZ_LIB Which(String ExecutableName);
 
         /// @brief Attempt to get the executable directory from the a set of variables like those passed into Main.
         /// @details This is the fastest way to get the Executable location, but might not work on all platforms.
@@ -193,30 +193,20 @@ namespace Mezzanine
         /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
         /// @warning Not all system provide all the needed information to determine the executable directory
         /// @return If a whole path is present in ArgVars[0] this returns the directory part of that path, if this uses the executable file this returns '.', otherwise this with return "" indicating it is not usable.
-        static String GetExecutableDirFromArg(int ArgCount, char** ArgVars);
+        static String MEZZ_LIB GetExecutableDirFromArg(int ArgCount, char** ArgVars);
         /// @brief Uses the main parameters stored on an instance of Mezzanine::ResourceManager to attempt determine executable directory
         /// @return Either a valid Path, '.' if the working dir is likely correct or "" if nothing could be determined.
         String GetExecutableDirFromArg() const;
-        /// @brief If the system shell sets the PATH Variable this can sometime be use to locate this executable.
-        /// @param ArgCount How many arguments will be passed in ArgVars.
-        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
-        /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
-        /// @warning Not all system provide all the needed information to determine the executable directory
-        /// @return If a whole path is present in ArgVars[0] this returns the directory part of that path, barring that this will traverse the system PATH and look for this executable otherwise this with return "" indicating it is not usable.
-        static String StringGetExecutableDirFromEnv(int ArgCount, char** ArgVars);
-        /// @brief Uses the main parameters stored on an instance of Mezzanine::ResourceManager to attempt determine executable directory
-        /// @return Same the static StringGetExecutableDirFromEnv(int ArgCount, char** ArgVars);
-        String StringGetExecutableDirFromEnv() const;
         /// @brief Used a system call to get the curent Directory the executable is in. This make an external system call and is likely slower than GetExecutableDirFromArg
         /// @return This will return the current path this executable is stored in.
-        static String GetExecutableDirFromSystem();
+        static String MEZZ_LIB GetExecutableDirFromSystem();
         /// @brief Get the Path to the current executable, fast from Args if Possible or from a system call otherwise.
         /// @param ArgCount How many arguments will be passed in ArgVars.
         /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
         /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
         /// @warning Not all system provide all the needed information to determine the executable directory
         /// @return A String containing the path to the current executable.
-        static String GetExecutableDir(int ArgCount, char** ArgVars);
+        static String MEZZ_LIB GetExecutableDir(int ArgCount, char** ArgVars);
         /// @brief Get the Path to the current executable, in a fast way if possible.
         /// @return A String containing the path to the current executable.
         String GetExecutableDir() const;
