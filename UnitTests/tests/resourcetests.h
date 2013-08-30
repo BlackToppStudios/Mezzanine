@@ -171,7 +171,6 @@ class resourcetests : public UnitTestGroup
 
             Whole Count = 10000; // set to 100000 or higher and remark out env test for faster results
             MaxInt ArgTime = 0;
-            MaxInt EnvTime = 0;
             MaxInt SyscallTime = 0;
             MaxInt GetTime = 0;
 
@@ -190,23 +189,6 @@ class resourcetests : public UnitTestGroup
                 ArgTime = Timed.GetLength();
                 cout << ArgTime << " microseconds." << endl << endl;
             }
-
-            cout << "Not testing GetExecutableDirFromEnv(ArgC,ArgV) but here is the output so you can check if you want" << endl
-                 << "On your system with the real args this provides:\n\t\"" << Mezzanine::ResourceManager::StringGetExecutableDirFromEnv(ArgC,ArgV) << "\"" << endl
-                 << endl;
-            {
-                std::vector<String> CacheDefeater;
-                CacheDefeater.reserve(Count);
-                cout << "Calling StringGetExecutableDirFromEnv(ArgC,ArgV) " << Count << " times and timing it(forcing it to check PATH)." << endl;
-                TimedTest Timed;
-                for(Whole C=0; C<Count; C++)
-                    { CacheDefeater.push_back(Mezzanine::ResourceManager::StringGetExecutableDirFromEnv(1,ExePtr)); }
-                Whole N = (rand()%Count);
-                cout << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
-                EnvTime = Timed.GetLength();
-                cout << EnvTime << " microseconds." << endl << endl;
-            }
-
 
             cout << "Not testing GetExecutableDirFromSystem() but here is the output so you can check if you want" << endl
                  << "On your system this provides:\n\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromSystem() << "\"" << endl
@@ -329,12 +311,7 @@ class resourcetests : public UnitTestGroup
         void RunInteractiveTests()
         {
             Logger Temp;
-            Temp << "GetExecutableDirFromEnv(ArgC,ArgV) - On your system with the real args this provides:\n\t\""
-                 << Mezzanine::ResourceManager::StringGetExecutableDirFromEnv(ArgC,ArgV) << "\"" << endl
-                 << "Is that location correct? " ;
-            TEST_RESULT(GetTestAnswerFromStdin(Temp.str(),false), "GetExecutableDirFromEnv(ArgC,ArgV)");
 
-            Temp.str("");
             Temp << "GetExecutableDirFromSystem() - On your system with the real args this provides:\n\t\""
                  << Mezzanine::ResourceManager::GetExecutableDirFromSystem() << "\"" << endl
                  << "Is that location correct? " ;
