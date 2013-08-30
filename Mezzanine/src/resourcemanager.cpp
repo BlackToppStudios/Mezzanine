@@ -89,6 +89,10 @@
 #undef CreateDirectory
 #endif
 
+#ifdef RemoveDirectory
+#undef RemoveDirectory
+#endif
+
 namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = NULL;
@@ -117,8 +121,49 @@ namespace Mezzanine
 
     void ResourceManager::SetMainArgs(int ArgCount, char** ArgVars)
     {
-        this->ArgC=ArgCount;
-        this->ArgV=ArgVars;
+        this->ArgC = ArgCount;
+        this->ArgV = ArgVars;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Directory/Path Management
+
+    bool ResourceManager::CreateDirectory(const String& DirectoryPath)
+    {
+        #ifdef WINDOWS
+        if(::CreateDirectoryA(DirectoryPath.c_str(),NULL) < 0)
+        {
+            if(ERROR_ALREADY_EXISTS == ::GetLastError())
+            {
+                return false;
+            }
+            StringStream ExceptionStream;
+            ExceptionStream << "Unable to create directory.  Error follows:" << std::endl;
+            if(ERROR_PATH_NOT_FOUND == ::GetLastError())
+            {
+                ExceptionStream << "Path to requested directory does not exist.";
+            }
+            else
+            {
+                ExceptionStream << "Error Unknown. :(";
+            }
+            MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+        }
+        return true;
+        #else
+        if(::mkdir(DirectoryPath.c_str(),0777) < 0)
+        {
+            if( EEXIST == errno )
+            {
+                return false;
+            }
+            StringStream ExceptionStream;
+            ExceptionStream << "Unable to create directory.  Error follows:" << std::endl;
+            ExceptionStream << strerror(errno);
+            MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+        }
+        return true;
+        #endif
     }
 
     bool ResourceManager::DoesDirectoryExist(const String& DirectoryPath)
@@ -314,44 +359,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Directory Management
-
-    bool ResourceManager::CreateDirectory(const String& DirectoryPath)
-    {
-        #ifdef WINDOWS
-        if(::CreateDirectoryA(DirectoryPath.c_str(),NULL) < 0)
-        {
-            if(ERROR_ALREADY_EXISTS == ::GetLastError())
-            {
-                return false;
-            }
-            StringStream ExceptionStream;
-            ExceptionStream << "Unable to create directory.  Error follows:" << std::endl;
-            if(ERROR_PATH_NOT_FOUND == ::GetLastError())
-            {
-                ExceptionStream << "Path to requested directory does not exist.";
-            }
-            else
-            {
-                ExceptionStream << "Error Unknown. :(";
-            }
-            MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
-        }
-        return true;
-        #else
-        if(::mkdir(DirectoryPath.c_str(),0777) < 0)
-        {
-            if( EEXIST == errno )
-            {
-                return false;
-            }
-            StringStream ExceptionStream;
-            ExceptionStream << "Unable to create directory.  Error follows:" << std::endl;
-            ExceptionStream << strerror(errno);
-            MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
-        }
-        return true;
-        #endif
-    }
 
     bool ResourceManager::CreateDirectoryPath(const String& DirectoryPath)
     {

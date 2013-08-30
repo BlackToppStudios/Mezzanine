@@ -93,7 +93,7 @@ namespace Mezzanine
         /// @brief Encapsulates the functionality of the ogre resource group manager.
         Ogre::ResourceGroupManager* OgreResource;
         /// @internal
-        /// @brief The location of engine data
+        /// @brief The location of engine data.
         String EngineDataDir;
 
         /// @internal
@@ -114,7 +114,6 @@ namespace Mezzanine
         /// @details This cannot be set statically, it must wait for main(int, char**) to
         /// be initialized, then call the appropriate function to set this.
         int ArgC;
-
         /// @brief ArgC as it was passed into Main.
         /// @details This cannot be set statically, it must wait for main(int, char**) to
         /// be initialized, then call the appropriate function to set this.
@@ -128,7 +127,7 @@ namespace Mezzanine
         /// @details Standard manager constructor.
         /// @param EngineDataPath The directory for engine specific data.
         /// @param ArchiveType The name of the type of archive at this path.
-        ////// @param ArgCount How many arguments will be passed in ArgVars. Defaults to 0
+        /// @param ArgCount How many arguments will be passed in ArgVars. Defaults to 0
         /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings. Defaults to NULL.
         ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem, int ArgCount=0, char** ArgVars=NULL);
         /// @brief XML constructor.
@@ -145,6 +144,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Directory/Path Management
 
+        /// @brief Creates a single new directory.
+        /// @remarks This function will only create the directory specified at the end of the path.
+        /// @param DirectoryPath The path for the newly created directory.
+        /// @return Returns true if the directory was created, false in the case of a non-critical error.
+        static bool CreateDirectory(const String& DirectoryPath);
         /// @brief Checks to see if the given path exists and if it is a folder.
         /// @param DirectoryPath A String containing the path to test.
         /// @return True if the item indicated by DirectoryPath exists and it is a directory, false if it does not exist or exists but is a file.
@@ -217,11 +221,6 @@ namespace Mezzanine
         /// @return A String containing the path to the current executable.
         String GetExecutableDir() const;
 
-        /// @brief Creates a single new directory.
-        /// @remarks This function will only create the directory specified at the end of the path.
-        /// @param DirectoryPath The path for the newly created directory.
-        /// @return Returns true if the directory was created, false in the case of a non-critical error.
-        static bool CreateDirectory(const String& DirectoryPath);
         /// @brief Creates all directories that do not exist in the provided path.
         /// @param DirectoryPath The path for the newly created directory or directories.
         /// @return Returns true if all directories were created, false in the case of a non-critical error.
@@ -241,8 +240,6 @@ namespace Mezzanine
         /// @brief Get the pathname where engine data is stored
         /// @return A String that contains the pathname
         String GetEngineDataDirectory() const;
-
-        /// @todo Create a function to check if directory exists in the resource manager
 
         /// @brief Resolves a string describing one of the platform data paths to the actual path it is.
         /// @remarks Currently there are only 4 preset path variables, and depending on platform they two or more may go to the same location.
