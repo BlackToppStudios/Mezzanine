@@ -463,8 +463,8 @@ void LoadContent()
     TheEntresol->GetResourceManager()->AddAssetLocation("", AT_FileSystem, groupname, false);
     TheEntresol->GetResourceManager()->InitAssetGroup(groupname);
 
-    ParticleEffect *GreenPart = TheEntresol->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
-    GreenPart->SetLocation(Vector3(-70,70,-100));
+    //ParticleEffect *GreenPart = TheEntresol->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
+    //GreenPart->SetLocation(Vector3(-70,70,-100));
 
     CollisionShapeManager* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
     Physics::CollisionShape* RobitCH = CSMan->GenerateConvexHull("RobitConvexHull",filerobot,groupname);
@@ -514,27 +514,12 @@ void LoadContent()
             {Robot8=ActRig;}
     }
 
-    //new ActorRigid(mass,"C","chassis.obj.mesh",groupname);
-    /*String TargetFile("Ramp.mesh");
-    ActorRigid* target = new ActorRigid(mass,"C",TargetFile,groupname);
-    Physics::CollisionShape* targetShape = CSMan->GenerateConvexHull("TargetShape",TargetFile,groupname);
-    target->GetPhysicsSettings()->SetCollisionShape(targetShape);
-    target->SetScaling(Vector3(10.0,10.0,10.0));
-    target->SetOrientation(Quaternion(1.0, 0.3, 0.0, 0.5));
-    target->SetLocation(Vector3(0.0,100.0,-200.0));
-    TheEntresol->GetActorManager()->AddActor( target );*/
-
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
     ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
     ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCH);
     ActRig->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
     TheEntresol->GetActorManager()->AddActor( ActRig );
-
-    //// The simulations soft body, to be used once a suitable mesh is found/created.
-    /*MeshGenerator::CreateSphereMesh("SoftTest","SphereWood",70);
-    ActorSoft* Act9 = new ActorSoft (500,"spheresoft","SoftTest",groupname);
-    Act9->SetInitLocation(Vector3( -35, 100, -50));// */
 
     object5 = new ActorRigid(0,"Plane","Plane.mesh",groupname);
     object5->GetPhysicsSettings()->SetCollisionShape(PlaneStatic);
@@ -575,12 +560,6 @@ void LoadContent()
     object7->SetLocation(Vector3(10.0,25000.0,-1300.0));
     object7->GetPhysicsSettings()->SetDamping(0.3,0.0);
 
-    //Final Steps
-    Vector3 grav;
-    grav.X=0.0;
-    grav.Y=-400.0;
-    grav.Z=0.0;
-
     TheEntresol->GetActorManager()->AddActor(object1);
     TheEntresol->GetActorManager()->AddActor(object2);
     TheEntresol->GetActorManager()->AddActor(object3);
@@ -605,6 +584,11 @@ void LoadContent()
     //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
     TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
+	//Final Steps
+    Vector3 grav;
+    grav.X=0.0;
+    grav.Y=-400.0;
+    grav.Z=0.0;
 
     Audio::iSound *sound1 = NULL, *music1 = NULL, *music2 = NULL;
     Announcer = new Audio::SoundSet();
