@@ -179,7 +179,6 @@ namespace Mezzanine
                 /// @return A MaxInt containing the Now - BeginTimer.
                 MaxInt GetLength()
                     { return Mezzanine::Testing::Now() - BeginTimer; }
-
         };
 
         #ifndef TEST_TIMED

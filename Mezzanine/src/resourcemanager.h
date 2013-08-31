@@ -93,7 +93,7 @@ namespace Mezzanine
         /// @brief Encapsulates the functionality of the ogre resource group manager.
         Ogre::ResourceGroupManager* OgreResource;
         /// @internal
-        /// @brief The location of engine data
+        /// @brief The location of engine data.
         String EngineDataDir;
 
         /// @internal
@@ -110,6 +110,15 @@ namespace Mezzanine
         /// @brief A vector of all the known internal Asset Groups.
         std::vector<String> ResourceGroups;
 
+        /// @brief ArgC as it was passed into Main.
+        /// @details This cannot be set statically, it must wait for main(int, char**) to
+        /// be initialized, then call the appropriate function to set this.
+        int ArgC;
+        /// @brief ArgC as it was passed into Main.
+        /// @details This cannot be set statically, it must wait for main(int, char**) to
+        /// be initialized, then call the appropriate function to set this.
+        char** ArgV;
+
         /// @internal
         /// @brief Adds an asset group name to the list of known AssetGroups.
         void AddAssetGroupName(String Name);
@@ -118,39 +127,109 @@ namespace Mezzanine
         /// @details Standard manager constructor.
         /// @param EngineDataPath The directory for engine specific data.
         /// @param ArchiveType The name of the type of archive at this path.
-        ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem);
+        /// @param ArgCount How many arguments will be passed in ArgVars. Defaults to 0
+        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings. Defaults to NULL.
+        ResourceManager(const String& EngineDataPath = ".", const ArchiveType ArchType = AT_FileSystem, int ArgCount=0, char** ArgVars=NULL);
         /// @brief XML constructor.
         /// @param XMLNode The node of the xml document to construct from.
         ResourceManager(XML::Node& XMLNode);
         /// @details Class Destructor.
         virtual ~ResourceManager();
 
+        /// @brief Store the Main arguments for later use.
+        /// @param ArgCount How many arguments will be passed in ArgVars.
+        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
+        void SetMainArgs(int ArgCount, char** ArgVars);
+
         ///////////////////////////////////////////////////////////////////////////////
-        // Directory Management
+        // Directory/Path Management
 
         /// @brief Creates a single new directory.
         /// @remarks This function will only create the directory specified at the end of the path.
         /// @param DirectoryPath The path for the newly created directory.
         /// @return Returns true if the directory was created, false in the case of a non-critical error.
-        bool CreateDirectory(const String& DirectoryPath);
+        static bool CreateDirectory(const String& DirectoryPath);
+        /// @brief Checks to see if the given path exists and if it is a folder.
+        /// @param DirectoryPath A String containing the path to test.
+        /// @return True if the item indicated by DirectoryPath exists and it is a directory, false if it does not exist or exists but is a file.
+        /// @throws On Error this might throw a Mezzanine::IOException with detail about why it failed
+        static bool DoesDirectoryExist(const String& DirectoryPath);
+        /// @brief Remove an empty directory.
+        /// @param DirectoryPath Directory to remove.
+        /// @throws On Error this might throw a Mezzanine::IOException with details about why it failed.
+        static void RemoveDirectory(const String& DirectoryPath);
+
+        /// @brief Get the directory portion of a string
+        /// @param FileName A whole path and filename
+        /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "/a/b/" or "c:\windirs\"
+        static String DirName(const String& FileName);
+        /// @brief Get the filename portion of a string
+        /// @param FileName A whole path and filename
+        /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "c.txt" or "crash.exe"
+        static String BaseName(const String& FileName);
+
+        /// @brief Get the character used to separate directories
+        /// @return Backslash '\' on windows and Forward slash '/' on other operating systems.
+        static char GetDirectorySeparator();
+        /// @brief Get the character used to separate entries in the system PATH
+        /// @return Semicolon ';' on windows and Forward slash ':' on other operating systems.
+        static char GetPathSeparator();
+
+        /// @brief Get the $PATH or %PATH% split and order for easy checking of how the OS does it.
+        /// @param PATH Defaults to the PATH environment variable. But any value like a system path will be split the return of GetPathSeparator().
+        /// @return A collection of directories that this system will for executables in the order they will be checked.
+        static StringVector GetSystemPATH(const String& PATH = String(getenv("PATH")));
+        /// @brief Search the system path the same way most systems do to find an executable.
+        /// @param ExecutableName The executable to look for.
+        /// @return If the executable is not found "" is returned otherwise the first directory in the PATH containing it is returned.
+        /// @warning This function is case sensitive and not all operating systems are.
+        /// @todo Add support for extension handling on windows. "cmd" should find "cmd.exe" in system32, but currently "cmd.exe" needs to be searched
+        static String Which(String ExecutableName);
+
+        /// @brief Attempt to get the executable directory from the a set of variables like those passed into Main.
+        /// @details This is the fastest way to get the Executable location, but might not work on all platforms.
+        /// @param ArgCount How many arguments will be passed in ArgVars.
+        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
+        /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
+        /// @warning Not all system provide all the needed information to determine the executable directory
+        /// @return If a whole path is present in ArgVars[0] this returns the directory part of that path, if this uses the executable file this returns '.', otherwise this with return "" indicating it is not usable.
+        static String GetExecutableDirFromArg(int ArgCount, char** ArgVars);
+        /// @brief Uses the main parameters stored on an instance of Mezzanine::ResourceManager to attempt determine executable directory
+        /// @return Either a valid Path, '.' if the working dir is likely correct or "" if nothing could be determined.
+        String GetExecutableDirFromArg() const;
+        /// @brief Used a system call to get the curent Directory the executable is in. This make an external system call and is likely slower than GetExecutableDirFromArg
+        /// @return This will return the current path this executable is stored in.
+        static String GetExecutableDirFromSystem();
+        /// @brief Get the Path to the current executable, fast from Args if Possible or from a system call otherwise.
+        /// @param ArgCount How many arguments will be passed in ArgVars.
+        /// @param ArgVars A pointer to an array, with ArgCount elements, of char* which point to null terminated c strings.
+        /// @warning If you pass bogus arguments to this bad things can and will happen. Infinite loops, segfaults etc... Just pass what main gives you
+        /// @warning Not all system provide all the needed information to determine the executable directory
+        /// @return A String containing the path to the current executable.
+        static String GetExecutableDir(int ArgCount, char** ArgVars);
+        /// @brief Get the Path to the current executable, in a fast way if possible.
+        /// @return A String containing the path to the current executable.
+        String GetExecutableDir() const;
+
         /// @brief Creates all directories that do not exist in the provided path.
         /// @param DirectoryPath The path for the newly created directory or directories.
         /// @return Returns true if all directories were created, false in the case of a non-critical error.
         bool CreateDirectoryPath(const String& DirectoryPath);
+
         /// @brief Get a Listing of the files and subdirectories in a directory.
         /// @details This follows normal command line conventions, "." is the current directory,
         /// ".." is the parent directory. To access the file system root you will need to use a
         /// leading "c:/", "c:\\", or "/" as appropriate for the operating system the software will run on.
         /// @return This will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error.
         /// @param Dir The directory to check.
-        StringSet* GetDirContents(const String& Dir = ".");
+        static StringSet GetDirContents(const String& Dir = ".");
+
         /// @brief Get the working directory as a Mezzanine::String
         /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a Mezzanine::String
         String GetWorkingDirectory() const;
         /// @brief Get the pathname where engine data is stored
         /// @return A String that contains the pathname
         String GetEngineDataDirectory() const;
-        /// @todo Create a function to check if directory exists in the resource manager
 
         /// @brief Resolves a string describing one of the platform data paths to the actual path it is.
         /// @remarks Currently there are only 4 preset path variables, and depending on platform they two or more may go to the same location.

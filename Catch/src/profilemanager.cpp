@@ -100,8 +100,8 @@ ProfileManager::ProfileManager(const String& ProfilesDir)
 {
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     XML::Document ProfileDoc;
-    std::set<String>* ProfileSet = ResourceMan->GetDirContents("./Profiles");
-    for( std::set<String>::iterator it = ProfileSet->begin() ; it != ProfileSet->end() ; it++ )
+    std::set<String> ProfileSet = ResourceMan->GetDirContents("./Profiles");
+    for( std::set<String>::iterator it = ProfileSet.begin() ; it != ProfileSet.end() ; it++ )
     {
         const String& FileName = (*it);
         if(String::npos == FileName.find(".xml"))
@@ -113,7 +113,6 @@ ProfileManager::ProfileManager(const String& ProfilesDir)
         ProfileDoc.Load(LoadStream);
         LoadProfile(ProfileDoc);
     }
-    delete ProfileSet;
 }
 
 ProfileManager::~ProfileManager()
@@ -139,11 +138,11 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
     Grid->SetCellSpacing(CellSpacing);
     UI::Screen* ParentScreen = Grid->GetParent();
 
-    std::set<String>* Files = ResourceMan->GetDirContents("./Levels");
-    if(Files->empty())
+    std::set<String> Files(ResourceMan->GetDirContents("./Levels"));
+    if(Files.empty())
         return;
-    std::set<String>* Previews = ResourceMan->GetDirContents("./Previews");
-    for( std::set<String>::iterator it = Files->begin() ; it != Files->end() ; it++ )
+    std::set<String> Previews(ResourceMan->GetDirContents("./Previews"));
+    for( std::set<String>::iterator it = Files.begin() ; it != Files.end() ; it++ )
     {
         const String& FileName = (*it);
         if(String::npos == FileName.find(".lvl"))
@@ -160,7 +159,7 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
         CurrCell->GetEarnedScore()->SetText( StringTools::ConvertToString(Profile->GetHighestScore(LevelName)) );// */
 
         CurrCell->GetEarnedScore()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
-        if(Previews->count(LevelName+".mta"))
+        if(Previews.count(LevelName+".mta"))
         {
             UIMan->LoadMTA(LevelName);
             CurrCell->GetPreviewImage()->SetBackgroundSprite("LevelPreview",LevelName);
@@ -169,8 +168,6 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
         Grid->AddCell(CurrCell);
     }
     Grid->GenerateGrid();
-    delete Files;
-    delete Previews;
 }
 
 GameProfile* ProfileManager::CreateNewProfile(const String& Name)

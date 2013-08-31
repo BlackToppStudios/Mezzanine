@@ -46,4 +46,14 @@
 #include "testdatatools.h"
 #include "testenumerations.h"
 
+/// @brief ArgC as it was passed into Main.
+/// @details This cannot be set statically, it must wait for main(int, char**) to
+/// be initialized
+int ArgC;
+
+/// @brief ArgC as it was passed into Main.
+/// @details This cannot be set statically, it must wait for main(int, char**) to
+/// be initialized
+char** ArgV;
+
 #endif

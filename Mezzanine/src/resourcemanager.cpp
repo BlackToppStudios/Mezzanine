@@ -42,6 +42,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 #include "resourcemanager.h"
 #include "meshmanager.h"
@@ -70,6 +71,7 @@
 	#include <sys/stat.h>
 	#include <sys/types.h>
     #include "pwd.h"
+    #include <mach-o/dyld.h> // for _NSGetExecutablePath
 #else
 	#include <unistd.h>//for sleep and getcwd
 	#include <errno.h>
@@ -87,15 +89,20 @@
 #undef CreateDirectory
 #endif
 
+#ifdef RemoveDirectory
+#undef RemoveDirectory
+#endif
+
 namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = NULL;
 
-    ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType)
+    ResourceManager::ResourceManager(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, int ArgCount, char** ArgVars)
     {
         this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         this->EngineDataDir = EngineDataPath;
         this->AddAssetLocation(EngineDataPath, ArchType, "EngineData", false);
+        this->SetMainArgs(ArgCount, ArgVars);
     }
 
     ResourceManager::ResourceManager(XML::Node& XMLNode)
@@ -109,11 +116,17 @@ namespace Mezzanine
         this->Deinitialize();
 
         for(std::vector<ResourceInputStream*>::iterator Iter = DeleteList.begin(); Iter != DeleteList.end(); Iter++)
-            { delete *Iter; }
+        { delete *Iter; }
+    }
+
+    void ResourceManager::SetMainArgs(int ArgCount, char** ArgVars)
+    {
+        this->ArgC = ArgCount;
+        this->ArgV = ArgVars;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Directory Management
+    // Directory/Path Management
 
     bool ResourceManager::CreateDirectory(const String& DirectoryPath)
     {
@@ -153,6 +166,185 @@ namespace Mezzanine
         #endif
     }
 
+    bool ResourceManager::DoesDirectoryExist(const String& DirectoryPath)
+    {
+        struct stat st;
+        if((stat(DirectoryPath.c_str(),&st) == 0))
+        {
+            return S_ISDIR(st.st_mode);
+        }else{
+            //MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error getting directory information.");
+            return false;
+        }
+    }
+
+    void ResourceManager::RemoveDirectory(const String& DirectoryPath)
+    {
+        if(!rmdir(DirectoryPath.c_str()))
+        {
+            return;
+        }else{
+            MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error removing directory.");
+        }
+    }
+
+    String ResourceManager::DirName(const String& FileName)
+    {
+        Whole Last(FileName.find_last_of("\\/"));
+        if(FileName.npos == Last)
+            { return String(""); }
+        else
+        {
+            if(Last<FileName.size())
+                { return FileName.substr(0,Last+1); }
+            else
+                { return FileName.substr(0,Last+1); }
+        }
+    }
+
+    String ResourceManager::BaseName(const String& FileName)
+    {
+        Whole Last(FileName.find_last_of("\\/"));
+        if(FileName.npos == Last)
+            { return FileName; }
+        else
+        {
+            if(Last<FileName.size())
+                { return FileName.substr(Last+1,FileName.npos); }
+            else
+            { return String(""); }
+        }
+    }
+
+    char ResourceManager::GetDirectorySeparator()
+    {
+        #ifdef WINDOWS
+        return '\\';
+        #else
+        return '/';
+        #endif
+    }
+
+    char ResourceManager::GetPathSeparator()
+    {
+        #ifdef WINDOWS
+        return ';';
+        #else
+        return ':';
+        #endif
+    }
+
+    StringVector ResourceManager::GetSystemPATH(const String& PATH)
+    {
+        StringVector Results;
+        const char Sep=GetPathSeparator();
+        String OneEntry;
+
+        for(String::const_iterator Current = PATH.begin();
+            PATH.end()!=Current;
+            Current++)
+        {
+            if(Sep==*Current)
+            {
+                Results.push_back(OneEntry);
+                OneEntry.clear();
+            }else{
+                OneEntry+=*Current;
+            }
+        }
+        return Results;
+    }
+
+    String ResourceManager::Which(String ExecutableName)
+    {
+        StringVector PATH(ResourceManager::GetSystemPATH());
+
+        for(StringVector::const_iterator Iter = PATH.begin();
+            Iter!=PATH.end();
+            Iter++)
+        {
+            StringSet Entries(GetDirContents(*Iter));
+            if(Entries.find(ExecutableName)!=Entries.end())
+                { return *Iter + GetDirectorySeparator(); }
+        }
+        return String();
+    }
+
+    String ResourceManager::GetExecutableDirFromArg(int ArgCount, char** ArgVars)
+    {
+        if(ArgCount>0)
+        {
+            if(String("") == BaseName(ArgVars[0])) // No command is clearly bogus, must bail
+                { return ""; }
+
+
+            String Results(DirName(ArgVars[0]));
+
+            // strip ./ ../ .\ ..\ and
+            //String::iterator From=Results.begin();
+            //for(String::iterator Iter=Results.begin(); Iter!=Results.end();)
+            //{}
+
+            if( String("")==Results || String("./")==Results || String(".\\")==Results)// common cases of exe existing but dir is empty
+                { return "."; }
+
+            if(String("")!=Results) // and exe is empty.
+                { return Results; }
+            return String("");
+        }else{
+            return String("");
+        }
+    }
+
+    String ResourceManager::GetExecutableDirFromArg() const
+        { return GetExecutableDirFromArg(ArgC,ArgV); }
+
+    String ResourceManager::GetExecutableDirFromSystem()
+    {
+        char Results[FILENAME_MAX];
+        #ifdef LINUX
+            MaxInt Length = ::readlink("/proc/self/exe", Results, sizeof(Results)-1);
+            if (Length != -1)
+            {
+                Results[Length] = '\0';
+                return DirName(String(Results));
+            } else {
+                return "";
+            }
+        #endif
+        #ifdef WINDOWS
+            GetModuleFileName( NULL, Results, FILENAME_MAX );
+            return DirName(String(Results));
+        #endif
+        #ifdef MACOSX
+            MaxInt size = sizeof(Results);
+            if (_NSGetExecutablePath(Results, &size) == 0)
+            {
+                return DirName(String(Results));
+            } else{
+                return "";
+            }
+        #endif
+
+    }
+
+    String ResourceManager::GetExecutableDir(int ArgCount, char** ArgVars)
+    {
+        String Results(GetExecutableDirFromArg(ArgCount,ArgVars));
+        if(String(".")==Results || String("")==Results) // Means it might have valid exename
+        {
+            return GetExecutableDirFromSystem();
+        }else{
+            return Results;
+        }
+    }
+
+    String ResourceManager::GetExecutableDir() const
+        { return GetExecutableDir(ArgC,ArgV); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Directory Management
+
     bool ResourceManager::CreateDirectoryPath(const String& DirectoryPath)
     {
         bool Result = true;
@@ -160,11 +352,7 @@ namespace Mezzanine
         CountedPtr<StringVector> FolderVec = StringTools::Split(DirectoryPath,"/\\");
         size_t StartIndex = 0;
         String PathAttempt;
-        #ifdef WINDOWS
-        char SysSlash = '\\';
-        #else
-        char SysSlash = '/';
-        #endif
+        char SysSlash = GetDirectorySeparator();
         #ifdef WINDOWS
         // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
         if(FolderVec->at(0).find(':') != String::npos)
@@ -185,24 +373,23 @@ namespace Mezzanine
         return Result;
     }
 
-    StringSet* ResourceManager::GetDirContents(const String& Dir)
+    StringSet ResourceManager::GetDirContents(const String& Dir)
     {
-        StringSet* Results = new StringSet;
+        StringSet Results;
         DIR *Directory;
         struct dirent *DirEntry;
-        if(Directory = opendir(Dir.c_str()))
+        if((Directory = opendir(Dir.c_str())))
         {
-            while(DirEntry = readdir(Directory))
+            while((DirEntry = readdir(Directory)))
             {
-                Results->insert(DirEntry->d_name);
+                Results.insert(DirEntry->d_name);
                 //DirEntry->d_type Later this can be modified to include the type of file entry it is, like a file, block device, directory, socket etc...
             }
 
             closedir(Directory);
             return Results;
         }else{
-            delete Results;
-            return NULL;
+            MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Error listing directory contents"));
         }
     }
 

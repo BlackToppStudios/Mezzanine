@@ -1,0 +1,4 @@
+<map id="Mezzanine::StopWatchTimer" name="Mezzanine::StopWatchTimer">
+<area shape="rect" id="node2" href="$classMezzanine_1_1GoalTimer.xhtml" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="24,83,173,111"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Timer.xhtml" title="A base timer class for the different timers." alt="" coords="37,6,160,34"/>
+</map>

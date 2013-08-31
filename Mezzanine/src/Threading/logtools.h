@@ -65,7 +65,7 @@ namespace Mezzanine
         #endif
 
         /// @brief Used to time fromthis objects creation to its desctruction
-        class ScopedTimer
+        class MEZZ_LIB ScopedTimer
         {
             private:
                 /// @brief The place to send the data.
