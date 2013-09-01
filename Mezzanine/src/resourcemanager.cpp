@@ -349,7 +349,7 @@ namespace Mezzanine
         #else
         if(chdir(ChangeTo.c_str()))
         #endif
-        { MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Error listing directory contents")); }
+        { MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Could not change to directory \"")+ChangeTo+"\" error: "+ToString(errno)); }
     }
 
 
@@ -404,7 +404,7 @@ namespace Mezzanine
         }
     }
 
-    String ResourceManager::GetWorkingDirectory() const
+    String ResourceManager::GetWorkingDirectory()
     {
         char cCurrentPath[FILENAME_MAX];
         //char cCurrentPath[MAXPATHLEN];

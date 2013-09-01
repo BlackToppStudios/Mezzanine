@@ -275,6 +275,39 @@ class resourcetests : public UnitTestGroup
             TEST_WARN((ResourceManager::Which("cmd.exe"))==ResourceManager::DirName(GetCommandResults("which cmd.exe")),"Whichcmd");
         }
 
+        void TestChangeDir()
+        {
+            cout << "Testing Directory Changing." << endl;
+            Mezzanine::ResourceManager::CreateDirectory("Change");
+            String StartDir(ResourceManager::GetWorkingDirectory());
+            String TargetDir(StartDir+ResourceManager::GetDirectorySeparator()+String("Change"));
+
+            cout << "Current directory: " << ResourceManager::GetWorkingDirectory() << endl;
+            cout << "\tExpected: " << StartDir << endl;
+            Mezzanine::ResourceManager::ChangeDirectory("Change");
+            Test(TargetDir==ResourceManager::GetWorkingDirectory(),"CDRelative");
+            cout << "Changing with relative path (cd Change): " << ResourceManager::GetWorkingDirectory() << endl;
+            cout << "\tExpected: " << TargetDir << endl;
+
+            Mezzanine::ResourceManager::ChangeDirectory("..");
+            Test(StartDir==ResourceManager::GetWorkingDirectory(),"CDDotDot");
+            cout << "Changing back with relative path (cd ..): " << ResourceManager::GetWorkingDirectory() << endl;
+            cout << "\tExpected: " << StartDir << endl;
+
+
+            Mezzanine::ResourceManager::ChangeDirectory(TargetDir);
+            cout << "Changing with absolute path (cd /a/b/Change): " << ResourceManager::GetWorkingDirectory() << endl;
+            cout << "\tExpected: " << TargetDir << endl;
+            Test(TargetDir==ResourceManager::GetWorkingDirectory(),"CDAbsolute");
+
+            Mezzanine::ResourceManager::ChangeDirectory(StartDir);
+            Test(StartDir==ResourceManager::GetWorkingDirectory(),"CDAbsolute2");
+            cout << "Changing back with absolute path (cd /a/b/Change): " << ResourceManager::GetWorkingDirectory() << endl;
+            cout << "\tExpected: " << StartDir << endl;
+
+
+        }
+
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
@@ -294,6 +327,8 @@ class resourcetests : public UnitTestGroup
             TestGetExeDir();
 
             TestPath();
+
+            TestChangeDir();
 
             //cout << "Attempting to create a Mezzanine::ResourceManager" << endl;
             //Mezzanine::ResourceManager res;

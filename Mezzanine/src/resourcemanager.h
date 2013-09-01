@@ -230,7 +230,7 @@ namespace Mezzanine
 
         /// @brief Get the working directory as a Mezzanine::String
         /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a Mezzanine::String
-        String GetWorkingDirectory() const;
+        static String GetWorkingDirectory();
         /// @brief Get the pathname where engine data is stored
         /// @return A String that contains the pathname
         String GetEngineDataDirectory() const;
