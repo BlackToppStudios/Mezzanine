@@ -104,7 +104,7 @@ namespace Mezzanine
                 SDL_DestroyWindow(this->SDLWindow);
             }
 
-            this->OgreWindow->destroy();
+            //this->OgreWindow->destroy();
             Ogre::Root::getSingleton().destroyRenderTarget(OgreWindow);
             delete GWID;
         }
