@@ -317,7 +317,7 @@ namespace Mezzanine
             return DirName(String(Results));
         #endif
         #ifdef MACOSX
-            MaxInt size = sizeof(Results);
+            uint32_t size = sizeof(Results);
             if (_NSGetExecutablePath(Results, &size) == 0)
             {
                 return DirName(String(Results));
