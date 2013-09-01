@@ -67,16 +67,16 @@
 #elif MACOSX
     #include <CoreServices/CoreServices.h>
     #include <unistd.h>//for sleep and getcwd
-	#include <errno.h>
-	#include <sys/stat.h>
-	#include <sys/types.h>
+    #include <errno.h>
+    #include <sys/stat.h>
+    #include <sys/types.h>
     #include "pwd.h"
     #include <mach-o/dyld.h> // for _NSGetExecutablePath
 #else
-	#include <unistd.h>//for sleep and getcwd
-	#include <errno.h>
-	#include <sys/stat.h>
-	#include <sys/types.h>
+    #include <unistd.h>//for sleep and getcwd
+    #include <errno.h>
+    #include <sys/stat.h>
+    #include <sys/types.h>
     #include <pwd.h>
 #endif
 
@@ -341,6 +341,17 @@ namespace Mezzanine
 
     String ResourceManager::GetExecutableDir() const
         { return GetExecutableDir(ArgC,ArgV); }
+
+    void ResourceManager::ChangeDirectory(const String& ChangeTo)
+    {
+        #ifdef WINDOWS
+        if(_chdir(ChangeTo.c_str()))
+        #else
+        if(chdir(ChangeTo.c_str()))
+        #endif
+        { MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Error listing directory contents")); }
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////////
     // Directory Management

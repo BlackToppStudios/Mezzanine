@@ -211,6 +211,10 @@ namespace Mezzanine
         /// @return A String containing the path to the current executable.
         String GetExecutableDir() const;
 
+        /// @brief Change directory, to the directory indicated.
+        /// @param ChangeTo The new directory to work from.
+        static void ChangeDirectory(const String& ChangeTo);
+
         /// @brief Creates all directories that do not exist in the provided path.
         /// @param DirectoryPath The path for the newly created directory or directories.
         /// @return Returns true if all directories were created, false in the case of a non-critical error.
