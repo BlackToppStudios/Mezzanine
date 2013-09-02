@@ -9,6 +9,8 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script> 
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
 <div id="top"><!-- do not remove this div! -->
@@ -17,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">May 19, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September 2, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -188,7 +190,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"></span>    <span class="comment">// Upper Management</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="code" href="classMezzanine_1_1World.xhtml#a002a55e2b9c57fc954db22af45c7c7f2">  107</a></span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="A single bit, true or false.">Bool</a> <a class="code" href="classMezzanine_1_1World.xhtml#a002a55e2b9c57fc954db22af45c7c7f2" title="This adds a manager, in the correct order, to the list that the world calls on.">World::AddManager</a>(<a class="code" href="classMezzanine_1_1WorldManager.xhtml" title="This is the base class for all managers that belong to a single world instance.">WorldManager</a>* ManagerToAdd)</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="code" href="classMezzanine_1_1World.xhtml#a002a55e2b9c57fc954db22af45c7c7f2">  107</a></span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="Generally acts a single bit, true or false.">Bool</a> <a class="code" href="classMezzanine_1_1World.xhtml#a002a55e2b9c57fc954db22af45c7c7f2" title="This adds a manager, in the correct order, to the list that the world calls on.">World::AddManager</a>(<a class="code" href="classMezzanine_1_1WorldManager.xhtml" title="This is the base class for all managers that belong to a single world instance.">WorldManager</a>* ManagerToAdd)</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    {</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a> IType = ManagerToAdd-&gt;<a class="code" href="classMezzanine_1_1ManagerBase.xhtml#a388aa37ed71b8667785b789c137aa8c6" title="This returns the type of this manager.">GetInterfaceType</a>();</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">for</span>( <a class="code" href="classMezzanine_1_1World.xhtml#a06c3ee91ed71eb852aea336564cecbda" title="Iterator type for WorldManager instances stored by this class.">WorldManagerIterator</a> ManIter = this-&gt;<a class="code" href="classMezzanine_1_1World.xhtml#a77614417ca5952be2d5c6a797dea66f6" title="A container storing all the managers belonging to this world.">WorldManagers</a>.begin() ; ManIter != this-&gt;<a class="code" href="classMezzanine_1_1World.xhtml#a77614417ca5952be2d5c6a797dea66f6" title="A container storing all the managers belonging to this world.">WorldManagers</a>.end() ; ++ManIter )</div>
@@ -280,6 +282,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 24 2013 23:50:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Mon Sep 2 2013 01:51:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

@@ -9,6 +9,8 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script> 
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
 <div id="top"><!-- do not remove this div! -->
@@ -17,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">May 19, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September 2, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -199,10 +201,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dd>This is a bit of a hack, but needs to be here until we can upgrade our resource system.  </dd>
 <dt><a class="anchor" id="_todo000039"></a>Member <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a0d02d9b4059ebd6987a1be5118b54efa">Mezzanine::ResourceManager::OpenAssetStream</a>  (const String &amp;AssetName, const String &amp;AssetGroup)</dt>
 <dd>This entire method is a bit of a hack. When the resource system gets refactored it should go through our archives or whatever equivalent. Since we currently have to put up with <a class="el" href="namespaceOgre.xhtml">Ogre</a>'s system, we'll use it for now as a hack.  </dd>
-<dt><a class="anchor" id="_todo000044"></a>Member <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a17b72af560fcf890ee2571dab2109a6d">Mezzanine::ResourceManager::ResolveDataPathFromString</a>  (const String &amp;PathVar)</dt>
-<dd>Create a function to check if directory exists in the resource manager  </dd>
 <dt><a class="anchor" id="_todo000038"></a>Member <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a23c46c4660e85d0e38f8e61ed12fde3c">Mezzanine::ResourceManager::ResourceManager</a>  (XML::Node &amp;XMLNode)</dt>
 <dd>This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.  </dd>
+<dt><a class="anchor" id="_todo000044"></a>Member <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a7312c017bcb079f3e78400c27224370b">Mezzanine::ResourceManager::Which</a>  (String ExecutableName)</dt>
+<dd>Add support for extension handling on windows. "cmd" should find "cmd.exe" in system32, but currently "cmd.exe" needs to be searched  </dd>
 <dt><a class="anchor" id="_todo000092"></a>Class <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptArgument.xhtml">Mezzanine::Scripting::iScriptArgument</a>  </dt>
 <dd>Define operators for the iScriptArgument at least for assignment  </dd>
 <dt><a class="anchor" id="_todo000091"></a>Class <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">Mezzanine::Scripting::iScriptCompilable</a>  </dt>
@@ -271,21 +273,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dd>Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.  </dd>
 <dt><a class="anchor" id="_todo000106"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#affc4e62ae891b85fea0d34f90c5b18c9">Mezzanine::XML::Attribute::AsUint</a>  (unsigned int def=0) const </dt>
 <dd>Update Attribute::AsUint() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.  </dd>
-<dt><a class="anchor" id="_todo000112"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a69984ae38bd7e6f7b83b32f5e1309273">Mezzanine::XML::Attribute::SetValue</a>  (double rhs)</dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow.  </p>
-</dd>
+<dt><a class="anchor" id="_todo000115"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a3df2a4fdea7db7fe57c7f7dd4f27ac8c">Mezzanine::XML::Attribute::SetValue</a>  (const String &amp;rhs)</dt>
+<dd>update this to make the error return code redundant and use an exception instead.  </dd>
 <dt><a class="anchor" id="_todo000111"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a331f9de766259d24a707ec552d7e5726">Mezzanine::XML::Attribute::SetValue</a>  (unsigned int rhs)</dt>
 <dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000115"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a3df2a4fdea7db7fe57c7f7dd4f27ac8c">Mezzanine::XML::Attribute::SetValue</a>  (const String &amp;rhs)</dt>
-<dd>update this to make the error return code redundant and use an exception instead.  </dd>
 <dt><a class="anchor" id="_todo000109"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#afff322c3640040f0054c6d1e346891fc">Mezzanine::XML::Attribute::SetValue</a>  (const Char8 *rhs)</dt>
 <dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow.  </p>
 </dd>
 <dt><a class="anchor" id="_todo000110"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a59221d61ea9d7e45eaab2c6cc1bad519">Mezzanine::XML::Attribute::SetValue</a>  (int rhs)</dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000112"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a69984ae38bd7e6f7b83b32f5e1309273">Mezzanine::XML::Attribute::SetValue</a>  (double rhs)</dt>
 <dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow.  </p>
 </dd>
@@ -316,6 +318,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </dl>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 24 2013 23:50:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Mon Sep 2 2013 01:51:37 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

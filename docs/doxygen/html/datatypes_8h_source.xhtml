@@ -9,6 +9,8 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script> 
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
 <div id="top"><!-- do not remove this div! -->
@@ -17,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">May 19, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September 2, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -257,9 +259,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00173"></a><span class="lineno"><a class="code" href="namespaceMezzanine.xhtml#ab4f5efed51a1f6fc1799c821c3daf4b7">  173</a></span>&#160;<span class="comment"></span>    <span class="keyword">typedef</span> <span class="keywordtype">char</span> <a class="code" href="namespaceMezzanine.xhtml#ab4f5efed51a1f6fc1799c821c3daf4b7" title="A datatype to represent one character.">Char8</a>;</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">    /// @typedef Bool</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">    /// @brief A single bit, true or false</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">    /// @details Normally just a bool, and this corrects the casing of bool</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno"><a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">  178</a></span>&#160;<span class="comment"></span>    <span class="keyword">typedef</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="A single bit, true or false.">Bool</a>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">    /// @brief Generally acts a single bit, true or false</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">    /// @details Normally just a bool, but on some platform alignment matters more than size, so this could be as large as one cpu word in size.</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">  178</a></span>&#160;<span class="comment"></span>    <span class="keyword">typedef</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="Generally acts a single bit, true or false.">Bool</a>;</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">    /// @typedef StringStream</span></div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">    /// @brief A Datatype used for streaming operations with strings.</span></div>
@@ -384,7 +386,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="comment">    /// @brief Converts whatever to a Bool as long as the proper streaming operators are available for it</span></div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="comment">    /// @param Datum The whatever to be converted</span></div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="comment">    /// @return A Bool with the converted data</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno"><a class="code" href="namespaceMezzanine.xhtml#a66fcabfab5bb18e6a5455b19bf5d6e22">  303</a></span>&#160;<span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="A single bit, true or false.">Bool</a> <a class="code" href="namespaceMezzanine.xhtml#a66fcabfab5bb18e6a5455b19bf5d6e22" title="Converts whatever to a Bool as long as the proper streaming operators are available for it...">ToBool</a>( <span class="keyword">const</span> T&amp; Datum )</div>
+<div class="line"><a name="l00303"></a><span class="lineno"><a class="code" href="namespaceMezzanine.xhtml#a66fcabfab5bb18e6a5455b19bf5d6e22">  303</a></span>&#160;<span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="Generally acts a single bit, true or false.">Bool</a> <a class="code" href="namespaceMezzanine.xhtml#a66fcabfab5bb18e6a5455b19bf5d6e22" title="Converts whatever to a Bool as long as the proper streaming operators are available for it...">ToBool</a>( <span class="keyword">const</span> T&amp; Datum )</div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        { <span class="keywordflow">return</span> ConvertTo&lt;Bool&gt;(Datum); }</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="comment">    /// @brief Converts whatever to a float as long as the proper streaming operators are available for it</span></div>
@@ -410,6 +412,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 24 2013 23:50:06 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Mon Sep 2 2013 01:51:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

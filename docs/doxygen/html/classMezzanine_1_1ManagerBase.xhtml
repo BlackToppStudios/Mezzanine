@@ -9,6 +9,8 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script> 
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
 <div id="top"><!-- do not remove this div! -->
@@ -17,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">May 19, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September 2, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -100,14 +102,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1ManagerBase__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1ManagerBase__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <center><span class="legend">[<a href="graph_legend.xhtml">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::ManagerBase:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1ManagerBase__coll__graph.svg" width="354" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1ManagerBase__coll__graph.svg" width="354" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a href="graph_legend.xhtml">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -244,7 +248,7 @@ Protected Attributes</h2></td></tr>
 <p>This Allows any manager name to be sent to a stream. Primarily used for logging. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns a String that contains the name. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1SceneManager.xhtml#aec34f3aea886f6be93db2ba906716739">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml#a46dab7d45238ca1d6c263670022bd512">Mezzanine::Physics::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1EventManager.xhtml#a7dd874939af03aec6fa24a728438b52b">Mezzanine::EventManager</a>, <a class="el" href="classMezzanine_1_1UI_1_1UIManager.xhtml#ac9470d8aaf9d955ba7a2a60e1ea72993">Mezzanine::UI::UIManager</a>, <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a59b6f7e33e89aface3733ad44ef9e57e">Mezzanine::ResourceManager</a>, <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml#a545e7d66302e6bb1ebb399f882a79a98">Mezzanine::Graphics::GraphicsManager</a>, <a class="el" href="classMezzanine_1_1CollisionShapeManager.xhtml#aff4c82d52ea85b3443f89f66c005a408">Mezzanine::CollisionShapeManager</a>, <a class="el" href="classMezzanine_1_1MeshManager.xhtml#a74c362856cd1bd958a386d53b7a8120b">Mezzanine::MeshManager</a>, <a class="el" href="classMezzanine_1_1Input_1_1InputManager.xhtml#aadd998fabef3fd376851e03e950c156d">Mezzanine::Input::InputManager</a>, <a class="el" href="classMezzanine_1_1ActorManager.xhtml#ab7af48b21ac3abd5363aec10393b268c">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AreaEffectManager.xhtml#ab367415dc5c3b199bbce152cf63bbc0c">Mezzanine::AreaEffectManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.xhtml#aab3cd003726ac1667fdeda3c8774d038">Mezzanine::CameraManager</a>, <a class="el" href="classMezzanine_1_1TerrainManager.xhtml#a9f8c6215c456dc138c5e0a0353e3b253">Mezzanine::TerrainManager</a>, and <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml#ae81fba6b343d1c4bf6dbedbfdec3026b">Mezzanine::Scripting::iScriptingManager</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1SceneManager.xhtml#aec34f3aea886f6be93db2ba906716739">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml#a46dab7d45238ca1d6c263670022bd512">Mezzanine::Physics::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1EventManager.xhtml#a7dd874939af03aec6fa24a728438b52b">Mezzanine::EventManager</a>, <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a59b6f7e33e89aface3733ad44ef9e57e">Mezzanine::ResourceManager</a>, <a class="el" href="classMezzanine_1_1UI_1_1UIManager.xhtml#ac9470d8aaf9d955ba7a2a60e1ea72993">Mezzanine::UI::UIManager</a>, <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml#a545e7d66302e6bb1ebb399f882a79a98">Mezzanine::Graphics::GraphicsManager</a>, <a class="el" href="classMezzanine_1_1CollisionShapeManager.xhtml#aff4c82d52ea85b3443f89f66c005a408">Mezzanine::CollisionShapeManager</a>, <a class="el" href="classMezzanine_1_1MeshManager.xhtml#a74c362856cd1bd958a386d53b7a8120b">Mezzanine::MeshManager</a>, <a class="el" href="classMezzanine_1_1Input_1_1InputManager.xhtml#aadd998fabef3fd376851e03e950c156d">Mezzanine::Input::InputManager</a>, <a class="el" href="classMezzanine_1_1ActorManager.xhtml#ab7af48b21ac3abd5363aec10393b268c">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AreaEffectManager.xhtml#ab367415dc5c3b199bbce152cf63bbc0c">Mezzanine::AreaEffectManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.xhtml#aab3cd003726ac1667fdeda3c8774d038">Mezzanine::CameraManager</a>, <a class="el" href="classMezzanine_1_1TerrainManager.xhtml#a9f8c6215c456dc138c5e0a0353e3b253">Mezzanine::TerrainManager</a>, and <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml#ae81fba6b343d1c4bf6dbedbfdec3026b">Mezzanine::Scripting::iScriptingManager</a>.</p>
 
 </div>
 </div>
@@ -273,7 +277,7 @@ Protected Attributes</h2></td></tr>
 <p>This is intended to make using and casting from Manager base easier. With this is is possible to cast from <a class="el" href="classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the Entresol and World Managers inherit.">ManagerBase</a> to the correct Manager Type. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns a ManagerTypeName to identify what this can be safely cast to. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.xhtml#a562ed8915f3f4b9a57efbf220c86eabd">Mezzanine::Audio::AudioManager</a>, <a class="el" href="classMezzanine_1_1SceneManager.xhtml#ade619016f63ff532be7cc8f736665bfc">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml#a15d411fa9ad5f60b38d09eb6119ab0ba">Mezzanine::Physics::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1EventManager.xhtml#a8b42b4b0896ba3f6040f5e6237e5a21b">Mezzanine::EventManager</a>, <a class="el" href="classMezzanine_1_1Audio_1_1SoundScapeManager.xhtml#aecc50f1b17b7895f453f43f38cf3efbb">Mezzanine::Audio::SoundScapeManager</a>, <a class="el" href="classMezzanine_1_1UI_1_1UIManager.xhtml#aa3689113ba59bfb4a991355f34831fda">Mezzanine::UI::UIManager</a>, <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a9ae2b2182d03c3e21de785d79c357a7d">Mezzanine::ResourceManager</a>, <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml#aa15d21cd8d7cea79d9543351c197538d">Mezzanine::Graphics::GraphicsManager</a>, <a class="el" href="classMezzanine_1_1CollisionShapeManager.xhtml#a19b9f8373967d03e2adb8ad9f059f334">Mezzanine::CollisionShapeManager</a>, <a class="el" href="classMezzanine_1_1MeshManager.xhtml#aeca3930c7034c8930487ac453c3fe1d4">Mezzanine::MeshManager</a>, <a class="el" href="classMezzanine_1_1Input_1_1InputManager.xhtml#ae88be8ddc28cb1bf03962550d24a1d79">Mezzanine::Input::InputManager</a>, <a class="el" href="classMezzanine_1_1ActorManager.xhtml#ae118a3f023985b35c1da32210c0b4ea2">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AreaEffectManager.xhtml#af15681b86875bba6e3b9f9132da51c96">Mezzanine::AreaEffectManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.xhtml#a1dea0322519c7c68eff04add58b37d22">Mezzanine::CameraManager</a>, <a class="el" href="classMezzanine_1_1TerrainManager.xhtml#a4aab467023364ecc87b6ecab4dfebcc8">Mezzanine::TerrainManager</a>, and <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml#a53694af4d1dfc06bd5d3f0054b24e784">Mezzanine::Scripting::iScriptingManager</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.xhtml#a562ed8915f3f4b9a57efbf220c86eabd">Mezzanine::Audio::AudioManager</a>, <a class="el" href="classMezzanine_1_1SceneManager.xhtml#ade619016f63ff532be7cc8f736665bfc">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml#a15d411fa9ad5f60b38d09eb6119ab0ba">Mezzanine::Physics::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1EventManager.xhtml#a8b42b4b0896ba3f6040f5e6237e5a21b">Mezzanine::EventManager</a>, <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a9ae2b2182d03c3e21de785d79c357a7d">Mezzanine::ResourceManager</a>, <a class="el" href="classMezzanine_1_1Audio_1_1SoundScapeManager.xhtml#aecc50f1b17b7895f453f43f38cf3efbb">Mezzanine::Audio::SoundScapeManager</a>, <a class="el" href="classMezzanine_1_1UI_1_1UIManager.xhtml#aa3689113ba59bfb4a991355f34831fda">Mezzanine::UI::UIManager</a>, <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml#aa15d21cd8d7cea79d9543351c197538d">Mezzanine::Graphics::GraphicsManager</a>, <a class="el" href="classMezzanine_1_1CollisionShapeManager.xhtml#a19b9f8373967d03e2adb8ad9f059f334">Mezzanine::CollisionShapeManager</a>, <a class="el" href="classMezzanine_1_1MeshManager.xhtml#aeca3930c7034c8930487ac453c3fe1d4">Mezzanine::MeshManager</a>, <a class="el" href="classMezzanine_1_1Input_1_1InputManager.xhtml#ae88be8ddc28cb1bf03962550d24a1d79">Mezzanine::Input::InputManager</a>, <a class="el" href="classMezzanine_1_1ActorManager.xhtml#ae118a3f023985b35c1da32210c0b4ea2">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AreaEffectManager.xhtml#af15681b86875bba6e3b9f9132da51c96">Mezzanine::AreaEffectManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.xhtml#a1dea0322519c7c68eff04add58b37d22">Mezzanine::CameraManager</a>, <a class="el" href="classMezzanine_1_1TerrainManager.xhtml#a4aab467023364ecc87b6ecab4dfebcc8">Mezzanine::TerrainManager</a>, and <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml#a53694af4d1dfc06bd5d3f0054b24e784">Mezzanine::Scripting::iScriptingManager</a>.</p>
 
 </div>
 </div>
@@ -439,6 +443,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 24 2013 23:50:09 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Mon Sep 2 2013 01:51:38 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

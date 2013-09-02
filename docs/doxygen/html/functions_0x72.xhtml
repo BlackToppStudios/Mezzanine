@@ -9,6 +9,8 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script> 
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
 <div id="top"><!-- do not remove this div! -->
@@ -17,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">May 19, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September 2, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -308,6 +310,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>RemoveDecoderFactory()
 : <a class="el" href="classMezzanine_1_1Audio_1_1AudioManager.xhtml#ad6b9e0a759a6277b2c905b1c63fd679d">Mezzanine::Audio::AudioManager</a>
 </li>
+<li>RemoveDirectory()
+: <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a9ff14c330394714615b869d884795625">Mezzanine::ResourceManager</a>
+</li>
 <li>RemoveEffect()
 : <a class="el" href="classMezzanine_1_1Audio_1_1iSound.xhtml#a8cbb08434d0fb0d8728f412e6e211ff5">Mezzanine::Audio::iSound</a>
 </li>
@@ -391,7 +396,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classMezzanine_1_1ActorBase.xhtml#a148df02e486650cba1aa384faf85975f">Mezzanine::ActorBase</a>
 </li>
 <li>RemoveShape()
-: <a class="el" href="classMezzanine_1_1CollisionShapeManager.xhtml#af0434e6acef796553c0b6a61a8478c67">Mezzanine::CollisionShapeManager</a>
+: <a class="el" href="classMezzanine_1_1CollisionShapeManager.xhtml#a53331ac80a2ad503c049cc212d496c94">Mezzanine::CollisionShapeManager</a>
 </li>
 <li>RemoveTerrain()
 : <a class="el" href="classMezzanine_1_1TerrainManager.xhtml#abd5fec432a277253d08c5c7a462f3cd6">Mezzanine::TerrainManager</a>
@@ -430,7 +435,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classMezzanine_1_1Exception.xhtml#a4ee7e60ac53783c4975240c57071d420ab4c00120cb10d40d40db2c375d1e1e4d">Mezzanine::Exception</a>
 </li>
 <li>RenderingAPIException()
-: <a class="el" href="classMezzanine_1_1RenderingAPIException.xhtml#ae10313f3c034ac7f8240b95e2da8546d">Mezzanine::RenderingAPIException</a>
+: <a class="el" href="classMezzanine_1_1RenderingAPIException.xhtml#a70e7b7af682cc940e8d8a537457e7f41">Mezzanine::RenderingAPIException</a>
 </li>
 <li>RenderOneFrame()
 : <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml#af4f73e906001bd0d8e87afc462346e92">Mezzanine::Graphics::GraphicsManager</a>
@@ -447,9 +452,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>RenderWork
 : <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml#a742cf5fbb685278ae24945e23e82cab5">Mezzanine::Graphics::GraphicsManager</a>
 </li>
-<li>RenderWorkUnit
-: <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml#a7555e05ebf68710f193ee27969039575">Mezzanine::Graphics::GraphicsManager</a>
-, <a class="el" href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.xhtml#a11db7dc09a30da88f6109b45e39eb0a5">Mezzanine::Graphics::RenderWorkUnit</a>
+<li>RenderWorkUnit()
+: <a class="el" href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.xhtml#a11db7dc09a30da88f6109b45e39eb0a5">Mezzanine::Graphics::RenderWorkUnit</a>
+, <a class="el" href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml#a7555e05ebf68710f193ee27969039575">Mezzanine::Graphics::GraphicsManager</a>
 </li>
 <li>reportErrorWarning()
 : <a class="el" href="classMezzanine_1_1debug_1_1InternalDebugDrawer.xhtml#a263870f8b8e6099d3bd200ccc283ff25">Mezzanine::debug::InternalDebugDrawer</a>
@@ -458,20 +463,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.xhtml#ad2de82a6fc57859d914845ce676ff67e">Mezzanine::UI::ViewportUpdateTool</a>
 </li>
 <li>reset()
+: <a class="el" href="classMezzanine_1_1CountedPtr.xhtml#aa2ace3eb0eec9ffa2fdcef2df29cd14d">Mezzanine::CountedPtr&lt; TypePointedTo &gt;</a>
+</li>
+<li>Reset()
+: <a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a3bf18b0278f6b29540d22f809ebe39bf">Mezzanine::CountedPtr&lt; TypePointedTo &gt;</a>
+</li>
+<li>reset()
 : <a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a966f5b0ede3ea960e9afdf8173b87075">Mezzanine::CountedPtr&lt; TypePointedTo &gt;</a>
 </li>
 <li>Reset()
-: <a class="el" href="classMezzanine_1_1Timer.xhtml#a425eee35c63d9f588e441052bbe2be55">Mezzanine::Timer</a>
-, <a class="el" href="classMezzanine_1_1ExtendedTimer.xhtml#ac2781423c8f7d888e05443aeb5244e0a">Mezzanine::ExtendedTimer</a>
+: <a class="el" href="classMezzanine_1_1ExtendedTimer.xhtml#ac2781423c8f7d888e05443aeb5244e0a">Mezzanine::ExtendedTimer</a>
 , <a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a69254cff8b760916d88f7181c714dba1">Mezzanine::CountedPtr&lt; TypePointedTo &gt;</a>
 </li>
 <li>reset()
 : <a class="el" href="classMezzanine_1_1CountedPtr.xhtml#ab7183bd295910f8a43b3eff118ff17bf">Mezzanine::CountedPtr&lt; TypePointedTo &gt;</a>
 </li>
 <li>Reset()
-: <a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a3bf18b0278f6b29540d22f809ebe39bf">Mezzanine::CountedPtr&lt; TypePointedTo &gt;</a>
-, <a class="el" href="classMezzanine_1_1XML_1_1Document.xhtml#a8dd37aaa59b59a89c34f927e8aaa76ed">Mezzanine::XML::Document</a>
-, <a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a155b9da33dc7ca0ed48df08f5a46a4a4">Mezzanine::CountedPtr&lt; TypePointedTo &gt;</a>
+: <a class="el" href="classMezzanine_1_1CountedPtr.xhtml#a155b9da33dc7ca0ed48df08f5a46a4a4">Mezzanine::CountedPtr&lt; TypePointedTo &gt;</a>
+, <a class="el" href="classMezzanine_1_1Timer.xhtml#a425eee35c63d9f588e441052bbe2be55">Mezzanine::Timer</a>
 , <a class="el" href="classMezzanine_1_1XML_1_1Document.xhtml#ace372361f107a7422b97fe26b1002074">Mezzanine::XML::Document</a>
 </li>
 <li>ResetAtGoal
@@ -484,8 +493,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml#a7ed9b45f7bd8ac5f7ff9ea8e639f914e">Mezzanine::Physics::PhysicsManager</a>
 </li>
 <li>ResizeMode
-: <a class="el" href="classMezzanine_1_1UI_1_1Window.xhtml#af42e3712bea229089f8c7ccae8bd53f2">Mezzanine::UI::Window</a>
-, <a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.xhtml#a89afdf79f52d5bf18bdffd323911a549">Mezzanine::UI::ViewportUpdateTool</a>
+: <a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.xhtml#a89afdf79f52d5bf18bdffd323911a549">Mezzanine::UI::ViewportUpdateTool</a>
+, <a class="el" href="classMezzanine_1_1UI_1_1Window.xhtml#af42e3712bea229089f8c7ccae8bd53f2">Mezzanine::UI::Window</a>
 </li>
 <li>ResizingInfo()
 : <a class="el" href="structMezzanine_1_1UI_1_1ResizingInfo.xhtml#a09f47f02dd062fa65c0a76ba0bc72b3e">Mezzanine::UI::ResizingInfo&lt; T &gt;</a>
@@ -503,7 +512,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classMezzanine_1_1ResourceInputStream.xhtml#a03a7bc47014d7d27cf0db3c0fff68715">Mezzanine::ResourceInputStream</a>
 </li>
 <li>ResourceManager()
-: <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#aed3d21b1550e3fc1691c7653e52cc438">Mezzanine::ResourceManager</a>
+: <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a23c46c4660e85d0e38f8e61ed12fde3c">Mezzanine::ResourceManager</a>
 </li>
 <li>Result()
 : <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.xhtml#abac66f319c2b8e00a852a8db2f9a1a37">Mezzanine::XML::XPathQuery</a>
@@ -536,37 +545,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="structMezzanine_1_1Audio_1_1RingModulatorParameters.xhtml#aece72481ffc8bf3285c22c01b1263da3">Mezzanine::Audio::RingModulatorParameters</a>
 </li>
 <li>Roll()
-: <a class="el" href="classMezzanine_1_1WorldProxy.xhtml#a500be6a131f849944fc4e3c541ec9ca7">Mezzanine::WorldProxy</a>
+: <a class="el" href="classMezzanine_1_1WorldNode.xhtml#acfcae16b95b2a9978ff56567af01e0df">Mezzanine::WorldNode</a>
 , <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a39c7f8277d5d88bfbc27744874775a18">Mezzanine::Physics::PhysicsProxy</a>
 , <a class="el" href="classMezzanine_1_1TransformableObject.xhtml#a0a21a0a5652ae6363b8604368e6a8348">Mezzanine::TransformableObject</a>
 , <a class="el" href="classMezzanine_1_1Graphics_1_1Bone.xhtml#a5d54114b761cd0120c0fd05c14df751b">Mezzanine::Graphics::Bone</a>
-, <a class="el" href="classMezzanine_1_1WorldNode.xhtml#acfcae16b95b2a9978ff56567af01e0df">Mezzanine::WorldNode</a>
+, <a class="el" href="classMezzanine_1_1WorldProxy.xhtml#a500be6a131f849944fc4e3c541ec9ca7">Mezzanine::WorldProxy</a>
 , <a class="el" href="classMezzanine_1_1TransformableChildObject.xhtml#abfe886c365ca9e225d648b19349994f6">Mezzanine::TransformableChildObject</a>
 </li>
 <li>RollMenuBackToWindow()
 : <a class="el" href="classMezzanine_1_1UI_1_1Menu.xhtml#a671031f5e8ae5890d952e5f6646cdb66">Mezzanine::UI::Menu</a>
 </li>
 <li>RoomRolloffFactor
-: <a class="el" href="structMezzanine_1_1Audio_1_1EAXReverbParameters.xhtml#a07af604405871987acb9a205ebd1b23a">Mezzanine::Audio::EAXReverbParameters</a>
-, <a class="el" href="structMezzanine_1_1Audio_1_1ReverbParameters.xhtml#a829633fa0f56755f8ec02df99537a749">Mezzanine::Audio::ReverbParameters</a>
+: <a class="el" href="structMezzanine_1_1Audio_1_1ReverbParameters.xhtml#a829633fa0f56755f8ec02df99537a749">Mezzanine::Audio::ReverbParameters</a>
+, <a class="el" href="structMezzanine_1_1Audio_1_1EAXReverbParameters.xhtml#a07af604405871987acb9a205ebd1b23a">Mezzanine::Audio::EAXReverbParameters</a>
 </li>
 <li>RosyBrown()
 : <a class="el" href="classMezzanine_1_1ColourValue.xhtml#ae27be7f04df420b31bd85d5146e44853">Mezzanine::ColourValue</a>
 </li>
 <li>Rotate()
-: <a class="el" href="classMezzanine_1_1Graphics_1_1Bone.xhtml#a0e0791ac0e9b4ff32879af132b68ea8e">Mezzanine::Graphics::Bone</a>
-, <a class="el" href="classMezzanine_1_1TransformableChildObject.xhtml#a1884afc08ed431363f7ab7f80b571383">Mezzanine::TransformableChildObject</a>
-, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a7d9f7ea9b9304c1c2076ed86861cf94e">Mezzanine::Physics::PhysicsProxy</a>
-, <a class="el" href="classMezzanine_1_1TransformableObject.xhtml#a3cba0ef5961d4ce897a49c3c70256d6b">Mezzanine::TransformableObject</a>
-, <a class="el" href="classMezzanine_1_1TransformableChildObject.xhtml#a4d4610bbae7cf1e6890f01b41717e900">Mezzanine::TransformableChildObject</a>
-, <a class="el" href="classMezzanine_1_1WorldNode.xhtml#a62f367c6b799f4b8216a72f39f568d35">Mezzanine::WorldNode</a>
+: <a class="el" href="classMezzanine_1_1WorldNode.xhtml#a62f367c6b799f4b8216a72f39f568d35">Mezzanine::WorldNode</a>
+, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a34dd4309b0befa01be8ae451022f41ee">Mezzanine::Physics::PhysicsProxy</a>
 , <a class="el" href="classMezzanine_1_1Graphics_1_1Bone.xhtml#ab8ec938c7133c44e9680498d623192ee">Mezzanine::Graphics::Bone</a>
 , <a class="el" href="classMezzanine_1_1WorldNode.xhtml#aa9d52b9b88c9005524bc97187125fc43">Mezzanine::WorldNode</a>
+, <a class="el" href="classMezzanine_1_1TransformableChildObject.xhtml#a4d4610bbae7cf1e6890f01b41717e900">Mezzanine::TransformableChildObject</a>
 , <a class="el" href="classMezzanine_1_1WorldProxy.xhtml#aacaf90e920f4df3ae493e6635f12b9da">Mezzanine::WorldProxy</a>
-, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a34dd4309b0befa01be8ae451022f41ee">Mezzanine::Physics::PhysicsProxy</a>
-, <a class="el" href="classMezzanine_1_1CameraController.xhtml#ace7eb6ddc365e71d7732aae7837aa61a">Mezzanine::CameraController</a>
-, <a class="el" href="classMezzanine_1_1WorldProxy.xhtml#a119073c976bedb00126f23bb39a73cab">Mezzanine::WorldProxy</a>
+, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a7d9f7ea9b9304c1c2076ed86861cf94e">Mezzanine::Physics::PhysicsProxy</a>
+, <a class="el" href="classMezzanine_1_1Graphics_1_1Bone.xhtml#a0e0791ac0e9b4ff32879af132b68ea8e">Mezzanine::Graphics::Bone</a>
 , <a class="el" href="classMezzanine_1_1TransformableObject.xhtml#a5046369fb08bfc624b54e5c460ded394">Mezzanine::TransformableObject</a>
+, <a class="el" href="classMezzanine_1_1TransformableChildObject.xhtml#a1884afc08ed431363f7ab7f80b571383">Mezzanine::TransformableChildObject</a>
+, <a class="el" href="classMezzanine_1_1CameraController.xhtml#ace7eb6ddc365e71d7732aae7837aa61a">Mezzanine::CameraController</a>
+, <a class="el" href="classMezzanine_1_1TransformableObject.xhtml#a3cba0ef5961d4ce897a49c3c70256d6b">Mezzanine::TransformableObject</a>
 </li>
 <li>Rotate6DOF()
 : <a class="el" href="classMezzanine_1_1CameraController.xhtml#a395fbee8538137d99c5c96118308e5ee">Mezzanine::CameraController</a>
@@ -631,6 +639,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 24 2013 23:50:00 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Mon Sep 2 2013 01:51:41 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

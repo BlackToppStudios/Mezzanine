@@ -9,6 +9,8 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script> 
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
 <div id="top"><!-- do not remove this div! -->
@@ -17,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">May 19, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September 2, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -132,7 +134,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">namespace</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="A single bit, true or false.">Mezzanine::Bool</a> IsConvex(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">Mezzanine::Physics::CollisionShape::ShapeType</a> Type)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="Generally acts a single bit, true or false.">Mezzanine::Bool</a> IsConvex(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">Mezzanine::Physics::CollisionShape::ShapeType</a> Type)</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">switch</span>( Type )</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
@@ -156,17 +158,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="A single bit, true or false.">Mezzanine::Bool</a> IsCompound(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">Mezzanine::Physics::CollisionShape::ShapeType</a> Type)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="Generally acts a single bit, true or false.">Mezzanine::Bool</a> IsCompound(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">Mezzanine::Physics::CollisionShape::ShapeType</a> Type)</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    {</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> Type == <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8eaa07402c83f66065747779321aec2f89e7" title="Indicates the class is a CompoundCollisionShape.">Mezzanine::Physics::CollisionShape::ST_Compound</a>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="A single bit, true or false.">Mezzanine::Bool</a> IsStaticTrimesh(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">Mezzanine::Physics::CollisionShape::ShapeType</a> Type)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="Generally acts a single bit, true or false.">Mezzanine::Bool</a> IsStaticTrimesh(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">Mezzanine::Physics::CollisionShape::ShapeType</a> Type)</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">return</span> Type == <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8eaab3ea202442832fcac695b82df402ca77" title="Indicates the class is a StaticMeshCollisionShape.">Mezzanine::Physics::CollisionShape::ST_StaticTriMesh</a>;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="A single bit, true or false.">Mezzanine::Bool</a> IsDynamicTrimesh(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">Mezzanine::Physics::CollisionShape::ShapeType</a> Type)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="Generally acts a single bit, true or false.">Mezzanine::Bool</a> IsDynamicTrimesh(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">Mezzanine::Physics::CollisionShape::ShapeType</a> Type)</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    {</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">return</span> Type == <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8eaa210028bc131008a47b1a274af9f1c7d5" title="Indicates the class is a DynamicMeshCollisionShape.">Mezzanine::Physics::CollisionShape::ST_DynamicTriMesh</a>;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
@@ -539,7 +541,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00455"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a168d3fabf4990a24b2efb2e91f94572b">  455</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a168d3fabf4990a24b2efb2e91f94572b" title="Sets the anisotropic friction factor.">PhysicsProxy::SetAnisotropicFriction</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Friction, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> Mode)</div>
 <div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;            { this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ac409b95e62f39f23deebd9b6ba9f6c2d" title="Accessor for the internal physics object.">_GetBasePhysicsObject</a>()-&gt;setAnisotropicFriction(Friction.<a class="code" href="classMezzanine_1_1Vector3.xhtml#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>(),Mode); }</div>
 <div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;</div>
-<div class="line"><a name="l00458"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ae69249a6d9ac14a48abf0fc927900a0a">  458</a></span>&#160;        <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="A single bit, true or false.">Bool</a> <a class="code" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ae69249a6d9ac14a48abf0fc927900a0a" title="Gets whether or not anisotropic friction is being used in a specified mode.">PhysicsProxy::IsAnisotropicFrictionModeSet</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> Mode)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00458"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ae69249a6d9ac14a48abf0fc927900a0a">  458</a></span>&#160;        <a class="code" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57" title="Generally acts a single bit, true or false.">Bool</a> <a class="code" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ae69249a6d9ac14a48abf0fc927900a0a" title="Gets whether or not anisotropic friction is being used in a specified mode.">PhysicsProxy::IsAnisotropicFrictionModeSet</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> Mode)<span class="keyword"> const</span></div>
 <div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ac409b95e62f39f23deebd9b6ba9f6c2d" title="Accessor for the internal physics object.">_GetBasePhysicsObject</a>()-&gt;hasAnisotropicFriction(Mode); }</div>
 <div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;</div>
 <div class="line"><a name="l00461"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a5eccef79efa1fbfcdb16f2676db3ce62">  461</a></span>&#160;        <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a5eccef79efa1fbfcdb16f2676db3ce62" title="Gets the anisotropic friction factor.">PhysicsProxy::GetAnisotropicFriction</a>()<span class="keyword"> const</span></div>
@@ -753,6 +755,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 24 2013 23:50:06 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Mon Sep 2 2013 01:51:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

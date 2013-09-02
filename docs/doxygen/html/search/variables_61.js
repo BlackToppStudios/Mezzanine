@@ -21,6 +21,8 @@ var searchData=
   ['animation',['Animation',['../classMezzanine_1_1ActorBase.xhtml#ae71259b98aed5a9c269e0758344d36a7',1,'Mezzanine::ActorBase']]],
   ['areaeffects',['AreaEffects',['../classMezzanine_1_1AreaEffectManager.xhtml#ac7219ac4f4f691da567b9d01651a1ad8',1,'Mezzanine::AreaEffectManager']]],
   ['areaeffectupdatework',['AreaEffectUpdateWork',['../classMezzanine_1_1AreaEffectManager.xhtml#abfb4ef7379cfaab60871eb8f41645b7f',1,'Mezzanine::AreaEffectManager']]],
+  ['argc',['ArgC',['../classMezzanine_1_1ResourceManager.xhtml#a0f107daa3b2e095f938b16da9da89d53',1,'Mezzanine::ResourceManager']]],
+  ['argv',['ArgV',['../classMezzanine_1_1ResourceManager.xhtml#a54840a405b0dc9ee3663873d4c9514fa',1,'Mezzanine::ResourceManager']]],
   ['atlas',['Atlas',['../classMezzanine_1_1UI_1_1GlyphData.xhtml#af87b03d3b99c81c4b5e853f4a3a5fecc',1,'Mezzanine::UI::GlyphData::Atlas()'],['../structMezzanine_1_1UI_1_1Sprite.xhtml#a1c4c6485f61a7bb71c696d1c7426a2fb',1,'Mezzanine::UI::Sprite::Atlas()'],['../structMezzanine_1_1UI_1_1VertexData.xhtml#abd0db8958c43a0df6987fef44b6f99b0',1,'Mezzanine::UI::VertexData::Atlas()']]],
   ['atlascoords',['AtlasCoords',['../classMezzanine_1_1UI_1_1Glyph.xhtml#ad4c8240173295f6ebb23dcab2c04ea94',1,'Mezzanine::UI::Glyph::AtlasCoords()'],['../structMezzanine_1_1UI_1_1Sprite.xhtml#af76e130e528fc4d6a498bd5c2182f0f7',1,'Mezzanine::UI::Sprite::AtlasCoords()']]],
   ['attacktime',['AttackTime',['../structMezzanine_1_1Audio_1_1AutowahParameters.xhtml#a8829ef5593ecc6fdf2f3d68ce01b3839',1,'Mezzanine::Audio::AutowahParameters']]],
