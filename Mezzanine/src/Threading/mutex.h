@@ -68,7 +68,6 @@ freely, subject to the following restrictions:
     distribution.
 */
 
-#include "crossplatformincludes.h"
 #include "atomicoperations.h"
 
 #include <string>

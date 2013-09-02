@@ -172,7 +172,6 @@ namespace Mezzanine
             protected:
                 #endif
 
-                /// @internal
                 /// @brief Protects DoubleBufferedResources during creation from being accessed by the LogAggregator.
                 SpinLock LogResources;
 
@@ -523,7 +522,7 @@ namespace Mezzanine
                 /// This is cheap computationly but will likely perform much slower
                 /// than other methods of getting the resource, because the ID is
                 /// unlikely be be cached and it may require a system call to
-                /// retrieve. If used consider wrapppin it in #MEZZ_DEBUG/#ENDIF
+                /// retrieve. If used consider wrapping it in \#ifdef MEZZ_DEBUG + \#endif
                 /// to disable for release builds.
                 /// @param ID This uses the current Threads ID by default but can search for any thread.
                 /// @return A pointer to ThreadSpecificResource or a null pointer on error.

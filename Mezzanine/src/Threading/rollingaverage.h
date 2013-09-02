@@ -71,13 +71,15 @@ namespace Mezzanine
             virtual RecordType GetAverage() const = 0;
 
             /// @brief Get a 0 indexed record of the past few insertions.
-            /// @detail This returns one insertion, with RecordCapacity()-1 being the newest, and 0 being the oldest.
+            /// @param Index Which entry to access. This may have different effects with different rolling averages, such as being ignored or estimated.
+            /// @details This returns one insertion, with RecordCapacity()-1 being the newest, and 0 being the oldest.
             /// @warning This is not guaranteed to accurate in all rolling averages.
             /// @return A reference to something the resembles an inserted record.
             virtual RecordType& operator[] (Whole Index) = 0;
 
             /// @brief Get a 0 indexed record of the past few insertions.
-            /// @detail This returns one insertion, with RecordCapacity()-1 being the newest, and 0 being the oldest.
+            /// @param Index Which entry to access. This may have different effects with different rolling averages, such as being ignored or estimated.
+            /// @details This returns one insertion, with RecordCapacity()-1 being the newest, and 0 being the oldest.
             /// @return A copy to something the resembles an inserted record.
             virtual RecordType operator[] (Whole Index) const = 0;
 
@@ -91,7 +93,7 @@ namespace Mezzanine
     //
     // The Rolling Average is key to the way this algorithm works
     // RecordType Needs to implement a constructor which accepts a single 0, +=, and / with size_t
-    
+
     /// @brief A RollingAverage that stores a copy of each record. and does the math when queried
     template <typename RecordType> class BufferedRollingAverage : public RollingAverage<RecordType>
     {

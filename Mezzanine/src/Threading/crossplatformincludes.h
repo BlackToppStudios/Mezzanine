@@ -43,7 +43,6 @@
 
     /// @file
     /// @brief This file determines what features are offered by the compiler that this library can take advantage of.
-    /// @details This file is dropped when integrating with the Mezzanine. Its contents are manually merged with 
     /// crossplatformexport.h instead.
 
     // Parts of this library use the TinyThread++ libary and those parts are also covered by the following license
@@ -72,10 +71,21 @@
 
 #include "crossplatformexport.h"
 
+/// @file
+/// @brief Include headers for common tasks like those offered by the Posix or win32 API
+/// @warning Do not include in headers even if it appears to work. The windows headers
+/// heartlessly set preprocessor macros to names that a sane person would use for functions.
+/// So even if said function is on a class or in a namespace the poor underprivileged
+/// developers designing windows still clobber other's well behaved code.
+
 #ifdef _MEZZ_THREAD_WIN32_
     #ifdef _MSC_VER
         #pragma warning( disable : 4251) // Disable the dll import/export warnings on items that are set correctly.
         #pragma warning( disable : 4244) // Disable the double to float conversions, they are in their by design to minimize floating point rounding during intermediate calculations.
+        #pragma warning( disable : 4127) // Disable conditional expression is constant
+        #pragma warning( disable : 4800) // pugi xml unspecified bool type coercion has performance cost, used only in unit tests
+        #pragma warning( disable : 4221) // interfaces don't generate linkable symbols, well of course they don't
+        #pragma warning( disable : 4512) // Could not generate assignment operator for class that doesn't need one
     #endif
     #ifndef WIN32_LEAN_AND_MEAN
         #define WIN32_LEAN_AND_MEAN
@@ -96,6 +106,5 @@
     #include <sched.h>
     #include <unistd.h>
 #endif
-
 
 #endif // include guard

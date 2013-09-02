@@ -68,7 +68,6 @@ freely, subject to the following restrictions:
     distribution.
 */
 
-#include "crossplatformincludes.h"
 #include "systemcalls.h"
 #include "mutex.h"
 
@@ -280,7 +279,7 @@ namespace Mezzanine
                 }
 
             private:
-				/// @internal
+                /// @internal
                 /// @brief The ID value
                 unsigned long int mId;
         };//Thread::id

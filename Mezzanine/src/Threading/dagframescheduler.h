@@ -384,13 +384,13 @@
 /// Regardless of the amount of threads created, all but one of them will start executing work units as
 /// described in the section @ref algorithm_sec "The Algorithm". This will execute as much work as possible
 /// (work units with affinity can affect how much work can be done with out waiting) that was added by
-/// @ref Mezzanine::Threading::FrameScheduler::AddWorkUnitMain(iWorkUnit*) "FrameScheduler::AddWorkUnitMain(iWorkUnit*)".
+/// @ref Mezzanine::Threading::FrameScheduler::AddWorkUnitMain(iWorkUnit *, const String&) "FrameScheduler::AddWorkUnitMain".
 /// If there is only one thread, the main thread, then this will return immediately and no work will be done.
 /// @subsection integrate3 Step 3 - Main Thread Work
 /// The call to
 /// @ref Mezzanine::Threading::FrameScheduler::RunMainThreadWork() "FrameScheduler::RunMainThreadWork()"
 /// will start the main thread executing work units. This is the call that executes work units added with
-/// @ref Mezzanine::Threading::FrameScheduler::AddWorkUnitAffinity(iWorkUnit*) "FrameScheduler::AddWorkUnitAffinity(iWorkUnit*)".
+/// @ref Mezzanine::Threading::FrameScheduler::AddWorkUnitAffinity(iWorkUnit *, const String&) "FrameScheduler::AddWorkUnitAffinity".
 /// @n @n
 /// If you have single thread work that is not part of a work unit and will not interfere with and work
 /// units execution then you can run it before calling this. Be careful when doing this, if there are any

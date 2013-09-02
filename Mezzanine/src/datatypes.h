@@ -173,8 +173,8 @@ namespace Mezzanine
     typedef char Char8;
 
     /// @typedef Bool
-    /// @brief A single bit, true or false
-    /// @details Normally just a bool, and this corrects the casing of bool
+    /// @brief Generally acts a single bit, true or false
+    /// @details Normally just a bool, but on some platform alignment matters more than size, so this could be as large as one cpu word in size.
     typedef bool Bool;
 
     /// @typedef StringStream
