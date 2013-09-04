@@ -65,7 +65,7 @@ namespace Mezzanine
         const static Whole DBRUser = 1;
 
         /// @brief A thread specific resource that uses double buffering to avoid multithreaded synchronization mechanisms.
-        /// @details It is intended for a @ref Mezzanine::Threading::iWorkUnit "iWorkUnit" like the to provide asynchronous
+        /// @details It is intended for a Mezzanine::Threading::iWorkUnit "iWorkUnit" like the to provide asynchronous
         /// access to resources that to not need immediate atomicity. For example, it is ok if logs are gathered asynchronously
         /// and aggregated later as long no log messages are damaged, lost or taken out of order. This allows IO and other potentially
         /// expensive tasks to be used without blocking the current thread.

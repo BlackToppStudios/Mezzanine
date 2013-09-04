@@ -41,6 +41,7 @@
 #ifndef _btsthread_cpp
 #define _btsthread_cpp
 
+#include "crossplatformincludes.h"
 
 /// @file
 /// @brief This file implements a minimalistic cross-platform thread that the scheduler uses to schedule tasks.

@@ -78,6 +78,7 @@ namespace Mezzanine
             virtual RecordType& operator[] (Whole Index) = 0;
 
             /// @brief Get a 0 indexed record of the past few insertions.
+            /// @details This returns one insertion, with RecordCapacity()-1 being the newest, and 0 being the oldest.
             /// @param Index Which entry to access. This may have different effects with different rolling averages, such as being ignored or estimated.
             /// @details This returns one insertion, with RecordCapacity()-1 being the newest, and 0 being the oldest.
             /// @return A copy to something the resembles an inserted record.

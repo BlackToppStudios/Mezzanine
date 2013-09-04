@@ -87,6 +87,12 @@ namespace Mezzanine
         class MEZZ_LIB Thread
         {
             public:
+            #if defined(_MEZZ_THREAD_WIN32_)
+                /// @typedef HANDLE
+                /// @brief Currently windows defines this to be a void pointer. This might have to be adjusted in the future.
+                typedef void* HANDLE;
+            #endif
+
             /// @typedef native_handle_type
             /// @brief The native handle type, made available with requiring specific knowledge of whether it is a posix or win32 handle.
             #if defined(_MEZZ_THREAD_WIN32_)

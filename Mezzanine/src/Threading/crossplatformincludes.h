@@ -43,6 +43,7 @@
 
     /// @file
     /// @brief This file determines what features are offered by the compiler that this library can take advantage of.
+    /// @details This file is dropped when integrating with the Mezzanine. Its contents are manually merged with
     /// crossplatformexport.h instead.
 
     // Parts of this library use the TinyThread++ libary and those parts are also covered by the following license
