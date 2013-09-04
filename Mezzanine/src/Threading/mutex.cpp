@@ -58,7 +58,8 @@ namespace Mezzanine
         #endif
         {
         #if defined(_MEZZ_THREAD_WIN32_)
-            InitializeCriticalSection(&mHandle);
+            mHandle = malloc(sizeof(CRITICAL_SECTION));
+            InitializeCriticalSection(mHandle);
         #else
             pthread_mutex_init(&mHandle, NULL);
         #endif
@@ -67,7 +68,8 @@ namespace Mezzanine
         Mutex::~Mutex()
         {
         #if defined(_MEZZ_THREAD_WIN32_)
-            DeleteCriticalSection(&mHandle);
+            DeleteCriticalSection(mHandle);
+            free(mHandle);
         #else
             pthread_mutex_destroy(&mHandle);
         #endif
@@ -76,8 +78,8 @@ namespace Mezzanine
         void Mutex::Lock()
         {
         #if defined(_MEZZ_THREAD_WIN32_)
-            EnterCriticalSection(&mHandle);
-            while(mAlreadyLocked) Sleep(1000); // Simulate deadlock...
+            EnterCriticalSection(mHandle);
+            while(mAlreadyLocked) Sleep(100); // Simulate deadlock...
             mAlreadyLocked = true;
         #else
             pthread_mutex_lock(&mHandle);
@@ -87,10 +89,10 @@ namespace Mezzanine
         bool Mutex::TryLock()
         {
         #if defined(_MEZZ_THREAD_WIN32_)
-            bool ret = (TryEnterCriticalSection(&mHandle) ? true : false);
+            bool ret = (TryEnterCriticalSection(mHandle) ? true : false);
             if(ret && mAlreadyLocked)
             {
-                LeaveCriticalSection(&mHandle);
+                LeaveCriticalSection(mHandle);
                 ret = false;
             }
             return ret;
@@ -103,7 +105,7 @@ namespace Mezzanine
         {
         #if defined(_MEZZ_THREAD_WIN32_)
             mAlreadyLocked = false;
-            LeaveCriticalSection(&mHandle);
+            LeaveCriticalSection(mHandle);
         #else
             pthread_mutex_unlock(&mHandle);
         #endif

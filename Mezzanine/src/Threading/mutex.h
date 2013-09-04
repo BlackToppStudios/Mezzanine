@@ -75,6 +75,9 @@ freely, subject to the following restrictions:
 /// @file
 /// @brief Declares a Mutex, Mutex tools, and at least one MutexLike object.
 
+/// @brief Forward declaration
+class CRITICAL_SECTION;
+
 namespace Mezzanine
 {
     namespace Threading
@@ -104,7 +107,8 @@ namespace Mezzanine
                 /// @var mHandle
                 /// @brief A native handle to the OS specific synchronization object.
                 #if defined(_MEZZ_THREAD_WIN32_)
-                    CRITICAL_SECTION mHandle;
+                    CRITICAL_SECTION* mHandle;
+                    /// @brief Is this critical section already locked?
                     bool mAlreadyLocked;
                 #else
                     pthread_mutex_t mHandle;
