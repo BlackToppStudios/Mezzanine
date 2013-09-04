@@ -8,15 +8,16 @@
  viewBox="0.00 0.00 252.00 40.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 36)">
 <title>Graphical Class Hierarchy</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-36 249,-36 249,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="none" stroke="#bfbfbf" points="0.5,-6 0.5,-26 77.5,-26 77.5,-6 0.5,-6"/>
+<polygon fill="white" stroke="#bfbfbf" points="0.5,-6 0.5,-26 77.5,-26 77.5,-6 0.5,-6"/>
 <text text-anchor="middle" x="39" y="-13" font-family="FreeSans" font-size="10.00">btIDebugDraw</text>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1debug_1_1InternalDebugDrawer.xhtml" target="_top" xlink:title="This is used to draw wireframse for the Physics subsystem.">
-<polygon fill="none" stroke="black" points="114,-0 114,-32 244,-32 244,-0 114,-0"/>
+<polygon fill="white" stroke="black" points="114,-0 114,-32 244,-32 244,-0 114,-0"/>
 <text text-anchor="start" x="122" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::debug::Internal</text>
 <text text-anchor="middle" x="179" y="-7" font-family="FreeSans" font-size="10.00">DebugDrawer</text>
 </a>

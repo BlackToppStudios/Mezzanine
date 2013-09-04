@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 219.00 218.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 214)">
 <title>Mezzanine::SetItems&lt; T, V, Cmp &gt;</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-214 216,-214 216,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="83,-1 83,-33 189,-33 189,-1 83,-1"/>
@@ -16,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<polygon fill="none" stroke="#bfbfbf" points="0,-83 0,-127 134,-127 134,-83 0,-83"/>
+<polygon fill="white" stroke="#bfbfbf" points="0,-83 0,-127 134,-127 134,-83 0,-83"/>
 <text text-anchor="start" x="8" y="-114" font-family="FreeSans" font-size="10.00">std::set&lt; Item *, NodeItem</text>
 <text text-anchor="start" x="8" y="-102" font-family="FreeSans" font-size="10.00">PtrCompare&lt; T, V, Cmp,</text>
 <text text-anchor="middle" x="67" y="-90" font-family="FreeSans" font-size="10.00"> SetItems&lt; T, V, Cmp &gt; &gt; &gt;</text>
@@ -30,7 +31,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1NodeItem.xhtml" target="_top" xlink:title="Mezzanine::NodeItem\l\&lt; T, V, Cmp, Items \&gt;">
-<polygon fill="none" stroke="black" points="12.5,-177 12.5,-209 121.5,-209 121.5,-177 12.5,-177"/>
+<polygon fill="white" stroke="black" points="12.5,-177 12.5,-209 121.5,-209 121.5,-177 12.5,-177"/>
 <text text-anchor="start" x="20.5" y="-196" font-family="FreeSans" font-size="10.00">Mezzanine::NodeItem</text>
 <text text-anchor="middle" x="67" y="-184" font-family="FreeSans" font-size="10.00">&lt; T, V, Cmp, Items &gt;</text>
 </a>
@@ -43,7 +44,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<polygon fill="none" stroke="#bfbfbf" points="151.5,-95 151.5,-115 180.5,-115 180.5,-95 151.5,-95"/>
+<polygon fill="white" stroke="#bfbfbf" points="151.5,-95 151.5,-115 180.5,-115 180.5,-95 151.5,-95"/>
 <text text-anchor="middle" x="166" y="-102" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node4&#45;&gt;Node1 -->

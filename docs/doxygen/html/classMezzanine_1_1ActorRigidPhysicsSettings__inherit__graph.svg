@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 160.00 252.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 248)">
 <title>Mezzanine::ActorRigidPhysicsSettings</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-248 157,-248 157,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="3.5,-1 3.5,-33 148.5,-33 148.5,-1 3.5,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ActorBasePhysicsSettings.xhtml" target="_top" xlink:title="This is a base helper class for configuring physics settings of an actor.">
-<polygon fill="none" stroke="black" points="3.5,-71 3.5,-103 148.5,-103 148.5,-71 3.5,-71"/>
+<polygon fill="white" stroke="black" points="3.5,-71 3.5,-103 148.5,-103 148.5,-71 3.5,-71"/>
 <text text-anchor="start" x="11.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::ActorBasePhysics</text>
 <text text-anchor="middle" x="76" y="-78" font-family="FreeSans" font-size="10.00">Settings</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1NonTriggerPhysicsSettings.xhtml" target="_top" xlink:title="This is an extension of the basic WorldObjectPhysicsSettings class for non&#45;trigger objects(I...">
-<polygon fill="none" stroke="black" points="2.5,-141 2.5,-173 149.5,-173 149.5,-141 2.5,-141"/>
+<polygon fill="white" stroke="black" points="2.5,-141 2.5,-173 149.5,-173 149.5,-141 2.5,-141"/>
 <text text-anchor="start" x="10.5" y="-160" font-family="FreeSans" font-size="10.00">Mezzanine::NonTriggerPhysics</text>
 <text text-anchor="middle" x="76" y="-148" font-family="FreeSans" font-size="10.00">Settings</text>
 </a>
@@ -43,7 +44,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" target="_top" xlink:title="This is a base helper class for configuring physics settings of a world object.">
-<polygon fill="none" stroke="black" points="-0.5,-211 -0.5,-243 152.5,-243 152.5,-211 -0.5,-211"/>
+<polygon fill="white" stroke="black" points="-0.5,-211 -0.5,-243 152.5,-243 152.5,-211 -0.5,-211"/>
 <text text-anchor="start" x="7.5" y="-230" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObjectPhysics</text>
 <text text-anchor="middle" x="76" y="-218" font-family="FreeSans" font-size="10.00">Settings</text>
 </a>

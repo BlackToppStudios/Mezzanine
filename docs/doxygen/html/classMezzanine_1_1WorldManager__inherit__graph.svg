@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 488.00 280.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 276)">
 <title>Mezzanine::WorldManager</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-276 485,-276 485,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="162.5,-126 162.5,-146 291.5,-146 291.5,-126 162.5,-126"/>
@@ -16,7 +17,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1ActorManager.xhtml" target="_top" xlink:title="A manager responsible for the storage and management of all actors that exist in a world...">
-<polygon fill="none" stroke="black" points="340,-252 340,-272 468,-272 468,-252 340,-252"/>
+<polygon fill="white" stroke="black" points="340,-252 340,-272 468,-272 468,-252 340,-252"/>
 <text text-anchor="middle" x="404" y="-259" font-family="FreeSans" font-size="10.00">Mezzanine::ActorManager</text>
 </a>
 </g>
@@ -28,7 +29,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1AreaEffectManager.xhtml" target="_top" xlink:title="A manager responsible for the storage and management of all areaeffects in use.">
-<polygon fill="none" stroke="black" points="329.5,-214 329.5,-234 478.5,-234 478.5,-214 329.5,-214"/>
+<polygon fill="white" stroke="black" points="329.5,-214 329.5,-234 478.5,-234 478.5,-214 329.5,-214"/>
 <text text-anchor="middle" x="404" y="-221" font-family="FreeSans" font-size="10.00">Mezzanine::AreaEffectManager</text>
 </a>
 </g>
@@ -40,7 +41,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1SoundScapeManager.xhtml" target="_top" xlink:title="This is the base manager class for audio being played in a 3D environment.">
-<polygon fill="none" stroke="black" points="328,-164 328,-196 480,-196 480,-164 328,-164"/>
+<polygon fill="white" stroke="black" points="328,-164 328,-196 480,-196 480,-164 328,-164"/>
 <text text-anchor="start" x="336" y="-183" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundScape</text>
 <text text-anchor="middle" x="404" y="-171" font-family="FreeSans" font-size="10.00">Manager</text>
 </a>
@@ -53,7 +54,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1CameraManager.xhtml" target="_top" xlink:title="This is the manager class for all camera functions.">
-<polygon fill="none" stroke="black" points="335,-126 335,-146 473,-146 473,-126 335,-126"/>
+<polygon fill="white" stroke="black" points="335,-126 335,-146 473,-146 473,-126 335,-126"/>
 <text text-anchor="middle" x="404" y="-133" font-family="FreeSans" font-size="10.00">Mezzanine::CameraManager</text>
 </a>
 </g>
@@ -65,7 +66,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml" target="_top" xlink:title="This is simply a place for storing all the Physics Related functions.">
-<polygon fill="none" stroke="black" points="354,-76 354,-108 454,-108 454,-76 354,-76"/>
+<polygon fill="white" stroke="black" points="354,-76 354,-108 454,-108 454,-76 354,-76"/>
 <text text-anchor="start" x="362" y="-95" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="404" y="-83" font-family="FreeSans" font-size="10.00">::PhysicsManager</text>
 </a>
@@ -78,7 +79,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1SceneManager.xhtml" target="_top" xlink:title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">
-<polygon fill="none" stroke="black" points="338,-38 338,-58 470,-58 470,-38 338,-38"/>
+<polygon fill="white" stroke="black" points="338,-38 338,-58 470,-58 470,-38 338,-38"/>
 <text text-anchor="middle" x="404" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::SceneManager</text>
 </a>
 </g>
@@ -90,7 +91,7 @@
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1TerrainManager.xhtml" target="_top" xlink:title="This is manager for terrains and their functions.">
-<polygon fill="none" stroke="black" points="337,-0 337,-20 471,-20 471,-0 337,-0"/>
+<polygon fill="white" stroke="black" points="337,-0 337,-20 471,-20 471,-0 337,-0"/>
 <text text-anchor="middle" x="404" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::TerrainManager</text>
 </a>
 </g>
@@ -102,7 +103,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="0,-126 0,-146 126,-146 126,-126 0,-126"/>
+<polygon fill="white" stroke="black" points="0,-126 0,-146 126,-146 126,-126 0,-126"/>
 <text text-anchor="middle" x="63" y="-133" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>

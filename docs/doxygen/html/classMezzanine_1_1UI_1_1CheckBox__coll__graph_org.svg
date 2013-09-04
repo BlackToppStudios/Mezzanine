@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 4673.40 1418.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 1414)">
 <title>Mezzanine::UI::CheckBox</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-1414 4670.4,-1414 4670.4,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="1021.9,-427 1021.9,-447 1146.9,-447 1146.9,-427 1021.9,-427"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Widget.xhtml" target="_top" xlink:title="This class is the base class for all widgets.">
-<polygon fill="none" stroke="black" points="439.896,-1135 439.896,-1155 550.896,-1155 550.896,-1135 439.896,-1135"/>
+<polygon fill="white" stroke="black" points="439.896,-1135 439.896,-1155 550.896,-1155 550.896,-1135 439.896,-1135"/>
 <text text-anchor="middle" x="495.396" y="-1142" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
 </g>
@@ -35,7 +36,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
-<polygon fill="none" stroke="black" points="557.396,-1017 557.396,-1037 687.396,-1037 687.396,-1017 557.396,-1017"/>
+<polygon fill="white" stroke="black" points="557.396,-1017 557.396,-1037 687.396,-1037 687.396,-1017 557.396,-1017"/>
 <text text-anchor="middle" x="622.396" y="-1024" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
 </g>
@@ -48,7 +49,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1UI_1_1UIManager.xhtml" target="_top" xlink:title="This class is responsible for any and all user interactions with the User interface/HUD.">
-<polygon fill="none" stroke="black" points="1017.4,-327 1017.4,-347 1145.4,-347 1145.4,-327 1017.4,-327"/>
+<polygon fill="white" stroke="black" points="1017.4,-327 1017.4,-347 1145.4,-347 1145.4,-327 1017.4,-327"/>
 <text text-anchor="middle" x="1081.4" y="-334" font-family="FreeSans" font-size="10.00">Mezzanine::UI::UIManager</text>
 </a>
 </g>
@@ -64,7 +65,7 @@
 <!-- Node72 -->
 <g id="node190" class="node"><title>Node72</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Activatable.xhtml" target="_top" xlink:title="This is a helper class that encapsulates the functionality of an object that can be activated to take...">
-<polygon fill="none" stroke="black" points="301.896,-1017 301.896,-1037 430.896,-1037 430.896,-1017 301.896,-1017"/>
+<polygon fill="white" stroke="black" points="301.896,-1017 301.896,-1037 430.896,-1037 430.896,-1017 301.896,-1017"/>
 <text text-anchor="middle" x="366.396" y="-1024" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Activatable</text>
 </a>
 </g>
@@ -76,7 +77,7 @@
 <!-- Node75 -->
 <g id="node198" class="node"><title>Node75</title>
 <a xlink:href="classMezzanine_1_1UI_1_1WidgetListener.xhtml" target="_top" xlink:title="This is a listener class for widgets.">
-<polygon fill="none" stroke="black" points="139.896,-1017 139.896,-1037 284.896,-1037 284.896,-1017 139.896,-1017"/>
+<polygon fill="white" stroke="black" points="139.896,-1017 139.896,-1037 284.896,-1037 284.896,-1017 139.896,-1017"/>
 <text text-anchor="middle" x="212.396" y="-1024" font-family="FreeSans" font-size="10.00">Mezzanine::UI::WidgetListener</text>
 </a>
 </g>
@@ -88,7 +89,7 @@
 </g>
 <!-- Node99 -->
 <g id="node276" class="node"><title>Node99</title>
-<polygon fill="none" stroke="#bfbfbf" points="857.396,-1017 857.396,-1037 993.396,-1037 993.396,-1017 857.396,-1017"/>
+<polygon fill="white" stroke="#bfbfbf" points="857.396,-1017 857.396,-1037 993.396,-1037 993.396,-1017 857.396,-1017"/>
 <text text-anchor="middle" x="925.396" y="-1024" font-family="FreeSans" font-size="10.00">std::map&lt; String, Widget * &gt;</text>
 </g>
 <!-- Node2&#45;&gt;Node99 -->
@@ -100,7 +101,7 @@
 <!-- Node105 -->
 <g id="node293" class="node"><title>Node105</title>
 <a xlink:href="structMezzanine_1_1UI_1_1IndexData.xhtml" target="_top" xlink:title="This is a basic class for storing data relating to a specific zorder in the UI.">
-<polygon fill="none" stroke="black" points="905.896,-781 905.896,-801 1030.9,-801 1030.9,-781 905.896,-781"/>
+<polygon fill="white" stroke="black" points="905.896,-781 905.896,-801 1030.9,-801 1030.9,-781 905.896,-781"/>
 <text text-anchor="middle" x="968.396" y="-788" font-family="FreeSans" font-size="10.00">Mezzanine::UI::IndexData</text>
 </a>
 </g>
@@ -118,7 +119,7 @@
 <!-- Node79 -->
 <g id="node208" class="node"><title>Node79</title>
 <a xlink:href="classMezzanine_1_1UI_1_1BasicRenderable.xhtml" target="_top" xlink:title="Base class for renderables that generate verticies.">
-<polygon fill="none" stroke="black" points="1169.4,-898 1169.4,-918 1323.4,-918 1323.4,-898 1169.4,-898"/>
+<polygon fill="white" stroke="black" points="1169.4,-898 1169.4,-918 1323.4,-918 1323.4,-898 1169.4,-898"/>
 <text text-anchor="middle" x="1246.4" y="-905" font-family="FreeSans" font-size="10.00">Mezzanine::UI::BasicRenderable</text>
 </a>
 </g>
@@ -129,7 +130,7 @@
 </g>
 <!-- Node112 -->
 <g id="node314" class="node"><title>Node112</title>
-<polygon fill="none" stroke="#bfbfbf" points="473.896,-898 473.896,-918 590.896,-918 590.896,-898 473.896,-898"/>
+<polygon fill="white" stroke="#bfbfbf" points="473.896,-898 473.896,-918 590.896,-918 590.896,-898 473.896,-898"/>
 <text text-anchor="middle" x="532.396" y="-905" font-family="FreeSans" font-size="10.00">std::list&lt; Renderable * &gt;</text>
 </g>
 <!-- Node3&#45;&gt;Node112 -->
@@ -141,7 +142,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
-<polygon fill="none" stroke="black" points="1091.4,-1313 1091.4,-1333 1191.4,-1333 1191.4,-1313 1091.4,-1313"/>
+<polygon fill="white" stroke="black" points="1091.4,-1313 1091.4,-1333 1191.4,-1333 1191.4,-1313 1091.4,-1313"/>
 <text text-anchor="middle" x="1141.4" y="-1320" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
 </g>
@@ -155,7 +156,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Screen.xhtml" target="_top" xlink:title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">
-<polygon fill="none" stroke="black" points="1645.4,-83 1645.4,-103 1757.4,-103 1757.4,-83 1645.4,-83"/>
+<polygon fill="white" stroke="black" points="1645.4,-83 1645.4,-103 1757.4,-103 1757.4,-83 1645.4,-83"/>
 <text text-anchor="middle" x="1701.4" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Screen</text>
 </a>
 </g>
@@ -169,7 +170,7 @@
 <!-- Node77 -->
 <g id="node204" class="node"><title>Node77</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Rectangle.xhtml" target="_top" xlink:title="This class is a helper class, specifically for use with background sprites and colours.">
-<polygon fill="none" stroke="black" points="1277.9,-692 1277.9,-712 1402.9,-712 1402.9,-692 1277.9,-692"/>
+<polygon fill="white" stroke="black" points="1277.9,-692 1277.9,-712 1402.9,-712 1402.9,-692 1277.9,-692"/>
 <text text-anchor="middle" x="1340.4" y="-699" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Rectangle</text>
 </a>
 </g>
@@ -183,7 +184,7 @@
 <!-- Node78 -->
 <g id="node206" class="node"><title>Node78</title>
 <a xlink:href="classMezzanine_1_1UI_1_1AreaRenderable.xhtml" target="_top" xlink:title="This class defines a renderable that covers an area, such as a rectangle or circle.">
-<polygon fill="none" stroke="black" points="1162.4,-781 1162.4,-801 1312.4,-801 1312.4,-781 1162.4,-781"/>
+<polygon fill="white" stroke="black" points="1162.4,-781 1162.4,-801 1312.4,-801 1312.4,-781 1162.4,-781"/>
 <text text-anchor="middle" x="1237.4" y="-788" font-family="FreeSans" font-size="10.00">Mezzanine::UI::AreaRenderable</text>
 </a>
 </g>
@@ -206,7 +207,7 @@
 <!-- Node82 -->
 <g id="node217" class="node"><title>Node82</title>
 <a xlink:href="structMezzanine_1_1UI_1_1Vertex.xhtml" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
-<polygon fill="none" stroke="black" points="1503.4,-1224 1503.4,-1244 1611.4,-1244 1611.4,-1224 1503.4,-1224"/>
+<polygon fill="white" stroke="black" points="1503.4,-1224 1503.4,-1244 1611.4,-1244 1611.4,-1224 1503.4,-1224"/>
 <text text-anchor="middle" x="1557.4" y="-1231" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Vertex</text>
 </a>
 </g>
@@ -219,7 +220,7 @@
 <!-- Node84 -->
 <g id="node227" class="node"><title>Node84</title>
 <a xlink:href="structMezzanine_1_1UI_1_1Sprite.xhtml" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad.">
-<polygon fill="none" stroke="black" points="1967.9,-1135 1967.9,-1155 2074.9,-1155 2074.9,-1135 1967.9,-1135"/>
+<polygon fill="white" stroke="black" points="1967.9,-1135 1967.9,-1155 2074.9,-1155 2074.9,-1135 1967.9,-1135"/>
 <text text-anchor="middle" x="2021.4" y="-1142" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Sprite</text>
 </a>
 </g>
@@ -233,7 +234,7 @@
 <!-- Node87 -->
 <g id="node236" class="node"><title>Node87</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Glyph.xhtml" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
-<polygon fill="none" stroke="black" points="1301.4,-1224 1301.4,-1244 1407.4,-1244 1407.4,-1224 1301.4,-1224"/>
+<polygon fill="white" stroke="black" points="1301.4,-1224 1301.4,-1244 1407.4,-1244 1407.4,-1224 1301.4,-1224"/>
 <text text-anchor="middle" x="1354.4" y="-1231" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Glyph</text>
 </a>
 </g>
@@ -247,7 +248,7 @@
 <!-- Node94 -->
 <g id="node258" class="node"><title>Node94</title>
 <a xlink:href="classMezzanine_1_1UI_1_1TextureAtlas.xhtml" target="_top" xlink:title="Mezzanine::UI::TextureAtlas">
-<polygon fill="none" stroke="black" points="1701.9,-781 1701.9,-801 1836.9,-801 1836.9,-781 1701.9,-781"/>
+<polygon fill="white" stroke="black" points="1701.9,-781 1701.9,-801 1836.9,-801 1836.9,-781 1701.9,-781"/>
 <text text-anchor="middle" x="1769.4" y="-788" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TextureAtlas</text>
 </a>
 </g>
@@ -266,7 +267,7 @@
 </g>
 <!-- Node13 -->
 <g id="node27" class="node"><title>Node13</title>
-<polygon fill="none" stroke="#bfbfbf" points="1644.4,-1 1644.4,-33 1758.4,-33 1758.4,-1 1644.4,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1644.4,-1 1644.4,-33 1758.4,-33 1758.4,-1 1644.4,-1"/>
 <text text-anchor="start" x="1652.4" y="-20" font-family="FreeSans" font-size="10.00">std::map&lt; Graphics</text>
 <text text-anchor="middle" x="1701.4" y="-8" font-family="FreeSans" font-size="10.00">::Viewport *, Screen * &gt;</text>
 </g>
@@ -278,7 +279,7 @@
 </g>
 <!-- Node92 -->
 <g id="node252" class="node"><title>Node92</title>
-<polygon fill="none" stroke="#bfbfbf" points="1337.9,-7 1337.9,-27 1450.9,-27 1450.9,-7 1337.9,-7"/>
+<polygon fill="white" stroke="#bfbfbf" points="1337.9,-7 1337.9,-27 1450.9,-27 1450.9,-7 1337.9,-7"/>
 <text text-anchor="middle" x="1394.4" y="-14" font-family="FreeSans" font-size="10.00">std::vector&lt; Screen * &gt;</text>
 </g>
 <!-- Node5&#45;&gt;Node92 -->
@@ -290,7 +291,7 @@
 <!-- Node102 -->
 <g id="node286" class="node"><title>Node102</title>
 <a xlink:href="structMezzanine_1_1UI_1_1ScreenInternalData.xhtml" target="_top" xlink:title="Basic struct holding some of the internal bits of this class that could not be placed on the class di...">
-<polygon fill="none" stroke="black" points="980.396,-7 980.396,-27 1144.4,-27 1144.4,-7 980.396,-7"/>
+<polygon fill="white" stroke="black" points="980.396,-7 980.396,-27 1144.4,-27 1144.4,-7 980.396,-7"/>
 <text text-anchor="middle" x="1062.4" y="-14" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScreenInternalData</text>
 </a>
 </g>
@@ -303,7 +304,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1UI_1_1ExtendedRenderableFactory.xhtml" target="_top" xlink:title="This class is responsible for the creation and destruction of all UI renderables.">
-<polygon fill="none" stroke="black" points="1503.4,-153 1503.4,-185 1673.4,-185 1673.4,-153 1503.4,-153"/>
+<polygon fill="white" stroke="black" points="1503.4,-153 1503.4,-185 1673.4,-185 1673.4,-153 1503.4,-153"/>
 <text text-anchor="start" x="1511.4" y="-172" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ExtendedRenderable</text>
 <text text-anchor="middle" x="1588.4" y="-160" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -316,7 +317,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1UI_1_1RenderableFactory.xhtml" target="_top" xlink:title="This class is responsible for the creation and destruction of all UI renderables.">
-<polygon fill="none" stroke="black" points="785.396,-235 785.396,-267 915.396,-267 915.396,-235 785.396,-235"/>
+<polygon fill="white" stroke="black" points="785.396,-235 785.396,-267 915.396,-267 915.396,-235 785.396,-235"/>
 <text text-anchor="start" x="793.396" y="-254" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 <text text-anchor="middle" x="850.396" y="-242" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -341,7 +342,7 @@
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; UIManager \&gt;">
-<polygon fill="none" stroke="black" points="932.896,-235 932.896,-267 1039.9,-267 1039.9,-235 932.896,-235"/>
+<polygon fill="white" stroke="black" points="932.896,-235 932.896,-267 1039.9,-267 1039.9,-235 932.896,-235"/>
 <text text-anchor="start" x="940.896" y="-254" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="986.396" y="-242" font-family="FreeSans" font-size="10.00">&lt; UIManager &gt;</text>
 </a>
@@ -355,7 +356,7 @@
 <!-- Node90 -->
 <g id="node245" class="node"><title>Node90</title>
 <a xlink:href="classMezzanine_1_1UI_1_1WidgetUpdateWorkUnit.xhtml" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of widgets in the UI system.">
-<polygon fill="none" stroke="black" points="1057.4,-235 1057.4,-267 1199.4,-267 1199.4,-235 1057.4,-235"/>
+<polygon fill="white" stroke="black" points="1057.4,-235 1057.4,-267 1199.4,-267 1199.4,-235 1057.4,-235"/>
 <text text-anchor="start" x="1065.4" y="-254" font-family="FreeSans" font-size="10.00">Mezzanine::UI::WidgetUpdate</text>
 <text text-anchor="middle" x="1128.4" y="-242" font-family="FreeSans" font-size="10.00">WorkUnit</text>
 </a>
@@ -369,7 +370,7 @@
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="3036.4,-781 3036.4,-801 3162.4,-801 3162.4,-781 3036.4,-781"/>
+<polygon fill="white" stroke="black" points="3036.4,-781 3036.4,-801 3162.4,-801 3162.4,-781 3036.4,-781"/>
 <text text-anchor="middle" x="3099.4" y="-788" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -381,7 +382,7 @@
 <!-- Node24 -->
 <g id="node52" class="node"><title>Node24</title>
 <a xlink:href="classMezzanine_1_1WorldManager.xhtml" target="_top" xlink:title="This is the base class for all managers that belong to a single world instance.">
-<polygon fill="none" stroke="black" points="3073.9,-692 3073.9,-712 3202.9,-712 3202.9,-692 3073.9,-692"/>
+<polygon fill="white" stroke="black" points="3073.9,-692 3073.9,-712 3202.9,-712 3202.9,-692 3073.9,-692"/>
 <text text-anchor="middle" x="3138.4" y="-699" font-family="FreeSans" font-size="10.00">Mezzanine::WorldManager</text>
 </a>
 </g>
@@ -393,7 +394,7 @@
 <!-- Node50 -->
 <g id="node128" class="node"><title>Node50</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" target="_top" xlink:title="This is intended to store basic graphics setting for the user.">
-<polygon fill="none" stroke="black" points="2569.9,-686 2569.9,-718 2674.9,-718 2674.9,-686 2569.9,-686"/>
+<polygon fill="white" stroke="black" points="2569.9,-686 2569.9,-718 2674.9,-718 2674.9,-686 2569.9,-686"/>
 <text text-anchor="start" x="2577.9" y="-705" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="2622.4" y="-693" font-family="FreeSans" font-size="10.00">::GraphicsManager</text>
 </a>
@@ -406,7 +407,7 @@
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="none" stroke="black" points="3185.9,-898 3185.9,-918 3286.9,-918 3286.9,-898 3185.9,-898"/>
+<polygon fill="white" stroke="black" points="3185.9,-898 3185.9,-918 3286.9,-918 3286.9,-898 3185.9,-898"/>
 <text text-anchor="middle" x="3236.4" y="-905" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -419,7 +420,7 @@
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="none" stroke="black" points="3179.9,-775 3179.9,-807 3286.9,-807 3286.9,-775 3179.9,-775"/>
+<polygon fill="white" stroke="black" points="3179.9,-775 3179.9,-807 3286.9,-807 3286.9,-775 3179.9,-775"/>
 <text text-anchor="start" x="3187.9" y="-794" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="3233.4" y="-782" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -449,7 +450,7 @@
 <!-- Node14 -->
 <g id="node29" class="node"><title>Node14</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Viewport.xhtml" target="_top" xlink:title="This class is for creating and managing viewports within a game window.">
-<polygon fill="none" stroke="black" points="2696.9,-503 2696.9,-535 2801.9,-535 2801.9,-503 2696.9,-503"/>
+<polygon fill="white" stroke="black" points="2696.9,-503 2696.9,-535 2801.9,-535 2801.9,-503 2696.9,-503"/>
 <text text-anchor="start" x="2704.9" y="-522" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="2749.4" y="-510" font-family="FreeSans" font-size="10.00">::Viewport</text>
 </a>
@@ -469,7 +470,7 @@
 <!-- Node15 -->
 <g id="node31" class="node"><title>Node15</title>
 <a xlink:href="classMezzanine_1_1Camera.xhtml" target="_top" xlink:title="This is the camera class.">
-<polygon fill="none" stroke="black" points="2724.9,-427 2724.9,-447 2825.9,-447 2825.9,-427 2724.9,-427"/>
+<polygon fill="white" stroke="black" points="2724.9,-427 2724.9,-447 2825.9,-447 2825.9,-427 2724.9,-427"/>
 <text text-anchor="middle" x="2775.4" y="-434" font-family="FreeSans" font-size="10.00">Mezzanine::Camera</text>
 </a>
 </g>
@@ -488,7 +489,7 @@
 <!-- Node23 -->
 <g id="node50" class="node"><title>Node23</title>
 <a xlink:href="classMezzanine_1_1CameraManager.xhtml" target="_top" xlink:title="This is the manager class for all camera functions.">
-<polygon fill="none" stroke="black" points="2783.4,-159 2783.4,-179 2921.4,-179 2921.4,-159 2783.4,-159"/>
+<polygon fill="white" stroke="black" points="2783.4,-159 2783.4,-179 2921.4,-179 2921.4,-159 2783.4,-159"/>
 <text text-anchor="middle" x="2852.4" y="-166" font-family="FreeSans" font-size="10.00">Mezzanine::CameraManager</text>
 </a>
 </g>
@@ -500,7 +501,7 @@
 </g>
 <!-- Node27 -->
 <g id="node61" class="node"><title>Node27</title>
-<polygon fill="none" stroke="#bfbfbf" points="2753.4,-287 2753.4,-307 2869.4,-307 2869.4,-287 2753.4,-287"/>
+<polygon fill="white" stroke="#bfbfbf" points="2753.4,-287 2753.4,-307 2869.4,-307 2869.4,-287 2753.4,-287"/>
 <text text-anchor="middle" x="2811.4" y="-294" font-family="FreeSans" font-size="10.00">std::vector&lt; Camera * &gt;</text>
 </g>
 <!-- Node15&#45;&gt;Node27 -->
@@ -511,7 +512,7 @@
 </g>
 <!-- Node45 -->
 <g id="node116" class="node"><title>Node45</title>
-<polygon fill="none" stroke="#bfbfbf" points="2652.4,-235 2652.4,-267 2760.4,-267 2760.4,-235 2652.4,-235"/>
+<polygon fill="white" stroke="#bfbfbf" points="2652.4,-235 2652.4,-267 2760.4,-267 2760.4,-235 2652.4,-235"/>
 <text text-anchor="start" x="2660.4" y="-254" font-family="FreeSans" font-size="10.00">std::map&lt; Camera *,</text>
 <text text-anchor="middle" x="2706.4" y="-242" font-family="FreeSans" font-size="10.00"> CameraController * &gt;</text>
 </g>
@@ -524,7 +525,7 @@
 <!-- Node46 -->
 <g id="node118" class="node"><title>Node46</title>
 <a xlink:href="classMezzanine_1_1CameraController.xhtml" target="_top" xlink:title="This is a simplified controller class for use with cameras.">
-<polygon fill="none" stroke="black" points="2852.4,-327 2852.4,-347 2994.4,-347 2994.4,-327 2852.4,-327"/>
+<polygon fill="white" stroke="black" points="2852.4,-327 2852.4,-347 2994.4,-347 2994.4,-327 2852.4,-327"/>
 <text text-anchor="middle" x="2923.4" y="-334" font-family="FreeSans" font-size="10.00">Mezzanine::CameraController</text>
 </a>
 </g>
@@ -537,7 +538,7 @@
 <!-- Node16 -->
 <g id="node33" class="node"><title>Node16</title>
 <a xlink:href="classMezzanine_1_1AttachableChild.xhtml" target="_top" xlink:title="This class is the base class for objects that can be attached to AttachableParent.">
-<polygon fill="none" stroke="black" points="4157.9,-898 4157.9,-918 4292.9,-918 4292.9,-898 4157.9,-898"/>
+<polygon fill="white" stroke="black" points="4157.9,-898 4157.9,-918 4292.9,-918 4292.9,-898 4157.9,-898"/>
 <text text-anchor="middle" x="4225.4" y="-905" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableChild</text>
 </a>
 </g>
@@ -548,7 +549,7 @@
 </g>
 <!-- Node22 -->
 <g id="node46" class="node"><title>Node22</title>
-<polygon fill="none" stroke="#bfbfbf" points="4350.9,-781 4350.9,-801 4501.9,-801 4501.9,-781 4350.9,-781"/>
+<polygon fill="white" stroke="#bfbfbf" points="4350.9,-781 4350.9,-801 4501.9,-801 4501.9,-781 4350.9,-781"/>
 <text text-anchor="middle" x="4426.4" y="-788" font-family="FreeSans" font-size="10.00">std::vector&lt; AttachableChild * &gt;</text>
 </g>
 <!-- Node16&#45;&gt;Node22 -->
@@ -560,7 +561,7 @@
 <!-- Node36 -->
 <g id="node85" class="node"><title>Node36</title>
 <a xlink:href="classMezzanine_1_1WorldNode.xhtml" target="_top" xlink:title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails...">
-<polygon fill="none" stroke="black" points="4138.4,-509 4138.4,-529 4252.4,-529 4252.4,-509 4138.4,-509"/>
+<polygon fill="white" stroke="black" points="4138.4,-509 4138.4,-529 4252.4,-529 4252.4,-509 4138.4,-509"/>
 <text text-anchor="middle" x="4195.4" y="-516" font-family="FreeSans" font-size="10.00">Mezzanine::WorldNode</text>
 </a>
 </g>
@@ -572,7 +573,7 @@
 <!-- Node38 -->
 <g id="node96" class="node"><title>Node38</title>
 <a xlink:href="classMezzanine_1_1ParticleEffect.xhtml" target="_top" xlink:title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">
-<polygon fill="none" stroke="black" points="3963.4,-781 3963.4,-801 4087.4,-801 4087.4,-781 3963.4,-781"/>
+<polygon fill="white" stroke="black" points="3963.4,-781 3963.4,-801 4087.4,-801 4087.4,-781 3963.4,-781"/>
 <text text-anchor="middle" x="4025.4" y="-788" font-family="FreeSans" font-size="10.00">Mezzanine::ParticleEffect</text>
 </a>
 </g>
@@ -584,7 +585,7 @@
 <!-- Node41 -->
 <g id="node104" class="node"><title>Node41</title>
 <a xlink:href="classMezzanine_1_1Light.xhtml" target="_top" xlink:title="This class is the class used for dynamic lighting within the scene.">
-<polygon fill="none" stroke="black" points="4308.4,-509 4308.4,-529 4396.4,-529 4396.4,-509 4308.4,-509"/>
+<polygon fill="white" stroke="black" points="4308.4,-509 4308.4,-529 4396.4,-529 4396.4,-509 4308.4,-509"/>
 <text text-anchor="middle" x="4352.4" y="-516" font-family="FreeSans" font-size="10.00">Mezzanine::Light</text>
 </a>
 </g>
@@ -596,7 +597,7 @@
 <!-- Node43 -->
 <g id="node110" class="node"><title>Node43</title>
 <a xlink:href="classMezzanine_1_1Entity.xhtml" target="_top" xlink:title="This class is useful for representing graphical bodies without a physics representation.">
-<polygon fill="none" stroke="black" points="4254.9,-427 4254.9,-447 4345.9,-447 4345.9,-427 4254.9,-427"/>
+<polygon fill="white" stroke="black" points="4254.9,-427 4254.9,-447 4345.9,-447 4345.9,-427 4254.9,-427"/>
 <text text-anchor="middle" x="4300.4" y="-434" font-family="FreeSans" font-size="10.00">Mezzanine::Entity</text>
 </a>
 </g>
@@ -608,7 +609,7 @@
 <!-- Node17 -->
 <g id="node35" class="node"><title>Node17</title>
 <a xlink:href="classMezzanine_1_1AttachableBase.xhtml" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
-<polygon fill="none" stroke="black" points="4157.9,-1017 4157.9,-1037 4292.9,-1037 4292.9,-1017 4157.9,-1017"/>
+<polygon fill="white" stroke="black" points="4157.9,-1017 4157.9,-1037 4292.9,-1037 4292.9,-1017 4157.9,-1017"/>
 <text text-anchor="middle" x="4225.4" y="-1024" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableBase</text>
 </a>
 </g>
@@ -620,7 +621,7 @@
 <!-- Node21 -->
 <g id="node43" class="node"><title>Node21</title>
 <a xlink:href="classMezzanine_1_1AttachableParent.xhtml" target="_top" xlink:title="Base class for objects that can have attachables attached to them.">
-<polygon fill="none" stroke="black" points="4329.4,-692 4329.4,-712 4471.4,-712 4471.4,-692 4329.4,-692"/>
+<polygon fill="white" stroke="black" points="4329.4,-692 4329.4,-712 4471.4,-712 4471.4,-692 4329.4,-692"/>
 <text text-anchor="middle" x="4400.4" y="-699" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableParent</text>
 </a>
 </g>
@@ -638,7 +639,7 @@
 <!-- Node18 -->
 <g id="node37" class="node"><title>Node18</title>
 <a xlink:href="classMezzanine_1_1Transform.xhtml" target="_top" xlink:title="Stores information about relative location and rotation in 3d space.">
-<polygon fill="none" stroke="black" points="3939.4,-1017 3939.4,-1037 4049.4,-1037 4049.4,-1017 3939.4,-1017"/>
+<polygon fill="white" stroke="black" points="3939.4,-1017 3939.4,-1037 4049.4,-1037 4049.4,-1017 3939.4,-1017"/>
 <text text-anchor="middle" x="3994.4" y="-1024" font-family="FreeSans" font-size="10.00">Mezzanine::Transform</text>
 </a>
 </g>
@@ -651,7 +652,7 @@
 <!-- Node19 -->
 <g id="node39" class="node"><title>Node19</title>
 <a xlink:href="classMezzanine_1_1Vector3.xhtml" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
-<polygon fill="none" stroke="black" points="3610.4,-1313 3610.4,-1333 3710.4,-1333 3710.4,-1313 3610.4,-1313"/>
+<polygon fill="white" stroke="black" points="3610.4,-1313 3610.4,-1333 3710.4,-1333 3710.4,-1313 3610.4,-1313"/>
 <text text-anchor="middle" x="3660.4" y="-1320" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>
 </g>
@@ -670,7 +671,7 @@
 <!-- Node30 -->
 <g id="node69" class="node"><title>Node30</title>
 <a xlink:href="classMezzanine_1_1Plane.xhtml" target="_top" xlink:title="This is used to represent a flat infinite slice of the game world.">
-<polygon fill="none" stroke="black" points="3614.4,-1182 3614.4,-1202 3706.4,-1202 3706.4,-1182 3614.4,-1182"/>
+<polygon fill="white" stroke="black" points="3614.4,-1182 3614.4,-1202 3706.4,-1202 3706.4,-1182 3614.4,-1182"/>
 <text text-anchor="middle" x="3660.4" y="-1189" font-family="FreeSans" font-size="10.00">Mezzanine::Plane</text>
 </a>
 </g>
@@ -699,7 +700,7 @@
 <!-- Node20 -->
 <g id="node41" class="node"><title>Node20</title>
 <a xlink:href="classMezzanine_1_1Quaternion.xhtml" target="_top" xlink:title="This is used to store information about rotation in 3d space.">
-<polygon fill="none" stroke="black" points="3850.4,-1135 3850.4,-1155 3964.4,-1155 3964.4,-1135 3850.4,-1135"/>
+<polygon fill="white" stroke="black" points="3850.4,-1135 3850.4,-1155 3964.4,-1155 3964.4,-1135 3850.4,-1135"/>
 <text text-anchor="middle" x="3907.4" y="-1142" font-family="FreeSans" font-size="10.00">Mezzanine::Quaternion</text>
 </a>
 </g>
@@ -712,7 +713,7 @@
 <!-- Node29 -->
 <g id="node67" class="node"><title>Node29</title>
 <a xlink:href="classMezzanine_1_1Internal_1_1SceneManagerData.xhtml" target="_top" xlink:title="Stores internal data for the SCeneManager to keep it from cluttering the Header file.">
-<polygon fill="none" stroke="black" points="3425.9,-503 3425.9,-535 3532.9,-535 3532.9,-503 3425.9,-503"/>
+<polygon fill="white" stroke="black" points="3425.9,-503 3425.9,-535 3532.9,-535 3532.9,-503 3425.9,-503"/>
 <text text-anchor="start" x="3433.9" y="-522" font-family="FreeSans" font-size="10.00">Mezzanine::Internal</text>
 <text text-anchor="middle" x="3479.4" y="-510" font-family="FreeSans" font-size="10.00">::SceneManagerData</text>
 </a>
@@ -759,7 +760,7 @@
 </g>
 <!-- Node26 -->
 <g id="node57" class="node"><title>Node26</title>
-<polygon fill="none" stroke="#bfbfbf" points="2955.9,-591 2955.9,-611 3100.9,-611 3100.9,-591 2955.9,-591"/>
+<polygon fill="white" stroke="#bfbfbf" points="2955.9,-591 2955.9,-611 3100.9,-611 3100.9,-591 2955.9,-591"/>
 <text text-anchor="middle" x="3028.4" y="-598" font-family="FreeSans" font-size="10.00">std::vector&lt; WorldManager * &gt;</text>
 </g>
 <!-- Node24&#45;&gt;Node26 -->
@@ -771,7 +772,7 @@
 <!-- Node28 -->
 <g id="node64" class="node"><title>Node28</title>
 <a xlink:href="classMezzanine_1_1SceneManager.xhtml" target="_top" xlink:title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">
-<polygon fill="none" stroke="black" points="3753.4,-591 3753.4,-611 3885.4,-611 3885.4,-591 3753.4,-591"/>
+<polygon fill="white" stroke="black" points="3753.4,-591 3753.4,-611 3885.4,-611 3885.4,-591 3753.4,-591"/>
 <text text-anchor="middle" x="3819.4" y="-598" font-family="FreeSans" font-size="10.00">Mezzanine::SceneManager</text>
 </a>
 </g>
@@ -783,7 +784,7 @@
 <!-- Node25 -->
 <g id="node55" class="node"><title>Node25</title>
 <a xlink:href="classMezzanine_1_1World.xhtml" target="_top" xlink:title="This class represents a world for objects to interact within.">
-<polygon fill="none" stroke="black" points="3051.4,-509 3051.4,-529 3143.4,-529 3143.4,-509 3051.4,-509"/>
+<polygon fill="white" stroke="black" points="3051.4,-509 3051.4,-529 3143.4,-529 3143.4,-509 3051.4,-509"/>
 <text text-anchor="middle" x="3097.4" y="-516" font-family="FreeSans" font-size="10.00">Mezzanine::World</text>
 </a>
 </g>
@@ -820,7 +821,7 @@
 <!-- Node33 -->
 <g id="node78" class="node"><title>Node33</title>
 <a xlink:href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world...">
-<polygon fill="none" stroke="black" points="3653.4,-503 3653.4,-535 3811.4,-535 3811.4,-503 3653.4,-503"/>
+<polygon fill="white" stroke="black" points="3653.4,-503 3653.4,-535 3811.4,-535 3811.4,-503 3653.4,-503"/>
 <text text-anchor="start" x="3661.4" y="-522" font-family="FreeSans" font-size="10.00">Mezzanine::TrackingNodeUpdate</text>
 <text text-anchor="middle" x="3732.4" y="-510" font-family="FreeSans" font-size="10.00">WorkUnit</text>
 </a>
@@ -846,7 +847,7 @@
 <!-- Node44 -->
 <g id="node113" class="node"><title>Node44</title>
 <a xlink:href="structMezzanine_1_1Internal_1_1EntityInternalData.xhtml" target="_top" xlink:title="This class stores the internal data of an Entity.">
-<polygon fill="none" stroke="black" points="4021.9,-503 4021.9,-535 4120.9,-535 4120.9,-503 4021.9,-503"/>
+<polygon fill="white" stroke="black" points="4021.9,-503 4021.9,-535 4120.9,-535 4120.9,-503 4021.9,-503"/>
 <text text-anchor="start" x="4029.9" y="-522" font-family="FreeSans" font-size="10.00">Mezzanine::Internal</text>
 <text text-anchor="middle" x="4071.4" y="-510" font-family="FreeSans" font-size="10.00">::EntityInternalData</text>
 </a>
@@ -872,7 +873,7 @@
 <!-- Node31 -->
 <g id="node73" class="node"><title>Node31</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="2372.9,-1224 2372.9,-1244 2429.9,-1244 2429.9,-1224 2372.9,-1224"/>
+<polygon fill="white" stroke="#bfbfbf" points="2372.9,-1224 2372.9,-1244 2429.9,-1244 2429.9,-1224 2372.9,-1224"/>
 <text text-anchor="middle" x="2401.4" y="-1231" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -905,7 +906,7 @@
 <!-- Node51 -->
 <g id="node131" class="node"><title>Node51</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingsHandler.xhtml" target="_top" xlink:title="An abstract class for other classes that manage groups of settings.">
-<polygon fill="none" stroke="black" points="2533.9,-775 2533.9,-807 2664.9,-807 2664.9,-775 2533.9,-775"/>
+<polygon fill="white" stroke="black" points="2533.9,-775 2533.9,-807 2664.9,-807 2664.9,-775 2533.9,-775"/>
 <text text-anchor="start" x="2541.9" y="-794" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettings</text>
 <text text-anchor="middle" x="2599.4" y="-782" font-family="FreeSans" font-size="10.00">Handler</text>
 </a>
@@ -919,7 +920,7 @@
 </g>
 <!-- Node52 -->
 <g id="node133" class="node"><title>Node52</title>
-<polygon fill="none" stroke="#bfbfbf" points="2506.4,-1011 2506.4,-1043 2626.4,-1043 2626.4,-1011 2506.4,-1011"/>
+<polygon fill="white" stroke="#bfbfbf" points="2506.4,-1011 2506.4,-1043 2626.4,-1043 2626.4,-1011 2506.4,-1011"/>
 <text text-anchor="start" x="2514.4" y="-1030" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
 <text text-anchor="middle" x="2566.4" y="-1018" font-family="FreeSans" font-size="10.00">SettingFile * &gt;</text>
 </g>
@@ -932,7 +933,7 @@
 <!-- Node53 -->
 <g id="node135" class="node"><title>Node53</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingFile.xhtml" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s.">
-<polygon fill="none" stroke="black" points="2713.4,-1135 2713.4,-1155 2855.4,-1155 2855.4,-1135 2713.4,-1135"/>
+<polygon fill="white" stroke="black" points="2713.4,-1135 2713.4,-1155 2855.4,-1155 2855.4,-1135 2713.4,-1135"/>
 <text text-anchor="middle" x="2784.4" y="-1142" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingFile</text>
 </a>
 </g>
@@ -945,7 +946,7 @@
 <!-- Node56 -->
 <g id="node142" class="node"><title>Node56</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
-<polygon fill="none" stroke="black" points="2410.4,-1129 2410.4,-1161 2536.4,-1161 2536.4,-1129 2410.4,-1129"/>
+<polygon fill="white" stroke="black" points="2410.4,-1129 2410.4,-1161 2536.4,-1161 2536.4,-1129 2410.4,-1129"/>
 <text text-anchor="start" x="2418.4" y="-1148" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="2473.4" y="-1136" font-family="FreeSans" font-size="10.00">SetContainer</text>
 </a>
@@ -958,7 +959,7 @@
 </g>
 <!-- Node59 -->
 <g id="node150" class="node"><title>Node59</title>
-<polygon fill="none" stroke="#bfbfbf" points="2267.9,-1135 2267.9,-1155 2392.9,-1155 2392.9,-1135 2267.9,-1135"/>
+<polygon fill="white" stroke="#bfbfbf" points="2267.9,-1135 2267.9,-1155 2392.9,-1155 2392.9,-1135 2267.9,-1135"/>
 <text text-anchor="middle" x="2330.4" y="-1142" font-family="FreeSans" font-size="10.00">std::map&lt; String, String &gt;</text>
 </g>
 <!-- Node31&#45;&gt;Node59 -->
@@ -970,7 +971,7 @@
 </g>
 <!-- Node60 -->
 <g id="node157" class="node"><title>Node60</title>
-<polygon fill="none" stroke="#bfbfbf" points="2880.4,-892 2880.4,-924 3000.4,-924 3000.4,-892 2880.4,-892"/>
+<polygon fill="white" stroke="#bfbfbf" points="2880.4,-892 2880.4,-924 3000.4,-924 3000.4,-892 2880.4,-892"/>
 <text text-anchor="start" x="2888.4" y="-911" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
 <text text-anchor="middle" x="2940.4" y="-899" font-family="FreeSans" font-size="10.00">SettingGroup * &gt;</text>
 </g>
@@ -982,7 +983,7 @@
 </g>
 <!-- Node66 -->
 <g id="node175" class="node"><title>Node66</title>
-<polygon fill="none" stroke="#bfbfbf" points="3041.4,-1076 3041.4,-1096 3143.4,-1096 3143.4,-1076 3041.4,-1076"/>
+<polygon fill="white" stroke="#bfbfbf" points="3041.4,-1076 3041.4,-1096 3143.4,-1096 3143.4,-1076 3041.4,-1076"/>
 <text text-anchor="middle" x="3092.4" y="-1083" font-family="FreeSans" font-size="10.00">std::vector&lt; String &gt;</text>
 </g>
 <!-- Node31&#45;&gt;Node66 -->
@@ -994,7 +995,7 @@
 <!-- Node76 -->
 <g id="node202" class="node"><title>Node76</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Caption.xhtml" target="_top" xlink:title="This class is a helper class, specifically for use with text.">
-<polygon fill="none" stroke="black" points="1462.4,-591 1462.4,-611 1576.4,-611 1576.4,-591 1462.4,-591"/>
+<polygon fill="white" stroke="black" points="1462.4,-591 1462.4,-611 1576.4,-611 1576.4,-591 1462.4,-591"/>
 <text text-anchor="middle" x="1519.4" y="-598" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Caption</text>
 </a>
 </g>
@@ -1014,7 +1015,7 @@
 <!-- Node81 -->
 <g id="node215" class="node"><title>Node81</title>
 <a xlink:href="structMezzanine_1_1UI_1_1VertexData.xhtml" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
-<polygon fill="none" stroke="black" points="1513.4,-1135 1513.4,-1155 1641.4,-1155 1641.4,-1135 1513.4,-1135"/>
+<polygon fill="white" stroke="black" points="1513.4,-1135 1513.4,-1155 1641.4,-1155 1641.4,-1135 1513.4,-1135"/>
 <text text-anchor="middle" x="1577.4" y="-1142" font-family="FreeSans" font-size="10.00">Mezzanine::UI::VertexData</text>
 </a>
 </g>
@@ -1033,7 +1034,7 @@
 <!-- Node85 -->
 <g id="node232" class="node"><title>Node85</title>
 <a xlink:href="classMezzanine_1_1UI_1_1GlyphData.xhtml" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
-<polygon fill="none" stroke="black" points="1593.4,-1017 1593.4,-1037 1719.4,-1037 1719.4,-1017 1593.4,-1017"/>
+<polygon fill="white" stroke="black" points="1593.4,-1017 1593.4,-1037 1719.4,-1037 1719.4,-1017 1593.4,-1017"/>
 <text text-anchor="middle" x="1656.4" y="-1024" font-family="FreeSans" font-size="10.00">Mezzanine::UI::GlyphData</text>
 </a>
 </g>
@@ -1045,7 +1046,7 @@
 </g>
 <!-- Node93 -->
 <g id="node255" class="node"><title>Node93</title>
-<polygon fill="none" stroke="#bfbfbf" points="1707.4,-686 1707.4,-718 1831.4,-718 1831.4,-686 1707.4,-686"/>
+<polygon fill="white" stroke="#bfbfbf" points="1707.4,-686 1707.4,-718 1831.4,-718 1831.4,-686 1707.4,-686"/>
 <text text-anchor="start" x="1715.4" y="-705" font-family="FreeSans" font-size="10.00">std::map&lt; String, Texture</text>
 <text text-anchor="middle" x="1769.4" y="-693" font-family="FreeSans" font-size="10.00">Atlas * &gt;</text>
 </g>
@@ -1057,7 +1058,7 @@
 </g>
 <!-- Node95 -->
 <g id="node261" class="node"><title>Node95</title>
-<polygon fill="none" stroke="#bfbfbf" points="2028.9,-1011 2028.9,-1043 2165.9,-1043 2165.9,-1011 2028.9,-1011"/>
+<polygon fill="white" stroke="#bfbfbf" points="2028.9,-1011 2028.9,-1043 2165.9,-1043 2165.9,-1011 2028.9,-1011"/>
 <text text-anchor="start" x="2036.9" y="-1030" font-family="FreeSans" font-size="10.00">std::map&lt; String, Mezzanine</text>
 <text text-anchor="middle" x="2097.4" y="-1018" font-family="FreeSans" font-size="10.00">::UI::Sprite * &gt;</text>
 </g>
@@ -1076,7 +1077,7 @@
 <!-- Node101 -->
 <g id="node282" class="node"><title>Node101</title>
 <a xlink:href="structMezzanine_1_1UI_1_1AtlasAndPosition.xhtml" target="_top" xlink:title="This class stores how the calls to Render are to be done.">
-<polygon fill="none" stroke="black" points="3080.9,-1135 3080.9,-1155 3235.9,-1155 3235.9,-1135 3080.9,-1135"/>
+<polygon fill="white" stroke="black" points="3080.9,-1135 3080.9,-1155 3235.9,-1155 3235.9,-1135 3080.9,-1135"/>
 <text text-anchor="middle" x="3158.4" y="-1142" font-family="FreeSans" font-size="10.00">Mezzanine::UI::AtlasAndPosition</text>
 </a>
 </g>
@@ -1089,7 +1090,7 @@
 <!-- Node32 -->
 <g id="node75" class="node"><title>Node32</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="2355.9,-1307 2355.9,-1339 2446.9,-1339 2446.9,-1307 2355.9,-1307"/>
+<polygon fill="white" stroke="#bfbfbf" points="2355.9,-1307 2355.9,-1339 2446.9,-1339 2446.9,-1307 2355.9,-1307"/>
 <text text-anchor="start" x="2363.9" y="-1326" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="2401.4" y="-1314" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -1107,7 +1108,7 @@
 </g>
 <!-- Node34 -->
 <g id="node80" class="node"><title>Node34</title>
-<polygon fill="none" stroke="#bfbfbf" points="3415.9,-591 3415.9,-611 3502.9,-611 3502.9,-591 3415.9,-591"/>
+<polygon fill="white" stroke="#bfbfbf" points="3415.9,-591 3415.9,-611 3502.9,-611 3502.9,-591 3415.9,-591"/>
 <text text-anchor="middle" x="3459.4" y="-598" font-family="FreeSans" font-size="10.00">DefaultWorkUnit</text>
 </g>
 <!-- Node34&#45;&gt;Node33 -->
@@ -1122,7 +1123,7 @@
 </g>
 <!-- Node35 -->
 <g id="node83" class="node"><title>Node35</title>
-<polygon fill="none" stroke="#bfbfbf" points="3866.9,-421 3866.9,-453 3967.9,-453 3967.9,-421 3866.9,-421"/>
+<polygon fill="white" stroke="#bfbfbf" points="3866.9,-421 3866.9,-453 3967.9,-453 3967.9,-421 3866.9,-421"/>
 <text text-anchor="start" x="3874.9" y="-440" font-family="FreeSans" font-size="10.00">std::set&lt; Mezzanine</text>
 <text text-anchor="middle" x="3917.4" y="-428" font-family="FreeSans" font-size="10.00">::WorldNode * &gt;</text>
 </g>
@@ -1140,7 +1141,7 @@
 </g>
 <!-- Node39 -->
 <g id="node99" class="node"><title>Node39</title>
-<polygon fill="none" stroke="#bfbfbf" points="3985.4,-427 3985.4,-447 4115.4,-447 4115.4,-427 3985.4,-427"/>
+<polygon fill="white" stroke="#bfbfbf" points="3985.4,-427 3985.4,-447 4115.4,-447 4115.4,-427 3985.4,-427"/>
 <text text-anchor="middle" x="4050.4" y="-434" font-family="FreeSans" font-size="10.00">std::vector&lt; WorldNode * &gt;</text>
 </g>
 <!-- Node36&#45;&gt;Node39 -->
@@ -1151,7 +1152,7 @@
 </g>
 <!-- Node37 -->
 <g id="node94" class="node"><title>Node37</title>
-<polygon fill="none" stroke="#bfbfbf" points="3796.4,-692 3796.4,-712 3936.4,-712 3936.4,-692 3796.4,-692"/>
+<polygon fill="white" stroke="#bfbfbf" points="3796.4,-692 3796.4,-712 3936.4,-712 3936.4,-692 3796.4,-692"/>
 <text text-anchor="middle" x="3866.4" y="-699" font-family="FreeSans" font-size="10.00">std::vector&lt; ParticleEffect * &gt;</text>
 </g>
 <!-- Node37&#45;&gt;Node28 -->
@@ -1174,7 +1175,7 @@
 </g>
 <!-- Node40 -->
 <g id="node102" class="node"><title>Node40</title>
-<polygon fill="none" stroke="#bfbfbf" points="4133.4,-427 4133.4,-447 4237.4,-447 4237.4,-427 4133.4,-427"/>
+<polygon fill="white" stroke="#bfbfbf" points="4133.4,-427 4133.4,-447 4237.4,-447 4237.4,-427 4133.4,-427"/>
 <text text-anchor="middle" x="4185.4" y="-434" font-family="FreeSans" font-size="10.00">std::vector&lt; Light * &gt;</text>
 </g>
 <!-- Node40&#45;&gt;Node28 -->
@@ -1191,7 +1192,7 @@
 </g>
 <!-- Node42 -->
 <g id="node108" class="node"><title>Node42</title>
-<polygon fill="none" stroke="#bfbfbf" points="3909.9,-327 3909.9,-347 4016.9,-347 4016.9,-327 3909.9,-327"/>
+<polygon fill="white" stroke="#bfbfbf" points="3909.9,-327 3909.9,-347 4016.9,-347 4016.9,-327 3909.9,-327"/>
 <text text-anchor="middle" x="3963.4" y="-334" font-family="FreeSans" font-size="10.00">std::vector&lt; Entity * &gt;</text>
 </g>
 <!-- Node42&#45;&gt;Node28 -->
@@ -1227,7 +1228,7 @@
 <!-- Node47 -->
 <g id="node121" class="node"><title>Node47</title>
 <a xlink:href="structMezzanine_1_1CameraController_1_1AngleLimits.xhtml" target="_top" xlink:title="Boundaries for rotation on one axis.">
-<polygon fill="none" stroke="black" points="2852.4,-421 2852.4,-453 2994.4,-453 2994.4,-421 2852.4,-421"/>
+<polygon fill="white" stroke="black" points="2852.4,-421 2852.4,-453 2994.4,-453 2994.4,-421 2852.4,-421"/>
 <text text-anchor="start" x="2860.4" y="-440" font-family="FreeSans" font-size="10.00">Mezzanine::CameraController</text>
 <text text-anchor="middle" x="2923.4" y="-428" font-family="FreeSans" font-size="10.00">::AngleLimits</text>
 </a>
@@ -1243,7 +1244,7 @@
 <!-- Node48 -->
 <g id="node124" class="node"><title>Node48</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1GameWindow.xhtml" target="_top" xlink:title="This class is for creating and managing game windows.">
-<polygon fill="none" stroke="black" points="2696.9,-585 2696.9,-617 2801.9,-617 2801.9,-585 2696.9,-585"/>
+<polygon fill="white" stroke="black" points="2696.9,-585 2696.9,-617 2801.9,-617 2801.9,-585 2696.9,-585"/>
 <text text-anchor="start" x="2704.9" y="-604" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="2749.4" y="-592" font-family="FreeSans" font-size="10.00">::GameWindow</text>
 </a>
@@ -1262,7 +1263,7 @@
 </g>
 <!-- Node63 -->
 <g id="node166" class="node"><title>Node63</title>
-<polygon fill="none" stroke="#bfbfbf" points="2442.9,-503 2442.9,-535 2549.9,-535 2549.9,-503 2442.9,-503"/>
+<polygon fill="white" stroke="#bfbfbf" points="2442.9,-503 2442.9,-535 2549.9,-535 2549.9,-503 2442.9,-503"/>
 <text text-anchor="start" x="2450.9" y="-522" font-family="FreeSans" font-size="10.00">std::vector&lt; Graphics</text>
 <text text-anchor="middle" x="2496.4" y="-510" font-family="FreeSans" font-size="10.00">::GameWindow * &gt;</text>
 </g>
@@ -1275,7 +1276,7 @@
 <!-- Node49 -->
 <g id="node126" class="node"><title>Node49</title>
 <a xlink:href="structMezzanine_1_1WindowSettings.xhtml" target="_top" xlink:title="This stores all the basic configuration options a game window supports.">
-<polygon fill="none" stroke="black" points="2844.4,-781 2844.4,-801 2980.4,-801 2980.4,-781 2844.4,-781"/>
+<polygon fill="white" stroke="black" points="2844.4,-781 2844.4,-801 2980.4,-801 2980.4,-781 2844.4,-781"/>
 <text text-anchor="middle" x="2912.4" y="-788" font-family="FreeSans" font-size="10.00">Mezzanine::WindowSettings</text>
 </a>
 </g>
@@ -1300,7 +1301,7 @@
 <!-- Node61 -->
 <g id="node161" class="node"><title>Node61</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;">
-<polygon fill="none" stroke="black" points="2533.9,-585 2533.9,-617 2642.9,-617 2642.9,-585 2533.9,-585"/>
+<polygon fill="white" stroke="black" points="2533.9,-585 2533.9,-617 2642.9,-617 2642.9,-585 2533.9,-585"/>
 <text text-anchor="start" x="2541.9" y="-604" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="2588.4" y="-592" font-family="FreeSans" font-size="10.00">&lt; GraphicsManager &gt;</text>
 </a>
@@ -1331,7 +1332,7 @@
 <!-- Node55 -->
 <g id="node140" class="node"><title>Node55</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
-<polygon fill="none" stroke="black" points="2787.4,-1011 2787.4,-1043 2913.4,-1043 2913.4,-1011 2787.4,-1011"/>
+<polygon fill="white" stroke="black" points="2787.4,-1011 2787.4,-1043 2913.4,-1043 2913.4,-1011 2787.4,-1011"/>
 <text text-anchor="start" x="2795.4" y="-1030" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="2850.4" y="-1018" font-family="FreeSans" font-size="10.00">Group</text>
 </a>
@@ -1344,7 +1345,7 @@
 </g>
 <!-- Node54 -->
 <g id="node138" class="node"><title>Node54</title>
-<polygon fill="none" stroke="#bfbfbf" points="2734.4,-892 2734.4,-924 2862.4,-924 2862.4,-892 2734.4,-892"/>
+<polygon fill="white" stroke="#bfbfbf" points="2734.4,-892 2734.4,-924 2862.4,-924 2862.4,-892 2734.4,-892"/>
 <text text-anchor="start" x="2742.4" y="-911" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="2798.4" y="-899" font-family="FreeSans" font-size="10.00">Group * &gt;</text>
 </g>
@@ -1374,7 +1375,7 @@
 <!-- Node58 -->
 <g id="node146" class="node"><title>Node58</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
-<polygon fill="none" stroke="black" points="2271.9,-1017 2271.9,-1037 2412.9,-1037 2412.9,-1017 2271.9,-1017"/>
+<polygon fill="white" stroke="black" points="2271.9,-1017 2271.9,-1037 2412.9,-1037 2412.9,-1017 2271.9,-1017"/>
 <text text-anchor="middle" x="2342.4" y="-1024" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
 </g>
@@ -1391,7 +1392,7 @@
 </g>
 <!-- Node57 -->
 <g id="node144" class="node"><title>Node57</title>
-<polygon fill="none" stroke="#bfbfbf" points="2460.4,-892 2460.4,-924 2588.4,-924 2588.4,-892 2460.4,-892"/>
+<polygon fill="white" stroke="#bfbfbf" points="2460.4,-892 2460.4,-924 2588.4,-924 2588.4,-892 2460.4,-892"/>
 <text text-anchor="start" x="2468.4" y="-911" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="2524.4" y="-899" font-family="FreeSans" font-size="10.00">Set * &gt;</text>
 </g>
@@ -1426,7 +1427,7 @@
 </g>
 <!-- Node62 -->
 <g id="node164" class="node"><title>Node62</title>
-<polygon fill="none" stroke="#bfbfbf" points="2719.9,-775 2719.9,-807 2826.9,-807 2826.9,-775 2719.9,-775"/>
+<polygon fill="white" stroke="#bfbfbf" points="2719.9,-775 2719.9,-807 2826.9,-807 2826.9,-775 2719.9,-775"/>
 <text text-anchor="start" x="2727.9" y="-794" font-family="FreeSans" font-size="10.00">std::vector&lt; Graphics</text>
 <text text-anchor="middle" x="2773.4" y="-782" font-family="FreeSans" font-size="10.00">::RenderSystem &gt;</text>
 </g>
@@ -1445,7 +1446,7 @@
 <!-- Node64 -->
 <g id="node170" class="node"><title>Node64</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.xhtml" target="_top" xlink:title="This does the main loop processing for required to make the Graphics Manager function.">
-<polygon fill="none" stroke="black" points="2299.9,-775 2299.9,-807 2404.9,-807 2404.9,-775 2299.9,-775"/>
+<polygon fill="white" stroke="black" points="2299.9,-775 2299.9,-807 2404.9,-807 2404.9,-775 2299.9,-775"/>
 <text text-anchor="start" x="2307.9" y="-794" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="2352.4" y="-782" font-family="FreeSans" font-size="10.00">::RenderWorkUnit</text>
 </a>
@@ -1458,7 +1459,7 @@
 </g>
 <!-- Node65 -->
 <g id="node172" class="node"><title>Node65</title>
-<polygon fill="none" stroke="#bfbfbf" points="2297.9,-898 2297.9,-918 2442.9,-918 2442.9,-898 2297.9,-898"/>
+<polygon fill="white" stroke="#bfbfbf" points="2297.9,-898 2297.9,-918 2442.9,-918 2442.9,-898 2297.9,-898"/>
 <text text-anchor="middle" x="2370.4" y="-905" font-family="FreeSans" font-size="10.00">Threading::MonopolyWorkUnit</text>
 </g>
 <!-- Node65&#45;&gt;Node64 -->
@@ -1475,7 +1476,7 @@
 </g>
 <!-- Node67 -->
 <g id="node178" class="node"><title>Node67</title>
-<polygon fill="none" stroke="#bfbfbf" points="2422.4,-775 2422.4,-807 2516.4,-807 2516.4,-775 2422.4,-775"/>
+<polygon fill="white" stroke="#bfbfbf" points="2422.4,-775 2422.4,-807 2516.4,-807 2516.4,-775 2422.4,-775"/>
 <text text-anchor="start" x="2430.4" y="-794" font-family="FreeSans" font-size="10.00">std::vector&lt; Ogre::</text>
 <text text-anchor="middle" x="2469.4" y="-782" font-family="FreeSans" font-size="10.00">Plugin * &gt;</text>
 </g>
@@ -1487,7 +1488,7 @@
 </g>
 <!-- Node68 -->
 <g id="node180" class="node"><title>Node68</title>
-<polygon fill="none" stroke="#bfbfbf" points="2859.9,-692 2859.9,-712 2980.9,-712 2980.9,-692 2859.9,-692"/>
+<polygon fill="white" stroke="#bfbfbf" points="2859.9,-692 2859.9,-712 2980.9,-712 2980.9,-692 2859.9,-692"/>
 <text text-anchor="middle" x="2920.4" y="-699" font-family="FreeSans" font-size="10.00">std::list&lt; ViewportEntry &gt;</text>
 </g>
 <!-- Node68&#45;&gt;Node48 -->
@@ -1498,7 +1499,7 @@
 </g>
 <!-- Node69 -->
 <g id="node184" class="node"><title>Node69</title>
-<polygon fill="none" stroke="#bfbfbf" points="438.396,-1307 438.396,-1339 528.396,-1339 528.396,-1307 438.396,-1307"/>
+<polygon fill="white" stroke="#bfbfbf" points="438.396,-1307 438.396,-1339 528.396,-1339 528.396,-1307 438.396,-1307"/>
 <text text-anchor="start" x="446.396" y="-1326" font-family="FreeSans" font-size="10.00">std::vector&lt; Input</text>
 <text text-anchor="middle" x="483.396" y="-1314" font-family="FreeSans" font-size="10.00">::InputCode &gt;</text>
 </g>
@@ -1518,7 +1519,7 @@
 <!-- Node108 -->
 <g id="node303" class="node"><title>Node108</title>
 <a xlink:href="classMezzanine_1_1UI_1_1InputCaptureData.xhtml" target="_top" xlink:title="This class contains all the utilities necessary for capturing input.">
-<polygon fill="none" stroke="black" points="404.896,-1224 404.896,-1244 561.896,-1244 561.896,-1224 404.896,-1224"/>
+<polygon fill="white" stroke="black" points="404.896,-1224 404.896,-1244 561.896,-1244 561.896,-1224 404.896,-1224"/>
 <text text-anchor="middle" x="483.396" y="-1231" font-family="FreeSans" font-size="10.00">Mezzanine::UI::InputCaptureData</text>
 </a>
 </g>
@@ -1530,7 +1531,7 @@
 </g>
 <!-- Node70 -->
 <g id="node186" class="node"><title>Node70</title>
-<polygon fill="none" stroke="#bfbfbf" points="1423.9,-421 1423.9,-453 1536.9,-453 1536.9,-421 1423.9,-421"/>
+<polygon fill="white" stroke="#bfbfbf" points="1423.9,-421 1423.9,-453 1536.9,-453 1536.9,-421 1423.9,-421"/>
 <text text-anchor="start" x="1431.9" y="-440" font-family="FreeSans" font-size="10.00">std::multimap&lt; Input</text>
 <text text-anchor="middle" x="1480.4" y="-428" font-family="FreeSans" font-size="10.00">::InputCode, Button * &gt;</text>
 </g>
@@ -1543,7 +1544,7 @@
 <!-- Node71 -->
 <g id="node188" class="node"><title>Node71</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Button.xhtml" target="_top" xlink:title="This class is a helper class, specifically for use as a button.">
-<polygon fill="none" stroke="black" points="1164.4,-509 1164.4,-529 1274.4,-529 1274.4,-509 1164.4,-509"/>
+<polygon fill="white" stroke="black" points="1164.4,-509 1164.4,-529 1274.4,-529 1274.4,-509 1164.4,-509"/>
 <text text-anchor="middle" x="1219.4" y="-516" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Button</text>
 </a>
 </g>
@@ -1561,7 +1562,7 @@
 </g>
 <!-- Node91 -->
 <g id="node249" class="node"><title>Node91</title>
-<polygon fill="none" stroke="#bfbfbf" points="1163.9,-427 1163.9,-447 1274.9,-447 1274.9,-427 1163.9,-427"/>
+<polygon fill="white" stroke="#bfbfbf" points="1163.9,-427 1163.9,-447 1274.9,-447 1274.9,-427 1163.9,-427"/>
 <text text-anchor="middle" x="1219.4" y="-434" font-family="FreeSans" font-size="10.00">std::vector&lt; Button * &gt;</text>
 </g>
 <!-- Node71&#45;&gt;Node91 -->
@@ -1578,7 +1579,7 @@
 <!-- Node74 -->
 <g id="node196" class="node"><title>Node74</title>
 <a xlink:href="classMezzanine_1_1UI_1_1ActivatableListener.xhtml" target="_top" xlink:title="This class provides customizable functionality to the activatable class.">
-<polygon fill="none" stroke="black" points="289.896,-892 289.896,-924 418.896,-924 418.896,-892 289.896,-892"/>
+<polygon fill="white" stroke="black" points="289.896,-892 289.896,-924 418.896,-924 418.896,-892 289.896,-892"/>
 <text text-anchor="start" x="297.896" y="-911" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Activatable</text>
 <text text-anchor="middle" x="354.396" y="-899" font-family="FreeSans" font-size="10.00">Listener</text>
 </a>
@@ -1591,7 +1592,7 @@
 </g>
 <!-- Node73 -->
 <g id="node194" class="node"><title>Node73</title>
-<polygon fill="none" stroke="#bfbfbf" points="235.396,-775 235.396,-807 351.396,-807 351.396,-775 235.396,-775"/>
+<polygon fill="white" stroke="#bfbfbf" points="235.396,-775 235.396,-807 351.396,-807 351.396,-775 235.396,-775"/>
 <text text-anchor="start" x="243.396" y="-794" font-family="FreeSans" font-size="10.00">std::vector&lt; Activatable</text>
 <text text-anchor="middle" x="293.396" y="-782" font-family="FreeSans" font-size="10.00">Listener * &gt;</text>
 </g>
@@ -1614,7 +1615,7 @@
 </g>
 <!-- Node111 -->
 <g id="node311" class="node"><title>Node111</title>
-<polygon fill="none" stroke="#bfbfbf" points="49.396,-898 49.396,-918 195.396,-918 195.396,-898 49.396,-898"/>
+<polygon fill="white" stroke="#bfbfbf" points="49.396,-898 49.396,-918 195.396,-918 195.396,-898 49.396,-898"/>
 <text text-anchor="middle" x="122.396" y="-905" font-family="FreeSans" font-size="10.00">std::vector&lt; WidgetListener * &gt;</text>
 </g>
 <!-- Node75&#45;&gt;Node111 -->
@@ -1652,7 +1653,7 @@
 </g>
 <!-- Node80 -->
 <g id="node213" class="node"><title>Node80</title>
-<polygon fill="none" stroke="#bfbfbf" points="1385.4,-1011 1385.4,-1043 1499.4,-1043 1499.4,-1011 1385.4,-1011"/>
+<polygon fill="white" stroke="#bfbfbf" points="1385.4,-1011 1385.4,-1043 1499.4,-1043 1499.4,-1011 1385.4,-1011"/>
 <text text-anchor="start" x="1393.4" y="-1030" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="1442.4" y="-1018" font-family="FreeSans" font-size="10.00">::UI::VertexData &gt;</text>
 </g>
@@ -1665,7 +1666,7 @@
 <!-- Node106 -->
 <g id="node296" class="node"><title>Node106</title>
 <a xlink:href="classMezzanine_1_1UI_1_1ScreenVertexData.xhtml" target="_top" xlink:title="This class stores all vertices pertaining to a layer sorted by their priority for rendering...">
-<polygon fill="none" stroke="black" points="1340.9,-898 1340.9,-918 1499.9,-918 1499.9,-898 1340.9,-898"/>
+<polygon fill="white" stroke="black" points="1340.9,-898 1340.9,-918 1499.9,-918 1499.9,-898 1340.9,-898"/>
 <text text-anchor="middle" x="1420.4" y="-905" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScreenVertexData</text>
 </a>
 </g>
@@ -1692,7 +1693,7 @@
 <!-- Node83 -->
 <g id="node220" class="node"><title>Node83</title>
 <a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
-<polygon fill="none" stroke="black" points="1463.9,-1313 1463.9,-1333 1582.9,-1333 1582.9,-1313 1463.9,-1313"/>
+<polygon fill="white" stroke="black" points="1463.9,-1313 1463.9,-1333 1582.9,-1333 1582.9,-1313 1463.9,-1313"/>
 <text text-anchor="middle" x="1523.4" y="-1320" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>
 </g>
@@ -1717,7 +1718,7 @@
 </g>
 <!-- Node98 -->
 <g id="node270" class="node"><title>Node98</title>
-<polygon fill="none" stroke="#bfbfbf" points="1709.4,-958 1709.4,-990 1823.4,-990 1823.4,-958 1709.4,-958"/>
+<polygon fill="white" stroke="#bfbfbf" points="1709.4,-958 1709.4,-990 1823.4,-990 1823.4,-958 1709.4,-958"/>
 <text text-anchor="start" x="1717.4" y="-977" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="1766.4" y="-965" font-family="FreeSans" font-size="10.00">::ColourValue &gt;</text>
 </g>
@@ -1748,7 +1749,7 @@
 </g>
 <!-- Node97 -->
 <g id="node267" class="node"><title>Node97</title>
-<polygon fill="none" stroke="#bfbfbf" points="1593.4,-892 1593.4,-924 1733.4,-924 1733.4,-892 1593.4,-892"/>
+<polygon fill="white" stroke="#bfbfbf" points="1593.4,-892 1593.4,-924 1733.4,-924 1733.4,-892 1593.4,-892"/>
 <text text-anchor="start" x="1601.4" y="-911" font-family="FreeSans" font-size="10.00">std::map&lt; UInt32, Mezzanine</text>
 <text text-anchor="middle" x="1663.4" y="-899" font-family="FreeSans" font-size="10.00">::UI::GlyphData * &gt;</text>
 </g>
@@ -1760,7 +1761,7 @@
 </g>
 <!-- Node86 -->
 <g id="node234" class="node"><title>Node86</title>
-<polygon fill="none" stroke="#bfbfbf" points="1381.4,-1129 1381.4,-1161 1495.4,-1161 1495.4,-1129 1381.4,-1129"/>
+<polygon fill="white" stroke="#bfbfbf" points="1381.4,-1129 1381.4,-1161 1495.4,-1161 1495.4,-1129 1381.4,-1129"/>
 <text text-anchor="start" x="1389.4" y="-1148" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="1438.4" y="-1136" font-family="FreeSans" font-size="10.00">::UI::Glyph * &gt;</text>
 </g>
@@ -1778,7 +1779,7 @@
 </g>
 <!-- Node88 -->
 <g id="node239" class="node"><title>Node88</title>
-<polygon fill="none" stroke="#bfbfbf" points="1297.4,-1307 1297.4,-1339 1411.4,-1339 1411.4,-1307 1297.4,-1307"/>
+<polygon fill="white" stroke="#bfbfbf" points="1297.4,-1307 1297.4,-1339 1411.4,-1339 1411.4,-1307 1297.4,-1307"/>
 <text text-anchor="start" x="1305.4" y="-1326" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="1354.4" y="-1314" font-family="FreeSans" font-size="10.00">::UI::KerningInfo &gt;</text>
 </g>
@@ -1791,7 +1792,7 @@
 <!-- Node89 -->
 <g id="node241" class="node"><title>Node89</title>
 <a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.xhtml" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
-<polygon fill="none" stroke="black" points="1288.9,-1389 1288.9,-1409 1419.9,-1409 1419.9,-1389 1288.9,-1389"/>
+<polygon fill="white" stroke="black" points="1288.9,-1389 1288.9,-1409 1419.9,-1409 1419.9,-1389 1288.9,-1389"/>
 <text text-anchor="middle" x="1354.4" y="-1396" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>
 </g>
@@ -1840,7 +1841,7 @@
 <!-- Node96 -->
 <g id="node265" class="node"><title>Node96</title>
 <a xlink:href="structMezzanine_1_1UI_1_1TextureAtlasInternalData.xhtml" target="_top" xlink:title="Mezzanine::UI::TextureAtlas\lInternalData">
-<polygon fill="none" stroke="black" points="1853.9,-892 1853.9,-924 1988.9,-924 1988.9,-892 1853.9,-892"/>
+<polygon fill="white" stroke="black" points="1853.9,-892 1853.9,-924 1988.9,-924 1988.9,-892 1853.9,-892"/>
 <text text-anchor="start" x="1861.9" y="-911" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TextureAtlas</text>
 <text text-anchor="middle" x="1921.4" y="-899" font-family="FreeSans" font-size="10.00">InternalData</text>
 </a>
@@ -1871,7 +1872,7 @@
 </g>
 <!-- Node100 -->
 <g id="node280" class="node"><title>Node100</title>
-<polygon fill="none" stroke="#bfbfbf" points="2954.9,-827 2954.9,-859 3071.9,-859 3071.9,-827 2954.9,-827"/>
+<polygon fill="white" stroke="#bfbfbf" points="2954.9,-827 2954.9,-859 3071.9,-859 3071.9,-827 2954.9,-827"/>
 <text text-anchor="start" x="2962.9" y="-846" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="3013.4" y="-834" font-family="FreeSans" font-size="10.00">::UI::AtlasAndPosition &gt;</text>
 </g>
@@ -1895,7 +1896,7 @@
 </g>
 <!-- Node103 -->
 <g id="node288" class="node"><title>Node103</title>
-<polygon fill="none" stroke="#bfbfbf" points="961.896,-83 961.896,-103 1096.9,-103 1096.9,-83 961.896,-83"/>
+<polygon fill="white" stroke="#bfbfbf" points="961.896,-83 961.896,-103 1096.9,-103 1096.9,-83 961.896,-83"/>
 <text text-anchor="middle" x="1029.4" y="-90" font-family="FreeSans" font-size="10.00">Ogre::RenderQueueListener</text>
 </g>
 <!-- Node103&#45;&gt;Node102 -->
@@ -1905,7 +1906,7 @@
 </g>
 <!-- Node104 -->
 <g id="node291" class="node"><title>Node104</title>
-<polygon fill="none" stroke="#bfbfbf" points="1040.4,-638 1040.4,-658 1192.4,-658 1192.4,-638 1040.4,-638"/>
+<polygon fill="white" stroke="#bfbfbf" points="1040.4,-638 1040.4,-658 1192.4,-658 1192.4,-638 1040.4,-638"/>
 <text text-anchor="middle" x="1116.4" y="-645" font-family="FreeSans" font-size="10.00">std::map&lt; UInt16, IndexData * &gt;</text>
 </g>
 <!-- Node104&#45;&gt;Node5 -->
@@ -1929,7 +1930,7 @@
 <!-- Node107 -->
 <g id="node299" class="node"><title>Node107</title>
 <a xlink:href="classMezzanine_1_1Matrix4x4.xhtml" target="_top" xlink:title="Mezzanine::Matrix4x4">
-<polygon fill="none" stroke="black" points="1377.4,-159 1377.4,-179 1485.4,-179 1485.4,-159 1377.4,-159"/>
+<polygon fill="white" stroke="black" points="1377.4,-159 1377.4,-179 1485.4,-179 1485.4,-159 1377.4,-159"/>
 <text text-anchor="middle" x="1431.4" y="-166" font-family="FreeSans" font-size="10.00">Mezzanine::Matrix4x4</text>
 </a>
 </g>
@@ -1948,7 +1949,7 @@
 <!-- Node109 -->
 <g id="node305" class="node"><title>Node109</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="273.396,-1313 273.396,-1333 407.396,-1333 407.396,-1313 273.396,-1313"/>
+<polygon fill="white" stroke="#bfbfbf" points="273.396,-1313 273.396,-1333 407.396,-1333 407.396,-1313 273.396,-1313"/>
 <text text-anchor="middle" x="340.396" y="-1320" font-family="FreeSans" font-size="10.00">std::set&lt; Input::InputCode &gt;</text>
 </a>
 </g>
@@ -1959,7 +1960,7 @@
 </g>
 <!-- Node110 -->
 <g id="node307" class="node"><title>Node110</title>
-<polygon fill="none" stroke="#bfbfbf" points="325.896,-1389 325.896,-1409 354.896,-1409 354.896,-1389 325.896,-1389"/>
+<polygon fill="white" stroke="#bfbfbf" points="325.896,-1389 325.896,-1409 354.896,-1409 354.896,-1389 325.896,-1389"/>
 <text text-anchor="middle" x="340.396" y="-1396" font-family="FreeSans" font-size="10.00">K</text>
 </g>
 <!-- Node110&#45;&gt;Node109 -->

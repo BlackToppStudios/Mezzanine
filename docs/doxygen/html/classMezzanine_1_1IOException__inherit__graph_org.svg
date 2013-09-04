@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 774.00 568.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 564)">
 <title>Mezzanine::IOException</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-564 771,-564 771,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="258.5,-236 258.5,-256 377.5,-256 377.5,-236 258.5,-236"/>
@@ -16,7 +17,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1DirectoryException.xhtml" target="_top" xlink:title="Thrown when there is an unknown issue with a file.">
-<polygon fill="none" stroke="black" points="414.5,-434 414.5,-454 561.5,-454 561.5,-434 414.5,-434"/>
+<polygon fill="white" stroke="black" points="414.5,-434 414.5,-454 561.5,-454 561.5,-434 414.5,-434"/>
 <text text-anchor="middle" x="488" y="-441" font-family="FreeSans" font-size="10.00">Mezzanine::DirectoryException</text>
 </a>
 </g>
@@ -28,7 +29,7 @@
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1FileException.xhtml" target="_top" xlink:title="Thrown when there is an unknown issue with a file.">
-<polygon fill="none" stroke="black" points="425.5,-274 425.5,-294 550.5,-294 550.5,-274 425.5,-274"/>
+<polygon fill="white" stroke="black" points="425.5,-274 425.5,-294 550.5,-294 550.5,-274 425.5,-274"/>
 <text text-anchor="middle" x="488" y="-281" font-family="FreeSans" font-size="10.00">Mezzanine::FileException</text>
 </a>
 </g>
@@ -40,7 +41,7 @@
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
 <a xlink:href="classMezzanine_1_1IOReadException.xhtml" target="_top" xlink:title="Thrown when a read is happening but something has prevented the underlying code from knowing what was...">
-<polygon fill="none" stroke="black" points="417,-236 417,-256 559,-256 559,-236 417,-236"/>
+<polygon fill="white" stroke="black" points="417,-236 417,-256 559,-256 559,-236 417,-236"/>
 <text text-anchor="middle" x="488" y="-243" font-family="FreeSans" font-size="10.00">Mezzanine::IOReadException</text>
 </a>
 </g>
@@ -52,7 +53,7 @@
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
 <a xlink:href="classMezzanine_1_1IOWriteException.xhtml" target="_top" xlink:title="Thrown when a write is happening but something has prevented the underlying code from knowing what wa...">
-<polygon fill="none" stroke="black" points="417,-198 417,-218 559,-218 559,-198 417,-198"/>
+<polygon fill="white" stroke="black" points="417,-198 417,-218 559,-218 559,-198 417,-198"/>
 <text text-anchor="middle" x="488" y="-205" font-family="FreeSans" font-size="10.00">Mezzanine::IOWriteException</text>
 </a>
 </g>
@@ -64,7 +65,7 @@
 <!-- Node16 -->
 <g id="node31" class="node"><title>Node16</title>
 <a xlink:href="classMezzanine_1_1NetworkException.xhtml" target="_top" xlink:title="Thrown when something unknown causes network IO to fail.">
-<polygon fill="none" stroke="black" points="416,-98 416,-118 560,-118 560,-98 416,-98"/>
+<polygon fill="white" stroke="black" points="416,-98 416,-118 560,-118 560,-98 416,-98"/>
 <text text-anchor="middle" x="488" y="-105" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkException</text>
 </a>
 </g>
@@ -76,7 +77,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
-<polygon fill="none" stroke="black" points="112.5,-236 112.5,-256 221.5,-256 221.5,-236 112.5,-236"/>
+<polygon fill="white" stroke="black" points="112.5,-236 112.5,-256 221.5,-256 221.5,-236 112.5,-236"/>
 <text text-anchor="middle" x="167" y="-243" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>
 </g>
@@ -88,7 +89,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="0.5,-236 0.5,-256 75.5,-256 75.5,-236 0.5,-236"/>
+<polygon fill="white" stroke="#bfbfbf" points="0.5,-236 0.5,-256 75.5,-256 75.5,-236 0.5,-236"/>
 <text text-anchor="middle" x="38" y="-243" font-family="FreeSans" font-size="10.00">std::exception</text>
 </a>
 </g>
@@ -100,7 +101,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1DirectoryNotFoundException.xhtml" target="_top" xlink:title="Thrown when a directory was expected to be there, but was not.">
-<polygon fill="none" stroke="black" points="608.5,-528 608.5,-560 755.5,-560 755.5,-528 608.5,-528"/>
+<polygon fill="white" stroke="black" points="608.5,-528 608.5,-560 755.5,-560 755.5,-528 608.5,-528"/>
 <text text-anchor="start" x="616.5" y="-547" font-family="FreeSans" font-size="10.00">Mezzanine::DirectoryNotFound</text>
 <text text-anchor="middle" x="682" y="-535" font-family="FreeSans" font-size="10.00">Exception</text>
 </a>
@@ -113,7 +114,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1DirectoryPermissionException.xhtml" target="_top" xlink:title="Thrown when permission is denied to a directory.">
-<polygon fill="none" stroke="black" points="606,-478 606,-510 758,-510 758,-478 606,-478"/>
+<polygon fill="white" stroke="black" points="606,-478 606,-510 758,-510 758,-478 606,-478"/>
 <text text-anchor="start" x="614" y="-497" font-family="FreeSans" font-size="10.00">Mezzanine::DirectoryPermission</text>
 <text text-anchor="middle" x="682" y="-485" font-family="FreeSans" font-size="10.00">Exception</text>
 </a>
@@ -126,7 +127,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1DirectoryReadException.xhtml" target="_top" xlink:title="Thrown when a directory could be read and it wasn&#39;t a permission issue.">
-<polygon fill="none" stroke="black" points="618,-428 618,-460 746,-460 746,-428 618,-428"/>
+<polygon fill="white" stroke="black" points="618,-428 618,-460 746,-460 746,-428 618,-428"/>
 <text text-anchor="start" x="626" y="-447" font-family="FreeSans" font-size="10.00">Mezzanine::DirectoryRead</text>
 <text text-anchor="middle" x="682" y="-435" font-family="FreeSans" font-size="10.00">Exception</text>
 </a>
@@ -139,7 +140,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1DirectoryWriteException.xhtml" target="_top" xlink:title="Thrown when a directory could be written to and it wasn&#39;t a permission issue.">
-<polygon fill="none" stroke="black" points="618,-378 618,-410 746,-410 746,-378 618,-378"/>
+<polygon fill="white" stroke="black" points="618,-378 618,-410 746,-410 746,-378 618,-378"/>
 <text text-anchor="start" x="626" y="-397" font-family="FreeSans" font-size="10.00">Mezzanine::DirectoryWrite</text>
 <text text-anchor="middle" x="682" y="-385" font-family="FreeSans" font-size="10.00">Exception</text>
 </a>
@@ -152,7 +153,7 @@
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
 <a xlink:href="classMezzanine_1_1FileNotFoundException.xhtml" target="_top" xlink:title="Thrown when a file was expected to be there, but was not.">
-<polygon fill="none" stroke="black" points="598.5,-340 598.5,-360 765.5,-360 765.5,-340 598.5,-340"/>
+<polygon fill="white" stroke="black" points="598.5,-340 598.5,-360 765.5,-360 765.5,-340 598.5,-340"/>
 <text text-anchor="middle" x="682" y="-347" font-family="FreeSans" font-size="10.00">Mezzanine::FileNotFoundException</text>
 </a>
 </g>
@@ -164,7 +165,7 @@
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:href="classMezzanine_1_1FilePermissionException.xhtml" target="_top" xlink:title="Thrown when permission was denied to a file.">
-<polygon fill="none" stroke="black" points="617,-290 617,-322 747,-322 747,-290 617,-290"/>
+<polygon fill="white" stroke="black" points="617,-290 617,-322 747,-322 747,-290 617,-290"/>
 <text text-anchor="start" x="625" y="-309" font-family="FreeSans" font-size="10.00">Mezzanine::FilePermission</text>
 <text text-anchor="middle" x="682" y="-297" font-family="FreeSans" font-size="10.00">Exception</text>
 </a>
@@ -177,7 +178,7 @@
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1FileReadException.xhtml" target="_top" xlink:title="Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware iss...">
-<polygon fill="none" stroke="black" points="608.5,-252 608.5,-272 755.5,-272 755.5,-252 608.5,-252"/>
+<polygon fill="white" stroke="black" points="608.5,-252 608.5,-272 755.5,-272 755.5,-252 608.5,-252"/>
 <text text-anchor="middle" x="682" y="-259" font-family="FreeSans" font-size="10.00">Mezzanine::FileReadException</text>
 </a>
 </g>
@@ -189,7 +190,7 @@
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
 <a xlink:href="classMezzanine_1_1FileWriteException.xhtml" target="_top" xlink:title="Thrown when a file could not be written and perimssions seem not to be an issue.">
-<polygon fill="none" stroke="black" points="608.5,-214 608.5,-234 755.5,-234 755.5,-214 608.5,-214"/>
+<polygon fill="white" stroke="black" points="608.5,-214 608.5,-234 755.5,-234 755.5,-214 608.5,-214"/>
 <text text-anchor="middle" x="682" y="-221" font-family="FreeSans" font-size="10.00">Mezzanine::FileWriteException</text>
 </a>
 </g>
@@ -201,7 +202,7 @@
 <!-- Node17 -->
 <g id="node33" class="node"><title>Node17</title>
 <a xlink:href="classMezzanine_1_1NetworkNotFoundException.xhtml" target="_top" xlink:title="Thrown when no network connection is available.">
-<polygon fill="none" stroke="black" points="610,-164 610,-196 754,-196 754,-164 610,-164"/>
+<polygon fill="white" stroke="black" points="610,-164 610,-196 754,-196 754,-164 610,-164"/>
 <text text-anchor="start" x="618" y="-183" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkNotFound</text>
 <text text-anchor="middle" x="682" y="-171" font-family="FreeSans" font-size="10.00">Exception</text>
 </a>
@@ -214,7 +215,7 @@
 <!-- Node18 -->
 <g id="node35" class="node"><title>Node18</title>
 <a xlink:href="classMezzanine_1_1NetworkPermissionException.xhtml" target="_top" xlink:title="Thrown when permision was denied to a network interface or network resource.">
-<polygon fill="none" stroke="black" points="607.5,-114 607.5,-146 756.5,-146 756.5,-114 607.5,-114"/>
+<polygon fill="white" stroke="black" points="607.5,-114 607.5,-146 756.5,-146 756.5,-114 607.5,-114"/>
 <text text-anchor="start" x="615.5" y="-133" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkPermission</text>
 <text text-anchor="middle" x="682" y="-121" font-family="FreeSans" font-size="10.00">Exception</text>
 </a>
@@ -227,7 +228,7 @@
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
 <a xlink:href="classMezzanine_1_1NetworkReadException.xhtml" target="_top" xlink:title="Thrown when data could not be read from the network (downloads).">
-<polygon fill="none" stroke="black" points="598.5,-76 598.5,-96 765.5,-96 765.5,-76 598.5,-76"/>
+<polygon fill="white" stroke="black" points="598.5,-76 598.5,-96 765.5,-96 765.5,-76 598.5,-76"/>
 <text text-anchor="middle" x="682" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkReadException</text>
 </a>
 </g>
@@ -239,7 +240,7 @@
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
 <a xlink:href="classMezzanine_1_1NetworkURLException.xhtml" target="_top" xlink:title="Thrown when an address is invalid or could not be found.">
-<polygon fill="none" stroke="black" points="600.5,-38 600.5,-58 763.5,-58 763.5,-38 600.5,-38"/>
+<polygon fill="white" stroke="black" points="600.5,-38 600.5,-58 763.5,-58 763.5,-38 600.5,-38"/>
 <text text-anchor="middle" x="682" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkURLException</text>
 </a>
 </g>
@@ -251,7 +252,7 @@
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
 <a xlink:href="classMezzanine_1_1NetworkWriteException.xhtml" target="_top" xlink:title="Thrown when data could not be read from the network (iloads).">
-<polygon fill="none" stroke="black" points="598.5,-0 598.5,-20 765.5,-20 765.5,-0 598.5,-0"/>
+<polygon fill="white" stroke="black" points="598.5,-0 598.5,-20 765.5,-20 765.5,-0 598.5,-0"/>
 <text text-anchor="middle" x="682" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkWriteException</text>
 </a>
 </g>

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 214.00 184.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 180)">
 <title>Mezzanine::Scripting::ScriptArgumentGeneric&lt; T &gt;</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-180 211,-180 211,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="61.5,-1 61.5,-33 206.5,-33 206.5,-1 61.5,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.xhtml" target="_top" xlink:title="The interface for a script argument.">
-<polygon fill="none" stroke="black" points="18.5,-83 18.5,-115 123.5,-115 123.5,-83 18.5,-83"/>
+<polygon fill="white" stroke="black" points="18.5,-83 18.5,-115 123.5,-115 123.5,-83 18.5,-83"/>
 <text text-anchor="start" x="26.5" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="71" y="-90" font-family="FreeSans" font-size="10.00">::iScriptArgument</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1IntrusiveRefCount.xhtml" target="_top" xlink:title="A sample class that implements a minimal intrusive reference counting scheme.">
-<polygon fill="none" stroke="black" points="-0.5,-155 -0.5,-175 142.5,-175 142.5,-155 -0.5,-155"/>
+<polygon fill="white" stroke="black" points="-0.5,-155 -0.5,-175 142.5,-175 142.5,-155 -0.5,-155"/>
 <text text-anchor="middle" x="71" y="-162" font-family="FreeSans" font-size="10.00">Mezzanine::IntrusiveRefCount</text>
 </a>
 </g>
@@ -41,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<polygon fill="none" stroke="#bfbfbf" points="140.5,-89 140.5,-109 169.5,-109 169.5,-89 140.5,-89"/>
+<polygon fill="white" stroke="#bfbfbf" points="140.5,-89 140.5,-109 169.5,-109 169.5,-89 140.5,-89"/>
 <text text-anchor="middle" x="155" y="-96" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node4&#45;&gt;Node1 -->

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 353.00 312.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 308)">
 <title>Mezzanine::WorldManager</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-308 350,-308 350,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="86.5,-141 86.5,-161 215.5,-161 215.5,-141 86.5,-141"/>
@@ -15,7 +16,7 @@
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<polygon fill="none" stroke="#bfbfbf" points="-0.5,-71 -0.5,-91 144.5,-91 144.5,-71 -0.5,-71"/>
+<polygon fill="white" stroke="#bfbfbf" points="-0.5,-71 -0.5,-91 144.5,-91 144.5,-71 -0.5,-71"/>
 <text text-anchor="middle" x="72" y="-78" font-family="FreeSans" font-size="10.00">std::vector&lt; WorldManager * &gt;</text>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
@@ -27,7 +28,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="88,-207 88,-227 214,-227 214,-207 88,-207"/>
+<polygon fill="white" stroke="black" points="88,-207 88,-227 214,-227 214,-207 88,-207"/>
 <text text-anchor="middle" x="151" y="-214" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -39,7 +40,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="none" stroke="black" points="177.5,-283 177.5,-303 278.5,-303 278.5,-283 177.5,-283"/>
+<polygon fill="white" stroke="black" points="177.5,-283 177.5,-303 278.5,-303 278.5,-283 177.5,-283"/>
 <text text-anchor="middle" x="228" y="-290" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -52,7 +53,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="none" stroke="black" points="238.5,-201 238.5,-233 345.5,-233 345.5,-201 238.5,-201"/>
+<polygon fill="white" stroke="black" points="238.5,-201 238.5,-233 345.5,-233 345.5,-201 238.5,-201"/>
 <text text-anchor="start" x="246.5" y="-220" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="292" y="-208" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -71,7 +72,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1World.xhtml" target="_top" xlink:title="This class represents a world for objects to interact within.">
-<polygon fill="none" stroke="black" points="86,-1 86,-21 178,-21 178,-1 86,-1"/>
+<polygon fill="white" stroke="black" points="86,-1 86,-21 178,-21 178,-1 86,-1"/>
 <text text-anchor="middle" x="132" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::World</text>
 </a>
 </g>

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 262.00 276.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 272)">
 <title>Mezzanine::Graphics::Skeleton</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-272 259,-272 259,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="145.5,-153 145.5,-185 250.5,-185 250.5,-153 145.5,-153"/>
@@ -17,7 +18,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Bone.xhtml" target="_top" xlink:title="This class encapsulates the bones contained in a skeleton used for animation.">
-<polygon fill="none" stroke="black" points="57.5,-71 57.5,-103 162.5,-103 162.5,-71 57.5,-71"/>
+<polygon fill="white" stroke="black" points="57.5,-71 57.5,-103 162.5,-103 162.5,-71 57.5,-71"/>
 <text text-anchor="start" x="65.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="110" y="-78" font-family="FreeSans" font-size="10.00">::Bone</text>
 </a>
@@ -30,7 +31,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<polygon fill="none" stroke="#bfbfbf" points="109.5,-1 109.5,-21 214.5,-21 214.5,-1 109.5,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="109.5,-1 109.5,-21 214.5,-21 214.5,-1 109.5,-1"/>
 <text text-anchor="middle" x="162" y="-8" font-family="FreeSans" font-size="10.00">std::vector&lt; Bone * &gt;</text>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
@@ -48,7 +49,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1TransformableChildObject.xhtml" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
-<polygon fill="none" stroke="black" points="0,-153 0,-185 128,-185 128,-153 0,-153"/>
+<polygon fill="white" stroke="black" points="0,-153 0,-185 128,-185 128,-153 0,-153"/>
 <text text-anchor="start" x="8" y="-172" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="64" y="-160" font-family="FreeSans" font-size="10.00">ChildObject</text>
 </a>
@@ -61,7 +62,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Skeleton class.">
-<polygon fill="none" stroke="black" points="142,-235 142,-267 254,-267 254,-235 142,-235"/>
+<polygon fill="white" stroke="black" points="142,-235 142,-267 254,-267 254,-235 142,-235"/>
 <text text-anchor="start" x="150" y="-254" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="198" y="-242" font-family="FreeSans" font-size="10.00">::InternalSkeletonData</text>
 </a>

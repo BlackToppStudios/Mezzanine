@@ -8,17 +8,18 @@
  viewBox="0.00 0.00 524.00 507.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 503)">
 <title>Graphical Class Hierarchy</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-503 521,-503 521,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="4,-250 4,-270 130,-270 130,-250 4,-250"/>
+<polygon fill="white" stroke="black" points="4,-250 4,-270 130,-270 130,-250 4,-250"/>
 <text text-anchor="middle" x="67" y="-257" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1AudioManager.xhtml" target="_top" xlink:title="This is the base manager class for the Audio subsystem and it&#39;s operations.">
-<polygon fill="none" stroke="black" points="170,-423 170,-443 328,-443 328,-423 170,-423"/>
+<polygon fill="white" stroke="black" points="170,-423 170,-443 328,-443 328,-423 170,-423"/>
 <text text-anchor="middle" x="249" y="-430" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::AudioManager</text>
 </a>
 </g>
@@ -30,7 +31,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1CollisionShapeManager.xhtml" target="_top" xlink:title="This manager is for the storage of all shapes and creation of mesh shapes.">
-<polygon fill="none" stroke="black" points="183.5,-320 183.5,-352 314.5,-352 314.5,-320 183.5,-320"/>
+<polygon fill="white" stroke="black" points="183.5,-320 183.5,-352 314.5,-352 314.5,-320 183.5,-320"/>
 <text text-anchor="start" x="191.5" y="-339" font-family="FreeSans" font-size="10.00">Mezzanine::CollisionShape</text>
 <text text-anchor="middle" x="249" y="-327" font-family="FreeSans" font-size="10.00">Manager</text>
 </a>
@@ -43,7 +44,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1EventManager.xhtml" target="_top" xlink:title="This is a container for Events and facilitates the transfer of data.">
-<polygon fill="none" stroke="black" points="185,-194 185,-214 313,-214 313,-194 185,-194"/>
+<polygon fill="white" stroke="black" points="185,-194 185,-214 313,-214 313,-194 185,-194"/>
 <text text-anchor="middle" x="249" y="-201" font-family="FreeSans" font-size="10.00">Mezzanine::EventManager</text>
 </a>
 </g>
@@ -55,7 +56,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" target="_top" xlink:title="This is intended to store basic graphics setting for the user.">
-<polygon fill="none" stroke="black" points="196.5,-370 196.5,-402 301.5,-402 301.5,-370 196.5,-370"/>
+<polygon fill="white" stroke="black" points="196.5,-370 196.5,-402 301.5,-402 301.5,-370 196.5,-370"/>
 <text text-anchor="start" x="204.5" y="-389" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="249" y="-377" font-family="FreeSans" font-size="10.00">::GraphicsManager</text>
 </a>
@@ -68,7 +69,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1Input_1_1InputManager.xhtml" target="_top" xlink:title="This is the manager responsible for the handling of input devices and events.">
-<polygon fill="none" stroke="black" points="173,-156 173,-176 325,-176 325,-156 173,-156"/>
+<polygon fill="white" stroke="black" points="173,-156 173,-176 325,-176 325,-156 173,-156"/>
 <text text-anchor="middle" x="249" y="-163" font-family="FreeSans" font-size="10.00">Mezzanine::Input::InputManager</text>
 </a>
 </g>
@@ -80,7 +81,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1MeshManager.xhtml" target="_top" xlink:title="This manager handles the storage, generation, and query of of Graphics Meshes.">
-<polygon fill="none" stroke="black" points="185,-112 185,-132 313,-132 313,-112 185,-112"/>
+<polygon fill="white" stroke="black" points="185,-112 185,-132 313,-132 313,-112 185,-112"/>
 <text text-anchor="middle" x="249" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::MeshManager</text>
 </a>
 </g>
@@ -92,7 +93,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1ResourceManager.xhtml" target="_top" xlink:title="This is the manager responsible for the loading and unloading of files.">
-<polygon fill="none" stroke="black" points="176.5,-62 176.5,-82 321.5,-82 321.5,-62 176.5,-62"/>
+<polygon fill="white" stroke="black" points="176.5,-62 176.5,-82 321.5,-82 321.5,-62 176.5,-62"/>
 <text text-anchor="middle" x="249" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::ResourceManager</text>
 </a>
 </g>
@@ -104,7 +105,7 @@
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml" target="_top" xlink:title="What a scripting manager should look like.">
-<polygon fill="none" stroke="black" points="196.5,-270 196.5,-302 301.5,-302 301.5,-270 196.5,-270"/>
+<polygon fill="white" stroke="black" points="196.5,-270 196.5,-302 301.5,-302 301.5,-270 196.5,-270"/>
 <text text-anchor="start" x="204.5" y="-289" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="249" y="-277" font-family="FreeSans" font-size="10.00">::iScriptingManager</text>
 </a>
@@ -117,7 +118,7 @@
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:href="classMezzanine_1_1UI_1_1UIManager.xhtml" target="_top" xlink:title="This class is responsible for any and all user interactions with the User interface/HUD.">
-<polygon fill="none" stroke="black" points="185,-12 185,-32 313,-32 313,-12 185,-12"/>
+<polygon fill="white" stroke="black" points="185,-12 185,-32 313,-32 313,-12 185,-12"/>
 <text text-anchor="middle" x="249" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::UI::UIManager</text>
 </a>
 </g>
@@ -129,7 +130,7 @@
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1WorldManager.xhtml" target="_top" xlink:title="This is the base class for all managers that belong to a single world instance.">
-<polygon fill="none" stroke="black" points="184.5,-232 184.5,-252 313.5,-252 313.5,-232 184.5,-232"/>
+<polygon fill="white" stroke="black" points="184.5,-232 184.5,-252 313.5,-252 313.5,-232 184.5,-232"/>
 <text text-anchor="middle" x="249" y="-239" font-family="FreeSans" font-size="10.00">Mezzanine::WorldManager</text>
 </a>
 </g>
@@ -141,7 +142,7 @@
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
 <a xlink:href="classMezzanine_1_1Scripting_1_1iScriptCompilationManager.xhtml" target="_top" xlink:title="What a scripting manager should look like.">
-<polygon fill="none" stroke="black" points="371.5,-377 371.5,-409 508.5,-409 508.5,-377 371.5,-377"/>
+<polygon fill="white" stroke="black" points="371.5,-377 371.5,-409 508.5,-409 508.5,-377 371.5,-377"/>
 <text text-anchor="start" x="379.5" y="-396" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="440" y="-384" font-family="FreeSans" font-size="10.00">::iScriptCompilationManager</text>
 </a>
@@ -154,7 +155,7 @@
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
 <a xlink:href="classMezzanine_1_1ActorManager.xhtml" target="_top" xlink:title="A manager responsible for the storage and management of all actors that exist in a world...">
-<polygon fill="none" stroke="black" points="376,-213 376,-233 504,-233 504,-213 376,-213"/>
+<polygon fill="white" stroke="black" points="376,-213 376,-233 504,-233 504,-213 376,-213"/>
 <text text-anchor="middle" x="440" y="-220" font-family="FreeSans" font-size="10.00">Mezzanine::ActorManager</text>
 </a>
 </g>
@@ -166,7 +167,7 @@
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
 <a xlink:href="classMezzanine_1_1AreaEffectManager.xhtml" target="_top" xlink:title="A manager responsible for the storage and management of all areaeffects in use.">
-<polygon fill="none" stroke="black" points="365.5,-175 365.5,-195 514.5,-195 514.5,-175 365.5,-175"/>
+<polygon fill="white" stroke="black" points="365.5,-175 365.5,-195 514.5,-195 514.5,-175 365.5,-175"/>
 <text text-anchor="middle" x="440" y="-182" font-family="FreeSans" font-size="10.00">Mezzanine::AreaEffectManager</text>
 </a>
 </g>
@@ -178,7 +179,7 @@
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1SoundScapeManager.xhtml" target="_top" xlink:title="This is the base manager class for audio being played in a 3D environment.">
-<polygon fill="none" stroke="black" points="364,-125 364,-157 516,-157 516,-125 364,-125"/>
+<polygon fill="white" stroke="black" points="364,-125 364,-157 516,-157 516,-125 364,-125"/>
 <text text-anchor="start" x="372" y="-144" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundScape</text>
 <text text-anchor="middle" x="440" y="-132" font-family="FreeSans" font-size="10.00">Manager</text>
 </a>
@@ -191,7 +192,7 @@
 <!-- Node16 -->
 <g id="node31" class="node"><title>Node16</title>
 <a xlink:href="classMezzanine_1_1CameraManager.xhtml" target="_top" xlink:title="This is the manager class for all camera functions.">
-<polygon fill="none" stroke="black" points="371,-87 371,-107 509,-107 509,-87 371,-87"/>
+<polygon fill="white" stroke="black" points="371,-87 371,-107 509,-107 509,-87 371,-87"/>
 <text text-anchor="middle" x="440" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::CameraManager</text>
 </a>
 </g>
@@ -203,7 +204,7 @@
 <!-- Node17 -->
 <g id="node33" class="node"><title>Node17</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml" target="_top" xlink:title="This is simply a place for storing all the Physics Related functions.">
-<polygon fill="none" stroke="black" points="390,-327 390,-359 490,-359 490,-327 390,-327"/>
+<polygon fill="white" stroke="black" points="390,-327 390,-359 490,-359 490,-327 390,-327"/>
 <text text-anchor="start" x="398" y="-346" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="440" y="-334" font-family="FreeSans" font-size="10.00">::PhysicsManager</text>
 </a>
@@ -216,7 +217,7 @@
 <!-- Node18 -->
 <g id="node35" class="node"><title>Node18</title>
 <a xlink:href="classMezzanine_1_1SceneManager.xhtml" target="_top" xlink:title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">
-<polygon fill="none" stroke="black" points="374,-289 374,-309 506,-309 506,-289 374,-289"/>
+<polygon fill="white" stroke="black" points="374,-289 374,-309 506,-309 506,-289 374,-289"/>
 <text text-anchor="middle" x="440" y="-296" font-family="FreeSans" font-size="10.00">Mezzanine::SceneManager</text>
 </a>
 </g>
@@ -228,7 +229,7 @@
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
 <a xlink:href="classMezzanine_1_1TerrainManager.xhtml" target="_top" xlink:title="This is manager for terrains and their functions.">
-<polygon fill="none" stroke="black" points="373,-251 373,-271 507,-271 507,-251 373,-251"/>
+<polygon fill="white" stroke="black" points="373,-251 373,-271 507,-271 507,-251 373,-251"/>
 <text text-anchor="middle" x="440" y="-258" font-family="FreeSans" font-size="10.00">Mezzanine::TerrainManager</text>
 </a>
 </g>
@@ -240,7 +241,7 @@
 <!-- Node20 -->
 <g id="node38" class="node"><title>Node20</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingsHandler.xhtml" target="_top" xlink:title="An abstract class for other classes that manage groups of settings.">
-<polygon fill="none" stroke="black" points="1.5,-417 1.5,-449 132.5,-449 132.5,-417 1.5,-417"/>
+<polygon fill="white" stroke="black" points="1.5,-417 1.5,-449 132.5,-449 132.5,-417 1.5,-417"/>
 <text text-anchor="start" x="9.5" y="-436" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettings</text>
 <text text-anchor="middle" x="67" y="-424" font-family="FreeSans" font-size="10.00">Handler</text>
 </a>
@@ -258,7 +259,7 @@
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; AudioManager \&gt;">
-<polygon fill="none" stroke="black" points="13.5,-467 13.5,-499 120.5,-499 120.5,-467 13.5,-467"/>
+<polygon fill="white" stroke="black" points="13.5,-467 13.5,-499 120.5,-499 120.5,-467 13.5,-467"/>
 <text text-anchor="start" x="21.5" y="-486" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="67" y="-474" font-family="FreeSans" font-size="10.00">&lt; AudioManager &gt;</text>
 </a>
@@ -271,7 +272,7 @@
 <!-- Node22 -->
 <g id="node43" class="node"><title>Node22</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; CollisionShapeManager \&gt;">
-<polygon fill="none" stroke="black" points="0,-317 0,-349 134,-349 134,-317 0,-317"/>
+<polygon fill="white" stroke="black" points="0,-317 0,-349 134,-349 134,-317 0,-317"/>
 <text text-anchor="start" x="8" y="-336" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="67" y="-324" font-family="FreeSans" font-size="10.00">&lt; CollisionShapeManager &gt;</text>
 </a>
@@ -284,7 +285,7 @@
 <!-- Node23 -->
 <g id="node45" class="node"><title>Node23</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; EventManager \&gt;">
-<polygon fill="none" stroke="black" points="13.5,-200 13.5,-232 120.5,-232 120.5,-200 13.5,-200"/>
+<polygon fill="white" stroke="black" points="13.5,-200 13.5,-232 120.5,-232 120.5,-200 13.5,-200"/>
 <text text-anchor="start" x="21.5" y="-219" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="67" y="-207" font-family="FreeSans" font-size="10.00">&lt; EventManager &gt;</text>
 </a>
@@ -297,7 +298,7 @@
 <!-- Node24 -->
 <g id="node47" class="node"><title>Node24</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;">
-<polygon fill="none" stroke="black" points="12.5,-367 12.5,-399 121.5,-399 121.5,-367 12.5,-367"/>
+<polygon fill="white" stroke="black" points="12.5,-367 12.5,-399 121.5,-399 121.5,-367 12.5,-367"/>
 <text text-anchor="start" x="20.5" y="-386" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="67" y="-374" font-family="FreeSans" font-size="10.00">&lt; GraphicsManager &gt;</text>
 </a>
@@ -310,7 +311,7 @@
 <!-- Node25 -->
 <g id="node49" class="node"><title>Node25</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; InputManager \&gt;">
-<polygon fill="none" stroke="black" points="13.5,-150 13.5,-182 120.5,-182 120.5,-150 13.5,-150"/>
+<polygon fill="white" stroke="black" points="13.5,-150 13.5,-182 120.5,-182 120.5,-150 13.5,-150"/>
 <text text-anchor="start" x="21.5" y="-169" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="67" y="-157" font-family="FreeSans" font-size="10.00">&lt; InputManager &gt;</text>
 </a>
@@ -323,7 +324,7 @@
 <!-- Node26 -->
 <g id="node51" class="node"><title>Node26</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; MeshManager \&gt;">
-<polygon fill="none" stroke="black" points="13.5,-100 13.5,-132 120.5,-132 120.5,-100 13.5,-100"/>
+<polygon fill="white" stroke="black" points="13.5,-100 13.5,-132 120.5,-132 120.5,-100 13.5,-100"/>
 <text text-anchor="start" x="21.5" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="67" y="-107" font-family="FreeSans" font-size="10.00">&lt; MeshManager &gt;</text>
 </a>
@@ -336,7 +337,7 @@
 <!-- Node27 -->
 <g id="node53" class="node"><title>Node27</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;">
-<polygon fill="none" stroke="black" points="11.5,-50 11.5,-82 122.5,-82 122.5,-50 11.5,-50"/>
+<polygon fill="white" stroke="black" points="11.5,-50 11.5,-82 122.5,-82 122.5,-50 11.5,-50"/>
 <text text-anchor="start" x="19.5" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="67" y="-57" font-family="FreeSans" font-size="10.00">&lt; ResourceManager &gt;</text>
 </a>
@@ -349,7 +350,7 @@
 <!-- Node28 -->
 <g id="node55" class="node"><title>Node28</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; UIManager \&gt;">
-<polygon fill="none" stroke="black" points="13.5,-0 13.5,-32 120.5,-32 120.5,-0 13.5,-0"/>
+<polygon fill="white" stroke="black" points="13.5,-0 13.5,-32 120.5,-32 120.5,-0 13.5,-0"/>
 <text text-anchor="start" x="21.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="67" y="-7" font-family="FreeSans" font-size="10.00">&lt; UIManager &gt;</text>
 </a>

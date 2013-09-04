@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 434.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 154)">
 <title>Mezzanine::Input::ButtonDevice</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-154 431,-154 431,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="158,-59 158,-91 280,-91 280,-59 158,-59"/>
@@ -17,7 +18,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Input_1_1Controller.xhtml" target="_top" xlink:title="This class represents a controller input device, such as a gamepad or joystick.">
-<polygon fill="none" stroke="black" points="0,-1 0,-21 134,-21 134,-1 0,-1"/>
+<polygon fill="white" stroke="black" points="0,-1 0,-21 134,-21 134,-1 0,-1"/>
 <text text-anchor="middle" x="67" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Controller</text>
 </a>
 </g>
@@ -29,7 +30,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Input_1_1Keyboard.xhtml" target="_top" xlink:title="This class represents the keyboard input device.">
-<polygon fill="none" stroke="black" points="152,-1 152,-21 286,-21 286,-1 152,-1"/>
+<polygon fill="white" stroke="black" points="152,-1 152,-21 286,-21 286,-1 152,-1"/>
 <text text-anchor="middle" x="219" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Keyboard</text>
 </a>
 </g>
@@ -41,7 +42,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Input_1_1Mouse.xhtml" target="_top" xlink:title="This class represents the mouse input device.">
-<polygon fill="none" stroke="black" points="304,-1 304,-21 426,-21 426,-1 304,-1"/>
+<polygon fill="white" stroke="black" points="304,-1 304,-21 426,-21 426,-1 304,-1"/>
 <text text-anchor="middle" x="365" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Mouse</text>
 </a>
 </g>
@@ -53,7 +54,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Input_1_1Device.xhtml" target="_top" xlink:title="This is a base class for all input devices.">
-<polygon fill="none" stroke="black" points="158,-129 158,-149 280,-149 280,-129 158,-129"/>
+<polygon fill="white" stroke="black" points="158,-129 158,-149 280,-149 280,-129 158,-129"/>
 <text text-anchor="middle" x="219" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Device</text>
 </a>
 </g>

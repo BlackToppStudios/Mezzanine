@@ -40,6 +40,7 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::AreaEffect</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-138 799,-138 799,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="522.5,-57 522.5,-77 633.5,-77 633.5,-57 522.5,-57"/>
@@ -48,7 +49,7 @@ var sectionId = 'dynsection-0';
 <!-- Node7 -->
 <g id="node14" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1FieldOfForce.xhtml" target="_top" xlink:title="This is field that applies force in a direction, and doesn&#39;t tamper with gravity.">
-<polygon fill="none" stroke="black" points="670.5,-114 670.5,-134 793.5,-134 793.5,-114 670.5,-114"/>
+<polygon fill="white" stroke="black" points="670.5,-114 670.5,-134 793.5,-134 793.5,-114 670.5,-114"/>
 <text text-anchor="middle" x="732" y="-121" font-family="FreeSans" font-size="10.00">Mezzanine::FieldOfForce</text>
 </a>
 </g>
@@ -60,7 +61,7 @@ var sectionId = 'dynsection-0';
 <!-- Node8 -->
 <g id="node16" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1GravityField.xhtml" target="_top" xlink:title="This is a gravity field implementation of the AreaEffect class.">
-<polygon fill="none" stroke="black" points="673,-76 673,-96 791,-96 791,-76 673,-76"/>
+<polygon fill="white" stroke="black" points="673,-76 673,-96 791,-96 791,-76 673,-76"/>
 <text text-anchor="middle" x="732" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::GravityField</text>
 </a>
 </g>
@@ -72,7 +73,7 @@ var sectionId = 'dynsection-0';
 <!-- Node9 -->
 <g id="node18" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1GravityWell.xhtml" target="_top" xlink:title="This is a gravity well implementation of the AreaEffect class.">
-<polygon fill="none" stroke="black" points="674,-38 674,-58 790,-58 790,-38 674,-38"/>
+<polygon fill="white" stroke="black" points="674,-38 674,-58 790,-58 790,-38 674,-38"/>
 <text text-anchor="middle" x="732" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::GravityWell</text>
 </a>
 </g>
@@ -84,7 +85,7 @@ var sectionId = 'dynsection-0';
 <!-- Node10 -->
 <g id="node20" class="node"><title>Node10</title>
 <a xlink:href="classMezzanine_1_1TestAE.xhtml" target="_top" xlink:title="This is a dummy class to test if the AE field works. Details will be output to the log...">
-<polygon fill="none" stroke="black" points="683,-0 683,-20 781,-20 781,-0 683,-0"/>
+<polygon fill="white" stroke="black" points="683,-0 683,-20 781,-20 781,-0 683,-0"/>
 <text text-anchor="middle" x="732" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::TestAE</text>
 </a>
 </g>
@@ -96,7 +97,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1NonStaticWorldObject.xhtml" target="_top" xlink:title="This is a small extention of the WorldObject class that adds features common to non&#45;static objects...">
-<polygon fill="none" stroke="black" points="351,-73 351,-105 485,-105 485,-73 351,-73"/>
+<polygon fill="white" stroke="black" points="351,-73 351,-105 485,-105 485,-73 351,-73"/>
 <text text-anchor="start" x="359" y="-92" font-family="FreeSans" font-size="10.00">Mezzanine::NonStaticWorld</text>
 <text text-anchor="middle" x="418" y="-80" font-family="FreeSans" font-size="10.00">Object</text>
 </a>
@@ -109,7 +110,7 @@ var sectionId = 'dynsection-0';
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1WorldObject.xhtml" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world.">
-<polygon fill="none" stroke="black" points="183,-111 183,-131 303,-131 303,-111 183,-111"/>
+<polygon fill="white" stroke="black" points="183,-111 183,-131 303,-131 303,-111 183,-111"/>
 <text text-anchor="middle" x="243" y="-118" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObject</text>
 </a>
 </g>
@@ -121,7 +122,7 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1AttachableParent.xhtml" target="_top" xlink:title="Base class for objects that can have attachables attached to them.">
-<polygon fill="none" stroke="black" points="172,-73 172,-93 314,-93 314,-73 172,-73"/>
+<polygon fill="white" stroke="black" points="172,-73 172,-93 314,-93 314,-73 172,-73"/>
 <text text-anchor="middle" x="243" y="-80" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableParent</text>
 </a>
 </g>
@@ -133,7 +134,7 @@ var sectionId = 'dynsection-0';
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1AttachableBase.xhtml" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
-<polygon fill="none" stroke="black" points="0.5,-54 0.5,-74 135.5,-74 135.5,-54 0.5,-54"/>
+<polygon fill="white" stroke="black" points="0.5,-54 0.5,-74 135.5,-74 135.5,-54 0.5,-54"/>
 <text text-anchor="middle" x="68" y="-61" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableBase</text>
 </a>
 </g>
@@ -145,7 +146,7 @@ var sectionId = 'dynsection-0';
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1AttachableChild.xhtml" target="_top" xlink:title="This class is the base class for objects that can be attached to AttachableParent.">
-<polygon fill="none" stroke="black" points="350.5,-35 350.5,-55 485.5,-55 485.5,-35 350.5,-35"/>
+<polygon fill="white" stroke="black" points="350.5,-35 350.5,-55 485.5,-55 485.5,-35 350.5,-35"/>
 <text text-anchor="middle" x="418" y="-42" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableChild</text>
 </a>
 </g>

@@ -8,10 +8,11 @@
  viewBox="0.00 0.00 114.00 40.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 36)">
 <title>Graphical Class Hierarchy</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-36 111,-36 111,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Texture.xhtml" target="_top" xlink:title="This class represents a texture loaded into memory.">
-<polygon fill="none" stroke="black" points="0.5,-0 0.5,-32 105.5,-32 105.5,-0 0.5,-0"/>
+<polygon fill="white" stroke="black" points="0.5,-0 0.5,-32 105.5,-32 105.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="53" y="-7" font-family="FreeSans" font-size="10.00">::Texture</text>
 </a>

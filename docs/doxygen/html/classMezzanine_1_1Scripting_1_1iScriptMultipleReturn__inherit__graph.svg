@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 118.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::Scripting::iScriptMultipleReturn</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-108 115,-108 115,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-33 110.5,-33 110.5,-1 -0.5,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Scripting_1_1iScript.xhtml" target="_top" xlink:title="The interface for a script.">
-<polygon fill="none" stroke="black" points="2.5,-71 2.5,-103 107.5,-103 107.5,-71 2.5,-71"/>
+<polygon fill="white" stroke="black" points="2.5,-71 2.5,-103 107.5,-103 107.5,-71 2.5,-71"/>
 <text text-anchor="start" x="10.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="55" y="-78" font-family="FreeSans" font-size="10.00">::iScript</text>
 </a>

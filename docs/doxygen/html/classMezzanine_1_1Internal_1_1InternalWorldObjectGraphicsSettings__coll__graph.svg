@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 152.00 230.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 226)">
 <title>Mezzanine::Internal::InternalWorldObjectGraphicsSettings</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-226 149,-226 149,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-45 144.5,-45 144.5,-1 -0.5,-1"/>
@@ -17,7 +18,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<polygon fill="none" stroke="#bfbfbf" points="2.5,-119 2.5,-151 141.5,-151 141.5,-119 2.5,-119"/>
+<polygon fill="white" stroke="#bfbfbf" points="2.5,-119 2.5,-151 141.5,-151 141.5,-119 2.5,-119"/>
 <text text-anchor="start" x="10.5" y="-138" font-family="FreeSans" font-size="10.00">std::map&lt; Whole, Mezzanine</text>
 <text text-anchor="middle" x="72" y="-126" font-family="FreeSans" font-size="10.00">::ColourValue &gt;</text>
 </g>
@@ -32,7 +33,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
-<polygon fill="none" stroke="black" points="12.5,-201 12.5,-221 131.5,-221 131.5,-201 12.5,-201"/>
+<polygon fill="white" stroke="black" points="12.5,-201 12.5,-221 131.5,-221 131.5,-201 12.5,-201"/>
 <text text-anchor="middle" x="72" y="-208" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>
 </g>

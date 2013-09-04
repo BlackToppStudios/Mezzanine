@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 177.00 100.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 96)">
 <title>Mezzanine::UI::ResizingInfo&lt; T &gt;</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-96 174,-96 174,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="13,-1 13,-21 169,-21 169,-1 13,-1"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
-<polygon fill="none" stroke="black" points="0,-71 0,-91 100,-91 100,-71 0,-71"/>
+<polygon fill="white" stroke="black" points="0,-71 0,-91 100,-91 100,-71 0,-71"/>
 <text text-anchor="middle" x="50" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
 </g>
@@ -28,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<polygon fill="none" stroke="#bfbfbf" points="117.5,-71 117.5,-91 146.5,-91 146.5,-71 117.5,-71"/>
+<polygon fill="white" stroke="#bfbfbf" points="117.5,-71 117.5,-91 146.5,-91 146.5,-71 117.5,-71"/>
 <text text-anchor="middle" x="132" y="-78" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node3&#45;&gt;Node1 -->

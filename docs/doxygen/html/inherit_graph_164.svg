@@ -8,10 +8,11 @@
  viewBox="0.00 0.00 254.00 40.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 36)">
 <title>Graphical Class Hierarchy</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-36 251,-36 251,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="none" stroke="black" points="0.5,-0 0.5,-32 107.5,-32 107.5,-0 0.5,-0"/>
+<polygon fill="white" stroke="black" points="0.5,-0 0.5,-32 107.5,-32 107.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="54" y="-7" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -19,7 +20,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="none" stroke="black" points="144.5,-6 144.5,-26 245.5,-26 245.5,-6 144.5,-6"/>
+<polygon fill="white" stroke="black" points="144.5,-6 144.5,-26 245.5,-26 245.5,-6 144.5,-6"/>
 <text text-anchor="middle" x="195" y="-13" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>

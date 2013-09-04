@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 608.00 166.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 162)">
 <title>Mezzanine::TransformableObject</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-162 605,-162 605,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-94 0,-126 128,-126 128,-94 0,-94"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1WorldProxy.xhtml" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems.">
-<polygon fill="none" stroke="black" points="164,-100 164,-120 280,-120 280,-100 164,-100"/>
+<polygon fill="white" stroke="black" points="164,-100 164,-120 280,-120 280,-100 164,-100"/>
 <text text-anchor="middle" x="222" y="-107" font-family="FreeSans" font-size="10.00">Mezzanine::WorldProxy</text>
 </a>
 </g>
@@ -29,7 +30,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1iListener.xhtml" target="_top" xlink:title="This is an interface class for a listener (such as a player) in the 3D audio world.">
-<polygon fill="none" stroke="black" points="324,-138 324,-158 456,-158 456,-138 324,-138"/>
+<polygon fill="white" stroke="black" points="324,-138 324,-158 456,-158 456,-138 324,-138"/>
 <text text-anchor="middle" x="390" y="-145" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iListener</text>
 </a>
 </g>
@@ -41,7 +42,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1SoundProxy.xhtml" target="_top" xlink:title="This is a proxy class for representing a sound being played in 3D space.">
-<polygon fill="none" stroke="black" points="316,-100 316,-120 464,-120 464,-100 316,-100"/>
+<polygon fill="white" stroke="black" points="316,-100 316,-120 464,-120 464,-100 316,-100"/>
 <text text-anchor="middle" x="390" y="-107" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundProxy</text>
 </a>
 </g>
@@ -53,7 +54,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml" target="_top" xlink:title="This is a proxy from which physics objects are handled.">
-<polygon fill="none" stroke="black" points="340,-50 340,-82 440,-82 440,-50 340,-50"/>
+<polygon fill="white" stroke="black" points="340,-50 340,-82 440,-82 440,-50 340,-50"/>
 <text text-anchor="start" x="348" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="390" y="-57" font-family="FreeSans" font-size="10.00">::PhysicsProxy</text>
 </a>
@@ -66,7 +67,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1GhostProxy.xhtml" target="_top" xlink:title="This is the proxy object for ghost objects with no contact response.">
-<polygon fill="none" stroke="black" points="500,-100 500,-132 600,-132 600,-100 500,-100"/>
+<polygon fill="white" stroke="black" points="500,-100 500,-132 600,-132 600,-100 500,-100"/>
 <text text-anchor="start" x="508" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="550" y="-107" font-family="FreeSans" font-size="10.00">::GhostProxy</text>
 </a>
@@ -79,7 +80,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml" target="_top" xlink:title="This is a proxy from which rigid body objects are handled.">
-<polygon fill="none" stroke="black" points="500,-50 500,-82 600,-82 600,-50 500,-50"/>
+<polygon fill="white" stroke="black" points="500,-50 500,-82 600,-82 600,-50 500,-50"/>
 <text text-anchor="start" x="508" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="550" y="-57" font-family="FreeSans" font-size="10.00">::RigidProxy</text>
 </a>
@@ -92,7 +93,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1SoftProxy.xhtml" target="_top" xlink:title="This is the proxy object for soft/compressable bodies.">
-<polygon fill="none" stroke="black" points="500,-0 500,-32 600,-32 600,-0 500,-0"/>
+<polygon fill="white" stroke="black" points="500,-0 500,-32 600,-32 600,-0 500,-0"/>
 <text text-anchor="start" x="508" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="550" y="-7" font-family="FreeSans" font-size="10.00">::SoftProxy</text>
 </a>

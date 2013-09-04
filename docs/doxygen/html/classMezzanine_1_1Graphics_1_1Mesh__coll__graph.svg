@@ -40,6 +40,7 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::Graphics::Mesh</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-203 703,-203 703,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="408.5,-128 408.5,-160 513.5,-160 513.5,-128 408.5,-128"/>
@@ -49,7 +50,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1InternalMeshData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Mesh class.">
-<polygon fill="none" stroke="black" points="201.5,-167 201.5,-199 306.5,-199 306.5,-167 201.5,-167"/>
+<polygon fill="white" stroke="black" points="201.5,-167 201.5,-199 306.5,-199 306.5,-167 201.5,-167"/>
 <text text-anchor="start" x="209.5" y="-186" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="254" y="-174" font-family="FreeSans" font-size="10.00">::InternalMeshData</text>
 </a>
@@ -63,7 +64,7 @@ var sectionId = 'dynsection-0';
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Skeleton.xhtml" target="_top" xlink:title="This class encapsulates the Skeletal animation functionality of a Mesh.">
-<polygon fill="none" stroke="black" points="201.5,-60 201.5,-92 306.5,-92 306.5,-60 201.5,-60"/>
+<polygon fill="white" stroke="black" points="201.5,-60 201.5,-92 306.5,-92 306.5,-60 201.5,-60"/>
 <text text-anchor="start" x="209.5" y="-79" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="254" y="-67" font-family="FreeSans" font-size="10.00">::Skeleton</text>
 </a>
@@ -77,7 +78,7 @@ var sectionId = 'dynsection-0';
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Bone.xhtml" target="_top" xlink:title="This class encapsulates the bones contained in a skeleton used for animation.">
-<polygon fill="none" stroke="black" points="408.5,-8 408.5,-40 513.5,-40 513.5,-8 408.5,-8"/>
+<polygon fill="white" stroke="black" points="408.5,-8 408.5,-40 513.5,-40 513.5,-8 408.5,-8"/>
 <text text-anchor="start" x="416.5" y="-27" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="461" y="-15" font-family="FreeSans" font-size="10.00">::Bone</text>
 </a>
@@ -90,7 +91,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<polygon fill="none" stroke="#bfbfbf" points="592.5,-46 592.5,-66 697.5,-66 697.5,-46 592.5,-46"/>
+<polygon fill="white" stroke="#bfbfbf" points="592.5,-46 592.5,-66 697.5,-66 697.5,-46 592.5,-46"/>
 <text text-anchor="middle" x="645" y="-53" font-family="FreeSans" font-size="10.00">std::vector&lt; Bone * &gt;</text>
 </g>
 <!-- Node4&#45;&gt;Node3 -->
@@ -108,7 +109,7 @@ var sectionId = 'dynsection-0';
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1TransformableChildObject.xhtml" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
-<polygon fill="none" stroke="black" points="190,-0 190,-32 318,-32 318,-0 190,-0"/>
+<polygon fill="white" stroke="black" points="190,-0 190,-32 318,-32 318,-0 190,-0"/>
 <text text-anchor="start" x="198" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="254" y="-7" font-family="FreeSans" font-size="10.00">ChildObject</text>
 </a>
@@ -121,7 +122,7 @@ var sectionId = 'dynsection-0';
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Skeleton class.">
-<polygon fill="none" stroke="black" points="0,-60 0,-92 112,-92 112,-60 0,-60"/>
+<polygon fill="white" stroke="black" points="0,-60 0,-92 112,-92 112,-60 0,-60"/>
 <text text-anchor="start" x="8" y="-79" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="56" y="-67" font-family="FreeSans" font-size="10.00">::InternalSkeletonData</text>
 </a>
@@ -134,7 +135,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<polygon fill="none" stroke="#bfbfbf" points="192.5,-129 192.5,-149 315.5,-149 315.5,-129 192.5,-129"/>
+<polygon fill="white" stroke="#bfbfbf" points="192.5,-129 192.5,-149 315.5,-149 315.5,-129 192.5,-129"/>
 <text text-anchor="middle" x="254" y="-136" font-family="FreeSans" font-size="10.00">std::vector&lt; SubMesh * &gt;</text>
 </g>
 <!-- Node8&#45;&gt;Node1 -->
@@ -146,7 +147,7 @@ var sectionId = 'dynsection-0';
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1SubMesh.xhtml" target="_top" xlink:title="This class represents a sub&#45;section of an overall mesh.">
-<polygon fill="none" stroke="black" points="3.5,-123 3.5,-155 108.5,-155 108.5,-123 3.5,-123"/>
+<polygon fill="white" stroke="black" points="3.5,-123 3.5,-155 108.5,-155 108.5,-123 3.5,-123"/>
 <text text-anchor="start" x="11.5" y="-142" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="56" y="-130" font-family="FreeSans" font-size="10.00">::SubMesh</text>
 </a>

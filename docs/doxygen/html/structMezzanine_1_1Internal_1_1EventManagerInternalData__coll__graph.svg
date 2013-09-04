@@ -40,6 +40,7 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::Internal::EventManagerInternalData</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-196 999,-196 999,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="858.5,-50 858.5,-82 993.5,-82 993.5,-50 858.5,-50"/>
@@ -49,7 +50,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1EventPumpWorkUnit.xhtml" target="_top" xlink:title="Every frame the OS must be queried for changes to the state, this does that querying on behalf of an ...">
-<polygon fill="none" stroke="black" points="590,-150 590,-170 746,-170 746,-150 590,-150"/>
+<polygon fill="white" stroke="black" points="590,-150 590,-170 746,-170 746,-150 590,-150"/>
 <text text-anchor="middle" x="668" y="-157" font-family="FreeSans" font-size="10.00">Mezzanine::EventPumpWorkUnit</text>
 </a>
 </g>
@@ -61,7 +62,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<polygon fill="none" stroke="#bfbfbf" points="378.5,-172 378.5,-192 465.5,-192 465.5,-172 378.5,-172"/>
+<polygon fill="white" stroke="#bfbfbf" points="378.5,-172 378.5,-192 465.5,-192 465.5,-172 378.5,-172"/>
 <text text-anchor="middle" x="422" y="-179" font-family="FreeSans" font-size="10.00">DefaultWorkUnit</text>
 </g>
 <!-- Node3&#45;&gt;Node2 -->
@@ -72,7 +73,7 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1EventManager.xhtml" target="_top" xlink:title="This is a container for Events and facilitates the transfer of data.">
-<polygon fill="none" stroke="black" points="358,-110 358,-130 486,-130 486,-110 358,-110"/>
+<polygon fill="white" stroke="black" points="358,-110 358,-130 486,-130 486,-110 358,-110"/>
 <text text-anchor="middle" x="422" y="-117" font-family="FreeSans" font-size="10.00">Mezzanine::EventManager</text>
 </a>
 </g>
@@ -85,7 +86,7 @@ var sectionId = 'dynsection-0';
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; EventManager \&gt;">
-<polygon fill="none" stroke="black" points="614.5,-100 614.5,-132 721.5,-132 721.5,-100 614.5,-100"/>
+<polygon fill="white" stroke="black" points="614.5,-100 614.5,-132 721.5,-132 721.5,-100 614.5,-100"/>
 <text text-anchor="start" x="622.5" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="668" y="-107" font-family="FreeSans" font-size="10.00">&lt; EventManager &gt;</text>
 </a>
@@ -99,7 +100,7 @@ var sectionId = 'dynsection-0';
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="194,-110 194,-130 320,-130 320,-110 194,-110"/>
+<polygon fill="white" stroke="black" points="194,-110 194,-130 320,-130 320,-110 194,-110"/>
 <text text-anchor="middle" x="257" y="-117" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -111,7 +112,7 @@ var sectionId = 'dynsection-0';
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="none" stroke="black" points="0.5,-75 0.5,-95 101.5,-95 101.5,-75 0.5,-75"/>
+<polygon fill="white" stroke="black" points="0.5,-75 0.5,-95 101.5,-95 101.5,-75 0.5,-75"/>
 <text text-anchor="middle" x="51" y="-82" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -124,7 +125,7 @@ var sectionId = 'dynsection-0';
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="none" stroke="black" points="203.5,-48 203.5,-80 310.5,-80 310.5,-48 203.5,-48"/>
+<polygon fill="white" stroke="black" points="203.5,-48 203.5,-80 310.5,-80 310.5,-48 203.5,-48"/>
 <text text-anchor="start" x="211.5" y="-67" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="257" y="-55" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -147,7 +148,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node9 -->
 <g id="node18" class="node"><title>Node9</title>
-<polygon fill="none" stroke="#bfbfbf" points="601,-50 601,-82 735,-82 735,-50 601,-50"/>
+<polygon fill="white" stroke="#bfbfbf" points="601,-50 601,-82 735,-82 735,-50 601,-50"/>
 <text text-anchor="start" x="609" y="-69" font-family="FreeSans" font-size="10.00">std::map&lt; Input::InputCode,</text>
 <text text-anchor="middle" x="668" y="-57" font-family="FreeSans" font-size="10.00"> PollingType &gt;</text>
 </g>
@@ -159,7 +160,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node10 -->
 <g id="node20" class="node"><title>Node10</title>
-<polygon fill="none" stroke="#bfbfbf" points="618,-0 618,-32 718,-32 718,-0 618,-0"/>
+<polygon fill="white" stroke="#bfbfbf" points="618,-0 618,-32 718,-32 718,-0 618,-0"/>
 <text text-anchor="start" x="626" y="-19" font-family="FreeSans" font-size="10.00">std::list&lt; Mezzanine</text>
 <text text-anchor="middle" x="668" y="-7" font-family="FreeSans" font-size="10.00">::EventBase * &gt;</text>
 </g>
@@ -172,7 +173,7 @@ var sectionId = 'dynsection-0';
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
 <a xlink:href="classMezzanine_1_1EventBase.xhtml" target="_top" xlink:title="The base class for all events.">
-<polygon fill="none" stroke="black" points="365.5,-6 365.5,-26 478.5,-26 478.5,-6 365.5,-6"/>
+<polygon fill="white" stroke="black" points="365.5,-6 365.5,-26 478.5,-26 478.5,-6 365.5,-6"/>
 <text text-anchor="middle" x="422" y="-13" font-family="FreeSans" font-size="10.00">Mezzanine::EventBase</text>
 </a>
 </g>

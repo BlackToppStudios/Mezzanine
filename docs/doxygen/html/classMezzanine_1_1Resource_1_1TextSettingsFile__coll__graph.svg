@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 214.00 276.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 272)">
 <title>Mezzanine::Resource::TextSettingsFile</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-272 211,-272 211,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="69.5,-1 69.5,-33 176.5,-33 176.5,-1 69.5,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="132.5,-165 132.5,-185 189.5,-185 189.5,-165 132.5,-165"/>
+<polygon fill="white" stroke="#bfbfbf" points="132.5,-165 132.5,-185 189.5,-185 189.5,-165 132.5,-165"/>
 <text text-anchor="middle" x="161" y="-172" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -29,7 +30,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<polygon fill="none" stroke="#bfbfbf" points="-0.5,-83 -0.5,-115 126.5,-115 126.5,-83 -0.5,-83"/>
+<polygon fill="white" stroke="#bfbfbf" points="-0.5,-83 -0.5,-115 126.5,-115 126.5,-83 -0.5,-83"/>
 <text text-anchor="start" x="7.5" y="-102" font-family="FreeSans" font-size="10.00">std::map&lt; String, Settings</text>
 <text text-anchor="middle" x="63" y="-90" font-family="FreeSans" font-size="10.00">Map * &gt;</text>
 </g>
@@ -42,7 +43,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="115.5,-235 115.5,-267 206.5,-267 206.5,-235 115.5,-235"/>
+<polygon fill="white" stroke="#bfbfbf" points="115.5,-235 115.5,-267 206.5,-267 206.5,-235 115.5,-235"/>
 <text text-anchor="start" x="123.5" y="-254" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="161" y="-242" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -61,7 +62,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="6,-165 6,-185 114,-185 114,-165 6,-165"/>
+<polygon fill="white" stroke="#bfbfbf" points="6,-165 6,-185 114,-185 114,-165 6,-165"/>
 <text text-anchor="middle" x="60" y="-172" font-family="FreeSans" font-size="10.00">std::multimap&lt; K, T &gt;</text>
 </a>
 </g>
@@ -73,7 +74,7 @@
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<polygon fill="none" stroke="#bfbfbf" points="11.5,-241 11.5,-261 40.5,-261 40.5,-241 11.5,-241"/>
+<polygon fill="white" stroke="#bfbfbf" points="11.5,-241 11.5,-261 40.5,-261 40.5,-241 11.5,-241"/>
 <text text-anchor="middle" x="26" y="-248" font-family="FreeSans" font-size="10.00">K</text>
 </g>
 <!-- Node6&#45;&gt;Node5 -->
@@ -84,7 +85,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<polygon fill="none" stroke="#bfbfbf" points="57.5,-241 57.5,-261 86.5,-261 86.5,-241 57.5,-241"/>
+<polygon fill="white" stroke="#bfbfbf" points="57.5,-241 57.5,-261 86.5,-261 86.5,-241 57.5,-241"/>
 <text text-anchor="middle" x="72" y="-248" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node7&#45;&gt;Node5 -->

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 282.00 146.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 142)">
 <title>Mezzanine::GoalTimer</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-142 279,-142 279,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="75,-59 75,-79 187,-79 187,-59 75,-59"/>
@@ -16,7 +17,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1AlarmTimer.xhtml" target="_top" xlink:title="This is a timer class that increments normally to a specified time.">
-<polygon fill="none" stroke="black" points="-0.5,-1 -0.5,-21 116.5,-21 116.5,-1 -0.5,-1"/>
+<polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-21 116.5,-21 116.5,-1 -0.5,-1"/>
 <text text-anchor="middle" x="58" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::AlarmTimer</text>
 </a>
 </g>
@@ -28,7 +29,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1StopWatchTimer.xhtml" target="_top" xlink:title="This is a timer class for counting down to a specified time.">
-<polygon fill="none" stroke="black" points="134,-1 134,-21 274,-21 274,-1 134,-1"/>
+<polygon fill="white" stroke="black" points="134,-1 134,-21 274,-21 274,-1 134,-1"/>
 <text text-anchor="middle" x="204" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::StopWatchTimer</text>
 </a>
 </g>
@@ -40,7 +41,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Timer.xhtml" target="_top" xlink:title="A base timer class for the different timers.">
-<polygon fill="none" stroke="black" points="85,-117 85,-137 177,-137 177,-117 85,-117"/>
+<polygon fill="white" stroke="black" points="85,-117 85,-137 177,-137 177,-117 85,-117"/>
 <text text-anchor="middle" x="131" y="-124" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>
 </g>

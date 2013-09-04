@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 258.00 358.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 354)">
 <title>Mezzanine::UI::GlyphData</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-354 255,-354 255,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="92,-1 92,-21 218,-21 218,-1 92,-1"/>
@@ -15,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<polygon fill="none" stroke="#bfbfbf" points="37,-71 37,-103 151,-103 151,-71 37,-71"/>
+<polygon fill="white" stroke="#bfbfbf" points="37,-71 37,-103 151,-103 151,-71 37,-71"/>
 <text text-anchor="start" x="45" y="-90" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="94" y="-78" font-family="FreeSans" font-size="10.00">::UI::Glyph * &gt;</text>
 </g>
@@ -28,7 +29,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Glyph.xhtml" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
-<polygon fill="none" stroke="black" points="36,-159 36,-179 142,-179 142,-159 36,-159"/>
+<polygon fill="white" stroke="black" points="36,-159 36,-179 142,-179 142,-159 36,-159"/>
 <text text-anchor="middle" x="89" y="-166" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Glyph</text>
 </a>
 </g>
@@ -41,7 +42,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
-<polygon fill="none" stroke="black" points="0,-253 0,-273 100,-273 100,-253 0,-253"/>
+<polygon fill="white" stroke="black" points="0,-253 0,-273 100,-273 100,-253 0,-253"/>
 <text text-anchor="middle" x="50" y="-260" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
 </g>
@@ -54,7 +55,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<polygon fill="none" stroke="#bfbfbf" points="118,-247 118,-279 232,-279 232,-247 118,-247"/>
+<polygon fill="white" stroke="#bfbfbf" points="118,-247 118,-279 232,-279 232,-247 118,-247"/>
 <text text-anchor="start" x="126" y="-266" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="175" y="-254" font-family="FreeSans" font-size="10.00">::UI::KerningInfo &gt;</text>
 </g>
@@ -67,7 +68,7 @@
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
 <a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.xhtml" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
-<polygon fill="none" stroke="black" points="109.5,-329 109.5,-349 240.5,-349 240.5,-329 109.5,-329"/>
+<polygon fill="white" stroke="black" points="109.5,-329 109.5,-349 240.5,-349 240.5,-329 109.5,-329"/>
 <text text-anchor="middle" x="175" y="-336" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>
 </g>
@@ -80,7 +81,7 @@
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="174.5,-77 174.5,-97 231.5,-97 231.5,-77 174.5,-77"/>
+<polygon fill="white" stroke="#bfbfbf" points="174.5,-77 174.5,-97 231.5,-97 231.5,-77 174.5,-77"/>
 <text text-anchor="middle" x="203" y="-84" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -93,7 +94,7 @@
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="159.5,-153 159.5,-185 250.5,-185 250.5,-153 159.5,-153"/>
+<polygon fill="white" stroke="#bfbfbf" points="159.5,-153 159.5,-185 250.5,-185 250.5,-153 159.5,-153"/>
 <text text-anchor="start" x="167.5" y="-172" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="205" y="-160" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>

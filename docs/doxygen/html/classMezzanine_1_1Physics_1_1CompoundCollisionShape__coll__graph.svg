@@ -40,6 +40,7 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::Physics::CompoundCollisionShape</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-66 799,-66 799,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="662.5,-26 662.5,-58 793.5,-58 793.5,-26 662.5,-26"/>
@@ -49,7 +50,7 @@ var sectionId = 'dynsection-1';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" target="_top" xlink:title="This is the base class for all collision shapes.">
-<polygon fill="none" stroke="black" points="252,-30 252,-62 352,-62 352,-30 252,-30"/>
+<polygon fill="white" stroke="black" points="252,-30 252,-62 352,-62 352,-30 252,-30"/>
 <text text-anchor="start" x="260" y="-49" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="302" y="-37" font-family="FreeSans" font-size="10.00">::CollisionShape</text>
 </a>
@@ -61,7 +62,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<polygon fill="none" stroke="#bfbfbf" points="430.5,-0 430.5,-32 567.5,-32 567.5,-0 430.5,-0"/>
+<polygon fill="white" stroke="#bfbfbf" points="430.5,-0 430.5,-32 567.5,-32 567.5,-0 430.5,-0"/>
 <text text-anchor="start" x="438.5" y="-19" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="499" y="-7" font-family="FreeSans" font-size="10.00">::Physics::CollisionShape * &gt;</text>
 </g>
@@ -74,7 +75,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="130.5,-36 130.5,-56 187.5,-56 187.5,-36 130.5,-36"/>
+<polygon fill="white" stroke="#bfbfbf" points="130.5,-36 130.5,-56 187.5,-56 187.5,-36 130.5,-36"/>
 <text text-anchor="middle" x="159" y="-43" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -87,7 +88,7 @@ var sectionId = 'dynsection-1';
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="0.5,-30 0.5,-62 91.5,-62 91.5,-30 0.5,-30"/>
+<polygon fill="white" stroke="#bfbfbf" points="0.5,-30 0.5,-62 91.5,-62 91.5,-30 0.5,-30"/>
 <text text-anchor="start" x="8.5" y="-49" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="46" y="-37" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>

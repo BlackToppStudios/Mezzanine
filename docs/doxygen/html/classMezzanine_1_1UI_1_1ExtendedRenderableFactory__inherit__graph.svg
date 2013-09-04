@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 268.00 182.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 178)">
 <title>Mezzanine::UI::ExtendedRenderableFactory</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-178 265,-178 265,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="49,-71 49,-103 219,-103 219,-71 49,-71"/>
@@ -17,7 +18,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1UI_1_1RenderableContainer.xhtml" target="_top" xlink:title="Mezzanine::UI::Renderable\lContainer">
-<polygon fill="none" stroke="black" points="0,-1 0,-33 130,-33 130,-1 0,-1"/>
+<polygon fill="white" stroke="black" points="0,-1 0,-33 130,-33 130,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 <text text-anchor="middle" x="65" y="-8" font-family="FreeSans" font-size="10.00">Container</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Screen.xhtml" target="_top" xlink:title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">
-<polygon fill="none" stroke="black" points="148,-7 148,-27 260,-27 260,-7 148,-7"/>
+<polygon fill="white" stroke="black" points="148,-7 148,-27 260,-27 260,-7 148,-7"/>
 <text text-anchor="middle" x="204" y="-14" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Screen</text>
 </a>
 </g>
@@ -42,7 +43,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1UI_1_1RenderableFactory.xhtml" target="_top" xlink:title="This class is responsible for the creation and destruction of all UI renderables.">
-<polygon fill="none" stroke="black" points="69,-141 69,-173 199,-173 199,-141 69,-141"/>
+<polygon fill="white" stroke="black" points="69,-141 69,-173 199,-173 199,-141 69,-141"/>
 <text text-anchor="start" x="77" y="-160" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 <text text-anchor="middle" x="134" y="-148" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>

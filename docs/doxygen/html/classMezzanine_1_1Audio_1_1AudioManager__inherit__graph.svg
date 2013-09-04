@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 334.00 128.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 124)">
 <title>Mezzanine::Audio::AudioManager</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-124 331,-124 331,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="168,-56 168,-76 326,-76 326,-56 168,-56"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="3,-100 3,-120 129,-120 129,-100 3,-100"/>
+<polygon fill="white" stroke="black" points="3,-100 3,-120 129,-120 129,-100 3,-100"/>
 <text text-anchor="middle" x="66" y="-107" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -28,7 +29,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingsHandler.xhtml" target="_top" xlink:title="An abstract class for other classes that manage groups of settings.">
-<polygon fill="none" stroke="black" points="0.5,-50 0.5,-82 131.5,-82 131.5,-50 0.5,-50"/>
+<polygon fill="white" stroke="black" points="0.5,-50 0.5,-82 131.5,-82 131.5,-50 0.5,-50"/>
 <text text-anchor="start" x="8.5" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettings</text>
 <text text-anchor="middle" x="66" y="-57" font-family="FreeSans" font-size="10.00">Handler</text>
 </a>
@@ -41,7 +42,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; AudioManager \&gt;">
-<polygon fill="none" stroke="black" points="12.5,-0 12.5,-32 119.5,-32 119.5,-0 12.5,-0"/>
+<polygon fill="white" stroke="black" points="12.5,-0 12.5,-32 119.5,-32 119.5,-0 12.5,-0"/>
 <text text-anchor="start" x="20.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="66" y="-7" font-family="FreeSans" font-size="10.00">&lt; AudioManager &gt;</text>
 </a>

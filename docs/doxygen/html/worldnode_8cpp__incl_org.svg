@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 3218.00 854.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 850)">
 <title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldnode.cpp</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-850 3215,-850 3215,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="2255.5,-813 2255.5,-845 2406.5,-845 2406.5,-813 2255.5,-813"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="worldnode_8h.xhtml" target="_top" xlink:title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment.">
-<polygon fill="none" stroke="black" points="1551,-697 1551,-717 1619,-717 1619,-697 1551,-697"/>
+<polygon fill="white" stroke="black" points="1551,-697 1551,-717 1619,-717 1619,-697 1551,-697"/>
 <text text-anchor="middle" x="1585" y="-704" font-family="FreeSans" font-size="10.00">worldnode.h</text>
 </a>
 </g>
@@ -28,7 +29,7 @@
 </g>
 <!-- Node20 -->
 <g id="node40" class="node"><title>Node20</title>
-<polygon fill="none" stroke="#bfbfbf" points="2309.5,-1 2309.5,-21 2360.5,-21 2360.5,-1 2309.5,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="2309.5,-1 2309.5,-21 2360.5,-21 2360.5,-1 2309.5,-1"/>
 <text text-anchor="middle" x="2335" y="-8" font-family="FreeSans" font-size="10.00">memory</text>
 </g>
 <!-- Node1&#45;&gt;Node20 -->
@@ -39,7 +40,7 @@
 <!-- Node59 -->
 <g id="node175" class="node"><title>Node59</title>
 <a xlink:href="scenemanager_8h_source.xhtml" target="_top" xlink:title="scenemanager.h">
-<polygon fill="none" stroke="black" points="1820.5,-639 1820.5,-659 1907.5,-659 1907.5,-639 1820.5,-639"/>
+<polygon fill="white" stroke="black" points="1820.5,-639 1820.5,-659 1907.5,-659 1907.5,-639 1820.5,-639"/>
 <text text-anchor="middle" x="1864" y="-646" font-family="FreeSans" font-size="10.00">scenemanager.h</text>
 </a>
 </g>
@@ -51,7 +52,7 @@
 <!-- Node65 -->
 <g id="node195" class="node"><title>Node65</title>
 <a xlink:href="exception_8h_source.xhtml" target="_top" xlink:title="exception.h">
-<polygon fill="none" stroke="black" points="2831.5,-523 2831.5,-543 2896.5,-543 2896.5,-523 2831.5,-523"/>
+<polygon fill="white" stroke="black" points="2831.5,-523 2831.5,-543 2896.5,-543 2896.5,-523 2831.5,-523"/>
 <text text-anchor="middle" x="2864" y="-530" font-family="FreeSans" font-size="10.00">exception.h</text>
 </a>
 </g>
@@ -63,7 +64,7 @@
 <!-- Node67 -->
 <g id="node204" class="node"><title>Node67</title>
 <a xlink:href="camera_8h.xhtml" target="_top" xlink:title="Declaration of the Mezzanine::Camera class.">
-<polygon fill="none" stroke="black" points="2303,-755 2303,-775 2359,-775 2359,-755 2303,-755"/>
+<polygon fill="white" stroke="black" points="2303,-755 2303,-775 2359,-775 2359,-755 2303,-755"/>
 <text text-anchor="middle" x="2331" y="-762" font-family="FreeSans" font-size="10.00">camera.h</text>
 </a>
 </g>
@@ -75,7 +76,7 @@
 <!-- Node69 -->
 <g id="node216" class="node"><title>Node69</title>
 <a xlink:href="light_8h.xhtml" target="_top" xlink:title="Declaration of Mezzanine::Light.">
-<polygon fill="none" stroke="black" points="2221,-697 2221,-717 2263,-717 2263,-697 2221,-697"/>
+<polygon fill="white" stroke="black" points="2221,-697 2221,-717 2263,-717 2263,-697 2221,-697"/>
 <text text-anchor="middle" x="2242" y="-704" font-family="FreeSans" font-size="10.00">light.h</text>
 </a>
 </g>
@@ -87,7 +88,7 @@
 <!-- Node70 -->
 <g id="node221" class="node"><title>Node70</title>
 <a xlink:href="particleeffect_8h.xhtml" target="_top" xlink:title="Contains the declaration of the ParticleEffect class.">
-<polygon fill="none" stroke="black" points="1147.5,-697 1147.5,-717 1226.5,-717 1226.5,-697 1147.5,-697"/>
+<polygon fill="white" stroke="black" points="1147.5,-697 1147.5,-717 1226.5,-717 1226.5,-697 1147.5,-697"/>
 <text text-anchor="middle" x="1187" y="-704" font-family="FreeSans" font-size="10.00">particleeffect.h</text>
 </a>
 </g>
@@ -99,7 +100,7 @@
 <!-- Node71 -->
 <g id="node227" class="node"><title>Node71</title>
 <a xlink:href="actorbase_8h.xhtml" target="_top" xlink:title="The base class for all Actors is defined here.">
-<polygon fill="none" stroke="black" points="1492,-755 1492,-775 1558,-775 1558,-755 1492,-755"/>
+<polygon fill="white" stroke="black" points="1492,-755 1492,-775 1558,-775 1558,-755 1492,-755"/>
 <text text-anchor="middle" x="1525" y="-762" font-family="FreeSans" font-size="10.00">actorbase.h</text>
 </a>
 </g>
@@ -111,7 +112,7 @@
 <!-- Node77 -->
 <g id="node253" class="node"><title>Node77</title>
 <a xlink:href="stringtool_8h_source.xhtml" target="_top" xlink:title="stringtool.h">
-<polygon fill="none" stroke="black" points="2399.5,-581 2399.5,-601 2462.5,-601 2462.5,-581 2399.5,-581"/>
+<polygon fill="white" stroke="black" points="2399.5,-581 2399.5,-601 2462.5,-601 2462.5,-581 2399.5,-581"/>
 <text text-anchor="middle" x="2431" y="-588" font-family="FreeSans" font-size="10.00">stringtool.h</text>
 </a>
 </g>
@@ -123,7 +124,7 @@
 <!-- Node81 -->
 <g id="node270" class="node"><title>Node81</title>
 <a xlink:href="entresol_8h_source.xhtml" target="_top" xlink:title="entresol.h">
-<polygon fill="none" stroke="black" points="2711,-639 2711,-659 2769,-659 2769,-639 2711,-639"/>
+<polygon fill="white" stroke="black" points="2711,-639 2711,-659 2769,-659 2769,-639 2711,-639"/>
 <text text-anchor="middle" x="2740" y="-646" font-family="FreeSans" font-size="10.00">entresol.h</text>
 </a>
 </g>
@@ -134,7 +135,7 @@
 </g>
 <!-- Node85 -->
 <g id="node288" class="node"><title>Node85</title>
-<polygon fill="none" stroke="#bfbfbf" points="3165.5,-755 3165.5,-775 3210.5,-775 3210.5,-755 3165.5,-755"/>
+<polygon fill="white" stroke="#bfbfbf" points="3165.5,-755 3165.5,-775 3210.5,-775 3210.5,-755 3165.5,-755"/>
 <text text-anchor="middle" x="3188" y="-762" font-family="FreeSans" font-size="10.00">Ogre.h</text>
 </g>
 <!-- Node1&#45;&gt;Node85 -->
@@ -145,7 +146,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="attachable_8h.xhtml" target="_top" xlink:title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec...">
-<polygon fill="none" stroke="black" points="2120.5,-639 2120.5,-659 2189.5,-659 2189.5,-639 2120.5,-639"/>
+<polygon fill="white" stroke="black" points="2120.5,-639 2120.5,-659 2189.5,-659 2189.5,-639 2120.5,-639"/>
 <text text-anchor="middle" x="2155" y="-646" font-family="FreeSans" font-size="10.00">attachable.h</text>
 </a>
 </g>
@@ -157,7 +158,7 @@
 <!-- Node23 -->
 <g id="node46" class="node"><title>Node23</title>
 <a xlink:href="enumerations_8h.xhtml" target="_top" xlink:title="Any global enumerations shared between multiple classes is to be declared here.">
-<polygon fill="none" stroke="black" points="1108,-465 1108,-485 1190,-485 1190,-465 1108,-465"/>
+<polygon fill="white" stroke="black" points="1108,-465 1108,-485 1190,-485 1190,-465 1108,-465"/>
 <text text-anchor="middle" x="1149" y="-472" font-family="FreeSans" font-size="10.00">enumerations.h</text>
 </a>
 </g>
@@ -169,7 +170,7 @@
 <!-- Node25 -->
 <g id="node52" class="node"><title>Node25</title>
 <a xlink:href="xml_8h_source.xhtml" target="_top" xlink:title="XML/xml.h">
-<polygon fill="none" stroke="black" points="1256,-465 1256,-485 1318,-485 1318,-465 1256,-465"/>
+<polygon fill="white" stroke="black" points="1256,-465 1256,-485 1318,-485 1318,-465 1256,-465"/>
 <text text-anchor="middle" x="1287" y="-472" font-family="FreeSans" font-size="10.00">XML/xml.h</text>
 </a>
 </g>
@@ -181,7 +182,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="transform_8h.xhtml" target="_top" xlink:title="The defintion of the transform is stored in this file.">
-<polygon fill="none" stroke="black" points="2048.5,-581 2048.5,-601 2113.5,-601 2113.5,-581 2048.5,-581"/>
+<polygon fill="white" stroke="black" points="2048.5,-581 2048.5,-601 2113.5,-601 2113.5,-581 2048.5,-581"/>
 <text text-anchor="middle" x="2081" y="-588" font-family="FreeSans" font-size="10.00">transform.h</text>
 </a>
 </g>
@@ -193,7 +194,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="vector3_8h_source.xhtml" target="_top" xlink:title="vector3.h">
-<polygon fill="none" stroke="black" points="2303,-523 2303,-543 2359,-543 2359,-523 2303,-523"/>
+<polygon fill="white" stroke="black" points="2303,-523 2303,-543 2359,-543 2359,-523 2303,-523"/>
 <text text-anchor="middle" x="2331" y="-530" font-family="FreeSans" font-size="10.00">vector3.h</text>
 </a>
 </g>
@@ -205,7 +206,7 @@
 <!-- Node58 -->
 <g id="node168" class="node"><title>Node58</title>
 <a xlink:href="quaternion_8h_source.xhtml" target="_top" xlink:title="quaternion.h">
-<polygon fill="none" stroke="black" points="1817.5,-523 1817.5,-543 1886.5,-543 1886.5,-523 1817.5,-523"/>
+<polygon fill="white" stroke="black" points="1817.5,-523 1817.5,-543 1886.5,-543 1886.5,-523 1817.5,-523"/>
 <text text-anchor="middle" x="1852" y="-530" font-family="FreeSans" font-size="10.00">quaternion.h</text>
 </a>
 </g>
@@ -217,7 +218,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
-<polygon fill="none" stroke="black" points="2835,-1 2835,-21 2943,-21 2943,-1 2835,-1"/>
+<polygon fill="white" stroke="black" points="2835,-1 2835,-21 2943,-21 2943,-1 2835,-1"/>
 <text text-anchor="middle" x="2889" y="-8" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>
 </g>
@@ -229,7 +230,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
-<polygon fill="none" stroke="black" points="1013.5,-59 1013.5,-79 1078.5,-79 1078.5,-59 1013.5,-59"/>
+<polygon fill="white" stroke="black" points="1013.5,-59 1013.5,-79 1078.5,-79 1078.5,-59 1013.5,-59"/>
 <text text-anchor="middle" x="1046" y="-66" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
 </g>
@@ -241,7 +242,7 @@
 <!-- Node22 -->
 <g id="node44" class="node"><title>Node22</title>
 <a xlink:href="swig_8h.xhtml" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
-<polygon fill="none" stroke="black" points="2461.5,-1 2461.5,-21 2504.5,-21 2504.5,-1 2461.5,-1"/>
+<polygon fill="white" stroke="black" points="2461.5,-1 2461.5,-21 2504.5,-21 2504.5,-1 2461.5,-1"/>
 <text text-anchor="middle" x="2483" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
 </g>
@@ -267,7 +268,7 @@
 </g>
 <!-- Node8 -->
 <g id="node16" class="node"><title>Node8</title>
-<polygon fill="none" stroke="#bfbfbf" points="713.5,-1 713.5,-21 760.5,-21 760.5,-1 713.5,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="713.5,-1 713.5,-21 760.5,-21 760.5,-1 713.5,-1"/>
 <text text-anchor="middle" x="737" y="-8" font-family="FreeSans" font-size="10.00">stdint.h</text>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
@@ -277,7 +278,7 @@
 </g>
 <!-- Node9 -->
 <g id="node18" class="node"><title>Node9</title>
-<polygon fill="none" stroke="#bfbfbf" points="778,-1 778,-21 826,-21 826,-1 778,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="778,-1 778,-21 826,-21 826,-1 778,-1"/>
 <text text-anchor="middle" x="802" y="-8" font-family="FreeSans" font-size="10.00">cstddef</text>
 </g>
 <!-- Node7&#45;&gt;Node9 -->
@@ -287,7 +288,7 @@
 </g>
 <!-- Node10 -->
 <g id="node20" class="node"><title>Node10</title>
-<polygon fill="none" stroke="#bfbfbf" points="844,-1 844,-21 900,-21 900,-1 844,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="844,-1 844,-21 900,-21 900,-1 844,-1"/>
 <text text-anchor="middle" x="872" y="-8" font-family="FreeSans" font-size="10.00">algorithm</text>
 </g>
 <!-- Node7&#45;&gt;Node10 -->
@@ -297,7 +298,7 @@
 </g>
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
-<polygon fill="none" stroke="#bfbfbf" points="918,-1 918,-21 976,-21 976,-1 918,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="918,-1 918,-21 976,-21 976,-1 918,-1"/>
 <text text-anchor="middle" x="947" y="-8" font-family="FreeSans" font-size="10.00">exception</text>
 </g>
 <!-- Node7&#45;&gt;Node11 -->
@@ -307,7 +308,7 @@
 </g>
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
-<polygon fill="none" stroke="#bfbfbf" points="994,-1 994,-21 1042,-21 1042,-1 994,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="994,-1 994,-21 1042,-21 1042,-1 994,-1"/>
 <text text-anchor="middle" x="1018" y="-8" font-family="FreeSans" font-size="10.00">istream</text>
 </g>
 <!-- Node7&#45;&gt;Node12 -->
@@ -317,7 +318,7 @@
 </g>
 <!-- Node13 -->
 <g id="node26" class="node"><title>Node13</title>
-<polygon fill="none" stroke="#bfbfbf" points="1059.5,-1 1059.5,-21 1088.5,-21 1088.5,-1 1059.5,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1059.5,-1 1059.5,-21 1088.5,-21 1088.5,-1 1059.5,-1"/>
 <text text-anchor="middle" x="1074" y="-8" font-family="FreeSans" font-size="10.00">list</text>
 </g>
 <!-- Node7&#45;&gt;Node13 -->
@@ -327,7 +328,7 @@
 </g>
 <!-- Node14 -->
 <g id="node28" class="node"><title>Node14</title>
-<polygon fill="none" stroke="#bfbfbf" points="1604.5,-1 1604.5,-21 1639.5,-21 1639.5,-1 1604.5,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1604.5,-1 1604.5,-21 1639.5,-21 1639.5,-1 1604.5,-1"/>
 <text text-anchor="middle" x="1622" y="-8" font-family="FreeSans" font-size="10.00">map</text>
 </g>
 <!-- Node7&#45;&gt;Node14 -->
@@ -337,7 +338,7 @@
 </g>
 <!-- Node15 -->
 <g id="node30" class="node"><title>Node15</title>
-<polygon fill="none" stroke="#bfbfbf" points="1106,-1 1106,-21 1146,-21 1146,-1 1106,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1106,-1 1106,-21 1146,-21 1146,-1 1106,-1"/>
 <text text-anchor="middle" x="1126" y="-8" font-family="FreeSans" font-size="10.00">string</text>
 </g>
 <!-- Node7&#45;&gt;Node15 -->
@@ -347,7 +348,7 @@
 </g>
 <!-- Node16 -->
 <g id="node32" class="node"><title>Node16</title>
-<polygon fill="none" stroke="#bfbfbf" points="1164,-1 1164,-21 1214,-21 1214,-1 1164,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1164,-1 1164,-21 1214,-21 1214,-1 1164,-1"/>
 <text text-anchor="middle" x="1189" y="-8" font-family="FreeSans" font-size="10.00">sstream</text>
 </g>
 <!-- Node7&#45;&gt;Node16 -->
@@ -357,7 +358,7 @@
 </g>
 <!-- Node17 -->
 <g id="node34" class="node"><title>Node17</title>
-<polygon fill="none" stroke="#bfbfbf" points="1231.5,-1 1231.5,-21 1260.5,-21 1260.5,-1 1231.5,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1231.5,-1 1231.5,-21 1260.5,-21 1260.5,-1 1231.5,-1"/>
 <text text-anchor="middle" x="1246" y="-8" font-family="FreeSans" font-size="10.00">set</text>
 </g>
 <!-- Node7&#45;&gt;Node17 -->
@@ -367,7 +368,7 @@
 </g>
 <!-- Node18 -->
 <g id="node36" class="node"><title>Node18</title>
-<polygon fill="none" stroke="#bfbfbf" points="1277.5,-1 1277.5,-21 1320.5,-21 1320.5,-1 1277.5,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1277.5,-1 1277.5,-21 1320.5,-21 1320.5,-1 1277.5,-1"/>
 <text text-anchor="middle" x="1299" y="-8" font-family="FreeSans" font-size="10.00">vector</text>
 </g>
 <!-- Node7&#45;&gt;Node18 -->
@@ -377,7 +378,7 @@
 </g>
 <!-- Node19 -->
 <g id="node38" class="node"><title>Node19</title>
-<polygon fill="none" stroke="#bfbfbf" points="1337.5,-1 1337.5,-21 1376.5,-21 1376.5,-1 1337.5,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1337.5,-1 1337.5,-21 1376.5,-21 1376.5,-1 1337.5,-1"/>
 <text text-anchor="middle" x="1357" y="-8" font-family="FreeSans" font-size="10.00">utility</text>
 </g>
 <!-- Node7&#45;&gt;Node19 -->
@@ -392,7 +393,7 @@
 </g>
 <!-- Node21 -->
 <g id="node42" class="node"><title>Node21</title>
-<polygon fill="none" stroke="#bfbfbf" points="645.5,-1 645.5,-21 696.5,-21 696.5,-1 645.5,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="645.5,-1 645.5,-21 696.5,-21 696.5,-1 645.5,-1"/>
 <text text-anchor="middle" x="671" y="-8" font-family="FreeSans" font-size="10.00">ostream</text>
 </g>
 <!-- Node7&#45;&gt;Node21 -->
@@ -408,7 +409,7 @@
 <!-- Node24 -->
 <g id="node48" class="node"><title>Node24</title>
 <a xlink:href="macros_8h.xhtml" target="_top" xlink:title="All convience/utility macros for the Mezzanine are to be placed here.">
-<polygon fill="none" stroke="black" points="142,-175 142,-195 198,-195 198,-175 142,-175"/>
+<polygon fill="white" stroke="black" points="142,-175 142,-195 198,-195 198,-175 142,-175"/>
 <text text-anchor="middle" x="170" y="-182" font-family="FreeSans" font-size="10.00">macros.h</text>
 </a>
 </g>
@@ -425,7 +426,7 @@
 <!-- Node26 -->
 <g id="node54" class="node"><title>Node26</title>
 <a xlink:href="objectrange_8h.xhtml" target="_top" xlink:title="Contains the implementation of the ObjectRange class template.">
-<polygon fill="none" stroke="black" points="402,-233 402,-253 500,-253 500,-233 402,-233"/>
+<polygon fill="white" stroke="black" points="402,-233 402,-253 500,-253 500,-233 402,-233"/>
 <text text-anchor="middle" x="451" y="-240" font-family="FreeSans" font-size="10.00">XML/objectrange.h</text>
 </a>
 </g>
@@ -437,7 +438,7 @@
 <!-- Node27 -->
 <g id="node57" class="node"><title>Node27</title>
 <a xlink:href="attribute_8h.xhtml" target="_top" xlink:title="Contains the definition for the XML::Attribute class.">
-<polygon fill="none" stroke="black" points="301.5,-233 301.5,-253 384.5,-253 384.5,-233 301.5,-233"/>
+<polygon fill="white" stroke="black" points="301.5,-233 301.5,-253 384.5,-253 384.5,-233 301.5,-233"/>
 <text text-anchor="middle" x="343" y="-240" font-family="FreeSans" font-size="10.00">XML/attribute.h</text>
 </a>
 </g>
@@ -449,7 +450,7 @@
 <!-- Node28 -->
 <g id="node60" class="node"><title>Node28</title>
 <a xlink:href="attributeiterator_8h.xhtml" target="_top" xlink:title="Contains the defintion of the AttributeIterator class.">
-<polygon fill="none" stroke="black" points="977.5,-349 977.5,-369 1090.5,-369 1090.5,-349 977.5,-349"/>
+<polygon fill="white" stroke="black" points="977.5,-349 977.5,-369 1090.5,-369 1090.5,-349 977.5,-349"/>
 <text text-anchor="middle" x="1034" y="-356" font-family="FreeSans" font-size="10.00">XML/attributeiterator.h</text>
 </a>
 </g>
@@ -461,7 +462,7 @@
 <!-- Node29 -->
 <g id="node63" class="node"><title>Node29</title>
 <a xlink:href="node_8h.xhtml" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes.">
-<polygon fill="none" stroke="black" points="470,-291 470,-311 538,-311 538,-291 470,-291"/>
+<polygon fill="white" stroke="black" points="470,-291 470,-311 538,-311 538,-291 470,-291"/>
 <text text-anchor="middle" x="504" y="-298" font-family="FreeSans" font-size="10.00">XML/node.h</text>
 </a>
 </g>
@@ -473,7 +474,7 @@
 <!-- Node30 -->
 <g id="node66" class="node"><title>Node30</title>
 <a xlink:href="xmlenumerations_8h.xhtml" target="_top" xlink:title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ...">
-<polygon fill="none" stroke="black" points="708,-233 708,-253 828,-253 828,-233 708,-233"/>
+<polygon fill="white" stroke="black" points="708,-233 708,-253 828,-253 828,-233 708,-233"/>
 <text text-anchor="middle" x="768" y="-240" font-family="FreeSans" font-size="10.00">XML/xmlenumerations.h</text>
 </a>
 </g>
@@ -485,7 +486,7 @@
 <!-- Node31 -->
 <g id="node71" class="node"><title>Node31</title>
 <a xlink:href="document_8h.xhtml" target="_top" xlink:title="The definition of the XML::Document Class.">
-<polygon fill="none" stroke="black" points="1225,-407 1225,-427 1315,-427 1315,-407 1225,-407"/>
+<polygon fill="white" stroke="black" points="1225,-407 1225,-427 1315,-427 1315,-407 1225,-407"/>
 <text text-anchor="middle" x="1270" y="-414" font-family="FreeSans" font-size="10.00">XML/document.h</text>
 </a>
 </g>
@@ -497,7 +498,7 @@
 <!-- Node32 -->
 <g id="node75" class="node"><title>Node32</title>
 <a xlink:href="parseresult_8h.xhtml" target="_top" xlink:title="XML/parseresult.h">
-<polygon fill="none" stroke="black" points="792,-291 792,-311 886,-311 886,-291 792,-291"/>
+<polygon fill="white" stroke="black" points="792,-291 792,-311 886,-311 886,-291 792,-291"/>
 <text text-anchor="middle" x="839" y="-298" font-family="FreeSans" font-size="10.00">XML/parseresult.h</text>
 </a>
 </g>
@@ -509,7 +510,7 @@
 <!-- Node33 -->
 <g id="node80" class="node"><title>Node33</title>
 <a xlink:href="writer_8h.xhtml" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy.">
-<polygon fill="none" stroke="black" points="1373.5,-349 1373.5,-369 1444.5,-369 1444.5,-349 1373.5,-349"/>
+<polygon fill="white" stroke="black" points="1373.5,-349 1373.5,-369 1444.5,-369 1444.5,-349 1373.5,-349"/>
 <text text-anchor="middle" x="1409" y="-356" font-family="FreeSans" font-size="10.00">XML/writer.h</text>
 </a>
 </g>
@@ -521,7 +522,7 @@
 <!-- Node47 -->
 <g id="node119" class="node"><title>Node47</title>
 <a xlink:href="memorymanagement_8h.xhtml" target="_top" xlink:title="The xml memory management system must be integrated into the rest of the Mezzanine resource managemen...">
-<polygon fill="none" stroke="black" points="1074,-175 1074,-195 1212,-195 1212,-175 1074,-175"/>
+<polygon fill="white" stroke="black" points="1074,-175 1074,-195 1212,-195 1212,-175 1074,-175"/>
 <text text-anchor="middle" x="1143" y="-182" font-family="FreeSans" font-size="10.00">XML/memorymanagement.h</text>
 </a>
 </g>
@@ -533,7 +534,7 @@
 <!-- Node48 -->
 <g id="node122" class="node"><title>Node48</title>
 <a xlink:href="nodeiterator_8h.xhtml" target="_top" xlink:title="Contains the defintion of the Mezzanine::XML::NodeIterator and Mezzanine::XML::NamedNodeIterator clas...">
-<polygon fill="none" stroke="black" points="2136,-349 2136,-369 2234,-369 2234,-349 2136,-349"/>
+<polygon fill="white" stroke="black" points="2136,-349 2136,-369 2234,-369 2234,-349 2136,-349"/>
 <text text-anchor="middle" x="2185" y="-356" font-family="FreeSans" font-size="10.00">XML/nodeiterator.h</text>
 </a>
 </g>
@@ -545,7 +546,7 @@
 <!-- Node49 -->
 <g id="node127" class="node"><title>Node49</title>
 <a xlink:href="nodetext_8h.xhtml" target="_top" xlink:title="The declaration of the XML::NodeText class.">
-<polygon fill="none" stroke="black" points="614,-349 614,-369 698,-369 698,-349 614,-349"/>
+<polygon fill="white" stroke="black" points="614,-349 614,-369 698,-369 698,-349 614,-349"/>
 <text text-anchor="middle" x="656" y="-356" font-family="FreeSans" font-size="10.00">XML/nodetext.h</text>
 </a>
 </g>
@@ -557,7 +558,7 @@
 <!-- Node50 -->
 <g id="node134" class="node"><title>Node50</title>
 <a xlink:href="treewalker_8h.xhtml" target="_top" xlink:title="This defines the TreeWalker Interface.">
-<polygon fill="none" stroke="black" points="256,-349 256,-369 348,-369 348,-349 256,-349"/>
+<polygon fill="white" stroke="black" points="256,-349 256,-369 348,-369 348,-349 256,-349"/>
 <text text-anchor="middle" x="302" y="-356" font-family="FreeSans" font-size="10.00">XML/treewalker.h</text>
 </a>
 </g>
@@ -569,7 +570,7 @@
 <!-- Node51 -->
 <g id="node140" class="node"><title>Node51</title>
 <a xlink:href="xmlstring_8h.xhtml" target="_top" xlink:title="A few functions to help the XML system perform conversions between UTF8 and the native wide character...">
-<polygon fill="none" stroke="black" points="2072,-175 2072,-195 2158,-195 2158,-175 2072,-175"/>
+<polygon fill="white" stroke="black" points="2072,-175 2072,-195 2158,-195 2158,-175 2072,-175"/>
 <text text-anchor="middle" x="2115" y="-182" font-family="FreeSans" font-size="10.00">XML/xmlstring.h</text>
 </a>
 </g>
@@ -581,7 +582,7 @@
 <!-- Node52 -->
 <g id="node143" class="node"><title>Node52</title>
 <a xlink:href="xpathnode_8h.xhtml" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathNode.">
-<polygon fill="none" stroke="black" points="868,-349 868,-369 960,-369 960,-349 868,-349"/>
+<polygon fill="white" stroke="black" points="868,-349 868,-369 960,-369 960,-349 868,-349"/>
 <text text-anchor="middle" x="914" y="-356" font-family="FreeSans" font-size="10.00">XML/xpathnode.h</text>
 </a>
 </g>
@@ -593,7 +594,7 @@
 <!-- Node53 -->
 <g id="node147" class="node"><title>Node53</title>
 <a xlink:href="xpathnodeset_8h.xhtml" target="_top" xlink:title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet.">
-<polygon fill="none" stroke="black" points="1043,-407 1043,-427 1147,-427 1147,-407 1043,-407"/>
+<polygon fill="white" stroke="black" points="1043,-407 1043,-427 1147,-427 1147,-407 1043,-407"/>
 <text text-anchor="middle" x="1095" y="-414" font-family="FreeSans" font-size="10.00">XML/xpathnodeset.h</text>
 </a>
 </g>
@@ -605,7 +606,7 @@
 <!-- Node54 -->
 <g id="node151" class="node"><title>Node54</title>
 <a xlink:href="xpathparseresult_8h.xhtml" target="_top" xlink:title="Has all the classes for the XPath implementation.">
-<polygon fill="none" stroke="black" points="403.5,-349 403.5,-369 520.5,-369 520.5,-349 403.5,-349"/>
+<polygon fill="white" stroke="black" points="403.5,-349 403.5,-369 520.5,-369 520.5,-349 403.5,-349"/>
 <text text-anchor="middle" x="462" y="-356" font-family="FreeSans" font-size="10.00">XML/xpathparseresult.h</text>
 </a>
 </g>
@@ -617,7 +618,7 @@
 <!-- Node55 -->
 <g id="node155" class="node"><title>Node55</title>
 <a xlink:href="xpathvariable_8h.xhtml" target="_top" xlink:title="The XPathVariable class definition.">
-<polygon fill="none" stroke="black" points="632,-291 632,-311 736,-311 736,-291 632,-291"/>
+<polygon fill="white" stroke="black" points="632,-291 632,-311 736,-311 736,-291 632,-291"/>
 <text text-anchor="middle" x="684" y="-298" font-family="FreeSans" font-size="10.00">XML/xpathvariable.h</text>
 </a>
 </g>
@@ -629,7 +630,7 @@
 <!-- Node56 -->
 <g id="node159" class="node"><title>Node56</title>
 <a xlink:href="xpathvariableset_8h.xhtml" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathVariableSet.">
-<polygon fill="none" stroke="black" points="980,-291 980,-311 1096,-311 1096,-291 980,-291"/>
+<polygon fill="white" stroke="black" points="980,-291 980,-311 1096,-311 1096,-291 980,-291"/>
 <text text-anchor="middle" x="1038" y="-298" font-family="FreeSans" font-size="10.00">XML/xpathvariableset.h</text>
 </a>
 </g>
@@ -641,7 +642,7 @@
 <!-- Node57 -->
 <g id="node163" class="node"><title>Node57</title>
 <a xlink:href="xpathquery_8h.xhtml" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathQuery .">
-<polygon fill="none" stroke="black" points="680,-407 680,-427 774,-427 774,-407 680,-407"/>
+<polygon fill="white" stroke="black" points="680,-407 680,-427 774,-427 774,-407 680,-407"/>
 <text text-anchor="middle" x="727" y="-414" font-family="FreeSans" font-size="10.00">XML/xpathquery.h</text>
 </a>
 </g>
@@ -723,7 +724,7 @@
 <!-- Node40 -->
 <g id="node95" class="node"><title>Node40</title>
 <a xlink:href="datastream_8h.xhtml" target="_top" xlink:title="Declaration of DataStream.">
-<polygon fill="none" stroke="black" points="1347,-175 1347,-195 1463,-195 1463,-175 1347,-175"/>
+<polygon fill="white" stroke="black" points="1347,-175 1347,-195 1463,-195 1463,-175 1347,-175"/>
 <text text-anchor="middle" x="1405" y="-182" font-family="FreeSans" font-size="10.00">Resource/datastream.h</text>
 </a>
 </g>
@@ -750,7 +751,7 @@
 <!-- Node34 -->
 <g id="node83" class="node"><title>Node34</title>
 <a xlink:href="resource_8h_source.xhtml" target="_top" xlink:title="resource.h">
-<polygon fill="none" stroke="black" points="1660.5,-291 1660.5,-311 1721.5,-311 1721.5,-291 1660.5,-291"/>
+<polygon fill="white" stroke="black" points="1660.5,-291 1660.5,-311 1721.5,-311 1721.5,-291 1660.5,-291"/>
 <text text-anchor="middle" x="1691" y="-298" font-family="FreeSans" font-size="10.00">resource.h</text>
 </a>
 </g>
@@ -762,7 +763,7 @@
 <!-- Node35 -->
 <g id="node85" class="node"><title>Node35</title>
 <a xlink:href="resourceenumerations_8h_source.xhtml" target="_top" xlink:title="Resource/resourceenumerations.h">
-<polygon fill="none" stroke="black" points="1276,-233 1276,-253 1438,-253 1438,-233 1276,-233"/>
+<polygon fill="white" stroke="black" points="1276,-233 1276,-253 1438,-253 1438,-233 1276,-233"/>
 <text text-anchor="middle" x="1357" y="-240" font-family="FreeSans" font-size="10.00">Resource/resourceenumerations.h</text>
 </a>
 </g>
@@ -774,7 +775,7 @@
 <!-- Node36 -->
 <g id="node87" class="node"><title>Node36</title>
 <a xlink:href="archive_8h_source.xhtml" target="_top" xlink:title="Resource/archive.h">
-<polygon fill="none" stroke="black" points="1642,-233 1642,-253 1740,-253 1740,-233 1642,-233"/>
+<polygon fill="white" stroke="black" points="1642,-233 1642,-253 1740,-253 1740,-233 1642,-233"/>
 <text text-anchor="middle" x="1691" y="-240" font-family="FreeSans" font-size="10.00">Resource/archive.h</text>
 </a>
 </g>
@@ -786,7 +787,7 @@
 <!-- Node37 -->
 <g id="node89" class="node"><title>Node37</title>
 <a xlink:href="asset_8h_source.xhtml" target="_top" xlink:title="Resource/asset.h">
-<polygon fill="none" stroke="black" points="1758,-233 1758,-253 1848,-253 1848,-233 1758,-233"/>
+<polygon fill="white" stroke="black" points="1758,-233 1758,-253 1848,-253 1848,-233 1758,-233"/>
 <text text-anchor="middle" x="1803" y="-240" font-family="FreeSans" font-size="10.00">Resource/asset.h</text>
 </a>
 </g>
@@ -798,7 +799,7 @@
 <!-- Node38 -->
 <g id="node91" class="node"><title>Node38</title>
 <a xlink:href="assetgroup_8h_source.xhtml" target="_top" xlink:title="Resource/assetgroup.h">
-<polygon fill="none" stroke="black" points="1866,-233 1866,-253 1980,-253 1980,-233 1866,-233"/>
+<polygon fill="white" stroke="black" points="1866,-233 1866,-253 1980,-253 1980,-233 1866,-233"/>
 <text text-anchor="middle" x="1923" y="-240" font-family="FreeSans" font-size="10.00">Resource/assetgroup.h</text>
 </a>
 </g>
@@ -810,7 +811,7 @@
 <!-- Node39 -->
 <g id="node93" class="node"><title>Node39</title>
 <a xlink:href="assethandler_8h_source.xhtml" target="_top" xlink:title="Resource/assethandler.h">
-<polygon fill="none" stroke="black" points="1998,-233 1998,-253 2120,-253 2120,-233 1998,-233"/>
+<polygon fill="white" stroke="black" points="1998,-233 1998,-253 2120,-253 2120,-233 1998,-233"/>
 <text text-anchor="middle" x="2059" y="-240" font-family="FreeSans" font-size="10.00">Resource/assethandler.h</text>
 </a>
 </g>
@@ -827,7 +828,7 @@
 <!-- Node43 -->
 <g id="node104" class="node"><title>Node43</title>
 <a xlink:href="filestream_8h.xhtml" target="_top" xlink:title="Declaration of FileStream.">
-<polygon fill="none" stroke="black" points="1149.5,-233 1149.5,-253 1258.5,-253 1258.5,-233 1149.5,-233"/>
+<polygon fill="white" stroke="black" points="1149.5,-233 1149.5,-253 1258.5,-253 1258.5,-233 1149.5,-233"/>
 <text text-anchor="middle" x="1204" y="-240" font-family="FreeSans" font-size="10.00">Resource/filestream.h</text>
 </a>
 </g>
@@ -839,7 +840,7 @@
 <!-- Node44 -->
 <g id="node107" class="node"><title>Node44</title>
 <a xlink:href="inputstream_8h_source.xhtml" target="_top" xlink:title="Resource/inputstream.h">
-<polygon fill="none" stroke="black" points="2420,-117 2420,-137 2538,-137 2538,-117 2420,-117"/>
+<polygon fill="white" stroke="black" points="2420,-117 2420,-137 2538,-137 2538,-117 2420,-117"/>
 <text text-anchor="middle" x="2479" y="-124" font-family="FreeSans" font-size="10.00">Resource/inputstream.h</text>
 </a>
 </g>
@@ -851,7 +852,7 @@
 <!-- Node45 -->
 <g id="node111" class="node"><title>Node45</title>
 <a xlink:href="memorystream_8h.xhtml" target="_top" xlink:title="Declaration of MemoryStream.">
-<polygon fill="none" stroke="black" points="1455.5,-233 1455.5,-253 1586.5,-253 1586.5,-233 1455.5,-233"/>
+<polygon fill="white" stroke="black" points="1455.5,-233 1455.5,-253 1586.5,-253 1586.5,-233 1455.5,-233"/>
 <text text-anchor="middle" x="1521" y="-240" font-family="FreeSans" font-size="10.00">Resource/memorystream.h</text>
 </a>
 </g>
@@ -863,7 +864,7 @@
 <!-- Node46 -->
 <g id="node114" class="node"><title>Node46</title>
 <a xlink:href="textsettingsfile_8h_source.xhtml" target="_top" xlink:title="Resource/textsettingsfile.h">
-<polygon fill="none" stroke="black" points="2160,-117 2160,-137 2288,-137 2288,-117 2160,-117"/>
+<polygon fill="white" stroke="black" points="2160,-117 2160,-137 2288,-137 2288,-117 2160,-117"/>
 <text text-anchor="middle" x="2224" y="-124" font-family="FreeSans" font-size="10.00">Resource/textsettingsfile.h</text>
 </a>
 </g>
@@ -880,7 +881,7 @@
 <!-- Node41 -->
 <g id="node98" class="node"><title>Node41</title>
 <a xlink:href="smartptr_8h.xhtml" target="_top" xlink:title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e...">
-<polygon fill="none" stroke="black" points="2305.5,-117 2305.5,-137 2364.5,-137 2364.5,-117 2305.5,-117"/>
+<polygon fill="white" stroke="black" points="2305.5,-117 2305.5,-137 2364.5,-137 2364.5,-117 2305.5,-117"/>
 <text text-anchor="middle" x="2335" y="-124" font-family="FreeSans" font-size="10.00">smartptr.h</text>
 </a>
 </g>
@@ -891,7 +892,7 @@
 </g>
 <!-- Node42 -->
 <g id="node102" class="node"><title>Node42</title>
-<polygon fill="none" stroke="#bfbfbf" points="1378.5,-117 1378.5,-137 1431.5,-137 1431.5,-117 1378.5,-117"/>
+<polygon fill="white" stroke="#bfbfbf" points="1378.5,-117 1378.5,-137 1431.5,-137 1431.5,-117 1378.5,-117"/>
 <text text-anchor="middle" x="1405" y="-124" font-family="FreeSans" font-size="10.00">iostream</text>
 </g>
 <!-- Node40&#45;&gt;Node42 -->
@@ -1087,7 +1088,7 @@
 <!-- Node60 -->
 <g id="node177" class="node"><title>Node60</title>
 <a xlink:href="colourvalue_8h_source.xhtml" target="_top" xlink:title="colourvalue.h">
-<polygon fill="none" stroke="black" points="2212.5,-523 2212.5,-543 2285.5,-543 2285.5,-523 2212.5,-523"/>
+<polygon fill="white" stroke="black" points="2212.5,-523 2212.5,-543 2285.5,-543 2285.5,-523 2212.5,-523"/>
 <text text-anchor="middle" x="2249" y="-530" font-family="FreeSans" font-size="10.00">colourvalue.h</text>
 </a>
 </g>
@@ -1099,7 +1100,7 @@
 <!-- Node61 -->
 <g id="node182" class="node"><title>Node61</title>
 <a xlink:href="worldmanager_8h_source.xhtml" target="_top" xlink:title="worldmanager.h">
-<polygon fill="none" stroke="black" points="1671,-581 1671,-601 1755,-601 1755,-581 1671,-581"/>
+<polygon fill="white" stroke="black" points="1671,-581 1671,-601 1755,-601 1755,-581 1671,-581"/>
 <text text-anchor="middle" x="1713" y="-588" font-family="FreeSans" font-size="10.00">worldmanager.h</text>
 </a>
 </g>
@@ -1111,7 +1112,7 @@
 <!-- Node63 -->
 <g id="node190" class="node"><title>Node63</title>
 <a xlink:href="managerfactory_8h_source.xhtml" target="_top" xlink:title="managerfactory.h">
-<polygon fill="none" stroke="black" points="961.5,-465 961.5,-485 1052.5,-485 1052.5,-465 961.5,-465"/>
+<polygon fill="white" stroke="black" points="961.5,-465 961.5,-485 1052.5,-485 1052.5,-465 961.5,-465"/>
 <text text-anchor="middle" x="1007" y="-472" font-family="FreeSans" font-size="10.00">managerfactory.h</text>
 </a>
 </g>
@@ -1123,7 +1124,7 @@
 <!-- Node64 -->
 <g id="node193" class="node"><title>Node64</title>
 <a xlink:href="singleton_8h_source.xhtml" target="_top" xlink:title="singleton.h">
-<polygon fill="none" stroke="black" points="2574,-581 2574,-601 2636,-601 2636,-581 2574,-581"/>
+<polygon fill="white" stroke="black" points="2574,-581 2574,-601 2636,-601 2636,-581 2574,-581"/>
 <text text-anchor="middle" x="2605" y="-588" font-family="FreeSans" font-size="10.00">singleton.h</text>
 </a>
 </g>
@@ -1134,7 +1135,7 @@
 </g>
 <!-- Node66 -->
 <g id="node201" class="node"><title>Node66</title>
-<polygon fill="none" stroke="#bfbfbf" points="1811,-581 1811,-601 1917,-601 1917,-581 1811,-581"/>
+<polygon fill="white" stroke="#bfbfbf" points="1811,-581 1811,-601 1917,-601 1917,-581 1811,-581"/>
 <text text-anchor="middle" x="1864" y="-588" font-family="FreeSans" font-size="10.00">Threading/workunit.h</text>
 </g>
 <!-- Node59&#45;&gt;Node66 -->
@@ -1165,7 +1166,7 @@
 <!-- Node62 -->
 <g id="node184" class="node"><title>Node62</title>
 <a xlink:href="managerbase_8h_source.xhtml" target="_top" xlink:title="managerbase.h">
-<polygon fill="none" stroke="black" points="2506,-523 2506,-543 2588,-543 2588,-523 2506,-523"/>
+<polygon fill="white" stroke="black" points="2506,-523 2506,-543 2588,-543 2588,-523 2506,-523"/>
 <text text-anchor="middle" x="2547" y="-530" font-family="FreeSans" font-size="10.00">managerbase.h</text>
 </a>
 </g>
@@ -1237,7 +1238,7 @@
 <!-- Node68 -->
 <g id="node210" class="node"><title>Node68</title>
 <a xlink:href="ray_8h_source.xhtml" target="_top" xlink:title="ray.h">
-<polygon fill="none" stroke="black" points="2517.5,-581 2517.5,-601 2554.5,-601 2554.5,-581 2517.5,-581"/>
+<polygon fill="white" stroke="black" points="2517.5,-581 2517.5,-601 2554.5,-601 2554.5,-581 2517.5,-581"/>
 <text text-anchor="middle" x="2536" y="-588" font-family="FreeSans" font-size="10.00">ray.h</text>
 </a>
 </g>
@@ -1299,7 +1300,7 @@
 <!-- Node72 -->
 <g id="node230" class="node"><title>Node72</title>
 <a xlink:href="worldobject_8h_source.xhtml" target="_top" xlink:title="worldobject.h">
-<polygon fill="none" stroke="black" points="1385.5,-697 1385.5,-717 1458.5,-717 1458.5,-697 1385.5,-697"/>
+<polygon fill="white" stroke="black" points="1385.5,-697 1385.5,-717 1458.5,-717 1458.5,-697 1385.5,-697"/>
 <text text-anchor="middle" x="1422" y="-704" font-family="FreeSans" font-size="10.00">worldobject.h</text>
 </a>
 </g>
@@ -1311,7 +1312,7 @@
 <!-- Node73 -->
 <g id="node236" class="node"><title>Node73</title>
 <a xlink:href="collision_8h_source.xhtml" target="_top" xlink:title="Physics/collision.h">
-<polygon fill="none" stroke="black" points="1462.5,-639 1462.5,-659 1557.5,-659 1557.5,-639 1462.5,-639"/>
+<polygon fill="white" stroke="black" points="1462.5,-639 1462.5,-659 1557.5,-659 1557.5,-639 1462.5,-639"/>
 <text text-anchor="middle" x="1510" y="-646" font-family="FreeSans" font-size="10.00">Physics/collision.h</text>
 </a>
 </g>
@@ -1348,7 +1349,7 @@
 <!-- Node74 -->
 <g id="node240" class="node"><title>Node74</title>
 <a xlink:href="worldobjectgraphicssettings_8h_source.xhtml" target="_top" xlink:title="worldobjectgraphicssettings.h">
-<polygon fill="none" stroke="black" points="1291,-581 1291,-601 1433,-601 1433,-581 1291,-581"/>
+<polygon fill="white" stroke="black" points="1291,-581 1291,-601 1433,-601 1433,-581 1291,-581"/>
 <text text-anchor="middle" x="1362" y="-588" font-family="FreeSans" font-size="10.00">worldobjectgraphicssettings.h</text>
 </a>
 </g>
@@ -1360,7 +1361,7 @@
 <!-- Node75 -->
 <g id="node245" class="node"><title>Node75</title>
 <a xlink:href="worldobjectphysicssettings_8h_source.xhtml" target="_top" xlink:title="worldobjectphysicssettings.h">
-<polygon fill="none" stroke="black" points="946.5,-523 946.5,-543 1083.5,-543 1083.5,-523 946.5,-523"/>
+<polygon fill="white" stroke="black" points="946.5,-523 946.5,-543 1083.5,-543 1083.5,-523 946.5,-523"/>
 <text text-anchor="middle" x="1015" y="-530" font-family="FreeSans" font-size="10.00">worldobjectphysicssettings.h</text>
 </a>
 </g>
@@ -1412,7 +1413,7 @@
 <!-- Node76 -->
 <g id="node249" class="node"><title>Node76</title>
 <a xlink:href="physicsenumerations_8h_source.xhtml" target="_top" xlink:title="Physics/physicsenumerations.h">
-<polygon fill="none" stroke="black" points="795.5,-465 795.5,-485 944.5,-485 944.5,-465 795.5,-465"/>
+<polygon fill="white" stroke="black" points="795.5,-465 795.5,-485 944.5,-485 944.5,-465 795.5,-465"/>
 <text text-anchor="middle" x="870" y="-472" font-family="FreeSans" font-size="10.00">Physics/physicsenumerations.h</text>
 </a>
 </g>
@@ -1444,7 +1445,7 @@
 <!-- Node78 -->
 <g id="node255" class="node"><title>Node78</title>
 <a xlink:href="metacode_8h_source.xhtml" target="_top" xlink:title="Input/metacode.h">
-<polygon fill="none" stroke="black" points="2385,-523 2385,-543 2477,-543 2477,-523 2385,-523"/>
+<polygon fill="white" stroke="black" points="2385,-523 2385,-543 2477,-543 2477,-523 2385,-523"/>
 <text text-anchor="middle" x="2431" y="-530" font-family="FreeSans" font-size="10.00">Input/metacode.h</text>
 </a>
 </g>
@@ -1456,7 +1457,7 @@
 <!-- Node80 -->
 <g id="node261" class="node"><title>Node80</title>
 <a xlink:href="vector2_8h_source.xhtml" target="_top" xlink:title="vector2.h">
-<polygon fill="none" stroke="black" points="2606,-523 2606,-543 2662,-543 2662,-523 2606,-523"/>
+<polygon fill="white" stroke="black" points="2606,-523 2606,-543 2662,-543 2662,-523 2606,-523"/>
 <text text-anchor="middle" x="2634" y="-530" font-family="FreeSans" font-size="10.00">vector2.h</text>
 </a>
 </g>
@@ -1478,7 +1479,7 @@
 <!-- Node79 -->
 <g id="node258" class="node"><title>Node79</title>
 <a xlink:href="inputenumerations_8h_source.xhtml" target="_top" xlink:title="Input/inputenumerations.h">
-<polygon fill="none" stroke="black" points="2458,-465 2458,-485 2586,-485 2586,-465 2458,-465"/>
+<polygon fill="white" stroke="black" points="2458,-465 2458,-485 2586,-485 2586,-465 2458,-465"/>
 <text text-anchor="middle" x="2522" y="-472" font-family="FreeSans" font-size="10.00">Input/inputenumerations.h</text>
 </a>
 </g>
@@ -1540,7 +1541,7 @@
 <!-- Node82 -->
 <g id="node273" class="node"><title>Node82</title>
 <a xlink:href="crossplatform_8h_source.xhtml" target="_top" xlink:title="crossplatform.h">
-<polygon fill="none" stroke="black" points="3022,-117 3022,-137 3104,-137 3104,-117 3022,-117"/>
+<polygon fill="white" stroke="black" points="3022,-117 3022,-137 3104,-137 3104,-117 3022,-117"/>
 <text text-anchor="middle" x="3063" y="-124" font-family="FreeSans" font-size="10.00">crossplatform.h</text>
 </a>
 </g>
@@ -1552,7 +1553,7 @@
 <!-- Node83 -->
 <g id="node277" class="node"><title>Node83</title>
 <a xlink:href="eventbase_8h_source.xhtml" target="_top" xlink:title="eventbase.h">
-<polygon fill="none" stroke="black" points="2746,-407 2746,-427 2814,-427 2814,-407 2746,-407"/>
+<polygon fill="white" stroke="black" points="2746,-407 2746,-427 2814,-427 2814,-407 2746,-407"/>
 <text text-anchor="middle" x="2780" y="-414" font-family="FreeSans" font-size="10.00">eventbase.h</text>
 </a>
 </g>
@@ -1563,7 +1564,7 @@
 </g>
 <!-- Node84 -->
 <g id="node286" class="node"><title>Node84</title>
-<polygon fill="none" stroke="#bfbfbf" points="2844,-581 2844,-601 2996,-601 2996,-581 2844,-581"/>
+<polygon fill="white" stroke="#bfbfbf" points="2844,-581 2844,-601 2996,-601 2996,-581 2844,-581"/>
 <text text-anchor="middle" x="2920" y="-588" font-family="FreeSans" font-size="10.00">Threading/dagframescheduler.h</text>
 </g>
 <!-- Node81&#45;&gt;Node84 -->

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 1448.00 326.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 322)">
 <title>Mezzanine::Input::Controller</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-322 1445,-322 1445,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="1306,-82 1306,-102 1440,-102 1440,-82 1306,-82"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Input_1_1ButtonDevice.xhtml" target="_top" xlink:title="This is a base class for all input devices with buttons.">
-<polygon fill="none" stroke="black" points="1090,-195 1090,-227 1212,-227 1212,-195 1090,-195"/>
+<polygon fill="white" stroke="black" points="1090,-195 1090,-227 1212,-227 1212,-195 1090,-195"/>
 <text text-anchor="start" x="1098" y="-214" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Button</text>
 <text text-anchor="middle" x="1151" y="-202" font-family="FreeSans" font-size="10.00">Device</text>
 </a>
@@ -29,7 +30,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Input_1_1Device.xhtml" target="_top" xlink:title="This is a base class for all input devices.">
-<polygon fill="none" stroke="black" points="840,-248 840,-268 962,-268 962,-248 840,-248"/>
+<polygon fill="white" stroke="black" points="840,-248 840,-268 962,-268 962,-248 840,-248"/>
 <text text-anchor="middle" x="901" y="-255" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Device</text>
 </a>
 </g>
@@ -41,7 +42,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Input_1_1SequenceContainer.xhtml" target="_top" xlink:title="This class stores and provides utilities for sequenced inputs and their operations.">
-<polygon fill="none" stroke="black" points="614.5,-242 614.5,-274 751.5,-274 751.5,-242 614.5,-242"/>
+<polygon fill="white" stroke="black" points="614.5,-242 614.5,-274 751.5,-274 751.5,-242 614.5,-242"/>
 <text text-anchor="start" x="622.5" y="-261" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Sequence</text>
 <text text-anchor="middle" x="683" y="-249" font-family="FreeSans" font-size="10.00">Container</text>
 </a>
@@ -55,7 +56,7 @@
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Trie.xhtml" target="_top" xlink:title="Mezzanine::Trie\&lt; Input\l::MetaCode, Int32 \&gt;">
-<polygon fill="none" stroke="black" points="359.5,-286 359.5,-318 472.5,-318 472.5,-286 359.5,-286"/>
+<polygon fill="white" stroke="black" points="359.5,-286 359.5,-318 472.5,-318 472.5,-286 359.5,-286"/>
 <text text-anchor="start" x="367.5" y="-305" font-family="FreeSans" font-size="10.00">Mezzanine::Trie&lt; Input</text>
 <text text-anchor="middle" x="416" y="-293" font-family="FreeSans" font-size="10.00">::MetaCode, Int32 &gt;</text>
 </a>
@@ -69,7 +70,7 @@
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1StopWatchTimer.xhtml" target="_top" xlink:title="This is a timer class for counting down to a specified time.">
-<polygon fill="none" stroke="black" points="346,-248 346,-268 486,-268 486,-248 346,-248"/>
+<polygon fill="white" stroke="black" points="346,-248 346,-268 486,-268 486,-248 346,-248"/>
 <text text-anchor="middle" x="416" y="-255" font-family="FreeSans" font-size="10.00">Mezzanine::StopWatchTimer</text>
 </a>
 </g>
@@ -82,7 +83,7 @@
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1GoalTimer.xhtml" target="_top" xlink:title="This is the base class for timers intended to run only until they reach a specific goal...">
-<polygon fill="none" stroke="black" points="143,-248 143,-268 255,-268 255,-248 143,-248"/>
+<polygon fill="white" stroke="black" points="143,-248 143,-268 255,-268 255,-248 143,-248"/>
 <text text-anchor="middle" x="199" y="-255" font-family="FreeSans" font-size="10.00">Mezzanine::GoalTimer</text>
 </a>
 </g>
@@ -94,7 +95,7 @@
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1Timer.xhtml" target="_top" xlink:title="A base timer class for the different timers.">
-<polygon fill="none" stroke="black" points="0,-248 0,-268 92,-268 92,-248 0,-248"/>
+<polygon fill="white" stroke="black" points="0,-248 0,-268 92,-268 92,-248 0,-248"/>
 <text text-anchor="middle" x="46" y="-255" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>
 </g>
@@ -105,7 +106,7 @@
 </g>
 <!-- Node9 -->
 <g id="node16" class="node"><title>Node9</title>
-<polygon fill="none" stroke="#bfbfbf" points="371,-198 371,-230 461,-230 461,-198 371,-198"/>
+<polygon fill="white" stroke="#bfbfbf" points="371,-198 371,-230 461,-230 461,-198 371,-198"/>
 <text text-anchor="start" x="379" y="-217" font-family="FreeSans" font-size="10.00">std::vector&lt; Input</text>
 <text text-anchor="middle" x="416" y="-205" font-family="FreeSans" font-size="10.00">::MetaCode &gt;</text>
 </g>
@@ -118,7 +119,7 @@
 <!-- Node10 -->
 <g id="node18" class="node"><title>Node10</title>
 <a xlink:href="classMezzanine_1_1Input_1_1MetaCode.xhtml" target="_top" xlink:title="This Determines the kind of user input.">
-<polygon fill="none" stroke="black" points="130.5,-204 130.5,-224 267.5,-224 267.5,-204 130.5,-204"/>
+<polygon fill="white" stroke="black" points="130.5,-204 130.5,-224 267.5,-224 267.5,-204 130.5,-204"/>
 <text text-anchor="middle" x="199" y="-211" font-family="FreeSans" font-size="10.00">Mezzanine::Input::MetaCode</text>
 </a>
 </g>
@@ -130,7 +131,7 @@
 </g>
 <!-- Node11 -->
 <g id="node20" class="node"><title>Node11</title>
-<polygon fill="none" stroke="#bfbfbf" points="849,-210 849,-230 953,-230 953,-210 849,-210"/>
+<polygon fill="white" stroke="#bfbfbf" points="849,-210 849,-230 953,-230 953,-210 849,-210"/>
 <text text-anchor="middle" x="901" y="-217" font-family="FreeSans" font-size="10.00">std::vector&lt; Whole &gt;</text>
 </g>
 <!-- Node11&#45;&gt;Node2 -->
@@ -141,7 +142,7 @@
 </g>
 <!-- Node12 -->
 <g id="node22" class="node"><title>Node12</title>
-<polygon fill="none" stroke="#bfbfbf" points="856,-160 856,-192 946,-192 946,-160 856,-160"/>
+<polygon fill="white" stroke="#bfbfbf" points="856,-160 856,-192 946,-192 946,-160 856,-160"/>
 <text text-anchor="start" x="864" y="-179" font-family="FreeSans" font-size="10.00">std::vector&lt; Input</text>
 <text text-anchor="middle" x="901" y="-167" font-family="FreeSans" font-size="10.00">::ButtonState &gt;</text>
 </g>
@@ -153,7 +154,7 @@
 </g>
 <!-- Node13 -->
 <g id="node24" class="node"><title>Node13</title>
-<polygon fill="none" stroke="#bfbfbf" points="1094,-126 1094,-158 1208,-158 1208,-126 1094,-126"/>
+<polygon fill="white" stroke="#bfbfbf" points="1094,-126 1094,-158 1208,-158 1208,-126 1094,-126"/>
 <text text-anchor="start" x="1102" y="-145" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="1151" y="-133" font-family="FreeSans" font-size="10.00">::Vector2 &gt;</text>
 </g>
@@ -166,7 +167,7 @@
 <!-- Node14 -->
 <g id="node26" class="node"><title>Node14</title>
 <a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
-<polygon fill="none" stroke="black" points="851,-122 851,-142 951,-142 951,-122 851,-122"/>
+<polygon fill="white" stroke="black" points="851,-122 851,-142 951,-142 951,-122 851,-122"/>
 <text text-anchor="middle" x="901" y="-129" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
 </g>
@@ -178,7 +179,7 @@
 </g>
 <!-- Node15 -->
 <g id="node28" class="node"><title>Node15</title>
-<polygon fill="none" stroke="#bfbfbf" points="1106,-76 1106,-108 1196,-108 1196,-76 1106,-76"/>
+<polygon fill="white" stroke="#bfbfbf" points="1106,-76 1106,-108 1196,-108 1196,-76 1106,-76"/>
 <text text-anchor="start" x="1114" y="-95" font-family="FreeSans" font-size="10.00">std::vector&lt; Input</text>
 <text text-anchor="middle" x="1151" y="-83" font-family="FreeSans" font-size="10.00">::HatState &gt;</text>
 </g>
@@ -191,7 +192,7 @@
 <!-- Node16 -->
 <g id="node30" class="node"><title>Node16</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="1122.5,-38 1122.5,-58 1179.5,-58 1179.5,-38 1122.5,-38"/>
+<polygon fill="white" stroke="#bfbfbf" points="1122.5,-38 1122.5,-58 1179.5,-58 1179.5,-38 1122.5,-38"/>
 <text text-anchor="middle" x="1151" y="-45" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -204,7 +205,7 @@
 <!-- Node17 -->
 <g id="node32" class="node"><title>Node17</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="855.5,-32 855.5,-64 946.5,-64 946.5,-32 855.5,-32"/>
+<polygon fill="white" stroke="#bfbfbf" points="855.5,-32 855.5,-64 946.5,-64 946.5,-32 855.5,-32"/>
 <text text-anchor="start" x="863.5" y="-51" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="901" y="-39" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -216,7 +217,7 @@
 </g>
 <!-- Node18 -->
 <g id="node34" class="node"><title>Node18</title>
-<polygon fill="none" stroke="#bfbfbf" points="1102,-0 1102,-20 1200,-20 1200,-0 1102,-0"/>
+<polygon fill="white" stroke="#bfbfbf" points="1102,-0 1102,-20 1200,-20 1200,-0 1102,-0"/>
 <text text-anchor="middle" x="1151" y="-7" font-family="FreeSans" font-size="10.00">std::vector&lt; Int16 &gt;</text>
 </g>
 <!-- Node18&#45;&gt;Node1 -->

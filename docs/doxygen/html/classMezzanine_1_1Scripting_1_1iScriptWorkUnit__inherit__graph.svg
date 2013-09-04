@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 112.00 100.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 96)">
 <title>Mezzanine::Scripting::iScriptWorkUnit</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-96 109,-96 109,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-33 104.5,-33 104.5,-1 -0.5,-1"/>
@@ -16,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<polygon fill="none" stroke="#bfbfbf" points="8.5,-71 8.5,-91 95.5,-91 95.5,-71 8.5,-71"/>
+<polygon fill="white" stroke="#bfbfbf" points="8.5,-71 8.5,-91 95.5,-91 95.5,-71 8.5,-71"/>
 <text text-anchor="middle" x="52" y="-78" font-family="FreeSans" font-size="10.00">DefaultWorkUnit</text>
 </g>
 <!-- Node2&#45;&gt;Node1 -->

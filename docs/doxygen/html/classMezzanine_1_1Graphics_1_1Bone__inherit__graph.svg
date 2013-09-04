@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 136.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::Graphics::Bone</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-108 133,-108 133,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="11.5,-1 11.5,-33 116.5,-33 116.5,-1 11.5,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1TransformableChildObject.xhtml" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
-<polygon fill="none" stroke="black" points="0,-71 0,-103 128,-103 128,-71 0,-71"/>
+<polygon fill="white" stroke="black" points="0,-71 0,-103 128,-103 128,-71 0,-71"/>
 <text text-anchor="start" x="8" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="64" y="-78" font-family="FreeSans" font-size="10.00">ChildObject</text>
 </a>

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 130.00 124.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 120)">
 <title>Mezzanine::Node&lt; T, V, Cmp, Items &gt;::iterator</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-120 127,-120 127,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-1 0,-33 122,-33 122,-1 0,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Node_1_1const__iterator.xhtml" target="_top" xlink:title="Mezzanine::Node\&lt; T,\l V, Cmp, Items \&gt;::const\l_iterator">
-<polygon fill="none" stroke="black" points="3,-71 3,-115 119,-115 119,-71 3,-71"/>
+<polygon fill="white" stroke="black" points="3,-71 3,-115 119,-115 119,-71 3,-71"/>
 <text text-anchor="start" x="11" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::Node&lt; T,</text>
 <text text-anchor="start" x="11" y="-90" font-family="FreeSans" font-size="10.00"> V, Cmp, Items &gt;::const</text>
 <text text-anchor="middle" x="61" y="-78" font-family="FreeSans" font-size="10.00">_iterator</text>

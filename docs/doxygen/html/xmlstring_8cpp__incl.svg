@@ -40,6 +40,7 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xmlstring.cpp</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-502 1622.95,-502 1622.95,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="1432.95,-465 1432.95,-497 1596.95,-497 1596.95,-465 1432.95,-465"/>
@@ -49,7 +50,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="document_8h.xhtml" target="_top" xlink:title="The definition of the XML::Document Class.">
-<polygon fill="none" stroke="black" points="1196.95,-407 1196.95,-427 1286.95,-427 1286.95,-407 1196.95,-407"/>
+<polygon fill="white" stroke="black" points="1196.95,-407 1196.95,-427 1286.95,-427 1286.95,-407 1196.95,-407"/>
 <text text-anchor="middle" x="1241.95" y="-414" font-family="FreeSans" font-size="10.00">XML/document.h</text>
 </a>
 </g>
@@ -61,7 +62,7 @@ var sectionId = 'dynsection-0';
 <!-- Node39 -->
 <g id="node95" class="node"><title>Node39</title>
 <a xlink:href="xmlstring_8h.xhtml" target="_top" xlink:title="A few functions to help the XML system perform conversions between UTF8 and the native wide character...">
-<polygon fill="none" stroke="black" points="1471.95,-349 1471.95,-369 1557.95,-369 1557.95,-349 1471.95,-349"/>
+<polygon fill="white" stroke="black" points="1471.95,-349 1471.95,-369 1557.95,-369 1557.95,-349 1471.95,-349"/>
 <text text-anchor="middle" x="1514.95" y="-356" font-family="FreeSans" font-size="10.00">XML/xmlstring.h</text>
 </a>
 </g>
@@ -73,7 +74,7 @@ var sectionId = 'dynsection-0';
 <!-- Node40 -->
 <g id="node98" class="node"><title>Node40</title>
 <a xlink:href="exception_8h_source.xhtml" target="_top" xlink:title="exception.h">
-<polygon fill="none" stroke="black" points="1553.45,-291 1553.45,-311 1618.45,-311 1618.45,-291 1553.45,-291"/>
+<polygon fill="white" stroke="black" points="1553.45,-291 1553.45,-311 1618.45,-311 1618.45,-291 1553.45,-291"/>
 <text text-anchor="middle" x="1585.95" y="-298" font-family="FreeSans" font-size="10.00">exception.h</text>
 </a>
 </g>
@@ -85,7 +86,7 @@ var sectionId = 'dynsection-0';
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
-<polygon fill="none" stroke="black" points="1094.45,-59 1094.45,-79 1159.45,-79 1159.45,-59 1094.45,-59"/>
+<polygon fill="white" stroke="black" points="1094.45,-59 1094.45,-79 1159.45,-79 1159.45,-59 1094.45,-59"/>
 <text text-anchor="middle" x="1126.95" y="-66" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
 </g>
@@ -97,7 +98,7 @@ var sectionId = 'dynsection-0';
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
 <a xlink:href="xmlenumerations_8h.xhtml" target="_top" xlink:title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ...">
-<polygon fill="none" stroke="black" points="1339.95,-117 1339.95,-137 1459.95,-137 1459.95,-117 1339.95,-117"/>
+<polygon fill="white" stroke="black" points="1339.95,-117 1339.95,-137 1459.95,-137 1459.95,-117 1339.95,-117"/>
 <text text-anchor="middle" x="1399.95" y="-124" font-family="FreeSans" font-size="10.00">XML/xmlenumerations.h</text>
 </a>
 </g>
@@ -109,7 +110,7 @@ var sectionId = 'dynsection-0';
 <!-- Node21 -->
 <g id="node42" class="node"><title>Node21</title>
 <a xlink:href="parseresult_8h.xhtml" target="_top" xlink:title="XML/parseresult.h">
-<polygon fill="none" stroke="black" points="1352.95,-175 1352.95,-195 1446.95,-195 1446.95,-175 1352.95,-175"/>
+<polygon fill="white" stroke="black" points="1352.95,-175 1352.95,-195 1446.95,-195 1446.95,-175 1352.95,-175"/>
 <text text-anchor="middle" x="1399.95" y="-182" font-family="FreeSans" font-size="10.00">XML/parseresult.h</text>
 </a>
 </g>
@@ -121,7 +122,7 @@ var sectionId = 'dynsection-0';
 <!-- Node22 -->
 <g id="node46" class="node"><title>Node22</title>
 <a xlink:href="node_8h.xhtml" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes.">
-<polygon fill="none" stroke="black" points="1207.95,-175 1207.95,-195 1275.95,-195 1275.95,-175 1207.95,-175"/>
+<polygon fill="white" stroke="black" points="1207.95,-175 1207.95,-195 1275.95,-195 1275.95,-175 1207.95,-175"/>
 <text text-anchor="middle" x="1241.95" y="-182" font-family="FreeSans" font-size="10.00">XML/node.h</text>
 </a>
 </g>
@@ -133,7 +134,7 @@ var sectionId = 'dynsection-0';
 <!-- Node25 -->
 <g id="node56" class="node"><title>Node25</title>
 <a xlink:href="writer_8h.xhtml" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy.">
-<polygon fill="none" stroke="black" points="959.45,-349 959.45,-369 1030.45,-369 1030.45,-349 959.45,-349"/>
+<polygon fill="white" stroke="black" points="959.45,-349 959.45,-369 1030.45,-369 1030.45,-349 959.45,-349"/>
 <text text-anchor="middle" x="994.95" y="-356" font-family="FreeSans" font-size="10.00">XML/writer.h</text>
 </a>
 </g>
@@ -145,7 +146,7 @@ var sectionId = 'dynsection-0';
 <!-- Node32 -->
 <g id="node71" class="node"><title>Node32</title>
 <a xlink:href="datastream_8h.xhtml" target="_top" xlink:title="Declaration of DataStream.">
-<polygon fill="none" stroke="black" points="650.95,-175 650.95,-195 766.95,-195 766.95,-175 650.95,-175"/>
+<polygon fill="white" stroke="black" points="650.95,-175 650.95,-195 766.95,-195 766.95,-175 650.95,-175"/>
 <text text-anchor="middle" x="708.95" y="-182" font-family="FreeSans" font-size="10.00">Resource/datastream.h</text>
 </a>
 </g>
@@ -157,7 +158,7 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
-<polygon fill="none" stroke="black" points="555.95,-1 555.95,-21 663.95,-21 663.95,-1 555.95,-1"/>
+<polygon fill="white" stroke="black" points="555.95,-1 555.95,-21 663.95,-21 663.95,-1 555.95,-1"/>
 <text text-anchor="middle" x="609.95" y="-8" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>
 </g>
@@ -168,7 +169,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<polygon fill="none" stroke="#bfbfbf" points="1047.45,-1 1047.45,-21 1094.45,-21 1094.45,-1 1047.45,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1047.45,-1 1047.45,-21 1094.45,-21 1094.45,-1 1047.45,-1"/>
 <text text-anchor="middle" x="1070.95" y="-8" font-family="FreeSans" font-size="10.00">stdint.h</text>
 </g>
 <!-- Node3&#45;&gt;Node5 -->
@@ -178,7 +179,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<polygon fill="none" stroke="#bfbfbf" points="1111.95,-1 1111.95,-21 1159.95,-21 1159.95,-1 1111.95,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1111.95,-1 1111.95,-21 1159.95,-21 1159.95,-1 1111.95,-1"/>
 <text text-anchor="middle" x="1135.95" y="-8" font-family="FreeSans" font-size="10.00">cstddef</text>
 </g>
 <!-- Node3&#45;&gt;Node6 -->
@@ -188,7 +189,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<polygon fill="none" stroke="#bfbfbf" points="1177.95,-1 1177.95,-21 1233.95,-21 1233.95,-1 1177.95,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1177.95,-1 1177.95,-21 1233.95,-21 1233.95,-1 1177.95,-1"/>
 <text text-anchor="middle" x="1205.95" y="-8" font-family="FreeSans" font-size="10.00">algorithm</text>
 </g>
 <!-- Node3&#45;&gt;Node7 -->
@@ -198,7 +199,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<polygon fill="none" stroke="#bfbfbf" points="1251.95,-1 1251.95,-21 1309.95,-21 1309.95,-1 1251.95,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1251.95,-1 1251.95,-21 1309.95,-21 1309.95,-1 1251.95,-1"/>
 <text text-anchor="middle" x="1280.95" y="-8" font-family="FreeSans" font-size="10.00">exception</text>
 </g>
 <!-- Node3&#45;&gt;Node8 -->
@@ -208,7 +209,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<polygon fill="none" stroke="#bfbfbf" points="1327.95,-1 1327.95,-21 1375.95,-21 1375.95,-1 1327.95,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1327.95,-1 1327.95,-21 1375.95,-21 1375.95,-1 1327.95,-1"/>
 <text text-anchor="middle" x="1351.95" y="-8" font-family="FreeSans" font-size="10.00">istream</text>
 </g>
 <!-- Node3&#45;&gt;Node9 -->
@@ -218,7 +219,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<polygon fill="none" stroke="#bfbfbf" points="1393.45,-1 1393.45,-21 1422.45,-21 1422.45,-1 1393.45,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1393.45,-1 1393.45,-21 1422.45,-21 1422.45,-1 1393.45,-1"/>
 <text text-anchor="middle" x="1407.95" y="-8" font-family="FreeSans" font-size="10.00">list</text>
 </g>
 <!-- Node3&#45;&gt;Node10 -->
@@ -228,7 +229,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
-<polygon fill="none" stroke="#bfbfbf" points="751.45,-1 751.45,-21 786.45,-21 786.45,-1 751.45,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="751.45,-1 751.45,-21 786.45,-21 786.45,-1 751.45,-1"/>
 <text text-anchor="middle" x="768.95" y="-8" font-family="FreeSans" font-size="10.00">map</text>
 </g>
 <!-- Node3&#45;&gt;Node11 -->
@@ -238,7 +239,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
-<polygon fill="none" stroke="#bfbfbf" points="1439.95,-1 1439.95,-21 1479.95,-21 1479.95,-1 1439.95,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1439.95,-1 1439.95,-21 1479.95,-21 1479.95,-1 1439.95,-1"/>
 <text text-anchor="middle" x="1459.95" y="-8" font-family="FreeSans" font-size="10.00">string</text>
 </g>
 <!-- Node3&#45;&gt;Node12 -->
@@ -248,7 +249,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
-<polygon fill="none" stroke="#bfbfbf" points="1497.95,-1 1497.95,-21 1547.95,-21 1547.95,-1 1497.95,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1497.95,-1 1497.95,-21 1547.95,-21 1547.95,-1 1497.95,-1"/>
 <text text-anchor="middle" x="1522.95" y="-8" font-family="FreeSans" font-size="10.00">sstream</text>
 </g>
 <!-- Node3&#45;&gt;Node13 -->
@@ -258,7 +259,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
-<polygon fill="none" stroke="#bfbfbf" points="1565.45,-1 1565.45,-21 1594.45,-21 1594.45,-1 1565.45,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="1565.45,-1 1565.45,-21 1594.45,-21 1594.45,-1 1565.45,-1"/>
 <text text-anchor="middle" x="1579.95" y="-8" font-family="FreeSans" font-size="10.00">set</text>
 </g>
 <!-- Node3&#45;&gt;Node14 -->
@@ -268,7 +269,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
-<polygon fill="none" stroke="#bfbfbf" points="803.45,-1 803.45,-21 846.45,-21 846.45,-1 803.45,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="803.45,-1 803.45,-21 846.45,-21 846.45,-1 803.45,-1"/>
 <text text-anchor="middle" x="824.95" y="-8" font-family="FreeSans" font-size="10.00">vector</text>
 </g>
 <!-- Node3&#45;&gt;Node15 -->
@@ -278,7 +279,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node16 -->
 <g id="node31" class="node"><title>Node16</title>
-<polygon fill="none" stroke="#bfbfbf" points="863.45,-1 863.45,-21 902.45,-21 902.45,-1 863.45,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="863.45,-1 863.45,-21 902.45,-21 902.45,-1 863.45,-1"/>
 <text text-anchor="middle" x="882.95" y="-8" font-family="FreeSans" font-size="10.00">utility</text>
 </g>
 <!-- Node3&#45;&gt;Node16 -->
@@ -288,7 +289,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node17 -->
 <g id="node33" class="node"><title>Node17</title>
-<polygon fill="none" stroke="#bfbfbf" points="683.45,-1 683.45,-21 734.45,-21 734.45,-1 683.45,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="683.45,-1 683.45,-21 734.45,-21 734.45,-1 683.45,-1"/>
 <text text-anchor="middle" x="708.95" y="-8" font-family="FreeSans" font-size="10.00">memory</text>
 </g>
 <!-- Node3&#45;&gt;Node17 -->
@@ -298,7 +299,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node18 -->
 <g id="node35" class="node"><title>Node18</title>
-<polygon fill="none" stroke="#bfbfbf" points="919.45,-1 919.45,-21 970.45,-21 970.45,-1 919.45,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="919.45,-1 919.45,-21 970.45,-21 970.45,-1 919.45,-1"/>
 <text text-anchor="middle" x="944.95" y="-8" font-family="FreeSans" font-size="10.00">ostream</text>
 </g>
 <!-- Node3&#45;&gt;Node18 -->
@@ -309,7 +310,7 @@ var sectionId = 'dynsection-0';
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
 <a xlink:href="swig_8h.xhtml" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
-<polygon fill="none" stroke="black" points="987.45,-1 987.45,-21 1030.45,-21 1030.45,-1 987.45,-1"/>
+<polygon fill="white" stroke="black" points="987.45,-1 987.45,-21 1030.45,-21 1030.45,-1 987.45,-1"/>
 <text text-anchor="middle" x="1008.95" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
 </g>
@@ -346,7 +347,7 @@ var sectionId = 'dynsection-0';
 <!-- Node23 -->
 <g id="node50" class="node"><title>Node23</title>
 <a xlink:href="attribute_8h.xhtml" target="_top" xlink:title="Contains the definition for the XML::Attribute class.">
-<polygon fill="none" stroke="black" points="1085.45,-117 1085.45,-137 1168.45,-137 1168.45,-117 1085.45,-117"/>
+<polygon fill="white" stroke="black" points="1085.45,-117 1085.45,-137 1168.45,-137 1168.45,-117 1085.45,-117"/>
 <text text-anchor="middle" x="1126.95" y="-124" font-family="FreeSans" font-size="10.00">XML/attribute.h</text>
 </a>
 </g>
@@ -358,7 +359,7 @@ var sectionId = 'dynsection-0';
 <!-- Node24 -->
 <g id="node53" class="node"><title>Node24</title>
 <a xlink:href="objectrange_8h.xhtml" target="_top" xlink:title="Contains the implementation of the ObjectRange class template.">
-<polygon fill="none" stroke="black" points="1185.95,-117 1185.95,-137 1283.95,-137 1283.95,-117 1185.95,-117"/>
+<polygon fill="white" stroke="black" points="1185.95,-117 1185.95,-137 1283.95,-137 1283.95,-117 1185.95,-117"/>
 <text text-anchor="middle" x="1234.95" y="-124" font-family="FreeSans" font-size="10.00">XML/objectrange.h</text>
 </a>
 </g>
@@ -385,7 +386,7 @@ var sectionId = 'dynsection-0';
 <!-- Node26 -->
 <g id="node59" class="node"><title>Node26</title>
 <a xlink:href="resource_8h_source.xhtml" target="_top" xlink:title="resource.h">
-<polygon fill="none" stroke="black" points="449.45,-291 449.45,-311 510.45,-311 510.45,-291 449.45,-291"/>
+<polygon fill="white" stroke="black" points="449.45,-291 449.45,-311 510.45,-311 510.45,-291 449.45,-291"/>
 <text text-anchor="middle" x="479.95" y="-298" font-family="FreeSans" font-size="10.00">resource.h</text>
 </a>
 </g>
@@ -397,7 +398,7 @@ var sectionId = 'dynsection-0';
 <!-- Node27 -->
 <g id="node61" class="node"><title>Node27</title>
 <a xlink:href="resourceenumerations_8h_source.xhtml" target="_top" xlink:title="Resource/resourceenumerations.h">
-<polygon fill="none" stroke="black" points="21.9503,-233 21.9503,-253 183.95,-253 183.95,-233 21.9503,-233"/>
+<polygon fill="white" stroke="black" points="21.9503,-233 21.9503,-253 183.95,-253 183.95,-233 21.9503,-233"/>
 <text text-anchor="middle" x="102.95" y="-240" font-family="FreeSans" font-size="10.00">Resource/resourceenumerations.h</text>
 </a>
 </g>
@@ -409,7 +410,7 @@ var sectionId = 'dynsection-0';
 <!-- Node28 -->
 <g id="node63" class="node"><title>Node28</title>
 <a xlink:href="archive_8h_source.xhtml" target="_top" xlink:title="Resource/archive.h">
-<polygon fill="none" stroke="black" points="201.95,-233 201.95,-253 299.95,-253 299.95,-233 201.95,-233"/>
+<polygon fill="white" stroke="black" points="201.95,-233 201.95,-253 299.95,-253 299.95,-233 201.95,-233"/>
 <text text-anchor="middle" x="250.95" y="-240" font-family="FreeSans" font-size="10.00">Resource/archive.h</text>
 </a>
 </g>
@@ -421,7 +422,7 @@ var sectionId = 'dynsection-0';
 <!-- Node29 -->
 <g id="node65" class="node"><title>Node29</title>
 <a xlink:href="asset_8h_source.xhtml" target="_top" xlink:title="Resource/asset.h">
-<polygon fill="none" stroke="black" points="317.95,-233 317.95,-253 407.95,-253 407.95,-233 317.95,-233"/>
+<polygon fill="white" stroke="black" points="317.95,-233 317.95,-253 407.95,-253 407.95,-233 317.95,-233"/>
 <text text-anchor="middle" x="362.95" y="-240" font-family="FreeSans" font-size="10.00">Resource/asset.h</text>
 </a>
 </g>
@@ -433,7 +434,7 @@ var sectionId = 'dynsection-0';
 <!-- Node30 -->
 <g id="node67" class="node"><title>Node30</title>
 <a xlink:href="assetgroup_8h_source.xhtml" target="_top" xlink:title="Resource/assetgroup.h">
-<polygon fill="none" stroke="black" points="551.95,-233 551.95,-253 665.95,-253 665.95,-233 551.95,-233"/>
+<polygon fill="white" stroke="black" points="551.95,-233 551.95,-253 665.95,-253 665.95,-233 551.95,-233"/>
 <text text-anchor="middle" x="608.95" y="-240" font-family="FreeSans" font-size="10.00">Resource/assetgroup.h</text>
 </a>
 </g>
@@ -445,7 +446,7 @@ var sectionId = 'dynsection-0';
 <!-- Node31 -->
 <g id="node69" class="node"><title>Node31</title>
 <a xlink:href="assethandler_8h_source.xhtml" target="_top" xlink:title="Resource/assethandler.h">
-<polygon fill="none" stroke="black" points="683.95,-233 683.95,-253 805.95,-253 805.95,-233 683.95,-233"/>
+<polygon fill="white" stroke="black" points="683.95,-233 683.95,-253 805.95,-253 805.95,-233 683.95,-233"/>
 <text text-anchor="middle" x="744.95" y="-240" font-family="FreeSans" font-size="10.00">Resource/assethandler.h</text>
 </a>
 </g>
@@ -462,7 +463,7 @@ var sectionId = 'dynsection-0';
 <!-- Node35 -->
 <g id="node80" class="node"><title>Node35</title>
 <a xlink:href="filestream_8h.xhtml" target="_top" xlink:title="Declaration of FileStream.">
-<polygon fill="none" stroke="black" points="425.45,-233 425.45,-253 534.45,-253 534.45,-233 425.45,-233"/>
+<polygon fill="white" stroke="black" points="425.45,-233 425.45,-253 534.45,-253 534.45,-233 425.45,-233"/>
 <text text-anchor="middle" x="479.95" y="-240" font-family="FreeSans" font-size="10.00">Resource/filestream.h</text>
 </a>
 </g>
@@ -474,7 +475,7 @@ var sectionId = 'dynsection-0';
 <!-- Node36 -->
 <g id="node83" class="node"><title>Node36</title>
 <a xlink:href="inputstream_8h_source.xhtml" target="_top" xlink:title="Resource/inputstream.h">
-<polygon fill="none" stroke="black" points="543.95,-117 543.95,-137 661.95,-137 661.95,-117 543.95,-117"/>
+<polygon fill="white" stroke="black" points="543.95,-117 543.95,-137 661.95,-137 661.95,-117 543.95,-117"/>
 <text text-anchor="middle" x="602.95" y="-124" font-family="FreeSans" font-size="10.00">Resource/inputstream.h</text>
 </a>
 </g>
@@ -486,7 +487,7 @@ var sectionId = 'dynsection-0';
 <!-- Node37 -->
 <g id="node87" class="node"><title>Node37</title>
 <a xlink:href="memorystream_8h.xhtml" target="_top" xlink:title="Declaration of MemoryStream.">
-<polygon fill="none" stroke="black" points="823.45,-233 823.45,-253 954.45,-253 954.45,-233 823.45,-233"/>
+<polygon fill="white" stroke="black" points="823.45,-233 823.45,-253 954.45,-253 954.45,-233 823.45,-233"/>
 <text text-anchor="middle" x="888.95" y="-240" font-family="FreeSans" font-size="10.00">Resource/memorystream.h</text>
 </a>
 </g>
@@ -498,7 +499,7 @@ var sectionId = 'dynsection-0';
 <!-- Node38 -->
 <g id="node90" class="node"><title>Node38</title>
 <a xlink:href="textsettingsfile_8h_source.xhtml" target="_top" xlink:title="Resource/textsettingsfile.h">
-<polygon fill="none" stroke="black" points="825.95,-117 825.95,-137 953.95,-137 953.95,-117 825.95,-117"/>
+<polygon fill="white" stroke="black" points="825.95,-117 825.95,-137 953.95,-137 953.95,-117 825.95,-117"/>
 <text text-anchor="middle" x="889.95" y="-124" font-family="FreeSans" font-size="10.00">Resource/textsettingsfile.h</text>
 </a>
 </g>
@@ -515,7 +516,7 @@ var sectionId = 'dynsection-0';
 <!-- Node33 -->
 <g id="node74" class="node"><title>Node33</title>
 <a xlink:href="smartptr_8h.xhtml" target="_top" xlink:title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e...">
-<polygon fill="none" stroke="black" points="679.45,-117 679.45,-137 738.45,-137 738.45,-117 679.45,-117"/>
+<polygon fill="white" stroke="black" points="679.45,-117 679.45,-137 738.45,-137 738.45,-117 679.45,-117"/>
 <text text-anchor="middle" x="708.95" y="-124" font-family="FreeSans" font-size="10.00">smartptr.h</text>
 </a>
 </g>
@@ -526,7 +527,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node34 -->
 <g id="node78" class="node"><title>Node34</title>
-<polygon fill="none" stroke="#bfbfbf" points="755.45,-117 755.45,-137 808.45,-137 808.45,-117 755.45,-117"/>
+<polygon fill="white" stroke="#bfbfbf" points="755.45,-117 755.45,-137 808.45,-137 808.45,-117 755.45,-117"/>
 <text text-anchor="middle" x="781.95" y="-124" font-family="FreeSans" font-size="10.00">iostream</text>
 </g>
 <!-- Node32&#45;&gt;Node34 -->

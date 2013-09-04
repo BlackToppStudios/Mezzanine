@@ -40,6 +40,7 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::UI::Caption</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-1468 3770,-1468 3770,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="1495,-993 1495,-1013 1609,-1013 1609,-993 1495,-993"/>
@@ -48,7 +49,7 @@ var sectionId = 'dynsection-1';
 <!-- Node80 -->
 <g id="node210" class="node"><title>Node80</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Button.xhtml" target="_top" xlink:title="This class is a helper class, specifically for use as a button.">
-<polygon fill="none" stroke="black" points="1719,-892 1719,-912 1829,-912 1829,-892 1719,-892"/>
+<polygon fill="white" stroke="black" points="1719,-892 1719,-912 1829,-912 1829,-892 1719,-892"/>
 <text text-anchor="middle" x="1774" y="-899" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Button</text>
 </a>
 </g>
@@ -61,7 +62,7 @@ var sectionId = 'dynsection-1';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Rectangle.xhtml" target="_top" xlink:title="This class is a helper class, specifically for use with background sprites and colours.">
-<polygon fill="none" stroke="black" points="1407.5,-257 1407.5,-277 1532.5,-277 1532.5,-257 1407.5,-257"/>
+<polygon fill="white" stroke="black" points="1407.5,-257 1407.5,-277 1532.5,-277 1532.5,-257 1407.5,-257"/>
 <text text-anchor="middle" x="1470" y="-264" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Rectangle</text>
 </a>
 </g>
@@ -73,7 +74,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1UI_1_1AreaRenderable.xhtml" target="_top" xlink:title="This class defines a renderable that covers an area, such as a rectangle or circle.">
-<polygon fill="none" stroke="black" points="1395,-357 1395,-377 1545,-377 1545,-357 1395,-357"/>
+<polygon fill="white" stroke="black" points="1395,-357 1395,-377 1545,-377 1545,-357 1395,-357"/>
 <text text-anchor="middle" x="1470" y="-364" font-family="FreeSans" font-size="10.00">Mezzanine::UI::AreaRenderable</text>
 </a>
 </g>
@@ -85,7 +86,7 @@ var sectionId = 'dynsection-1';
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1UI_1_1BasicRenderable.xhtml" target="_top" xlink:title="Base class for renderables that generate verticies.">
-<polygon fill="none" stroke="black" points="1429,-449 1429,-469 1583,-469 1583,-449 1429,-449"/>
+<polygon fill="white" stroke="black" points="1429,-449 1429,-469 1583,-469 1583,-449 1429,-449"/>
 <text text-anchor="middle" x="1506" y="-456" font-family="FreeSans" font-size="10.00">Mezzanine::UI::BasicRenderable</text>
 </a>
 </g>
@@ -97,7 +98,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
-<polygon fill="none" stroke="black" points="1848,-567 1848,-587 1978,-587 1978,-567 1848,-567"/>
+<polygon fill="white" stroke="black" points="1848,-567 1848,-587 1978,-587 1978,-567 1848,-567"/>
 <text text-anchor="middle" x="1913" y="-574" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
 </g>
@@ -109,7 +110,7 @@ var sectionId = 'dynsection-1';
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Widget.xhtml" target="_top" xlink:title="This class is the base class for all widgets.">
-<polygon fill="none" stroke="black" points="2039.5,-357 2039.5,-377 2150.5,-377 2150.5,-357 2039.5,-357"/>
+<polygon fill="white" stroke="black" points="2039.5,-357 2039.5,-377 2150.5,-377 2150.5,-357 2039.5,-357"/>
 <text text-anchor="middle" x="2095" y="-364" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
 </g>
@@ -120,7 +121,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node13 -->
 <g id="node27" class="node"><title>Node13</title>
-<polygon fill="none" stroke="#bfbfbf" points="1953.5,-449 1953.5,-469 2070.5,-469 2070.5,-449 1953.5,-449"/>
+<polygon fill="white" stroke="#bfbfbf" points="1953.5,-449 1953.5,-469 2070.5,-469 2070.5,-449 1953.5,-449"/>
 <text text-anchor="middle" x="2012" y="-456" font-family="FreeSans" font-size="10.00">std::list&lt; Renderable * &gt;</text>
 </g>
 <!-- Node5&#45;&gt;Node13 -->
@@ -145,7 +146,7 @@ var sectionId = 'dynsection-1';
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1UI_1_1WidgetListener.xhtml" target="_top" xlink:title="This is a listener class for widgets.">
-<polygon fill="none" stroke="black" points="1956.5,-257 1956.5,-277 2101.5,-277 2101.5,-257 1956.5,-257"/>
+<polygon fill="white" stroke="black" points="1956.5,-257 1956.5,-277 2101.5,-277 2101.5,-257 1956.5,-257"/>
 <text text-anchor="middle" x="2029" y="-264" font-family="FreeSans" font-size="10.00">Mezzanine::UI::WidgetListener</text>
 </a>
 </g>
@@ -158,7 +159,7 @@ var sectionId = 'dynsection-1';
 <!-- Node18 -->
 <g id="node38" class="node"><title>Node18</title>
 <a xlink:href="classMezzanine_1_1UI_1_1UIManager.xhtml" target="_top" xlink:title="This class is responsible for any and all user interactions with the User interface/HUD.">
-<polygon fill="none" stroke="black" points="1991,-661 1991,-681 2119,-681 2119,-661 1991,-661"/>
+<polygon fill="white" stroke="black" points="1991,-661 1991,-681 2119,-681 2119,-661 1991,-661"/>
 <text text-anchor="middle" x="2055" y="-668" font-family="FreeSans" font-size="10.00">Mezzanine::UI::UIManager</text>
 </a>
 </g>
@@ -174,7 +175,7 @@ var sectionId = 'dynsection-1';
 <!-- Node81 -->
 <g id="node212" class="node"><title>Node81</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Activatable.xhtml" target="_top" xlink:title="This is a helper class that encapsulates the functionality of an object that can be activated to take...">
-<polygon fill="none" stroke="black" points="1581.5,-7 1581.5,-27 1710.5,-27 1710.5,-7 1581.5,-7"/>
+<polygon fill="white" stroke="black" points="1581.5,-7 1581.5,-27 1710.5,-27 1710.5,-7 1581.5,-7"/>
 <text text-anchor="middle" x="1646" y="-14" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Activatable</text>
 </a>
 </g>
@@ -185,7 +186,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node100 -->
 <g id="node269" class="node"><title>Node100</title>
-<polygon fill="none" stroke="#bfbfbf" points="3105,-257 3105,-277 3241,-277 3241,-257 3105,-257"/>
+<polygon fill="white" stroke="#bfbfbf" points="3105,-257 3105,-277 3241,-277 3241,-257 3105,-257"/>
 <text text-anchor="middle" x="3173" y="-264" font-family="FreeSans" font-size="10.00">std::map&lt; String, Widget * &gt;</text>
 </g>
 <!-- Node6&#45;&gt;Node100 -->
@@ -197,7 +198,7 @@ var sectionId = 'dynsection-1';
 <!-- Node106 -->
 <g id="node286" class="node"><title>Node106</title>
 <a xlink:href="structMezzanine_1_1UI_1_1IndexData.xhtml" target="_top" xlink:title="This is a basic class for storing data relating to a specific zorder in the UI.">
-<polygon fill="none" stroke="black" points="2833.5,-257 2833.5,-277 2958.5,-277 2958.5,-257 2833.5,-257"/>
+<polygon fill="white" stroke="black" points="2833.5,-257 2833.5,-277 2958.5,-277 2958.5,-257 2833.5,-257"/>
 <text text-anchor="middle" x="2896" y="-264" font-family="FreeSans" font-size="10.00">Mezzanine::UI::IndexData</text>
 </a>
 </g>
@@ -210,7 +211,7 @@ var sectionId = 'dynsection-1';
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1UI_1_1InputCaptureData.xhtml" target="_top" xlink:title="This class contains all the utilities necessary for capturing input.">
-<polygon fill="none" stroke="black" points="2351.5,-661 2351.5,-681 2508.5,-681 2508.5,-661 2351.5,-661"/>
+<polygon fill="white" stroke="black" points="2351.5,-661 2351.5,-681 2508.5,-681 2508.5,-661 2351.5,-661"/>
 <text text-anchor="middle" x="2430" y="-668" font-family="FreeSans" font-size="10.00">Mezzanine::UI::InputCaptureData</text>
 </a>
 </g>
@@ -223,7 +224,7 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="2409,-768 2409,-788 2543,-788 2543,-768 2409,-768"/>
+<polygon fill="white" stroke="#bfbfbf" points="2409,-768 2409,-788 2543,-788 2543,-768 2409,-768"/>
 <text text-anchor="middle" x="2476" y="-775" font-family="FreeSans" font-size="10.00">std::set&lt; Input::InputCode &gt;</text>
 </a>
 </g>
@@ -234,7 +235,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<polygon fill="none" stroke="#bfbfbf" points="2650.5,-892 2650.5,-912 2679.5,-912 2679.5,-892 2650.5,-892"/>
+<polygon fill="white" stroke="#bfbfbf" points="2650.5,-892 2650.5,-912 2679.5,-912 2679.5,-892 2650.5,-892"/>
 <text text-anchor="middle" x="2665" y="-899" font-family="FreeSans" font-size="10.00">K</text>
 </g>
 <!-- Node9&#45;&gt;Node8 -->
@@ -245,7 +246,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<polygon fill="none" stroke="#bfbfbf" points="2083,-762 2083,-794 2173,-794 2173,-762 2083,-762"/>
+<polygon fill="white" stroke="#bfbfbf" points="2083,-762 2083,-794 2173,-794 2173,-762 2083,-762"/>
 <text text-anchor="start" x="2091" y="-781" font-family="FreeSans" font-size="10.00">std::vector&lt; Input</text>
 <text text-anchor="middle" x="2128" y="-769" font-family="FreeSans" font-size="10.00">::InputCode &gt;</text>
 </g>
@@ -270,7 +271,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
-<polygon fill="none" stroke="#bfbfbf" points="2023,-171 2023,-191 2169,-191 2169,-171 2023,-171"/>
+<polygon fill="white" stroke="#bfbfbf" points="2023,-171 2023,-191 2169,-191 2169,-171 2023,-171"/>
 <text text-anchor="middle" x="2096" y="-178" font-family="FreeSans" font-size="10.00">std::vector&lt; WidgetListener * &gt;</text>
 </g>
 <!-- Node11&#45;&gt;Node6 -->
@@ -288,7 +289,7 @@ var sectionId = 'dynsection-1';
 <!-- Node83 -->
 <g id="node218" class="node"><title>Node83</title>
 <a xlink:href="classMezzanine_1_1UI_1_1ActivatableListener.xhtml" target="_top" xlink:title="This class provides customizable functionality to the activatable class.">
-<polygon fill="none" stroke="black" points="1673.5,-165 1673.5,-197 1802.5,-197 1802.5,-165 1673.5,-165"/>
+<polygon fill="white" stroke="black" points="1673.5,-165 1673.5,-197 1802.5,-197 1802.5,-165 1673.5,-165"/>
 <text text-anchor="start" x="1681.5" y="-184" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Activatable</text>
 <text text-anchor="middle" x="1738" y="-172" font-family="FreeSans" font-size="10.00">Listener</text>
 </a>
@@ -307,7 +308,7 @@ var sectionId = 'dynsection-1';
 <!-- Node14 -->
 <g id="node30" class="node"><title>Node14</title>
 <a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
-<polygon fill="none" stroke="black" points="1293,-1367 1293,-1387 1393,-1387 1393,-1367 1293,-1367"/>
+<polygon fill="white" stroke="black" points="1293,-1367 1293,-1387 1393,-1387 1393,-1367 1293,-1367"/>
 <text text-anchor="middle" x="1343" y="-1374" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
 </g>
@@ -344,7 +345,7 @@ var sectionId = 'dynsection-1';
 <!-- Node15 -->
 <g id="node32" class="node"><title>Node15</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Screen.xhtml" target="_top" xlink:title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">
-<polygon fill="none" stroke="black" points="3044,-89 3044,-109 3156,-109 3156,-89 3044,-89"/>
+<polygon fill="white" stroke="black" points="3044,-89 3044,-109 3156,-109 3156,-89 3044,-89"/>
 <text text-anchor="middle" x="3100" y="-96" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Screen</text>
 </a>
 </g>
@@ -358,7 +359,7 @@ var sectionId = 'dynsection-1';
 <!-- Node88 -->
 <g id="node236" class="node"><title>Node88</title>
 <a xlink:href="classMezzanine_1_1UI_1_1TextureAtlas.xhtml" target="_top" xlink:title="Mezzanine::UI::TextureAtlas">
-<polygon fill="none" stroke="black" points="2046.5,-892 2046.5,-912 2181.5,-912 2181.5,-892 2046.5,-892"/>
+<polygon fill="white" stroke="black" points="2046.5,-892 2046.5,-912 2181.5,-912 2181.5,-892 2046.5,-892"/>
 <text text-anchor="middle" x="2114" y="-899" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TextureAtlas</text>
 </a>
 </g>
@@ -372,7 +373,7 @@ var sectionId = 'dynsection-1';
 <!-- Node90 -->
 <g id="node241" class="node"><title>Node90</title>
 <a xlink:href="structMezzanine_1_1UI_1_1Sprite.xhtml" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad.">
-<polygon fill="none" stroke="black" points="1447.5,-1085 1447.5,-1105 1554.5,-1105 1554.5,-1085 1447.5,-1085"/>
+<polygon fill="white" stroke="black" points="1447.5,-1085 1447.5,-1105 1554.5,-1105 1554.5,-1085 1447.5,-1085"/>
 <text text-anchor="middle" x="1501" y="-1092" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Sprite</text>
 </a>
 </g>
@@ -386,7 +387,7 @@ var sectionId = 'dynsection-1';
 <!-- Node95 -->
 <g id="node254" class="node"><title>Node95</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Glyph.xhtml" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
-<polygon fill="none" stroke="black" points="1521,-1273 1521,-1293 1627,-1293 1627,-1273 1521,-1273"/>
+<polygon fill="white" stroke="black" points="1521,-1273 1521,-1293 1627,-1293 1627,-1273 1521,-1273"/>
 <text text-anchor="middle" x="1574" y="-1280" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Glyph</text>
 </a>
 </g>
@@ -400,7 +401,7 @@ var sectionId = 'dynsection-1';
 <!-- Node110 -->
 <g id="node295" class="node"><title>Node110</title>
 <a xlink:href="structMezzanine_1_1UI_1_1Vertex.xhtml" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
-<polygon fill="none" stroke="black" points="2337,-993 2337,-1013 2445,-1013 2445,-993 2337,-993"/>
+<polygon fill="white" stroke="black" points="2337,-993 2337,-1013 2445,-1013 2445,-993 2337,-993"/>
 <text text-anchor="middle" x="2391" y="-1000" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Vertex</text>
 </a>
 </g>
@@ -418,7 +419,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node23 -->
 <g id="node50" class="node"><title>Node23</title>
-<polygon fill="none" stroke="#bfbfbf" points="2711,-1 2711,-33 2825,-33 2825,-1 2711,-1"/>
+<polygon fill="white" stroke="#bfbfbf" points="2711,-1 2711,-33 2825,-33 2825,-1 2711,-1"/>
 <text text-anchor="start" x="2719" y="-20" font-family="FreeSans" font-size="10.00">std::map&lt; Graphics</text>
 <text text-anchor="middle" x="2768" y="-8" font-family="FreeSans" font-size="10.00">::Viewport *, Screen * &gt;</text>
 </g>
@@ -430,7 +431,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node86 -->
 <g id="node230" class="node"><title>Node86</title>
-<polygon fill="none" stroke="#bfbfbf" points="2202.5,-7 2202.5,-27 2315.5,-27 2315.5,-7 2202.5,-7"/>
+<polygon fill="white" stroke="#bfbfbf" points="2202.5,-7 2202.5,-27 2315.5,-27 2315.5,-7 2202.5,-7"/>
 <text text-anchor="middle" x="2259" y="-14" font-family="FreeSans" font-size="10.00">std::vector&lt; Screen * &gt;</text>
 </g>
 <!-- Node15&#45;&gt;Node86 -->
@@ -442,7 +443,7 @@ var sectionId = 'dynsection-1';
 <!-- Node103 -->
 <g id="node279" class="node"><title>Node103</title>
 <a xlink:href="structMezzanine_1_1UI_1_1ScreenInternalData.xhtml" target="_top" xlink:title="Basic struct holding some of the internal bits of this class that could not be placed on the class di...">
-<polygon fill="none" stroke="black" points="3060,-7 3060,-27 3224,-27 3224,-7 3060,-7"/>
+<polygon fill="white" stroke="black" points="3060,-7 3060,-27 3224,-27 3224,-7 3060,-7"/>
 <text text-anchor="middle" x="3142" y="-14" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScreenInternalData</text>
 </a>
 </g>
@@ -455,7 +456,7 @@ var sectionId = 'dynsection-1';
 <!-- Node16 -->
 <g id="node34" class="node"><title>Node16</title>
 <a xlink:href="classMezzanine_1_1UI_1_1ExtendedRenderableFactory.xhtml" target="_top" xlink:title="This class is responsible for the creation and destruction of all UI renderables.">
-<polygon fill="none" stroke="black" points="2963,-298 2963,-330 3133,-330 3133,-298 2963,-298"/>
+<polygon fill="white" stroke="black" points="2963,-298 2963,-330 3133,-330 3133,-298 2963,-298"/>
 <text text-anchor="start" x="2971" y="-317" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ExtendedRenderable</text>
 <text text-anchor="middle" x="3048" y="-305" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -468,7 +469,7 @@ var sectionId = 'dynsection-1';
 <!-- Node17 -->
 <g id="node36" class="node"><title>Node17</title>
 <a xlink:href="classMezzanine_1_1UI_1_1RenderableFactory.xhtml" target="_top" xlink:title="This class is responsible for the creation and destruction of all UI renderables.">
-<polygon fill="none" stroke="black" points="2694,-502 2694,-534 2824,-534 2824,-502 2694,-502"/>
+<polygon fill="white" stroke="black" points="2694,-502 2694,-534 2824,-534 2824,-502 2694,-502"/>
 <text text-anchor="start" x="2702" y="-521" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 <text text-anchor="middle" x="2759" y="-509" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -493,7 +494,7 @@ var sectionId = 'dynsection-1';
 <!-- Node22 -->
 <g id="node47" class="node"><title>Node22</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; UIManager \&gt;">
-<polygon fill="none" stroke="black" points="1995.5,-561 1995.5,-593 2102.5,-593 2102.5,-561 1995.5,-561"/>
+<polygon fill="white" stroke="black" points="1995.5,-561 1995.5,-593 2102.5,-593 2102.5,-561 1995.5,-561"/>
 <text text-anchor="start" x="2003.5" y="-580" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="2049" y="-568" font-family="FreeSans" font-size="10.00">&lt; UIManager &gt;</text>
 </a>
@@ -507,7 +508,7 @@ var sectionId = 'dynsection-1';
 <!-- Node84 -->
 <g id="node223" class="node"><title>Node84</title>
 <a xlink:href="classMezzanine_1_1UI_1_1WidgetUpdateWorkUnit.xhtml" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of widgets in the UI system.">
-<polygon fill="none" stroke="black" points="2120,-561 2120,-593 2262,-593 2262,-561 2120,-561"/>
+<polygon fill="white" stroke="black" points="2120,-561 2120,-593 2262,-593 2262,-561 2120,-561"/>
 <text text-anchor="start" x="2128" y="-580" font-family="FreeSans" font-size="10.00">Mezzanine::UI::WidgetUpdate</text>
 <text text-anchor="middle" x="2191" y="-568" font-family="FreeSans" font-size="10.00">WorkUnit</text>
 </a>
@@ -521,7 +522,7 @@ var sectionId = 'dynsection-1';
 <!-- Node19 -->
 <g id="node40" class="node"><title>Node19</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="2561,-768 2561,-788 2687,-788 2687,-768 2561,-768"/>
+<polygon fill="white" stroke="black" points="2561,-768 2561,-788 2687,-788 2687,-768 2561,-768"/>
 <text text-anchor="middle" x="2624" y="-775" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -533,7 +534,7 @@ var sectionId = 'dynsection-1';
 <!-- Node34 -->
 <g id="node75" class="node"><title>Node34</title>
 <a xlink:href="classMezzanine_1_1WorldManager.xhtml" target="_top" xlink:title="This is the base class for all managers that belong to a single world instance.">
-<polygon fill="none" stroke="black" points="2563.5,-661 2563.5,-681 2692.5,-681 2692.5,-661 2563.5,-661"/>
+<polygon fill="white" stroke="black" points="2563.5,-661 2563.5,-681 2692.5,-681 2692.5,-661 2563.5,-661"/>
 <text text-anchor="middle" x="2628" y="-668" font-family="FreeSans" font-size="10.00">Mezzanine::WorldManager</text>
 </a>
 </g>
@@ -545,7 +546,7 @@ var sectionId = 'dynsection-1';
 <!-- Node60 -->
 <g id="node151" class="node"><title>Node60</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" target="_top" xlink:title="This is intended to store basic graphics setting for the user.">
-<polygon fill="none" stroke="black" points="3053.5,-655 3053.5,-687 3158.5,-687 3158.5,-655 3053.5,-655"/>
+<polygon fill="white" stroke="black" points="3053.5,-655 3053.5,-687 3158.5,-687 3158.5,-655 3053.5,-655"/>
 <text text-anchor="start" x="3061.5" y="-674" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="3106" y="-662" font-family="FreeSans" font-size="10.00">::GraphicsManager</text>
 </a>
@@ -558,7 +559,7 @@ var sectionId = 'dynsection-1';
 <!-- Node20 -->
 <g id="node42" class="node"><title>Node20</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="none" stroke="black" points="1928.5,-892 1928.5,-912 2029.5,-912 2029.5,-892 1928.5,-892"/>
+<polygon fill="white" stroke="black" points="1928.5,-892 1928.5,-912 2029.5,-912 2029.5,-892 1928.5,-892"/>
 <text text-anchor="middle" x="1979" y="-899" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -571,7 +572,7 @@ var sectionId = 'dynsection-1';
 <!-- Node21 -->
 <g id="node44" class="node"><title>Node21</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="none" stroke="black" points="1958.5,-762 1958.5,-794 2065.5,-794 2065.5,-762 1958.5,-762"/>
+<polygon fill="white" stroke="black" points="1958.5,-762 1958.5,-794 2065.5,-794 2065.5,-762 1958.5,-762"/>
 <text text-anchor="start" x="1966.5" y="-781" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="2012" y="-769" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -601,7 +602,7 @@ var sectionId = 'dynsection-1';
 <!-- Node24 -->
 <g id="node52" class="node"><title>Node24</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Viewport.xhtml" target="_top" xlink:title="This class is for creating and managing viewports within a game window.">
-<polygon fill="none" stroke="black" points="2673.5,-443 2673.5,-475 2778.5,-475 2778.5,-443 2673.5,-443"/>
+<polygon fill="white" stroke="black" points="2673.5,-443 2673.5,-475 2778.5,-475 2778.5,-443 2673.5,-443"/>
 <text text-anchor="start" x="2681.5" y="-462" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="2726" y="-450" font-family="FreeSans" font-size="10.00">::Viewport</text>
 </a>
@@ -621,7 +622,7 @@ var sectionId = 'dynsection-1';
 <!-- Node25 -->
 <g id="node54" class="node"><title>Node25</title>
 <a xlink:href="classMezzanine_1_1Camera.xhtml" target="_top" xlink:title="This is the camera class.">
-<polygon fill="none" stroke="black" points="2496.5,-357 2496.5,-377 2597.5,-377 2597.5,-357 2496.5,-357"/>
+<polygon fill="white" stroke="black" points="2496.5,-357 2496.5,-377 2597.5,-377 2597.5,-357 2496.5,-357"/>
 <text text-anchor="middle" x="2547" y="-364" font-family="FreeSans" font-size="10.00">Mezzanine::Camera</text>
 </a>
 </g>
@@ -640,7 +641,7 @@ var sectionId = 'dynsection-1';
 <!-- Node33 -->
 <g id="node73" class="node"><title>Node33</title>
 <a xlink:href="classMezzanine_1_1CameraManager.xhtml" target="_top" xlink:title="This is the manager class for all camera functions.">
-<polygon fill="none" stroke="black" points="2356,-89 2356,-109 2494,-109 2494,-89 2356,-89"/>
+<polygon fill="white" stroke="black" points="2356,-89 2356,-109 2494,-109 2494,-89 2356,-89"/>
 <text text-anchor="middle" x="2425" y="-96" font-family="FreeSans" font-size="10.00">Mezzanine::CameraManager</text>
 </a>
 </g>
@@ -652,7 +653,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node37 -->
 <g id="node84" class="node"><title>Node37</title>
-<polygon fill="none" stroke="#bfbfbf" points="2629,-217 2629,-237 2745,-237 2745,-217 2629,-217"/>
+<polygon fill="white" stroke="#bfbfbf" points="2629,-217 2629,-237 2745,-237 2745,-217 2629,-217"/>
 <text text-anchor="middle" x="2687" y="-224" font-family="FreeSans" font-size="10.00">std::vector&lt; Camera * &gt;</text>
 </g>
 <!-- Node25&#45;&gt;Node37 -->
@@ -663,7 +664,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node55 -->
 <g id="node139" class="node"><title>Node55</title>
-<polygon fill="none" stroke="#bfbfbf" points="2322,-165 2322,-197 2430,-197 2430,-165 2322,-165"/>
+<polygon fill="white" stroke="#bfbfbf" points="2322,-165 2322,-197 2430,-197 2430,-165 2322,-165"/>
 <text text-anchor="start" x="2330" y="-184" font-family="FreeSans" font-size="10.00">std::map&lt; Camera *,</text>
 <text text-anchor="middle" x="2376" y="-172" font-family="FreeSans" font-size="10.00"> CameraController * &gt;</text>
 </g>
@@ -676,7 +677,7 @@ var sectionId = 'dynsection-1';
 <!-- Node56 -->
 <g id="node141" class="node"><title>Node56</title>
 <a xlink:href="classMezzanine_1_1CameraController.xhtml" target="_top" xlink:title="This is a simplified controller class for use with cameras.">
-<polygon fill="none" stroke="black" points="2291,-257 2291,-277 2433,-277 2433,-257 2291,-257"/>
+<polygon fill="white" stroke="black" points="2291,-257 2291,-277 2433,-277 2433,-257 2291,-257"/>
 <text text-anchor="middle" x="2362" y="-264" font-family="FreeSans" font-size="10.00">Mezzanine::CameraController</text>
 </a>
 </g>
@@ -689,7 +690,7 @@ var sectionId = 'dynsection-1';
 <!-- Node26 -->
 <g id="node56" class="node"><title>Node26</title>
 <a xlink:href="classMezzanine_1_1AttachableChild.xhtml" target="_top" xlink:title="This class is the base class for objects that can be attached to AttachableParent.">
-<polygon fill="none" stroke="black" points="260.5,-892 260.5,-912 395.5,-912 395.5,-892 260.5,-892"/>
+<polygon fill="white" stroke="black" points="260.5,-892 260.5,-912 395.5,-912 395.5,-892 260.5,-892"/>
 <text text-anchor="middle" x="328" y="-899" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableChild</text>
 </a>
 </g>
@@ -700,7 +701,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node32 -->
 <g id="node69" class="node"><title>Node32</title>
-<polygon fill="none" stroke="#bfbfbf" points="136.5,-768 136.5,-788 287.5,-788 287.5,-768 136.5,-768"/>
+<polygon fill="white" stroke="#bfbfbf" points="136.5,-768 136.5,-788 287.5,-788 287.5,-768 136.5,-768"/>
 <text text-anchor="middle" x="212" y="-775" font-family="FreeSans" font-size="10.00">std::vector&lt; AttachableChild * &gt;</text>
 </g>
 <!-- Node26&#45;&gt;Node32 -->
@@ -712,7 +713,7 @@ var sectionId = 'dynsection-1';
 <!-- Node46 -->
 <g id="node108" class="node"><title>Node46</title>
 <a xlink:href="classMezzanine_1_1WorldNode.xhtml" target="_top" xlink:title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails...">
-<polygon fill="none" stroke="black" points="289,-449 289,-469 403,-469 403,-449 289,-449"/>
+<polygon fill="white" stroke="black" points="289,-449 289,-469 403,-469 403,-449 289,-449"/>
 <text text-anchor="middle" x="346" y="-456" font-family="FreeSans" font-size="10.00">Mezzanine::WorldNode</text>
 </a>
 </g>
@@ -724,7 +725,7 @@ var sectionId = 'dynsection-1';
 <!-- Node48 -->
 <g id="node119" class="node"><title>Node48</title>
 <a xlink:href="classMezzanine_1_1ParticleEffect.xhtml" target="_top" xlink:title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">
-<polygon fill="none" stroke="black" points="747,-768 747,-788 871,-788 871,-768 747,-768"/>
+<polygon fill="white" stroke="black" points="747,-768 747,-788 871,-788 871,-768 747,-768"/>
 <text text-anchor="middle" x="809" y="-775" font-family="FreeSans" font-size="10.00">Mezzanine::ParticleEffect</text>
 </a>
 </g>
@@ -736,7 +737,7 @@ var sectionId = 'dynsection-1';
 <!-- Node51 -->
 <g id="node127" class="node"><title>Node51</title>
 <a xlink:href="classMezzanine_1_1Light.xhtml" target="_top" xlink:title="This class is the class used for dynamic lighting within the scene.">
-<polygon fill="none" stroke="black" points="969,-449 969,-469 1057,-469 1057,-449 969,-449"/>
+<polygon fill="white" stroke="black" points="969,-449 969,-469 1057,-469 1057,-449 969,-449"/>
 <text text-anchor="middle" x="1013" y="-456" font-family="FreeSans" font-size="10.00">Mezzanine::Light</text>
 </a>
 </g>
@@ -748,7 +749,7 @@ var sectionId = 'dynsection-1';
 <!-- Node53 -->
 <g id="node133" class="node"><title>Node53</title>
 <a xlink:href="classMezzanine_1_1Entity.xhtml" target="_top" xlink:title="This class is useful for representing graphical bodies without a physics representation.">
-<polygon fill="none" stroke="black" points="501.5,-357 501.5,-377 592.5,-377 592.5,-357 501.5,-357"/>
+<polygon fill="white" stroke="black" points="501.5,-357 501.5,-377 592.5,-377 592.5,-357 501.5,-357"/>
 <text text-anchor="middle" x="547" y="-364" font-family="FreeSans" font-size="10.00">Mezzanine::Entity</text>
 </a>
 </g>
@@ -760,7 +761,7 @@ var sectionId = 'dynsection-1';
 <!-- Node27 -->
 <g id="node58" class="node"><title>Node27</title>
 <a xlink:href="classMezzanine_1_1AttachableBase.xhtml" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
-<polygon fill="none" stroke="black" points="41.5,-993 41.5,-1013 176.5,-1013 176.5,-993 41.5,-993"/>
+<polygon fill="white" stroke="black" points="41.5,-993 41.5,-1013 176.5,-1013 176.5,-993 41.5,-993"/>
 <text text-anchor="middle" x="109" y="-1000" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableBase</text>
 </a>
 </g>
@@ -772,7 +773,7 @@ var sectionId = 'dynsection-1';
 <!-- Node31 -->
 <g id="node66" class="node"><title>Node31</title>
 <a xlink:href="classMezzanine_1_1AttachableParent.xhtml" target="_top" xlink:title="Base class for objects that can have attachables attached to them.">
-<polygon fill="none" stroke="black" points="190,-661 190,-681 332,-681 332,-661 190,-661"/>
+<polygon fill="white" stroke="black" points="190,-661 190,-681 332,-681 332,-661 190,-661"/>
 <text text-anchor="middle" x="261" y="-668" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableParent</text>
 </a>
 </g>
@@ -790,7 +791,7 @@ var sectionId = 'dynsection-1';
 <!-- Node28 -->
 <g id="node60" class="node"><title>Node28</title>
 <a xlink:href="classMezzanine_1_1Transform.xhtml" target="_top" xlink:title="Stores information about relative location and rotation in 3d space.">
-<polygon fill="none" stroke="black" points="273,-993 273,-1013 383,-1013 383,-993 273,-993"/>
+<polygon fill="white" stroke="black" points="273,-993 273,-1013 383,-1013 383,-993 273,-993"/>
 <text text-anchor="middle" x="328" y="-1000" font-family="FreeSans" font-size="10.00">Mezzanine::Transform</text>
 </a>
 </g>
@@ -803,7 +804,7 @@ var sectionId = 'dynsection-1';
 <!-- Node29 -->
 <g id="node62" class="node"><title>Node29</title>
 <a xlink:href="classMezzanine_1_1Vector3.xhtml" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
-<polygon fill="none" stroke="black" points="849,-1085 849,-1105 949,-1105 949,-1085 849,-1085"/>
+<polygon fill="white" stroke="black" points="849,-1085 849,-1105 949,-1105 949,-1085 849,-1085"/>
 <text text-anchor="middle" x="899" y="-1092" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>
 </g>
@@ -822,7 +823,7 @@ var sectionId = 'dynsection-1';
 <!-- Node40 -->
 <g id="node92" class="node"><title>Node40</title>
 <a xlink:href="classMezzanine_1_1Plane.xhtml" target="_top" xlink:title="This is used to represent a flat infinite slice of the game world.">
-<polygon fill="none" stroke="black" points="853,-946 853,-966 945,-966 945,-946 853,-946"/>
+<polygon fill="white" stroke="black" points="853,-946 853,-966 945,-966 945,-946 853,-946"/>
 <text text-anchor="middle" x="899" y="-953" font-family="FreeSans" font-size="10.00">Mezzanine::Plane</text>
 </a>
 </g>
@@ -851,7 +852,7 @@ var sectionId = 'dynsection-1';
 <!-- Node30 -->
 <g id="node64" class="node"><title>Node30</title>
 <a xlink:href="classMezzanine_1_1Quaternion.xhtml" target="_top" xlink:title="This is used to store information about rotation in 3d space.">
-<polygon fill="none" stroke="black" points="371,-1085 371,-1105 485,-1105 485,-1085 371,-1085"/>
+<polygon fill="white" stroke="black" points="371,-1085 371,-1105 485,-1105 485,-1085 371,-1085"/>
 <text text-anchor="middle" x="428" y="-1092" font-family="FreeSans" font-size="10.00">Mezzanine::Quaternion</text>
 </a>
 </g>
@@ -864,7 +865,7 @@ var sectionId = 'dynsection-1';
 <!-- Node39 -->
 <g id="node90" class="node"><title>Node39</title>
 <a xlink:href="classMezzanine_1_1Internal_1_1SceneManagerData.xhtml" target="_top" xlink:title="Stores internal data for the SCeneManager to keep it from cluttering the Header file.">
-<polygon fill="none" stroke="black" points="458.5,-443 458.5,-475 565.5,-475 565.5,-443 458.5,-443"/>
+<polygon fill="white" stroke="black" points="458.5,-443 458.5,-475 565.5,-475 565.5,-443 458.5,-443"/>
 <text text-anchor="start" x="466.5" y="-462" font-family="FreeSans" font-size="10.00">Mezzanine::Internal</text>
 <text text-anchor="middle" x="512" y="-450" font-family="FreeSans" font-size="10.00">::SceneManagerData</text>
 </a>
@@ -911,7 +912,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node36 -->
 <g id="node80" class="node"><title>Node36</title>
-<polygon fill="none" stroke="#bfbfbf" points="2604.5,-567 2604.5,-587 2749.5,-587 2749.5,-567 2604.5,-567"/>
+<polygon fill="white" stroke="#bfbfbf" points="2604.5,-567 2604.5,-587 2749.5,-587 2749.5,-567 2604.5,-567"/>
 <text text-anchor="middle" x="2677" y="-574" font-family="FreeSans" font-size="10.00">std::vector&lt; WorldManager * &gt;</text>
 </g>
 <!-- Node34&#45;&gt;Node36 -->
@@ -923,7 +924,7 @@ var sectionId = 'dynsection-1';
 <!-- Node38 -->
 <g id="node87" class="node"><title>Node38</title>
 <a xlink:href="classMezzanine_1_1SceneManager.xhtml" target="_top" xlink:title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">
-<polygon fill="none" stroke="black" points="810,-567 810,-587 942,-587 942,-567 810,-567"/>
+<polygon fill="white" stroke="black" points="810,-567 810,-587 942,-587 942,-567 810,-567"/>
 <text text-anchor="middle" x="876" y="-574" font-family="FreeSans" font-size="10.00">Mezzanine::SceneManager</text>
 </a>
 </g>
@@ -935,7 +936,7 @@ var sectionId = 'dynsection-1';
 <!-- Node35 -->
 <g id="node78" class="node"><title>Node35</title>
 <a xlink:href="classMezzanine_1_1World.xhtml" target="_top" xlink:title="This class represents a world for objects to interact within.">
-<polygon fill="none" stroke="black" points="2564,-449 2564,-469 2656,-469 2656,-449 2564,-449"/>
+<polygon fill="white" stroke="black" points="2564,-449 2564,-469 2656,-469 2656,-449 2564,-449"/>
 <text text-anchor="middle" x="2610" y="-456" font-family="FreeSans" font-size="10.00">Mezzanine::World</text>
 </a>
 </g>
@@ -972,7 +973,7 @@ var sectionId = 'dynsection-1';
 <!-- Node43 -->
 <g id="node101" class="node"><title>Node43</title>
 <a xlink:href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world...">
-<polygon fill="none" stroke="black" points="1139,-443 1139,-475 1297,-475 1297,-443 1139,-443"/>
+<polygon fill="white" stroke="black" points="1139,-443 1139,-475 1297,-475 1297,-443 1139,-443"/>
 <text text-anchor="start" x="1147" y="-462" font-family="FreeSans" font-size="10.00">Mezzanine::TrackingNodeUpdate</text>
 <text text-anchor="middle" x="1218" y="-450" font-family="FreeSans" font-size="10.00">WorkUnit</text>
 </a>
@@ -998,7 +999,7 @@ var sectionId = 'dynsection-1';
 <!-- Node54 -->
 <g id="node136" class="node"><title>Node54</title>
 <a xlink:href="structMezzanine_1_1Internal_1_1EntityInternalData.xhtml" target="_top" xlink:title="This class stores the internal data of an Entity.">
-<polygon fill="none" stroke="black" points="582.5,-443 582.5,-475 681.5,-475 681.5,-443 582.5,-443"/>
+<polygon fill="white" stroke="black" points="582.5,-443 582.5,-475 681.5,-475 681.5,-443 582.5,-443"/>
 <text text-anchor="start" x="590.5" y="-462" font-family="FreeSans" font-size="10.00">Mezzanine::Internal</text>
 <text text-anchor="middle" x="632" y="-450" font-family="FreeSans" font-size="10.00">::EntityInternalData</text>
 </a>
@@ -1024,7 +1025,7 @@ var sectionId = 'dynsection-1';
 <!-- Node41 -->
 <g id="node96" class="node"><title>Node41</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="2578.5,-1179 2578.5,-1199 2635.5,-1199 2635.5,-1179 2578.5,-1179"/>
+<polygon fill="white" stroke="#bfbfbf" points="2578.5,-1179 2578.5,-1199 2635.5,-1199 2635.5,-1179 2578.5,-1179"/>
 <text text-anchor="middle" x="2607" y="-1186" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -1070,7 +1071,7 @@ var sectionId = 'dynsection-1';
 <!-- Node61 -->
 <g id="node154" class="node"><title>Node61</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingsHandler.xhtml" target="_top" xlink:title="An abstract class for other classes that manage groups of settings.">
-<polygon fill="none" stroke="black" points="2896.5,-762 2896.5,-794 3027.5,-794 3027.5,-762 2896.5,-762"/>
+<polygon fill="white" stroke="black" points="2896.5,-762 2896.5,-794 3027.5,-794 3027.5,-762 2896.5,-762"/>
 <text text-anchor="start" x="2904.5" y="-781" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettings</text>
 <text text-anchor="middle" x="2962" y="-769" font-family="FreeSans" font-size="10.00">Handler</text>
 </a>
@@ -1084,7 +1085,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node62 -->
 <g id="node156" class="node"><title>Node62</title>
-<polygon fill="none" stroke="#bfbfbf" points="3028,-987 3028,-1019 3148,-1019 3148,-987 3028,-987"/>
+<polygon fill="white" stroke="#bfbfbf" points="3028,-987 3028,-1019 3148,-1019 3148,-987 3028,-987"/>
 <text text-anchor="start" x="3036" y="-1006" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
 <text text-anchor="middle" x="3088" y="-994" font-family="FreeSans" font-size="10.00">SettingFile * &gt;</text>
 </g>
@@ -1097,7 +1098,7 @@ var sectionId = 'dynsection-1';
 <!-- Node63 -->
 <g id="node158" class="node"><title>Node63</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingFile.xhtml" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s.">
-<polygon fill="none" stroke="black" points="2846,-1085 2846,-1105 2988,-1105 2988,-1085 2846,-1085"/>
+<polygon fill="white" stroke="black" points="2846,-1085 2846,-1105 2988,-1105 2988,-1085 2846,-1085"/>
 <text text-anchor="middle" x="2917" y="-1092" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingFile</text>
 </a>
 </g>
@@ -1110,7 +1111,7 @@ var sectionId = 'dynsection-1';
 <!-- Node66 -->
 <g id="node165" class="node"><title>Node66</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
-<polygon fill="none" stroke="black" points="2626,-1079 2626,-1111 2752,-1111 2752,-1079 2626,-1079"/>
+<polygon fill="white" stroke="black" points="2626,-1079 2626,-1111 2752,-1111 2752,-1079 2626,-1079"/>
 <text text-anchor="start" x="2634" y="-1098" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="2689" y="-1086" font-family="FreeSans" font-size="10.00">SetContainer</text>
 </a>
@@ -1123,7 +1124,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node69 -->
 <g id="node173" class="node"><title>Node69</title>
-<polygon fill="none" stroke="#bfbfbf" points="2483.5,-1085 2483.5,-1105 2608.5,-1105 2608.5,-1085 2483.5,-1085"/>
+<polygon fill="white" stroke="#bfbfbf" points="2483.5,-1085 2483.5,-1105 2608.5,-1105 2608.5,-1085 2483.5,-1085"/>
 <text text-anchor="middle" x="2546" y="-1092" font-family="FreeSans" font-size="10.00">std::map&lt; String, String &gt;</text>
 </g>
 <!-- Node41&#45;&gt;Node69 -->
@@ -1135,7 +1136,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node70 -->
 <g id="node180" class="node"><title>Node70</title>
-<polygon fill="none" stroke="#bfbfbf" points="3023,-886 3023,-918 3143,-918 3143,-886 3023,-886"/>
+<polygon fill="white" stroke="#bfbfbf" points="3023,-886 3023,-918 3143,-918 3143,-886 3023,-886"/>
 <text text-anchor="start" x="3031" y="-905" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
 <text text-anchor="middle" x="3083" y="-893" font-family="FreeSans" font-size="10.00">SettingGroup * &gt;</text>
 </g>
@@ -1147,7 +1148,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node76 -->
 <g id="node198" class="node"><title>Node76</title>
-<polygon fill="none" stroke="#bfbfbf" points="3303,-1039 3303,-1059 3405,-1059 3405,-1039 3303,-1039"/>
+<polygon fill="white" stroke="#bfbfbf" points="3303,-1039 3303,-1059 3405,-1059 3405,-1039 3303,-1039"/>
 <text text-anchor="middle" x="3354" y="-1046" font-family="FreeSans" font-size="10.00">std::vector&lt; String &gt;</text>
 </g>
 <!-- Node41&#45;&gt;Node76 -->
@@ -1158,7 +1159,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node87 -->
 <g id="node233" class="node"><title>Node87</title>
-<polygon fill="none" stroke="#bfbfbf" points="2229,-762 2229,-794 2353,-794 2353,-762 2229,-762"/>
+<polygon fill="white" stroke="#bfbfbf" points="2229,-762 2229,-794 2353,-794 2353,-762 2229,-762"/>
 <text text-anchor="start" x="2237" y="-781" font-family="FreeSans" font-size="10.00">std::map&lt; String, Texture</text>
 <text text-anchor="middle" x="2291" y="-769" font-family="FreeSans" font-size="10.00">Atlas * &gt;</text>
 </g>
@@ -1170,7 +1171,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node89 -->
 <g id="node239" class="node"><title>Node89</title>
-<polygon fill="none" stroke="#bfbfbf" points="1992.5,-987 1992.5,-1019 2129.5,-1019 2129.5,-987 1992.5,-987"/>
+<polygon fill="white" stroke="#bfbfbf" points="1992.5,-987 1992.5,-1019 2129.5,-1019 2129.5,-987 1992.5,-987"/>
 <text text-anchor="start" x="2000.5" y="-1006" font-family="FreeSans" font-size="10.00">std::map&lt; String, Mezzanine</text>
 <text text-anchor="middle" x="2061" y="-994" font-family="FreeSans" font-size="10.00">::UI::Sprite * &gt;</text>
 </g>
@@ -1189,7 +1190,7 @@ var sectionId = 'dynsection-1';
 <!-- Node93 -->
 <g id="node250" class="node"><title>Node93</title>
 <a xlink:href="classMezzanine_1_1UI_1_1GlyphData.xhtml" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
-<polygon fill="none" stroke="black" points="1657,-1085 1657,-1105 1783,-1105 1783,-1085 1657,-1085"/>
+<polygon fill="white" stroke="black" points="1657,-1085 1657,-1105 1783,-1105 1783,-1085 1657,-1085"/>
 <text text-anchor="middle" x="1720" y="-1092" font-family="FreeSans" font-size="10.00">Mezzanine::UI::GlyphData</text>
 </a>
 </g>
@@ -1208,7 +1209,7 @@ var sectionId = 'dynsection-1';
 <!-- Node102 -->
 <g id="node275" class="node"><title>Node102</title>
 <a xlink:href="structMezzanine_1_1UI_1_1AtlasAndPosition.xhtml" target="_top" xlink:title="This class stores how the calls to Render are to be done.">
-<polygon fill="none" stroke="black" points="3414.5,-1085 3414.5,-1105 3569.5,-1105 3569.5,-1085 3414.5,-1085"/>
+<polygon fill="white" stroke="black" points="3414.5,-1085 3414.5,-1105 3569.5,-1105 3569.5,-1085 3414.5,-1085"/>
 <text text-anchor="middle" x="3492" y="-1092" font-family="FreeSans" font-size="10.00">Mezzanine::UI::AtlasAndPosition</text>
 </a>
 </g>
@@ -1221,7 +1222,7 @@ var sectionId = 'dynsection-1';
 <!-- Node109 -->
 <g id="node293" class="node"><title>Node109</title>
 <a xlink:href="structMezzanine_1_1UI_1_1VertexData.xhtml" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
-<polygon fill="none" stroke="black" points="2359,-892 2359,-912 2487,-912 2487,-892 2359,-892"/>
+<polygon fill="white" stroke="black" points="2359,-892 2359,-912 2487,-912 2487,-892 2359,-892"/>
 <text text-anchor="middle" x="2423" y="-899" font-family="FreeSans" font-size="10.00">Mezzanine::UI::VertexData</text>
 </a>
 </g>
@@ -1234,7 +1235,7 @@ var sectionId = 'dynsection-1';
 <!-- Node42 -->
 <g id="node98" class="node"><title>Node42</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="2561.5,-1267 2561.5,-1299 2652.5,-1299 2652.5,-1267 2561.5,-1267"/>
+<polygon fill="white" stroke="#bfbfbf" points="2561.5,-1267 2561.5,-1299 2652.5,-1299 2652.5,-1267 2561.5,-1267"/>
 <text text-anchor="start" x="2569.5" y="-1286" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="2607" y="-1274" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -1252,7 +1253,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node44 -->
 <g id="node103" class="node"><title>Node44</title>
-<polygon fill="none" stroke="#bfbfbf" points="1382.5,-661 1382.5,-681 1469.5,-681 1469.5,-661 1382.5,-661"/>
+<polygon fill="white" stroke="#bfbfbf" points="1382.5,-661 1382.5,-681 1469.5,-681 1469.5,-661 1382.5,-661"/>
 <text text-anchor="middle" x="1426" y="-668" font-family="FreeSans" font-size="10.00">DefaultWorkUnit</text>
 </g>
 <!-- Node44&#45;&gt;Node43 -->
@@ -1267,7 +1268,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node45 -->
 <g id="node106" class="node"><title>Node45</title>
-<polygon fill="none" stroke="#bfbfbf" points="757.5,-351 757.5,-383 858.5,-383 858.5,-351 757.5,-351"/>
+<polygon fill="white" stroke="#bfbfbf" points="757.5,-351 757.5,-383 858.5,-383 858.5,-351 757.5,-351"/>
 <text text-anchor="start" x="765.5" y="-370" font-family="FreeSans" font-size="10.00">std::set&lt; Mezzanine</text>
 <text text-anchor="middle" x="808" y="-358" font-family="FreeSans" font-size="10.00">::WorldNode * &gt;</text>
 </g>
@@ -1285,7 +1286,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node49 -->
 <g id="node122" class="node"><title>Node49</title>
-<polygon fill="none" stroke="#bfbfbf" points="610,-357 610,-377 740,-377 740,-357 610,-357"/>
+<polygon fill="white" stroke="#bfbfbf" points="610,-357 610,-377 740,-377 740,-357 610,-357"/>
 <text text-anchor="middle" x="675" y="-364" font-family="FreeSans" font-size="10.00">std::vector&lt; WorldNode * &gt;</text>
 </g>
 <!-- Node46&#45;&gt;Node49 -->
@@ -1296,7 +1297,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node47 -->
 <g id="node117" class="node"><title>Node47</title>
-<polygon fill="none" stroke="#bfbfbf" points="787,-661 787,-681 927,-681 927,-661 787,-661"/>
+<polygon fill="white" stroke="#bfbfbf" points="787,-661 787,-681 927,-681 927,-661 787,-661"/>
 <text text-anchor="middle" x="857" y="-668" font-family="FreeSans" font-size="10.00">std::vector&lt; ParticleEffect * &gt;</text>
 </g>
 <!-- Node47&#45;&gt;Node38 -->
@@ -1319,7 +1320,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node50 -->
 <g id="node125" class="node"><title>Node50</title>
-<polygon fill="none" stroke="#bfbfbf" points="1008,-357 1008,-377 1112,-377 1112,-357 1008,-357"/>
+<polygon fill="white" stroke="#bfbfbf" points="1008,-357 1008,-377 1112,-377 1112,-357 1008,-357"/>
 <text text-anchor="middle" x="1060" y="-364" font-family="FreeSans" font-size="10.00">std::vector&lt; Light * &gt;</text>
 </g>
 <!-- Node50&#45;&gt;Node38 -->
@@ -1336,7 +1337,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node52 -->
 <g id="node131" class="node"><title>Node52</title>
-<polygon fill="none" stroke="#bfbfbf" points="755.5,-257 755.5,-277 862.5,-277 862.5,-257 755.5,-257"/>
+<polygon fill="white" stroke="#bfbfbf" points="755.5,-257 755.5,-277 862.5,-277 862.5,-257 755.5,-257"/>
 <text text-anchor="middle" x="809" y="-264" font-family="FreeSans" font-size="10.00">std::vector&lt; Entity * &gt;</text>
 </g>
 <!-- Node52&#45;&gt;Node38 -->
@@ -1372,7 +1373,7 @@ var sectionId = 'dynsection-1';
 <!-- Node57 -->
 <g id="node144" class="node"><title>Node57</title>
 <a xlink:href="structMezzanine_1_1CameraController_1_1AngleLimits.xhtml" target="_top" xlink:title="Boundaries for rotation on one axis.">
-<polygon fill="none" stroke="black" points="2309,-351 2309,-383 2451,-383 2451,-351 2309,-351"/>
+<polygon fill="white" stroke="black" points="2309,-351 2309,-383 2451,-383 2451,-351 2309,-351"/>
 <text text-anchor="start" x="2317" y="-370" font-family="FreeSans" font-size="10.00">Mezzanine::CameraController</text>
 <text text-anchor="middle" x="2380" y="-358" font-family="FreeSans" font-size="10.00">::AngleLimits</text>
 </a>
@@ -1388,7 +1389,7 @@ var sectionId = 'dynsection-1';
 <!-- Node58 -->
 <g id="node147" class="node"><title>Node58</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1GameWindow.xhtml" target="_top" xlink:title="This class is for creating and managing game windows.">
-<polygon fill="none" stroke="black" points="2924.5,-561 2924.5,-593 3029.5,-593 3029.5,-561 2924.5,-561"/>
+<polygon fill="white" stroke="black" points="2924.5,-561 2924.5,-593 3029.5,-593 3029.5,-561 2924.5,-561"/>
 <text text-anchor="start" x="2932.5" y="-580" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="2977" y="-568" font-family="FreeSans" font-size="10.00">::GameWindow</text>
 </a>
@@ -1407,7 +1408,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node73 -->
 <g id="node189" class="node"><title>Node73</title>
-<polygon fill="none" stroke="#bfbfbf" points="3141.5,-443 3141.5,-475 3248.5,-475 3248.5,-443 3141.5,-443"/>
+<polygon fill="white" stroke="#bfbfbf" points="3141.5,-443 3141.5,-475 3248.5,-475 3248.5,-443 3141.5,-443"/>
 <text text-anchor="start" x="3149.5" y="-462" font-family="FreeSans" font-size="10.00">std::vector&lt; Graphics</text>
 <text text-anchor="middle" x="3195" y="-450" font-family="FreeSans" font-size="10.00">::GameWindow * &gt;</text>
 </g>
@@ -1420,7 +1421,7 @@ var sectionId = 'dynsection-1';
 <!-- Node59 -->
 <g id="node149" class="node"><title>Node59</title>
 <a xlink:href="structMezzanine_1_1WindowSettings.xhtml" target="_top" xlink:title="This stores all the basic configuration options a game window supports.">
-<polygon fill="none" stroke="black" points="2743,-768 2743,-788 2879,-788 2879,-768 2743,-768"/>
+<polygon fill="white" stroke="black" points="2743,-768 2743,-788 2879,-788 2879,-768 2743,-768"/>
 <text text-anchor="middle" x="2811" y="-775" font-family="FreeSans" font-size="10.00">Mezzanine::WindowSettings</text>
 </a>
 </g>
@@ -1445,7 +1446,7 @@ var sectionId = 'dynsection-1';
 <!-- Node71 -->
 <g id="node184" class="node"><title>Node71</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;">
-<polygon fill="none" stroke="black" points="3065.5,-561 3065.5,-593 3174.5,-593 3174.5,-561 3065.5,-561"/>
+<polygon fill="white" stroke="black" points="3065.5,-561 3065.5,-593 3174.5,-593 3174.5,-561 3065.5,-561"/>
 <text text-anchor="start" x="3073.5" y="-580" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="3120" y="-568" font-family="FreeSans" font-size="10.00">&lt; GraphicsManager &gt;</text>
 </a>
@@ -1476,7 +1477,7 @@ var sectionId = 'dynsection-1';
 <!-- Node65 -->
 <g id="node163" class="node"><title>Node65</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
-<polygon fill="none" stroke="black" points="2793,-987 2793,-1019 2919,-1019 2919,-987 2793,-987"/>
+<polygon fill="white" stroke="black" points="2793,-987 2793,-1019 2919,-1019 2919,-987 2793,-987"/>
 <text text-anchor="start" x="2801" y="-1006" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="2856" y="-994" font-family="FreeSans" font-size="10.00">Group</text>
 </a>
@@ -1489,7 +1490,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node64 -->
 <g id="node161" class="node"><title>Node64</title>
-<polygon fill="none" stroke="#bfbfbf" points="2787,-886 2787,-918 2915,-918 2915,-886 2787,-886"/>
+<polygon fill="white" stroke="#bfbfbf" points="2787,-886 2787,-918 2915,-918 2915,-886 2787,-886"/>
 <text text-anchor="start" x="2795" y="-905" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="2851" y="-893" font-family="FreeSans" font-size="10.00">Group * &gt;</text>
 </g>
@@ -1519,7 +1520,7 @@ var sectionId = 'dynsection-1';
 <!-- Node68 -->
 <g id="node169" class="node"><title>Node68</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
-<polygon fill="none" stroke="black" points="2596.5,-993 2596.5,-1013 2737.5,-1013 2737.5,-993 2596.5,-993"/>
+<polygon fill="white" stroke="black" points="2596.5,-993 2596.5,-1013 2737.5,-1013 2737.5,-993 2596.5,-993"/>
 <text text-anchor="middle" x="2667" y="-1000" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
 </g>
@@ -1536,7 +1537,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node67 -->
 <g id="node167" class="node"><title>Node67</title>
-<polygon fill="none" stroke="#bfbfbf" points="2505,-886 2505,-918 2633,-918 2633,-886 2505,-886"/>
+<polygon fill="white" stroke="#bfbfbf" points="2505,-886 2505,-918 2633,-918 2633,-886 2505,-886"/>
 <text text-anchor="start" x="2513" y="-905" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="2569" y="-893" font-family="FreeSans" font-size="10.00">Set * &gt;</text>
 </g>
@@ -1571,7 +1572,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node72 -->
 <g id="node187" class="node"><title>Node72</title>
-<polygon fill="none" stroke="#bfbfbf" points="3044.5,-762 3044.5,-794 3151.5,-794 3151.5,-762 3044.5,-762"/>
+<polygon fill="white" stroke="#bfbfbf" points="3044.5,-762 3044.5,-794 3151.5,-794 3151.5,-762 3044.5,-762"/>
 <text text-anchor="start" x="3052.5" y="-781" font-family="FreeSans" font-size="10.00">std::vector&lt; Graphics</text>
 <text text-anchor="middle" x="3098" y="-769" font-family="FreeSans" font-size="10.00">::RenderSystem &gt;</text>
 </g>
@@ -1590,7 +1591,7 @@ var sectionId = 'dynsection-1';
 <!-- Node74 -->
 <g id="node193" class="node"><title>Node74</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.xhtml" target="_top" xlink:title="This does the main loop processing for required to make the Graphics Manager function.">
-<polygon fill="none" stroke="black" points="3280.5,-762 3280.5,-794 3385.5,-794 3385.5,-762 3280.5,-762"/>
+<polygon fill="white" stroke="black" points="3280.5,-762 3280.5,-794 3385.5,-794 3385.5,-762 3280.5,-762"/>
 <text text-anchor="start" x="3288.5" y="-781" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="3333" y="-769" font-family="FreeSans" font-size="10.00">::RenderWorkUnit</text>
 </a>
@@ -1603,7 +1604,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node75 -->
 <g id="node195" class="node"><title>Node75</title>
-<polygon fill="none" stroke="#bfbfbf" points="3198.5,-892 3198.5,-912 3343.5,-912 3343.5,-892 3198.5,-892"/>
+<polygon fill="white" stroke="#bfbfbf" points="3198.5,-892 3198.5,-912 3343.5,-912 3343.5,-892 3198.5,-892"/>
 <text text-anchor="middle" x="3271" y="-899" font-family="FreeSans" font-size="10.00">Threading::MonopolyWorkUnit</text>
 </g>
 <!-- Node75&#45;&gt;Node74 -->
@@ -1620,7 +1621,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node77 -->
 <g id="node201" class="node"><title>Node77</title>
-<polygon fill="none" stroke="#bfbfbf" points="3169,-762 3169,-794 3263,-794 3263,-762 3169,-762"/>
+<polygon fill="white" stroke="#bfbfbf" points="3169,-762 3169,-794 3263,-794 3263,-762 3169,-762"/>
 <text text-anchor="start" x="3177" y="-781" font-family="FreeSans" font-size="10.00">std::vector&lt; Ogre::</text>
 <text text-anchor="middle" x="3216" y="-769" font-family="FreeSans" font-size="10.00">Plugin * &gt;</text>
 </g>
@@ -1632,7 +1633,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node78 -->
 <g id="node203" class="node"><title>Node78</title>
-<polygon fill="none" stroke="#bfbfbf" points="2749.5,-661 2749.5,-681 2870.5,-681 2870.5,-661 2749.5,-661"/>
+<polygon fill="white" stroke="#bfbfbf" points="2749.5,-661 2749.5,-681 2870.5,-681 2870.5,-661 2749.5,-661"/>
 <text text-anchor="middle" x="2810" y="-668" font-family="FreeSans" font-size="10.00">std::list&lt; ViewportEntry &gt;</text>
 </g>
 <!-- Node78&#45;&gt;Node58 -->
@@ -1643,7 +1644,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node79 -->
 <g id="node208" class="node"><title>Node79</title>
-<polygon fill="none" stroke="#bfbfbf" points="1828.5,-762 1828.5,-794 1941.5,-794 1941.5,-762 1828.5,-762"/>
+<polygon fill="white" stroke="#bfbfbf" points="1828.5,-762 1828.5,-794 1941.5,-794 1941.5,-762 1828.5,-762"/>
 <text text-anchor="start" x="1836.5" y="-781" font-family="FreeSans" font-size="10.00">std::multimap&lt; Input</text>
 <text text-anchor="middle" x="1885" y="-769" font-family="FreeSans" font-size="10.00">::InputCode, Button * &gt;</text>
 </g>
@@ -1661,7 +1662,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node85 -->
 <g id="node227" class="node"><title>Node85</title>
-<polygon fill="none" stroke="#bfbfbf" points="1700.5,-768 1700.5,-788 1811.5,-788 1811.5,-768 1700.5,-768"/>
+<polygon fill="white" stroke="#bfbfbf" points="1700.5,-768 1700.5,-788 1811.5,-788 1811.5,-768 1700.5,-768"/>
 <text text-anchor="middle" x="1756" y="-775" font-family="FreeSans" font-size="10.00">std::vector&lt; Button * &gt;</text>
 </g>
 <!-- Node80&#45;&gt;Node85 -->
@@ -1683,7 +1684,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node82 -->
 <g id="node216" class="node"><title>Node82</title>
-<polygon fill="none" stroke="#bfbfbf" points="1738,-83 1738,-115 1854,-115 1854,-83 1738,-83"/>
+<polygon fill="white" stroke="#bfbfbf" points="1738,-83 1738,-115 1854,-115 1854,-83 1738,-83"/>
 <text text-anchor="start" x="1746" y="-102" font-family="FreeSans" font-size="10.00">std::vector&lt; Activatable</text>
 <text text-anchor="middle" x="1796" y="-90" font-family="FreeSans" font-size="10.00">Listener * &gt;</text>
 </g>
@@ -1751,7 +1752,7 @@ var sectionId = 'dynsection-1';
 <!-- Node91 -->
 <g id="node246" class="node"><title>Node91</title>
 <a xlink:href="structMezzanine_1_1UI_1_1TextureAtlasInternalData.xhtml" target="_top" xlink:title="Mezzanine::UI::TextureAtlas\lInternalData">
-<polygon fill="none" stroke="black" points="2146.5,-987 2146.5,-1019 2281.5,-1019 2281.5,-987 2146.5,-987"/>
+<polygon fill="white" stroke="black" points="2146.5,-987 2146.5,-1019 2281.5,-1019 2281.5,-987 2146.5,-987"/>
 <text text-anchor="start" x="2154.5" y="-1006" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TextureAtlas</text>
 <text text-anchor="middle" x="2214" y="-994" font-family="FreeSans" font-size="10.00">InternalData</text>
 </a>
@@ -1764,7 +1765,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node92 -->
 <g id="node248" class="node"><title>Node92</title>
-<polygon fill="none" stroke="#bfbfbf" points="1627,-987 1627,-1019 1767,-1019 1767,-987 1627,-987"/>
+<polygon fill="white" stroke="#bfbfbf" points="1627,-987 1627,-1019 1767,-1019 1767,-987 1627,-987"/>
 <text text-anchor="start" x="1635" y="-1006" font-family="FreeSans" font-size="10.00">std::map&lt; UInt32, Mezzanine</text>
 <text text-anchor="middle" x="1697" y="-994" font-family="FreeSans" font-size="10.00">::UI::GlyphData * &gt;</text>
 </g>
@@ -1788,7 +1789,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node94 -->
 <g id="node252" class="node"><title>Node94</title>
-<polygon fill="none" stroke="#bfbfbf" points="1517,-1173 1517,-1205 1631,-1205 1631,-1173 1517,-1173"/>
+<polygon fill="white" stroke="#bfbfbf" points="1517,-1173 1517,-1205 1631,-1205 1631,-1173 1517,-1173"/>
 <text text-anchor="start" x="1525" y="-1192" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="1574" y="-1180" font-family="FreeSans" font-size="10.00">::UI::Glyph * &gt;</text>
 </g>
@@ -1806,7 +1807,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node96 -->
 <g id="node257" class="node"><title>Node96</title>
-<polygon fill="none" stroke="#bfbfbf" points="3643,-1361 3643,-1393 3757,-1393 3757,-1361 3643,-1361"/>
+<polygon fill="white" stroke="#bfbfbf" points="3643,-1361 3643,-1393 3757,-1393 3757,-1361 3643,-1361"/>
 <text text-anchor="start" x="3651" y="-1380" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="3700" y="-1368" font-family="FreeSans" font-size="10.00">::UI::KerningInfo &gt;</text>
 </g>
@@ -1819,7 +1820,7 @@ var sectionId = 'dynsection-1';
 <!-- Node97 -->
 <g id="node259" class="node"><title>Node97</title>
 <a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.xhtml" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
-<polygon fill="none" stroke="black" points="3634.5,-1443 3634.5,-1463 3765.5,-1463 3765.5,-1443 3634.5,-1443"/>
+<polygon fill="white" stroke="black" points="3634.5,-1443 3634.5,-1463 3765.5,-1463 3765.5,-1443 3634.5,-1443"/>
 <text text-anchor="middle" x="3700" y="-1450" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>
 </g>
@@ -1831,7 +1832,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node98 -->
 <g id="node262" class="node"><title>Node98</title>
-<polygon fill="none" stroke="#bfbfbf" points="1861,-987 1861,-1019 1975,-1019 1975,-987 1861,-987"/>
+<polygon fill="white" stroke="#bfbfbf" points="1861,-987 1861,-1019 1975,-1019 1975,-987 1861,-987"/>
 <text text-anchor="start" x="1869" y="-1006" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="1918" y="-994" font-family="FreeSans" font-size="10.00">::ColourValue &gt;</text>
 </g>
@@ -1844,7 +1845,7 @@ var sectionId = 'dynsection-1';
 <!-- Node99 -->
 <g id="node264" class="node"><title>Node99</title>
 <a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
-<polygon fill="none" stroke="black" points="1975.5,-1085 1975.5,-1105 2094.5,-1105 2094.5,-1085 1975.5,-1085"/>
+<polygon fill="white" stroke="black" points="1975.5,-1085 1975.5,-1105 2094.5,-1105 2094.5,-1085 1975.5,-1085"/>
 <text text-anchor="middle" x="2035" y="-1092" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>
 </g>
@@ -1881,7 +1882,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node101 -->
 <g id="node273" class="node"><title>Node101</title>
-<polygon fill="none" stroke="#bfbfbf" points="3465.5,-827 3465.5,-859 3582.5,-859 3582.5,-827 3465.5,-827"/>
+<polygon fill="white" stroke="#bfbfbf" points="3465.5,-827 3465.5,-859 3582.5,-859 3582.5,-827 3465.5,-827"/>
 <text text-anchor="start" x="3473.5" y="-846" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="3524" y="-834" font-family="FreeSans" font-size="10.00">::UI::AtlasAndPosition &gt;</text>
 </g>
@@ -1905,7 +1906,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node104 -->
 <g id="node281" class="node"><title>Node104</title>
-<polygon fill="none" stroke="#bfbfbf" points="3173.5,-89 3173.5,-109 3308.5,-109 3308.5,-89 3173.5,-89"/>
+<polygon fill="white" stroke="#bfbfbf" points="3173.5,-89 3173.5,-109 3308.5,-109 3308.5,-89 3173.5,-89"/>
 <text text-anchor="middle" x="3241" y="-96" font-family="FreeSans" font-size="10.00">Ogre::RenderQueueListener</text>
 </g>
 <!-- Node104&#45;&gt;Node103 -->
@@ -1915,7 +1916,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node105 -->
 <g id="node284" class="node"><title>Node105</title>
-<polygon fill="none" stroke="#bfbfbf" points="2851,-171 2851,-191 3003,-191 3003,-171 2851,-171"/>
+<polygon fill="white" stroke="#bfbfbf" points="2851,-171 2851,-191 3003,-191 3003,-171 2851,-171"/>
 <text text-anchor="middle" x="2927" y="-178" font-family="FreeSans" font-size="10.00">std::map&lt; UInt16, IndexData * &gt;</text>
 </g>
 <!-- Node105&#45;&gt;Node15 -->
@@ -1933,7 +1934,7 @@ var sectionId = 'dynsection-1';
 <!-- Node107 -->
 <g id="node289" class="node"><title>Node107</title>
 <a xlink:href="classMezzanine_1_1UI_1_1ScreenVertexData.xhtml" target="_top" xlink:title="This class stores all vertices pertaining to a layer sorted by their priority for rendering...">
-<polygon fill="none" stroke="black" points="2858.5,-403 2858.5,-423 3017.5,-423 3017.5,-403 2858.5,-403"/>
+<polygon fill="white" stroke="black" points="2858.5,-403 2858.5,-423 3017.5,-423 3017.5,-403 2858.5,-403"/>
 <text text-anchor="middle" x="2938" y="-410" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScreenVertexData</text>
 </a>
 </g>
@@ -1945,7 +1946,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node108 -->
 <g id="node291" class="node"><title>Node108</title>
-<polygon fill="none" stroke="#bfbfbf" points="2318,-561 2318,-593 2432,-593 2432,-561 2318,-561"/>
+<polygon fill="white" stroke="#bfbfbf" points="2318,-561 2318,-593 2432,-593 2432,-561 2318,-561"/>
 <text text-anchor="start" x="2326" y="-580" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="2375" y="-568" font-family="FreeSans" font-size="10.00">::UI::VertexData &gt;</text>
 </g>
@@ -1978,7 +1979,7 @@ var sectionId = 'dynsection-1';
 <!-- Node111 -->
 <g id="node301" class="node"><title>Node111</title>
 <a xlink:href="classMezzanine_1_1Matrix4x4.xhtml" target="_top" xlink:title="Mezzanine::Matrix4x4">
-<polygon fill="none" stroke="black" points="3178,-171 3178,-191 3286,-191 3286,-171 3178,-171"/>
+<polygon fill="white" stroke="black" points="3178,-171 3178,-191 3286,-191 3286,-171 3178,-171"/>
 <text text-anchor="middle" x="3232" y="-178" font-family="FreeSans" font-size="10.00">Mezzanine::Matrix4x4</text>
 </a>
 </g>

@@ -8,10 +8,11 @@
  viewBox="0.00 0.00 260.00 90.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 86)">
 <title>Graphical Class Hierarchy</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-86 257,-86 257,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <a xlink:href="classMezzanine_1_1Resource_1_1DataStream.xhtml" target="_top" xlink:title="This represents a stream to a piece of data, usually a file.">
-<polygon fill="none" stroke="black" points="0.5,-25 0.5,-57 107.5,-57 107.5,-25 0.5,-25"/>
+<polygon fill="white" stroke="black" points="0.5,-25 0.5,-57 107.5,-57 107.5,-25 0.5,-25"/>
 <text text-anchor="start" x="8.5" y="-44" font-family="FreeSans" font-size="10.00">Mezzanine::Resource</text>
 <text text-anchor="middle" x="54" y="-32" font-family="FreeSans" font-size="10.00">::DataStream</text>
 </a>
@@ -19,7 +20,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Resource_1_1FileStream.xhtml" target="_top" xlink:title="This represents a stream to a file on disk using the C++ file stream API.">
-<polygon fill="none" stroke="black" points="144.5,-50 144.5,-82 251.5,-82 251.5,-50 144.5,-50"/>
+<polygon fill="white" stroke="black" points="144.5,-50 144.5,-82 251.5,-82 251.5,-50 144.5,-50"/>
 <text text-anchor="start" x="152.5" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Resource</text>
 <text text-anchor="middle" x="198" y="-57" font-family="FreeSans" font-size="10.00">::FileStream</text>
 </a>
@@ -32,7 +33,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Resource_1_1MemoryStream.xhtml" target="_top" xlink:title="This represents a stream to a buffer in memory.">
-<polygon fill="none" stroke="black" points="144.5,-0 144.5,-32 251.5,-32 251.5,-0 144.5,-0"/>
+<polygon fill="white" stroke="black" points="144.5,-0 144.5,-32 251.5,-32 251.5,-0 144.5,-0"/>
 <text text-anchor="start" x="152.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Resource</text>
 <text text-anchor="middle" x="198" y="-7" font-family="FreeSans" font-size="10.00">::MemoryStream</text>
 </a>

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 292.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::ObjectSettingSetContainer</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-108 289,-108 289,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="75,-71 75,-103 201,-103 201,-71 75,-71"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
-<polygon fill="none" stroke="black" points="0,-1 0,-33 126,-33 126,-1 0,-1"/>
+<polygon fill="white" stroke="black" points="0,-1 0,-33 126,-33 126,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="63" y="-8" font-family="FreeSans" font-size="10.00">Group</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
-<polygon fill="none" stroke="black" points="143.5,-7 143.5,-27 284.5,-27 284.5,-7 143.5,-7"/>
+<polygon fill="white" stroke="black" points="143.5,-7 143.5,-27 284.5,-27 284.5,-7 143.5,-7"/>
 <text text-anchor="middle" x="214" y="-14" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
 </g>

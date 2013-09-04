@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 238.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::Resource::DataStream</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-108 235,-108 235,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="61.5,-71 61.5,-103 168.5,-103 168.5,-71 61.5,-71"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Resource_1_1FileStream.xhtml" target="_top" xlink:title="This represents a stream to a file on disk using the C++ file stream API.">
-<polygon fill="none" stroke="black" points="-0.5,-1 -0.5,-33 106.5,-33 106.5,-1 -0.5,-1"/>
+<polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-33 106.5,-33 106.5,-1 -0.5,-1"/>
 <text text-anchor="start" x="7.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Resource</text>
 <text text-anchor="middle" x="53" y="-8" font-family="FreeSans" font-size="10.00">::FileStream</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Resource_1_1MemoryStream.xhtml" target="_top" xlink:title="This represents a stream to a buffer in memory.">
-<polygon fill="none" stroke="black" points="123.5,-1 123.5,-33 230.5,-33 230.5,-1 123.5,-1"/>
+<polygon fill="white" stroke="black" points="123.5,-1 123.5,-33 230.5,-33 230.5,-1 123.5,-1"/>
 <text text-anchor="start" x="131.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Resource</text>
 <text text-anchor="middle" x="177" y="-8" font-family="FreeSans" font-size="10.00">::MemoryStream</text>
 </a>

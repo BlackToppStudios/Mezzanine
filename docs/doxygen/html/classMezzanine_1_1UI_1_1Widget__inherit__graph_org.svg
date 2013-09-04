@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 996.00 458.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 454)">
 <title>Mezzanine::UI::Widget</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-454 993,-454 993,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="166.5,-221 166.5,-241 277.5,-241 277.5,-221 166.5,-221"/>
@@ -16,7 +17,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Activatable.xhtml" target="_top" xlink:title="This is a helper class that encapsulates the functionality of an object that can be activated to take...">
-<polygon fill="none" stroke="black" points="319.5,-430 319.5,-450 448.5,-450 448.5,-430 319.5,-430"/>
+<polygon fill="white" stroke="black" points="319.5,-430 319.5,-450 448.5,-450 448.5,-430 319.5,-430"/>
 <text text-anchor="middle" x="384" y="-437" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Activatable</text>
 </a>
 </g>
@@ -28,7 +29,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Cell.xhtml" target="_top" xlink:title="This class is a base class to be used with the CellGrid class.">
-<polygon fill="none" stroke="black" points="335,-392 335,-412 433,-412 433,-392 335,-392"/>
+<polygon fill="white" stroke="black" points="335,-392 335,-412 433,-412 433,-392 335,-392"/>
 <text text-anchor="middle" x="384" y="-399" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Cell</text>
 </a>
 </g>
@@ -40,7 +41,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1UI_1_1CellGrid.xhtml" target="_top" xlink:title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac...">
-<polygon fill="none" stroke="black" points="326,-354 326,-374 442,-374 442,-354 326,-354"/>
+<polygon fill="white" stroke="black" points="326,-354 326,-374 442,-374 442,-354 326,-354"/>
 <text text-anchor="middle" x="384" y="-361" font-family="FreeSans" font-size="10.00">Mezzanine::UI::CellGrid</text>
 </a>
 </g>
@@ -52,7 +53,7 @@
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1UI_1_1CheckBox.xhtml" target="_top" xlink:title="This is a simple widget for storing a bool value.">
-<polygon fill="none" stroke="black" points="321.5,-316 321.5,-336 446.5,-336 446.5,-316 321.5,-316"/>
+<polygon fill="white" stroke="black" points="321.5,-316 321.5,-336 446.5,-336 446.5,-316 321.5,-316"/>
 <text text-anchor="middle" x="384" y="-323" font-family="FreeSans" font-size="10.00">Mezzanine::UI::CheckBox</text>
 </a>
 </g>
@@ -64,7 +65,7 @@
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
 <a xlink:href="classMezzanine_1_1UI_1_1DropDownList.xhtml" target="_top" xlink:title="A widget that displays one selection from a list that can have it&#39;s visibility toggled.">
-<polygon fill="none" stroke="black" points="314,-278 314,-298 454,-298 454,-278 314,-278"/>
+<polygon fill="white" stroke="black" points="314,-278 314,-298 454,-298 454,-278 314,-278"/>
 <text text-anchor="middle" x="384" y="-285" font-family="FreeSans" font-size="10.00">Mezzanine::UI::DropDownList</text>
 </a>
 </g>
@@ -76,7 +77,7 @@
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:href="classMezzanine_1_1UI_1_1ListBox.xhtml" target="_top" xlink:title="This is a widget for displaying a list of captions in a box.">
-<polygon fill="none" stroke="black" points="327.5,-240 327.5,-260 440.5,-260 440.5,-240 327.5,-240"/>
+<polygon fill="white" stroke="black" points="327.5,-240 327.5,-260 440.5,-260 440.5,-240 327.5,-240"/>
 <text text-anchor="middle" x="384" y="-247" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ListBox</text>
 </a>
 </g>
@@ -88,7 +89,7 @@
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Menu.xhtml" target="_top" xlink:title="This class is a control mechanism for multiple windows in a heirarchy.">
-<polygon fill="none" stroke="black" points="331.5,-202 331.5,-222 436.5,-222 436.5,-202 331.5,-202"/>
+<polygon fill="white" stroke="black" points="331.5,-202 331.5,-222 436.5,-222 436.5,-202 331.5,-202"/>
 <text text-anchor="middle" x="384" y="-209" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Menu</text>
 </a>
 </g>
@@ -100,7 +101,7 @@
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
 <a xlink:href="classMezzanine_1_1UI_1_1RadioButton.xhtml" target="_top" xlink:title="This is a simple widget where only one of it&#39;s selections can be selected at a time.">
-<polygon fill="none" stroke="black" points="317,-164 317,-184 451,-184 451,-164 317,-164"/>
+<polygon fill="white" stroke="black" points="317,-164 317,-184 451,-184 451,-164 317,-164"/>
 <text text-anchor="middle" x="384" y="-171" font-family="FreeSans" font-size="10.00">Mezzanine::UI::RadioButton</text>
 </a>
 </g>
@@ -112,7 +113,7 @@
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
 <a xlink:href="classMezzanine_1_1UI_1_1RenderableContainerWidget.xhtml" target="_top" xlink:title="This is an interface class for the two types of Renderable Container Widgets.">
-<polygon fill="none" stroke="black" points="319,-114 319,-146 449,-146 449,-114 319,-114"/>
+<polygon fill="white" stroke="black" points="319,-114 319,-146 449,-146 449,-114 319,-114"/>
 <text text-anchor="start" x="327" y="-133" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 <text text-anchor="middle" x="384" y="-121" font-family="FreeSans" font-size="10.00">ContainerWidget</text>
 </a>
@@ -125,7 +126,7 @@
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Scrollbar.xhtml" target="_top" xlink:title="This class is a widget class, to be used alongside any scrollable widget.">
-<polygon fill="none" stroke="black" points="324.5,-76 324.5,-96 443.5,-96 443.5,-76 324.5,-76"/>
+<polygon fill="white" stroke="black" points="324.5,-76 324.5,-96 443.5,-96 443.5,-76 324.5,-76"/>
 <text text-anchor="middle" x="384" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Scrollbar</text>
 </a>
 </g>
@@ -137,7 +138,7 @@
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Spinner.xhtml" target="_top" xlink:title="This is a simple widget for a numeric variable in a box.">
-<polygon fill="none" stroke="black" points="327,-38 327,-58 441,-58 441,-38 327,-38"/>
+<polygon fill="white" stroke="black" points="327,-38 327,-58 441,-58 441,-38 327,-38"/>
 <text text-anchor="middle" x="384" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Spinner</text>
 </a>
 </g>
@@ -149,7 +150,7 @@
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
 <a xlink:href="classMezzanine_1_1UI_1_1TabSet.xhtml" target="_top" xlink:title="This is a widget that stores sets of renderables but only displays one at a time.">
-<polygon fill="none" stroke="black" points="327.5,-0 327.5,-20 440.5,-20 440.5,-0 327.5,-0"/>
+<polygon fill="white" stroke="black" points="327.5,-0 327.5,-20 440.5,-20 440.5,-0 327.5,-0"/>
 <text text-anchor="middle" x="384" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TabSet</text>
 </a>
 </g>
@@ -161,7 +162,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
-<polygon fill="none" stroke="black" points="0,-221 0,-241 130,-241 130,-221 0,-221"/>
+<polygon fill="white" stroke="black" points="0,-221 0,-241 130,-241 130,-221 0,-221"/>
 <text text-anchor="middle" x="65" y="-228" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
 </g>
@@ -173,7 +174,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Button.xhtml" target="_top" xlink:title="This class is a helper class, specifically for use as a button.">
-<polygon fill="none" stroke="black" points="520,-430 520,-450 630,-450 630,-430 520,-430"/>
+<polygon fill="white" stroke="black" points="520,-430 520,-450 630,-450 630,-430 520,-430"/>
 <text text-anchor="middle" x="575" y="-437" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Button</text>
 </a>
 </g>
@@ -185,7 +186,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1UI_1_1PagedCellGrid.xhtml" target="_top" xlink:title="This is a specialization of the cell grid that allows you to use a spinner to navigate through pages ...">
-<polygon fill="none" stroke="black" points="503.5,-373 503.5,-393 646.5,-393 646.5,-373 503.5,-373"/>
+<polygon fill="white" stroke="black" points="503.5,-373 503.5,-393 646.5,-393 646.5,-373 503.5,-373"/>
 <text text-anchor="middle" x="575" y="-380" font-family="FreeSans" font-size="10.00">Mezzanine::UI::PagedCellGrid</text>
 </a>
 </g>
@@ -197,7 +198,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1UI_1_1ScrolledCellGrid.xhtml" target="_top" xlink:title="This is a specialization of the cell grid that allows you to use scrollbars to navigate the cells on ...">
-<polygon fill="none" stroke="black" points="499.5,-335 499.5,-355 650.5,-355 650.5,-335 499.5,-335"/>
+<polygon fill="white" stroke="black" points="499.5,-335 499.5,-355 650.5,-355 650.5,-335 499.5,-335"/>
 <text text-anchor="middle" x="575" y="-342" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScrolledCellGrid</text>
 </a>
 </g>
@@ -209,7 +210,7 @@
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
 <a xlink:href="classMezzanine_1_1UI_1_1EnclosedRenderableContainerWidget.xhtml" target="_top" xlink:title="This is an abstract class for the creation and storage of widgets to be used by other classes...">
-<polygon fill="none" stroke="black" points="490.5,-139 490.5,-171 659.5,-171 659.5,-139 490.5,-139"/>
+<polygon fill="white" stroke="black" points="490.5,-139 490.5,-171 659.5,-171 659.5,-139 490.5,-139"/>
 <text text-anchor="start" x="498.5" y="-158" font-family="FreeSans" font-size="10.00">Mezzanine::UI::EnclosedRenderable</text>
 <text text-anchor="middle" x="575" y="-146" font-family="FreeSans" font-size="10.00">ContainerWidget</text>
 </a>
@@ -222,7 +223,7 @@
 <!-- Node18 -->
 <g id="node35" class="node"><title>Node18</title>
 <a xlink:href="classMezzanine_1_1UI_1_1OpenRenderableContainerWidget.xhtml" target="_top" xlink:title="Mezzanine::UI::OpenRenderable\lContainerWidget">
-<polygon fill="none" stroke="black" points="498.5,-89 498.5,-121 651.5,-121 651.5,-89 498.5,-89"/>
+<polygon fill="white" stroke="black" points="498.5,-89 498.5,-121 651.5,-121 651.5,-89 498.5,-89"/>
 <text text-anchor="start" x="506.5" y="-108" font-family="FreeSans" font-size="10.00">Mezzanine::UI::OpenRenderable</text>
 <text text-anchor="middle" x="575" y="-96" font-family="FreeSans" font-size="10.00">ContainerWidget</text>
 </a>
@@ -235,7 +236,7 @@
 <!-- Node16 -->
 <g id="node31" class="node"><title>Node16</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Window.xhtml" target="_top" xlink:title="This is a container widget capable of holding any other widget.">
-<polygon fill="none" stroke="black" points="696.5,-145 696.5,-165 811.5,-165 811.5,-145 696.5,-145"/>
+<polygon fill="white" stroke="black" points="696.5,-145 696.5,-165 811.5,-165 811.5,-145 696.5,-145"/>
 <text text-anchor="middle" x="754" y="-152" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Window</text>
 </a>
 </g>
@@ -247,7 +248,7 @@
 <!-- Node17 -->
 <g id="node33" class="node"><title>Node17</title>
 <a xlink:href="classMezzanine_1_1UI_1_1MenuWindow.xhtml" target="_top" xlink:title="This class is an extended version of the window class for use exclusively with the menu widget...">
-<polygon fill="none" stroke="black" points="848.5,-145 848.5,-165 987.5,-165 987.5,-145 848.5,-145"/>
+<polygon fill="white" stroke="black" points="848.5,-145 848.5,-165 987.5,-165 987.5,-145 848.5,-145"/>
 <text text-anchor="middle" x="918" y="-152" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MenuWindow</text>
 </a>
 </g>

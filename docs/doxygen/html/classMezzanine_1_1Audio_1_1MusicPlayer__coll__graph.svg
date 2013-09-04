@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 279.00 230.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 226)">
 <title>Mezzanine::Audio::MusicPlayer</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-226 276,-226 276,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="92.5,-1 92.5,-21 241.5,-21 241.5,-1 92.5,-1"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1Playlist.xhtml" target="_top" xlink:title="This class is a list of sounds with common playlist features.">
-<polygon fill="none" stroke="black" points="0.5,-71 0.5,-91 127.5,-91 127.5,-71 0.5,-71"/>
+<polygon fill="white" stroke="black" points="0.5,-71 0.5,-91 127.5,-91 127.5,-71 0.5,-71"/>
 <text text-anchor="middle" x="64" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Playlist</text>
 </a>
 </g>
@@ -29,7 +30,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="0,-131 0,-151 128,-151 128,-131 0,-131"/>
+<polygon fill="white" stroke="#bfbfbf" points="0,-131 0,-151 128,-151 128,-131 0,-131"/>
 <text text-anchor="middle" x="64" y="-138" font-family="FreeSans" font-size="10.00">std::list&lt; Audio::iSound * &gt;</text>
 </a>
 </g>
@@ -40,7 +41,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<polygon fill="none" stroke="#bfbfbf" points="49.5,-201 49.5,-221 78.5,-221 78.5,-201 49.5,-201"/>
+<polygon fill="white" stroke="#bfbfbf" points="49.5,-201 49.5,-221 78.5,-221 78.5,-201 49.5,-201"/>
 <text text-anchor="middle" x="64" y="-208" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node4&#45;&gt;Node3 -->
@@ -52,7 +53,7 @@
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1iSound.xhtml" target="_top" xlink:title="This is an interface class for a non&#45;spacialized sound.">
-<polygon fill="none" stroke="black" points="145,-71 145,-91 271,-91 271,-71 145,-71"/>
+<polygon fill="white" stroke="black" points="145,-71 145,-91 271,-91 271,-71 145,-71"/>
 <text text-anchor="middle" x="208" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iSound</text>
 </a>
 </g>

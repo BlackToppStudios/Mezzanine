@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 270.00 256.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 252)">
 <title>Mezzanine::Scripting::iScriptCompilationManager</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-252 267,-252 267,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-33 136.5,-33 136.5,-1 -0.5,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml" target="_top" xlink:title="What a scripting manager should look like.">
-<polygon fill="none" stroke="black" points="15.5,-73 15.5,-105 120.5,-105 120.5,-73 15.5,-73"/>
+<polygon fill="white" stroke="black" points="15.5,-73 15.5,-105 120.5,-105 120.5,-73 15.5,-73"/>
 <text text-anchor="start" x="23.5" y="-92" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="68" y="-80" font-family="FreeSans" font-size="10.00">::iScriptingManager</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="5,-151 5,-171 131,-171 131,-151 5,-151"/>
+<polygon fill="white" stroke="black" points="5,-151 5,-171 131,-171 131,-151 5,-151"/>
 <text text-anchor="middle" x="68" y="-158" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -42,7 +43,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="none" stroke="black" points="94.5,-227 94.5,-247 195.5,-247 195.5,-227 94.5,-227"/>
+<polygon fill="white" stroke="black" points="94.5,-227 94.5,-247 195.5,-247 195.5,-227 94.5,-227"/>
 <text text-anchor="middle" x="145" y="-234" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -55,7 +56,7 @@
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="none" stroke="black" points="155.5,-145 155.5,-177 262.5,-177 262.5,-145 155.5,-145"/>
+<polygon fill="white" stroke="black" points="155.5,-145 155.5,-177 262.5,-177 262.5,-145 155.5,-145"/>
 <text text-anchor="start" x="163.5" y="-164" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="209" y="-152" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>

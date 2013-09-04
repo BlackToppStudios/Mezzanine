@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 970.00 128.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 124)">
 <title>Mezzanine::Input::Device</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-124 967,-124 967,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="840,-50 840,-70 962,-70 962,-50 840,-50"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Input_1_1SequenceContainer.xhtml" target="_top" xlink:title="This class stores and provides utilities for sequenced inputs and their operations.">
-<polygon fill="none" stroke="black" points="614.5,-44 614.5,-76 751.5,-76 751.5,-44 614.5,-44"/>
+<polygon fill="white" stroke="black" points="614.5,-44 614.5,-76 751.5,-76 751.5,-44 614.5,-44"/>
 <text text-anchor="start" x="622.5" y="-63" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Sequence</text>
 <text text-anchor="middle" x="683" y="-51" font-family="FreeSans" font-size="10.00">Container</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Trie.xhtml" target="_top" xlink:title="Mezzanine::Trie\&lt; Input\l::MetaCode, Int32 \&gt;">
-<polygon fill="none" stroke="black" points="359.5,-88 359.5,-120 472.5,-120 472.5,-88 359.5,-88"/>
+<polygon fill="white" stroke="black" points="359.5,-88 359.5,-120 472.5,-120 472.5,-88 359.5,-88"/>
 <text text-anchor="start" x="367.5" y="-107" font-family="FreeSans" font-size="10.00">Mezzanine::Trie&lt; Input</text>
 <text text-anchor="middle" x="416" y="-95" font-family="FreeSans" font-size="10.00">::MetaCode, Int32 &gt;</text>
 </a>
@@ -44,7 +45,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1StopWatchTimer.xhtml" target="_top" xlink:title="This is a timer class for counting down to a specified time.">
-<polygon fill="none" stroke="black" points="346,-50 346,-70 486,-70 486,-50 346,-50"/>
+<polygon fill="white" stroke="black" points="346,-50 346,-70 486,-70 486,-50 346,-50"/>
 <text text-anchor="middle" x="416" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::StopWatchTimer</text>
 </a>
 </g>
@@ -57,7 +58,7 @@
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1GoalTimer.xhtml" target="_top" xlink:title="This is the base class for timers intended to run only until they reach a specific goal...">
-<polygon fill="none" stroke="black" points="143,-50 143,-70 255,-70 255,-50 143,-50"/>
+<polygon fill="white" stroke="black" points="143,-50 143,-70 255,-70 255,-50 143,-50"/>
 <text text-anchor="middle" x="199" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::GoalTimer</text>
 </a>
 </g>
@@ -69,7 +70,7 @@
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1Timer.xhtml" target="_top" xlink:title="A base timer class for the different timers.">
-<polygon fill="none" stroke="black" points="0,-50 0,-70 92,-70 92,-50 0,-50"/>
+<polygon fill="white" stroke="black" points="0,-50 0,-70 92,-70 92,-50 0,-50"/>
 <text text-anchor="middle" x="46" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>
 </g>
@@ -80,7 +81,7 @@
 </g>
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
-<polygon fill="none" stroke="#bfbfbf" points="371,-0 371,-32 461,-32 461,-0 371,-0"/>
+<polygon fill="white" stroke="#bfbfbf" points="371,-0 371,-32 461,-32 461,-0 371,-0"/>
 <text text-anchor="start" x="379" y="-19" font-family="FreeSans" font-size="10.00">std::vector&lt; Input</text>
 <text text-anchor="middle" x="416" y="-7" font-family="FreeSans" font-size="10.00">::MetaCode &gt;</text>
 </g>
@@ -93,7 +94,7 @@
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1Input_1_1MetaCode.xhtml" target="_top" xlink:title="This Determines the kind of user input.">
-<polygon fill="none" stroke="black" points="130.5,-6 130.5,-26 267.5,-26 267.5,-6 130.5,-6"/>
+<polygon fill="white" stroke="black" points="130.5,-6 130.5,-26 267.5,-26 267.5,-6 130.5,-6"/>
 <text text-anchor="middle" x="199" y="-13" font-family="FreeSans" font-size="10.00">Mezzanine::Input::MetaCode</text>
 </a>
 </g>

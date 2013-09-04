@@ -8,10 +8,11 @@
  viewBox="0.00 0.00 166.00 40.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 36)">
 <title>Graphical Class Hierarchy</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-36 163,-36 163,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <a xlink:href="structMezzanine_1_1Audio_1_1RingModulatorParameters.xhtml" target="_top" xlink:title="This is a struct containing all the parameters needed to describe a ring modulation effect...">
-<polygon fill="none" stroke="black" points="0,-0 0,-32 158,-32 158,-0 0,-0"/>
+<polygon fill="white" stroke="black" points="0,-0 0,-32 158,-32 158,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::RingModulator</text>
 <text text-anchor="middle" x="79" y="-7" font-family="FreeSans" font-size="10.00">Parameters</text>
 </a>

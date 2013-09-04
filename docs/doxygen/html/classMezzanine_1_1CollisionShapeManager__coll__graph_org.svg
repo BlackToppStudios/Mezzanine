@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 1050.00 183.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 179)">
 <title>Mezzanine::CollisionShapeManager</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-179 1047,-179 1047,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="684.5,-53 684.5,-85 815.5,-85 815.5,-53 684.5,-53"/>
@@ -17,7 +18,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; CollisionShapeManager \&gt;">
-<polygon fill="none" stroke="black" points="908,-53 908,-85 1042,-85 1042,-53 908,-53"/>
+<polygon fill="white" stroke="black" points="908,-53 908,-85 1042,-85 1042,-53 908,-53"/>
 <text text-anchor="start" x="916" y="-72" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="975" y="-60" font-family="FreeSans" font-size="10.00">&lt; CollisionShapeManager &gt;</text>
 </a>
@@ -31,7 +32,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="446,-155 446,-175 572,-175 572,-155 446,-155"/>
+<polygon fill="white" stroke="black" points="446,-155 446,-175 572,-175 572,-155 446,-155"/>
 <text text-anchor="middle" x="509" y="-162" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -43,7 +44,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="none" stroke="black" points="252.5,-121 252.5,-141 353.5,-141 353.5,-121 252.5,-121"/>
+<polygon fill="white" stroke="black" points="252.5,-121 252.5,-141 353.5,-141 353.5,-121 252.5,-121"/>
 <text text-anchor="middle" x="303" y="-128" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -56,7 +57,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="none" stroke="black" points="455.5,-104 455.5,-136 562.5,-136 562.5,-104 455.5,-104"/>
+<polygon fill="white" stroke="black" points="455.5,-104 455.5,-136 562.5,-136 562.5,-104 455.5,-104"/>
 <text text-anchor="start" x="463.5" y="-123" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="509" y="-111" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -79,7 +80,7 @@
 </g>
 <!-- Node6 -->
 <g id="node12" class="node"><title>Node6</title>
-<polygon fill="none" stroke="#bfbfbf" points="446.5,-53 446.5,-85 571.5,-85 571.5,-53 446.5,-53"/>
+<polygon fill="white" stroke="#bfbfbf" points="446.5,-53 446.5,-85 571.5,-85 571.5,-53 446.5,-53"/>
 <text text-anchor="start" x="454.5" y="-72" font-family="FreeSans" font-size="10.00">std::map&lt; String, Physics</text>
 <text text-anchor="middle" x="509" y="-60" font-family="FreeSans" font-size="10.00">::CollisionShape * &gt;</text>
 </g>
@@ -92,7 +93,7 @@
 <!-- Node7 -->
 <g id="node14" class="node"><title>Node7</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="130.5,-49 130.5,-69 187.5,-69 187.5,-49 130.5,-49"/>
+<polygon fill="white" stroke="#bfbfbf" points="130.5,-49 130.5,-69 187.5,-69 187.5,-49 130.5,-49"/>
 <text text-anchor="middle" x="159" y="-56" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -105,7 +106,7 @@
 <!-- Node9 -->
 <g id="node18" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" target="_top" xlink:title="This is the base class for all collision shapes.">
-<polygon fill="none" stroke="black" points="253,-5 253,-37 353,-37 353,-5 253,-5"/>
+<polygon fill="white" stroke="black" points="253,-5 253,-37 353,-37 353,-5 253,-5"/>
 <text text-anchor="start" x="261" y="-24" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="303" y="-12" font-family="FreeSans" font-size="10.00">::CollisionShape</text>
 </a>
@@ -119,7 +120,7 @@
 <!-- Node8 -->
 <g id="node16" class="node"><title>Node8</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="0.5,-43 0.5,-75 91.5,-75 91.5,-43 0.5,-43"/>
+<polygon fill="white" stroke="#bfbfbf" points="0.5,-43 0.5,-75 91.5,-75 91.5,-43 0.5,-43"/>
 <text text-anchor="start" x="8.5" y="-62" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="46" y="-50" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -137,7 +138,7 @@
 </g>
 <!-- Node10 -->
 <g id="node21" class="node"><title>Node10</title>
-<polygon fill="none" stroke="#bfbfbf" points="461.5,-0 461.5,-32 556.5,-32 556.5,-0 461.5,-0"/>
+<polygon fill="white" stroke="#bfbfbf" points="461.5,-0 461.5,-32 556.5,-32 556.5,-0 461.5,-0"/>
 <text text-anchor="start" x="469.5" y="-19" font-family="FreeSans" font-size="10.00">std::set&lt; Physics::</text>
 <text text-anchor="middle" x="509" y="-7" font-family="FreeSans" font-size="10.00">CollisionShape * &gt;</text>
 </g>

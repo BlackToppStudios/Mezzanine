@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 434.00 140.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 136)">
 <title>Mezzanine::Physics::MeshCollisionShape</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-136 431,-136 431,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="136,-50 136,-82 244,-82 244,-50 136,-50"/>
@@ -17,7 +18,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.xhtml" target="_top" xlink:title="A collision shape for soft actors.">
-<polygon fill="none" stroke="black" points="290,-100 290,-132 416,-132 416,-100 290,-100"/>
+<polygon fill="white" stroke="black" points="290,-100 290,-132 416,-132 416,-100 290,-100"/>
 <text text-anchor="start" x="298" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="353" y="-107" font-family="FreeSans" font-size="10.00">::ActorSoftCollisionShape</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.xhtml" target="_top" xlink:title="A triangle mesh collsion shape based on a graphics mesh.">
-<polygon fill="none" stroke="black" points="280,-50 280,-82 426,-82 426,-50 280,-50"/>
+<polygon fill="white" stroke="black" points="280,-50 280,-82 426,-82 426,-50 280,-50"/>
 <text text-anchor="start" x="288" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="353" y="-57" font-family="FreeSans" font-size="10.00">::DynamicMeshCollisionShape</text>
 </a>
@@ -43,7 +44,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1StaticMeshCollisionShape.xhtml" target="_top" xlink:title="A triangle mesh collsion shape based on a graphics mesh.">
-<polygon fill="none" stroke="black" points="286,-0 286,-32 420,-32 420,-0 286,-0"/>
+<polygon fill="white" stroke="black" points="286,-0 286,-32 420,-32 420,-0 286,-0"/>
 <text text-anchor="start" x="294" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="353" y="-7" font-family="FreeSans" font-size="10.00">::StaticMeshCollisionShape</text>
 </a>
@@ -56,7 +57,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" target="_top" xlink:title="This is the base class for all collision shapes.">
-<polygon fill="none" stroke="black" points="0,-50 0,-82 100,-82 100,-50 0,-50"/>
+<polygon fill="white" stroke="black" points="0,-50 0,-82 100,-82 100,-50 0,-50"/>
 <text text-anchor="start" x="8" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="50" y="-57" font-family="FreeSans" font-size="10.00">::CollisionShape</text>
 </a>

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 1144.00 365.38" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 361.376)">
 <title>Mezzanine::ObjectSettingsHandler</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-361.376 1141,-361.376 1141,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="1004.5,-265.376 1004.5,-297.376 1135.5,-297.376 1135.5,-265.376 1004.5,-265.376"/>
@@ -16,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<polygon fill="none" stroke="#bfbfbf" points="567,-265.376 567,-297.376 687,-297.376 687,-265.376 567,-265.376"/>
+<polygon fill="white" stroke="#bfbfbf" points="567,-265.376 567,-297.376 687,-297.376 687,-265.376 567,-265.376"/>
 <text text-anchor="start" x="575" y="-284.376" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
 <text text-anchor="middle" x="627" y="-272.376" font-family="FreeSans" font-size="10.00">SettingFile * &gt;</text>
 </g>
@@ -29,7 +30,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingFile.xhtml" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s.">
-<polygon fill="none" stroke="black" points="294,-212.376 294,-232.376 436,-232.376 436,-212.376 294,-212.376"/>
+<polygon fill="white" stroke="black" points="294,-212.376 294,-232.376 436,-232.376 436,-212.376 294,-212.376"/>
 <text text-anchor="middle" x="365" y="-219.376" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingFile</text>
 </a>
 </g>
@@ -42,7 +43,7 @@
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
-<polygon fill="none" stroke="black" points="564,-167.376 564,-199.376 690,-199.376 690,-167.376 564,-167.376"/>
+<polygon fill="white" stroke="black" points="564,-167.376 564,-199.376 690,-199.376 690,-167.376 564,-167.376"/>
 <text text-anchor="start" x="572" y="-186.376" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="627" y="-174.376" font-family="FreeSans" font-size="10.00">Group</text>
 </a>
@@ -56,7 +57,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="130.5,-164.376 130.5,-184.376 187.5,-184.376 187.5,-164.376 130.5,-164.376"/>
+<polygon fill="white" stroke="#bfbfbf" points="130.5,-164.376 130.5,-184.376 187.5,-184.376 187.5,-164.376 130.5,-164.376"/>
 <text text-anchor="middle" x="159" y="-171.376" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -82,7 +83,7 @@
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
-<polygon fill="none" stroke="black" points="302,-74.3755 302,-106.376 428,-106.376 428,-74.3755 302,-74.3755"/>
+<polygon fill="white" stroke="black" points="302,-74.3755 302,-106.376 428,-106.376 428,-74.3755 302,-74.3755"/>
 <text text-anchor="start" x="310" y="-93.3755" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="365" y="-81.3755" font-family="FreeSans" font-size="10.00">SetContainer</text>
 </a>
@@ -95,7 +96,7 @@
 </g>
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
-<polygon fill="none" stroke="#bfbfbf" points="302.5,-15.3755 302.5,-35.3755 427.5,-35.3755 427.5,-15.3755 302.5,-15.3755"/>
+<polygon fill="white" stroke="#bfbfbf" points="302.5,-15.3755 302.5,-35.3755 427.5,-35.3755 427.5,-15.3755 302.5,-15.3755"/>
 <text text-anchor="middle" x="365" y="-22.3755" font-family="FreeSans" font-size="10.00">std::map&lt; String, String &gt;</text>
 </g>
 <!-- Node4&#45;&gt;Node11 -->
@@ -107,7 +108,7 @@
 </g>
 <!-- Node12 -->
 <g id="node29" class="node"><title>Node12</title>
-<polygon fill="none" stroke="#bfbfbf" points="780,-157.376 780,-189.376 900,-189.376 900,-157.376 780,-157.376"/>
+<polygon fill="white" stroke="#bfbfbf" points="780,-157.376 780,-189.376 900,-189.376 900,-157.376 780,-157.376"/>
 <text text-anchor="start" x="788" y="-176.376" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
 <text text-anchor="middle" x="840" y="-164.376" font-family="FreeSans" font-size="10.00">SettingGroup * &gt;</text>
 </g>
@@ -120,7 +121,7 @@
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="0.5,-158.376 0.5,-190.376 91.5,-190.376 91.5,-158.376 0.5,-158.376"/>
+<polygon fill="white" stroke="#bfbfbf" points="0.5,-158.376 0.5,-190.376 91.5,-190.376 91.5,-158.376 0.5,-158.376"/>
 <text text-anchor="start" x="8.5" y="-177.376" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="46" y="-165.376" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -132,7 +133,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<polygon fill="none" stroke="#bfbfbf" points="776,-210.376 776,-242.376 904,-242.376 904,-210.376 776,-210.376"/>
+<polygon fill="white" stroke="#bfbfbf" points="776,-210.376 776,-242.376 904,-242.376 904,-210.376 776,-210.376"/>
 <text text-anchor="start" x="784" y="-229.376" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="840" y="-217.376" font-family="FreeSans" font-size="10.00">Group * &gt;</text>
 </g>
@@ -162,7 +163,7 @@
 <!-- Node10 -->
 <g id="node18" class="node"><title>Node10</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
-<polygon fill="none" stroke="black" points="556.5,-27.3755 556.5,-47.3755 697.5,-47.3755 697.5,-27.3755 556.5,-27.3755"/>
+<polygon fill="white" stroke="black" points="556.5,-27.3755 556.5,-47.3755 697.5,-47.3755 697.5,-27.3755 556.5,-27.3755"/>
 <text text-anchor="middle" x="627" y="-34.3755" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
 </g>
@@ -179,7 +180,7 @@
 </g>
 <!-- Node9 -->
 <g id="node16" class="node"><title>Node9</title>
-<polygon fill="none" stroke="#bfbfbf" points="776,-53.3755 776,-85.3755 904,-85.3755 904,-53.3755 776,-53.3755"/>
+<polygon fill="white" stroke="#bfbfbf" points="776,-53.3755 776,-85.3755 904,-85.3755 904,-53.3755 776,-53.3755"/>
 <text text-anchor="start" x="784" y="-72.3755" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="840" y="-60.3755" font-family="FreeSans" font-size="10.00">Set * &gt;</text>
 </g>

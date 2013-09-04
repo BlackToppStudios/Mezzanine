@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 114.00 124.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 120)">
 <title>Mezzanine::Graphics::Texture</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-120 111,-120 111,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0.5,-1 0.5,-33 105.5,-33 105.5,-1 0.5,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1InternalTextureData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Texture class.">
-<polygon fill="none" stroke="black" points="0,-83 0,-115 106,-115 106,-83 0,-83"/>
+<polygon fill="white" stroke="black" points="0,-83 0,-115 106,-115 106,-83 0,-83"/>
 <text text-anchor="start" x="8" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="53" y="-90" font-family="FreeSans" font-size="10.00">::InternalTextureData</text>
 </a>

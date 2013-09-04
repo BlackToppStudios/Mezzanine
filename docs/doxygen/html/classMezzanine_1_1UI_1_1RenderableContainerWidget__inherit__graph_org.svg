@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 986.00 90.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 86)">
 <title>Mezzanine::UI::RenderableContainerWidget</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-86 983,-86 983,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="314,-25 314,-57 444,-57 444,-25 314,-25"/>
@@ -17,7 +18,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1UI_1_1EnclosedRenderableContainerWidget.xhtml" target="_top" xlink:title="This is an abstract class for the creation and storage of widgets to be used by other classes...">
-<polygon fill="none" stroke="black" points="480.5,-50 480.5,-82 649.5,-82 649.5,-50 480.5,-50"/>
+<polygon fill="white" stroke="black" points="480.5,-50 480.5,-82 649.5,-82 649.5,-50 480.5,-50"/>
 <text text-anchor="start" x="488.5" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::UI::EnclosedRenderable</text>
 <text text-anchor="middle" x="565" y="-57" font-family="FreeSans" font-size="10.00">ContainerWidget</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1UI_1_1OpenRenderableContainerWidget.xhtml" target="_top" xlink:title="Mezzanine::UI::OpenRenderable\lContainerWidget">
-<polygon fill="none" stroke="black" points="488.5,-0 488.5,-32 641.5,-32 641.5,-0 488.5,-0"/>
+<polygon fill="white" stroke="black" points="488.5,-0 488.5,-32 641.5,-32 641.5,-0 488.5,-0"/>
 <text text-anchor="start" x="496.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::UI::OpenRenderable</text>
 <text text-anchor="middle" x="565" y="-7" font-family="FreeSans" font-size="10.00">ContainerWidget</text>
 </a>
@@ -43,7 +44,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Widget.xhtml" target="_top" xlink:title="This class is the base class for all widgets.">
-<polygon fill="none" stroke="black" points="166.5,-31 166.5,-51 277.5,-51 277.5,-31 166.5,-31"/>
+<polygon fill="white" stroke="black" points="166.5,-31 166.5,-51 277.5,-51 277.5,-31 166.5,-31"/>
 <text text-anchor="middle" x="222" y="-38" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
 </g>
@@ -55,7 +56,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
-<polygon fill="none" stroke="black" points="0,-31 0,-51 130,-51 130,-31 0,-31"/>
+<polygon fill="white" stroke="black" points="0,-31 0,-51 130,-51 130,-31 0,-31"/>
 <text text-anchor="middle" x="65" y="-38" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
 </g>
@@ -67,7 +68,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Window.xhtml" target="_top" xlink:title="This is a container widget capable of holding any other widget.">
-<polygon fill="none" stroke="black" points="686.5,-56 686.5,-76 801.5,-76 801.5,-56 686.5,-56"/>
+<polygon fill="white" stroke="black" points="686.5,-56 686.5,-76 801.5,-76 801.5,-56 686.5,-56"/>
 <text text-anchor="middle" x="744" y="-63" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Window</text>
 </a>
 </g>
@@ -79,7 +80,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1UI_1_1MenuWindow.xhtml" target="_top" xlink:title="This class is an extended version of the window class for use exclusively with the menu widget...">
-<polygon fill="none" stroke="black" points="838.5,-56 838.5,-76 977.5,-76 977.5,-56 838.5,-56"/>
+<polygon fill="white" stroke="black" points="838.5,-56 838.5,-76 977.5,-76 977.5,-56 838.5,-56"/>
 <text text-anchor="middle" x="908" y="-63" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MenuWindow</text>
 </a>
 </g>

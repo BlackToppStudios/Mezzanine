@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 4165.45 474.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 470)">
 <title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/attachable.h</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-470 4162.45,-470 4162.45,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="1311.95,-433 1311.95,-465 1462.95,-465 1462.95,-433 1311.95,-433"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="worldnode_8h.xhtml" target="_top" xlink:title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment.">
-<polygon fill="none" stroke="black" points="1405.95,-363 1405.95,-395 1556.95,-395 1556.95,-363 1405.95,-363"/>
+<polygon fill="white" stroke="black" points="1405.95,-363 1405.95,-395 1556.95,-395 1556.95,-363 1405.95,-363"/>
 <text text-anchor="start" x="1413.95" y="-382" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1481.45" y="-370" font-family="FreeSans" font-size="10.00">/Mezzanine/src/worldnode.h</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node10 -->
 <g id="node20" class="node"><title>Node10</title>
 <a xlink:href="mezzanine_8h.xhtml" target="_top" xlink:title="A single file that includes all of the Mezzanine engine.">
-<polygon fill="none" stroke="black" points="1942.95,-71 1942.95,-103 2093.95,-103 2093.95,-71 1942.95,-71"/>
+<polygon fill="white" stroke="black" points="1942.95,-71 1942.95,-103 2093.95,-103 2093.95,-71 1942.95,-71"/>
 <text text-anchor="start" x="1950.95" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2018.45" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mezzanine.h</text>
 </a>
@@ -43,7 +44,7 @@
 <!-- Node28 -->
 <g id="node65" class="node"><title>Node28</title>
 <a xlink:href="attachable_8cpp.xhtml" target="_top" xlink:title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration imp...">
-<polygon fill="none" stroke="black" points="1570.95,-293 1570.95,-325 1721.95,-325 1721.95,-293 1570.95,-293"/>
+<polygon fill="white" stroke="black" points="1570.95,-293 1570.95,-325 1721.95,-325 1721.95,-293 1570.95,-293"/>
 <text text-anchor="start" x="1578.95" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1646.45" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/attachable.cpp</text>
 </a>
@@ -56,7 +57,7 @@
 <!-- Node29 -->
 <g id="node67" class="node"><title>Node29</title>
 <a xlink:href="camera_8h.xhtml" target="_top" xlink:title="Declaration of the Mezzanine::Camera class.">
-<polygon fill="none" stroke="black" points="669.949,-293 669.949,-325 820.949,-325 820.949,-293 669.949,-293"/>
+<polygon fill="white" stroke="black" points="669.949,-293 669.949,-325 820.949,-325 820.949,-293 669.949,-293"/>
 <text text-anchor="start" x="677.949" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="745.449" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/camera.h</text>
 </a>
@@ -69,7 +70,7 @@
 <!-- Node40 -->
 <g id="node95" class="node"><title>Node40</title>
 <a xlink:href="worldobject_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobject.h">
-<polygon fill="none" stroke="black" points="3197.95,-363 3197.95,-395 3348.95,-395 3348.95,-363 3197.95,-363"/>
+<polygon fill="white" stroke="black" points="3197.95,-363 3197.95,-395 3348.95,-395 3348.95,-363 3197.95,-363"/>
 <text text-anchor="start" x="3205.95" y="-382" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3273.45" y="-370" font-family="FreeSans" font-size="10.00">/Mezzanine/src/worldobject.h</text>
 </a>
@@ -82,7 +83,7 @@
 <!-- Node51 -->
 <g id="node129" class="node"><title>Node51</title>
 <a xlink:href="entity_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entity.h">
-<polygon fill="none" stroke="black" points="333.949,-363 333.949,-395 484.949,-395 484.949,-363 333.949,-363"/>
+<polygon fill="white" stroke="black" points="333.949,-363 333.949,-395 484.949,-395 484.949,-363 333.949,-363"/>
 <text text-anchor="start" x="341.949" y="-382" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="409.449" y="-370" font-family="FreeSans" font-size="10.00">/Mezzanine/src/entity.h</text>
 </a>
@@ -95,7 +96,7 @@
 <!-- Node53 -->
 <g id="node136" class="node"><title>Node53</title>
 <a xlink:href="light_8h.xhtml" target="_top" xlink:title="Declaration of Mezzanine::Light.">
-<polygon fill="none" stroke="black" points="901.949,-363 901.949,-395 1052.95,-395 1052.95,-363 901.949,-363"/>
+<polygon fill="white" stroke="black" points="901.949,-363 901.949,-395 1052.95,-395 1052.95,-363 901.949,-363"/>
 <text text-anchor="start" x="909.949" y="-382" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="977.449" y="-370" font-family="FreeSans" font-size="10.00">/Mezzanine/src/light.h</text>
 </a>
@@ -108,7 +109,7 @@
 <!-- Node54 -->
 <g id="node142" class="node"><title>Node54</title>
 <a xlink:href="particleeffect_8h.xhtml" target="_top" xlink:title="Contains the declaration of the ParticleEffect class.">
-<polygon fill="none" stroke="black" points="1217.95,-363 1217.95,-395 1368.95,-395 1368.95,-363 1217.95,-363"/>
+<polygon fill="white" stroke="black" points="1217.95,-363 1217.95,-395 1368.95,-395 1368.95,-363 1217.95,-363"/>
 <text text-anchor="start" x="1225.95" y="-382" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1293.45" y="-370" font-family="FreeSans" font-size="10.00">/Mezzanine/src/particleeffect.h</text>
 </a>
@@ -121,7 +122,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="actorbase_8h.xhtml" target="_top" xlink:title="The base class for all Actors is defined here.">
-<polygon fill="none" stroke="black" points="2115.95,-293 2115.95,-325 2266.95,-325 2266.95,-293 2115.95,-293"/>
+<polygon fill="white" stroke="black" points="2115.95,-293 2115.95,-325 2266.95,-325 2266.95,-293 2115.95,-293"/>
 <text text-anchor="start" x="2123.95" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2191.45" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorbase.h</text>
 </a>
@@ -139,7 +140,7 @@
 <!-- Node25 -->
 <g id="node59" class="node"><title>Node25</title>
 <a xlink:href="worldnode_8cpp.xhtml" target="_top" xlink:title="The implementation of the WorldNode, A class to facilitate navigation in 3d environment.">
-<polygon fill="none" stroke="black" points="1318.95,-217 1318.95,-249 1469.95,-249 1469.95,-217 1318.95,-217"/>
+<polygon fill="white" stroke="black" points="1318.95,-217 1318.95,-249 1469.95,-249 1469.95,-217 1318.95,-217"/>
 <text text-anchor="start" x="1326.95" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1394.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/worldnode.cpp</text>
 </a>
@@ -162,7 +163,7 @@
 <!-- Node36 -->
 <g id="node86" class="node"><title>Node36</title>
 <a xlink:href="light_8cpp.xhtml" target="_top" xlink:title="Implemenation of Mezzanine::Light.">
-<polygon fill="none" stroke="black" points="1076.95,-293 1076.95,-325 1227.95,-325 1227.95,-293 1076.95,-293"/>
+<polygon fill="white" stroke="black" points="1076.95,-293 1076.95,-325 1227.95,-325 1227.95,-293 1076.95,-293"/>
 <text text-anchor="start" x="1084.95" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1152.45" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/light.cpp</text>
 </a>
@@ -175,7 +176,7 @@
 <!-- Node37 -->
 <g id="node88" class="node"><title>Node37</title>
 <a xlink:href="particleeffect_8cpp.xhtml" target="_top" xlink:title="Contains the implemenation of the ParticleEffect class.">
-<polygon fill="none" stroke="black" points="1320.95,-293 1320.95,-325 1477.95,-325 1477.95,-293 1320.95,-293"/>
+<polygon fill="white" stroke="black" points="1320.95,-293 1320.95,-325 1477.95,-325 1477.95,-293 1320.95,-293"/>
 <text text-anchor="start" x="1328.95" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1399.45" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/particleeffect.cpp</text>
 </a>
@@ -188,7 +189,7 @@
 <!-- Node38 -->
 <g id="node90" class="node"><title>Node38</title>
 <a xlink:href="scenemanager_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/scenemanager.cpp">
-<polygon fill="none" stroke="black" points="894.949,-293 894.949,-325 1059.95,-325 1059.95,-293 894.949,-293"/>
+<polygon fill="white" stroke="black" points="894.949,-293 894.949,-325 1059.95,-325 1059.95,-293 894.949,-293"/>
 <text text-anchor="start" x="902.949" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="977.449" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/scenemanager.cpp</text>
 </a>
@@ -201,7 +202,7 @@
 <!-- Node39 -->
 <g id="node93" class="node"><title>Node39</title>
 <a xlink:href="worldobject_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobject.cpp">
-<polygon fill="none" stroke="black" points="1861.95,-293 1861.95,-325 2012.95,-325 2012.95,-293 1861.95,-293"/>
+<polygon fill="white" stroke="black" points="1861.95,-293 1861.95,-325 2012.95,-325 2012.95,-293 1861.95,-293"/>
 <text text-anchor="start" x="1869.95" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1937.45" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/worldobject.cpp</text>
 </a>
@@ -214,7 +215,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="actorbase_8cpp.xhtml" target="_top" xlink:title="Code used by all actors is implemented here.">
-<polygon fill="none" stroke="black" points="2148.95,-141 2148.95,-173 2299.95,-173 2299.95,-141 2148.95,-141"/>
+<polygon fill="white" stroke="black" points="2148.95,-141 2148.95,-173 2299.95,-173 2299.95,-141 2148.95,-141"/>
 <text text-anchor="start" x="2156.95" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2224.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorbase.cpp</text>
 </a>
@@ -227,7 +228,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="actorrigid_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorrigid.h">
-<polygon fill="none" stroke="black" points="2748.95,-217 2748.95,-249 2899.95,-249 2899.95,-217 2748.95,-217"/>
+<polygon fill="white" stroke="black" points="2748.95,-217 2748.95,-249 2899.95,-249 2899.95,-217 2748.95,-217"/>
 <text text-anchor="start" x="2756.95" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2824.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorrigid.h</text>
 </a>
@@ -240,7 +241,7 @@
 <!-- Node6 -->
 <g id="node12" class="node"><title>Node6</title>
 <a xlink:href="actorphysicssettings_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorphysicssettings.cpp">
-<polygon fill="none" stroke="black" points="2317.45,-141 2317.45,-173 2505.45,-173 2505.45,-141 2317.45,-141"/>
+<polygon fill="white" stroke="black" points="2317.45,-141 2317.45,-173 2505.45,-173 2505.45,-141 2317.45,-141"/>
 <text text-anchor="start" x="2325.45" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2411.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorphysicssettings.cpp</text>
 </a>
@@ -258,7 +259,7 @@
 <!-- Node14 -->
 <g id="node29" class="node"><title>Node14</title>
 <a xlink:href="actorsoft_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorsoft.h">
-<polygon fill="none" stroke="black" points="1942.95,-217 1942.95,-249 2093.95,-249 2093.95,-217 1942.95,-217"/>
+<polygon fill="white" stroke="black" points="1942.95,-217 1942.95,-249 2093.95,-249 2093.95,-217 1942.95,-217"/>
 <text text-anchor="start" x="1950.95" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2018.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorsoft.h</text>
 </a>
@@ -271,7 +272,7 @@
 <!-- Node16 -->
 <g id="node36" class="node"><title>Node16</title>
 <a xlink:href="actorcharacter_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorcharacter.h">
-<polygon fill="none" stroke="black" points="1525.45,-217 1525.45,-249 1679.45,-249 1679.45,-217 1525.45,-217"/>
+<polygon fill="white" stroke="black" points="1525.45,-217 1525.45,-249 1679.45,-249 1679.45,-217 1525.45,-217"/>
 <text text-anchor="start" x="1533.45" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1602.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorcharacter.h</text>
 </a>
@@ -284,7 +285,7 @@
 <!-- Node18 -->
 <g id="node41" class="node"><title>Node18</title>
 <a xlink:href="actormanager_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actormanager.cpp">
-<polygon fill="none" stroke="black" points="2110.95,-217 2110.95,-249 2271.95,-249 2271.95,-217 2110.95,-217"/>
+<polygon fill="white" stroke="black" points="2110.95,-217 2110.95,-249 2271.95,-249 2271.95,-217 2110.95,-217"/>
 <text text-anchor="start" x="2118.95" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2191.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actormanager.cpp</text>
 </a>
@@ -297,7 +298,7 @@
 <!-- Node19 -->
 <g id="node44" class="node"><title>Node19</title>
 <a xlink:href="vector3wactor_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/vector3wactor.h">
-<polygon fill="none" stroke="black" points="1697.45,-217 1697.45,-249 1849.45,-249 1849.45,-217 1697.45,-217"/>
+<polygon fill="white" stroke="black" points="1697.45,-217 1697.45,-249 1849.45,-249 1849.45,-217 1697.45,-217"/>
 <text text-anchor="start" x="1705.45" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1773.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/vector3wactor.h</text>
 </a>
@@ -310,7 +311,7 @@
 <!-- Node21 -->
 <g id="node49" class="node"><title>Node21</title>
 <a xlink:href="rayquerytool_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/rayquerytool.cpp">
-<polygon fill="none" stroke="black" points="1733.45,-141 1733.45,-173 1887.45,-173 1887.45,-141 1733.45,-141"/>
+<polygon fill="white" stroke="black" points="1733.45,-141 1733.45,-173 1887.45,-173 1887.45,-141 1733.45,-141"/>
 <text text-anchor="start" x="1741.45" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1810.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/rayquerytool.cpp</text>
 </a>
@@ -323,7 +324,7 @@
 <!-- Node24 -->
 <g id="node57" class="node"><title>Node24</title>
 <a xlink:href="resourcemanager_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/resourcemanager.cpp">
-<polygon fill="none" stroke="black" points="2289.45,-217 2289.45,-249 2465.45,-249 2465.45,-217 2289.45,-217"/>
+<polygon fill="white" stroke="black" points="2289.45,-217 2289.45,-249 2465.45,-249 2465.45,-217 2289.45,-217"/>
 <text text-anchor="start" x="2297.45" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2377.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/resourcemanager.cpp</text>
 </a>
@@ -341,7 +342,7 @@
 <!-- Node26 -->
 <g id="node61" class="node"><title>Node26</title>
 <a xlink:href="worldobjectgraphicssettings_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobjectgraphicssettings.cpp">
-<polygon fill="none" stroke="black" points="3036.45,-217 3036.45,-249 3256.45,-249 3256.45,-217 3036.45,-217"/>
+<polygon fill="white" stroke="black" points="3036.45,-217 3036.45,-249 3256.45,-249 3256.45,-217 3036.45,-217"/>
 <text text-anchor="start" x="3044.45" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3146.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/worldobjectgraphicssettings.cpp</text>
 </a>
@@ -354,7 +355,7 @@
 <!-- Node27 -->
 <g id="node63" class="node"><title>Node27</title>
 <a xlink:href="collision_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collision.cpp">
-<polygon fill="none" stroke="black" points="2482.95,-217 2482.95,-249 2655.95,-249 2655.95,-217 2482.95,-217"/>
+<polygon fill="white" stroke="black" points="2482.95,-217 2482.95,-249 2655.95,-249 2655.95,-217 2482.95,-217"/>
 <text text-anchor="start" x="2490.95" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2569.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/collision.cpp</text>
 </a>
@@ -377,7 +378,7 @@
 <!-- Node7 -->
 <g id="node14" class="node"><title>Node7</title>
 <a xlink:href="actorrigid_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorrigid.cpp">
-<polygon fill="none" stroke="black" points="2720.95,-141 2720.95,-173 2871.95,-173 2871.95,-141 2720.95,-141"/>
+<polygon fill="white" stroke="black" points="2720.95,-141 2720.95,-173 2871.95,-173 2871.95,-141 2720.95,-141"/>
 <text text-anchor="start" x="2728.95" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2796.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorrigid.cpp</text>
 </a>
@@ -390,7 +391,7 @@
 <!-- Node8 -->
 <g id="node16" class="node"><title>Node8</title>
 <a xlink:href="actorserializer_8h.xhtml" target="_top" xlink:title="This is where the declarations of any Serializers or DeSerializers for actors will go...">
-<polygon fill="none" stroke="black" points="2926.95,-141 2926.95,-173 3077.95,-173 3077.95,-141 2926.95,-141"/>
+<polygon fill="white" stroke="black" points="2926.95,-141 2926.95,-173 3077.95,-173 3077.95,-141 2926.95,-141"/>
 <text text-anchor="start" x="2934.95" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3002.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorserializer.h</text>
 </a>
@@ -408,7 +409,7 @@
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
 <a xlink:href="areaeffect_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/areaeffect.cpp">
-<polygon fill="none" stroke="black" points="3132.95,-141 3132.95,-173 3283.95,-173 3283.95,-141 3132.95,-141"/>
+<polygon fill="white" stroke="black" points="3132.95,-141 3132.95,-173 3283.95,-173 3283.95,-141 3132.95,-141"/>
 <text text-anchor="start" x="3140.95" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3208.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/areaeffect.cpp</text>
 </a>
@@ -421,7 +422,7 @@
 <!-- Node13 -->
 <g id="node27" class="node"><title>Node13</title>
 <a xlink:href="constraint_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/constraint.cpp">
-<polygon fill="none" stroke="black" points="2523.45,-141 2523.45,-173 2703.45,-173 2703.45,-141 2523.45,-141"/>
+<polygon fill="white" stroke="black" points="2523.45,-141 2523.45,-173 2703.45,-173 2703.45,-141 2523.45,-141"/>
 <text text-anchor="start" x="2531.45" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2613.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/constraint.cpp</text>
 </a>
@@ -434,7 +435,7 @@
 <!-- Node9 -->
 <g id="node18" class="node"><title>Node9</title>
 <a xlink:href="actorserializer_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorserializer.cpp">
-<polygon fill="none" stroke="black" points="2921.95,-71 2921.95,-103 3082.95,-103 3082.95,-71 2921.95,-71"/>
+<polygon fill="white" stroke="black" points="2921.95,-71 2921.95,-103 3082.95,-103 3082.95,-71 2921.95,-71"/>
 <text text-anchor="start" x="2929.95" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3002.45" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorserializer.cpp</text>
 </a>
@@ -452,7 +453,7 @@
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
 <a xlink:href="entresol_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp">
-<polygon fill="none" stroke="black" points="1942.95,-1 1942.95,-33 2093.95,-33 2093.95,-1 1942.95,-1"/>
+<polygon fill="white" stroke="black" points="1942.95,-1 1942.95,-33 2093.95,-33 2093.95,-1 1942.95,-1"/>
 <text text-anchor="start" x="1950.95" y="-20" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2018.45" y="-8" font-family="FreeSans" font-size="10.00">/Mezzanine/src/entresol.cpp</text>
 </a>
@@ -480,7 +481,7 @@
 <!-- Node15 -->
 <g id="node33" class="node"><title>Node15</title>
 <a xlink:href="actorsoft_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorsoft.cpp">
-<polygon fill="none" stroke="black" points="1942.95,-141 1942.95,-173 2093.95,-173 2093.95,-141 1942.95,-141"/>
+<polygon fill="white" stroke="black" points="1942.95,-141 1942.95,-173 2093.95,-173 2093.95,-141 1942.95,-141"/>
 <text text-anchor="start" x="1950.95" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2018.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorsoft.cpp</text>
 </a>
@@ -498,7 +499,7 @@
 <!-- Node17 -->
 <g id="node38" class="node"><title>Node17</title>
 <a xlink:href="actorcharacter_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorcharacter.cpp">
-<polygon fill="none" stroke="black" points="1333.45,-141 1333.45,-173 1497.45,-173 1497.45,-141 1333.45,-141"/>
+<polygon fill="white" stroke="black" points="1333.45,-141 1333.45,-173 1497.45,-173 1497.45,-141 1333.45,-141"/>
 <text text-anchor="start" x="1341.45" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1415.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actorcharacter.cpp</text>
 </a>
@@ -516,7 +517,7 @@
 <!-- Node20 -->
 <g id="node46" class="node"><title>Node20</title>
 <a xlink:href="cameracontroller_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/cameracontroller.cpp">
-<polygon fill="none" stroke="black" points="853.449,-141 853.449,-173 1027.45,-173 1027.45,-141 853.449,-141"/>
+<polygon fill="white" stroke="black" points="853.449,-141 853.449,-173 1027.45,-173 1027.45,-141 853.449,-141"/>
 <text text-anchor="start" x="861.449" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="940.449" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/cameracontroller.cpp</text>
 </a>
@@ -534,7 +535,7 @@
 <!-- Node22 -->
 <g id="node51" class="node"><title>Node22</title>
 <a xlink:href="vector3wactor_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/vector3wactor.cpp">
-<polygon fill="none" stroke="black" points="1553.45,-141 1553.45,-173 1715.45,-173 1715.45,-141 1553.45,-141"/>
+<polygon fill="white" stroke="black" points="1553.45,-141 1553.45,-173 1715.45,-173 1715.45,-141 1553.45,-141"/>
 <text text-anchor="start" x="1561.45" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="1634.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/vector3wactor.cpp</text>
 </a>
@@ -547,7 +548,7 @@
 <!-- Node23 -->
 <g id="node53" class="node"><title>Node23</title>
 <a xlink:href="physicsmanager_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/physicsmanager.cpp">
-<polygon fill="none" stroke="black" points="3338.95,-141 3338.95,-173 3545.95,-173 3545.95,-141 3338.95,-141"/>
+<polygon fill="white" stroke="black" points="3338.95,-141 3338.95,-173 3545.95,-173 3545.95,-141 3338.95,-141"/>
 <text text-anchor="start" x="3346.95" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3442.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics/physicsmanager.cpp</text>
 </a>
@@ -580,7 +581,7 @@
 <!-- Node30 -->
 <g id="node69" class="node"><title>Node30</title>
 <a xlink:href="camera_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/camera.cpp">
-<polygon fill="none" stroke="black" points="472.949,-217 472.949,-249 623.949,-249 623.949,-217 472.949,-217"/>
+<polygon fill="white" stroke="black" points="472.949,-217 472.949,-249 623.949,-249 623.949,-217 472.949,-217"/>
 <text text-anchor="start" x="480.949" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="548.449" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/camera.cpp</text>
 </a>
@@ -593,7 +594,7 @@
 <!-- Node31 -->
 <g id="node72" class="node"><title>Node31</title>
 <a xlink:href="cameramanager_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/cameramanager.cpp">
-<polygon fill="none" stroke="black" points="755.449,-217 755.449,-249 927.449,-249 927.449,-217 755.449,-217"/>
+<polygon fill="white" stroke="black" points="755.449,-217 755.449,-249 927.449,-249 927.449,-217 755.449,-217"/>
 <text text-anchor="start" x="763.449" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="841.449" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/cameramanager.cpp</text>
 </a>
@@ -606,7 +607,7 @@
 <!-- Node32 -->
 <g id="node77" class="node"><title>Node32</title>
 <a xlink:href="gamewindow_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/gamewindow.cpp">
-<polygon fill="none" stroke="black" points="944.949,-211 944.949,-255 1095.95,-255 1095.95,-211 944.949,-211"/>
+<polygon fill="white" stroke="black" points="944.949,-211 944.949,-255 1095.95,-255 1095.95,-211 944.949,-211"/>
 <text text-anchor="start" x="952.949" y="-242" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="952.949" y="-230" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
 <text text-anchor="middle" x="1020.45" y="-218" font-family="FreeSans" font-size="10.00">/gamewindow.cpp</text>
@@ -620,7 +621,7 @@
 <!-- Node33 -->
 <g id="node79" class="node"><title>Node33</title>
 <a xlink:href="graphicsmanager_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/graphicsmanager.cpp">
-<polygon fill="none" stroke="black" points="1112.95,-211 1112.95,-255 1263.95,-255 1263.95,-211 1112.95,-211"/>
+<polygon fill="white" stroke="black" points="1112.95,-211 1112.95,-255 1263.95,-255 1263.95,-211 1112.95,-211"/>
 <text text-anchor="start" x="1120.95" y="-242" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="1120.95" y="-230" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
 <text text-anchor="middle" x="1188.45" y="-218" font-family="FreeSans" font-size="10.00">/graphicsmanager.cpp</text>
@@ -634,7 +635,7 @@
 <!-- Node34 -->
 <g id="node81" class="node"><title>Node34</title>
 <a xlink:href="viewport_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/viewport.cpp">
-<polygon fill="none" stroke="black" points="136.949,-211 136.949,-255 287.949,-255 287.949,-211 136.949,-211"/>
+<polygon fill="white" stroke="black" points="136.949,-211 136.949,-255 287.949,-255 287.949,-211 136.949,-211"/>
 <text text-anchor="start" x="144.949" y="-242" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="144.949" y="-230" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
 <text text-anchor="middle" x="212.449" y="-218" font-family="FreeSans" font-size="10.00">/viewport.cpp</text>
@@ -648,7 +649,7 @@
 <!-- Node35 -->
 <g id="node83" class="node"><title>Node35</title>
 <a xlink:href="screen_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/screen.cpp">
-<polygon fill="none" stroke="black" points="304.949,-217 304.949,-249 455.949,-249 455.949,-217 304.949,-217"/>
+<polygon fill="white" stroke="black" points="304.949,-217 304.949,-249 455.949,-249 455.949,-217 304.949,-217"/>
 <text text-anchor="start" x="312.949" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="380.449" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/UI/screen.cpp</text>
 </a>
@@ -686,7 +687,7 @@
 <!-- Node41 -->
 <g id="node98" class="node"><title>Node41</title>
 <a xlink:href="areaeffect_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/areaeffect.h">
-<polygon fill="none" stroke="black" points="3376.95,-217 3376.95,-249 3527.95,-249 3527.95,-217 3376.95,-217"/>
+<polygon fill="white" stroke="black" points="3376.95,-217 3376.95,-249 3527.95,-249 3527.95,-217 3376.95,-217"/>
 <text text-anchor="start" x="3384.95" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3452.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/areaeffect.h</text>
 </a>
@@ -699,7 +700,7 @@
 <!-- Node43 -->
 <g id="node105" class="node"><title>Node43</title>
 <a xlink:href="terrainbase_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/terrainbase.h">
-<polygon fill="none" stroke="black" points="3787.95,-217 3787.95,-249 3938.95,-249 3938.95,-217 3787.95,-217"/>
+<polygon fill="white" stroke="black" points="3787.95,-217 3787.95,-249 3938.95,-249 3938.95,-217 3787.95,-217"/>
 <text text-anchor="start" x="3795.95" y="-236" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3863.45" y="-224" font-family="FreeSans" font-size="10.00">/Mezzanine/src/terrainbase.h</text>
 </a>
@@ -712,7 +713,7 @@
 <!-- Node48 -->
 <g id="node118" class="node"><title>Node48</title>
 <a xlink:href="objectpair_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/objectpair.cpp">
-<polygon fill="none" stroke="black" points="3452.95,-293 3452.95,-325 3603.95,-325 3603.95,-293 3452.95,-293"/>
+<polygon fill="white" stroke="black" points="3452.95,-293 3452.95,-325 3603.95,-325 3603.95,-293 3452.95,-293"/>
 <text text-anchor="start" x="3460.95" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3528.45" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/objectpair.cpp</text>
 </a>
@@ -725,7 +726,7 @@
 <!-- Node49 -->
 <g id="node122" class="node"><title>Node49</title>
 <a xlink:href="worldobjectphysicssettings_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobjectphysicssettings.cpp">
-<polygon fill="none" stroke="black" points="2862.95,-293 2862.95,-325 3077.95,-325 3077.95,-293 2862.95,-293"/>
+<polygon fill="white" stroke="black" points="2862.95,-293 2862.95,-325 3077.95,-325 3077.95,-293 2862.95,-293"/>
 <text text-anchor="start" x="2870.95" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2970.45" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/worldobjectphysicssettings.cpp</text>
 </a>
@@ -738,7 +739,7 @@
 <!-- Node50 -->
 <g id="node124" class="node"><title>Node50</title>
 <a xlink:href="worldproxy_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldproxy.cpp">
-<polygon fill="none" stroke="black" points="3094.95,-293 3094.95,-325 3245.95,-325 3245.95,-293 3094.95,-293"/>
+<polygon fill="white" stroke="black" points="3094.95,-293 3094.95,-325 3245.95,-325 3245.95,-293 3094.95,-293"/>
 <text text-anchor="start" x="3102.95" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3170.45" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/worldproxy.cpp</text>
 </a>
@@ -766,7 +767,7 @@
 <!-- Node42 -->
 <g id="node101" class="node"><title>Node42</title>
 <a xlink:href="areaeffectmanager_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/areaeffectmanager.cpp">
-<polygon fill="none" stroke="black" points="3563.45,-141 3563.45,-173 3745.45,-173 3745.45,-141 3563.45,-141"/>
+<polygon fill="white" stroke="black" points="3563.45,-141 3563.45,-173 3745.45,-173 3745.45,-141 3563.45,-141"/>
 <text text-anchor="start" x="3571.45" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3654.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/areaeffectmanager.cpp</text>
 </a>
@@ -784,7 +785,7 @@
 <!-- Node44 -->
 <g id="node107" class="node"><title>Node44</title>
 <a xlink:href="meshterrain_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/meshterrain.h">
-<polygon fill="none" stroke="black" points="3838.95,-141 3838.95,-173 3989.95,-173 3989.95,-141 3838.95,-141"/>
+<polygon fill="white" stroke="black" points="3838.95,-141 3838.95,-173 3989.95,-173 3989.95,-141 3838.95,-141"/>
 <text text-anchor="start" x="3846.95" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3914.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/meshterrain.h</text>
 </a>
@@ -797,7 +798,7 @@
 <!-- Node47 -->
 <g id="node115" class="node"><title>Node47</title>
 <a xlink:href="terrainbase_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/terrainbase.cpp">
-<polygon fill="none" stroke="black" points="4006.95,-141 4006.95,-173 4157.95,-173 4157.95,-141 4006.95,-141"/>
+<polygon fill="white" stroke="black" points="4006.95,-141 4006.95,-173 4157.95,-173 4157.95,-141 4006.95,-141"/>
 <text text-anchor="start" x="4014.95" y="-160" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="4082.45" y="-148" font-family="FreeSans" font-size="10.00">/Mezzanine/src/terrainbase.cpp</text>
 </a>
@@ -815,7 +816,7 @@
 <!-- Node45 -->
 <g id="node110" class="node"><title>Node45</title>
 <a xlink:href="meshterrain_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/meshterrain.cpp">
-<polygon fill="none" stroke="black" points="3749.45,-71 3749.45,-103 3901.45,-103 3901.45,-71 3749.45,-71"/>
+<polygon fill="white" stroke="black" points="3749.45,-71 3749.45,-103 3901.45,-103 3901.45,-71 3749.45,-71"/>
 <text text-anchor="start" x="3757.45" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3825.45" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/meshterrain.cpp</text>
 </a>
@@ -828,7 +829,7 @@
 <!-- Node46 -->
 <g id="node112" class="node"><title>Node46</title>
 <a xlink:href="terrainmanager_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/terrainmanager.cpp">
-<polygon fill="none" stroke="black" points="3918.95,-71 3918.95,-103 4085.95,-103 4085.95,-71 3918.95,-71"/>
+<polygon fill="white" stroke="black" points="3918.95,-71 3918.95,-103 4085.95,-103 4085.95,-71 3918.95,-71"/>
 <text text-anchor="start" x="3926.95" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="4002.45" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/terrainmanager.cpp</text>
 </a>
@@ -851,7 +852,7 @@
 <!-- Node52 -->
 <g id="node131" class="node"><title>Node52</title>
 <a xlink:href="entity_8cpp_source.xhtml" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entity.cpp">
-<polygon fill="none" stroke="black" points="14.9492,-293 14.9492,-325 165.949,-325 165.949,-293 14.9492,-293"/>
+<polygon fill="white" stroke="black" points="14.9492,-293 14.9492,-325 165.949,-325 165.949,-293 14.9492,-293"/>
 <text text-anchor="start" x="22.9492" y="-312" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="90.4492" y="-300" font-family="FreeSans" font-size="10.00">/Mezzanine/src/entity.cpp</text>
 </a>

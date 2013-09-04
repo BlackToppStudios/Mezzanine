@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 389.00 254.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 250)">
 <title>Mezzanine::EventPumpWorkUnit</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-250 386,-250 386,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-7 0,-27 156,-27 156,-7 0,-7"/>
@@ -15,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<polygon fill="none" stroke="#bfbfbf" points="18.5,-83 18.5,-103 105.5,-103 105.5,-83 18.5,-83"/>
+<polygon fill="white" stroke="#bfbfbf" points="18.5,-83 18.5,-103 105.5,-103 105.5,-83 18.5,-83"/>
 <text text-anchor="middle" x="62" y="-90" font-family="FreeSans" font-size="10.00">DefaultWorkUnit</text>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
@@ -26,7 +27,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1EventManager.xhtml" target="_top" xlink:title="This is a container for Events and facilitates the transfer of data.">
-<polygon fill="none" stroke="black" points="123,-83 123,-103 251,-103 251,-83 123,-83"/>
+<polygon fill="white" stroke="black" points="123,-83 123,-103 251,-103 251,-83 123,-83"/>
 <text text-anchor="middle" x="187" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::EventManager</text>
 </a>
 </g>
@@ -39,7 +40,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; EventManager \&gt;">
-<polygon fill="none" stroke="black" points="188.5,-1 188.5,-33 295.5,-33 295.5,-1 188.5,-1"/>
+<polygon fill="white" stroke="black" points="188.5,-1 188.5,-33 295.5,-33 295.5,-1 188.5,-1"/>
 <text text-anchor="start" x="196.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="242" y="-8" font-family="FreeSans" font-size="10.00">&lt; EventManager &gt;</text>
 </a>
@@ -53,7 +54,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="124,-149 124,-169 250,-169 250,-149 124,-149"/>
+<polygon fill="white" stroke="black" points="124,-149 124,-169 250,-169 250,-149 124,-149"/>
 <text text-anchor="middle" x="187" y="-156" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -65,7 +66,7 @@
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="none" stroke="black" points="213.5,-225 213.5,-245 314.5,-245 314.5,-225 213.5,-225"/>
+<polygon fill="white" stroke="black" points="213.5,-225 213.5,-245 314.5,-245 314.5,-225 213.5,-225"/>
 <text text-anchor="middle" x="264" y="-232" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -78,7 +79,7 @@
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="none" stroke="black" points="274.5,-143 274.5,-175 381.5,-175 381.5,-143 274.5,-143"/>
+<polygon fill="white" stroke="black" points="274.5,-143 274.5,-175 381.5,-175 381.5,-143 274.5,-143"/>
 <text text-anchor="start" x="282.5" y="-162" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="328" y="-150" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 162.00 100.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 96)">
 <title>Mezzanine::Input::MetaCodeKey</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-96 159,-96 159,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-1 0,-21 154,-21 154,-1 0,-1"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Input_1_1MetaCode.xhtml" target="_top" xlink:title="This Determines the kind of user input.">
-<polygon fill="none" stroke="black" points="8.5,-71 8.5,-91 145.5,-91 145.5,-71 8.5,-71"/>
+<polygon fill="white" stroke="black" points="8.5,-71 8.5,-91 145.5,-91 145.5,-71 8.5,-71"/>
 <text text-anchor="middle" x="77" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Input::MetaCode</text>
 </a>
 </g>

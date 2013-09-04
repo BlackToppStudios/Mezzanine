@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 158.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/boilerplate.h</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-108 155,-108 155,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-71 -0.5,-103 150.5,-103 150.5,-71 -0.5,-71"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="boilerplate_8cpp.xhtml" target="_top" xlink:title="Describe file here.">
-<polygon fill="none" stroke="black" points="-0.5,-1 -0.5,-33 150.5,-33 150.5,-1 -0.5,-1"/>
+<polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-33 150.5,-33 150.5,-1 -0.5,-1"/>
 <text text-anchor="start" x="7.5" y="-20" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="75" y="-8" font-family="FreeSans" font-size="10.00">/Mezzanine/src/boilerplate.cpp</text>
 </a>

@@ -40,6 +40,7 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::ActorSoft</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-746 1977,-746 1977,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="1614,-565 1614,-585 1722,-585 1722,-565 1614,-565"/>
@@ -48,7 +49,7 @@ var sectionId = 'dynsection-1';
 <!-- Node39 -->
 <g id="node85" class="node"><title>Node39</title>
 <a xlink:href="classMezzanine_1_1ActorSoftPhysicsSettings.xhtml" target="_top" xlink:title="This is a helper class for configuring physics settings of an ActorSoft.">
-<polygon fill="none" stroke="black" points="1830.5,-594 1830.5,-626 1971.5,-626 1971.5,-594 1830.5,-594"/>
+<polygon fill="white" stroke="black" points="1830.5,-594 1830.5,-626 1971.5,-626 1971.5,-594 1830.5,-594"/>
 <text text-anchor="start" x="1838.5" y="-613" font-family="FreeSans" font-size="10.00">Mezzanine::ActorSoftPhysics</text>
 <text text-anchor="middle" x="1901" y="-601" font-family="FreeSans" font-size="10.00">Settings</text>
 </a>
@@ -62,7 +63,7 @@ var sectionId = 'dynsection-1';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ActorBase.xhtml" target="_top" xlink:title="This is the base class from which all the actors inherit.">
-<polygon fill="none" stroke="black" points="1444,-520 1444,-540 1556,-540 1556,-520 1444,-520"/>
+<polygon fill="white" stroke="black" points="1444,-520 1444,-540 1556,-540 1556,-520 1444,-520"/>
 <text text-anchor="middle" x="1500" y="-527" font-family="FreeSans" font-size="10.00">Mezzanine::ActorBase</text>
 </a>
 </g>
@@ -74,7 +75,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1NonStaticWorldObject.xhtml" target="_top" xlink:title="This is a small extention of the WorldObject class that adds features common to non&#45;static objects...">
-<polygon fill="none" stroke="black" points="1096,-505 1096,-537 1230,-537 1230,-505 1096,-505"/>
+<polygon fill="white" stroke="black" points="1096,-505 1096,-537 1230,-537 1230,-505 1096,-505"/>
 <text text-anchor="start" x="1104" y="-524" font-family="FreeSans" font-size="10.00">Mezzanine::NonStaticWorld</text>
 <text text-anchor="middle" x="1163" y="-512" font-family="FreeSans" font-size="10.00">Object</text>
 </a>
@@ -87,7 +88,7 @@ var sectionId = 'dynsection-1';
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1WorldObject.xhtml" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world.">
-<polygon fill="none" stroke="black" points="767,-554 767,-574 887,-574 887,-554 767,-554"/>
+<polygon fill="white" stroke="black" points="767,-554 767,-574 887,-574 887,-554 767,-554"/>
 <text text-anchor="middle" x="827" y="-561" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObject</text>
 </a>
 </g>
@@ -99,7 +100,7 @@ var sectionId = 'dynsection-1';
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
 <a xlink:href="classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" target="_top" xlink:title="This is a base helper class for configuring physics settings of a world object.">
-<polygon fill="none" stroke="black" points="492.5,-613 492.5,-645 645.5,-645 645.5,-613 492.5,-613"/>
+<polygon fill="white" stroke="black" points="492.5,-613 492.5,-645 645.5,-645 645.5,-613 492.5,-613"/>
 <text text-anchor="start" x="500.5" y="-632" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObjectPhysics</text>
 <text text-anchor="middle" x="569" y="-620" font-family="FreeSans" font-size="10.00">Settings</text>
 </a>
@@ -113,7 +114,7 @@ var sectionId = 'dynsection-1';
 <!-- Node16 -->
 <g id="node34" class="node"><title>Node16</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1Collision.xhtml" target="_top" xlink:title="This is an event class used to track collsions in the physics world.">
-<polygon fill="none" stroke="black" points="1113,-620 1113,-652 1213,-652 1213,-620 1113,-620"/>
+<polygon fill="white" stroke="black" points="1113,-620 1113,-652 1213,-652 1213,-620 1113,-620"/>
 <text text-anchor="start" x="1121" y="-639" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="1163" y="-627" font-family="FreeSans" font-size="10.00">::Collision</text>
 </a>
@@ -128,7 +129,7 @@ var sectionId = 'dynsection-1';
 <!-- Node19 -->
 <g id="node41" class="node"><title>Node19</title>
 <a xlink:href="classMezzanine_1_1WorldObjectGraphicsSettings.xhtml" target="_top" xlink:title="This is a helper class for configuring graphics settings of a World Object.">
-<polygon fill="none" stroke="black" points="1084,-428 1084,-460 1242,-460 1242,-428 1084,-428"/>
+<polygon fill="white" stroke="black" points="1084,-428 1084,-460 1242,-460 1242,-428 1084,-428"/>
 <text text-anchor="start" x="1092" y="-447" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObjectGraphics</text>
 <text text-anchor="middle" x="1163" y="-435" font-family="FreeSans" font-size="10.00">Settings</text>
 </a>
@@ -142,7 +143,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1World.xhtml" target="_top" xlink:title="This class represents a world for objects to interact within.">
-<polygon fill="none" stroke="black" points="523,-0 523,-20 615,-20 615,-0 523,-0"/>
+<polygon fill="white" stroke="black" points="523,-0 523,-20 615,-20 615,-0 523,-0"/>
 <text text-anchor="middle" x="569" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::World</text>
 </a>
 </g>
@@ -155,7 +156,7 @@ var sectionId = 'dynsection-1';
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1WorldManager.xhtml" target="_top" xlink:title="This is the base class for all managers that belong to a single world instance.">
-<polygon fill="none" stroke="black" points="762.5,-40 762.5,-60 891.5,-60 891.5,-40 762.5,-40"/>
+<polygon fill="white" stroke="black" points="762.5,-40 762.5,-60 891.5,-60 891.5,-40 762.5,-40"/>
 <text text-anchor="middle" x="827" y="-47" font-family="FreeSans" font-size="10.00">Mezzanine::WorldManager</text>
 </a>
 </g>
@@ -167,7 +168,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<polygon fill="none" stroke="#bfbfbf" points="1090.5,-19 1090.5,-39 1235.5,-39 1235.5,-19 1090.5,-19"/>
+<polygon fill="white" stroke="#bfbfbf" points="1090.5,-19 1090.5,-39 1235.5,-39 1235.5,-19 1090.5,-19"/>
 <text text-anchor="middle" x="1163" y="-26" font-family="FreeSans" font-size="10.00">std::vector&lt; WorldManager * &gt;</text>
 </g>
 <!-- Node6&#45;&gt;Node5 -->
@@ -185,7 +186,7 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="506,-88 506,-108 632,-108 632,-88 506,-88"/>
+<polygon fill="white" stroke="black" points="506,-88 506,-108 632,-108 632,-88 506,-88"/>
 <text text-anchor="middle" x="569" y="-95" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -197,7 +198,7 @@ var sectionId = 'dynsection-1';
 <!-- Node9 -->
 <g id="node16" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="none" stroke="black" points="261.5,-55 261.5,-75 362.5,-75 362.5,-55 261.5,-55"/>
+<polygon fill="white" stroke="black" points="261.5,-55 261.5,-75 362.5,-75 362.5,-55 261.5,-55"/>
 <text text-anchor="middle" x="312" y="-62" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -210,7 +211,7 @@ var sectionId = 'dynsection-1';
 <!-- Node10 -->
 <g id="node18" class="node"><title>Node10</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="none" stroke="black" points="515.5,-38 515.5,-70 622.5,-70 622.5,-38 515.5,-38"/>
+<polygon fill="white" stroke="black" points="515.5,-38 515.5,-70 622.5,-70 622.5,-38 515.5,-38"/>
 <text text-anchor="start" x="523.5" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="569" y="-45" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -235,7 +236,7 @@ var sectionId = 'dynsection-1';
 <!-- Node41 -->
 <g id="node89" class="node"><title>Node41</title>
 <a xlink:href="classMezzanine_1_1NonTriggerPhysicsSettings.xhtml" target="_top" xlink:title="This is an extension of the basic WorldObjectPhysicsSettings class for non&#45;trigger objects(I...">
-<polygon fill="none" stroke="black" points="918.5,-710 918.5,-742 1065.5,-742 1065.5,-710 918.5,-710"/>
+<polygon fill="white" stroke="black" points="918.5,-710 918.5,-742 1065.5,-742 1065.5,-710 918.5,-710"/>
 <text text-anchor="start" x="926.5" y="-729" font-family="FreeSans" font-size="10.00">Mezzanine::NonTriggerPhysics</text>
 <text text-anchor="middle" x="992" y="-717" font-family="FreeSans" font-size="10.00">Settings</text>
 </a>
@@ -248,7 +249,7 @@ var sectionId = 'dynsection-1';
 <!-- Node12 -->
 <g id="node25" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" target="_top" xlink:title="This is the base class for all collision shapes.">
-<polygon fill="none" stroke="black" points="262,-604 262,-636 362,-636 362,-604 262,-604"/>
+<polygon fill="white" stroke="black" points="262,-604 262,-636 362,-636 362,-604 262,-604"/>
 <text text-anchor="start" x="270" y="-623" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="312" y="-611" font-family="FreeSans" font-size="10.00">::CollisionShape</text>
 </a>
@@ -262,7 +263,7 @@ var sectionId = 'dynsection-1';
 <!-- Node13 -->
 <g id="node27" class="node"><title>Node13</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="130.5,-570 130.5,-590 187.5,-590 187.5,-570 130.5,-570"/>
+<polygon fill="white" stroke="#bfbfbf" points="130.5,-570 130.5,-590 187.5,-590 187.5,-570 130.5,-570"/>
 <text text-anchor="middle" x="159" y="-577" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -281,7 +282,7 @@ var sectionId = 'dynsection-1';
 <!-- Node14 -->
 <g id="node29" class="node"><title>Node14</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="0.5,-564 0.5,-596 91.5,-596 91.5,-564 0.5,-564"/>
+<polygon fill="white" stroke="#bfbfbf" points="0.5,-564 0.5,-596 91.5,-596 91.5,-564 0.5,-564"/>
 <text text-anchor="start" x="8.5" y="-583" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="46" y="-571" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -293,7 +294,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node15 -->
 <g id="node32" class="node"><title>Node15</title>
-<polygon fill="none" stroke="#bfbfbf" points="1454,-566 1454,-598 1546,-598 1546,-566 1454,-566"/>
+<polygon fill="white" stroke="#bfbfbf" points="1454,-566 1454,-598 1546,-598 1546,-566 1454,-566"/>
 <text text-anchor="start" x="1462" y="-585" font-family="FreeSans" font-size="10.00">std::set&lt; Physics::</text>
 <text text-anchor="middle" x="1500" y="-573" font-family="FreeSans" font-size="10.00">Collision * &gt;</text>
 </g>
@@ -311,7 +312,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node17 -->
 <g id="node36" class="node"><title>Node17</title>
-<polygon fill="none" stroke="#bfbfbf" points="779,-634 779,-654 875,-654 875,-634 779,-634"/>
+<polygon fill="white" stroke="#bfbfbf" points="779,-634 779,-654 875,-654 875,-634 779,-634"/>
 <text text-anchor="middle" x="827" y="-641" font-family="FreeSans" font-size="10.00">std::vector&lt; Real &gt;</text>
 </g>
 <!-- Node17&#45;&gt;Node16 -->
@@ -323,7 +324,7 @@ var sectionId = 'dynsection-1';
 <!-- Node18 -->
 <g id="node39" class="node"><title>Node18</title>
 <a xlink:href="structMezzanine_1_1Physics_1_1CollisionInternalData.xhtml" target="_top" xlink:title="Used to insulate the interface from the implementation details for bullet.">
-<polygon fill="none" stroke="black" points="772,-672 772,-704 882,-704 882,-672 772,-672"/>
+<polygon fill="white" stroke="black" points="772,-672 772,-704 882,-704 882,-672 772,-672"/>
 <text text-anchor="start" x="780" y="-691" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="827" y="-679" font-family="FreeSans" font-size="10.00">::CollisionInternalData</text>
 </a>
@@ -343,7 +344,7 @@ var sectionId = 'dynsection-1';
 <!-- Node20 -->
 <g id="node44" class="node"><title>Node20</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Mesh.xhtml" target="_top" xlink:title="This class is used to check and modify the properties of a graphics mesh.">
-<polygon fill="none" stroke="black" points="774.5,-433 774.5,-465 879.5,-465 879.5,-433 774.5,-433"/>
+<polygon fill="white" stroke="black" points="774.5,-433 774.5,-465 879.5,-465 879.5,-433 774.5,-433"/>
 <text text-anchor="start" x="782.5" y="-452" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="827" y="-440" font-family="FreeSans" font-size="10.00">::Mesh</text>
 </a>
@@ -357,7 +358,7 @@ var sectionId = 'dynsection-1';
 <!-- Node21 -->
 <g id="node46" class="node"><title>Node21</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1InternalMeshData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Mesh class.">
-<polygon fill="none" stroke="black" points="516.5,-504 516.5,-536 621.5,-536 621.5,-504 516.5,-504"/>
+<polygon fill="white" stroke="black" points="516.5,-504 516.5,-536 621.5,-536 621.5,-504 516.5,-504"/>
 <text text-anchor="start" x="524.5" y="-523" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="569" y="-511" font-family="FreeSans" font-size="10.00">::InternalMeshData</text>
 </a>
@@ -371,7 +372,7 @@ var sectionId = 'dynsection-1';
 <!-- Node22 -->
 <g id="node48" class="node"><title>Node22</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Skeleton.xhtml" target="_top" xlink:title="This class encapsulates the Skeletal animation functionality of a Mesh.">
-<polygon fill="none" stroke="black" points="516.5,-176 516.5,-208 621.5,-208 621.5,-176 516.5,-176"/>
+<polygon fill="white" stroke="black" points="516.5,-176 516.5,-208 621.5,-208 621.5,-176 516.5,-176"/>
 <text text-anchor="start" x="524.5" y="-195" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="569" y="-183" font-family="FreeSans" font-size="10.00">::Skeleton</text>
 </a>
@@ -385,7 +386,7 @@ var sectionId = 'dynsection-1';
 <!-- Node24 -->
 <g id="node52" class="node"><title>Node24</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Bone.xhtml" target="_top" xlink:title="This class encapsulates the bones contained in a skeleton used for animation.">
-<polygon fill="none" stroke="black" points="774.5,-134 774.5,-166 879.5,-166 879.5,-134 774.5,-134"/>
+<polygon fill="white" stroke="black" points="774.5,-134 774.5,-166 879.5,-166 879.5,-134 774.5,-134"/>
 <text text-anchor="start" x="782.5" y="-153" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="827" y="-141" font-family="FreeSans" font-size="10.00">::Bone</text>
 </a>
@@ -398,7 +399,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node23 -->
 <g id="node50" class="node"><title>Node23</title>
-<polygon fill="none" stroke="#bfbfbf" points="1110.5,-172 1110.5,-192 1215.5,-192 1215.5,-172 1110.5,-172"/>
+<polygon fill="white" stroke="#bfbfbf" points="1110.5,-172 1110.5,-192 1215.5,-192 1215.5,-172 1110.5,-172"/>
 <text text-anchor="middle" x="1163" y="-179" font-family="FreeSans" font-size="10.00">std::vector&lt; Bone * &gt;</text>
 </g>
 <!-- Node23&#45;&gt;Node22 -->
@@ -416,7 +417,7 @@ var sectionId = 'dynsection-1';
 <!-- Node25 -->
 <g id="node54" class="node"><title>Node25</title>
 <a xlink:href="classMezzanine_1_1TransformableChildObject.xhtml" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
-<polygon fill="none" stroke="black" points="505,-126 505,-158 633,-158 633,-126 505,-126"/>
+<polygon fill="white" stroke="black" points="505,-126 505,-158 633,-158 633,-126 505,-126"/>
 <text text-anchor="start" x="513" y="-145" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="569" y="-133" font-family="FreeSans" font-size="10.00">ChildObject</text>
 </a>
@@ -429,7 +430,7 @@ var sectionId = 'dynsection-1';
 <!-- Node26 -->
 <g id="node57" class="node"><title>Node26</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Skeleton class.">
-<polygon fill="none" stroke="black" points="256,-176 256,-208 368,-208 368,-176 256,-176"/>
+<polygon fill="white" stroke="black" points="256,-176 256,-208 368,-208 368,-176 256,-176"/>
 <text text-anchor="start" x="264" y="-195" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="312" y="-183" font-family="FreeSans" font-size="10.00">::InternalSkeletonData</text>
 </a>
@@ -442,7 +443,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node27 -->
 <g id="node59" class="node"><title>Node27</title>
-<polygon fill="none" stroke="#bfbfbf" points="507.5,-440 507.5,-460 630.5,-460 630.5,-440 507.5,-440"/>
+<polygon fill="white" stroke="#bfbfbf" points="507.5,-440 507.5,-460 630.5,-460 630.5,-440 507.5,-440"/>
 <text text-anchor="middle" x="569" y="-447" font-family="FreeSans" font-size="10.00">std::vector&lt; SubMesh * &gt;</text>
 </g>
 <!-- Node27&#45;&gt;Node20 -->
@@ -454,7 +455,7 @@ var sectionId = 'dynsection-1';
 <!-- Node28 -->
 <g id="node61" class="node"><title>Node28</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1SubMesh.xhtml" target="_top" xlink:title="This class represents a sub&#45;section of an overall mesh.">
-<polygon fill="none" stroke="black" points="259.5,-434 259.5,-466 364.5,-466 364.5,-434 259.5,-434"/>
+<polygon fill="white" stroke="black" points="259.5,-434 259.5,-466 364.5,-466 364.5,-434 259.5,-434"/>
 <text text-anchor="start" x="267.5" y="-453" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="312" y="-441" font-family="FreeSans" font-size="10.00">::SubMesh</text>
 </a>
@@ -468,7 +469,7 @@ var sectionId = 'dynsection-1';
 <!-- Node29 -->
 <g id="node63" class="node"><title>Node29</title>
 <a xlink:href="classMezzanine_1_1Internal_1_1InternalWorldObjectGraphicsSettings.xhtml" target="_top" xlink:title="Used to store internal data about an world objects.">
-<polygon fill="none" stroke="black" points="754.5,-369 754.5,-413 899.5,-413 899.5,-369 754.5,-369"/>
+<polygon fill="white" stroke="black" points="754.5,-369 754.5,-413 899.5,-413 899.5,-369 754.5,-369"/>
 <text text-anchor="start" x="762.5" y="-400" font-family="FreeSans" font-size="10.00">Mezzanine::Internal</text>
 <text text-anchor="start" x="762.5" y="-388" font-family="FreeSans" font-size="10.00">::InternalWorldObjectGraphics</text>
 <text text-anchor="middle" x="827" y="-376" font-family="FreeSans" font-size="10.00">Settings</text>
@@ -482,7 +483,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node30 -->
 <g id="node65" class="node"><title>Node30</title>
-<polygon fill="none" stroke="#bfbfbf" points="499.5,-375 499.5,-407 638.5,-407 638.5,-375 499.5,-375"/>
+<polygon fill="white" stroke="#bfbfbf" points="499.5,-375 499.5,-407 638.5,-407 638.5,-375 499.5,-375"/>
 <text text-anchor="start" x="507.5" y="-394" font-family="FreeSans" font-size="10.00">std::map&lt; Whole, Mezzanine</text>
 <text text-anchor="middle" x="569" y="-382" font-family="FreeSans" font-size="10.00">::ColourValue &gt;</text>
 </g>
@@ -497,7 +498,7 @@ var sectionId = 'dynsection-1';
 <!-- Node31 -->
 <g id="node67" class="node"><title>Node31</title>
 <a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
-<polygon fill="none" stroke="black" points="252.5,-381 252.5,-401 371.5,-401 371.5,-381 252.5,-381"/>
+<polygon fill="white" stroke="black" points="252.5,-381 252.5,-401 371.5,-401 371.5,-381 252.5,-381"/>
 <text text-anchor="middle" x="312" y="-388" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>
 </g>
@@ -510,7 +511,7 @@ var sectionId = 'dynsection-1';
 <!-- Node32 -->
 <g id="node69" class="node"><title>Node32</title>
 <a xlink:href="classMezzanine_1_1AttachableParent.xhtml" target="_top" xlink:title="Base class for objects that can have attachables attached to them.">
-<polygon fill="none" stroke="black" points="756,-329 756,-349 898,-349 898,-329 756,-329"/>
+<polygon fill="white" stroke="black" points="756,-329 756,-349 898,-349 898,-329 756,-329"/>
 <text text-anchor="middle" x="827" y="-336" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableParent</text>
 </a>
 </g>
@@ -522,7 +523,7 @@ var sectionId = 'dynsection-1';
 <!-- Node35 -->
 <g id="node75" class="node"><title>Node35</title>
 <a xlink:href="classMezzanine_1_1AttachableChild.xhtml" target="_top" xlink:title="This class is the base class for objects that can be attached to AttachableParent.">
-<polygon fill="none" stroke="black" points="1095.5,-295 1095.5,-315 1230.5,-315 1230.5,-295 1095.5,-295"/>
+<polygon fill="white" stroke="black" points="1095.5,-295 1095.5,-315 1230.5,-315 1230.5,-295 1095.5,-295"/>
 <text text-anchor="middle" x="1163" y="-302" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableChild</text>
 </a>
 </g>
@@ -535,7 +536,7 @@ var sectionId = 'dynsection-1';
 <!-- Node33 -->
 <g id="node71" class="node"><title>Node33</title>
 <a xlink:href="classMezzanine_1_1AttachableBase.xhtml" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
-<polygon fill="none" stroke="black" points="501.5,-307 501.5,-327 636.5,-327 636.5,-307 501.5,-307"/>
+<polygon fill="white" stroke="black" points="501.5,-307 501.5,-327 636.5,-327 636.5,-307 501.5,-307"/>
 <text text-anchor="middle" x="569" y="-314" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableBase</text>
 </a>
 </g>
@@ -551,7 +552,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node34 -->
 <g id="node73" class="node"><title>Node34</title>
-<polygon fill="none" stroke="#bfbfbf" points="1424.5,-328 1424.5,-348 1575.5,-348 1575.5,-328 1424.5,-328"/>
+<polygon fill="white" stroke="#bfbfbf" points="1424.5,-328 1424.5,-348 1575.5,-348 1575.5,-328 1424.5,-328"/>
 <text text-anchor="middle" x="1500" y="-335" font-family="FreeSans" font-size="10.00">std::vector&lt; AttachableChild * &gt;</text>
 </g>
 <!-- Node34&#45;&gt;Node32 -->
@@ -569,7 +570,7 @@ var sectionId = 'dynsection-1';
 <!-- Node36 -->
 <g id="node78" class="node"><title>Node36</title>
 <a xlink:href="classMezzanine_1_1Transform.xhtml" target="_top" xlink:title="Stores information about relative location and rotation in 3d space.">
-<polygon fill="none" stroke="black" points="772,-250 772,-270 882,-270 882,-250 772,-250"/>
+<polygon fill="white" stroke="black" points="772,-250 772,-270 882,-270 882,-250 772,-250"/>
 <text text-anchor="middle" x="827" y="-257" font-family="FreeSans" font-size="10.00">Mezzanine::Transform</text>
 </a>
 </g>
@@ -582,7 +583,7 @@ var sectionId = 'dynsection-1';
 <!-- Node37 -->
 <g id="node80" class="node"><title>Node37</title>
 <a xlink:href="classMezzanine_1_1Vector3.xhtml" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
-<polygon fill="none" stroke="black" points="519,-264 519,-284 619,-284 619,-264 519,-264"/>
+<polygon fill="white" stroke="black" points="519,-264 519,-284 619,-284 619,-264 519,-264"/>
 <text text-anchor="middle" x="569" y="-271" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>
 </g>
@@ -595,7 +596,7 @@ var sectionId = 'dynsection-1';
 <!-- Node38 -->
 <g id="node82" class="node"><title>Node38</title>
 <a xlink:href="classMezzanine_1_1Quaternion.xhtml" target="_top" xlink:title="This is used to store information about rotation in 3d space.">
-<polygon fill="none" stroke="black" points="512,-226 512,-246 626,-246 626,-226 512,-226"/>
+<polygon fill="white" stroke="black" points="512,-226 512,-246 626,-246 626,-226 512,-226"/>
 <text text-anchor="middle" x="569" y="-233" font-family="FreeSans" font-size="10.00">Mezzanine::Quaternion</text>
 </a>
 </g>
@@ -614,7 +615,7 @@ var sectionId = 'dynsection-1';
 <!-- Node40 -->
 <g id="node87" class="node"><title>Node40</title>
 <a xlink:href="classMezzanine_1_1ActorBasePhysicsSettings.xhtml" target="_top" xlink:title="This is a base helper class for configuring physics settings of an actor.">
-<polygon fill="none" stroke="black" points="1260.5,-662 1260.5,-694 1405.5,-694 1405.5,-662 1260.5,-662"/>
+<polygon fill="white" stroke="black" points="1260.5,-662 1260.5,-694 1405.5,-694 1405.5,-662 1260.5,-662"/>
 <text text-anchor="start" x="1268.5" y="-681" font-family="FreeSans" font-size="10.00">Mezzanine::ActorBasePhysics</text>
 <text text-anchor="middle" x="1333" y="-669" font-family="FreeSans" font-size="10.00">Settings</text>
 </a>

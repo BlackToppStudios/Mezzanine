@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 132.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::NodeItem&lt; T, V, Cmp, Items &gt;</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-108 129,-108 129,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="7.5,-71 7.5,-103 116.5,-103 116.5,-71 7.5,-71"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1EndNodeItem.xhtml" target="_top" xlink:title="Mezzanine::EndNodeItem\l\&lt; T, V, Cmp, Items \&gt;">
-<polygon fill="none" stroke="black" points="-0.5,-1 -0.5,-33 124.5,-33 124.5,-1 -0.5,-1"/>
+<polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-33 124.5,-33 124.5,-1 -0.5,-1"/>
 <text text-anchor="start" x="7.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::EndNodeItem</text>
 <text text-anchor="middle" x="62" y="-8" font-family="FreeSans" font-size="10.00">&lt; T, V, Cmp, Items &gt;</text>
 </a>

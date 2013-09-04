@@ -8,10 +8,11 @@
  viewBox="0.00 0.00 144.00 28.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 24)">
 <title>Graphical Class Hierarchy</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-24 141,-24 141,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <a xlink:href="structMezzanine_1_1WindowSettings.xhtml" target="_top" xlink:title="This stores all the basic configuration options a game window supports.">
-<polygon fill="none" stroke="black" points="0,-0 0,-20 136,-20 136,-0 0,-0"/>
+<polygon fill="white" stroke="black" points="0,-0 0,-20 136,-20 136,-0 0,-0"/>
 <text text-anchor="middle" x="68" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::WindowSettings</text>
 </a>
 </g>

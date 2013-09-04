@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 746.00 165.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 161)">
 <title>Mezzanine::Physics::DualTransformConstraint</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-161 743,-161 743,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="136,-50 136,-82 264,-82 264,-50 136,-50"/>
@@ -17,7 +18,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml" target="_top" xlink:title="Create simple but specific limits on any axis of movement or rotation.">
-<polygon fill="none" stroke="black" points="300.5,-100 300.5,-132 419.5,-132 419.5,-100 300.5,-100"/>
+<polygon fill="white" stroke="black" points="300.5,-100 300.5,-132 419.5,-132 419.5,-100 300.5,-100"/>
 <text text-anchor="start" x="308.5" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="360" y="-107" font-family="FreeSans" font-size="10.00">::Generic6DofConstraint</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1HingeConstraint.xhtml" target="_top" xlink:title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a...">
-<polygon fill="none" stroke="black" points="310,-50 310,-82 410,-82 410,-50 310,-50"/>
+<polygon fill="white" stroke="black" points="310,-50 310,-82 410,-82 410,-50 310,-50"/>
 <text text-anchor="start" x="318" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="360" y="-57" font-family="FreeSans" font-size="10.00">::HingeConstraint</text>
 </a>
@@ -43,7 +44,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1SliderConstraint.xhtml" target="_top" xlink:title="Mezzanine::Physics\l::SliderConstraint">
-<polygon fill="none" stroke="black" points="310,-0 310,-32 410,-32 410,-0 310,-0"/>
+<polygon fill="white" stroke="black" points="310,-0 310,-32 410,-32 410,-0 310,-0"/>
 <text text-anchor="start" x="318" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="360" y="-7" font-family="FreeSans" font-size="10.00">::SliderConstraint</text>
 </a>
@@ -56,7 +57,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1Constraint.xhtml" target="_top" xlink:title="This is the base class for all constraints supported.">
-<polygon fill="none" stroke="black" points="0,-50 0,-82 100,-82 100,-50 0,-50"/>
+<polygon fill="white" stroke="black" points="0,-50 0,-82 100,-82 100,-50 0,-50"/>
 <text text-anchor="start" x="8" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="50" y="-57" font-family="FreeSans" font-size="10.00">::Constraint</text>
 </a>
@@ -69,7 +70,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofSpringConstraint.xhtml" target="_top" xlink:title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">
-<polygon fill="none" stroke="black" points="456,-125 456,-157 602,-157 602,-125 456,-125"/>
+<polygon fill="white" stroke="black" points="456,-125 456,-157 602,-157 602,-125 456,-125"/>
 <text text-anchor="start" x="464" y="-144" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="529" y="-132" font-family="FreeSans" font-size="10.00">::Generic6DofSpringConstraint</text>
 </a>
@@ -82,7 +83,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1UniversalConstraint.xhtml" target="_top" xlink:title="Mezzanine::Physics\l::UniversalConstraint">
-<polygon fill="none" stroke="black" points="477,-75 477,-107 581,-107 581,-75 477,-75"/>
+<polygon fill="white" stroke="black" points="477,-75 477,-107 581,-107 581,-75 477,-75"/>
 <text text-anchor="start" x="485" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="529" y="-82" font-family="FreeSans" font-size="10.00">::UniversalConstraint</text>
 </a>
@@ -95,7 +96,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1Hinge2Constraint.xhtml" target="_top" xlink:title="Mezzanine::Physics\l::Hinge2Constraint">
-<polygon fill="none" stroke="black" points="638,-125 638,-157 738,-157 738,-125 638,-125"/>
+<polygon fill="white" stroke="black" points="638,-125 638,-157 738,-157 738,-125 638,-125"/>
 <text text-anchor="start" x="646" y="-144" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="688" y="-132" font-family="FreeSans" font-size="10.00">::Hinge2Constraint</text>
 </a>

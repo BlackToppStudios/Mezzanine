@@ -40,6 +40,7 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::Physics::Generic6DofConstraint</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-86 743,-86 743,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="300.5,-25 300.5,-57 419.5,-57 419.5,-25 300.5,-25"/>
@@ -49,7 +50,7 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofSpringConstraint.xhtml" target="_top" xlink:title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion...">
-<polygon fill="none" stroke="black" points="456,-50 456,-82 602,-82 602,-50 456,-50"/>
+<polygon fill="white" stroke="black" points="456,-50 456,-82 602,-82 602,-50 456,-50"/>
 <text text-anchor="start" x="464" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="529" y="-57" font-family="FreeSans" font-size="10.00">::Generic6DofSpringConstraint</text>
 </a>
@@ -62,7 +63,7 @@ var sectionId = 'dynsection-0';
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1UniversalConstraint.xhtml" target="_top" xlink:title="Mezzanine::Physics\l::UniversalConstraint">
-<polygon fill="none" stroke="black" points="477,-0 477,-32 581,-32 581,-0 477,-0"/>
+<polygon fill="white" stroke="black" points="477,-0 477,-32 581,-32 581,-0 477,-0"/>
 <text text-anchor="start" x="485" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="529" y="-7" font-family="FreeSans" font-size="10.00">::UniversalConstraint</text>
 </a>
@@ -75,7 +76,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1DualTransformConstraint.xhtml" target="_top" xlink:title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">
-<polygon fill="none" stroke="black" points="136,-25 136,-57 264,-57 264,-25 136,-25"/>
+<polygon fill="white" stroke="black" points="136,-25 136,-57 264,-57 264,-25 136,-25"/>
 <text text-anchor="start" x="144" y="-44" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="200" y="-32" font-family="FreeSans" font-size="10.00">::DualTransformConstraint</text>
 </a>
@@ -88,7 +89,7 @@ var sectionId = 'dynsection-0';
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1Constraint.xhtml" target="_top" xlink:title="This is the base class for all constraints supported.">
-<polygon fill="none" stroke="black" points="0,-25 0,-57 100,-57 100,-25 0,-25"/>
+<polygon fill="white" stroke="black" points="0,-25 0,-57 100,-57 100,-25 0,-25"/>
 <text text-anchor="start" x="8" y="-44" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="50" y="-32" font-family="FreeSans" font-size="10.00">::Constraint</text>
 </a>
@@ -101,7 +102,7 @@ var sectionId = 'dynsection-0';
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1Hinge2Constraint.xhtml" target="_top" xlink:title="Mezzanine::Physics\l::Hinge2Constraint">
-<polygon fill="none" stroke="black" points="638,-50 638,-82 738,-82 738,-50 638,-50"/>
+<polygon fill="white" stroke="black" points="638,-50 638,-82 738,-82 738,-50 638,-50"/>
 <text text-anchor="start" x="646" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="688" y="-57" font-family="FreeSans" font-size="10.00">::Hinge2Constraint</text>
 </a>

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 174.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::UI::ViewportUpdateTool</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-108 171,-108 171,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-21 166.5,-21 166.5,-1 -0.5,-1"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
-<polygon fill="none" stroke="black" points="33,-83 33,-103 133,-103 133,-83 33,-83"/>
+<polygon fill="white" stroke="black" points="33,-83 33,-103 133,-103 133,-83 33,-83"/>
 <text text-anchor="middle" x="83" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
 </g>

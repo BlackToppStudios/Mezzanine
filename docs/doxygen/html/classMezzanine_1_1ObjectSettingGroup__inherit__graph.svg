@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 134.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::ObjectSettingGroup</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-108 131,-108 131,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-1 0,-33 126,-33 126,-1 0,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
-<polygon fill="none" stroke="black" points="0,-71 0,-103 126,-103 126,-71 0,-71"/>
+<polygon fill="white" stroke="black" points="0,-71 0,-103 126,-103 126,-71 0,-71"/>
 <text text-anchor="start" x="8" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="63" y="-78" font-family="FreeSans" font-size="10.00">SetContainer</text>
 </a>

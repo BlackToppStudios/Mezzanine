@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 136.00 286.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 282)">
 <title>Mezzanine::ResourceInputStream</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-282 133,-282 133,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-33 128.5,-33 128.5,-1 -0.5,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="31.5,-71 31.5,-91 96.5,-91 96.5,-71 31.5,-71"/>
+<polygon fill="white" stroke="#bfbfbf" points="31.5,-71 31.5,-91 96.5,-91 96.5,-71 31.5,-71"/>
 <text text-anchor="middle" x="64" y="-78" font-family="FreeSans" font-size="10.00">std::istream</text>
 </a>
 </g>
@@ -29,7 +30,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="17.5,-129 17.5,-161 110.5,-161 110.5,-129 17.5,-129"/>
+<polygon fill="white" stroke="#bfbfbf" points="17.5,-129 17.5,-161 110.5,-161 110.5,-129 17.5,-129"/>
 <text text-anchor="start" x="25.5" y="-148" font-family="FreeSans" font-size="10.00">std::basic_istream</text>
 <text text-anchor="middle" x="64" y="-136" font-family="FreeSans" font-size="10.00">&lt; char &gt;</text>
 </a>
@@ -42,7 +43,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="9,-199 9,-219 119,-219 119,-199 9,-199"/>
+<polygon fill="white" stroke="#bfbfbf" points="9,-199 9,-219 119,-219 119,-199 9,-199"/>
 <text text-anchor="middle" x="64" y="-206" font-family="FreeSans" font-size="10.00">std::basic_ios&lt; Char &gt;</text>
 </a>
 </g>
@@ -54,7 +55,7 @@
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="28.5,-257 28.5,-277 99.5,-277 99.5,-257 28.5,-257"/>
+<polygon fill="white" stroke="#bfbfbf" points="28.5,-257 28.5,-277 99.5,-277 99.5,-257 28.5,-257"/>
 <text text-anchor="middle" x="64" y="-264" font-family="FreeSans" font-size="10.00">std::ios_base</text>
 </a>
 </g>

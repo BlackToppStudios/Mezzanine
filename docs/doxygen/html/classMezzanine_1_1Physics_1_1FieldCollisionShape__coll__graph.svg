@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 114.00 256.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 252)">
 <title>Mezzanine::Physics::FieldCollisionShape</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-252 111,-252 111,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-1 0,-33 106,-33 106,-1 0,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" target="_top" xlink:title="This is the base class for all collision shapes.">
-<polygon fill="none" stroke="black" points="3,-73 3,-105 103,-105 103,-73 3,-73"/>
+<polygon fill="white" stroke="black" points="3,-73 3,-105 103,-105 103,-73 3,-73"/>
 <text text-anchor="start" x="11" y="-92" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="53" y="-80" font-family="FreeSans" font-size="10.00">::CollisionShape</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="24.5,-155 24.5,-175 81.5,-175 81.5,-155 24.5,-155"/>
+<polygon fill="white" stroke="#bfbfbf" points="24.5,-155 24.5,-175 81.5,-175 81.5,-155 24.5,-155"/>
 <text text-anchor="middle" x="53" y="-162" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -43,7 +44,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="7.5,-215 7.5,-247 98.5,-247 98.5,-215 7.5,-215"/>
+<polygon fill="white" stroke="#bfbfbf" points="7.5,-215 7.5,-247 98.5,-247 98.5,-215 7.5,-215"/>
 <text text-anchor="start" x="15.5" y="-234" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="53" y="-222" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>

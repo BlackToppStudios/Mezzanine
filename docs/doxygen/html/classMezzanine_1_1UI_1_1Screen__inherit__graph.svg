@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 178.00 170.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 166)">
 <title>Mezzanine::UI::Screen</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-166 175,-166 175,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="29,-1 29,-21 141,-21 141,-1 29,-1"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1UI_1_1ExtendedRenderableFactory.xhtml" target="_top" xlink:title="This class is responsible for the creation and destruction of all UI renderables.">
-<polygon fill="none" stroke="black" points="0,-59 0,-91 170,-91 170,-59 0,-59"/>
+<polygon fill="white" stroke="black" points="0,-59 0,-91 170,-91 170,-59 0,-59"/>
 <text text-anchor="start" x="8" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ExtendedRenderable</text>
 <text text-anchor="middle" x="85" y="-66" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -29,7 +30,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1UI_1_1RenderableFactory.xhtml" target="_top" xlink:title="This class is responsible for the creation and destruction of all UI renderables.">
-<polygon fill="none" stroke="black" points="20,-129 20,-161 150,-161 150,-129 20,-129"/>
+<polygon fill="white" stroke="black" points="20,-129 20,-161 150,-161 150,-129 20,-129"/>
 <text text-anchor="start" x="28" y="-148" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 <text text-anchor="middle" x="85" y="-136" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>

@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 156.00 88.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 84)">
 <title>Mezzanine::Audio::iSound</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-84 153,-84 153,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="11,-59 11,-79 137,-79 137,-59 11,-59"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1SoundProxy.xhtml" target="_top" xlink:title="This is a proxy class for representing a sound being played in 3D space.">
-<polygon fill="none" stroke="black" points="0,-1 0,-21 148,-21 148,-1 0,-1"/>
+<polygon fill="white" stroke="black" points="0,-1 0,-21 148,-21 148,-1 0,-1"/>
 <text text-anchor="middle" x="74" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundProxy</text>
 </a>
 </g>

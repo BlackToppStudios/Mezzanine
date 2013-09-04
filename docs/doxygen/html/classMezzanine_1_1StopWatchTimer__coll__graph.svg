@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 148.00 146.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 142)">
 <title>Mezzanine::StopWatchTimer</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-142 145,-142 145,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-1 0,-21 140,-21 140,-1 0,-1"/>
@@ -16,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1GoalTimer.xhtml" target="_top" xlink:title="This is the base class for timers intended to run only until they reach a specific goal...">
-<polygon fill="none" stroke="black" points="14,-59 14,-79 126,-79 126,-59 14,-59"/>
+<polygon fill="white" stroke="black" points="14,-59 14,-79 126,-79 126,-59 14,-59"/>
 <text text-anchor="middle" x="70" y="-66" font-family="FreeSans" font-size="10.00">Mezzanine::GoalTimer</text>
 </a>
 </g>
@@ -28,7 +29,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Timer.xhtml" target="_top" xlink:title="A base timer class for the different timers.">
-<polygon fill="none" stroke="black" points="24,-117 24,-137 116,-137 116,-117 24,-117"/>
+<polygon fill="white" stroke="black" points="24,-117 24,-137 116,-137 116,-117 24,-117"/>
 <text text-anchor="middle" x="70" y="-124" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>
 </g>

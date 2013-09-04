@@ -40,6 +40,7 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::UI::Character</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-259 751,-259 751,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="622.5,-136 622.5,-156 745.5,-156 745.5,-136 622.5,-136"/>
@@ -48,7 +49,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
-<polygon fill="none" stroke="black" points="416.5,-235 416.5,-255 535.5,-255 535.5,-235 416.5,-235"/>
+<polygon fill="white" stroke="black" points="416.5,-235 416.5,-255 535.5,-255 535.5,-235 416.5,-235"/>
 <text text-anchor="middle" x="476" y="-242" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>
 </g>
@@ -61,7 +62,7 @@ var sectionId = 'dynsection-0';
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
-<polygon fill="none" stroke="black" points="217,-144 217,-164 317,-164 317,-144 217,-144"/>
+<polygon fill="white" stroke="black" points="217,-144 217,-164 317,-164 317,-144 217,-144"/>
 <text text-anchor="middle" x="267" y="-151" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
 </g>
@@ -75,7 +76,7 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Glyph.xhtml" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
-<polygon fill="none" stroke="black" points="423,-136 423,-156 529,-156 529,-136 423,-136"/>
+<polygon fill="white" stroke="black" points="423,-136 423,-156 529,-156 529,-136 423,-136"/>
 <text text-anchor="middle" x="476" y="-143" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Glyph</text>
 </a>
 </g>
@@ -89,7 +90,7 @@ var sectionId = 'dynsection-0';
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="structMezzanine_1_1UI_1_1Sprite.xhtml" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad.">
-<polygon fill="none" stroke="black" points="422.5,-97 422.5,-117 529.5,-117 529.5,-97 422.5,-97"/>
+<polygon fill="white" stroke="black" points="422.5,-97 422.5,-117 529.5,-117 529.5,-97 422.5,-97"/>
 <text text-anchor="middle" x="476" y="-104" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Sprite</text>
 </a>
 </g>
@@ -108,7 +109,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<polygon fill="none" stroke="#bfbfbf" points="210,-56 210,-88 324,-88 324,-56 210,-56"/>
+<polygon fill="white" stroke="#bfbfbf" points="210,-56 210,-88 324,-88 324,-56 210,-56"/>
 <text text-anchor="start" x="218" y="-75" font-family="FreeSans" font-size="10.00">std::vector&lt; Mezzanine</text>
 <text text-anchor="middle" x="267" y="-63" font-family="FreeSans" font-size="10.00">::UI::KerningInfo &gt;</text>
 </g>
@@ -121,7 +122,7 @@ var sectionId = 'dynsection-0';
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.xhtml" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
-<polygon fill="none" stroke="black" points="0.5,-62 0.5,-82 131.5,-82 131.5,-62 0.5,-62"/>
+<polygon fill="white" stroke="black" points="0.5,-62 0.5,-82 131.5,-82 131.5,-62 0.5,-62"/>
 <text text-anchor="middle" x="66" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>
 </g>
@@ -140,7 +141,7 @@ var sectionId = 'dynsection-0';
 <!-- Node8 -->
 <g id="node16" class="node"><title>Node8</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="238.5,-6 238.5,-26 295.5,-26 295.5,-6 238.5,-6"/>
+<polygon fill="white" stroke="#bfbfbf" points="238.5,-6 238.5,-26 295.5,-26 295.5,-6 238.5,-6"/>
 <text text-anchor="middle" x="267" y="-13" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -159,7 +160,7 @@ var sectionId = 'dynsection-0';
 <!-- Node9 -->
 <g id="node18" class="node"><title>Node9</title>
 <a xlink:title="STL class.">
-<polygon fill="none" stroke="#bfbfbf" points="20.5,-0 20.5,-32 111.5,-32 111.5,-0 20.5,-0"/>
+<polygon fill="white" stroke="#bfbfbf" points="20.5,-0 20.5,-32 111.5,-32 111.5,-0 20.5,-0"/>
 <text text-anchor="start" x="28.5" y="-19" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="66" y="-7" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>

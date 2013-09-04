@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 136.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::TransformableChildObject</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-108 133,-108 133,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-71 0,-103 128,-103 128,-71 0,-71"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Bone.xhtml" target="_top" xlink:title="This class encapsulates the bones contained in a skeleton used for animation.">
-<polygon fill="none" stroke="black" points="11.5,-1 11.5,-33 116.5,-33 116.5,-1 11.5,-1"/>
+<polygon fill="white" stroke="black" points="11.5,-1 11.5,-33 116.5,-33 116.5,-1 11.5,-1"/>
 <text text-anchor="start" x="19.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="64" y="-8" font-family="FreeSans" font-size="10.00">::Bone</text>
 </a>

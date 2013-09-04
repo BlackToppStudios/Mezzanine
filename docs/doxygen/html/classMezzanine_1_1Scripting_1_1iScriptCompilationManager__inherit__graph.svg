@@ -8,6 +8,7 @@
  viewBox="0.00 0.00 144.00 170.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 166)">
 <title>Mezzanine::Scripting::iScriptCompilationManager</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-166 141,-166 141,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-33 136.5,-33 136.5,-1 -0.5,-1"/>
@@ -17,7 +18,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml" target="_top" xlink:title="What a scripting manager should look like.">
-<polygon fill="none" stroke="black" points="15.5,-71 15.5,-103 120.5,-103 120.5,-71 15.5,-71"/>
+<polygon fill="white" stroke="black" points="15.5,-71 15.5,-103 120.5,-103 120.5,-71 15.5,-71"/>
 <text text-anchor="start" x="23.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="68" y="-78" font-family="FreeSans" font-size="10.00">::iScriptingManager</text>
 </a>
@@ -30,7 +31,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="none" stroke="black" points="5,-141 5,-161 131,-161 131,-141 5,-141"/>
+<polygon fill="white" stroke="black" points="5,-141 5,-161 131,-161 131,-141 5,-141"/>
 <text text-anchor="middle" x="68" y="-148" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
