@@ -43,16 +43,11 @@
 // Keeps this file from being documented by doxygen
 /// @cond DontDocumentInternal
 
-#include "datatypes.h"
+#include "entresol.h"
 
 #include <streambuf>
 
 #include <Ogre.h>
-#include "entresol.h"
-
-#ifdef MEZZDEBUG
-#include "entresol.h"
-#endif
 
 namespace Mezzanine
 {
