@@ -58,7 +58,7 @@ namespace Mezzanine
         #endif
         {
         #if defined(_MEZZ_THREAD_WIN32_)
-            mHandle = malloc(sizeof(CRITICAL_SECTION));
+            mHandle = (CRITICAL_SECTION*)( malloc(sizeof(CRITICAL_SECTION) ) );
             InitializeCriticalSection(mHandle);
         #else
             pthread_mutex_init(&mHandle, NULL);

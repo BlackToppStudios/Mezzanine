@@ -76,7 +76,10 @@ freely, subject to the following restrictions:
 /// @brief Declares a Mutex, Mutex tools, and at least one MutexLike object.
 
 /// @brief Forward declaration
-class CRITICAL_SECTION; // extern?
+#if defined(_MEZZ_THREAD_WIN32_)
+class _CRITICAL_SECTION;
+typedef _CRITICAL_SECTION CRITICAL_SECTION;
+#endif
 
 namespace Mezzanine
 {
