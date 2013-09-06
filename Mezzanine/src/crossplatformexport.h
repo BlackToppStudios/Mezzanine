@@ -187,5 +187,11 @@
         #define MEZZ_FRAMESTOTRACK _MEZZ_FRAMESTOTRACK_
     #endif
 
-
+    /// @def WINAPI
+    /// @brief Calling some win32 api functions require special calling conventions, this is their configuration.
+    #ifdef WINDOWS
+        #define WINAPI __stdcall
+    #else
+        #define WINAPI ErrorThisOnlyGoesInwin32Code
+    #endif
 #endif

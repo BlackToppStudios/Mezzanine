@@ -76,7 +76,7 @@ freely, subject to the following restrictions:
 /// @brief Declares a Mutex, Mutex tools, and at least one MutexLike object.
 
 /// @brief Forward declaration
-class CRITICAL_SECTION;
+class CRITICAL_SECTION; // extern?
 
 namespace Mezzanine
 {
