@@ -37,18 +37,14 @@ CatchApp::CatchApp() :
     assert(0==CatchApp::TheRealCatchApp);
     CatchApp::TheRealCatchApp = this;
 
-    //try{
-        TheEntresol = new Entresol( "Data/", AT_FileSystem );
-    //}catch(...){
-//        throw "";
-//    }
-    Loader = new LevelLoader();
-    Scorer = new LevelScorer();
-    Profiles = new ProfileManager("Profiles/");
-    Shop = new ItemShop();
+	this->TheEntresol = new Entresol( "Data/", AT_FileSystem );
+    this->Loader = new LevelLoader();
+    this->Scorer = new LevelScorer();
+    this->Profiles = new ProfileManager("Profiles/");
+    this->Shop = new ItemShop();
     ThrowableGenerator::ParseThrowables("");
 
-    LevelTimer = new Timer();
+    this->LevelTimer = new Timer();
 }
 
 CatchApp::~CatchApp()
