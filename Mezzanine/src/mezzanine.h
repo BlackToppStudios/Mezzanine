@@ -80,7 +80,6 @@
 #include "camera.h"                     // done, must review after Mar27 upgrades
 #include "cameracontroller.h"
 #include "cameramanager.h"
-#include "collisionshapemanager.h"
 #include "colourvalue.h"                // done
 #include "crossplatform.h"              // nothing to do
 #include "crossplatformexport.h"        // nothing to do

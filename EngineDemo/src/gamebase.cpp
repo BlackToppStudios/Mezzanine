@@ -466,7 +466,7 @@ void LoadContent()
     //ParticleEffect *GreenPart = TheEntresol->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
     //GreenPart->SetLocation(Vector3(-70,70,-100));
 
-    CollisionShapeManager* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
+    Physics::CollisionShapeManager* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
     Physics::CollisionShape* RobitCH = CSMan->GenerateConvexHull("RobitConvexHull",filerobot,groupname);
     Physics::CollisionShape* RobitCD = CSMan->PerformConvexDecomposition("RobitConvexDecomp",filerobot,groupname,5.0,5.0,10.0);
     Physics::CollisionShape* PlaneStatic = CSMan->GenerateStaticTriMesh("PlaneShape","Plane.mesh",groupname);

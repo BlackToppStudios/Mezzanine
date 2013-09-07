@@ -44,7 +44,7 @@
 #include "actorbase.h"
 #include "actorrigid.h"
 #include "actorsoft.h"
-#include "collisionshapemanager.h"
+#include "Physics/collisionshapemanager.h"
 #include "Physics/collisionshape.h"
 #include "Physics/generic6dofconstraint.h"
 #include "Physics/physicsmanager.h"
@@ -204,7 +204,7 @@ namespace Mezzanine
         }else{
             this->ActorRB->setCollisionShape(Shape->_GetInternalShape());
         }
-        CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
+        Physics::CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
     }
 
     void ActorRigidPhysicsSettings::SetStickyData(const Whole& MaxNumContacts)

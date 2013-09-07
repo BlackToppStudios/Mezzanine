@@ -165,6 +165,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
+        void CollisionShape::_SetShapeName(const String& NewName)
+        {
+            this->Name = NewName;
+        }
+
         btCollisionShape* CollisionShape::_GetInternalShape() const
         {
             return this->ShapeBase;

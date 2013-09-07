@@ -47,10 +47,9 @@ class btCollisionShape;
 
 namespace Mezzanine
 {
-    // Forward Declarations
-    class CollisionShapeManager;
     namespace Physics
     {
+        class CollisionShapeManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class CollisionShape
         /// @headerfile collisionshape.h
@@ -84,7 +83,6 @@ namespace Mezzanine
                 ST_StaticTriMesh = 12     ///< Indicates the class is a StaticMeshCollisionShape
             };
         protected:
-            friend class Mezzanine::CollisionShapeManager;
             /// @brief A pointer to the bullet collision this uses.
             btCollisionShape* ShapeBase;
             /// @brief Storage for the name of this class instance.
@@ -138,6 +136,11 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
+            /// @internal
+            /// @brief Sets the name of this collision shape.
+            /// @remarks This method should be used with extreme care when it is stored by the collision shape manager.
+            /// @param NewName The new name to be given to this shape.
+            virtual void _SetShapeName(const String& NewName);
             /// @internal
             /// @brief Gets the internal shape pointer this collision shape is based on.
             /// @return Returns a pointer to the internal collision shape.
