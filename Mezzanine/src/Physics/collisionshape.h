@@ -123,7 +123,7 @@ namespace Mezzanine
             // Serialization
 
             /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            /// @param CurrentRoot The point in the XML hierarchy that all this collision shape should be appended to.
             virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
             /// @param OneNode and XML::Node containing the data.
