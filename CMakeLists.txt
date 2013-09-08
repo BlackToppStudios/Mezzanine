@@ -55,6 +55,7 @@
 #        Mezz_BuildTypeRelease              - False - The Engine will be compiled with optimizations by setting CMAKE_BUILD_TYPE. MEZZRELEASE will be passed into the source via a preprocessor macro.
 #        Mezz_BuildTypeSmall                - False - The Engine will be optimizing for minimum size by setting CMAKE_BUILD_TYPE, MEZZSMALL is passed into the source when compiling as a preprocessor macro.
 #        Mezz_Lua51                         - True if lua is to be included and link against. False if lua was not selected to be compiled in.
+#        Mezz_SWIG                          - Rebuild Scripting interfaces with SWIG each build
 #        Mezz_Network                       - Enable or disable networking support
 #        Mezz_AllWarnings                   - Enable all compiler warnings
 #
@@ -236,16 +237,16 @@ endif(Mezz_BuildTypeDebug)
 # Now that we know our build type better, configure our library postfix.
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-	set(LibPostFix ${CMAKE_DEBUG_POSTFIX})
+        set(LibPostFix ${CMAKE_DEBUG_POSTFIX})
 endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-	set(LibPostFix ${CMAKE_RELEASE_POSTFIX})
+        set(LibPostFix ${CMAKE_RELEASE_POSTFIX})
 endif(CMAKE_BUILD_TYPE STREQUAL "Release")
 if(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-	set(LibPostFix ${CMAKE_RELWITHDEBINFO_POSTFIX})
+        set(LibPostFix ${CMAKE_RELWITHDEBINFO_POSTFIX})
 endif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
 if(CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
-	set(LibPostFix ${CMAKE_MINSIZEREL_POSTFIX})
+        set(LibPostFix ${CMAKE_MINSIZEREL_POSTFIX})
 endif(CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
 
 ###############################################################################
@@ -296,6 +297,17 @@ else(${Mezz_Lua51})
     message ( STATUS "${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting MEZZLUA51")
     set(Mezz_Lua51_Arguments "${D}MEZZLUA51_undefined")
 endif(${Mezz_Lua51})
+
+###############################################################################
+# Build Swig Library
+option(Mezz_SWIG "Rerun swig/Rebuild script bindings before each build." OFF)
+if(${Mezz_SWIG})
+    message ( STATUS "${PROJECT_NAME} - Enabling Swig execution each build.")
+    FIND_PACKAGE(SWIG REQUIRED)
+    message ( "Swig location - ${SWIG_EXECUTABLE}")
+else(${Mezz_SWIG})
+    message ( STATUS "${PROJECT_NAME} - Disabling Swig execution each build.")
+endif(${Mezz_SWIG})
 
 ###############################################################################
 # DAGFrameScheduler
@@ -610,9 +622,9 @@ mark_as_advanced( FORCE
 
     # SDL Indirect Options
     ARTS_CONFIG D_NAS_LIB XCURSOR_LIB XEXT_LIB XI_LIB XINERAMA_LIB XRANDR_LIB XRENDER_LIB XSS_LIB XXF86VM_LIB X11_LIB
-    
+
     # Bullet options
-    
+
     USE_DOUBLE_PRECISION
     USE_MSVC_RUNTIME_LIBRARY_DLL
     USE_MSVC_INCREMENTAL_LINKING
@@ -634,7 +646,7 @@ mark_as_advanced( FORCE
     BUILD_MULTITHREADING
     AMD_OPENCL_BASE_DIR
     USE_MULTITHREADED_BENCHMARK
-    
+
     BUILD_AMD_OPENCL_DEMOS
     BUILD_INTEL_OPENCL_DEMOS
     BUILD_NVIDIA_OPENCL_DEMOS
@@ -684,6 +696,9 @@ mark_as_advanced( FORCE
     OGRE_UNITY_BUILD OGRE_UNITY_FILES_PER_UNIT
 
     WINDRES WINE
+
+    #SWIG
+    SWIG_DIR SWIG_EXECUTABLE SWIG_VERSION
 )
 
 message("${PROJECT_NAME} - Finishing Configuration")

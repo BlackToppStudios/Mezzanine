@@ -570,11 +570,12 @@ option(Mezz_Audio_UseOALS "Use OpenAL-Soft as the audio provider for the engine.
 
 if(Mezz_Audio_UseOALS)
     if(AudioProviderSet)
-	    message(FATAL_ERROR "A provider for the Audio subsystem has already been set.  Only one provider may be selected.")
-	endif(AudioProviderSet)
+    message(FATAL_ERROR "A provider for the Audio subsystem has already been set.  Only one provider may be selected.")
+        endif(AudioProviderSet)
     set(AudioProviderSet 1)
+
     set(Mezzanine_sources ${Mezzanine_sources}
-	
+
         #######################################
         # Header files
 
@@ -592,10 +593,10 @@ if(Mezz_Audio_UseOALS)
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanagerfactory.h"
-		
+
         #######################################
         # Source files
-		
+
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsaudiomanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsaudiomanagerfactory.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffect.cpp"
@@ -608,16 +609,16 @@ if(Mezz_Audio_UseOALS)
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanagerfactory.cpp"
     )
-	
-	include_directories(
+
+    include_directories(
         "${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openalsoft"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/include"
-	)
+    )
 
-	set(SoundLibraryNames ${SoundLibraryNames}
+    set(SoundLibraryNames ${SoundLibraryNames}
         "openal"
-	)
-    
+    )
+
     add_definitions( "${D}ENABLE_OALS_AUDIO_IMPLEMENTATION" "${D}AL_LIBTYPE_STATIC" )
 endif(Mezz_Audio_UseOALS)
 
@@ -633,43 +634,43 @@ set(Mezz_Audio_Encodings "")
 option(Mezz_Audio_EnableRawEncoding "Enable the encoding and decoding of unencoded data." ON)
 if(Mezz_Audio_EnableRawEncoding)
     message ( STATUS "${PROJECT_NAME} - Enabling Raw encoding.")
-	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_RAW_ENCODE")
+    set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_RAW_ENCODE")
 endif(Mezz_Audio_EnableRawEncoding)
 
 option(Mezz_Audio_EnableWavEncoding "Enable the encoding and decoding of .wav encoded data." ON)
 if(Mezz_Audio_EnableWavEncoding)
     message ( STATUS "${PROJECT_NAME} - Enabling .wav encoding.")
-	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_WAV_ENCODE")
+    set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_WAV_ENCODE")
 endif(Mezz_Audio_EnableWavEncoding)
 
 option(Mezz_Audio_EnableFlacEncoding "Enable the encoding and decoding of .flac encoded data." ON)
 if(Mezz_Audio_EnableFlacEncoding)
     message ( STATUS "${PROJECT_NAME} - Enabling .flac encoding")
-	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_FLAC_ENCODE")
+    set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_FLAC_ENCODE")
 endif(Mezz_Audio_EnableFlacEncoding)
 
 option(Mezz_Audio_EnableVorbisEncoding "Enable the encoding and decoding of .ogg (vorbis) encoded data." ON)
 if(Mezz_Audio_EnableVorbisEncoding)
     message ( STATUS "${PROJECT_NAME} - Enabling .ogg (vorbis) encoding.")
-	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_VORBIS_ENCODE")
+    set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_VORBIS_ENCODE")
 endif(Mezz_Audio_EnableVorbisEncoding)
 
 #option(Mezz_Audio_EnableMp3Encoding "Enable the encoding and decoding of .mp3 encoded data." ON)
 #if(Mezz_Audio_EnableMp3Encoding)
 #   message ( STATUS "${PROJECT_NAME} - Enabling .mp3 encoding.")
-#	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_MP3_ENCODE")
+#    set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_MP3_ENCODE")
 #endif(Mezz_Audio_EnableMp3Encoding)
 
 option(Mezz_Audio_EnableSpeexEncoding "Enable the encoding and decoding of .spx encoded data." ON)
 if(Mezz_Audio_EnableSpeexEncoding)
     message ( STATUS "${PROJECT_NAME} - Enabling .spx encoding.")
-	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_SPEEX_ENCODE")
+    set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_SPEEX_ENCODE")
 endif(Mezz_Audio_EnableSpeexEncoding)
 
 option(Mezz_Audio_EnableOpusEncoding "Enable the encoding and decoding of .opus encoded data." ON)
 if(Mezz_Audio_EnableOpusEncoding)
     message ( STATUS "${PROJECT_NAME} - Enabling .opus encoding.")
-	set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_OPUS_ENCODE")
+    set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_OPUS_ENCODE")
 endif(Mezz_Audio_EnableOpusEncoding)
 
 add_definitions( ${Mezz_Audio_Encodings} )
@@ -680,13 +681,13 @@ add_definitions( ${Mezz_Audio_Encodings} )
 #Description: This function copies items from the Data/lib directory into it's expected location in the output directory During build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
-        add_custom_command(
-                TARGET ${PROJECT_NAME}
-                PRE_LINK
-                COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
-                COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_LIBBINARY_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
-                VERBATIM
-        )
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_LIBBINARY_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+        VERBATIM
+    )
 endfunction(CopyFilesDuringBuild)
 
 ###############################################################################
@@ -745,9 +746,9 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
         add_definitions( -DMACOSX)
-	#set_source_files_properties("${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp" PROPERTIES COMPILE_FLAGS "-x objective-c++")
-	set_property(SOURCE "${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp" PROPERTY COMPILE_FLAGS "-x objective-c++")
-	message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
+    #set_source_files_properties("${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp" PROPERTIES COMPILE_FLAGS "-x objective-c++")
+    set_property(SOURCE "${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp" PROPERTY COMPILE_FLAGS "-x objective-c++")
+    message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
@@ -796,7 +797,7 @@ add_subdirectory (libincludes/common/sdlsrc/SDL)
 # Extra includes from Ogre
 
 if(${WIN32})
-	include_directories( ${DirectX_INCLUDE_DIR} ${DirectX_D3D11_INCLUDE_DIR} )
+    include_directories( ${DirectX_INCLUDE_DIR} ${DirectX_D3D11_INCLUDE_DIR} )
 endif(${WIN32})
 
 # This was moved to below the sub-libraries so the directX includes in the lines above will work.
@@ -842,6 +843,34 @@ target_link_libraries( ${PROJECT_NAME}
     ${SoundLibraryNames}
     ${CMAKE_THREAD_LIBS_INIT}
 )
+
+###############################################################################
+# Swig binding generation
+
+if(${Mezz_SWIG})
+    # Here are the original lines describing the commands from lua51scriptengine.h
+    #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o Scripting/Lua51/scriptbindinglua51.cpp mezzanine.h
+    #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindinglua51unsafe.cpp mezzanine.h
+    if(${Mezz_Lua51})
+        add_custom_command(
+            TARGET ${PROJECT_NAME}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Safe library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -o Scripting/Lua51/scriptbindinglua51.cpp mezzanine.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        add_custom_command(
+            TARGET ${PROJECT_NAME}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Safe library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindinglua51unsafe.cpp mezzanine.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+    endif(${Mezz_Lua51})
+    # Add support for other languagews here
+endif(${Mezz_SWIG})
 
 ###############################################################################
 # Build Time File copying
