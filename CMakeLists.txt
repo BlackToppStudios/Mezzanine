@@ -377,7 +377,6 @@ if(HAVE_STDDEF_H)
     add_definitions(-DHAVE_STDDEF_H)
 endif(HAVE_STDDEF_H)
 
-
 #######################################
 # Ogre3d related values
 
