@@ -72,7 +72,7 @@ namespace Mezzanine
             char Ident[4];
             Int32 Temp32 = 0;
             Int16 Temp16 = 0;
-            Int8 Temp8 = 0;
+            //Int8 Temp8 = 0;
             UInt32 StartOffset = 0;
 
             //Read the first 4 bytes
@@ -122,7 +122,7 @@ namespace Mezzanine
                                     {
                                         //Reset our pointer to start scanning for the data block
                                         this->WavStream->SetStreamPosition(StartOffset);
-										//Scan for the first data chuck (not necessarily right after)
+                                        //Scan for the first data chuck (not necessarily right after)
                                         do{
                                             this->WavStream->Read(Ident,4);
                                         } while( ( strncmp(Ident,DATATAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) );
