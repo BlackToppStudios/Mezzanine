@@ -43,6 +43,7 @@
 #include "Physics/collisionshapemanager.h"
 #include "Graphics/mesh.h"
 #include "meshmanager.h"
+#include "resourcemanager.h"
 
 #include "Physics/collisionshape.h"
 #include "Physics/boxcollisionshape.h"
@@ -578,22 +579,62 @@ namespace Mezzanine
 
         void CollisionShapeManager::LoadAllShapesFromXMLFile(const String& FileName, const String& Group)
         {
+            /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+            Resource::FileStream ShapesStream( FileName, ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group) );
+            XML::Document ShapesDoc;
+            XML::ParseResult DocResult = ShapesDoc.Load(ShapesStream);
+            if( DocResult.Status != XML::StatusOk ) {
+                MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,"Failed to parse XML file \"" + FileName + "\".");
+            }
+            XML::Node ShapesRoot = ShapesDoc.GetChild("InitializerRoot");
+            if( ShapesRoot.Empty() ) {
+                MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,"Failed to find expected Root node in \"" + FileName + "\".");
+            }
 
+            for( XML::NodeIterator ShapeIt = ShapesRoot.begin() ; ShapeIt != ShapesRoot.end() ; ++ShapeIt )
+            {
+                CollisionShape* DeSerializedShape = Physics::CreateShape( (*ShapeIt) );
+                this->CollisionShapes.insert( std::pair<String,CollisionShape*>(DeSerializedShape->GetName(),DeSerializedShape) );
+            }
         }
 
         void CollisionShapeManager::SaveAllStoredShapesToXMLFile(const String& FileName)
         {
+            XML::Document ShapesDoc;
+            XML::Node DeclNode = ShapesDoc.AppendChild(XML::NodeDeclaration);
+            XML::Attribute VerAttrib = DeclNode.AppendAttribute("version");
 
+            if( DeclNode.SetName("xml") && VerAttrib.SetValue("1.0") ) {
+                XML::Node ShapesRoot = ShapesDoc.AppendChild( "ShapesRoot" );
+                for( ShapeMapIterator ShapeIt = this->CollisionShapes.begin() ; ShapeIt != this->CollisionShapes.end() ; ++ShapeIt )
+                {
+                    (*ShapeIt).second->ProtoSerialize( ShapesRoot );
+                }
+
+                /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+                Resource::FileStream SettingsStream(FileName,".",Resource::DataStream::SF_Truncate | Resource::DataStream::SF_Write);
+                ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
+            }
         }
 
         void CollisionShapeManager::SaveShapesToXMLFile(const String& FileName, ShapeVector& ShapesToSave)
         {
-            XML::Document SettingsDoc;
-            XML::Node DeclNode = SettingsDoc.AppendChild(XML::NodeDeclaration);
+            XML::Document ShapesDoc;
+            XML::Node DeclNode = ShapesDoc.AppendChild(XML::NodeDeclaration);
             XML::Attribute VerAttrib = DeclNode.AppendAttribute("version");
-            if( DeclNode.SetName("xml") && VerAttrib.SetValue("1.0") )
-            {
 
+            if( DeclNode.SetName("xml") && VerAttrib.SetValue("1.0") ) {
+                XML::Node ShapesRoot = ShapesDoc.AppendChild( "ShapesRoot" );
+                for( ShapeVectorIterator ShapeIt = ShapesToSave.begin() ; ShapeIt != ShapesToSave.end() ; ++ShapeIt )
+                {
+                    (*ShapeIt)->ProtoSerialize( ShapesRoot );
+                }
+
+                /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
+                Resource::FileStream SettingsStream(FileName,".",Resource::DataStream::SF_Truncate | Resource::DataStream::SF_Write);
+                ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
             }
@@ -640,11 +681,6 @@ namespace Mezzanine
             for( ShapeMapIterator it = this->CollisionShapes.begin() ; it != this->CollisionShapes.end() ; it++ )
             {
                 CollisionShape* Shape = (*it).second;
-
-                StringStream logstream;
-                logstream << "Serializing Shape: " << Shape->GetName();
-                Entresol::GetSingletonPtr()->Log(logstream.str());
-
                 BulletSerializer->registerNameForPointer((void*)Shape->_GetInternalShape(),(*it).first.c_str());
                 int len = Shape->_GetInternalShape()->calculateSerializeBufferSize();
                 btChunk* chunk = BulletSerializer->allocate(len,1);
