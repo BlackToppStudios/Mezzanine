@@ -81,7 +81,7 @@ namespace Mezzanine
                 Real VolumeModifier;
                 /// @internal
                 /// @brief This is a pointer to the managert that created this listener.
-                SoundScapeManager* Manager;
+                OALS::SoundScapeManager* Manager;
                 /// @internal
                 /// @brief This is a pointer to the OALS context this listener belongs to.
                 ALCcontext* Context;
@@ -99,7 +99,7 @@ namespace Mezzanine
                 /// @brief Internal constructor.
                 /// @param ListenContext The context this listener belongs to.
                 /// @param Creator A pointer to the manager that created this listener.
-                Listener(ALCcontext* ListenContext, SoundScapeManager* Creator);
+                Listener(ALCcontext* ListenContext, OALS::SoundScapeManager* Creator);
                 /// @brief Class destructor.
                 virtual ~Listener();
 
