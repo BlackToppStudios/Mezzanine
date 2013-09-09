@@ -993,13 +993,13 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            void OALS::SoundProxy::ProtoSerialize(XML::Node& CurrentRoot) const
+            void OALS::SoundProxy::ProtoSerialize(XML::Node& ParentNode) const
             {
                 /// @todo Implement this.
                 MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for SoundProxies.");
             }
 
-            void OALS::SoundProxy::ProtoDeSerialize(const XML::Node& OneNode)
+            void OALS::SoundProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
             {
                 /// @todo Implement this.
                 MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for SoundProxies.");
