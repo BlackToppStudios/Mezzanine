@@ -46,11 +46,6 @@
 /// @details SWIG is a C/C++ source code preprocessor that reads source files
 /// and produces an implementation of bindings for that language. Currently it
 /// is only used for Lua. It can be used for other items in the future.
-/// \n This file defines a number of messages to make troubleshooting SWIG
-/// and the script bindings a little easier.
-///     - SWIG_INFO_WARN - 999: Warning 990 to 999 are informational messages.
-///     - SWIG_INFO_BEGINCLASS - 990: Begining parsing of class.
-///     - SWIG_INFO_ENDCLASS - 991: Completing parsing of class.
 ///////////////////////////////////////////////////////////////////////////////
 
 // Prevent doxygen parsing of the items to insert in the bindings files
