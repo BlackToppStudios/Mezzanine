@@ -78,6 +78,8 @@ namespace Mezzanine
             /// @details Constructor that sets all values to match the Ogre vector.
             /// @param Vec The vector to be copied to make this vector.
             Vector2(const Ogre::Vector2& Vec);
+            /// @brief Virtual Deconstructor
+            ~Vector2();
 
             /// @brief Gets a Ogre vector2.
             /// @details Creates a Ogre vector2 with values equal to this class and returns it.

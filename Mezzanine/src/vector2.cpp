@@ -68,6 +68,9 @@ namespace Mezzanine
         ExtractOgreVector2(Vec);
     }
 
+    Mezzanine::Vector2::~Vector2()
+        {}
+
     Ogre::Vector2 Vector2::GetOgreVector2() const
     {
         Ogre::Vector2 Theirs;
@@ -257,9 +260,7 @@ namespace Mezzanine
     }
 
     String Vector2::SerializableName()
-        { return String("Vector2"); }
-
-
+    { return String("Vector2"); }
 
 }
 
