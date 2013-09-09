@@ -74,7 +74,7 @@ namespace Mezzanine
 
 #ifndef SWIG_SAFE
 
-SWIG_INFO_BEGINCLASS
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief Interface for node printing (see @ref Node::Print)
         class MEZZ_LIB Writer
@@ -164,7 +164,7 @@ SWIG_INFO_BEGINCLASS
         };//XMLStreamWrapper
 
 
-SWIG_INFO_ENDCLASS // placed here to avoid inclusion in safe swig library for scripting language.
+ // placed here to avoid inclusion in safe swig library for scripting language.
 
 #endif //
     }

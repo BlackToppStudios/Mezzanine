@@ -89,28 +89,11 @@
 
     // Fix for: XML/xml.h:XXXX: Warning 403: Class 'Mezzanine::XML::XPathException' might be abstract, no constructors generated
     //%warnfilter(403) Mezzanine::XML::XPathException;
-
-    //#define SWIG_WARN_FOR_TROUBLSHOOTING 1
-    #ifdef SWIG_WARN_FOR_TROUBLSHOOTING
-        #define SWIG_INFO_BEGINCLASS        %warn "990: Begining parsing of class."
-        #define SWIG_INFO_ENDCLASS          %warn "991: Completing parsing of class."
-        #define SWIG_INFO_WARN              %warn "999: Warning 990 to 999 are informational messages."
-    #else
-        #define SWIG_INFO_BEGINCLASS
-        #define SWIG_INFO_ENDCLASS
-        #define SWIG_INFO_WARN
-    #endif
-#else
-
-    // Define warnings as nothing as to not interfere with other classes
-    #define SWIG_INFO_BEGINCLASS
-    #define SWIG_INFO_ENDCLASS
-    #define SWIG_INFO_WARN
-#endif
+#endif // end SWIG
 
 
 // Warn SWIG users of the messages that Swig will produce
-SWIG_INFO_WARN
+
 
 
 

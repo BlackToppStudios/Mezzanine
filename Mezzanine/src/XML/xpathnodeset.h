@@ -62,7 +62,7 @@
 #include "datatypes.h"
 #include "XML/xpathnode.h"
 
-SWIG_INFO_BEGINCLASS
+
 
 namespace Mezzanine
 {
@@ -161,7 +161,7 @@ namespace Mezzanine
     }
 } // /namespace Mezzanine
 
-SWIG_INFO_ENDCLASS
+
 
 #endif // Include guard
 

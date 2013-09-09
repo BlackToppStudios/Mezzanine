@@ -53,7 +53,7 @@ namespace Ogre
     class Vector3;
 }
 
-SWIG_INFO_BEGINCLASS
+
 
 namespace Mezzanine
 {
@@ -534,7 +534,7 @@ Mezzanine::Vector3& MEZZ_LIB operator << (Mezzanine::Vector3& VecTo, const Ogre:
 Mezzanine::Vector3& MEZZ_LIB operator << (Mezzanine::Vector3& VecTo, const btVector3& VecFrom);
 #endif // \SWIG
 
-SWIG_INFO_ENDCLASS
+
 
 
 

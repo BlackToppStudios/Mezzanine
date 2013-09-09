@@ -56,7 +56,7 @@
 #ifndef _xmlboilerplate_cpp
 #define _xmlboilerplate_cpp
 
-#include "XML/xmlboilerplate.h"
+#include "XML/parseresult.h"
 
 namespace Mezzanine
 {
