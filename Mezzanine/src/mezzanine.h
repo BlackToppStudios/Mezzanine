@@ -127,9 +127,9 @@
 #include "timer.h"
 #include "transform.h"                  // done
 #include "UI/ui.h"
-#include "vector2.h"                    // done
 #endif // \no SWIG
 
+#include "vector2.h"                    // done
 #include "vector3.h"                    // done
 
 // more stuff swig shouldn't read yet

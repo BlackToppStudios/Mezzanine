@@ -198,6 +198,9 @@ namespace Mezzanine
     };
 }
 
+// We can skip these operators when creating bindings with swig
+#ifndef SWIG
+
 /// @brief Used to Serialize an Mezzanine::Vector2 to a human readable stream
 /// @details Sends proper XML to the output stream,
 /// including versioning information which will be used to maintain backwards compatibility. The current XML format
@@ -224,5 +227,8 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Vector2& Ve
 /// @return This returns a reference to the XML::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector2& Vec);
+
+#endif // \SWIG
+
 
 #endif

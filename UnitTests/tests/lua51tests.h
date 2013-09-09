@@ -459,6 +459,31 @@ class lua51tests : public UnitTestGroup
             /// Lua manual at http://www.lua.org/manual/5.1/manual.html#5.9 .
             virtual void OpenDebugLibrary();
             */
+
+            {
+                try
+                {
+                    Scripting::Lua::Lua51Script RealArgScript("function TakeArgReal(x)\n"
+                                                              "   Vec1=MezzanineSafe.Vector2(x,3)\n"
+                                                              "   Vec2=MezzanineSafe.Vector2(2,1)\n"
+                                                              "   Vec3=Vec2*Vec1\n"
+                                                              "   return Vec3.X\n"
+                                                              "end"
+                                                              ,LuaRuntimeSafe);
+                    LuaRuntimeSafe.Execute(RealArgScript);
+
+                    Scripting::Lua::Lua51Script RealArgCall("TakeArgReal",LuaRuntimeSafe,true);
+                    RealArgCall.AddArgument(Real(9.5));
+                    CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
+                    RealArgCall.AddReturn(RealReturn);
+                    LuaRuntimeSafe.Execute(RealArgCall);
+
+                    TEST(19.0==RealReturn->GetWhole(), "Engine::Vector2");
+                } catch (ScriptLuaException& ) {
+                    TEST_RESULT(Testing::Failed,"Engine::Vector2");
+                }
+            }
+
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
