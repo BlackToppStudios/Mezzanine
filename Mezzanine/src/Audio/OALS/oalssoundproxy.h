@@ -60,6 +60,7 @@ namespace Mezzanine
         {
             class Filter;
             class Effect;
+            class SoundScapeManager;
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the OALS implementation for a sound in 3D space.
             /// @details
@@ -95,23 +96,56 @@ namespace Mezzanine
                 typedef BufferContainer::const_iterator           ConstBufferIterator;
             protected:
                 /// @internal
+                /// @brief This stores all the contexts this proxy needs to be aware of and the sources that belong to those contexts.
+                ContextSourceContainer ContextsAndSources;
+                /// @internal
+                /// @brief This stores the handles to all the OALS buffers owned by this sound proxy.
+                BufferContainer Buffers;
+                /// @internal
+                /// @brief This stores the effects currently being applied to audio emitted by this sound proxy.
+                EffectContainer Effects;
+                /// @internal
+                /// @brief The 3D rotation of this sound proxy.
+                Quaternion Orientation;
+                /// @internal
+                /// @brief The 3D position of this sound proxy.
+                Vector3 Location;
+                /// @internal
+                /// @brief The direction and speed of this sound proxy.
+                Vector3 Velocity;
+                /// @internal
+                /// @brief The direction and speed of this object for doppler effects.
+                Vector3 DopplerVelocity;
+                /// @internal
+                /// @brief This is a pointer to the managert that created this listener.
+                SoundScapeManager* Manager;
+                /// @internal
                 /// @brief The filter processing audio emitted by this sound proxy.
                 OALS::Filter* SoundFilter;
                 /// @internal
                 /// @brief The decoder responsible for tracking this sound proxy's position in the audio stream and decompressing into something we can populate buffers with.
                 iDecoder* SoundDecoder;
                 /// @internal
-                /// @brief Stores whether or not sound being emitted in a specific direction.
-                bool DirectSound;
+                /// @brief The modifier that can enhance or diminish the doppler effect coming from this sound proxy.
+                Real DopplerStrength;
                 /// @internal
-                /// @brief The type of sound proxy this is.
-                UInt16 SType;
+                /// @brief The outer angle of the cone at which this sound proxy can be heard.
+                Real OuterConeAngle;
                 /// @internal
-                /// @brief This is a bitfield storing the the current state of this sound proxy.
-                UInt16 State;
+                /// @brief The gain of the sound proxy on the outer edge of it's audible cone.
+                Real OuterConeVolume;
                 /// @internal
-                /// @brief The speed of playback modifier for the sound proxy.  Higher values make playback sound proxy more high pitched.
-                Real SoundPitch;
+                /// @brief The inner angle of the cone at which this sound proxy can be heard.
+                Real InnerConeAngle;
+                /// @internal
+                /// @brief The minimum distance at which this sound proxy can be heard.
+                Real MinDist;
+                /// @internal
+                /// @brief The maximum distance at which this sound proxy can be heard.
+                Real MaxDist;
+                /// @internal
+                /// @brief The value determining how the sound proxy will attenuate over a distance.
+                Real RolloffFactor;
                 /// @internal
                 /// @brief The base volume applied to this sound proxy alone, before external modifiers.
                 Real BaseVolume;
@@ -122,47 +156,17 @@ namespace Mezzanine
                 /// @brief The maximum volume this sound proxy is allowed to reach, regardless of other settings.
                 Real MaxVolume;
                 /// @internal
-                /// @brief The value determining how the sound proxy will attenuate over a distance.
-                Real RolloffFactor;
+                /// @brief The speed of playback modifier for the sound proxy.  Higher values make playback sound proxy more high pitched.
+                Real SoundPitch;
                 /// @internal
-                /// @brief The minimum distance at which this sound proxy can be heard.
-                Real MinDist;
+                /// @brief The type of sound proxy this is.
+                UInt16 SType;
                 /// @internal
-                /// @brief The maximum distance at which this sound proxy can be heard.
-                Real MaxDist;
+                /// @brief This is a bitfield storing the the current state of this sound proxy.
+                UInt16 State;
                 /// @internal
-                /// @brief The inner angle of the cone at which this sound proxy can be heard.
-                Real InnerConeAngle;
-                /// @internal
-                /// @brief The outer angle of the cone at which this sound proxy can be heard.
-                Real OuterConeAngle;
-                /// @internal
-                /// @brief The gain of the sound proxy on the outer edge of it's audible cone.
-                Real OuterConeVolume;
-                /// @internal
-                /// @brief The modifier that can enhance or diminish the doppler effect coming from this sound proxy.
-                Real DopplerStrength;
-                /// @internal
-                /// @brief The direction and speed of this object for doppler effects.
-                Vector3 DopplerVelocity;
-                /// @internal
-                /// @brief The direction and speed of this sound proxy.
-                Vector3 Velocity;
-                /// @internal
-                /// @brief The 3D position of this sound proxy.
-                Vector3 Location;
-                /// @internal
-                /// @brief The 3D rotation of this sound proxy.
-                Quaternion Orientation;
-                /// @internal
-                /// @brief This stores the handles to all the OALS buffers owned by this sound proxy.
-                BufferContainer Buffers;
-                /// @internal
-                /// @brief This stores the effects currently being applied to audio emitted by this sound proxy.
-                EffectContainer Effects;
-                /// @internal
-                /// @brief This stores all the contexts this proxy needs to be aware of and the sources that belong to those contexts.
-                ContextSourceContainer ContextsAndSources;
+                /// @brief Stores whether or not sound being emitted in a specific direction.
+                bool DirectSound;
 
                 /// @internal
                 /// @brief Makes the context this listener belongs to the current context.
@@ -175,7 +179,8 @@ namespace Mezzanine
                 /// @param Type The type of sound to initialize.  See @ref Audio::SoundType enum for the basic values.
                 /// @param Decode A pointer to the decoder assigned to this sound.
                 /// @param Contexts A container holding all the current 3D contexts.
-                SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts);
+                /// @param Creator A pointer to the manager that created this proxy.
+                SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts, SoundScapeManager* Creator);
                 /// @brief Class destructor.
                 virtual ~SoundProxy();
 
@@ -213,6 +218,9 @@ namespace Mezzanine
                 virtual void RemoveFromWorld();
                 /// @copydoc WorldProxy::IsInWorld()
                 virtual bool IsInWorld() const;
+
+                /// @copydoc WorldProxy::GetCreator() const
+                virtual WorldManager* GetCreator() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Playback

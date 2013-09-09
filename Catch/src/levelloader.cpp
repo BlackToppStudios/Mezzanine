@@ -22,7 +22,7 @@ void LevelLoader::LoadFerris()
 {
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
@@ -69,7 +69,7 @@ void LevelLoader::LoadFerris()
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Setup and Create the shapes that will be used.
-    CShapeMan->LoadAllShapesFromFile("Ferris.bullet",FerrisGroup);
+    CShapeMan->LoadAllShapesFromBinaryFile("Ferris.bullet",FerrisGroup);
 
     //----------
     /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
@@ -273,7 +273,7 @@ void LevelLoader::LoadBigCurve()
 {
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
@@ -391,7 +391,7 @@ void LevelLoader::LoadBlowsNotSucks()
 {
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
@@ -438,7 +438,7 @@ void LevelLoader::LoadBlowsNotSucks()
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Setup and Create the shapes that will be used.
-    CShapeMan->LoadAllShapesFromFile("BlowsNotSucks.bullet",BlowsNotSucksGroup);
+    CShapeMan->LoadAllShapesFromBinaryFile("BlowsNotSucks.bullet",BlowsNotSucksGroup);
 
     //----------
     /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
@@ -590,7 +590,7 @@ void LevelLoader::LoadJustice()
 {
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
@@ -637,7 +637,7 @@ void LevelLoader::LoadJustice()
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Setup and Create the shapes that will be used.
-    CShapeMan->LoadAllShapesFromFile("Justice.bullet",JusticeGroup);
+    CShapeMan->LoadAllShapesFromBinaryFile("Justice.bullet",JusticeGroup);
 
     //----------
     /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
@@ -799,7 +799,7 @@ void LevelLoader::LoadRollers()
 {
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
@@ -933,7 +933,7 @@ void LevelLoader::LoadJustBounce()
 {
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
@@ -980,7 +980,7 @@ void LevelLoader::LoadJustBounce()
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Setup and Create the shapes that will be used.
-    CShapeMan->LoadAllShapesFromFile("JustBounce.bullet",JustBounceGroup);
+    CShapeMan->LoadAllShapesFromBinaryFile("JustBounce.bullet",JustBounceGroup);
 
     //----------
     /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();

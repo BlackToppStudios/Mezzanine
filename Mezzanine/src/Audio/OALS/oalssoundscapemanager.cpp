@@ -218,7 +218,7 @@ namespace Mezzanine
             iListener* SoundScapeManager::CreateListener()
             {
                 ALCcontext* ListenerContext = this->CreateContext();
-                OALS::Listener* NewListener = new OALS::Listener(ListenerContext);
+                OALS::Listener* NewListener = new OALS::Listener(ListenerContext,this);
                 this->Listeners.push_back(NewListener);
                 return NewListener;
             }
@@ -268,7 +268,7 @@ namespace Mezzanine
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
-                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,NULL,this->Contexts);
+                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,NULL,this->Contexts,this);
                 SoundProxies.push_back(NewSoundProxy);
                 return NewSoundProxy;
             }
@@ -284,7 +284,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = Factory->CreateDecoder(Stream);
-                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,SoundDecoder,this->Contexts);
+                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,SoundDecoder,this->Contexts,this);
                 SoundProxies.push_back(NewSoundProxy);
                 return NewSoundProxy;
             }
@@ -300,7 +300,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = static_cast<RawDecoderFactory*>(Factory)->CreateDecoder(Stream,Frequency,Config);
-                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,SoundDecoder,this->Contexts);
+                OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,SoundDecoder,this->Contexts,this);
                 SoundProxies.push_back(NewSoundProxy);
                 return NewSoundProxy;
             }

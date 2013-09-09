@@ -44,7 +44,7 @@
 #include "actorrigid.h"
 #include "Physics/physicsmanager.h"
 #include "Physics/collisionshape.h"
-#include "collisionshapemanager.h"
+#include "Physics/collisionshapemanager.h"
 #include "Graphics/mesh.h"
 #include "meshmanager.h"
 #include "scenemanager.h"

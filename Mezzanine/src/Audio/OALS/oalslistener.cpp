@@ -50,6 +50,7 @@
 #define OALS_STRUCTS_DECLARED
 
 #include "Audio/OALS/oalslistener.h"
+#include "Audio/OALS/oalssoundscapemanager.h"
 
 #include "exception.h"
 
@@ -59,9 +60,10 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            Listener::Listener(ALCcontext* ListenContext) :
+            Listener::Listener(ALCcontext* ListenContext, SoundScapeManager* Creator) :
                 MPU(1.0),
                 VolumeModifier(1.0),
+                Manager(Creator),
                 Context(ListenContext),
                 InWorld(false)
             {
@@ -164,6 +166,11 @@ namespace Mezzanine
             bool Listener::IsInWorld() const
             {
                 return this->InWorld;
+            }
+
+            WorldManager* Listener::GetCreator() const
+            {
+                return this->Manager;
             }
 
             ///////////////////////////////////////////////////////////////////////////////

@@ -696,7 +696,7 @@ void CatchApp::UnloadLevel()
     if("MainMenu"==Loader->GetCurrentLevel())
         return;
     ResourceManager* ResMan = ResourceManager::GetSingletonPtr();
-    CollisionShapeManager* CShapeMan = CollisionShapeManager::GetSingletonPtr();
+    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();

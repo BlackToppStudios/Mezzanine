@@ -43,7 +43,7 @@
 #include "worldobjectphysicssettings.h"
 #include "worldobject.h"
 #include "Physics/collisionshape.h"
-#include "collisionshapemanager.h"
+#include "Physics/collisionshapemanager.h"
 #include "Physics/collision.h"
 #include "Physics/physicsmanager.h"
 #include "serialization.h"
@@ -200,7 +200,7 @@ namespace Mezzanine
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    Physics::CollisionShape* Shapeptr = Mezzanine::CollisionShapeManager::GetSingletonPtr()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString());
+                    Physics::CollisionShape* Shapeptr = Mezzanine::Physics::CollisionShapeManager::GetSingletonPtr()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString());
                     if(!Shapeptr)
                         { DeSerializeError("Find the correct Collision Shape",this->WorldObjectPhysicsSettings::SerializableName()); }
                     this->SetCollisionShape( Shapeptr );

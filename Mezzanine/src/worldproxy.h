@@ -45,6 +45,7 @@
 namespace Mezzanine
 {
     class WorldObject;
+    class WorldManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for proxy objects belonging to the various 3D subsystems.
     /// @details
@@ -71,9 +72,13 @@ namespace Mezzanine
         /// @brief Gets whether or not this object is inside of it's world.
         /// @return Returns true if this proxy is inserted in it's respective subsystems world.
         virtual bool IsInWorld() const = 0;
-        /// @brief Gets a pointer to the parent object that owns this proxy.
-        /// @return Returns a pointer to the WorldObject this proxy belongs to, or NULL if this proxy isn't bound to a WorldObject.
+
+        /// @brief Gets a pointer to the parent object controlling this proxy.
+        /// @return Returns a pointer to the WorldObject controlling this proxy, or NULL if this proxy isn't bound to a WorldObject.
         virtual WorldObject* GetParentObject() const;
+        /// @brief Gets a pointer to this proxies creator.
+        /// @return Returns a pointer to the WorldManager that created this WorldProxy.
+        virtual WorldManager* GetCreator() const = 0;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods

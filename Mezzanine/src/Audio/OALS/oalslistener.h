@@ -56,6 +56,7 @@ namespace Mezzanine
     {
         namespace OALS
         {
+            class SoundScapeManager;
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the OpenALSoft implemenation for an Audio listener.
             /// @details
@@ -79,6 +80,9 @@ namespace Mezzanine
                 /// @brief This stores the modifier to be applied to the volume of all sounds heard by this listener.
                 Real VolumeModifier;
                 /// @internal
+                /// @brief This is a pointer to the managert that created this listener.
+                SoundScapeManager* Manager;
+                /// @internal
                 /// @brief This is a pointer to the OALS context this listener belongs to.
                 ALCcontext* Context;
                 /// @internal
@@ -94,7 +98,8 @@ namespace Mezzanine
             public:
                 /// @brief Internal constructor.
                 /// @param ListenContext The context this listener belongs to.
-                Listener(ALCcontext* ListenContext);
+                /// @param Creator A pointer to the manager that created this listener.
+                Listener(ALCcontext* ListenContext, SoundScapeManager* Creator);
                 /// @brief Class destructor.
                 virtual ~Listener();
 
@@ -119,8 +124,11 @@ namespace Mezzanine
                 virtual void AddToWorld();
                 /// @copydoc WorldProxy::RemoveFromWorld()
                 virtual void RemoveFromWorld();
-                /// @copydoc WorldProxy::IsInWorld()
+                /// @copydoc WorldProxy::IsInWorld() const
                 virtual bool IsInWorld() const;
+
+                /// @copydoc WorldProxy::GetCreator() const
+                virtual WorldManager* GetCreator() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Transform Methods

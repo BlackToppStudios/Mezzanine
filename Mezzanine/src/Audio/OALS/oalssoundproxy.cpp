@@ -50,6 +50,7 @@
 #define OALS_STRUCTS_DECLARED
 
 #include "Audio/OALS/oalssoundproxy.h"
+#include "Audio/OALS/oalssoundscapemanager.h"
 #include "Audio/OALS/oalsfilter.h"
 #include "Audio/OALS/oalseffect.h"
 #include "Audio/OALS/oalsdefines.h"
@@ -102,23 +103,24 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Sound Methods
 
-            OALS::SoundProxy::SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts)
-                : SoundFilter(NULL),
-                  SoundDecoder(Decode),
-                  DirectSound(false),
-                  SType(Type),
-                  State(OALS::PS_Stopped),
-                  SoundPitch(1.0),
-                  BaseVolume(1.0),
-                  MinVolume(0.0),
-                  MaxVolume(1.0),
-                  RolloffFactor(1.0),
-                  MinDist(1.0),
-                  MaxDist(std::numeric_limits<Real>::max()),
-                  InnerConeAngle(360.0),
-                  OuterConeAngle(360.0),
-                  OuterConeVolume(0.0),
-                  DopplerStrength(1.0)
+            OALS::SoundProxy::SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts, SoundScapeManager* Creator) :
+                Manager(Creator),
+                SoundFilter(NULL),
+                SoundDecoder(Decode),
+                DopplerStrength(1.0),
+                OuterConeAngle(360.0),
+                OuterConeVolume(0.0),
+                InnerConeAngle(360.0),
+                MinDist(1.0),
+                MaxDist(std::numeric_limits<Real>::max()),
+                RolloffFactor(1.0),
+                BaseVolume(1.0),
+                MinVolume(0.0),
+                MaxVolume(1.0),
+                SoundPitch(1.0),
+                SType(Type),
+                State(OALS::PS_Stopped),
+                DirectSound(false)
             {
                 this->DopplerVelocity.Zero();
                 this->Velocity.Zero();
@@ -346,6 +348,11 @@ namespace Mezzanine
             bool OALS::SoundProxy::IsInWorld() const
             {
                 return (this->State & OALS::PS_InWorld);
+            }
+
+            WorldManager* OALS::SoundProxy::GetCreator() const
+            {
+                return this->Manager;
             }
 
             ///////////////////////////////////////////////////////////////////////////////
