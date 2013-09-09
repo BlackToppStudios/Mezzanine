@@ -120,8 +120,8 @@ namespace Mezzanine
             /// @param Shape The shape to be stored.
             virtual void StoreShape(CollisionShape* Shape);
             /// @brief Gets a shape already stored in this manager.
-            /// @return Returns a pointer to the desired shape.
             /// @param Name the name of the desired shape.
+            /// @return Returns a pointer to the desired shape, or NULL if no such shape exists.
             virtual CollisionShape* GetShape(const String& Name);
             /// @brief Gets the number of stored shapes in this manager.
             /// @return Returns a whole representing how many shapes this manager is storing.
