@@ -78,8 +78,6 @@ namespace Mezzanine
             /// @details Constructor that sets all values to match the Ogre vector.
             /// @param Vec The vector to be copied to make this vector.
             Vector2(const Ogre::Vector2& Vec);
-            /// @brief Virtual Deconstructor
-            ~Vector2();
 
             /// @brief Gets a Ogre vector2.
             /// @details Creates a Ogre vector2 with values equal to this class and returns it.
@@ -187,12 +185,12 @@ namespace Mezzanine
             // Serializable
             /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
             /// @param OneNode and XML::Node containing the data.
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            void ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Vector2"
