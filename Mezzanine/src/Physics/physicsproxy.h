@@ -64,6 +64,10 @@ namespace Mezzanine
         {
         protected:
             /// @internal
+            /// @brief A vector3 storing the scaling applied to this body.
+            /// @note This exists because in bullet scaling is a property of shapes instead of bodies.
+            Vector3 BodyScale;
+            /// @internal
             /// @brief The physics shape of this proxy.
             CollisionShape* ProxyShape;
             /// @internal
@@ -75,6 +79,7 @@ namespace Mezzanine
             /// @internal
             /// @brief  Stores the kind of World Objects that can collide with each other.
             Whole CollisionMask;
+
             /// @internal
             /// @brief Provides common logic for updating the collision shape or it's scaling.
             virtual void UpdateShapeData(CollisionShape* Shape, const Vector3& Scaling);
@@ -90,6 +95,14 @@ namespace Mezzanine
             /// @brief Accessor for the type of physics object.
             /// @return Returns enum value for the type of proxy this object is.
             virtual Physics::ProxyType GetPhysicsProxyType() const = 0;
+            /// @brief Gets whether or not this proxy can have scaling applied to itself (instead of it's shape).
+            /// @remarks When using some collision shapes (such as compound shapes or dynamic trimesh shapes) you cannot
+            /// scale the body using that shape appropriately.  Any scaling that would be applied to the body has to be
+            /// applied to the shape instead, which will impact it's dimensions globally, across all proxies using that
+            /// shape.  In cases where the shape is used by only one proxy, this isn't an issue.  Otherwise scaling should
+            /// be done with care.  This method will tell you if you should use caution when scaling this proxy.
+            /// @return Returns true if this body can scale independantly from it's shape, false otherwise.
+            virtual Bool CanLocallyScale() const;
 
             /// @copydoc WorldProxy::AddToWorld()
             virtual void AddToWorld() = 0;
@@ -245,8 +258,12 @@ namespace Mezzanine
             /// @copydoc WorldProxy::GetOrientation() const
             virtual Quaternion GetOrientation() const;
             /// @copydoc WorldProxy::SetScale(const Vector3&)
+            /// @note In order to preserve consistent functionality between physics proxies and proxies of other subsystems, in the
+            /// event this proxy can't be locally scaled, it will globally scale the collision shape it is currently using.
             virtual void SetScale(const Vector3& Sc);
             /// @copydoc WorldProxy::SetScale(const Real, const Real, const Real)
+            /// @note In order to preserve consistent functionality between physics proxies and proxies of other subsystems, in the
+            /// event this proxy can't be locally scaled, it will globally scale the collision shape it is currently using.
             virtual void SetScale(const Real X, const Real Y, const Real Z);
             /// @copydoc WorldProxy::GetScale() const
             virtual Vector3 GetScale() const;
@@ -266,17 +283,35 @@ namespace Mezzanine
             /// @copydoc WorldProxy::Rotate(const Quaternion&)
             virtual void Rotate(const Quaternion& Rotation);
             /// @copydoc WorldProxy::Scale(const Vector3&)
+            /// @note In order to preserve consistent functionality between physics proxies and proxies of other subsystems, in the
+            /// event this proxy can't be locally scaled, it will globally scale the collision shape it is currently using.
             virtual void Scale(const Vector3& Scale);
             /// @copydoc WorldProxy::Scale(const Real, const Real, const Real)
+            /// @note In order to preserve consistent functionality between physics proxies and proxies of other subsystems, in the
+            /// event this proxy can't be locally scaled, it will globally scale the collision shape it is currently using.
             virtual void Scale(const Real X, const Real Y, const Real Z);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
             /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            virtual void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @brief Convert the properties of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @brief Convert the shape of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            virtual void ProtoSerializeShape(XML::Node& SelfRoot) const;
+
             /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the shape of this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            virtual void ProtoDeSerializeShape(const XML::Node& SelfRoot);
+
             /// @copydoc WorldProxy::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
