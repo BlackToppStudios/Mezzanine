@@ -185,18 +185,21 @@ namespace Mezzanine
             // Serializable
             /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
             /// @param OneNode and XML::Node containing the data.
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            void ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Vector2"
             static String SerializableName();
     };
 }
+
+// We can skip these operators when creating bindings with swig
+#ifndef SWIG
 
 /// @brief Used to Serialize an Mezzanine::Vector2 to a human readable stream
 /// @details Sends proper XML to the output stream,
@@ -224,5 +227,8 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Vector2& Ve
 /// @return This returns a reference to the XML::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector2& Vec);
+
+#endif // \SWIG
+
 
 #endif

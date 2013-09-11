@@ -61,9 +61,9 @@
 #include "Threading/dagframescheduler.h"
 #include "Graphics/viewport.h"
 
-//#endif // \no SWIG
+#endif // \no SWIG
 #include "XML/xml.h"
-//#ifndef SWIG
+#ifndef SWIG
 
 // We put headers in our headers so we can include while we include
 #include "actorbase.h"                  // serializes
@@ -126,9 +126,9 @@
 #include "timer.h"
 #include "transform.h"                  // done
 #include "UI/ui.h"
-#include "vector2.h"                    // done
 #endif // \no SWIG
 
+#include "vector2.h"                    // done
 #include "vector3.h"                    // done
 
 // more stuff swig shouldn't read yet

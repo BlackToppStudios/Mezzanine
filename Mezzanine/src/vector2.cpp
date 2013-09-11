@@ -257,9 +257,7 @@ namespace Mezzanine
     }
 
     String Vector2::SerializableName()
-        { return String("Vector2"); }
-
-
+    { return String("Vector2"); }
 
 }
 

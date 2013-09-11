@@ -43,7 +43,7 @@
 
 #include "datatypes.h"
 
-SWIG_INFO_BEGINCLASS
+
 
 namespace Mezzanine
 {
@@ -2158,6 +2158,6 @@ namespace Mezzanine
     #endif
 }//Mezzanine
 
-SWIG_INFO_ENDCLASS
+
 
 #endif // \exception_cpp
