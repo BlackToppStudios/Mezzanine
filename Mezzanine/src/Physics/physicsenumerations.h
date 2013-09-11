@@ -47,6 +47,17 @@ namespace Mezzanine
 {
     namespace Physics
     {
+        /// @enum ActivationState
+        /// @brief This is used by physics proxies to monitor and set their physics activation.
+        enum ActivationState
+        {
+            AS_Active = 1,
+            AS_Island_Sleeping = 2,
+            AS_Wants_Deactivation = 3,
+            AS_DisableDeactivation = 4,
+            AS_DisableSimulation = 5
+        };
+
         /// @enum AnistropicFrictionFlags
         /// @brief This is used by physics proxies to help determine the behavior of it's anistropic friction behavior.
         /// @details See the documentation on the PhysicsProxy class for more details.
@@ -124,17 +135,6 @@ namespace Mezzanine
             PT_Rigid = 1,
             PT_Soft = 2,
             PT_Ghost = 3
-        };
-
-        /// @enum ActivationState
-        /// @brief This is used by physics proxies to monitor and set their physics activation.
-        enum ActivationState
-        {
-            AS_Active = 1,
-            AS_Island_Sleeping = 2,
-            AS_Wants_Deactivation = 3,
-            AS_DisableDeactivation = 4,
-            AS_DisableSimulation = 5
         };
     }//physics
 }//Mezzanine
