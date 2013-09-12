@@ -137,7 +137,7 @@ namespace Mezzanine
         /// @param Vec The other Mezzanine::Vector3 to copy to make this one.
         Vector3(const Mezzanine::Vector3& Vec);
         /// @brief Deserializing constructor
-        /// @param Vec The other Mezzanine::Vector3 to copy to make this one.
+        /// @param OneNode The XML node to deserialize from.
         explicit Vector3(XML::Node OneNode);
 
         ///////////////////////////////////////////////////////////////////////////////
