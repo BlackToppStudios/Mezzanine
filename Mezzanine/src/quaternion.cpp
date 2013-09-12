@@ -81,11 +81,14 @@ namespace Mezzanine
 
     Quaternion::Quaternion(const Mezzanine::Quaternion& Other)
     {
-        this->X=Other.X;
-        this->Y=Other.Y;
-        this->Z=Other.Z;
-        this->W=Other.W;
+        this->X = Other.X;
+        this->Y = Other.Y;
+        this->Z = Other.Z;
+        this->W = Other.W;
     }
+
+    Quaternion::Quaternion(const XML::Node& OneNode)
+        { this->ProtoDeSerialize(OneNode); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Fancy Math and Utilities

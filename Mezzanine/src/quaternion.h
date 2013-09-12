@@ -82,7 +82,6 @@ namespace Mezzanine
             /// @brief Blank Constructor.
             /// @details Basic no-initialization constructor.
             Quaternion();
-
             /// @brief Constructor.
             /// @details Constructor that sets all four axis' of rotation.
             /// @param X The X component of the Axis.
@@ -90,36 +89,33 @@ namespace Mezzanine
             /// @param Z The Z component of the Axis.
             /// @param W Rotation on the Axis X, Y and Z defined.
             Quaternion(const Real& X, const Real& Y, const Real& Z, const Real& W);
-
             /// @brief Axis and Rotation Constructor.
             /// @details This assembles a quaternion based on an axis and a rotation in radians.
             /// @param Angle Real representing the angle to be applied along the axis in radians.
             /// @param Axis Vector3 representing the axis to apply the rotation.
             Quaternion(const Real& Angle, const Vector3& Axis);
-
             /// @brief Rotation Matrix Constructor.
             /// @param Mat The matrix to set this quaternion from.
             Quaternion(const Matrix3x3& Mat);
-
             /// @brief Axes Constructor.
             /// @param AxisX The vector expressing the X axis.
             /// @param AxisY The vector expressing the Y axis.
             /// @param AxisZ The vector expressing the Z axis.
             Quaternion(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ);
-
             /// @brief Bullet Quaternion constructor.
             /// @details Constructor that sets all values to match the Bullet quaternion.
             /// @param Theirs The quaternion to be copied to make this quaternion.
             explicit Quaternion(const btQuaternion& Theirs);
-
             /// @brief Ogre Quaternion constructor.
             /// @details Constructor that sets all values to match the Ogre quaternion.
             /// @param Theirs The quaternion to be copied to make this quaternion.
             explicit Quaternion(const Ogre::Quaternion& Theirs);
-
             /// @brief Copy Constructor.
             /// @param Other The Quaternion to copy.
             Quaternion(const Mezzanine::Quaternion& Other);
+            /// @brief XML Constructor.
+            /// @param OneNode The XML node to deserialize from.
+            explicit Quaternion(const XML::Node& OneNode);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Fancy Math and Utilities
@@ -379,8 +375,8 @@ namespace Mezzanine
             /// @return A string containing "Quaternion"
             static String SerializableName();
 
-    };
-}
+    };//Quaternion
+}//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Right Hand Arithmetic Operators
