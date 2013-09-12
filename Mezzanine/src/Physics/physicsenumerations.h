@@ -58,10 +58,10 @@ namespace Mezzanine
             AS_DisableSimulation = 5
         };
 
-        /// @enum AnistropicFrictionFlags
+        /// @enum AnisotropicFrictionFlags
         /// @brief This is used by physics proxies to help determine the behavior of it's anistropic friction behavior.
         /// @details See the documentation on the PhysicsProxy class for more details.
-        enum AnistropicFrictionFlags
+        enum AnisotropicFrictionFlags
         {
             AFF_AnisotropicFrictionDisabled  = 0,
             AFF_AnisotropicFriction          = 1,
