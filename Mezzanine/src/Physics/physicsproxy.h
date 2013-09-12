@@ -79,10 +79,6 @@ namespace Mezzanine
             /// @internal
             /// @brief  Stores the kind of World Objects that can collide with each other.
             Whole CollisionMask;
-
-            /// @internal
-            /// @brief Provides common logic for updating the collision shape or it's scaling.
-            virtual void UpdateShapeData(CollisionShape* Shape, const Vector3& Scaling);
         public:
             /// @brief Standard Constructor.
             PhysicsProxy();
@@ -114,11 +110,17 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Settings
 
-            /// @brief Set the collision group and mask for the world object to determine what it should collide with.
+            /// @brief Set the collision group and mask for the proxy to determine what it should collide with.
             /// @details These values are automatically calculated for you with some sane default values.  Only edit these if you know what you are doing.
-            /// @param Group The collision group to which this world object belongs.
-            /// @param Mask The other groups to which this world object should collide with.
-            virtual void SetCollisionGroupAndMask(const Whole& Group, const Whole& Mask);
+            /// @param Group The collision group to which this proxy belongs.
+            /// @param Mask The other groups to which this proxy should collide with.
+            virtual void SetCollisionGroupAndMask(const Whole Group, const Whole Mask);
+            /// @brief Sets which collision group this proxy belongs to, which determines it's collision behavior.
+            /// @param Group The collision group to which this proxy belongs.
+            virtual void SetCollisionGroup(const Whole Group);
+            /// @brief Sets the collision mask of this proxy, which determines which groups it will collide with.
+            /// @param Mask The other groups to which this proxy should collide with.
+            virtual void SetCollisionMask(const Whole Mask);
             /// @brief Gets the objects collision group.
             /// @return Returns a Whole representing the collision group this object is set to.
             virtual Whole GetCollisionGroup() const;
@@ -200,6 +202,9 @@ namespace Mezzanine
             /// @param Friction A Vector3 expressing the coefficients on each of this objects local axes that will be applied to the global friction value.
             /// @param Mode The type of friction the passed in value should be set as.  See Physics::AnisotropicFrictionFlags enum for more details.
             virtual void SetAnisotropicFriction(const Vector3& Friction, const Whole Mode);
+            /// @brief Gets the current Anisotropic friction mode being applied to this proxy.
+            /// @return Returns a AnisotropicFrictionFlags enum value representing the anisotropic friction mode being used by this proxy.
+            virtual Physics::AnisotropicFrictionFlags GetAnisotropicFrictionMode() const;
             /// @brief Gets whether or not anisotropic friction is being used in a specified mode.
             /// @param Mode The Physics::AnisotropicFrictionFlags value to check for.
             /// @return Returns true if the specified mode is the current mode of Anisotropic Friction being used.
@@ -316,7 +321,7 @@ namespace Mezzanine
             virtual String GetDerivedSerializableName() const;
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.
-            static String SerializableName();
+            static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

@@ -247,10 +247,10 @@ namespace Mezzanine
 
             /// @brief Sets the scaling to be applied to the sharable/global child collision shape.
             virtual void setLocalScaling(const btVector3& scaling)
-                { this->ChildConvexShape->setLocalScaling(scaling); }
+                { this->SetChildScaling(scaling); }
             /// @brief Gets the scaling being applied to the sharable/global child collision shape.
             virtual const btVector3& getLocalScaling() const
-                { return this->ChildConvexShape->getLocalScaling(); }
+                { return this->GetChildScaling(); }
             /// @brief Sets the collision margin of the sharable/global child collision shape.
             virtual void setMargin(btScalar margin)
                 { this->ChildConvexShape->setMargin(margin); }
@@ -296,9 +296,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Collision Settings
 
-        void PhysicsProxy::SetCollisionGroupAndMask(const Whole& Group, const Whole& Mask)
+        void PhysicsProxy::SetCollisionGroupAndMask(const Whole Group, const Whole Mask)
         {
             this->CollisionGroup = Group;
+            this->CollisionMask = Mask;
+        }
+
+        void PhysicsProxy::SetCollisionGroup(const Whole Group)
+        {
+            this->CollisionGroup = Group;
+        }
+
+        void PhysicsProxy::SetCollisionMask(const Whole Mask)
+        {
             this->CollisionMask = Mask;
         }
 
@@ -333,7 +343,7 @@ namespace Mezzanine
                             if( this->ScalerShape == NULL ) {
                                 this->ScalerShape = new ScalingShape( ScaledShape, this->BodyScale.GetBulletVector3() );
                             }else{
-                                this->ScalerShape->SetChildShape( ScaledShape );
+                                static_cast<Physics::ScalingShape*>( this->ScalerShape )->SetChildShape( ScaledShape );
                             }
                             this->_GetBasePhysicsObject()->setCollisionShape( this->ScalerShape );
                             break;
@@ -466,11 +476,16 @@ namespace Mezzanine
         void PhysicsProxy::SetAnisotropicFriction(const Vector3& Friction, const Whole Mode)
             { this->_GetBasePhysicsObject()->setAnisotropicFriction(Friction.GetBulletVector3(),Mode); }
 
-        void PhysicsProxy::GetAnisotropicFrictionMode() const
+        Physics::AnisotropicFrictionFlags PhysicsProxy::GetAnisotropicFrictionMode() const
         {
-            if( this->IsAnisotropicFrictionModeSet(Physics::AFF_AnisotropicFrictionDisabled) ) return Physics::AFF_AnisotropicFrictionDisabled;
-            if( this->IsAnisotropicFrictionModeSet(Physics::AFF_AnisotropicFriction) ) ) return Physics::AFF_AnisotropicFriction;
-            if( this->IsAnisotropicFrictionModeSet(Physics::AFF_AnisotropicRollingFriction) ) ) return Physics::AFF_AnisotropicRollingFriction;
+            if( this->IsAnisotropicFrictionModeSet(Physics::AFF_AnisotropicFrictionDisabled) )
+                return Physics::AFF_AnisotropicFrictionDisabled;
+            if( this->IsAnisotropicFrictionModeSet(Physics::AFF_AnisotropicFriction) )
+                return Physics::AFF_AnisotropicFriction;
+            if( this->IsAnisotropicFrictionModeSet(Physics::AFF_AnisotropicRollingFriction) )
+                return Physics::AFF_AnisotropicRollingFriction;
+
+            return Physics::AFF_AnisotropicFrictionDisabled;
         }
 
         Bool PhysicsProxy::IsAnisotropicFrictionModeSet(const Whole Mode) const
@@ -555,9 +570,9 @@ namespace Mezzanine
         {
             this->BodyScale = Sc;
             if( this->ScalerShape != NULL ) {
-                this->ScalerShape->SetChildScaling(Sc);
+                this->ScalerShape->setLocalScaling(Sc.GetBulletVector3());
             }else if( this->ProxyShape != NULL ) {
-                this->ProxyShape->SetScaling(Sc)
+                this->ProxyShape->SetScaling(Sc);
             }
         }
 
@@ -632,7 +647,7 @@ namespace Mezzanine
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
 
             this->ProtoSerializeProperties(SelfRoot);
-            this->ProtoSeriailzeShape(SelfRoot);
+            this->ProtoSerializeShape(SelfRoot);
         }
 
         void PhysicsProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
@@ -652,10 +667,14 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("DeactivationTime").SetValue( this->GetDeactivationTime() ) &&
                 PropertiesNode.AppendAttribute("ContactProcessingThreshold").SetValue( this->_GetContactProcessingThreshold() ) )
             {
-                this->GetLocation().ProtoSerialize( PropertiesNode.AppendChild("Location") );
-                this->GetOrientation().ProtoSerialize( PropertiesNode.AppendChild("Orientation") );
-                this->GetScale().ProtoSerialize( PropertiesNode.AppendChild("Scale") );
-                this->GetAnisotropicFriction().ProtoSerialize( PropertiesNode.AppendChild("AnisotropicFriction") );
+                XML::Node LocationNode = PropertiesNode.AppendChild("Location");
+                this->GetLocation().ProtoSerialize( LocationNode );
+                XML::Node OrientationNode = PropertiesNode.AppendChild("Orientation");
+                this->GetOrientation().ProtoSerialize( OrientationNode );
+                XML::Node ScaleNode = PropertiesNode.AppendChild("Scale");
+                this->GetScale().ProtoSerialize( ScaleNode );
+                XML::Node AnisotropicFrictionNode = PropertiesNode.AppendChild("AnisotropicFriction");
+                this->GetAnisotropicFriction().ProtoSerialize( AnisotropicFrictionNode );
 
                 return;
             }else{
@@ -782,7 +801,7 @@ namespace Mezzanine
         String PhysicsProxy::GetDerivedSerializableName() const
             { return PhysicsProxy::SerializableName(); }
 
-        String PhysicsProxy::SerializableName()
+        String PhysicsProxy::GetSerializableName()
             { return "PhysicsProxy"; }
 
         ///////////////////////////////////////////////////////////////////////////////
