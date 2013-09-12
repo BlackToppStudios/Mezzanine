@@ -92,6 +92,11 @@ namespace Mezzanine
             /// @param rkPoint2 This is one point in the triangle
             Plane(const Vector3& rkPoint0, const Vector3& rkPoint1, const Vector3& rkPoint2);
 
+            // @brief The assignment operator from Plane to Plane
+            // @details this simply call Mezzanine::Plane::ExtractOgrePlane
+            // @param Plane2 The other Plane to take data from.
+            //void operator=(const Plane& Plane2);
+
             ///////////////////////////////////////////////////////////////////////////////
             // Conversions and adjustments
             /// @brief Gets an Ogre::Plane that contains this Plane's information
@@ -111,6 +116,7 @@ namespace Mezzanine
     }; // /Plane
 }// /Mezz
 
+#ifndef SWIG
 /// @brief Streaming output operator
 /// @details This converts the data of the Plane into a snippet of xml Ideal for sending to a log or cout.
 /// @param stream This is the stream we send our data to.
@@ -132,6 +138,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Plane& x);
 /// @return This returns an XML::Node refernce to allow operator chaining.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Plane& x);
-
+#endif
 
 #endif
