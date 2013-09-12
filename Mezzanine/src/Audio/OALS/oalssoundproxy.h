@@ -118,7 +118,7 @@ namespace Mezzanine
                 Vector3 DopplerVelocity;
                 /// @internal
                 /// @brief This is a pointer to the managert that created this listener.
-                SoundScapeManager* Manager;
+                OALS::SoundScapeManager* Manager;
                 /// @internal
                 /// @brief The filter processing audio emitted by this sound proxy.
                 OALS::Filter* SoundFilter;
@@ -180,7 +180,7 @@ namespace Mezzanine
                 /// @param Decode A pointer to the decoder assigned to this sound.
                 /// @param Contexts A container holding all the current 3D contexts.
                 /// @param Creator A pointer to the manager that created this proxy.
-                SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts, SoundScapeManager* Creator);
+                SoundProxy(const UInt16 Type, iDecoder* Decode, const ContextContainer& Contexts, OALS::SoundScapeManager* Creator);
                 /// @brief Class destructor.
                 virtual ~SoundProxy();
 
@@ -371,10 +371,11 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Serialization
 
-                /// @copydoc WorldProxy::ProtoSerialize(XML::Node& CurrentRoot) const
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-                /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node& OneNode)
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
+                /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
+                virtual void ProtoSerialize(XML::Node& ParentNode) const;
+                /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
+                virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+
                 /// @copydoc WorldProxy::GetDerivedSerializableName() const
                 virtual String GetDerivedSerializableName() const;
                 /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.

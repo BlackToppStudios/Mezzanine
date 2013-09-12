@@ -247,10 +247,10 @@ namespace Mezzanine
 
             /// @brief Sets the scaling to be applied to the sharable/global child collision shape.
             virtual void setLocalScaling(const btVector3& scaling)
-                { this->ChildConvexShape->setLocalScaling(scaling); }
+                { this->SetChildScaling(scaling); }
             /// @brief Gets the scaling being applied to the sharable/global child collision shape.
             virtual const btVector3& getLocalScaling() const
-                { return this->ChildConvexShape->getLocalScaling(); }
+                { return this->GetChildScaling(); }
             /// @brief Sets the collision margin of the sharable/global child collision shape.
             virtual void setMargin(btScalar margin)
                 { this->ChildConvexShape->setMargin(margin); }
@@ -280,70 +280,13 @@ namespace Mezzanine
         {
         }
 
-        void PhysicsProxy::UpdateShapeData(CollisionShape* Shape, const Vector3& Scaling)
-        {
-            if( this->ProxyShape != Shape || this->GetScale() != Scaling )
-            {
-                if( this->ScalerShape != NULL ) {
-                    delete this->ScalerShape;
-                    this->ScalerShape = NULL;
-                }
-
-                switch( Shape->GetType() )
-                {
-                    // All the basic convex shapes
-                    case CollisionShape::ST_Box:
-                    case CollisionShape::ST_Capsule:
-                    case CollisionShape::ST_Cone:
-                    case CollisionShape::ST_ConvexHull:
-                    case CollisionShape::ST_Cylinder:
-                    case CollisionShape::ST_MultiSphere:
-                    case CollisionShape::ST_Sphere:
-                    {
-                        this->ProxyShape = Shape;
-                        btConvexShape* ScaledShape = static_cast<btConvexShape*>( Shape->_GetInternalShape() );
-                        this->ScalerShape = new ScalingShape( ScaledShape, Scaling.GetBulletVector3() );
-                        this->_GetBasePhysicsObject()->setCollisionShape( this->ScalerShape );
-                        break;
-                    }
-                    // The static bvh trimesh
-                    case CollisionShape::ST_StaticTriMesh:
-                    {
-                        this->ProxyShape = Shape;
-                        btBvhTriangleMeshShape* ScaledShape = static_cast<btBvhTriangleMeshShape*>( Shape->_GetInternalShape() );
-                        this->ScalerShape = new btScaledBvhTriangleMeshShape( ScaledShape, Scaling.GetBulletVector3() );
-                        this->_GetBasePhysicsObject()->setCollisionShape( this->ScalerShape );
-                        break;
-                    }
-                    // No idea what to do about compound shapes
-                    case CollisionShape::ST_Compound:
-                    // GImpact doesn't have anything to give it suppost for per object scaling
-                    case CollisionShape::ST_DynamicTriMesh:
-                    // These shapes are either specifically taylored to the object or just don't make sense to scale
-                    case CollisionShape::ST_Heightfield:
-                    case CollisionShape::ST_Plane:
-                    case CollisionShape::ST_ActorSoft:
-                    default:
-                    {
-                        this->ProxyShape = Shape;
-                        this->_GetBasePhysicsObject()->setCollisionShape( this->ProxyShape->_GetInternalShape() );
-                        break;
-                    }
-                }
-
-                // Gotta flicker to update the AABB appropriately
-                if( this->IsInWorld() ) {
-                    this->RemoveFromWorld();
-                    this->AddToWorld();
-                }
-            }
-
-            if( Shape != NULL )
-                CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
-        }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
+
+        Bool PhysicsProxy::CanLocallyScale() const
+        {
+            return ( this->ScalerShape != NULL );
+        }
 
         bool PhysicsProxy::IsInWorld() const
         {
@@ -353,9 +296,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Collision Settings
 
-        void PhysicsProxy::SetCollisionGroupAndMask(const Whole& Group, const Whole& Mask)
+        void PhysicsProxy::SetCollisionGroupAndMask(const Whole Group, const Whole Mask)
         {
             this->CollisionGroup = Group;
+            this->CollisionMask = Mask;
+        }
+
+        void PhysicsProxy::SetCollisionGroup(const Whole Group)
+        {
+            this->CollisionGroup = Group;
+        }
+
+        void PhysicsProxy::SetCollisionMask(const Whole Mask)
+        {
             this->CollisionMask = Mask;
         }
 
@@ -371,7 +324,75 @@ namespace Mezzanine
 
         void PhysicsProxy::SetCollisionShape(CollisionShape* Shape)
         {
-            this->UpdateShapeData(Shape,this->GetScale());
+            if( this->ProxyShape != Shape )
+            {
+                if( Shape != NULL )
+                {
+                    switch( Shape->GetType() )
+                    {
+                        // All the basic convex shapes
+                        case CollisionShape::ST_Box:
+                        case CollisionShape::ST_Capsule:
+                        case CollisionShape::ST_Cone:
+                        case CollisionShape::ST_ConvexHull:
+                        case CollisionShape::ST_Cylinder:
+                        case CollisionShape::ST_MultiSphere:
+                        case CollisionShape::ST_Sphere:
+                        {
+                            btConvexShape* ScaledShape = static_cast<btConvexShape*>( Shape->_GetInternalShape() );
+                            if( this->ScalerShape == NULL ) {
+                                this->ScalerShape = new ScalingShape( ScaledShape, this->BodyScale.GetBulletVector3() );
+                            }else{
+                                static_cast<Physics::ScalingShape*>( this->ScalerShape )->SetChildShape( ScaledShape );
+                            }
+                            this->_GetBasePhysicsObject()->setCollisionShape( this->ScalerShape );
+                            break;
+                        }
+                        // The static bvh trimesh
+                        case CollisionShape::ST_StaticTriMesh:
+                        {
+                            btBvhTriangleMeshShape* ScaledShape = static_cast<btBvhTriangleMeshShape*>( Shape->_GetInternalShape() );
+                            if( this->ScalerShape == NULL ) {
+                                this->ScalerShape = new btScaledBvhTriangleMeshShape( ScaledShape, this->BodyScale.GetBulletVector3() );
+                            }else{
+                                this->ScalerShape->setLocalScaling( this->BodyScale.GetBulletVector3() );
+                            }
+                            this->_GetBasePhysicsObject()->setCollisionShape( this->ScalerShape );
+                            break;
+                        }
+                        // No idea what to do about compound shapes
+                        case CollisionShape::ST_Compound:
+                        // GImpact doesn't have anything to give it per object scaling
+                        case CollisionShape::ST_DynamicTriMesh:
+                        // These shapes are either specifically tailored to the object or just don't make sense to scale
+                        case CollisionShape::ST_Heightfield:
+                        case CollisionShape::ST_Plane:
+                        case CollisionShape::ST_ActorSoft:
+                        default:
+                        {
+                            if( this->ScalerShape != NULL ) {
+                                delete this->ScalerShape;
+                                this->ScalerShape = NULL;
+                            }
+                            this->_GetBasePhysicsObject()->setCollisionShape( Shape->_GetInternalShape() );
+                            break;
+                        }
+                    }
+                    this->ProxyShape = Shape;
+                }else{
+                    if( this->ScalerShape != NULL ) {
+                        delete this->ScalerShape;
+                        this->ScalerShape = NULL;
+                    }
+                    this->ProxyShape = NULL;
+                }
+
+                // Gotta flicker to update the AABB appropriately
+                if( this->IsInWorld() ) {
+                    this->RemoveFromWorld();
+                    this->AddToWorld();
+                }
+            }
         }
 
         CollisionShape* PhysicsProxy::GetCollisionShape() const
@@ -381,14 +402,14 @@ namespace Mezzanine
 
         void PhysicsProxy::SetCollisionResponse(bool Enable)
         {
-            if( Enable == this->GetCollisionResponse() )
-                return;
-
-            btCollisionObject* Base = this->_GetBasePhysicsObject();
-            if(Enable) {
-                Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE );
-            }else{
-                Base->setCollisionFlags( Base->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE );
+            if( Enable != this->GetCollisionResponse() )
+            {
+                btCollisionObject* Base = this->_GetBasePhysicsObject();
+                if( Enable ) {
+                    Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE );
+                }else{
+                    Base->setCollisionFlags( Base->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE );
+                }
             }
         }
 
@@ -454,6 +475,18 @@ namespace Mezzanine
 
         void PhysicsProxy::SetAnisotropicFriction(const Vector3& Friction, const Whole Mode)
             { this->_GetBasePhysicsObject()->setAnisotropicFriction(Friction.GetBulletVector3(),Mode); }
+
+        Physics::AnisotropicFrictionFlags PhysicsProxy::GetAnisotropicFrictionMode() const
+        {
+            if( this->IsAnisotropicFrictionModeSet(Physics::AFF_AnisotropicFrictionDisabled) )
+                return Physics::AFF_AnisotropicFrictionDisabled;
+            if( this->IsAnisotropicFrictionModeSet(Physics::AFF_AnisotropicFriction) )
+                return Physics::AFF_AnisotropicFriction;
+            if( this->IsAnisotropicFrictionModeSet(Physics::AFF_AnisotropicRollingFriction) )
+                return Physics::AFF_AnisotropicRollingFriction;
+
+            return Physics::AFF_AnisotropicFrictionDisabled;
+        }
 
         Bool PhysicsProxy::IsAnisotropicFrictionModeSet(const Whole Mode) const
             { return this->_GetBasePhysicsObject()->hasAnisotropicFriction(Mode); }
@@ -535,7 +568,12 @@ namespace Mezzanine
 
         void PhysicsProxy::SetScale(const Vector3& Sc)
         {
-            this->UpdateShapeData(this->ProxyShape,Sc);
+            this->BodyScale = Sc;
+            if( this->ScalerShape != NULL ) {
+                this->ScalerShape->setLocalScaling(Sc.GetBulletVector3());
+            }else if( this->ProxyShape != NULL ) {
+                this->ProxyShape->SetScaling(Sc);
+            }
         }
 
         void PhysicsProxy::SetScale(const Real X, const Real Y, const Real Z)
@@ -545,42 +583,7 @@ namespace Mezzanine
 
         Vector3 PhysicsProxy::GetScale() const
         {
-            switch( this->ProxyShape->GetType() )
-            {
-                // All the basic convex shapes
-                case CollisionShape::ST_Box:
-                case CollisionShape::ST_Capsule:
-                case CollisionShape::ST_Cone:
-                case CollisionShape::ST_ConvexHull:
-                case CollisionShape::ST_Cylinder:
-                case CollisionShape::ST_MultiSphere:
-                case CollisionShape::ST_Sphere:
-                {
-                    ScalingShape* ScaleShape = static_cast<ScalingShape*>( this->ScalerShape );
-                    return Vector3( ScaleShape->GetChildScaling() );
-                    break;
-                }
-                // The static bvh trimesh
-                case CollisionShape::ST_StaticTriMesh:
-                {
-                    btScaledBvhTriangleMeshShape* ScaleShape = static_cast<btScaledBvhTriangleMeshShape*>( this->ScalerShape );
-                    return Vector3( ScaleShape->getLocalScaling() );
-                    break;
-                }
-                // No idea what to do about compound shapes
-                case CollisionShape::ST_Compound:
-                // GImpact doesn't have anything to give it suppost for per object scaling
-                case CollisionShape::ST_DynamicTriMesh:
-                // These shapes are either specifically taylored to the object or just don't make sense to scale
-                case CollisionShape::ST_Heightfield:
-                case CollisionShape::ST_Plane:
-                case CollisionShape::ST_ActorSoft:
-                default:
-                {
-                    return Vector3( this->ProxyShape->GetScaling() );
-                    break;
-                }
-            }
+            return this->BodyScale;
         }
 
         void PhysicsProxy::Translate(const Vector3& Trans)
@@ -639,20 +642,166 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void PhysicsProxy::ProtoSerialize(XML::Node& CurrentRoot) const
+        void PhysicsProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
-            // We're at the base implementation, so no calling of child implementations
+            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+
+            this->ProtoSerializeProperties(SelfRoot);
+            this->ProtoSerializeShape(SelfRoot);
         }
 
-        void PhysicsProxy::ProtoDeSerialize(const XML::Node& OneNode)
+        void PhysicsProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
+            // We're at the base implementation, so no calling of child implementations
+            XML::Node PropertiesNode = SelfRoot.AppendChild( PhysicsProxy::GetSerializableName() + "Properties" );
 
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("CollisionGroup").SetValue( this->GetCollisionGroup() ) &&
+                PropertiesNode.AppendAttribute("CollisionMask").SetValue( this->GetCollisionMask() ) &&
+                PropertiesNode.AppendAttribute("CollisionFlags").SetValue( this->GetCollisionFlags() ) &&
+                PropertiesNode.AppendAttribute("Friction").SetValue( this->GetFriction() ) &&
+                PropertiesNode.AppendAttribute("RollingFriction").SetValue( this->GetRollingFriction() ) &&
+                PropertiesNode.AppendAttribute("AnisotropicFrictionMode").SetValue( this->GetAnisotropicFrictionMode() ) &&
+                PropertiesNode.AppendAttribute("Restitution").SetValue( this->GetRestitution() ) &&
+                PropertiesNode.AppendAttribute("ActivationState").SetValue( static_cast<Whole>( this->GetActivationState() ) ) &&
+                PropertiesNode.AppendAttribute("DeactivationTime").SetValue( this->GetDeactivationTime() ) &&
+                PropertiesNode.AppendAttribute("ContactProcessingThreshold").SetValue( this->_GetContactProcessingThreshold() ) )
+            {
+                XML::Node LocationNode = PropertiesNode.AppendChild("Location");
+                this->GetLocation().ProtoSerialize( LocationNode );
+                XML::Node OrientationNode = PropertiesNode.AppendChild("Orientation");
+                this->GetOrientation().ProtoSerialize( OrientationNode );
+                XML::Node ScaleNode = PropertiesNode.AppendChild("Scale");
+                this->GetScale().ProtoSerialize( ScaleNode );
+                XML::Node AnisotropicFrictionNode = PropertiesNode.AppendChild("AnisotropicFriction");
+                this->GetAnisotropicFriction().ProtoSerialize( AnisotropicFrictionNode );
+
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",PhysicsProxy::GetSerializableName() + "Properties",true);
+            }
+        }
+
+        void PhysicsProxy::ProtoSerializeShape(XML::Node& SelfRoot) const
+        {
+            XML::Node ShapeNode = SelfRoot.AppendChild( PhysicsProxy::GetSerializableName() + "Shape" );
+
+            if( ShapeNode.AppendAttribute("Version").SetValue("1") &&
+                ShapeNode.AppendAttribute("ProxyShape").SetValue( this->ProxyShape->GetName() ) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",PhysicsProxy::GetSerializableName() + "Shape",true);
+            }
+        }
+
+        void PhysicsProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+        {
+            this->ProtoDeSerializeProperties(SelfRoot);
+        }
+
+        void PhysicsProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            // We're at the base implementation, so no calling of child implementations
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( PhysicsProxy::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    Whole AFMode = 0;
+
+                    CurrAttrib = PropertiesNode.GetAttribute("CollisionGroup");
+                    if( !CurrAttrib.Empty() )
+                        this->SetCollisionGroup( CurrAttrib.AsWhole() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("CollisionMask");
+                    if( !CurrAttrib.Empty() )
+                        this->SetCollisionMask( CurrAttrib.AsWhole() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("CollisionFlags");
+                    if( !CurrAttrib.Empty() )
+                        this->SetCollisionFlags( CurrAttrib.AsWhole() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("Friction");
+                    if( !CurrAttrib.Empty() )
+                        this->SetFriction( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("RollingFriction");
+                    if( !CurrAttrib.Empty() )
+                        this->SetRollingFriction( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AnisotropicFrictionMode");
+                    if( !CurrAttrib.Empty() )
+                        AFMode = CurrAttrib.AsWhole();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("Restitution");
+                    if( !CurrAttrib.Empty() )
+                        this->SetRestitution( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("ActivationState");
+                    if( !CurrAttrib.Empty() )
+                        this->SetActivationState( static_cast<Physics::ActivationState>( CurrAttrib.AsWhole() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("DeactivationTime");
+                    if( !CurrAttrib.Empty() )
+                        this->SetDeactivationTime( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("ContactProcessingThreshold");
+                    if( !CurrAttrib.Empty() )
+                        this->_SetContactProcessingThreshold( CurrAttrib.AsReal() );
+
+                    // Get the properties that need their own nodes
+                    XML::Node PositionNode = PropertiesNode.GetChild("Location").GetFirstChild();
+                    if( !PositionNode.Empty() ) {
+                        Vector3 Loc(PositionNode);
+                        this->SetLocation(Loc);
+                    }
+
+                    XML::Node OrientationNode = PropertiesNode.GetChild("Orientation").GetFirstChild();
+                    if( !PositionNode.Empty() ) {
+                        Quaternion Rot(OrientationNode);
+                        this->SetOrientation(Rot);
+                    }
+
+                    XML::Node ScaleNode = PropertiesNode.GetChild("Scale").GetFirstChild();
+                    if( !PositionNode.Empty() ) {
+                        Vector3 Scale(ScaleNode);
+                        this->SetScale(Scale);
+                    }
+
+                    XML::Node AnisotropicFrictionNode = PropertiesNode.GetChild("AnisotropicFriction").GetFirstChild();
+                    if( !PositionNode.Empty() ) {
+                        Vector3 AF(AnisotropicFrictionNode);
+                        this->SetAnisotropicFriction(AF,AFMode);
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (PhysicsProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,PhysicsProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        void PhysicsProxy::ProtoDeSerializeShape(const XML::Node& SelfRoot)
+        {
+            XML::Attribute CurrAttrib;
+            XML::Node ShapeNode = SelfRoot.GetChild( PhysicsProxy::GetSerializableName() + "Properties" );
+
+            if( !ShapeNode.Empty() ) {
+                if(ShapeNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = ShapeNode.GetAttribute("ProxyShape");
+                    if( !CurrAttrib.Empty() ) {
+                        CollisionShape* Shape = CollisionShapeManager::GetSingletonPtr()->GetShape( CurrAttrib.AsString() );
+                        this->SetCollisionShape( Shape );
+                    }
+                }
+            }
         }
 
         String PhysicsProxy::GetDerivedSerializableName() const
             { return PhysicsProxy::SerializableName(); }
 
-        String PhysicsProxy::SerializableName()
+        String PhysicsProxy::GetSerializableName()
             { return "PhysicsProxy"; }
 
         ///////////////////////////////////////////////////////////////////////////////

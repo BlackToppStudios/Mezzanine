@@ -81,7 +81,7 @@ namespace Mezzanine
                 Real VolumeModifier;
                 /// @internal
                 /// @brief This is a pointer to the managert that created this listener.
-                SoundScapeManager* Manager;
+                OALS::SoundScapeManager* Manager;
                 /// @internal
                 /// @brief This is a pointer to the OALS context this listener belongs to.
                 ALCcontext* Context;
@@ -99,7 +99,7 @@ namespace Mezzanine
                 /// @brief Internal constructor.
                 /// @param ListenContext The context this listener belongs to.
                 /// @param Creator A pointer to the manager that created this listener.
-                Listener(ALCcontext* ListenContext, SoundScapeManager* Creator);
+                Listener(ALCcontext* ListenContext, OALS::SoundScapeManager* Creator);
                 /// @brief Class destructor.
                 virtual ~Listener();
 
@@ -174,10 +174,11 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Serialization
 
-                /// @copydoc WorldProxy::ProtoSerialize(XML::Node& CurrentRoot) const
-                virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-                /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node& OneNode)
-                virtual void ProtoDeSerialize(const XML::Node& OneNode);
+                /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
+                virtual void ProtoSerialize(XML::Node& ParentNode) const;
+                /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
+                virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+
                 /// @copydoc WorldProxy::GetDerivedSerializableName() const
                 virtual String GetDerivedSerializableName() const;
                 /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.

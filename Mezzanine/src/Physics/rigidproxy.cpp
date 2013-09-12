@@ -55,7 +55,8 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        RigidProxy::RigidProxy(const Real& Mass)
+        RigidProxy::RigidProxy(const Real& Mass) :
+            PhysicsRigidBody(NULL)
         {
             this->CreateRigidObject(Mass);
         }

@@ -109,7 +109,8 @@ namespace Mezzanine
             btRigidBody* PhysicsRigidBody;
             /// @internal
             /// @brief Data related to sticky behavior, if any is enabled.
-            StickyData* StickyContacts;
+            //StickyData* StickyContacts;
+
             /// @internal
             /// @brief Used to create the physics representation of the rigid body.
             /// @details Creates the rigid body used by the internal physics library.
