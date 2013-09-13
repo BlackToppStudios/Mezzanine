@@ -1,0 +1,7 @@
+<map id="Mezzanine::ActorSoft" name="Mezzanine::ActorSoft">
+<area shape="rect" id="node2" href="$classMezzanine_1_1ActorBase.xhtml" title="This is the base class from which all the actors inherit." alt="" coords="109,254,259,282"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1NonStaticWorldObject.xhtml" title="This is a small extention of the WorldObject class that adds features common to non&#45;static objects..." alt="" coords="95,161,273,205"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="5,83,165,111"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1AttachableParent.xhtml" title="Base class for objects that can have attachables attached to them." alt="" coords="189,83,379,111"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1AttachableBase.xhtml" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="195,6,373,34"/>
+</map>

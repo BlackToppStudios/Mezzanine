@@ -1,0 +1,4 @@
+<map id="Mezzanine::UI::TemplateParams" name="Mezzanine::UI::TemplateParams">
+<area shape="rect" id="node2" href="$classMezzanine_1_1ColourValue.xhtml" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="5,6,163,34"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="187,6,320,34"/>
+</map>

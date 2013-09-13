@@ -1,0 +1,7 @@
+<map id="Mezzanine::UI::GlyphData" name="Mezzanine::UI::GlyphData">
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Glyph.xhtml" title="Class used to describe a single glyph or character available for text operations." alt="" coords="53,233,195,261"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="5,107,139,135"/>
+<area shape="rect" id="node10" href="$structMezzanine_1_1UI_1_1KerningInfo.xhtml" title="Basic class used to describe Kerning for a given Glyph." alt="" coords="152,6,325,34"/>
+<area shape="rect" id="node12" title="STL class." alt="" coords="239,342,313,370"/>
+<area shape="rect" id="node14" title="STL class." alt="" coords="219,225,339,269"/>
+</map>

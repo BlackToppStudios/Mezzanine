@@ -1,0 +1,17 @@
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.h">
+<area shape="rect" id="node3" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="561,409,647,437"/>
+<area shape="rect" id="node37" href="$resource_8h_source.xhtml" title="resource.h" alt="" coords="871,99,951,127"/>
+<area shape="rect" id="node5" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1173,486,1317,514"/>
+<area shape="rect" id="node35" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="493,486,549,514"/>
+<area shape="rect" id="node39" href="$resourceenumerations_8h_source.xhtml" title="Resource/resourceenumerations.h" alt="" coords="456,177,672,205"/>
+<area shape="rect" id="node41" href="$archive_8h_source.xhtml" title="Resource/archive.h" alt="" coords="696,177,827,205"/>
+<area shape="rect" id="node43" href="$asset_8h_source.xhtml" title="Resource/asset.h" alt="" coords="851,177,971,205"/>
+<area shape="rect" id="node45" href="$assetgroup_8h_source.xhtml" title="Resource/assetgroup.h" alt="" coords="995,177,1147,205"/>
+<area shape="rect" id="node47" href="$assethandler_8h_source.xhtml" title="Resource/assethandler.h" alt="" coords="1171,177,1333,205"/>
+<area shape="rect" id="node49" href="$datastream_8h.xhtml" title="Declaration of DataStream." alt="" coords="367,254,521,282"/>
+<area shape="rect" id="node58" href="$filestream_8h.xhtml" title="Declaration of FileStream." alt="" coords="288,177,432,205"/>
+<area shape="rect" id="node61" href="$inputstream_8h_source.xhtml" title="Resource/inputstream.h" alt="" coords="1157,331,1315,359"/>
+<area shape="rect" id="node65" href="$memorystream_8h.xhtml" title="Declaration of MemoryStream." alt="" coords="91,177,264,205"/>
+<area shape="rect" id="node68" href="$textsettingsfile_8h_source.xhtml" title="Resource/textsettingsfile.h" alt="" coords="1339,331,1509,359"/>
+<area shape="rect" id="node52" href="$smartptr_8h.xhtml" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="367,331,444,359"/>
+</map>

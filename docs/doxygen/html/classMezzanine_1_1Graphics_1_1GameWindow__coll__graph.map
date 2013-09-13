@@ -1,0 +1,16 @@
+<map id="Mezzanine::Graphics::GameWindow" name="Mezzanine::Graphics::GameWindow">
+<area shape="rect" id="node4" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" title="This is intended to store basic graphics setting for the user." alt="" coords="1756,289,1895,333"/>
+<area shape="rect" id="node2" href="$structMezzanine_1_1WindowSettings.xhtml" title="This stores all the basic configuration options a game window supports." alt="" coords="775,114,956,142"/>
+<area shape="rect" id="node46" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;" alt="" coords="2020,289,2164,333"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="1412,701,1580,729"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1097,581,1231,609"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1425,567,1567,611"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1ObjectSettingsHandler.xhtml" title="An abstract class for other classes that manage groups of settings." alt="" coords="1409,247,1583,291"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1ObjectSettingFile.xhtml" title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s." alt="" coords="397,338,587,366"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1ObjectSettingGroup.xhtml" title="A class that store&#39;s a collection of SettingSets that can be applied together." alt="" coords="781,378,949,422"/>
+<area shape="rect" id="node19" title="STL class." alt="" coords="180,445,255,473"/>
+<area shape="rect" id="node27" href="$classMezzanine_1_1ObjectSettingSetContainer.xhtml" title="A base class for other classes that store ObjectSettingSet&#39;s." alt="" coords="408,546,576,590"/>
+<area shape="rect" id="node21" title="STL class." alt="" coords="7,437,127,481"/>
+<area shape="rect" id="node31" href="$classMezzanine_1_1ObjectSettingSet.xhtml" title="A class that store&#39;s a named set of settings for an object." alt="" coords="772,633,959,661"/>
+<area shape="rect" id="node55" href="$classMezzanine_1_1Graphics_1_1RenderWorkUnit.xhtml" title="This does the main loop processing for required to make the Graphics Manager function." alt="" coords="1427,501,1565,545"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Mezzanine::Physics::DualTransformConstraint" name="Mezzanine::Physics::DualTransformConstraint">
+<area shape="rect" id="node5" href="$classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml" title="Create simple but specific limits on any axis of movement or rotation." alt="" coords="407,38,564,82"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1HingeConstraint.xhtml" title="This is a constraint to be used to restrict the movement between two objects to angular rotation on a..." alt="" coords="419,105,552,149"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1Physics_1_1SliderConstraint.xhtml" title="Mezzanine::Physics\l::SliderConstraint" alt="" coords="419,171,552,215"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1Constraint.xhtml" title="This is the base class for all constraints supported." alt="" coords="5,105,139,149"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1Generic6DofSpringConstraint.xhtml" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion..." alt="" coords="613,5,808,49"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1UniversalConstraint.xhtml" title="Mezzanine::Physics\l::UniversalConstraint" alt="" coords="641,71,780,115"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1Hinge2Constraint.xhtml" title="Mezzanine::Physics\l::Hinge2Constraint" alt="" coords="856,5,989,49"/>
+</map>
