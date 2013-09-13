@@ -43,8 +43,8 @@ var sectionId = 'dynsection-0';
 <polygon fill="white" stroke="white" points="-4,5 -4,-594 513,-594 513,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="0,-375 0,-395 126,-395 126,-375 0,-375"/>
-<text text-anchor="middle" x="63" y="-382" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-384 0,-404 126,-404 126,-384 0,-384"/>
+<text text-anchor="middle" x="63" y="-391" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
@@ -55,70 +55,70 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M68.5362,-405.342C79.6984,-442.347 108.52,-520.579 162,-561 166.727,-564.572 172.029,-567.484 177.59,-569.855"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="71.7652,-403.907 65.6313,-395.268 65.0393,-405.847 71.7652,-403.907"/>
+<path fill="none" stroke="midnightblue" d="M69.0157,-413.819C80.8025,-449.158 110.392,-522.907 162,-561 166.88,-564.602 172.35,-567.53 178.073,-569.909"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="72.3079,-412.623 65.9246,-404.167 65.6414,-414.758 72.3079,-412.623"/>
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1CollisionShapeManager.xhtml" target="_top" xlink:title="This manager is for the storage of all shapes and creation of mesh shapes.">
-<polygon fill="white" stroke="black" points="175.5,-520 175.5,-552 306.5,-552 306.5,-520 175.5,-520"/>
-<text text-anchor="start" x="183.5" y="-539" font-family="FreeSans" font-size="10.00">Mezzanine::CollisionShape</text>
-<text text-anchor="middle" x="241" y="-527" font-family="FreeSans" font-size="10.00">Manager</text>
+<a xlink:href="classMezzanine_1_1EventManager.xhtml" target="_top" xlink:title="This is a container for Events and facilitates the transfer of data.">
+<polygon fill="white" stroke="black" points="177,-532 177,-552 305,-552 305,-532 177,-532"/>
+<text text-anchor="middle" x="241" y="-539" font-family="FreeSans" font-size="10.00">Mezzanine::EventManager</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge4" class="edge"><title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M73.1345,-404.227C88.6458,-431.834 120.853,-482.507 162,-511 166.849,-514.358 172.171,-517.281 177.691,-519.824"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="76.0581,-402.278 68.1896,-395.183 69.9163,-405.637 76.0581,-402.278"/>
+<path fill="none" stroke="midnightblue" d="M72.334,-413.282C87.1965,-441.858 119.011,-495.072 162,-523 167.56,-526.612 173.741,-529.538 180.128,-531.908"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="75.4232,-411.635 67.7934,-404.284 69.1738,-414.788 75.4232,-411.635"/>
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1EventManager.xhtml" target="_top" xlink:title="This is a container for Events and facilitates the transfer of data.">
-<polygon fill="white" stroke="black" points="177,-482 177,-502 305,-502 305,-482 177,-482"/>
-<text text-anchor="middle" x="241" y="-489" font-family="FreeSans" font-size="10.00">Mezzanine::EventManager</text>
+<a xlink:href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" target="_top" xlink:title="This is intended to store basic graphics setting for the user.">
+<polygon fill="white" stroke="black" points="188.5,-482 188.5,-514 293.5,-514 293.5,-482 188.5,-482"/>
+<text text-anchor="start" x="196.5" y="-501" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
+<text text-anchor="middle" x="241" y="-489" font-family="FreeSans" font-size="10.00">::GraphicsManager</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge6" class="edge"><title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M77.9543,-402.752C95.8706,-422.855 127.782,-455.128 162,-473 168.877,-476.592 176.445,-479.517 184.091,-481.897"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="80.5856,-400.444 71.3764,-395.206 75.3088,-405.044 80.5856,-400.444"/>
+<path fill="none" stroke="midnightblue" d="M80.5199,-411.343C99.2643,-429.045 130.565,-456.233 162,-473 170.25,-477.401 179.404,-481.178 188.471,-484.366"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="82.6975,-408.581 73.0636,-404.172 77.8452,-413.627 82.6975,-408.581"/>
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" target="_top" xlink:title="This is intended to store basic graphics setting for the user.">
-<polygon fill="white" stroke="black" points="188.5,-432 188.5,-464 293.5,-464 293.5,-432 188.5,-432"/>
-<text text-anchor="start" x="196.5" y="-451" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
-<text text-anchor="middle" x="241" y="-439" font-family="FreeSans" font-size="10.00">::GraphicsManager</text>
+<a xlink:href="classMezzanine_1_1Input_1_1InputManager.xhtml" target="_top" xlink:title="This is the manager responsible for the handling of input devices and events.">
+<polygon fill="white" stroke="black" points="165,-444 165,-464 317,-464 317,-444 165,-444"/>
+<text text-anchor="middle" x="241" y="-451" font-family="FreeSans" font-size="10.00">Mezzanine::Input::InputManager</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge8" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M97.4824,-398.819C116.424,-406.263 140.395,-415.443 162,-423 170.555,-425.992 179.683,-429.026 188.585,-431.899"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="98.6609,-395.522 88.0743,-395.103 96.089,-402.032 98.6609,-395.522"/>
+<path fill="none" stroke="midnightblue" d="M93.8565,-408.246C113.156,-416.786 138.693,-427.423 162,-435 172.196,-438.315 183.3,-441.336 193.875,-443.946"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="95.2067,-405.015 84.6497,-404.121 92.345,-411.404 95.2067,-405.015"/>
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Input_1_1InputManager.xhtml" target="_top" xlink:title="This is the manager responsible for the handling of input devices and events.">
-<polygon fill="white" stroke="black" points="165,-394 165,-414 317,-414 317,-394 165,-394"/>
-<text text-anchor="middle" x="241" y="-401" font-family="FreeSans" font-size="10.00">Mezzanine::Input::InputManager</text>
+<a xlink:href="classMezzanine_1_1MeshManager.xhtml" target="_top" xlink:title="This manager handles the storage, generation, and query of of Graphics Meshes.">
+<polygon fill="white" stroke="black" points="177,-406 177,-426 305,-426 305,-406 177,-406"/>
+<text text-anchor="middle" x="241" y="-413" font-family="FreeSans" font-size="10.00">Mezzanine::MeshManager</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
 <g id="edge10" class="edge"><title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M136.188,-392.812C145.681,-393.825 155.421,-394.865 164.958,-395.883"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="136.322,-389.307 126.007,-391.725 135.579,-396.267 136.322,-389.307"/>
+<path fill="none" stroke="midnightblue" d="M136.203,-403.048C149.691,-404.715 163.68,-406.444 176.876,-408.075"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="136.36,-399.54 126.007,-401.787 135.502,-406.488 136.36,-399.54"/>
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1MeshManager.xhtml" target="_top" xlink:title="This manager handles the storage, generation, and query of of Graphics Meshes.">
-<polygon fill="white" stroke="black" points="177,-356 177,-376 305,-376 305,-356 177,-356"/>
-<text text-anchor="middle" x="241" y="-363" font-family="FreeSans" font-size="10.00">Mezzanine::MeshManager</text>
+<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShapeManager.xhtml" target="_top" xlink:title="This manager is for the storage of all shapes and creation of mesh shapes.">
+<polygon fill="white" stroke="black" points="180,-356 180,-388 302,-388 302,-356 180,-356"/>
+<text text-anchor="start" x="188" y="-375" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
+<text text-anchor="middle" x="241" y="-363" font-family="FreeSans" font-size="10.00">::CollisionShapeManager</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node7 -->
 <g id="edge12" class="edge"><title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M136.203,-377.186C149.691,-375.746 163.68,-374.253 176.876,-372.845"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="135.579,-373.733 126.007,-378.275 136.322,-380.693 135.579,-373.733"/>
+<path fill="none" stroke="midnightblue" d="M135.986,-384.979C150.567,-383.177 165.741,-381.302 179.872,-379.555"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="135.502,-381.512 126.007,-386.213 136.36,-388.46 135.502,-381.512"/>
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
@@ -129,8 +129,8 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node1&#45;&gt;Node8 -->
 <g id="edge14" class="edge"><title>Node1&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M96.1243,-371.041C115.178,-363.327 139.693,-353.931 162,-347 172.507,-343.735 183.946,-340.696 194.772,-338.048"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="94.627,-367.872 86.6986,-374.9 97.2792,-374.35 94.627,-367.872"/>
+<path fill="none" stroke="midnightblue" d="M90.0568,-379.278C109.601,-369.113 136.871,-355.879 162,-347 171.576,-343.616 182.015,-340.633 192.074,-338.093"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="88.338,-376.227 81.1262,-383.989 91.604,-382.419 88.338,-376.227"/>
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
@@ -142,8 +142,8 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node1&#45;&gt;Node9 -->
 <g id="edge16" class="edge"><title>Node1&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M80.9483,-368.081C99.8257,-351.079 131.037,-325.143 162,-309 170.164,-304.744 179.183,-301.053 188.12,-297.911"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="78.4264,-365.645 73.4189,-374.981 83.1559,-370.805 78.4264,-365.645"/>
+<path fill="none" stroke="midnightblue" d="M79.1296,-376.436C97.5112,-357.373 129.267,-327.222 162,-309 170.17,-304.452 179.284,-300.601 188.336,-297.388"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="76.4362,-374.19 72.1068,-383.86 81.5215,-379.001 76.4362,-374.19"/>
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
@@ -154,8 +154,8 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node1&#45;&gt;Node11 -->
 <g id="edge20" class="edge"><title>Node1&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M72.6509,-365.8C87.7497,-337.802 119.667,-286.16 162,-259 167.699,-255.344 174.038,-252.391 180.577,-250.005"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="69.3953,-364.472 67.861,-374.956 75.5978,-367.717 69.3953,-364.472"/>
+<path fill="none" stroke="midnightblue" d="M71.6675,-374.699C86.025,-345.02 117.625,-288.521 162,-259 167.403,-255.406 173.414,-252.49 179.642,-250.124"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="68.3877,-373.45 67.3155,-383.99 74.7268,-376.419 68.3877,-373.45"/>
 </g>
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
@@ -166,8 +166,8 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node1&#45;&gt;Node12 -->
 <g id="edge22" class="edge"><title>Node1&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M71.811,-365.756C87.1381,-333.553 121.022,-267.688 162,-221 180.978,-199.378 208.062,-179.604 225.078,-168.184"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="68.5714,-364.421 67.5013,-374.962 74.9111,-367.389 68.5714,-364.421"/>
+<path fill="none" stroke="midnightblue" d="M71.1641,-374.589C85.9364,-340.913 119.546,-270.524 162,-221 180.724,-199.158 207.88,-179.446 224.979,-168.098"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="67.939,-373.23 67.1955,-383.798 74.3675,-376 67.939,-373.23"/>
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>

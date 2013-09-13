@@ -343,31 +343,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    }</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
 <div class="line"><a name="l00259"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Vector2.xhtml#aae9e37b9741b05e27752f9ca44bdf382">  259</a></span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1Vector2.xhtml#aae9e37b9741b05e27752f9ca44bdf382" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">Vector2::SerializableName</a>()</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;Vector2&quot;</span>); }</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;Vector2&quot;</span>); }</div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;}</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span></div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a>&amp; x)</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;{</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <span class="comment">//stream &lt;&lt; &quot;&lt;Vector2 Version=\&quot;1\&quot; X=\&quot;&quot; &lt;&lt; x.X &lt;&lt; &quot;\&quot; Y=\&quot;&quot; &lt;&lt; x.Y &lt;&lt; &quot;\&quot; /&gt;&quot;;</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <a class="code" href="namespaceMezzanine.xhtml#a9015c5e668e14b857a27888c56934148" title="Convert any class that supports serialization or has a serializer to a string of chars in a stream...">Serialize</a>(stream,x);</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    <span class="keywordflow">return</span> stream;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;}</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;std::istream&amp; <a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a>&amp; Vec)</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#ad8989ea81ccd1ad6d59a11921f0239a4" title="Deserialize the next xml tag in the stream into a specific in memory class instance.">DeSerialize</a>(stream, Vec); }</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a>&amp; Vec)</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    { Vec.<a class="code" href="classMezzanine_1_1Vector2.xhtml#a8a44600f5a5898206f6ccd22deb7df9b" title="Take the data stored in an XML and overwrite this instance of this object with it.">ProtoDeSerialize</a>(OneNode); }</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;}</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a>&amp; x)</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;{</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="comment">//stream &lt;&lt; &quot;&lt;Vector2 Version=\&quot;1\&quot; X=\&quot;&quot; &lt;&lt; x.X &lt;&lt; &quot;\&quot; Y=\&quot;&quot; &lt;&lt; x.Y &lt;&lt; &quot;\&quot; /&gt;&quot;;</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <a class="code" href="namespaceMezzanine.xhtml#a9015c5e668e14b857a27888c56934148" title="Convert any class that supports serialization or has a serializer to a string of chars in a stream...">Serialize</a>(stream,x);</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <span class="keywordflow">return</span> stream;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;}</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;std::istream&amp; <a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a>&amp; Vec)</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.xhtml#ad8989ea81ccd1ad6d59a11921f0239a4" title="Deserialize the next xml tag in the stream into a specific in memory class instance.">DeSerialize</a>(stream, Vec); }</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Mezzanine::Vector2</a>&amp; Vec)</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    { Vec.<a class="code" href="classMezzanine_1_1Vector2.xhtml#a8a44600f5a5898206f6ccd22deb7df9b" title="Take the data stored in an XML and overwrite this instance of this object with it.">ProtoDeSerialize</a>(OneNode); }</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 23:58:36 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Sep 12 2013 22:32:37 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

@@ -87,7 +87,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="classMezzanine_1_1Physics_1_1CollisionShape-members.xhtml">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Mezzanine::Physics::CollisionShape Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -150,6 +149,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:afedd1b778a3111778a5b17e9ce30d661"><td class="memItemLeft" align="right" valign="top">virtual btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#afedd1b778a3111778a5b17e9ce30d661">_GetInternalShape</a> () const </td></tr>
 <tr class="memdesc:afedd1b778a3111778a5b17e9ce30d661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the internal shape pointer this collision shape is based on.  <a href="#afedd1b778a3111778a5b17e9ce30d661">More...</a><br/></td></tr>
 <tr class="separator:afedd1b778a3111778a5b17e9ce30d661"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a350cf7befc1b849fe276b238a6772cfa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a350cf7befc1b849fe276b238a6772cfa">_SetShapeName</a> (const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;NewName)</td></tr>
+<tr class="memdesc:a350cf7befc1b849fe276b238a6772cfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of this collision shape.  <a href="#a350cf7befc1b849fe276b238a6772cfa">More...</a><br/></td></tr>
+<tr class="separator:a350cf7befc1b849fe276b238a6772cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14469314a0abe4ee91e3c6f510ff114a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a14469314a0abe4ee91e3c6f510ff114a">GetMargin</a> () const </td></tr>
 <tr class="memdesc:a14469314a0abe4ee91e3c6f510ff114a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the amount of padding currently being applied to the collision shape.  <a href="#a14469314a0abe4ee91e3c6f510ff114a">More...</a><br/></td></tr>
 <tr class="separator:a14469314a0abe4ee91e3c6f510ff114a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,12 +193,6 @@ Protected Attributes</h2></td></tr>
 btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a9dbfdf105878227d9e648dcf44d7456a">ShapeBase</a></td></tr>
 <tr class="memdesc:a9dbfdf105878227d9e648dcf44d7456a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the bullet collision this uses. <br/></td></tr>
 <tr class="separator:a9dbfdf105878227d9e648dcf44d7456a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:a941370db28b4bc39da9fde9bd6a51f89"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a941370db28b4bc39da9fde9bd6a51f89"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::CollisionShapeManager</b></td></tr>
-<tr class="separator:a941370db28b4bc39da9fde9bd6a51f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the base class for all collision shapes. </p>
@@ -204,7 +200,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Collision
  <br/>
  It's important to note that <a class="el" href="classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world.">Collision</a> shapes can be created and then re-used in as many <a class="el" href="classMezzanine_1_1World.xhtml" title="This class represents a world for objects to interact within.">World</a> objects(at the same time) as you need, and it is encouraged to do this. </p>
 
-<p>Definition at line <a class="el" href="collisionshape_8h_source.xhtml#l00064">64</a> of file <a class="el" href="collisionshape_8h_source.xhtml">collisionshape.h</a>.</p>
+<p>Definition at line <a class="el" href="collisionshape_8h_source.xhtml#l00063">63</a> of file <a class="el" href="collisionshape_8h_source.xhtml">collisionshape.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a985a918f81fe43d088cc1e39bbffc8ea"></a>
 <div class="memitem">
@@ -260,7 +256,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Collision
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="collisionshape_8h_source.xhtml#l00070">70</a> of file <a class="el" href="collisionshape_8h_source.xhtml">collisionshape.h</a>.</p>
+<p>Definition at line <a class="el" href="collisionshape_8h_source.xhtml#l00069">69</a> of file <a class="el" href="collisionshape_8h_source.xhtml">collisionshape.h</a>.</p>
 
 </div>
 </div>
@@ -288,6 +284,41 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Collision
 
 <p>Gets the internal shape pointer this collision shape is based on. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the internal collision shape. </dd></dl>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.xhtml#l00173">173</a> of file <a class="el" href="collisionshape_8cpp_source.xhtml">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a350cf7befc1b849fe276b238a6772cfa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Physics::CollisionShape::_SetShapeName </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>NewName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the name of this collision shape. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This method should be used with extreme care when it is stored by the collision shape manager. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">NewName</td><td>The new name to be given to this shape. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="collisionshape_8cpp_source.xhtml#l00168">168</a> of file <a class="el" href="collisionshape_8cpp_source.xhtml">collisionshape.cpp</a>.</p>
 
@@ -467,7 +498,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Collision
 <p>Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CurrentRoot</td><td>The point in the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> hierarchy that all this vectorw should be appended to. </td></tr>
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> hierarchy that all this collision shape should be appended to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -580,6 +611,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Collision
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 23:58:42 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Sep 12 2013 22:32:41 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
