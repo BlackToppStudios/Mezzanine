@@ -42,7 +42,8 @@ John Blackwood - makoenergy02@gmail.com
 
 #include "Physics/physicsproxy.h"
 #include "Physics/collisionshape.h"
-#include "collisionshapemanager.h"
+#include "Physics/physicsmanager.h"
+#include "Physics/collisionshapemanager.h"
 
 #include <btBulletDynamicsCommon.h>
 
@@ -94,7 +95,7 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         // ScalingShape Methods
-
+/// @cond 0
         ///////////////////////////////////////////////////////////////////////////////
         /// @class ScalingShape
         /// @brief This is a custom scaling shape that permits scaling specific to the object it is applied to.
@@ -250,7 +251,7 @@ namespace Mezzanine
                 { this->SetChildScaling(scaling); }
             /// @brief Gets the scaling being applied to the sharable/global child collision shape.
             virtual const btVector3& getLocalScaling() const
-                { return this->GetChildScaling(); }
+                { return this->ChildScaling; }
             /// @brief Sets the collision margin of the sharable/global child collision shape.
             virtual void setMargin(btScalar margin)
                 { this->ChildConvexShape->setMargin(margin); }
@@ -264,13 +265,14 @@ namespace Mezzanine
             virtual void getPreferredPenetrationDirection(int index, btVector3& penetrationVector) const
                 { this->ChildConvexShape->getPreferredPenetrationDirection(index,penetrationVector); }
         };//ScalingShape
-
+/// @endcond
         ///////////////////////////////////////////////////////////////////////////////
         // PhysicsProxy Methods
 
-        PhysicsProxy::PhysicsProxy() :
+        PhysicsProxy::PhysicsProxy(PhysicsManager* Creator) :
             ProxyShape(NULL),
             ScalerShape(NULL),
+            Manager(Creator),
             CollisionGroup(0),
             CollisionMask(0)
         {
@@ -284,40 +286,39 @@ namespace Mezzanine
         // Utility
 
         Bool PhysicsProxy::CanLocallyScale() const
-        {
-            return ( this->ScalerShape != NULL );
-        }
+            { return ( this->ScalerShape != NULL ); }
 
-        bool PhysicsProxy::IsInWorld() const
-        {
-            return ( this->_GetBasePhysicsObject()->getBroadphaseHandle() != NULL );
-        }
+        Bool PhysicsProxy::IsInWorld() const
+            { return ( this->_GetBasePhysicsObject()->getBroadphaseHandle() != NULL ); }
+
+        WorldManager* PhysicsProxy::GetCreator() const
+            { return this->Manager; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Collision Settings
 
-        void PhysicsProxy::SetCollisionGroupAndMask(const Whole Group, const Whole Mask)
+        void PhysicsProxy::SetCollisionGroupAndMask(const Int16 Group, const Int16 Mask)
         {
             this->CollisionGroup = Group;
             this->CollisionMask = Mask;
         }
 
-        void PhysicsProxy::SetCollisionGroup(const Whole Group)
+        void PhysicsProxy::SetCollisionGroup(const Int16 Group)
         {
             this->CollisionGroup = Group;
         }
 
-        void PhysicsProxy::SetCollisionMask(const Whole Mask)
+        void PhysicsProxy::SetCollisionMask(const Int16 Mask)
         {
             this->CollisionMask = Mask;
         }
 
-        Whole PhysicsProxy::GetCollisionGroup() const
+        Int16 PhysicsProxy::GetCollisionGroup() const
         {
             return this->CollisionGroup;
         }
 
-        Whole PhysicsProxy::GetCollisionMask() const
+        Int16 PhysicsProxy::GetCollisionMask() const
         {
             return this->CollisionMask;
         }
@@ -799,7 +800,7 @@ namespace Mezzanine
         }
 
         String PhysicsProxy::GetDerivedSerializableName() const
-            { return PhysicsProxy::SerializableName(); }
+            { return PhysicsProxy::GetSerializableName(); }
 
         String PhysicsProxy::GetSerializableName()
             { return "PhysicsProxy"; }

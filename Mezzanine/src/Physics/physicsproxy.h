@@ -51,6 +51,7 @@ namespace Mezzanine
     class WorldObject;
     namespace Physics
     {
+        class PhysicsManager;
         class CollisionShape;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class PhysicsProxy
@@ -74,14 +75,18 @@ namespace Mezzanine
             /// @brief This is an internal only shape that provides the ability for a collision shape to be scaled locally (to this object alone).
             btCollisionShape* ScalerShape;
             /// @internal
+            /// @brief This is a pointer to the physics manager that created and owns this proxy.
+            PhysicsManager* Manager;
+            /// @internal
             /// @brief The classifications pertaining to this object in regards to collisions.
-            Whole CollisionGroup;
+            Int16 CollisionGroup;
             /// @internal
             /// @brief  Stores the kind of World Objects that can collide with each other.
-            Whole CollisionMask;
+            Int16 CollisionMask;
         public:
             /// @brief Standard Constructor.
-            PhysicsProxy();
+            /// @param Creator A pointer to the manager that created this proxy.
+            PhysicsProxy(PhysicsManager* Creator);
             /// @brief Class Destructor.
             virtual ~PhysicsProxy();
 
@@ -105,7 +110,10 @@ namespace Mezzanine
             /// @copydoc WorldProxy::RemoveFromWorld()
             virtual void RemoveFromWorld() = 0;
             /// @copydoc WorldProxy::IsInWorld() const
-            virtual bool IsInWorld() const;
+            virtual Bool IsInWorld() const;
+
+            /// @copydoc PhysicsProxy::GetCreator() const
+            virtual WorldManager* GetCreator() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Settings
@@ -114,19 +122,19 @@ namespace Mezzanine
             /// @details These values are automatically calculated for you with some sane default values.  Only edit these if you know what you are doing.
             /// @param Group The collision group to which this proxy belongs.
             /// @param Mask The other groups to which this proxy should collide with.
-            virtual void SetCollisionGroupAndMask(const Whole Group, const Whole Mask);
+            virtual void SetCollisionGroupAndMask(const Int16 Group, const Int16 Mask);
             /// @brief Sets which collision group this proxy belongs to, which determines it's collision behavior.
             /// @param Group The collision group to which this proxy belongs.
-            virtual void SetCollisionGroup(const Whole Group);
+            virtual void SetCollisionGroup(const Int16 Group);
             /// @brief Sets the collision mask of this proxy, which determines which groups it will collide with.
             /// @param Mask The other groups to which this proxy should collide with.
-            virtual void SetCollisionMask(const Whole Mask);
+            virtual void SetCollisionMask(const Int16 Mask);
             /// @brief Gets the objects collision group.
-            /// @return Returns a Whole representing the collision group this object is set to.
-            virtual Whole GetCollisionGroup() const;
+            /// @return Returns a Int16 representing the collision group this object is set to.
+            virtual Int16 GetCollisionGroup() const;
             /// @brief Gets the object's collision mask.
-            /// @return Returns a Whole representing what collision groups this object should collide with.
-            virtual Whole GetCollisionMask() const;
+            /// @return Returns a Int16 representing what collision groups this object should collide with.
+            virtual Int16 GetCollisionMask() const;
 
             /// @brief Sets the collision shape to be used.
             /// @param Shape The shape to be applied.
@@ -319,8 +327,7 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;
-            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
-            /// @return A string containing the name of this class.
+            /// @copydoc WorldProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
