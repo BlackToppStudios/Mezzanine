@@ -1,10 +1,10 @@
 <map id="Mezzanine::Resource::FileStream" name="Mezzanine::Resource::FileStream">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Resource_1_1DataStream.xhtml" title="This represents a stream to a piece of data, usually a file." alt="" coords="5,454,147,498"/>
-<area shape="rect" id="node4" title="STL class." alt="" coords="171,462,259,490"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="152,358,277,402"/>
-<area shape="rect" id="node8" title="STL class." alt="" coords="149,262,280,306"/>
-<area shape="rect" id="node10" title="STL class." alt="" coords="65,166,188,210"/>
-<area shape="rect" id="node12" title="STL class." alt="" coords="99,86,245,114"/>
-<area shape="rect" id="node16" title="STL class." alt="" coords="212,166,340,210"/>
-<area shape="rect" id="node14" title="STL class." alt="" coords="125,6,219,34"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Resource_1_1DataStream.xhtml" title="This represents a stream to a piece of data, usually a file." alt="" coords="5,462,160,509"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="184,471,283,500"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="164,363,303,410"/>
+<area shape="rect" id="node8" title="STL class." alt="" coords="160,265,307,311"/>
+<area shape="rect" id="node10" title="STL class." alt="" coords="65,166,204,213"/>
+<area shape="rect" id="node12" title="STL class." alt="" coords="100,85,268,115"/>
+<area shape="rect" id="node16" title="STL class." alt="" coords="228,166,372,213"/>
+<area shape="rect" id="node14" title="STL class." alt="" coords="131,5,237,35"/>
 </map>
