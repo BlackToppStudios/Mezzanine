@@ -32,7 +32,7 @@
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 1862;
+var viewWidth = 2046;
 var viewHeight = 565;
 var sectionId = 'dynsection-1';
 </script>
@@ -40,415 +40,415 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::Graphics::GraphicsManager</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-561 1859,-561 1859,5 -4,5"/>
+<polygon fill="white" stroke="white" points="-4,5 -4,-561 2043,-561 2043,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="1312.5,-156 1312.5,-188 1417.5,-188 1417.5,-156 1312.5,-156"/>
-<text text-anchor="start" x="1320.5" y="-175" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
-<text text-anchor="middle" x="1365" y="-163" font-family="FreeSans" font-size="10.00">::GraphicsManager</text>
+<polygon fill="#bfbfbf" stroke="black" points="1438,-159 1438,-193 1554,-193 1554,-159 1438,-159"/>
+<text text-anchor="start" x="1446" y="-180" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
+<text text-anchor="middle" x="1496" y="-167" font-family="FreeSans" font-size="10.00">::GraphicsManager</text>
 </g>
 <!-- Node17 -->
 <g id="node42" class="node"><title>Node17</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;">
-<polygon fill="white" stroke="black" points="1558.5,-143 1558.5,-175 1667.5,-175 1667.5,-143 1558.5,-143"/>
-<text text-anchor="start" x="1566.5" y="-162" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
-<text text-anchor="middle" x="1613" y="-150" font-family="FreeSans" font-size="10.00">&lt; GraphicsManager &gt;</text>
+<polygon fill="white" stroke="black" points="1706.5,-146 1706.5,-180 1829.5,-180 1829.5,-146 1706.5,-146"/>
+<text text-anchor="start" x="1714.5" y="-167" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
+<text text-anchor="middle" x="1768" y="-154" font-family="FreeSans" font-size="10.00">&lt; GraphicsManager &gt;</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node17 -->
 <g id="edge54" class="edge"><title>Node1&#45;&gt;Node17</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1428.16,-158.923C1433.5,-158.147 1438.83,-157.486 1444,-157 1486.48,-153.003 1497.34,-156.416 1540,-157 1545.96,-157.082 1552.19,-157.201 1558.39,-157.341"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1427.26,-155.522 1417.92,-160.538 1428.35,-162.437 1427.26,-155.522"/>
-<text text-anchor="middle" x="1492" y="-160" font-family="FreeSans" font-size="10.00"> SingletonPtr</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1564.37,-162.333C1570.98,-161.384 1577.61,-160.577 1584,-160 1630.04,-155.849 1641.79,-159.134 1688,-160 1693.98,-160.112 1700.2,-160.271 1706.42,-160.458"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1563.37,-158.946 1554.02,-163.928 1564.44,-165.864 1563.37,-158.946"/>
+<text text-anchor="middle" x="1636" y="-164" font-family="FreeSans" font-size="10.00"> SingletonPtr</text>
 </g>
 <!-- Node20 -->
 <g id="node49" class="node"><title>Node20</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1GameWindow.xhtml" target="_top" xlink:title="This class is for creating and managing game windows.">
-<polygon fill="white" stroke="black" points="1560.5,-73 1560.5,-105 1665.5,-105 1665.5,-73 1560.5,-73"/>
-<text text-anchor="start" x="1568.5" y="-92" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
-<text text-anchor="middle" x="1613" y="-80" font-family="FreeSans" font-size="10.00">::GameWindow</text>
+<polygon fill="white" stroke="black" points="1710,-74 1710,-108 1826,-108 1826,-74 1710,-74"/>
+<text text-anchor="start" x="1718" y="-95" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
+<text text-anchor="middle" x="1768" y="-82" font-family="FreeSans" font-size="10.00">::GameWindow</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node20 -->
 <g id="edge64" class="edge"><title>Node1&#45;&gt;Node20</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1411.92,-152.17C1422.41,-147.969 1433.53,-143.692 1444,-140 1482.59,-126.395 1526.89,-113.111 1560.45,-103.512"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1410.46,-148.988 1402.5,-155.989 1413.09,-155.475 1410.46,-148.988"/>
-<text text-anchor="middle" x="1492" y="-143" font-family="FreeSans" font-size="10.00"> Manager</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1546.04,-154.963C1558.35,-150.103 1571.57,-145.146 1584,-141 1625.61,-127.122 1673.44,-114.216 1709.9,-104.993"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1544.37,-151.859 1536.39,-158.824 1546.98,-158.358 1544.37,-151.859"/>
+<text text-anchor="middle" x="1636" y="-145" font-family="FreeSans" font-size="10.00"> Manager</text>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
-<polygon fill="white" stroke="black" points="1045,-282 1045,-302 1171,-302 1171,-282 1045,-282"/>
-<text text-anchor="middle" x="1108" y="-289" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
+<polygon fill="white" stroke="black" points="1146,-281.5 1146,-302.5 1286,-302.5 1286,-281.5 1146,-281.5"/>
+<text text-anchor="middle" x="1216" y="-289.5" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge2" class="edge"><title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M1159.11,-278.994C1164.87,-277.154 1170.6,-275.149 1176,-273 1237.01,-248.714 1303.73,-209.906 1339.29,-188.145"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="1158.01,-275.672 1149.46,-281.932 1160.05,-282.369 1158.01,-275.672"/>
+<path fill="none" stroke="midnightblue" d="M1268.99,-278.676C1276.1,-276.597 1283.26,-274.353 1290,-272 1353.89,-249.691 1424.63,-214.188 1464.37,-193.182"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1268.03,-275.309 1259.36,-281.402 1269.94,-282.044 1268.03,-275.309"/>
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="white" stroke="black" points="816.5,-479 816.5,-499 917.5,-499 917.5,-479 816.5,-479"/>
-<text text-anchor="middle" x="867" y="-486" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
+<polygon fill="white" stroke="black" points="899,-476.5 899,-497.5 1011,-497.5 1011,-476.5 899,-476.5"/>
+<text text-anchor="middle" x="955" y="-484.5" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge4" class="edge"><title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M917.891,-476.311C957.678,-465.339 1008.45,-448.658 1022,-432 1056.32,-389.828 1004.03,-351.767 1040,-311 1043.16,-307.415 1046.94,-304.482 1051.07,-302.085"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="916.781,-472.986 908.042,-478.975 918.609,-479.743 916.781,-472.986"/>
-<text text-anchor="middle" x="990" y="-465" font-family="FreeSans" font-size="10.00"> TheEntresol</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1012.42,-474.035C1055.45,-463.133 1109.32,-446.551 1124,-429 1157.75,-388.639 1106.92,-351.214 1142,-312 1145.37,-308.231 1149.37,-305.14 1153.74,-302.609"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1011.45,-470.67 1002.59,-476.478 1013.14,-477.464 1011.45,-470.67"/>
+<text text-anchor="middle" x="1088" y="-466" font-family="FreeSans" font-size="10.00"> TheEntresol</text>
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="white" stroke="black" points="1054.5,-474 1054.5,-506 1161.5,-506 1161.5,-474 1054.5,-474"/>
-<text text-anchor="start" x="1062.5" y="-493" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
-<text text-anchor="middle" x="1108" y="-481" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
+<polygon fill="white" stroke="black" points="1156.5,-471 1156.5,-505 1275.5,-505 1275.5,-471 1156.5,-471"/>
+<text text-anchor="start" x="1164.5" y="-492" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
+<text text-anchor="middle" x="1216" y="-479" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
 </g>
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge8" class="edge"><title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M927.855,-487.362C956.433,-486.811 990.966,-486.459 1022,-487 1032.46,-487.182 1043.62,-487.489 1054.33,-487.839"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="927.538,-483.868 917.612,-487.573 927.682,-490.866 927.538,-483.868"/>
-<text text-anchor="middle" x="990" y="-490" font-family="FreeSans" font-size="10.00"> SingletonPtr</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1021.62,-484.605C1052.73,-483.798 1090.26,-483.267 1124,-484 1134.39,-484.226 1145.43,-484.595 1156.13,-485.02"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1021.24,-481.114 1011.34,-484.888 1021.43,-488.112 1021.24,-481.114"/>
+<text text-anchor="middle" x="1088" y="-488" font-family="FreeSans" font-size="10.00"> SingletonPtr</text>
 </g>
 <!-- Node4&#45;&gt;Node3 -->
 <g id="edge6" class="edge"><title>Node4&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M1044.29,-499.893C1036.79,-500.76 1029.24,-501.497 1022,-502 993.624,-503.97 986.373,-504.016 958,-502 944.947,-501.072 930.919,-499.405 917.88,-497.567"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="1044.95,-503.339 1054.45,-498.641 1044.09,-496.391 1044.95,-503.339"/>
+<path fill="none" stroke="midnightblue" d="M1146.13,-498.917C1138.67,-499.769 1131.19,-500.494 1124,-501 1092.08,-503.244 1083.92,-503.291 1052,-501 1038.68,-500.044 1024.4,-498.357 1011.02,-496.479"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1146.74,-502.368 1156.25,-497.683 1145.9,-495.419 1146.74,-502.368"/>
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingsHandler.xhtml" target="_top" xlink:title="An abstract class for other classes that manage groups of settings.">
-<polygon fill="white" stroke="black" points="1042.5,-232 1042.5,-264 1173.5,-264 1173.5,-232 1042.5,-232"/>
-<text text-anchor="start" x="1050.5" y="-251" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettings</text>
-<text text-anchor="middle" x="1108" y="-239" font-family="FreeSans" font-size="10.00">Handler</text>
+<polygon fill="white" stroke="black" points="1144,-229 1144,-263 1288,-263 1288,-229 1144,-229"/>
+<text text-anchor="start" x="1152" y="-250" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettings</text>
+<text text-anchor="middle" x="1216" y="-237" font-family="FreeSans" font-size="10.00">Handler</text>
 </a>
 </g>
 <!-- Node5&#45;&gt;Node1 -->
 <g id="edge10" class="edge"><title>Node5&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M1156.54,-228.209C1168.67,-223.585 1181.73,-218.882 1194,-215 1233.11,-202.628 1278.13,-191.427 1312.15,-183.56"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="1155.1,-225.012 1147.04,-231.883 1157.63,-231.54 1155.1,-225.012"/>
+<path fill="none" stroke="midnightblue" d="M1287.77,-226.271C1294.6,-224.461 1301.43,-222.679 1308,-221 1351.41,-209.909 1400.67,-198.148 1437.87,-189.432"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1286.55,-222.974 1277.79,-228.932 1288.36,-229.737 1286.55,-222.974"/>
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<polygon fill="white" stroke="#bfbfbf" points="585,-417 585,-449 705,-449 705,-417 585,-417"/>
-<text text-anchor="start" x="593" y="-436" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
-<text text-anchor="middle" x="645" y="-424" font-family="FreeSans" font-size="10.00">SettingFile * &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="644,-416 644,-450 780,-450 780,-416 644,-416"/>
+<text text-anchor="start" x="652" y="-437" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
+<text text-anchor="middle" x="712" y="-424" font-family="FreeSans" font-size="10.00">SettingFile * &gt;</text>
 </g>
 <!-- Node6&#45;&gt;Node5 -->
 <g id="edge12" class="edge"><title>Node6&#45;&gt;Node5</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M715.172,-447.508C799.811,-460.531 940.81,-467.181 1022,-389 1059.58,-352.811 1006.94,-313.363 1040,-273 1042.79,-269.594 1046.09,-266.652 1049.7,-264.111"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="715.567,-444.027 705.138,-445.894 714.455,-450.938 715.567,-444.027"/>
-<text text-anchor="middle" x="867" y="-458" font-family="FreeSans" font-size="10.00"> SettingFiles</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M790.103,-434.909C896.11,-435.746 1077.66,-430.384 1124,-386 1161.04,-350.518 1109.16,-311.405 1142,-272 1144.79,-268.653 1148.04,-265.736 1151.59,-263.194"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="790.122,-431.409 780.088,-434.81 790.052,-438.409 790.122,-431.409"/>
+<text text-anchor="middle" x="955" y="-437" font-family="FreeSans" font-size="10.00"> SettingFiles</text>
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingFile.xhtml" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s.">
-<polygon fill="white" stroke="black" points="294,-305 294,-325 436,-325 436,-305 294,-305"/>
-<text text-anchor="middle" x="365" y="-312" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingFile</text>
+<polygon fill="white" stroke="black" points="324,-300.5 324,-321.5 478,-321.5 478,-300.5 324,-300.5"/>
+<text text-anchor="middle" x="401" y="-308.5" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingFile</text>
 </a>
 </g>
 <!-- Node7&#45;&gt;Node6 -->
 <g id="edge14" class="edge"><title>Node7&#45;&gt;Node6</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M398.345,-329.053C450.606,-351.077 551.517,-393.604 606.686,-416.854"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="399.447,-325.719 388.873,-325.061 396.729,-332.169 399.447,-325.719"/>
-<text text-anchor="middle" x="505" y="-397" font-family="FreeSans" font-size="10.00"> elements</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M437.196,-325.199C494.689,-347.753 606.682,-391.685 668.467,-415.923"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="438.372,-321.901 427.785,-321.507 435.816,-328.417 438.372,-321.901"/>
+<text text-anchor="middle" x="556" y="-397" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
-<polygon fill="white" stroke="black" points="582,-259 582,-291 708,-291 708,-259 582,-259"/>
-<text text-anchor="start" x="590" y="-278" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
-<text text-anchor="middle" x="645" y="-266" font-family="FreeSans" font-size="10.00">Group</text>
+<polygon fill="white" stroke="black" points="642.5,-253 642.5,-287 781.5,-287 781.5,-253 642.5,-253"/>
+<text text-anchor="start" x="650.5" y="-274" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
+<text text-anchor="middle" x="712" y="-261" font-family="FreeSans" font-size="10.00">Group</text>
 </a>
 </g>
 <!-- Node7&#45;&gt;Node11 -->
 <g id="edge40" class="edge"><title>Node7&#45;&gt;Node11</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M437.656,-303.444C443.184,-302.604 448.68,-301.78 454,-301 496.548,-294.758 544.505,-288.232 581.722,-283.279"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="437.054,-299.995 427.699,-304.97 438.114,-306.915 437.054,-299.995"/>
-<text text-anchor="middle" x="505" y="-304" font-family="FreeSans" font-size="10.00"> OptionalFile</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M475.65,-298.947C482.525,-297.918 489.389,-296.92 496,-296 544.821,-289.21 599.997,-282.586 642.363,-277.724"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="474.959,-295.512 465.597,-300.473 476.009,-302.433 474.959,-295.512"/>
+<text text-anchor="middle" x="556" y="-300" font-family="FreeSans" font-size="10.00"> OptionalFile</text>
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="130.5,-255 130.5,-275 187.5,-275 187.5,-255 130.5,-255"/>
-<text text-anchor="middle" x="159" y="-262" font-family="FreeSans" font-size="10.00">std::string</text>
+<polygon fill="white" stroke="#bfbfbf" points="142.5,-248.5 142.5,-269.5 207.5,-269.5 207.5,-248.5 142.5,-248.5"/>
+<text text-anchor="middle" x="175" y="-256.5" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
 <!-- Node8&#45;&gt;Node5 -->
 <g id="edge44" class="edge"><title>Node8&#45;&gt;Node5</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M173.509,-283.217C182.029,-292.784 193.551,-303.952 206,-311 226.91,-322.838 403.809,-366.971 454,-373 595.38,-389.982 871.839,-370.911 940,-346 991.683,-327.111 991.485,-298.967 1040,-273 1045.99,-269.795 1052.48,-266.829 1058.99,-264.145"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="175.985,-280.726 166.846,-275.366 170.648,-285.255 175.985,-280.726"/>
-<text text-anchor="middle" x="645" y="-394" font-family="FreeSans" font-size="10.00"> CurrentSettingsSaveFile</text>
-<text text-anchor="middle" x="645" y="-382" font-family="FreeSans" font-size="10.00">SettingsFilePath</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M190.281,-277.469C199.608,-287.603 212.343,-299.581 226,-307 248.169,-319.043 446.327,-364.439 496,-370 659.943,-388.354 1005.76,-340.7 1034,-332 1086.48,-315.832 1091.92,-294.515 1142,-272 1148.96,-268.873 1156.41,-265.87 1163.81,-263.087"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="192.814,-275.05 183.578,-269.859 187.561,-279.677 192.814,-275.05"/>
+<text text-anchor="middle" x="712" y="-390" font-family="FreeSans" font-size="10.00"> CurrentSettingsSaveFile</text>
+<text text-anchor="middle" x="712" y="-377" font-family="FreeSans" font-size="10.00">SettingsFilePath</text>
 </g>
 <!-- Node8&#45;&gt;Node6 -->
 <g id="edge42" class="edge"><title>Node8&#45;&gt;Node6</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M163.069,-284.847C170.499,-318.99 187.235,-386.574 206,-401 316.717,-486.116 493.076,-466.017 584.937,-447.546"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="166.489,-284.104 160.993,-275.047 159.641,-285.555 166.489,-284.104"/>
-<text text-anchor="middle" x="365" y="-466" font-family="FreeSans" font-size="10.00"> keys</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M179.719,-279.805C188.126,-314.886 206.639,-383.418 226,-398 348.644,-490.37 541.675,-469.355 643.638,-449.301"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="183.041,-278.642 177.356,-269.701 176.225,-280.235 183.041,-278.642"/>
+<text text-anchor="middle" x="401" y="-470" font-family="FreeSans" font-size="10.00"> keys</text>
 </g>
 <!-- Node8&#45;&gt;Node7 -->
 <g id="edge16" class="edge"><title>Node8&#45;&gt;Node7</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M197.479,-276.688C200.356,-277.493 203.22,-278.272 206,-279 242.963,-288.678 285.158,-298.16 316.788,-304.961"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="198.325,-273.29 187.747,-273.894 196.393,-280.018 198.325,-273.29"/>
-<text text-anchor="middle" x="241" y="-298" font-family="FreeSans" font-size="10.00"> File</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M217.419,-270.831C220.319,-271.582 223.2,-272.312 226,-273 267.062,-283.086 313.885,-293.18 348.759,-300.428"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="218.143,-267.402 207.58,-268.226 216.351,-274.169 218.143,-267.402"/>
+<text text-anchor="middle" x="266" y="-294" font-family="FreeSans" font-size="10.00"> File</text>
 </g>
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
-<polygon fill="white" stroke="black" points="302,-156 302,-188 428,-188 428,-156 302,-156"/>
-<text text-anchor="start" x="310" y="-175" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
-<text text-anchor="middle" x="365" y="-163" font-family="FreeSans" font-size="10.00">SetContainer</text>
+<polygon fill="white" stroke="black" points="331.5,-148 331.5,-182 470.5,-182 470.5,-148 331.5,-148"/>
+<text text-anchor="start" x="339.5" y="-169" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
+<text text-anchor="middle" x="401" y="-156" font-family="FreeSans" font-size="10.00">SetContainer</text>
 </a>
 </g>
 <!-- Node8&#45;&gt;Node12 -->
 <g id="edge38" class="edge"><title>Node8&#45;&gt;Node12</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M167.108,-245.607C174.749,-229.864 187.759,-208.462 206,-197 234.274,-179.235 270.798,-172.607 301.708,-170.591"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="163.803,-244.421 162.861,-254.974 170.178,-247.312 163.803,-244.421"/>
-<text text-anchor="middle" x="241" y="-200" font-family="FreeSans" font-size="10.00"> ContainerName</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M183.912,-239.12C192.322,-222.826 206.547,-200.627 226,-189 257.324,-170.278 297.341,-163.775 331.2,-162.178"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="180.648,-237.829 179.432,-248.354 186.946,-240.884 180.648,-237.829"/>
+<text text-anchor="middle" x="266" y="-193" font-family="FreeSans" font-size="10.00"> ContainerName</text>
 </g>
 <!-- Node15 -->
 <g id="node31" class="node"><title>Node15</title>
-<polygon fill="white" stroke="#bfbfbf" points="302.5,-209 302.5,-229 427.5,-229 427.5,-209 302.5,-209"/>
-<text text-anchor="middle" x="365" y="-216" font-family="FreeSans" font-size="10.00">std::map&lt; String, String &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="328.5,-203.5 328.5,-224.5 473.5,-224.5 473.5,-203.5 328.5,-203.5"/>
+<text text-anchor="middle" x="401" y="-211.5" font-family="FreeSans" font-size="10.00">std::map&lt; String, String &gt;</text>
 </g>
 <!-- Node8&#45;&gt;Node15 -->
 <g id="edge36" class="edge"><title>Node8&#45;&gt;Node15</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M175.119,-247.675C183.505,-239.871 194.413,-231.429 206,-227 236.335,-215.405 272.32,-212.769 302.377,-213.31"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="172.556,-245.287 167.913,-254.81 177.481,-250.262 172.556,-245.287"/>
-<text text-anchor="middle" x="241" y="-242" font-family="FreeSans" font-size="10.00"> keys</text>
-<text text-anchor="middle" x="241" y="-230" font-family="FreeSans" font-size="10.00">elements</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M191.985,-241.151C201.17,-232.765 213.231,-223.615 226,-219 258.3,-207.325 296.183,-204.983 328.425,-206.009"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="189.463,-238.721 184.709,-248.189 194.33,-243.752 189.463,-238.721"/>
+<text text-anchor="middle" x="266" y="-236" font-family="FreeSans" font-size="10.00"> keys</text>
+<text text-anchor="middle" x="266" y="-223" font-family="FreeSans" font-size="10.00">elements</text>
 </g>
 <!-- Node16 -->
 <g id="node38" class="node"><title>Node16</title>
-<polygon fill="white" stroke="#bfbfbf" points="807,-232 807,-264 927,-264 927,-232 807,-232"/>
-<text text-anchor="start" x="815" y="-251" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
-<text text-anchor="middle" x="867" y="-239" font-family="FreeSans" font-size="10.00">SettingGroup * &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="887,-229 887,-263 1023,-263 1023,-229 887,-229"/>
+<text text-anchor="start" x="895" y="-250" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
+<text text-anchor="middle" x="955" y="-237" font-family="FreeSans" font-size="10.00">SettingGroup * &gt;</text>
 </g>
 <!-- Node8&#45;&gt;Node16 -->
 <g id="edge50" class="edge"><title>Node8&#45;&gt;Node16</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M197.833,-263.216C271.273,-259.928 435.569,-252.974 574,-250 654.609,-248.268 747.719,-247.914 806.949,-247.896"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="197.503,-259.728 187.67,-263.674 197.818,-266.721 197.503,-259.728"/>
-<text text-anchor="middle" x="505" y="-256" font-family="FreeSans" font-size="10.00"> keys</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M217.862,-257.132C299.047,-253.697 480.84,-246.502 634,-244 703.324,-242.868 720.668,-243.58 790,-244 821.799,-244.193 857.042,-244.594 886.766,-244.987"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="217.389,-253.649 207.547,-257.571 217.687,-260.642 217.389,-253.649"/>
+<text text-anchor="middle" x="556" y="-251" font-family="FreeSans" font-size="10.00"> keys</text>
 </g>
 <!-- Node25 -->
 <g id="node62" class="node"><title>Node25</title>
-<polygon fill="white" stroke="#bfbfbf" points="454,-77 454,-97 556,-97 556,-77 454,-77"/>
-<text text-anchor="middle" x="505" y="-84" font-family="FreeSans" font-size="10.00">std::vector&lt; String &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="496.5,-67.5 496.5,-88.5 615.5,-88.5 615.5,-67.5 496.5,-67.5"/>
+<text text-anchor="middle" x="556" y="-75.5" font-family="FreeSans" font-size="10.00">std::vector&lt; String &gt;</text>
 </g>
 <!-- Node8&#45;&gt;Node25 -->
 <g id="edge78" class="edge"><title>Node8&#45;&gt;Node25</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M162.229,-245.092C167.236,-220.828 179.243,-180.31 206,-158 276.993,-98.8044 388.838,-87.2129 453.727,-85.9042"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="158.779,-244.502 160.393,-254.973 165.661,-245.781 158.779,-244.502"/>
-<text text-anchor="middle" x="241" y="-161" font-family="FreeSans" font-size="10.00"> elements</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M178.707,-238.174C184.343,-212.864 197.578,-170.73 226,-148 303.985,-85.6345 424.472,-75.2914 496.255,-75.3391"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="175.233,-237.692 176.679,-248.188 182.094,-239.082 175.233,-237.692"/>
+<text text-anchor="middle" x="266" y="-152" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="0.5,-249 0.5,-281 91.5,-281 91.5,-249 0.5,-249"/>
-<text text-anchor="start" x="8.5" y="-268" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
-<text text-anchor="middle" x="46" y="-256" font-family="FreeSans" font-size="10.00"> char &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="0.5,-242 0.5,-276 103.5,-276 103.5,-242 0.5,-242"/>
+<text text-anchor="start" x="8.5" y="-263" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
+<text text-anchor="middle" x="52" y="-250" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
 </g>
 <!-- Node9&#45;&gt;Node8 -->
 <g id="edge18" class="edge"><title>Node9&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M101.885,-265C111.778,-265 121.695,-265 130.425,-265"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="101.636,-261.5 91.6357,-265 101.636,-268.5 101.636,-261.5"/>
+<path fill="none" stroke="midnightblue" d="M113.938,-259C123.694,-259 133.436,-259 142.181,-259"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="113.807,-255.5 103.807,-259 113.807,-262.5 113.807,-255.5"/>
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<polygon fill="white" stroke="#bfbfbf" points="803,-305 803,-337 931,-337 931,-305 803,-305"/>
-<text text-anchor="start" x="811" y="-324" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
-<text text-anchor="middle" x="867" y="-312" font-family="FreeSans" font-size="10.00">Group * &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="883,-289 883,-323 1027,-323 1027,-289 883,-289"/>
+<text text-anchor="start" x="891" y="-310" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
+<text text-anchor="middle" x="955" y="-297" font-family="FreeSans" font-size="10.00">Group * &gt;</text>
 </g>
 <!-- Node10&#45;&gt;Node7 -->
 <g id="edge20" class="edge"><title>Node10&#45;&gt;Node7</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M792.723,-320.112C696.689,-318.964 530.596,-316.979 436.125,-315.85"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="792.893,-323.614 802.934,-320.234 792.977,-316.615 792.893,-323.614"/>
-<text text-anchor="middle" x="645" y="-322" font-family="FreeSans" font-size="10.00"> SaveGroups</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M872.711,-307.777C867.734,-307.859 862.8,-307.935 858,-308 724.519,-309.814 569.093,-310.54 478.224,-310.824"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="873.025,-311.272 882.962,-307.598 872.903,-304.273 873.025,-311.272"/>
+<text text-anchor="middle" x="712" y="-314" font-family="FreeSans" font-size="10.00"> SaveGroups</text>
 </g>
 <!-- Node11&#45;&gt;Node10 -->
 <g id="edge22" class="edge"><title>Node11&#45;&gt;Node10</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M718.052,-289.225C736.943,-292.978 757.243,-297.078 776,-301 784.708,-302.821 793.875,-304.783 802.901,-306.74"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="718.51,-285.747 708.02,-287.237 717.15,-292.614 718.51,-285.747"/>
-<text text-anchor="middle" x="755" y="-304" font-family="FreeSans" font-size="10.00"> elements</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M791.843,-281.829C821.177,-286.174 854.197,-291.066 882.819,-295.307"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="792.039,-278.32 781.634,-280.316 791.013,-285.244 792.039,-278.32"/>
+<text text-anchor="middle" x="833" y="-295" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
 <!-- Node11&#45;&gt;Node16 -->
 <g id="edge48" class="edge"><title>Node11&#45;&gt;Node16</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M718.03,-266.118C746.821,-262.616 779.487,-258.644 806.878,-255.312"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="717.527,-262.653 708.022,-267.335 718.372,-269.602 717.527,-262.653"/>
-<text text-anchor="middle" x="755" y="-266" font-family="FreeSans" font-size="10.00"> elements</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M791.673,-260.711C797.197,-260.116 802.68,-259.54 808,-259 833.744,-256.387 862.056,-253.812 886.902,-251.653"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="791.274,-257.233 781.713,-261.798 792.034,-264.192 791.274,-257.233"/>
+<text text-anchor="middle" x="833" y="-263" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
 <!-- Node12&#45;&gt;Node11 -->
 <g id="edge24" class="edge"><title>Node12&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M423.048,-192.546C427.548,-194.84 431.921,-197.325 436,-200 445.46,-206.205 444.219,-212.313 454,-218 494.64,-241.629 510.972,-232.492 556,-246 569.386,-250.016 583.823,-254.606 597.093,-258.932"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="424.224,-189.23 413.689,-188.106 421.223,-195.555 424.224,-189.23"/>
+<path fill="none" stroke="midnightblue" d="M464.545,-186.396C469.218,-188.73 473.757,-191.264 478,-194 487.508,-200.132 486.111,-206.503 496,-212 543.868,-238.607 563.161,-225.6 616,-240 630.32,-243.902 645.714,-248.521 659.89,-252.949"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="465.981,-183.203 455.438,-182.15 463.023,-189.547 465.981,-183.203"/>
 </g>
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
-<polygon fill="white" stroke="black" points="574.5,-163 574.5,-183 715.5,-183 715.5,-163 574.5,-163"/>
-<text text-anchor="middle" x="645" y="-170" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
+<polygon fill="white" stroke="black" points="634.5,-155.5 634.5,-176.5 789.5,-176.5 789.5,-155.5 634.5,-155.5"/>
+<text text-anchor="middle" x="712" y="-163.5" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
 </g>
 <!-- Node12&#45;&gt;Node14 -->
 <g id="edge30" class="edge"><title>Node12&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M438.357,-172.262C480.384,-172.412 532.86,-172.6 574.414,-172.748"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="438.199,-168.762 428.187,-172.226 438.174,-175.761 438.199,-168.762"/>
+<path fill="none" stroke="midnightblue" d="M480.965,-165.257C528.109,-165.409 587.489,-165.6 634.244,-165.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="480.806,-161.757 470.794,-165.224 480.783,-168.757 480.806,-161.757"/>
 </g>
 <!-- Node12&#45;&gt;Node14 -->
 <g id="edge32" class="edge"><title>Node12&#45;&gt;Node14</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M438.26,-158.659C443.574,-157.997 448.862,-157.43 454,-157 499.175,-153.22 510.846,-152.973 556,-157 569.761,-158.227 584.577,-160.501 598.098,-162.957"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="437.483,-155.232 428.041,-160.039 438.419,-162.17 437.483,-155.232"/>
-<text text-anchor="middle" x="505" y="-160" font-family="FreeSans" font-size="10.00"> ParentSetOrGroup</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M480.616,-150.596C485.811,-149.964 490.973,-149.42 496,-149 549.148,-144.556 562.871,-144.332 616,-149 631.006,-150.318 647.182,-152.775 661.899,-155.419"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="480.072,-147.137 470.613,-151.91 480.984,-154.077 480.072,-147.137"/>
+<text text-anchor="middle" x="556" y="-153" font-family="FreeSans" font-size="10.00"> ParentSetOrGroup</text>
 </g>
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
-<polygon fill="white" stroke="#bfbfbf" points="803,-148 803,-180 931,-180 931,-148 803,-148"/>
-<text text-anchor="start" x="811" y="-167" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
-<text text-anchor="middle" x="867" y="-155" font-family="FreeSans" font-size="10.00">Set * &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="883,-140 883,-174 1027,-174 1027,-140 883,-140"/>
+<text text-anchor="start" x="891" y="-161" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
+<text text-anchor="middle" x="955" y="-148" font-family="FreeSans" font-size="10.00">Set * &gt;</text>
 </g>
 <!-- Node13&#45;&gt;Node12 -->
 <g id="edge26" class="edge"><title>Node13&#45;&gt;Node12</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M793.012,-151.041C768.575,-147.344 741.197,-143.826 716,-142 599.792,-133.579 569.147,-133.21 454,-151 445.371,-152.333 436.341,-154.063 427.482,-155.957"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="792.515,-154.505 802.932,-152.575 793.585,-147.588 792.515,-154.505"/>
-<text text-anchor="middle" x="645" y="-145" font-family="FreeSans" font-size="10.00"> SubSets</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M873,-142.689C846.59,-138.72 817.137,-134.963 790,-133 659.613,-123.567 625.234,-122.292 496,-142 485.851,-143.548 475.193,-145.648 464.833,-147.954"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="872.546,-146.16 882.961,-144.217 873.608,-139.241 872.546,-146.16"/>
+<text text-anchor="middle" x="712" y="-137" font-family="FreeSans" font-size="10.00"> SubSets</text>
 </g>
 <!-- Node14&#45;&gt;Node13 -->
 <g id="edge28" class="edge"><title>Node14&#45;&gt;Node13</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M725.853,-169.722C751.135,-168.697 778.675,-167.581 802.66,-166.608"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="725.397,-166.238 715.547,-170.14 725.681,-173.232 725.397,-166.238"/>
-<text text-anchor="middle" x="755" y="-173" font-family="FreeSans" font-size="10.00"> elements</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M799.849,-162.746C827.052,-161.739 856.699,-160.641 882.72,-159.677"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="799.418,-159.26 789.555,-163.128 799.678,-166.255 799.418,-159.26"/>
+<text text-anchor="middle" x="833" y="-167" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
 <!-- Node15&#45;&gt;Node14 -->
 <g id="edge34" class="edge"><title>Node15&#45;&gt;Node14</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M436.226,-207.299C481.884,-199.798 540.526,-190.164 584.029,-183.017"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="435.401,-203.887 426.101,-208.962 436.536,-210.794 435.401,-203.887"/>
-<text text-anchor="middle" x="505" y="-208" font-family="FreeSans" font-size="10.00"> Settings</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M479.188,-201.932C529.903,-194.105 595.333,-184.006 643.909,-176.509"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="478.599,-198.482 469.25,-203.466 479.667,-205.4 478.599,-198.482"/>
+<text text-anchor="middle" x="556" y="-203" font-family="FreeSans" font-size="10.00"> Settings</text>
 </g>
 <!-- Node16&#45;&gt;Node5 -->
 <g id="edge46" class="edge"><title>Node16&#45;&gt;Node5</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M937.262,-248C970.39,-248 1009.69,-248 1042.23,-248"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="937.193,-244.5 927.193,-248 937.193,-251.5 937.193,-244.5"/>
-<text text-anchor="middle" x="990" y="-251" font-family="FreeSans" font-size="10.00"> SettingGroups</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1033.41,-246C1068.39,-246 1109.35,-246 1143.6,-246"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1033.23,-242.5 1023.23,-246 1033.23,-249.5 1033.23,-242.5"/>
+<text text-anchor="middle" x="1088" y="-250" font-family="FreeSans" font-size="10.00"> SettingGroups</text>
 </g>
 <!-- Node17&#45;&gt;Node1 -->
 <g id="edge52" class="edge"><title>Node17&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M1548.14,-171.158C1545.39,-171.48 1542.67,-171.764 1540,-172 1498.99,-175.623 1452.37,-175.411 1417.56,-174.408"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="1548.68,-174.617 1558.13,-169.84 1547.76,-167.678 1548.68,-174.617"/>
+<path fill="none" stroke="midnightblue" d="M1696.13,-176.183C1693.39,-176.493 1690.67,-176.768 1688,-177 1643.17,-180.893 1592.23,-180.402 1554.09,-179.068"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1696.64,-179.646 1706.12,-174.919 1695.76,-172.702 1696.64,-179.646"/>
 </g>
 <!-- Node18 -->
 <g id="node45" class="node"><title>Node18</title>
-<polygon fill="white" stroke="#bfbfbf" points="1054.5,-91 1054.5,-123 1161.5,-123 1161.5,-91 1054.5,-91"/>
-<text text-anchor="start" x="1062.5" y="-110" font-family="FreeSans" font-size="10.00">std::vector&lt; Graphics</text>
-<text text-anchor="middle" x="1108" y="-98" font-family="FreeSans" font-size="10.00">::RenderSystem &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="1155.5,-93 1155.5,-127 1276.5,-127 1276.5,-93 1155.5,-93"/>
+<text text-anchor="start" x="1163.5" y="-114" font-family="FreeSans" font-size="10.00">std::vector&lt; Graphics</text>
+<text text-anchor="middle" x="1216" y="-101" font-family="FreeSans" font-size="10.00">::RenderSystem &gt;</text>
 </g>
 <!-- Node18&#45;&gt;Node1 -->
 <g id="edge56" class="edge"><title>Node18&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1172.25,-106.806C1206.73,-108.353 1249.51,-112.96 1286,-125 1307.07,-131.951 1328.55,-145.21 1343.78,-155.878"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1171.95,-103.293 1161.83,-106.42 1171.69,-110.288 1171.95,-103.293"/>
-<text text-anchor="middle" x="1240" y="-128" font-family="FreeSans" font-size="10.00"> RenderSystemTypes</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1287.03,-109.843C1323.82,-111.455 1369.07,-116.112 1408,-128 1430.64,-134.913 1454.06,-148.028 1471.04,-158.804"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1287.01,-106.34 1276.88,-109.466 1286.75,-113.335 1287.01,-106.34"/>
+<text text-anchor="middle" x="1358" y="-132" font-family="FreeSans" font-size="10.00"> RenderSystemTypes</text>
 </g>
 <!-- Node19 -->
 <g id="node47" class="node"><title>Node19</title>
-<polygon fill="white" stroke="#bfbfbf" points="1746.5,-158 1746.5,-190 1853.5,-190 1853.5,-158 1746.5,-158"/>
-<text text-anchor="start" x="1754.5" y="-177" font-family="FreeSans" font-size="10.00">std::vector&lt; Graphics</text>
-<text text-anchor="middle" x="1800" y="-165" font-family="FreeSans" font-size="10.00">::GameWindow * &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="1916.5,-161 1916.5,-195 2037.5,-195 2037.5,-161 1916.5,-161"/>
+<text text-anchor="start" x="1924.5" y="-182" font-family="FreeSans" font-size="10.00">std::vector&lt; Graphics</text>
+<text text-anchor="middle" x="1977" y="-169" font-family="FreeSans" font-size="10.00">::GameWindow * &gt;</text>
 </g>
 <!-- Node19&#45;&gt;Node1 -->
 <g id="edge58" class="edge"><title>Node19&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1736.31,-181.826C1664.95,-189.357 1545.92,-198.217 1444,-188 1435.51,-187.149 1426.58,-185.794 1417.9,-184.225"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1736.92,-185.281 1746.48,-180.727 1736.17,-178.321 1736.92,-185.281"/>
-<text text-anchor="middle" x="1613" y="-196" font-family="FreeSans" font-size="10.00"> GameWindows</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1905.97,-186.395C1827.13,-194.389 1696.21,-203.739 1584,-193 1574.4,-192.081 1564.28,-190.61 1554.47,-188.908"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1906.68,-189.84 1916.26,-185.328 1905.96,-182.877 1906.68,-189.84"/>
+<text text-anchor="middle" x="1768" y="-202" font-family="FreeSans" font-size="10.00"> GameWindows</text>
 </g>
 <!-- Node20&#45;&gt;Node1 -->
 <g id="edge74" class="edge"><title>Node20&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1549.84,-80.1096C1517.02,-78.1091 1477,-79.8819 1444,-94 1413.88,-106.889 1388.92,-137.056 1375.56,-155.87"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1549.99,-83.6304 1560.22,-80.8809 1550.51,-76.6497 1549.99,-83.6304"/>
-<text text-anchor="middle" x="1492" y="-97" font-family="FreeSans" font-size="10.00"> PrimaryGameWindow</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1699.62,-81.1944C1663.94,-78.8354 1620.28,-80.3875 1584,-95 1551.45,-108.11 1523.52,-139.211 1508.3,-158.836"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1699.7,-84.7109 1709.94,-81.9985 1700.24,-77.7321 1699.7,-84.7109"/>
+<text text-anchor="middle" x="1636" y="-99" font-family="FreeSans" font-size="10.00"> PrimaryGameWindow</text>
 </g>
 <!-- Node20&#45;&gt;Node19 -->
 <g id="edge60" class="edge"><title>Node20&#45;&gt;Node19</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1657.95,-109.431C1690.63,-124.288 1734.27,-144.124 1764.52,-157.872"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1659.17,-106.14 1648.61,-105.188 1656.27,-112.512 1659.17,-106.14"/>
-<text text-anchor="middle" x="1707" y="-143" font-family="FreeSans" font-size="10.00"> elements</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1818.66,-112.087C1854.71,-127.095 1902.53,-147 1936.15,-160.996"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1819.87,-108.8 1809.29,-108.188 1817.18,-115.263 1819.87,-108.8"/>
+<text text-anchor="middle" x="1873" y="-149" font-family="FreeSans" font-size="10.00"> elements</text>
 </g>
 <!-- Node21 -->
 <g id="node51" class="node"><title>Node21</title>
 <a xlink:href="structMezzanine_1_1WindowSettings.xhtml" target="_top" xlink:title="This stores all the basic configuration options a game window supports.">
-<polygon fill="white" stroke="black" points="1040,-50 1040,-70 1176,-70 1176,-50 1040,-50"/>
-<text text-anchor="middle" x="1108" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::WindowSettings</text>
+<polygon fill="white" stroke="black" points="1142,-50.5 1142,-71.5 1290,-71.5 1290,-50.5 1142,-50.5"/>
+<text text-anchor="middle" x="1216" y="-58.5" font-family="FreeSans" font-size="10.00">Mezzanine::WindowSettings</text>
 </a>
 </g>
 <!-- Node21&#45;&gt;Node1 -->
 <g id="edge68" class="edge"><title>Node21&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1186.12,-69.8418C1225.51,-75.7226 1268.56,-83.8259 1286,-93 1314.84,-108.173 1339.85,-137.454 1353.64,-155.792"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1186.6,-66.3751 1176.2,-68.3953 1185.59,-73.3018 1186.6,-66.3751"/>
-<text text-anchor="middle" x="1240" y="-96" font-family="FreeSans" font-size="10.00"> DesktopSettings</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1300.5,-71.2271C1342.83,-77.2905 1389.04,-85.6156 1408,-95 1438.89,-110.291 1466.72,-139.81 1482.47,-158.675"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1300.8,-67.7348 1290.41,-69.8131 1299.83,-74.6671 1300.8,-67.7348"/>
+<text text-anchor="middle" x="1358" y="-99" font-family="FreeSans" font-size="10.00"> DesktopSettings</text>
 </g>
 <!-- Node21&#45;&gt;Node20 -->
 <g id="edge62" class="edge"><title>Node21&#45;&gt;Node20</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1186.33,-59.6322C1273.05,-59.9848 1416.89,-62.8234 1540,-76 1546.66,-76.7124 1553.62,-77.6718 1560.49,-78.7484"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1186.31,-56.1322 1176.3,-59.6015 1186.29,-63.1322 1186.31,-56.1322"/>
-<text text-anchor="middle" x="1365" y="-70" font-family="FreeSans" font-size="10.00"> Settings</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1300.29,-60.3252C1394.9,-60.3879 1552.86,-62.9537 1688,-77 1695.01,-77.7288 1702.34,-78.707 1709.58,-79.8094"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1300.2,-56.8251 1290.2,-60.3279 1300.21,-63.8251 1300.2,-56.8251"/>
+<text text-anchor="middle" x="1496" y="-72" font-family="FreeSans" font-size="10.00"> Settings</text>
 </g>
 <!-- Node22 -->
 <g id="node54" class="node"><title>Node22</title>
-<polygon fill="white" stroke="#bfbfbf" points="1304.5,-0 1304.5,-20 1425.5,-20 1425.5,-0 1304.5,-0"/>
-<text text-anchor="middle" x="1365" y="-7" font-family="FreeSans" font-size="10.00">std::list&lt; ViewportEntry &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="1426.5,-0.5 1426.5,-21.5 1565.5,-21.5 1565.5,-0.5 1426.5,-0.5"/>
+<text text-anchor="middle" x="1496" y="-8.5" font-family="FreeSans" font-size="10.00">std::list&lt; ViewportEntry &gt;</text>
 </g>
 <!-- Node22&#45;&gt;Node20 -->
 <g id="edge66" class="edge"><title>Node22&#45;&gt;Node20</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1436.22,-9.14823C1468.92,-10.9897 1507.55,-16.4046 1540,-30 1563.15,-39.6975 1584.86,-59.0785 1598.49,-72.9832"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1435.98,-5.63345 1425.83,-8.67009 1435.66,-12.6261 1435.98,-5.63345"/>
-<text text-anchor="middle" x="1492" y="-33" font-family="FreeSans" font-size="10.00"> Viewports</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1575.93,-9.81704C1611.3,-11.6738 1652.79,-17.194 1688,-31 1712.41,-40.5689 1735.85,-59.7244 1750.98,-73.8282"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1575.78,-6.30756 1565.64,-9.36982 1575.48,-13.301 1575.78,-6.30756"/>
+<text text-anchor="middle" x="1636" y="-35" font-family="FreeSans" font-size="10.00"> Viewports</text>
 </g>
 <!-- Node23 -->
 <g id="node57" class="node"><title>Node23</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.xhtml" target="_top" xlink:title="This does the main loop processing for required to make the Graphics Manager function.">
-<polygon fill="white" stroke="black" points="1055.5,-525 1055.5,-557 1160.5,-557 1160.5,-525 1055.5,-525"/>
-<text text-anchor="start" x="1063.5" y="-544" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
-<text text-anchor="middle" x="1108" y="-532" font-family="FreeSans" font-size="10.00">::RenderWorkUnit</text>
+<polygon fill="white" stroke="black" points="1158,-523 1158,-557 1274,-557 1274,-523 1158,-523"/>
+<text text-anchor="start" x="1166" y="-544" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
+<text text-anchor="middle" x="1216" y="-531" font-family="FreeSans" font-size="10.00">::RenderWorkUnit</text>
 </a>
 </g>
 <!-- Node23&#45;&gt;Node1 -->
 <g id="edge70" class="edge"><title>Node23&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1169.63,-519.887C1171.86,-518.364 1173.99,-516.737 1176,-515 1286.53,-419.342 1344.71,-242.429 1360.51,-188.215"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1167.43,-517.126 1160.64,-525.262 1171.02,-523.134 1167.43,-517.126"/>
-<text text-anchor="middle" x="1240" y="-496" font-family="FreeSans" font-size="10.00"> RenderWork</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1283.43,-518.75C1285.72,-517.268 1287.92,-515.687 1290,-514 1404.02,-421.67 1471.14,-248.254 1490.28,-193.22"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1281.19,-515.995 1274.24,-523.987 1284.66,-522.077 1281.19,-515.995"/>
+<text text-anchor="middle" x="1358" y="-496" font-family="FreeSans" font-size="10.00"> RenderWork</text>
 </g>
 <!-- Node24 -->
 <g id="node59" class="node"><title>Node24</title>
-<polygon fill="white" stroke="#bfbfbf" points="794.5,-531 794.5,-551 939.5,-551 939.5,-531 794.5,-531"/>
-<text text-anchor="middle" x="867" y="-538" font-family="FreeSans" font-size="10.00">Threading::MonopolyWorkUnit</text>
+<polygon fill="white" stroke="#bfbfbf" points="876.5,-529.5 876.5,-550.5 1033.5,-550.5 1033.5,-529.5 876.5,-529.5"/>
+<text text-anchor="middle" x="955" y="-537.5" font-family="FreeSans" font-size="10.00">Threading::MonopolyWorkUnit</text>
 </g>
 <!-- Node24&#45;&gt;Node23 -->
 <g id="edge72" class="edge"><title>Node24&#45;&gt;Node23</title>
-<path fill="none" stroke="midnightblue" d="M949.847,-541C984.842,-541 1024.55,-541 1055.42,-541"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="949.635,-537.5 939.635,-541 949.635,-544.5 949.635,-537.5"/>
+<path fill="none" stroke="midnightblue" d="M1044.12,-540C1081.7,-540 1124.39,-540 1157.82,-540"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1043.66,-536.5 1033.66,-540 1043.66,-543.5 1043.66,-536.5"/>
 </g>
 <!-- Node25&#45;&gt;Node1 -->
 <g id="edge76" class="edge"><title>Node25&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M566.224,-88.9312C650.59,-92.0498 807.233,-99.4845 940,-115 984.777,-120.233 995.394,-125.467 1040,-132 1135.76,-146.026 1247.89,-159.087 1312.27,-166.264"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="566.172,-85.4271 556.052,-88.5632 565.919,-92.4225 566.172,-85.4271"/>
-<text text-anchor="middle" x="867" y="-130" font-family="FreeSans" font-size="10.00"> SupportedDevices</text>
-<text text-anchor="middle" x="867" y="-118" font-family="FreeSans" font-size="10.00">SupportedResolutions</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M625.914,-77.0952C719.522,-76.9863 890.44,-80.6563 1034,-105 1083.24,-113.349 1093.02,-126.274 1142,-136 1245.13,-156.479 1367.4,-167.398 1437.91,-172.424"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="625.709,-73.5957 615.719,-77.1225 625.728,-80.5957 625.709,-73.5957"/>
+<text text-anchor="middle" x="955" y="-122" font-family="FreeSans" font-size="10.00"> SupportedDevices</text>
+<text text-anchor="middle" x="955" y="-109" font-family="FreeSans" font-size="10.00">SupportedResolutions</text>
 </g>
 <!-- Node26 -->
 <g id="node65" class="node"><title>Node26</title>
-<polygon fill="white" stroke="#bfbfbf" points="1061,-320 1061,-352 1155,-352 1155,-320 1061,-320"/>
-<text text-anchor="start" x="1069" y="-339" font-family="FreeSans" font-size="10.00">std::vector&lt; Ogre::</text>
-<text text-anchor="middle" x="1108" y="-327" font-family="FreeSans" font-size="10.00">Plugin * &gt;</text>
+<polygon fill="white" stroke="#bfbfbf" points="1162,-321 1162,-355 1270,-355 1270,-321 1162,-321"/>
+<text text-anchor="start" x="1170" y="-342" font-family="FreeSans" font-size="10.00">std::vector&lt; Ogre::</text>
+<text text-anchor="middle" x="1216" y="-329" font-family="FreeSans" font-size="10.00">Plugin * &gt;</text>
 </g>
 <!-- Node26&#45;&gt;Node1 -->
 <g id="edge80" class="edge"><title>Node26&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1163.42,-316.251C1167.7,-314.535 1171.93,-312.775 1176,-311 1226.28,-289.052 1242.01,-287.783 1286,-255 1312.48,-235.266 1337.83,-206.225 1352.39,-188.245"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="1162.06,-313.024 1154.02,-319.925 1164.61,-319.544 1162.06,-313.024"/>
-<text text-anchor="middle" x="1240" y="-305" font-family="FreeSans" font-size="10.00"> RenderSystems</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1276.35,-317.352C1280.99,-315.595 1285.58,-313.8 1290,-312 1343.58,-290.161 1359.92,-289.196 1408,-257 1435.95,-238.283 1463.77,-210.818 1480.42,-193.172"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="1274.96,-314.133 1266.8,-320.894 1277.4,-320.696 1274.96,-314.133"/>
+<text text-anchor="middle" x="1358" y="-307" font-family="FreeSans" font-size="10.00"> RenderSystems</text>
 </g>
 </g>
 </svg>

@@ -1,7 +1,7 @@
 <map id="Mezzanine::UI::Rectangle" name="Mezzanine::UI::Rectangle">
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1Caption.xhtml" title="This class is a helper class, specifically for use with text." alt="" coords="5,315,157,343"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MarkupText.xhtml" title="This is a helper class for use with specialized text display." alt="" coords="181,315,357,343"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1AreaRenderable.xhtml" title="This class defines a renderable that covers an area, such as a rectangle or circle." alt="" coords="75,161,275,189"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1BasicRenderable.xhtml" title="Base class for renderables that generate verticies." alt="" coords="72,83,277,111"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Renderable.xhtml" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="88,6,261,34"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1Caption.xhtml" title="This class is a helper class, specifically for use with text." alt="" coords="5,315,173,344"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MarkupText.xhtml" title="This is a helper class for use with specialized text display." alt="" coords="197,315,387,344"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1AreaRenderable.xhtml" title="This class defines a renderable that covers an area, such as a rectangle or circle." alt="" coords="81,160,300,189"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1BasicRenderable.xhtml" title="Base class for renderables that generate verticies." alt="" coords="79,83,303,112"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Renderable.xhtml" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="96,5,285,35"/>
 </map>

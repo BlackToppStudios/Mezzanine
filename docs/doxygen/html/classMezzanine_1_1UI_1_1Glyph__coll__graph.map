@@ -1,4 +1,4 @@
 <map id="Mezzanine::UI::Glyph" name="Mezzanine::UI::Glyph">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="5,107,139,135"/>
-<area shape="rect" id="node6" href="$structMezzanine_1_1UI_1_1KerningInfo.xhtml" title="Basic class used to describe Kerning for a given Glyph." alt="" coords="152,6,325,34"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="5,111,152,140"/>
+<area shape="rect" id="node6" href="$structMezzanine_1_1UI_1_1KerningInfo.xhtml" title="Basic class used to describe Kerning for a given Glyph." alt="" coords="168,5,357,35"/>
 </map>

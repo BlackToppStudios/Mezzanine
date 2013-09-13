@@ -1,5 +1,5 @@
 <map id="Mezzanine::Audio::SoundProxy" name="Mezzanine::Audio::SoundProxy">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems." alt="" coords="13,99,168,127"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="5,6,176,50"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Audio_1_1iSound.xhtml" title="This is an interface class for a non&#45;spacialized sound." alt="" coords="192,99,360,127"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems." alt="" coords="16,101,181,131"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="5,6,192,53"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Audio_1_1iSound.xhtml" title="This is an interface class for a non&#45;spacialized sound." alt="" coords="205,101,392,131"/>
 </map>
