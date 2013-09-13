@@ -64,7 +64,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
-    String WorldProxy::SerializableName()
+    String WorldProxy::GetSerializableName()
     {
         return "WorldProxy";
     }
