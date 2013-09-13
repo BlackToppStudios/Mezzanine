@@ -1,5 +1,0 @@
-<map id="Mezzanine::XML::Writer" name="Mezzanine::XML::Writer">
-<area shape="rect" id="node3" href="$classMezzanine_1_1XML_1_1WriterFile.xhtml" title="An implementation of Writer intended for writing to FILEs as defined in stdio." alt="" coords="223,5,399,33"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1XML_1_1WriterStream.xhtml" title="An implementation of Writer intended for writing std::ostreams." alt="" coords="212,55,409,83"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1XML_1_1XMLStreamWrapper.xhtml" title="This represents a simple wrapper that makes data streams compatible with the XML API." alt="" coords="216,106,405,150"/>
-</map>

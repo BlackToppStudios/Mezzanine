@@ -1,6 +1,0 @@
-<map id="Mezzanine::Physics::MeshCollisionShape" name="Mezzanine::Physics::MeshCollisionShape">
-<area shape="rect" id="node5" href="$classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.xhtml" title="A collision shape for soft actors." alt="" coords="392,5,560,49"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.xhtml" title="A triangle mesh collsion shape based on a graphics mesh." alt="" coords="379,71,573,115"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1StaticMeshCollisionShape.xhtml" title="A triangle mesh collsion shape based on a graphics mesh." alt="" coords="387,138,565,182"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="5,71,139,115"/>
-</map>

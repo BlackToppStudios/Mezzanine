@@ -1,5 +1,0 @@
-<map id="Mezzanine::Graphics::GraphicsManager" name="Mezzanine::Graphics::GraphicsManager">
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="9,5,177,33"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ObjectSettingsHandler.xhtml" title="An abstract class for other classes that manage groups of settings." alt="" coords="7,55,180,99"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;" alt="" coords="21,122,165,166"/>
-</map>
