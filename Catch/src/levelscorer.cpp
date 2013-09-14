@@ -101,7 +101,7 @@ Whole LevelScorer::CalculateTimerScore()
 
         Real ThrowableRatio = ((Real)ActorsInScoreZones / (Real)Throwables.size());
         Real SubTotal = (((Real)this->LevelTargetTime - (Real)Time) * 10) * ThrowableRatio;
-        Real Margin = MathTool::Fmod(SubTotal,5.0);
+        Real Margin = MathTools::Fmod(SubTotal,5.0);
         if( Margin >= 2.5 )
         {
             SubTotal += (5.0 - Margin);

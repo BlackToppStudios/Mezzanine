@@ -111,16 +111,16 @@ namespace Mezzanine
     {
         Real Cos, Sin;
 
-        Cos = MathTool::Cos(Yaw);
-        Sin = MathTool::Sin(Yaw);
+        Cos = MathTools::Cos(Yaw);
+        Sin = MathTools::Sin(Yaw);
         Matrix3x3 ZMat(Cos,-Sin,0.0,Sin,Cos,0.0,0.0,0.0,1.0);
 
-        Cos = MathTool::Cos(Pitch);
-        Sin = MathTool::Sin(Pitch);
+        Cos = MathTools::Cos(Pitch);
+        Sin = MathTools::Sin(Pitch);
         Matrix3x3 YMat(Cos,0.0,Sin,0.0,1.0,0.0,-Sin,0.0,Cos);
 
-        Cos = MathTool::Cos(Roll);
-        Sin = MathTool::Sin(Roll);
+        Cos = MathTools::Cos(Roll);
+        Sin = MathTools::Sin(Roll);
         Matrix3x3 XMat(1.0,0.0,0.0,0.0,Cos,-Sin,0.0,Sin,Cos);
 
         *this = ZMat * (YMat * XMat);
@@ -143,8 +143,8 @@ namespace Mezzanine
 
     void Matrix3x3::SetFromAxisAngle(const Vector3& Axis, const Real& Angle)
     {
-        Real Cos = MathTool::Cos(Angle);
-        Real Sin = MathTool::Sin(Angle);
+        Real Cos = MathTools::Cos(Angle);
+        Real Sin = MathTools::Sin(Angle);
         Real OneMinusCos = 1.0 - Cos;
         Real X2 = Axis.X * Axis.X;
         Real Y2 = Axis.Y * Axis.Y;
@@ -202,7 +202,7 @@ namespace Mezzanine
 
         if (Trace > Real(0.0))
         {
-            Real Sc = MathTool::Sqrt(Trace + Real(1.0));
+            Real Sc = MathTools::Sqrt(Trace + Real(1.0));
             Ret.W = (Sc * Real(0.5));
             Sc = Real(0.5) / Sc;
 
@@ -218,7 +218,7 @@ namespace Mezzanine
             int J = (I + 1) % 3;
             int K = (I + 2) % 3;
 
-            Real Sc = MathTool::Sqrt(Matrix[I][I] - Matrix[J][J] - Matrix[K][K] + Real(1.0));
+            Real Sc = MathTools::Sqrt(Matrix[I][I] - Matrix[J][J] - Matrix[K][K] + Real(1.0));
             Ret[I] = Sc * Real(0.5);
             Sc = Real(0.5) / Sc;
 
@@ -512,13 +512,13 @@ namespace Mezzanine
     bool Matrix3x3::HasScaling() const
     {
         Real Test = Matrix[0][0] * Matrix[0][0] + Matrix[1][0] * Matrix[1][0] + Matrix[2][0] * Matrix[2][0];
-        if (!MathTool::WithinTolerance(Test,1.0,(Real)1e-04))
+        if (!MathTools::WithinTolerance(Test,1.0,(Real)1e-04))
             return true;
         Test = Matrix[0][1] * Matrix[0][1] + Matrix[1][1] * Matrix[1][1] + Matrix[2][1] * Matrix[2][1];
-        if (!MathTool::WithinTolerance(Test,1.0,(Real)1e-04))
+        if (!MathTools::WithinTolerance(Test,1.0,(Real)1e-04))
             return true;
         Test = Matrix[0][2] * Matrix[0][2] + Matrix[1][2] * Matrix[1][2] + Matrix[2][2] * Matrix[2][2];
-        if (!MathTool::WithinTolerance(Test,1.0,(Real)1e-04))
+        if (!MathTools::WithinTolerance(Test,1.0,(Real)1e-04))
             return true;
 
         return false;

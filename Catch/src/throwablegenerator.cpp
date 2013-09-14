@@ -69,7 +69,7 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     PyriteData->MeshName = "pyrite.mesh";
     PyriteData->GroupName = "Common";
     PyriteData->Mass = 7.0;//
-    PyriteData->Friction = MathTool::Sqrt(0.8);
+    PyriteData->Friction = MathTools::Sqrt(0.8);
     PyriteData->Restitution = 0.1;
     Throwables.push_back(PyriteData);
 
@@ -144,7 +144,7 @@ ActorRigid* ThrowableGenerator::CreateThrowable(const String& Throwable)
     NameGen << ToBeCreated->ThrowableName << ToBeCreated->ThrowableCount;
     ActorRigid* Created = new ActorRigid(ToBeCreated->Mass,NameGen.str(),ToBeCreated->MeshName,ToBeCreated->GroupName);
     Created->SetLinearMovementFactor(Vector3(1,1,0));
-    Created->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Created->SetOrientation(Quaternion(MathTools::Pi,Vector3(0,1,0)));
     Created->GetPhysicsSettings()->SetFriction(ToBeCreated->Friction);
     Created->GetPhysicsSettings()->SetRestitution(ToBeCreated->Restitution);
     //Created->GetPhysicsSettings()->SetActivationState(Physics::WOAS_DisableDeactivation);

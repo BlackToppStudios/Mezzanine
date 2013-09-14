@@ -202,7 +202,7 @@ namespace Mezzanine
 
     Vector2& Vector2::Normalize()
     {
-        Real Length = MathTool::Sqrt( X * X + Y * Y);
+        Real Length = MathTools::Sqrt( X * X + Y * Y );
 
         if ( Length > 1e-08 )
         {

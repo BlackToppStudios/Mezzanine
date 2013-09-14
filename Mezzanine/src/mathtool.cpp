@@ -46,110 +46,67 @@
 
 namespace Mezzanine
 {
-    const Real MathTool::Pi = Real(4.0 * atan(1.0));
-    const Real MathTool::TwoPi = Real(2.0 * Pi);
-    const Real MathTool::HalfPi = Real(0.5 * Pi);
-    const Real MathTool::RadToDegMult = Real(Real(180.0) / Pi);
-    const Real MathTool::DegToRadMult = Real(Pi / Real(180.0));
-
-    MathTool::MathTool()
+    namespace MathTools
     {
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Real Math & Check Functions
 
-    MathTool::~MathTool()
-    {
-    }
+        Real Ceil(const Real& Val)
+            { return std::ceil(Val); }
 
-    Real MathTool::GetPi()
-    {
-        return Pi;
-    }
+        Real Floor(const Real& Val)
+            { return std::floor(Val); }
 
-    Real MathTool::GetTwoPi()
-    {
-        return TwoPi;
-    }
+        Real Pow(const Real& Val, const Real& Power)
+            { return std::pow(Val,Power); }
 
-    Real MathTool::GetHalfPi()
-    {
-        return HalfPi;
-    }
+        Real Sqrt(const Real& Val)
+            { return std::sqrt(Val); }
 
-    Real MathTool::Ceil(const Real& Val)
-    {
-        return ceil(Val);
-    }
+        Real Fabs(const Real& Val)
+            { return std::fabs(Val); }
 
-    Real MathTool::Floor(const Real& Val)
-    {
-        return floor(Val);
-    }
+        Real Fmod(const Real& Numerator, const Real& Denominator)
+            { return std::fmod(Numerator,Denominator); }
 
-    Real MathTool::Pow(const Real& Val, const Real& Power)
-    {
-        return pow(Val,Power);
-    }
+        bool WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance)
+            { return ( MathTools::Fabs(Second - First) <= Tolerance ); }
 
-    Real MathTool::Sqrt(const Real& Val)
-    {
-        return sqrt(Val);
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Angle Calculation Functions
 
-    Real MathTool::Fabs(const Real& Val)
-    {
-        return fabs(Val);
-    }
+        Real Cos(const Real& Radians)
+            { return std::cos(Radians); }
 
-    Real MathTool::Fmod(const Real& Numerator, const Real& Denominator)
-    {
-        return fmod(Numerator,Denominator);
-    }
+        Real Sin(const Real& Radians)
+            { return std::sin(Radians); }
 
-    bool MathTool::WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance)
-    {
-        if( Fabs(Second - First) <= Tolerance ) return true;
-        else return false;
-    }
+        Real Tan(const Real& Radians)
+            { return std::tan(Radians); }
 
-    Real MathTool::Cos(const Real& Radians)
-    {
-        return cos(Radians);
-    }
+        Real ACos(const Real& Interval)
+            { return std::acos(Interval); }
 
-    Real MathTool::Sin(const Real& Radians)
-    {
-        return sin(Radians);
-    }
+        Real ASin(const Real& Interval)
+            { return std::asin(Interval); }
 
-    Real MathTool::Tan(const Real& Radians)
-    {
-        return tan(Radians);
-    }
+        Real ATan(const Real& Interval)
+            { return std::atan(Interval); }
 
-    Real MathTool::ACos(const Real& Interval)
-    {
-        return acos(Interval);
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Angle Conversion Functions
 
-    Real MathTool::ASin(const Real& Interval)
-    {
-        return asin(Interval);
-    }
+        Real DegreesToRadians(const Real& Degrees)
+            { return Degrees * MathTools::DegToRadMult; }
 
-    Real MathTool::ATan(const Real& Interval)
-    {
-        return atan(Interval);
-    }
+        Real RadiansToDegrees(const Real& Radians)
+            { return Radians * MathTools::RadToDegMult; }
 
-    Real MathTool::DegreesToRadians(const Real& Degrees)
-    {
-        return Degrees * DegToRadMult;
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Geometry Math
 
-    Real MathTool::RadiansToDegrees(const Real& Radians)
-    {
-        return Radians * RadToDegMult;
-    }
+
+    }//MathTools
 }//Mezzanine
 
 #endif

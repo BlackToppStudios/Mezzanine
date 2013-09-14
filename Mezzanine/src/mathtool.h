@@ -44,134 +44,103 @@
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class MathTool
-    /// @headerfile mathtool.h
-    /// @brief This provides a number of generic math related utilities.
-    /// @details
-    ///////////////////////////////////////
-    class MEZZ_LIB MathTool
+    /// @namespace Mezzanine::MathTools
+    /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
+    namespace MathTools
     {
-        protected:
-            static const Real Pi;
-            static const Real TwoPi;
-            static const Real HalfPi;
-            static const Real RadToDegMult;
-            static const Real DegToRadMult;
-        public:
-            /// @brief Class constructor.
-            MathTool();
+        ///////////////////////////////////////////////////////////////////////////////
+        // Real Math & Check Functions
 
-            /// @brief Class destructor.
-            ~MathTool();
+        /// @brief Rounds a Real up.
+        /// @param Val The value to be rounded.
+        /// @return Returns the result of the rounding.
+        Real MEZZ_LIB Ceil(const Real& Val);
+        /// @brief Rounds a Real down.
+        /// @param Val The value to be rounded.
+        /// @return Returns the result of the rounding.
+        Real MEZZ_LIB Floor(const Real& Val);
+        /// @brief Raises a Real to a power.
+        /// @param Val The base number to be raised.
+        /// @param Power The power (or exponent) to raise the Real by.
+        /// @return Returns the Raised Eeal.
+        Real MEZZ_LIB Pow(const Real& Val, const Real& Power);
+        /// @brief Gets the square root of a Real.
+        /// @param Val The number to be calculated.
+        /// @return Returns the calculated square root.
+        Real MEZZ_LIB Sqrt(const Real& Val);
+        /// @brief Gets the absolute value of a Real.
+        /// @param Val The value to get the absolute value of.
+        /// @return Returns the absolute value of the Real.
+        Real MEZZ_LIB Fabs(const Real& Val);
+        /// @brief Modulo, fo' Reals.  Returns the remainder of the division between two Reals.
+        /// @param Numerator The number on top.
+        /// @param Denominator The number on bottom.
+        /// @return Returns the remainder of division between the two Reals passed in.
+        Real MEZZ_LIB Fmod(const Real& Numerator, const Real& Denominator);
+        /// @brief Checks to see if two Reals are within a certain range of each other.
+        /// @param First The first of two Reals to compare.
+        /// @param Second The second of two Reals to compare.
+        /// @param Tolerance The leeway allowed in how far the two can be apart.
+        /// @return Returns true if the two numbers are within the amount specified by Tolerance of each other, false otherwise.
+        bool MEZZ_LIB WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Pi Functions
-            ///////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////
+        // Angle Calculation Functions and Values
 
-            /// @brief Gets Pi.
-            /// @return Returns a real representing Pi.
-            static Real GetPi();
+        /// @brief Calculates the Cosine of an angle.
+        /// @param Radians The angle to be computed in Radians.
+        /// @return Returns a Real representing the Cosine of the angle provided.
+        Real MEZZ_LIB Cos(const Real& Radians);
+        /// @brief Calculates the Sine of an angle.
+        /// @param Radians The angle to be computed in Radians.
+        /// @return Returns a Real representing the Sine of the angle provided.
+        Real MEZZ_LIB Sin(const Real& Radians);
+        /// @brief Calculates the Tangent of an angle.
+        /// @param Radians The angle to be computed in Radians.
+        /// @return Returns a Real representing the Tangent of the angle provided.
+        Real MEZZ_LIB Tan(const Real& Radians);
+        /// @brief Calculates the principal value of the arc Cosine of an angle.
+        /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
+        /// @return Returns a Real representing the principal value of the arc Cosine of the angle provided in Radians.
+        Real MEZZ_LIB ACos(const Real& Interval);
+        /// @brief Calculates the principal value of the arc Sine of an angle.
+        /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
+        /// @return Returns a Real representing the principal value of the arc Sine of the angle provided in Radians.
+        Real MEZZ_LIB ASin(const Real& Interval);
+        /// @brief Calculates the principal value of the arc Tangent of an angle.
+        /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
+        /// @return Returns a Real representing the principal value of the arc Tangent of the angle provided in Radians.
+        Real MEZZ_LIB ATan(const Real& Interval);
 
-            /// @brief Gets Pi * 2.
-            /// @return Returns a real representing Pi * 2.
-            static Real GetTwoPi();
+        /// @brief This is Pi.
+        const Real Pi = Real( 4.0 * MathTools::ATan(1.0) );
+        /// @brief This is Pi * 2.
+        const Real TwoPi = ( Real( 4.0 * MathTools::ATan(1.0) ) ) * 2.0;
+        /// @brief This is Pi * 0.5.
+        const Real HalfPi = ( Real( 4.0 * MathTools::ATan(1.0) ) ) * 0.5;
 
-            /// @brief Gets Pi * 0.5.
-            /// @return Returns a real representing Pi * 0.5.
-            static Real GetHalfPi();
+        ///////////////////////////////////////////////////////////////////////////////
+        // Angle Conversion Functions and Values
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Real Math & Check Functions
-            ///////////////////////////////////////
+        /// @brief Converts an angle in Degree's to the same angle Radians.
+        /// @param Degrees The number of Degree's to convert.
+        /// @return Returns the converted number in Radians.
+        Real MEZZ_LIB DegreesToRadians(const Real& Degrees);
+        /// @brief Converts an angle in Radians's to the same angle Degrees.
+        /// @param Radians The number of Radians's to convert.
+        /// @return Returns the converted number in Degrees.
+        Real MEZZ_LIB RadiansToDegrees(const Real& Radians);
 
-            /// @brief Rounds a Real up.
-            /// @param Val The value to be rounded.
-            /// @return Returns the result of the rounding.
-            static Real Ceil(const Real& Val);
+        /// @brief This is a convenience multiplier for the conversion of Radians to Degrees.
+        const Real RadToDegMult = Real( Real(180.0) / Real( 4.0 * MathTools::ATan(1.0) ) );
+        /// @brief This is a convenience multiplier for the conversion of Degrees to Radians.
+        const Real DegToRadMult = Real( Real( 4.0 * MathTools::ATan(1.0) ) / Real(180.0) );
 
-            /// @brief Rounds a Real down.
-            /// @param Val The value to be rounded.
-            /// @return Returns the result of the rounding.
-            static Real Floor(const Real& Val);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Geometry Math
 
-            /// @brief Raises a Real to a power.
-            /// @param Val The base number to be raised.
-            /// @param Power The power (or exponent) to raise the Real by.
-            /// @return Returns the Raised Eeal.
-            static Real Pow(const Real& Val, const Real& Power);
 
-            /// @brief Gets the square root of a Real.
-            /// @param Val The number to be calculated.
-            /// @return Returns the calculated square root.
-            static Real Sqrt(const Real& Val);
-
-            /// @brief Gets the absolute value of a Real.
-            /// @param Val The value to get the absolute value of.
-            /// @return Returns the absolute value of the Real.
-            static Real Fabs(const Real& Val);
-
-            /// @brief Modulo, for Reals.  Returns the remainder of the division between two Reals.
-            /// @param Numerator The number on top.
-            /// @param Denominator The number on bottom.
-            /// @return Returns the remainder of division between the two Reals passed in.
-            static Real Fmod(const Real& Numerator, const Real& Denominator);
-
-            /// @brief Checks to see if two Reals are within a certain range of each other.
-            /// @param First The first of two Reals to compare.
-            /// @param Second The second of two Reals to compare.
-            /// @param Tolerance The leeway allowed in how far the two can be apart.
-            /// @return Returns true if the two numbers are within the amount specified by Tolerance of each other, false otherwise.
-            static bool WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Angle Calculation Functions
-            ///////////////////////////////////////
-
-            /// @brief Calculates the Cosine of an angle.
-            /// @param Radians The angle to be computed in Radians.
-            /// @return Returns a Real representing the Cosine of the angle provided.
-            static Real Cos(const Real& Radians);
-
-            /// @brief Calculates the Sine of an angle.
-            /// @param Radians The angle to be computed in Radians.
-            /// @return Returns a Real representing the Sine of the angle provided.
-            static Real Sin(const Real& Radians);
-
-            /// @brief Calculates the Tangent of an angle.
-            /// @param Radians The angle to be computed in Radians.
-            /// @return Returns a Real representing the Tangent of the angle provided.
-            static Real Tan(const Real& Radians);
-
-            /// @brief Calculates the principal value of the arc Cosine of an angle.
-            /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
-            /// @return Returns a Real representing the principal value of the arc Cosine of the angle provided in Radians.
-            static Real ACos(const Real& Interval);
-
-            /// @brief Calculates the principal value of the arc Sine of an angle.
-            /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
-            /// @return Returns a Real representing the principal value of the arc Sine of the angle provided in Radians.
-            static Real ASin(const Real& Interval);
-
-            /// @brief Calculates the principal value of the arc Tangent of an angle.
-            /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
-            /// @return Returns a Real representing the principal value of the arc Tangent of the angle provided in Radians.
-            static Real ATan(const Real& Interval);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Angle Conversion Functions
-            ///////////////////////////////////////
-
-            /// @brief Converts an angle in Degree's to the same angle Radians.
-            /// @param Degrees The number of Degree's to convert.
-            /// @return Returns the converted number in Radians.
-            static Real DegreesToRadians(const Real& Degrees);
-
-            /// @brief Converts an angle in Radians's to the same angle Degrees.
-            /// @param Radians The number of Radians's to convert.
-            /// @return Returns the converted number in Degrees.
-            static Real RadiansToDegrees(const Real& Radians);
-    };//mathtool
+    }//MathTools
 }//Mezzanine
 
 #endif
