@@ -89,12 +89,16 @@ This Documention</h1>
 <p>If you want to know more about Doxygen please see: <a href="http://www.stack.nl/~dimitri/doxygen/">http://www.stack.nl/~dimitri/doxygen/</a></p>
 <h1><a class="anchor" id="enginestructure"></a>
 Engine Structure</h1>
-<p>The engine is laid out in a variety of classes of a few generalized roles. Some classes are focal points for functionality and internally unify a number of components to do what they do, these managers sometimes conceal a large amount of complexity. Managers generally have a rigid in the structure and place in the engine and these are generally managed by the world and are rarely manaully created. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?" or "how do you detect if to objects are colliding?". In general there is only one of each manager and it inherits from the <a class="el" href="classMezzanine_1_1Singleton.xhtml">Mezzanine::Singleton</a> class.</p>
-<p>Other classes are more similar to data, things like the <a class="el" href="classMezzanine_1_1Vector3.xhtml">Mezzanine::Vector3</a> and the <a class="el" href="classMezzanine_1_1Quaternion.xhtml">Mezzanine::Quaternion</a>. You can create these things whenever you like and generally have good support for integrating into a variety of system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more sophisticated classes for a variety of reasons.</p>
+<p>The engine is laid out in a variety of classes of a few generalized roles.</p>
+<p>Some classes are focal points for functionality and internally unify a number of components to do what they do, these managers sometimes conceal a large amount of complexity. Managers ( <a class="el" href="classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the Entresol and World Managers inherit.">Mezzanine::ManagerBase</a> instances ) generally have a rigid place in the structure of the running program. This is where are the logic that says how something is done exists, for example "how does something
+ get drawn on the screen?" or "how do you detect if to objects are colliding?". Managers are owed either by the <a class="el" href="classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library.">Mezzanine::Entresol</a> or a <a class="el" href="classMezzanine_1_1World.xhtml" title="This class represents a world for objects to interact within.">Mezzanine::World</a> depending on their roles and technical limitations.</p>
+<p>The Mezzanine::Threading::FrameScheduler is responsible for running the work each task requires. Most managers mantain one or more of Mezzanine::Threading::iWorkUnit implementations/instances to do work each frame.</p>
+<p>Other classes are more similar to data, things like the <a class="el" href="classMezzanine_1_1Vector3.xhtml">Mezzanine::Vector3</a> and the <a class="el" href="classMezzanine_1_1Quaternion.xhtml">Mezzanine::Quaternion</a>. You can create these things whenever you like and generally have good support for integrating into a various parts of the system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more sophisticated classes for a variety of reasons.</p>
 <p>There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled and most commonly created, deleted and otherwised managed through managers. Many of these classes like the <a class="el" href="classMezzanine_1_1Light.xhtml">Mezzanine::Light</a> or <a class="el" href="classMezzanine_1_1ActorRigid.xhtml">Mezzanine::ActorRigid</a> are present inside the game simulation as well as having a presence as</p>
 <p>some utility classes Other class that really are just convient places to put functions, things like the <a class="el" href="classMezzanine_1_1ActorRigidDeSerializer.xhtml">Mezzanine::ActorRigidDeSerializer</a> and the Mezzanine::StringTool are good examples of these logical grouping of functions. Finally, there are few</p>
 <h2><a class="anchor" id="managers"></a>
 Managers</h2>
+<p>ManagerBase::ManagerType</p>
 <p>A manager is simply a logical grouping of functionality. A number of them exist covering all the major functionality that a game using the the <a class="el" href="namespaceMezzanine.xhtml" title="The bulk of the engine components go in this namspace.">Mezzanine</a> engine would need in most situations.</p>
 <p>All Managers inherit from ManagerBase. They all support the basic callback and priority functionality because of this.</p>
 <h3><a class="anchor" id="managerlist"></a>
@@ -158,6 +162,6 @@ Licensing Information</h1>
 <p><a class="el" href="OriginalpugixmlLicense.xhtml">XML MIT License</a> </p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 14 2013 01:00:23 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sat Sep 14 2013 01:15:25 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
