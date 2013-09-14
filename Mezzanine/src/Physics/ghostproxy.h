@@ -47,8 +47,6 @@ namespace Mezzanine
     namespace Physics
     {
         ///////////////////////////////////////////////////////////////////////////////
-		/// @class GhostProxy
-		/// @headerfile ghostproxy.h
 		/// @brief This is the proxy object for ghost objects with no contact response.
 		/// @details
 		///////////////////////////////////////
@@ -57,7 +55,8 @@ namespace Mezzanine
         protected:
         public:
             /// @brief Class constructor.
-            GhostProxy();
+            /// @param Creator A pointer to the manager that created this proxy.
+            GhostProxy(PhysicsManager* Creator);
             /// @brief Class destructor.
             virtual ~GhostProxy();
 		};//GhostProxy

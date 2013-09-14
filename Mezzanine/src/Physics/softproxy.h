@@ -47,8 +47,6 @@ namespace Mezzanine
     namespace Physics
     {
         ///////////////////////////////////////////////////////////////////////////////
-		/// @class SoftProxy
-		/// @headerfile softproxy.h
 		/// @brief This is the proxy object for soft/compressable bodies.
 		/// @details
 		///////////////////////////////////////
@@ -57,7 +55,8 @@ namespace Mezzanine
         protected:
         public:
             /// @brief Class constructor.
-            SoftProxy();
+            /// @param Creator A pointer to the manager that created this proxy.
+            SoftProxy(PhysicsManager* Creator);
             /// @brief Class destructor.
             virtual ~SoftProxy();
 		};//SoftProxy
