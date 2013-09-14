@@ -94,7 +94,7 @@ WARN_FORMAT            = "$file:$line: $text"
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = ../../../Mezzanine/src/ ../../../Mezzanine/src/Audio ../../../Mezzanine/src/Graphics ../../../Mezzanine/src/Input ../../../Mezzanine/src/Network ../../../Mezzanine/src/Physics ../../../Mezzanine/src/Resource ../../../Mezzanine/src/Scripting ../../Mezzanine/src/Threading ../../../Mezzanine/src/UI ../../../Mezzanine/src/XML
+INPUT                  = ../../../Mezzanine/src/ ../../../Mezzanine/src/Audio ../../../Mezzanine/src/Graphics ../../../Mezzanine/src/Input ../../../Mezzanine/src/Network ../../../Mezzanine/src/Physics ../../../Mezzanine/src/Resource ../../../Mezzanine/src/Scripting ../../../Mezzanine/src/Threading ../../../Mezzanine/src/UI ../../../Mezzanine/src/XML
 # ../../../Mezzanine/src/Internal
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =
