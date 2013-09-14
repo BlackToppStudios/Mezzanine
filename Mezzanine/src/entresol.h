@@ -43,22 +43,23 @@
 /**
  @mainpage Mezzanine
  The Mezzanine Engine isn't really an engine. It is glue holding other code and libraries together. It is a series of other open source libraries (sometimes
- less user friendly, and almost always more sophistciated) that are held together in a single, hopefully, unchanging API. Others have attempted
- to do things like this before. Usually simple mistakes are made along the way that have huge negative impacts later in the design. A common mistake
+ less user friendly, and almost always more sophisticated) that are held together in a single API that will be stable after its 1.0 release. Others have
+ attempted to do things like this before. Usually simple mistakes are made along the way that have huge negative impacts later in the design. A common mistake
  code is to copy and paste from open source projects with no plans for maintainability. This means that those projects get all the features and bugs
  from when they copied, without updates, new features and bugfixes since they started integrating the code. We too have copy and pasted, however we are
  keeping it up to date, and have a plan for upgrading each component we have brought in.
 
- This is no simple way to guarantee access to the most up to date libraries, this means there will meaningful work on integration. Many linux distributions try
- to keep the most up to date shared libraries around, but what about when they don't ship what you need, ship something broken or an older library. What about
- Windows and Mac OS X which make no attempt to keep these kinds of software up to date. What if you do manage to get and stay up to date, then you still have to
- work on a confusing compiler and linker options, Code::Blocks or Visual Studio aren't going to set that up for you. The Mezzanine Engine project depends on a dozen
- or more libaries, so would your project if it had high performance 3d graphics, easy to use 3d physics integrated with the graphics and 3d positional audio ready
- to run on Windows, Linux and Mac OS X. We are figuring it out once, getting it right ( if we aren't, tell us and we will fix it ), so it doesn't need to be done again
- and again, for each game made.
+ There is no simple way to guarantee access to the most up to date libraries, this means there will meaningful work on integration. Many Linux distributions try
+ to keep the most up to date shared libraries around. What happens when they don't ship what you need, ship something broken or an older library. What about
+ Windows and Mac OS X which make no attempt to keep these kinds of software up to date. What if you do manage to get the software keep it up to date. After that you
+ still have to work on confusing compiler and linker options. IDEs like QT Creator, Code::Blocks or Visual Studio aren't going to set that up for you. The
+ Mezzanine Engine project depends on a dozen or more libaries, so would your project if it had high performance 3d graphics, easy to use 3d physics integrated
+ with the graphics and 3d positional audio ready to run on Windows, Linux and Mac OS X. We are figuring it out once, getting it right ( if we aren't, tell us and
+ we will fix it ), so it doesn't need to be done again and again, for each game.
 
- This is still in heavy development and is not in usable condition for all systems. Currently the synchronization of 3d graphics and physics works great. But,
- some of the more advanced features of both physics and graphics to do not yet work. There are a number of other features that are in varied states of development.
+ This is still in heavy development and is not in usable condition for all systems. Currently the synchronization of 3d graphics and physics works great. Some of
+ the more advanced features of both physics and graphics to do not yet work. There are a number of other features that are in varied states of development. XML,
+ User Interface, Lua Scripting, 3d Audio, Multithreading, Resource management...
 
  If we do our jobs right this will save time and effort making, updating and porting games between a variety of platforms. If you link only
  against this library, not a single line of your standard compliant C++ code should need to change between platforms. At this early stage we are proving the
@@ -66,18 +67,20 @@
  codebase. When we are done with "Catch!" We want it to have one codebase (with no messy \#IFDEFs in game code for compatibility), and downloadable in the Iphone
  app store, in the Android Marketplace, on the PS3, Wii, downloadable on Steam, and in a variety of linux repositories.
 
- @section expectations What can I expect here
- This is the Doxygen API documentation for the Mezzanine Engine. This is a document for programmers to use as reference. With just a few clicks this should allow
- a technically oriented person find
+ @section doxygen This Documention
+ This documentation is automatically extracted from the source code of the Mezzanine. It is intended as a reference to describe the Mezzanine API. We hope that
+ people with moderate or advanced C++ experience will be able to use this to increase their knowledge and get the most out of the Mezzanine. This is not a
+ tutorial and is not likely to helpful to novice C++ developers. For more information please see the following:
+ - An automatically generated list of issues with this documentation - http://mezzanineapi.github.io/DoxygenWarnings.txt
+ - The BlackTopp Studios Inc. website - http://www.blacktoppstudios.com/
+ - The Mezzanine Github page - https://github.com/BlackToppStudios/Mezzanine
 
- If you want to know more about doxygen please see: http://www.stack.nl/~dimitri/doxygen/
- To get the latest news on development or more information that isn't technical checkout: http://www.blacktoppstudios.com
-
- Here we will detail the engine structure and different classes and datatypes, but some of these need an update.
+ If you want to know more about Doxygen please see: http://www.stack.nl/~dimitri/doxygen/
 
  @section enginestructure Engine Structure
-  The engine is laid out in a variety of classes. Some classes are focal points for functionality and internally unify a number of components to do what they do, these
-  managers sometimes conceal a large amount of complexity. Managers generally have a very rigid in the structure of the engine and these are generally managed by the
+  The engine is laid out in a variety of classes of a few generalized roles. Some classes are focal points for functionality and internally unify a
+  number of components to do what they do, these managers sometimes conceal a large amount of complexity. Managers generally have a rigid in the structure and
+  place in the engine and these are generally managed by the
   world and are rarely manaully created. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?"
   or "how do you detect if to objects are colliding?". In general there is only one of each manager and it inherits from the @ref Mezzanine::Singleton class.
 

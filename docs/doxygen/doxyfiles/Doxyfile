@@ -5,7 +5,7 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = MezzanineEngine
-PROJECT_NUMBER         = "September 2, 2013"
+#PROJECT_NUMBER         = "September 2, 2013"
 PROJECT_BRIEF          = A Game Engine Designed to ease the creation of cross platform games with 3d physics, 3d graphics and 3d Sound.
 PROJECT_LOGO           = img/logogreen100pxtall.png
 OUTPUT_DIRECTORY       = ../
