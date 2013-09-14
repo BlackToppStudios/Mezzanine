@@ -1,7 +1,0 @@
-<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarybuffer.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarybuffer.cpp">
-<area shape="rect" id="node3" href="$binarybuffer_8h_source.xhtml" title="binarybuffer.h" alt="" coords="556,99,652,127"/>
-<area shape="rect" id="node39" href="$exception_8h_source.xhtml" title="exception.h" alt="" coords="676,99,761,127"/>
-<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="676,177,761,205"/>
-<area shape="rect" id="node7" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="104,254,248,282"/>
-<area shape="rect" id="node37" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1331,254,1387,282"/>
-</map>

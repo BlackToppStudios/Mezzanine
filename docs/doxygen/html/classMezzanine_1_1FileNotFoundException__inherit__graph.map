@@ -1,6 +1,0 @@
-<map id="Mezzanine::FileNotFoundException" name="Mezzanine::FileNotFoundException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1FileException.xhtml" title="Thrown when there is an unknown issue with a file." alt="" coords="33,238,199,266"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1IOException.xhtml" title="Thrown when there was an issue with IO but very little was known about it." alt="" coords="37,161,195,189"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Exception.xhtml" title="This is the exception thrown by most Mezzanine system that can throw exceptions." alt="" coords="44,83,188,111"/>
-<area shape="rect" id="node8" title="STL class." alt="" coords="67,6,165,34"/>
-</map>

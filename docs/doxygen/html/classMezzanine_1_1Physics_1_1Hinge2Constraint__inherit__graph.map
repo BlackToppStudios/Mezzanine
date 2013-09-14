@@ -1,6 +1,0 @@
-<map id="Mezzanine::Physics::Hinge2Constraint" name="Mezzanine::Physics::Hinge2Constraint">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1Generic6DofSpringConstraint.xhtml" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion..." alt="" coords="5,286,200,330"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml" title="Create simple but specific limits on any axis of movement or rotation." alt="" coords="24,193,181,237"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Physics_1_1DualTransformConstraint.xhtml" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi..." alt="" coords="17,99,188,143"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Physics_1_1Constraint.xhtml" title="This is the base class for all constraints supported." alt="" coords="36,6,169,50"/>
-</map>
