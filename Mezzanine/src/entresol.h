@@ -78,15 +78,20 @@
  If you want to know more about Doxygen please see: http://www.stack.nl/~dimitri/doxygen/
 
  @section enginestructure Engine Structure
-  The engine is laid out in a variety of classes of a few generalized roles. Some classes are focal points for functionality and internally unify a
-  number of components to do what they do, these managers sometimes conceal a large amount of complexity. Managers generally have a rigid in the structure and
-  place in the engine and these are generally managed by the
-  world and are rarely manaully created. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?"
-  or "how do you detect if to objects are colliding?". In general there is only one of each manager and it inherits from the @ref Mezzanine::Singleton class.
+  The engine is laid out in a variety of classes of a few generalized roles.
 
-  Other classes are more similar to data, things like the @ref Mezzanine::Vector3 and the @ref Mezzanine::Quaternion. You can create these things whenever you like and generally have good
-  support for integrating into a variety of system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more
-  sophisticated classes for a variety of reasons.
+  Some classes are focal points for functionality and internally unify a
+  number of components to do what they do, these managers sometimes conceal a large amount of complexity. Managers ( Mezzanine::ManagerBase instances ) generally
+  have a rigid place in the structure of the running program. This is where are the logic that says how something is done exists, for example "how does something
+  get drawn on the screen?" or "how do you detect if to objects are colliding?". Managers are owed either by the Mezzanine::Entresol or a Mezzanine::World
+  depending on their roles and technical limitations.
+
+  The Mezzanine::Threading::FrameScheduler is responsible for running the work each task requires. Most managers mantain one or more of
+  Mezzanine::Threading::iWorkUnit implementations/instances to do work each frame.
+
+  Other classes are more similar to data, things like the @ref Mezzanine::Vector3 and the @ref Mezzanine::Quaternion. You can create these things whenever you like
+  and generally have good support for integrating into a various parts of the system. In these classes there is a good deal of math and conversion routines. These
+  are commonly passed around by more sophisticated classes for a variety of reasons.
 
   There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled
   and most commonly created, deleted and otherwised managed through managers. Many of these classes like the @ref Mezzanine::Light or @ref Mezzanine::ActorRigid are present inside the game
@@ -96,6 +101,8 @@
   examples of these logical grouping of functions. Finally, there are few
 
   @subsection managers Managers
+
+  ManagerBase::ManagerType
 
    A manager is simply a logical grouping of functionality. A number of them exist covering all the major functionality that a game using the the Mezzanine engine would
    need in most situations.
