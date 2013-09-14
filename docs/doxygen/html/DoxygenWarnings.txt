@@ -381,7 +381,7 @@
 /home/Code/Mezzanine/Mezzanine/src/macros.h:58: warning: Member MEZZ_BITMASK(X) (macro definition) of file macros.h is not documented.
 /home/Code/Mezzanine/Mezzanine/src/macros.h:53: warning: Member MEZZ_BITMASK32MAX (macro definition) of file macros.h is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:103: warning: Member ScriptArgment (enumeration) of namespace Mezzanine::Scripting is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:236: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:239: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:698: warning: explicit link request to 'wstream' could not be resolved
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:778: warning: explicit link request to 'x' could not be resolved
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:778: warning: explicit link request to 'x' could not be resolved
@@ -551,13 +551,13 @@
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: parameters of member Mezzanine::Entity::SetLocalOrientation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:331: warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:330: warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:329: warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:334: warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:333: warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:332: warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:435: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:438: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
 /home/Code/Mezzanine/Mezzanine/src/entresol.cpp:138: warning: Found unknown command `\TODO'
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:484: warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:487: warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
 /home/Code/Mezzanine/Mezzanine/src/eventgamewindow.h:108: warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
 /home/Code/Mezzanine/Mezzanine/src/eventgamewindow.cpp:63: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class Mezzanine::EventGameWindowData is not documented.
 /home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
@@ -3139,17 +3139,17 @@
 /home/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:86: warning: Member NewlineBefore (variable) of class Mezzanine::UI::Word is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:88: warning: Member Pxheight (variable) of class Mezzanine::UI::Word is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:87: warning: Member Pxlength (variable) of class Mezzanine::UI::Word is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:92: warning: unable to resolve reference to `Mezzanine::StringTool' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:104: warning: unable to resolve reference to `Mezzanine::AudioManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:106: warning: unable to resolve reference to `Mezzanine::CollisionShapeManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:108: warning: unable to resolve reference to `Mezzanine::GraphicsManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:110: warning: unable to resolve reference to `Mezzanine::NetworkManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:111: warning: unable to resolve reference to `Mezzanine::PhysicsManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:114: warning: unable to resolve reference to `Mezzanine::TimerManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:116: warning: unable to resolve reference to `Mezzanine::UIManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:121: warning: unable to resolve reference to `mainloop1' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:127: warning: unable to resolve reference to `actorcontainer1' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:135: warning: unable to resolve reference to `Mezzanine::MetaCode' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:153: warning: unable to resolve reference to `Mezzanine::Character' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:172: warning: unable to resolve reference to `Mezzanine::GraphicsManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:176: warning: unable to resolve reference to `LuaManual' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:95: warning: unable to resolve reference to `Mezzanine::StringTool' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:107: warning: unable to resolve reference to `Mezzanine::AudioManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:109: warning: unable to resolve reference to `Mezzanine::CollisionShapeManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:111: warning: unable to resolve reference to `Mezzanine::GraphicsManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:113: warning: unable to resolve reference to `Mezzanine::NetworkManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:114: warning: unable to resolve reference to `Mezzanine::PhysicsManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:117: warning: unable to resolve reference to `Mezzanine::TimerManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:119: warning: unable to resolve reference to `Mezzanine::UIManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:124: warning: unable to resolve reference to `mainloop1' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:130: warning: unable to resolve reference to `actorcontainer1' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:138: warning: unable to resolve reference to `Mezzanine::MetaCode' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:156: warning: unable to resolve reference to `Mezzanine::Character' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:175: warning: unable to resolve reference to `Mezzanine::GraphicsManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:179: warning: unable to resolve reference to `LuaManual' for \ref command
