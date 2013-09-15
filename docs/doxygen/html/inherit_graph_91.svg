@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 121,-38 121,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1InternalTextureData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Texture class.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1InternalMeshData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Mesh class.">
 <polygon fill="white" stroke="black" points="0,-0 0,-34 116,-34 116,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
-<text text-anchor="middle" x="58" y="-8" font-family="FreeSans" font-size="10.00">::InternalTextureData</text>
+<text text-anchor="middle" x="58" y="-8" font-family="FreeSans" font-size="10.00">::InternalMeshData</text>
 </a>
 </g>
 </g>

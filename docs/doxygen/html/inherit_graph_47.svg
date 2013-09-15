@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-52 159,-52 159,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="structMezzanine_1_1ExceptionFactory_3_01FileNotFoundException_1_1ExceptionCode_01_4.xhtml" target="_top" xlink:title="A template metaprogramming construct used to ensure that all required FileNotFoundException can be cr...">
+<a xlink:href="structMezzanine_1_1ExceptionFactory_3_01DirectoryWriteException_1_1ExceptionCode_01_4.xhtml" target="_top" xlink:title="A template metaprogramming construct used to ensure that all required DirectoryWriteException can be ...">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-47.5 154,-47.5 154,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-34.5" font-family="FreeSans" font-size="10.00">Mezzanine::ExceptionFactory</text>
-<text text-anchor="start" x="8" y="-21.5" font-family="FreeSans" font-size="10.00">&lt; FileNotFoundException</text>
+<text text-anchor="start" x="8" y="-21.5" font-family="FreeSans" font-size="10.00">&lt; DirectoryWriteException</text>
 <text text-anchor="middle" x="77" y="-8.5" font-family="FreeSans" font-size="10.00">::ExceptionCode &gt;</text>
 </a>
 </g>

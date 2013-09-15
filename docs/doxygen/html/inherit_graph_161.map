@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1Serializer.xhtml" title="A tool for serializing classes with specific issues serializing." alt="" coords="5,5,163,51"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Scripting_1_1iScript.xhtml" title="The interface for a script." alt="" coords="5,39,160,86"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml" title="The interface for a script that can be compiled to bytecode." alt="" coords="211,5,365,51"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.xhtml" title="This script can return simple group of values." alt="" coords="208,74,368,121"/>
 </map>

@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;15,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -632,14 +632,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;</div>
 <div class="line"><a name="l00547"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#a38b509cd532f0b7eb64bf712f6180bf5">  547</a></span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#ac0e305210456ef0132dc20c06aa292dd" title="In case we ever replace the stringstream with another class, this will allow us to swap it out...">Logger</a>&amp; Entresol::GetLogStream(Threading::Thread::id ID)</div>
 <div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;    {</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;        Threading::FrameScheduler::Resource* AlmostResults = this-&gt;WorkScheduler.GetThreadResource(ID);</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;        <a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.xhtml" title="A thread specific collection of double-buffered and algorithm specific resources.">Threading::FrameScheduler::Resource</a>* AlmostResults = this-&gt;WorkScheduler.GetThreadResource(ID);</div>
 <div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;        <span class="keywordflow">if</span>(AlmostResults)</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;            { <span class="keywordflow">return</span> AlmostResults-&gt;GetUsableLogger(); }</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;            { <span class="keywordflow">return</span> AlmostResults-&gt;<a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.xhtml#a947c267feef339a148c215bdbf7692b8" title="Get the usable logger for this thread specific resource.">GetUsableLogger</a>(); }</div>
 <div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;        <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;            { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, <span class="stringliteral">&quot;Could not access thread Specific Logger from invalid thread.&quot;</span>); }</div>
 <div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    }</div>
 <div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;</div>
-<div class="line"><a name="l00556"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#a26e573660f4b68df4a8af12b07d3090f">  556</a></span>&#160;    Threading::LogAggregator* Entresol::GetLogAggregator()</div>
+<div class="line"><a name="l00556"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#a26e573660f4b68df4a8af12b07d3090f">  556</a></span>&#160;    <a class="code" href="classMezzanine_1_1Threading_1_1LogAggregator.xhtml" title="Gather all the thread specific logs and commit them to the main log.">Threading::LogAggregator</a>* Entresol::GetLogAggregator()</div>
 <div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;        { <span class="keywordflow">return</span> this-&gt;Aggregator; }</div>
 <div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
@@ -670,7 +670,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;<span class="comment"></span>    <span class="comment">// MainLoop</span><span class="comment"></span></div>
 <div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;<span class="comment">    ///////////////////////////////////////</span></div>
 <div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00587"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#a3db6a99a502c6f97e041dd1ae4022626">  587</a></span>&#160;    Threading::FrameScheduler&amp; Entresol::GetScheduler()</div>
+<div class="line"><a name="l00587"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#a3db6a99a502c6f97e041dd1ae4022626">  587</a></span>&#160;    <a class="code" href="classMezzanine_1_1Threading_1_1FrameScheduler.xhtml" title="This is central object in this algorithm, it is responsible for spawning threads and managing the ord...">Threading::FrameScheduler</a>&amp; Entresol::GetScheduler()</div>
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;        { <span class="keywordflow">return</span> this-&gt;WorkScheduler; }</div>
 <div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;</div>
 <div class="line"><a name="l00590"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#a43085ec83543377dce2817374d9de156">  590</a></span>&#160;    <span class="keywordtype">void</span> Entresol::MainLoop()</div>
@@ -695,7 +695,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00609"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#ac05850439fee1efc5f5a0ef9ea9e7c58">  609</a></span>&#160;    <span class="keywordtype">void</span> Entresol::DoOneFrame()</div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;    {</div>
 <div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;<span class="preprocessor">        #ifdef MEZZDEBUG</span></div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;<span class="preprocessor"></span>        WorkScheduler.GetLog() &lt;&lt; <span class="stringliteral">&quot;&lt;FrameCounterStart StartingFrame=\&quot; Time=\&quot;&quot;</span> &lt;&lt; GetTimeStamp()&lt;&lt; <span class="stringliteral">&quot;\&quot; /&gt;&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;<span class="preprocessor"></span>        WorkScheduler.GetLog() &lt;&lt; <span class="stringliteral">&quot;&lt;FrameCounterStart StartingFrame=\&quot; Time=\&quot;&quot;</span> &lt;&lt; <a class="code" href="namespaceMezzanine.xhtml#a3f2646f64c09c0855d9a2a7b10a6aa68" title="Get a timestamp, in microseconds. This will generally be some multiple of the GetTimeStampResolution ...">GetTimeStamp</a>()&lt;&lt; <span class="stringliteral">&quot;\&quot; /&gt;&quot;</span> &lt;&lt; endl;</div>
 <div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;<span class="preprocessor">        #endif</span></div>
 <div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;<span class="preprocessor"></span>        WorkScheduler.RunAllMonopolies(); <span class="comment">//1</span></div>
 <div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;        WorkScheduler.CreateThreads();    <span class="comment">//2</span></div>
@@ -703,11 +703,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;        WorkScheduler.JoinAllThreads();   <span class="comment">//4</span></div>
 <div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;        WorkScheduler.ResetAllWorkUnits();<span class="comment">//5</span></div>
 <div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;<span class="preprocessor">        #ifdef MEZZDEBUG</span></div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;<span class="preprocessor"></span>        WorkScheduler.GetLog() &lt;&lt; <span class="stringliteral">&quot;&lt;FrameCounterPrePause Frame=\&quot;&quot;</span> &lt;&lt; WorkScheduler.GetFrameCount() &lt;&lt; <span class="stringliteral">&quot;\&quot; Time=\&quot;&quot;</span> &lt;&lt; GetTimeStamp()&lt;&lt; <span class="stringliteral">&quot;\&quot; /&gt;&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;<span class="preprocessor"></span>        WorkScheduler.GetLog() &lt;&lt; <span class="stringliteral">&quot;&lt;FrameCounterPrePause Frame=\&quot;&quot;</span> &lt;&lt; WorkScheduler.GetFrameCount() &lt;&lt; <span class="stringliteral">&quot;\&quot; Time=\&quot;&quot;</span> &lt;&lt; <a class="code" href="namespaceMezzanine.xhtml#a3f2646f64c09c0855d9a2a7b10a6aa68" title="Get a timestamp, in microseconds. This will generally be some multiple of the GetTimeStampResolution ...">GetTimeStamp</a>()&lt;&lt; <span class="stringliteral">&quot;\&quot; /&gt;&quot;</span> &lt;&lt; endl;</div>
 <div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;<span class="preprocessor">        #endif</span></div>
 <div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;<span class="preprocessor"></span>        WorkScheduler.WaitUntilNextFrame(); <span class="comment">//6</span></div>
 <div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;<span class="preprocessor">        #ifdef MEZZDEBUG</span></div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;<span class="preprocessor"></span>        WorkScheduler.GetLog() &lt;&lt; <span class="stringliteral">&quot;&lt;FrameCounterEnd Frame=\&quot;&quot;</span> &lt;&lt; WorkScheduler.GetFrameCount() &lt;&lt; <span class="stringliteral">&quot;\&quot;Time=\&quot;&quot;</span> &lt;&lt; GetTimeStamp()&lt;&lt; <span class="stringliteral">&quot;\&quot; /&gt;&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;<span class="preprocessor"></span>        WorkScheduler.GetLog() &lt;&lt; <span class="stringliteral">&quot;&lt;FrameCounterEnd Frame=\&quot;&quot;</span> &lt;&lt; WorkScheduler.GetFrameCount() &lt;&lt; <span class="stringliteral">&quot;\&quot;Time=\&quot;&quot;</span> &lt;&lt; <a class="code" href="namespaceMezzanine.xhtml#a3f2646f64c09c0855d9a2a7b10a6aa68" title="Get a timestamp, in microseconds. This will generally be some multiple of the GetTimeStampResolution ...">GetTimeStamp</a>()&lt;&lt; <span class="stringliteral">&quot;\&quot; /&gt;&quot;</span> &lt;&lt; endl;</div>
 <div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;<span class="preprocessor">        #endif</span></div>
 <div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;<span class="preprocessor"></span>    }</div>
 <div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;</div>
@@ -716,10 +716,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;        <span class="keywordflow">if</span>(Break)</div>
 <div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;        {</div>
 <div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;            <span class="keywordflow">while</span>(!ManualLoopBreak)</div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;                { Threading::AtomicCompareAndSwap32(&amp;ManualLoopBreak,0,1); }</div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;                { <a class="code" href="namespaceMezzanine_1_1Threading.xhtml#a4ccf479a204dfe52d11dcaac97673c07" title="Atomically Compares And Swaps a 32 bit value.">Threading::AtomicCompareAndSwap32</a>(&amp;ManualLoopBreak,0,1); }</div>
 <div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;        } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;            <span class="keywordflow">while</span>(ManualLoopBreak)</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;                { Threading::AtomicCompareAndSwap32(&amp;ManualLoopBreak,1,0); }</div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;                { <a class="code" href="namespaceMezzanine_1_1Threading.xhtml#a4ccf479a204dfe52d11dcaac97673c07" title="Atomically Compares And Swaps a 32 bit value.">Threading::AtomicCompareAndSwap32</a>(&amp;ManualLoopBreak,1,0); }</div>
 <div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;        }</div>
 <div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;    }</div>
 <div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;</div>
@@ -1067,6 +1067,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 14 2013 01:15:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Sep 15 2013 02:46:36 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

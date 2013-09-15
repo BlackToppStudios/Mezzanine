@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;15,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -133,7 +133,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;quaternion.h&quot;</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;vector3.h&quot;</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;XML/xml.h&quot;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;Threading/workunit.h&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="workunit_8h.xhtml" title="This file has the definition of the workunit.">Threading/workunit.h</a>&quot;</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">namespace </span>Ogre</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
@@ -159,7 +159,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">    /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world.</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">    /// @details</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">    ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml">   76</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world...">TrackingNodeUpdateWorkUnit</a> : <span class="keyword">public</span> Threading::DefaultWorkUnit</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml">   76</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world...">TrackingNodeUpdateWorkUnit</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.xhtml" title="Default implementation of WorkUnit. This represents on piece of work through time.">Threading::DefaultWorkUnit</a></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">protected</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">        /// @internal</span></div>
@@ -185,7 +185,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">        /// @brief This does any required update of the Tracking nodes in the world.</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">        /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it&#39;s execution.</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoWork(Threading::DefaultThreadSpecificStorage::Type&amp; CurrentThreadStorage);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoWork(<a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.xhtml" title="A thread specific collection of double-buffered and algorithm specific resources.">Threading::DefaultThreadSpecificStorage::Type</a>&amp; CurrentThreadStorage);</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    };<span class="comment">//TrackingNodeUpdateWorkUnit</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
@@ -273,7 +273,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00187"></a><span class="lineno"><a class="code" href="classMezzanine_1_1SceneManager.xhtml#aee59e6f83a2c915fe12715e5abccd8da">  187</a></span>&#160;<span class="comment"></span>        <a class="code" href="classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world...">TrackingNodeUpdateWorkUnit</a>* <a class="code" href="classMezzanine_1_1SceneManager.xhtml#aee59e6f83a2c915fe12715e5abccd8da" title="The work unit that updates the tracking nodes so they are directed at their targets.">TrackingNodeUpdateWork</a>;<span class="comment"></span></div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">        /// @internal</span></div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">        /// @brief Can be used for thread safe logging and other thread specific resources.</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno"><a class="code" href="classMezzanine_1_1SceneManager.xhtml#aa06b9fcb652a06418a71927f60334f69">  190</a></span>&#160;<span class="comment"></span>        Threading::DefaultThreadSpecificStorage::Type* <a class="code" href="classMezzanine_1_1SceneManager.xhtml#aa06b9fcb652a06418a71927f60334f69" title="Can be used for thread safe logging and other thread specific resources.">ThreadResources</a>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="code" href="classMezzanine_1_1SceneManager.xhtml#aa06b9fcb652a06418a71927f60334f69">  190</a></span>&#160;<span class="comment"></span>        <a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.xhtml" title="A thread specific collection of double-buffered and algorithm specific resources.">Threading::DefaultThreadSpecificStorage::Type</a>* <a class="code" href="classMezzanine_1_1SceneManager.xhtml#aa06b9fcb652a06418a71927f60334f69" title="Can be used for thread safe logging and other thread specific resources.">ThreadResources</a>;</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">        /// @brief Updates all nodes tracking other objects.</span></div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment"></span>        <span class="keywordtype">void</span> UpdateTrackingNodes();</div>
@@ -663,6 +663,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 14 2013 01:15:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Sep 15 2013 02:46:37 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

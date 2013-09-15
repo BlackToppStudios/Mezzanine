@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;15,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -84,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classMezzanine_1_1Physics_1_1RigidProxy-members.xhtml">List of all members</a>  </div>
@@ -92,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>This is a proxy from which rigid body objects are handled.  
+<p>This is a proxy from which rigid body proxys are handled.  
  <a href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="rigidproxy_8h_source.xhtml">rigidproxy.h</a>&gt;</code></p>
@@ -115,9 +116,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7176bc22177d9431c86427ad034282bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a7176bc22177d9431c86427ad034282bb">RigidProxy</a> (const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Mass)</td></tr>
-<tr class="memdesc:a7176bc22177d9431c86427ad034282bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#a7176bc22177d9431c86427ad034282bb">More...</a><br/></td></tr>
-<tr class="separator:a7176bc22177d9431c86427ad034282bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1abbf08418d0c21daebee1ee34994d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#ac1abbf08418d0c21daebee1ee34994d0">RigidProxy</a> (const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mass, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml">PhysicsManager</a> *Creator)</td></tr>
+<tr class="memdesc:ac1abbf08418d0c21daebee1ee34994d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#ac1abbf08418d0c21daebee1ee34994d0">More...</a><br/></td></tr>
+<tr class="separator:ac1abbf08418d0c21daebee1ee34994d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaef334a4c2513b331a5340c23271e53f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaef334a4c2513b331a5340c23271e53f"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#aaef334a4c2513b331a5340c23271e53f">~RigidProxy</a> ()</td></tr>
 <tr class="memdesc:aaef334a4c2513b331a5340c23271e53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br/></td></tr>
@@ -126,16 +127,16 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a1afb9c4df7adecc331d29bf2a83d6c1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor for the internal physics object.  <a href="#a1afb9c4df7adecc331d29bf2a83d6c1b">More...</a><br/></td></tr>
 <tr class="separator:a1afb9c4df7adecc331d29bf2a83d6c1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bd8b6083923d594fcab1c48935dabb1"><td class="memItemLeft" align="right" valign="top">virtual btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a7bd8b6083923d594fcab1c48935dabb1">_GetPhysicsObject</a> () const </td></tr>
-<tr class="memdesc:a7bd8b6083923d594fcab1c48935dabb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor for the internal rigid body physics object.  <a href="#a7bd8b6083923d594fcab1c48935dabb1">More...</a><br/></td></tr>
+<tr class="memdesc:a7bd8b6083923d594fcab1c48935dabb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor for the internal rigid body physics proxy.  <a href="#a7bd8b6083923d594fcab1c48935dabb1">More...</a><br/></td></tr>
 <tr class="separator:a7bd8b6083923d594fcab1c48935dabb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefc189cb9976b6beca6e7255a82d3e14"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#aefc189cb9976b6beca6e7255a82d3e14">AddToWorld</a> ()</td></tr>
 <tr class="memdesc:aefc189cb9976b6beca6e7255a82d3e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs all the necessary task to ensure this object is connected to it's respective world and ready for use.  <a href="#aefc189cb9976b6beca6e7255a82d3e14">More...</a><br/></td></tr>
 <tr class="separator:aefc189cb9976b6beca6e7255a82d3e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b658e54e4d1dc6465addd6891b2ce4e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a2b658e54e4d1dc6465addd6891b2ce4e">ApplyForce</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Force)</td></tr>
-<tr class="memdesc:a2b658e54e4d1dc6465addd6891b2ce4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push/Apply force to an object.  <a href="#a2b658e54e4d1dc6465addd6891b2ce4e">More...</a><br/></td></tr>
+<tr class="memdesc:a2b658e54e4d1dc6465addd6891b2ce4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push/Apply force to an proxy.  <a href="#a2b658e54e4d1dc6465addd6891b2ce4e">More...</a><br/></td></tr>
 <tr class="separator:a2b658e54e4d1dc6465addd6891b2ce4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9415c06ba80691b6e2a6036b33a679bd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a9415c06ba80691b6e2a6036b33a679bd">ApplyTorque</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Torque)</td></tr>
-<tr class="memdesc:a9415c06ba80691b6e2a6036b33a679bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spin/Apply Torque to an object.  <a href="#a9415c06ba80691b6e2a6036b33a679bd">More...</a><br/></td></tr>
+<tr class="memdesc:a9415c06ba80691b6e2a6036b33a679bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spin/Apply torque to an proxy.  <a href="#a9415c06ba80691b6e2a6036b33a679bd">More...</a><br/></td></tr>
 <tr class="separator:a9415c06ba80691b6e2a6036b33a679bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac018b1380514fe79aaf30661074aef85"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#ac018b1380514fe79aaf30661074aef85">GetAngularDamping</a> () const </td></tr>
 <tr class="memdesc:ac018b1380514fe79aaf30661074aef85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Angular damping.  <a href="#ac018b1380514fe79aaf30661074aef85">More...</a><br/></td></tr>
@@ -144,14 +145,20 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a83fe7230c7abe61bbe7761988cb27ba0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current angular factors being applied to this actor.  <a href="#a83fe7230c7abe61bbe7761988cb27ba0">More...</a><br/></td></tr>
 <tr class="separator:a83fe7230c7abe61bbe7761988cb27ba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4a16cba5ad095f64b193c0a155f5248"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#ad4a16cba5ad095f64b193c0a155f5248">GetAngularVelocity</a> () const </td></tr>
-<tr class="memdesc:ad4a16cba5ad095f64b193c0a155f5248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Angular Velocity of this object.  <a href="#ad4a16cba5ad095f64b193c0a155f5248">More...</a><br/></td></tr>
+<tr class="memdesc:ad4a16cba5ad095f64b193c0a155f5248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Angular Velocity of this proxy.  <a href="#ad4a16cba5ad095f64b193c0a155f5248">More...</a><br/></td></tr>
 <tr class="separator:ad4a16cba5ad095f64b193c0a155f5248"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaed3dbe0c32babd4eeba5dfd63117344"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#aaed3dbe0c32babd4eeba5dfd63117344">GetForce</a> () const </td></tr>
-<tr class="memdesc:aaed3dbe0c32babd4eeba5dfd63117344"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the total Force/Movement on the object.  <a href="#aaed3dbe0c32babd4eeba5dfd63117344">More...</a><br/></td></tr>
-<tr class="separator:aaed3dbe0c32babd4eeba5dfd63117344"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afac05d9f6735193f0cb60fb6309da1c4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#afac05d9f6735193f0cb60fb6309da1c4">GetIndividualGravity</a> () const </td></tr>
-<tr class="memdesc:afac05d9f6735193f0cb60fb6309da1c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the gravity being applied to this object.  <a href="#afac05d9f6735193f0cb60fb6309da1c4">More...</a><br/></td></tr>
-<tr class="separator:afac05d9f6735193f0cb60fb6309da1c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5411bbfc7ecda06ee5cac5761bfbc80a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a5411bbfc7ecda06ee5cac5761bfbc80a">GetAppliedForce</a> () const </td></tr>
+<tr class="memdesc:a5411bbfc7ecda06ee5cac5761bfbc80a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the total Force currently being applied to this proxy.  <a href="#a5411bbfc7ecda06ee5cac5761bfbc80a">More...</a><br/></td></tr>
+<tr class="separator:a5411bbfc7ecda06ee5cac5761bfbc80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82ae80e4d14594e2bdcc2b7e5c08868d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a82ae80e4d14594e2bdcc2b7e5c08868d">GetAppliedTorque</a> () const </td></tr>
+<tr class="memdesc:a82ae80e4d14594e2bdcc2b7e5c08868d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the total Torque currently being applied to this proxy.  <a href="#a82ae80e4d14594e2bdcc2b7e5c08868d">More...</a><br/></td></tr>
+<tr class="separator:a82ae80e4d14594e2bdcc2b7e5c08868d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0215067d080d28fd52157f1d0da9559"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#af0215067d080d28fd52157f1d0da9559">GetDerivedSerializableName</a> () const </td></tr>
+<tr class="memdesc:af0215067d080d28fd52157f1d0da9559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the most derived serializable name of this <a class="el" href="classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems.">WorldProxy</a>.  <a href="#af0215067d080d28fd52157f1d0da9559">More...</a><br/></td></tr>
+<tr class="separator:af0215067d080d28fd52157f1d0da9559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab235849740d5a153494ebba890d05d27"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#ab235849740d5a153494ebba890d05d27">GetGravity</a> () const </td></tr>
+<tr class="memdesc:ab235849740d5a153494ebba890d05d27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the gravity being applied to this proxy.  <a href="#ab235849740d5a153494ebba890d05d27">More...</a><br/></td></tr>
+<tr class="separator:ab235849740d5a153494ebba890d05d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adccb1a2ccec022c2336f0c502499ddce"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#adccb1a2ccec022c2336f0c502499ddce">GetLinearDamping</a> () const </td></tr>
 <tr class="memdesc:adccb1a2ccec022c2336f0c502499ddce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the linear damping.  <a href="#adccb1a2ccec022c2336f0c502499ddce">More...</a><br/></td></tr>
 <tr class="separator:adccb1a2ccec022c2336f0c502499ddce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,55 +166,51 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a26501bf2fb6d280cc55a486c8dbeeaa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current linear factors being applied to this actor.  <a href="#a26501bf2fb6d280cc55a486c8dbeeaa1">More...</a><br/></td></tr>
 <tr class="separator:a26501bf2fb6d280cc55a486c8dbeeaa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2662cc073cc66ce832c84a1710180179"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a2662cc073cc66ce832c84a1710180179">GetLinearVelocity</a> () const </td></tr>
-<tr class="memdesc:a2662cc073cc66ce832c84a1710180179"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Linear Velocity of this object.  <a href="#a2662cc073cc66ce832c84a1710180179">More...</a><br/></td></tr>
+<tr class="memdesc:a2662cc073cc66ce832c84a1710180179"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Linear Velocity of this proxy.  <a href="#a2662cc073cc66ce832c84a1710180179">More...</a><br/></td></tr>
 <tr class="separator:a2662cc073cc66ce832c84a1710180179"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefd99c3fde60cb4494801b2e323e0f5a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#aefd99c3fde60cb4494801b2e323e0f5a">GetLocalInertia</a> () const </td></tr>
-<tr class="memdesc:aefd99c3fde60cb4494801b2e323e0f5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current intertia of the object.  <a href="#aefd99c3fde60cb4494801b2e323e0f5a">More...</a><br/></td></tr>
-<tr class="separator:aefd99c3fde60cb4494801b2e323e0f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d070b21d0b815acd0db1fa42a8d3635"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a1d070b21d0b815acd0db1fa42a8d3635">GetMass</a> () const </td></tr>
-<tr class="memdesc:a1d070b21d0b815acd0db1fa42a8d3635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the total Mass of the object.  <a href="#a1d070b21d0b815acd0db1fa42a8d3635">More...</a><br/></td></tr>
+<tr class="memdesc:a1d070b21d0b815acd0db1fa42a8d3635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the total Mass of the proxy.  <a href="#a1d070b21d0b815acd0db1fa42a8d3635">More...</a><br/></td></tr>
 <tr class="separator:a1d070b21d0b815acd0db1fa42a8d3635"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab826874ba2220906385d7b15981b469b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a80c4fbe8d2b2c4817756af89056a769c">Physics::ProxyType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#ab826874ba2220906385d7b15981b469b">GetPhysicsProxyType</a> () const </td></tr>
 <tr class="memdesc:ab826874ba2220906385d7b15981b469b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor for the type of physics object.  <a href="#ab826874ba2220906385d7b15981b469b">More...</a><br/></td></tr>
 <tr class="separator:ab826874ba2220906385d7b15981b469b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a8e1f72c40a06fd4f7466177945581b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a9a8e1f72c40a06fd4f7466177945581b">GetTorque</a> () const </td></tr>
-<tr class="memdesc:a9a8e1f72c40a06fd4f7466177945581b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Torque/Rotation.  <a href="#a9a8e1f72c40a06fd4f7466177945581b">More...</a><br/></td></tr>
-<tr class="separator:a9a8e1f72c40a06fd4f7466177945581b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea8dcd510fe5e341548a00b6b8bcc0e9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#aea8dcd510fe5e341548a00b6b8bcc0e9">ProtoDeSerializeProperties</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;SelfRoot)</td></tr>
+<tr class="memdesc:aea8dcd510fe5e341548a00b6b8bcc0e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> <a class="el" href="classMezzanine_1_1Node.xhtml">Node</a> and overwrite the properties of this object with it.  <a href="#aea8dcd510fe5e341548a00b6b8bcc0e9">More...</a><br/></td></tr>
+<tr class="separator:aea8dcd510fe5e341548a00b6b8bcc0e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0161ff74cc5f63efb2af6bcd9f118141"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a0161ff74cc5f63efb2af6bcd9f118141">ProtoSerializeProperties</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;SelfRoot) const </td></tr>
+<tr class="memdesc:a0161ff74cc5f63efb2af6bcd9f118141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the properties of this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#a0161ff74cc5f63efb2af6bcd9f118141">More...</a><br/></td></tr>
+<tr class="separator:a0161ff74cc5f63efb2af6bcd9f118141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab88371ebeef28141b8ac43b434c863e1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#ab88371ebeef28141b8ac43b434c863e1">RemoveFromWorld</a> ()</td></tr>
 <tr class="memdesc:ab88371ebeef28141b8ac43b434c863e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unhooks this proxy from it's respective world.  <a href="#ab88371ebeef28141b8ac43b434c863e1">More...</a><br/></td></tr>
 <tr class="separator:ab88371ebeef28141b8ac43b434c863e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a404eb4d327440977c7e16a829e4d64fa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a404eb4d327440977c7e16a829e4d64fa">SetAngularMovementFactor</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Factor)</td></tr>
-<tr class="memdesc:a404eb4d327440977c7e16a829e4d64fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restricts movement on the axis or axies of your choice.  <a href="#a404eb4d327440977c7e16a829e4d64fa">More...</a><br/></td></tr>
+<tr class="memdesc:a404eb4d327440977c7e16a829e4d64fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restricts movement on the axis or axes of your choice.  <a href="#a404eb4d327440977c7e16a829e4d64fa">More...</a><br/></td></tr>
 <tr class="separator:a404eb4d327440977c7e16a829e4d64fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ee78b2e935d4936c44f15f68b7ab879"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a7ee78b2e935d4936c44f15f68b7ab879">SetAngularVelocity</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;AngVel)</td></tr>
-<tr class="memdesc:a7ee78b2e935d4936c44f15f68b7ab879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Angular Velocity of this object.  <a href="#a7ee78b2e935d4936c44f15f68b7ab879">More...</a><br/></td></tr>
+<tr class="memdesc:a7ee78b2e935d4936c44f15f68b7ab879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Angular Velocity of this proxy.  <a href="#a7ee78b2e935d4936c44f15f68b7ab879">More...</a><br/></td></tr>
 <tr class="separator:a7ee78b2e935d4936c44f15f68b7ab879"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af185a92ab825e67d5b43329553033274"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#af185a92ab825e67d5b43329553033274">SetCollisionShape</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a> *Shape)</td></tr>
 <tr class="memdesc:af185a92ab825e67d5b43329553033274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the collision shape to be used.  <a href="#af185a92ab825e67d5b43329553033274">More...</a><br/></td></tr>
 <tr class="separator:af185a92ab825e67d5b43329553033274"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87542bcdfcbfcad96147bf837584c9e9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a87542bcdfcbfcad96147bf837584c9e9">SetDamping</a> (const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;LinDamping, const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;AngDamping)</td></tr>
-<tr class="memdesc:a87542bcdfcbfcad96147bf837584c9e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Damping for this object.  <a href="#a87542bcdfcbfcad96147bf837584c9e9">More...</a><br/></td></tr>
-<tr class="separator:a87542bcdfcbfcad96147bf837584c9e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15d251cbe754def9a64bc0af076c87cc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a15d251cbe754def9a64bc0af076c87cc">SetIndividualGravity</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Gravity)</td></tr>
-<tr class="memdesc:a15d251cbe754def9a64bc0af076c87cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the gravity for only this object.  <a href="#a15d251cbe754def9a64bc0af076c87cc">More...</a><br/></td></tr>
-<tr class="separator:a15d251cbe754def9a64bc0af076c87cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68eebc30f97d93297a34fe70d456eefa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a68eebc30f97d93297a34fe70d456eefa">SetDamping</a> (const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> LinDamping, const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> AngDamping)</td></tr>
+<tr class="memdesc:a68eebc30f97d93297a34fe70d456eefa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Damping for this proxy.  <a href="#a68eebc30f97d93297a34fe70d456eefa">More...</a><br/></td></tr>
+<tr class="separator:a68eebc30f97d93297a34fe70d456eefa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65b691e2501a8510093d5f8b8d5d317e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a65b691e2501a8510093d5f8b8d5d317e">SetGravity</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Gravity)</td></tr>
+<tr class="memdesc:a65b691e2501a8510093d5f8b8d5d317e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the gravity for only this proxy.  <a href="#a65b691e2501a8510093d5f8b8d5d317e">More...</a><br/></td></tr>
+<tr class="separator:a65b691e2501a8510093d5f8b8d5d317e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ebe346941f8d50d580ab4f4898ad192"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a3ebe346941f8d50d580ab4f4898ad192">SetLinearMovementFactor</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Factor)</td></tr>
 <tr class="memdesc:a3ebe346941f8d50d580ab4f4898ad192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restricts movement on the axis or axies of your choice.  <a href="#a3ebe346941f8d50d580ab4f4898ad192">More...</a><br/></td></tr>
 <tr class="separator:a3ebe346941f8d50d580ab4f4898ad192"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45f05424a4bcc0b51d5b5f1a85ce1f76"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a45f05424a4bcc0b51d5b5f1a85ce1f76">SetLinearVelocity</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;LinVel)</td></tr>
-<tr class="memdesc:a45f05424a4bcc0b51d5b5f1a85ce1f76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Linear Velocity of this object.  <a href="#a45f05424a4bcc0b51d5b5f1a85ce1f76">More...</a><br/></td></tr>
+<tr class="memdesc:a45f05424a4bcc0b51d5b5f1a85ce1f76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Linear Velocity of this proxy.  <a href="#a45f05424a4bcc0b51d5b5f1a85ce1f76">More...</a><br/></td></tr>
 <tr class="separator:a45f05424a4bcc0b51d5b5f1a85ce1f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbed96fcb7d17970a3eb09fc28dfcbc9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#acbed96fcb7d17970a3eb09fc28dfcbc9">SetMass</a> (<a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> NewMass)</td></tr>
-<tr class="memdesc:acbed96fcb7d17970a3eb09fc28dfcbc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the mass of the object.  <a href="#acbed96fcb7d17970a3eb09fc28dfcbc9">More...</a><br/></td></tr>
-<tr class="separator:acbed96fcb7d17970a3eb09fc28dfcbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1900cb2a4849e7851d7c3e00153c47a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#aa1900cb2a4849e7851d7c3e00153c47a">SetMass</a> (<a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> NewMass, const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;NewInertia)</td></tr>
-<tr class="memdesc:aa1900cb2a4849e7851d7c3e00153c47a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the mass of the object.  <a href="#aa1900cb2a4849e7851d7c3e00153c47a">More...</a><br/></td></tr>
-<tr class="separator:aa1900cb2a4849e7851d7c3e00153c47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab400517e65bcc1b6db2921a56d264adb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#ab400517e65bcc1b6db2921a56d264adb">SetMass</a> (const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mass)</td></tr>
+<tr class="memdesc:ab400517e65bcc1b6db2921a56d264adb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the mass of the proxy.  <a href="#ab400517e65bcc1b6db2921a56d264adb">More...</a><br/></td></tr>
+<tr class="separator:ab400517e65bcc1b6db2921a56d264adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml">Mezzanine::Physics::PhysicsProxy</a></td></tr>
-<tr class="memitem:a63fbf80af1a4600712ce3c998cbc4fd4 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63fbf80af1a4600712ce3c998cbc4fd4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a63fbf80af1a4600712ce3c998cbc4fd4">PhysicsProxy</a> ()</td></tr>
-<tr class="memdesc:a63fbf80af1a4600712ce3c998cbc4fd4 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor. <br/></td></tr>
-<tr class="separator:a63fbf80af1a4600712ce3c998cbc4fd4 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acec2648b8912fbfa90ae1ecac03c7856 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#acec2648b8912fbfa90ae1ecac03c7856">PhysicsProxy</a> (<a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml">PhysicsManager</a> *Creator)</td></tr>
+<tr class="memdesc:acec2648b8912fbfa90ae1ecac03c7856 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#acec2648b8912fbfa90ae1ecac03c7856">More...</a><br/></td></tr>
+<tr class="separator:acec2648b8912fbfa90ae1ecac03c7856 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dd4958f907ab0796a21019450682d6c inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6dd4958f907ab0796a21019450682d6c"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a6dd4958f907ab0796a21019450682d6c">~PhysicsProxy</a> ()</td></tr>
 <tr class="memdesc:a6dd4958f907ab0796a21019450682d6c inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br/></td></tr>
@@ -221,6 +224,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:abab2b204ae9ac67b9d840785038f8fdb inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#abab2b204ae9ac67b9d840785038f8fdb">CanLocallyScale</a> () const </td></tr>
 <tr class="memdesc:abab2b204ae9ac67b9d840785038f8fdb inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this proxy can have scaling applied to itself (instead of it's shape).  <a href="#abab2b204ae9ac67b9d840785038f8fdb">More...</a><br/></td></tr>
 <tr class="separator:abab2b204ae9ac67b9d840785038f8fdb inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62cb9252de9103b32b51af486b76edd3 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1AxisAlignedBox.xhtml">AxisAlignedBox</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a62cb9252de9103b32b51af486b76edd3">GetAABB</a> () const </td></tr>
+<tr class="memdesc:a62cb9252de9103b32b51af486b76edd3 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this proxies AABB.  <a href="#a62cb9252de9103b32b51af486b76edd3">More...</a><br/></td></tr>
+<tr class="separator:a62cb9252de9103b32b51af486b76edd3 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21075b3296c2f5de292661475e762673 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1Physics.xhtml#a17f518115a6221cce3619160261ca407">Physics::ActivationState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a21075b3296c2f5de292661475e762673">GetActivationState</a> () const </td></tr>
 <tr class="memdesc:a21075b3296c2f5de292661475e762673 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current activation state of this proxy.  <a href="#a21075b3296c2f5de292661475e762673">More...</a><br/></td></tr>
 <tr class="separator:a21075b3296c2f5de292661475e762673 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,24 +240,24 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a3d86f7cb6d277e64bd3d67b142c0828e inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a3d86f7cb6d277e64bd3d67b142c0828e">GetCollisionFlags</a> () const </td></tr>
 <tr class="memdesc:a3d86f7cb6d277e64bd3d67b142c0828e inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the collection of flags that help determine collision response for this object.  <a href="#a3d86f7cb6d277e64bd3d67b142c0828e">More...</a><br/></td></tr>
 <tr class="separator:a3d86f7cb6d277e64bd3d67b142c0828e inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f57dc0341aa2b9e0ea092581c305570 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a4f57dc0341aa2b9e0ea092581c305570">GetCollisionGroup</a> () const </td></tr>
-<tr class="memdesc:a4f57dc0341aa2b9e0ea092581c305570 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the objects collision group.  <a href="#a4f57dc0341aa2b9e0ea092581c305570">More...</a><br/></td></tr>
-<tr class="separator:a4f57dc0341aa2b9e0ea092581c305570 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0151e1b745385e0f7895e5f15d5f56b inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ad0151e1b745385e0f7895e5f15d5f56b">GetCollisionMask</a> () const </td></tr>
-<tr class="memdesc:ad0151e1b745385e0f7895e5f15d5f56b inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the object's collision mask.  <a href="#ad0151e1b745385e0f7895e5f15d5f56b">More...</a><br/></td></tr>
-<tr class="separator:ad0151e1b745385e0f7895e5f15d5f56b inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f4889f355b97229f83e6cc496d8e88f inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#adb602bffcbc8f1b381b2f529e9e364f6">Int16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a0f4889f355b97229f83e6cc496d8e88f">GetCollisionGroup</a> () const </td></tr>
+<tr class="memdesc:a0f4889f355b97229f83e6cc496d8e88f inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the objects collision group.  <a href="#a0f4889f355b97229f83e6cc496d8e88f">More...</a><br/></td></tr>
+<tr class="separator:a0f4889f355b97229f83e6cc496d8e88f inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b57dbc9e6b0c583cd050fd857b36fd8 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#adb602bffcbc8f1b381b2f529e9e364f6">Int16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a2b57dbc9e6b0c583cd050fd857b36fd8">GetCollisionMask</a> () const </td></tr>
+<tr class="memdesc:a2b57dbc9e6b0c583cd050fd857b36fd8 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the object's collision mask.  <a href="#a2b57dbc9e6b0c583cd050fd857b36fd8">More...</a><br/></td></tr>
+<tr class="separator:a2b57dbc9e6b0c583cd050fd857b36fd8 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9495dcc99c88236c06c4d3b35cc0233d inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a9495dcc99c88236c06c4d3b35cc0233d">GetCollisionResponse</a> () const </td></tr>
 <tr class="memdesc:a9495dcc99c88236c06c4d3b35cc0233d inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will this respond to 3d collisions.  <a href="#a9495dcc99c88236c06c4d3b35cc0233d">More...</a><br/></td></tr>
 <tr class="separator:a9495dcc99c88236c06c4d3b35cc0233d inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80e7ca2664aedbad0ceefb2ae46af9b0 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a80e7ca2664aedbad0ceefb2ae46af9b0">GetCollisionShape</a> () const </td></tr>
 <tr class="memdesc:a80e7ca2664aedbad0ceefb2ae46af9b0 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the collision shape currently in use by this object.  <a href="#a80e7ca2664aedbad0ceefb2ae46af9b0">More...</a><br/></td></tr>
 <tr class="separator:a80e7ca2664aedbad0ceefb2ae46af9b0 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73da3bac42f8c54d391943bcacb4acd3 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1WorldManager.xhtml">WorldManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a73da3bac42f8c54d391943bcacb4acd3">GetCreator</a> () const </td></tr>
+<tr class="memdesc:a73da3bac42f8c54d391943bcacb4acd3 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight"> <a href="#a73da3bac42f8c54d391943bcacb4acd3">More...</a><br/></td></tr>
+<tr class="separator:a73da3bac42f8c54d391943bcacb4acd3 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bf37c9f8a6554f333f049337e5b3a2a inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a8bf37c9f8a6554f333f049337e5b3a2a">GetDeactivationTime</a> () const </td></tr>
 <tr class="memdesc:a8bf37c9f8a6554f333f049337e5b3a2a inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current deactivation time for this object.  <a href="#a8bf37c9f8a6554f333f049337e5b3a2a">More...</a><br/></td></tr>
 <tr class="separator:a8bf37c9f8a6554f333f049337e5b3a2a inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade57416c69f8b5b1e82f7211b4244d32 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ade57416c69f8b5b1e82f7211b4244d32">GetDerivedSerializableName</a> () const </td></tr>
-<tr class="memdesc:ade57416c69f8b5b1e82f7211b4244d32 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the most derived serializable name of this <a class="el" href="classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems.">WorldProxy</a>.  <a href="#ade57416c69f8b5b1e82f7211b4244d32">More...</a><br/></td></tr>
-<tr class="separator:ade57416c69f8b5b1e82f7211b4244d32 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a101f3c4981e07f98b87ae481b8ac4245 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a101f3c4981e07f98b87ae481b8ac4245">GetFriction</a> () const </td></tr>
 <tr class="memdesc:a101f3c4981e07f98b87ae481b8ac4245 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the sliding friction coefficient.  <a href="#a101f3c4981e07f98b87ae481b8ac4245">More...</a><br/></td></tr>
 <tr class="separator:a101f3c4981e07f98b87ae481b8ac4245 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -276,9 +282,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:ae69249a6d9ac14a48abf0fc927900a0a inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ae69249a6d9ac14a48abf0fc927900a0a">IsAnisotropicFrictionModeSet</a> (const <a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mode) const </td></tr>
 <tr class="memdesc:ae69249a6d9ac14a48abf0fc927900a0a inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not anisotropic friction is being used in a specified mode.  <a href="#ae69249a6d9ac14a48abf0fc927900a0a">More...</a><br/></td></tr>
 <tr class="separator:ae69249a6d9ac14a48abf0fc927900a0a inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b1865135a6fa338dcf172ed9fca6533 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a1b1865135a6fa338dcf172ed9fca6533">IsInWorld</a> () const </td></tr>
-<tr class="memdesc:a1b1865135a6fa338dcf172ed9fca6533 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is inside of it's world.  <a href="#a1b1865135a6fa338dcf172ed9fca6533">More...</a><br/></td></tr>
-<tr class="separator:a1b1865135a6fa338dcf172ed9fca6533 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b40a7b97f1b9cac238f7c9d2e15fcd3 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a3b40a7b97f1b9cac238f7c9d2e15fcd3">IsInWorld</a> () const </td></tr>
+<tr class="memdesc:a3b40a7b97f1b9cac238f7c9d2e15fcd3 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is inside of it's world.  <a href="#a3b40a7b97f1b9cac238f7c9d2e15fcd3">More...</a><br/></td></tr>
+<tr class="separator:a3b40a7b97f1b9cac238f7c9d2e15fcd3 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b0cd0b9e19b48ce341708a8abafbbdc inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a4b0cd0b9e19b48ce341708a8abafbbdc">IsKinematic</a> () const </td></tr>
 <tr class="memdesc:a4b0cd0b9e19b48ce341708a8abafbbdc inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the object kinematic.  <a href="#a4b0cd0b9e19b48ce341708a8abafbbdc">More...</a><br/></td></tr>
 <tr class="separator:a4b0cd0b9e19b48ce341708a8abafbbdc inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -294,18 +300,12 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a92fcdf47d1eb3140f6f5b9e40bc1625f inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a92fcdf47d1eb3140f6f5b9e40bc1625f">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;SelfRoot)</td></tr>
 <tr class="memdesc:a92fcdf47d1eb3140f6f5b9e40bc1625f inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> <a class="el" href="classMezzanine_1_1Node.xhtml">Node</a> and overwrite this object with it.  <a href="#a92fcdf47d1eb3140f6f5b9e40bc1625f">More...</a><br/></td></tr>
 <tr class="separator:a92fcdf47d1eb3140f6f5b9e40bc1625f inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add09356a645dbb22f1bde76f07576cbe inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#add09356a645dbb22f1bde76f07576cbe">ProtoDeSerializeProperties</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;SelfRoot)</td></tr>
-<tr class="memdesc:add09356a645dbb22f1bde76f07576cbe inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> <a class="el" href="classMezzanine_1_1Node.xhtml">Node</a> and overwrite the properties of this object with it.  <a href="#add09356a645dbb22f1bde76f07576cbe">More...</a><br/></td></tr>
-<tr class="separator:add09356a645dbb22f1bde76f07576cbe inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01b8a2b4d6ca69bf65250e98b9ebc63f inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a01b8a2b4d6ca69bf65250e98b9ebc63f">ProtoDeSerializeShape</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;SelfRoot)</td></tr>
 <tr class="memdesc:a01b8a2b4d6ca69bf65250e98b9ebc63f inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> <a class="el" href="classMezzanine_1_1Node.xhtml">Node</a> and overwrite the shape of this object with it.  <a href="#a01b8a2b4d6ca69bf65250e98b9ebc63f">More...</a><br/></td></tr>
 <tr class="separator:a01b8a2b4d6ca69bf65250e98b9ebc63f inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd79eb2336cc349af785a65cb410ae87 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#abd79eb2336cc349af785a65cb410ae87">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;ParentNode) const </td></tr>
 <tr class="memdesc:abd79eb2336cc349af785a65cb410ae87 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#abd79eb2336cc349af785a65cb410ae87">More...</a><br/></td></tr>
 <tr class="separator:abd79eb2336cc349af785a65cb410ae87 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d5e4859a029c3f43c48050ffb4b9c1c inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a9d5e4859a029c3f43c48050ffb4b9c1c">ProtoSerializeProperties</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;SelfRoot) const </td></tr>
-<tr class="memdesc:a9d5e4859a029c3f43c48050ffb4b9c1c inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the properties of this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#a9d5e4859a029c3f43c48050ffb4b9c1c">More...</a><br/></td></tr>
-<tr class="separator:a9d5e4859a029c3f43c48050ffb4b9c1c inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad995b7fd70a39de70e8a30940073f83 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#aad995b7fd70a39de70e8a30940073f83">ProtoSerializeShape</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;SelfRoot) const </td></tr>
 <tr class="memdesc:aad995b7fd70a39de70e8a30940073f83 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the shape of this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#aad995b7fd70a39de70e8a30940073f83">More...</a><br/></td></tr>
 <tr class="separator:aad995b7fd70a39de70e8a30940073f83 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -333,15 +333,15 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a77d7aa21ff90d12b1c45c1c1e7ca1bce inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a77d7aa21ff90d12b1c45c1c1e7ca1bce">SetCollisionFlags</a> (const <a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Flags)</td></tr>
 <tr class="memdesc:a77d7aa21ff90d12b1c45c1c1e7ca1bce inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the collection of flags that help determine collision response for this object.  <a href="#a77d7aa21ff90d12b1c45c1c1e7ca1bce">More...</a><br/></td></tr>
 <tr class="separator:a77d7aa21ff90d12b1c45c1c1e7ca1bce inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4d7c1657c720dba675de02aa6a3bc14 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#af4d7c1657c720dba675de02aa6a3bc14">SetCollisionGroup</a> (const <a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Group)</td></tr>
-<tr class="memdesc:af4d7c1657c720dba675de02aa6a3bc14 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets which collision group this proxy belongs to, which determines it's collision behavior.  <a href="#af4d7c1657c720dba675de02aa6a3bc14">More...</a><br/></td></tr>
-<tr class="separator:af4d7c1657c720dba675de02aa6a3bc14 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8a82279f36b240b29bb4b0b972e0d05 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ae8a82279f36b240b29bb4b0b972e0d05">SetCollisionGroupAndMask</a> (const <a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Group, const <a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mask)</td></tr>
-<tr class="memdesc:ae8a82279f36b240b29bb4b0b972e0d05 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the collision group and mask for the proxy to determine what it should collide with.  <a href="#ae8a82279f36b240b29bb4b0b972e0d05">More...</a><br/></td></tr>
-<tr class="separator:ae8a82279f36b240b29bb4b0b972e0d05 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae602999ca7f2e7cf87832b7d2a1c85f9 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ae602999ca7f2e7cf87832b7d2a1c85f9">SetCollisionMask</a> (const <a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mask)</td></tr>
-<tr class="memdesc:ae602999ca7f2e7cf87832b7d2a1c85f9 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the collision mask of this proxy, which determines which groups it will collide with.  <a href="#ae602999ca7f2e7cf87832b7d2a1c85f9">More...</a><br/></td></tr>
-<tr class="separator:ae602999ca7f2e7cf87832b7d2a1c85f9 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9b0b1ecfb69852b725d4359716d44e5 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ad9b0b1ecfb69852b725d4359716d44e5">SetCollisionGroup</a> (const <a class="el" href="namespaceMezzanine.xhtml#adb602bffcbc8f1b381b2f529e9e364f6">Int16</a> Group)</td></tr>
+<tr class="memdesc:ad9b0b1ecfb69852b725d4359716d44e5 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets which collision group this proxy belongs to, which determines it's collision behavior.  <a href="#ad9b0b1ecfb69852b725d4359716d44e5">More...</a><br/></td></tr>
+<tr class="separator:ad9b0b1ecfb69852b725d4359716d44e5 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ae3849f2bde71d63fa5d40a0889f52d inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a3ae3849f2bde71d63fa5d40a0889f52d">SetCollisionGroupAndMask</a> (const <a class="el" href="namespaceMezzanine.xhtml#adb602bffcbc8f1b381b2f529e9e364f6">Int16</a> Group, const <a class="el" href="namespaceMezzanine.xhtml#adb602bffcbc8f1b381b2f529e9e364f6">Int16</a> Mask)</td></tr>
+<tr class="memdesc:a3ae3849f2bde71d63fa5d40a0889f52d inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the collision group and mask for the proxy to determine what it should collide with.  <a href="#a3ae3849f2bde71d63fa5d40a0889f52d">More...</a><br/></td></tr>
+<tr class="separator:a3ae3849f2bde71d63fa5d40a0889f52d inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38b1bb96cf5fab8fd60ebf793ad4b4d0 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a38b1bb96cf5fab8fd60ebf793ad4b4d0">SetCollisionMask</a> (const <a class="el" href="namespaceMezzanine.xhtml#adb602bffcbc8f1b381b2f529e9e364f6">Int16</a> Mask)</td></tr>
+<tr class="memdesc:a38b1bb96cf5fab8fd60ebf793ad4b4d0 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the collision mask of this proxy, which determines which groups it will collide with.  <a href="#a38b1bb96cf5fab8fd60ebf793ad4b4d0">More...</a><br/></td></tr>
+<tr class="separator:a38b1bb96cf5fab8fd60ebf793ad4b4d0 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3ffd001430adae862dd23e5d38bcbc9 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#af3ffd001430adae862dd23e5d38bcbc9">SetCollisionResponse</a> (bool Enable)</td></tr>
 <tr class="memdesc:af3ffd001430adae862dd23e5d38bcbc9 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <a class="el" href="classMezzanine_1_1World.xhtml" title="This class represents a world for objects to interact within.">World</a> Object to be able to collide with other objects in the world.  <a href="#af3ffd001430adae862dd23e5d38bcbc9">More...</a><br/></td></tr>
 <tr class="separator:af3ffd001430adae862dd23e5d38bcbc9 inherit pub_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -402,34 +402,48 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a34d1af1b7d367a0bc1fa1609162db9f5 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.xhtml#a34d1af1b7d367a0bc1fa1609162db9f5">_Bind</a> (<a class="el" href="classMezzanine_1_1WorldObject.xhtml">WorldObject</a> *NewParent)</td></tr>
 <tr class="memdesc:a34d1af1b7d367a0bc1fa1609162db9f5 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds this proxy to a <a class="el" href="classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a>.  <a href="#a34d1af1b7d367a0bc1fa1609162db9f5">More...</a><br/></td></tr>
 <tr class="separator:a34d1af1b7d367a0bc1fa1609162db9f5 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb4300d31245bb616e7416dd6310a809 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1WorldManager.xhtml">WorldManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.xhtml#abb4300d31245bb616e7416dd6310a809">GetCreator</a> () const =0</td></tr>
-<tr class="memdesc:abb4300d31245bb616e7416dd6310a809 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a pointer to this proxies creator.  <a href="#abb4300d31245bb616e7416dd6310a809">More...</a><br/></td></tr>
-<tr class="separator:abb4300d31245bb616e7416dd6310a809 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98781f6b27dd4611404c0d6fb06535c9 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1WorldObject.xhtml">WorldObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.xhtml#a98781f6b27dd4611404c0d6fb06535c9">GetParentObject</a> () const </td></tr>
 <tr class="memdesc:a98781f6b27dd4611404c0d6fb06535c9 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a pointer to the parent object controlling this proxy.  <a href="#a98781f6b27dd4611404c0d6fb06535c9">More...</a><br/></td></tr>
 <tr class="separator:a98781f6b27dd4611404c0d6fb06535c9 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a6b49f2512d83ec63d2f27c42605d38e1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a6b49f2512d83ec63d2f27c42605d38e1">GetSerializableName</a> ()</td></tr>
+<tr class="memdesc:a6b49f2512d83ec63d2f27c42605d38e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the proxy class will leave behind as its instances are serialized.  <a href="#a6b49f2512d83ec63d2f27c42605d38e1">More...</a><br/></td></tr>
+<tr class="separator:a6b49f2512d83ec63d2f27c42605d38e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1Physics_1_1PhysicsProxy')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml">Mezzanine::Physics::PhysicsProxy</a></td></tr>
+<tr class="memitem:a0ee3fd4d37eb7c85a4895d3c41d6ce6c inherit pub_static_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a0ee3fd4d37eb7c85a4895d3c41d6ce6c">GetSerializableName</a> ()</td></tr>
+<tr class="memdesc:a0ee3fd4d37eb7c85a4895d3c41d6ce6c inherit pub_static_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the proxy class will leave behind as its instances are serialized.  <a href="#a0ee3fd4d37eb7c85a4895d3c41d6ce6c">More...</a><br/></td></tr>
+<tr class="separator:a0ee3fd4d37eb7c85a4895d3c41d6ce6c inherit pub_static_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classMezzanine_1_1WorldProxy"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1WorldProxy')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1WorldProxy.xhtml">Mezzanine::WorldProxy</a></td></tr>
+<tr class="memitem:a5b5c9bff9453f9fb7dd347bc553a01e7 inherit pub_static_methods_classMezzanine_1_1WorldProxy"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.xhtml#a5b5c9bff9453f9fb7dd347bc553a01e7">GetSerializableName</a> ()</td></tr>
+<tr class="memdesc:a5b5c9bff9453f9fb7dd347bc553a01e7 inherit pub_static_methods_classMezzanine_1_1WorldProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the proxy class will leave behind as its instances are serialized.  <a href="#a5b5c9bff9453f9fb7dd347bc553a01e7">More...</a><br/></td></tr>
+<tr class="separator:a5b5c9bff9453f9fb7dd347bc553a01e7 inherit pub_static_methods_classMezzanine_1_1WorldProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a8da5ab459976cdf943278201697cfd04"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a8da5ab459976cdf943278201697cfd04">CreateRigidObject</a> (const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Mass)</td></tr>
-<tr class="memdesc:a8da5ab459976cdf943278201697cfd04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data related to sticky behavior, if any is enabled.  <a href="#a8da5ab459976cdf943278201697cfd04">More...</a><br/></td></tr>
-<tr class="separator:a8da5ab459976cdf943278201697cfd04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbab18276c56ed75a384f5d981b230be"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#adbab18276c56ed75a384f5d981b230be">CreateRigidObject</a> (const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mass)</td></tr>
+<tr class="memdesc:adbab18276c56ed75a384f5d981b230be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data related to sticky behavior, if any is enabled.  <a href="#adbab18276c56ed75a384f5d981b230be">More...</a><br/></td></tr>
+<tr class="separator:adbab18276c56ed75a384f5d981b230be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:acc8259ea9b15140941173c72cc15c1a1"><td class="memItemLeft" align="right" valign="top">btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#acc8259ea9b15140941173c72cc15c1a1">PhysicsRigidBody</a></td></tr>
-<tr class="memdesc:acc8259ea9b15140941173c72cc15c1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">RigidBody object used by the internal physics.  <a href="#acc8259ea9b15140941173c72cc15c1a1">More...</a><br/></td></tr>
+<tr class="memdesc:acc8259ea9b15140941173c72cc15c1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">RigidBody proxy used by the internal physics.  <a href="#acc8259ea9b15140941173c72cc15c1a1">More...</a><br/></td></tr>
 <tr class="separator:acc8259ea9b15140941173c72cc15c1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml">Mezzanine::Physics::PhysicsProxy</a></td></tr>
 <tr class="memitem:ae85957f245b9e955b2bbbe0ef2058f30 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ae85957f245b9e955b2bbbe0ef2058f30">BodyScale</a></td></tr>
 <tr class="memdesc:ae85957f245b9e955b2bbbe0ef2058f30 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">A vector3 storing the scaling applied to this body.  <a href="#ae85957f245b9e955b2bbbe0ef2058f30">More...</a><br/></td></tr>
 <tr class="separator:ae85957f245b9e955b2bbbe0ef2058f30 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19e4e14646ef4ce1945cb2ac7041423c inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a19e4e14646ef4ce1945cb2ac7041423c">CollisionGroup</a></td></tr>
-<tr class="memdesc:a19e4e14646ef4ce1945cb2ac7041423c inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">The classifications pertaining to this object in regards to collisions.  <a href="#a19e4e14646ef4ce1945cb2ac7041423c">More...</a><br/></td></tr>
-<tr class="separator:a19e4e14646ef4ce1945cb2ac7041423c inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8999b3ac508ffa0375409c707993f09 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ae8999b3ac508ffa0375409c707993f09">CollisionMask</a></td></tr>
-<tr class="memdesc:ae8999b3ac508ffa0375409c707993f09 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the kind of <a class="el" href="classMezzanine_1_1World.xhtml" title="This class represents a world for objects to interact within.">World</a> Objects that can collide with each other.  <a href="#ae8999b3ac508ffa0375409c707993f09">More...</a><br/></td></tr>
-<tr class="separator:ae8999b3ac508ffa0375409c707993f09 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b01df207be13e4189d551497873d599 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#adb602bffcbc8f1b381b2f529e9e364f6">Int16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a4b01df207be13e4189d551497873d599">CollisionGroup</a></td></tr>
+<tr class="memdesc:a4b01df207be13e4189d551497873d599 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">The classifications pertaining to this object in regards to collisions.  <a href="#a4b01df207be13e4189d551497873d599">More...</a><br/></td></tr>
+<tr class="separator:a4b01df207be13e4189d551497873d599 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f1880beea22c02a3a90023cef2477e3 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#adb602bffcbc8f1b381b2f529e9e364f6">Int16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a6f1880beea22c02a3a90023cef2477e3">CollisionMask</a></td></tr>
+<tr class="memdesc:a6f1880beea22c02a3a90023cef2477e3 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the kind of <a class="el" href="classMezzanine_1_1World.xhtml" title="This class represents a world for objects to interact within.">World</a> Objects that can collide with each other.  <a href="#a6f1880beea22c02a3a90023cef2477e3">More...</a><br/></td></tr>
+<tr class="separator:a6f1880beea22c02a3a90023cef2477e3 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af637a77e22dbe38833c9d4fe665033f2 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml">PhysicsManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#af637a77e22dbe38833c9d4fe665033f2">Manager</a></td></tr>
+<tr class="memdesc:af637a77e22dbe38833c9d4fe665033f2 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a pointer to the physics manager that created and owns this proxy.  <a href="#af637a77e22dbe38833c9d4fe665033f2">More...</a><br/></td></tr>
+<tr class="separator:af637a77e22dbe38833c9d4fe665033f2 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc7e8655c424d511040cbf6f100b5e64 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#abc7e8655c424d511040cbf6f100b5e64">ProxyShape</a></td></tr>
 <tr class="memdesc:abc7e8655c424d511040cbf6f100b5e64 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">The physics shape of this proxy.  <a href="#abc7e8655c424d511040cbf6f100b5e64">More...</a><br/></td></tr>
 <tr class="separator:abc7e8655c424d511040cbf6f100b5e64 inherit pro_attribs_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -440,30 +454,33 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a250e738cf4ffa72d9a8b42c6465538b2 inherit pro_attribs_classMezzanine_1_1WorldProxy"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1WorldObject.xhtml">WorldObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.xhtml#a250e738cf4ffa72d9a8b42c6465538b2">ParentObject</a></td></tr>
 <tr class="memdesc:a250e738cf4ffa72d9a8b42c6465538b2 inherit pro_attribs_classMezzanine_1_1WorldProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the Object this proxy belongs to.  <a href="#a250e738cf4ffa72d9a8b42c6465538b2">More...</a><br/></td></tr>
 <tr class="separator:a250e738cf4ffa72d9a8b42c6465538b2 inherit pro_attribs_classMezzanine_1_1WorldProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_static_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1Physics_1_1PhysicsProxy')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml">Mezzanine::Physics::PhysicsProxy</a></td></tr>
-<tr class="memitem:a0ee3fd4d37eb7c85a4895d3c41d6ce6c inherit pub_static_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a0ee3fd4d37eb7c85a4895d3c41d6ce6c">GetSerializableName</a> ()</td></tr>
-<tr class="memdesc:a0ee3fd4d37eb7c85a4895d3c41d6ce6c inherit pub_static_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the Renderable class will leave behind as its instances are serialized.  <a href="#a0ee3fd4d37eb7c85a4895d3c41d6ce6c">More...</a><br/></td></tr>
-<tr class="separator:a0ee3fd4d37eb7c85a4895d3c41d6ce6c inherit pub_static_methods_classMezzanine_1_1Physics_1_1PhysicsProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This is a proxy from which rigid body objects are handled. </p>
-<p>This class is used to hold and configure the physics information for a rigid body. This class holds physics information from the physics sub-library and serves as a means to interact with it. Direct interaction with the internal physics object is discouraged. </p>
+<div class="textblock"><p>This is a proxy from which rigid body proxys are handled. </p>
+<p>This class is used to hold and configure the physics information for a rigid body. This class holds physics information from the physics sub-library and serves as a means to interact with it. Direct interaction with the internal physics proxy is discouraged. </p>
 
-<p>Definition at line <a class="el" href="rigidproxy_8h_source.xhtml#l00104">104</a> of file <a class="el" href="rigidproxy_8h_source.xhtml">rigidproxy.h</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8h_source.xhtml#l00102">102</a> of file <a class="el" href="rigidproxy_8h_source.xhtml">rigidproxy.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a7176bc22177d9431c86427ad034282bb"></a>
+<a class="anchor" id="ac1abbf08418d0c21daebee1ee34994d0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Mezzanine::Physics::RigidProxy::RigidProxy </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
-          <td class="paramname"><em>Mass</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramname"><em>Mass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml">PhysicsManager</a> *&#160;</td>
+          <td class="paramname"><em>Creator</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -472,11 +489,12 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Mass</td><td>The mass of the rigid body. </td></tr>
+    <tr><td class="paramname">Creator</td><td>A pointer to the manager that created this proxy. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00058">58</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00060">60</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -506,7 +524,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ac409b95e62f39f23deebd9b6ba9f6c2d">Mezzanine::Physics::PhysicsProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00302">302</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00379">379</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -531,10 +549,10 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Accessor for the internal rigid body physics object. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the internal object this proxy is based on. </dd></dl>
+<p>Accessor for the internal rigid body physics proxy. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the internal proxy this proxy is based on. </dd></dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00294">294</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00376">376</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -563,7 +581,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a5a273eff8150caa9700e2c6f969a9be1">Mezzanine::Physics::PhysicsProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00088">88</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00091">91</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -589,7 +607,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Push/Apply force to an object. </p>
+<p>Push/Apply force to an proxy. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Force</td><td>The amount and direction of the force in a <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> </td></tr>
@@ -597,7 +615,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00217">217</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00184">184</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -623,7 +641,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Spin/Apply Torque to an object. </p>
+<p>Spin/Apply torque to an proxy. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Torque</td><td>The amount and direction of the torque in a <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> </td></tr>
@@ -631,11 +649,11 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00222">222</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00190">190</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8da5ab459976cdf943278201697cfd04"></a>
+<a class="anchor" id="adbab18276c56ed75a384f5d981b230be"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -645,7 +663,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void Mezzanine::Physics::RigidProxy::CreateRigidObject </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
           <td class="paramname"><em>Mass</em></td><td>)</td>
           <td></td>
         </tr>
@@ -667,7 +685,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00069">69</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00072">72</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -695,7 +713,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Get the Angular damping. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Real that has the Angular damping. </dd></dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00167">167</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00163">163</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -723,7 +741,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets the current angular factors being applied to this actor. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the factors on the 3 angular axes. </dd></dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00137">137</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00145">145</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -748,14 +766,14 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the Angular Velocity of this object. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns the currently set Angular Velocity of this object. </dd></dl>
+<p>Gets the Angular Velocity of this proxy. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the currently set Angular Velocity of this proxy. </dd></dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00188">188</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00175">175</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aaed3dbe0c32babd4eeba5dfd63117344"></a>
+<a class="anchor" id="a5411bbfc7ecda06ee5cac5761bfbc80a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -763,7 +781,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> Mezzanine::Physics::RigidProxy::GetForce </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> Mezzanine::Physics::RigidProxy::GetAppliedForce </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -776,14 +794,14 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the total Force/Movement on the object. </p>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the force of the entire object </dd></dl>
+<p>Get the total Force currently being applied to this proxy. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the amount of linear force being applied on each axis. </dd></dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00205">205</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00187">187</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="afac05d9f6735193f0cb60fb6309da1c4"></a>
+<a class="anchor" id="a82ae80e4d14594e2bdcc2b7e5c08868d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -791,7 +809,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> Mezzanine::Physics::RigidProxy::GetIndividualGravity </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> Mezzanine::Physics::RigidProxy::GetAppliedTorque </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -804,11 +822,70 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the gravity being applied to this object. </p>
-<p>This is the gravity applied to this object, which may or may not be the same as the world gravity. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the gravity currently being applied to this object. </dd></dl>
+<p>Get the total Torque currently being applied to this proxy. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the amount of angular force being applied on each axis. </dd></dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00199">199</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00193">193</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af0215067d080d28fd52157f1d0da9559"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::Physics::RigidProxy::GetDerivedSerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the most derived serializable name of this <a class="el" href="classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems.">WorldProxy</a>. </p>
+<dl class="section note"><dt>Note</dt><dd>When creating a new <a class="el" href="classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems.">WorldProxy</a> class verify this method has a valid return for it in order for serialization to work properly. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the name of the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag from the most derived class of "this". </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ade57416c69f8b5b1e82f7211b4244d32">Mezzanine::Physics::PhysicsProxy</a>.</p>
+
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00363">363</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab235849740d5a153494ebba890d05d27"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> Mezzanine::Physics::RigidProxy::GetGravity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the gravity being applied to this proxy. </p>
+<p>This is the gravity applied to this proxy, which may or may not be the same as the world gravity. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the gravity currently being applied to this proxy. </dd></dl>
+
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00181">181</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -836,7 +913,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Get the linear damping. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Real that has the Linear damping. </dd></dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00162">162</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00160">160</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -864,7 +941,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets the current linear factors being applied to this actor. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the factors on the 3 linear axes. </dd></dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00148">148</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00139">139</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -889,38 +966,10 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the Linear Velocity of this object. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns the currently set Linear Velocity of this object. </dd></dl>
+<p>Gets the Linear Velocity of this proxy. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the currently set Linear Velocity of this proxy. </dd></dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00177">177</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aefd99c3fde60cb4494801b2e323e0f5a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> Mezzanine::Physics::RigidProxy::GetLocalInertia </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the current intertia of the object. </p>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the Inertia </dd></dl>
-
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00232">232</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00169">169</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -945,10 +994,10 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the total Mass of the object. </p>
-<dl class="section return"><dt>Returns</dt><dd>A Real with the Mass of the object </dd></dl>
+<p>Get the total Mass of the proxy. </p>
+<dl class="section return"><dt>Returns</dt><dd>A Real with the Mass of the proxy </dd></dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00227">227</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00154">154</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -978,11 +1027,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a8ac8ddf57366b4f294469da89e914f11">Mezzanine::Physics::PhysicsProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00083">83</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00086">86</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9a8e1f72c40a06fd4f7466177945581b"></a>
+<a class="anchor" id="a6b49f2512d83ec63d2f27c42605d38e1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -990,9 +1039,74 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> Mezzanine::Physics::RigidProxy::GetTorque </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::Physics::RigidProxy::GetSerializableName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the proxy class will leave behind as its instances are serialized. </p>
+<dl class="section return"><dt>Returns</dt><dd>A string containing the name of this class. </dd></dl>
+
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00368">368</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aea8dcd510fe5e341548a00b6b8bcc0e9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Physics::RigidProxy::ProtoDeSerializeProperties </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>SelfRoot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> <a class="el" href="classMezzanine_1_1Node.xhtml">Node</a> and overwrite the properties of this object with it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SelfRoot</td><td>An <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the data to populate this class with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#add09356a645dbb22f1bde76f07576cbe">Mezzanine::Physics::PhysicsProxy</a>.</p>
+
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00278">278</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0161ff74cc5f63efb2af6bcd9f118141"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Physics::RigidProxy::ProtoSerializeProperties </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>SelfRoot</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1003,10 +1117,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the Torque/Rotation. </p>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the Torque </dd></dl>
+<p>Convert the properties of this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SelfRoot</td><td>The root node containing all the serialized data for this instance. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00211">211</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a9d5e4859a029c3f43c48050ffb4b9c1c">Mezzanine::Physics::PhysicsProxy</a>.</p>
+
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00239">239</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1035,7 +1156,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#abc420940924654d77e1adc792b3e3591">Mezzanine::Physics::PhysicsProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00098">98</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00101">101</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1061,7 +1182,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Restricts movement on the axis or axies of your choice. </p>
+<p>Restricts movement on the axis or axes of your choice. </p>
 <p>This function can lock or limit any and all axes you define. 0.0 means no angular movement on that axis. 1.0 means normal movement. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1070,7 +1191,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00132">132</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00142">142</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1096,7 +1217,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Sets the Angular Velocity of this object. </p>
+<p>Sets the Angular Velocity of this proxy. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">AngVel</td><td><a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the Angular Velocity to be set. </td></tr>
@@ -1104,7 +1225,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00183">183</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00172">172</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1144,7 +1265,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a87542bcdfcbfcad96147bf837584c9e9"></a>
+<a class="anchor" id="a68eebc30f97d93297a34fe70d456eefa"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1154,13 +1275,13 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void Mezzanine::Physics::RigidProxy::SetDamping </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
           <td class="paramname"><em>LinDamping</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
           <td class="paramname"><em>AngDamping</em>&#160;</td>
         </tr>
         <tr>
@@ -1176,7 +1297,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Sets the Damping for this object. </p>
+<p>Sets the Damping for this proxy. </p>
 <p>Both of Linear Damping and Angular Damping default to zero. This is useful if you wish to simulate something like air resistance. Values can range from 0.0 to 1.0. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1190,7 +1311,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a15d251cbe754def9a64bc0af076c87cc"></a>
+<a class="anchor" id="a65b691e2501a8510093d5f8b8d5d317e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1198,7 +1319,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::Physics::RigidProxy::SetIndividualGravity </td>
+          <td class="memname">void Mezzanine::Physics::RigidProxy::SetGravity </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;&#160;</td>
           <td class="paramname"><em>Gravity</em></td><td>)</td>
@@ -1212,8 +1333,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Sets the gravity for only this object. </p>
-<p>This value will override the world gravity. Should be called after adding to the world. When the object is added to the world the world gravity is applied to it. </p>
+<p>Sets the gravity for only this proxy. </p>
+<p>This value will override the world gravity. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Gravity</td><td><a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the direction and strength of gravity to be applied. </td></tr>
@@ -1221,7 +1342,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00194">194</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00178">178</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1256,7 +1377,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00143">143</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00136">136</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1282,7 +1403,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Sets the Linear Velocity of this object. </p>
+<p>Sets the Linear Velocity of this proxy. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">LinVel</td><td><a class="el" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the Linear Velocity to be set. </td></tr>
@@ -1290,11 +1411,11 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00172">172</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00166">166</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acbed96fcb7d17970a3eb09fc28dfcbc9"></a>
+<a class="anchor" id="ab400517e65bcc1b6db2921a56d264adb"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1304,8 +1425,8 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void Mezzanine::Physics::RigidProxy::SetMass </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
-          <td class="paramname"><em>NewMass</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramname"><em>Mass</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1316,7 +1437,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Change the mass of the object. </p>
+<p>Change the mass of the proxy. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">NewMass</td><td>The amount of mass this should have. </td></tr>
@@ -1324,52 +1445,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00237">237</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa1900cb2a4849e7851d7c3e00153c47a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::Physics::RigidProxy::SetMass </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
-          <td class="paramname"><em>NewMass</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;&#160;</td>
-          <td class="paramname"><em>NewInertia</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Change the mass of the object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">NewMass</td><td>The amount of mass this should have. </td></tr>
-    <tr><td class="paramname">NewInertia</td><td>The new inertia the object has. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00242">242</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8cpp_source.xhtml#l00151">151</a> of file <a class="el" href="rigidproxy_8cpp_source.xhtml">rigidproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1392,9 +1468,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>RigidBody object used by the internal physics. </p>
+<p>RigidBody proxy used by the internal physics. </p>
 
-<p>Definition at line <a class="el" href="rigidproxy_8h_source.xhtml#l00109">109</a> of file <a class="el" href="rigidproxy_8h_source.xhtml">rigidproxy.h</a>.</p>
+<p>Definition at line <a class="el" href="rigidproxy_8h_source.xhtml#l00107">107</a> of file <a class="el" href="rigidproxy_8h_source.xhtml">rigidproxy.h</a>.</p>
 
 </div>
 </div>
@@ -1404,6 +1480,6 @@ Additional Inherited Members</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 14 2013 01:15:23 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Sep 15 2013 02:46:44 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

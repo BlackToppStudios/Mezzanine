@@ -1,6 +1,7 @@
 var searchData=
 [
   ['radiobutton',['RadioButton',['../classMezzanine_1_1UI_1_1RadioButton.xhtml',1,'Mezzanine::UI']]],
+  ['rawfile',['RawFile',['../classMezzanine_1_1Threading_1_1RawFile.xhtml',1,'Mezzanine::Threading']]],
   ['ray',['Ray',['../classMezzanine_1_1Ray.xhtml',1,'Mezzanine']]],
   ['rayquerytool',['RayQueryTool',['../classMezzanine_1_1RayQueryTool.xhtml',1,'Mezzanine']]],
   ['rectangle',['Rectangle',['../classMezzanine_1_1UI_1_1Rectangle.xhtml',1,'Mezzanine::UI']]],
@@ -30,5 +31,6 @@ var searchData=
   ['reverbparameters',['ReverbParameters',['../structMezzanine_1_1Audio_1_1ReverbParameters.xhtml',1,'Mezzanine::Audio']]],
   ['rigidproxy',['RigidProxy',['../classMezzanine_1_1Physics_1_1RigidProxy.xhtml',1,'Mezzanine::Physics']]],
   ['ringmodulatorparameters',['RingModulatorParameters',['../structMezzanine_1_1Audio_1_1RingModulatorParameters.xhtml',1,'Mezzanine::Audio']]],
+  ['rollingaverage',['RollingAverage',['../classMezzanine_1_1RollingAverage.xhtml',1,'Mezzanine']]],
   ['runtimeassertionexception',['RuntimeAssertionException',['../classMezzanine_1_1RuntimeAssertionException.xhtml',1,'Mezzanine']]]
 ];
