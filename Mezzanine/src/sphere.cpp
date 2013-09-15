@@ -45,14 +45,17 @@
 
 #include "sphere.h"
 #include "mathtool.h"
+#include "axisalignedbox.h"
+#include "plane.h"
+#include "ray.h"
 
 namespace Mezzanine
 {
-    Sphere() :
+    Sphere::Sphere() :
         Radius(0)
         {  }
 
-    Sphere::Sphere(const Vector3& SphereCenter, const Real SphereOrigin) :
+    Sphere::Sphere(const Vector3& SphereCenter, const Real SphereRadius) :
         Center(SphereCenter),
         Radius(SphereRadius)
         {  }

@@ -47,6 +47,9 @@
 
 namespace Mezzanine
 {
+    class AxisAlignedBox;
+    class Plane;
+    class Ray;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a generic sphere class used for spacial queries.
     /// @details
