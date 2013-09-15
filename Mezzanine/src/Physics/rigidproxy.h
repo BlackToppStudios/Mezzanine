@@ -94,19 +94,19 @@ namespace Mezzanine
         };//stickydata
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class RigidProxy
-        /// @headerfile rigidproxy.h
-        /// @brief This is a proxy from which rigid body objects are handled.
+        /// @brief This is a proxy from which rigid body proxys are handled.
         /// @details This class is used to hold and configure the physics information for a rigid body.
         /// This class holds physics information from the physics sub-library and serves as a means to interact with it.
-        /// Direct interaction with the internal physics object is discouraged.
+        /// Direct interaction with the internal physics proxy is discouraged.
         ///////////////////////////////////////
         class MEZZ_LIB RigidProxy : public PhysicsProxy
         {
         protected:
             /// @internal
-            /// @brief RigidBody object used by the internal physics.
+            /// @brief RigidBody proxy used by the internal physics.
             btRigidBody* PhysicsRigidBody;
+            /// @internal
+            /// @brief
             /// @internal
             /// @brief Data related to sticky behavior, if any is enabled.
             //StickyData* StickyContacts;
@@ -116,11 +116,12 @@ namespace Mezzanine
             /// @details Creates the rigid body used by the internal physics library.
             /// This is called automatically by the constructor and should not be called manually.
             /// @param Mass The mass of the rigid body to be created.
-            virtual void CreateRigidObject(const Real& Mass);
+            virtual void CreateRigidObject(const Real Mass);
         public:
             /// @brief Standard Constructor.
             /// @param Mass The mass of the rigid body.
-            RigidProxy(const Real& Mass);
+            /// @param Creator A pointer to the manager that created this proxy.
+            RigidProxy(const Real Mass, PhysicsManager* Creator);
             /// @brief Class Destructor
             virtual ~RigidProxy();
 
@@ -138,8 +139,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Settings
 
-            /// @brief Sets the collision shape to be used.
-            /// @param Shape The shape to be applied.
+            /// @copydoc PhysicsProxy::SetCollisionShape(CollisionShape*)
             virtual void SetCollisionShape(CollisionShape* Shape);
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -147,30 +147,37 @@ namespace Mezzanine
 
             /// @brief Restricts movement on the axis or axies of your choice.
             /// @details This function can lock or limit any and all axes you define.
-            /// 0.0 means no angular movement on that axis.  1.0 means normal movement.
-            /// @param Factor Vector3 containing the Factors for the 3 angular axes.
-            virtual void SetAngularMovementFactor(const Vector3 &Factor);
-            /// @brief Gets the current angular factors being applied to this actor.
-            /// @return Returns a Vector3 representing the factors on the 3 angular axes.
-            virtual Vector3 GetAngularMovementFactor() const;
-            /// @brief Restricts movement on the axis or axies of your choice.
-            /// @details This function can lock or limit any and all axes you define.
             /// 0.0 means no linear movement on that axis.  1.0 means normal movement.
             /// @param Factor Vector3 containing the Factors for the 3 linear axes.
-            virtual void SetLinearMovementFactor(const Vector3 &Factor);
+            virtual void SetLinearMovementFactor(const Vector3& Factor);
             /// @brief Gets the current linear factors being applied to this actor.
             /// @return Returns a Vector3 representing the factors on the 3 linear axes.
             virtual Vector3 GetLinearMovementFactor() const;
+            /// @brief Restricts movement on the axis or axes of your choice.
+            /// @details This function can lock or limit any and all axes you define.
+            /// 0.0 means no angular movement on that axis.  1.0 means normal movement.
+            /// @param Factor Vector3 containing the Factors for the 3 angular axes.
+            virtual void SetAngularMovementFactor(const Vector3& Factor);
+            /// @brief Gets the current angular factors being applied to this actor.
+            /// @return Returns a Vector3 representing the factors on the 3 angular axes.
+            virtual Vector3 GetAngularMovementFactor() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Rigid Physics Properties
 
-            /// @brief Sets the Damping for this object.
+            /// @brief Change the mass of the proxy.
+            /// @param NewMass The amount of mass this should have.
+            virtual void SetMass(const Real Mass);
+            /// @brief Get the total Mass of the proxy
+            /// @return A Real with the Mass of the proxy
+            virtual Real GetMass() const;
+
+            /// @brief Sets the Damping for this proxy.
             /// @details Both of Linear Damping and Angular Damping default to zero.  This is useful if you wish to simulate
             /// something like air resistance.  Values can range from 0.0 to 1.0.
             /// @param LinDamping Real representing the amount of Linear Damping(Movement) to be applied.
             /// @param AngDamping Real representing the amount of Angular Damping(Rotation) to be applied.
-            virtual void SetDamping(const Real& LinDamping, const Real& AngDamping);
+            virtual void SetDamping(const Real LinDamping, const Real AngDamping);
             /// @brief Get the linear damping
             /// @return A Real that has the Linear damping.
             virtual Real GetLinearDamping() const;
@@ -178,74 +185,72 @@ namespace Mezzanine
             /// @return A Real that has the Angular damping.
             virtual Real GetAngularDamping() const;
 
-            /// @brief Sets the Linear Velocity of this object.
+            /// @brief Sets the Linear Velocity of this proxy.
             /// @param LinVel Vector3 representing the Linear Velocity to be set.
             virtual void SetLinearVelocity(const Vector3& LinVel);
-            /// @brief Gets the Linear Velocity of this object.
-            /// @return Returns the currently set Linear Velocity of this object.
+            /// @brief Gets the Linear Velocity of this proxy.
+            /// @return Returns the currently set Linear Velocity of this proxy.
             virtual Vector3 GetLinearVelocity() const;
-            /// @brief Sets the Angular Velocity of this object.
+            /// @brief Sets the Angular Velocity of this proxy.
             /// @param AngVel Vector3 representing the Angular Velocity to be set.
             virtual void SetAngularVelocity(const Vector3& AngVel);
-            /// @brief Gets the Angular Velocity of this object.
-            /// @return Returns the currently set Angular Velocity of this object.
+            /// @brief Gets the Angular Velocity of this proxy.
+            /// @return Returns the currently set Angular Velocity of this proxy.
             virtual Vector3 GetAngularVelocity() const;
 
-            /// @brief Sets the gravity for only this object.
-            /// @details This value will override the world gravity.  Should be called after adding to the world.
-            /// When the object is added to the world the world gravity is applied to it.
+            /// @brief Sets the gravity for only this proxy.
+            /// @details This value will override the world gravity.
             /// @param Gravity Vector3 representing the direction and strength of gravity to be applied.
-            virtual void SetIndividualGravity(const Vector3& Gravity);
-            /// @brief Gets the gravity being applied to this object.
-            /// @details This is the gravity applied to this object, which may or may not be the same as the world gravity.
-            /// @return Returns a Vector3 representing the gravity currently being applied to this object.
-            virtual Vector3 GetIndividualGravity() const;
+            virtual void SetGravity(const Vector3& Gravity);
+            /// @brief Gets the gravity being applied to this proxy.
+            /// @details This is the gravity applied to this proxy, which may or may not be the same as the world gravity.
+            /// @return Returns a Vector3 representing the gravity currently being applied to this proxy.
+            virtual Vector3 GetGravity() const;
 
-            /// @brief Get the total Force/Movement on the object
-            /// @return A Vector3 with the force of the entire object
-            virtual Vector3 GetForce() const;
-            /// @brief Get the Torque/Rotation
-            /// @return A Vector3 with the Torque
-            virtual Vector3 GetTorque() const;
-            /// @brief Push/Apply force to an object.
+            /// @brief Push/Apply force to an proxy.
             /// @param Force The amount and direction of the force in a Vector3
             virtual void ApplyForce(const Vector3& Force);
-            /// @brief Spin/Apply Torque to an object.
+            /// @brief Get the total Force currently being applied to this proxy.
+            /// @return Returns a Vector3 representing the amount of linear force being applied on each axis.
+            virtual Vector3 GetAppliedForce() const;
+            /// @brief Spin/Apply torque to an proxy.
             /// @param Torque The amount and direction of the torque in a Vector3
             virtual void ApplyTorque(const Vector3& Torque);
-
-            /// @brief Get the total Mass of the object
-            /// @return A Real with the Mass of the object
-            virtual Real GetMass() const;
-            /// @brief Get the current intertia of the object
-            /// @return A Vector3 with the Inertia
-            virtual Vector3 GetLocalInertia() const;
-            /// @brief Change the mass of the object.
-            /// @param NewMass The amount of mass this should have.
-            virtual void SetMass(Real NewMass);
-            /// @brief Change the mass of the object.
-            /// @param NewMass The amount of mass this should have.
-            /// @param NewInertia The new inertia the object has.
-            virtual void SetMass(Real NewMass, const Vector3& NewInertia);
+            /// @brief Get the total Torque currently being applied to this proxy.
+            /// @return Returns a Vector3 representing the amount of angular force being applied on each axis.
+            virtual Vector3 GetAppliedTorque() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Sticky Data
 
-            /*/// @brief Sets the basic parameters for enabling sticky behavior with this object.
-            /// @param MaxNumContacts The maximum number of object this object can stick to or have stuck to it.
+            /*/// @brief Sets the basic parameters for enabling sticky behavior with this proxy.
+            /// @param MaxNumContacts The maximum number of proxy this proxy can stick to or have stuck to it.
             virtual void SetStickyData(const Whole& MaxNumContacts);
-            /// @brief Removes all the constraints currently active on this object
+            /// @brief Removes all the constraints currently active on this proxy
             virtual void ClearStickyContacts();
             /// @brief Gets the struct storing the data related to sticky behavior.
-            /// @return Returns a pointer to the struct storing the sticky data for this object.
+            /// @return Returns a pointer to the struct storing the sticky data for this proxy.
             virtual StickyData* GetStickyData() const;//*/
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc PhysicsProxy::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc PhysicsProxy::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @copydoc WorldProxy::GetSerializableName()
+            static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
             /// @internal
-            /// @brief Accessor for the internal rigid body physics object.
-            /// @return Returns a pointer to the internal object this proxy is based on.
+            /// @brief Accessor for the internal rigid body physics proxy.
+            /// @return Returns a pointer to the internal proxy this proxy is based on.
             virtual btRigidBody* _GetPhysicsObject() const;
             /// @copydoc PhysicsProxy::_GetBasePhysicsObject()
             virtual btCollisionObject* _GetBasePhysicsObject() const;
