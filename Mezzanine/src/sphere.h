@@ -109,6 +109,20 @@ namespace Mezzanine
         RayTestResult Intersects(const Ray& ToCheck) const;
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        /// @brief Convert this class to an XML::Node ready for serialization.
+        /// @param ParentNode The point in the XML hierarchy that all this renderable should be appended to.
+        void ProtoSerialize(XML::Node& ParentNode) const;
+        /// @brief Take the data stored in an XML Node and overwrite this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        void ProtoDeSerialize(const XML::Node& SelfRoot);
+
+        /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+        /// @return A string containing the name of this class.
+        static String GetSerializableName();
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Operators
 
         /// @brief Assignment operator.

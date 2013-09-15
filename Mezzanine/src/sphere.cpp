@@ -48,6 +48,8 @@
 #include "axisalignedbox.h"
 #include "plane.h"
 #include "ray.h"
+#include "exception.h"
+#include "serialization.h"
 
 namespace Mezzanine
 {
@@ -84,6 +86,54 @@ namespace Mezzanine
 
     Sphere::RayTestResult Sphere::Intersects(const Ray& ToCheck) const
         { return MathTools::Intersects(*this,ToCheck); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void Sphere::ProtoSerialize(XML::Node& ParentNode) const
+    {
+        XML::Node SelfRoot = ParentNode.AppendChild( Sphere::GetSerializableName() );
+
+        if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+            SelfRoot.AppendAttribute("Radius").SetValue( this->Radius ) )
+        {
+            XML::Node CenterNode = SelfRoot.AppendChild("Center");
+            this->Center.ProtoSerialize( CenterNode );
+
+            return;
+        }else{
+            SerializeError("Create XML Attribute Values",Sphere::GetSerializableName(),true);
+        }
+    }
+
+    void Sphere::ProtoDeSerialize(const XML::Node& SelfRoot)
+    {
+        XML::Attribute CurrAttrib;
+
+        if( String(SelfRoot.Name()) == Sphere::GetSerializableName() ) {
+            if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                CurrAttrib = SelfRoot.GetAttribute("Radius");
+                if( !CurrAttrib.Empty() )
+                    this->Radius = CurrAttrib.AsReal();
+
+                // Get the properties that need their own nodes
+                XML::Node CenterNode = SelfRoot.GetChild("Center").GetFirstChild();
+                if( !CenterNode.Empty() ) {
+                    Vector3 Cen(CenterNode);
+                    this->Center = Cen;
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Sphere::GetSerializableName() + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Sphere::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+        }
+    }
+
+    String Sphere::GetSerializableName()
+    {
+        return "Sphere";
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
