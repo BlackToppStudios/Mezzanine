@@ -44,6 +44,7 @@ var searchData=
   ['_5fsetcontactprocessingthreshold',['_SetContactProcessingThreshold',['../classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ad76871ef8897f722aefb4c3b7dd869e1',1,'Mezzanine::Physics::PhysicsProxy']]],
   ['_5fsetoptionalfile',['_SetOptionalFile',['../classMezzanine_1_1ObjectSettingGroup.xhtml#a7e003b6965c5eb779b45adb49945c3ba',1,'Mezzanine::ObjectSettingGroup']]],
   ['_5fsetorientation',['_SetOrientation',['../classMezzanine_1_1UI_1_1Screen.xhtml#a48a51680bf92223a2820215bc408012d',1,'Mezzanine::UI::Screen']]],
+  ['_5fsetshapename',['_SetShapeName',['../classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a350cf7befc1b849fe276b238a6772cfa',1,'Mezzanine::Physics::CollisionShape']]],
   ['_5fsetworld',['_SetWorld',['../classMezzanine_1_1WorldManager.xhtml#a8a3c9d7719bdfff980ff3d5c1aa4558c',1,'Mezzanine::WorldManager']]],
   ['_5fsetzorder',['_SetZOrder',['../classMezzanine_1_1UI_1_1Renderable.xhtml#a2b080b3ea8c7af842df87fe16a76bb48',1,'Mezzanine::UI::Renderable']]],
   ['_5ftransform',['_Transform',['../classMezzanine_1_1UI_1_1Screen.xhtml#ae52d377572a5b2e6b96819334d0fb58b',1,'Mezzanine::UI::Screen']]],

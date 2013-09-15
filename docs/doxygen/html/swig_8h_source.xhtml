@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/swig.h Source File</title>
+<title>/home/Code/Mezzanine/Mezzanine/src/swig.h Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September 2, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.xhtml">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.xhtml">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -132,75 +132,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/// @details SWIG is a C/C++ source code preprocessor that reads source files</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/// and produces an implementation of bindings for that language. Currently it</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/// is only used for Lua. It can be used for other items in the future.</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/// \n This file defines a number of messages to make troubleshooting SWIG</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">/// and the script bindings a little easier.</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">///     - SWIG_INFO_WARN - 999: Warning 990 to 999 are informational messages.</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">///     - SWIG_INFO_BEGINCLASS - 990: Begining parsing of class.</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">///     - SWIG_INFO_ENDCLASS - 991: Completing parsing of class.</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">// Prevent doxygen parsing of the items to insert in the bindings files</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#ifdef SWIG</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor"></span>    <span class="comment">// This block of code is only read by swig.</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// Tell SWIG to create a module that scripting languages can use called &quot;mezzanine&quot;</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// and insert a minimum of documentation into the bindingfile</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    %{</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// code to be inserted verbatim into the swig file goes here</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">        #include &quot;<a class="code" href="mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine.">mezzanine.h</a>&quot;</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">        #include &quot;btBulletDynamicsCommon.h&quot;</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">        #include &quot;Ogre.h&quot;</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">using namespace </span>Mezzanine;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    %}</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    %include stl.i</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    %include stdint.i</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    %include std_except.i</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    %include std_common.i</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">//%include std_container.i</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    %include std_deque.i</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    %include std_except.i</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">//%include std_list.i</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    %include std_map.i</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    %include std_pair.i</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    %include std_string.i</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    %include std_vector.i</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// Since swig will process only on language and only the safe or unsafe version of it at a time</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// this is where the naming of the Mezzanine library should occur. This does not affect the</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">// ability to load Multiple libraries or even scripting languages at the same time if required.</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">    #ifdef SWIG_UNSAFE</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor"></span>        %module Mezzanine</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">    #else</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor"></span><span class="preprocessor">        #define SWIG_SAFE</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor"></span>        %module MezzanineSafe</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">    #endif</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">// Fix for: XML/xml.h:XXXX: Warning 403: Class &#39;Mezzanine::XML::XPathException&#39; might be abstract, no constructors generated</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">//%warnfilter(403) Mezzanine::XML::XPathException;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">// Prevent doxygen parsing of the items to insert in the bindings files</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#ifdef SWIG</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor"></span>    <span class="comment">// This block of code is only read by swig.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// Tell SWIG to create a module that scripting languages can use called &quot;mezzanine&quot;</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// and insert a minimum of documentation into the bindingfile</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    %{</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">// code to be inserted verbatim into the swig file goes here</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">        #include &quot;<a class="code" href="mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine.">mezzanine.h</a>&quot;</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">        #include &quot;btBulletDynamicsCommon.h&quot;</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">        #include &quot;Ogre.h&quot;</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">using namespace </span>Mezzanine;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    %}</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    %include stl.i</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    %include stdint.i</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    %include std_except.i</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    %include std_common.i</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">//%include std_container.i</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    %include std_deque.i</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    %include std_except.i</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">//%include std_list.i</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    %include std_map.i</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    %include std_pair.i</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    %include std_string.i</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    %include std_vector.i</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// Since swig will process only on language and only the safe or unsafe version of it at a time</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">// this is where the naming of the Mezzanine library should occur. This does not affect the</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">// ability to load Multiple libraries or even scripting languages at the same time if required.</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">    #ifdef SWIG_UNSAFE</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor"></span>        %module Mezzanine</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">    #else</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor"></span><span class="preprocessor">        #define SWIG_SAFE</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor"></span>        %module MezzanineSafe</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// Fix for: XML/xml.h:XXXX: Warning 403: Class &#39;Mezzanine::XML::XPathException&#39; might be abstract, no constructors generated</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">//%warnfilter(403) Mezzanine::XML::XPathException;</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#endif // end SWIG</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">// Warn SWIG users of the messages that Swig will produce</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">    #define SWIG_INFO_BEGINCLASS        %warn &quot;990: Begining parsing of class.&quot;</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define SWIG_INFO_ENDCLASS          %warn &quot;991: Completing parsing of class.&quot;</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define SWIG_INFO_WARN              %warn &quot;999: Warning 990 to 999 are informational messages.&quot;</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">// Define warnings as nothing as to not interfere with other classes</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">    #define SWIG_INFO_BEGINCLASS</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define SWIG_INFO_ENDCLASS</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define SWIG_INFO_WARN</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">// Warn SWIG users of the messages that Swig will produce</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;SWIG_INFO_WARN</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 23:58:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sat Sep 14 2013 01:15:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

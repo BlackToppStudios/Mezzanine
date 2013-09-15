@@ -5,7 +5,7 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = MezzanineEngine
-PROJECT_NUMBER         = "September 2, 2013"
+#PROJECT_NUMBER         = "September 2, 2013"
 PROJECT_BRIEF          = A Game Engine Designed to ease the creation of cross platform games with 3d physics, 3d graphics and 3d Sound.
 PROJECT_LOGO           = img/logogreen100pxtall.png
 OUTPUT_DIRECTORY       = ../
@@ -90,11 +90,11 @@ WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
 WARN_NO_PARAMDOC       = YES
 WARN_FORMAT            = "$file:$line: $text"
-#WARN_LOGFILE           = ../DoxygenWarnings.txt
+#WARN_LOGFILE           = ../html/DoxygenWarnings.txt
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = ../../../Mezzanine/src/ ../../../Mezzanine/src/Audio ../../../Mezzanine/src/Graphics ../../../Mezzanine/src/Input ../../../Mezzanine/src/Network ../../../Mezzanine/src/Physics ../../../Mezzanine/src/Resource ../../../Mezzanine/src/Scripting ../../../Mezzanine/src/UI ../../../Mezzanine/src/XML
+INPUT                  = ../../../Mezzanine/src/ ../../../Mezzanine/src/Audio ../../../Mezzanine/src/Graphics ../../../Mezzanine/src/Input ../../../Mezzanine/src/Network ../../../Mezzanine/src/Physics ../../../Mezzanine/src/Resource ../../../Mezzanine/src/Scripting ../../../Mezzanine/src/Threading ../../../Mezzanine/src/UI ../../../Mezzanine/src/XML
 # ../../../Mezzanine/src/Internal
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =
@@ -137,7 +137,7 @@ HTML_FILE_EXTENSION    = .xhtml
 HTML_HEADER            = html/DoxyHeader.html
 HTML_FOOTER            = html/DoxyFooter.html
 HTML_STYLESHEET        = html/DoxyStyle.css
-HTML_EXTRA_FILES       = img/bc_s.png img/nav_f.png img/nav_h.png img/tab_a.png img/tab_b.png img/tab_h.png img/tab_s.png
+HTML_EXTRA_FILES       = img/bc_s.png img/nav_f.png img/nav_h.png img/tab_a.png img/tab_b.png img/tab_h.png img/tab_s.png gpl-3.0.txt README.md
 #doxyfiles/bc_s.png doxyfiles/nav_f.png doxyfiles/nav_h.png doxyfiles/tab_a.png doxyfiles/tab_b.png doxyfiles/tab_h.png doxyfiles/tab_s.png
 HTML_COLORSTYLE_HUE    = 220
 HTML_COLORSTYLE_SAT    = 100
@@ -248,7 +248,7 @@ SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------
 TAGFILES               =
 GENERATE_TAGFILE       =
-ALLEXTERNALS           = NO
+ALLEXTERNALS           = NFO
 EXTERNAL_GROUPS        = YES
 PERL_PATH              = /usr/bin/perl
 #---------------------------------------------------------------------------

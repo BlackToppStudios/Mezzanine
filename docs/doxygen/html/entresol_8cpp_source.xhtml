@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp Source File</title>
+<title>/home/Code/Mezzanine/Mezzanine/src/entresol.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September 2, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.xhtml">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.xhtml">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -327,7 +327,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="keywordflow">if</span>(this-&gt;GetMeshManager()==0)</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            { this-&gt;AddManager(<span class="keyword">new</span> MeshManager()); }</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">if</span>(this-&gt;GetCollisionShapeManager()==0)</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            { this-&gt;AddManager(<span class="keyword">new</span> CollisionShapeManager()); }</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            { this-&gt;AddManager(<span class="keyword">new</span> Physics::CollisionShapeManager()); }</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="keywordflow">if</span>(this-&gt;GetCameraManager()==0)</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            { this-&gt;AddManager(<span class="keyword">new</span> CameraManager()); }</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="preprocessor">        #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION</span></div>
@@ -814,7 +814,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;        <span class="keywordflow">if</span>( ManIt == this-&gt;ManagerFactories.end() ) this-&gt;AddManagerFactory(<span class="keyword">new</span> <a class="code" href="classMezzanine_1_1DefaultCameraManagerFactory.xhtml" title="A factory responsible for the creation and destruction of the default cameramanager.">DefaultCameraManagerFactory</a>());</div>
 <div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        <span class="comment">//DefaultCollisionShapeManager</span></div>
 <div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;        ManIt = this-&gt;ManagerFactories.find(<span class="stringliteral">&quot;DefaultCollisionShapeManager&quot;</span>);</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;        <span class="keywordflow">if</span>( ManIt == this-&gt;ManagerFactories.end() ) this-&gt;AddManagerFactory(<span class="keyword">new</span> <a class="code" href="classMezzanine_1_1DefaultCollisionShapeManagerFactory.xhtml" title="A factory responsible for the creation and destruction of the default collisionshapemanager.">DefaultCollisionShapeManagerFactory</a>());</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;        <span class="keywordflow">if</span>( ManIt == this-&gt;ManagerFactories.end() ) this-&gt;AddManagerFactory(<span class="keyword">new</span> <a class="code" href="classMezzanine_1_1Physics_1_1DefaultCollisionShapeManagerFactory.xhtml" title="A factory responsible for the creation and destruction of the default collisionshapemanager.">Physics::DefaultCollisionShapeManagerFactory</a>());</div>
 <div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;        <span class="comment">//DefaultEventManager</span></div>
 <div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;        ManIt = this-&gt;ManagerFactories.find(<span class="stringliteral">&quot;DefaultEventManager&quot;</span>);</div>
 <div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;        <span class="keywordflow">if</span>( ManIt == this-&gt;ManagerFactories.end() ) this-&gt;AddManagerFactory(<span class="keyword">new</span> <a class="code" href="classMezzanine_1_1DefaultEventManagerFactory.xhtml" title="A factory responsible for the creation and destruction of the default eventmanager.">DefaultEventManagerFactory</a>());</div>
@@ -1008,9 +1008,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code" href="classMezzanine_1_1CameraManager.xhtml" title="This is the manager class for all camera functions.">CameraManager</a>*<span class="keyword">&gt;</span>( this-&gt;GetManager(ManagerBase::MT_CameraManager, WhichOne) );</div>
 <div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;    }</div>
 <div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;</div>
-<div class="line"><a name="l00925"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#abef25b694ebbb12cff203faf7e09f2e8">  925</a></span>&#160;    <a class="code" href="classMezzanine_1_1CollisionShapeManager.xhtml" title="This manager is for the storage of all shapes and creation of mesh shapes.">CollisionShapeManager</a>* Entresol::GetCollisionShapeManager(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#a1b6c09063432c7ddd87011c88306c767" title="An 16-bit unsigned integer.">UInt16</a> WhichOne)</div>
+<div class="line"><a name="l00925"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#a02f342c4fddd7339075659fe77f7e61c">  925</a></span>&#160;    <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.xhtml" title="This manager is for the storage of all shapes and creation of mesh shapes.">Physics::CollisionShapeManager</a>* Entresol::GetCollisionShapeManager(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#a1b6c09063432c7ddd87011c88306c767" title="An 16-bit unsigned integer.">UInt16</a> WhichOne)</div>
 <div class="line"><a name="l00926"></a><span class="lineno">  926</span>&#160;    {</div>
-<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code" href="classMezzanine_1_1CollisionShapeManager.xhtml" title="This manager is for the storage of all shapes and creation of mesh shapes.">CollisionShapeManager</a>*<span class="keyword">&gt;</span>( this-&gt;GetManager(ManagerBase::MT_CollisionShapeManager, WhichOne) );</div>
+<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.xhtml" title="This manager is for the storage of all shapes and creation of mesh shapes.">Physics::CollisionShapeManager</a>*<span class="keyword">&gt;</span>( this-&gt;GetManager(ManagerBase::MT_CollisionShapeManager, WhichOne) );</div>
 <div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;    }</div>
 <div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;</div>
 <div class="line"><a name="l00930"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#a5b550c1361493b184be8049ce48c5d4e">  930</a></span>&#160;    <a class="code" href="classMezzanine_1_1EventManager.xhtml" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>* Entresol::GetEventManager(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#a1b6c09063432c7ddd87011c88306c767" title="An 16-bit unsigned integer.">UInt16</a> WhichOne)</div>
@@ -1067,6 +1067,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 23:58:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sat Sep 14 2013 01:15:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

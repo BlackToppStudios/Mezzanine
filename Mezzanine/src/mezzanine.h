@@ -109,7 +109,11 @@
 #include "particleeffect.h"             // done
 #include "particleemitter.h"
 #include "Physics/physics.h"
+
+#endif
 #include "plane.h"                      // done
+#ifndef SWIG
+
 #include "quaternion.h"                 // done
 #include "ray.h"
 #include "rayquerytool.h"               // nothing to do

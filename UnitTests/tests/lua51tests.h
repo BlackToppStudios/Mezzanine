@@ -460,7 +460,34 @@ class lua51tests : public UnitTestGroup
             virtual void OpenDebugLibrary();
             */
 
+            //clas instantion tests
             {
+                try
+                {
+                    cout << "Testing basic Plane functionality " << endl;
+                    Scripting::Lua::Lua51Script RealArgScript("function MakePlane(x)\n"
+                                                              "   d=x*3\n"
+                                                              "   Flat1=MezzanineSafe.Plane(\n"
+                                                              "     MezzanineSafe.Vector3(d,0,0),\n"
+                                                              "     MezzanineSafe.Vector3(d,1,0),\n"
+                                                              "     MezzanineSafe.Vector3(d,0,1)\n"
+                                                              "   )\n"
+                                                              "   return Flat1.Distance\n"
+                                                              "end"
+                                                              ,LuaRuntimeSafe);
+                    LuaRuntimeSafe.Execute(RealArgScript);
+
+                    Scripting::Lua::Lua51Script RealArgCall("MakePlane",LuaRuntimeSafe,true);
+                    RealArgCall.AddArgument(Real(-3));
+                    CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
+                    RealArgCall.AddReturn(RealReturn);
+                    LuaRuntimeSafe.Execute(RealArgCall);
+                    TEST(9.0==RealReturn->GetWhole(), "Engine::Plane");
+                } catch (ScriptLuaException& ) {
+                    TEST_RESULT(Testing::Failed,"Engine::Plane");
+                }
+                cout << "End Plane Test" << endl << endl;
+
                 try
                 {
                     cout << "Testing basic Vector2 functionality" << endl;

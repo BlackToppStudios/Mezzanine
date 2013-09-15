@@ -1,6 +1,6 @@
 <map id="Mezzanine::Scripting::ScriptArgumentGeneric&lt; String &gt;" name="Mezzanine::Scripting::ScriptArgumentGeneric&lt; String &gt;">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScriptArgument.xhtml" title="The interface for a script argument." alt="" coords="43,102,181,146"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1IntrusiveRefCount.xhtml" title="A sample class that implements a minimal intrusive reference counting scheme." alt="" coords="5,14,195,42"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="229,110,304,138"/>
-<area shape="rect" id="node8" title="STL class." alt="" coords="219,6,339,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Scripting_1_1iScriptArgument.xhtml" title="The interface for a script argument." alt="" coords="45,105,200,151"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1IntrusiveRefCount.xhtml" title="A sample class that implements a minimal intrusive reference counting scheme." alt="" coords="5,15,213,44"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="249,113,335,143"/>
+<area shape="rect" id="node8" title="STL class." alt="" coords="237,6,373,53"/>
 </map>

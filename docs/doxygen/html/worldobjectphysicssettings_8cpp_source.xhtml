@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/worldobjectphysicssettings.cpp Source File</title>
+<title>/home/Code/Mezzanine/Mezzanine/src/worldobjectphysicssettings.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September 2, 2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.xhtml">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.xhtml">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -129,7 +129,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;worldobjectphysicssettings.h&quot;</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;worldobject.h&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;Physics/collisionshape.h&quot;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;collisionshapemanager.h&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Physics/collisionshapemanager.h&quot;</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;Physics/collision.h&quot;</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;Physics/physicsmanager.h&quot;</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="serialization_8h.xhtml" title="The interface for serialization.">serialization.h</a>&quot;</span></div>
@@ -286,7 +286,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            {</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                <span class="keywordflow">if</span>(OneNode.<a class="code" href="classMezzanine_1_1XML_1_1Node.xhtml#a7257f2f9f8e08461260afae0d5062aa7" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Version&quot;</span>).<a class="code" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a433fef4f74eaa825755b53b1baea539a" title="Attempts to convert the value of the attribute to an int and returns the results.">AsInt</a>() == 1)</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                {</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                    <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes.">Physics::CollisionShape</a>* Shapeptr = <a class="code" href="classMezzanine_1_1Singleton.xhtml#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Mezzanine::CollisionShapeManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1CollisionShapeManager.xhtml#a256848050ed4e1d561aaa5ee9fc11a80" title="Gets a shape already stored in this manager.">GetShape</a>(  OneNode.<a class="code" href="classMezzanine_1_1XML_1_1Node.xhtml#a7257f2f9f8e08461260afae0d5062aa7" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;CollisionShape&quot;</span>).<a class="code" href="classMezzanine_1_1XML_1_1Attribute.xhtml#aeaf831643fd53fa7e645bf36b0a8ecec" title="Attempts to convert the value of the attribute to a String and returns the results.">AsString</a>());</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                    <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes.">Physics::CollisionShape</a>* Shapeptr = <a class="code" href="classMezzanine_1_1Singleton.xhtml#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Mezzanine::Physics::CollisionShapeManager::GetSingletonPtr</a>()-&gt;GetShape(  OneNode.<a class="code" href="classMezzanine_1_1XML_1_1Node.xhtml#a7257f2f9f8e08461260afae0d5062aa7" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;CollisionShape&quot;</span>).<a class="code" href="classMezzanine_1_1XML_1_1Attribute.xhtml#aeaf831643fd53fa7e645bf36b0a8ecec" title="Attempts to convert the value of the attribute to a String and returns the results.">AsString</a>());</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                    <span class="keywordflow">if</span>(!Shapeptr)</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                        { <a class="code" href="namespaceMezzanine.xhtml#aec75a8a3369287cb02f331c62b32df73" title="Simply does some string concatenation, then throws an Exception.">DeSerializeError</a>(<span class="stringliteral">&quot;Find the correct Collision Shape&quot;</span>,this-&gt;<a class="code" href="classMezzanine_1_1WorldObjectPhysicsSettings.xhtml#aeb904cc45c213f55febfe397f7bc639b" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">WorldObjectPhysicsSettings::SerializableName</a>()); }</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                    this-&gt;<a class="code" href="classMezzanine_1_1WorldObjectPhysicsSettings.xhtml#a664fc829f53bd6a1e2f4eed34ab6d715" title="Sets the collision shape to be used.">SetCollisionShape</a>( Shapeptr );</div>
@@ -412,6 +412,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 23:58:36 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sat Sep 14 2013 01:15:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

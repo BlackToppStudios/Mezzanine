@@ -1,5 +1,5 @@
 <map id="Mezzanine::UI::Sprite" name="Mezzanine::UI::Sprite">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="5,102,139,130"/>
-<area shape="rect" id="node4" title="STL class." alt="" coords="163,102,237,130"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="140,6,260,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="5,104,152,133"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="176,104,261,133"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="151,6,287,53"/>
 </map>

@@ -26,7 +26,7 @@ var searchData=
   ['spritesize',['SpriteSize',['../structMezzanine_1_1UI_1_1Sprite.xhtml#a718957329eba0f09dd708f2bd35e194b',1,'Mezzanine::UI::Sprite']]],
   ['startstamp',['StartStamp',['../classMezzanine_1_1Timer.xhtml#a4dd8df2755b757a36dabdfa0fc713a31',1,'Mezzanine::Timer']]],
   ['status',['Status',['../structMezzanine_1_1XML_1_1ParseResult.xhtml#a9965cb99f91bc1f799deb5ffbb067133',1,'Mezzanine::XML::ParseResult']]],
-  ['stickycontacts',['StickyContacts',['../classMezzanine_1_1ActorRigidPhysicsSettings.xhtml#a8ddca7ae371cae162657763543f970bb',1,'Mezzanine::ActorRigidPhysicsSettings::StickyContacts()'],['../classMezzanine_1_1Physics_1_1RigidProxy.xhtml#a857e99fa5bdeb8d70472732a1e717761',1,'Mezzanine::Physics::RigidProxy::StickyContacts()']]],
+  ['stickycontacts',['StickyContacts',['../classMezzanine_1_1ActorRigidPhysicsSettings.xhtml#a8ddca7ae371cae162657763543f970bb',1,'Mezzanine::ActorRigidPhysicsSettings']]],
   ['strength',['Strength',['../classMezzanine_1_1GravityWell.xhtml#a2ed7c1e6618618ddd990e1466e9471c5',1,'Mezzanine::GravityWell::Strength()'],['../classMezzanine_1_1FieldOfForce.xhtml#a8d95bfda05f7eb1ec2e0256ec917d38b',1,'Mezzanine::FieldOfForce::Strength()']]],
   ['systemkeyboard',['SystemKeyboard',['../classMezzanine_1_1Input_1_1InputManager.xhtml#a039907225c6f97ea2d04b9e2e3420022',1,'Mezzanine::Input::InputManager']]],
   ['systemmouse',['SystemMouse',['../classMezzanine_1_1Input_1_1InputManager.xhtml#ae45a7d190bd9402682d99ca9f2b7b2f7',1,'Mezzanine::Input::InputManager']]]
