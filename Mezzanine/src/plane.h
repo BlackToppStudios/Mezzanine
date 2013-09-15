@@ -52,8 +52,6 @@ namespace Ogre
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class Plane
-    /// @headerfile plane.h
     /// @brief This is used to represent a flat infinite slice of the game world
     /// @details The Normal value represents how rotated the plane will be, and
     /// The Distance with represent how far you need to move down a line perpendicular
@@ -61,55 +59,67 @@ namespace Mezzanine
     /// Origin.
     class MEZZ_LIB Plane
     {
-        public:
-            /// @brief The rotation of the plane
-            Vector3 Normal;
+    public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Public Data Members
 
-            /// @brief How from from the origin the plane is
-            Real Distance;
+        /// @brief The rotation of the plane
+        Vector3 Normal;
+        /// @brief How from from the origin the plane is
+        Real Distance;
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Constructors
-            /// @brief Default constructor
-            /// @details This create a Plane with gimbals 0,0,0 and 0 distance from the Origin
-            Plane();
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
 
-            /// @brief Thorough constructor
-            /// @details This accepts 2 Vector3s and uses them to build the ray
-            /// @param Normal_ The rotation of the plane
-            /// @param Distance_ Distance from origin to the plane
-            Plane(Vector3 Normal_, Real Distance_);
+        /// @brief Default constructor
+        Plane();
+        /// @brief Descriptive constructor
+        /// @param Norm The rotation of the plane
+        /// @param Dist Distance from origin to the plane
+        Plane(const Vector3& Norm, const Real Dist);
+        /// @brief Triangle constructor
+        /// @param First This is one point in the triangle
+        /// @param Second This is another point in the triangle
+        /// @param Third This is one point in the triangle
+        Plane(const Vector3& First, const Vector3& Second, const Vector3& Third);
+        /// @brief Compatibility constructor.
+        /// @param InternalPlane This is the Ogre::Plane to copy from.
+        explicit Plane(const Ogre::Plane& InternalPlane);
 
-            /// @brief Compatibily constructor
-            /// @details This accepts an Ogre Plane, (graphics subsystem) to make this Plane
-            /// @param Plane_ This is the Ogre::Plane
-            explicit Plane(Ogre::Plane Plane_);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            /// @brief Triangle constructor
-            /// @details This determines the plane the triangle this resides on and uses that plane here
-            /// @param rkPoint0 This is one point in the triangle
-            /// @param rkPoint1 This is another point in the triangle
-            /// @param rkPoint2 This is one point in the triangle
-            Plane(const Vector3& rkPoint0, const Vector3& rkPoint1, const Vector3& rkPoint2);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Conversion Methods
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Conversions and adjustments
-            /// @brief Gets an Ogre::Plane that contains this Plane's information
-            /// @details Used to aid interopability, this will return a fresh Ogre::Plane with the same data as this Plane
-            /// @return This returns an Ogre::Plnae that contains the same information as this Plane's information
-            Ogre::Plane GetOgrePlane() const;
+        /// @brief Changes this Plane to match the Ogre Plane.
+        /// @param InternalPlane The Ogre::Plane to copy.
+        void ExtractOgrePlane(const Ogre::Plane& InternalPlane);
+        /// @brief Gets an Ogre::Plane that contains this Plane's information.
+        /// @return This returns an Ogre::Plnae that contains the same information as this Plane's information.
+        Ogre::Plane GetOgrePlane() const;
 
-            /// @brief Changes this Plane to match the Ogre Plane
-            /// @details Used to aid interopability, this will result in this Plane exactly matching the Ogre::Plane
-            /// @param Plane2 The Ogre::Plane to copy
-            void ExtractOgrePlane(const Ogre::Plane& Plane2);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
 
-            /// @brief The assignment operator from Ogre::Plane to Mezzanine::Plane
-            /// @details this simply call Mezzanine::Plane::ExtractOgrePlane
-            /// @param Plane2 The Ogre::Plane to take data from.
-            void operator=(const Ogre::Plane& Plane2);
-    }; // /Plane
-}// /Mezz
+        /// @brief Assignment operator.
+        /// @param Other The other Plane to copy from.
+        void operator=(const Plane& Other);
+
+        /// @brief The assignment operator from Ogre::Plane to Mezzanine::Plane.
+        /// @param InternalPlane The Ogre::Plane to take data from.
+        void operator=(const Ogre::Plane& InternalPlane);
+
+        /// @brief Equality operator.
+        /// @param Other The other Plane to compare with.
+        /// @return Returns true if this Plane is the same as the other provided Plane, false otherwise.
+        Bool operator==(const Plane& Other) const;
+        /// @brief Inequality operator.
+        /// @param Other The other Plane to compare with.
+        /// @return Returns true if this Plane is not the same as the other provided Plane, false otherwise.
+        Bool operator!=(const Plane& Other) const;
+    };//Plane
+}//Mezzanine
 
 /// @brief Streaming output operator
 /// @details This converts the data of the Plane into a snippet of xml Ideal for sending to a log or cout.
@@ -132,6 +142,5 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Plane& x);
 /// @return This returns an XML::Node refernce to allow operator chaining.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Plane& x);
-
 
 #endif
