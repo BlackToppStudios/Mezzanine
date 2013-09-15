@@ -55,6 +55,10 @@ namespace Mezzanine
         Radius(0)
         {  }
 
+    Sphere::Sphere(const Real SphereRadius) :
+        Radius(SphereRadius)
+        {  }
+
     Sphere::Sphere(const Vector3& SphereCenter, const Real SphereRadius) :
         Center(SphereCenter),
         Radius(SphereRadius)
@@ -69,13 +73,13 @@ namespace Mezzanine
     Bool Sphere::IsInside(const Vector3& ToCheck) const
         { return MathTools::IsInside(*this,ToCheck); }
 
-    Bool Sphere::Overlap(const Sphere& ToCheck) const
+    Bool Sphere::IsOverlapping(const Sphere& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
 
-    Bool Sphere::Overlap(const AxisAlignedBox& ToCheck) const
+    Bool Sphere::IsOverlapping(const AxisAlignedBox& ToCheck) const
         { return MathTools::Overlap(ToCheck,*this); }
 
-    Bool Sphere::Overlap(const Plane& ToCheck) const
+    Bool Sphere::IsOverlapping(const Plane& ToCheck) const
         { return MathTools::Overlap(ToCheck,*this); }
 
     Sphere::RayTestResult Sphere::Intersects(const Ray& ToCheck) const

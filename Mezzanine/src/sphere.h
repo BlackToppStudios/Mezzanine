@@ -74,7 +74,10 @@ namespace Mezzanine
 
         /// @brief Blank constructor.
         Sphere();
-        /// @brief Class constructor.
+        /// @brief Radius constructor.
+        /// @param SphereRadius The radius of the sphere.
+        Sphere(const Real SphereRadius);
+        /// @brief Descriptive constructor.
         /// @param SphereCenter The point in world space that is the center of the sphere.
         /// @param SphereRadius The radius of the sphere.
         Sphere(const Vector3& SphereCenter, const Real SphereRadius);
@@ -91,15 +94,15 @@ namespace Mezzanine
         /// @brief Checks to see if another sphere overlaps with this one.
         /// @param ToCheck The other sphere to check for overlap.
         /// @return Returns true if the provided sphere overlaps with this sphere, false otherwise.
-        Bool Overlap(const Sphere& ToCheck) const;
+        Bool IsOverlapping(const Sphere& ToCheck) const;
         /// @brief Checks to see if an AABB overlaps with this sphere.
         /// @param ToCheck The AABB to check for overlap.
         /// @return Returns true if the AABB overlaps with this sphere, false otherwise.
-        Bool Overlap(const AxisAlignedBox& ToCheck) const;
+        Bool IsOverlapping(const AxisAlignedBox& ToCheck) const;
         /// @brief Checks to see if a plane intersects this sphere.
         /// @param ToCheck The plane to check for intersection.
         /// @return Returns true if the provided plane intersects with this sphere, false otherwise.
-        Bool Overlap(const Plane& ToCheck) const;
+        Bool IsOverlapping(const Plane& ToCheck) const;
         /// @brief Checks to see if a ray intersects this sphere.
         /// @param ToCheck The ray to check for a hit.
         /// @return Returns a std::pair containing whether or not the ray hit, and if it did the subsection of the ray that went through the sphere.
