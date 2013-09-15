@@ -40,7 +40,6 @@
 #ifndef _plane_h
 #define _plane_h
 
-#include "crossplatformexport.h"
 #include "vector3.h"
 #include "XML/xml.h"
 
@@ -141,6 +140,7 @@ namespace Mezzanine
     };//Plane
 }//Mezzanine
 
+#ifndef SWIG
 /// @brief Streaming output operator
 /// @details This converts the data of the Plane into a snippet of xml Ideal for sending to a log or cout.
 /// @param stream This is the stream we send our data to.
@@ -162,5 +162,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Plane& x);
 /// @return This returns an XML::Node refernce to allow operator chaining.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Plane& x);
+#endif
 
 #endif
