@@ -41,6 +41,10 @@
 #define _mathtool_cpp
 
 #include "mathtool.h"
+#include "sphere.h"
+#include "axisalignedbox.h"
+#include "ray.h"
+#include "plane.h"
 
 #include <cmath>
 
@@ -105,7 +109,76 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Geometry Math
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Intersection Query
 
+        Bool IsInside(const AxisAlignedBox& Box, const Vector3& Point)
+        {
+
+        }
+
+        Bool IsInside(const Sphere& Ball, const Vector3& Point)
+        {
+            return ( Ball.Center.Distance(Point) <= Ball.Radius );
+        }
+
+        Bool Overlap(const AxisAlignedBox& Box, const Sphere& Ball)
+        {
+            // Arvo's algorithm
+            Real SquareVar, Dist = 0;
+            for( Whole X = 0 ; X < 3 ; ++X )
+            {
+                if ( Ball.Center[X] < Box.MinExt[X] ) {
+                    SquareVar = Ball.Center[X] - Box.MinExt[X];
+                    Dist += SquareVar * SquareVar;
+                }else if( Ball.Center[X] > Box.MaxExt[X] ) {
+                    SquareVar = Ball.Center[X] - Box.MaxExt[X];
+                    Dist += SquareVar * SquareVar;
+                }
+            }
+            return ( Dist <= Ball.Radius * Ball.Radius );
+        }
+
+        Bool Overlap(const AxisAlignedBox& Box, const Plane& Surface)
+        {
+
+        }
+
+        Bool Overlap(const Plane& Surface, const Sphere& Ball)
+        {
+
+        }
+
+        Bool Overlap(const AxisAlignedBox& Box1, const AxisAlignedBox& Box2)
+        {
+
+        }
+
+        Bool Overlap(const Sphere& Ball1, const Sphere& Ball2)
+        {
+            Real Dist = Ball1.Center.Distance(Ball2.Center);
+            return ( Dist <= Ball1.Radius || Dist <= Ball2.Radius );
+        }
+
+        Bool Overlap(const Plane& Surface1, const Plane& Surface2)
+        {
+
+        }
+
+        Bool Intersects(const Plane& Surface, const Ray& Cast)
+        {
+
+        }
+
+        GeometryRayTestResult Intersects(const AxisAlignedBox& Box, const Ray& Cast)
+        {
+
+        }
+
+        GeometryRayTestResult Intersects(const Sphere& Ball, const Ray& Cast)
+        {
+
+        }
     }//MathTools
 }//Mezzanine
 
