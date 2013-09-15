@@ -41,6 +41,7 @@ John Blackwood - makoenergy02@gmail.com
 #define _physicsproxy_h
 
 #include "Physics/physicsenumerations.h"
+#include "axisalignedbox.h"
 #include "worldproxy.h"
 
 class btCollisionObject;
@@ -54,8 +55,6 @@ namespace Mezzanine
         class PhysicsManager;
         class CollisionShape;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class PhysicsProxy
-        /// @headerfile physicsproxy.h
         /// @brief This is a proxy from which physics objects are handled.
         /// @details This class is used to hold and configure the physics information for a world object.
         /// This class holds physics information from the physics sub-library and serves as a means to interact with it.
@@ -104,6 +103,11 @@ namespace Mezzanine
             /// be done with care.  This method will tell you if you should use caution when scaling this proxy.
             /// @return Returns true if this body can scale independantly from it's shape, false otherwise.
             virtual Bool CanLocallyScale() const;
+
+            /// @brief Gets this proxies AABB.
+            /// @note This will only return valid values if this proxy is in the world.  A proxy outside of the world has no AABB.
+            /// @return Returns an AxisAlignedBox containing the AABB of this physics proxy.
+            virtual AxisAlignedBox GetAABB() const;
 
             /// @copydoc WorldProxy::AddToWorld()
             virtual void AddToWorld() = 0;

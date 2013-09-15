@@ -275,18 +275,19 @@ namespace Mezzanine
             Manager(Creator),
             CollisionGroup(0),
             CollisionMask(0)
-        {
-        }
+            {  }
 
         PhysicsProxy::~PhysicsProxy()
-        {
-        }
+            {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         Bool PhysicsProxy::CanLocallyScale() const
             { return ( this->ScalerShape != NULL ); }
+
+        AxisAlignedBox PhysicsProxy::GetAABB() const
+            { return ( this->IsInWorld() ? AxisAlignedBox( Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMin ), Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMax ) ) : AxisAlignedBox() ); }
 
         Bool PhysicsProxy::IsInWorld() const
             { return ( this->_GetBasePhysicsObject()->getBroadphaseHandle() != NULL ); }
