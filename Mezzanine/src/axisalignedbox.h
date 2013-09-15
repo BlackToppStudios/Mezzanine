@@ -44,11 +44,12 @@
 /// @brief This file contains the AxisAlignedBox class for representing AABB's of objects in the world.
 
 #include "vector3.h"
-#include "plane.h"
-#include "ray.h"
 
 namespace Mezzanine
 {
+    class Plane;
+    class Ray;
+    class Sphere;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a utility class used to represent the Axis-Aligned Bounding Boxes of objects in various subsystems.
     /// @details
@@ -66,16 +67,25 @@ namespace Mezzanine
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
         typedef std::pair<Bool,Ray> RayTestResult;
-    protected:
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Public Data Members
+
         /// @internal
         /// @brief The minimum extents on each axis in world space.
-        Vector3 AABBMin;
+        Vector3 MinExt;
         /// @internal
         /// @brief The maximum extents on each axis in world space.
-        Vector3 AABBMax;
-    public:
+        Vector3 MaxExt;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
+
         /// @brief Blank constructor.
         AxisAlignedBox();
+        /// @brief Copy constructor.
+        /// @param Other The other AABB to copy.
+        AxisAlignedBox(const AxisAlignedBox& Other);
         /// @brief Extents constructor.
         /// @param Min The minimum extents on each axis in world space.
         /// @param Max The maximum extents on each axis in world space.
@@ -90,6 +100,10 @@ namespace Mezzanine
         /// @param ToCheck The location to check to see if it is within this AABB.
         /// @return Returns true if the point provided is within this AABB, false otherwise.
         Bool Intersects(const Vector3& ToCheck) const;
+        /// @brief Checks to see if a sphere overlaps with this AABB.
+        /// @param ToCheck The sphere to check for overlap.
+        /// @return Returns true if the provided sphere overlaps with this AABB, false otherwise.
+        Bool Intersects(const Sphere& ToCheck) const;
         /// @brief Checks to see if another AABB overlaps with this one.
         /// @param ToCheck The other AABB to check for overlap.
         /// @return Returns true if the two AABB's overlap, false otherwise.
@@ -111,19 +125,6 @@ namespace Mezzanine
         /// @param Max The maximum extents on each axis in world space.
         void SetExtents(const Vector3& Min, const Vector3& Max);
 
-        /// @brief Sets the minimum extent of this AABB.
-        /// @param Min The minimum extent on each axis.
-        void SetMin(const Vector3& Min);
-        /// @brief Gets the minimum extents on each axis.
-        /// @return Returns a const reference to the minimum extents of this AABB.
-        const Vector3& GetMin() const;
-        /// @brief Sets the maximum extent of this AABB.
-        /// @param Max The maximum extent on each axis.
-        void SetMax(const Vector3& Max);
-        /// @brief Gets the maximum extents on each axis.
-        /// @return Returns a const reference to the maximum extents of this AABB.
-        const Vector3& GetMax() const;
-
         /// @brief Gets the size of this AABB.
         /// @return Returns a Vector3 representing the size of this AABB.
         Vector3 GetSize() const;
@@ -139,6 +140,10 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
+
+        /// @brief Assignment operator.
+        /// @param Other The other AABB to copy from.
+        void operator=(const AxisAlignedBox& Other);
 
         /// @brief Equality operator.
         /// @param Other The other AABB to compare with.

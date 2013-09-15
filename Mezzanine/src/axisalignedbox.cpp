@@ -44,15 +44,22 @@
 /// @brief This file contains the implementation for the AxisAlignedBox class for representing AABB's of objects in the world.
 
 #include "axisalignedbox.h"
+#include "plane.h"
+#include "ray.h"
 
 namespace Mezzanine
 {
     AxisAlignedBox::AxisAlignedBox()
-        { this->AABBMin.Zero(); this->AABBMax.Zero(); }
+        {  }
+
+    AxisAlignedBox::AxisAlignedBox(const AxisAlignedBox& Other) :
+        MinExt(Other.MinExt),
+        MaxExt(Other.MaxExt)
+        {  }
 
     AxisAlignedBox::AxisAlignedBox(const Vector3& Min, const Vector3& Max) :
-        AABBMin(Min),
-        AABBMax(Max)
+        MinExt(Min),
+        MaxExt(Max)
         {  }
 
     AxisAlignedBox::~AxisAlignedBox()
@@ -62,6 +69,11 @@ namespace Mezzanine
     // Utility
 
     Bool AxisAlignedBox::Intersects(const Vector3& ToCheck) const
+    {
+
+    }
+
+    Bool AxisAlignedBox::Intersects(const Sphere& ToCheck) const
     {
 
     }
@@ -86,43 +98,34 @@ namespace Mezzanine
 
     void AxisAlignedBox::SetExtents(const Vector3& Min, const Vector3& Max)
     {
-        this->SetMin(Min);
-        this->SetMax(Max);
+        this->MinExt = Min;
+        this->MaxExt = Max;
     }
 
-    void AxisAlignedBox::SetMin(const Vector3& Min)
-        { this->AABBMin = Min; }
-
-    const Vector3& AxisAlignedBox::GetMin() const
-        { return this->AABBMin; }
-
-    void AxisAlignedBox::SetMax(const Vector3& Max)
-        { this->AABBMax = Max; }
-
-    const Vector3& AxisAlignedBox::GetMax() const
-        { return this->AABBMax; }
-
     Vector3 AxisAlignedBox::GetSize() const
-        { return ( this->AABBMax - this->AABBMin ); }
+        { return ( this->MaxExt - this->MinExt ); }
 
     Vector3 AxisAlignedBox::GetCenter() const
-        { return ( this->AABBMax + this->AABBMin ) * 0.5; }
+        { return ( this->MaxExt + this->MinExt ) * 0.5; }
 
     Vector3 AxisAlignedBox::GetCorner(const AxisAlignedBox::AxisExtent XEx, const AxisAlignedBox::AxisExtent YEx, const AxisAlignedBox::AxisExtent ZEx) const
     {
-        return Vector3( ( XEx == AE_Min ? this->AABBMin.X : this->AABBMax.X ),
-                        ( YEx == AE_Min ? this->AABBMin.Y : this->AABBMax.Y ),
-                        ( ZEx == AE_Min ? this->AABBMin.Z : this->AABBMax.Z ) );
+        return Vector3( ( XEx == AE_Min ? this->MinExt.X : this->MaxExt.X ),
+                        ( YEx == AE_Min ? this->MinExt.Y : this->MaxExt.Y ),
+                        ( ZEx == AE_Min ? this->MinExt.Z : this->MaxExt.Z ) );
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
 
+    void AxisAlignedBox::operator=(const AxisAlignedBox& Other)
+        { this->MinExt = Other.MinExt;  this->MaxExt = Other.MaxExt; }
+
     Bool AxisAlignedBox::operator==(const AxisAlignedBox& Other) const
-        { return ( this->AABBMin == Other.AABBMin && this->AABBMax == Other.AABBMax ); }
+        { return ( this->MinExt == Other.MinExt && this->MaxExt == Other.MaxExt ); }
 
     Bool AxisAlignedBox::operator!=(const AxisAlignedBox& Other) const
-        { return ( this->AABBMin != Other.AABBMin || this->AABBMax != Other.AABBMax ); }
+        { return ( this->MinExt != Other.MinExt || this->MaxExt != Other.MaxExt ); }
 }//Mezzanine
 
 #endif
