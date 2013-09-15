@@ -45,7 +45,11 @@
 
 #include "exception.h"
 #include "plane.h"
+#include "ray.h"
+#include "axisalignedbox.h"
+#include "sphere.h"
 #include "stringtool.h"
+#include "mathtool.h"
 #include "XML/xml.h"
 
 #include "Ogre.h"
@@ -79,6 +83,18 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
+
+    Bool Plane::IsOverlapping(const Sphere& ToCheck) const
+        { return MathTools::Overlap(*this,ToCheck); }
+
+    Bool Plane::IsOverlapping(const AxisAlignedBox& ToCheck) const
+        { return MathTools::Overlap(ToCheck,*this); }
+
+    Bool Plane::IsOverlapping(const Plane& ToCheck) const
+        { return MathTools::Overlap(*this,ToCheck); }
+
+    Bool Plane::Intersects(const Ray& ToCheck) const
+        { return MathTools::Intersects(*this,ToCheck); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Conversion Methods

@@ -51,6 +51,9 @@ namespace Ogre
 
 namespace Mezzanine
 {
+    class AxisAlignedBox;
+    class Ray;
+    class Sphere;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is used to represent a flat infinite slice of the game world
     /// @details The Normal value represents how rotated the plane will be, and
@@ -88,6 +91,23 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
+
+        /// @brief Checks to see if a sphere overlaps with this Plane.
+        /// @param ToCheck The sphere to check for overlap.
+        /// @return Returns true if the provided sphere overlaps with this Plane, false otherwise.
+        Bool IsOverlapping(const Sphere& ToCheck) const;
+        /// @brief Checks to see if an AABB overlaps with this Plane.
+        /// @param ToCheck The AABB to check for overlap.
+        /// @return Returns true if the AABB overlaps with this Plane, false otherwise.
+        Bool IsOverlapping(const AxisAlignedBox& ToCheck) const;
+        /// @brief Checks to see if another Plane intersects this one.
+        /// @param ToCheck The other Plane to check for intersection.
+        /// @return Returns true if the provided Plane intersects with this Plane, false otherwise.
+        Bool IsOverlapping(const Plane& ToCheck) const;
+        /// @brief Checks to see if a ray intersects this Plane.
+        /// @param ToCheck The ray to check for a hit.
+        /// @return Returns true if the ray intersects this Plane, false otherwise.
+        Bool Intersects(const Ray& ToCheck) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Conversion Methods
