@@ -61,6 +61,9 @@ extern "C"
 
     int luaopen_Mezzanine(lua_State* L);
     int luaopen_MezzanineSafe(lua_State* L);
+
+    int luaopen_MezzanineXML(lua_State* L);
+    int luaopen_MezzanineXMLSafe(lua_State* L);
 }
 
 #include <iostream>
@@ -343,11 +346,14 @@ namespace Mezzanine
             void Lua51ScriptingEngine::OpenMezzanineSafeLibrary()
                 { luaopen_MezzanineSafe(State); }
 
+            void Lua51ScriptingEngine::OpenMezzanineXMLLibrary()
+                { luaopen_MezzanineXML(State); }
+            void Lua51ScriptingEngine::OpenMezzanineXMLSafeLibrary()
+                { luaopen_MezzanineXMLSafe(State); }
+
         } // Lua
     } // Scripting
 } // Mezzanine
-
-
 
 
 #endif //  MEZZLUA51

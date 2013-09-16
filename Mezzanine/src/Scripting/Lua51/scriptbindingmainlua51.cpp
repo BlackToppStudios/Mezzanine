@@ -1661,38 +1661,41 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_Mezzanine__Plane swig_types[0]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[1]
-#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[2]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[3]
-#define SWIGTYPE_p_Ogre__Plane swig_types[4]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[5]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[6]
-#define SWIGTYPE_p_SDL_Event swig_types[7]
-#define SWIGTYPE_p_XML__Node swig_types[8]
-#define SWIGTYPE_p_bool swig_types[9]
-#define SWIGTYPE_p_btVector3 swig_types[10]
-#define SWIGTYPE_p_char swig_types[11]
-#define SWIGTYPE_p_float swig_types[12]
-#define SWIGTYPE_p_int swig_types[13]
-#define SWIGTYPE_p_long_long swig_types[14]
-#define SWIGTYPE_p_short swig_types[15]
-#define SWIGTYPE_p_signed_char swig_types[16]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[17]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[18]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[19]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[20]
-#define SWIGTYPE_p_std__string swig_types[21]
-#define SWIGTYPE_p_std__stringstream swig_types[22]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[23]
-#define SWIGTYPE_p_std__wstring swig_types[24]
-#define SWIGTYPE_p_unsigned_char swig_types[25]
-#define SWIGTYPE_p_unsigned_int swig_types[26]
-#define SWIGTYPE_p_unsigned_long swig_types[27]
-#define SWIGTYPE_p_unsigned_long_long swig_types[28]
-#define SWIGTYPE_p_unsigned_short swig_types[29]
-static swig_type_info *swig_types[31];
-static swig_module_info swig_module = {swig_types, 30, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[0]
+#define SWIGTYPE_p_Mezzanine__Plane swig_types[1]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[2]
+#define SWIGTYPE_p_Mezzanine__Ray swig_types[3]
+#define SWIGTYPE_p_Mezzanine__Sphere swig_types[4]
+#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[5]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[6]
+#define SWIGTYPE_p_Ogre__Plane swig_types[7]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[8]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[9]
+#define SWIGTYPE_p_SDL_Event swig_types[10]
+#define SWIGTYPE_p_XML__Node swig_types[11]
+#define SWIGTYPE_p_bool swig_types[12]
+#define SWIGTYPE_p_btVector3 swig_types[13]
+#define SWIGTYPE_p_char swig_types[14]
+#define SWIGTYPE_p_float swig_types[15]
+#define SWIGTYPE_p_int swig_types[16]
+#define SWIGTYPE_p_long_long swig_types[17]
+#define SWIGTYPE_p_short swig_types[18]
+#define SWIGTYPE_p_signed_char swig_types[19]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[20]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[21]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[22]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[23]
+#define SWIGTYPE_p_std__string swig_types[24]
+#define SWIGTYPE_p_std__stringstream swig_types[25]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[26]
+#define SWIGTYPE_p_std__wstring swig_types[27]
+#define SWIGTYPE_p_unsigned_char swig_types[28]
+#define SWIGTYPE_p_unsigned_int swig_types[29]
+#define SWIGTYPE_p_unsigned_long swig_types[30]
+#define SWIGTYPE_p_unsigned_long_long swig_types[31]
+#define SWIGTYPE_p_unsigned_short swig_types[32]
+static swig_type_info *swig_types[34];
+static swig_module_info swig_module = {swig_types, 33, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4580,22 +4583,20 @@ fail:
 
 static int _wrap_new_Plane__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Vector3 arg1 ;
+  Mezzanine::Vector3 *arg1 = 0 ;
   Mezzanine::Real arg2 ;
-  Mezzanine::Vector3 *argp1 ;
   Mezzanine::Plane *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Plane::Plane",2,2)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Plane::Plane",1,"Mezzanine::Vector3");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Plane::Plane",2,"Mezzanine::Real");
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Plane::Plane",1,"Mezzanine::Vector3 const &");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Plane::Plane",2,"Mezzanine::Real const");
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_Mezzanine__Vector3,0))){
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Vector3,0))){
     SWIG_fail_ptr("new_Plane",1,SWIGTYPE_p_Mezzanine__Vector3);
   }
-  arg1 = *argp1;
   
-  arg2 = (Mezzanine::Real)lua_tonumber(L, 2);
-  result = (Mezzanine::Plane *)new Mezzanine::Plane(arg1,arg2);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  result = (Mezzanine::Plane *)new Mezzanine::Plane((Mezzanine::Vector3 const &)*arg1,arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Plane,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -4608,32 +4609,6 @@ fail:
 
 
 static int _wrap_new_Plane__SWIG_2(lua_State* L) {
-  int SWIG_arg = 0;
-  Ogre::Plane arg1 ;
-  Ogre::Plane *argp1 ;
-  Mezzanine::Plane *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Plane::Plane",1,1)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Plane::Plane",1,"Ogre::Plane");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_Ogre__Plane,0))){
-    SWIG_fail_ptr("new_Plane",1,SWIGTYPE_p_Ogre__Plane);
-  }
-  arg1 = *argp1;
-  
-  result = (Mezzanine::Plane *)new Mezzanine::Plane(arg1);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Plane,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_Plane__SWIG_3(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Vector3 *arg1 = 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
@@ -4671,6 +4646,30 @@ fail:
 }
 
 
+static int _wrap_new_Plane__SWIG_3(lua_State* L) {
+  int SWIG_arg = 0;
+  Ogre::Plane *arg1 = 0 ;
+  Mezzanine::Plane *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Plane::Plane",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Plane::Plane",1,"Ogre::Plane const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Ogre__Plane,0))){
+    SWIG_fail_ptr("new_Plane",1,SWIGTYPE_p_Ogre__Plane);
+  }
+  
+  result = (Mezzanine::Plane *)new Mezzanine::Plane((Ogre::Plane const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Plane,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_new_Plane(lua_State* L) {
   int argc;
   int argv[4]={
@@ -4692,7 +4691,7 @@ static int _wrap_new_Plane(lua_State* L) {
       }
     }
     if (_v) {
-      return _wrap_new_Plane__SWIG_2(L);
+      return _wrap_new_Plane__SWIG_3(L);
     }
   }
   if (argc == 2) {
@@ -4743,7 +4742,7 @@ static int _wrap_new_Plane(lua_State* L) {
           }
         }
         if (_v) {
-          return _wrap_new_Plane__SWIG_3(L);
+          return _wrap_new_Plane__SWIG_2(L);
         }
       }
     }
@@ -4752,30 +4751,216 @@ static int _wrap_new_Plane(lua_State* L) {
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_Plane'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Plane::Plane()\n"
-    "    Mezzanine::Plane::Plane(Mezzanine::Vector3,Mezzanine::Real)\n"
-    "    Mezzanine::Plane::Plane(Ogre::Plane)\n"
-    "    Mezzanine::Plane::Plane(Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n");
+    "    Mezzanine::Plane::Plane(Mezzanine::Vector3 const &,Mezzanine::Real const)\n"
+    "    Mezzanine::Plane::Plane(Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::Plane::Plane(Ogre::Plane const &)\n");
   lua_error(L);return 0;
 }
 
 
-static int _wrap_Plane_GetOgrePlane(lua_State* L) {
+static int _wrap_Plane_IsOverlapping__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
-  Ogre::Plane result;
+  Mezzanine::Sphere *arg2 = 0 ;
+  Mezzanine::Bool result;
   
-  SWIG_check_num_args("Mezzanine::Plane::GetOgrePlane",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::GetOgrePlane",1,"Mezzanine::Plane const *");
+  SWIG_check_num_args("Mezzanine::Plane::IsOverlapping",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::IsOverlapping",1,"Mezzanine::Plane const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Plane::IsOverlapping",2,"Mezzanine::Sphere const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Plane,0))){
-    SWIG_fail_ptr("Plane_GetOgrePlane",1,SWIGTYPE_p_Mezzanine__Plane);
+    SWIG_fail_ptr("Plane_IsOverlapping",1,SWIGTYPE_p_Mezzanine__Plane);
   }
   
-  result = ((Mezzanine::Plane const *)arg1)->GetOgrePlane();
-  {
-    Ogre::Plane * resultptr = new Ogre::Plane((const Ogre::Plane &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Ogre__Plane,1); SWIG_arg++;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Sphere,0))){
+    SWIG_fail_ptr("Plane_IsOverlapping",2,SWIGTYPE_p_Mezzanine__Sphere);
   }
+  
+  result = (Mezzanine::Bool)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Plane_IsOverlapping__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
+  Mezzanine::AxisAlignedBox *arg2 = 0 ;
+  Mezzanine::Bool result;
+  
+  SWIG_check_num_args("Mezzanine::Plane::IsOverlapping",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::IsOverlapping",1,"Mezzanine::Plane const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Plane::IsOverlapping",2,"Mezzanine::AxisAlignedBox const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Plane,0))){
+    SWIG_fail_ptr("Plane_IsOverlapping",1,SWIGTYPE_p_Mezzanine__Plane);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__AxisAlignedBox,0))){
+    SWIG_fail_ptr("Plane_IsOverlapping",2,SWIGTYPE_p_Mezzanine__AxisAlignedBox);
+  }
+  
+  result = (Mezzanine::Bool)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Plane_IsOverlapping__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
+  Mezzanine::Plane *arg2 = 0 ;
+  Mezzanine::Bool result;
+  
+  SWIG_check_num_args("Mezzanine::Plane::IsOverlapping",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::IsOverlapping",1,"Mezzanine::Plane const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Plane::IsOverlapping",2,"Mezzanine::Plane const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Plane,0))){
+    SWIG_fail_ptr("Plane_IsOverlapping",1,SWIGTYPE_p_Mezzanine__Plane);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Plane,0))){
+    SWIG_fail_ptr("Plane_IsOverlapping",2,SWIGTYPE_p_Mezzanine__Plane);
+  }
+  
+  result = (Mezzanine::Bool)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Plane_IsOverlapping(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Plane, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Sphere, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Plane_IsOverlapping__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Plane, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__AxisAlignedBox, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Plane_IsOverlapping__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Plane, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Plane, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Plane_IsOverlapping__SWIG_2(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'Plane_IsOverlapping'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::Plane::IsOverlapping(Mezzanine::Sphere const &) const\n"
+    "    Mezzanine::Plane::IsOverlapping(Mezzanine::AxisAlignedBox const &) const\n"
+    "    Mezzanine::Plane::IsOverlapping(Mezzanine::Plane const &) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Plane_Intersects(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
+  Mezzanine::Ray *arg2 = 0 ;
+  Mezzanine::Bool result;
+  
+  SWIG_check_num_args("Mezzanine::Plane::Intersects",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::Intersects",1,"Mezzanine::Plane const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Plane::Intersects",2,"Mezzanine::Ray const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Plane,0))){
+    SWIG_fail_ptr("Plane_Intersects",1,SWIGTYPE_p_Mezzanine__Plane);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Ray,0))){
+    SWIG_fail_ptr("Plane_Intersects",2,SWIGTYPE_p_Mezzanine__Ray);
+  }
+  
+  result = (Mezzanine::Bool)((Mezzanine::Plane const *)arg1)->Intersects((Mezzanine::Ray const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -4816,13 +5001,74 @@ fail:
 }
 
 
+static int _wrap_Plane_GetOgrePlane(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
+  Ogre::Plane result;
+  
+  SWIG_check_num_args("Mezzanine::Plane::GetOgrePlane",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::GetOgrePlane",1,"Mezzanine::Plane const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Plane,0))){
+    SWIG_fail_ptr("Plane_GetOgrePlane",1,SWIGTYPE_p_Mezzanine__Plane);
+  }
+  
+  result = ((Mezzanine::Plane const *)arg1)->GetOgrePlane();
+  {
+    Ogre::Plane * resultptr = new Ogre::Plane((const Ogre::Plane &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Ogre__Plane,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Plane___eq(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
+  Mezzanine::Plane *arg2 = 0 ;
+  Mezzanine::Bool result;
+  
+  SWIG_check_num_args("Mezzanine::Plane::operator ==",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::operator ==",1,"Mezzanine::Plane const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Plane::operator ==",2,"Mezzanine::Plane const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Plane,0))){
+    SWIG_fail_ptr("Plane___eq",1,SWIGTYPE_p_Mezzanine__Plane);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Plane,0))){
+    SWIG_fail_ptr("Plane___eq",2,SWIGTYPE_p_Mezzanine__Plane);
+  }
+  
+  result = (Mezzanine::Bool)((Mezzanine::Plane const *)arg1)->operator ==((Mezzanine::Plane const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_Plane(void *obj) {
 Mezzanine::Plane *arg1 = (Mezzanine::Plane *) obj;
 delete arg1;
 }
 static swig_lua_method swig_Mezzanine_Plane_methods[] = {
-    {"GetOgrePlane", _wrap_Plane_GetOgrePlane}, 
+    {"IsOverlapping", _wrap_Plane_IsOverlapping}, 
+    {"Intersects", _wrap_Plane_Intersects}, 
     {"ExtractOgrePlane", _wrap_Plane_ExtractOgrePlane}, 
+    {"GetOgrePlane", _wrap_Plane_GetOgrePlane}, 
+    {"__eq", _wrap_Plane___eq}, 
     {0,0}
 };
 static swig_lua_attribute swig_Mezzanine_Plane_attributes[] = {
@@ -5842,8 +6088,11 @@ static swig_lua_const_info swig_constants[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static swig_type_info _swigt__p_Mezzanine__AxisAlignedBox = {"_p_Mezzanine__AxisAlignedBox", "Mezzanine::AxisAlignedBox *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Plane = {"_p_Mezzanine__Plane", "Mezzanine::Plane *", 0, 0, (void*)&_wrap_class_Mezzanine_Plane, 0};
 static swig_type_info _swigt__p_Mezzanine__Quaternion = {"_p_Mezzanine__Quaternion", "Mezzanine::Quaternion *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Ray = {"_p_Mezzanine__Ray", "Mezzanine::Ray *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Sphere = {"_p_Mezzanine__Sphere", "Mezzanine::Sphere *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Vector2 = {"_p_Mezzanine__Vector2", "Mezzanine::Vector2 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector2, 0};
 static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector3, 0};
 static swig_type_info _swigt__p_Ogre__Plane = {"_p_Ogre__Plane", "Ogre::Plane *", 0, 0, (void*)0, 0};
@@ -5874,8 +6123,11 @@ static swig_type_info _swigt__p_unsigned_long_long = {"_p_unsigned_long_long", "
 static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "Mezzanine::UInt16 *|unsigned short *|uint_least16_t *|uint16_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_Mezzanine__AxisAlignedBox,
   &_swigt__p_Mezzanine__Plane,
   &_swigt__p_Mezzanine__Quaternion,
+  &_swigt__p_Mezzanine__Ray,
+  &_swigt__p_Mezzanine__Sphere,
   &_swigt__p_Mezzanine__Vector2,
   &_swigt__p_Mezzanine__Vector3,
   &_swigt__p_Ogre__Plane,
@@ -5906,8 +6158,11 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_unsigned_short,
 };
 
+static swig_cast_info _swigc__p_Mezzanine__AxisAlignedBox[] = {  {&_swigt__p_Mezzanine__AxisAlignedBox, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Plane[] = {  {&_swigt__p_Mezzanine__Plane, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Quaternion[] = {  {&_swigt__p_Mezzanine__Quaternion, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Ray[] = {  {&_swigt__p_Mezzanine__Ray, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Sphere[] = {  {&_swigt__p_Mezzanine__Sphere, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector2[] = {  {&_swigt__p_Mezzanine__Vector2, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector3[] = {  {&_swigt__p_Mezzanine__Vector3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__Plane[] = {  {&_swigt__p_Ogre__Plane, 0, 0, 0},{0, 0, 0, 0}};
@@ -5938,8 +6193,11 @@ static swig_cast_info _swigc__p_unsigned_long_long[] = {  {&_swigt__p_unsigned_l
 static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_Mezzanine__AxisAlignedBox,
   _swigc__p_Mezzanine__Plane,
   _swigc__p_Mezzanine__Quaternion,
+  _swigc__p_Mezzanine__Ray,
+  _swigc__p_Mezzanine__Sphere,
   _swigc__p_Mezzanine__Vector2,
   _swigc__p_Mezzanine__Vector3,
   _swigc__p_Ogre__Plane,
