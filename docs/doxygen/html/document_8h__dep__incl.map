@@ -26,7 +26,7 @@
 <area shape="rect" id="node1078" href="$managerbase_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/managerbase.h" alt="" coords="18704,622,18925,669"/>
 <area shape="rect" id="node1145" href="$eventmanager_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/eventmanager.h" alt="" coords="23845,846,24069,893"/>
 <area shape="rect" id="node1196" href="$metacode_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/Input\l/metacode.h" alt="" coords="25177,389,25348,453"/>
-<area shape="rect" id="node1201" href="$eventuserinput_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/eventuserinput.h" alt="" coords="24685,846,24915,893"/>
+<area shape="rect" id="node1202" href="$eventuserinput_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/eventuserinput.h" alt="" coords="24685,846,24915,893"/>
 <area shape="rect" id="node1267" href="$vector2_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/vector2.h" alt="" coords="26337,198,26519,245"/>
 <area shape="rect" id="node1339" href="$eventgamewindow_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/eventgamewindow.h" alt="" coords="33003,846,33251,893"/>
 <area shape="rect" id="node1346" href="$eventquit_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/eventquit.h" alt="" coords="33275,846,33467,893"/>
@@ -283,7 +283,7 @@
 <area shape="rect" id="node1213" href="$buttondevice_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/Input\l/buttondevice.h" alt="" coords="24989,725,25160,789"/>
 <area shape="rect" id="node1248" href="$metacodekey_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/Input\l/metacodekey.h" alt="" coords="24288,501,24459,565"/>
 <area shape="rect" id="node1250" href="$sequencecontainer_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/Input\l/sequencecontainer.h" alt="" coords="24964,501,25135,565"/>
-<area shape="rect" id="node1204" href="$eventbase_8cpp_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/eventbase.cpp" alt="" coords="33111,958,33324,1005"/>
+<area shape="rect" id="node1205" href="$eventbase_8cpp_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/eventbase.cpp" alt="" coords="33111,958,33324,1005"/>
 <area shape="rect" id="node1215" href="$mouse_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/Input\l/mouse.h" alt="" coords="26037,837,26208,901"/>
 <area shape="rect" id="node1233" href="$buttondevice_8cpp_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/Input\l/buttondevice.cpp" alt="" coords="25091,837,25261,901"/>
 <area shape="rect" id="node1235" href="$controller_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/Input\l/controller.h" alt="" coords="24093,837,24264,901"/>

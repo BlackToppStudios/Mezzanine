@@ -56,6 +56,7 @@ var searchData=
   ['endnodeitem',['EndNodeItem',['../classMezzanine_1_1EndNodeItem.xhtml',1,'Mezzanine']]],
   ['endparticleeffect',['EndParticleEffect',['../classMezzanine_1_1SceneManager.xhtml#ae4819073d0784ae86d5a15cb417f52a6',1,'Mezzanine::SceneManager::EndParticleEffect()'],['../classMezzanine_1_1SceneManager.xhtml#ad537bf5b21dd5ceeaa4d58acd662aca9',1,'Mezzanine::SceneManager::EndParticleEffect() const ']]],
   ['endrenderable',['EndRenderable',['../classMezzanine_1_1UI_1_1Widget.xhtml#a8291a9fc42caa9fe5cc5dc3e3e5fef0f',1,'Mezzanine::UI::Widget::EndRenderable()'],['../classMezzanine_1_1UI_1_1Widget.xhtml#ab6b996ff9d92385c73a322888148358f',1,'Mezzanine::UI::Widget::EndRenderable() const ']]],
+  ['endswith',['EndsWith',['../namespaceMezzanine_1_1StringTools.xhtml#a115b876bba9e4952b55d45f1257b5704',1,'Mezzanine::StringTools']]],
   ['endsymbol',['endSymbol',['../classMezzanine_1_1Trie.xhtml#acdbcd1af4164693fd620555c54fa4e14',1,'Mezzanine::Trie']]],
   ['endviewport',['EndViewport',['../classMezzanine_1_1Graphics_1_1GameWindow.xhtml#a61391da8933a03f64698f2a8db2a84db',1,'Mezzanine::Graphics::GameWindow::EndViewport()'],['../classMezzanine_1_1Graphics_1_1GameWindow.xhtml#a3f861abc8b0ee2625d34a69f1680464e',1,'Mezzanine::Graphics::GameWindow::EndViewport() const ']]],
   ['endworldnode',['EndWorldNode',['../classMezzanine_1_1SceneManager.xhtml#a659a0804a38a84627b3d8bec1021e6e3',1,'Mezzanine::SceneManager::EndWorldNode()'],['../classMezzanine_1_1SceneManager.xhtml#a603612da0ee539bb489184c2895431d8',1,'Mezzanine::SceneManager::EndWorldNode() const ']]],

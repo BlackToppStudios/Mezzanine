@@ -12,6 +12,7 @@ var searchData=
   ['physics',['Physics',['../namespaceMezzanine_1_1Physics.xhtml',1,'Mezzanine']]],
   ['resource',['Resource',['../namespaceMezzanine_1_1Resource.xhtml',1,'Mezzanine']]],
   ['scripting',['Scripting',['../namespaceMezzanine_1_1Scripting.xhtml',1,'Mezzanine']]],
+  ['stringtools',['StringTools',['../namespaceMezzanine_1_1StringTools.xhtml',1,'Mezzanine']]],
   ['this_5fthread',['this_thread',['../namespaceMezzanine_1_1Threading_1_1this__thread.xhtml',1,'Mezzanine::Threading']]],
   ['threading',['Threading',['../namespaceMezzanine_1_1Threading.xhtml',1,'Mezzanine']]],
   ['ui',['UI',['../namespaceMezzanine_1_1UI.xhtml',1,'Mezzanine']]],

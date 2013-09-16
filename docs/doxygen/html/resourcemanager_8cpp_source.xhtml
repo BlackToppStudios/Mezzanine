@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;15,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;16,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -446,7 +446,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    {</div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;        <span class="keywordtype">bool</span> Result = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        <a class="code" href="namespaceMezzanine.xhtml#a9b3665ebc21b3444e1d7858d460475f6" title="This is a simple datatype for a vector container of strings.">StringVector</a> FolderNames;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        <a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr&lt;StringVector&gt;</a> FolderVec = StringTools::Split(DirectoryPath,<span class="stringliteral">&quot;/\\&quot;</span>);</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        <a class="code" href="classMezzanine_1_1CountedPtr.xhtml" title="A simple reference counting pointer.">CountedPtr&lt;StringVector&gt;</a> FolderVec = <a class="code" href="namespaceMezzanine_1_1StringTools.xhtml#ae273a2db5ee2d9f1513959d42865626d" title="Splits a string into multiple substrings based on the specified delimiters.">StringTools::Split</a>(DirectoryPath,<span class="stringliteral">&quot;/\\&quot;</span>);</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        <span class="keywordtype">size_t</span> StartIndex = 0;</div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> PathAttempt;</div>
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        <span class="keywordtype">char</span> SysSlash = <a class="code" href="classMezzanine_1_1ResourceManager.xhtml#aa5a521ec769c34e7ba498a11b55bcc21" title="Get the character used to separate directories.">GetDirectorySeparator</a>();</div>
@@ -510,7 +510,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00424"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ResourceManager.xhtml#a17b72af560fcf890ee2571dab2109a6d">  424</a></span>&#160;    <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1ResourceManager.xhtml#a17b72af560fcf890ee2571dab2109a6d" title="Resolves a string describing one of the platform data paths to the actual path it is...">ResourceManager::ResolveDataPathFromString</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; PathVar)</div>
 <div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    {</div>
 <div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;        <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> LowerVar = PathVar;</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;        StringTools::ToLowerCase(LowerVar);</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;        <a class="code" href="namespaceMezzanine_1_1StringTools.xhtml#a2fbec65ef6cb15cdfff7a962153d61cf" title="Converts all upper case characters in a string to their respective lower case.">StringTools::ToLowerCase</a>(LowerVar);</div>
 <div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;        <span class="keywordflow">if</span>(LowerVar == <span class="stringliteral">&quot;localappdata&quot;</span>) <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ResourceManager.xhtml#a488e3fd88f733177ac5603e52bce1c18" title="Gets the path to the directory intended for game and engine config data that is not meant to be share...">GetLocalAppDataDir</a>();</div>
 <div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(LowerVar == <span class="stringliteral">&quot;shareableappdata&quot;</span>) <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ResourceManager.xhtml#a5579269be96a5b402f1caaa15a9f26af" title="Gets the path to the directory intended for game and engine config data that is allowed to be shared...">GetShareableAppDataDir</a>();</div>
 <div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(LowerVar == <span class="stringliteral">&quot;currentuserdata&quot;</span>) <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ResourceManager.xhtml#af53b3f68a9b16a55c593cd5ed6a2eba0" title="Gets the path to the directory intended for game saves and user profile data for the current user...">GetCurrentUserDataDir</a>();</div>
@@ -832,7 +832,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;                <span class="keywordflow">for</span>( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )</div>
 <div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;                {</div>
 <div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;                    <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> Lower = (*ParIt).first;</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;                    StringTools::ToLowerCase(Lower);</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;                    <a class="code" href="namespaceMezzanine_1_1StringTools.xhtml#a2fbec65ef6cb15cdfff7a962153d61cf" title="Converts all upper case characters in a string to their respective lower case.">StringTools::ToLowerCase</a>(Lower);</div>
 <div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;                    <span class="keywordflow">if</span>( <span class="stringliteral">&quot;enginedatapath&quot;</span> == Lower )</div>
 <div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;                    {</div>
 <div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;                        EngineDataPath = (*ParIt).second;</div>
@@ -865,6 +865,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 15 2013 04:00:23 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Mon Sep 16 2013 05:26:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
