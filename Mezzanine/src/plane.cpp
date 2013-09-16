@@ -174,10 +174,8 @@ namespace Mezzanine
 
                 // Get the properties that need their own nodes
                 XML::Node NormalNode = SelfRoot.GetChild("Normal").GetFirstChild();
-                if( !NormalNode.Empty() ) {
-                    Vector3 Norm(NormalNode);
-                    this->Normal = Norm;
-                }
+                if( !NormalNode.Empty() )
+                    this->Normal.ProtoDeSerialize(NormalNode);
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Plane::GetSerializableName() + ": Not Version 1.");
             }
