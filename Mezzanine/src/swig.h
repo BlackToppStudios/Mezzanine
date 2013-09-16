@@ -80,11 +80,16 @@
     // Since swig will process only on language and only the safe or unsafe version of it at a time
     // this is where the naming of the Mezzanine library should occur. This does not affect the
     // ability to load Multiple libraries or even scripting languages at the same time if required.
-    #ifdef SWIG_UNSAFE
-        %module Mezzanine
-    #else
-        #define SWIG_SAFE
-        %module MezzanineSafe
+    /// @def SWIG_MODULE_SET
+    /// @brief This is set
+    #ifdef SWIG_MAIN
+        #ifdef SWIG_UNSAFE
+            %module Mezzanine
+        #else
+            #define SWIG_SAFE
+            %module MezzanineSafe
+        #endif
+        #define SWIG_MODULE_SET
     #endif
 
     // Fix for: XML/xml.h:XXXX: Warning 403: Class 'Mezzanine::XML::XPathException' might be abstract, no constructors generated

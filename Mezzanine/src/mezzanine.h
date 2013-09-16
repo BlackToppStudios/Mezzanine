@@ -60,10 +60,10 @@
 #include "Audio/audio.h"
 #include "Threading/dagframescheduler.h"
 #include "Graphics/viewport.h"
-
-#endif // \no SWIG
+#include "Input/input.h"
+#include "Physics/physics.h"
 #include "XML/xml.h"
-#ifndef SWIG
+#include "UI/ui.h"
 
 // We put headers in our headers so we can include while we include
 #include "actorbase.h"                  // serializes
@@ -94,7 +94,6 @@
 #include "eventuserinput.h"             // done
 #include "exception.h"
 #include "graphics.h"
-#include "Input/input.h"
 #include "light.h"                      // done
 #include "linegroup.h"
 #include "macros.h"
@@ -108,7 +107,6 @@
 #include "particleaffector.h"
 #include "particleeffect.h"             // done
 #include "particleemitter.h"
-#include "Physics/physics.h"
 
 #endif
 #include "plane.h"                      // done
@@ -129,7 +127,7 @@
 #include "terrainmanager.h"
 #include "timer.h"
 #include "transform.h"                  // done
-#include "UI/ui.h"
+
 #endif // \no SWIG
 
 #include "vector2.h"                    // done

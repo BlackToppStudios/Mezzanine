@@ -50,8 +50,6 @@
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class StringTool
-    /// @headerfile stringtool.h
     /// @brief This is a utility to help perform all kinds of string related tasks.
     /// @details
     ///////////////////////////////////////
