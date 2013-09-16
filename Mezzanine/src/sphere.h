@@ -47,7 +47,7 @@
 
 namespace Ogre
 {
-    class Plane;
+    class Sphere;
 }
 
 namespace Mezzanine
@@ -86,6 +86,9 @@ namespace Mezzanine
         /// @param SphereCenter The point in world space that is the center of the sphere.
         /// @param SphereRadius The radius of the sphere.
         Sphere(const Vector3& SphereCenter, const Real SphereRadius);
+        /// @brief Internal constructor.
+        /// @param InternalSphere The internal Ogre Sphere to construct this Sphere from.
+        explicit Sphere(const Ogre::Sphere& InternalSphere);
         /// @brief Class destructor.
         ~Sphere();
 
@@ -143,6 +146,10 @@ namespace Mezzanine
         /// @brief Assignment operator.
         /// @param Other The other Sphere to copy from.
         void operator=(const Sphere& Other);
+
+        /// @brief The assignment operator from Ogre::Sphere to Mezzanine::Sphere.
+        /// @param InternalSphere The Ogre::Sphere to take data from.
+        void operator=(const Ogre::Sphere& InternalSphere);
 
         /// @brief Greater-than operator.
         /// @note This operator compares the radii of both spheres.
