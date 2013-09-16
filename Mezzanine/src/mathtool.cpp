@@ -114,7 +114,9 @@ namespace Mezzanine
 
         Bool IsInside(const AxisAlignedBox& Box, const Vector3& Point)
         {
-
+            return ( Box.MinExt.X <= Point.X && Box.MaxExt.X >= Point.X &&
+                     Box.MinExt.Y <= Point.Y && Box.MaxExt.Y >= Point.Y &&
+                     Box.MinExt.Z <= Point.Z && Box.MaxExt.Z >= Point.Z );
         }
 
         Bool IsInside(const Sphere& Ball, const Vector3& Point)
@@ -141,17 +143,18 @@ namespace Mezzanine
 
         Bool Overlap(const AxisAlignedBox& Box, const Plane& Surface)
         {
-
+            return ( Plane::S_Both == Surface.GetSide(Box.GetCenter(),Box.GetHalfSize()) );
         }
 
         Bool Overlap(const Plane& Surface, const Sphere& Ball)
         {
-
+            return ( MathTools::Fabs( Surface.GetDistance( Ball.Center ) ) <= Ball.Radius );
         }
 
         Bool Overlap(const AxisAlignedBox& Box1, const AxisAlignedBox& Box2)
         {
-
+            return !( Box1.MinExt.X > Box2.MinExt.X || Box1.MinExt.Y > Box2.MinExt.Y || Box1.MinExt.Z > Box2.MinExt.Z ||
+                      Box1.MaxExt.X < Box2.MaxExt.X || Box1.MaxExt.Y < Box2.MaxExt.Y || Box1.MaxExt.Z < Box2.MaxExt.Z );
         }
 
         Bool Overlap(const Sphere& Ball1, const Sphere& Ball2)
@@ -162,7 +165,7 @@ namespace Mezzanine
 
         Bool Overlap(const Plane& Surface1, const Plane& Surface2)
         {
-
+            return ( ( Surface1.Normal != Surface2.Normal ? ( Surface1.Distance == Surface2.Distance ) : true ) );
         }
 
         Bool Intersects(const Plane& Surface, const Ray& Cast)
