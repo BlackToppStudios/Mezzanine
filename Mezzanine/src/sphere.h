@@ -45,6 +45,11 @@
 
 #include "vector3.h"
 
+namespace Ogre
+{
+    class Plane;
+}
+
 namespace Mezzanine
 {
     class AxisAlignedBox;
@@ -107,6 +112,16 @@ namespace Mezzanine
         /// @param ToCheck The ray to check for a hit.
         /// @return Returns a std::pair containing whether or not the ray hit, and if it did the subsection of the ray that went through the sphere.
         RayTestResult Intersects(const Ray& ToCheck) const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Conversion Methods
+
+        /// @brief Changes this Sphere to match the Ogre Sphere.
+        /// @param InternalSphere The Ogre::Sphere to copy.
+        void ExtractOgreSphere(const Ogre::Sphere& InternalSphere);
+        /// @brief Gets an Ogre::Sphere that contains this Spheres information.
+        /// @return This returns an Ogre::Sphere that contains the same information as this Spheres information.
+        Ogre::Sphere GetOgreSphere() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization

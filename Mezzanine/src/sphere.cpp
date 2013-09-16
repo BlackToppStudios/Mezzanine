@@ -88,6 +88,15 @@ namespace Mezzanine
         { return MathTools::Intersects(*this,ToCheck); }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Conversion Methods
+
+    void Sphere::ExtractOgreSphere(const Ogre::Sphere& InternalSphere)
+        { this->Center = InternalSphere.mCenter;  this->Radius = InternalSphere.mRadius; }
+
+    Ogre::Sphere Sphere::GetOgreSphere() const
+        { return Ogre::Sphere(this->Center.GetOgreVector3(),this->Radius); }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
     void Sphere::ProtoSerialize(XML::Node& ParentNode) const
