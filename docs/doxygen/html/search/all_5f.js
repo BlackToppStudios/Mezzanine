@@ -49,6 +49,7 @@ var searchData=
   ['_5fsetshapename',['_SetShapeName',['../classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a350cf7befc1b849fe276b238a6772cfa',1,'Mezzanine::Physics::CollisionShape']]],
   ['_5fsetworld',['_SetWorld',['../classMezzanine_1_1WorldManager.xhtml#a8a3c9d7719bdfff980ff3d5c1aa4558c',1,'Mezzanine::WorldManager']]],
   ['_5fsetzorder',['_SetZOrder',['../classMezzanine_1_1UI_1_1Renderable.xhtml#a2b080b3ea8c7af842df87fe16a76bb48',1,'Mezzanine::UI::Renderable']]],
+  ['_5fthread_5fstart_5finfo',['_thread_start_info',['../structMezzanine_1_1Threading_1_1__thread__start__info.xhtml',1,'Mezzanine::Threading']]],
   ['_5ftransform',['_Transform',['../classMezzanine_1_1UI_1_1Screen.xhtml#ae52d377572a5b2e6b96819334d0fb58b',1,'Mezzanine::UI::Screen']]],
   ['_5funregistersoundscapemanager',['_UnregisterSoundScapeManager',['../classMezzanine_1_1Audio_1_1AudioManager.xhtml#a1f42a8decdd6f13435e0d683b3bdd6cf',1,'Mezzanine::Audio::AudioManager']]],
   ['_5funregistertrackingnode',['_UnRegisterTrackingNode',['../classMezzanine_1_1SceneManager.xhtml#a850cf7390472c3a80aa9b278a8c82268',1,'Mezzanine::SceneManager']]],

@@ -305,8 +305,8 @@ namespace Mezzanine
             ClippedLeftIndex = String::npos;
             ClippedRightIndex = String::npos;
 
-            CursorX = MathTool::Floor( CursorX );
-            CursorY = MathTool::Floor( CursorY );
+            CursorX = MathTools::Floor( CursorX );
+            CursorY = MathTools::Floor( CursorY );
 
             for( Whole Index = 0 ; Index < Text.size() ; Index++ )
             {

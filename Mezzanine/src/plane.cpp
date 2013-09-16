@@ -45,48 +45,80 @@
 
 #include "exception.h"
 #include "plane.h"
+#include "ray.h"
+#include "axisalignedbox.h"
+#include "sphere.h"
 #include "stringtool.h"
+#include "mathtool.h"
 #include "XML/xml.h"
 
 #include "Ogre.h"
 
 namespace Mezzanine
 {
-
     ///////////////////////////////////////////////////////////////////////////////
-    // Constructors
-    Plane::Plane() : Normal(0,0,0), Distance(0)
-        {}
+    // Construction and Destruction
 
-    Plane::Plane(Vector3 Normal_, Real Distance_) : Normal(Normal_),Distance(Distance_)
-        {}
+    Plane::Plane() :
+        Normal(0,0,0),
+        Distance(0)
+        {  }
 
-    Plane::Plane(Ogre::Plane Plane_)
-        { this->ExtractOgrePlane(Plane_); }
+    Plane::Plane(const Vector3& Norm, const Real Dist) :
+        Normal(Norm),
+        Distance(Dist)
+        {  }
 
-    Plane::Plane(const Vector3& rkPoint0, const Vector3& rkPoint1, const Vector3& rkPoint2)
+    Plane::Plane(const Vector3& First, const Vector3& Second, const Vector3& Third)
     {
-        Vector3 kEdge1 = rkPoint1 - rkPoint0;
-		Vector3 kEdge2 = rkPoint2 - rkPoint0;
-		this->Normal = kEdge1.CrossProduct(kEdge2);
+        Vector3 Edge1 = Second - First;
+		Vector3 Edge2 = Third - First;
+		this->Normal = Edge1.CrossProduct(Edge2);
 		this->Normal.Normalize();
-		this->Distance = -this->Normal.DotProduct(rkPoint0);
+		this->Distance = -(this->Normal.DotProduct(First));
     }
 
+    Plane::Plane(const Ogre::Plane& InternalPlane)
+        { this->ExtractOgrePlane(InternalPlane); }
+
     ///////////////////////////////////////////////////////////////////////////////
-    // Conversions and adjustments
+    // Utility
+
+    Bool Plane::IsOverlapping(const Sphere& ToCheck) const
+        { return MathTools::Overlap(*this,ToCheck); }
+
+    Bool Plane::IsOverlapping(const AxisAlignedBox& ToCheck) const
+        { return MathTools::Overlap(ToCheck,*this); }
+
+    Bool Plane::IsOverlapping(const Plane& ToCheck) const
+        { return MathTools::Overlap(*this,ToCheck); }
+
+    Bool Plane::Intersects(const Ray& ToCheck) const
+        { return MathTools::Intersects(*this,ToCheck); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Conversion Methods
+
     Ogre::Plane Plane::GetOgrePlane() const
         { return Ogre::Plane( Normal.GetOgreVector3(), Distance); }
 
-    void Plane::ExtractOgrePlane(const Ogre::Plane& Plane2)
-    {
-        this->Normal=Plane2.normal;
-        this->Distance=Plane2.d;
-    }
+    void Plane::ExtractOgrePlane(const Ogre::Plane& InternalPlane)
+        { this->Normal = InternalPlane.normal;  this->Distance = InternalPlane.d; }
 
-    void Plane::operator=(const Ogre::Plane& Plane2)
-        { this->ExtractOgrePlane(Plane2); }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Operators
 
+    void Plane::operator=(const Plane& Other)
+        { this->Normal = Other.Normal;  this->Distance = Other.Distance; }
+
+    void Plane::operator=(const Ogre::Plane& InternalPlane)
+        { this->ExtractOgrePlane(InternalPlane); }
+
+    Bool Plane::operator==(const Plane& Other) const
+        { return ( this->Normal == Other.Normal && this->Distance == Other.Distance ); }
+
+    Bool Plane::operator!=(const Plane& Other) const
+        { return ( this->Normal != Other.Normal || this->Distance != Other.Distance ); }
 }
 
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Plane& x)

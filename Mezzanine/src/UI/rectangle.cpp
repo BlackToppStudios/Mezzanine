@@ -154,8 +154,8 @@ namespace Mezzanine
         {
             if(0 != RotAngle)
             {
-                Real RotCos = MathTool::Cos(RotAngle);
-                Real RotSin = MathTool::Sin(RotAngle);
+                Real RotCos = MathTools::Cos(RotAngle);
+                Real RotSin = MathTools::Sin(RotAngle);
 
                 if (!CustomCenter)
                 {
@@ -425,7 +425,7 @@ namespace Mezzanine
 
         void Rectangle::SetRotationDegrees(const Real& Degrees)
         {
-            RotAngle = MathTool::DegreesToRadians(Degrees);
+            RotAngle = MathTools::DegreesToRadians(Degrees);
             _MarkDirty();
         }
 
@@ -437,7 +437,7 @@ namespace Mezzanine
 
         Real Rectangle::GetRotationDegrees() const
         {
-            return MathTool::RadiansToDegrees(RotAngle);
+            return MathTools::RadiansToDegrees(RotAngle);
         }
 
         Real Rectangle::GetRotationRadians() const

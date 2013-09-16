@@ -111,7 +111,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml" target="_top" xlink:title="This is a proxy from which rigid body objects are handled.">
+<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml" target="_top" xlink:title="This is a proxy from which rigid body proxys are handled.">
 <polygon fill="white" stroke="black" points="540.5,-52 540.5,-86 649.5,-86 649.5,-52 540.5,-52"/>
 <text text-anchor="start" x="548.5" y="-73" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="595" y="-60" font-family="FreeSans" font-size="10.00">::RigidProxy</text>

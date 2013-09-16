@@ -372,12 +372,12 @@ namespace Mezzanine
 
     Real Vector3::Length() const
     {
-        return MathTool::Sqrt(X * X + Y * Y + Z * Z);
+        return MathTools::Sqrt(X * X + Y * Y + Z * Z);
     }
 
     Real Vector3::SquaredLength() const
     {
-        return X * X + Y * Y + Z * Z;
+        return (X * X + Y * Y + Z * Z);
     }
 
     bool Vector3::IsZeroLength() const
@@ -402,16 +402,16 @@ namespace Mezzanine
         {
             if( FallBackAxis != Vector3() )
             {
-                Ret.SetFromAxisAngle(MathTool::GetPi(),FallBackAxis);
+                Ret.SetFromAxisAngle(MathTools::Pi,FallBackAxis);
             }else{
                 Vector3 CrossAxis = Vector3::Unit_X().CrossProduct(*this);
                 if(CrossAxis.IsZeroLength())
                     CrossAxis = Vector3::Unit_Y().CrossProduct(*this);
                 CrossAxis.Normalize();
-                Ret.SetFromAxisAngle(MathTool::GetPi(),CrossAxis);
+                Ret.SetFromAxisAngle(MathTools::Pi,CrossAxis);
             }
         }else{
-            Real Sqr = MathTool::Sqrt( (1+Dot)*2 );
+            Real Sqr = MathTools::Sqrt( (1+Dot)*2 );
             Real InvSqr = 1 / Sqr;
 
             Vector3 Cross = Vec1.CrossProduct(Vec2);

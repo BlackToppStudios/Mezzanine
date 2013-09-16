@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;15,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -209,9 +209,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac23f8c347cceb75068161cdb7b99d9cf"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.xhtml#ac23f8c347cceb75068161cdb7b99d9cf">SerializableName</a> ()</td></tr>
-<tr class="memdesc:ac23f8c347cceb75068161cdb7b99d9cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the Renderable class will leave behind as its instances are serialized.  <a href="#ac23f8c347cceb75068161cdb7b99d9cf">More...</a><br/></td></tr>
-<tr class="separator:ac23f8c347cceb75068161cdb7b99d9cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b5c9bff9453f9fb7dd347bc553a01e7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.xhtml#a5b5c9bff9453f9fb7dd347bc553a01e7">GetSerializableName</a> ()</td></tr>
+<tr class="memdesc:a5b5c9bff9453f9fb7dd347bc553a01e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the proxy class will leave behind as its instances are serialized.  <a href="#a5b5c9bff9453f9fb7dd347bc553a01e7">More...</a><br/></td></tr>
+<tr class="separator:a5b5c9bff9453f9fb7dd347bc553a01e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -275,6 +275,8 @@ Protected Attributes</h2></td></tr>
 <p>Gets a pointer to this proxies creator. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1WorldManager.xhtml" title="This is the base class for all managers that belong to a single world instance.">WorldManager</a> that created this <a class="el" href="classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems.">WorldProxy</a>. </dd></dl>
 
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a73da3bac42f8c54d391943bcacb4acd3">Mezzanine::Physics::PhysicsProxy</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a0ae6101056147b58c31f38b11833ceaa"></a>
@@ -302,7 +304,7 @@ Protected Attributes</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>When creating a new <a class="el" href="classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems.">WorldProxy</a> class verify this method has a valid return for it in order for serialization to work properly. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the name of the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag from the most derived class of "this". </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ade57416c69f8b5b1e82f7211b4244d32">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#ade57416c69f8b5b1e82f7211b4244d32">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml#af0215067d080d28fd52157f1d0da9559">Mezzanine::Physics::RigidProxy</a>.</p>
 
 </div>
 </div>
@@ -424,6 +426,34 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5b5c9bff9453f9fb7dd347bc553a01e7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::WorldProxy::GetSerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the proxy class will leave behind as its instances are serialized. </p>
+<dl class="section return"><dt>Returns</dt><dd>A string containing the name of this class. </dd></dl>
+
+<p>Definition at line <a class="el" href="worldproxy_8cpp_source.xhtml#l00067">67</a> of file <a class="el" href="worldproxy_8cpp_source.xhtml">worldproxy.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a407e03a53d2d7136ecf8fecaead8fec1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -448,7 +478,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets whether or not this object is inside of it's world. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this proxy is inserted in it's respective subsystems world. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a1b1865135a6fa338dcf172ed9fca6533">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Audio_1_1SoundProxy.xhtml#a4ed6a9e9d0cb6c2a1646d05b7d4feec3">Mezzanine::Audio::SoundProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a3b40a7b97f1b9cac238f7c9d2e15fcd3">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Audio_1_1SoundProxy.xhtml#a4ed6a9e9d0cb6c2a1646d05b7d4feec3">Mezzanine::Audio::SoundProxy</a>.</p>
 
 </div>
 </div>
@@ -766,34 +796,6 @@ Protected Attributes</h2></td></tr>
 <p>Implements <a class="el" href="classMezzanine_1_1TransformableObject.xhtml#a066ec50fd49e34794ac15babcba4c1dd">Mezzanine::TransformableObject</a>.</p>
 
 <p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml#a611089f99118ae94d73274beb069e30b">Mezzanine::Physics::PhysicsProxy</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac23f8c347cceb75068161cdb7b99d9cf"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::WorldProxy::SerializableName </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the Renderable class will leave behind as its instances are serialized. </p>
-<dl class="section return"><dt>Returns</dt><dd>A string containing the name of this class. </dd></dl>
-
-<p>Definition at line <a class="el" href="worldproxy_8cpp_source.xhtml#l00067">67</a> of file <a class="el" href="worldproxy_8cpp_source.xhtml">worldproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -1233,6 +1235,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 14 2013 01:15:22 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Sep 15 2013 04:00:27 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

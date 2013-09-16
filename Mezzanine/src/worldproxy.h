@@ -153,9 +153,9 @@ namespace Mezzanine
         /// @note When creating a new WorldProxy class verify this method has a valid return for it in order for serialization to work properly.
         /// @return Returns the name of the XML tag from the most derived class of "this".
         virtual String GetDerivedSerializableName() const = 0;
-        /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+        /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
         /// @return A string containing the name of this class.
-        static String SerializableName();
+        static String GetSerializableName();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods

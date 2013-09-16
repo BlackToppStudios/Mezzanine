@@ -46,7 +46,8 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        SoftProxy::SoftProxy()
+        SoftProxy::SoftProxy(PhysicsManager* Creator) :
+            PhysicsProxy(Creator)
         {
 
         }

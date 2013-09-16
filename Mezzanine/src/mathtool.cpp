@@ -41,115 +41,145 @@
 #define _mathtool_cpp
 
 #include "mathtool.h"
+#include "sphere.h"
+#include "axisalignedbox.h"
+#include "ray.h"
+#include "plane.h"
 
 #include <cmath>
 
 namespace Mezzanine
 {
-    const Real MathTool::Pi = Real(4.0 * atan(1.0));
-    const Real MathTool::TwoPi = Real(2.0 * Pi);
-    const Real MathTool::HalfPi = Real(0.5 * Pi);
-    const Real MathTool::RadToDegMult = Real(Real(180.0) / Pi);
-    const Real MathTool::DegToRadMult = Real(Pi / Real(180.0));
-
-    MathTool::MathTool()
+    namespace MathTools
     {
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Real Math & Check Functions
 
-    MathTool::~MathTool()
-    {
-    }
+        Real Ceil(const Real& Val)
+            { return std::ceil(Val); }
 
-    Real MathTool::GetPi()
-    {
-        return Pi;
-    }
+        Real Floor(const Real& Val)
+            { return std::floor(Val); }
 
-    Real MathTool::GetTwoPi()
-    {
-        return TwoPi;
-    }
+        Real Pow(const Real& Val, const Real& Power)
+            { return std::pow(Val,Power); }
 
-    Real MathTool::GetHalfPi()
-    {
-        return HalfPi;
-    }
+        Real Sqrt(const Real& Val)
+            { return std::sqrt(Val); }
 
-    Real MathTool::Ceil(const Real& Val)
-    {
-        return ceil(Val);
-    }
+        Real Fabs(const Real& Val)
+            { return std::fabs(Val); }
 
-    Real MathTool::Floor(const Real& Val)
-    {
-        return floor(Val);
-    }
+        Real Fmod(const Real& Numerator, const Real& Denominator)
+            { return std::fmod(Numerator,Denominator); }
 
-    Real MathTool::Pow(const Real& Val, const Real& Power)
-    {
-        return pow(Val,Power);
-    }
+        bool WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance)
+            { return ( MathTools::Fabs(Second - First) <= Tolerance ); }
 
-    Real MathTool::Sqrt(const Real& Val)
-    {
-        return sqrt(Val);
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Angle Calculation Functions
 
-    Real MathTool::Fabs(const Real& Val)
-    {
-        return fabs(Val);
-    }
+        Real Cos(const Real& Radians)
+            { return std::cos(Radians); }
 
-    Real MathTool::Fmod(const Real& Numerator, const Real& Denominator)
-    {
-        return fmod(Numerator,Denominator);
-    }
+        Real Sin(const Real& Radians)
+            { return std::sin(Radians); }
 
-    bool MathTool::WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance)
-    {
-        if( Fabs(Second - First) <= Tolerance ) return true;
-        else return false;
-    }
+        Real Tan(const Real& Radians)
+            { return std::tan(Radians); }
 
-    Real MathTool::Cos(const Real& Radians)
-    {
-        return cos(Radians);
-    }
+        Real ACos(const Real& Interval)
+            { return std::acos(Interval); }
 
-    Real MathTool::Sin(const Real& Radians)
-    {
-        return sin(Radians);
-    }
+        Real ASin(const Real& Interval)
+            { return std::asin(Interval); }
 
-    Real MathTool::Tan(const Real& Radians)
-    {
-        return tan(Radians);
-    }
+        Real ATan(const Real& Interval)
+            { return std::atan(Interval); }
 
-    Real MathTool::ACos(const Real& Interval)
-    {
-        return acos(Interval);
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Angle Conversion Functions
 
-    Real MathTool::ASin(const Real& Interval)
-    {
-        return asin(Interval);
-    }
+        Real DegreesToRadians(const Real& Degrees)
+            { return Degrees * MathTools::DegToRadMult; }
 
-    Real MathTool::ATan(const Real& Interval)
-    {
-        return atan(Interval);
-    }
+        Real RadiansToDegrees(const Real& Radians)
+            { return Radians * MathTools::RadToDegMult; }
 
-    Real MathTool::DegreesToRadians(const Real& Degrees)
-    {
-        return Degrees * DegToRadMult;
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Geometry Math
 
-    Real MathTool::RadiansToDegrees(const Real& Radians)
-    {
-        return Radians * RadToDegMult;
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Intersection Query
+
+        Bool IsInside(const AxisAlignedBox& Box, const Vector3& Point)
+        {
+
+        }
+
+        Bool IsInside(const Sphere& Ball, const Vector3& Point)
+        {
+            return ( Ball.Center.Distance(Point) <= Ball.Radius );
+        }
+
+        Bool Overlap(const AxisAlignedBox& Box, const Sphere& Ball)
+        {
+            // Arvo's algorithm
+            Real SquareVar, Dist = 0;
+            for( Whole X = 0 ; X < 3 ; ++X )
+            {
+                if ( Ball.Center[X] < Box.MinExt[X] ) {
+                    SquareVar = Ball.Center[X] - Box.MinExt[X];
+                    Dist += SquareVar * SquareVar;
+                }else if( Ball.Center[X] > Box.MaxExt[X] ) {
+                    SquareVar = Ball.Center[X] - Box.MaxExt[X];
+                    Dist += SquareVar * SquareVar;
+                }
+            }
+            return ( Dist <= Ball.Radius * Ball.Radius );
+        }
+
+        Bool Overlap(const AxisAlignedBox& Box, const Plane& Surface)
+        {
+
+        }
+
+        Bool Overlap(const Plane& Surface, const Sphere& Ball)
+        {
+
+        }
+
+        Bool Overlap(const AxisAlignedBox& Box1, const AxisAlignedBox& Box2)
+        {
+
+        }
+
+        Bool Overlap(const Sphere& Ball1, const Sphere& Ball2)
+        {
+            Real Dist = Ball1.Center.Distance(Ball2.Center);
+            return ( Dist <= Ball1.Radius || Dist <= Ball2.Radius );
+        }
+
+        Bool Overlap(const Plane& Surface1, const Plane& Surface2)
+        {
+
+        }
+
+        Bool Intersects(const Plane& Surface, const Ray& Cast)
+        {
+
+        }
+
+        GeometryRayTestResult Intersects(const AxisAlignedBox& Box, const Ray& Cast)
+        {
+
+        }
+
+        GeometryRayTestResult Intersects(const Sphere& Ball, const Ray& Cast)
+        {
+
+        }
+    }//MathTools
 }//Mezzanine
 
 #endif

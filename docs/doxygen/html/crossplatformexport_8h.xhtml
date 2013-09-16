@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;15,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -177,7 +177,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This is used to configure whether to atomically store a shortcut to skip checking all workunits. </p>
-<p>When this is enabled Atomic CAS operations are used to maintain a count of the number of complete workunits at the beginning of the work unit listings. Normally these listings are read-only during frame execution, and the work units store whether or not they are complete. The default algorithm forces iteration over a large number of work units to simply check for completion in some situations. If memory bandwidth is slow or limited this can be a large source of of contention. Enable this option when there are many work units trades atomic operations for memory bandwidth. This must be tested on a per system basis to determine full preformance ramifications. This is controlled by the CMake (or other build system) option Mezz_DecacheWorkUnits. </p>
+<p>When this is enabled <a class="el" href="namespaceMezzanine_1_1Threading.xhtml#a4ccf479a204dfe52d11dcaac97673c07">Atomic CAS</a> operations are used to maintain a count of the number of complete workunits at the beginning of the work unit listings. Normally these listings are read-only during frame execution, and the work units store whether or not they are complete. The default algorithm forces iteration over a large number of work units to simply check for completion in some situations. If memory bandwidth is slow or limited this can be a large source of of contention. Enable this option when there are many work units trades atomic operations for memory bandwidth. This must be tested on a per system basis to determine full preformance ramifications. This is controlled by the CMake (or other build system) option Mezz_DecacheWorkUnits. </p>
 
 <p>Definition at line <a class="el" href="crossplatformexport_8h_source.xhtml#l00173">173</a> of file <a class="el" href="crossplatformexport_8h_source.xhtml">crossplatformexport.h</a>.</p>
 
@@ -194,7 +194,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This is used to configure whether to re-create threads each frame of or synchronize. </p>
-<p>Any synchronization will be done with atomic Barrier. This is controlled by the CMake (or other build system) option Mezz_MinimizeThreadsEachFrame. </p>
+<p>Any synchronization will be done with atomic <a class="el" href="classMezzanine_1_1Threading_1_1Barrier.xhtml">Barrier</a>. This is controlled by the CMake (or other build system) option Mezz_MinimizeThreadsEachFrame. </p>
 
 <p>Definition at line <a class="el" href="crossplatformexport_8h_source.xhtml#l00156">156</a> of file <a class="el" href="crossplatformexport_8h_source.xhtml">crossplatformexport.h</a>.</p>
 
@@ -202,6 +202,6 @@ Macros</h2></td></tr>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 14 2013 01:15:19 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Sep 15 2013 04:00:25 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

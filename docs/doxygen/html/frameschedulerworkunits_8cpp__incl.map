@@ -1,0 +1,17 @@
+<map id="/home/Code/Mezzanine/Mezzanine/src/Threading/frameschedulerworkunits.cpp" name="/home/Code/Mezzanine/Mezzanine/src/Threading/frameschedulerworkunits.cpp">
+<area shape="rect" id="node3" href="$frameschedulerworkunits_8h.xhtml" title="This defines a number of workunits that are required for doing some tasks that the Framescheduler req..." alt="" coords="523,117,715,147"/>
+<area shape="rect" id="node45" href="$doublebufferedresource_8h.xhtml" title="This file defines the template double buffered resources that can be attached to a thread..." alt="" coords="139,504,323,533"/>
+<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="727,581,825,611"/>
+<area shape="rect" id="node39" href="$workunit_8h.xhtml" title="This file has the definition of the workunit." alt="" coords="1024,195,1109,224"/>
+<area shape="rect" id="node64" href="$workunitkey_8h.xhtml" title="This file defines the metadata used to sort workunits." alt="" coords="448,349,555,379"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="536,659,699,688"/>
+<area shape="rect" id="node37" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="451,659,512,688"/>
+<area shape="rect" id="node42" href="$framescheduler_8h.xhtml" title="This file has the Declarations for the main FrameScheduler class." alt="" coords="751,272,884,301"/>
+<area shape="rect" id="node51" href="$thread_8h.xhtml" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="1155,349,1229,379"/>
+<area shape="rect" id="node56" href="$mutex_8h.xhtml" title="This file declares and defines a mutex that is a partial implementation." alt="" coords="1104,427,1179,456"/>
+<area shape="rect" id="node68" href="$rollingaverage_8h.xhtml" title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage." alt="" coords="1305,504,1428,533"/>
+<area shape="rect" id="node82" href="$threadingenumerations_8h.xhtml" title="Any enumerations the threading library requires are all declared here." alt="" coords="397,272,581,301"/>
+<area shape="rect" id="node53" href="$systemcalls_8h.xhtml" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="920,427,1029,456"/>
+<area shape="rect" id="node72" href="$barrier_8h.xhtml" title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive." alt="" coords="821,427,896,456"/>
+<area shape="rect" id="node58" href="$atomicoperations_8h.xhtml" title="Simple thread safe ways to check and change a specified variable atomically." alt="" coords="832,504,979,533"/>
+</map>

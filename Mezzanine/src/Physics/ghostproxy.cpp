@@ -46,7 +46,8 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        GhostProxy::GhostProxy()
+        GhostProxy::GhostProxy(PhysicsManager* Creator) :
+            PhysicsProxy(Creator)
         {
 
         }

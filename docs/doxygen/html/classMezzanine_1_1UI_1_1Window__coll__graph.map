@@ -1,75 +1,80 @@
 <map id="Mezzanine::UI::Window" name="Mezzanine::UI::Window">
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1EnclosedRenderableContainerWidget.xhtml" title="This is an abstract class for the creation and storage of widgets to be used by other classes..." alt="" coords="5009,1129,5257,1175"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1RenderableContainerWidget.xhtml" title="This is an interface class for the two types of Renderable Container Widgets." alt="" coords="5439,603,5628,650"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Widget.xhtml" title="This class is the base class for all widgets." alt="" coords="5851,372,6011,401"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1UI_1_1Renderable.xhtml" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="5880,537,6069,567"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1UI_1_1UIManager.xhtml" title="This class is responsible for any and all user interactions with the User interface/HUD." alt="" coords="5029,1507,5216,1536"/>
-<area shape="rect" id="node194" href="$classMezzanine_1_1UI_1_1Activatable.xhtml" title="This is a helper class that encapsulates the functionality of an object that can be activated to take..." alt="" coords="6441,537,6631,567"/>
-<area shape="rect" id="node202" href="$classMezzanine_1_1UI_1_1WidgetListener.xhtml" title="This is a listener class for widgets." alt="" coords="6093,537,6307,567"/>
-<area shape="rect" id="node297" href="$structMezzanine_1_1UI_1_1IndexData.xhtml" title="This is a basic class for storing data relating to a specific zorder in the UI." alt="" coords="5028,871,5212,900"/>
-<area shape="rect" id="node212" href="$classMezzanine_1_1UI_1_1BasicRenderable.xhtml" title="Base class for renderables that generate verticies." alt="" coords="4853,707,5077,736"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="5005,111,5152,140"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1Screen.xhtml" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al..." alt="" coords="4232,1843,4395,1872"/>
-<area shape="rect" id="node208" href="$classMezzanine_1_1UI_1_1Rectangle.xhtml" title="This class is a helper class, specifically for use with background sprites and colours." alt="" coords="4495,996,4676,1025"/>
-<area shape="rect" id="node210" href="$classMezzanine_1_1UI_1_1AreaRenderable.xhtml" title="This class defines a renderable that covers an area, such as a rectangle or circle." alt="" coords="4684,871,4903,900"/>
-<area shape="rect" id="node221" href="$structMezzanine_1_1UI_1_1Vertex.xhtml" title="Basic class describing a vertex in the UI to be rendered." alt="" coords="4264,235,4424,264"/>
-<area shape="rect" id="node231" href="$structMezzanine_1_1UI_1_1Sprite.xhtml" title="Basic class used to describe a portion of a texture to be applied to a Quad." alt="" coords="3969,372,4127,401"/>
-<area shape="rect" id="node240" href="$classMezzanine_1_1UI_1_1Glyph.xhtml" title="Class used to describe a single glyph or character available for text operations." alt="" coords="4600,235,4755,264"/>
-<area shape="rect" id="node262" href="$classMezzanine_1_1UI_1_1TextureAtlas.xhtml" title="Mezzanine::UI::TextureAtlas" alt="" coords="4080,871,4275,900"/>
-<area shape="rect" id="node323" href="$structMezzanine_1_1UI_1_1ResizingInfo.xhtml" title="This is a helper struct for use in resizing UI containers." alt="" coords="5252,871,5481,900"/>
-<area shape="rect" id="node290" href="$structMezzanine_1_1UI_1_1ScreenInternalData.xhtml" title="Basic struct holding some of the internal bits of this class that could not be placed on the class di..." alt="" coords="4365,1948,4608,1977"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1ExtendedRenderableFactory.xhtml" title="This class is responsible for the creation and destruction of all UI renderables." alt="" coords="4465,1729,4716,1775"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1RenderableFactory.xhtml" title="This class is responsible for the creation and destruction of all UI renderables." alt="" coords="4852,1614,5041,1661"/>
-<area shape="rect" id="node28" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; UIManager \&gt;" alt="" coords="5359,1614,5516,1661"/>
-<area shape="rect" id="node249" href="$classMezzanine_1_1UI_1_1WidgetUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of widgets in the UI system." alt="" coords="5116,1614,5324,1661"/>
-<area shape="rect" id="node21" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="2721,871,2908,900"/>
-<area shape="rect" id="node56" href="$classMezzanine_1_1WorldManager.xhtml" title="This is the base class for all managers that belong to a single world instance." alt="" coords="2168,996,2355,1025"/>
-<area shape="rect" id="node132" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" title="This is intended to store basic graphics setting for the user." alt="" coords="2825,987,2980,1034"/>
-<area shape="rect" id="node23" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1968,707,2117,736"/>
-<area shape="rect" id="node25" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="2188,862,2345,909"/>
-<area shape="rect" id="node33" href="$classMezzanine_1_1Graphics_1_1Viewport.xhtml" title="This class is for creating and managing viewports within a game window." alt="" coords="2609,1243,2764,1290"/>
-<area shape="rect" id="node35" href="$classMezzanine_1_1Camera.xhtml" title="This is the camera class." alt="" coords="2492,1367,2641,1396"/>
-<area shape="rect" id="node54" href="$classMezzanine_1_1CameraManager.xhtml" title="This is the manager class for all camera functions." alt="" coords="2219,1737,2424,1767"/>
-<area shape="rect" id="node122" href="$classMezzanine_1_1CameraController.xhtml" title="This is a simplified controller class for use with cameras." alt="" coords="2461,1507,2672,1536"/>
-<area shape="rect" id="node37" href="$classMezzanine_1_1AttachableChild.xhtml" title="This class is the base class for objects that can be attached to AttachableParent." alt="" coords="613,707,811,736"/>
-<area shape="rect" id="node89" href="$classMezzanine_1_1WorldNode.xhtml" title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails..." alt="" coords="499,1252,664,1281"/>
-<area shape="rect" id="node100" href="$classMezzanine_1_1ParticleEffect.xhtml" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions." alt="" coords="1037,871,1216,900"/>
-<area shape="rect" id="node108" href="$classMezzanine_1_1Light.xhtml" title="This class is the class used for dynamic lighting within the scene." alt="" coords="1103,1252,1231,1281"/>
-<area shape="rect" id="node114" href="$classMezzanine_1_1Entity.xhtml" title="This class is useful for representing graphical bodies without a physics representation." alt="" coords="940,1367,1073,1396"/>
-<area shape="rect" id="node39" href="$classMezzanine_1_1AttachableBase.xhtml" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="165,537,363,567"/>
-<area shape="rect" id="node47" href="$classMezzanine_1_1AttachableParent.xhtml" title="Base class for objects that can have attachables attached to them." alt="" coords="311,996,519,1025"/>
-<area shape="rect" id="node41" href="$classMezzanine_1_1Transform.xhtml" title="Stores information about relative location and rotation in 3d space." alt="" coords="1015,537,1175,567"/>
-<area shape="rect" id="node43" href="$classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space." alt="" coords="1017,111,1164,140"/>
-<area shape="rect" id="node73" href="$classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world." alt="" coords="919,300,1052,329"/>
-<area shape="rect" id="node45" href="$classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space." alt="" coords="1128,372,1296,401"/>
-<area shape="rect" id="node71" href="$classMezzanine_1_1Internal_1_1SceneManagerData.xhtml" title="Stores internal data for the SCeneManager to keep it from cluttering the Header file." alt="" coords="1383,1243,1540,1290"/>
-<area shape="rect" id="node68" href="$classMezzanine_1_1SceneManager.xhtml" title="This class contains utilities and functions to allow the manipulation of the Graphical scene..." alt="" coords="1364,1137,1559,1167"/>
-<area shape="rect" id="node59" href="$classMezzanine_1_1World.xhtml" title="This class represents a world for objects to interact within." alt="" coords="2389,1252,2520,1281"/>
-<area shape="rect" id="node82" href="$classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world..." alt="" coords="1705,1243,1935,1290"/>
-<area shape="rect" id="node117" href="$structMezzanine_1_1Internal_1_1EntityInternalData.xhtml" title="This class stores the internal data of an Entity." alt="" coords="935,1243,1079,1290"/>
-<area shape="rect" id="node77" title="STL class." alt="" coords="3367,235,3452,264"/>
-<area shape="rect" id="node135" href="$classMezzanine_1_1ObjectSettingsHandler.xhtml" title="An abstract class for other classes that manage groups of settings." alt="" coords="2983,862,3175,909"/>
-<area shape="rect" id="node139" href="$classMezzanine_1_1ObjectSettingFile.xhtml" title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s." alt="" coords="2971,372,3176,401"/>
-<area shape="rect" id="node146" href="$classMezzanine_1_1ObjectSettingSetContainer.xhtml" title="A base class for other classes that store ObjectSettingSet&#39;s." alt="" coords="2068,363,2252,410"/>
-<area shape="rect" id="node206" href="$classMezzanine_1_1UI_1_1Caption.xhtml" title="This class is a helper class, specifically for use with text." alt="" coords="3637,1137,3805,1167"/>
-<area shape="rect" id="node219" href="$structMezzanine_1_1UI_1_1VertexData.xhtml" title="Basic class describing a vertex in the UI to be rendered." alt="" coords="4243,372,4432,401"/>
-<area shape="rect" id="node236" href="$classMezzanine_1_1UI_1_1GlyphData.xhtml" title="Class used to describe a single glyph or character available for text operations." alt="" coords="3892,537,4079,567"/>
-<area shape="rect" id="node286" href="$structMezzanine_1_1UI_1_1AtlasAndPosition.xhtml" title="This class stores how the calls to Render are to be done." alt="" coords="3200,372,3424,401"/>
-<area shape="rect" id="node79" title="STL class." alt="" coords="3341,102,3477,149"/>
-<area shape="rect" id="node125" href="$structMezzanine_1_1CameraController_1_1AngleLimits.xhtml" title="Boundaries for rotation on one axis." alt="" coords="2243,1358,2453,1405"/>
-<area shape="rect" id="node128" href="$classMezzanine_1_1Graphics_1_1GameWindow.xhtml" title="This class is for creating and managing game windows." alt="" coords="2647,1129,2801,1175"/>
-<area shape="rect" id="node130" href="$structMezzanine_1_1WindowSettings.xhtml" title="This stores all the basic configuration options a game window supports." alt="" coords="1967,871,2164,900"/>
-<area shape="rect" id="node165" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;" alt="" coords="2839,1129,3001,1175"/>
-<area shape="rect" id="node144" href="$classMezzanine_1_1ObjectSettingGroup.xhtml" title="A class that store&#39;s a collection of SettingSets that can be applied together." alt="" coords="2557,529,2741,575"/>
-<area shape="rect" id="node150" href="$classMezzanine_1_1ObjectSettingSet.xhtml" title="A class that store&#39;s a named set of settings for an object." alt="" coords="1985,537,2191,567"/>
-<area shape="rect" id="node174" href="$classMezzanine_1_1Graphics_1_1RenderWorkUnit.xhtml" title="This does the main loop processing for required to make the Graphics Manager function." alt="" coords="3199,862,3353,909"/>
-<area shape="rect" id="node307" href="$classMezzanine_1_1UI_1_1InputCaptureData.xhtml" title="This class contains all the utilities necessary for capturing input." alt="" coords="6061,235,6293,264"/>
-<area shape="rect" id="node192" href="$classMezzanine_1_1UI_1_1Button.xhtml" title="This class is a helper class, specifically for use as a button." alt="" coords="4849,1252,5012,1281"/>
-<area shape="rect" id="node200" href="$classMezzanine_1_1UI_1_1ActivatableListener.xhtml" title="This class provides customizable functionality to the activatable class." alt="" coords="6304,698,6493,745"/>
-<area shape="rect" id="node300" href="$classMezzanine_1_1UI_1_1ScreenVertexData.xhtml" title="This class stores all vertices pertaining to a layer sorted by their priority for rendering..." alt="" coords="4595,707,4829,736"/>
-<area shape="rect" id="node224" href="$classMezzanine_1_1ColourValue.xhtml" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="4292,111,4465,140"/>
-<area shape="rect" id="node245" href="$structMezzanine_1_1UI_1_1KerningInfo.xhtml" title="Basic class used to describe Kerning for a given Glyph." alt="" coords="4517,5,4707,35"/>
-<area shape="rect" id="node269" href="$structMezzanine_1_1UI_1_1TextureAtlasInternalData.xhtml" title="Mezzanine::UI::TextureAtlas\lInternalData" alt="" coords="4080,698,4275,745"/>
-<area shape="rect" id="node303" href="$classMezzanine_1_1Matrix4x4.xhtml" title="Mezzanine::Matrix4x4" alt="" coords="4180,1737,4340,1767"/>
-<area shape="rect" id="node309" title="STL class." alt="" coords="6352,111,6557,140"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1EnclosedRenderableContainerWidget.xhtml" title="This is an abstract class for the creation and storage of widgets to be used by other classes..." alt="" coords="5170,1137,5418,1183"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1RenderableContainerWidget.xhtml" title="This is an interface class for the two types of Renderable Container Widgets." alt="" coords="5922,634,6112,681"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Widget.xhtml" title="This class is the base class for all widgets." alt="" coords="6022,385,6182,415"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1UI_1_1Renderable.xhtml" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="6140,551,6329,580"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1UI_1_1UIManager.xhtml" title="This class is responsible for any and all user interactions with the User interface/HUD." alt="" coords="4765,1515,4952,1544"/>
+<area shape="rect" id="node205" href="$classMezzanine_1_1UI_1_1Activatable.xhtml" title="This is a helper class that encapsulates the functionality of an object that can be activated to take..." alt="" coords="5876,551,6065,580"/>
+<area shape="rect" id="node213" href="$classMezzanine_1_1UI_1_1WidgetListener.xhtml" title="This is a listener class for widgets." alt="" coords="6353,551,6566,580"/>
+<area shape="rect" id="node309" href="$structMezzanine_1_1UI_1_1IndexData.xhtml" title="This is a basic class for storing data relating to a specific zorder in the UI." alt="" coords="5153,879,5337,908"/>
+<area shape="rect" id="node223" href="$classMezzanine_1_1UI_1_1BasicRenderable.xhtml" title="Base class for renderables that generate verticies." alt="" coords="4890,735,5114,764"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="5170,111,5317,140"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1Screen.xhtml" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al..." alt="" coords="4029,1851,4192,1880"/>
+<area shape="rect" id="node219" href="$classMezzanine_1_1UI_1_1Rectangle.xhtml" title="This class is a helper class, specifically for use with background sprites and colours." alt="" coords="4828,1004,5009,1033"/>
+<area shape="rect" id="node221" href="$classMezzanine_1_1UI_1_1AreaRenderable.xhtml" title="This class defines a renderable that covers an area, such as a rectangle or circle." alt="" coords="4809,879,5028,908"/>
+<area shape="rect" id="node232" href="$structMezzanine_1_1UI_1_1Vertex.xhtml" title="Basic class describing a vertex in the UI to be rendered." alt="" coords="4338,241,4498,271"/>
+<area shape="rect" id="node242" href="$structMezzanine_1_1UI_1_1Sprite.xhtml" title="Basic class used to describe a portion of a texture to be applied to a Quad." alt="" coords="4092,385,4249,415"/>
+<area shape="rect" id="node251" href="$classMezzanine_1_1UI_1_1Glyph.xhtml" title="Class used to describe a single glyph or character available for text operations." alt="" coords="4793,241,4948,271"/>
+<area shape="rect" id="node274" href="$classMezzanine_1_1UI_1_1TextureAtlas.xhtml" title="Mezzanine::UI::TextureAtlas" alt="" coords="4110,879,4305,908"/>
+<area shape="rect" id="node335" href="$structMezzanine_1_1UI_1_1ResizingInfo.xhtml" title="This is a helper struct for use in resizing UI containers." alt="" coords="5412,879,5641,908"/>
+<area shape="rect" id="node302" href="$structMezzanine_1_1UI_1_1ScreenInternalData.xhtml" title="Basic struct holding some of the internal bits of this class that could not be placed on the class di..." alt="" coords="4309,1956,4552,1985"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1ExtendedRenderableFactory.xhtml" title="This class is responsible for the creation and destruction of all UI renderables." alt="" coords="4182,1737,4433,1783"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1RenderableFactory.xhtml" title="This class is responsible for the creation and destruction of all UI renderables." alt="" coords="4266,1622,4456,1669"/>
+<area shape="rect" id="node28" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; UIManager \&gt;" alt="" coords="4801,1622,4958,1669"/>
+<area shape="rect" id="node261" href="$classMezzanine_1_1UI_1_1WidgetUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of widgets in the UI system." alt="" coords="4569,1622,4777,1669"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="2129,735,2316,764"/>
+<area shape="rect" id="node56" href="$classMezzanine_1_1WorldManager.xhtml" title="This is the base class for all managers that belong to a single world instance." alt="" coords="1598,879,1785,908"/>
+<area shape="rect" id="node141" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" title="This is intended to store basic graphics setting for the user." alt="" coords="2432,995,2586,1042"/>
+<area shape="rect" id="node23" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1996,551,2145,580"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1948,726,2105,773"/>
+<area shape="rect" id="node33" href="$classMezzanine_1_1Graphics_1_1Viewport.xhtml" title="This class is for creating and managing viewports within a game window." alt="" coords="1952,1251,2106,1298"/>
+<area shape="rect" id="node35" href="$classMezzanine_1_1Camera.xhtml" title="This is the camera class." alt="" coords="1728,1375,1877,1404"/>
+<area shape="rect" id="node54" href="$classMezzanine_1_1CameraManager.xhtml" title="This is the manager class for all camera functions." alt="" coords="1424,1745,1629,1775"/>
+<area shape="rect" id="node131" href="$classMezzanine_1_1CameraController.xhtml" title="This is a simplified controller class for use with cameras." alt="" coords="1296,1515,1506,1544"/>
+<area shape="rect" id="node37" href="$classMezzanine_1_1AttachableChild.xhtml" title="This class is the base class for objects that can be attached to AttachableParent." alt="" coords="469,551,666,580"/>
+<area shape="rect" id="node98" href="$classMezzanine_1_1WorldNode.xhtml" title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails..." alt="" coords="461,1145,626,1175"/>
+<area shape="rect" id="node109" href="$classMezzanine_1_1ParticleEffect.xhtml" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions." alt="" coords="1086,735,1265,764"/>
+<area shape="rect" id="node117" href="$classMezzanine_1_1Light.xhtml" title="This class is the class used for dynamic lighting within the scene." alt="" coords="1318,1145,1446,1175"/>
+<area shape="rect" id="node123" href="$classMezzanine_1_1Entity.xhtml" title="This class is useful for representing graphical bodies without a physics representation." alt="" coords="757,1260,890,1289"/>
+<area shape="rect" id="node39" href="$classMezzanine_1_1AttachableBase.xhtml" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="124,385,321,415"/>
+<area shape="rect" id="node47" href="$classMezzanine_1_1AttachableParent.xhtml" title="Base class for objects that can have attachables attached to them." alt="" coords="348,879,556,908"/>
+<area shape="rect" id="node41" href="$classMezzanine_1_1Transform.xhtml" title="Stores information about relative location and rotation in 3d space." alt="" coords="488,385,648,415"/>
+<area shape="rect" id="node43" href="$classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space." alt="" coords="768,111,914,140"/>
+<area shape="rect" id="node73" href="$classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world." alt="" coords="861,313,994,343"/>
+<area shape="rect" id="node45" href="$classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space." alt="" coords="478,241,646,271"/>
+<area shape="rect" id="node71" href="$classMezzanine_1_1Internal_1_1SceneManagerData.xhtml" title="Stores internal data for the SCeneManager to keep it from cluttering the Header file." alt="" coords="1942,1137,2100,1183"/>
+<area shape="rect" id="node68" href="$classMezzanine_1_1SceneManager.xhtml" title="This class contains utilities and functions to allow the manipulation of the Graphical scene..." alt="" coords="1305,1004,1500,1033"/>
+<area shape="rect" id="node59" href="$classMezzanine_1_1World.xhtml" title="This class represents a world for objects to interact within." alt="" coords="2124,1145,2254,1175"/>
+<area shape="rect" id="node84" href="$classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world..." alt="" coords="1470,1137,1700,1183"/>
+<area shape="rect" id="node126" href="$structMezzanine_1_1Internal_1_1EntityInternalData.xhtml" title="This class stores the internal data of an Entity." alt="" coords="752,1137,896,1183"/>
+<area shape="rect" id="node77" title="STL class." alt="" coords="3493,241,3578,271"/>
+<area shape="rect" id="node144" href="$classMezzanine_1_1ObjectSettingsHandler.xhtml" title="An abstract class for other classes that manage groups of settings." alt="" coords="3012,870,3204,917"/>
+<area shape="rect" id="node148" href="$classMezzanine_1_1ObjectSettingFile.xhtml" title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s." alt="" coords="2908,385,3113,415"/>
+<area shape="rect" id="node155" href="$classMezzanine_1_1ObjectSettingSetContainer.xhtml" title="A base class for other classes that store ObjectSettingSet&#39;s." alt="" coords="3152,377,3336,423"/>
+<area shape="rect" id="node217" href="$classMezzanine_1_1UI_1_1Caption.xhtml" title="This class is a helper class, specifically for use with text." alt="" coords="3901,1145,4069,1175"/>
+<area shape="rect" id="node230" href="$structMezzanine_1_1UI_1_1VertexData.xhtml" title="Basic class describing a vertex in the UI to be rendered." alt="" coords="4273,385,4462,415"/>
+<area shape="rect" id="node247" href="$classMezzanine_1_1UI_1_1GlyphData.xhtml" title="Class used to describe a single glyph or character available for text operations." alt="" coords="4148,551,4334,580"/>
+<area shape="rect" id="node298" href="$structMezzanine_1_1UI_1_1AtlasAndPosition.xhtml" title="This class stores how the calls to Render are to be done." alt="" coords="1820,385,2044,415"/>
+<area shape="rect" id="node79" title="STL class." alt="" coords="3468,102,3604,149"/>
+<area shape="rect" id="node82" href="$classMezzanine_1_1Threading_1_1ThreadSpecificStorage.xhtml" title="A thread specific collection of double&#45;buffered and algorithm specific resources." alt="" coords="2428,870,2601,917"/>
+<area shape="rect" id="node86" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.xhtml" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="1109,542,1269,589"/>
+<area shape="rect" id="node186" href="$classMezzanine_1_1Threading_1_1MonopolyWorkUnit.xhtml" title="A kind of workunit given exclusive runtime so it can consume time on multiple threads." alt="" coords="1717,726,1877,773"/>
+<area shape="rect" id="node88" href="$classMezzanine_1_1Threading_1_1iWorkUnit.xhtml" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="949,233,1109,279"/>
+<area shape="rect" id="node93" href="$structMezzanine_1_1DefaultRollingAverage.xhtml" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="1260,377,1444,423"/>
+<area shape="rect" id="node134" href="$structMezzanine_1_1CameraController_1_1AngleLimits.xhtml" title="Boundaries for rotation on one axis." alt="" coords="1304,1366,1514,1413"/>
+<area shape="rect" id="node137" href="$classMezzanine_1_1Graphics_1_1GameWindow.xhtml" title="This class is for creating and managing game windows." alt="" coords="2278,1137,2433,1183"/>
+<area shape="rect" id="node139" href="$structMezzanine_1_1WindowSettings.xhtml" title="This stores all the basic configuration options a game window supports." alt="" coords="1809,879,2006,908"/>
+<area shape="rect" id="node174" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;" alt="" coords="2469,1137,2632,1183"/>
+<area shape="rect" id="node153" href="$classMezzanine_1_1ObjectSettingGroup.xhtml" title="A class that store&#39;s a collection of SettingSets that can be applied together." alt="" coords="2884,542,3068,589"/>
+<area shape="rect" id="node159" href="$classMezzanine_1_1ObjectSettingSet.xhtml" title="A class that store&#39;s a named set of settings for an object." alt="" coords="3329,551,3534,580"/>
+<area shape="rect" id="node184" href="$classMezzanine_1_1Graphics_1_1RenderWorkUnit.xhtml" title="This does the main loop processing for required to make the Graphics Manager function." alt="" coords="2030,870,2185,917"/>
+<area shape="rect" id="node319" href="$classMezzanine_1_1UI_1_1InputCaptureData.xhtml" title="This class contains all the utilities necessary for capturing input." alt="" coords="5984,241,6216,271"/>
+<area shape="rect" id="node203" href="$classMezzanine_1_1UI_1_1Button.xhtml" title="This class is a helper class, specifically for use as a button." alt="" coords="4973,1260,5136,1289"/>
+<area shape="rect" id="node211" href="$classMezzanine_1_1UI_1_1ActivatableListener.xhtml" title="This class provides customizable functionality to the activatable class." alt="" coords="6037,726,6226,773"/>
+<area shape="rect" id="node312" href="$classMezzanine_1_1UI_1_1ScreenVertexData.xhtml" title="This class stores all vertices pertaining to a layer sorted by their priority for rendering..." alt="" coords="4632,735,4866,764"/>
+<area shape="rect" id="node235" href="$classMezzanine_1_1ColourValue.xhtml" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="4502,111,4676,140"/>
+<area shape="rect" id="node256" href="$structMezzanine_1_1UI_1_1KerningInfo.xhtml" title="Basic class used to describe Kerning for a given Glyph." alt="" coords="4705,5,4894,35"/>
+<area shape="rect" id="node281" href="$structMezzanine_1_1UI_1_1TextureAtlasInternalData.xhtml" title="Mezzanine::UI::TextureAtlas\lInternalData" alt="" coords="4168,726,4362,773"/>
+<area shape="rect" id="node315" href="$classMezzanine_1_1Matrix4x4.xhtml" title="Mezzanine::Matrix4x4" alt="" coords="3868,1745,4028,1775"/>
+<area shape="rect" id="node321" title="STL class." alt="" coords="5997,111,6202,140"/>
 </map>

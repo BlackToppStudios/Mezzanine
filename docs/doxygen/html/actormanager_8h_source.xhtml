@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;15,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -130,7 +130,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;worldmanager.h&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;managerfactory.h&quot;</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;singleton.h&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;Threading/workunit.h&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="workunit_8h.xhtml" title="This file has the definition of the workunit.">Threading/workunit.h</a>&quot;</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
@@ -143,7 +143,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">    /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of actors.</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">    /// @details</span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">    ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ActorUpdateWorkUnit.xhtml">   60</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1ActorUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of actors.">ActorUpdateWorkUnit</a> : <span class="keyword">public</span> Threading::DefaultWorkUnit</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ActorUpdateWorkUnit.xhtml">   60</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1ActorUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of actors.">ActorUpdateWorkUnit</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.xhtml" title="Default implementation of WorkUnit. This represents on piece of work through time.">Threading::DefaultWorkUnit</a></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">protected</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">        /// @internal</span></div>
@@ -169,7 +169,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">        /// @brief This does any required update of the Actors stored by it&#39;s manager.</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">        /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it&#39;s execution.</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoWork(Threading::DefaultThreadSpecificStorage::Type&amp; CurrentThreadStorage);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoWork(<a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.xhtml" title="A thread specific collection of double-buffered and algorithm specific resources.">Threading::DefaultThreadSpecificStorage::Type</a>&amp; CurrentThreadStorage);</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    };<span class="comment">//ActorUpdateWorkUnit</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
@@ -198,7 +198,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00112"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ActorManager.xhtml#a10706c55cc3dac684432bad7c63300c9">  112</a></span>&#160;<span class="comment"></span>        <a class="code" href="classMezzanine_1_1ActorUpdateWorkUnit.xhtml" title="This is a Mezzanine::Threading::iWorkUnit for the updating of actors.">ActorUpdateWorkUnit</a>* <a class="code" href="classMezzanine_1_1ActorManager.xhtml#a10706c55cc3dac684432bad7c63300c9" title="The work unit that updates all the actors stored by this manager.">ActorUpdateWork</a>;<span class="comment"></span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">        /// @internal</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">        /// @brief Can be used for thread safe logging and other thread specific resources.</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ActorManager.xhtml#ab7a30e891e6c9762a7a87094869f7b87">  115</a></span>&#160;<span class="comment"></span>        Threading::DefaultThreadSpecificStorage::Type* <a class="code" href="classMezzanine_1_1ActorManager.xhtml#ab7a30e891e6c9762a7a87094869f7b87" title="Can be used for thread safe logging and other thread specific resources.">ThreadResources</a>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ActorManager.xhtml#ab7a30e891e6c9762a7a87094869f7b87">  115</a></span>&#160;<span class="comment"></span>        <a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.xhtml" title="A thread specific collection of double-buffered and algorithm specific resources.">Threading::DefaultThreadSpecificStorage::Type</a>* <a class="code" href="classMezzanine_1_1ActorManager.xhtml#ab7a30e891e6c9762a7a87094869f7b87" title="Can be used for thread safe logging and other thread specific resources.">ThreadResources</a>;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">public</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">        /// @brief Class constructor.</span></div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"></span>        <a class="code" href="classMezzanine_1_1ActorManager.xhtml" title="A manager responsible for the storage and management of all actors that exist in a world...">ActorManager</a>();<span class="comment"></span></div>
@@ -306,6 +306,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 14 2013 01:15:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Sep 15 2013 04:00:22 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

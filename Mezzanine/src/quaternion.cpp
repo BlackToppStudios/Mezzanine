@@ -112,8 +112,8 @@ namespace Mezzanine
     void Quaternion::SetFromAxisAngle(const Real& Angle, const Vector3& Axis)
     {
         Real HalfAngle ( 0.5*Angle );
-        Real AngleSin = MathTool::Sin(HalfAngle);
-        this->W = MathTool::Cos(HalfAngle);
+        Real AngleSin = MathTools::Sin(HalfAngle);
+        this->W = MathTools::Cos(HalfAngle);
         this->X = AngleSin * Axis.X;
         this->Y = AngleSin * Axis.Y;
         this->Z = AngleSin * Axis.Z;
@@ -126,7 +126,7 @@ namespace Mezzanine
 
         if(Trace > 0.0)
         {
-            Root = MathTool::Sqrt(Trace + 1.0);
+            Root = MathTools::Sqrt(Trace + 1.0);
             this->W = Root * 0.5;
             Root = 0.5/Root;
             this->X = (Mat.Matrix[2][1] - Mat.Matrix[1][2]) * Root;
@@ -142,7 +142,7 @@ namespace Mezzanine
             size_t J = s_iNext[I];
             size_t K = s_iNext[J];
 
-            Root = MathTool::Sqrt(Mat.Matrix[I][I] - Mat.Matrix[J][J] - Mat.Matrix[K][K] + 1.0);
+            Root = MathTools::Sqrt(Mat.Matrix[I][I] - Mat.Matrix[J][J] - Mat.Matrix[K][K] + 1.0);
             Real* QuatMem[3] = { &X, &Y, &Z };
             *QuatMem[I] = 0.5 * Root;
             Root = 0.5 / Root;

@@ -219,11 +219,11 @@ namespace Mezzanine
             for( Whole X = 0 ; X < Col->GetNumContactPoints() ; ++X )
             {
                 Real Dist = Col->GetDistance(X);
-                if( MathTool::Fabs(Dist) < BestMatch && Dist <= 0 &&
+                if( MathTools::Fabs(Dist) < BestMatch && Dist <= 0 &&
                     0 != Col->GetAppliedImpulse(X) )
                 {
                     FoundIndex = X;
-                    BestMatch = MathTool::Fabs(Dist);
+                    BestMatch = MathTools::Fabs(Dist);
                     NegativeDistFound = true;
                     break;
                 }

@@ -43,7 +43,9 @@ John Blackwood - makoenergy02@gmail.com
 #include "Physics/rigidproxy.h"
 #include "Physics/collisionshape.h"
 #include "Physics/physicsmanager.h"
-#include "collisionshapemanager.h"
+#include "Physics/collisionshapemanager.h"
+
+#include "stringtool.h"
 #include "world.h"
 
 #include "Internal/motionstate.h.cpp"
@@ -55,7 +57,8 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        RigidProxy::RigidProxy(const Real& Mass) :
+        RigidProxy::RigidProxy(const Real Mass, PhysicsManager* Creator) :
+            PhysicsProxy(Creator),
             PhysicsRigidBody(NULL)
         {
             this->CreateRigidObject(Mass);
@@ -66,14 +69,14 @@ namespace Mezzanine
             delete PhysicsRigidBody;
         }
 
-        void RigidProxy::CreateRigidObject(const Real& Mass)
+        void RigidProxy::CreateRigidObject(const Real Mass)
         {
             this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
-            PhysicsRigidBody->setUserPointer(this);
+            this->PhysicsRigidBody->setUserPointer(this);
             if(0.0 == Mass) {
-                PhysicsRigidBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+                this->PhysicsRigidBody->setCollisionFlags( btCollisionObject::CF_STATIC_OBJECT );
             }else{
-                PhysicsRigidBody->setCollisionFlags(PhysicsRigidBody->getCollisionFlags() & (~btCollisionObject::CF_STATIC_OBJECT));
+                this->PhysicsRigidBody->setCollisionFlags( this->PhysicsRigidBody->getCollisionFlags() & (~btCollisionObject::CF_STATIC_OBJECT) );
             }
         }
 
@@ -87,21 +90,18 @@ namespace Mezzanine
 
         void RigidProxy::AddToWorld()
         {
-            if( !this->IsInWorld() && this->ParentObject ) {
-                World* ParentWorld = this->ParentObject->GetWorld();
-                if( ParentWorld ) {
-                    ParentWorld->GetPhysicsManager()->_GetPhysicsWorldPointer()->addRigidBody( this->PhysicsRigidBody );
-                }
+            if( !this->IsInWorld() ) {
+                // Preserve gravity when adding
+                Vector3 Grav = this->GetGravity();
+                this->Manager->_GetPhysicsWorldPointer()->addRigidBody( this->PhysicsRigidBody, this->CollisionGroup, this->CollisionMask );
+                this->SetGravity(Grav);
             }
         }
 
         void RigidProxy::RemoveFromWorld()
         {
-            if( this->IsInWorld() && this->ParentObject ) {
-                World* ParentWorld = this->ParentObject->GetWorld();
-                if( ParentWorld ) {
-                    ParentWorld->GetPhysicsManager()->_GetPhysicsWorldPointer()->removeRigidBody( this->PhysicsRigidBody );
-                }
+            if( this->IsInWorld() ) {
+                this->Manager->_GetPhysicsWorldPointer()->removeRigidBody( this->PhysicsRigidBody );
             }
         }
 
@@ -110,146 +110,91 @@ namespace Mezzanine
 
         void RigidProxy::SetCollisionShape(CollisionShape* Shape)
         {
-            if(CollisionShape::ST_StaticTriMesh != Shape->GetType())
-            {
-                btScalar Mass = this->PhysicsRigidBody->getInvMass();
-                if(0 != Mass)
-                    Mass = 1 / Mass;
-                btVector3 Inertia(0,0,0);
-                Shape->_GetInternalShape()->calculateLocalInertia(Mass,Inertia);
-                this->PhysicsRigidBody->setMassProps(Mass,Inertia);
-                this->PhysicsProxy::SetCollisionShape(Shape);
-                this->PhysicsRigidBody->updateInertiaTensor();
+            if( Shape != NULL ) {
+                if(CollisionShape::ST_StaticTriMesh != Shape->GetType()) {
+                    Real Mass = this->PhysicsRigidBody->getInvMass();
+                    if(0 != Mass) {
+                        Mass = 1 / Mass;
+                    }
+                    btVector3 Inertia(0,0,0);
+                    Shape->_GetInternalShape()->calculateLocalInertia(Mass,Inertia);
+                    this->PhysicsRigidBody->setMassProps(Mass,Inertia);
+                    this->PhysicsProxy::SetCollisionShape(Shape);
+                    this->PhysicsRigidBody->updateInertiaTensor();
+                }else{
+                    this->PhysicsProxy::SetCollisionShape(Shape);
+                }
+                CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
             }else{
                 this->PhysicsProxy::SetCollisionShape(Shape);
             }
-            CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Movement Factors
 
-        void RigidProxy::SetAngularMovementFactor(const Vector3& Factor)
-        {
-            this->PhysicsRigidBody->setAngularFactor(Factor.GetBulletVector3());
-        }
-
-        Vector3 RigidProxy::GetAngularMovementFactor() const
-        {
-            Vector3 AngFact(this->PhysicsRigidBody->getAngularFactor());
-            return AngFact;
-        }
-
         void RigidProxy::SetLinearMovementFactor(const Vector3& Factor)
-        {
-            this->PhysicsRigidBody->setLinearFactor(Factor.GetBulletVector3());
-        }
+            { this->PhysicsRigidBody->setLinearFactor(Factor.GetBulletVector3()); }
 
         Vector3 RigidProxy::GetLinearMovementFactor() const
-        {
-            Vector3 LinFact(this->PhysicsRigidBody->getLinearFactor());
-            return LinFact;
-        }
+            { return Vector3(this->PhysicsRigidBody->getLinearFactor()); }
+
+        void RigidProxy::SetAngularMovementFactor(const Vector3& Factor)
+            { this->PhysicsRigidBody->setAngularFactor(Factor.GetBulletVector3()); }
+
+        Vector3 RigidProxy::GetAngularMovementFactor() const
+            { return Vector3(this->PhysicsRigidBody->getAngularFactor()); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Rigid Physics Properties
 
-        void RigidProxy::SetDamping(const Real& LinDamping, const Real& AngDamping)
-        {
-            this->PhysicsRigidBody->setDamping(LinDamping, AngDamping);
-        }
-
-        Real RigidProxy::GetLinearDamping() const
-        {
-            return this->PhysicsRigidBody->getLinearDamping();
-        }
-
-        Real RigidProxy::GetAngularDamping() const
-        {
-            return this->PhysicsRigidBody->getAngularDamping();
-        }
-
-        void RigidProxy::SetLinearVelocity(const Vector3& LinVel)
-        {
-            this->PhysicsRigidBody->setLinearVelocity(LinVel.GetBulletVector3());
-        }
-
-        Vector3 RigidProxy::GetLinearVelocity() const
-        {
-            Vector3 LinVel(this->PhysicsRigidBody->getLinearVelocity());
-            return LinVel;
-        }
-
-        void RigidProxy::SetAngularVelocity(const Vector3& AngVel)
-        {
-            this->PhysicsRigidBody->setAngularVelocity(AngVel.GetBulletVector3());
-        }
-
-        Vector3 RigidProxy::GetAngularVelocity() const
-        {
-            Vector3 AngVel(this->PhysicsRigidBody->getAngularVelocity());
-            return AngVel;
-        }
-
-        void RigidProxy::SetIndividualGravity(const Vector3& Gravity)
-        {
-            this->PhysicsRigidBody->setGravity(Gravity.GetBulletVector3());
-        }
-
-        Vector3 RigidProxy::GetIndividualGravity() const
-        {
-            Vector3 Gravity(this->PhysicsRigidBody->getGravity());
-            return Gravity;
-        }
-
-        Vector3 RigidProxy::GetForce() const
-        {
-            Vector3 Force(this->PhysicsRigidBody->getTotalForce());
-            return Force;
-        }
-
-        Vector3 RigidProxy::GetTorque() const
-        {
-            Vector3 Torque(this->PhysicsRigidBody->getTotalTorque());
-            return Torque;
-        }
-
-        void RigidProxy::ApplyForce(const Vector3& Force)
-        {
-            this->PhysicsRigidBody->applyCentralForce(Force.GetBulletVector3());
-        }
-
-        void RigidProxy::ApplyTorque(const Vector3& Torque)
-        {
-            this->PhysicsRigidBody->applyTorque(Torque.GetBulletVector3());
-        }
+        void RigidProxy::SetMass(Real NewMass)
+            { this->PhysicsRigidBody->setMassProps( NewMass, btVector3(1,1,1) / this->PhysicsRigidBody->getInvInertiaDiagLocal() ); }
 
         Real RigidProxy::GetMass() const
-        {
-            return  this->PhysicsRigidBody->getInvMass() != 0 ? 1/this->PhysicsRigidBody->getInvMass() : 0;
-        }
+            { return ( this->PhysicsRigidBody->getInvMass() != 0 ? 1 / this->PhysicsRigidBody->getInvMass() : 0 ); }
 
-        Vector3 RigidProxy::GetLocalInertia() const
-        {
-            return  Vector3(this->PhysicsRigidBody->getInvInertiaDiagLocal()).Inverse() ;
-        }
+        void RigidProxy::SetDamping(const Real LinDamping, const Real AngDamping)
+            { this->PhysicsRigidBody->setDamping( LinDamping, AngDamping ); }
 
-        void RigidProxy::SetMass(Real NewMass)
-        {
-            this->PhysicsRigidBody->setMassProps(NewMass, GetLocalInertia().GetBulletVector3());
-        }
+        Real RigidProxy::GetLinearDamping() const
+            { return this->PhysicsRigidBody->getLinearDamping(); }
 
-        void RigidProxy::SetMass(Real NewMass,const Vector3& NewInertia)
-        {
-            this->PhysicsRigidBody->setMassProps(NewMass, NewInertia.GetBulletVector3());
-        }
+        Real RigidProxy::GetAngularDamping() const
+            { return this->PhysicsRigidBody->getAngularDamping(); }
+
+        void RigidProxy::SetLinearVelocity(const Vector3& LinVel)
+            { this->PhysicsRigidBody->setLinearVelocity( LinVel.GetBulletVector3() ); }
+
+        Vector3 RigidProxy::GetLinearVelocity() const
+            { return Vector3(this->PhysicsRigidBody->getLinearVelocity()); }
+
+        void RigidProxy::SetAngularVelocity(const Vector3& AngVel)
+            { this->PhysicsRigidBody->setAngularVelocity( AngVel.GetBulletVector3() ); }
+
+        Vector3 RigidProxy::GetAngularVelocity() const
+            { return Vector3(this->PhysicsRigidBody->getAngularVelocity()); }
+
+        void RigidProxy::SetGravity(const Vector3& Gravity)
+            { this->PhysicsRigidBody->setGravity( Gravity.GetBulletVector3() ); }
+
+        Vector3 RigidProxy::GetGravity() const
+            { return Vector3(this->PhysicsRigidBody->getGravity()); }
+
+        void RigidProxy::ApplyForce(const Vector3& Force)
+            { this->PhysicsRigidBody->applyCentralForce( Force.GetBulletVector3() ); }
+
+        Vector3 RigidProxy::GetAppliedForce() const
+            { return Vector3(this->PhysicsRigidBody->getTotalForce()); }
+
+        void RigidProxy::ApplyTorque(const Vector3& Torque)
+            { this->PhysicsRigidBody->applyTorque( Torque.GetBulletVector3() ); }
+
+        Vector3 RigidProxy::GetAppliedTorque() const
+            { return Vector3(this->PhysicsRigidBody->getTotalTorque()); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Sticky Data
-
-        // virtual void SetStickyData(const Whole& MaxNumContacts);
-        // virtual void ClearStickyContacts();
-        // virtual StickyData* GetStickyData() const;
 
         /*
         void RigidProxy::SetStickyData(const Whole& MaxNumContacts)
@@ -289,20 +234,150 @@ namespace Mezzanine
 		*/
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
+        // Serialization
 
-        btRigidBody* RigidProxy::_GetPhysicsObject() const
+        void RigidProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            return this->PhysicsRigidBody;
+            this->PhysicsProxy::ProtoSerialize(SelfRoot);
+            // We're at the base implementation, so no calling of child implementations
+            XML::Node PropertiesNode = SelfRoot.AppendChild( RigidProxy::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("Mass").SetValue( this->GetMass() ) &&
+                PropertiesNode.AppendAttribute("LinearDamping").SetValue( this->GetLinearDamping() ) &&
+                PropertiesNode.AppendAttribute("AngularDamping").SetValue( this->GetAngularDamping() ) &&
+                PropertiesNode.AppendAttribute("IsInWorld").SetValue( this->IsInWorld() ? "true" : "false" ) )
+            {
+                XML::Node LinVelNode = PropertiesNode.AppendChild("LinearVelocty");
+                this->GetLinearVelocity().ProtoSerialize( LinVelNode );
+
+                XML::Node AngVelNode = PropertiesNode.AppendChild("AngularVelocity");
+                this->GetAngularVelocity().ProtoSerialize( AngVelNode );
+
+                XML::Node LinFactNode = PropertiesNode.AppendChild("LinearFactor");
+                this->GetLinearMovementFactor().ProtoSerialize( LinFactNode );
+
+                XML::Node AngFactNode = PropertiesNode.AppendChild("AngularFactor");
+                this->GetAngularMovementFactor().ProtoSerialize( AngFactNode );
+
+                XML::Node ForceNode = PropertiesNode.AppendChild("Force");
+                this->GetAppliedForce().ProtoSerialize( ForceNode );
+
+                XML::Node TorqueNode = PropertiesNode.AppendChild("Torque");
+                this->GetAppliedTorque().ProtoSerialize( TorqueNode );
+
+                XML::Node GravityNode = PropertiesNode.AppendChild("Gravity");
+                this->GetGravity().ProtoSerialize( GravityNode );
+
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",RigidProxy::GetSerializableName() + "Properties",true);
+            }
+        }
+
+        void RigidProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->PhysicsRigidBody->clearForces();
+            this->PhysicsProxy::ProtoDeSerialize(SelfRoot);
+            // We're at the base implementation, so no calling of child implementations
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( RigidProxy::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    Real LinDam = 0, AngDam = 0;
+                    bool InWorld = false;
+
+                    CurrAttrib = PropertiesNode.GetAttribute("Mass");
+                    if( !CurrAttrib.Empty() )
+                        this->SetMass( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("LinearDamping");
+                    if( !CurrAttrib.Empty() )
+                        LinDam = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AngularDamping");
+                    if( !CurrAttrib.Empty() )
+                        AngDam = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("IsInWorld");
+                    if( !CurrAttrib.Empty() )
+                        InWorld = StringTools::ConvertToBool( CurrAttrib.AsString() );
+
+                    this->SetDamping(LinDam,AngDam);
+
+                    // Get the properties that need their own nodes
+                    XML::Node LinVelNode = PropertiesNode.GetChild("LinearVelocty").GetFirstChild();
+                    if( !LinVelNode.Empty() ) {
+                        Vector3 LinVel(LinVelNode);
+                        this->SetLinearVelocity(LinVel);
+                    }
+
+                    XML::Node AngVelNode = PropertiesNode.GetChild("AngularVelocity").GetFirstChild();
+                    if( !AngVelNode.Empty() ) {
+                        Vector3 AngVel(AngVelNode);
+                        this->SetAngularVelocity(AngVel);
+                    }
+
+                    XML::Node LinFactNode = PropertiesNode.GetChild("LinearFactor").GetFirstChild();
+                    if( !LinFactNode.Empty() ) {
+                        Vector3 LinFact(LinFactNode);
+                        this->SetLinearMovementFactor(LinFact);
+                    }
+
+                    XML::Node AngFactNode = PropertiesNode.GetChild("AngularFactor").GetFirstChild();
+                    if( !AngFactNode.Empty() ) {
+                        Vector3 AngFact(AngFactNode);
+                        this->SetAngularMovementFactor(AngFact);
+                    }
+
+                    XML::Node ForceNode = PropertiesNode.GetChild("Force").GetFirstChild();
+                    if( !ForceNode.Empty() ) {
+                        Vector3 Force(ForceNode);
+                        this->ApplyForce(Force);
+                    }
+
+                    XML::Node TorqueNode = PropertiesNode.GetChild("Torque").GetFirstChild();
+                    if( !TorqueNode.Empty() ) {
+                        Vector3 Torque(TorqueNode);
+                        this->ApplyTorque(Torque);
+                    }
+
+                    XML::Node GravityNode = PropertiesNode.GetChild("Gravity").GetFirstChild();
+                    if( !GravityNode.Empty() ) {
+                        Vector3 Gravity(GravityNode);
+                        this->SetGravity(Gravity);
+                    }
+
+                    if( InWorld ) {
+                        this->AddToWorld();
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RigidProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,RigidProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String RigidProxy::GetDerivedSerializableName() const
+        {
+            return RigidProxy::GetSerializableName();
+        }
+
+        String RigidProxy::GetSerializableName()
+        {
+            return "RigidProxy";
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Inherited from PhysicsProxy
+        // Internal Methods
+
+        btRigidBody* RigidProxy::_GetPhysicsObject() const
+            { return this->PhysicsRigidBody; }
 
         btCollisionObject* RigidProxy::_GetBasePhysicsObject() const
-        {
-            return this->PhysicsRigidBody;
-        }
+            { return this->PhysicsRigidBody; }
     }// Physics
 }// Mezzanine
 

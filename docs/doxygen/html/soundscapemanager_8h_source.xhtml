@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;15,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -129,7 +129,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;worldmanager.h&quot;</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;managerfactory.h&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;Audio/audioenumerations.h&quot;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;Threading/workunit.h&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="workunit_8h.xhtml" title="This file has the definition of the workunit.">Threading/workunit.h</a>&quot;</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
@@ -142,7 +142,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">        /// @brief This is the work unit for updating audio buffers as necessary for audio playback.</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">        /// @details</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Audio_1_1iBufferUpdate3DWorkUnit.xhtml">   59</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Audio_1_1iBufferUpdate3DWorkUnit.xhtml" title="This is the work unit for updating audio buffers as necessary for audio playback.">iBufferUpdate3DWorkUnit</a> : <span class="keyword">public</span> Threading::DefaultWorkUnit</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Audio_1_1iBufferUpdate3DWorkUnit.xhtml">   59</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Audio_1_1iBufferUpdate3DWorkUnit.xhtml" title="This is the work unit for updating audio buffers as necessary for audio playback.">iBufferUpdate3DWorkUnit</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.xhtml" title="Default implementation of WorkUnit. This represents on piece of work through time.">Threading::DefaultWorkUnit</a></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
@@ -153,7 +153,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">            /// @brief This does any required updating of audio buffers belonging to sound proxies in this manager.</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it&#39;s execution.</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoWork(Threading::DefaultThreadSpecificStorage::Type&amp; CurrentThreadStorage) = 0;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoWork(<a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.xhtml" title="A thread specific collection of double-buffered and algorithm specific resources.">Threading::DefaultThreadSpecificStorage::Type</a>&amp; CurrentThreadStorage) = 0;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        };<span class="comment">//iBufferUpdate3DWorkUnit</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
@@ -430,6 +430,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 14 2013 01:15:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Sep 15 2013 04:00:22 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
