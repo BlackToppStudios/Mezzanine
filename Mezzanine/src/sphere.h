@@ -154,22 +154,22 @@ namespace Mezzanine
         /// @brief Greater-than operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
-        /// @return Returns true if this Sphere larger than the other provided Sphere, false otherwise.
+        /// @return Returns true if this Sphere is larger than the other provided Sphere, false otherwise.
         Bool operator>(const Sphere& Other) const;
         /// @brief Greater-than or equals-to operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
-        /// @return Returns true if this Sphere larger than or equal to the other provided Sphere, false otherwise.
+        /// @return Returns true if this Sphere is larger than or equal to the other provided Sphere, false otherwise.
         Bool operator<(const Sphere& Other) const;
         /// @brief Less-than operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
-        /// @return Returns true if this Sphere smaller than the other provided Sphere, false otherwise.
+        /// @return Returns true if this Sphere is smaller than the other provided Sphere, false otherwise.
         Bool operator>=(const Sphere& Other) const;
         /// @brief Less-than or equals-to operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
-        /// @return Returns true if this Sphere smaller than or equal to the other provided Sphere, false otherwise.
+        /// @return Returns true if this Sphere is smaller than or equal to the other provided Sphere, false otherwise.
         Bool operator<=(const Sphere& Other) const;
 
         /// @brief Equality operator.
