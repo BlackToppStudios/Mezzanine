@@ -51,6 +51,7 @@
 #include "stringtool.h"
 #include "mathtool.h"
 #include "XML/xml.h"
+#include "serialization.h"
 
 #include "Ogre.h"
 
@@ -70,6 +71,21 @@ namespace Mezzanine
         {  }
 
     Plane::Plane(const Vector3& First, const Vector3& Second, const Vector3& Third)
+        { this->Define(First,Second,Third); }
+
+    Plane::Plane(const Ogre::Plane& InternalPlane)
+        { this->ExtractOgrePlane(InternalPlane); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void Plane::Define(const Vector3& Norm, const Real Dist)
+    {
+        this->Normal = Norm;
+        this->Distance = Dist;
+    }
+
+    void Plane::Define(const Vector3& First, const Vector3& Second, const Vector3& Third)
     {
         Vector3 Edge1 = Second - First;
 		Vector3 Edge2 = Third - First;
@@ -78,11 +94,33 @@ namespace Mezzanine
 		this->Distance = -(this->Normal.DotProduct(First));
     }
 
-    Plane::Plane(const Ogre::Plane& InternalPlane)
-        { this->ExtractOgrePlane(InternalPlane); }
+    Plane::Side Plane::GetSide(const Vector3& Point) const
+    {
+        Real Dist = this->GetDistance(Point);
+        if( Dist < 0.0 ) {
+            return Plane::S_Negative;
+        }else if( Dist > 0.0 ) {
+            return Plane::S_Positive;
+        }else{
+            return Plane::S_None;
+        }
+    }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Utility
+    Plane::Side Plane::GetSide(const Vector3& Center, const Vector3& HalfSize) const
+    {
+        Real CenterDist = this->GetDistance(Center);
+        Real MaxDist = MathTools::Fabs( this->Normal.DotProduct(HalfSize) );
+        if( CenterDist < -MaxDist ) {
+            return Plane::S_Negative;
+        }else if( CenterDist > +MaxDist ) {
+            return Plane::S_Positive;
+        }else{
+            return Plane::S_Both;
+        }
+    }
+
+    Real Plane::GetDistance(const Vector3& Point) const
+        { return ( this->Normal.DotProduct(Point) + this->Distance ); }
 
     Bool Plane::IsOverlapping(const Sphere& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
@@ -104,6 +142,54 @@ namespace Mezzanine
 
     void Plane::ExtractOgrePlane(const Ogre::Plane& InternalPlane)
         { this->Normal = InternalPlane.normal;  this->Distance = InternalPlane.d; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void Plane::ProtoSerialize(XML::Node& ParentNode) const
+    {
+        XML::Node SelfRoot = ParentNode.AppendChild( Plane::GetSerializableName() );
+
+        if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+            SelfRoot.AppendAttribute("Distance").SetValue( this->Distance ) )
+        {
+            XML::Node CenterNode = SelfRoot.AppendChild("Normal");
+            this->Normal.ProtoSerialize( CenterNode );
+
+            return;
+        }else{
+            SerializeError("Create XML Attribute Values",Plane::GetSerializableName(),true);
+        }
+    }
+
+    void Plane::ProtoDeSerialize(const XML::Node& SelfRoot)
+    {
+        XML::Attribute CurrAttrib;
+
+        if( String(SelfRoot.Name()) == Plane::GetSerializableName() ) {
+            if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                CurrAttrib = SelfRoot.GetAttribute("Distance");
+                if( !CurrAttrib.Empty() )
+                    this->Distance = CurrAttrib.AsReal();
+
+                // Get the properties that need their own nodes
+                XML::Node NormalNode = SelfRoot.GetChild("Normal").GetFirstChild();
+                if( !NormalNode.Empty() ) {
+                    Vector3 Norm(NormalNode);
+                    this->Normal = Norm;
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Plane::GetSerializableName() + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Plane::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+        }
+    }
+
+    String Plane::GetSerializableName()
+    {
+        return "Plane";
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
@@ -140,23 +226,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Plane& x)
 
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Plane& x)
 {
-    if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("Plane") )
-    {
-        if(OneNode.GetAttribute("Version").AsInt() == 1)
-        {
-            x.Distance=OneNode.GetAttribute("Distance").AsReal();
-            if(OneNode.GetFirstChild())
-            {
-                OneNode.GetFirstChild() >> x.Normal;
-            }else{
-                MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Normal not found while parsing Mezzanine::Plane.");
-            }
-        }else{
-            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Plane: Not Version 1.");
-        }
-    }else{
-        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a Plane, found a " + Mezzanine::String(OneNode.Name()));
-    }
+    x.ProtoDeSerialize(OneNode);
 }
 
 #endif
