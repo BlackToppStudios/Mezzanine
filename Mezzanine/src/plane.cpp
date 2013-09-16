@@ -225,6 +225,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Plane& x)
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Plane& x)
 {
     x.ProtoDeSerialize(OneNode);
+    return OneNode;
 }
 
 #endif
