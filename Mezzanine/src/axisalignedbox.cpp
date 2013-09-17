@@ -44,8 +44,15 @@
 /// @brief This file contains the implementation for the AxisAlignedBox class for representing AABB's of objects in the world.
 
 #include "axisalignedbox.h"
+#include "mathtool.h"
 #include "plane.h"
 #include "ray.h"
+#include "exception.h"
+#include "serialization.h"
+
+#include <Ogre.h>
+
+#include <algorithm>
 
 namespace Mezzanine
 {
@@ -62,48 +69,77 @@ namespace Mezzanine
         MaxExt(Max)
         {  }
 
+    AxisAlignedBox::AxisAlignedBox(const Ogre::AxisAlignedBox& InternalAABB)
+        { this->ExtractOgreAABB(InternalAABB); }
+
     AxisAlignedBox::~AxisAlignedBox()
         {  }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Bool AxisAlignedBox::Intersects(const Vector3& ToCheck) const
+    Bool AxisAlignedBox::IsZero() const
     {
-
+        return ( this->MinExt == this->MaxExt );
     }
 
-    Bool AxisAlignedBox::Intersects(const Sphere& ToCheck) const
+    Real AxisAlignedBox::GetVolume() const
     {
-
+        Vector3 Diff = this->MaxExt - this->MinExt;
+        return ( Diff.X * Diff.Y * Diff.Z );
     }
 
-    Bool AxisAlignedBox::Intersects(const AxisAlignedBox& ToCheck) const
+    AxisAlignedBox AxisAlignedBox::GetOverlap(const AxisAlignedBox& Other) const
     {
+        Vector3 NewMin = this->MinExt, NewMax = this->MaxExt;
+        NewMin.Ceil(Other.MinExt);
+        NewMax.Floor(Other.MaxExt);
 
+        if( NewMin.X < NewMax.X && NewMin.Y < NewMax.Y && NewMin.Z < NewMax.Z ) {
+            return AxisAlignedBox(NewMin,NewMax);
+        }else{
+            return AxisAlignedBox();
+        }
     }
 
-    Bool AxisAlignedBox::Intersects(const Plane& ToCheck) const
+    void AxisAlignedBox::Expand(const Vector3& Point)
     {
-
+        this->MinExt.Floor(Point);
+        this->MaxExt.Ceil(Point);
     }
+
+    void AxisAlignedBox::Expand(const AxisAlignedBox& Other)
+    {
+        this->MinExt.Floor(Other.MinExt);
+        this->MaxExt.Ceil(Other.MaxExt);
+    }
+
+    Bool AxisAlignedBox::IsInside(const Vector3& ToCheck) const
+        { return MathTools::IsInside(*this,ToCheck); }
+
+    Bool AxisAlignedBox::IsOverlapping(const Sphere& ToCheck) const
+        { return MathTools::Overlap(*this,ToCheck); }
+
+    Bool AxisAlignedBox::IsOverlapping(const AxisAlignedBox& ToCheck) const
+        { return MathTools::Overlap(*this,ToCheck); }
+
+    Bool AxisAlignedBox::IsOverlapping(const Plane& ToCheck) const
+        { return MathTools::Overlap(*this,ToCheck); }
 
     AxisAlignedBox::RayTestResult AxisAlignedBox::Intersects(const Ray& ToCheck) const
-    {
-
-    }
+        { return MathTools::Intersects(*this,ToCheck); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Extents query
 
     void AxisAlignedBox::SetExtents(const Vector3& Min, const Vector3& Max)
-    {
-        this->MinExt = Min;
-        this->MaxExt = Max;
-    }
+        { this->MinExt = Min;  this->MaxExt = Max; }
 
     Vector3 AxisAlignedBox::GetSize() const
         { return ( this->MaxExt - this->MinExt ); }
+
+    Vector3 AxisAlignedBox::GetHalfSize() const
+        { return ( this->GetSize() * 0.5 ); }
 
     Vector3 AxisAlignedBox::GetCenter() const
         { return ( this->MaxExt + this->MinExt ) * 0.5; }
@@ -116,10 +152,80 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Conversion Methods
+
+    void AxisAlignedBox::ExtractOgreAABB(const Ogre::AxisAlignedBox& InternalAABB)
+        { this->MinExt.ExtractOgreVector3( InternalAABB.getMinimum() );  this->MaxExt.ExtractOgreVector3( InternalAABB.getMaximum() ); }
+
+    Ogre::AxisAlignedBox AxisAlignedBox::GetOgreAABB() const
+        { return Ogre::AxisAlignedBox(this->MinExt.GetOgreVector3(),this->MaxExt.GetOgreVector3()); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void AxisAlignedBox::ProtoSerialize(XML::Node& ParentNode) const
+    {
+        XML::Node SelfRoot = ParentNode.AppendChild( AxisAlignedBox::GetSerializableName() );
+
+        if( SelfRoot.AppendAttribute("Version").SetValue("1") )
+        {
+            XML::Node MinimumNode = SelfRoot.AppendChild("MinExt");
+            this->MinExt.ProtoSerialize( MinimumNode );
+
+            XML::Node MaximumNode = SelfRoot.AppendChild("MaxExt");
+            this->MaxExt.ProtoSerialize( MaximumNode );
+
+            return;
+        }else{
+            SerializeError("Create XML Attribute Values",AxisAlignedBox::GetSerializableName(),true);
+        }
+    }
+
+    void AxisAlignedBox::ProtoDeSerialize(const XML::Node& SelfRoot)
+    {
+        if( String(SelfRoot.Name()) == AxisAlignedBox::GetSerializableName() ) {
+            if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                // Get the properties that need their own nodes
+                XML::Node MinimumNode = SelfRoot.GetChild("MinExt").GetFirstChild();
+                if( !MinimumNode.Empty() )
+                    this->MinExt.ProtoDeSerialize(MinimumNode);
+
+                XML::Node MaximumNode = SelfRoot.GetChild("MaxExt").GetFirstChild();
+                if( !MaximumNode.Empty() )
+                    this->MaxExt.ProtoDeSerialize(MaximumNode);
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + AxisAlignedBox::GetSerializableName() + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,AxisAlignedBox::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+        }
+    }
+
+    String AxisAlignedBox::GetSerializableName()
+    {
+        return "AxisAlignedBox";
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Operators
 
     void AxisAlignedBox::operator=(const AxisAlignedBox& Other)
         { this->MinExt = Other.MinExt;  this->MaxExt = Other.MaxExt; }
+
+    void AxisAlignedBox::operator=(const Ogre::AxisAlignedBox& InternalAABB)
+        { this->ExtractOgreAABB(InternalAABB); }
+
+    Bool AxisAlignedBox::operator>(const AxisAlignedBox& Other) const
+        { return ( this->GetVolume() > Other.GetVolume() ); }
+
+    Bool AxisAlignedBox::operator<(const AxisAlignedBox& Other) const
+        { return ( this->GetVolume() < Other.GetVolume() ); }
+
+    Bool AxisAlignedBox::operator>=(const AxisAlignedBox& Other) const
+        { return ( this->GetVolume() >= Other.GetVolume() ); }
+
+    Bool AxisAlignedBox::operator<=(const AxisAlignedBox& Other) const
+        { return ( this->GetVolume() <= Other.GetVolume() ); }
 
     Bool AxisAlignedBox::operator==(const AxisAlignedBox& Other) const
         { return ( this->MinExt == Other.MinExt && this->MaxExt == Other.MaxExt ); }
