@@ -59,6 +59,11 @@ namespace Mezzanine
         Radius(0)
         {  }
 
+    Sphere(const Sphere& Other) :
+        Center(Other.Center),
+        Radius(Other.Radius)
+        {  }
+
     Sphere::Sphere(const Real SphereRadius) :
         Radius(SphereRadius)
         {  }

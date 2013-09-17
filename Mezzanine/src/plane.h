@@ -85,6 +85,9 @@ namespace Mezzanine
 
         /// @brief Default constructor
         Plane();
+        /// @brief Copy constructor.
+        /// @param Other The other plane to copy from.
+        Plane(const Plane& Other);
         /// @brief Descriptive constructor.
         /// @param Norm The positive direction of the plane.
         /// @param Dist Distance from origin to the plane.
@@ -97,6 +100,8 @@ namespace Mezzanine
         /// @brief Compatibility constructor.
         /// @param InternalPlane This is the Ogre::Plane to copy from.
         explicit Plane(const Ogre::Plane& InternalPlane);
+        /// @brief Class destructor.
+        ~Plane();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

@@ -79,6 +79,9 @@ namespace Mezzanine
 
         /// @brief Blank constructor.
         Sphere();
+        /// @brief Copy constructor.
+        /// @param Other The other sphere to copy from.
+        Sphere(const Sphere& Other);
         /// @brief Radius constructor.
         /// @param SphereRadius The radius of the sphere.
         Sphere(const Real SphereRadius);

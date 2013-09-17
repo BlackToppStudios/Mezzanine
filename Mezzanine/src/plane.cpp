@@ -65,6 +65,11 @@ namespace Mezzanine
         Distance(0)
         {  }
 
+    Plane(const Plane& Other) :
+        Normal(Other.Normal),
+        Distance(Other.Distance)
+        {  }
+
     Plane::Plane(const Vector3& Norm, const Real Dist) :
         Normal(Norm),
         Distance(Dist)
@@ -75,6 +80,9 @@ namespace Mezzanine
 
     Plane::Plane(const Ogre::Plane& InternalPlane)
         { this->ExtractOgrePlane(InternalPlane); }
+
+    Plane::~Plane()
+        {  }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
