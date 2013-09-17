@@ -59,7 +59,7 @@ namespace Mezzanine
         Radius(0)
         {  }
 
-    Sphere(const Sphere& Other) :
+    Sphere::Sphere(const Sphere& Other) :
         Center(Other.Center),
         Radius(Other.Radius)
         {  }

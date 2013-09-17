@@ -71,6 +71,10 @@ namespace Mezzanine
             S_Negative = 2,
             S_Both     = 3
         };
+        /// @brief This is a type used for the return of a ray intersection test.
+        /// @details This type provides more verbose return data that can be used for further tests.  @n @n
+        /// The first member stores whether or not there was a hit.  The second member stores the point where it was hit.
+        typedef std::pair<Bool,Vector3> RayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -146,7 +150,7 @@ namespace Mezzanine
         /// @brief Checks to see if a ray intersects this Plane.
         /// @param ToCheck The ray to check for a hit.
         /// @return Returns true if the ray intersects this Plane, false otherwise.
-        Bool Intersects(const Ray& ToCheck) const;
+        RayTestResult Intersects(const Ray& ToCheck) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Conversion Methods

@@ -65,7 +65,7 @@ namespace Mezzanine
         Distance(0)
         {  }
 
-    Plane(const Plane& Other) :
+    Plane::Plane(const Plane& Other) :
         Normal(Other.Normal),
         Distance(Other.Distance)
         {  }
@@ -139,7 +139,7 @@ namespace Mezzanine
     Bool Plane::IsOverlapping(const Plane& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
 
-    Bool Plane::Intersects(const Ray& ToCheck) const
+    Plane::RayTestResult Plane::Intersects(const Ray& ToCheck) const
         { return MathTools::Intersects(*this,ToCheck); }
 
     ///////////////////////////////////////////////////////////////////////////////
