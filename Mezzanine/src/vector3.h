@@ -378,6 +378,15 @@ namespace Mezzanine
         /// @param Z Value to set for Z.
         void SetValues(const Real& X, const Real& Y, const Real& Z);
 
+        /// @brief Sets each member of this Vector3 to the higher value between the two vector3s.
+        /// @param Other The other Vector to compare with.
+        /// @return Returns a reference to this.
+        Vector3& Ceil(const Vector3& Other);
+        /// @brief Sets each member of this Vector3 to the lower value between the two vector3s.
+        /// @param Other The other Vector to compare with.
+        /// @return Returns a reference to this.
+        Vector3& Floor(const Vector3& Other);
+
         ///////////////////////////////////////////////////////////////////////////////
         // Manual Conversions
 
