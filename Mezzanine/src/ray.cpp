@@ -40,11 +40,13 @@
 #ifndef _ray_cpp
 #define _ray_cpp
 
-//will need these later for converting between rays.
-//#include <Ogre.h>
-//#include "btBulletDynamicsCommon.h"
-
 #include "ray.h"
+#include "mathtool.h"
+#include "axisalignedbox.h"
+#include "plane.h"
+#include "sphere.h"
+#include "exception.h"
+#include "serialization.h"
 
 #include <Ogre.h>
 
@@ -52,113 +54,148 @@
 
 namespace Mezzanine
 {
+    Ray::Ray() :
+        Origin(0,0,0),
+        Destination(0,1,0)
+        {  }
+
+    Ray::Ray(const Ray& Other) :
+        Origin(Other.Origin),
+        Destination(Other.Destination)
+        {  }
+
+    Ray::Ray(const Vector3& To) :
+        Destination(To)
+        {  }
+
+    Ray::Ray(const Vector3& From, const Vector3& To) :
+        Origin(From),
+        Destination(To)
+        {  }
+
+    Ray::Ray(const Ogre::Ray& InternalRay)
+        { this->ExtractOgreRay(InternalRay); }
+
+    Ray::~Ray()
+        {  }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Constructors
-    Ray::Ray():From(0,0,0),To(0,1,0)
-    {
-
-    }
-
-    Ray::Ray(Vector3 From_, Vector3 To_)
-    {
-        this->From=From_;
-        this->To=To_;
-    }
-
-    Ray::Ray(Ogre::Ray Ray2)
-    {
-        this->From=Ray2.getOrigin();
-        this->To=Ray2.getPoint(1);
-    }
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Manual Conversions and adjsutments
-    Ogre::Ray Ray::GetOgreRay() const
-    {
-
-        /*Ray Temp = this->GetNormal();
-        return Ogre::Ray(
-            Temp.From.GetOgreVector3(),
-            Temp.To.GetNormal().GetOgreVector3()
-        );// */
-        return Ogre::Ray(
-            this->From.GetOgreVector3(),
-            this->GetDirection().GetOgreVector3()
-            );// */
-    }
+    // Utility
 
     Real Ray::Length() const
-    {
-        return this->From.Distance( this->To );
-    }
+        { return this->Origin.Distance(this->Destination); }
 
     Vector3 Ray::GetDirection() const
-    {
-        Vector3 Dir(To - From);
-        Dir.Normalize();
-        return Dir;
-    }
+        { return ( this->Origin - this->Destination ).Normalize(); }
 
     Ray Ray::GetNormal() const
     {
         Real TempLength = this->Length();
-        if (0!=TempLength)
-        {
+        if( 0 != TempLength ) {
             return (*this) / TempLength;
-        }else{
-            /// @todo discuss the merits throwing an error here.
-            return (*this);
-            //return 0;
         }
     }
 
-    void Ray::Normalize()
+    Ray& Ray::Normalize()
     {
         Real TempLength = this->Length();
-        if (0!=TempLength)
-        {
-            (*this) /= this->Length();
-        }else{
-            // nothing to change, we have a zero length Ray
+        if( 0 != TempLength ) {
+            return (*this) /= this->Length();
         }
+    }
 
+    Ray::PlaneRayTestResult Ray::Intersects(const Plane& ToCheck) const
+        { return MathTools::Intersects(ToCheck,*this); }
+
+    Ray::GeometryRayTestResult Ray::Intersects(const Sphere& ToCheck) const
+        { return MathTools::Intersects(ToCheck,*this); }
+
+    Ray::GeometryRayTestResult Ray::Intersects(const AxisAlignedBox& ToCheck) const
+        { return MathTools::Intersects(ToCheck,*this); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Conversion Methods
+
+    void Ray::ExtractOgreRay(const Ogre::Ray& InternalRay)
+        { this->Origin = InternalRay.getOrigin();  this->Destination = InternalRay.getPoint(1); }
+
+    Ogre::Ray Ray::GetOgreRay() const
+        { return Ogre::Ray(this->Origin.GetOgreVector3(),this->GetDirection().GetOgreVector3()); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void Ray::ProtoSerialize(XML::Node& ParentNode) const
+    {
+        XML::Node SelfRoot = ParentNode.AppendChild( Ray::GetSerializableName() );
+
+        if( SelfRoot.AppendAttribute("Version").SetValue("1") )
+        {
+            XML::Node OriginNode = SelfRoot.AppendChild("Origin");
+            this->Origin.ProtoSerialize( OriginNode );
+
+            XML::Node DestinationNode = SelfRoot.AppendChild("Destination");
+            this->Destination.ProtoSerialize( DestinationNode );
+
+            return;
+        }else{
+            SerializeError("Create XML Attribute Values",Ray::GetSerializableName(),true);
+        }
+    }
+
+    void Ray::ProtoDeSerialize(const XML::Node& SelfRoot)
+    {
+        if( String(SelfRoot.Name()) == Ray::GetSerializableName() ) {
+            if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                // Get the properties that need their own nodes
+                XML::Node OriginNode = SelfRoot.GetChild("Origin").GetFirstChild();
+                if( !OriginNode.Empty() )
+                    this->Origin.ProtoDeSerialize(OriginNode);
+
+                XML::Node DestinationNode = SelfRoot.GetChild("Destination").GetFirstChild();
+                if( !DestinationNode.Empty() )
+                    this->Destination.ProtoDeSerialize(DestinationNode);
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Ray::GetSerializableName() + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Ray::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+        }
+    }
+
+    String Ray::GetSerializableName()
+    {
+        return "Ray";
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Real Operators and assignments
-    Ray Ray::operator* (const Real &scalar) const
-    {
-        return Ray(
-            this->From,
-            ((this->To - this->From) * scalar) + this->From
-        );
-    }
+    // Operators
 
-    Ray Ray::operator/ (const Real &scalar) const
-    {
-        return Ray(
-            this->From,
-            ((this->To - this->From) / scalar) + this->From
-        );
-    }
+    void Ray::operator=(const Ray& Other)
+        { this->Origin = Other.Origin;  this->Destination = Other.Destination; }
 
-    void Ray::operator*= (const Real &scalar)
-    {
-        this->To = ((this->To - this->From) * scalar) + this->From;
-    }
+    Ray Ray::operator*(const Real Factor) const
+        { return Ray( this->Origin, ( ( this->Destination - this->Origin ) * Factor ) + this->Origin ); }
 
-    void Ray::operator/= (const Real &scalar)
-    {
-        this->To = ((this->To - this->From) / scalar) + this->From;
-    }
+    Ray Ray::operator/(const Real Factor) const
+        { return Ray( this->Origin, ( ( this->Destination - this->Origin ) / Factor ) + this->Origin ); }
 
+    Ray& Ray::operator*=(const Real Factor)
+        { this->Destination = ( ( this->Destination - this->Origin ) * Factor ) + this->Origin; }
+
+    Ray& Ray::operator/=(const Real Factor)
+        { this->Destination = ( ( this->Destination - this->Origin ) / Factor ) + this->Origin; }
+
+    Bool Ray::operator==(const Ray& Other) const
+        { return ( this->Origin == Other.Origin && this->Destination == Other.Destination ); }
+
+    Bool Ray::operator!=(const Ray& Other) const
+        { return ( this->Origin != Other.Origin || this->Destination != Other.Destination ); }
 }
 
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Ray& x)
 {
-    stream << "[" << x.From << "," << x.To << "]";
+    stream << "[" << x.Origin << "," << x.Destination << "]";
     return stream;
 }
 
