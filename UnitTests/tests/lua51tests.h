@@ -72,8 +72,8 @@ class lua51tests : public UnitTestGroup
             // Static Data Tests
             {
                 TEST(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName(), "Engine::ImplementationName");
-                TEST(541==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
-                TEST(511==Scripting::Lua::Lua51ScriptingEngine::AllLibs, "Engine::LuaLibEnumUnsafe");
+                TEST(541+2048==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
+                TEST(511+1024==Scripting::Lua::Lua51ScriptingEngine::AllLibs, "Engine::LuaLibEnumUnsafe");
             }
 
             //////////////////////////////////////////////////////////////////////////////////////////
@@ -452,6 +452,69 @@ class lua51tests : public UnitTestGroup
                 cout << endl;
             }
 
+            {
+                String FeatureSource(
+                                     "Doc1=MezzanineSafe.XML.Document()\n"
+                                    );
+
+                Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
+                Scripting::Lua::Lua51Script FeatureScript(FeatureSource);
+
+                cout << endl << "Attempting creation of a XML::Document from the MezzanineXML Library in a Lua51 Script without that library being loaded." << endl;
+                try
+                {
+                    FeatureScript.Compile(LuaRuntimePartial);
+                    LuaRuntimePartial.Execute(FeatureScript);
+                    TEST_RESULT(Testing::Failed, "Lua51::Script::MezzanineXMLlibExclude");
+                } catch (ScriptLuaException&) {
+                    cout << endl << "It failed as it should." << endl;
+                    TEST_RESULT(Success, "Lua51::Script::MezzanineXMLlibExclude");
+                }
+
+                LuaRuntimePartial.OpenLibraries(Scripting::Lua::Lua51ScriptingEngine::MezzXMLLib);
+                //LuaRuntimePartial.OpenMezzanineLibrary();
+
+                cout << "Attempting normal execution of properly loaded MezzanineXML library function." << endl;
+                try
+                {
+                    FeatureScript.Compile(LuaRuntimePartial);
+                    LuaRuntimePartial.Execute(FeatureScript);
+                    cout << endl << "Attempting creation of a XML::Document from the MezzanineXML Library in a Lua51 Script." << endl;
+                    TEST_RESULT(Success, "Lua51::Script::MezzanineXMLlibInclude");
+                } catch (ScriptLuaException& e) {
+                    cout << "Test failed: " << e.what() << endl;
+                    TEST_RESULT(Testing::Failed,"Lua51::Script::MezzanineXMLlibInclude");
+                }
+                cout << endl << endl;
+            }
+
+            {
+                // Bad syntax tests
+                try
+                {
+                    cout << "Testing Old XML::Document functionality" << endl;
+                    Scripting::Lua::Lua51Script RealArgScript("function MakeDoc(x)\n"
+                                                              "   Doc1=MezzanineSafe.Document()\n"
+                                                              "   return 3\n"
+                                                              "end"
+                                                              ,LuaRuntimeSafe);
+                    LuaRuntimeSafe.Execute(RealArgScript);
+
+                    Scripting::Lua::Lua51Script ScriptCall("MakeDoc",LuaRuntimeSafe,true);
+                    ScriptCall.AddArgument(String("NameOfElement"));
+                    CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
+                    ScriptCall.AddReturn(RealReturn);
+                    LuaRuntimeSafe.Execute(ScriptCall);
+
+                    TEST_RESULT(Testing::Failed, "Engine::XMLOldSyntax");
+                } catch (ScriptLuaException& ) {
+                    TEST_RESULT(Testing::Success,"Engine::XMLOldSyntax");
+                }
+                cout << "End XML::Document Test" << endl << endl;
+
+
+            }
+
             /// @TODO still need to test OS, Debug, Mezz and MezzSafe
             /*
             virtual void OpenOSLibrary();
@@ -512,27 +575,7 @@ class lua51tests : public UnitTestGroup
                 }
                 cout << "End Vector2 Test" << endl << endl;
 
-                try
-                {
-                    cout << "Testing basic XML::Document functionality" << endl;
-                    Scripting::Lua::Lua51Script RealArgScript("function MakeDoc(x)\n"
-                                                              "   Doc1=MezzanineSafe.Document()\n"
-                                                              "   return 3\n"
-                                                              "end"
-                                                              ,LuaRuntimeSafe);
-                    LuaRuntimeSafe.Execute(RealArgScript);
 
-                    Scripting::Lua::Lua51Script ScriptCall("MakeDoc",LuaRuntimeSafe,true);
-                    ScriptCall.AddArgument(String("NameOfElement"));
-                    CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
-                    ScriptCall.AddReturn(RealReturn);
-                    LuaRuntimeSafe.Execute(ScriptCall);
-
-                    TEST(3.0==RealReturn->GetWhole(), "Engine::XML");
-                } catch (ScriptLuaException& ) {
-                    TEST_RESULT(Testing::Failed,"Engine::XML");
-                }
-                cout << "End XML::Document Test" << endl << endl;
             }
 
         }
