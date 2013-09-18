@@ -347,9 +347,31 @@ namespace Mezzanine
                 { luaopen_MezzanineSafe(State); }
 
             void Lua51ScriptingEngine::OpenMezzanineXMLLibrary()
-                { luaopen_MezzanineXML(State); }
+            {
+                luaopen_MezzanineXML(State);
+                SetXML();
+            }
             void Lua51ScriptingEngine::OpenMezzanineXMLSafeLibrary()
-                { luaopen_MezzanineXMLSafe(State); }
+            {
+                luaopen_MezzanineXMLSafe(State);
+                SetXMLSafe();
+            }
+
+            void Lua51ScriptingEngine::SetXML()
+            {
+                lua_getglobal(State, "Mezzanine");
+                if (!lua_istable(State, -1))
+                {
+                    lua_pushstring(State, "XML");
+                    lua_getglobal(State, "MezzanineXML");
+                    lua_settable(State, -3); // Set the table a -3, Mezzanine to have the index defined by -2 "XML" set to the value at -1 "The MezzanineXML Table"
+                } //else Fail Silently
+            }
+
+            void Lua51ScriptingEngine::SetXMLSafe()
+            {
+
+            }
 
         } // Lua
     } // Scripting

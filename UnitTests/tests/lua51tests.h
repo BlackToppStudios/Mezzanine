@@ -453,10 +453,8 @@ class lua51tests : public UnitTestGroup
             }
 
             {
-                String FeatureSource("function MakeDoc(x)\n"
-                                     "   Doc1=MezzanineSafe.XML.Document()\n"
-                                     "   return 3\n"
-                                     "end"
+                String FeatureSource(
+                                     "Doc1=MezzanineSafe.XML.Document()\n"
                                     );
 
                 Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
@@ -467,7 +465,7 @@ class lua51tests : public UnitTestGroup
                 {
                     FeatureScript.Compile(LuaRuntimePartial);
                     LuaRuntimePartial.Execute(FeatureScript);
-                    TEST_RESULT(Testing::Failed, "Lua51::Script::MezzanineXMLlibExclude"); // Why does this work?
+                    TEST_RESULT(Testing::Failed, "Lua51::Script::MezzanineXMLlibExclude");
                 } catch (ScriptLuaException&) {
                     cout << endl << "It failed as it should." << endl;
                     TEST_RESULT(Success, "Lua51::Script::MezzanineXMLlibExclude");
@@ -484,9 +482,10 @@ class lua51tests : public UnitTestGroup
                     cout << endl << "Attempting creation of a XML::Document from the MezzanineXML Library in a Lua51 Script." << endl;
                     TEST_RESULT(Success, "Lua51::Script::MezzanineXMLlibInclude");
                 } catch (ScriptLuaException& e) {
+                    cout << "Test failed: " << e.what() << endl;
                     TEST_RESULT(Testing::Failed,"Lua51::Script::MezzanineXMLlibInclude");
                 }
-                cout << endl;
+                cout << endl << endl;
             }
 
             {

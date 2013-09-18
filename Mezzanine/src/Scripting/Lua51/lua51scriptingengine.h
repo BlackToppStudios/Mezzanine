@@ -259,6 +259,15 @@ namespace Mezzanine
                     /// @brief Make the XML parts of the Mezzanine Libary available for use in Lua51 scripts.
                     /// @details This should not allow access to any functions, methods or classes than can execute code or manage files.
                     virtual void OpenMezzanineXMLSafeLibrary();
+
+                protected:
+                    /// @brief Set The MezzanineXML library as the XML member of the Mezzanine library or fail silently
+                    /// @warning Not Fully implemented
+                    void SetXML();
+
+                    /// @brief Set The MezzanineXMLSafe library as the XML member of the MezzanineSafe library or fail silently
+                    /// @warning Not Fully implemented
+                    void SetXMLSafe();
             };
 
             //simplistic error checking function, to be replace with proper exception driven code later.
