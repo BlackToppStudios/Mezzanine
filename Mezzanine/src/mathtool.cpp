@@ -55,7 +55,7 @@ namespace
 {
     /// @typedef SegmentPosPair
     /// @brief This is an std::pair that stores the near and far segement points for ray-aabb intersections.
-    typedef std::pair<Real,Real> SegmentPosPair;
+    typedef std::pair<Mezzanine::Real,Mezzanine::Real> SegmentPosPair;
 
     /// @brief Helper fucntion for calculating ray-aabb intersections.
     /// @param Axis The axis to be calculated.
@@ -63,12 +63,12 @@ namespace
     /// @param Box The AABB to check for intersection.
     /// @param PosPair A pair for the near and far distances in the check so far.
     /// @return Returns false if the check has succeeded in ruling out an intersection, true otherwise.
-    Bool CalculateAxis(const Whole Axis, const Ray& Cast, const AxisAlignedBox& Box, SegmentPosPair& PosPair)
+    Mezzanine::Bool CalculateAxis(const Mezzanine::Whole Axis, const Mezzanine::Ray& Cast, const Mezzanine::AxisAlignedBox& Box, SegmentPosPair& PosPair)
     {
-        Vector3 RayDir = Cast.GetDirection();
-        Real Denom = 1 / RayDir[Axis];
-        Real NewStart = ( Box.MinExt[Axis] - Cast.Origin[Axis] ) * Denom;
-        Real NewEnd = ( Box.MaxExt[Axis] - Cast.Origin[Axis] ) * Denom;
+        Mezzanine::Vector3 RayDir = Cast.GetDirection();
+        Mezzanine::Real Denom = 1 / RayDir[Axis];
+        Mezzanine::Real NewStart = ( Box.MinExt[Axis] - Cast.Origin[Axis] ) * Denom;
+        Mezzanine::Real NewEnd = ( Box.MaxExt[Axis] - Cast.Origin[Axis] ) * Denom;
 
         if( NewStart > NewEnd )
             std::swap(NewStart,NewEnd);
@@ -225,7 +225,8 @@ namespace Mezzanine
         GeometryRayTestResult Intersects(const AxisAlignedBox& Box, const Ray& Cast)
         {
             // Code in this function is based on the equivalent in Ogre
-            Vector3 AbsoluteDir = Cast.GetDirection();
+            Vector3 CastDir = Cast.GetDirection();
+            Vector3 AbsoluteDir = CastDir;
             AbsoluteDir.X = MathTools::Fabs( AbsoluteDir.X );
             AbsoluteDir.Y = MathTools::Fabs( AbsoluteDir.Y );
             AbsoluteDir.Z = MathTools::Fabs( AbsoluteDir.Z );
@@ -244,7 +245,7 @@ namespace Mezzanine
 
             SegmentPosPair Distances(0,std::numeric_limits<Real>::infinity());
 
-            CalculateAxis(MaxAxis,Cast,Box,Distances);
+            ::CalculateAxis(MaxAxis,Cast,Box,Distances);
             if( AbsoluteDir[MidAxis] < std::numeric_limits<Real>::epsilon() ) {
                 if( Cast.Origin[MidAxis] < Box.MinExt[MidAxis] || Cast.Origin[MidAxis] > Box.MaxExt[MidAxis] ||
                     Cast.Origin[MinAxis] < Box.MinExt[MinAxis] || Cast.Origin[MinAxis] > Box.MaxExt[MinAxis] )
@@ -252,13 +253,13 @@ namespace Mezzanine
                     return GeometryRayTestResult(false,Ray());
                 }
             }else{
-                CalculateAxis(MidAxis,Cast,Box,Distances);
+                ::CalculateAxis(MidAxis,Cast,Box,Distances);
                 if( AbsoluteDir[MinAxis] < std::numeric_limits<Real>::epsilon() ) {
                     if( Cast.Origin[MinAxis] < Box.MinExt[MinAxis] || Cast.Origin[MinAxis] > Box.MaxExt[MinAxis] ) {
                         return GeometryRayTestResult(false,Ray());
                     }
                 }else{
-                    CalculateAxis(MinAxis,Cast,Box,Distances);
+                    ::CalculateAxis(MinAxis,Cast,Box,Distances);
                 }
             }
 
