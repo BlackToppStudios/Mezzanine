@@ -442,6 +442,22 @@ namespace Mezzanine
         this->Z = Z;
     }
 
+    Vector3& Vector3::Ceil(const Vector3& Other)
+    {
+        if( Other.X > this->X ) this->X = Other.X;
+        if( Other.Y > this->Y ) this->Y = Other.Y;
+        if( Other.Z > this->Z ) this->Z = Other.Z;
+        return *this;
+    }
+
+    Vector3& Vector3::Floor(const Vector3& Other)
+    {
+        if( Other.X < this->X ) this->X = Other.X;
+        if( Other.Y < this->Y ) this->Y = Other.Y;
+        if( Other.Z < this->Z ) this->Z = Other.Z;
+        return *this;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Manual Conversions
 

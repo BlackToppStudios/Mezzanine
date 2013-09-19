@@ -65,6 +65,20 @@ namespace Mezzanine
     class MEZZ_LIB Plane
     {
     public:
+        /// @enum Side
+        /// @brief An enum used to describe which side of the plane the result of a query is on.
+        enum Side
+        {
+            S_None     = 0,
+            S_Positive = 1,
+            S_Negative = 2,
+            S_Both     = 3
+        };
+        /// @brief This is a type used for the return of a ray intersection test.
+        /// @details This type provides more verbose return data that can be used for further tests.  @n @n
+        /// The first member stores whether or not there was a hit.  The second member stores the point where it was hit.
+        typedef std::pair<Bool,Vector3> RayTestResult;
+
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 
@@ -78,21 +92,51 @@ namespace Mezzanine
 
         /// @brief Default constructor
         Plane();
-        /// @brief Descriptive constructor
-        /// @param Norm The rotation of the plane
-        /// @param Dist Distance from origin to the plane
+        /// @brief Copy constructor.
+        /// @param Other The other plane to copy from.
+        Plane(const Plane& Other);
+        /// @brief Descriptive constructor.
+        /// @param Norm The positive direction of the plane.
+        /// @param Dist Distance from origin to the plane.
         Plane(const Vector3& Norm, const Real Dist);
-        /// @brief Triangle constructor
-        /// @param First This is one point in the triangle
-        /// @param Second This is another point in the triangle
-        /// @param Third This is one point in the triangle
+        /// @brief Triangle constructor.
+        /// @param First This is one point in the triangle.
+        /// @param Second This is another point in the triangle.
+        /// @param Third This is one point in the triangle.
         Plane(const Vector3& First, const Vector3& Second, const Vector3& Third);
         /// @brief Compatibility constructor.
         /// @param InternalPlane This is the Ogre::Plane to copy from.
         explicit Plane(const Ogre::Plane& InternalPlane);
+        /// @brief Class destructor.
+        ~Plane();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
+
+        /// @brief Defines the dimensions of this plane explicitly.
+        /// @param Norm The positive direction of the plane.
+        /// @param Dist Distance from origin to the plane.
+        void Define(const Vector3& Norm, const Real Dist);
+        /// @brief Defines the dimensions of this plane from a triangle in 3D space.
+        /// @param First This is one point in the triangle.
+        /// @param Second This is another point in the triangle.
+        /// @param Third This is one point in the triangle.
+        void Define(const Vector3& First, const Vector3& Second, const Vector3& Third);
+
+        /// @brief Gets which side of the plane a point in 3D space is.
+        /// @param Point The point in 3D space to determine on which side of the plane it lies.
+        /// @return Returns a Side enum value, indicating which side of the plane the point is on.
+        Side GetSide(const Vector3& Point) const;
+        /// @brief Gets which side of the plane a box shape is.
+        /// @param Center The point in 3D space where the center of the box is.
+        /// @param HalfSize Half of the total size on each axis.
+        /// @return Returns a Side enum value indicating which side of the plane the box is on.
+        Side GetSide(const Vector3& Center, const Vector3& HalfSize) const;
+        /// @brief Gets the distance from the plane to a point in 3D space.
+        /// @note This function will only return a true unit distance if the Normal member of this class is properly normalized.  Take care when altering it's value.
+        /// @param Point The point in 3D space to get the distance to.
+        /// @return Returns the distance from the plane to the specified point.  Positive values mean the point is on the positive side, and vice versa.
+        Real GetDistance(const Vector3& Point) const;
 
         /// @brief Checks to see if a sphere overlaps with this Plane.
         /// @param ToCheck The sphere to check for overlap.
@@ -109,7 +153,7 @@ namespace Mezzanine
         /// @brief Checks to see if a ray intersects this Plane.
         /// @param ToCheck The ray to check for a hit.
         /// @return Returns true if the ray intersects this Plane, false otherwise.
-        Bool Intersects(const Ray& ToCheck) const;
+        RayTestResult Intersects(const Ray& ToCheck) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Conversion Methods
@@ -117,9 +161,23 @@ namespace Mezzanine
         /// @brief Changes this Plane to match the Ogre Plane.
         /// @param InternalPlane The Ogre::Plane to copy.
         void ExtractOgrePlane(const Ogre::Plane& InternalPlane);
-        /// @brief Gets an Ogre::Plane that contains this Plane's information.
-        /// @return This returns an Ogre::Plnae that contains the same information as this Plane's information.
+        /// @brief Gets an Ogre::Plane that contains this Planes information.
+        /// @return This returns an Ogre::Plane that contains the same information as this Planes information.
         Ogre::Plane GetOgrePlane() const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        /// @brief Convert this class to an XML::Node ready for serialization.
+        /// @param ParentNode The point in the XML hierarchy that all this renderable should be appended to.
+        void ProtoSerialize(XML::Node& ParentNode) const;
+        /// @brief Take the data stored in an XML Node and overwrite this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        void ProtoDeSerialize(const XML::Node& SelfRoot);
+
+        /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+        /// @return A string containing the name of this class.
+        static String GetSerializableName();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
@@ -164,7 +222,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Plane& x);
 /// @param x The Mezzanine::Plane to store the deserialized Plane in.
 /// @return This returns an XML::Node refernce to allow operator chaining.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
-Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Plane& x);
+void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Plane& x);
 #endif
 
 #endif

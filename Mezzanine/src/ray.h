@@ -51,104 +51,146 @@ namespace Ogre
 
 namespace Mezzanine
 {
+    class AxisAlignedBox;
+    class Plane;
+    class Sphere;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class Ray
-    /// @headerfile ray.h
-    /// @brief This is used to indicate a line with one end.
-    /// @details Currently this is just a collection of two vector3s with a couple
-    /// of constructors.
+    /// @brief This represents a line placed in 3D space and is used with spacial queries.
+    /// @details
     class MEZZ_LIB Ray
     {
-        public:
-            /// @brief The origin point of the Vector.
-            Vector3 From;
+    public:
+        /// @brief This is a type used for the ray intersection tests performed on Planes.
+        /// @details This type provides more verbose return data that can be used for further tests.
+        typedef std::pair<Bool,Vector3> PlaneRayTestResult;
+        /// @brief This is a type used for the return of a ray intersection test.
+        /// @details This type provides more verbose return data that can be used for further tests.
+        typedef std::pair<Bool,Ray> GeometryRayTestResult;
 
-            /// @brief A point on the line of the ray.
-            Vector3 To;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Public Data Members
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Constructors
+        /// @brief The origin point of the Vector.
+        Vector3 Origin;
+        /// @brief The direction of this ray or end point of this ray depending on mode.
+        Vector3 Destination;
 
-            /// @brief Default constructor.
-            /// @details This create a ray starting at 0,0,0 pointing to 0,1,0,
-            Ray();
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
 
-            /// @brief Thorough constructor.
-            /// @details This accepts 2 Vector3s and uses them to build the ray.
-            /// @param From_ The origin fo the new Ray.
-            /// @param To_ A point along the line for the destination line.
-            Ray(Vector3 From_, Vector3 To_);
+        /// @brief Default constructor.
+        /// @details This create a ray starting at 0,0,0 pointing to 0,1,0.
+        Ray();
+        /// @brief Copy constructor.
+        /// @param Other The other Ray to copy from.
+        Ray(const Ray& Other);
+        /// @brief Destination constructor.
+        /// @details This keeps the origin at 0,0,0.
+        /// @param To The destination vector for the ray.
+        Ray(const Vector3& To);
+        /// @brief Descriptive constructor.
+        /// @param From The origin for the new Ray.
+        /// @param To A point along the line for the destination line.
+        Ray(const Vector3& From, const Vector3& To);
+        /// @brief Internal constructor.
+        /// @param InternalRay This is the Ogre::Ray to copy from.
+        explicit Ray(const Ogre::Ray& InternalRay);
+        /// @brief Class destructor.
+        ~Ray();
 
-            /// @brief Compatibily constructor.
-            /// @details This accepts an Ogre Ray, (graphics subsystem) to make ray.
-            /// @param Ray2 This is the Ogre::Ray.
-            Ray(Ogre::Ray Ray2);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Manual Conversions and adjsutments
+        /// @brief Measures the distance of this ray.
+        /// @return This returns a real value which contains the distance from the origin to the destination.
+        Real Length() const;
+        /// @brief Gets the normal of this ray.
+        /// @return Returns a vector3 that is the direction from it's origin to it's destination.
+        Vector3 GetDirection() const;
 
-            /// @brief Gets an Ogre::Ray that contains this Rays information.
-            /// @details Used to aid interopability, this will return afresh Ogre::Ray with the same data as this Ray.
-            /// @return This returns an Ogre::Ray that contains the same information as this rays information.
-            Ogre::Ray GetOgreRay() const;
+        /// @brief Gets a copy of this ray with a unit length of 1.
+        /// @return Returns a ray that is a normalized copy of this array.
+        Ray GetNormal() const;
+        /// @brief Reduces the length of this ray to 1 unit.
+        /// @return Returns a reference to this.
+        Ray& Normalize();
 
-            /// @brief Measures the distance distance of this ray.
-            /// @details This uses the distance method of Vector3 to determine the current length of this ray.
-            /// @return This returns a real value which contains the length.
-            Real Length() const;
+        /// @brief Checks to see if this ray intersects a plane.
+        /// @param ToCheck The plane to check for a hit.
+        /// @return Returns a std::pair containing whether or not the ray hit, and if it did the point in 3D space where it hit.
+        PlaneRayTestResult Intersects(const Plane& ToCheck) const;
+        /// @brief Checks to see if this ray intersects a sphere.
+        /// @param ToCheck The sphere to check for a hit.
+        /// @return Returns a std::pair containing whether or not the ray hit, and if it did the subsection of the ray that went through the sphere.
+        GeometryRayTestResult Intersects(const Sphere& ToCheck) const;
+        /// @brief Checks to see if this ray intersects an AABB.
+        /// @param ToCheck The AABB to check for a hit.
+        /// @return Returns a std::pair containing whether or not the ray hit, and if it did the subsection of the ray that went through the AABB.
+        GeometryRayTestResult Intersects(const AxisAlignedBox& ToCheck) const;
 
-            /// @brief Gets the direction of this ray.
-            /// @return Returns a vector3 that is the direction from it's origin to it's destination.
-            Vector3 GetDirection() const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Conversion Methods
 
-            /// @brief This returns a normalized copy of this ray.
-            /// @details This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray.
-            /// @return Returns a ray that is a normalized copy of this array.
-            Ray GetNormal() const;
+        /// @brief Changes this Ray to match the Ogre Ray.
+        /// @param InternalRay The Ogre::Ray to copy.
+        void ExtractOgreRay(const Ogre::Ray& InternalRay);
+        /// @brief Gets an Ogre::Ray that contains this Rays information.
+        /// @return This returns an Ogre::Ray that contains the same information as this Rays information.
+        Ogre::Ray GetOgreRay() const;
 
-            /// @brief Turns this Ray into its own normal.
-            /// @details This will change the ray to be exactly 1 unit long, but pointing the same direction.
-            // /// @return The is the length of the Ray after Normalizing. This could be useful for finding problems with 0 length rays.
-            void Normalize();
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Real Operators and assignments
+        /// @brief Convert this class to an XML::Node ready for serialization.
+        /// @param ParentNode The point in the XML hierarchy that all this renderable should be appended to.
+        void ProtoSerialize(XML::Node& ParentNode) const;
+        /// @brief Take the data stored in an XML Node and overwrite this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        void ProtoDeSerialize(const XML::Node& SelfRoot);
 
-            /// @brief This returns a ray lengthened by the given multiple.
-            /// @details This returns a ray changed in length by the amount in the scalar. Specifically this subracts the From value
-            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.
-            /// @return This returns a copy of the ray scaled by the requested amount.
-            /// @param scalar The amount to multiply by.
-            Ray operator* (const Real &scalar) const;
+        /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+        /// @return A string containing the name of this class.
+        static String GetSerializableName();
 
-            /// @brief This returns a ray scaled by the given divisor.
-            /// @details This returns an ray divided in length by the amount in the scalar. Specifically this subracts the From value
-            /// out of the To value, then divides the To value by the scalar, then adds the from value back in.
-            /// @return This returns a copy of the ray scaled by the requested amount.
-            /// @param scalar The amount to divide by.
-            Ray operator/ (const Real &scalar) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
 
-            /// @brief This lengthens the Ray by the given multiple.
-            /// @details This ray  ischanged in length by the amount in the scalar. Specifically this subracts the From value
-            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.
-            /// @param scalar The amount to multiply by.
-            void operator*= (const Real &scalar);
+        /// @brief Assignment operator.
+        /// @param Other The other Ray to copy from.
+        void operator=(const Ray& Other);
 
-            /// @brief This scales the Ray by the given divisor.
-            /// @details This ray is divided in length by the amount in the scalar. Specifically this subracts the From value
-            /// out of the To value, then divides the To value by the scalar, then adds the from value back in.
-            /// @param scalar The amount to divide by.
-            void operator/= (const Real &scalar);
+        /// @brief Gets a Ray with a length longer than this one by the specified factor.
+        /// @param Factor That factor by which to increase the length of this Ray.
+        /// @return Returns a new lengthened Ray.
+        Ray operator*(const Real Factor) const;
+        /// @brief Gets a Ray with a length shorter than this one by the specified factor.
+        /// @param Factor That factor by which to decrease the length of this Ray.
+        /// @return Returns a new lengthened Ray.
+        Ray operator/(const Real Factor) const;
+        /// @brief Increases the length of this Ray by the factor provided.
+        /// @param Factor That factor by which to increase the length of this Ray.
+        /// @return Returns a reference to this.
+        Ray& operator*=(const Real Factor);
+        /// @brief Decreases the length of this Ray by the factor provided.
+        /// @param Factor That factor by which to decrease the length of this Ray.
+        /// @return Returns a reference to this.
+        Ray& operator/=(const Real Factor);
 
-    }; // /Ray
-
-}// /Mezz
+        /// @brief Equality operator.
+        /// @param Other The other Ray to compare with.
+        /// @return Returns true if this Ray is the same as the other provided Ray, false otherwise.
+        Bool operator==(const Ray& Other) const;
+        /// @brief Inequality operator.
+        /// @param Other The other Ray to compare with.
+        /// @return Returns true if this Ray is not the same as the other provided Ray, false otherwise.
+        Bool operator!=(const Ray& Other) const;
+    };//Ray
+}//Mezzanine
 
 /// @brief Streaming output operator
 /// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout
 /// @param stream This is the stream we send our data to.
 /// @return This returns an std::ostream which now contains our data.
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Ray& x);
-
 
 #endif

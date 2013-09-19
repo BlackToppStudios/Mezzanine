@@ -52,6 +52,9 @@ namespace Mezzanine
     /// @brief This namespace is the home of a number of utility variables and methods to facilitate various math related tasks.
     namespace MathTools
     {
+        /// @brief This is a type used for the ray intersection tests performed on Planes.
+        /// @details This type provides more verbose return data that can be used for further tests.
+        typedef std::pair<Bool,Vector3> PlaneRayTestResult;
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
         typedef std::pair<Bool,Ray> GeometryRayTestResult;
@@ -197,7 +200,7 @@ namespace Mezzanine
         /// @param Surface The Plane to check for intersection.
         /// @param Cast The casted ray to check for intersection.
         /// @return Returns true if the ray intersects with the provided Plane.
-        Bool MEZZ_LIB Intersects(const Plane& Surface, const Ray& Cast);
+        PlaneRayTestResult MEZZ_LIB Intersects(const Plane& Surface, const Ray& Cast);
         /// @brief Checks to see if a ray intersects with an AABB.
         /// @param Box The AABB to check for intersection.
         /// @param Cast The casted ray to check for intersection.

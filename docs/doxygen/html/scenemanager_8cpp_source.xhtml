@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;15,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;18,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -351,7 +351,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                CurrAttrib = ShadowSettings.<a class="code" href="classMezzanine_1_1XML_1_1Node.xhtml#a7257f2f9f8e08461260afae0d5062aa7" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;ShadowColour&quot;</span>);</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                <span class="keywordflow">if</span>(!CurrAttrib)</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                    <a class="code" href="classMezzanine_1_1SceneManager.xhtml#a8bc4a68f885b85a3a023d632d932de65" title="Sets the colour to be used when casting shadows.">SetShadowColour</a>(StringTools::ConvertToColourValue(CurrAttrib.<a class="code" href="classMezzanine_1_1XML_1_1Attribute.xhtml#aeaf831643fd53fa7e645bf36b0a8ecec" title="Attempts to convert the value of the attribute to a String and returns the results.">AsString</a>()));</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                    <a class="code" href="classMezzanine_1_1SceneManager.xhtml#a8bc4a68f885b85a3a023d632d932de65" title="Sets the colour to be used when casting shadows.">SetShadowColour</a>(<a class="code" href="namespaceMezzanine_1_1StringTools.xhtml#acca9b1a5c5f3a2fa3b5b2532a42dff45" title="Convert four numbers in a string into a ColourValue.">StringTools::ConvertToColourValue</a>(CurrAttrib.<a class="code" href="classMezzanine_1_1XML_1_1Attribute.xhtml#aeaf831643fd53fa7e645bf36b0a8ecec" title="Attempts to convert the value of the attribute to a String and returns the results.">AsString</a>()));</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                CurrAttrib = ShadowSettings.<a class="code" href="classMezzanine_1_1XML_1_1Node.xhtml#a7257f2f9f8e08461260afae0d5062aa7" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;ShadowFarDistance&quot;</span>);</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                <span class="keywordflow">if</span>(!CurrAttrib)</div>
@@ -923,7 +923,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;            <span class="keywordflow">for</span>( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )</div>
 <div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;            {</div>
 <div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;                <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> Lower = (*ParIt).first;</div>
-<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;                StringTools::ToLowerCase(Lower);</div>
+<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;                <a class="code" href="namespaceMezzanine_1_1StringTools.xhtml#a2fbec65ef6cb15cdfff7a962153d61cf" title="Converts all upper case characters in a string to their respective lower case.">StringTools::ToLowerCase</a>(Lower);</div>
 <div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;                <span class="keywordflow">if</span>( <span class="stringliteral">&quot;internalmanagertypename&quot;</span> == Lower )</div>
 <div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;                {</div>
 <div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;                    InternalManagerTypeName = (*ParIt).second;</div>
@@ -1265,6 +1265,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 15 2013 04:00:23 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Wed Sep 18 2013 00:02:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

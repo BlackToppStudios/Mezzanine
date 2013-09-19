@@ -233,7 +233,7 @@ namespace Mezzanine
     {
         VerifyRayQuery();
         try{
-            Vector3 u = QueryRay.To - QueryRay.From;
+            Vector3 u = QueryRay.Destination - QueryRay.Origin;
             Vector3 p0 = Vector3(0,0,0);
 
             if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
@@ -255,7 +255,7 @@ namespace Mezzanine
                 }
             }
 
-            Vector3 w = QueryRay.From - p0;
+            Vector3 w = QueryRay.Origin - p0;
 
             Real D = u.DotProduct(QueryPlane.Normal);
             Real N = -1 * w.DotProduct(QueryPlane.Normal);
@@ -266,7 +266,7 @@ namespace Mezzanine
             {
                 if(N == 0)
                 {
-                    return new Vector3(QueryRay.From);
+                    return new Vector3(QueryRay.Origin);
                 }
                 else
                 {
@@ -281,13 +281,11 @@ namespace Mezzanine
                 return 0;
             }
 
-            Vector3 test =  Vector3(QueryRay.From + (u * sI));
+            Vector3* return_vector = new Vector3(QueryRay.Origin + (u * sI));
 
-            Vector3* return_vector = new Vector3(QueryRay.From + (u * sI));
+            Real distance = return_vector->Distance(QueryRay.Origin);
 
-            Real distance = return_vector->Distance(QueryRay.From);
-
-            if(distance > QueryRay.From.Distance(QueryRay.To))
+            if(distance > QueryRay.Origin.Distance(QueryRay.Destination))
             {
                 return 0;
             }

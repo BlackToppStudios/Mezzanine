@@ -51,10 +51,17 @@
 #include "exception.h"
 #include "serialization.h"
 
+#include <Ogre.h>
+
 namespace Mezzanine
 {
     Sphere::Sphere() :
         Radius(0)
+        {  }
+
+    Sphere::Sphere(const Sphere& Other) :
+        Center(Other.Center),
+        Radius(Other.Radius)
         {  }
 
     Sphere::Sphere(const Real SphereRadius) :
@@ -65,6 +72,9 @@ namespace Mezzanine
         Center(SphereCenter),
         Radius(SphereRadius)
         {  }
+
+    Sphere::Sphere(const Ogre::Sphere& InternalSphere)
+        { this->ExtractOgreSphere(InternalSphere); }
 
     Sphere::~Sphere()
         {  }
@@ -86,6 +96,15 @@ namespace Mezzanine
 
     Sphere::RayTestResult Sphere::Intersects(const Ray& ToCheck) const
         { return MathTools::Intersects(*this,ToCheck); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Conversion Methods
+
+    void Sphere::ExtractOgreSphere(const Ogre::Sphere& InternalSphere)
+        { this->Center = InternalSphere.getCenter();  this->Radius = InternalSphere.getRadius(); }
+
+    Ogre::Sphere Sphere::GetOgreSphere() const
+        { return Ogre::Sphere(this->Center.GetOgreVector3(),this->Radius); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
@@ -140,6 +159,9 @@ namespace Mezzanine
 
     void Sphere::operator=(const Sphere& Other)
         { this->Center = Other.Center;  this->Radius = Other.Radius; }
+
+    void Sphere::operator=(const Ogre::Sphere& InternalSphere)
+        { this->ExtractOgreSphere(InternalSphere); }
 
     Bool Sphere::operator>(const Sphere& Other) const
         { return ( this->Radius > Other.Radius ); }

@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;15,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;18,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -284,7 +284,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">for</span>(AxisList::iterator AxisIter=AllAxis.begin(); AllAxis.end()!=AxisIter; ++AxisIter)</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            {</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                XML::Node OneAxisNode;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                CurrentAxisName = <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;Axis&quot;</span>)+StringTools::ConvertToString(*AxisIter);                        <span class="comment">// Should result in &quot;Axis-1&quot;, &quot;Axis0&quot;, &quot;Axis1&quot; ...</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                CurrentAxisName = <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;Axis&quot;</span>)+<a class="code" href="namespaceMezzanine_1_1StringTools.xhtml#a8525f86f908296f5ac2a08b3f33bf10b" title="Converts a Vector2 into a string.">StringTools::ConvertToString</a>(*AxisIter);                        <span class="comment">// Should result in &quot;Axis-1&quot;, &quot;Axis0&quot;, &quot;Axis1&quot; ...</span></div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                <a class="code" href="classMezzanine_1_1Physics_1_1Constraint.xhtml#ab434efbcfdfe803d6f7cc014e7794868" title="Used to Store lists of param for return types.">ParamList</a> AxisParams = <a class="code" href="classMezzanine_1_1Physics_1_1Constraint.xhtml#a25e941fd9f41dffe2c5ad15c27a888a1" title="Get a sorted (low to high) list of Parameters that are valid on this Axis.">ValidParamOnAxis</a>(*AxisIter);</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="keywordflow">for</span>(ParamList::iterator ParamIter=AxisParams.begin(); AxisParams.end()!=ParamIter; ++ParamIter)</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                {</div>
@@ -387,6 +387,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 15 2013 04:00:22 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Wed Sep 18 2013 00:02:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

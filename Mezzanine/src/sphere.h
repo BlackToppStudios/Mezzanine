@@ -45,6 +45,11 @@
 
 #include "vector3.h"
 
+namespace Ogre
+{
+    class Sphere;
+}
+
 namespace Mezzanine
 {
     class AxisAlignedBox;
@@ -58,7 +63,8 @@ namespace Mezzanine
     {
     public:
         /// @brief This is a type used for the return of a ray intersection test.
-        /// @details This type provides more verbose return data that can be used for further tests.
+        /// @details This type provides more verbose return data that can be used for further tests.  @n @n
+        /// The first member stores whether or not there was a hit.  The second member stores ray containing the points where the ray entered and exited the sphere.
         typedef std::pair<Bool,Ray> RayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -74,6 +80,9 @@ namespace Mezzanine
 
         /// @brief Blank constructor.
         Sphere();
+        /// @brief Copy constructor.
+        /// @param Other The other sphere to copy from.
+        Sphere(const Sphere& Other);
         /// @brief Radius constructor.
         /// @param SphereRadius The radius of the sphere.
         Sphere(const Real SphereRadius);
@@ -81,6 +90,9 @@ namespace Mezzanine
         /// @param SphereCenter The point in world space that is the center of the sphere.
         /// @param SphereRadius The radius of the sphere.
         Sphere(const Vector3& SphereCenter, const Real SphereRadius);
+        /// @brief Internal constructor.
+        /// @param InternalSphere The internal Ogre Sphere to construct this Sphere from.
+        explicit Sphere(const Ogre::Sphere& InternalSphere);
         /// @brief Class destructor.
         ~Sphere();
 
@@ -109,6 +121,16 @@ namespace Mezzanine
         RayTestResult Intersects(const Ray& ToCheck) const;
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Conversion Methods
+
+        /// @brief Changes this Sphere to match the Ogre Sphere.
+        /// @param InternalSphere The Ogre::Sphere to copy.
+        void ExtractOgreSphere(const Ogre::Sphere& InternalSphere);
+        /// @brief Gets an Ogre::Sphere that contains this Spheres information.
+        /// @return This returns an Ogre::Sphere that contains the same information as this Spheres information.
+        Ogre::Sphere GetOgreSphere() const;
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
         /// @brief Convert this class to an XML::Node ready for serialization.
@@ -129,25 +151,29 @@ namespace Mezzanine
         /// @param Other The other Sphere to copy from.
         void operator=(const Sphere& Other);
 
+        /// @brief The assignment operator from Ogre::Sphere to Mezzanine::Sphere.
+        /// @param InternalSphere The Ogre::Sphere to take data from.
+        void operator=(const Ogre::Sphere& InternalSphere);
+
         /// @brief Greater-than operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
-        /// @return Returns true if this Sphere larger than the other provided Sphere, false otherwise.
+        /// @return Returns true if this Sphere is larger than the other provided Sphere, false otherwise.
         Bool operator>(const Sphere& Other) const;
         /// @brief Greater-than or equals-to operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
-        /// @return Returns true if this Sphere larger than or equal to the other provided Sphere, false otherwise.
+        /// @return Returns true if this Sphere is larger than or equal to the other provided Sphere, false otherwise.
         Bool operator<(const Sphere& Other) const;
         /// @brief Less-than operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
-        /// @return Returns true if this Sphere smaller than the other provided Sphere, false otherwise.
+        /// @return Returns true if this Sphere is smaller than the other provided Sphere, false otherwise.
         Bool operator>=(const Sphere& Other) const;
         /// @brief Less-than or equals-to operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
-        /// @return Returns true if this Sphere smaller than or equal to the other provided Sphere, false otherwise.
+        /// @return Returns true if this Sphere is smaller than or equal to the other provided Sphere, false otherwise.
         Bool operator<=(const Sphere& Other) const;
 
         /// @brief Equality operator.

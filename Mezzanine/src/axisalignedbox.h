@@ -45,6 +45,11 @@
 
 #include "vector3.h"
 
+namespace Ogre
+{
+    class AxisAlignedBox;
+}
+
 namespace Mezzanine
 {
     class Plane;
@@ -65,7 +70,8 @@ namespace Mezzanine
             AE_Max = 2
         };
         /// @brief This is a type used for the return of a ray intersection test.
-        /// @details This type provides more verbose return data that can be used for further tests.
+        /// @details This type provides more verbose return data that can be used for further tests.  @n @n
+        /// The first member stores whether or not there was a hit.  The second member stores ray containing the points where the ray entered and exited the AABB.
         typedef std::pair<Bool,Ray> RayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -90,28 +96,48 @@ namespace Mezzanine
         /// @param Min The minimum extents on each axis in world space.
         /// @param Max The maximum extents on each axis in world space.
         AxisAlignedBox(const Vector3& Min, const Vector3& Max);
+        /// @brief Internal constructor.
+        /// @param InternalAABB The internal Ogre AxisAlignedBox to construct this AxisAlignedBox from.
+        explicit AxisAlignedBox(const Ogre::AxisAlignedBox& InternalAABB);
         /// @brief Class destructor.
         ~AxisAlignedBox();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
+        /// @brief Gets whether or not this AABB has no size.
+        /// @return Returns true if this AABB has no size/is invalid, false otherwise.
+        Bool IsZero() const;
+        /// @brief Gets the total volume of this AABB.
+        /// @return Returns the volume of this AABB expressed as cubic length units.
+        Real GetVolume() const;
+        /// @brief Gets an AABB that has the dimensions of the overlap between this AABB and another AABB.
+        /// @param Other The AABB to get the overlap for.
+        /// @return Returns a new AABB containing the overlap between this and another AABB.
+        AxisAlignedBox GetOverlap(const AxisAlignedBox& Other) const;
+        /// @brief Expands the size of this AABB to encompass it's current bounds plus a point in 3D space.
+        /// @param Point The point in 3D space to encompass.
+        void Expand(const Vector3& Point);
+        /// @brief Expands the size of this AABB to encompass it's current bounds plus another AABB.
+        /// @param Other The other AABB to encompass.
+        void Expand(const AxisAlignedBox& Other);
+
         /// @brief Checks to see if a point is inside this AABB.
         /// @param ToCheck The location to check to see if it is within this AABB.
         /// @return Returns true if the point provided is within this AABB, false otherwise.
-        Bool Intersects(const Vector3& ToCheck) const;
+        Bool IsInside(const Vector3& ToCheck) const;
         /// @brief Checks to see if a sphere overlaps with this AABB.
         /// @param ToCheck The sphere to check for overlap.
         /// @return Returns true if the provided sphere overlaps with this AABB, false otherwise.
-        Bool Intersects(const Sphere& ToCheck) const;
+        Bool IsOverlapping(const Sphere& ToCheck) const;
         /// @brief Checks to see if another AABB overlaps with this one.
         /// @param ToCheck The other AABB to check for overlap.
         /// @return Returns true if the two AABB's overlap, false otherwise.
-        Bool Intersects(const AxisAlignedBox& ToCheck) const;
+        Bool IsOverlapping(const AxisAlignedBox& ToCheck) const;
         /// @brief Checks to see if a plane intersects this AABB.
         /// @param ToCheck The plane to check for intersection.
         /// @return Returns true if the provided plane intersects with this AABB, false otherwise.
-        Bool Intersects(const Plane& ToCheck) const;
+        Bool IsOverlapping(const Plane& ToCheck) const;
         /// @brief Checks to see if a ray intersects this AABB.
         /// @param ToCheck The ray to check for a hit.
         /// @return Returns a std::pair containing whether or not the ray hit, and if it did the subsection of the ray that went through the AABB.
@@ -128,10 +154,13 @@ namespace Mezzanine
         /// @brief Gets the size of this AABB.
         /// @return Returns a Vector3 representing the size of this AABB.
         Vector3 GetSize() const;
+        /// @brief Gets half the size of this AABB.
+        /// @return Returns a Vector3 representing half the size of this AABB.
+        Vector3 GetHalfSize() const;
         /// @brief Gets the center of this AABB.
         /// @return Returns a Vector3 containing the center of this AABB.
         Vector3 GetCenter() const;
-        /// @brief Gets the location of the specified corner
+        /// @brief Gets the location of the specified corner.
         /// @param XEx The extent for the X axis to retrieve.
         /// @param YEx The extent for the Y axis to retrieve.
         /// @param ZEx The extent for the Z axis to retrieve.
@@ -139,11 +168,60 @@ namespace Mezzanine
         Vector3 GetCorner(const AxisExtent XEx, const AxisExtent YEx, const AxisExtent ZEx) const;
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Conversion Methods
+
+        /// @brief Changes this AxisAlignedBox to match the Ogre AxisAlignedBox.
+        /// @param InternalAABB The Ogre::AxisAlignedBox to copy.
+        void ExtractOgreAABB(const Ogre::AxisAlignedBox& InternalAABB);
+        /// @brief Gets an Ogre::AxisAlignedBox that contains this Spheres information.
+        /// @return This returns an Ogre::AxisAlignedBox that contains the same information as this AxisAlignedBoxes information.
+        Ogre::AxisAlignedBox GetOgreAABB() const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        /// @brief Convert this class to an XML::Node ready for serialization.
+        /// @param ParentNode The point in the XML hierarchy that all this renderable should be appended to.
+        void ProtoSerialize(XML::Node& ParentNode) const;
+        /// @brief Take the data stored in an XML Node and overwrite this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        void ProtoDeSerialize(const XML::Node& SelfRoot);
+
+        /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+        /// @return A string containing the name of this class.
+        static String GetSerializableName();
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Operators
 
         /// @brief Assignment operator.
         /// @param Other The other AABB to copy from.
         void operator=(const AxisAlignedBox& Other);
+
+        /// @brief The assignment operator from Ogre::AxisAlignedBox to Mezzanine::AxisAlignedBox.
+        /// @param InternalAABB The Ogre::AxisAlignedBox to take data from.
+        void operator=(const Ogre::AxisAlignedBox& InternalAABB);
+
+        /// @brief Greater-than operator.
+        /// @note This operator compares the volume of both AABBs.
+        /// @param Other The other AABB to compare with.
+        /// @return Returns true if this AABB is larger than the other provided AABB, false otherwise.
+        Bool operator>(const AxisAlignedBox& Other) const;
+        /// @brief Greater-than or equals-to operator.
+        /// @note This operator compares the volume of both AABBs.
+        /// @param Other The other AABB to compare with.
+        /// @return Returns true if this AABB is larger than or equal to the other provided AABB, false otherwise.
+        Bool operator<(const AxisAlignedBox& Other) const;
+        /// @brief Less-than operator.
+        /// @note This operator compares the volume of both AABBs.
+        /// @param Other The other AABB to compare with.
+        /// @return Returns true if this AABB is smaller than the other provided AABB, false otherwise.
+        Bool operator>=(const AxisAlignedBox& Other) const;
+        /// @brief Less-than or equals-to operator.
+        /// @note This operator compares the volume of both AABBs.
+        /// @param Other The other AABB to compare with.
+        /// @return Returns true if this AABB is smaller than or equal to the other provided AABB, false otherwise.
+        Bool operator<=(const AxisAlignedBox& Other) const;
 
         /// @brief Equality operator.
         /// @param Other The other AABB to compare with.

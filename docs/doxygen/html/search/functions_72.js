@@ -46,6 +46,7 @@ var searchData=
   ['removedecoderfactory',['RemoveDecoderFactory',['../classMezzanine_1_1Audio_1_1AudioManager.xhtml#ad6b9e0a759a6277b2c905b1c63fd679d',1,'Mezzanine::Audio::AudioManager::RemoveDecoderFactory(iDecoderFactory *ToBeRemoved)'],['../classMezzanine_1_1Audio_1_1AudioManager.xhtml#a51bec77d3b8e92b428af05513e463544',1,'Mezzanine::Audio::AudioManager::RemoveDecoderFactory(const Audio::Encoding Format)']]],
   ['removedependency',['RemoveDependency',['../classMezzanine_1_1Threading_1_1iWorkUnit.xhtml#a20d4c669e86d326de80835e40e11535c',1,'Mezzanine::Threading::iWorkUnit::RemoveDependency()'],['../classMezzanine_1_1Threading_1_1DefaultWorkUnit.xhtml#a25d7b720861687a4c5009c8cb4f7817d',1,'Mezzanine::Threading::DefaultWorkUnit::RemoveDependency()']]],
   ['removedirectory',['RemoveDirectory',['../classMezzanine_1_1ResourceManager.xhtml#a9ff14c330394714615b869d884795625',1,'Mezzanine::ResourceManager']]],
+  ['removeduplicatewhitespaces',['RemoveDuplicateWhitespaces',['../namespaceMezzanine_1_1StringTools.xhtml#a1f0837963cbbdc88b852fdd72f5624c7',1,'Mezzanine::StringTools']]],
   ['removeeffect',['RemoveEffect',['../classMezzanine_1_1Audio_1_1iSound.xhtml#a8cbb08434d0fb0d8728f412e6e211ff5',1,'Mezzanine::Audio::iSound']]],
   ['removeeffectpreset',['RemoveEffectPreset',['../classMezzanine_1_1Audio_1_1iEffectsHandler.xhtml#ac6600aa464f38dae8cc2f74ae84c402e',1,'Mezzanine::Audio::iEffectsHandler']]],
   ['removeevent',['RemoveEvent',['../classMezzanine_1_1EventManager.xhtml#ae3a90f7fdd0b75b4e4ff5e5d3ad3e332',1,'Mezzanine::EventManager']]],
