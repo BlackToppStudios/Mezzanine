@@ -1,3 +1,5 @@
+/home/Code/Mezzanine/Mezzanine/src/mathtool.cpp:53: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/Code/Mezzanine/Mezzanine/src/mathtool.cpp:53: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.cpp:98: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.cpp:98: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/Code/Mezzanine/Mezzanine/src/UI/cell.h:122: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
@@ -1048,9 +1050,9 @@
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: parameters of member Mezzanine::Vector3::GetAxisValue are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: return type of member Mezzanine::Vector3::GetAxisValue is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:388: warning: return type of member Mezzanine::Vector3::GetBulletVector3 is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:397: warning: return type of member Mezzanine::Vector3::GetBulletVector3 is not documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:337: warning: return type of member Mezzanine::Vector3::GetDirection is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:396: warning: return type of member Mezzanine::Vector3::GetOgreVector3 is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:405: warning: return type of member Mezzanine::Vector3::GetOgreVector3 is not documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:367: warning: The following parameters of Mezzanine::Vector3::GetRotationToAxis(const Vector3 &Axis, const Vector3 &FallBackAxis=Vector3()) const are not documented:
   parameter 'FallBackAxis'
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:237: warning: return type of member Mezzanine::Vector3::operator!= is not documented

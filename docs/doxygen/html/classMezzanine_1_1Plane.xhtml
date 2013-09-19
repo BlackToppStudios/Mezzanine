@@ -83,7 +83,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classMezzanine_1_1Plane-members.xhtml">List of all members</a>  </div>
   <div class="headertitle">
@@ -104,12 +106,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <center><span class="legend">[<a href="graph_legend.xhtml">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:af6296149782de8f7ed184858199373df"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; <a class="el" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">Bool</a>, <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#af6296149782de8f7ed184858199373df">RayTestResult</a></td></tr>
+<tr class="memdesc:af6296149782de8f7ed184858199373df"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a type used for the return of a ray intersection test.  <a href="#af6296149782de8f7ed184858199373df">More...</a><br/></td></tr>
+<tr class="separator:af6296149782de8f7ed184858199373df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70fe4d842500572cb0e634e6d92bb1e1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a70fe4d842500572cb0e634e6d92bb1e1">Side</a> { <b>S_None</b> = 0, 
+<b>S_Positive</b> = 1, 
+<b>S_Negative</b> = 2, 
+<b>S_Both</b> = 3
+ }</td></tr>
+<tr class="memdesc:a70fe4d842500572cb0e634e6d92bb1e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enum used to describe which side of the plane the result of a query is on. <br/></td></tr>
+<tr class="separator:a70fe4d842500572cb0e634e6d92bb1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5d8a918982fe5424be3e9a11b1a849c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d8a918982fe5424be3e9a11b1a849c2"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a5d8a918982fe5424be3e9a11b1a849c2">Plane</a> ()</td></tr>
 <tr class="memdesc:a5d8a918982fe5424be3e9a11b1a849c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br/></td></tr>
 <tr class="separator:a5d8a918982fe5424be3e9a11b1a849c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a558935de73bfc9607da12d532bdf5d1c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a558935de73bfc9607da12d532bdf5d1c">Plane</a> (const <a class="el" href="classMezzanine_1_1Plane.xhtml">Plane</a> &amp;Other)</td></tr>
+<tr class="memdesc:a558935de73bfc9607da12d532bdf5d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a558935de73bfc9607da12d532bdf5d1c">More...</a><br/></td></tr>
+<tr class="separator:a558935de73bfc9607da12d532bdf5d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63124b4b2f35de01dcab4a877c405f20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a63124b4b2f35de01dcab4a877c405f20">Plane</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Norm, const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Dist)</td></tr>
 <tr class="memdesc:a63124b4b2f35de01dcab4a877c405f20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive constructor.  <a href="#a63124b4b2f35de01dcab4a877c405f20">More...</a><br/></td></tr>
 <tr class="separator:a63124b4b2f35de01dcab4a877c405f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,15 +137,34 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae90cf25d88fefa17e21ea4e41265e1a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#ae90cf25d88fefa17e21ea4e41265e1a2">Plane</a> (const Ogre::Plane &amp;InternalPlane)</td></tr>
 <tr class="memdesc:ae90cf25d88fefa17e21ea4e41265e1a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compatibility constructor.  <a href="#ae90cf25d88fefa17e21ea4e41265e1a2">More...</a><br/></td></tr>
 <tr class="separator:ae90cf25d88fefa17e21ea4e41265e1a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88d1b1fa392e245573742a4341309c7e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88d1b1fa392e245573742a4341309c7e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a88d1b1fa392e245573742a4341309c7e">~Plane</a> ()</td></tr>
+<tr class="memdesc:a88d1b1fa392e245573742a4341309c7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr class="separator:a88d1b1fa392e245573742a4341309c7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51a4dbd13b4379955954496db4d5377d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a51a4dbd13b4379955954496db4d5377d">Define</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Norm, const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Dist)</td></tr>
+<tr class="memdesc:a51a4dbd13b4379955954496db4d5377d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the dimensions of this plane explicitly.  <a href="#a51a4dbd13b4379955954496db4d5377d">More...</a><br/></td></tr>
+<tr class="separator:a51a4dbd13b4379955954496db4d5377d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92339e3da7119becc71b1d820c2062fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a92339e3da7119becc71b1d820c2062fa">Define</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;First, const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Second, const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Third)</td></tr>
+<tr class="memdesc:a92339e3da7119becc71b1d820c2062fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the dimensions of this plane from a triangle in 3D space.  <a href="#a92339e3da7119becc71b1d820c2062fa">More...</a><br/></td></tr>
+<tr class="separator:a92339e3da7119becc71b1d820c2062fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa22cfb96be3b60e88ebfd93aafb28ed2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#aa22cfb96be3b60e88ebfd93aafb28ed2">ExtractOgrePlane</a> (const Ogre::Plane &amp;InternalPlane)</td></tr>
 <tr class="memdesc:aa22cfb96be3b60e88ebfd93aafb28ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a> to match the <a class="el" href="namespaceOgre.xhtml">Ogre</a> <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>.  <a href="#aa22cfb96be3b60e88ebfd93aafb28ed2">More...</a><br/></td></tr>
 <tr class="separator:aa22cfb96be3b60e88ebfd93aafb28ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c53e1332fbfb04fbaaaa99da121a370"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a2c53e1332fbfb04fbaaaa99da121a370">GetDistance</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Point) const </td></tr>
+<tr class="memdesc:a2c53e1332fbfb04fbaaaa99da121a370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the distance from the plane to a point in 3D space.  <a href="#a2c53e1332fbfb04fbaaaa99da121a370">More...</a><br/></td></tr>
+<tr class="separator:a2c53e1332fbfb04fbaaaa99da121a370"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1bc798271d903d1045498f0eb5691a0"><td class="memItemLeft" align="right" valign="top">Ogre::Plane&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#ad1bc798271d903d1045498f0eb5691a0">GetOgrePlane</a> () const </td></tr>
-<tr class="memdesc:ad1bc798271d903d1045498f0eb5691a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an Ogre::Plane that contains this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>'s information.  <a href="#ad1bc798271d903d1045498f0eb5691a0">More...</a><br/></td></tr>
+<tr class="memdesc:ad1bc798271d903d1045498f0eb5691a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an Ogre::Plane that contains this Planes information.  <a href="#ad1bc798271d903d1045498f0eb5691a0">More...</a><br/></td></tr>
 <tr class="separator:ad1bc798271d903d1045498f0eb5691a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87b4a3f4b61d927eb37be8bf977ede35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a87b4a3f4b61d927eb37be8bf977ede35">Intersects</a> (const <a class="el" href="classMezzanine_1_1Ray.xhtml">Ray</a> &amp;ToCheck) const </td></tr>
-<tr class="memdesc:a87b4a3f4b61d927eb37be8bf977ede35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a ray intersects this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>.  <a href="#a87b4a3f4b61d927eb37be8bf977ede35">More...</a><br/></td></tr>
-<tr class="separator:a87b4a3f4b61d927eb37be8bf977ede35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a946133dfb4c7531a8a7ed61247a98334"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Plane.xhtml#a70fe4d842500572cb0e634e6d92bb1e1">Side</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a946133dfb4c7531a8a7ed61247a98334">GetSide</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Point) const </td></tr>
+<tr class="memdesc:a946133dfb4c7531a8a7ed61247a98334"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets which side of the plane a point in 3D space is.  <a href="#a946133dfb4c7531a8a7ed61247a98334">More...</a><br/></td></tr>
+<tr class="separator:a946133dfb4c7531a8a7ed61247a98334"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a7bbb14e5a28abf730a4f9c17b9f37b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Plane.xhtml#a70fe4d842500572cb0e634e6d92bb1e1">Side</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a2a7bbb14e5a28abf730a4f9c17b9f37b">GetSide</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;Center, const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;HalfSize) const </td></tr>
+<tr class="memdesc:a2a7bbb14e5a28abf730a4f9c17b9f37b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets which side of the plane a box shape is.  <a href="#a2a7bbb14e5a28abf730a4f9c17b9f37b">More...</a><br/></td></tr>
+<tr class="separator:a2a7bbb14e5a28abf730a4f9c17b9f37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16e92719b88f68f15441a766480367d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Plane.xhtml#af6296149782de8f7ed184858199373df">RayTestResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a16e92719b88f68f15441a766480367d2">Intersects</a> (const <a class="el" href="classMezzanine_1_1Ray.xhtml">Ray</a> &amp;ToCheck) const </td></tr>
+<tr class="memdesc:a16e92719b88f68f15441a766480367d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a ray intersects this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>.  <a href="#a16e92719b88f68f15441a766480367d2">More...</a><br/></td></tr>
+<tr class="separator:a16e92719b88f68f15441a766480367d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6130c45467e24dda66dca2a100909e06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a6130c45467e24dda66dca2a100909e06">IsOverlapping</a> (const <a class="el" href="classMezzanine_1_1Sphere.xhtml">Sphere</a> &amp;ToCheck) const </td></tr>
 <tr class="memdesc:a6130c45467e24dda66dca2a100909e06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a sphere overlaps with this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>.  <a href="#a6130c45467e24dda66dca2a100909e06">More...</a><br/></td></tr>
 <tr class="separator:a6130c45467e24dda66dca2a100909e06"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,6 +186,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1779a7de9f9c8620bb7973d284a64650"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a1779a7de9f9c8620bb7973d284a64650">operator==</a> (const <a class="el" href="classMezzanine_1_1Plane.xhtml">Plane</a> &amp;Other) const </td></tr>
 <tr class="memdesc:a1779a7de9f9c8620bb7973d284a64650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator.  <a href="#a1779a7de9f9c8620bb7973d284a64650">More...</a><br/></td></tr>
 <tr class="separator:a1779a7de9f9c8620bb7973d284a64650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d5f2b3f40010cef74a528204af91e67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a5d5f2b3f40010cef74a528204af91e67">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;SelfRoot)</td></tr>
+<tr class="memdesc:a5d5f2b3f40010cef74a528204af91e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> <a class="el" href="classMezzanine_1_1Node.xhtml">Node</a> and overwrite this object with it.  <a href="#a5d5f2b3f40010cef74a528204af91e67">More...</a><br/></td></tr>
+<tr class="separator:a5d5f2b3f40010cef74a528204af91e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a545832e1b5347a3cb35e2690f6aa926c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a545832e1b5347a3cb35e2690f6aa926c">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;ParentNode) const </td></tr>
+<tr class="memdesc:a545832e1b5347a3cb35e2690f6aa926c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#a545832e1b5347a3cb35e2690f6aa926c">More...</a><br/></td></tr>
+<tr class="separator:a545832e1b5347a3cb35e2690f6aa926c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a93de652c5a6b0c3333b57087872a372b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Plane.xhtml#a93de652c5a6b0c3333b57087872a372b">GetSerializableName</a> ()</td></tr>
+<tr class="memdesc:a93de652c5a6b0c3333b57087872a372b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the proxy class will leave behind as its instances are serialized.  <a href="#a93de652c5a6b0c3333b57087872a372b">More...</a><br/></td></tr>
+<tr class="separator:a93de652c5a6b0c3333b57087872a372b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -166,7 +215,53 @@ Public Attributes</h2></td></tr>
 <p>The Normal value represents how rotated the plane will be, and The Distance with represent how far you need to move down a line perpendicular to the plane, (ie the normal, which is defined by the Normal value) from the Origin. </p>
 
 <p>Definition at line <a class="el" href="plane_8h_source.xhtml#l00065">65</a> of file <a class="el" href="plane_8h_source.xhtml">plane.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="af6296149782de8f7ed184858199373df"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::pair&lt;<a class="el" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">Bool</a>,<a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a>&gt; <a class="el" href="classMezzanine_1_1Plane.xhtml#af6296149782de8f7ed184858199373df">Mezzanine::Plane::RayTestResult</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This is a type used for the return of a ray intersection test. </p>
+<p>This type provides more verbose return data that can be used for further tests. <br/>
+ <br/>
+ The first member stores whether or not there was a hit. The second member stores the point where it was hit. </p>
+
+<p>Definition at line <a class="el" href="plane_8h_source.xhtml#l00080">80</a> of file <a class="el" href="plane_8h_source.xhtml">plane.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a558935de73bfc9607da12d532bdf5d1c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mezzanine::Plane::Plane </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Plane.xhtml">Plane</a> &amp;&#160;</td>
+          <td class="paramname"><em>Other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Other</td><td>The other plane to copy from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00068">68</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a63124b4b2f35de01dcab4a877c405f20"></a>
 <div class="memitem">
 <div class="memproto">
@@ -194,13 +289,13 @@ Public Attributes</h2></td></tr>
 <p>Descriptive constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Norm</td><td>The rotation of the plane </td></tr>
-    <tr><td class="paramname">Dist</td><td>Distance from origin to the plane </td></tr>
+    <tr><td class="paramname">Norm</td><td>The positive direction of the plane. </td></tr>
+    <tr><td class="paramname">Dist</td><td>Distance from origin to the plane. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00067">67</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00073">73</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -237,14 +332,14 @@ Public Attributes</h2></td></tr>
 <p>Triangle constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">First</td><td>This is one point in the triangle </td></tr>
-    <tr><td class="paramname">Second</td><td>This is another point in the triangle </td></tr>
-    <tr><td class="paramname">Third</td><td>This is one point in the triangle </td></tr>
+    <tr><td class="paramname">First</td><td>This is one point in the triangle. </td></tr>
+    <tr><td class="paramname">Second</td><td>This is another point in the triangle. </td></tr>
+    <tr><td class="paramname">Third</td><td>This is one point in the triangle. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00072">72</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00078">78</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -283,6 +378,87 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a51a4dbd13b4379955954496db4d5377d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Plane::Define </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Norm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramname"><em>Dist</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defines the dimensions of this plane explicitly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Norm</td><td>The positive direction of the plane. </td></tr>
+    <tr><td class="paramname">Dist</td><td>Distance from origin to the plane. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00090">90</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a92339e3da7119becc71b1d820c2062fa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Plane::Define </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>First</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Third</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defines the dimensions of this plane from a triangle in 3D space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">First</td><td>This is one point in the triangle. </td></tr>
+    <tr><td class="paramname">Second</td><td>This is another point in the triangle. </td></tr>
+    <tr><td class="paramname">Third</td><td>This is one point in the triangle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00096">96</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aa22cfb96be3b60e88ebfd93aafb28ed2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -305,7 +481,35 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00105">105</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00151">151</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2c53e1332fbfb04fbaaaa99da121a370"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mezzanine::Plane::GetDistance </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the distance from the plane to a point in 3D space. </p>
+<dl class="section note"><dt>Note</dt><dd>This function will only return a true unit distance if the Normal member of this class is properly normalized. Take care when altering it's value. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Point</td><td>The point in 3D space to get the distance to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the distance from the plane to the specified point. Positive values mean the point is on the positive side, and vice versa. </dd></dl>
+
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00130">130</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -322,19 +526,112 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets an Ogre::Plane that contains this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>'s information. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns an Ogre::Plnae that contains the same information as this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>'s information. </dd></dl>
+<p>Gets an Ogre::Plane that contains this Planes information. </p>
+<dl class="section return"><dt>Returns</dt><dd>This returns an Ogre::Plane that contains the same information as this Planes information. </dd></dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00102">102</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00148">148</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a87b4a3f4b61d927eb37be8bf977ede35"></a>
+<a class="anchor" id="a93de652c5a6b0c3333b57087872a372b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::Plane::GetSerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag the proxy class will leave behind as its instances are serialized. </p>
+<dl class="section return"><dt>Returns</dt><dd>A string containing the name of this class. </dd></dl>
+
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00195">195</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a946133dfb4c7531a8a7ed61247a98334"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.xhtml#a942580f9d14a57c4a192270eb78f7d57">Bool</a> Mezzanine::Plane::Intersects </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Plane.xhtml#a70fe4d842500572cb0e634e6d92bb1e1">Plane::Side</a> Mezzanine::Plane::GetSide </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Point</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets which side of the plane a point in 3D space is. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Point</td><td>The point in 3D space to determine on which side of the plane it lies. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a Side enum value, indicating which side of the plane the point is on. </dd></dl>
+
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00105">105</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2a7bbb14e5a28abf730a4f9c17b9f37b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Plane.xhtml#a70fe4d842500572cb0e634e6d92bb1e1">Plane::Side</a> Mezzanine::Plane::GetSide </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Center</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>HalfSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets which side of the plane a box shape is. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Center</td><td>The point in 3D space where the center of the box is. </td></tr>
+    <tr><td class="paramname">HalfSize</td><td>Half of the total size on each axis. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a Side enum value indicating which side of the plane the box is on. </dd></dl>
+
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00117">117</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a16e92719b88f68f15441a766480367d2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Plane.xhtml#af6296149782de8f7ed184858199373df">Plane::RayTestResult</a> Mezzanine::Plane::Intersects </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1Ray.xhtml">Ray</a> &amp;&#160;</td>
           <td class="paramname"><em>ToCheck</em></td><td>)</td>
@@ -352,7 +649,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the ray intersects this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00096">96</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00142">142</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -379,7 +676,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the provided sphere overlaps with this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00087">87</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00133">133</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -406,7 +703,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the AABB overlaps with this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00090">90</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00136">136</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -433,7 +730,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the provided <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a> intersects with this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00093">93</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00139">139</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -460,7 +757,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a> is not the same as the other provided <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00120">120</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00212">212</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -486,7 +783,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00111">111</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00203">203</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -512,7 +809,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00114">114</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00206">206</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -539,7 +836,59 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a> is the same as the other provided <a class="el" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a>, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00117">117</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00209">209</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5d5f2b3f40010cef74a528204af91e67"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Plane::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>SelfRoot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> <a class="el" href="classMezzanine_1_1Node.xhtml">Node</a> and overwrite this object with it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SelfRoot</td><td>An <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the data to populate this class with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00173">173</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a545832e1b5347a3cb35e2690f6aa926c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Plane::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>ParentNode</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ParentNode</td><td>The point in the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> hierarchy that all this renderable should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="plane_8cpp_source.xhtml#l00157">157</a> of file <a class="el" href="plane_8cpp_source.xhtml">plane.cpp</a>.</p>
 
 </div>
 </div>
@@ -549,6 +898,6 @@ Public Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 18 2013 00:02:59 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Wed Sep 18 2013 23:31:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

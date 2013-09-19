@@ -11,5 +11,6 @@ var searchData=
   ['ogreparticle',['OgreParticle',['../structMezzanine_1_1Internal_1_1ParticleEffectInternalData.xhtml#a9d4aa7365c4db13a8923161ac45d5ddd',1,'Mezzanine::Internal::ParticleEffectInternalData']]],
   ['ogreresource',['OgreResource',['../classMezzanine_1_1ResourceManager.xhtml#a3c1b8d26ef1e623a8f96ff5e0559a829',1,'Mezzanine::ResourceManager']]],
   ['operationspaused',['OperationsPaused',['../classMezzanine_1_1WorldManager.xhtml#a0e6cc195d20c2a7f97e4b17143c3d232',1,'Mezzanine::WorldManager']]],
+  ['origin',['Origin',['../classMezzanine_1_1Ray.xhtml#aa2e73f84b1137ec1db312fbdfdefac05',1,'Mezzanine::Ray']]],
   ['overlappingactors',['OverlappingActors',['../classMezzanine_1_1AreaEffect.xhtml#a9a1dbe79efda62adad5f56b5f93813ca',1,'Mezzanine::AreaEffect']]]
 ];

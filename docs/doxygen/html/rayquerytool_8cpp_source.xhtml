@@ -167,7 +167,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span>    <span class="comment">// Raycasting Nonsense goe here</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#af1224419c58901fc57fcef2d236a8298">   84</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* RayQueryTool::GetFirstActorOnRayByPolygon(<a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a> ActorRay, <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> ObjectFlags)</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#af1224419c58901fc57fcef2d236a8298">   84</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* RayQueryTool::GetFirstActorOnRayByPolygon(<a class="code" href="classMezzanine_1_1Ray.xhtml" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a> ActorRay, <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> ObjectFlags)</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        VerifyRayQuery();</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        Ogre::Ray Ooray = ActorRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#af0dad9b998e8825d102d9da80fda10aa" title="Gets an Ogre::Ray that contains this Rays information.">GetOgreRay</a>();</div>
@@ -264,7 +264,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="keywordflow">return</span> ClosestActor;</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    }</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
-<div class="line"><a name="l00181"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#a9ded1647755a523d3dbda297a0e73eba">  181</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* RayQueryTool::GetFirstActorOnRayByAABB(<a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a> ActorRay, <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> ObjectFlags)</div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#a9ded1647755a523d3dbda297a0e73eba">  181</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* RayQueryTool::GetFirstActorOnRayByAABB(<a class="code" href="classMezzanine_1_1Ray.xhtml" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a> ActorRay, <a class="code" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> ObjectFlags)</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    {</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        VerifyRayQuery();</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        Ogre::Ray Ooray = ActorRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#af0dad9b998e8825d102d9da80fda10aa" title="Gets an Ogre::Ray that contains this Rays information.">GetOgreRay</a>();</div>
@@ -302,7 +302,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        VerifyRayQuery();</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <a class="code" href="classMezzanine_1_1Vector3WActor.xhtml" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* Results = 0;</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a>* MouseRay = GetMouseRay(RayLength);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <a class="code" href="classMezzanine_1_1Ray.xhtml" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a>* MouseRay = GetMouseRay(RayLength);</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        <span class="keywordflow">if</span> (UsePolygon)</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        {</div>
@@ -315,11 +315,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <span class="keywordflow">return</span> Results;</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    }</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00232"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#abc005fb351fc1a15b7619db76788ef35">  232</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>* RayQueryTool::RayPlaneIntersection(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a> &amp;QueryRay, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a> &amp;QueryPlane)</div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#abc005fb351fc1a15b7619db76788ef35">  232</a></span>&#160;    <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>* RayQueryTool::RayPlaneIntersection(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Ray.xhtml" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a> &amp;QueryRay, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Plane.xhtml" title="This is used to represent a flat infinite slice of the game world.">Plane</a> &amp;QueryPlane)</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    {</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        VerifyRayQuery();</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <span class="keywordflow">try</span>{</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> u = QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#a40c41932b49c6b8b04b2558952503d1f" title="A point on the line of the ray.">To</a> - QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#ab4bd29b181c9a2b405ca320ccf9b5b37" title="The origin point of the Vector.">From</a>;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> u = QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#aba45f06cbba8e3e7716bada0aed85ec3" title="The direction of this ray or end point of this ray depending on mode.">Destination</a> - QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#aa2e73f84b1137ec1db312fbdfdefac05" title="The origin point of the Vector.">Origin</a>;</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> p0 = <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0);</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="keywordflow">if</span>(QueryPlane.<a class="code" href="classMezzanine_1_1Plane.xhtml#a53739e48e75ba8fc6c6bfc55f96cf201" title="The rotation of the plane.">Normal</a>.<a class="code" href="classMezzanine_1_1Vector3.xhtml#aa858d9bc5ac5ad1b685b7088c94c05f6" title="Coordinate on the X vector.">X</a> == 0 &amp;&amp; QueryPlane.<a class="code" href="classMezzanine_1_1Plane.xhtml#a53739e48e75ba8fc6c6bfc55f96cf201" title="The rotation of the plane.">Normal</a>.<a class="code" href="classMezzanine_1_1Vector3.xhtml#a2303527e4ea4cd1659a23320627cd62c" title="Coordinate on the Y vector.">Y</a> == 0 &amp;&amp; QueryPlane.<a class="code" href="classMezzanine_1_1Plane.xhtml#a53739e48e75ba8fc6c6bfc55f96cf201" title="The rotation of the plane.">Normal</a>.<a class="code" href="classMezzanine_1_1Vector3.xhtml#a9b887faced986921956f20f3e4cb8ddc" title="Coordinate on the Z vector.">Z</a> == 0)</div>
@@ -341,7 +341,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                }</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            }</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> w = QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#ab4bd29b181c9a2b405ca320ccf9b5b37" title="The origin point of the Vector.">From</a> - p0;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> w = QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#aa2e73f84b1137ec1db312fbdfdefac05" title="The origin point of the Vector.">Origin</a> - p0;</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            <a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> D = u.<a class="code" href="classMezzanine_1_1Vector3.xhtml#ad49630dbeff2f1b63ce7c7e1d0faf4b8" title="This is used to calculate the dotproduct of this and another vector.">DotProduct</a>(QueryPlane.<a class="code" href="classMezzanine_1_1Plane.xhtml#a53739e48e75ba8fc6c6bfc55f96cf201" title="The rotation of the plane.">Normal</a>);</div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            <a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> N = -1 * w.<a class="code" href="classMezzanine_1_1Vector3.xhtml#ad49630dbeff2f1b63ce7c7e1d0faf4b8" title="This is used to calculate the dotproduct of this and another vector.">DotProduct</a>(QueryPlane.<a class="code" href="classMezzanine_1_1Plane.xhtml#a53739e48e75ba8fc6c6bfc55f96cf201" title="The rotation of the plane.">Normal</a>);</div>
@@ -352,7 +352,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            {</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                <span class="keywordflow">if</span>(N == 0)</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                {</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#ab4bd29b181c9a2b405ca320ccf9b5b37" title="The origin point of the Vector.">From</a>);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#aa2e73f84b1137ec1db312fbdfdefac05" title="The origin point of the Vector.">Origin</a>);</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                }</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                {</div>
@@ -367,192 +367,190 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            }</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a> test =  <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#ab4bd29b181c9a2b405ca320ccf9b5b37" title="The origin point of the Vector.">From</a> + (u * sI));</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>* return_vector = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#aa2e73f84b1137ec1db312fbdfdefac05" title="The origin point of the Vector.">Origin</a> + (u * sI));</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>* return_vector = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#ab4bd29b181c9a2b405ca320ccf9b5b37" title="The origin point of the Vector.">From</a> + (u * sI));</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            <a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> distance = return_vector-&gt;<a class="code" href="classMezzanine_1_1Vector3.xhtml#a712b2063e6aa4c58002628ecf08b15fe" title="Gets the distance between this and another vector.">Distance</a>(QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#aa2e73f84b1137ec1db312fbdfdefac05" title="The origin point of the Vector.">Origin</a>);</div>
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            <a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> distance = return_vector-&gt;<a class="code" href="classMezzanine_1_1Vector3.xhtml#a712b2063e6aa4c58002628ecf08b15fe" title="Gets the distance between this and another vector.">Distance</a>(QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#ab4bd29b181c9a2b405ca320ccf9b5b37" title="The origin point of the Vector.">From</a>);</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            <span class="keywordflow">if</span>(distance &gt; QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#ab4bd29b181c9a2b405ca320ccf9b5b37" title="The origin point of the Vector.">From</a>.<a class="code" href="classMezzanine_1_1Vector3.xhtml#a712b2063e6aa4c58002628ecf08b15fe" title="Gets the distance between this and another vector.">Distance</a>(QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#a40c41932b49c6b8b04b2558952503d1f" title="A point on the line of the ray.">To</a>))</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            {</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            }</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            <span class="keywordflow">return</span> return_vector;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        } <span class="keywordflow">catch</span>(exception e) {</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            <span class="comment">//In case we divide b</span></div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            Entresol::GetSingletonPtr()-&gt;Log(<span class="stringliteral">&quot;WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:&quot;</span>);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            Entresol::GetSingletonPtr()-&gt;Log(e.what());</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        }</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    }</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
-<div class="line"><a name="l00304"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#ac1c1996e97e3c0ab739b112907ba6790">  304</a></span>&#160;    <a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a>* RayQueryTool::GetMouseRay(<a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Length)</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    {</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        VerifyRayQuery();</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.xhtml" title="This class is for creating and managing viewports within a game window.">Graphics::Viewport</a>* HoveredViewport = Input::InputManager::GetSingletonPtr()-&gt;GetSystemMouse()-&gt;GetHoveredViewport();</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <a class="code" href="classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> MousePos = Input::InputManager::GetSingletonPtr()-&gt;GetSystemMouse()-&gt;GetViewportPosition();</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a>* MouseRay = NULL;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="keywordflow">if</span>(HoveredViewport)</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        {</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            MouseRay = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1Ray.xhtml" title="This is used to indicate a line with one end.">Ray</a>( HoveredViewport-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.xhtml#a57ff021ae3a38cce73b4a012d56c30b3" title="Gets the camera associated with this viewport.">GetViewportCamera</a>()-&gt;<a class="code" href="classMezzanine_1_1Camera.xhtml#a4fce77c8b2a0901dc1d22541b98b9437" title="Gets a Ray from the camera to the viewport.">GetCameraToViewportRay</a>(</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                                MousePos.<a class="code" href="classMezzanine_1_1Vector2.xhtml#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> / (<a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)(HoveredViewport-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.xhtml#a222e02a696c9a87a2e27ce456649e555" title="Gets the width of the viewport in pixels.">GetActualWidth</a>()),</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                                MousePos.<a class="code" href="classMezzanine_1_1Vector2.xhtml#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> / (<a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)(HoveredViewport-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.xhtml#adadc72d5828d7e1854c4a2c62518706c" title="Gets the height of the viewport in pixels.">GetActualHeight</a>()) ) );</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            (*MouseRay) *= Length;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        }</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        <span class="keywordflow">return</span> MouseRay;</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    }</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="comment">// Private Members</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keywordtype">void</span> RayQueryTool::VerifyRayQuery()</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    {</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        <span class="keywordflow">if</span>(!RayQuery)</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        {</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            RayQuery = Entresol::GetSingletonPtr()-&gt;GetSceneManager()-&gt;GetGraphicsWorldPointer()-&gt;createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            RayQuery-&gt;setSortByDistance(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        }</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    }</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="keywordtype">void</span> RayQueryTool::GetMeshInformation( Ogre::Entity *entity,</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                                <span class="keywordtype">size_t</span> &amp;vertex_count,</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                                Ogre::Vector3* &amp;vertices,</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                                <span class="keywordtype">size_t</span> &amp;index_count,</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                                <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>* &amp;indices,</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                                <span class="keyword">const</span> Ogre::Vector3 &amp;position,</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                                <span class="keyword">const</span> Ogre::Quaternion &amp;orient,</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                                <span class="keyword">const</span> Ogre::Vector3 &amp;scale)</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    {</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <span class="keywordtype">bool</span> added_shared = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        <span class="keywordtype">size_t</span> current_offset = 0;</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        <span class="keywordtype">size_t</span> shared_offset = 0;</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        <span class="keywordtype">size_t</span> next_offset = 0;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        <span class="keywordtype">size_t</span> index_offset = 0;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        vertex_count = index_count = 0;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            <span class="keywordflow">if</span>(distance &gt; QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#aa2e73f84b1137ec1db312fbdfdefac05" title="The origin point of the Vector.">Origin</a>.<a class="code" href="classMezzanine_1_1Vector3.xhtml#a712b2063e6aa4c58002628ecf08b15fe" title="Gets the distance between this and another vector.">Distance</a>(QueryRay.<a class="code" href="classMezzanine_1_1Ray.xhtml#aba45f06cbba8e3e7716bada0aed85ec3" title="The direction of this ray or end point of this ray depending on mode.">Destination</a>))</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            {</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            }</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            <span class="keywordflow">return</span> return_vector;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        } <span class="keywordflow">catch</span>(exception e) {</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            <span class="comment">//In case we divide b</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            Entresol::GetSingletonPtr()-&gt;Log(<span class="stringliteral">&quot;WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:&quot;</span>);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            Entresol::GetSingletonPtr()-&gt;Log(e.what());</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        }</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    }</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
+<div class="line"><a name="l00302"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.xhtml#ac1c1996e97e3c0ab739b112907ba6790">  302</a></span>&#160;    <a class="code" href="classMezzanine_1_1Ray.xhtml" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a>* RayQueryTool::GetMouseRay(<a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Length)</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    {</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        VerifyRayQuery();</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.xhtml" title="This class is for creating and managing viewports within a game window.">Graphics::Viewport</a>* HoveredViewport = Input::InputManager::GetSingletonPtr()-&gt;GetSystemMouse()-&gt;GetHoveredViewport();</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <a class="code" href="classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> MousePos = Input::InputManager::GetSingletonPtr()-&gt;GetSystemMouse()-&gt;GetViewportPosition();</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <a class="code" href="classMezzanine_1_1Ray.xhtml" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a>* MouseRay = NULL;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <span class="keywordflow">if</span>(HoveredViewport)</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        {</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            MouseRay = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1Ray.xhtml" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a>( HoveredViewport-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.xhtml#a57ff021ae3a38cce73b4a012d56c30b3" title="Gets the camera associated with this viewport.">GetViewportCamera</a>()-&gt;<a class="code" href="classMezzanine_1_1Camera.xhtml#a4fce77c8b2a0901dc1d22541b98b9437" title="Gets a Ray from the camera to the viewport.">GetCameraToViewportRay</a>(</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                                MousePos.<a class="code" href="classMezzanine_1_1Vector2.xhtml#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> / (<a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)(HoveredViewport-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.xhtml#a222e02a696c9a87a2e27ce456649e555" title="Gets the width of the viewport in pixels.">GetActualWidth</a>()),</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                                MousePos.<a class="code" href="classMezzanine_1_1Vector2.xhtml#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> / (<a class="code" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)(HoveredViewport-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.xhtml#adadc72d5828d7e1854c4a2c62518706c" title="Gets the height of the viewport in pixels.">GetActualHeight</a>()) ) );</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            (*MouseRay) *= Length;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;        }</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        <span class="keywordflow">return</span> MouseRay;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    }</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="comment">// Private Members</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordtype">void</span> RayQueryTool::VerifyRayQuery()</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    {</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        <span class="keywordflow">if</span>(!RayQuery)</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        {</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            RayQuery = Entresol::GetSingletonPtr()-&gt;GetSceneManager()-&gt;GetGraphicsWorldPointer()-&gt;createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            RayQuery-&gt;setSortByDistance(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        }</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    }</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <span class="keywordtype">void</span> RayQueryTool::GetMeshInformation( Ogre::Entity *entity,</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                                <span class="keywordtype">size_t</span> &amp;vertex_count,</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                                Ogre::Vector3* &amp;vertices,</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                                <span class="keywordtype">size_t</span> &amp;index_count,</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                                <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>* &amp;indices,</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                                <span class="keyword">const</span> Ogre::Vector3 &amp;position,</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                                <span class="keyword">const</span> Ogre::Quaternion &amp;orient,</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                                <span class="keyword">const</span> Ogre::Vector3 &amp;scale)</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    {</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        <span class="keywordtype">bool</span> added_shared = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        <span class="keywordtype">size_t</span> current_offset = 0;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <span class="keywordtype">size_t</span> shared_offset = 0;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        <span class="keywordtype">size_t</span> next_offset = 0;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        <span class="keywordtype">size_t</span> index_offset = 0;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        vertex_count = index_count = 0;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        Ogre::MeshPtr mesh = entity-&gt;getMesh();</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        Ogre::MeshPtr mesh = entity-&gt;getMesh();</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        <span class="keywordtype">bool</span> useSoftwareBlendingVertices = entity-&gt;hasSkeleton();</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;        <span class="keywordtype">bool</span> useSoftwareBlendingVertices = entity-&gt;hasSkeleton();</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        <span class="keywordflow">if</span> (useSoftwareBlendingVertices)</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        {                                   <span class="comment">//10,000th line of code</span></div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            entity-&gt;_updateAnimation();</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        }</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        <span class="comment">// Calculate how many vertices and indices we&#39;re going to need</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;        {</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            Ogre::SubMesh* submesh = mesh-&gt;getSubMesh( i );</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            <span class="comment">// We only need to add the shared vertices once</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;            <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            {</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                <span class="keywordflow">if</span>( !added_shared )</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                {</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                    vertex_count += mesh-&gt;sharedVertexData-&gt;vertexCount;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                    added_shared = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                }</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            }</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            {</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                vertex_count += submesh-&gt;vertexData-&gt;vertexCount;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;            }</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;            <span class="comment">// Add the indices</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            index_count += submesh-&gt;indexData-&gt;indexCount;</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        }</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        <span class="comment">// Allocate space for the vertices and indices</span></div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        vertices = <span class="keyword">new</span> Ogre::Vector3[vertex_count];</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        indices = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>[index_count];</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;        <span class="keywordflow">if</span> (useSoftwareBlendingVertices)</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;        {                                   <span class="comment">//10,000th line of code</span></div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            entity-&gt;_updateAnimation();</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        }</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        <span class="comment">// Calculate how many vertices and indices we&#39;re going to need</span></div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        {</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            Ogre::SubMesh* submesh = mesh-&gt;getSubMesh( i );</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            <span class="comment">// We only need to add the shared vertices once</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            {</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                <span class="keywordflow">if</span>( !added_shared )</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                {</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                    vertex_count += mesh-&gt;sharedVertexData-&gt;vertexCount;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                    added_shared = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                }</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            }</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            {</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                vertex_count += submesh-&gt;vertexData-&gt;vertexCount;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            }</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;            <span class="comment">// Add the indices</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            index_count += submesh-&gt;indexData-&gt;indexCount;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        }</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        <span class="comment">// Allocate space for the vertices and indices</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        vertices = <span class="keyword">new</span> Ogre::Vector3[vertex_count];</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        indices = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>[index_count];</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        added_shared = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;        added_shared = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        <span class="comment">// Run through the submeshes again, adding the data into the arrays</span></div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;        <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        {</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            Ogre::SubMesh* submesh = mesh-&gt;getSubMesh(i);</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            <span class="comment">//Ogre::VertexData* vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            Ogre::VertexData* vertex_data;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            <span class="comment">//When there is animation:</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            <span class="keywordflow">if</span>(useSoftwareBlendingVertices)</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            {</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                <span class="comment">//    #ifdef BUILD_AGAINST_AZATHOTH</span></div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                <span class="comment">//             vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSharedBlendedVertexData() : entity-&gt;getSubEntity(i)-&gt;_getBlendedVertexData();</span></div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                <span class="comment">//    #else</span></div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSkelAnimVertexData() : entity-&gt;getSubEntity(i)-&gt;_getSkelAnimVertexData();</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                <span class="comment">//    #endif</span></div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            }</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            <span class="keywordflow">if</span>((!submesh-&gt;useSharedVertices)||(submesh-&gt;useSharedVertices &amp;&amp; !added_shared))</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            {</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                {</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                    added_shared = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                    shared_offset = current_offset;</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                }</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                <span class="keyword">const</span> Ogre::VertexElement* posElem = vertex_data-&gt;vertexDeclaration-&gt;findElementBySemantic(Ogre::VES_POSITION);</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                Ogre::HardwareVertexBufferSharedPtr vbuf = vertex_data-&gt;vertexBufferBinding-&gt;getBuffer(posElem-&gt;getSource());</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* vertex = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(vbuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                <span class="comment">// There is _no_ baseVertexPointerToElement() which takes an Ogre::Real or a double</span></div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                <span class="comment">//  as second argument. So make it float, to avoid trouble when Ogre::Real will</span></div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                <span class="comment">//  be comiled/typedefed as double:</span></div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;                <span class="comment">//      Ogre::Real* pReal;</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                <span class="keywordtype">float</span>* pReal;</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                <span class="keywordflow">for</span>( <span class="keywordtype">size_t</span> j = 0; j &lt; vertex_data-&gt;vertexCount; ++j, vertex += vbuf-&gt;getVertexSize())</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                {</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                    posElem-&gt;baseVertexPointerToElement(vertex, &amp;pReal);</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                    Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                    vertices[current_offset + j] = (orient * (pt * scale)) + position;</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                }</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;                vbuf-&gt;unlock();</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;                next_offset += vertex_data-&gt;vertexCount;</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;            }</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            Ogre::IndexData* index_data = submesh-&gt;indexData;</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;            <span class="keywordtype">size_t</span> numTris = index_data-&gt;indexCount / 3;</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;            Ogre::HardwareIndexBufferSharedPtr ibuf = index_data-&gt;indexBuffer;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;        <span class="comment">// Run through the submeshes again, adding the data into the arrays</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;        <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        {</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;            Ogre::SubMesh* submesh = mesh-&gt;getSubMesh(i);</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            <span class="comment">//Ogre::VertexData* vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            Ogre::VertexData* vertex_data;</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            <span class="comment">//When there is animation:</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;            <span class="keywordflow">if</span>(useSoftwareBlendingVertices)</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            {</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                <span class="comment">//    #ifdef BUILD_AGAINST_AZATHOTH</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                <span class="comment">//             vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSharedBlendedVertexData() : entity-&gt;getSubEntity(i)-&gt;_getBlendedVertexData();</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                <span class="comment">//    #else</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSkelAnimVertexData() : entity-&gt;getSubEntity(i)-&gt;_getSkelAnimVertexData();</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                <span class="comment">//    #endif</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            }</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            <span class="keywordflow">if</span>((!submesh-&gt;useSharedVertices)||(submesh-&gt;useSharedVertices &amp;&amp; !added_shared))</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;            {</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                {</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                    added_shared = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                    shared_offset = current_offset;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                }</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                <span class="keyword">const</span> Ogre::VertexElement* posElem = vertex_data-&gt;vertexDeclaration-&gt;findElementBySemantic(Ogre::VES_POSITION);</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                Ogre::HardwareVertexBufferSharedPtr vbuf = vertex_data-&gt;vertexBufferBinding-&gt;getBuffer(posElem-&gt;getSource());</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* vertex = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(vbuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                <span class="comment">// There is _no_ baseVertexPointerToElement() which takes an Ogre::Real or a double</span></div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                <span class="comment">//  as second argument. So make it float, to avoid trouble when Ogre::Real will</span></div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                <span class="comment">//  be comiled/typedefed as double:</span></div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                <span class="comment">//      Ogre::Real* pReal;</span></div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                <span class="keywordtype">float</span>* pReal;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                <span class="keywordflow">for</span>( <span class="keywordtype">size_t</span> j = 0; j &lt; vertex_data-&gt;vertexCount; ++j, vertex += vbuf-&gt;getVertexSize())</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                {</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                    posElem-&gt;baseVertexPointerToElement(vertex, &amp;pReal);</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                    Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                    vertices[current_offset + j] = (orient * (pt * scale)) + position;</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                }</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                vbuf-&gt;unlock();</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;                next_offset += vertex_data-&gt;vertexCount;</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;            }</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;            Ogre::IndexData* index_data = submesh-&gt;indexData;</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;            <span class="keywordtype">size_t</span> numTris = index_data-&gt;indexCount / 3;</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            Ogre::HardwareIndexBufferSharedPtr ibuf = index_data-&gt;indexBuffer;</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;            <span class="keywordtype">bool</span> use32bitindexes = (ibuf-&gt;getType() == Ogre::HardwareIndexBuffer::IT_32BIT);</div>
 <div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;            <span class="keywordtype">bool</span> use32bitindexes = (ibuf-&gt;getType() == Ogre::HardwareIndexBuffer::IT_32BIT);</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*  pLong = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*<span class="keyword">&gt;</span>(ibuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>* pShort = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>*<span class="keyword">&gt;</span>(pLong);</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;            <span class="keywordtype">size_t</span> offset = (submesh-&gt;useSharedVertices)? shared_offset : current_offset;</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;            <span class="keywordtype">size_t</span> index_start = index_data-&gt;indexStart;</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;            <span class="keywordtype">size_t</span> last_index = numTris*3 + index_start;</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;            <span class="keywordflow">if</span> (use32bitindexes)</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;            {</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;                    { indices[index_offset++] = pLong[k] + <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( offset ); }</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;            }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;                    { indices[ index_offset++ ] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( pShort[k] ) + static_cast&lt;unsigned long&gt;( offset ); }</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;            }</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;            ibuf-&gt;unlock();</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;            current_offset = next_offset;</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        }</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    }</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;}</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*  pLong = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*<span class="keyword">&gt;</span>(ibuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>* pShort = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>*<span class="keyword">&gt;</span>(pLong);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;            <span class="keywordtype">size_t</span> offset = (submesh-&gt;useSharedVertices)? shared_offset : current_offset;</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;            <span class="keywordtype">size_t</span> index_start = index_data-&gt;indexStart;</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;            <span class="keywordtype">size_t</span> last_index = numTris*3 + index_start;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;            <span class="keywordflow">if</span> (use32bitindexes)</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;            {</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;                    { indices[index_offset++] = pLong[k] + <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( offset ); }</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;            }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;                    { indices[ index_offset++ ] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( pShort[k] ) + static_cast&lt;unsigned long&gt;( offset ); }</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;            }</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;            ibuf-&gt;unlock();</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;            current_offset = next_offset;</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;        }</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    }</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;}</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 18 2013 00:02:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Wed Sep 18 2013 23:31:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
