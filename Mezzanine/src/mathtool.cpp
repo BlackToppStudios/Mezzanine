@@ -47,6 +47,43 @@
 #include "plane.h"
 
 #include <cmath>
+#include <limits>
+#include <algorithm>
+
+/// @cond 0
+namespace
+{
+    /// @typedef SegmentPosPair
+    /// @brief This is an std::pair that stores the near and far segement points for ray-aabb intersections.
+    typedef std::pair<Real,Real> SegmentPosPair;
+
+    /// @brief Helper fucntion for calculating ray-aabb intersections.
+    /// @param Axis The axis to be calculated.
+    /// @param Cast The ray being casted for the intersection.
+    /// @param Box The AABB to check for intersection.
+    /// @param PosPair A pair for the near and far distances in the check so far.
+    /// @return Returns false if the check has succeeded in ruling out an intersection, true otherwise.
+    Bool CalculateAxis(const Whole Axis, const Ray& Cast, const AxisAlignedBox& Box, SegmentPosPair& PosPair)
+    {
+        Vector3 RayDir = Cast.GetDirection();
+        Real Denom = 1 / RayDir[Axis];
+        Real NewStart = ( Box.MinExt[Axis] - Cast.Origin[Axis] ) * Denom;
+        Real NewEnd = ( Box.MaxExt[Axis] - Cast.Origin[Axis] ) * Denom;
+
+        if( NewStart > NewEnd )
+            std::swap(NewStart,NewEnd);
+
+        if( NewStart > PosPair.second || NewEnd < PosPair.first )
+            return false;
+
+        if( NewStart > PosPair.first )
+            PosPair.first = NewStart;
+
+        if( NewEnd < PosPair.second )
+            PosPair.second = NewEnd;
+    }
+}
+/// @endcond
 
 namespace Mezzanine
 {
@@ -168,19 +205,91 @@ namespace Mezzanine
             return ( ( Surface1.Normal != Surface2.Normal ? ( Surface1.Distance == Surface2.Distance ) : true ) );
         }
 
-        Bool Intersects(const Plane& Surface, const Ray& Cast)
+        PlaneRayTestResult Intersects(const Plane& Surface, const Ray& Cast)
         {
-
+            // Code in this function is based on the equivalent in Ogre
+            Real Denom = Surface.Normal.DotProduct( Cast.GetDirection() ) + Surface.Distance;
+            if( MathTools::Fabs(Denom) < std::numeric_limits<Real>::epsilon() ) {
+                return PlaneRayTestResult( false, Vector3() );
+            }else{
+                Real Nom = Surface.Normal.DotProduct( Cast.Origin ) + Surface.Distance;
+                Real Distance = -( Nom / Denom );
+                if( Distance > Cast.Length() ) {
+                    return PlaneRayTestResult( false, Vector3() );
+                }else{
+                    return PlaneRayTestResult( true, Cast.Origin + ( Cast.GetDirection() * Distance) );
+                }
+            }
         }
 
         GeometryRayTestResult Intersects(const AxisAlignedBox& Box, const Ray& Cast)
         {
+            // Code in this function is based on the equivalent in Ogre
+            Vector3 AbsoluteDir = Cast.GetDirection();
+            AbsoluteDir.X = MathTools::Fabs( AbsoluteDir.X );
+            AbsoluteDir.Y = MathTools::Fabs( AbsoluteDir.Y );
+            AbsoluteDir.Z = MathTools::Fabs( AbsoluteDir.Z );
 
+            Whole MaxAxis = 0, MidAxis = 1, MinAxis = 2;
+            if( AbsoluteDir[0] < AbsoluteDir[2] ) {
+                MaxAxis = 2;
+                MinAxis = 1;
+            }else if( AbsoluteDir[1] < AbsoluteDir[MinAxis] ) {
+                MidAxis = MinAxis;
+                MinAxis = 1;
+            }else if( AbsoluteDir[1] > AbsoluteDir[MaxAxis] ) {
+                MidAxis = MaxAxis;
+                MaxAxis = 1;
+            }
+
+            SegmentPosPair Distances(0,std::numeric_limits<Real>::infinity());
+
+            CalculateAxis(MaxAxis,Cast,Box,Distances);
+            if( AbsoluteDir[MidAxis] < std::numeric_limits<Real>::epsilon() ) {
+                if( Cast.Origin[MidAxis] < Box.MinExt[MidAxis] || Cast.Origin[MidAxis] > Box.MaxExt[MidAxis] ||
+                    Cast.Origin[MinAxis] < Box.MinExt[MinAxis] || Cast.Origin[MinAxis] > Box.MaxExt[MinAxis] )
+                {
+                    return GeometryRayTestResult(false,Ray());
+                }
+            }else{
+                CalculateAxis(MidAxis,Cast,Box,Distances);
+                if( AbsoluteDir[MinAxis] < std::numeric_limits<Real>::epsilon() ) {
+                    if( Cast.Origin[MinAxis] < Box.MinExt[MinAxis] || Cast.Origin[MinAxis] > Box.MaxExt[MinAxis] ) {
+                        return GeometryRayTestResult(false,Ray());
+                    }
+                }else{
+                    CalculateAxis(MinAxis,Cast,Box,Distances);
+                }
+            }
+
+            Ray Ret( Cast.Origin + (CastDir * Distances.first), Cast.Origin + (CastDir * Distances.second) );
+            return GeometryRayTestResult(true,Ret);
         }
 
         GeometryRayTestResult Intersects(const Sphere& Ball, const Ray& Cast)
         {
+            // Code in this function is based on the equivalent in Ogre
+            const Vector3 CastDir = Cast.GetDirection();
+            const Vector3 CastOrigin = Cast.Origin - Ball.Center; // Makes math easier to do this in sphere local coordinates
+            const Real Radius = Ball.Radius;
 
+            // Build coefficients for our formula
+            // t = (-b +/- sqrt(b*b + 4ac)) / 2a
+            Real ACoEff = CastDir.DotProduct(CastDir);
+            Real BCoEff = 2 * CastOrigin.DotProduct(CastDir);
+            Real CCoEff = CastOrigin.DotProduct(CastOrigin) - ( Radius * Radius );
+
+            // Get the Determinate
+            Real Determinate = ( BCoEff * BCoEff ) - ( 4 * ACoEff * CCoEff );
+            if( Determinate < 0 ) {
+                return GeometryRayTestResult(false,Ray());
+            }else{
+                Real NearDist = ( -BCoEff - MathTools::Sqrt( Determinate ) ) / ( 2 * ACoEff );
+                Real FarDist = ( -BCoEff + MathTools::Sqrt( Determinate ) ) / ( 2 * ACoEff );
+
+                Ray Ret( Cast.Origin + (CastDir * NearDist), Cast.Origin + (CastDir * FarDist) );
+                return GeometryRayTestResult(true,Ret);
+            }
         }
     }//MathTools
 }//Mezzanine
