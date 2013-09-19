@@ -1,7 +1,8 @@
 var searchData=
 [
   ['tabset',['TabSet',['../classMezzanine_1_1UI_1_1TabSet.xhtml#ac7f33f524f3032802496c3e8ca466314',1,'Mezzanine::UI::TabSet']]],
-  ['tan',['Tan',['../classMezzanine_1_1ColourValue.xhtml#a9c54959ddd92cba81fd3fbda2d921e9b',1,'Mezzanine::ColourValue::Tan()'],['../classMezzanine_1_1MathTool.xhtml#a4fd17164ea990aff0203c63946bb1d48',1,'Mezzanine::MathTool::Tan()']]],
+  ['takeownership',['TakeOwnerShip',['../classMezzanine_1_1Threading_1_1iWorkUnit.xhtml#aaf745da02fb9519cb453134846e1fde4',1,'Mezzanine::Threading::iWorkUnit::TakeOwnerShip()'],['../classMezzanine_1_1Threading_1_1DefaultWorkUnit.xhtml#a77a94c8e7bc398eb4e54d1e217d4f3b3',1,'Mezzanine::Threading::DefaultWorkUnit::TakeOwnerShip()']]],
+  ['tan',['Tan',['../classMezzanine_1_1ColourValue.xhtml#a9c54959ddd92cba81fd3fbda2d921e9b',1,'Mezzanine::ColourValue::Tan()'],['../namespaceMezzanine_1_1MathTools.xhtml#a5c67c4bcdc7eaa6980af25ab36488be5',1,'Mezzanine::MathTools::Tan()']]],
   ['teal',['Teal',['../classMezzanine_1_1ColourValue.xhtml#a0b43523f6f1a94ddaa5cebf057672b1f',1,'Mezzanine::ColourValue']]],
   ['technique',['Technique',['../classMezzanine_1_1Graphics_1_1Technique.xhtml#ab1ba423166af36451ece1cacabd6dee1',1,'Mezzanine::Graphics::Technique']]],
   ['terrainbase',['TerrainBase',['../classMezzanine_1_1TerrainBase.xhtml#acef47cd685e294ce6783cdc5bc4dabfe',1,'Mezzanine::TerrainBase']]],
@@ -11,6 +12,9 @@ var searchData=
   ['texture',['Texture',['../classMezzanine_1_1Graphics_1_1Texture.xhtml#aaa74ab84fcd4c01817fdbd3bee438691',1,'Mezzanine::Graphics::Texture']]],
   ['textureatlas',['TextureAtlas',['../classMezzanine_1_1UI_1_1TextureAtlas.xhtml#a513fdf618f1696ef346c0562f8117d07',1,'Mezzanine::UI::TextureAtlas']]],
   ['thistle',['Thistle',['../classMezzanine_1_1ColourValue.xhtml#a9c3721723c4289455a790ced4d9c1cc1',1,'Mezzanine::ColourValue']]],
+  ['thread',['Thread',['../classMezzanine_1_1Threading_1_1Thread.xhtml#a1e1d609c4cf14081ed7350856c92640f',1,'Mezzanine::Threading::Thread::Thread()'],['../classMezzanine_1_1Threading_1_1Thread.xhtml#a1e5260b330bf7a458e0a2a37e9395f6e',1,'Mezzanine::Threading::Thread::Thread(void(*aFunction)(void *))'],['../classMezzanine_1_1Threading_1_1Thread.xhtml#a09d3ed5c70b364cc7c6df264228bb382',1,'Mezzanine::Threading::Thread::Thread(void(*aFunction)(void *), void *aArg)']]],
+  ['threadloading',['ThreadLoading',['../namespaceMezzanine_1_1Threading.xhtml#ad1ce7d1f48645a637bd5ffd8c692279c',1,'Mezzanine::Threading']]],
+  ['threadspecificstorage',['ThreadSpecificStorage',['../classMezzanine_1_1Threading_1_1ThreadSpecificStorage.xhtml#a62bae0dcb2f299d187dbe156a04f8af5',1,'Mezzanine::Threading::ThreadSpecificStorage']]],
   ['throwserialerror',['ThrowSerialError',['../classMezzanine_1_1ActorBase.xhtml#a24d196b9fc55048fb183a7920b5bbd3e',1,'Mezzanine::ActorBase::ThrowSerialError()'],['../classMezzanine_1_1ActorRigid.xhtml#ad640944179df98fbaf5ecf5e2ed5ba2c',1,'Mezzanine::ActorRigid::ThrowSerialError()'],['../classMezzanine_1_1AreaEffect.xhtml#acb6f2cb173aa78725d82d5d33af5b866',1,'Mezzanine::AreaEffect::ThrowSerialError()'],['../classMezzanine_1_1WorldObject.xhtml#a4e7eeb271f355e1c35262f41bb1e63bc',1,'Mezzanine::WorldObject::ThrowSerialError()'],['../classMezzanine_1_1NonStaticWorldObject.xhtml#a1e1300809a35fe8263928ce890e1f91a',1,'Mezzanine::NonStaticWorldObject::ThrowSerialError()']]],
   ['timer',['Timer',['../classMezzanine_1_1Timer.xhtml#a3c207b6b1ac4d11a1ef18aa5d996265a',1,'Mezzanine::Timer']]],
   ['tobase64string',['ToBase64String',['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#afc52a141bce0c5f1b6f1eeb685a4f523',1,'Mezzanine::BinaryTools::BinaryBuffer']]],
@@ -19,10 +23,12 @@ var searchData=
   ['tofloat',['Tofloat',['../namespaceMezzanine.xhtml#a64a8e48486b9fb3caa8454cda5ab3049',1,'Mezzanine']]],
   ['toint',['Toint',['../namespaceMezzanine.xhtml#a99ca5eae5b40d789f4ca7ddd3501a1f0',1,'Mezzanine']]],
   ['tointeger',['ToInteger',['../namespaceMezzanine.xhtml#a2e13864ce278eef7ac4cdae9db669cc9',1,'Mezzanine']]],
+  ['tolowercase',['ToLowerCase',['../namespaceMezzanine_1_1StringTools.xhtml#a2fbec65ef6cb15cdfff7a962153d61cf',1,'Mezzanine::StringTools']]],
   ['tomato',['Tomato',['../classMezzanine_1_1ColourValue.xhtml#a3668b75e35de6edb4428b0259fee30cb',1,'Mezzanine::ColourValue']]],
   ['toreal',['ToReal',['../namespaceMezzanine.xhtml#a4b9d460e8d3b2403eb27647018283969',1,'Mezzanine']]],
   ['tostring',['ToString',['../classMezzanine_1_1BinaryTools_1_1BinaryBuffer.xhtml#a4726a05fd3262ed729c86fcc02c7d739',1,'Mezzanine::BinaryTools::BinaryBuffer::ToString()'],['../namespaceMezzanine.xhtml#ae8a13d6e385b9d270cbf37377b97e8a9',1,'Mezzanine::ToString()']]],
   ['tounsignedint',['Tounsignedint',['../namespaceMezzanine.xhtml#af589d9aee6cc9ed07c0dcc85b3495a13',1,'Mezzanine']]],
+  ['touppercase',['ToUpperCase',['../namespaceMezzanine_1_1StringTools.xhtml#acfe57a6006ed5dcdad6e7f029f28b2e0',1,'Mezzanine::StringTools']]],
   ['towhole',['ToWhole',['../namespaceMezzanine.xhtml#ad558d586f0c8b6a9b8eee3e43010619d',1,'Mezzanine']]],
   ['track',['Track',['../classMezzanine_1_1Track.xhtml#a0fdd2c20a8b195d159ea82dd6a000ffd',1,'Mezzanine::Track']]],
   ['trackingnodeupdateworkunit',['TrackingNodeUpdateWorkUnit',['../classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml#a9d19ec3d2102e73a58e9aa4cd99ca609',1,'Mezzanine::TrackingNodeUpdateWorkUnit::TrackingNodeUpdateWorkUnit(const TrackingNodeUpdateWorkUnit &amp;Other)'],['../classMezzanine_1_1TrackingNodeUpdateWorkUnit.xhtml#ab6bb411b848e3dc85303a610df072b4f',1,'Mezzanine::TrackingNodeUpdateWorkUnit::TrackingNodeUpdateWorkUnit(SceneManager *Target)']]],
@@ -33,6 +39,8 @@ var searchData=
   ['traverse',['Traverse',['../classMezzanine_1_1XML_1_1Node.xhtml#a60c011dca7c524ff915d1aa8a048a577',1,'Mezzanine::XML::Node']]],
   ['treewalker',['TreeWalker',['../classMezzanine_1_1XML_1_1TreeWalker.xhtml#aa8935af372b1e92b50ee2db15d0e2940',1,'Mezzanine::XML::TreeWalker']]],
   ['trie',['Trie',['../classMezzanine_1_1Trie.xhtml#ad7376e936e82653cbab401ed7d687491',1,'Mezzanine::Trie']]],
+  ['trim',['Trim',['../namespaceMezzanine_1_1StringTools.xhtml#a52a2e19154103ede216aebe5f953cf2d',1,'Mezzanine::StringTools']]],
+  ['trylock',['TryLock',['../classMezzanine_1_1Threading_1_1Mutex.xhtml#a871a715362aac0fb6a582061f4c17b31',1,'Mezzanine::Threading::Mutex::TryLock()'],['../classMezzanine_1_1Threading_1_1SpinLock.xhtml#a2659487f9df5247575ebe8400389829b',1,'Mezzanine::Threading::SpinLock::TryLock()']]],
   ['turquoise',['Turquoise',['../classMezzanine_1_1ColourValue.xhtml#addff72e03f5fe75608a014d3f0e9be3f',1,'Mezzanine::ColourValue']]],
   ['type',['Type',['../classMezzanine_1_1XML_1_1Node.xhtml#a0337fae875c80702cc9a1540e84b07a8',1,'Mezzanine::XML::Node::Type()'],['../classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a9632844e3e7a17c29529a0b2c34f52fe',1,'Mezzanine::XML::XPathNodeSet::Type()'],['../classMezzanine_1_1XML_1_1XPathVariable.xhtml#aa3357c23f8441342e10738f47d3dd188',1,'Mezzanine::XML::XPathVariable::Type()']]]
 ];

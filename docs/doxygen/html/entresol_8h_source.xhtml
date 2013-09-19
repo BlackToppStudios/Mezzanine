@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;18,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -343,7 +343,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="preprocessor">#include &quot;managerbase.h&quot;</span></div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="preprocessor">#include &quot;singleton.h&quot;</span></div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">#include &quot;Threading/dagframescheduler.h&quot;</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dagframescheduler_8h.xhtml" title="This is the file that code using this library should include. It includes all the required components...">Threading/dagframescheduler.h</a>&quot;</span></div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;{</div>
@@ -428,7 +428,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        <span class="keyword">private</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="comment">            /// @internal</span></div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment">            /// @brief The core structure responsible for our multi-threaded main loop.</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="comment"></span>            Threading::FrameScheduler WorkScheduler;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Threading_1_1FrameScheduler.xhtml" title="This is central object in this algorithm, it is responsible for spawning threads and managing the ord...">Threading::FrameScheduler</a> WorkScheduler;</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            <span class="comment">//Used by the constructors</span><span class="comment"></span></div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="comment">            /// @internal</span></div>
@@ -474,7 +474,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="comment">            /// @internal</span></div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment">            /// @brief Responsible for asynchronously flushing the logs to disk (or wherever they sync to).</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="comment"></span>            Threading::LogAggregator* Aggregator;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Threading_1_1LogAggregator.xhtml" title="Gather all the thread specific logs and commit them to the main log.">Threading::LogAggregator</a>* Aggregator;</div>
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">            /// @internal</span></div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="comment">            /// @brief Create and direct streams used for logging that are not part of the FrameScheduler</span></div>
@@ -564,7 +564,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="comment">            /// @param Message This is what will be streamed to the log</span></div>
 <div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="comment">            /// @throws Anything GetLogStream could throw.</span></div>
 <div class="line"><a name="l00480"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Entresol.xhtml#a96f894e20225d43643091c3731acc35d">  480</a></span>&#160;<span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> Log(<span class="keyword">const</span> T&amp; Message)</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;                { this-&gt;LogString(StringTools::ConvertToString(Message)); }<span class="comment"></span></div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;                { this-&gt;LogString(<a class="code" href="namespaceMezzanine_1_1StringTools.xhtml#a8525f86f908296f5ac2a08b3f33bf10b" title="Converts a Vector2 into a string.">StringTools::ConvertToString</a>(Message)); }<span class="comment"></span></div>
 <div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<span class="comment">            /// @brief Log String directly with no conversion</span></div>
 <div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;<span class="comment">            /// @param message The string to log</span></div>
 <div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="comment">            /// @throws Anything GetLogStream could throw.</span></div>
@@ -575,11 +575,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="comment">            /// @return A Logger that can be used by the thread with given ID or outside of Framescheduling in a non-threadsafe way.</span></div>
 <div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;<span class="comment">            /// @throws A ParametersRangeException if the thread is not managed by the frame scheduler or it Threading::FrameScheduler::CreateThreads() has not</span></div>
 <div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;<span class="comment">            /// been called (It creates the ThreadSpecific resources that contain the Loggers).</span></div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.xhtml#ac0e305210456ef0132dc20c06aa292dd" title="In case we ever replace the stringstream with another class, this will allow us to swap it out...">Logger</a>&amp; GetLogStream(Threading::Thread::id ID = Threading::this_thread::get_id());</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.xhtml#ac0e305210456ef0132dc20c06aa292dd" title="In case we ever replace the stringstream with another class, this will allow us to swap it out...">Logger</a>&amp; GetLogStream(<a class="code" href="classMezzanine_1_1Threading_1_1Thread.xhtml#ab80a197432af548bef187c39328355bc" title="Default constructor.">Threading::Thread::id</a> ID = <a class="code" href="namespaceMezzanine_1_1Threading_1_1this__thread.xhtml#a9d7f994aed04273d2ab06b103fc381de" title="Return the thread ID of the calling thread.">Threading::this_thread::get_id</a>());</div>
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="comment">            /// @internal</span></div>
 <div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="comment">            /// @brief This is used to asynchronously handle log messages.</span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="comment"></span>            Threading::LogAggregator* GetLogAggregator();</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Threading_1_1LogAggregator.xhtml" title="Gather all the thread specific logs and commit them to the main log.">Threading::LogAggregator</a>* GetLogAggregator();</div>
 <div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="comment"></span>            <span class="comment">// Timing system methods</span></div>
@@ -636,7 +636,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;<span class="comment">            /// @brief Gets the core structure responsible for scheduling work in the Entresol main loop.</span></div>
 <div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;<span class="comment">            /// @return Returns a reference to the FrameScheduler being used by this Entresol.</span></div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;<span class="comment"></span>            Threading::FrameScheduler&amp; GetScheduler();</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Threading_1_1FrameScheduler.xhtml" title="This is central object in this algorithm, it is responsible for spawning threads and managing the ord...">Threading::FrameScheduler</a>&amp; GetScheduler();</div>
 <div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;<span class="comment">            /// @brief This Function house the main loop.</span></div>
 <div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;<span class="comment">            /// @details If using this you don&#39;t need to worry about initialization of managers or other pre main loop items.</span></div>
@@ -788,6 +788,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 14 2013 01:15:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Wed Sep 18 2013 00:02:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

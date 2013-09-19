@@ -59,6 +59,17 @@
 #	define XML_VERSION 100
 #endif
 
+#include "swig.h"
+#ifdef SWIG_XML
+    #ifdef SWIG_UNSAFE
+        %module MezzanineXML
+    #else
+        #define SWIG_SAFE
+        %module MezzanineXMLSafe
+    #endif
+    #define SWIG_MODULE_SET
+#endif
+
 #include "XML/objectrange.h"
 #include "XML/attribute.h"
 #include "XML/attributeiterator.h"

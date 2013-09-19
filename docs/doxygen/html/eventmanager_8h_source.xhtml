@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September14,2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;18,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -138,7 +138,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#include &quot;vector2.h&quot;</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#include &quot;XML/xml.h&quot;</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#include &quot;Threading/workunit.h&quot;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="workunit_8h.xhtml" title="This file has the definition of the workunit.">Threading/workunit.h</a>&quot;</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span></div>
@@ -187,7 +187,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">    /// @brief Every frame the OS must be queried for changes to the state, this does that querying on behalf of an eventmanager.</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">    /// @details</span></div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">    ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="code" href="classMezzanine_1_1EventPumpWorkUnit.xhtml">  104</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1EventPumpWorkUnit.xhtml" title="Every frame the OS must be queried for changes to the state, this does that querying on behalf of an ...">EventPumpWorkUnit</a> : <span class="keyword">public</span> Threading::DefaultWorkUnit</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="code" href="classMezzanine_1_1EventPumpWorkUnit.xhtml">  104</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1EventPumpWorkUnit.xhtml" title="Every frame the OS must be queried for changes to the state, this does that querying on behalf of an ...">EventPumpWorkUnit</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.xhtml" title="Default implementation of WorkUnit. This represents on piece of work through time.">Threading::DefaultWorkUnit</a></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">protected</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">        /// @internal</span></div>
@@ -213,7 +213,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">        /// @brief This does the actual work of the getting the data form the OS.</span></div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">        /// @param CurrentThreadStorage Only really used for the logger.</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoWork(Threading::DefaultThreadSpecificStorage::Type&amp; CurrentThreadStorage);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoWork(<a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.xhtml" title="A thread specific collection of double-buffered and algorithm specific resources.">Threading::DefaultThreadSpecificStorage::Type</a>&amp; CurrentThreadStorage);</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    };<span class="comment">//EventPumpWorkUnit</span></div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
@@ -518,6 +518,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 14 2013 01:15:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Wed Sep 18 2013 00:02:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

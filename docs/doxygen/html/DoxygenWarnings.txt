@@ -1,5 +1,5 @@
-warning: source ../../Mezzanine/src/Threading is not a readable file or directory... skipping.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.cpp:116: warning: Found ';' while parsing initializer list! (doxygen could be confused by a macro call without semicolon)
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.cpp:98: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.cpp:98: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/Code/Mezzanine/Mezzanine/src/UI/cell.h:122: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/Code/Mezzanine/Mezzanine/src/UI/activatable.h:157: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/Code/Mezzanine/Mezzanine/src/UI/arearenderable.h:51: warning: the name `uiarearenderable.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
@@ -67,6 +67,7 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 /home/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:266: warning: Compound Mezzanine::UI::OpenRenderableContainerWidget is not documented.
 /home/Code/Mezzanine/Mezzanine/src/managerbase.h:60: warning: Documentation for undefined enum `ManagerTypeName' found.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:1041: warning: found more than one \mainpage comment block! Skipping this block.
+/home/Code/Mezzanine/Mezzanine/src/Threading/dagframescheduler.h:79: warning: found more than one \mainpage comment block! Skipping this block.
 /home/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
@@ -231,7 +232,9 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 /home/Code/Mezzanine/Mezzanine/src/Physics/multispherecollisionshape.h:106: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/multispherecollisionshape.h:106: warning: target CollisionShape::GetBulletShape of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:302: warning: target WorldProxy::ProtoSerialize(XML::Node&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:314: warning: target WorldProxy::ProtoSerialize(XML::Node&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:79: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/point2pointconstraint.h:120: warning: target Constraint::ValidParamOnAxis(int) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/point2pointconstraint.h:126: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) of \copydoc command not found
@@ -241,6 +244,8 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:72: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:238: warning: target PhysicsProxy::ProtoSerializeProperties(XML::Node&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:314: warning: target WorldProxy::ProtoSerialize(XML::Node&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:137: warning: target Constraint::ValidParamOnAxis(int) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:143: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:80: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -359,10 +364,10 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 
 /home/Code/Mezzanine/Mezzanine/src/UI/button.h:104: warning: recursive call chain of \copydoc commands detected at 104
 
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
@@ -377,11 +382,15 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 /home/Code/Mezzanine/Mezzanine/src/worldobject.h:272: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/worldobject.h:292: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/crossplatformexport.h:136: warning: Member _MEZZ_PLATFORM_DEFINED_ (macro definition) of file crossplatformexport.h is not documented.
-/home/Code/Mezzanine/Mezzanine/src/crossplatformexport.h:165: warning: unable to resolve reference to `Mezzanine::Threading::AtomicCompareAndSwap32' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/crossplatformexport.h:154: warning: unable to resolve reference to `Mezzanine::Threading::Barrier' for \ref command
 /home/Code/Mezzanine/Mezzanine/src/macros.h:58: warning: Member MEZZ_BITMASK(X) (macro definition) of file macros.h is not documented.
 /home/Code/Mezzanine/Mezzanine/src/macros.h:53: warning: Member MEZZ_BITMASK32MAX (macro definition) of file macros.h is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:103: warning: Member ScriptArgment (enumeration) of namespace Mezzanine::Scripting is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:141: warning: Member catch(...) (function) of namespace Mezzanine::Threading is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:148: warning: Member guard(ti->mThread->mDataMutex) (function) of namespace Mezzanine::Threading is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:149: warning: Member mNotAThread (variable) of namespace Mezzanine::Threading is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:155: warning: Member return (variable) of namespace Mezzanine::Threading is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:153: warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:138: warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
 /home/Code/Mezzanine/Mezzanine/src/entresol.h:246: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:698: warning: explicit link request to 'wstream' could not be resolved
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:778: warning: explicit link request to 'x' could not be resolved
@@ -695,11 +704,6 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 <ManagerType>:1: warning: parameters of member Mezzanine::ManagerBase::ManagerType are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/managerbase.h:141: warning: parameters of member Mezzanine::ManagerBase::GetTypeAsString are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/managerbase.h:144: warning: parameters of member Mezzanine::ManagerBase::GetTypeFromString are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/mathtool.h:60: warning: Member DegToRadMult (variable) of class Mezzanine::MathTool is not documented.
-/home/Code/Mezzanine/Mezzanine/src/mathtool.h:58: warning: Member HalfPi (variable) of class Mezzanine::MathTool is not documented.
-/home/Code/Mezzanine/Mezzanine/src/mathtool.h:56: warning: Member Pi (variable) of class Mezzanine::MathTool is not documented.
-/home/Code/Mezzanine/Mezzanine/src/mathtool.h:59: warning: Member RadToDegMult (variable) of class Mezzanine::MathTool is not documented.
-/home/Code/Mezzanine/Mezzanine/src/mathtool.h:57: warning: Member TwoPi (variable) of class Mezzanine::MathTool is not documented.
 /home/Code/Mezzanine/Mezzanine/src/matrix3x3.h:79: warning: parameters of member Mezzanine::Matrix3x3::Matrix3x3 are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/matrix4x4.h:74: warning: parameters of member Mezzanine::Matrix4x4::Matrix4x4 are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/meshmanager.h:76: warning: Member ConstMeshIterator (typedef) of class Mezzanine::MeshManager is not documented.
@@ -1020,74 +1024,74 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
   parameter 'Sc'
 /home/Code/Mezzanine/Mezzanine/src/trie.h:1291: warning: Member const_iterator (typedef) of class Mezzanine::Trie is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:1290: warning: Member iterator (typedef) of class Mezzanine::Trie is not documented.
-/home/Code/Mezzanine/Mezzanine/src/vector2.h:84: warning: return type of member Mezzanine::Vector2::GetOgreVector2 is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector2.h:108: warning: return type of member Mezzanine::Vector2::operator!= is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector2.h:118: warning: return type of member Mezzanine::Vector2::operator!= is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector2.h:164: warning: return type of member Mezzanine::Vector2::operator* is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector2.h:154: warning: return type of member Mezzanine::Vector2::operator+ is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector2.h:159: warning: return type of member Mezzanine::Vector2::operator- is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector2.h:169: warning: return type of member Mezzanine::Vector2::operator/ is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector2.h:103: warning: return type of member Mezzanine::Vector2::operator== is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector2.h:113: warning: return type of member Mezzanine::Vector2::operator== is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:103: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector2.h:86: warning: return type of member Mezzanine::Vector2::GetOgreVector2 is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector2.h:110: warning: return type of member Mezzanine::Vector2::operator!= is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector2.h:120: warning: return type of member Mezzanine::Vector2::operator!= is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector2.h:166: warning: return type of member Mezzanine::Vector2::operator* is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector2.h:156: warning: return type of member Mezzanine::Vector2::operator+ is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector2.h:161: warning: return type of member Mezzanine::Vector2::operator- is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector2.h:171: warning: return type of member Mezzanine::Vector2::operator/ is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector2.h:105: warning: return type of member Mezzanine::Vector2::operator== is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector2.h:115: warning: return type of member Mezzanine::Vector2::operator== is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:97: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:113: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: parameters of member Mezzanine::Vector3::GetAxisValue are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:95: warning: return type of member Mezzanine::Vector3::GetAxisValue is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:103: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:103: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:103: warning: parameters of member Mezzanine::Vector3::GetAxisValue are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:103: warning: return type of member Mezzanine::Vector3::GetAxisValue is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:386: warning: return type of member Mezzanine::Vector3::GetBulletVector3 is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:335: warning: return type of member Mezzanine::Vector3::GetDirection is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:394: warning: return type of member Mezzanine::Vector3::GetOgreVector3 is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:365: warning: The following parameters of Mezzanine::Vector3::GetRotationToAxis(const Vector3 &Axis, const Vector3 &FallBackAxis=Vector3()) const are not documented:
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:115: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:97: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:97: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:97: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:97: warning: parameters of member Mezzanine::Vector3::GetAxisValue are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:97: warning: return type of member Mezzanine::Vector3::GetAxisValue is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: parameters of member Mezzanine::Vector3::GetAxisValue are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: return type of member Mezzanine::Vector3::GetAxisValue is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:388: warning: return type of member Mezzanine::Vector3::GetBulletVector3 is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:337: warning: return type of member Mezzanine::Vector3::GetDirection is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:396: warning: return type of member Mezzanine::Vector3::GetOgreVector3 is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:367: warning: The following parameters of Mezzanine::Vector3::GetRotationToAxis(const Vector3 &Axis, const Vector3 &FallBackAxis=Vector3()) const are not documented:
   parameter 'FallBackAxis'
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:235: warning: return type of member Mezzanine::Vector3::operator!= is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:239: warning: return type of member Mezzanine::Vector3::operator!= is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:243: warning: return type of member Mezzanine::Vector3::operator!= is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:259: warning: return type of member Mezzanine::Vector3::operator* is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:279: warning: return type of member Mezzanine::Vector3::operator* is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:299: warning: return type of member Mezzanine::Vector3::operator* is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:211: warning: return type of member Mezzanine::Vector3::operator*= is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:251: warning: return type of member Mezzanine::Vector3::operator+ is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:271: warning: return type of member Mezzanine::Vector3::operator+ is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:291: warning: return type of member Mezzanine::Vector3::operator+ is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:190: warning: return type of member Mezzanine::Vector3::operator- is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:255: warning: return type of member Mezzanine::Vector3::operator- is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:275: warning: return type of member Mezzanine::Vector3::operator- is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:295: warning: return type of member Mezzanine::Vector3::operator- is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:263: warning: return type of member Mezzanine::Vector3::operator/ is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:283: warning: return type of member Mezzanine::Vector3::operator/ is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:303: warning: return type of member Mezzanine::Vector3::operator/ is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:215: warning: return type of member Mezzanine::Vector3::operator/= is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:178: warning: return type of member Mezzanine::Vector3::operator= is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:182: warning: return type of member Mezzanine::Vector3::operator= is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:223: warning: return type of member Mezzanine::Vector3::operator== is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:227: warning: return type of member Mezzanine::Vector3::operator== is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:231: warning: return type of member Mezzanine::Vector3::operator== is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:107: warning: return type of member Mezzanine::Vector3::operator[] is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:237: warning: return type of member Mezzanine::Vector3::operator!= is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:241: warning: return type of member Mezzanine::Vector3::operator!= is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:245: warning: return type of member Mezzanine::Vector3::operator!= is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:261: warning: return type of member Mezzanine::Vector3::operator* is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:281: warning: return type of member Mezzanine::Vector3::operator* is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:301: warning: return type of member Mezzanine::Vector3::operator* is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:213: warning: return type of member Mezzanine::Vector3::operator*= is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:253: warning: return type of member Mezzanine::Vector3::operator+ is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:273: warning: return type of member Mezzanine::Vector3::operator+ is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:293: warning: return type of member Mezzanine::Vector3::operator+ is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:192: warning: return type of member Mezzanine::Vector3::operator- is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:257: warning: return type of member Mezzanine::Vector3::operator- is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:277: warning: return type of member Mezzanine::Vector3::operator- is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:297: warning: return type of member Mezzanine::Vector3::operator- is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:265: warning: return type of member Mezzanine::Vector3::operator/ is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:285: warning: return type of member Mezzanine::Vector3::operator/ is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:305: warning: return type of member Mezzanine::Vector3::operator/ is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:217: warning: return type of member Mezzanine::Vector3::operator/= is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:180: warning: return type of member Mezzanine::Vector3::operator= is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:184: warning: return type of member Mezzanine::Vector3::operator= is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:225: warning: return type of member Mezzanine::Vector3::operator== is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:229: warning: return type of member Mezzanine::Vector3::operator== is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:233: warning: return type of member Mezzanine::Vector3::operator== is not documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: return type of member Mezzanine::Vector3::operator[] is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: target GetAxisValue(StandardAxis Axis) const of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: target GetAxisValue(StandardAxis Axis) const  of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:111: warning: return type of member Mezzanine::Vector3::operator[] is not documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:113: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:113: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:113: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:113: warning: return type of member Mezzanine::Vector3::operator[] is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:115: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:115: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:115: warning: parameters of member Mezzanine::Vector3::operator[] are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:115: warning: return type of member Mezzanine::Vector3::operator[] is not documented
 /home/Code/Mezzanine/Mezzanine/src/trie.h:822: warning: Member const_iterator (typedef) of class Mezzanine::VectorItems is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:825: warning: Member EndNodeItemClass (typedef) of class Mezzanine::VectorItems is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:819: warning: Member Item (typedef) of class Mezzanine::VectorItems is not documented.
@@ -1773,6 +1777,8 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 /home/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:114: warning: argument 'Stiffies' of command @param is not found in the argument list of Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearEnabled(const Vector3 &Enableness)
 /home/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:114: warning: The following parameters of Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearEnabled(const Vector3 &Enableness) are not documented:
   parameter 'Enableness'
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:74: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:79: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -1861,14 +1867,21 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 /home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:271: warning: Member WorldConstructionInfo (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:519: warning: return type of member Mezzanine::Physics::PhysicsManager::_GetPhysicsWorldPointer is not documented
 /home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:522: warning: return type of member Mezzanine::Physics::PhysicsManager::_GetPhysicsWorldPointer is not documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:253: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetLocation(const Vector3 &Loc)
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:253: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetLocation(const Vector3 &Loc) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: return type of member Mezzanine::Physics::PhysicsProxy::GetCreator is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:265: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetLocation(const Vector3 &Loc)
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:265: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetLocation(const Vector3 &Loc) are not documented:
   parameter 'Loc'
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:259: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetOrientation(const Quaternion &Ori)
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:259: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetOrientation(const Quaternion &Ori) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:271: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetOrientation(const Quaternion &Ori)
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:271: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetOrientation(const Quaternion &Ori) are not documented:
   parameter 'Ori'
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:265: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetScale(const Vector3 &Sc)
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:265: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetScale(const Vector3 &Sc) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:277: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetScale(const Vector3 &Sc)
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:277: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetScale(const Vector3 &Sc) are not documented:
   parameter 'Sc'
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:74: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:79: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -1892,7 +1905,12 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:75: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:75: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:75: warning: parameters of member Mezzanine::Physics::PrimitiveCollisionShape::ProtoSerialize are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:250: warning: return type of member Mezzanine::Physics::RigidProxy::_GetBasePhysicsObject is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+
+/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:255: warning: return type of member Mezzanine::Physics::RigidProxy::_GetBasePhysicsObject is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:168: warning: argument 'NewMass' of command @param is not found in the argument list of Mezzanine::Physics::RigidProxy::SetMass(const Real Mass)
+/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:168: warning: The following parameters of Mezzanine::Physics::RigidProxy::SetMass(const Real Mass) are not documented:
+  parameter 'Mass'
 /home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:138: warning: return type of member Mezzanine::Physics::SimulationMonopolyWorkUnit::operator= is not documented
 /home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:105: warning: return type of member Mezzanine::Physics::SimulationWorkUnit::operator= is not documented
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:63: warning: Member SliderConstraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &VectorA, const Vector3 &VectorB, const Quaternion &QuaternionA, const Quaternion &QuaternionB, bool UseLinearReferenceA) (function) of class Mezzanine::Physics::SliderConstraint is not documented.
@@ -1934,6 +1952,8 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:98: warning: argument 'otation' of command @param is not found in the argument list of Mezzanine::Physics::SliderConstraint::SetPivotBRotation(const Quaternion &Rotation)
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:98: warning: The following parameters of Mezzanine::Physics::SliderConstraint::SetPivotBRotation(const Quaternion &Rotation) are not documented:
   parameter 'Rotation'
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+
 /home/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:80: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:85: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:83: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -1997,6 +2017,16 @@ warning: source ../../Mezzanine/src/Threading is not a readable file or director
 /home/Code/Mezzanine/Mezzanine/src/Scripting/scriptworkunit.h:75: warning: argument 'ArScriptToRemoveg' of command @param is not found in the argument list of Mezzanine::Scripting::iScriptWorkUnit::RemoveScript(CountedPtr< iScript > ScriptToRemove)=0
 /home/Code/Mezzanine/Mezzanine/src/Scripting/scriptworkunit.h:75: warning: The following parameters of Mezzanine::Scripting::iScriptWorkUnit::RemoveScript(CountedPtr< iScript > ScriptToRemove)=0 are not documented:
   parameter 'ScriptToRemove'
+/home/Code/Mezzanine/Mezzanine/src/stringtool.h:60: warning: Member Blank (variable) of namespace Mezzanine::StringTools is not documented.
+/home/Code/Mezzanine/Mezzanine/src/stringtool.h:141: warning: The following parameters of Mezzanine::StringTools::ConvertToBool(const String &ToConvert, const bool Default=false) are not documented:
+  parameter 'Default'
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:141: warning: Member catch(...) (function) of namespace Mezzanine::Threading is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:148: warning: Member guard(ti->mThread->mDataMutex) (function) of namespace Mezzanine::Threading is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:149: warning: Member mNotAThread (variable) of namespace Mezzanine::Threading is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:155: warning: Member return (variable) of namespace Mezzanine::Threading is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:153: warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:138: warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
+<try>:1: warning: parameters of member Mezzanine::Threading::try are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/UI/tabset.h:51: warning: Member RenderableCollection (typedef) of namespace Mezzanine::UI is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/viewportupdatetool.h:52: warning: Member WidgetResult (typedef) of namespace Mezzanine::UI is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/activatable.h:62: warning: Member ConstListenerIterator (typedef) of class Mezzanine::UI::Activatable is not documented.

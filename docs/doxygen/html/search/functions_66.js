@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['fabs',['Fabs',['../classMezzanine_1_1MathTool.xhtml#a96b1935e6ed6d9d2ffa03fd2e7698c3e',1,'Mezzanine::MathTool']]],
+  ['fabs',['Fabs',['../namespaceMezzanine_1_1MathTools.xhtml#a43644d12c23953bab77e31874bbc966e',1,'Mezzanine::MathTools']]],
   ['fieldcollisionshape',['FieldCollisionShape',['../classMezzanine_1_1Physics_1_1FieldCollisionShape.xhtml#a6e43acb37d734fc18d5294f709da122b',1,'Mezzanine::Physics::FieldCollisionShape']]],
   ['fieldofforce',['FieldOfForce',['../classMezzanine_1_1FieldOfForce.xhtml#aa212c5cde10986e1d511a3843af9428c',1,'Mezzanine::FieldOfForce']]],
   ['fileexception',['FileException',['../classMezzanine_1_1FileException.xhtml#a1ec36684102d12dad578eb2e96054379',1,'Mezzanine::FileException::FileException(const String &amp;TypeName, const String &amp;Message, const String &amp;SrcFunction, const String &amp;SrcFile, const Whole &amp;FileLine)'],['../classMezzanine_1_1FileException.xhtml#a13b5a51c6749ecedabfc6e3e044a656e',1,'Mezzanine::FileException::FileException(const String &amp;Message, const String &amp;SrcFunction, const String &amp;SrcFile, const Whole &amp;FileLine)']]],
@@ -27,10 +27,11 @@ var searchData=
   ['firstacquire',['FirstAcquire',['../classMezzanine_1_1CountedPtr.xhtml#a3cce00e9d7683271d77e8ede266b068e',1,'Mezzanine::CountedPtr']]],
   ['firstelementbypath',['FirstElementByPath',['../classMezzanine_1_1XML_1_1Node.xhtml#a446781c040be454e12282ff91d28cb20',1,'Mezzanine::XML::Node']]],
   ['flangerparameters',['FlangerParameters',['../structMezzanine_1_1Audio_1_1FlangerParameters.xhtml#adf5452a43ba87ba523118fc01760ec28',1,'Mezzanine::Audio::FlangerParameters']]],
-  ['floor',['Floor',['../classMezzanine_1_1MathTool.xhtml#a51eae53cadb52839ae6edb279627fabd',1,'Mezzanine::MathTool']]],
+  ['floor',['Floor',['../namespaceMezzanine_1_1MathTools.xhtml#a8e2d9de6e3b6f19a71550ce28a6d1680',1,'Mezzanine::MathTools']]],
   ['floralwhite',['FloralWhite',['../classMezzanine_1_1ColourValue.xhtml#a715127af9fc9be2ab12d6ca8b3f4018e',1,'Mezzanine::ColourValue']]],
-  ['fmod',['Fmod',['../classMezzanine_1_1MathTool.xhtml#a4e4171768a241441a1ed0b33c68bdc9c',1,'Mezzanine::MathTool']]],
+  ['fmod',['Fmod',['../namespaceMezzanine_1_1MathTools.xhtml#a2a3f4925e7fc5408a9a4307c7cefcb41',1,'Mezzanine::MathTools']]],
   ['forestgreen',['ForestGreen',['../classMezzanine_1_1ColourValue.xhtml#a7e2ad7146516048c995c2602385e6f1e',1,'Mezzanine::ColourValue']]],
+  ['framescheduler',['FrameScheduler',['../classMezzanine_1_1Threading_1_1FrameScheduler.xhtml#abefedf41dd20b1f55b0140ee09ce2d91',1,'Mezzanine::Threading::FrameScheduler::FrameScheduler(std::fstream *_LogDestination=new std::fstream(&quot;Mezzanine.log&quot;, std::ios::out|std::ios::trunc), Whole StartingThreadCount=GetCPUCount())'],['../classMezzanine_1_1Threading_1_1FrameScheduler.xhtml#aa216416f31cab79eb433f4d76d48fe13',1,'Mezzanine::Threading::FrameScheduler::FrameScheduler(std::ostream *_LogDestination, Whole StartingThreadCount=GetCPUCount())']]],
   ['freecollisionalgorithm',['freeCollisionAlgorithm',['../classMezzanine_1_1Physics_1_1CollisionDispatcher.xhtml#a95f2b323b7f7c3a012a822761690158d',1,'Mezzanine::Physics::CollisionDispatcher::freeCollisionAlgorithm()'],['../classMezzanine_1_1Physics_1_1ParallelCollisionDispatcher.xhtml#ad39f0fedbd997e3047692c0a574e1f22',1,'Mezzanine::Physics::ParallelCollisionDispatcher::freeCollisionAlgorithm()']]],
   ['frequencyshiftparameters',['FrequencyShiftParameters',['../structMezzanine_1_1Audio_1_1FrequencyShiftParameters.xhtml#acd2d619f3f90d5ad514ce4a517be4155',1,'Mezzanine::Audio::FrequencyShiftParameters']]],
   ['fuchsia',['Fuchsia',['../classMezzanine_1_1ColourValue.xhtml#a3cc8a8ebdd2c53c943e24fbba2e21a4d',1,'Mezzanine::ColourValue']]]

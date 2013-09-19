@@ -1,7 +1,10 @@
 var searchData=
 [
+  ['wait',['Wait',['../classMezzanine_1_1Threading_1_1Barrier.xhtml#a40e63340ba02ffabb45f34a0f891cc02',1,'Mezzanine::Threading::Barrier']]],
   ['waitmilliseconds',['WaitMilliseconds',['../namespaceMezzanine_1_1crossplatform.xhtml#a4fa41d2165f1be34c66b9f9d049458da',1,'Mezzanine::crossplatform']]],
+  ['waituntilnextframe',['WaitUntilNextFrame',['../classMezzanine_1_1Threading_1_1FrameScheduler.xhtml#ac5babf56caf6f2a1bddfa461b9e999b2',1,'Mezzanine::Threading::FrameScheduler']]],
   ['warpcursortoposition',['WarpCursorToPosition',['../classMezzanine_1_1Input_1_1Mouse.xhtml#a0e2d295e14c16f0182802100e3934fb2',1,'Mezzanine::Input::Mouse']]],
+  ['weightedrollingaverage',['WeightedRollingAverage',['../classMezzanine_1_1WeightedRollingAverage.xhtml#af77dfe44408bcde22a1feec049cdd193',1,'Mezzanine::WeightedRollingAverage']]],
   ['what',['what',['../classMezzanine_1_1Exception.xhtml#adfca1d69742135b428879136456e1126',1,'Mezzanine::Exception']]],
   ['wheat',['Wheat',['../classMezzanine_1_1ColourValue.xhtml#a0ad7918b6f69c335d5342fbe17ecade0',1,'Mezzanine::ColourValue']]],
   ['which',['Which',['../classMezzanine_1_1ResourceManager.xhtml#a7312c017bcb079f3e78400c27224370b',1,'Mezzanine::ResourceManager']]],
@@ -13,7 +16,9 @@ var searchData=
   ['widgetupdateworkunit',['WidgetUpdateWorkUnit',['../classMezzanine_1_1UI_1_1WidgetUpdateWorkUnit.xhtml#ae8ff4447cb15972aa4227cabbb0a5a77',1,'Mezzanine::UI::WidgetUpdateWorkUnit::WidgetUpdateWorkUnit(const WidgetUpdateWorkUnit &amp;Other)'],['../classMezzanine_1_1UI_1_1WidgetUpdateWorkUnit.xhtml#a0a893e87d230709f8471984534eaeb30',1,'Mezzanine::UI::WidgetUpdateWorkUnit::WidgetUpdateWorkUnit(UIManager *Target)']]],
   ['window',['Window',['../classMezzanine_1_1UI_1_1Window.xhtml#a1495d7c8f438bc3a15e8bf3f79da9423',1,'Mezzanine::UI::Window']]],
   ['windowsettings',['WindowSettings',['../structMezzanine_1_1WindowSettings.xhtml#aa9eca65d2230479fcc0a7ccbf87c7eaa',1,'Mezzanine::WindowSettings']]],
-  ['withintolerance',['WithinTolerance',['../classMezzanine_1_1MathTool.xhtml#a6b7462a4da72393082a222c1e69adc8b',1,'Mezzanine::MathTool']]],
+  ['withintolerance',['WithinTolerance',['../namespaceMezzanine_1_1MathTools.xhtml#a757e5de704fba63a013c7617fbc068c8',1,'Mezzanine::MathTools']]],
+  ['worksorter',['WorkSorter',['../classMezzanine_1_1Threading_1_1WorkSorter.xhtml#a327686e12b432a237bb028457fe1e410',1,'Mezzanine::Threading::WorkSorter']]],
+  ['workunitkey',['WorkUnitKey',['../classMezzanine_1_1Threading_1_1WorkUnitKey.xhtml#aa07fcb05caa4d2dac46c9e82718416e7',1,'Mezzanine::Threading::WorkUnitKey']]],
   ['world',['World',['../classMezzanine_1_1World.xhtml#aa6bf8150f82691b821ae43e9d2b0b4fd',1,'Mezzanine::World::World()'],['../classMezzanine_1_1World.xhtml#a4ccb9597a7c5bf9b76c9e294e3f555f2',1,'Mezzanine::World::World(const WorldManagerContainer &amp;Managers)'],['../classMezzanine_1_1World.xhtml#aad5e449f87383a9aebaff7bad1bfe71d',1,'Mezzanine::World::World(const Physics::ManagerConstructionInfo &amp;PhysicsInfo, const String &amp;SceneType)'],['../classMezzanine_1_1World.xhtml#abd32b4a0df3900eb1fb82db84d02fa17',1,'Mezzanine::World::World(const WorldManagerContainer &amp;Managers, const Physics::ManagerConstructionInfo &amp;PhysicsInfo, const String &amp;SceneType)'],['../classMezzanine_1_1World.xhtml#ac9bedd2644b8df0bdd171079b6a76898',1,'Mezzanine::World::World(const XML::Node &amp;SelfNode)']]],
   ['worldmanager',['WorldManager',['../classMezzanine_1_1WorldManager.xhtml#a6320f79153f709a46378e30a728d0d74',1,'Mezzanine::WorldManager']]],
   ['worldnode',['WorldNode',['../classMezzanine_1_1WorldNode.xhtml#acb3be02579f07d95d55d040d10cc12a0',1,'Mezzanine::WorldNode']]],

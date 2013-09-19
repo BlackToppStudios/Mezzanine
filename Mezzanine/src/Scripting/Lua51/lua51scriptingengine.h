@@ -100,20 +100,22 @@ namespace Mezzanine
                     /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries open a little easier.
                     enum Lua51Libraries
                     {
-                        NoLib          = 0,      ///< No libraries
-                        BaseLib        = 1,      ///< Correlates to @ref Lua51ScriptingEngine::OpenBaseLibrary
-                        PackageLib     = 2,      ///< Correlates to @ref Lua51ScriptingEngine::OpenPackageLibrary
-                        StringLib      = 4,      ///< Correlates to @ref Lua51ScriptingEngine::OpenStringLibrary
-                        TableLib       = 8,      ///< Correlates to @ref Lua51ScriptingEngine::OpenTableLibrary
-                        MathLib        = 16,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMathLibrary
-                        IOLib          = 32,     ///< Correlates to @ref Lua51ScriptingEngine::OpenIOLibrary
-                        OSLib          = 64,     ///< Correlates to @ref Lua51ScriptingEngine::OpenOSLibrary
-                        DebugLib       = 128,    ///< Correlates to @ref Lua51ScriptingEngine::OpenDebugLibrary
-                        MezzLib        = 256,    ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
-                        MezzSafeLib    = 512,    ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        NoLib            = 0,        ///< No libraries
+                        BaseLib          = 1,        ///< Correlates to @ref Lua51ScriptingEngine::OpenBaseLibrary
+                        PackageLib       = 2,        ///< Correlates to @ref Lua51ScriptingEngine::OpenPackageLibrary
+                        StringLib        = 4,        ///< Correlates to @ref Lua51ScriptingEngine::OpenStringLibrary
+                        TableLib         = 8,        ///< Correlates to @ref Lua51ScriptingEngine::OpenTableLibrary
+                        MathLib          = 16,       ///< Correlates to @ref Lua51ScriptingEngine::OpenMathLibrary
+                        IOLib            = 32,       ///< Correlates to @ref Lua51ScriptingEngine::OpenIOLibrary
+                        OSLib            = 64,       ///< Correlates to @ref Lua51ScriptingEngine::OpenOSLibrary
+                        DebugLib         = 128,      ///< Correlates to @ref Lua51ScriptingEngine::OpenDebugLibrary
+                        MezzLib          = 256,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
+                        MezzSafeLib      = 512,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        MezzXMLLib       = 1024,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
+                        MezzXMLSafeLib   = 2048,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
 
-                        DefaultLibs    = BaseLib | StringLib | TableLib | MathLib | MezzSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
-                        AllLibs        = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
+                        DefaultLibs = BaseLib | StringLib | TableLib | MathLib | MezzSafeLib | MezzXMLSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        AllLibs     = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib | MezzXMLLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
                     };
                 ///////////////////////////////////////////////////////////////////////////////////////
                 // Construction/Deconstruction
@@ -242,13 +244,30 @@ namespace Mezzanine
                     /// Lua manual at http://www.lua.org/manual/5.1/manual.html#5.9 .
                     virtual void OpenDebugLibrary();
 
-                    /// @brief Make the everything in the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @brief Make everything in the Mezzanine Libary available for use in Lua51 scripts.
                     /// @warning This makes arbitrary execution of programs and file management available to scripts. This is not suitable if untrusted scripts will be run.
                     virtual void OpenMezzanineLibrary();
 
                     /// @brief Make a subset of the Mezzanine Library available for use in Lua51 scripts.
                     /// @details This should not allow access to any functions, methods or classes than can execute code or manage files.
                     virtual void OpenMezzanineSafeLibrary();
+
+                    /// @brief Make the XML parts of the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @warning This makes arbitrary execution of programs and file management available to scripts. This is not suitable if untrusted scripts will be run.
+                    virtual void OpenMezzanineXMLLibrary();
+
+                    /// @brief Make the XML parts of the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @details This should not allow access to any functions, methods or classes than can execute code or manage files.
+                    virtual void OpenMezzanineXMLSafeLibrary();
+
+                protected:
+                    /// @brief Set The MezzanineXML library as the XML member of the Mezzanine library or fail silently
+                    /// @warning Not Fully implemented
+                    void SetXML();
+
+                    /// @brief Set The MezzanineXMLSafe library as the XML member of the MezzanineSafe library or fail silently
+                    /// @warning Not Fully implemented
+                    void SetXMLSafe();
             };
 
             //simplistic error checking function, to be replace with proper exception driven code later.
