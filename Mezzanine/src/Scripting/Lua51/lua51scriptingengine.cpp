@@ -318,6 +318,21 @@ namespace Mezzanine
                     { OpenMezzanineLibrary(); }
                 if(LibrariesToOpen & MezzSafeLib)
                     { OpenMezzanineSafeLibrary(); }
+                if(LibrariesToOpen & MezzXMLLib)
+                    { OpenMezzanineXMLLibrary(); }
+                if(LibrariesToOpen & MezzXMLSafeLib)
+                { OpenMezzanineXMLSafeLibrary(); }
+            }
+
+            void Lua51ScriptingEngine::AliasLibrary(const String& Base, const String& Sub, const String& Alias)
+            {
+                lua_getglobal(State, Base.c_str());
+                if (lua_istable(State, -1))
+                {
+                    lua_pushstring(State, Alias.c_str());
+                    lua_getglobal(State, Sub.c_str());
+                    lua_settable(State, -3); // Set the table a -3, Mezzanine to have the index defined by -2 "XML" set to the value at -1 "The MezzanineXML Table"
+                } //else Fail Silently
             }
 
             void Lua51ScriptingEngine::OpenDefaultLibraries()
@@ -341,10 +356,17 @@ namespace Mezzanine
                 { luaopen_os(State); }
             void Lua51ScriptingEngine::OpenDebugLibrary()
                 { luaopen_os(State); }
+
             void Lua51ScriptingEngine::OpenMezzanineLibrary()
-                { luaopen_Mezzanine(State); }
+            {
+                luaopen_Mezzanine(State);
+                SetXML();
+            }
             void Lua51ScriptingEngine::OpenMezzanineSafeLibrary()
-                { luaopen_MezzanineSafe(State); }
+            {
+                luaopen_MezzanineSafe(State);
+                SetXMLSafe();
+            }
 
             void Lua51ScriptingEngine::OpenMezzanineXMLLibrary()
             {
@@ -358,20 +380,10 @@ namespace Mezzanine
             }
 
             void Lua51ScriptingEngine::SetXML()
-            {
-                lua_getglobal(State, "Mezzanine");
-                if (!lua_istable(State, -1))
-                {
-                    lua_pushstring(State, "XML");
-                    lua_getglobal(State, "MezzanineXML");
-                    lua_settable(State, -3); // Set the table a -3, Mezzanine to have the index defined by -2 "XML" set to the value at -1 "The MezzanineXML Table"
-                } //else Fail Silently
-            }
+                { AliasLibrary("Mezzanine", "MezzanineXML", "XML"); }
 
             void Lua51ScriptingEngine::SetXMLSafe()
-            {
-
-            }
+                { AliasLibrary("MezzanineSafe", "MezzanineXMLSafe", "XML"); }
 
         } // Lua
     } // Scripting

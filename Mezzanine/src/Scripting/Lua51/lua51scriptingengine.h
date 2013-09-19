@@ -193,6 +193,17 @@ namespace Mezzanine
                     /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to load, this defaults to DefaultLibs
                     virtual void OpenLibraries(int LibrariesToOpen);
 
+                    /// @brief Nest Lua modules to put libraries in more clean positions
+                    /// @details this is used to create the syntax "Mezzanine.XML.Document()" for example.
+                    /// "Mezzanine" is the base, "MezzanineXML" another module in the root lua environment
+                    /// is the Sub and "XML" is the Alias. This does not "move" the library/module, this
+                    /// Simply creates a reference with a new name and location.
+                    /// @param Base The libary that will have another nested in it.
+                    /// @param Sub The library to be nest into another.
+                    /// @param Alias The new name of the library when referenced from its nested location.
+                    /// @warning If this fails this fails silently.
+                    virtual void AliasLibrary(const String& Base, const String& Sub, const String& Alias);
+
                     /// @brief Prepare most Mezzanine and some Lua functionality for use in Lua scripts.
                     /// @details This will load a the Lua Base, String, Table and Math libraries. This
                     /// will make Mezzanine functionality available that does not provide any arbitrary file
@@ -262,11 +273,9 @@ namespace Mezzanine
 
                 protected:
                     /// @brief Set The MezzanineXML library as the XML member of the Mezzanine library or fail silently
-                    /// @warning Not Fully implemented
                     void SetXML();
 
                     /// @brief Set The MezzanineXMLSafe library as the XML member of the MezzanineSafe library or fail silently
-                    /// @warning Not Fully implemented
                     void SetXMLSafe();
             };
 
