@@ -1,0 +1,4 @@
+<map id="Mezzanine::ObjectSettingSetContainer" name="Mezzanine::ObjectSettingSetContainer">
+<area shape="rect" id="node3" href="$classMezzanine_1_1ObjectSettingGroup.html" title="A class that store&#39;s a collection of SettingSets that can be applied together." alt="" coords="5,99,173,143"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1ObjectSettingSet.html" title="A class that store&#39;s a named set of settings for an object." alt="" coords="197,107,384,135"/>
+</map>

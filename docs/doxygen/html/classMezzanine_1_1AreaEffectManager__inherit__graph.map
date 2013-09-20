@@ -1,0 +1,4 @@
+<map id="Mezzanine::AreaEffectManager" name="Mezzanine::AreaEffectManager">
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance." alt="" coords="19,83,189,111"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="20,6,188,34"/>
+</map>

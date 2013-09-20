@@ -1,0 +1,4 @@
+<map id="Mezzanine::EventManager" name="Mezzanine::EventManager">
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="5,14,173,42"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; EventManager \&gt;" alt="" coords="197,6,339,50"/>
+</map>

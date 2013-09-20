@@ -1,0 +1,99 @@
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/doublebufferedresource.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/doublebufferedresource.h">
+<area shape="rect" id="node3" href="$framescheduler_8h.html" title="This file has the Declarations for the main FrameScheduler class." alt="" coords="10006,115,10206,175"/>
+<area shape="rect" id="node85" href="$asynchronousworkunit_8h.html" title="Contains an interface for a kind of WorkUnit that loads or does other work even when the frame schedu..." alt="" coords="9885,334,10085,394"/>
+<area shape="rect" id="node89" href="$dagframescheduler_8h.html" title="This is the file that code using this library should include. It includes all the required components..." alt="" coords="9773,553,9973,613"/>
+<area shape="rect" id="node190" href="$framescheduler_8cpp.html" title="This is the core object implementation for this algorithm." alt="" coords="10677,443,10877,503"/>
+<area shape="rect" id="node192" href="$frameschedulerworkunits_8cpp.html" title="The implementation of any workunits the framescheduler needs to work correctly." alt="" coords="10453,443,10653,503"/>
+<area shape="rect" id="node194" href="$monopoly_8h.html" title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread." alt="" coords="10787,334,10987,394"/>
+<area shape="rect" id="node299" href="$workunit_8cpp.html" title="This file has the implementation of the Mezzanine::Threading::DefaultWorkUnit." alt="" coords="10383,334,10583,394"/>
+<area shape="rect" id="node5" href="$workunit_8h.html" title="This file has the definition of the workunit." alt="" coords="9519,225,9719,285"/>
+<area shape="rect" id="node7" href="$audiomanager_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/audiomanager.h" alt="" coords="9685,670,9925,714"/>
+<area shape="rect" id="node21" href="$physicsmanager_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/physicsmanager.h" alt="" coords="14122,670,14383,714"/>
+<area shape="rect" id="node54" href="$scenemanager_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/scenemanager.h" alt="" coords="11773,670,11978,714"/>
+<area shape="rect" id="node187" href="$frameschedulerworkunits_8h.html" title="This defines a number of workunits that are required for doing some tasks that the Framescheduler req..." alt="" coords="10109,334,10309,394"/>
+<area shape="rect" id="node202" href="$actormanager_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actormanager.h" alt="" coords="12278,670,12478,714"/>
+<area shape="rect" id="node216" href="$areaeffectmanager_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/areaeffectmanager.h" alt="" coords="14902,670,15129,714"/>
+<area shape="rect" id="node221" href="$uimanager_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/uimanager.h" alt="" coords="3798,670,3998,714"/>
+<area shape="rect" id="node254" href="$eventmanager_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/eventmanager.h" alt="" coords="5275,670,5478,714"/>
+<area shape="rect" id="node268" href="$scriptworkunit_8h.html" title="This file has the interfaces for ScriptsWorkUnit." alt="" coords="2829,334,3029,394"/>
+<area shape="rect" id="node273" href="$inputmanager_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/inputmanager.h" alt="" coords="2475,670,2707,714"/>
+<area shape="rect" id="node293" href="$soundscapemanager_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/soundscapemanager.h" alt="" coords="8051,670,8329,714"/>
+<area shape="rect" id="node9" href="$actorbase_8cpp.html" title="Code used by all actors is implemented here." alt="" coords="12763,779,12963,823"/>
+<area shape="rect" id="node11" href="$audio_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/audio.h" alt="" coords="8657,779,8857,823"/>
+<area shape="rect" id="node17" href="$worldobject_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobject.cpp" alt="" coords="12539,779,12739,823"/>
+<area shape="rect" id="node19" href="$audiomanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/audiomanager.cpp" alt="" coords="8041,779,8294,823"/>
+<area shape="rect" id="node13" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine." alt="" coords="9801,881,10001,925"/>
+<area shape="rect" id="node15" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="9801,974,10001,1018"/>
+<area shape="rect" id="node24" href="$actormanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actormanager.cpp" alt="" coords="14539,779,14753,823"/>
+<area shape="rect" id="node26" href="$actorphysicssettings_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorphysicssettings.cpp" alt="" coords="14777,779,15027,823"/>
+<area shape="rect" id="node28" href="$actorrigid_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorrigid.cpp" alt="" coords="14265,779,14465,823"/>
+<area shape="rect" id="node30" href="$actorsoft_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorsoft.cpp" alt="" coords="13593,779,13793,823"/>
+<area shape="rect" id="node32" href="$areaeffect_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/areaeffect.cpp" alt="" coords="14041,779,14241,823"/>
+<area shape="rect" id="node34" href="$areaeffectmanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/areaeffectmanager.cpp" alt="" coords="15499,779,15742,823"/>
+<area shape="rect" id="node36" href="$physics_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/physics.h" alt="" coords="15766,779,15977,823"/>
+<area shape="rect" id="node39" href="$scenemanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/scenemanager.cpp" alt="" coords="13350,779,13569,823"/>
+<area shape="rect" id="node41" href="$world_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/world.cpp" alt="" coords="15275,779,15475,823"/>
+<area shape="rect" id="node44" href="$worldobjectphysicssettings_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobjectphysicssettings.cpp" alt="" coords="16262,779,16547,823"/>
+<area shape="rect" id="node46" href="$collisiondispatcher_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collisiondispatcher.cpp" alt="" coords="13038,779,13326,823"/>
+<area shape="rect" id="node48" href="$physicsmanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/physicsmanager.cpp" alt="" coords="12241,779,12515,823"/>
+<area shape="rect" id="node50" href="$physicsproxy_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/physicsproxy.cpp" alt="" coords="16571,779,16827,823"/>
+<area shape="rect" id="node52" href="$rigidproxy_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/rigidproxy.cpp" alt="" coords="16001,779,16238,823"/>
+<area shape="rect" id="node60" href="$camera_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/camera.cpp" alt="" coords="11051,779,11251,823"/>
+<area shape="rect" id="node62" href="$cameramanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/cameramanager.cpp" alt="" coords="10025,779,10254,823"/>
+<area shape="rect" id="node64" href="$entity_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entity.cpp" alt="" coords="13817,779,14017,823"/>
+<area shape="rect" id="node67" href="$light_8cpp.html" title="Implemenation of Mezzanine::Light." alt="" coords="11275,779,11475,823"/>
+<area shape="rect" id="node69" href="$linegroup_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/linegroup.cpp" alt="" coords="11499,779,11699,823"/>
+<area shape="rect" id="node71" href="$particleeffect_8cpp.html" title="Contains the implemenation of the ParticleEffect class." alt="" coords="10278,779,10486,823"/>
+<area shape="rect" id="node73" href="$rayquerytool_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/rayquerytool.cpp" alt="" coords="9571,779,9777,823"/>
+<area shape="rect" id="node77" href="$worldnode_8cpp.html" title="The implementation of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="10510,779,10710,823"/>
+<area shape="rect" id="node80" href="$worldobjectgraphicssettings_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/worldobjectgraphicssettings.cpp" alt="" coords="10734,779,11027,823"/>
+<area shape="rect" id="node83" href="$screen_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/screen.cpp" alt="" coords="8881,779,9081,823"/>
+<area shape="rect" id="node87" href="$asynchronousfileloadingworkunit_8h.html" title="The declaration of the AsynchronousFileLoadWorkUnit a workunit that loads a listing of files asynchro..." alt="" coords="10210,443,10429,503"/>
+<area shape="rect" id="node185" href="$asynchronousworkunit_8cpp.html" title="Contains very little actually." alt="" coords="9935,443,10135,503"/>
+<area shape="rect" id="node182" href="$asynchronousfileloadingworkunit_8cpp.html" title="The implementation of the AsynchronousFileLoadWorkUnit a workunit that loads a listing of files async..." alt="" coords="10203,553,10435,613"/>
+<area shape="rect" id="node91" href="$entresol_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.h" alt="" coords="8375,670,8575,714"/>
+<area shape="rect" id="node169" href="$graphicsmanager_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/graphicsmanager.h" alt="" coords="9461,662,9661,722"/>
+<area shape="rect" id="node102" href="$crossplatform_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/crossplatform.cpp" alt="" coords="7803,779,8017,823"/>
+<area shape="rect" id="node105" href="$eventmanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/eventmanager.cpp" alt="" coords="3289,779,3505,823"/>
+<area shape="rect" id="node107" href="$exception_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/exception.cpp" alt="" coords="6643,779,6843,823"/>
+<area shape="rect" id="node111" href="$managerbase_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/managerbase.cpp" alt="" coords="6867,779,7081,823"/>
+<area shape="rect" id="node113" href="$matrix3x3_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/matrix3x3.cpp" alt="" coords="7105,779,7305,823"/>
+<area shape="rect" id="node115" href="$matrix4x4_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/matrix4x4.cpp" alt="" coords="7329,779,7529,823"/>
+<area shape="rect" id="node123" href="$gamewindow_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/gamewindow.cpp" alt="" coords="9347,771,9547,831"/>
+<area shape="rect" id="node125" href="$graphicsmanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/graphicsmanager.cpp" alt="" coords="6369,771,6569,831"/>
+<area shape="rect" id="node127" href="$inputmanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/inputmanager.cpp" alt="" coords="3529,779,3774,823"/>
+<area shape="rect" id="node129" href="$metacode_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/metacode.cpp" alt="" coords="7553,779,7779,823"/>
+<area shape="rect" id="node131" href="$collision_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collision.cpp" alt="" coords="11987,779,12217,823"/>
+<area shape="rect" id="node134" href="$collisionshapemanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collisionshapemanager.cpp" alt="" coords="8318,779,8633,823"/>
+<area shape="rect" id="node136" href="$constraint_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/constraint.cpp" alt="" coords="11723,779,11963,823"/>
+<area shape="rect" id="node139" href="$basicrenderable_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/basicrenderable.cpp" alt="" coords="4022,779,4265,823"/>
+<area shape="rect" id="node141" href="$button_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/button.cpp" alt="" coords="5555,779,5755,823"/>
+<area shape="rect" id="node143" href="$caption_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/caption.cpp" alt="" coords="4529,779,4729,823"/>
+<area shape="rect" id="node145" href="$checkbox_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/checkbox.cpp" alt="" coords="2827,779,3035,823"/>
+<area shape="rect" id="node147" href="$linelist_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/linelist.cpp" alt="" coords="5830,779,6030,823"/>
+<area shape="rect" id="node149" href="$listbox_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/listbox.cpp" alt="" coords="1179,779,1379,823"/>
+<area shape="rect" id="node151" href="$markuptext_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/markuptext.cpp" alt="" coords="4289,779,4505,823"/>
+<area shape="rect" id="node153" href="$menu_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/menu.cpp" alt="" coords="2155,779,2355,823"/>
+<area shape="rect" id="node155" href="$rectangle_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/rectangle.cpp" alt="" coords="3059,779,3265,823"/>
+<area shape="rect" id="node157" href="$renderablecontainerwidget_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/renderablecontainerwidget.cpp" alt="" coords="5230,779,5531,823"/>
+<area shape="rect" id="node159" href="$spinner_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/spinner.cpp" alt="" coords="2379,779,2579,823"/>
+<area shape="rect" id="node161" href="$textureatlas_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/textureatlas.cpp" alt="" coords="9105,779,9323,823"/>
+<area shape="rect" id="node163" href="$uimanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/uimanager.cpp" alt="" coords="4753,779,4966,823"/>
+<area shape="rect" id="node165" href="$widget_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/widget.cpp" alt="" coords="2603,779,2803,823"/>
+<area shape="rect" id="node167" href="$window_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/window.cpp" alt="" coords="3798,779,3998,823"/>
+<area shape="rect" id="node173" href="$graphics_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/graphics.h" alt="" coords="9801,779,10001,823"/>
+<area shape="rect" id="node199" href="$monopoly_8cpp.html" title="Contains the minimal implementation for the monopoly base class." alt="" coords="10951,443,11151,503"/>
+<area shape="rect" id="node205" href="$actorserializer_8h.html" title="This is where the declarations of any Serializers or DeSerializers for actors will go..." alt="" coords="15051,779,15251,823"/>
+<area shape="rect" id="node207" href="$actorserializer_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/actorserializer.cpp" alt="" coords="15045,881,15258,925"/>
+<area shape="rect" id="node224" href="$ui_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/ui.h" alt="" coords="1931,779,2131,823"/>
+<area shape="rect" id="node233" href="$dropdownlist_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/dropdownlist.cpp" alt="" coords="707,779,931,823"/>
+<area shape="rect" id="node240" href="$renderable_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/renderable.cpp" alt="" coords="1694,779,1907,823"/>
+<area shape="rect" id="node242" href="$renderablecontainer_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/renderablecontainer.cpp" alt="" coords="1403,779,1670,823"/>
+<area shape="rect" id="node246" href="$scrollbar_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/scrollbar.cpp" alt="" coords="955,779,1155,823"/>
+<area shape="rect" id="node249" href="$tabset_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/tabset.cpp" alt="" coords="483,779,683,823"/>
+<area shape="rect" id="node258" href="$extendedtimer_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/extendedtimer.cpp" alt="" coords="4990,779,5206,823"/>
+<area shape="rect" id="node270" href="$scripting_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/scripting.h" alt="" coords="1098,561,1298,605"/>
+<area shape="rect" id="node275" href="$input_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Input/input.h" alt="" coords="35,779,235,823"/>
+<area shape="rect" id="node281" href="$cellgrid_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/cellgrid.cpp" alt="" coords="259,779,459,823"/>
+<area shape="rect" id="node297" href="$soundscapemanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Audio/soundscapemanager.cpp" alt="" coords="6054,779,6345,823"/>
+</map>

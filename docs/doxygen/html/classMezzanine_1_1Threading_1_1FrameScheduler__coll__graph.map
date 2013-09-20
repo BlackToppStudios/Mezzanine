@@ -1,0 +1,15 @@
+<map id="Mezzanine::Threading::FrameScheduler" name="Mezzanine::Threading::FrameScheduler">
+<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" title="A thread specific collection of double&#45;buffered and algorithm specific resources." alt="" coords="903,5,1060,49"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Threading_1_1SpinLock.html" title="A mutex like construct that never makes a system call and uses CPU instructions instead." alt="" coords="1259,71,1405,115"/>
+<area shape="rect" id="node8" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="257,234,425,278"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="589,331,736,375"/>
+<area shape="rect" id="node14" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="5,293,152,337"/>
+<area shape="rect" id="node34" href="$classMezzanine_1_1Threading_1_1WorkUnitKey.html" title="Stores data about a single work unit so that it can easily be sorted." alt="" coords="268,418,415,462"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1Threading_1_1Thread.html" title="A small wrapper around the system thread." alt="" coords="908,269,1055,313"/>
+<area shape="rect" id="node23" href="$classMezzanine_1_1Threading_1_1WorkSorter.html" title="Sorts all of the WorkUnits in the FrameScheduler." alt="" coords="908,402,1055,446"/>
+<area shape="rect" id="node39" href="$classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" title="A kind of workunit given exclusive runtime so it can consume time on multiple threads." alt="" coords="908,335,1055,379"/>
+<area shape="rect" id="node43" title="STL class." alt="" coords="1287,521,1377,549"/>
+<area shape="rect" id="node45" title="STL class." alt="" coords="917,519,1045,563"/>
+<area shape="rect" id="node47" title="STL class." alt="" coords="589,527,736,555"/>
+<area shape="rect" id="node49" title="STL class." alt="" coords="295,527,388,555"/>
+</map>

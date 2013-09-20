@@ -1,0 +1,21 @@
+<map id="Mezzanine::Graphics::GameWindow" name="Mezzanine::Graphics::GameWindow">
+<area shape="rect" id="node4" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user." alt="" coords="1801,395,1940,439"/>
+<area shape="rect" id="node2" href="$structMezzanine_1_1WindowSettings.html" title="This stores all the basic configuration options a game window supports." alt="" coords="844,71,1025,99"/>
+<area shape="rect" id="node46" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; GraphicsManager \&gt;" alt="" coords="2065,395,2209,439"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="1457,678,1625,706"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library." alt="" coords="1155,701,1288,729"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1471,611,1612,655"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1ObjectSettingsHandler.html" title="An abstract class for other classes that manage groups of settings." alt="" coords="1455,475,1628,519"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1ObjectSettingFile.html" title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s." alt="" coords="467,458,656,486"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1ObjectSettingGroup.html" title="A class that store&#39;s a collection of SettingSets that can be applied together." alt="" coords="851,386,1019,430"/>
+<area shape="rect" id="node19" title="STL class." alt="" coords="215,458,289,486"/>
+<area shape="rect" id="node27" href="$classMezzanine_1_1ObjectSettingSetContainer.html" title="A base class for other classes that store ObjectSettingSet&#39;s." alt="" coords="477,246,645,290"/>
+<area shape="rect" id="node21" title="STL class." alt="" coords="7,450,127,494"/>
+<area shape="rect" id="node31" href="$classMezzanine_1_1ObjectSettingSet.html" title="A class that store&#39;s a named set of settings for an object." alt="" coords="841,253,1028,281"/>
+<area shape="rect" id="node55" href="$classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" title="A thread specific collection of double&#45;buffered and algorithm specific resources." alt="" coords="1463,542,1620,586"/>
+<area shape="rect" id="node57" href="$classMezzanine_1_1Graphics_1_1RenderWorkUnit.html" title="This does the main loop processing for required to make the Graphics Manager function." alt="" coords="1472,795,1611,839"/>
+<area shape="rect" id="node59" href="$classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" title="A kind of workunit given exclusive runtime so it can consume time on multiple threads." alt="" coords="1148,795,1295,839"/>
+<area shape="rect" id="node61" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="861,795,1008,839"/>
+<area shape="rect" id="node63" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="179,759,325,803"/>
+<area shape="rect" id="node68" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="477,862,645,906"/>
+</map>

@@ -1,0 +1,50 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title="STL class." alt="" coords="7,525,105,553"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions." alt="" coords="156,525,300,553"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1ArithmeticException.html" title="Thrown when Math has failed." alt="" coords="361,95,564,123"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1InstanceIdentityException.html" title="Thrown when an unknown error with using an Identifier and it is invalid." alt="" coords="373,146,552,190"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1InternalException.html" title="Thrown when an unknown internal error occurred." alt="" coords="369,277,556,305"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1InvalidAssignment.html" title="Then when a complex class is assigned to itself or other invalid assignments occur." alt="" coords="367,327,559,355"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1InvalidStateException.html" title="Thrown when the available information should have worked but failed for unknown reasons." alt="" coords="356,378,569,406"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1InvalidVersionException.html" title="Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing..." alt="" coords="379,429,547,473"/>
+<area shape="rect" id="node23" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it." alt="" coords="384,495,541,523"/>
+<area shape="rect" id="node61" href="$classMezzanine_1_1MemoryManagementException.html" title="Thrown when an unknown memory management exception occurs." alt="" coords="357,546,568,590"/>
+<area shape="rect" id="node67" href="$classMezzanine_1_1NotImplementedException.html" title="Thrown when we just have not coded a thing yet, but we knew what the API should look like..." alt="" coords="371,613,555,657"/>
+<area shape="rect" id="node69" href="$classMezzanine_1_1ParametersException.html" title="Thrown when parameters are checked at runtime and found invalid." alt="" coords="357,679,568,707"/>
+<area shape="rect" id="node75" href="$classMezzanine_1_1RenderingAPIException.html" title="Thrown when the graphics card/DirectX/OpenGL fail." alt="" coords="351,730,575,758"/>
+<area shape="rect" id="node77" href="$classMezzanine_1_1RuntimeAssertionException.html" title="Thrown when a rutime assertion could have been thrown." alt="" coords="368,781,557,825"/>
+<area shape="rect" id="node79" href="$classMezzanine_1_1ScriptException.html" title="Thrown when an unknown error happens with a script." alt="" coords="373,847,552,875"/>
+<area shape="rect" id="node89" href="$classMezzanine_1_1SyntaxErrorException.html" title="Thrown when some kind of syntax exception." alt="" coords="357,935,568,963"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1InstanceIdentityDuplicateException.html" title="Thrown when duplicates of teh same identity string exist." alt="" coords="655,13,833,57"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1InstanceIdentityInvalidException.html" title="Thrown when the identity string wasn&#39;t valid at all." alt="" coords="655,79,833,123"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1InstanceIdentityNotFoundException.html" title="Thrown when the requested identity could not be found." alt="" coords="655,146,833,190"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1DirectoryException.html" title="Thrown when there is an unknown issue with a file." alt="" coords="647,213,841,241"/>
+<area shape="rect" id="node35" href="$classMezzanine_1_1FileException.html" title="Thrown when there is an unknown issue with a file." alt="" coords="661,389,827,417"/>
+<area shape="rect" id="node45" href="$classMezzanine_1_1IOReadException.html" title="Thrown when a read is happening but something has prevented the underlying code from knowing what was..." alt="" coords="649,441,839,469"/>
+<area shape="rect" id="node47" href="$classMezzanine_1_1IOWriteException.html" title="Thrown when a write is happening but something has prevented the underlying code from knowing what wa..." alt="" coords="649,491,839,519"/>
+<area shape="rect" id="node49" href="$classMezzanine_1_1NetworkException.html" title="Thrown when something unknown causes network IO to fail." alt="" coords="648,542,840,570"/>
+<area shape="rect" id="node27" href="$classMezzanine_1_1DirectoryNotFoundException.html" title="Thrown when a directory was expected to be there, but was not." alt="" coords="927,5,1121,49"/>
+<area shape="rect" id="node29" href="$classMezzanine_1_1DirectoryPermissionException.html" title="Thrown when permission is denied to a directory." alt="" coords="923,71,1125,115"/>
+<area shape="rect" id="node31" href="$classMezzanine_1_1DirectoryReadException.html" title="Thrown when a directory could be read and it wasn&#39;t a permission issue." alt="" coords="939,138,1109,182"/>
+<area shape="rect" id="node33" href="$classMezzanine_1_1DirectoryWriteException.html" title="Thrown when a directory could be written to and it wasn&#39;t a permission issue." alt="" coords="939,205,1109,249"/>
+<area shape="rect" id="node37" href="$classMezzanine_1_1FileNotFoundException.html" title="Thrown when a file was expected to be there, but was not." alt="" coords="913,271,1135,299"/>
+<area shape="rect" id="node39" href="$classMezzanine_1_1FilePermissionException.html" title="Thrown when permission was denied to a file." alt="" coords="937,322,1111,366"/>
+<area shape="rect" id="node41" href="$classMezzanine_1_1FileReadException.html" title="Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware iss..." alt="" coords="927,389,1121,417"/>
+<area shape="rect" id="node43" href="$classMezzanine_1_1FileWriteException.html" title="Thrown when a file could not be written and perimssions seem not to be an issue." alt="" coords="927,439,1121,467"/>
+<area shape="rect" id="node51" href="$classMezzanine_1_1NetworkNotFoundException.html" title="Thrown when no network connection is available." alt="" coords="928,490,1120,534"/>
+<area shape="rect" id="node53" href="$classMezzanine_1_1NetworkPermissionException.html" title="Thrown when permision was denied to a network interface or network resource." alt="" coords="925,557,1123,601"/>
+<area shape="rect" id="node55" href="$classMezzanine_1_1NetworkReadException.html" title="Thrown when data could not be read from the network (downloads)." alt="" coords="913,623,1135,651"/>
+<area shape="rect" id="node57" href="$classMezzanine_1_1NetworkURLException.html" title="Thrown when an address is invalid or could not be found." alt="" coords="916,674,1132,702"/>
+<area shape="rect" id="node59" href="$classMezzanine_1_1NetworkWriteException.html" title="Thrown when data could not be read from the network (iloads)." alt="" coords="913,725,1135,753"/>
+<area shape="rect" id="node63" href="$classMezzanine_1_1MemoryOutOfBoundsException.html" title="Thrown when attempted to access something that really should note be accessed." alt="" coords="637,593,851,637"/>
+<area shape="rect" id="node65" href="$classMezzanine_1_1OutOfMemoryException.html" title="Thrown when A memory allocation was attempted and failed." alt="" coords="631,659,857,687"/>
+<area shape="rect" id="node71" href="$classMezzanine_1_1ParametersCastException.html" title="Thrown when a pointer parameter is checked at runtime and cannot be cast as expected." alt="" coords="653,710,835,754"/>
+<area shape="rect" id="node73" href="$classMezzanine_1_1ParametersRangeException.html" title="Thrown when a passed parameter is checked at runtime and not in the expected range." alt="" coords="648,777,840,821"/>
+<area shape="rect" id="node81" href="$classMezzanine_1_1ScriptLuaException.html" title="Thrown when an unknown error happens in a Lua script." alt="" coords="644,847,844,875"/>
+<area shape="rect" id="node83" href="$classMezzanine_1_1ScriptLuaErrErrException.html" title="Thrown when Lua has an error handling an error." alt="" coords="936,775,1112,819"/>
+<area shape="rect" id="node85" href="$classMezzanine_1_1ScriptLuaRuntimeException.html" title="Thrown when a Lua script has a runtime error." alt="" coords="928,842,1120,886"/>
+<area shape="rect" id="node87" href="$classMezzanine_1_1ScriptLuaYieldException.html" title="Thrown when Lua returns a yield and it should not have." alt="" coords="937,909,1111,953"/>
+<area shape="rect" id="node91" href="$classMezzanine_1_1SyntaxErrorLuaException.html" title="Thrown when lua code in incorrect." alt="" coords="656,898,832,942"/>
+<area shape="rect" id="node93" href="$classMezzanine_1_1SyntaxErrorXMLException.html" title="Thrown when and XML document is being parsed but is invalid." alt="" coords="625,965,863,993"/>
+<area shape="rect" id="node95" href="$classMezzanine_1_1SyntaxErrorXPathException.html" title="Thrown when an XPath query is being parsed but is invalid." alt="" coords="649,1015,839,1059"/>
+</map>

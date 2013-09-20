@@ -1,0 +1,4 @@
+<map id="Mezzanine::Input::Controller" name="Mezzanine::Input::Controller">
+<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons." alt="" coords="13,83,176,127"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices." alt="" coords="13,6,176,34"/>
+</map>

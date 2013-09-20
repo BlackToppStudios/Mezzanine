@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices." alt="" coords="5,55,168,83"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons." alt="" coords="216,47,379,91"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick." alt="" coords="427,5,605,33"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Input_1_1Keyboard.html" title="This class represents the keyboard input device." alt="" coords="427,55,605,83"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Input_1_1Mouse.html" title="This class represents the mouse input device." alt="" coords="435,106,597,134"/>
+</map>

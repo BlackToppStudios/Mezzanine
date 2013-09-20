@@ -1,0 +1,27 @@
+<map id="Mezzanine::Internal::EntityInternalData" name="Mezzanine::Internal::EntityInternalData">
+<area shape="rect" id="node85" href="$classMezzanine_1_1Entity.html" title="This class is useful for representing graphical bodies without a physics representation." alt="" coords="956,346,1076,374"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene..." alt="" coords="1617,481,1793,509"/>
+<area shape="rect" id="node18" href="$classMezzanine_1_1Internal_1_1SceneManagerData.html" title="Stores internal data for the SCeneManager to keep it from cluttering the Header file." alt="" coords="2040,94,2181,138"/>
+<area shape="rect" id="node33" href="$classMezzanine_1_1TrackingNodeUpdateWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world..." alt="" coords="2005,354,2216,398"/>
+<area shape="rect" id="node47" href="$classMezzanine_1_1WorldNode.html" title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails..." alt="" coords="2035,673,2187,701"/>
+<area shape="rect" id="node79" href="$classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene." alt="" coords="2052,303,2169,331"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance." alt="" coords="1276,939,1447,967"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="932,975,1100,1003"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library." alt="" coords="635,929,768,957"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="945,909,1087,953"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within." alt="" coords="2049,941,2172,969"/>
+<area shape="rect" id="node20" href="$classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world." alt="" coords="464,179,587,207"/>
+<area shape="rect" id="node22" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space." alt="" coords="15,375,148,403"/>
+<area shape="rect" id="node58" href="$classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space." alt="" coords="276,521,423,549"/>
+<area shape="rect" id="node24" href="$classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space." alt="" coords="5,521,157,549"/>
+<area shape="rect" id="node26" title="STL class." alt="" coords="1668,351,1743,379"/>
+<area shape="rect" id="node28" title="STL class." alt="" coords="1301,343,1421,387"/>
+<area shape="rect" id="node31" href="$classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" title="A thread specific collection of double&#45;buffered and algorithm specific resources." alt="" coords="1283,461,1440,505"/>
+<area shape="rect" id="node35" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="1632,218,1779,262"/>
+<area shape="rect" id="node37" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="943,210,1089,254"/>
+<area shape="rect" id="node42" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="1277,277,1445,321"/>
+<area shape="rect" id="node49" href="$classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them." alt="" coords="1267,679,1456,707"/>
+<area shape="rect" id="node55" href="$classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent." alt="" coords="612,554,791,582"/>
+<area shape="rect" id="node51" href="$classMezzanine_1_1AttachableBase.html" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="260,691,439,719"/>
+<area shape="rect" id="node71" href="$classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions." alt="" coords="933,525,1099,553"/>
+</map>

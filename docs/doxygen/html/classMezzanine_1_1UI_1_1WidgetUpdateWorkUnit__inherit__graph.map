@@ -1,0 +1,4 @@
+<map id="Mezzanine::UI::WidgetUpdateWorkUnit" name="Mezzanine::UI::WidgetUpdateWorkUnit">
+<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="27,99,173,143"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="27,6,173,50"/>
+</map>
