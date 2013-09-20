@@ -1,4 +1,0 @@
-<map id="Mezzanine::Audio::iEffectFilterCleanWorkUnit" name="Mezzanine::Audio::iEffectFilterCleanWorkUnit">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.xhtml" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="16,102,176,149"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1iWorkUnit.xhtml" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="16,6,176,53"/>
-</map>

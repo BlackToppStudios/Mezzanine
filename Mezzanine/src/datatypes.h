@@ -46,6 +46,12 @@
 /// @brief All the definitions for datatypes as well as some basic conversion functions are defined here. Additionally, this is where all of the other singular header inclusions go as well.
 ///////////////////////////////////////
 
+/// @def MEZZANINE_CORE
+/// @brief Only defined in the Mezzanine and none of the Sattelite libraries
+/// @details Some parts of the code are in the Mezzanine and other libraries, Only
+/// the Mezzanine defines this to allow that code to fully integrate its behaviour.
+#define MEZZANINE_CORE 1
+
 #include "crossplatformexport.h"
 //#include "pstdint.h" // A reimplimentation of the C99 stdint.h for all compilers
 

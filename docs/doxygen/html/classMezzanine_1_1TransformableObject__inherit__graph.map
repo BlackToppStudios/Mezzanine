@@ -1,9 +1,0 @@
-<map id="Mezzanine::TransformableObject" name="Mezzanine::TransformableObject">
-<area shape="rect" id="node3" href="$classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems." alt="" coords="244,59,409,88"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1Audio_1_1iListener.xhtml" title="This is an interface class for a listener (such as a player) in the 3D audio world." alt="" coords="471,5,665,35"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Audio_1_1SoundProxy.xhtml" title="This is a proxy class for representing a sound being played in 3D space." alt="" coords="460,59,676,88"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml" title="This is a proxy from which physics objects are handled." alt="" coords="496,111,640,158"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1GhostProxy.xhtml" title="This is the proxy object for ghost objects with no contact response." alt="" coords="727,42,871,89"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1RigidProxy.xhtml" title="This is a proxy from which rigid body proxys are handled." alt="" coords="727,111,871,158"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1Physics_1_1SoftProxy.xhtml" title="This is the proxy object for soft/compressable bodies." alt="" coords="727,181,871,227"/>
-</map>

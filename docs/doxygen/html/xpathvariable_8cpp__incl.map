@@ -1,7 +1,0 @@
-<map id="/home/Code/Mezzanine/Mezzanine/src/XML/xpathvariable.cpp" name="/home/Code/Mezzanine/Mezzanine/src/XML/xpathvariable.cpp">
-<area shape="rect" id="node3" href="$xpathvariable_8h.xhtml" title="The XPathVariable class definition." alt="" coords="739,101,888,131"/>
-<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="764,256,863,285"/>
-<area shape="rect" id="node39" href="$xmlenumerations_8h.xhtml" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="788,179,964,208"/>
-<area shape="rect" id="node7" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,333,168,363"/>
-<area shape="rect" id="node37" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1435,333,1496,363"/>
-</map>

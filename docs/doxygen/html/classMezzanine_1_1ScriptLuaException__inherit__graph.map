@@ -1,8 +1,0 @@
-<map id="Mezzanine::ScriptLuaException" name="Mezzanine::ScriptLuaException">
-<area shape="rect" id="node9" href="$classMezzanine_1_1ScriptLuaErrErrException.xhtml" title="Thrown when Lua has an error handling an error." alt="" coords="897,5,1089,51"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1ScriptLuaRuntimeException.xhtml" title="Thrown when a Lua script has a runtime error." alt="" coords="888,74,1099,121"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1ScriptLuaYieldException.xhtml" title="Thrown when Lua returns a yield and it should not have." alt="" coords="900,143,1087,190"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ScriptException.xhtml" title="Thrown when an unknown error happens with a script." alt="" coords="373,83,571,112"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Exception.xhtml" title="This is the exception thrown by most Mezzanine system that can throw exceptions." alt="" coords="165,83,325,112"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="5,83,117,112"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="Mezzanine::Scripting::iScript" name="Mezzanine::Scripting::iScript">
-<area shape="rect" id="node3" href="$classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml" title="The interface for a script that can be compiled to bytecode." alt="" coords="211,5,365,51"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.xhtml" title="This script can return simple group of values." alt="" coords="208,74,368,121"/>
-</map>

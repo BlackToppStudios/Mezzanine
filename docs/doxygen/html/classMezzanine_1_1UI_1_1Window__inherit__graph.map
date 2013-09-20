@@ -1,7 +1,0 @@
-<map id="Mezzanine::UI::Window" name="Mezzanine::UI::Window">
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MenuWindow.xhtml" title="This class is an extended version of the window class for use exclusively with the menu widget..." alt="" coords="29,429,229,459"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1EnclosedRenderableContainerWidget.xhtml" title="This is an abstract class for the creation and storage of widgets to be used by other classes..." alt="" coords="5,257,253,303"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1RenderableContainerWidget.xhtml" title="This is an interface class for the two types of Renderable Container Widgets." alt="" coords="35,161,224,207"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Widget.xhtml" title="This class is the base class for all widgets." alt="" coords="49,83,209,112"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1UI_1_1Renderable.xhtml" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="35,5,224,35"/>
-</map>

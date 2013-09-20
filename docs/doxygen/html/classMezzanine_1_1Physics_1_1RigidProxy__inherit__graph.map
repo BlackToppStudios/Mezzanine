@@ -1,5 +1,0 @@
-<map id="Mezzanine::Physics::RigidProxy" name="Mezzanine::Physics::RigidProxy">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1PhysicsProxy.xhtml" title="This is a proxy from which physics objects are handled." alt="" coords="27,179,171,226"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1WorldProxy.xhtml" title="This is the base class for proxy objects belonging to the various 3D subsystems." alt="" coords="16,101,181,131"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="5,6,192,53"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="Mezzanine::ParticleEffect" name="Mezzanine::ParticleEffect">
-<area shape="rect" id="node2" href="$classMezzanine_1_1AttachableChild.xhtml" title="This class is the base class for objects that can be attached to AttachableParent." alt="" coords="264,197,461,227"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1AttachableBase.xhtml" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="5,101,203,131"/>
-<area shape="rect" id="node12" href="$classMezzanine_1_1AttachableParent.xhtml" title="Base class for objects that can have attachables attached to them." alt="" coords="124,389,332,419"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Transform.xhtml" title="Stores information about relative location and rotation in 3d space." alt="" coords="283,101,443,131"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space." alt="" coords="199,5,345,35"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space." alt="" coords="369,5,537,35"/>
-</map>

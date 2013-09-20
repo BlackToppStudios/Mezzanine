@@ -1,4 +1,0 @@
-<map id="Mezzanine::Resource::DataStream" name="Mezzanine::Resource::DataStream">
-<area shape="rect" id="node3" href="$classMezzanine_1_1Resource_1_1FileStream.xhtml" title="This represents a stream to a file on disk using the C++ file stream API." alt="" coords="5,102,160,149"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1Resource_1_1MemoryStream.xhtml" title="This represents a stream to a buffer in memory." alt="" coords="184,102,339,149"/>
-</map>

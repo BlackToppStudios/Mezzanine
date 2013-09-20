@@ -76,8 +76,20 @@
 /// @brief The revision version number of the library. (This right/back number)
 #define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 0
 
+
+
+#ifndef MEZZANINE_CORE
 /// @mainpage Directed Acyclic Graph Frame Scheduler.
-/// @section goal_sec Goals
+/// For an in depth description please see the @ref ThreadingManual
+#endif
+
+/// @page ThreadingManual Directed Acyclic Graph Frame Scheduler
+/// @section dag_header The DAG Frame Scheduler Manual.
+/// This page will explain what the DAG FrameScheduler than explain how to use it.
+/// @section dag_contents Contents
+///     - @ref dag_goal_sec - A description of this algorithm and how/why it is different from other threading algorithms.
+///     - @ref dag_usage - Examples, code snippets, caveats and best practices with the scheduler. *Incomplete*
+/// @subsection dag_goal_sec Goals
 /// This library tries to make writing multithreaded software easier by changing the kinds of primitives that
 /// multithreaded software is built upon. Several libraries before this have attempted this already.
 /// This library is different becuse it focuses on a specific kind of workload and provides the kinds of
@@ -98,7 +110,7 @@
 /// dependencies and a @ref Mezzanine::Threading::FrameScheduler "FrameScheduler" that uses heuristics
 /// to decide how to run it all without exposing needless complexity to the application developer.
 ///
-/// @section overview_sec Overview
+/// @subsection overview_sec Algorithm Overview
 /// The DAGFrameScheduler is a variation on a common multithreaded work queue. It seeks to avoid its pitfalls,
 /// such as non-determinism, thread contention, and lackluster scalability while keeping its advantages
 /// including simplicity, understandiblity, and low overhead.
@@ -125,7 +137,7 @@
 /// all the @ref Mezzanine::Threading::iWorkUnit "iWorkUnit"s are added to a
 /// @ref Mezzanine::Threading::FrameScheduler "FrameScheduler".
 ///
-/// @section broken_sec Broken Algorithms
+/// @subsection broken_sec Broken Algorithms
 /// To understand why a new multithreading system is needed, it is helpful to look at other methods
 /// of threading that have been used in the past. This can give us an understanding of what they lack
 ///  or how they aren't ideal for the kinds of work this algorithm is intended for. This overview is
@@ -141,7 +153,7 @@
 /// concept of tasks or workunits, which are just pieces of work with a distinct begining and end. The
 /// width of a piece of work loosely represents the execution time (the names are just for show and not
 /// related to anything real).
-/// @subsection broken_Single Single Threaded
+/// @subsubsection broken_Single Single Threaded
 /// An application using this threading model is not actually multithreaded at all. However, It has been shown
 /// that software can run in a single and get good perfomance. This is the benchmark all other threading models
 /// get compared too.
@@ -161,7 +173,7 @@
 /// overhead. With a single threaded application one thread does all the work and always wastes every other
 /// thread, but there is no overhead if the system only has one thread.
 /// @n @n
-/// @subsection broken_Unplanned Unplanned Thread
+/// @subsubsection broken_Unplanned Unplanned Thread
 /// Sometimes someone means well and tries to increase the performance of a single threaded program and tries
 /// to add extra threads to increase performance. Sometimes this works really well and sometimes there is a
 /// marginal increase in performance or a significant increase in bugs. If that someone has a good plan
@@ -187,11 +199,11 @@
 /// as dependent on another allows the reordering of @ref Mezzanine::Threading::iWorkUnit "iWorkUnits" so that
 /// some @ref Mezzanine::Threading::iWorkUnit "iWorkUnit" can be executed with no thread waiting or blocking.
 /// @n @n
-/// @subsubsection broken_TaskPerThread One Task Per Thread
+/// @subsubsubsection broken_TaskPerThread One Task Per Thread
 /// A common example of poor planning is the creation of one thread for each task in a game. Despite
 /// being conceptually simple, performance of systems designed this way is poor due to synchronization
 /// and complexities that synchronization requires.
-/// @subsection broken_ConventionWorkQueue Convention Work Queue/Thread Pools
+/// @subsection broken_ConventionWorkQueue Conventional Work Queue/Thread Pools
 /// Conventional work queues and thread pools are a well known and robust way to increase the throughput of
 /// of an application. These are ideal solutions for many systems, but not games.
 /// @n @n
@@ -236,7 +248,7 @@
 /// mechanisms of conventional work queues. The DAGFrameScheduler has traded one useless feature
 /// for a useful guarantee.
 ///
-/// @section algorithm_sec The Algorithm
+/// @subsection algorithm_sec The Algorithm
 /// When first creating the DAGFrameScheduler it was called it "Dagma-CP". When describing it the
 /// phrase "Directed Acyclic Graph Minimal Assembly of Critical Path" was used. If you are lucky
 /// enough to knows what all those terms mean when assembled this way they are very descriptive. For
@@ -354,7 +366,7 @@
 /// met and allows one to be executed. This implicitly guarantees that at least one thread will
 /// always do work, and if dependencies chains are kept short then it is more likely that several
 /// threads will advance.
-/// @section algorithmintegrate_sec Integrating with the Algorithm
+/// @subsection algorithmintegrate_sec Integrating with the Algorithm
 /// When
 /// @ref Mezzanine::Threading::FrameScheduler::DoOneFrame() "FrameScheduler::DoOneFrame()"
 /// is called several things happen. All work units are executed, all threads are paused until the
@@ -364,7 +376,7 @@
 /// This process is actually divided into six steps. The function
 /// @ref Mezzanine::Threading::FrameScheduler::DoOneFrame() "FrameScheduler::DoOneFrame()"
 /// simply calls the following functions:
-/// @subsection integrate1 Step 1 - Run All the Monopolies
+/// @subsubsection integrate1 Step 1 - Run All the Monopolies
 /// The function
 /// @ref Mezzanine::Threading::FrameScheduler::RunAllMonopolies() "FrameScheduler::RunAllMonopolies()"
 /// simply iterates through all the @ref Mezzanine::Threading::MonopolyWorkUnit "MonopolyWorkUnit"
@@ -374,7 +386,7 @@
 /// @n @n
 /// In general @ref Mezzanine::Threading::MonopolyWorkUnit "MonopolyWorkUnit"s can be expected to use
 /// all available CPU resources. Other threads should not be executed in general.
-/// @subsection integrate2 Step 2 - Create and Start Threads
+/// @subsubsection integrate2 Step 2 - Create and Start Threads
 /// The function
 /// @ref Mezzanine::Threading::FrameScheduler::CreateThreads() "FrameScheduler::CreateThreads()"
 /// Creates enough threads to get to the amount set by
@@ -387,7 +399,7 @@
 /// (work units with affinity can affect how much work can be done with out waiting) that was added by
 /// @ref Mezzanine::Threading::FrameScheduler::AddWorkUnitMain(iWorkUnit *, const String&) "FrameScheduler::AddWorkUnitMain".
 /// If there is only one thread, the main thread, then this will return immediately and no work will be done.
-/// @subsection integrate3 Step 3 - Main Thread Work
+/// @subsubsection integrate3 Step 3 - Main Thread Work
 /// The call to
 /// @ref Mezzanine::Threading::FrameScheduler::RunMainThreadWork() "FrameScheduler::RunMainThreadWork()"
 /// will start the main thread executing work units. This is the call that executes work units added with
@@ -402,18 +414,18 @@
 /// though every work unit with affinity will be complete. There could be work in other threads still
 /// executing. This is another good point to run work that is single threaded and won't interfere with
 /// workunits that could be executing.
-/// @subsection integrate4 Step 4 - Clean Up Threads
+/// @subsubsection integrate4 Step 4 - Clean Up Threads
 /// If you must execute something that could interfere (write to anything they could read or write)
 /// with work units, you should do that after
 /// @ref Mezzanine::Threading::FrameScheduler::JoinAllThreads() "FrameScheduler::JoinAllThreads()" is
 /// called. This joins, destroys, or otherwise cleans up the threads the scheduler has used depending
 /// on how this library is configured.
-/// @subsection integrate5 Step 5 - Prepare for the next frame.
+/// @subsubsection integrate5 Step 5 - Prepare for the next frame.
 /// All the work units are marked as complete and need to be reset with
 /// @ref Mezzanine::Threading::FrameScheduler::ResetAllWorkUnits() "FrameScheduler::ResetAllWorkUnits()"
 /// to be used by the next frame. This simply iterates over each work unit resetting their status. A
 /// potential future optimization could run this as a multithreaded monopoly instead.
-/// @subsection integrate6 Step 6 - Wait for next frame.
+/// @subsubsection integrate6 Step 6 - Wait for next frame.
 /// The final step is to wait until the next frame should begin. To do this tracking the begining of
 /// of each frame is required. The value in
 /// @ref Mezzanine::Threading::FrameScheduler::CurrentFrameStart "FrameScheduler::CurrentFrameStart"
@@ -428,7 +440,8 @@
 /// @ref Mezzanine::Threading::FrameScheduler::TimingCostAllowance "FrameScheduler::TimingCostAllowance"
 /// is tracked that averages the effects of imprecision across multiple frames to prevent roundings
 /// errors from consistently lengthening of shortening frames.
-
+/// @section dag_usage Using the DAG FrameScheduler
+/// Still in progress. In the meantime please peruse the unit test source directory for examples.
 
 
 /// @brief All of the Mezzanine game library components reside in this namespace.

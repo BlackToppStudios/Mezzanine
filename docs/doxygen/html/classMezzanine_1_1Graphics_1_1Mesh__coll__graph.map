@@ -1,8 +1,0 @@
-<map id="Mezzanine::Graphics::Mesh" name="Mezzanine::Graphics::Mesh">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Graphics_1_1InternalMeshData.xhtml" title="This class is used to store the internal structures needed by the Mesh class." alt="" coords="304,5,459,51"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Graphics_1_1Skeleton.xhtml" title="This class encapsulates the Skeletal animation functionality of a Mesh." alt="" coords="304,151,459,198"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Graphics_1_1Bone.xhtml" title="This class encapsulates the bones contained in a skeleton used for animation." alt="" coords="605,222,760,269"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1TransformableChildObject.xhtml" title="This is an interface for all child 3D objects that can have their full transforms manipulated..." alt="" coords="288,233,475,279"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" title="This class is used to store the internal structures needed by the Skeleton class." alt="" coords="7,151,169,198"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1Graphics_1_1SubMesh.xhtml" title="This class represents a sub&#45;section of an overall mesh." alt="" coords="11,66,165,113"/>
-</map>

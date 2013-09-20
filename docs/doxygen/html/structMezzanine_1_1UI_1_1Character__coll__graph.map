@@ -1,9 +1,0 @@
-<map id="Mezzanine::UI::Character" name="Mezzanine::UI::Character">
-<area shape="rect" id="node2" href="$classMezzanine_1_1ColourValue.xhtml" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="613,5,787,35"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Vector2.xhtml" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="323,133,469,163"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Glyph.xhtml" title="Class used to describe a single glyph or character available for text operations." alt="" coords="623,144,777,173"/>
-<area shape="rect" id="node13" href="$structMezzanine_1_1UI_1_1Sprite.xhtml" title="Basic class used to describe a portion of a texture to be applied to a Quad." alt="" coords="621,199,779,228"/>
-<area shape="rect" id="node11" href="$structMezzanine_1_1UI_1_1KerningInfo.xhtml" title="Basic class used to describe Kerning for a given Glyph." alt="" coords="5,247,195,276"/>
-<area shape="rect" id="node16" title="STL class." alt="" coords="353,323,439,352"/>
-<area shape="rect" id="node18" title="STL class." alt="" coords="32,314,168,361"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="Mezzanine::Physics::DynamicMeshCollisionShape" name="Mezzanine::Physics::DynamicMeshCollisionShape">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1MeshCollisionShape.xhtml" title="This is the base class for all Mesh shapes." alt="" coords="33,102,191,149"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="40,6,184,53"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="Mezzanine::TerrainBase" name="Mezzanine::TerrainBase">
-<area shape="rect" id="node5" href="$classMezzanine_1_1MeshTerrain.xhtml" title="Mezzanine::MeshTerrain" alt="" coords="5,160,179,189"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="5,5,179,35"/>
-</map>

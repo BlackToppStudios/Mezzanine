@@ -1,4 +1,0 @@
-<map id="Mezzanine::Transform" name="Mezzanine::Transform">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Vector3.xhtml" title="This is used to represent a point in space, or a vector through space." alt="" coords="5,5,152,35"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Quaternion.xhtml" title="This is used to store information about rotation in 3d space." alt="" coords="176,5,344,35"/>
-</map>
