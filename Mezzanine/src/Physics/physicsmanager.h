@@ -87,6 +87,10 @@ namespace Mezzanine
         class CollisionDispatcher;
         class ParallelCollisionDispatcher;
         class PhysicsManager;
+        class PhysicsProxy;
+        class GhostProxy;
+        class RigidProxy;
+        class SoftProxy;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a Mezzanine::Threading::iWorkUnit for the single threaded processing of physics simulations.
@@ -235,8 +239,14 @@ namespace Mezzanine
         class MEZZ_LIB PhysicsManager : public WorldManager
         {
         public:
+            /// @brief Basic container type for @ref PhysicsProxy storage by this class.
+            typedef std::vector< PhysicsProxy* >                ProxyContainer;
+            /// @brief Iterator type for @ref PhysicsProxy instances stored by this class.
+            typedef ProxyContainer::iterator                    ProxyIterator;
+            /// @brief Const Iterator type for @ref PhysicsProxy instances stored by this class.
+            typedef ProxyContainer::const_iterator              ConstProxyIterator;
             /// @brief Basic container type for @ref Constraint storage by this class.
-            typedef std::vector< Constraint* >         ConstraintContainer;
+            typedef std::vector< Constraint* >                  ConstraintContainer;
             /// @brief Iterator type for @ref Constraint instances stored by this class.
             typedef ConstraintContainer::iterator               ConstraintIterator;
             /// @brief Const Iterator type for @ref Constraint instances stored by this class.
@@ -248,7 +258,7 @@ namespace Mezzanine
             /// @brief Const Iterator type for @ref WorldTrigger instances stored by this class.
             typedef WorldTriggerContainer::const_iterator       ConstWorldTriggerIterator;
             /// @brief Basic container type for @ref Collision storage by this class.
-            typedef std::map< ObjectPair, Collision* > CollisionContainer;
+            typedef std::map< ObjectPair, Collision* >          CollisionContainer;
             /// @brief Iterator type for @ref Collision instances stored by this class.
             typedef CollisionContainer::iterator                CollisionIterator;
             /// @brief Const Iterator type for @ref Collision instances stored by this class.
@@ -270,6 +280,7 @@ namespace Mezzanine
 
             ManagerConstructionInfo WorldConstructionInfo;
 
+            ProxyContainer Proxies;
             ConstraintContainer Constraints;
             WorldTriggerContainer Triggers;
             CollisionContainer Collisions;
@@ -366,6 +377,37 @@ namespace Mezzanine
             /// @param Actor The actor whos gravity is to be changed.
             /// @param igrav The value of the gravity to be applied.
             void SetIndividualGravity(ActorBase* Actor, const Vector3& igrav);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Creating Proxies
+
+            /// @brief Creates a new GhostProxy.
+            /// @return Returns a pointer to the created proxy.
+            GhostProxy* CreateGhostProxy();
+            /// @brief Creates a new RigidProxy.
+            /// @param Mass The mass of the new proxy.
+            /// @return Returns a pointer to the created proxy.
+            RigidProxy* CreateRigidProxy(const Real Mass);
+            /// @brief Creates a new SoftProxy.
+            /// @param Mass The total mass of the new proxy.
+            /// @return Returns a pointer to the created proxy.
+            SoftProxy* CreateSoftProxy(const Real Mass);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Proxy Management
+
+            /// @brief Gets a PhysicsProxy instance by index.
+            /// @param Index The index of the PhysicsProxy to be retrieved.
+            /// @return Returns a pointer to the PhysicsProxy at the specified index.
+            PhysicsProxy* GetProxy(const UInt32 Index) const;
+            /// @brief Gets the number of PhysicsProxy instances in this manager.
+            /// @return Returns a UInt32 representing the number of PhysicsProxy instances contained in this manager.
+            UInt32 GetNumProxies() const;
+            /// @brief Deletes a PhysicsProxy.
+            /// @param ToBeDestroyed A pointer to the PhysicsProxy you want deleted.
+            void DestroyProxy(PhysicsProxy* ToBeDestroyed);
+            /// @brief Deletes all stored PhysicsProxy instances.
+            void DestroyAllProxies();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Constraint Management
