@@ -56,7 +56,7 @@ namespace Mezzanine
 		{
         protected:
             /// @internal
-            /// @brief RigidBody proxy used by the internal physics.
+            /// @brief GhostBody proxy used by the internal physics.
             btPairCachingGhostObject* PhysicsGhostBody;
 
             /// @internal
