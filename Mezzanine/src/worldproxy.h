@@ -65,6 +65,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
+        /// @brief Accessor for the type of proxy.
+        /// @return Returns enum value for the type of proxy this object is.
+        virtual Mezzanine::ProxyType GetProxyType() const = 0;
         /// @brief Performs all the necessary task to ensure this object is connected to it's respective world and ready for use.
         virtual void AddToWorld() = 0;
         /// @brief Unhooks this proxy from it's respective world.

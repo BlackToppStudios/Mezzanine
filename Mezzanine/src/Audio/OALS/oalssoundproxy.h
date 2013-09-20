@@ -187,6 +187,9 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
+                /// @copydoc WorldProxy::GetProxyType() const
+                virtual Mezzanine::ProxyType GetProxyType() const;
+
                 /// @copydoc iSound::IsValid() const
                 virtual bool IsValid() const;
                 /// @copydoc iSound::GetType() const

@@ -52,6 +52,7 @@
 #include "Audio/OALS/oalslistener.h"
 #include "Audio/OALS/oalssoundscapemanager.h"
 
+#include "enumerations.h"
 #include "exception.h"
 
 namespace Mezzanine
@@ -97,6 +98,11 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
+
+            Mezzanine::ProxyType Listener::GetProxyType() const
+            {
+                return Mezzanine::PT_Audio_Listener;
+            }
 
             void Listener::SetVelocity(const Vector3& Vel)
             {

@@ -128,8 +128,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc PhysicsProxy::GetPhysicsProxyType() const
-            virtual Physics::ProxyType GetPhysicsProxyType() const;
+            /// @copydoc WorldProxy::GetProxyType() const
+            virtual Mezzanine::ProxyType GetProxyType() const;
 
             /// @copydoc WorldProxy::AddToWorld()
             virtual void AddToWorld();

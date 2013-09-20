@@ -222,6 +222,11 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
+            Mezzanine::ProxyType OALS::SoundProxy::GetProxyType() const
+            {
+                return Mezzanine::PT_Audio_SoundProxy;
+            }
+
             bool OALS::SoundProxy::IsValid() const
             {
                 return ( this->SoundDecoder && this->SoundDecoder->GetStream() );//add parameters to check the sources

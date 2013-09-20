@@ -45,6 +45,7 @@ John Blackwood - makoenergy02@gmail.com
 #include "Physics/physicsmanager.h"
 #include "Physics/collisionshapemanager.h"
 
+#include "enumerations.h"
 #include "stringtool.h"
 #include "world.h"
 
@@ -83,9 +84,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Physics::ProxyType RigidProxy::GetPhysicsProxyType() const
+        Mezzanine::ProxyType RigidProxy::GetProxyType() const
         {
-            return Physics::PT_Rigid;
+            return Mezzanine::PT_Physics_RigidProxy;
         }
 
         void RigidProxy::AddToWorld()
