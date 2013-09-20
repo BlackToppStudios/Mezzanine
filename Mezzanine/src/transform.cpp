@@ -84,13 +84,12 @@ namespace Mezzanine
 
     Transform& Transform::operator= (const Transform& rhs)
     {
-        if( this == &rhs ) // Are we assigning to ourselves?!?!?!?
+        if( this != &rhs ) // Are we assigning to ourselves?!?!?!?
         {
-            return *this;
-        }else{
             this->Location = rhs.Location;
             this->Rotation = rhs.Rotation;
         }
+        return *this;
     }
 
     Transform& Transform::operator= (const btTransform& rhs)

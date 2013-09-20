@@ -367,12 +367,12 @@ namespace Mezzanine
             // Serializable
             /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
             /// @param OneNode and XML::Node containing the data.
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            void ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Quaternion"

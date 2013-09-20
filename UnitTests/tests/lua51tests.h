@@ -635,6 +635,31 @@ class lua51tests : public UnitTestGroup
                 }
                 cout << "End Quaternion Test" << endl << endl;
 
+                try
+                {
+                    cout << "Testing basic Transform functionality" << endl;
+                    Scripting::Lua::Lua51Script RealArgScript("function VecXMultiply(x)\n"
+                                                              "   Tranny=MezzanineSafe.Transform(\n"
+                                                              "       MezzanineSafe.Vector3(x,0,0),\n"
+                                                              "       MezzanineSafe.Quaternion(0,0,0,0)\n"
+                                                              "   )\n"
+                                                              "   return Tranny.Location:Length()\n"
+                                                              "end"
+                                                              ,LuaRuntimeSafe);
+                    LuaRuntimeSafe.Execute(RealArgScript);
+
+                    Scripting::Lua::Lua51Script RealArgCall("VecXMultiply",LuaRuntimeSafe,true);
+                    RealArgCall.AddArgument(Real(10.0));
+                    CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
+                    RealArgCall.AddReturn(RealReturn);
+                    LuaRuntimeSafe.Execute(RealArgCall);
+
+                    TEST(10==RealReturn->GetWhole(), "Engine::Transform");
+                } catch (ScriptLuaException& ) {
+                    TEST_RESULT(Testing::Failed,"Engine::Transform");
+                }
+                cout << "End Transform Test" << endl << endl;
+
                 /*try
                 {
                     cout << "Testing Experimental functionality" << endl;

@@ -126,17 +126,15 @@
 #include "terrainbase.h"
 #include "terrainmanager.h"
 #include "timer.h"
-#include "transform.h"                  // done
 
 #endif // \no SWIG
-
+#include "transform.h"                  // done
 #include "vector2.h"                    // done
 #include "vector3.h"                    // done
+#ifndef SWIG
 
 // more stuff swig shouldn't read yet
-#ifndef SWIG
 #include "vector3wactor.h"
-
 #include "entresol.h"
 #include "worldnode.h"                  // done
 #include "worldobjectgraphicssettings.h"// done

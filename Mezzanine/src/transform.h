@@ -118,13 +118,13 @@ namespace Mezzanine
             // Serializable
             /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+            void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
             /// @param OneNode and XML::Node containing the data.
             /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+            void ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Transform"
@@ -133,6 +133,7 @@ namespace Mezzanine
     };
 }
 
+#ifndef SWIG
 /// @brief Overwrite the data in a btTransform with the data in a Mezzanine::Transform using an intelligent assignment operator (in this case we really couldn't code the real assignment operator).
 /// @param lhs The item on the Left Hand of the Sign, the item to be assigned to.
 /// @param rhs The item on the Right Hand of the Sign, the item that has the values to be copied.
@@ -144,7 +145,7 @@ btTransform& MEZZ_LIB operator<< (btTransform& lhs, const Mezzanine::Transform& 
 /// @param rhs The item on the Right Hand of the Sign, the item that has the values to be copied.
 /// @return This returns the original Mezzanine::Transform reference(with the new values) so furhter work can continue to be performed if required.
 Mezzanine::Transform& MEZZ_LIB operator<< (Mezzanine::Transform& lhs, const btTransform& rhs);
-
+#endif
 
 
 #endif

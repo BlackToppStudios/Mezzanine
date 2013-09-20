@@ -87,27 +87,54 @@
   depending on their roles and technical limitations.
 
   The Mezzanine::Threading::FrameScheduler is responsible for running the work each task requires. Most managers mantain one or more of
-  Mezzanine::Threading::iWorkUnit implementations/instances to do work each frame.
+  Mezzanine::Threading::iWorkUnit implementations/instances to do work each frame. The FrameScheduler performs some heuristics and manages when and where
+  the workunits will be run. Generally these are created early in the lifetime of a game and destroyed near the end.
 
   Other classes are more similar to data, things like the @ref Mezzanine::Vector3 and the @ref Mezzanine::Quaternion. You can create these things whenever you like
   and generally have good support for integrating into a various parts of the system. In these classes there is a good deal of math and conversion routines. These
-  are commonly passed around by more sophisticated classes for a variety of reasons.
+  are commonly passed around by more sophisticated classes for a variety of reasons. Some of these are small enough to pass around value and some are not.
 
   There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled
-  and most commonly created, deleted and otherwised managed through managers. Many of these classes like the @ref Mezzanine::Light or @ref Mezzanine::ActorRigid are present inside the game
-  simulation as well as having a presence as
+  and most commonly created, deleted and otherwised managed through managers. Many of these classes like the @ref Mezzanine::Light or @ref Mezzanine::ActorRigid are
+  present inside the game simulation as well as having a presence as in the simulation visible to the user.
 
-  some utility classes Other class that really are just convient places to put functions, things like the @ref Mezzanine::ActorRigidDeSerializer and the @ref Mezzanine::StringTool are good
-  examples of these logical grouping of functions. Finally, there are few
+  Some classes are that really are just convient places to put functions, things like the @ref Mezzanine::ActorRigidDeSerializer and the @ref Mezzanine::StringTool are good
+  examples of these logical grouping of functions.
 
   @subsection managers Managers
 
-  ManagerBase::ManagerType
+   The canonical source for the list of managers is the ManagerBase::ManagerType enum.
 
    A manager is simply a logical grouping of functionality. A number of them exist covering all the major functionality that a game using the the Mezzanine engine would
    need in most situations.
 
-   All Managers inherit from ManagerBase. They all support the basic callback and priority functionality because of this.
+   All Managers inherit from ManagerBase. Before the switch to the  all support the basic callback and priority functionality because of this.
+
+            // Entresol Managers       // Namespaces
+            MT_AudioManager = 1,       // Audio
+            MT_AnimationManager,       // Graphics
+            MT_CollisionShapeManager,  // Physics
+            MT_GraphicsManager,        // Graphics
+            MT_EventManager,           // Mezzanine
+            MT_InputManager,           // Input-
+            MT_LogManager,             // Mezzanine
+            MT_MaterialManager,        // Graphics
+            MT_MeshManager,            // Graphics
+            MT_NetworkManager,         // Network
+            MT_ResourceManager,        // Resource
+            MT_ScriptingManager,       // Scripting
+            MT_UIManager,              // UI
+
+            // World Managers          // Namespaces
+            MT_ActorManager = 100,     // Mezzanine
+            MT_AreaEffectManager,      // Mezzanine
+            MT_CameraManager,          // Graphics
+            MT_PagingManager,          // Paging
+            MT_PhysicsManager,         // Physics
+            MT_SceneManager,           // Graphics
+            MT_SoundScapeManager,      // Audio
+            MT_TerrainManager,         // Mezzanine
+            MT_VehicleManager,         // Mezzanine
 
    @subsubsection managerlist A list of Managers in the Mezzanine
     - @ref Mezzanine::ActorManager - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton

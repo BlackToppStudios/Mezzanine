@@ -26524,6 +26524,7 @@ static swig_lua_var_info swig_variables[] = {
 
 static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("XML_VERSION", 100)},
+    {SWIG_LUA_CONSTTAB_INT("MEZZANINE_CORE", 1)},
     {SWIG_LUA_CONSTTAB_INT("MEZZ_FRAMESTOTRACK", 10)},
     {SWIG_LUA_CONSTTAB_INT("EncodingAuto", Mezzanine::XML::EncodingAuto)},
     {SWIG_LUA_CONSTTAB_INT("EncodingUTF8", Mezzanine::XML::EncodingUTF8)},
