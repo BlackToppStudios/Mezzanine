@@ -110,9 +110,9 @@
 
 #endif
 #include "plane.h"                      // done
+#include "quaternion.h"                 // done
 #ifndef SWIG
 
-#include "quaternion.h"                 // done
 #include "ray.h"
 #include "rayquerytool.h"               // nothing to do
 #include "resource.h"

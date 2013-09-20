@@ -615,6 +615,28 @@ class lua51tests : public UnitTestGroup
 
                 try
                 {
+                    cout << "Testing basic Quaternion functionality" << endl;
+                    Scripting::Lua::Lua51Script RealArgScript("function VecXMultiply(x)\n"
+                                                              "   Quat1=MezzanineSafe.Quaternion(x,0,0,0)\n"
+                                                              "   return Quat1:Length()\n"
+                                                              "end"
+                                                              ,LuaRuntimeSafe);
+                    LuaRuntimeSafe.Execute(RealArgScript);
+
+                    Scripting::Lua::Lua51Script RealArgCall("VecXMultiply",LuaRuntimeSafe,true);
+                    RealArgCall.AddArgument(Real(10.0));
+                    CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
+                    RealArgCall.AddReturn(RealReturn);
+                    LuaRuntimeSafe.Execute(RealArgCall);
+
+                    TEST(10==RealReturn->GetWhole(), "Engine::Quaternion");
+                } catch (ScriptLuaException& ) {
+                    TEST_RESULT(Testing::Failed,"Engine::Quaternion");
+                }
+                cout << "End Quaternion Test" << endl << endl;
+
+                /*try
+                {
                     cout << "Testing Experimental functionality" << endl;
                     Scripting::Lua::Lua51ScriptingEngine LuaRuntimeX;
                     Scripting::Lua::Lua51Script RealArgScript("function DoX(x)\n"
@@ -635,7 +657,7 @@ class lua51tests : public UnitTestGroup
                 } catch (ScriptLuaException& e) {
                     cout << "Expirement blew up :" << e.what() << endl;
                 }
-                cout << "End Experimental tests" << endl << endl;
+                cout << "End Experimental tests" << endl << endl;*/
 
             }
 
