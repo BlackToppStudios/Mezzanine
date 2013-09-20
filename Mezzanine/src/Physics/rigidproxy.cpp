@@ -47,7 +47,6 @@ John Blackwood - makoenergy02@gmail.com
 
 #include "enumerations.h"
 #include "stringtool.h"
-#include "world.h"
 
 #include "Internal/motionstate.h.cpp"
 
@@ -67,13 +66,16 @@ namespace Mezzanine
 
         RigidProxy::~RigidProxy()
         {
-            delete PhysicsRigidBody;
+            if( this->IsInWorld() )
+                this->RemoveFromWorld();
+
+            delete this->PhysicsRigidBody;
         }
 
         void RigidProxy::CreateRigidObject(const Real Mass)
         {
             this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
-            this->PhysicsRigidBody->setUserPointer(this);
+            this->PhysicsRigidBody->setUserPointer( this );
             if(0.0 == Mass) {
                 this->PhysicsRigidBody->setCollisionFlags( btCollisionObject::CF_STATIC_OBJECT );
             }else{
@@ -362,14 +364,10 @@ namespace Mezzanine
         }
 
         String RigidProxy::GetDerivedSerializableName() const
-        {
-            return RigidProxy::GetSerializableName();
-        }
+            { return RigidProxy::GetSerializableName(); }
 
         String RigidProxy::GetSerializableName()
-        {
-            return "RigidProxy";
-        }
+            { return "RigidProxy"; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
