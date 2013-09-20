@@ -1,76 +1,76 @@
-<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/light.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/light.cpp">
-<area shape="rect" id="node3" href="$light_8h.html" title="Declaration of Mezzanine::Light." alt="" coords="2339,99,2395,127"/>
-<area shape="rect" id="node180" href="$scenemanager_8h_source.html" title="scenemanager.h" alt="" coords="2483,177,2597,205"/>
-<area shape="rect" id="node251" href="$stringtool_8h_source.html" title="stringtool.h" alt="" coords="939,254,1021,282"/>
-<area shape="rect" id="node268" href="$worldnode_8h.html" title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="2541,99,2632,127"/>
-<area shape="rect" id="node273" href="$entresol_8h_source.html" title="entresol.h" alt="" coords="3344,177,3421,205"/>
-<area shape="rect" id="node5" href="$attachable_8h.html" title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec..." alt="" coords="2368,177,2459,205"/>
-<area shape="rect" id="node52" href="$xml_8h_source.html" title="XML/xml.h" alt="" coords="2501,409,2584,437"/>
-<area shape="rect" id="node174" href="$colourvalue_8h_source.html" title="colourvalue.h" alt="" coords="549,331,645,359"/>
-<area shape="rect" id="node7" href="$transform_8h.html" title="The defintion of the transform is stored in this file." alt="" coords="2369,254,2455,282"/>
-<area shape="rect" id="node9" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="2455,331,2529,359"/>
-<area shape="rect" id="node169" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="837,331,928,359"/>
-<area shape="rect" id="node11" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="389,1027,533,1055"/>
-<area shape="rect" id="node13" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="3385,950,3471,978"/>
-<area shape="rect" id="node44" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="129,1027,185,1055"/>
-<area shape="rect" id="node46" href="$enumerations_8h.html" title="Any global enumerations shared between multiple classes is to be declared here." alt="" coords="5597,409,5707,437"/>
-<area shape="rect" id="node48" href="$macros_8h.html" title="All convience/utility macros for the Mezzanine are to be placed here." alt="" coords="5469,795,5544,823"/>
-<area shape="rect" id="node55" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template." alt="" coords="2912,718,3043,746"/>
-<area shape="rect" id="node58" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class." alt="" coords="3168,718,3277,746"/>
-<area shape="rect" id="node61" href="$attributeiterator_8h.html" title="Contains the defintion of the AttributeIterator class." alt="" coords="2632,563,2781,591"/>
-<area shape="rect" id="node64" href="$node_8h.html" title="This defines the Mezzanine::XML::Node one of the central XML classes." alt="" coords="3085,641,3176,669"/>
-<area shape="rect" id="node67" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="2475,718,2635,746"/>
-<area shape="rect" id="node72" href="$document_8h.html" title="The definition of the XML::Document Class." alt="" coords="2232,486,2352,514"/>
-<area shape="rect" id="node76" href="$parseresult_8h.html" title="XML/parseresult.h" alt="" coords="2596,641,2721,669"/>
-<area shape="rect" id="node81" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy." alt="" coords="2107,563,2200,591"/>
-<area shape="rect" id="node120" href="$memorymanagement_8h.html" title="The xml memory management system must be integrated into the rest of the Mezzanine resource managemen..." alt="" coords="3421,795,3605,823"/>
-<area shape="rect" id="node123" href="$nodeiterator_8h.html" title="Contains the defintion of the Mezzanine::XML::NodeIterator and Mezzanine::XML::NamedNodeIterator clas..." alt="" coords="2477,563,2608,591"/>
-<area shape="rect" id="node128" href="$nodetext_8h.html" title="The declaration of the XML::NodeText class." alt="" coords="3136,563,3248,591"/>
-<area shape="rect" id="node135" href="$treewalker_8h.html" title="This defines the TreeWalker Interface." alt="" coords="3323,563,3445,591"/>
-<area shape="rect" id="node141" href="$xmlstring_8h.html" title="A few functions to help the XML system perform conversions between UTF8 and the native wide character..." alt="" coords="3629,795,3744,823"/>
-<area shape="rect" id="node144" href="$xpathnode_8h.html" title="The definition of the Mezzanine::XML::XPathNode." alt="" coords="3469,563,3592,591"/>
-<area shape="rect" id="node148" href="$xpathnodeset_8h.html" title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet." alt="" coords="3461,486,3600,514"/>
-<area shape="rect" id="node152" href="$xpathparseresult_8h.html" title="Has all the classes for the XPath implementation." alt="" coords="2856,563,3011,591"/>
-<area shape="rect" id="node156" href="$xpathvariable_8h.html" title="The XPathVariable class definition." alt="" coords="2001,641,2140,669"/>
-<area shape="rect" id="node160" href="$xpathvariableset_8h.html" title="The definition of the Mezzanine::XML::XPathVariableSet." alt="" coords="2164,641,2319,669"/>
-<area shape="rect" id="node164" href="$xpathquery_8h.html" title="The definition of the Mezzanine::XML::XPathQuery ." alt="" coords="2013,486,2139,514"/>
-<area shape="rect" id="node96" href="$datastream_8h.html" title="Declaration of DataStream." alt="" coords="1932,795,2087,823"/>
-<area shape="rect" id="node84" href="$resource_8h_source.html" title="resource.h" alt="" coords="1377,641,1457,669"/>
-<area shape="rect" id="node86" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="803,718,1019,746"/>
-<area shape="rect" id="node88" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="1043,718,1173,746"/>
-<area shape="rect" id="node90" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="1197,718,1317,746"/>
-<area shape="rect" id="node92" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="1341,718,1493,746"/>
-<area shape="rect" id="node94" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="1517,718,1680,746"/>
-<area shape="rect" id="node105" href="$filestream_8h.html" title="Declaration of FileStream." alt="" coords="1755,718,1899,746"/>
-<area shape="rect" id="node108" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="683,873,840,901"/>
-<area shape="rect" id="node112" href="$memorystream_8h.html" title="Declaration of MemoryStream." alt="" coords="1923,718,2096,746"/>
-<area shape="rect" id="node115" href="$textsettingsfile_8h_source.html" title="Resource/textsettingsfile.h" alt="" coords="1781,873,1952,901"/>
-<area shape="rect" id="node99" href="$smartptr_8h.html" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="864,873,941,901"/>
-<area shape="rect" id="node183" href="$worldmanager_8h_source.html" title="worldmanager.h" alt="" coords="3205,254,3317,282"/>
-<area shape="rect" id="node191" href="$managerfactory_8h_source.html" title="managerfactory.h" alt="" coords="635,254,755,282"/>
-<area shape="rect" id="node194" href="$singleton_8h_source.html" title="singleton.h" alt="" coords="3341,254,3424,282"/>
-<area shape="rect" id="node202" href="$workunit_8h.html" title="This file has the definition of the workunit." alt="" coords="4716,563,4857,591"/>
-<area shape="rect" id="node185" href="$managerbase_8h_source.html" title="managerbase.h" alt="" coords="3135,331,3244,359"/>
-<area shape="rect" id="node196" href="$exception_8h_source.html" title="exception.h" alt="" coords="3419,331,3504,359"/>
-<area shape="rect" id="node205" href="$framescheduler_8h.html" title="This file has the Declarations for the main FrameScheduler class." alt="" coords="4616,641,4736,669"/>
-<area shape="rect" id="node214" href="$thread_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="4989,718,5056,746"/>
-<area shape="rect" id="node219" href="$mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation." alt="" coords="4888,795,4955,823"/>
-<area shape="rect" id="node227" href="$workunitkey_8h.html" title="This file defines the metadata used to sort workunits." alt="" coords="4323,718,4421,746"/>
-<area shape="rect" id="node231" href="$rollingaverage_8h.html" title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage." alt="" coords="5232,718,5341,746"/>
-<area shape="rect" id="node245" href="$threadingenumerations_8h.html" title="Any enumerations the threading library requires are all declared here." alt="" coords="4072,641,4235,669"/>
-<area shape="rect" id="node208" href="$doublebufferedresource_8h.html" title="This file defines the template double buffered resources that can be attached to a thread..." alt="" coords="5232,795,5395,823"/>
-<area shape="rect" id="node216" href="$systemcalls_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="4021,795,4120,823"/>
-<area shape="rect" id="node235" href="$barrier_8h.html" title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive." alt="" coords="4245,795,4312,823"/>
-<area shape="rect" id="node221" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically." alt="" coords="4181,873,4312,901"/>
-<area shape="rect" id="node253" href="$metacode_8h_source.html" title="Input/metacode.h" alt="" coords="1579,331,1701,359"/>
-<area shape="rect" id="node259" href="$vector2_8h_source.html" title="vector2.h" alt="" coords="952,331,1027,359"/>
-<area shape="rect" id="node256" href="$inputenumerations_8h_source.html" title="Input/inputenumerations.h" alt="" coords="853,409,1024,437"/>
-<area shape="rect" id="node276" href="$crossplatform_8h_source.html" title="crossplatform.h" alt="" coords="549,873,659,901"/>
-<area shape="rect" id="node280" href="$eventbase_8h_source.html" title="eventbase.h" alt="" coords="5731,409,5821,437"/>
-<area shape="rect" id="node289" href="$dagframescheduler_8h.html" title="This is the file that code using this library should include. It includes all the required components..." alt="" coords="4560,331,4763,359"/>
-<area shape="rect" id="node291" href="$asynchronousfileloadingworkunit_8h.html" title="The declaration of the AsynchronousFileLoadWorkUnit a workunit that loads a listing of files asynchro..." alt="" coords="4749,409,4963,437"/>
-<area shape="rect" id="node293" href="$asynchronousworkunit_8h.html" title="Contains an interface for a kind of WorkUnit that loads or does other work even when the frame schedu..." alt="" coords="4856,486,5013,514"/>
-<area shape="rect" id="node305" href="$frameschedulerworkunits_8h.html" title="This defines a number of workunits that are required for doing some tasks that the Framescheduler req..." alt="" coords="4461,486,4635,514"/>
-<area shape="rect" id="node311" href="$logtools_8h.html" title="The definitions of the logging tools." alt="" coords="3971,718,4045,746"/>
-<area shape="rect" id="node316" href="$monopoly_8h.html" title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread." alt="" coords="5149,486,5235,514"/>
+<map id="/home/Code/Mezzanine/Mezzanine/src/light.cpp" name="/home/Code/Mezzanine/Mezzanine/src/light.cpp">
+<area shape="rect" id="node3" href="$light_8h.html" title="Declaration of Mezzanine::Light." alt="" coords="2436,101,2497,131"/>
+<area shape="rect" id="node180" href="$scenemanager_8h_source.html" title="scenemanager.h" alt="" coords="2589,179,2717,208"/>
+<area shape="rect" id="node251" href="$stringtool_8h_source.html" title="stringtool.h" alt="" coords="1296,256,1389,285"/>
+<area shape="rect" id="node268" href="$worldnode_8h.html" title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="2651,101,2749,131"/>
+<area shape="rect" id="node273" href="$entresol_8h_source.html" title="entresol.h" alt="" coords="3505,179,3591,208"/>
+<area shape="rect" id="node5" href="$attachable_8h.html" title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec..." alt="" coords="2464,179,2565,208"/>
+<area shape="rect" id="node52" href="$xml_8h_source.html" title="XML/xml.h" alt="" coords="2607,411,2692,440"/>
+<area shape="rect" id="node174" href="$colourvalue_8h_source.html" title="colourvalue.h" alt="" coords="540,333,647,363"/>
+<area shape="rect" id="node7" href="$transform_8h.html" title="The defintion of the transform is stored in this file." alt="" coords="2465,256,2561,285"/>
+<area shape="rect" id="node9" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="2557,333,2640,363"/>
+<area shape="rect" id="node169" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="1184,333,1285,363"/>
+<area shape="rect" id="node11" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="380,1029,543,1059"/>
+<area shape="rect" id="node13" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="3519,952,3617,981"/>
+<area shape="rect" id="node44" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="127,1029,188,1059"/>
+<area shape="rect" id="node46" href="$enumerations_8h.html" title="Any global enumerations shared between multiple classes is to be declared here." alt="" coords="5805,411,5928,440"/>
+<area shape="rect" id="node48" href="$macros_8h.html" title="All convience/utility macros for the Mezzanine are to be placed here." alt="" coords="5675,797,5755,827"/>
+<area shape="rect" id="node55" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template." alt="" coords="3040,720,3179,749"/>
+<area shape="rect" id="node58" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class." alt="" coords="3304,720,3421,749"/>
+<area shape="rect" id="node61" href="$attributeiterator_8h.html" title="Contains the defintion of the AttributeIterator class." alt="" coords="2744,565,2909,595"/>
+<area shape="rect" id="node64" href="$node_8h.html" title="This defines the Mezzanine::XML::Node one of the central XML classes." alt="" coords="3219,643,3315,672"/>
+<area shape="rect" id="node67" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="2587,720,2763,749"/>
+<area shape="rect" id="node72" href="$document_8h.html" title="The definition of the XML::Document Class." alt="" coords="2325,488,2453,517"/>
+<area shape="rect" id="node76" href="$parseresult_8h.html" title="XML/parseresult.h" alt="" coords="2716,643,2852,672"/>
+<area shape="rect" id="node81" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy." alt="" coords="2205,565,2301,595"/>
+<area shape="rect" id="node120" href="$memorymanagement_8h.html" title="The xml memory management system must be integrated into the rest of the Mezzanine resource managemen..." alt="" coords="3557,797,3763,827"/>
+<area shape="rect" id="node123" href="$nodeiterator_8h.html" title="Contains the defintion of the Mezzanine::XML::NodeIterator and Mezzanine::XML::NamedNodeIterator clas..." alt="" coords="2579,565,2720,595"/>
+<area shape="rect" id="node128" href="$nodetext_8h.html" title="The declaration of the XML::NodeText class." alt="" coords="3280,565,3400,595"/>
+<area shape="rect" id="node135" href="$treewalker_8h.html" title="This defines the TreeWalker Interface." alt="" coords="3475,565,3603,595"/>
+<area shape="rect" id="node141" href="$xmlstring_8h.html" title="A few functions to help the XML system perform conversions between UTF8 and the native wide character..." alt="" coords="3787,797,3909,827"/>
+<area shape="rect" id="node144" href="$xpathnode_8h.html" title="The definition of the Mezzanine::XML::XPathNode." alt="" coords="3627,565,3757,595"/>
+<area shape="rect" id="node148" href="$xpathnodeset_8h.html" title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet." alt="" coords="3616,488,3768,517"/>
+<area shape="rect" id="node152" href="$xpathparseresult_8h.html" title="Has all the classes for the XPath implementation." alt="" coords="2984,565,3155,595"/>
+<area shape="rect" id="node156" href="$xpathvariable_8h.html" title="The XPathVariable class definition." alt="" coords="2095,643,2244,672"/>
+<area shape="rect" id="node160" href="$xpathvariableset_8h.html" title="The definition of the Mezzanine::XML::XPathVariableSet." alt="" coords="2268,643,2439,672"/>
+<area shape="rect" id="node164" href="$xpathquery_8h.html" title="The definition of the Mezzanine::XML::XPathQuery ." alt="" coords="2111,488,2244,517"/>
+<area shape="rect" id="node96" href="$datastream_8h.html" title="Declaration of DataStream." alt="" coords="2025,797,2196,827"/>
+<area shape="rect" id="node84" href="$resource_8h_source.html" title="resource.h" alt="" coords="1427,643,1515,672"/>
+<area shape="rect" id="node86" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="803,720,1043,749"/>
+<area shape="rect" id="node88" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="1067,720,1208,749"/>
+<area shape="rect" id="node90" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="1232,720,1363,749"/>
+<area shape="rect" id="node92" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="1387,720,1555,749"/>
+<area shape="rect" id="node94" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="1579,720,1755,749"/>
+<area shape="rect" id="node105" href="$filestream_8h.html" title="Declaration of FileStream." alt="" coords="1829,720,1989,749"/>
+<area shape="rect" id="node108" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="693,875,867,904"/>
+<area shape="rect" id="node112" href="$memorystream_8h.html" title="Declaration of MemoryStream." alt="" coords="2013,720,2208,749"/>
+<area shape="rect" id="node115" href="$textsettingsfile_8h_source.html" title="Resource/textsettingsfile.h" alt="" coords="1863,875,2052,904"/>
+<area shape="rect" id="node99" href="$smartptr_8h.html" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="891,875,979,904"/>
+<area shape="rect" id="node183" href="$worldmanager_8h_source.html" title="worldmanager.h" alt="" coords="3356,256,3479,285"/>
+<area shape="rect" id="node191" href="$managerfactory_8h_source.html" title="managerfactory.h" alt="" coords="631,256,764,285"/>
+<area shape="rect" id="node194" href="$singleton_8h_source.html" title="singleton.h" alt="" coords="3503,256,3593,285"/>
+<area shape="rect" id="node202" href="$workunit_8h.html" title="This file has the definition of the workunit." alt="" coords="4915,565,5067,595"/>
+<area shape="rect" id="node185" href="$managerbase_8h_source.html" title="managerbase.h" alt="" coords="3281,333,3404,363"/>
+<area shape="rect" id="node196" href="$exception_8h_source.html" title="exception.h" alt="" coords="3583,333,3679,363"/>
+<area shape="rect" id="node205" href="$framescheduler_8h.html" title="This file has the Declarations for the main FrameScheduler class." alt="" coords="4805,643,4939,672"/>
+<area shape="rect" id="node214" href="$thread_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="5179,720,5253,749"/>
+<area shape="rect" id="node219" href="$mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation." alt="" coords="5064,797,5139,827"/>
+<area shape="rect" id="node227" href="$workunitkey_8h.html" title="This file defines the metadata used to sort workunits." alt="" coords="4496,720,4603,749"/>
+<area shape="rect" id="node231" href="$rollingaverage_8h.html" title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage." alt="" coords="5429,720,5552,749"/>
+<area shape="rect" id="node245" href="$threadingenumerations_8h.html" title="Any enumerations the threading library requires are all declared here." alt="" coords="4237,643,4421,672"/>
+<area shape="rect" id="node208" href="$doublebufferedresource_8h.html" title="This file defines the template double buffered resources that can be attached to a thread..." alt="" coords="5416,797,5600,827"/>
+<area shape="rect" id="node216" href="$systemcalls_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="4187,797,4296,827"/>
+<area shape="rect" id="node235" href="$barrier_8h.html" title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive." alt="" coords="4421,797,4496,827"/>
+<area shape="rect" id="node221" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically." alt="" coords="4349,875,4496,904"/>
+<area shape="rect" id="node253" href="$metacode_8h_source.html" title="Input/metacode.h" alt="" coords="1976,333,2109,363"/>
+<area shape="rect" id="node259" href="$vector2_8h_source.html" title="vector2.h" alt="" coords="1309,333,1392,363"/>
+<area shape="rect" id="node256" href="$inputenumerations_8h_source.html" title="Input/inputenumerations.h" alt="" coords="853,411,1043,440"/>
+<area shape="rect" id="node276" href="$crossplatform_8h_source.html" title="crossplatform.h" alt="" coords="549,875,669,904"/>
+<area shape="rect" id="node280" href="$eventbase_8h_source.html" title="eventbase.h" alt="" coords="5952,411,6053,440"/>
+<area shape="rect" id="node289" href="$dagframescheduler_8h.html" title="This is the file that code using this library should include. It includes all the required components..." alt="" coords="4729,333,4953,363"/>
+<area shape="rect" id="node291" href="$asynchronousfileloadingworkunit_8h.html" title="The declaration of the AsynchronousFileLoadWorkUnit a workunit that loads a listing of files asynchro..." alt="" coords="4929,411,5167,440"/>
+<area shape="rect" id="node293" href="$asynchronousworkunit_8h.html" title="Contains an interface for a kind of WorkUnit that loads or does other work even when the frame schedu..." alt="" coords="5044,488,5217,517"/>
+<area shape="rect" id="node305" href="$frameschedulerworkunits_8h.html" title="This defines a number of workunits that are required for doing some tasks that the Framescheduler req..." alt="" coords="4648,488,4840,517"/>
+<area shape="rect" id="node311" href="$logtools_8h.html" title="The definitions of the logging tools." alt="" coords="4136,720,4219,749"/>
+<area shape="rect" id="node316" href="$monopoly_8h.html" title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread." alt="" coords="5352,488,5445,517"/>
 </map>

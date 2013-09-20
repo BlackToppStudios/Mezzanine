@@ -1,5 +1,5 @@
 <map id="Mezzanine::GoalTimer" name="Mezzanine::GoalTimer">
-<area shape="rect" id="node5" href="$classMezzanine_1_1AlarmTimer.html" title="This is a timer class that increments normally to a specified time." alt="" coords="5,161,160,189"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time." alt="" coords="184,161,371,189"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers." alt="" coords="119,6,241,34"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1AlarmTimer.html" title="This is a timer class that increments normally to a specified time." alt="" coords="5,160,176,189"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time." alt="" coords="200,160,400,189"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers." alt="" coords="128,5,261,35"/>
 </map>

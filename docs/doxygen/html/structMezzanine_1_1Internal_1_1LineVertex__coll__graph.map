@@ -1,4 +1,4 @@
 <map id="Mezzanine::Internal::LineVertex" name="Mezzanine::Internal::LineVertex">
-<area shape="rect" id="node2" href="$classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="5,6,163,34"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space." alt="" coords="187,6,320,34"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="5,5,179,35"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space." alt="" coords="203,5,349,35"/>
 </map>
