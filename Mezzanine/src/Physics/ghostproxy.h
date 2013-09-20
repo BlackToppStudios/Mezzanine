@@ -49,11 +49,11 @@ namespace Mezzanine
     namespace Physics
     {
         ///////////////////////////////////////////////////////////////////////////////
-		/// @brief This is the proxy object for ghost objects with no contact response.
-		/// @details
-		///////////////////////////////////////
-		class MEZZ_LIB GhostProxy : public PhysicsProxy
-		{
+        /// @brief This is the proxy object for ghost objects with no contact response.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB GhostProxy : public PhysicsProxy
+        {
         protected:
             /// @internal
             /// @brief GhostBody proxy used by the internal physics.
@@ -126,7 +126,7 @@ namespace Mezzanine
             virtual btPairCachingGhostObject* _GetPhysicsObject() const;
             /// @copydoc PhysicsProxy::_GetBasePhysicsObject()
             virtual btCollisionObject* _GetBasePhysicsObject() const;
-		};//GhostProxy
+        };//GhostProxy
     }//Physics
 }//Mezzanine
 
