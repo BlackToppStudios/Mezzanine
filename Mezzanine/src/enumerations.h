@@ -161,9 +161,8 @@ namespace Mezzanine
         // Actors
         WSO_ActorFirst             = 1,//MEZZ_BITMASK(1),//1,
         WSO_ActorRigid             = 1,//MEZZ_BITMASK(1),//1,
-        WSO_ActorSoft              = 2,//MEZZ_BITMASK(2),//2,
-        WSO_ActorCharacter         = 4,//MEZZ_BITMASK(3),//4,
-        WSO_ActorUnknown           = 8,//MEZZ_BITMASK(4),//8,
+        WSO_ActorCharacter         = 2,//MEZZ_BITMASK(2),//2,
+        WSO_ActorUnknown           = 4,//MEZZ_BITMASK(3),//4,
         WSO_ActorLast              = 8,//MEZZ_BITMASK(4),//8,
 
         // Terrains go here

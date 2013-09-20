@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physicsactorsoftcollisionshape_h
-#define _physicsactorsoftcollisionshape_h
+#ifndef _physicssoftcollisionshape_h
+#define _physicssoftcollisionshape_h
 
 #include "Physics/meshcollisionshape.h"
 
@@ -49,41 +49,41 @@ namespace Mezzanine
     namespace Physics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class ActorSoftCollisionShape
-        /// @headerfile collisionshape.h
-        /// @brief A collision shape for soft actors.
+        /// @class SoftCollisionShape
+        /// @headerfile softcollisionshape.h
+        /// @brief A collision shape for soft proxies.
         /// @details This collision shape is different from all the other collision shapes because it's
-        /// meant to be used for only one type of object: ActorSoft's.  This shape doesn't use triangles
+        /// meant to be used for only one type of object: SoftProxys.  This shape doesn't use triangles
         /// in the traditional manner other mesh shapes do, but rather it uses the individual internal
-        /// nodes that make the ActorSoft as points for building triangles to process collisions with.  As
+        /// nodes that make the SoftProxy as points for building triangles to process collisions with.  As
         /// a result a SoftBodyCollisionShape should never be reused and should be kept unique to the Actor
         /// it applies to. @n @n
-        /// Normally the ActorSoft will be responsible for the creation of it's own collision shape, so
+        /// Normally the SoftProxy will be responsible for the creation of it's own collision shape, so
         /// the user should never have to.  So there are no non-internal constructors provided for this class.
         ///////////////////////////////////////
-        class MEZZ_LIB ActorSoftCollisionShape : public MeshCollisionShape
+        class MEZZ_LIB SoftCollisionShape : public MeshCollisionShape
         {
         protected:
-            btSoftBodyCollisionShape* ActorSoftShape;
+            btSoftBodyCollisionShape* SoftShape;
         public:
             /// @internal
             /// @brief Internal Constructor.
             /// @param Name The name of this Shape.
             /// @param BulletShape The internal shape this shape is based on.
-            ActorSoftCollisionShape(const String& Name, btSoftBodyCollisionShape* BulletShape);
+            SoftCollisionShape(const String& Name, btSoftBodyCollisionShape* BulletShape);
             /// @brief Class Destructor.
-            virtual ~ActorSoftCollisionShape();
+            virtual ~SoftCollisionShape();
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
-        };//ActorSoftCollisionShape
+        };//SoftCollisionShape
     }//Physics
 }//Mezzanine
 
 /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize)
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::ActorSoftCollisionShape& ShapeToSerialize);
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::SoftCollisionShape& ShapeToSerialize);
 /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x)
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::ActorSoftCollisionShape& x);
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::SoftCollisionShape& x);
 /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x)
-void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::ActorSoftCollisionShape& x);
+void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::SoftCollisionShape& x);
 
 #endif

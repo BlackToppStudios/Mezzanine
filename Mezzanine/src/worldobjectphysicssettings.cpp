@@ -247,7 +247,6 @@ namespace Mezzanine
         switch (Parent->GetType())
         {
             case Mezzanine::WSO_ActorRigid:
-            case Mezzanine::WSO_ActorSoft:
             {
                 if(Enable) WorldObjectCO->setCollisionFlags(WorldObjectCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
                 else WorldObjectCO->setCollisionFlags(WorldObjectCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);

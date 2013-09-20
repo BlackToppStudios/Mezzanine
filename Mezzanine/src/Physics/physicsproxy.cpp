@@ -369,7 +369,7 @@ namespace Mezzanine
                         // These shapes are either specifically tailored to the object or just don't make sense to scale
                         case CollisionShape::ST_Heightfield:
                         case CollisionShape::ST_Plane:
-                        case CollisionShape::ST_ActorSoft:
+                        case CollisionShape::ST_Soft:
                         default:
                         {
                             if( this->ScalerShape != NULL ) {

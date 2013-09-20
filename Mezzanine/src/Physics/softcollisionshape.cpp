@@ -37,10 +37,10 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorsoftcollisionshape_cpp
-#define _actorsoftcollisionshape_cpp
+#ifndef _physicssoftcollisionshape_cpp
+#define _physicssoftcollisionshape_cpp
 
-#include "Physics/actorsoftcollisionshape.h"
+#include "Physics/softcollisionshape.h"
 #include "collisionshapemanager.h"
 #include "stringtool.h"
 
@@ -52,34 +52,34 @@ namespace Mezzanine
     namespace Physics
     {
         /////////////////////////////////////////
-        // ActorSoftCollisionShape Functions
+        // SoftCollisionShape Functions
 
-        ActorSoftCollisionShape::ActorSoftCollisionShape(const String& Name, btSoftBodyCollisionShape* BulletShape)
+        SoftCollisionShape::SoftCollisionShape(const String& Name, btSoftBodyCollisionShape* BulletShape)
         {
             this->Name = Name;
-            ActorSoftShape = BulletShape;
-            SetPointers(ActorSoftShape);
+            SoftShape = BulletShape;
+            SetPointers(SoftShape);
         }
 
-        ActorSoftCollisionShape::~ActorSoftCollisionShape()
+        SoftCollisionShape::~SoftCollisionShape()
         {
-            delete ActorSoftShape;
+            delete SoftShape;
         }
 
-        CollisionShape::ShapeType ActorSoftCollisionShape::GetType() const
+        CollisionShape::ShapeType SoftCollisionShape::GetType() const
         {
-            return CollisionShape::ST_ActorSoft;
+            return CollisionShape::ST_Soft;
         }
     }//Physics
 }//Mezzanine
 
-std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::ActorSoftCollisionShape& ShapeToSerialize)
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::SoftCollisionShape& ShapeToSerialize)
     { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
 
-std::istream& operator >> (std::istream& stream, Mezzanine::Physics::ActorSoftCollisionShape& x)
+std::istream& operator >> (std::istream& stream, Mezzanine::Physics::SoftCollisionShape& x)
     { return Mezzanine::DeSerialize(stream, x); }
 
-void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::ActorSoftCollisionShape& x)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::SoftCollisionShape& x)
     { x.ProtoDeSerialize(OneNode); }
 
 #endif

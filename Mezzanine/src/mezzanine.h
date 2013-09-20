@@ -72,10 +72,10 @@
 #include "actorphysicssettings.h"       // done
 #include "actorrigid.h"                 // Serializes
 #include "actorserializer.h"            // nothing to do
-#include "actorsoft.h"
 #include "areaeffect.h"
 #include "areaeffectmanager.h"
 #include "attachable.h"                 // Target for output only
+#include "axisalignedbox.h"
 #include "binarybuffer.h"
 #include "camera.h"                     // done, must review after Mar27 upgrades
 #include "cameracontroller.h"
@@ -122,6 +122,7 @@
 #include "serialization.h"              // nothing to do
 #include "singleton.h"                  // nothing to do
 #include "smartptr.h"
+#include "sphere.h"
 #include "stringtool.h"
 #include "terrainbase.h"
 #include "terrainmanager.h"

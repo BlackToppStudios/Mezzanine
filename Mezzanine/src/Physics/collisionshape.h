@@ -79,7 +79,7 @@ namespace Mezzanine
                 ST_DynamicTriMesh = 8,    ///< Indicates the class is a DynamicMeshCollisionShape
                 ST_Heightfield = 9,       ///< Indicates the class is a HeightfieldCollisionShape
                 ST_Plane = 10,            ///< Indicates the class is a PlaneCollisionShape
-                ST_ActorSoft = 11,        ///< Indicates the class is a ActorSoftCollisionShape
+                ST_Soft = 11,             ///< Indicates the class is a SoftCollisionShape
                 ST_StaticTriMesh = 12     ///< Indicates the class is a StaticMeshCollisionShape
             };
         protected:

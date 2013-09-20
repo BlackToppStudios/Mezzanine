@@ -43,7 +43,6 @@
 #include "actorphysicssettings.h"
 #include "actorbase.h"
 #include "actorrigid.h"
-#include "actorsoft.h"
 #include "Physics/collisionshapemanager.h"
 #include "Physics/collisionshape.h"
 #include "Physics/generic6dofconstraint.h"
@@ -448,29 +447,6 @@ namespace Mezzanine
 
     String ActorRigidPhysicsSettings::SerializableName()
         { return String("ActorRigidPhysicsSettings"); }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// ActorSoftPhysicsSettings
-
-    ActorSoftPhysicsSettings::ActorSoftPhysicsSettings(ActorSoft* Actor, btSoftBody* PhysicsObject)
-        : ActorBasePhysicsSettings(Actor,PhysicsObject),
-          ActorSB(PhysicsObject),
-          SoftParent(Actor)
-    {
-        CollisionGroup = Mezzanine::Physics::CF_GenericFilter;
-        CollisionMask = Mezzanine::Physics::CF_AllFilter;
-    }
-
-    ActorSoftPhysicsSettings::~ActorSoftPhysicsSettings()
-    {
-    }
-
-    void ActorSoftPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
-    {
-        // do nothing, cause soft bodies get unique custom shapes.
-    }
-
 } // \Namespace Mezzanine
 
 std::ostream& operator<< (std::ostream& stream, const Mezzanine::ActorBasePhysicsSettings& Ev)

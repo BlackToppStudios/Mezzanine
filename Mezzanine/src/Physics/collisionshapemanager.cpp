@@ -56,7 +56,7 @@
 #include "Physics/dynamicmeshcollisionshape.h"
 #include "Physics/heightfieldcollisionshape.h"
 #include "Physics/planecollisionshape.h"
-#include "Physics/actorsoftcollisionshape.h"
+#include "Physics/softcollisionshape.h"
 #include "Physics/staticmeshcollisionshape.h"
 #include "Physics/compoundcollisionshape.h"
 
@@ -280,7 +280,7 @@ namespace Mezzanine
                 }
                 case SOFTBODY_SHAPE_PROXYTYPE:
                 {
-                    ActorSoftCollisionShape* SoftBodyShape = new ActorSoftCollisionShape(Name,(btSoftBodyCollisionShape*)InternalShape);
+                    SoftCollisionShape* SoftBodyShape = new SoftCollisionShape(Name,(btSoftBodyCollisionShape*)InternalShape);
                     return SoftBodyShape;
                     break;
                 }
