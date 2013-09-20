@@ -90,8 +90,7 @@ This Documention</h1>
 <h1><a class="anchor" id="enginestructure"></a>
 Engine Structure</h1>
 <p>The engine is laid out in a variety of classes of a few generalized roles.</p>
-<p>Some classes are focal points for functionality and internally unify a number of components to do what they do. These managers sometimes conceal a large amount of complexity and try to present a concise API. Managers ( <a class="el" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit.">Mezzanine::ManagerBase</a> instances ) generally have a rigid place in the structure of the running program. This is where are the logic that says how something is done exists, for example "how does something
- get drawn on the screen?" or "how do you detect if to objects are colliding?". Managers are owed either by the <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library.">Mezzanine::Entresol</a> or a <a class="el" href="classMezzanine_1_1World.html" title="This class represents a world for objects to interact within.">Mezzanine::World</a> depending on their roles and technical limitations.</p>
+<p>Some classes are focal points for functionality and internally unify a number of components to do what they do. These managers sometimes conceal a large amount of complexity and try to present a concise API. Managers ( <a class="el" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit.">Mezzanine::ManagerBase</a> instances ) generally have a rigid place in the structure of the running program. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?" or "how do you detect if two objects are colliding?". Managers are owned either by the <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library.">Mezzanine::Entresol</a> or a <a class="el" href="classMezzanine_1_1World.html" title="This class represents a world for objects to interact within.">Mezzanine::World</a> depending on their roles and technical limitations.</p>
 <p>The <a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html" title="This is central object in this algorithm, it is responsible for spawning threads and managing the ord...">Mezzanine::Threading::FrameScheduler</a> is responsible for running the work each task requires. Most managers mantain one or more of <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time.">Mezzanine::Threading::iWorkUnit</a> implementations/instances to do work each frame.</p>
 <p>Other classes are more similar to data, things like the <a class="el" href="classMezzanine_1_1Vector3.html">Mezzanine::Vector3</a> and the <a class="el" href="classMezzanine_1_1Quaternion.html">Mezzanine::Quaternion</a>. You can create these things whenever you like and generally have good support for integrating into a various parts of the system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more sophisticated classes for a variety of reasons.</p>
 <p>There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled and most commonly created, deleted and otherwised managed through managers. Many of these classes like the <a class="el" href="classMezzanine_1_1Light.html">Mezzanine::Light</a> or <a class="el" href="classMezzanine_1_1ActorRigid.html">Mezzanine::ActorRigid</a> are present inside the game simulation as well as having a presence as</p>
@@ -156,12 +155,13 @@ Sophisticated Systems</h1>
 <p><a class="el" href="XMLManual.html">Mezzanine::xml Manual</a></p>
 <p>LuaManual</p>
 <p><a class="el" href="Serialization.html">Serialization</a></p>
+<p><a class="el" href="ThreadingManual.html">Directed Acyclic Graph Frame Scheduler</a></p>
 <h1><a class="anchor" id="Licensing"></a>
 Licensing Information</h1>
 <p><a class="el" href="GPLLicense.html">Mezzanine GNU Public License 3</a></p>
 <p><a class="el" href="OriginalpugixmlLicense.html">XML MIT License</a> </p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 19 2013 22:23:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Thu Sep 19 2013 22:26:38 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
