@@ -17,7 +17,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1GhostProxy.xhtml" target="_top" xlink:title="This is the proxy object for ghost objects with no contact response.">
+<a xlink:href="classMezzanine_1_1Physics_1_1GhostProxy.html" target="_top" xlink:title="This is the proxy object for ghost objects with no contact response.">
 <polygon fill="white" stroke="black" points="486.5,-104 486.5,-138 595.5,-138 595.5,-104 486.5,-104"/>
 <text text-anchor="start" x="494.5" y="-125" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="541" y="-112" font-family="FreeSans" font-size="10.00">::GhostProxy</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml" target="_top" xlink:title="This is a proxy from which rigid body proxys are handled.">
+<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.html" target="_top" xlink:title="This is a proxy from which rigid body proxys are handled.">
 <polygon fill="white" stroke="black" points="486.5,-52 486.5,-86 595.5,-86 595.5,-52 486.5,-52"/>
 <text text-anchor="start" x="494.5" y="-73" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="541" y="-60" font-family="FreeSans" font-size="10.00">::RigidProxy</text>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1SoftProxy.xhtml" target="_top" xlink:title="This is the proxy object for soft/compressable bodies.">
+<a xlink:href="classMezzanine_1_1Physics_1_1SoftProxy.html" target="_top" xlink:title="This is the proxy object for soft/compressable bodies.">
 <polygon fill="white" stroke="black" points="486.5,-0 486.5,-34 595.5,-34 595.5,-0 486.5,-0"/>
 <text text-anchor="start" x="494.5" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="541" y="-8" font-family="FreeSans" font-size="10.00">::SoftProxy</text>
@@ -56,7 +56,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1WorldProxy.xhtml" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems.">
+<a xlink:href="classMezzanine_1_1WorldProxy.html" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems.">
 <polygon fill="white" stroke="black" points="178.5,-58.5 178.5,-79.5 303.5,-79.5 303.5,-58.5 178.5,-58.5"/>
 <text text-anchor="middle" x="241" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::WorldProxy</text>
 </a>
@@ -68,7 +68,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1TransformableObject.xhtml" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
+<a xlink:href="classMezzanine_1_1TransformableObject.html" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
 <polygon fill="white" stroke="black" points="0.5,-52 0.5,-86 141.5,-86 141.5,-52 0.5,-52"/>
 <text text-anchor="start" x="8.5" y="-73" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="71" y="-60" font-family="FreeSans" font-size="10.00">Object</text>

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="569,-58.5 569,-79.5 643,-79.5 643,-58.5 569,-58.5"/>
 <text text-anchor="middle" x="606" y="-66.5" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="xmlenumerations_8h.xhtml" target="_top" xlink:title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ...">
+<a xlink:href="xmlenumerations_8h.html" target="_top" xlink:title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ...">
 <polygon fill="white" stroke="black" points="476,-116.5 476,-137.5 608,-137.5 608,-116.5 476,-116.5"/>
 <text text-anchor="middle" x="542" y="-124.5" font-family="FreeSans" font-size="10.00">XML/xmlenumerations.h</text>
 </a>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node20 -->
 <g id="node40" class="node"><title>Node20</title>
-<a xlink:href="attribute_8h.xhtml" target="_top" xlink:title="Contains the definition for the XML::Attribute class.">
+<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class.">
 <polygon fill="white" stroke="black" points="625.5,-116.5 625.5,-137.5 714.5,-137.5 714.5,-116.5 625.5,-116.5"/>
 <text text-anchor="middle" x="670" y="-124.5" font-family="FreeSans" font-size="10.00">XML/attribute.h</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node21 -->
 <g id="node43" class="node"><title>Node21</title>
-<a xlink:href="objectrange_8h.xhtml" target="_top" xlink:title="Contains the implementation of the ObjectRange class template.">
+<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template.">
 <polygon fill="white" stroke="black" points="731.5,-116.5 731.5,-137.5 836.5,-137.5 836.5,-116.5 731.5,-116.5"/>
 <text text-anchor="middle" x="784" y="-124.5" font-family="FreeSans" font-size="10.00">XML/objectrange.h</text>
 </a>
@@ -65,7 +65,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 122,-21.5 122,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="61" y="-8.5" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>
@@ -217,7 +217,7 @@
 </g>
 <!-- Node18 -->
 <g id="node35" class="node"><title>Node18</title>
-<a xlink:href="swig_8h.xhtml" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
 <polygon fill="white" stroke="black" points="1072,-0.5 1072,-21.5 1118,-21.5 1118,-0.5 1072,-0.5"/>
 <text text-anchor="middle" x="1095" y="-8.5" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="binarybuffer_8h_source.xhtml" target="_top" xlink:title="binarybuffer.h">
+<a xlink:href="binarybuffer_8h_source.html" target="_top" xlink:title="binarybuffer.h">
 <polygon fill="white" stroke="black" points="441,-116.5 441,-137.5 523,-137.5 523,-116.5 441,-116.5"/>
 <text text-anchor="middle" x="482" y="-124.5" font-family="FreeSans" font-size="10.00">binarybuffer.h</text>
 </a>
@@ -39,7 +39,7 @@
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="exception_8h_source.xhtml" target="_top" xlink:title="exception.h">
+<a xlink:href="exception_8h_source.html" target="_top" xlink:title="exception.h">
 <polygon fill="white" stroke="black" points="541,-116.5 541,-137.5 613,-137.5 613,-116.5 541,-116.5"/>
 <text text-anchor="middle" x="577" y="-124.5" font-family="FreeSans" font-size="10.00">exception.h</text>
 </a>
@@ -61,7 +61,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="540,-58.5 540,-79.5 614,-79.5 614,-58.5 540,-58.5"/>
 <text text-anchor="middle" x="577" y="-66.5" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -73,7 +73,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="80,-0.5 80,-21.5 202,-21.5 202,-0.5 80,-0.5"/>
 <text text-anchor="middle" x="141" y="-8.5" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>
@@ -220,7 +220,7 @@
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="swig_8h.xhtml" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
 <polygon fill="white" stroke="black" points="1072,-0.5 1072,-21.5 1118,-21.5 1118,-0.5 1072,-0.5"/>
 <text text-anchor="middle" x="1095" y="-8.5" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

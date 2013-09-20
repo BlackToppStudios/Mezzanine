@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1RollingAverage.xhtml" target="_top" xlink:title="The interface for rolling averages used in the Mezzanine, and threading library.">
+<a xlink:href="classMezzanine_1_1RollingAverage.html" target="_top" xlink:title="The interface for rolling averages used in the Mezzanine, and threading library.">
 <polygon fill="white" stroke="black" points="19.5,-73 19.5,-107 162.5,-107 162.5,-73 19.5,-73"/>
 <text text-anchor="start" x="27.5" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::RollingAverage</text>
 <text text-anchor="middle" x="91" y="-81" font-family="FreeSans" font-size="10.00">&lt; RecordType &gt;</text>

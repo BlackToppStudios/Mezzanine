@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 149,-26 149,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1ParticleEmitter.xhtml" target="_top" xlink:title="This class defines how particles of a given particle effect spawn.">
+<a xlink:href="classMezzanine_1_1ParticleEmitter.html" target="_top" xlink:title="This class defines how particles of a given particle effect spawn.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 144,-21.5 144,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="72" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::ParticleEmitter</text>
 </a>

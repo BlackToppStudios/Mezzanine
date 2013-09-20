@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
 <polygon fill="white" stroke="black" points="238,-173.5 238,-194.5 348,-194.5 348,-173.5 238,-173.5"/>
 <text text-anchor="middle" x="293" y="-181.5" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="structMezzanine_1_1UI_1_1Sprite.xhtml" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad.">
+<a xlink:href="structMezzanine_1_1UI_1_1Sprite.html" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad.">
 <polygon fill="white" stroke="black" points="939,-162.5 939,-183.5 1057,-183.5 1057,-162.5 939,-162.5"/>
 <text text-anchor="middle" x="998" y="-170.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Sprite</text>
 </a>
@@ -44,7 +44,7 @@
 </g>
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Glyph.xhtml" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
+<a xlink:href="classMezzanine_1_1UI_1_1Glyph.html" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
 <polygon fill="white" stroke="black" points="456,-64.5 456,-85.5 572,-85.5 572,-64.5 456,-64.5"/>
 <text text-anchor="middle" x="514" y="-72.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Glyph</text>
 </a>
@@ -95,7 +95,7 @@
 </g>
 <!-- Node9 -->
 <g id="node18" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1UI_1_1GlyphData.xhtml" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
+<a xlink:href="classMezzanine_1_1UI_1_1GlyphData.html" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
 <polygon fill="white" stroke="black" points="928,-58.5 928,-79.5 1068,-79.5 1068,-58.5 928,-58.5"/>
 <text text-anchor="middle" x="998" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::GlyphData</text>
 </a>
@@ -121,7 +121,7 @@
 </g>
 <!-- Node7 -->
 <g id="node14" class="node"><title>Node7</title>
-<a xlink:href="structMezzanine_1_1UI_1_1TextureAtlasInternalData.xhtml" target="_top" xlink:title="Mezzanine::UI::TextureAtlas\lInternalData">
+<a xlink:href="structMezzanine_1_1UI_1_1TextureAtlasInternalData.html" target="_top" xlink:title="Mezzanine::UI::TextureAtlas\lInternalData">
 <polygon fill="white" stroke="black" points="1160.5,-104 1160.5,-138 1307.5,-138 1307.5,-104 1160.5,-104"/>
 <text text-anchor="start" x="1168.5" y="-125" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TextureAtlas</text>
 <text text-anchor="middle" x="1234" y="-112" font-family="FreeSans" font-size="10.00">InternalData</text>
@@ -183,7 +183,7 @@
 </g>
 <!-- Node13 -->
 <g id="node27" class="node"><title>Node13</title>
-<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.xhtml" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
+<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.html" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
 <polygon fill="white" stroke="black" points="0,-64.5 0,-85.5 142,-85.5 142,-64.5 0,-64.5"/>
 <text text-anchor="middle" x="71" y="-72.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>
@@ -208,7 +208,7 @@
 </g>
 <!-- Node15 -->
 <g id="node32" class="node"><title>Node15</title>
-<a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
+<a xlink:href="classMezzanine_1_1ColourValue.html" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
 <polygon fill="white" stroke="black" points="933,-6.5 933,-27.5 1063,-27.5 1063,-6.5 933,-6.5"/>
 <text text-anchor="middle" x="998" y="-14.5" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>

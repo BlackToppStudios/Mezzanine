@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Input_1_1ButtonDevice.xhtml" target="_top" xlink:title="This is a base class for all input devices with buttons.">
+<a xlink:href="classMezzanine_1_1Input_1_1ButtonDevice.html" target="_top" xlink:title="This is a base class for all input devices with buttons.">
 <polygon fill="white" stroke="black" points="0,-59 0,-93 136,-93 136,-59 0,-59"/>
 <text text-anchor="start" x="8" y="-80" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Button</text>
 <text text-anchor="middle" x="68" y="-67" font-family="FreeSans" font-size="10.00">Device</text>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Input_1_1Device.xhtml" target="_top" xlink:title="This is a base class for all input devices.">
+<a xlink:href="classMezzanine_1_1Input_1_1Device.html" target="_top" xlink:title="This is a base class for all input devices.">
 <polygon fill="white" stroke="black" points="0,-130.5 0,-151.5 136,-151.5 136,-130.5 0,-130.5"/>
 <text text-anchor="middle" x="68" y="-138.5" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Device</text>
 </a>

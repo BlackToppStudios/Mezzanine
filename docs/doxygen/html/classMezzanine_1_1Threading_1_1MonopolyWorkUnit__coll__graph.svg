@@ -49,7 +49,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.xhtml" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time.">
 <polygon fill="white" stroke="black" points="466.5,-52 466.5,-86 587.5,-86 587.5,-52 466.5,-52"/>
 <text text-anchor="start" x="474.5" y="-73" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="527" y="-60" font-family="FreeSans" font-size="10.00">::DefaultWorkUnit</text>
@@ -62,7 +62,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.xhtml" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time.">
 <polygon fill="white" stroke="black" points="0.5,-79 0.5,-113 121.5,-113 121.5,-79 0.5,-79"/>
 <text text-anchor="start" x="8.5" y="-100" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="61" y="-87" font-family="FreeSans" font-size="10.00">::iWorkUnit</text>
@@ -93,7 +93,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="structMezzanine_1_1DefaultRollingAverage.xhtml" target="_top" xlink:title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;">
+<a xlink:href="structMezzanine_1_1DefaultRollingAverage.html" target="_top" xlink:title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;">
 <polygon fill="white" stroke="black" points="209,-0 209,-34 347,-34 347,-0 209,-0"/>
 <text text-anchor="start" x="217" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultRolling</text>
 <text text-anchor="middle" x="278" y="-8" font-family="FreeSans" font-size="10.00">Average&lt; Whole &gt;</text>

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.xhtml" target="_top" xlink:title="This is the base class for all constraints supported.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.html" target="_top" xlink:title="This is the base class for all constraints supported.">
 <polygon fill="white" stroke="black" points="-0.5,-73 -0.5,-107 108.5,-107 108.5,-73 -0.5,-73"/>
 <text text-anchor="start" x="7.5" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="54" y="-81" font-family="FreeSans" font-size="10.00">::Constraint</text>

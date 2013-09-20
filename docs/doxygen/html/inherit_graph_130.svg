@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1CollisionDispatcher.xhtml" target="_top" xlink:title="Used to provide better reporting of collisions.">
+<a xlink:href="classMezzanine_1_1Physics_1_1CollisionDispatcher.html" target="_top" xlink:title="Used to provide better reporting of collisions.">
 <polygon fill="white" stroke="black" points="154.5,-0 154.5,-34 267.5,-34 267.5,-0 154.5,-0"/>
 <text text-anchor="start" x="162.5" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="211" y="-8" font-family="FreeSans" font-size="10.00">::CollisionDispatcher</text>

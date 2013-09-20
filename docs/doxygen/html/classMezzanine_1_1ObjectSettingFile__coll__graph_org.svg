@@ -16,7 +16,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
+<a xlink:href="classMezzanine_1_1ObjectSettingGroup.html" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
 <polygon fill="white" stroke="black" points="91.5,-87 91.5,-121 230.5,-121 230.5,-87 91.5,-87"/>
 <text text-anchor="start" x="99.5" y="-108" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="161" y="-95" font-family="FreeSans" font-size="10.00">Group</text>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.html" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
 <polygon fill="white" stroke="black" points="209.5,-173 209.5,-207 348.5,-207 348.5,-173 209.5,-173"/>
 <text text-anchor="start" x="217.5" y="-194" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="279" y="-181" font-family="FreeSans" font-size="10.00">SetContainer</text>
@@ -105,7 +105,7 @@
 </g>
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSet.html" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
 <polygon fill="white" stroke="black" points="327.5,-93.5 327.5,-114.5 482.5,-114.5 482.5,-93.5 327.5,-93.5"/>
 <text text-anchor="middle" x="405" y="-101.5" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>

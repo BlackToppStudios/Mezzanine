@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1WorldProxy.xhtml" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems.">
+<a xlink:href="classMezzanine_1_1WorldProxy.html" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems.">
 <polygon fill="white" stroke="black" points="10.5,-58.5 10.5,-79.5 135.5,-79.5 135.5,-58.5 10.5,-58.5"/>
 <text text-anchor="middle" x="73" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::WorldProxy</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1TransformableObject.xhtml" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
+<a xlink:href="classMezzanine_1_1TransformableObject.html" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
 <polygon fill="white" stroke="black" points="2.5,-117 2.5,-151 143.5,-151 143.5,-117 2.5,-117"/>
 <text text-anchor="start" x="10.5" y="-138" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="73" y="-125" font-family="FreeSans" font-size="10.00">Object</text>

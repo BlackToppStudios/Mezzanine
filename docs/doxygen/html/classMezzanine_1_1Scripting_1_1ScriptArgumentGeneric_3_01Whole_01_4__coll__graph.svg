@@ -18,7 +18,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.xhtml" target="_top" xlink:title="The interface for a script argument.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.html" target="_top" xlink:title="The interface for a script argument.">
 <polygon fill="white" stroke="black" points="20,-85 20,-119 136,-119 136,-85 20,-85"/>
 <text text-anchor="start" x="28" y="-106" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="78" y="-93" font-family="FreeSans" font-size="10.00">::iScriptArgument</text>
@@ -31,7 +31,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1IntrusiveRefCount.xhtml" target="_top" xlink:title="A sample class that implements a minimal intrusive reference counting scheme.">
+<a xlink:href="classMezzanine_1_1IntrusiveRefCount.html" target="_top" xlink:title="A sample class that implements a minimal intrusive reference counting scheme.">
 <polygon fill="white" stroke="black" points="-0.5,-156.5 -0.5,-177.5 156.5,-177.5 156.5,-156.5 -0.5,-156.5"/>
 <text text-anchor="middle" x="78" y="-164.5" font-family="FreeSans" font-size="10.00">Mezzanine::IntrusiveRefCount</text>
 </a>

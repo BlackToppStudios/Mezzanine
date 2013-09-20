@@ -1,7 +1,7 @@
 <map id="Mezzanine::ObjectSettingFile" name="Mezzanine::ObjectSettingFile">
-<area shape="rect" id="node8" href="$classMezzanine_1_1ObjectSettingGroup.xhtml" title="A class that store&#39;s a collection of SettingSets that can be applied together." alt="" coords="128,331,312,378"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1ObjectSettingGroup.html" title="A class that store&#39;s a collection of SettingSets that can be applied together." alt="" coords="128,331,312,378"/>
 <area shape="rect" id="node2" title="STL class." alt="" coords="335,104,420,133"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1ObjectSettingSetContainer.xhtml" title="A base class for other classes that store ObjectSettingSet&#39;s." alt="" coords="285,217,469,263"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1ObjectSettingSetContainer.html" title="A base class for other classes that store ObjectSettingSet&#39;s." alt="" coords="285,217,469,263"/>
 <area shape="rect" id="node4" title="STL class." alt="" coords="309,6,445,53"/>
-<area shape="rect" id="node14" href="$classMezzanine_1_1ObjectSettingSet.xhtml" title="A class that store&#39;s a named set of settings for an object." alt="" coords="443,340,648,369"/>
+<area shape="rect" id="node14" href="$classMezzanine_1_1ObjectSettingSet.html" title="A class that store&#39;s a named set of settings for an object." alt="" coords="443,340,648,369"/>
 </map>

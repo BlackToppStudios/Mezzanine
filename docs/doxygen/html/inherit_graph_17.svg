@@ -18,7 +18,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1Playlist.xhtml" target="_top" xlink:title="This class is a list of sounds with common playlist features.">
+<a xlink:href="classMezzanine_1_1Audio_1_1Playlist.html" target="_top" xlink:title="This class is a list of sounds with common playlist features.">
 <polygon fill="white" stroke="black" points="116,-0.5 116,-21.5 256,-21.5 256,-0.5 116,-0.5"/>
 <text text-anchor="middle" x="186" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Playlist</text>
 </a>

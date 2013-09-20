@@ -48,7 +48,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1ScriptLuaException.xhtml" target="_top" xlink:title="Thrown when an unknown error happens in a Lua script.">
+<a xlink:href="classMezzanine_1_1ScriptLuaException.html" target="_top" xlink:title="Thrown when an unknown error happens in a Lua script.">
 <polygon fill="white" stroke="black" points="460.5,-58.5 460.5,-79.5 625.5,-79.5 625.5,-58.5 460.5,-58.5"/>
 <text text-anchor="middle" x="543" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::ScriptLuaException</text>
 </a>
@@ -60,7 +60,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="120,-58.5 120,-79.5 240,-79.5 240,-58.5 120,-58.5"/>
 <text text-anchor="middle" x="180" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>
@@ -84,7 +84,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1ScriptLuaErrErrException.xhtml" target="_top" xlink:title="Thrown when Lua has an error handling an error.">
+<a xlink:href="classMezzanine_1_1ScriptLuaErrErrException.html" target="_top" xlink:title="Thrown when Lua has an error handling an error.">
 <polygon fill="white" stroke="black" points="668.5,-104 668.5,-138 813.5,-138 813.5,-104 668.5,-104"/>
 <text text-anchor="start" x="676.5" y="-125" font-family="FreeSans" font-size="10.00">Mezzanine::ScriptLuaErrErr</text>
 <text text-anchor="middle" x="741" y="-112" font-family="FreeSans" font-size="10.00">Exception</text>
@@ -97,7 +97,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1ScriptLuaRuntimeException.xhtml" target="_top" xlink:title="Thrown when a Lua script has a runtime error.">
+<a xlink:href="classMezzanine_1_1ScriptLuaRuntimeException.html" target="_top" xlink:title="Thrown when a Lua script has a runtime error.">
 <polygon fill="white" stroke="black" points="662,-52 662,-86 820,-86 820,-52 662,-52"/>
 <text text-anchor="start" x="670" y="-73" font-family="FreeSans" font-size="10.00">Mezzanine::ScriptLuaRuntime</text>
 <text text-anchor="middle" x="741" y="-60" font-family="FreeSans" font-size="10.00">Exception</text>
@@ -110,7 +110,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1ScriptLuaYieldException.xhtml" target="_top" xlink:title="Thrown when Lua returns a yield and it should not have.">
+<a xlink:href="classMezzanine_1_1ScriptLuaYieldException.html" target="_top" xlink:title="Thrown when Lua returns a yield and it should not have.">
 <polygon fill="white" stroke="black" points="671,-0 671,-34 811,-34 811,-0 671,-0"/>
 <text text-anchor="start" x="679" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::ScriptLuaYield</text>
 <text text-anchor="middle" x="741" y="-8" font-family="FreeSans" font-size="10.00">Exception</text>

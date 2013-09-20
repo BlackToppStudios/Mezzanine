@@ -17,7 +17,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1ActorRigidPhysicsSettings.xhtml" target="_top" xlink:title="This is a helper class for configuring physics settings of an ActorRigid.">
+<a xlink:href="classMezzanine_1_1ActorRigidPhysicsSettings.html" target="_top" xlink:title="This is a helper class for configuring physics settings of an ActorRigid.">
 <polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-35 156.5,-35 156.5,-1 -0.5,-1"/>
 <text text-anchor="start" x="7.5" y="-22" font-family="FreeSans" font-size="10.00">Mezzanine::ActorRigidPhysics</text>
 <text text-anchor="middle" x="78" y="-9" font-family="FreeSans" font-size="10.00">Settings</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1ActorSoftPhysicsSettings.xhtml" target="_top" xlink:title="This is a helper class for configuring physics settings of an ActorSoft.">
+<a xlink:href="classMezzanine_1_1ActorSoftPhysicsSettings.html" target="_top" xlink:title="This is a helper class for configuring physics settings of an ActorSoft.">
 <polygon fill="white" stroke="black" points="173.5,-1 173.5,-35 326.5,-35 326.5,-1 173.5,-1"/>
 <text text-anchor="start" x="181.5" y="-22" font-family="FreeSans" font-size="10.00">Mezzanine::ActorSoftPhysics</text>
 <text text-anchor="middle" x="250" y="-9" font-family="FreeSans" font-size="10.00">Settings</text>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1NonTriggerPhysicsSettings.xhtml" target="_top" xlink:title="This is an extension of the basic WorldObjectPhysicsSettings class for non&#45;trigger objects(I...">
+<a xlink:href="classMezzanine_1_1NonTriggerPhysicsSettings.html" target="_top" xlink:title="This is an extension of the basic WorldObjectPhysicsSettings class for non&#45;trigger objects(I...">
 <polygon fill="white" stroke="black" points="84,-145 84,-179 244,-179 244,-145 84,-145"/>
 <text text-anchor="start" x="92" y="-166" font-family="FreeSans" font-size="10.00">Mezzanine::NonTriggerPhysics</text>
 <text text-anchor="middle" x="164" y="-153" font-family="FreeSans" font-size="10.00">Settings</text>
@@ -56,7 +56,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" target="_top" xlink:title="This is a base helper class for configuring physics settings of a world object.">
+<a xlink:href="classMezzanine_1_1WorldObjectPhysicsSettings.html" target="_top" xlink:title="This is a base helper class for configuring physics settings of a world object.">
 <polygon fill="white" stroke="black" points="81.5,-217 81.5,-251 246.5,-251 246.5,-217 81.5,-217"/>
 <text text-anchor="start" x="89.5" y="-238" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObjectPhysics</text>
 <text text-anchor="middle" x="164" y="-225" font-family="FreeSans" font-size="10.00">Settings</text>

@@ -50,7 +50,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="599,-58.5 599,-79.5 673,-79.5 673,-58.5 599,-58.5"/>
 <text text-anchor="middle" x="636" y="-66.5" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -62,7 +62,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="datastream_8h.xhtml" target="_top" xlink:title="Declaration of DataStream.">
+<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream.">
 <polygon fill="white" stroke="black" points="648,-174.5 648,-195.5 776,-195.5 776,-174.5 648,-174.5"/>
 <text text-anchor="middle" x="712" y="-182.5" font-family="FreeSans" font-size="10.00">Resource/datastream.h</text>
 </a>
@@ -74,7 +74,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 122,-21.5 122,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="61" y="-8.5" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>
@@ -226,7 +226,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node18 -->
 <g id="node35" class="node"><title>Node18</title>
-<a xlink:href="swig_8h.xhtml" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
 <polygon fill="white" stroke="black" points="998,-0.5 998,-21.5 1044,-21.5 1044,-0.5 998,-0.5"/>
 <text text-anchor="middle" x="1021" y="-8.5" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -243,7 +243,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node40" class="node"><title>Node20</title>
-<a xlink:href="smartptr_8h.xhtml" target="_top" xlink:title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e...">
+<a xlink:href="smartptr_8h.html" target="_top" xlink:title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e...">
 <polygon fill="white" stroke="black" points="682.5,-116.5 682.5,-137.5 749.5,-137.5 749.5,-116.5 682.5,-116.5"/>
 <text text-anchor="middle" x="716" y="-124.5" font-family="FreeSans" font-size="10.00">smartptr.h</text>
 </a>

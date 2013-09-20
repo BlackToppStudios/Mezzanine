@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1EventBase.xhtml" target="_top" xlink:title="The base class for all events.">
+<a xlink:href="classMezzanine_1_1EventBase.html" target="_top" xlink:title="The base class for all events.">
 <polygon fill="white" stroke="black" points="-0.5,-72.5 -0.5,-93.5 124.5,-93.5 124.5,-72.5 -0.5,-72.5"/>
 <text text-anchor="middle" x="62" y="-80.5" font-family="FreeSans" font-size="10.00">Mezzanine::EventBase</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1EventGameWindowData.xhtml" target="_top" xlink:title="used to keep private in one place that is actually private.">
+<a xlink:href="classMezzanine_1_1EventGameWindowData.html" target="_top" xlink:title="used to keep private in one place that is actually private.">
 <polygon fill="white" stroke="black" points="142,-72.5 142,-93.5 330,-93.5 330,-72.5 142,-72.5"/>
 <text text-anchor="middle" x="236" y="-80.5" font-family="FreeSans" font-size="10.00">Mezzanine::EventGameWindowData</text>
 </a>

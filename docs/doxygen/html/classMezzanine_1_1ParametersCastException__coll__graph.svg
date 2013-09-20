@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ParametersException.xhtml" target="_top" xlink:title="Thrown when parameters are checked at runtime and found invalid.">
+<a xlink:href="classMezzanine_1_1ParametersException.html" target="_top" xlink:title="Thrown when parameters are checked at runtime and found invalid.">
 <polygon fill="white" stroke="black" points="0,-72.5 0,-93.5 176,-93.5 176,-72.5 0,-72.5"/>
 <text text-anchor="middle" x="88" y="-80.5" font-family="FreeSans" font-size="10.00">Mezzanine::ParametersException</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="28,-130.5 28,-151.5 148,-151.5 148,-130.5 28,-130.5"/>
 <text text-anchor="middle" x="88" y="-138.5" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

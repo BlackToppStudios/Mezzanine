@@ -17,7 +17,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1RenderableContainer.xhtml" target="_top" xlink:title="Mezzanine::UI::Renderable\lContainer">
+<a xlink:href="classMezzanine_1_1UI_1_1RenderableContainer.html" target="_top" xlink:title="Mezzanine::UI::Renderable\lContainer">
 <polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-35 142.5,-35 142.5,-1 -0.5,-1"/>
 <text text-anchor="start" x="7.5" y="-22" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 <text text-anchor="middle" x="71" y="-9" font-family="FreeSans" font-size="10.00">Container</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Screen.xhtml" target="_top" xlink:title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">
+<a xlink:href="classMezzanine_1_1UI_1_1Screen.html" target="_top" xlink:title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">
 <polygon fill="white" stroke="black" points="159.5,-7.5 159.5,-28.5 282.5,-28.5 282.5,-7.5 159.5,-7.5"/>
 <text text-anchor="middle" x="221" y="-15.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Screen</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1RenderableFactory.xhtml" target="_top" xlink:title="This class is responsible for the creation and destruction of all UI renderables.">
+<a xlink:href="classMezzanine_1_1UI_1_1RenderableFactory.html" target="_top" xlink:title="This class is responsible for the creation and destruction of all UI renderables.">
 <polygon fill="white" stroke="black" points="74.5,-145 74.5,-179 217.5,-179 217.5,-145 74.5,-145"/>
 <text text-anchor="start" x="82.5" y="-166" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 <text text-anchor="middle" x="146" y="-153" font-family="FreeSans" font-size="10.00">Factory</text>

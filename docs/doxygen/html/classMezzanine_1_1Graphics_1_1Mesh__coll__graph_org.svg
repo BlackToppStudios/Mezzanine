@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1InternalMeshData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Mesh class.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1InternalMeshData.html" target="_top" xlink:title="This class is used to store the internal structures needed by the Mesh class.">
 <polygon fill="white" stroke="black" points="224,-171 224,-205 340,-205 340,-171 224,-171"/>
 <text text-anchor="start" x="232" y="-192" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="282" y="-179" font-family="FreeSans" font-size="10.00">::InternalMeshData</text>
@@ -31,7 +31,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Skeleton.xhtml" target="_top" xlink:title="This class encapsulates the Skeletal animation functionality of a Mesh.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1Skeleton.html" target="_top" xlink:title="This class encapsulates the Skeletal animation functionality of a Mesh.">
 <polygon fill="white" stroke="black" points="224,-61 224,-95 340,-95 340,-61 224,-61"/>
 <text text-anchor="start" x="232" y="-82" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="282" y="-69" font-family="FreeSans" font-size="10.00">::Skeleton</text>
@@ -45,7 +45,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Bone.xhtml" target="_top" xlink:title="This class encapsulates the bones contained in a skeleton used for animation.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1Bone.html" target="_top" xlink:title="This class encapsulates the bones contained in a skeleton used for animation.">
 <polygon fill="white" stroke="black" points="450,-8 450,-42 566,-42 566,-8 450,-8"/>
 <text text-anchor="start" x="458" y="-29" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="508" y="-16" font-family="FreeSans" font-size="10.00">::Bone</text>
@@ -76,7 +76,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1TransformableChildObject.xhtml" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
+<a xlink:href="classMezzanine_1_1TransformableChildObject.html" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
 <polygon fill="white" stroke="black" points="211.5,-0 211.5,-34 352.5,-34 352.5,-0 211.5,-0"/>
 <text text-anchor="start" x="219.5" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="282" y="-8" font-family="FreeSans" font-size="10.00">ChildObject</text>
@@ -89,7 +89,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Skeleton class.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1InternalSkeletonData.html" target="_top" xlink:title="This class is used to store the internal structures needed by the Skeleton class.">
 <polygon fill="white" stroke="black" points="0.5,-61 0.5,-95 123.5,-95 123.5,-61 0.5,-61"/>
 <text text-anchor="start" x="8.5" y="-82" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="62" y="-69" font-family="FreeSans" font-size="10.00">::InternalSkeletonData</text>
@@ -114,7 +114,7 @@
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1SubMesh.xhtml" target="_top" xlink:title="This class represents a sub&#45;section of an overall mesh.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1SubMesh.html" target="_top" xlink:title="This class represents a sub&#45;section of an overall mesh.">
 <polygon fill="white" stroke="black" points="4,-125 4,-159 120,-159 120,-125 4,-125"/>
 <text text-anchor="start" x="12" y="-146" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="62" y="-133" font-family="FreeSans" font-size="10.00">::SubMesh</text>

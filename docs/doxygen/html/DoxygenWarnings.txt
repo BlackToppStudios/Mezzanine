@@ -1,3 +1,5 @@
+/home/Code/Mezzanine/Mezzanine/src/mathtool.cpp:53: Warning: problem evaluating expression '0': Syntax error in part '0'
+/home/Code/Mezzanine/Mezzanine/src/mathtool.cpp:53: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.cpp:98: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.cpp:98: Warning: problem evaluating expression '0': Syntax error in part '0'
 /home/Code/Mezzanine/Mezzanine/src/UI/cell.h:122: warning: the name `uibutton.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
@@ -67,7 +69,7 @@
 /home/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:266: warning: Compound Mezzanine::UI::OpenRenderableContainerWidget is not documented.
 /home/Code/Mezzanine/Mezzanine/src/managerbase.h:60: warning: Documentation for undefined enum `ManagerTypeName' found.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:1041: warning: found more than one \mainpage comment block! Skipping this block.
-/home/Code/Mezzanine/Mezzanine/src/Threading/dagframescheduler.h:79: warning: found more than one \mainpage comment block! Skipping this block.
+/home/Code/Mezzanine/Mezzanine/src/Threading/dagframescheduler.h:82: warning: found more than one \mainpage comment block! Skipping this block.
 /home/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
@@ -391,7 +393,8 @@
 /home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:155: warning: Member return (variable) of namespace Mezzanine::Threading is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:153: warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:138: warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:246: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:248: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
+/home/Code/Mezzanine/Mezzanine/src/Threading/dagframescheduler.h:202: warning: Found unknown command `\subsubsubsection'
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:698: warning: explicit link request to 'wstream' could not be resolved
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:778: warning: explicit link request to 'x' could not be resolved
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:778: warning: explicit link request to 'x' could not be resolved
@@ -561,13 +564,13 @@
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: parameters of member Mezzanine::Entity::SetLocalOrientation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:341: warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:340: warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:339: warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:343: warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:342: warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:341: warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:445: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:447: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
 /home/Code/Mezzanine/Mezzanine/src/entresol.cpp:138: warning: Found unknown command `\TODO'
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:494: warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:496: warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
 /home/Code/Mezzanine/Mezzanine/src/eventgamewindow.h:108: warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
 /home/Code/Mezzanine/Mezzanine/src/eventgamewindow.cpp:63: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class Mezzanine::EventGameWindowData is not documented.
 /home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
@@ -904,7 +907,7 @@
 /home/Code/Mezzanine/Mezzanine/src/particleeffect.h:120: warning: parameters of member Mezzanine::ParticleEffect::SetScaling are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/particleemitter.h:66: warning: parameters of member Mezzanine::ParticleEmitter::ParticleEmitter are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/particleemitter.h:81: warning: return type of member Mezzanine::ParticleEmitter::GetCustomParam is not documented
-/home/Code/Mezzanine/Mezzanine/src/quaternion.h:186: warning: return type of member Mezzanine::Quaternion::GetOgreQuaternion is not documented
+/home/Code/Mezzanine/Mezzanine/src/quaternion.h:189: warning: return type of member Mezzanine::Quaternion::GetOgreQuaternion is not documented
 /home/Code/Mezzanine/Mezzanine/src/smartptr.h:236: warning: argument 'The' of command @param is not found in the argument list of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(RefCountType *Target)
 /home/Code/Mezzanine/Mezzanine/src/smartptr.h:236: warning: The following parameters of Mezzanine::ReferenceCountTraits< IntrusiveRefCount >::ConstructionPointer(RefCountType *Target) are not documented:
   parameter 'Target'
@@ -1048,9 +1051,9 @@
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: parameters of member Mezzanine::Vector3::GetAxisValue are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:105: warning: return type of member Mezzanine::Vector3::GetAxisValue is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:388: warning: return type of member Mezzanine::Vector3::GetBulletVector3 is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:397: warning: return type of member Mezzanine::Vector3::GetBulletVector3 is not documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:337: warning: return type of member Mezzanine::Vector3::GetDirection is not documented
-/home/Code/Mezzanine/Mezzanine/src/vector3.h:396: warning: return type of member Mezzanine::Vector3::GetOgreVector3 is not documented
+/home/Code/Mezzanine/Mezzanine/src/vector3.h:405: warning: return type of member Mezzanine::Vector3::GetOgreVector3 is not documented
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:367: warning: The following parameters of Mezzanine::Vector3::GetRotationToAxis(const Vector3 &Axis, const Vector3 &FallBackAxis=Vector3()) const are not documented:
   parameter 'FallBackAxis'
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:237: warning: return type of member Mezzanine::Vector3::operator!= is not documented

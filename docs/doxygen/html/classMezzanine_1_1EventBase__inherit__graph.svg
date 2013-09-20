@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1EventGameWindow.xhtml" target="_top" xlink:title="Convey the message that Something happened to a game window.">
+<a xlink:href="classMezzanine_1_1EventGameWindow.html" target="_top" xlink:title="Convey the message that Something happened to a game window.">
 <polygon fill="white" stroke="black" points="-0.5,-0.5 -0.5,-21.5 164.5,-21.5 164.5,-0.5 -0.5,-0.5"/>
 <text text-anchor="middle" x="82" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::EventGameWindow</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1EventQuit.xhtml" target="_top" xlink:title="This is intended to convey the message that quitting needs to happen.">
+<a xlink:href="classMezzanine_1_1EventQuit.html" target="_top" xlink:title="This is intended to convey the message that quitting needs to happen.">
 <polygon fill="white" stroke="black" points="182,-0.5 182,-21.5 302,-21.5 302,-0.5 182,-0.5"/>
 <text text-anchor="middle" x="242" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::EventQuit</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1EventUserInput.xhtml" target="_top" xlink:title="This is a container for MetaCodes that is used in the EventManager.">
+<a xlink:href="classMezzanine_1_1EventUserInput.html" target="_top" xlink:title="This is a container for MetaCodes that is used in the EventManager.">
 <polygon fill="white" stroke="black" points="319.5,-0.5 319.5,-21.5 466.5,-21.5 466.5,-0.5 319.5,-0.5"/>
 <text text-anchor="middle" x="393" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::EventUserInput</text>
 </a>

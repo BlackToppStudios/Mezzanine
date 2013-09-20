@@ -80,10 +80,10 @@
  @section enginestructure Engine Structure
   The engine is laid out in a variety of classes of a few generalized roles.
 
-  Some classes are focal points for functionality and internally unify a
-  number of components to do what they do, these managers sometimes conceal a large amount of complexity. Managers ( Mezzanine::ManagerBase instances ) generally
-  have a rigid place in the structure of the running program. This is where are the logic that says how something is done exists, for example "how does something
-  get drawn on the screen?" or "how do you detect if to objects are colliding?". Managers are owed either by the Mezzanine::Entresol or a Mezzanine::World
+  Some classes are focal points for functionality and internally unify a number of components to do what they do. These managers sometimes conceal a large amount
+  of complexity and try to present a concise API. Managers ( Mezzanine::ManagerBase instances ) generally have a rigid place in the structure of the
+  running program. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?" or
+  "how do you detect if two objects are colliding?". Managers are owned either by the Mezzanine::Entresol or a Mezzanine::World
   depending on their roles and technical limitations.
 
   The Mezzanine::Threading::FrameScheduler is responsible for running the work each task requires. Most managers mantain one or more of
@@ -186,6 +186,8 @@
   @ref LuaManual
 
   @ref Serialization
+
+  @ref ThreadingManual
 
  @section Licensing Licensing Information
 

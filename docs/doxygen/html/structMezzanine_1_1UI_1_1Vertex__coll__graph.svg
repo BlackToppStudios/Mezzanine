@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
 <polygon fill="white" stroke="black" points="0,-72.5 0,-93.5 110,-93.5 110,-72.5 0,-72.5"/>
 <text text-anchor="middle" x="55" y="-80.5" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
+<a xlink:href="classMezzanine_1_1ColourValue.html" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
 <polygon fill="white" stroke="black" points="128,-72.5 128,-93.5 258,-93.5 258,-72.5 128,-72.5"/>
 <text text-anchor="middle" x="193" y="-80.5" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Vector3.xhtml" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
+<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
 <polygon fill="white" stroke="black" points="276,-72.5 276,-93.5 386,-93.5 386,-72.5 276,-72.5"/>
 <text text-anchor="middle" x="331" y="-80.5" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>

@@ -1,5 +1,5 @@
 <map id="Mezzanine::Audio::AudioManager" name="Mezzanine::Audio::AudioManager">
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="8,5,195,35"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ObjectSettingsHandler.xhtml" title="An abstract class for other classes that manage groups of settings." alt="" coords="5,58,197,105"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; AudioManager \&gt;" alt="" coords="23,127,180,174"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="8,5,195,35"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1ObjectSettingsHandler.html" title="An abstract class for other classes that manage groups of settings." alt="" coords="5,58,197,105"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; AudioManager \&gt;" alt="" coords="23,127,180,174"/>
 </map>

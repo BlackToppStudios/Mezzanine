@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 153,-38 153,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="structMezzanine_1_1Audio_1_1AutowahParameters.xhtml" target="_top" xlink:title="This is a struct containing all the parameters needed to describe an Auto&#45;Wah effect.">
+<a xlink:href="structMezzanine_1_1Audio_1_1AutowahParameters.html" target="_top" xlink:title="This is a struct containing all the parameters needed to describe an Auto&#45;Wah effect.">
 <polygon fill="white" stroke="black" points="0,-0 0,-34 148,-34 148,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Autowah</text>
 <text text-anchor="middle" x="74" y="-8" font-family="FreeSans" font-size="10.00">Parameters</text>

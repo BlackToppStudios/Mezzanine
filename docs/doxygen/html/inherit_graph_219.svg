@@ -11,14 +11,14 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 343,-38 343,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1UI_1_1WidgetListener.xhtml" target="_top" xlink:title="This is a listener class for widgets.">
+<a xlink:href="classMezzanine_1_1UI_1_1WidgetListener.html" target="_top" xlink:title="This is a listener class for widgets.">
 <polygon fill="white" stroke="black" points="0,-6.5 0,-27.5 160,-27.5 160,-6.5 0,-6.5"/>
 <text text-anchor="middle" x="80" y="-14.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::WidgetListener</text>
 </a>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1ActivatableListener.xhtml" target="_top" xlink:title="This class provides customizable functionality to the activatable class.">
+<a xlink:href="classMezzanine_1_1UI_1_1ActivatableListener.html" target="_top" xlink:title="This class provides customizable functionality to the activatable class.">
 <polygon fill="white" stroke="black" points="196,-0 196,-34 338,-34 338,-0 196,-0"/>
 <text text-anchor="start" x="204" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Activatable</text>
 <text text-anchor="middle" x="267" y="-8" font-family="FreeSans" font-size="10.00">Listener</text>

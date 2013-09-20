@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1AudioManager.xhtml" target="_top" xlink:title="This is the base manager class for the Audio subsystem and it&#39;s operations.">
+<a xlink:href="classMezzanine_1_1Audio_1_1AudioManager.html" target="_top" xlink:title="This is the base manager class for the Audio subsystem and it&#39;s operations.">
 <polygon fill="white" stroke="black" points="0,-7.5 0,-28.5 176,-28.5 176,-7.5 0,-7.5"/>
 <text text-anchor="middle" x="88" y="-15.5" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::AudioManager</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" target="_top" xlink:title="This is intended to store basic graphics setting for the user.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1GraphicsManager.html" target="_top" xlink:title="This is intended to store basic graphics setting for the user.">
 <polygon fill="white" stroke="black" points="194,-1 194,-35 310,-35 310,-1 194,-1"/>
 <text text-anchor="start" x="202" y="-22" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="252" y="-9" font-family="FreeSans" font-size="10.00">::GraphicsManager</text>

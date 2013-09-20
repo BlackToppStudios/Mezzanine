@@ -10,7 +10,7 @@
 <title>/home/Code/Mezzanine/Mezzanine</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-72 177,-72 177,5 -4,5"/>
 <g id="graph2" class="cluster"><title>clusterdir_df2e1c8414b6a086be441ff04537838a</title>
-<a xlink:href="dir_df2e1c8414b6a086be441ff04537838a.xhtml" target="_top">
+<a xlink:href="dir_df2e1c8414b6a086be441ff04537838a.html" target="_top">
 <polygon fill="#eeeeff" stroke="black" points="8,-8 8,-60 164,-60 164,-8 8,-8"/>
 </a>
 </g>
@@ -20,7 +20,7 @@
 </g>
 <!-- dir_2b71fc9949116feedacddb93a79d832d -->
 <g id="node3" class="node"><title>dir_2b71fc9949116feedacddb93a79d832d</title>
-<a xlink:href="dir_2b71fc9949116feedacddb93a79d832d.xhtml" target="_top" xlink:title="src">
+<a xlink:href="dir_2b71fc9949116feedacddb93a79d832d.html" target="_top" xlink:title="src">
 <polygon fill="white" stroke="red" points="70,-52 16,-52 16,-16 70,-16 70,-52"/>
 <text text-anchor="middle" x="43" y="-31.5" font-family="FreeSans" font-size="10.00">src</text>
 </a>

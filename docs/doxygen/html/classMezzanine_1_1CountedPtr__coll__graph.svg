@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ReferenceCount.xhtml" target="_top" xlink:title="This exists once per object managed by a group of shared pointer to track items in memory...">
+<a xlink:href="classMezzanine_1_1ReferenceCount.html" target="_top" xlink:title="This exists once per object managed by a group of shared pointer to track items in memory...">
 <polygon fill="white" stroke="black" points="-0.5,-87 -0.5,-121 148.5,-121 148.5,-87 -0.5,-87"/>
 <text text-anchor="start" x="7.5" y="-108" font-family="FreeSans" font-size="10.00">Mezzanine::ReferenceCount</text>
 <text text-anchor="middle" x="74" y="-95" font-family="FreeSans" font-size="10.00">&lt; TypePointedTo &gt;</text>

@@ -1,6 +1,6 @@
 <map id="/home/Code/Mezzanine/Mezzanine/src/enumerations.h" name="/home/Code/Mezzanine/Mezzanine/src/enumerations.h">
-<area shape="rect" id="node3" href="$macros_8h.xhtml" title="All convience/utility macros for the Mezzanine are to be placed here." alt="" coords="773,101,853,131"/>
-<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="764,179,863,208"/>
-<area shape="rect" id="node7" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,256,168,285"/>
-<area shape="rect" id="node37" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1435,256,1496,285"/>
+<area shape="rect" id="node3" href="$macros_8h.html" title="All convience/utility macros for the Mezzanine are to be placed here." alt="" coords="773,101,853,131"/>
+<area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="764,179,863,208"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,256,168,285"/>
+<area shape="rect" id="node37" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1435,256,1496,285"/>
 </map>

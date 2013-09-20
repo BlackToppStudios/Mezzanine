@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1NodeItem.xhtml" target="_top" xlink:title="Mezzanine::NodeItem\l\&lt; T, V, Cmp, Items \&gt;">
+<a xlink:href="classMezzanine_1_1NodeItem.html" target="_top" xlink:title="Mezzanine::NodeItem\l\&lt; T, V, Cmp, Items \&gt;">
 <polygon fill="white" stroke="black" points="8.5,-73 8.5,-107 129.5,-107 129.5,-73 8.5,-73"/>
 <text text-anchor="start" x="16.5" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::NodeItem</text>
 <text text-anchor="middle" x="69" y="-81" font-family="FreeSans" font-size="10.00">&lt; T, V, Cmp, Items &gt;</text>

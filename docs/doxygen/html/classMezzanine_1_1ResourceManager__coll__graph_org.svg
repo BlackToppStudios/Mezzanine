@@ -16,7 +16,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;">
 <polygon fill="white" stroke="black" points="1492.5,-115 1492.5,-149 1617.5,-149 1617.5,-115 1492.5,-115"/>
 <text text-anchor="start" x="1500.5" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1555" y="-123" font-family="FreeSans" font-size="10.00">&lt; ResourceManager &gt;</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
 <polygon fill="white" stroke="black" points="949,-297.5 949,-318.5 1089,-318.5 1089,-297.5 949,-297.5"/>
 <text text-anchor="middle" x="1019" y="-305.5" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
 <polygon fill="white" stroke="black" points="719,-261.5 719,-282.5 831,-282.5 831,-261.5 719,-261.5"/>
 <text text-anchor="middle" x="775" y="-269.5" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -55,7 +55,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
 <polygon fill="white" stroke="black" points="959.5,-245 959.5,-279 1078.5,-279 1078.5,-245 959.5,-245"/>
 <text text-anchor="start" x="967.5" y="-266" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1019" y="-253" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
@@ -91,7 +91,7 @@
 </g>
 <!-- Node7 -->
 <g id="node14" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1ResourceInputStream.xhtml" target="_top" xlink:title="A stream from a file, can read from zip files as well.">
+<a xlink:href="classMezzanine_1_1ResourceInputStream.html" target="_top" xlink:title="A stream from a file, can read from zip files as well.">
 <polygon fill="white" stroke="black" points="704.5,-193 704.5,-227 845.5,-227 845.5,-193 704.5,-193"/>
 <text text-anchor="start" x="712.5" y="-214" font-family="FreeSans" font-size="10.00">Mezzanine::ResourceInput</text>
 <text text-anchor="middle" x="775" y="-201" font-family="FreeSans" font-size="10.00">Stream</text>
@@ -166,7 +166,7 @@
 </g>
 <!-- Node13 -->
 <g id="node26" class="node"><title>Node13</title>
-<a xlink:href="classMezzanine_1_1CountedPtr.xhtml" target="_top" xlink:title="A simple reference counting pointer.">
+<a xlink:href="classMezzanine_1_1CountedPtr.html" target="_top" xlink:title="A simple reference counting pointer.">
 <polygon fill="white" stroke="black" points="711,-126 711,-160 839,-160 839,-126 711,-126"/>
 <text text-anchor="start" x="719" y="-147" font-family="FreeSans" font-size="10.00">Mezzanine::CountedPtr</text>
 <text text-anchor="middle" x="775" y="-134" font-family="FreeSans" font-size="10.00">&lt; TypePointedTo &gt;</text>
@@ -192,7 +192,7 @@
 </g>
 <!-- Node14 -->
 <g id="node28" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1ReferenceCount.xhtml" target="_top" xlink:title="This exists once per object managed by a group of shared pointer to track items in memory...">
+<a xlink:href="classMezzanine_1_1ReferenceCount.html" target="_top" xlink:title="This exists once per object managed by a group of shared pointer to track items in memory...">
 <polygon fill="white" stroke="black" points="424.5,-126 424.5,-160 573.5,-160 573.5,-126 424.5,-126"/>
 <text text-anchor="start" x="432.5" y="-147" font-family="FreeSans" font-size="10.00">Mezzanine::ReferenceCount</text>
 <text text-anchor="middle" x="499" y="-134" font-family="FreeSans" font-size="10.00">&lt; TypePointedTo &gt;</text>

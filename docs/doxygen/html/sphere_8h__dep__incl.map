@@ -1,5 +1,6 @@
 <map id="/home/Code/Mezzanine/Mezzanine/src/sphere.h" name="/home/Code/Mezzanine/Mezzanine/src/sphere.h">
-<area shape="rect" id="node3" href="$mathtool_8cpp_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/mathtool.cpp" alt="" coords="5,102,211,149"/>
-<area shape="rect" id="node5" href="$plane_8cpp_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/plane.cpp" alt="" coords="235,102,416,149"/>
-<area shape="rect" id="node7" href="$sphere_8cpp.xhtml" title="This file contains the implementation for the generic Sphere class for math and spacial query..." alt="" coords="440,102,632,149"/>
+<area shape="rect" id="node3" href="$mathtool_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/mathtool.cpp" alt="" coords="5,102,211,149"/>
+<area shape="rect" id="node5" href="$plane_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/plane.cpp" alt="" coords="235,102,416,149"/>
+<area shape="rect" id="node7" href="$ray_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/ray.cpp" alt="" coords="440,102,611,149"/>
+<area shape="rect" id="node9" href="$sphere_8cpp.html" title="This file contains the implementation for the generic Sphere class for math and spacial query..." alt="" coords="635,102,827,149"/>
 </map>

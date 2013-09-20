@@ -1,4 +1,4 @@
 <map id="Mezzanine::ObjectSettingsHandler" name="Mezzanine::ObjectSettingsHandler">
-<area shape="rect" id="node3" href="$classMezzanine_1_1Audio_1_1AudioManager.xhtml" title="This is the base manager class for the Audio subsystem and it&#39;s operations." alt="" coords="5,111,240,140"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.xhtml" title="This is intended to store basic graphics setting for the user." alt="" coords="264,102,419,149"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1Audio_1_1AudioManager.html" title="This is the base manager class for the Audio subsystem and it&#39;s operations." alt="" coords="5,111,240,140"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Graphics_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user." alt="" coords="264,102,419,149"/>
 </map>

@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 163,-26 163,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1CameraController.xhtml" target="_top" xlink:title="This is a simplified controller class for use with cameras.">
+<a xlink:href="classMezzanine_1_1CameraController.html" target="_top" xlink:title="This is a simplified controller class for use with cameras.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 158,-21.5 158,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="79" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::CameraController</text>
 </a>

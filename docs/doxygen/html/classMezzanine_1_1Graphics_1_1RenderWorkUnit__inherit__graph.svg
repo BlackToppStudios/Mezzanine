@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1MonopolyWorkUnit.xhtml" target="_top" xlink:title="A kind of workunit given exclusive runtime so it can consume time on multiple threads.">
+<a xlink:href="classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" target="_top" xlink:title="A kind of workunit given exclusive runtime so it can consume time on multiple threads.">
 <polygon fill="white" stroke="black" points="-0.5,-73 -0.5,-107 120.5,-107 120.5,-73 -0.5,-73"/>
 <text text-anchor="start" x="7.5" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="60" y="-81" font-family="FreeSans" font-size="10.00">::MonopolyWorkUnit</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.xhtml" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time.">
 <polygon fill="white" stroke="black" points="-0.5,-145 -0.5,-179 120.5,-179 120.5,-145 -0.5,-145"/>
 <text text-anchor="start" x="7.5" y="-166" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="60" y="-153" font-family="FreeSans" font-size="10.00">::DefaultWorkUnit</text>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.xhtml" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time.">
 <polygon fill="white" stroke="black" points="-0.5,-217 -0.5,-251 120.5,-251 120.5,-217 -0.5,-217"/>
 <text text-anchor="start" x="7.5" y="-238" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="60" y="-225" font-family="FreeSans" font-size="10.00">::iWorkUnit</text>

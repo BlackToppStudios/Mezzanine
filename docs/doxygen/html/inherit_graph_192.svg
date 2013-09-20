@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 131,-38 131,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Trie.xhtml" target="_top" xlink:title="Mezzanine::Trie\&lt; Input\l::MetaCode, Int32 \&gt;">
+<a xlink:href="classMezzanine_1_1Trie.html" target="_top" xlink:title="Mezzanine::Trie\&lt; Input\l::MetaCode, Int32 \&gt;">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-34 125.5,-34 125.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::Trie&lt; Input</text>
 <text text-anchor="middle" x="63" y="-8" font-family="FreeSans" font-size="10.00">::MetaCode, Int32 &gt;</text>

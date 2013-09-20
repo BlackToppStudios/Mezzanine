@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1Thread.xhtml" target="_top" xlink:title="A small wrapper around the system thread.">
+<a xlink:href="classMezzanine_1_1Threading_1_1Thread.html" target="_top" xlink:title="A small wrapper around the system thread.">
 <polygon fill="white" stroke="black" points="-0.5,-87 -0.5,-121 120.5,-121 120.5,-87 -0.5,-87"/>
 <text text-anchor="start" x="7.5" y="-108" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="60" y="-95" font-family="FreeSans" font-size="10.00">::Thread</text>

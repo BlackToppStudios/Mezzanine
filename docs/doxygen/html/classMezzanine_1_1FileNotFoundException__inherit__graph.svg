@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1FileException.xhtml" target="_top" xlink:title="Thrown when there is an unknown issue with a file.">
+<a xlink:href="classMezzanine_1_1FileException.html" target="_top" xlink:title="Thrown when there is an unknown issue with a file.">
 <polygon fill="white" stroke="black" points="22.5,-58.5 22.5,-79.5 157.5,-79.5 157.5,-58.5 22.5,-58.5"/>
 <text text-anchor="middle" x="90" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::FileException</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1IOException.xhtml" target="_top" xlink:title="Thrown when there was an issue with IO but very little was known about it.">
+<a xlink:href="classMezzanine_1_1IOException.html" target="_top" xlink:title="Thrown when there was an issue with IO but very little was known about it.">
 <polygon fill="white" stroke="black" points="25,-116.5 25,-137.5 155,-137.5 155,-116.5 25,-116.5"/>
 <text text-anchor="middle" x="90" y="-124.5" font-family="FreeSans" font-size="10.00">Mezzanine::IOException</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="30,-174.5 30,-195.5 150,-195.5 150,-174.5 30,-174.5"/>
 <text text-anchor="middle" x="90" y="-182.5" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

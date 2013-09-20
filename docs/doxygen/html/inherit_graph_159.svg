@@ -55,7 +55,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1ResourceInputStream.xhtml" target="_top" xlink:title="A stream from a file, can read from zip files as well.">
+<a xlink:href="classMezzanine_1_1ResourceInputStream.html" target="_top" xlink:title="A stream from a file, can read from zip files as well.">
 <polygon fill="white" stroke="black" points="528.5,-0 528.5,-34 669.5,-34 669.5,-0 528.5,-0"/>
 <text text-anchor="start" x="536.5" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::ResourceInput</text>
 <text text-anchor="middle" x="599" y="-8" font-family="FreeSans" font-size="10.00">Stream</text>

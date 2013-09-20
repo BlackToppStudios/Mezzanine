@@ -50,7 +50,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="mutex_8h.xhtml" target="_top" xlink:title="This file declares and defines a mutex that is a partial implementation.">
+<a xlink:href="mutex_8h.html" target="_top" xlink:title="This file declares and defines a mutex that is a partial implementation.">
 <polygon fill="white" stroke="black" points="486,-174.5 486,-195.5 542,-195.5 542,-174.5 486,-174.5"/>
 <text text-anchor="middle" x="514" y="-182.5" font-family="FreeSans" font-size="10.00">mutex.h</text>
 </a>
@@ -62,7 +62,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node21 -->
 <g id="node42" class="node"><title>Node21</title>
-<a xlink:href="crossplatformincludes_8h.xhtml" target="_top" xlink:title="This file determines what features are offered by the compiler that this library can take advantage o...">
+<a xlink:href="crossplatformincludes_8h.html" target="_top" xlink:title="This file determines what features are offered by the compiler that this library can take advantage o...">
 <polygon fill="white" stroke="black" points="792,-174.5 792,-195.5 922,-195.5 922,-174.5 792,-174.5"/>
 <text text-anchor="middle" x="857" y="-182.5" font-family="FreeSans" font-size="10.00">crossplatformincludes.h</text>
 </a>
@@ -74,7 +74,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="atomicoperations_8h.xhtml" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically.">
+<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically.">
 <polygon fill="white" stroke="black" points="459,-116.5 459,-137.5 569,-137.5 569,-116.5 459,-116.5"/>
 <text text-anchor="middle" x="514" y="-124.5" font-family="FreeSans" font-size="10.00">atomicoperations.h</text>
 </a>
@@ -96,7 +96,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="477,-58.5 477,-79.5 551,-79.5 551,-58.5 477,-58.5"/>
 <text text-anchor="middle" x="514" y="-66.5" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -108,7 +108,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="996,-0.5 996,-21.5 1118,-21.5 1118,-0.5 996,-0.5"/>
 <text text-anchor="middle" x="1057" y="-8.5" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>
@@ -255,7 +255,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="swig_8h.xhtml" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
 <polygon fill="white" stroke="black" points="792,-0.5 792,-21.5 838,-21.5 838,-0.5 792,-0.5"/>
 <text text-anchor="middle" x="815" y="-8.5" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

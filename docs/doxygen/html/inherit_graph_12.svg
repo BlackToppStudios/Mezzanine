@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 147,-38 147,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1iEffectsHandler.xhtml" target="_top" xlink:title="This is an interface class for the creation, destruction, and overall management of audio effects...">
+<a xlink:href="classMezzanine_1_1Audio_1_1iEffectsHandler.html" target="_top" xlink:title="This is an interface class for the creation, destruction, and overall management of audio effects...">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-34 141.5,-34 141.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iEffects</text>
 <text text-anchor="middle" x="71" y="-8" font-family="FreeSans" font-size="10.00">Handler</text>

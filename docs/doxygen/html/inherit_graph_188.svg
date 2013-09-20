@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 103,-26 103,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Track.xhtml" target="_top" xlink:title="This class represents a series of points as a line in 3D space.">
+<a xlink:href="classMezzanine_1_1Track.html" target="_top" xlink:title="This class represents a series of points as a line in 3D space.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 98,-21.5 98,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="49" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::Track</text>
 </a>

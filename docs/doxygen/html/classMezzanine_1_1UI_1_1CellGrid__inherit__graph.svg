@@ -16,7 +16,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1PagedCellGrid.xhtml" target="_top" xlink:title="This is a specialization of the cell grid that allows you to use a spinner to navigate through pages ...">
+<a xlink:href="classMezzanine_1_1UI_1_1PagedCellGrid.html" target="_top" xlink:title="This is a specialization of the cell grid that allows you to use a spinner to navigate through pages ...">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 156,-21.5 156,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="78" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::PagedCellGrid</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1UI_1_1ScrolledCellGrid.xhtml" target="_top" xlink:title="This is a specialization of the cell grid that allows you to use scrollbars to navigate the cells on ...">
+<a xlink:href="classMezzanine_1_1UI_1_1ScrolledCellGrid.html" target="_top" xlink:title="This is a specialization of the cell grid that allows you to use scrollbars to navigate the cells on ...">
 <polygon fill="white" stroke="black" points="174,-0.5 174,-21.5 338,-21.5 338,-0.5 174,-0.5"/>
 <text text-anchor="middle" x="256" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScrolledCellGrid</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Widget.xhtml" target="_top" xlink:title="This class is the base class for all widgets.">
+<a xlink:href="classMezzanine_1_1UI_1_1Widget.html" target="_top" xlink:title="This class is the base class for all widgets.">
 <polygon fill="white" stroke="black" points="106.5,-116.5 106.5,-137.5 227.5,-137.5 227.5,-116.5 106.5,-116.5"/>
 <text text-anchor="middle" x="167" y="-124.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
@@ -52,7 +52,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
+<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
 <polygon fill="white" stroke="black" points="95.5,-174.5 95.5,-195.5 238.5,-195.5 238.5,-174.5 95.5,-174.5"/>
 <text text-anchor="middle" x="167" y="-182.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>

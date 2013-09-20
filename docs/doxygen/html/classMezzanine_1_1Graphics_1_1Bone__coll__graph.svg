@@ -28,7 +28,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1TransformableChildObject.xhtml" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
+<a xlink:href="classMezzanine_1_1TransformableChildObject.html" target="_top" xlink:title="This is an interface for all child 3D objects that can have their full transforms manipulated...">
 <polygon fill="white" stroke="black" points="194.5,-247 194.5,-281 335.5,-281 335.5,-247 194.5,-247"/>
 <text text-anchor="start" x="202.5" y="-268" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="265" y="-255" font-family="FreeSans" font-size="10.00">ChildObject</text>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Skeleton.xhtml" target="_top" xlink:title="This class encapsulates the Skeletal animation functionality of a Mesh.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1Skeleton.html" target="_top" xlink:title="This class encapsulates the Skeletal animation functionality of a Mesh.">
 <polygon fill="white" stroke="black" points="143,-1 143,-35 259,-35 259,-1 143,-1"/>
 <text text-anchor="start" x="151" y="-22" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="201" y="-9" font-family="FreeSans" font-size="10.00">::Skeleton</text>
@@ -61,7 +61,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1InternalSkeletonData.xhtml" target="_top" xlink:title="This class is used to store the internal structures needed by the Skeleton class.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1InternalSkeletonData.html" target="_top" xlink:title="This class is used to store the internal structures needed by the Skeleton class.">
 <polygon fill="white" stroke="black" points="-0.5,-87 -0.5,-121 122.5,-121 122.5,-87 -0.5,-87"/>
 <text text-anchor="start" x="7.5" y="-108" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="61" y="-95" font-family="FreeSans" font-size="10.00">::InternalSkeletonData</text>

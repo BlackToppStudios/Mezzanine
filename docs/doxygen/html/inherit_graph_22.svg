@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 151,-26 151,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1AxisAlignedBox.xhtml" target="_top" xlink:title="This is a utility class used to represent the Axis&#45;Aligned Bounding Boxes of objects in various subsy...">
+<a xlink:href="classMezzanine_1_1AxisAlignedBox.html" target="_top" xlink:title="This is a utility class used to represent the Axis&#45;Aligned Bounding Boxes of objects in various subsy...">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 146,-21.5 146,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="73" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::AxisAlignedBox</text>
 </a>

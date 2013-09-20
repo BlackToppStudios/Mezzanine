@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1XML_1_1Writer.xhtml" target="_top" xlink:title="Interface for node printing (see Node::Print)">
+<a xlink:href="classMezzanine_1_1XML_1_1Writer.html" target="_top" xlink:title="Interface for node printing (see Node::Print)">
 <polygon fill="white" stroke="black" points="18,-58.5 18,-79.5 144,-79.5 144,-58.5 18,-58.5"/>
 <text text-anchor="middle" x="81" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::XML::Writer</text>
 </a>

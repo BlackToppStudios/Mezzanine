@@ -1,8 +1,8 @@
 <map id="/home/Code/Mezzanine/Mezzanine/src/Scripting/script.h" name="/home/Code/Mezzanine/Mezzanine/src/Scripting/script.h">
-<area shape="rect" id="node3" href="$scripting_8h_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/scripting.h" alt="" coords="19,238,205,285"/>
-<area shape="rect" id="node9" href="$scriptingmanager_8h.xhtml" title="This file has the interfaces for Scripting managers and the associated dependency chain..." alt="" coords="227,117,403,181"/>
-<area shape="rect" id="node14" href="$scriptworkunit_8h.xhtml" title="This file has the interfaces for ScriptsWorkUnit." alt="" coords="27,117,203,181"/>
-<area shape="rect" id="node5" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="11,342,213,389"/>
-<area shape="rect" id="node7" href="$entresol_8cpp_source.xhtml" title="/home/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="12,438,212,485"/>
-<area shape="rect" id="node12" href="$scriptingmanager_8cpp.xhtml" title="The implementation (WTF!!) of the Interface for Scripting Managers." alt="" coords="229,229,405,293"/>
+<area shape="rect" id="node3" href="$scripting_8h_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/scripting.h" alt="" coords="19,238,205,285"/>
+<area shape="rect" id="node9" href="$scriptingmanager_8h.html" title="This file has the interfaces for Scripting managers and the associated dependency chain..." alt="" coords="227,117,403,181"/>
+<area shape="rect" id="node14" href="$scriptworkunit_8h.html" title="This file has the interfaces for ScriptsWorkUnit." alt="" coords="27,117,203,181"/>
+<area shape="rect" id="node5" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine." alt="" coords="11,342,213,389"/>
+<area shape="rect" id="node7" href="$entresol_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="12,438,212,485"/>
+<area shape="rect" id="node12" href="$scriptingmanager_8cpp.html" title="The implementation (WTF!!) of the Interface for Scripting Managers." alt="" coords="229,229,405,293"/>
 </map>

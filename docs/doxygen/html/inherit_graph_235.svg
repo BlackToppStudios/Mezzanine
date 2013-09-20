@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 165,-26 165,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1XML_1_1NodeIterator.xhtml" target="_top" xlink:title="Child node iterator (a bidirectional iterator over a collection of Node)">
+<a xlink:href="classMezzanine_1_1XML_1_1NodeIterator.html" target="_top" xlink:title="Child node iterator (a bidirectional iterator over a collection of Node)">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 160,-21.5 160,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="80" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::XML::NodeIterator</text>
 </a>

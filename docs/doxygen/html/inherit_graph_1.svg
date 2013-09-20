@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 145,-38 145,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="structMezzanine_1_1Audio_1_1ChorusParameters.xhtml" target="_top" xlink:title="This is a struct containing all the parameters needed to describe a Chorus effect.">
+<a xlink:href="structMezzanine_1_1Audio_1_1ChorusParameters.html" target="_top" xlink:title="This is a struct containing all the parameters needed to describe a Chorus effect.">
 <polygon fill="white" stroke="black" points="0,-0 0,-34 140,-34 140,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Chorus</text>
 <text text-anchor="middle" x="70" y="-8" font-family="FreeSans" font-size="10.00">Parameters</text>

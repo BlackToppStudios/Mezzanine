@@ -18,7 +18,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="atomicoperations_8h.xhtml" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically.">
+<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically.">
 <polygon fill="white" stroke="black" points="772,-116.5 772,-137.5 882,-137.5 882,-116.5 772,-116.5"/>
 <text text-anchor="middle" x="827" y="-124.5" font-family="FreeSans" font-size="10.00">atomicoperations.h</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="605,-58.5 605,-79.5 679,-79.5 679,-58.5 605,-58.5"/>
 <text text-anchor="middle" x="642" y="-66.5" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -52,7 +52,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 122,-21.5 122,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="61" y="-8.5" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>
@@ -199,7 +199,7 @@
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="swig_8h.xhtml" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
 <polygon fill="white" stroke="black" points="1010,-0.5 1010,-21.5 1056,-21.5 1056,-0.5 1010,-0.5"/>
 <text text-anchor="middle" x="1033" y="-8.5" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

@@ -1,4 +1,4 @@
 <map id="Mezzanine::Physics::ActorSoftCollisionShape" name="Mezzanine::Physics::ActorSoftCollisionShape">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1MeshCollisionShape.xhtml" title="This is the base class for all Mesh shapes." alt="" coords="17,102,175,149"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="24,6,168,53"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes." alt="" coords="17,102,175,149"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes." alt="" coords="24,6,168,53"/>
 </map>

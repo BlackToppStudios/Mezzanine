@@ -1,4 +1,4 @@
 <map id="Mezzanine::CameraManager" name="Mezzanine::CameraManager">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldManager.xhtml" title="This is the base class for all managers that belong to a single world instance." alt="" coords="15,83,201,112"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="15,5,201,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance." alt="" coords="15,83,201,112"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="15,5,201,35"/>
 </map>

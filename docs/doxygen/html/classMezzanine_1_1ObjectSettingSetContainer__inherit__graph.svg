@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
+<a xlink:href="classMezzanine_1_1ObjectSettingGroup.html" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
 <polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-35 138.5,-35 138.5,-1 -0.5,-1"/>
 <text text-anchor="start" x="7.5" y="-22" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="69" y="-9" font-family="FreeSans" font-size="10.00">Group</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSet.html" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
 <polygon fill="white" stroke="black" points="155.5,-7.5 155.5,-28.5 310.5,-28.5 310.5,-7.5 155.5,-7.5"/>
 <text text-anchor="middle" x="233" y="-15.5" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>

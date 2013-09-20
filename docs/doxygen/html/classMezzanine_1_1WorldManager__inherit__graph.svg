@@ -48,7 +48,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ActorManager.xhtml" target="_top" xlink:title="A manager responsible for the storage and management of all actors that exist in a world...">
+<a xlink:href="classMezzanine_1_1ActorManager.html" target="_top" xlink:title="A manager responsible for the storage and management of all actors that exist in a world...">
 <polygon fill="white" stroke="black" points="367.5,-264.5 367.5,-285.5 508.5,-285.5 508.5,-264.5 367.5,-264.5"/>
 <text text-anchor="middle" x="438" y="-272.5" font-family="FreeSans" font-size="10.00">Mezzanine::ActorManager</text>
 </a>
@@ -60,7 +60,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1AreaEffectManager.xhtml" target="_top" xlink:title="A manager responsible for the storage and management of all areaeffects in use.">
+<a xlink:href="classMezzanine_1_1AreaEffectManager.html" target="_top" xlink:title="A manager responsible for the storage and management of all areaeffects in use.">
 <polygon fill="white" stroke="black" points="355.5,-224.5 355.5,-245.5 520.5,-245.5 520.5,-224.5 355.5,-224.5"/>
 <text text-anchor="middle" x="438" y="-232.5" font-family="FreeSans" font-size="10.00">Mezzanine::AreaEffectManager</text>
 </a>
@@ -72,7 +72,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1SoundScapeManager.xhtml" target="_top" xlink:title="This is the base manager class for audio being played in a 3D environment.">
+<a xlink:href="classMezzanine_1_1Audio_1_1SoundScapeManager.html" target="_top" xlink:title="This is the base manager class for audio being played in a 3D environment.">
 <polygon fill="white" stroke="black" points="354.5,-172 354.5,-206 521.5,-206 521.5,-172 354.5,-172"/>
 <text text-anchor="start" x="362.5" y="-193" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundScape</text>
 <text text-anchor="middle" x="438" y="-180" font-family="FreeSans" font-size="10.00">Manager</text>
@@ -85,7 +85,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1CameraManager.xhtml" target="_top" xlink:title="This is the manager class for all camera functions.">
+<a xlink:href="classMezzanine_1_1CameraManager.html" target="_top" xlink:title="This is the manager class for all camera functions.">
 <polygon fill="white" stroke="black" points="361,-132.5 361,-153.5 515,-153.5 515,-132.5 361,-132.5"/>
 <text text-anchor="middle" x="438" y="-140.5" font-family="FreeSans" font-size="10.00">Mezzanine::CameraManager</text>
 </a>
@@ -97,7 +97,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1PhysicsManager.xhtml" target="_top" xlink:title="This is simply a place for storing all the Physics Related functions.">
+<a xlink:href="classMezzanine_1_1Physics_1_1PhysicsManager.html" target="_top" xlink:title="This is simply a place for storing all the Physics Related functions.">
 <polygon fill="white" stroke="black" points="383.5,-80 383.5,-114 492.5,-114 492.5,-80 383.5,-80"/>
 <text text-anchor="start" x="391.5" y="-101" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="438" y="-88" font-family="FreeSans" font-size="10.00">::PhysicsManager</text>
@@ -110,7 +110,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1SceneManager.xhtml" target="_top" xlink:title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">
+<a xlink:href="classMezzanine_1_1SceneManager.html" target="_top" xlink:title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">
 <polygon fill="white" stroke="black" points="365,-40.5 365,-61.5 511,-61.5 511,-40.5 365,-40.5"/>
 <text text-anchor="middle" x="438" y="-48.5" font-family="FreeSans" font-size="10.00">Mezzanine::SceneManager</text>
 </a>
@@ -122,7 +122,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1TerrainManager.xhtml" target="_top" xlink:title="This is manager for terrains and their functions.">
+<a xlink:href="classMezzanine_1_1TerrainManager.html" target="_top" xlink:title="This is manager for terrains and their functions.">
 <polygon fill="white" stroke="black" points="364.5,-0.5 364.5,-21.5 511.5,-21.5 511.5,-0.5 364.5,-0.5"/>
 <text text-anchor="middle" x="438" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::TerrainManager</text>
 </a>
@@ -134,7 +134,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
 <polygon fill="white" stroke="black" points="0,-132.5 0,-153.5 140,-153.5 140,-132.5 0,-132.5"/>
 <text text-anchor="middle" x="70" y="-140.5" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>

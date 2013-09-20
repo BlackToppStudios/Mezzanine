@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 137,-26 137,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1WorldTrigger.xhtml" target="_top" xlink:title="This is an abstract class for creating in&#45;game triggers.">
+<a xlink:href="classMezzanine_1_1WorldTrigger.html" target="_top" xlink:title="This is an abstract class for creating in&#45;game triggers.">
 <polygon fill="white" stroke="black" points="0.5,-0.5 0.5,-21.5 131.5,-21.5 131.5,-0.5 0.5,-0.5"/>
 <text text-anchor="middle" x="66" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::WorldTrigger</text>
 </a>

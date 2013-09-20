@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1DeSerializer.xhtml" target="_top" xlink:title="Mezzanine::DeSerializer\l\&lt; CollisionShape \&gt;">
+<a xlink:href="classMezzanine_1_1DeSerializer.html" target="_top" xlink:title="Mezzanine::DeSerializer\l\&lt; CollisionShape \&gt;">
 <polygon fill="white" stroke="black" points="9.5,-73 9.5,-107 140.5,-107 140.5,-73 9.5,-73"/>
 <text text-anchor="start" x="17.5" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::DeSerializer</text>
 <text text-anchor="middle" x="75" y="-81" font-family="FreeSans" font-size="10.00">&lt; CollisionShape &gt;</text>

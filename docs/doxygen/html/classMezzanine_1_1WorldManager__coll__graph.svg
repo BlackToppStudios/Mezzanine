@@ -27,7 +27,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
 <polygon fill="white" stroke="black" points="99,-211.5 99,-232.5 239,-232.5 239,-211.5 99,-211.5"/>
 <text text-anchor="middle" x="169" y="-219.5" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -39,7 +39,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
 <polygon fill="white" stroke="black" points="196,-290.5 196,-311.5 308,-311.5 308,-290.5 196,-290.5"/>
 <text text-anchor="middle" x="252" y="-298.5" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -52,7 +52,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
 <polygon fill="white" stroke="black" points="262.5,-205 262.5,-239 381.5,-239 381.5,-205 262.5,-205"/>
 <text text-anchor="start" x="270.5" y="-226" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="322" y="-213" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
@@ -71,7 +71,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1World.xhtml" target="_top" xlink:title="This class represents a world for objects to interact within.">
+<a xlink:href="classMezzanine_1_1World.html" target="_top" xlink:title="This class represents a world for objects to interact within.">
 <polygon fill="white" stroke="black" points="99.5,-0.5 99.5,-21.5 198.5,-21.5 198.5,-0.5 99.5,-0.5"/>
 <text text-anchor="middle" x="149" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::World</text>
 </a>

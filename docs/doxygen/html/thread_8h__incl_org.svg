@@ -18,7 +18,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="systemcalls_8h.xhtml" target="_top" xlink:title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks...">
+<a xlink:href="systemcalls_8h.html" target="_top" xlink:title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks...">
 <polygon fill="white" stroke="black" points="582,-116.5 582,-137.5 664,-137.5 664,-116.5 582,-116.5"/>
 <text text-anchor="middle" x="623" y="-124.5" font-family="FreeSans" font-size="10.00">systemcalls.h</text>
 </a>
@@ -50,7 +50,7 @@
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="mutex_8h.xhtml" target="_top" xlink:title="This file declares and defines a mutex that is a partial implementation.">
+<a xlink:href="mutex_8h.html" target="_top" xlink:title="This file declares and defines a mutex that is a partial implementation.">
 <polygon fill="white" stroke="black" points="709,-174.5 709,-195.5 765,-195.5 765,-174.5 709,-174.5"/>
 <text text-anchor="middle" x="737" y="-182.5" font-family="FreeSans" font-size="10.00">mutex.h</text>
 </a>
@@ -62,7 +62,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="586,-58.5 586,-79.5 660,-79.5 660,-58.5 586,-58.5"/>
 <text text-anchor="middle" x="623" y="-66.5" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -74,7 +74,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="312,-0.5 312,-21.5 434,-21.5 434,-0.5 312,-0.5"/>
 <text text-anchor="middle" x="373" y="-8.5" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>
@@ -216,7 +216,7 @@
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="swig_8h.xhtml" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
 <polygon fill="white" stroke="black" points="248,-0.5 248,-21.5 294,-21.5 294,-0.5 248,-0.5"/>
 <text text-anchor="middle" x="271" y="-8.5" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -233,7 +233,7 @@
 </g>
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
-<a xlink:href="atomicoperations_8h.xhtml" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically.">
+<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically.">
 <polygon fill="white" stroke="black" points="682,-116.5 682,-137.5 792,-137.5 792,-116.5 682,-116.5"/>
 <text text-anchor="middle" x="737" y="-124.5" font-family="FreeSans" font-size="10.00">atomicoperations.h</text>
 </a>

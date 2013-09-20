@@ -17,7 +17,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1MemoryOutOfBoundsException.xhtml" target="_top" xlink:title="Thrown when attempted to access something that really should note be accessed.">
+<a xlink:href="classMezzanine_1_1MemoryOutOfBoundsException.html" target="_top" xlink:title="Thrown when attempted to access something that really should note be accessed.">
 <polygon fill="white" stroke="black" points="0,-1 0,-35 176,-35 176,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-22" font-family="FreeSans" font-size="10.00">Mezzanine::MemoryOutOfBounds</text>
 <text text-anchor="middle" x="88" y="-9" font-family="FreeSans" font-size="10.00">Exception</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1OutOfMemoryException.xhtml" target="_top" xlink:title="Thrown when A memory allocation was attempted and failed.">
+<a xlink:href="classMezzanine_1_1OutOfMemoryException.html" target="_top" xlink:title="Thrown when A memory allocation was attempted and failed.">
 <polygon fill="white" stroke="black" points="193.5,-7.5 193.5,-28.5 380.5,-28.5 380.5,-7.5 193.5,-7.5"/>
 <text text-anchor="middle" x="287" y="-15.5" font-family="FreeSans" font-size="10.00">Mezzanine::OutOfMemoryException</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="127,-144.5 127,-165.5 247,-165.5 247,-144.5 127,-144.5"/>
 <text text-anchor="middle" x="187" y="-152.5" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

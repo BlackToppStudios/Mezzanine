@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ActorBase.xhtml" target="_top" xlink:title="This is the base class from which all the actors inherit.">
+<a xlink:href="classMezzanine_1_1ActorBase.html" target="_top" xlink:title="This is the base class from which all the actors inherit.">
 <polygon fill="white" stroke="black" points="83.5,-58.5 83.5,-79.5 206.5,-79.5 206.5,-58.5 83.5,-58.5"/>
 <text text-anchor="middle" x="145" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::ActorBase</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1NonStaticWorldObject.xhtml" target="_top" xlink:title="This is a small extention of the WorldObject class that adds features common to non&#45;static objects...">
+<a xlink:href="classMezzanine_1_1NonStaticWorldObject.html" target="_top" xlink:title="This is a small extention of the WorldObject class that adds features common to non&#45;static objects...">
 <polygon fill="white" stroke="black" points="72,-117 72,-151 218,-151 218,-117 72,-117"/>
 <text text-anchor="start" x="80" y="-138" font-family="FreeSans" font-size="10.00">Mezzanine::NonStaticWorld</text>
 <text text-anchor="middle" x="145" y="-125" font-family="FreeSans" font-size="10.00">Object</text>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1WorldObject.xhtml" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world.">
+<a xlink:href="classMezzanine_1_1WorldObject.html" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world.">
 <polygon fill="white" stroke="black" points="0,-188.5 0,-209.5 130,-209.5 130,-188.5 0,-188.5"/>
 <text text-anchor="middle" x="65" y="-196.5" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObject</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1AttachableParent.xhtml" target="_top" xlink:title="Base class for objects that can have attachables attached to them.">
+<a xlink:href="classMezzanine_1_1AttachableParent.html" target="_top" xlink:title="Base class for objects that can have attachables attached to them.">
 <polygon fill="white" stroke="black" points="148,-188.5 148,-209.5 304,-209.5 304,-188.5 148,-188.5"/>
 <text text-anchor="middle" x="226" y="-196.5" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableParent</text>
 </a>
@@ -65,7 +65,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1AttachableBase.xhtml" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
+<a xlink:href="classMezzanine_1_1AttachableBase.html" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
 <polygon fill="white" stroke="black" points="151.5,-246.5 151.5,-267.5 300.5,-267.5 300.5,-246.5 151.5,-246.5"/>
 <text text-anchor="middle" x="226" y="-254.5" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableBase</text>
 </a>

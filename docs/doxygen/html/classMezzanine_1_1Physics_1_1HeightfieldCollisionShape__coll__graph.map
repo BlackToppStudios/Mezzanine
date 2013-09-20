@@ -1,6 +1,6 @@
 <map id="Mezzanine::Physics::HeightfieldCollisionShape" name="Mezzanine::Physics::HeightfieldCollisionShape">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1FieldCollisionShape.xhtml" title="This is the base class for all Field shapes." alt="" coords="25,299,175,346"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="28,201,172,247"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1FieldCollisionShape.html" title="This is the base class for all Field shapes." alt="" coords="25,299,175,346"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes." alt="" coords="28,201,172,247"/>
 <area shape="rect" id="node6" title="STL class." alt="" coords="57,104,143,133"/>
 <area shape="rect" id="node8" title="STL class." alt="" coords="32,6,168,53"/>
 </map>

@@ -42,7 +42,10 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
-#include "XML/xml.h"
+
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 class btQuaternion;
 namespace Ogre
@@ -409,6 +412,7 @@ Mezzanine::Quaternion MEZZ_LIB operator- (const btQuaternion& Other, const Mezza
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
+#ifndef SWIG
 /// @brief Conversion operator to btQuaternion.
 /// @param Other The Quaternion to store the fresh contents.
 /// @param Other2 The Quaternion to be converted.
@@ -472,5 +476,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Quaternion&
 /// @return This returns a reference to the XML::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Quaternion& Vec);
+#endif // \ SWIG
+
 
 #endif

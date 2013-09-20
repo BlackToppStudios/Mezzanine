@@ -1,5 +1,5 @@
 <map id="Mezzanine::Resource::FileStream" name="Mezzanine::Resource::FileStream">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Resource_1_1DataStream.xhtml" title="This represents a stream to a piece of data, usually a file." alt="" coords="5,462,160,509"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Resource_1_1DataStream.html" title="This represents a stream to a piece of data, usually a file." alt="" coords="5,462,160,509"/>
 <area shape="rect" id="node4" title="STL class." alt="" coords="184,471,283,500"/>
 <area shape="rect" id="node6" title="STL class." alt="" coords="164,363,303,410"/>
 <area shape="rect" id="node8" title="STL class." alt="" coords="160,265,307,311"/>

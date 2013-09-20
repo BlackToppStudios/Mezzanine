@@ -16,7 +16,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1MeshTerrain.xhtml" target="_top" xlink:title="Mezzanine::MeshTerrain">
+<a xlink:href="classMezzanine_1_1MeshTerrain.html" target="_top" xlink:title="Mezzanine::MeshTerrain">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 130,-21.5 130,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="65" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::MeshTerrain</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1WorldObject.xhtml" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world.">
+<a xlink:href="classMezzanine_1_1WorldObject.html" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world.">
 <polygon fill="white" stroke="black" points="0,-116.5 0,-137.5 130,-137.5 130,-116.5 0,-116.5"/>
 <text text-anchor="middle" x="65" y="-124.5" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObject</text>
 </a>

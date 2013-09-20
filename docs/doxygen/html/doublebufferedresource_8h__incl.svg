@@ -50,7 +50,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="626,-58.5 626,-79.5 700,-79.5 700,-58.5 626,-58.5"/>
 <text text-anchor="middle" x="663" y="-66.5" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -92,7 +92,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="352,-0.5 352,-21.5 474,-21.5 474,-0.5 352,-0.5"/>
 <text text-anchor="middle" x="413" y="-8.5" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>
@@ -229,7 +229,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node18 -->
 <g id="node35" class="node"><title>Node18</title>
-<a xlink:href="swig_8h.xhtml" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
 <polygon fill="white" stroke="black" points="288,-0.5 288,-21.5 334,-21.5 334,-0.5 288,-0.5"/>
 <text text-anchor="middle" x="311" y="-8.5" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

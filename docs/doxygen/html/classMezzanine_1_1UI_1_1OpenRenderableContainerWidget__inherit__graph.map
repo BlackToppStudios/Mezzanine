@@ -1,5 +1,5 @@
 <map id="Mezzanine::UI::OpenRenderableContainerWidget" name="Mezzanine::UI::OpenRenderableContainerWidget">
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1RenderableContainerWidget.xhtml" title="This is an interface class for the two types of Renderable Container Widgets." alt="" coords="23,161,212,207"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Widget.xhtml" title="This class is the base class for all widgets." alt="" coords="37,83,197,112"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Renderable.xhtml" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="23,5,212,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1RenderableContainerWidget.html" title="This is an interface class for the two types of Renderable Container Widgets." alt="" coords="23,161,212,207"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets." alt="" coords="37,83,197,112"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="23,5,212,35"/>
 </map>

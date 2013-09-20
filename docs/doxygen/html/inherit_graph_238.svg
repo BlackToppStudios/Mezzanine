@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 159,-26 159,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="structMezzanine_1_1XML_1_1ParseResult.xhtml" target="_top" xlink:title="Troubleshooting data intended to help troublshoot XML parsing errors.">
+<a xlink:href="structMezzanine_1_1XML_1_1ParseResult.html" target="_top" xlink:title="Troubleshooting data intended to help troublshoot XML parsing errors.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 154,-21.5 154,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="77" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::XML::ParseResult</text>
 </a>

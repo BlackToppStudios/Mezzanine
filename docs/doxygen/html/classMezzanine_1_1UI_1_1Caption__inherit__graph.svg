@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Rectangle.xhtml" target="_top" xlink:title="This class is a helper class, specifically for use with background sprites and colours.">
+<a xlink:href="classMezzanine_1_1UI_1_1Rectangle.html" target="_top" xlink:title="This class is a helper class, specifically for use with background sprites and colours.">
 <polygon fill="white" stroke="black" points="16,-58.5 16,-79.5 152,-79.5 152,-58.5 16,-58.5"/>
 <text text-anchor="middle" x="84" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Rectangle</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1AreaRenderable.xhtml" target="_top" xlink:title="This class defines a renderable that covers an area, such as a rectangle or circle.">
+<a xlink:href="classMezzanine_1_1UI_1_1AreaRenderable.html" target="_top" xlink:title="This class defines a renderable that covers an area, such as a rectangle or circle.">
 <polygon fill="white" stroke="black" points="1.5,-116.5 1.5,-137.5 166.5,-137.5 166.5,-116.5 1.5,-116.5"/>
 <text text-anchor="middle" x="84" y="-124.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::AreaRenderable</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1BasicRenderable.xhtml" target="_top" xlink:title="Base class for renderables that generate verticies.">
+<a xlink:href="classMezzanine_1_1UI_1_1BasicRenderable.html" target="_top" xlink:title="Base class for renderables that generate verticies.">
 <polygon fill="white" stroke="black" points="0,-174.5 0,-195.5 168,-195.5 168,-174.5 0,-174.5"/>
 <text text-anchor="middle" x="84" y="-182.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::BasicRenderable</text>
 </a>
@@ -52,7 +52,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
+<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
 <polygon fill="white" stroke="black" points="12.5,-232.5 12.5,-253.5 155.5,-253.5 155.5,-232.5 12.5,-232.5"/>
 <text text-anchor="middle" x="84" y="-240.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>

@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 115,-26 115,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 110,-21.5 110,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="55" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>

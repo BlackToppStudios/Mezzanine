@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1IOException.xhtml" target="_top" xlink:title="Thrown when there was an issue with IO but very little was known about it.">
+<a xlink:href="classMezzanine_1_1IOException.html" target="_top" xlink:title="Thrown when there was an issue with IO but very little was known about it.">
 <polygon fill="white" stroke="black" points="2,-58.5 2,-79.5 132,-79.5 132,-58.5 2,-58.5"/>
 <text text-anchor="middle" x="67" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::IOException</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="7,-116.5 7,-137.5 127,-137.5 127,-116.5 7,-116.5"/>
 <text text-anchor="middle" x="67" y="-124.5" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

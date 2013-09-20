@@ -1,4 +1,4 @@
 <map id="Mezzanine::UI::RadioButton" name="Mezzanine::UI::RadioButton">
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1Widget.xhtml" title="This class is the base class for all widgets." alt="" coords="24,83,184,112"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Renderable.xhtml" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="9,5,199,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets." alt="" coords="24,83,184,112"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="9,5,199,35"/>
 </map>

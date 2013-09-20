@@ -17,7 +17,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1InstanceIdentityDuplicateException.xhtml" target="_top" xlink:title="Thrown when duplicates of teh same identity string exist.">
+<a xlink:href="classMezzanine_1_1InstanceIdentityDuplicateException.html" target="_top" xlink:title="Thrown when duplicates of teh same identity string exist.">
 <polygon fill="white" stroke="black" points="462.5,-104 462.5,-138 611.5,-138 611.5,-104 462.5,-104"/>
 <text text-anchor="start" x="470.5" y="-125" font-family="FreeSans" font-size="10.00">Mezzanine::InstanceIdentity</text>
 <text text-anchor="middle" x="537" y="-112" font-family="FreeSans" font-size="10.00">DuplicateException</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1InstanceIdentityInvalidException.xhtml" target="_top" xlink:title="Thrown when the identity string wasn&#39;t valid at all.">
+<a xlink:href="classMezzanine_1_1InstanceIdentityInvalidException.html" target="_top" xlink:title="Thrown when the identity string wasn&#39;t valid at all.">
 <polygon fill="white" stroke="black" points="462.5,-52 462.5,-86 611.5,-86 611.5,-52 462.5,-52"/>
 <text text-anchor="start" x="470.5" y="-73" font-family="FreeSans" font-size="10.00">Mezzanine::InstanceIdentity</text>
 <text text-anchor="middle" x="537" y="-60" font-family="FreeSans" font-size="10.00">InvalidException</text>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1InstanceIdentityNotFoundException.xhtml" target="_top" xlink:title="Thrown when the requested identity could not be found.">
+<a xlink:href="classMezzanine_1_1InstanceIdentityNotFoundException.html" target="_top" xlink:title="Thrown when the requested identity could not be found.">
 <polygon fill="white" stroke="black" points="462.5,-0 462.5,-34 611.5,-34 611.5,-0 462.5,-0"/>
 <text text-anchor="start" x="470.5" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::InstanceIdentity</text>
 <text text-anchor="middle" x="537" y="-8" font-family="FreeSans" font-size="10.00">NotFoundException</text>
@@ -56,7 +56,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="120,-58.5 120,-79.5 240,-79.5 240,-58.5 120,-58.5"/>
 <text text-anchor="middle" x="180" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 173,-26 173,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml" target="_top" xlink:title="A fixed sized collection of nodes that an XPathQuery can work on.">
+<a xlink:href="classMezzanine_1_1XML_1_1XPathNodeSet.html" target="_top" xlink:title="A fixed sized collection of nodes that an XPathQuery can work on.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 168,-21.5 168,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="84" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::XML::XPathNodeSet</text>
 </a>

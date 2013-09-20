@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1InstanceIdentityException.xhtml" target="_top" xlink:title="Thrown when an unknown error with using an Identifier and it is invalid.">
+<a xlink:href="classMezzanine_1_1InstanceIdentityException.html" target="_top" xlink:title="Thrown when an unknown error with using an Identifier and it is invalid.">
 <polygon fill="white" stroke="black" points="-0.5,-73 -0.5,-107 148.5,-107 148.5,-73 -0.5,-73"/>
 <text text-anchor="start" x="7.5" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::InstanceIdentity</text>
 <text text-anchor="middle" x="74" y="-81" font-family="FreeSans" font-size="10.00">Exception</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="14,-144.5 14,-165.5 134,-165.5 134,-144.5 14,-144.5"/>
 <text text-anchor="middle" x="74" y="-152.5" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

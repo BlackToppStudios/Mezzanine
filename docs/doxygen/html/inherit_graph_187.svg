@@ -11,14 +11,14 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-86 475,-86 475,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Timer.xhtml" target="_top" xlink:title="A base timer class for the different timers.">
+<a xlink:href="classMezzanine_1_1Timer.html" target="_top" xlink:title="A base timer class for the different timers.">
 <polygon fill="white" stroke="black" points="0,-40.5 0,-61.5 100,-61.5 100,-40.5 0,-40.5"/>
 <text text-anchor="middle" x="50" y="-48.5" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ExtendedTimer.xhtml" target="_top" xlink:title="An enhanced timer class that can store and track many units of time.">
+<a xlink:href="classMezzanine_1_1ExtendedTimer.html" target="_top" xlink:title="An enhanced timer class that can store and track many units of time.">
 <polygon fill="white" stroke="black" points="136.5,-60.5 136.5,-81.5 281.5,-81.5 281.5,-60.5 136.5,-60.5"/>
 <text text-anchor="middle" x="209" y="-68.5" font-family="FreeSans" font-size="10.00">Mezzanine::ExtendedTimer</text>
 </a>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1GoalTimer.xhtml" target="_top" xlink:title="This is the base class for timers intended to run only until they reach a specific goal...">
+<a xlink:href="classMezzanine_1_1GoalTimer.html" target="_top" xlink:title="This is the base class for timers intended to run only until they reach a specific goal...">
 <polygon fill="white" stroke="black" points="148,-20.5 148,-41.5 270,-41.5 270,-20.5 148,-20.5"/>
 <text text-anchor="middle" x="209" y="-28.5" font-family="FreeSans" font-size="10.00">Mezzanine::GoalTimer</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1AlarmTimer.xhtml" target="_top" xlink:title="This is a timer class that increments normally to a specified time.">
+<a xlink:href="classMezzanine_1_1AlarmTimer.html" target="_top" xlink:title="This is a timer class that increments normally to a specified time.">
 <polygon fill="white" stroke="black" points="329.5,-40.5 329.5,-61.5 458.5,-61.5 458.5,-40.5 329.5,-40.5"/>
 <text text-anchor="middle" x="394" y="-48.5" font-family="FreeSans" font-size="10.00">Mezzanine::AlarmTimer</text>
 </a>
@@ -54,7 +54,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1StopWatchTimer.xhtml" target="_top" xlink:title="This is a timer class for counting down to a specified time.">
+<a xlink:href="classMezzanine_1_1StopWatchTimer.html" target="_top" xlink:title="This is a timer class for counting down to a specified time.">
 <polygon fill="white" stroke="black" points="318.5,-0.5 318.5,-21.5 469.5,-21.5 469.5,-0.5 318.5,-0.5"/>
 <text text-anchor="middle" x="394" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::StopWatchTimer</text>
 </a>

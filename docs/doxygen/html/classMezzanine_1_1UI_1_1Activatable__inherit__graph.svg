@@ -16,7 +16,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Button.xhtml" target="_top" xlink:title="This class is a helper class, specifically for use as a button.">
+<a xlink:href="classMezzanine_1_1UI_1_1Button.html" target="_top" xlink:title="This class is a helper class, specifically for use as a button.">
 <polygon fill="white" stroke="black" points="10,-0.5 10,-21.5 132,-21.5 132,-0.5 10,-0.5"/>
 <text text-anchor="middle" x="71" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Button</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Widget.xhtml" target="_top" xlink:title="This class is the base class for all widgets.">
+<a xlink:href="classMezzanine_1_1UI_1_1Widget.html" target="_top" xlink:title="This class is the base class for all widgets.">
 <polygon fill="white" stroke="black" points="10.5,-116.5 10.5,-137.5 131.5,-137.5 131.5,-116.5 10.5,-116.5"/>
 <text text-anchor="middle" x="71" y="-124.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
+<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
 <polygon fill="white" stroke="black" points="-0.5,-174.5 -0.5,-195.5 142.5,-195.5 142.5,-174.5 -0.5,-174.5"/>
 <text text-anchor="middle" x="71" y="-182.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>

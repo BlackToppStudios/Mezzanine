@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 127,-38 127,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1lock__guard.xhtml" target="_top" xlink:title="Lock guard class.">
+<a xlink:href="classMezzanine_1_1Threading_1_1lock__guard.html" target="_top" xlink:title="Lock guard class.">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-34 121.5,-34 121.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="61" y="-8" font-family="FreeSans" font-size="10.00">::lock_guard&lt; T &gt;</text>

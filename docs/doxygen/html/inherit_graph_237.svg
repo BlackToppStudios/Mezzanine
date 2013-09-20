@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-38 165,-38 165,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1XML_1_1ObjectRange.xhtml" target="_top" xlink:title="Used by the xml system to pass around iterable ranges.">
+<a xlink:href="classMezzanine_1_1XML_1_1ObjectRange.html" target="_top" xlink:title="Used by the xml system to pass around iterable ranges.">
 <polygon fill="white" stroke="black" points="0,-0 0,-34 160,-34 160,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::XML::ObjectRange</text>
 <text text-anchor="middle" x="80" y="-8" font-family="FreeSans" font-size="10.00">&lt; It &gt;</text>

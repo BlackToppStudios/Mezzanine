@@ -10,21 +10,21 @@
 <title>/home/Code/Mezzanine/Mezzanine/src/Scripting</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-149 95,-149 95,5 -4,5"/>
 <g id="graph2" class="cluster"><title>clusterdir_2b71fc9949116feedacddb93a79d832d</title>
-<a xlink:href="dir_2b71fc9949116feedacddb93a79d832d.xhtml" target="_top" xlink:title="src">
+<a xlink:href="dir_2b71fc9949116feedacddb93a79d832d.html" target="_top" xlink:title="src">
 <polygon fill="#ddddee" stroke="black" points="8,-64 8,-137 82,-137 82,-64 8,-64"/>
 <text text-anchor="middle" x="45" y="-124" font-family="FreeSans" font-size="10.00">src</text>
 </a>
 </g>
 <!-- dir_fb3d9e8b38dbe08c44b94cf1670df83d -->
 <g id="node2" class="node"><title>dir_fb3d9e8b38dbe08c44b94cf1670df83d</title>
-<a xlink:href="dir_fb3d9e8b38dbe08c44b94cf1670df83d.xhtml" target="_top" xlink:title="Scripting">
+<a xlink:href="dir_fb3d9e8b38dbe08c44b94cf1670df83d.html" target="_top" xlink:title="Scripting">
 <polygon fill="#eeeeff" stroke="black" points="74,-108 16,-108 16,-72 74,-72 74,-108"/>
 <text text-anchor="middle" x="45" y="-87.5" font-family="FreeSans" font-size="10.00">Scripting</text>
 </a>
 </g>
 <!-- dir_0a62840f9a5d42526b8d2f414eb5925f -->
 <g id="node3" class="node"><title>dir_0a62840f9a5d42526b8d2f414eb5925f</title>
-<a xlink:href="dir_0a62840f9a5d42526b8d2f414eb5925f.xhtml" target="_top" xlink:title="Threading">
+<a xlink:href="dir_0a62840f9a5d42526b8d2f414eb5925f.html" target="_top" xlink:title="Threading">
 <polygon fill="none" stroke="black" points="77,-36 13,-36 13,-1.77636e-14 77,-3.55271e-15 77,-36"/>
 <text text-anchor="middle" x="45" y="-15.5" font-family="FreeSans" font-size="10.00">Threading</text>
 </a>
@@ -33,7 +33,7 @@
 <g id="edge3" class="edge"><title>dir_fb3d9e8b38dbe08c44b94cf1670df83d&#45;&gt;dir_0a62840f9a5d42526b8d2f414eb5925f</title>
 <path fill="none" stroke="black" d="M45,-71.8314C45,-64.131 45,-54.9743 45,-46.4166"/>
 <polygon fill="black" stroke="black" points="48.5001,-46.4132 45,-36.4133 41.5001,-46.4133 48.5001,-46.4132"/>
-<a xlink:href="dir_000008_000009.xhtml" target="_top" xlink:title="1">
+<a xlink:href="dir_000008_000009.html" target="_top" xlink:title="1">
 <text text-anchor="middle" x="51.3393" y="-47.5079" font-family="FreeSans" font-size="10.00">1</text>
 </a>
 </g>

@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ScriptException.xhtml" target="_top" xlink:title="Thrown when an unknown error happens with a script.">
+<a xlink:href="classMezzanine_1_1ScriptException.html" target="_top" xlink:title="Thrown when an unknown error happens with a script.">
 <polygon fill="white" stroke="black" points="8,-58.5 8,-79.5 156,-79.5 156,-58.5 8,-58.5"/>
 <text text-anchor="middle" x="82" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::ScriptException</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="22,-116.5 22,-137.5 142,-137.5 142,-116.5 22,-116.5"/>
 <text text-anchor="middle" x="82" y="-124.5" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

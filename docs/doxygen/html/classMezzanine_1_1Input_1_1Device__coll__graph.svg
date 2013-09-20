@@ -48,7 +48,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Input_1_1SequenceContainer.xhtml" target="_top" xlink:title="This class stores and provides utilities for sequenced inputs and their operations.">
+<a xlink:href="classMezzanine_1_1Input_1_1SequenceContainer.html" target="_top" xlink:title="This class stores and provides utilities for sequenced inputs and their operations.">
 <polygon fill="white" stroke="black" points="666,-46 666,-80 818,-80 818,-46 666,-46"/>
 <text text-anchor="start" x="674" y="-67" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Sequence</text>
 <text text-anchor="middle" x="742" y="-54" font-family="FreeSans" font-size="10.00">Container</text>
@@ -62,7 +62,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Trie.xhtml" target="_top" xlink:title="Mezzanine::Trie\&lt; Input\l::MetaCode, Int32 \&gt;">
+<a xlink:href="classMezzanine_1_1Trie.html" target="_top" xlink:title="Mezzanine::Trie\&lt; Input\l::MetaCode, Int32 \&gt;">
 <polygon fill="white" stroke="black" points="389.5,-92 389.5,-126 514.5,-126 514.5,-92 389.5,-92"/>
 <text text-anchor="start" x="397.5" y="-113" font-family="FreeSans" font-size="10.00">Mezzanine::Trie&lt; Input</text>
 <text text-anchor="middle" x="452" y="-100" font-family="FreeSans" font-size="10.00">::MetaCode, Int32 &gt;</text>
@@ -76,7 +76,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1StopWatchTimer.xhtml" target="_top" xlink:title="This is a timer class for counting down to a specified time.">
+<a xlink:href="classMezzanine_1_1StopWatchTimer.html" target="_top" xlink:title="This is a timer class for counting down to a specified time.">
 <polygon fill="white" stroke="black" points="376.5,-52.5 376.5,-73.5 527.5,-73.5 527.5,-52.5 376.5,-52.5"/>
 <text text-anchor="middle" x="452" y="-60.5" font-family="FreeSans" font-size="10.00">Mezzanine::StopWatchTimer</text>
 </a>
@@ -89,7 +89,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1GoalTimer.xhtml" target="_top" xlink:title="This is the base class for timers intended to run only until they reach a specific goal...">
+<a xlink:href="classMezzanine_1_1GoalTimer.html" target="_top" xlink:title="This is the base class for timers intended to run only until they reach a specific goal...">
 <polygon fill="white" stroke="black" points="153,-52.5 153,-73.5 275,-73.5 275,-52.5 153,-52.5"/>
 <text text-anchor="middle" x="214" y="-60.5" font-family="FreeSans" font-size="10.00">Mezzanine::GoalTimer</text>
 </a>
@@ -101,7 +101,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Timer.xhtml" target="_top" xlink:title="A base timer class for the different timers.">
+<a xlink:href="classMezzanine_1_1Timer.html" target="_top" xlink:title="A base timer class for the different timers.">
 <polygon fill="white" stroke="black" points="0,-52.5 0,-73.5 100,-73.5 100,-52.5 0,-52.5"/>
 <text text-anchor="middle" x="50" y="-60.5" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>
@@ -125,7 +125,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1Input_1_1MetaCode.xhtml" target="_top" xlink:title="This Determines the kind of user input.">
+<a xlink:href="classMezzanine_1_1Input_1_1MetaCode.html" target="_top" xlink:title="This Determines the kind of user input.">
 <polygon fill="white" stroke="black" points="138,-6.5 138,-27.5 290,-27.5 290,-6.5 138,-6.5"/>
 <text text-anchor="middle" x="214" y="-14.5" font-family="FreeSans" font-size="10.00">Mezzanine::Input::MetaCode</text>
 </a>

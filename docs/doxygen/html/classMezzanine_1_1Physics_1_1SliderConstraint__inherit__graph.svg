@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1DualTransformConstraint.xhtml" target="_top" xlink:title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">
+<a xlink:href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html" target="_top" xlink:title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">
 <polygon fill="white" stroke="black" points="-0.5,-73 -0.5,-107 140.5,-107 140.5,-73 -0.5,-73"/>
 <text text-anchor="start" x="7.5" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="70" y="-81" font-family="FreeSans" font-size="10.00">::DualTransformConstraint</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.xhtml" target="_top" xlink:title="This is the base class for all constraints supported.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.html" target="_top" xlink:title="This is the base class for all constraints supported.">
 <polygon fill="white" stroke="black" points="15.5,-145 15.5,-179 124.5,-179 124.5,-145 15.5,-145"/>
 <text text-anchor="start" x="23.5" y="-166" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="70" y="-153" font-family="FreeSans" font-size="10.00">::Constraint</text>

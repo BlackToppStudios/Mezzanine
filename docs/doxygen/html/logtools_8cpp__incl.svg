@@ -50,7 +50,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="logtools_8h.xhtml" target="_top" xlink:title="The definitions of the logging tools.">
+<a xlink:href="logtools_8h.html" target="_top" xlink:title="The definitions of the logging tools.">
 <polygon fill="white" stroke="black" points="673.5,-174.5 673.5,-195.5 736.5,-195.5 736.5,-174.5 673.5,-174.5"/>
 <text text-anchor="middle" x="705" y="-182.5" font-family="FreeSans" font-size="10.00">logtools.h</text>
 </a>
@@ -62,7 +62,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="599,-58.5 599,-79.5 673,-79.5 673,-58.5 599,-58.5"/>
 <text text-anchor="middle" x="636" y="-66.5" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -84,7 +84,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="systemcalls_8h.xhtml" target="_top" xlink:title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks...">
+<a xlink:href="systemcalls_8h.html" target="_top" xlink:title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks...">
 <polygon fill="white" stroke="black" points="664,-116.5 664,-137.5 746,-137.5 746,-116.5 664,-116.5"/>
 <text text-anchor="middle" x="705" y="-124.5" font-family="FreeSans" font-size="10.00">systemcalls.h</text>
 </a>
@@ -96,7 +96,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 122,-21.5 122,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="61" y="-8.5" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>
@@ -243,7 +243,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="swig_8h.xhtml" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
 <polygon fill="white" stroke="black" points="998,-0.5 998,-21.5 1044,-21.5 1044,-0.5 998,-0.5"/>
 <text text-anchor="middle" x="1021" y="-8.5" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

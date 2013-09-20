@@ -1,5 +1,5 @@
 <map id="/home/Code/Mezzanine/Mezzanine/src/boilerplate.h" name="/home/Code/Mezzanine/Mezzanine/src/boilerplate.h">
-<area shape="rect" id="node3" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="764,101,863,131"/>
-<area shape="rect" id="node5" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,179,168,208"/>
-<area shape="rect" id="node35" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1435,179,1496,208"/>
+<area shape="rect" id="node3" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="764,101,863,131"/>
+<area shape="rect" id="node5" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,179,168,208"/>
+<area shape="rect" id="node35" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1435,179,1496,208"/>
 </map>

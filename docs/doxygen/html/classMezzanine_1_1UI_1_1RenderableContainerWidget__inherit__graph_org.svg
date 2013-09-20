@@ -17,7 +17,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1EnclosedRenderableContainerWidget.xhtml" target="_top" xlink:title="This is an abstract class for the creation and storage of widgets to be used by other classes...">
+<a xlink:href="classMezzanine_1_1UI_1_1EnclosedRenderableContainerWidget.html" target="_top" xlink:title="This is an abstract class for the creation and storage of widgets to be used by other classes...">
 <polygon fill="white" stroke="black" points="518,-52 518,-86 704,-86 704,-52 518,-52"/>
 <text text-anchor="start" x="526" y="-73" font-family="FreeSans" font-size="10.00">Mezzanine::UI::EnclosedRenderable</text>
 <text text-anchor="middle" x="611" y="-60" font-family="FreeSans" font-size="10.00">ContainerWidget</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1UI_1_1OpenRenderableContainerWidget.xhtml" target="_top" xlink:title="Mezzanine::UI::OpenRenderable\lContainerWidget">
+<a xlink:href="classMezzanine_1_1UI_1_1OpenRenderableContainerWidget.html" target="_top" xlink:title="Mezzanine::UI::OpenRenderable\lContainerWidget">
 <polygon fill="white" stroke="black" points="527,-0 527,-34 695,-34 695,-0 527,-0"/>
 <text text-anchor="start" x="535" y="-21" font-family="FreeSans" font-size="10.00">Mezzanine::UI::OpenRenderable</text>
 <text text-anchor="middle" x="611" y="-8" font-family="FreeSans" font-size="10.00">ContainerWidget</text>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Widget.xhtml" target="_top" xlink:title="This class is the base class for all widgets.">
+<a xlink:href="classMezzanine_1_1UI_1_1Widget.html" target="_top" xlink:title="This class is the base class for all widgets.">
 <polygon fill="white" stroke="black" points="180.5,-32.5 180.5,-53.5 301.5,-53.5 301.5,-32.5 180.5,-32.5"/>
 <text text-anchor="middle" x="241" y="-40.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
@@ -55,7 +55,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
+<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
 <polygon fill="white" stroke="black" points="0.5,-32.5 0.5,-53.5 143.5,-53.5 143.5,-32.5 0.5,-32.5"/>
 <text text-anchor="middle" x="72" y="-40.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
@@ -67,7 +67,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Window.xhtml" target="_top" xlink:title="This is a container widget capable of holding any other widget.">
+<a xlink:href="classMezzanine_1_1UI_1_1Window.html" target="_top" xlink:title="This is a container widget capable of holding any other widget.">
 <polygon fill="white" stroke="black" points="740,-58.5 740,-79.5 864,-79.5 864,-58.5 740,-58.5"/>
 <text text-anchor="middle" x="802" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Window</text>
 </a>
@@ -79,7 +79,7 @@
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1UI_1_1MenuWindow.xhtml" target="_top" xlink:title="This class is an extended version of the window class for use exclusively with the menu widget...">
+<a xlink:href="classMezzanine_1_1UI_1_1MenuWindow.html" target="_top" xlink:title="This class is an extended version of the window class for use exclusively with the menu widget...">
 <polygon fill="white" stroke="black" points="900.5,-58.5 900.5,-79.5 1051.5,-79.5 1051.5,-58.5 900.5,-58.5"/>
 <text text-anchor="middle" x="976" y="-66.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MenuWindow</text>
 </a>

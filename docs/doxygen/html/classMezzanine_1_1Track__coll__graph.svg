@@ -27,7 +27,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Vector3.xhtml" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
+<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
 <polygon fill="white" stroke="black" points="8,-144.5 8,-165.5 118,-165.5 118,-144.5 8,-144.5"/>
 <text text-anchor="middle" x="63" y="-152.5" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>

@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1XML_1_1Document.xhtml" target="_top" xlink:title="The root node of any xml hierarchy is a Document.">
+<a xlink:href="classMezzanine_1_1XML_1_1Document.html" target="_top" xlink:title="The root node of any xml hierarchy is a Document.">
 <polygon fill="white" stroke="black" points="-0.5,-0.5 -0.5,-21.5 148.5,-21.5 148.5,-0.5 -0.5,-0.5"/>
 <text text-anchor="middle" x="74" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::XML::Document</text>
 </a>

@@ -39,7 +39,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="structMezzanine_1_1Internal_1_1LineVertex.xhtml" target="_top" xlink:title="A small declaration of what our vertexs look like for when we write to the buffers.">
+<a xlink:href="structMezzanine_1_1Internal_1_1LineVertex.html" target="_top" xlink:title="A small declaration of what our vertexs look like for when we write to the buffers.">
 <polygon fill="white" stroke="black" points="160.5,-173 160.5,-207 269.5,-207 269.5,-173 160.5,-173"/>
 <text text-anchor="start" x="168.5" y="-194" font-family="FreeSans" font-size="10.00">Mezzanine::Internal</text>
 <text text-anchor="middle" x="215" y="-181" font-family="FreeSans" font-size="10.00">::LineVertex</text>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
+<a xlink:href="classMezzanine_1_1ColourValue.html" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
 <polygon fill="white" stroke="black" points="81,-258.5 81,-279.5 211,-279.5 211,-258.5 81,-258.5"/>
 <text text-anchor="middle" x="146" y="-266.5" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>
@@ -66,7 +66,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Vector3.xhtml" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
+<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
 <polygon fill="white" stroke="black" points="229,-258.5 229,-279.5 339,-279.5 339,-258.5 229,-258.5"/>
 <text text-anchor="middle" x="284" y="-266.5" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>

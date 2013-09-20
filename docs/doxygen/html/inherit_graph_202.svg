@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-26 147,-26 147,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.xhtml" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
+<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.html" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-21.5 142,-21.5 142,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="71" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>

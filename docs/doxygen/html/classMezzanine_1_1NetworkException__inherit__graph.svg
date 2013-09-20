@@ -48,7 +48,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1NetworkNotFoundException.xhtml" target="_top" xlink:title="Thrown when no network connection is available.">
+<a xlink:href="classMezzanine_1_1NetworkNotFoundException.html" target="_top" xlink:title="Thrown when no network connection is available.">
 <polygon fill="white" stroke="black" points="649.5,-172 649.5,-206 808.5,-206 808.5,-172 649.5,-172"/>
 <text text-anchor="start" x="657.5" y="-193" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkNotFound</text>
 <text text-anchor="middle" x="729" y="-180" font-family="FreeSans" font-size="10.00">Exception</text>
@@ -61,7 +61,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1NetworkPermissionException.xhtml" target="_top" xlink:title="Thrown when permision was denied to a network interface or network resource.">
+<a xlink:href="classMezzanine_1_1NetworkPermissionException.html" target="_top" xlink:title="Thrown when permision was denied to a network interface or network resource.">
 <polygon fill="white" stroke="black" points="647,-120 647,-154 811,-154 811,-120 647,-120"/>
 <text text-anchor="start" x="655" y="-141" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkPermission</text>
 <text text-anchor="middle" x="729" y="-128" font-family="FreeSans" font-size="10.00">Exception</text>
@@ -74,7 +74,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1NetworkReadException.xhtml" target="_top" xlink:title="Thrown when data could not be read from the network (downloads).">
+<a xlink:href="classMezzanine_1_1NetworkReadException.html" target="_top" xlink:title="Thrown when data could not be read from the network (downloads).">
 <polygon fill="white" stroke="black" points="638,-80.5 638,-101.5 820,-101.5 820,-80.5 638,-80.5"/>
 <text text-anchor="middle" x="729" y="-88.5" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkReadException</text>
 </a>
@@ -86,7 +86,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1NetworkURLException.xhtml" target="_top" xlink:title="Thrown when an address is invalid or could not be found.">
+<a xlink:href="classMezzanine_1_1NetworkURLException.html" target="_top" xlink:title="Thrown when an address is invalid or could not be found.">
 <polygon fill="white" stroke="black" points="640,-40.5 640,-61.5 818,-61.5 818,-40.5 640,-40.5"/>
 <text text-anchor="middle" x="729" y="-48.5" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkURLException</text>
 </a>
@@ -98,7 +98,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1NetworkWriteException.xhtml" target="_top" xlink:title="Thrown when data could not be read from the network (iloads).">
+<a xlink:href="classMezzanine_1_1NetworkWriteException.html" target="_top" xlink:title="Thrown when data could not be read from the network (iloads).">
 <polygon fill="white" stroke="black" points="638,-0.5 638,-21.5 820,-21.5 820,-0.5 638,-0.5"/>
 <text text-anchor="middle" x="729" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::NetworkWriteException</text>
 </a>
@@ -110,7 +110,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1IOException.xhtml" target="_top" xlink:title="Thrown when there was an issue with IO but very little was known about it.">
+<a xlink:href="classMezzanine_1_1IOException.html" target="_top" xlink:title="Thrown when there was an issue with IO but very little was known about it.">
 <polygon fill="white" stroke="black" points="276,-80.5 276,-101.5 406,-101.5 406,-80.5 276,-80.5"/>
 <text text-anchor="middle" x="341" y="-88.5" font-family="FreeSans" font-size="10.00">Mezzanine::IOException</text>
 </a>
@@ -122,7 +122,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="120,-80.5 120,-101.5 240,-101.5 240,-80.5 120,-80.5"/>
 <text text-anchor="middle" x="180" y="-88.5" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerFactory.xhtml" target="_top" xlink:title="This is a base class for factories that construct the managers the engine uses.">
+<a xlink:href="classMezzanine_1_1ManagerFactory.html" target="_top" xlink:title="This is a base class for factories that construct the managers the engine uses.">
 <polygon fill="white" stroke="black" points="3,-72.5 3,-93.5 153,-93.5 153,-72.5 3,-72.5"/>
 <text text-anchor="middle" x="78" y="-80.5" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerFactory</text>
 </a>

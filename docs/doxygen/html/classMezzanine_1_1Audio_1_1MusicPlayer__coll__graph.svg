@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1Playlist.xhtml" target="_top" xlink:title="This class is a list of sounds with common playlist features.">
+<a xlink:href="classMezzanine_1_1Audio_1_1Playlist.html" target="_top" xlink:title="This class is a list of sounds with common playlist features.">
 <polygon fill="white" stroke="black" points="4,-72.5 4,-93.5 144,-93.5 144,-72.5 4,-72.5"/>
 <text text-anchor="middle" x="74" y="-80.5" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Playlist</text>
 </a>
@@ -52,7 +52,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1iSound.xhtml" target="_top" xlink:title="This is an interface class for a non&#45;spacialized sound.">
+<a xlink:href="classMezzanine_1_1Audio_1_1iSound.html" target="_top" xlink:title="This is an interface class for a non&#45;spacialized sound.">
 <polygon fill="white" stroke="black" points="162,-72.5 162,-93.5 302,-93.5 302,-72.5 162,-72.5"/>
 <text text-anchor="middle" x="232" y="-80.5" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iSound</text>
 </a>

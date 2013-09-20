@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1RenderableContainerWidget.xhtml" target="_top" xlink:title="This is an interface class for the two types of Renderable Container Widgets.">
+<a xlink:href="classMezzanine_1_1UI_1_1RenderableContainerWidget.html" target="_top" xlink:title="This is an interface class for the two types of Renderable Container Widgets.">
 <polygon fill="white" stroke="black" points="12.5,-73 12.5,-107 155.5,-107 155.5,-73 12.5,-73"/>
 <text text-anchor="start" x="20.5" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 <text text-anchor="middle" x="84" y="-81" font-family="FreeSans" font-size="10.00">ContainerWidget</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Widget.xhtml" target="_top" xlink:title="This class is the base class for all widgets.">
+<a xlink:href="classMezzanine_1_1UI_1_1Widget.html" target="_top" xlink:title="This class is the base class for all widgets.">
 <polygon fill="white" stroke="black" points="23.5,-144.5 23.5,-165.5 144.5,-165.5 144.5,-144.5 23.5,-144.5"/>
 <text text-anchor="middle" x="84" y="-152.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
+<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
 <polygon fill="white" stroke="black" points="12.5,-202.5 12.5,-223.5 155.5,-223.5 155.5,-202.5 12.5,-202.5"/>
 <text text-anchor="middle" x="84" y="-210.5" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
