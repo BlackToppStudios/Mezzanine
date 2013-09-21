@@ -92,9 +92,6 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Accessor for the type of physics object.
-            /// @return Returns enum value for the type of proxy this object is.
-            virtual Physics::ProxyType GetPhysicsProxyType() const = 0;
             /// @brief Gets whether or not this proxy can have scaling applied to itself (instead of it's shape).
             /// @remarks When using some collision shapes (such as compound shapes or dynamic trimesh shapes) you cannot
             /// scale the body using that shape appropriately.  Any scaling that would be applied to the body has to be

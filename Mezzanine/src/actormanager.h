@@ -50,7 +50,6 @@ namespace Mezzanine
 {
     class ActorBase;
     class ActorRigid;
-    class ActorSoft;
     class ActorManager;
 
     ///////////////////////////////////////////////////////////////////////////////

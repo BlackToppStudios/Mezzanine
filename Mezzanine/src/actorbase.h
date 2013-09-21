@@ -75,16 +75,9 @@ namespace Mezzanine
         class AttachableMotionState;
     }
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorBase
-    /// @headerfile actorbase.h
     /// @brief This is the base class from which all the actors inherit.
-    /// @details The actor classes store and manage all the relevant data regarding
-    /// objects inside the World.  They serve as a binder between the physics and
-    /// graphics for objects and have functions that allow the manipulation of objects
-    /// loaded into the World.  Currently there are 5 actor classes: ActorBase,
-    /// ActorRigid, ActorSoft, ActorTerrain, ActorCharacter. @n
-    /// ActorBase is a base class that serves as a template for the other four actor classes. @n
-    /// ActorBase should never be created, as it lacks the functionality needed for most objects.
+    /// @details The actor classes are responsible for character and character-like objects in the
+    /// 3D world.
     ///////////////////////////////////////
     class MEZZ_LIB ActorBase : public NonStaticWorldObject
     {

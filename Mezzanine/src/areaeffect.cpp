@@ -237,6 +237,12 @@ namespace Mezzanine
 
     void AreaEffect::_Update()
     {
+        // Notes for the new post refactor way to update
+        // Everything in vectors.  Create a new temp vector composed of the old frames "overlapping" items.
+        // Go through all items detected by ghost proxy and attempt to remove them from the temporary vector.
+        // If it successfully removes, add it to the current overlapping vector.  If it fails add to the added vector.
+        // Once one iteration of this is done, all the remaining items in the temp vector are placed in the removed vector.
+
         if ( !AddedActors.empty() )
             this->AddedActors.clear();
         if ( !RemovedActors.empty() )

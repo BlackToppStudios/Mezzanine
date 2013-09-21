@@ -1,5 +1,5 @@
 <map id="Mezzanine::UI::Vertex" name="Mezzanine::UI::Vertex">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="5,6,139,34"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="163,6,320,34"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space." alt="" coords="344,6,477,34"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="5,5,152,35"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can..." alt="" coords="176,5,349,35"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space." alt="" coords="373,5,520,35"/>
 </map>

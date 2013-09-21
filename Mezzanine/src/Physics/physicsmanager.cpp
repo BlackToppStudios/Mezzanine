@@ -59,6 +59,10 @@ using namespace std;
 #include "stringtool.h"
 #include "crossplatform.h"
 
+#include "Physics/ghostproxy.h"
+#include "Physics/rigidproxy.h"
+#include "Physics/softproxy.h"
+
 #include "Physics/collisiondispatcher.h.cpp"
 
 #include <queue>
@@ -797,6 +801,64 @@ namespace Mezzanine
                 btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->_GetBasePhysicsObject());
                 Rigid->setGravity(igrav.GetBulletVector3());
             }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Creating Proxies
+
+        GhostProxy* PhysicsManager::CreateGhostProxy()
+        {
+            GhostProxy* NewProxy = new GhostProxy(this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        RigidProxy* PhysicsManager::CreateRigidProxy(const Real Mass)
+        {
+            RigidProxy* NewProxy = new RigidProxy(Mass,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        SoftProxy* PhysicsManager::CreateSoftProxy(const Real Mass)
+        {
+            SoftProxy* NewProxy = new SoftProxy(Mass,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Proxy Management
+
+        PhysicsProxy* PhysicsManager::GetProxy(const UInt32 Index) const
+        {
+            return this->Proxies.at(Index);
+        }
+
+        UInt32 PhysicsManager::GetNumProxies() const
+        {
+            return this->Proxies.size();
+        }
+
+        void PhysicsManager::DestroyProxy(PhysicsProxy* ToBeDestroyed)
+        {
+            for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                if( ToBeDestroyed == (*ProxIt) ) {
+                    this->Proxies.erase(ProxIt);
+                    delete (*ProxIt);
+                    return;
+                }
+            }
+        }
+
+        void PhysicsManager::DestroyAllProxies()
+        {
+            for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                delete (*ProxIt);
+            }
+            this->Proxies.clear();
         }
 
         ///////////////////////////////////////////////////////////////////////////////

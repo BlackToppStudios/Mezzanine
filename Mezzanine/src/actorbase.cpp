@@ -48,7 +48,6 @@
 
 #include "actorbase.h"
 #include "actorrigid.h"
-#include "actorsoft.h"
 #include "actorphysicssettings.h"
 #include "serialization.h"
 #include "Audio/audiomanager.h"

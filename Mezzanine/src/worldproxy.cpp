@@ -46,28 +46,22 @@
 namespace Mezzanine
 {
     WorldProxy::WorldProxy()
-    {
-    }
+        {  }
 
     WorldProxy::~WorldProxy()
-    {
-    }
+        {  }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
     WorldObject* WorldProxy::GetParentObject() const
-    {
-        return this->ParentObject;
-    }
+        { return this->ParentObject; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
     String WorldProxy::GetSerializableName()
-    {
-        return "WorldProxy";
-    }
+        { return "WorldProxy"; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods

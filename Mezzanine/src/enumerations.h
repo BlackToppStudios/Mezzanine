@@ -101,6 +101,29 @@ namespace Mezzanine
         PL_PauseAll          = PL_PausePhysics | PL_PauseParticles | PL_PauseAnimations//  MEZZ_BITMASK32MAX
     };
 
+    /// @enum ProxyType
+    /// @brief Used by all World proxies to describe what their derived types are.
+    enum ProxyType
+    {
+        PT_Audio_First             = 1,//1
+        PT_Audio_Listener          = 1,//1
+        PT_Audio_SoundProxy        = 2,//2
+        PT_Audio_Last              = 2,//2
+
+        PT_Graphics_First          = 4,//3
+        PT_Graphics_BillboardProxy = 4,//3
+        PT_Graphics_EntityProxy    = 8,//4
+        PT_Graphics_LightProxy     = 16,//5
+        PT_Graphics_ParticleProxy  = 32,//6
+        PT_Graphics_Last           = 32,//6
+
+        PT_Physics_First           = 64,//7
+        PT_Physics_GhostProxy      = 64,//7
+        PT_Physics_RigidProxy      = 128,//8
+        PT_Physics_SoftProxy       = 256,//9
+        PT_Physics_Last            = 256//9
+    };
+
     /// @enum StandardAxis
     /// @brief Used to identify different Axis in a 3d coordinate system.
     /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.
@@ -138,9 +161,8 @@ namespace Mezzanine
         // Actors
         WSO_ActorFirst             = 1,//MEZZ_BITMASK(1),//1,
         WSO_ActorRigid             = 1,//MEZZ_BITMASK(1),//1,
-        WSO_ActorSoft              = 2,//MEZZ_BITMASK(2),//2,
-        WSO_ActorCharacter         = 4,//MEZZ_BITMASK(3),//4,
-        WSO_ActorUnknown           = 8,//MEZZ_BITMASK(4),//8,
+        WSO_ActorCharacter         = 2,//MEZZ_BITMASK(2),//2,
+        WSO_ActorUnknown           = 4,//MEZZ_BITMASK(3),//4,
         WSO_ActorLast              = 8,//MEZZ_BITMASK(4),//8,
 
         // Terrains go here

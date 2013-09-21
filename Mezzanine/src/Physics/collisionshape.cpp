@@ -55,7 +55,7 @@
 #include "Physics/dynamicmeshcollisionshape.h"
 #include "Physics/heightfieldcollisionshape.h"
 #include "Physics/planecollisionshape.h"
-#include "Physics/actorsoftcollisionshape.h"
+#include "Physics/softcollisionshape.h"
 #include "Physics/staticmeshcollisionshape.h"
 #include "Physics/compoundcollisionshape.h"
 
@@ -204,8 +204,8 @@ namespace Mezzanine
                         return new HeightfieldCollisionShape(Name_,(btHeightfieldTerrainShape*)ShapeToModel);
                     case CollisionShape::ST_Plane:
                         return new PlaneCollisionShape(Name_,(btStaticPlaneShape*)ShapeToModel);
-                    case CollisionShape::ST_ActorSoft:
-                        return new ActorSoftCollisionShape(Name_,(btSoftBodyCollisionShape*)ShapeToModel);
+                    case CollisionShape::ST_Soft:
+                        return new SoftCollisionShape(Name_,(btSoftBodyCollisionShape*)ShapeToModel);
                     case CollisionShape::ST_StaticTriMesh:
                         return new StaticMeshCollisionShape(Name_,(btBvhTriangleMeshShape*)ShapeToModel);
                     case CollisionShape::ST_Compound: // holy recursive batman
@@ -247,9 +247,9 @@ namespace Mezzanine
                     return new HeightfieldCollisionShape(Name_);
                 case CollisionShape::ST_Plane:
                     return new PlaneCollisionShape(Name_);
-                case CollisionShape::ST_ActorSoft:          /// @todo Complete CreateShape function once ActorSoftCollisionShape can be deserialized
-                    //return new ActorSoftCollisionShape(Name_,(btSoftBodyCollisionShape*)ShapeToModel);
-                    { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a ActorSoftCollisionShape."); }
+                case CollisionShape::ST_Soft:          /// @todo Complete CreateShape function once SoftCollisionShape can be deserialized
+                    //return new SoftCollisionShape(Name_,(btSoftBodyCollisionShape*)ShapeToModel);
+                    { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a SoftCollisionShape."); }
                 case CollisionShape::ST_StaticTriMesh:      /// @todo Complete CreateShape function once StaticMeshCollisionShape can be deserialized
                     //return new StaticMeshCollisionShape(Name_,(btBvhTriangleMeshShape*)ShapeToModel);
                     { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a StaticMeshShape."); }
@@ -274,7 +274,7 @@ namespace Mezzanine
                 case GIMPACT_SHAPE_PROXYTYPE:       return CollisionShape::ST_DynamicTriMesh;
                 case TERRAIN_SHAPE_PROXYTYPE:       return CollisionShape::ST_Heightfield;
                 case STATIC_PLANE_PROXYTYPE:        return CollisionShape::ST_Plane;
-                case SOFTBODY_SHAPE_PROXYTYPE:      return CollisionShape::ST_ActorSoft;
+                case SOFTBODY_SHAPE_PROXYTYPE:      return CollisionShape::ST_Soft;
                 case TRIANGLE_MESH_SHAPE_PROXYTYPE: return CollisionShape::ST_StaticTriMesh;
                 case COMPOUND_SHAPE_PROXYTYPE:      return CollisionShape::ST_Compound;
                 default:
@@ -296,7 +296,7 @@ namespace Mezzanine
                 case CollisionShape::ST_DynamicTriMesh: return String("DynamicMeshCollisionShape");
                 case CollisionShape::ST_Heightfield:    return String("HeightfieldCollisionShapeString(");
                 case CollisionShape::ST_Plane:          return String("PlaneCollisionShape");
-                case CollisionShape::ST_ActorSoft:      return String("ActorSoftCollisionShape");
+                case CollisionShape::ST_Soft:           return String("SoftCollisionShape");
                 case CollisionShape::ST_StaticTriMesh:  return String("StaticMeshCollisionShape");
                 case CollisionShape::ST_Compound:       return String("CompoundCollisionShape");
                 default:
@@ -360,8 +360,8 @@ namespace Mezzanine
                     else
                         { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'n'."); }
                 case 'o':
-                    if (String("ActorSoftCollisionShape")==TypeName)
-                        { return CollisionShape::ST_ActorSoft; }
+                    if (String("SoftCollisionShape")==TypeName)
+                        { return CollisionShape::ST_Soft; }
                     else
                         { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'o'."); }
                 case 'p':

@@ -41,21 +41,140 @@ John Blackwood - makoenergy02@gmail.com
 #define _ghostproxy_cpp
 
 #include "Physics/ghostproxy.h"
+#include "Physics/physicsmanager.h"
+
+#include "enumerations.h"
+#include "stringtool.h"
+
+#include <btBulletDynamicsCommon.h>
+#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
+#include <BulletCollision/CollisionDispatch/btGhostObject.h>
 
 namespace Mezzanine
 {
     namespace Physics
     {
         GhostProxy::GhostProxy(PhysicsManager* Creator) :
-            PhysicsProxy(Creator)
+            PhysicsProxy(Creator),
+            PhysicsGhostBody(NULL)
         {
-
+            this->CreateGhostObject();
         }
 
         GhostProxy::~GhostProxy()
         {
+            if( this->IsInWorld() )
+                this->RemoveFromWorld();
 
+            delete this->PhysicsGhostBody;
         }
+
+        void GhostProxy::CreateGhostObject()
+        {
+            this->PhysicsGhostBody = new btPairCachingGhostObject();
+            this->PhysicsGhostBody->setCollisionFlags( this->PhysicsGhostBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE );
+            this->PhysicsGhostBody->setUserPointer( this );
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        Mezzanine::ProxyType GhostProxy::GetProxyType() const
+        {
+            return Mezzanine::PT_Physics_GhostProxy;
+        }
+
+        void GhostProxy::AddToWorld()
+        {
+            if( !this->IsInWorld() ) {
+                this->Manager->_GetPhysicsWorldPointer()->addCollisionObject( this->PhysicsGhostBody, this->CollisionGroup, this->CollisionMask );
+            }
+        }
+
+        void GhostProxy::RemoveFromWorld()
+        {
+            if( this->IsInWorld() ) {
+                this->Manager->_GetPhysicsWorldPointer()->removeCollisionObject( this->PhysicsGhostBody );
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Overlapping Proxy Access
+
+        PhysicsProxy* GhostProxy::GetAABBOverlappingProxy(const UInt32 Index)
+        {
+            btCollisionObject* OverlappingObject = this->PhysicsGhostBody->getOverlappingObject( static_cast<int>( Index ) );
+            return static_cast<PhysicsProxy*>( OverlappingObject->getUserPointer() );
+        }
+
+        UInt32 GhostProxy::GetNumAABBOverlappingProxies() const
+        {
+            return static_cast<UInt32>( this->PhysicsGhostBody->getNumOverlappingObjects() );
+        }
+
+        PhysicsProxy* GhostProxy::GetShapeOverlappingProxy(const UInt32 Index)
+        {
+            btCollisionWorld* PhysWorld = this->Manager->_GetPhysicsWorldPointer();
+
+            btBroadphasePairArray& PairArray = this->PhysicsGhostBody->getOverlappingPairCache()->getOverlappingPairArray();
+            const btBroadphasePair& CachePair = PairArray[Index];
+            btBroadphasePair* WorldPair = PhysWorld->getPairCache()->findPair(CachePair.m_pProxy0,CachePair.m_pProxy1);
+
+            if( WorldPair != NULL )
+            {
+                btManifoldArray ManifoldArray;
+                ManifoldArray.clear();
+
+                if( WorldPair->m_algorithm )
+                    WorldPair->m_algorithm->getAllContactManifolds(ManifoldArray);
+
+                for( int ManifoldIndex = 0 ; ManifoldIndex < ManifoldArray.size() ; ++ManifoldIndex )
+                {
+                    btPersistentManifold* Manifold = ManifoldArray[ManifoldIndex];
+                    for( int ContactIndex = 0 ; ContactIndex < Manifold->getNumContacts() ; ++ContactIndex )
+                    {
+                        //const btManifoldPoint& pt = Manifold->getContactPoint(ContactIndex);
+                        //if( pt.m_distance1 > 0 )
+                        //    return NULL;
+
+                        btCollisionObject* ColObj = ( Manifold->getBody0() != this->PhysicsGhostBody ? (btCollisionObject*)(Manifold->getBody0()) : (btCollisionObject*)(Manifold->getBody1()) );
+                        return static_cast<PhysicsProxy*>( ColObj->getUserPointer() );
+                    }
+                }
+            }else{
+                return NULL;
+            }
+        }
+
+        UInt32 GhostProxy::GetNumShapeOverlappingProxies() const
+        {
+            btBroadphasePairArray& PairArray = this->PhysicsGhostBody->getOverlappingPairCache()->getOverlappingPairArray();
+            return static_cast<UInt32>( PairArray.size() );
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void GhostProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            { this->PhysicsProxy::ProtoSerializeProperties(SelfRoot); }
+
+        void GhostProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            { this->PhysicsProxy::ProtoDeSerializeProperties(SelfRoot); }
+
+        String GhostProxy::GetDerivedSerializableName() const
+            { return GhostProxy::GetSerializableName(); }
+
+        String GhostProxy::GetSerializableName()
+            { return "GhostProxy"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        btPairCachingGhostObject* GhostProxy::_GetPhysicsObject() const
+            { return this->PhysicsGhostBody; }
+
+        btCollisionObject* GhostProxy::_GetBasePhysicsObject() const
+            { return this->PhysicsGhostBody; }
     }//Physics
 }//Mezzanine
 

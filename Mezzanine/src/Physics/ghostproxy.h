@@ -42,24 +42,91 @@ John Blackwood - makoenergy02@gmail.com
 
 #include "Physics/physicsproxy.h"
 
+class btPairCachingGhostObject;
+
 namespace Mezzanine
 {
     namespace Physics
     {
         ///////////////////////////////////////////////////////////////////////////////
-		/// @brief This is the proxy object for ghost objects with no contact response.
-		/// @details
-		///////////////////////////////////////
-		class MEZZ_LIB GhostProxy : public PhysicsProxy
-		{
+        /// @brief This is the proxy object for ghost objects with no contact response.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB GhostProxy : public PhysicsProxy
+        {
         protected:
+            /// @internal
+            /// @brief GhostBody proxy used by the internal physics.
+            btPairCachingGhostObject* PhysicsGhostBody;
+
+            /// @internal
+            /// @brief Used to create the physics representation of the ghost body.
+            /// @param Mass The mass of the ghost body to be created.
+            virtual void CreateGhostObject();
         public:
             /// @brief Class constructor.
             /// @param Creator A pointer to the manager that created this proxy.
             GhostProxy(PhysicsManager* Creator);
             /// @brief Class destructor.
             virtual ~GhostProxy();
-		};//GhostProxy
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @copydoc WorldProxy::GetProxyType() const
+            virtual Mezzanine::ProxyType GetProxyType() const;
+
+            /// @copydoc WorldProxy::AddToWorld()
+            virtual void AddToWorld();
+            /// @copydoc WorldProxy::RemoveFromWorld()
+            virtual void RemoveFromWorld();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Overlapping Proxy Access
+
+            /// @brief Gets a proxy overlapping with the AABB of this ghost.
+            /// @note This method is faster than getting an overlap by collision shape, but it is also much less accurate.
+            /// @param Index The index of the proxy to retrieve.
+            /// @return Returns a pointer to the overlapping proxy at the specified index.
+            virtual PhysicsProxy* GetAABBOverlappingProxy(const UInt32 Index);
+            /// @brief Gets the number of proxies overlapping with the AABB of this ghost.
+            /// @return Returns the number of proxies overlapping with the AABB of this ghost.
+            virtual UInt32 GetNumAABBOverlappingProxies() const;
+
+            /// @brief Gets a proxy overlapping with the collision shape of this ghost.
+            /// @note The underlying physics implementation tries to predict contacts in order to accelerate physics steps.  Because of this in some situations an invalid
+            /// contact/collision may be generated between collision shapes.  This method detects that and will return NULL if that is the case. @n @n
+            /// Also note that getting overlaps by shape is slower than getting them by AABB.  Only use this if you need the extra accuracy.
+            /// @param Index The index of the proxy to retrieve.
+            /// @return Returns a pointer to the overlapping proxy at the specified index, or NULL if it is invalid.
+            virtual PhysicsProxy* GetShapeOverlappingProxy(const UInt32 Index);
+            /// @brief Gets the number of proxies overlapping with the actual collision shape of this ghost.
+            /// @return Returns the number of proxies overlapping with the actual shape of this ghost.
+            virtual UInt32 GetNumShapeOverlappingProxies() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc PhysicsProxy::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc PhysicsProxy::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @copydoc WorldProxy::GetSerializableName()
+            static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Accessor for the internal ghost body physics proxy.
+            /// @return Returns a pointer to the internal proxy this proxy is based on.
+            virtual btPairCachingGhostObject* _GetPhysicsObject() const;
+            /// @copydoc PhysicsProxy::_GetBasePhysicsObject()
+            virtual btCollisionObject* _GetBasePhysicsObject() const;
+        };//GhostProxy
     }//Physics
 }//Mezzanine
 

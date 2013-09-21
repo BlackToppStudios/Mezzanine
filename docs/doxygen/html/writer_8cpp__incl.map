@@ -1,18 +1,18 @@
-<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.cpp">
-<area shape="rect" id="node3" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy." alt="" coords="435,99,528,127"/>
-<area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="561,486,647,514"/>
-<area shape="rect" id="node39" href="$resource_8h_source.html" title="resource.h" alt="" coords="871,177,951,205"/>
-<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1173,563,1317,591"/>
-<area shape="rect" id="node37" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="493,563,549,591"/>
-<area shape="rect" id="node41" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="456,254,672,282"/>
-<area shape="rect" id="node43" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="696,254,827,282"/>
-<area shape="rect" id="node45" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="851,254,971,282"/>
-<area shape="rect" id="node47" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="995,254,1147,282"/>
-<area shape="rect" id="node49" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="1171,254,1333,282"/>
-<area shape="rect" id="node51" href="$datastream_8h.html" title="Declaration of DataStream." alt="" coords="367,331,521,359"/>
-<area shape="rect" id="node60" href="$filestream_8h.html" title="Declaration of FileStream." alt="" coords="288,254,432,282"/>
-<area shape="rect" id="node63" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="1157,409,1315,437"/>
-<area shape="rect" id="node67" href="$memorystream_8h.html" title="Declaration of MemoryStream." alt="" coords="91,254,264,282"/>
-<area shape="rect" id="node70" href="$textsettingsfile_8h_source.html" title="Resource/textsettingsfile.h" alt="" coords="1339,409,1509,437"/>
-<area shape="rect" id="node54" href="$smartptr_8h.html" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="367,409,444,437"/>
+<map id="/home/Code/Mezzanine/Mezzanine/src/XML/writer.cpp" name="/home/Code/Mezzanine/Mezzanine/src/XML/writer.cpp">
+<area shape="rect" id="node3" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy." alt="" coords="473,101,569,131"/>
+<area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="604,488,703,517"/>
+<area shape="rect" id="node39" href="$resource_8h_source.html" title="resource.h" alt="" coords="945,179,1033,208"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1259,565,1421,595"/>
+<area shape="rect" id="node37" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="533,565,595,595"/>
+<area shape="rect" id="node41" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="495,256,735,285"/>
+<area shape="rect" id="node43" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="759,256,900,285"/>
+<area shape="rect" id="node45" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="924,256,1055,285"/>
+<area shape="rect" id="node47" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="1079,256,1247,285"/>
+<area shape="rect" id="node49" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="1271,256,1447,285"/>
+<area shape="rect" id="node51" href="$datastream_8h.html" title="Declaration of DataStream." alt="" coords="395,333,565,363"/>
+<area shape="rect" id="node60" href="$filestream_8h.html" title="Declaration of FileStream." alt="" coords="311,256,471,285"/>
+<area shape="rect" id="node63" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="1244,411,1417,440"/>
+<area shape="rect" id="node67" href="$memorystream_8h.html" title="Declaration of MemoryStream." alt="" coords="92,256,287,285"/>
+<area shape="rect" id="node70" href="$textsettingsfile_8h_source.html" title="Resource/textsettingsfile.h" alt="" coords="1441,411,1631,440"/>
+<area shape="rect" id="node54" href="$smartptr_8h.html" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="395,411,483,440"/>
 </map>

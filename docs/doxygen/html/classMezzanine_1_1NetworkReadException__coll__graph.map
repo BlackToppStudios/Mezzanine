@@ -1,6 +1,6 @@
 <map id="Mezzanine::NetworkReadException" name="Mezzanine::NetworkReadException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1NetworkException.html" title="Thrown when something unknown causes network IO to fail." alt="" coords="20,238,212,266"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it." alt="" coords="37,161,195,189"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions." alt="" coords="44,83,188,111"/>
-<area shape="rect" id="node8" title="STL class." alt="" coords="67,6,165,34"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1NetworkException.html" title="Thrown when something unknown causes network IO to fail." alt="" coords="21,237,232,267"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it." alt="" coords="40,160,213,189"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions." alt="" coords="47,83,207,112"/>
+<area shape="rect" id="node8" title="STL class." alt="" coords="71,5,183,35"/>
 </map>

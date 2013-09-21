@@ -1,7 +1,7 @@
 <map id="Mezzanine::UI::EnclosedRenderableContainerWidget" name="Mezzanine::UI::EnclosedRenderableContainerWidget">
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1Window.html" title="This is a container widget capable of holding any other widget." alt="" coords="41,347,193,375"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1RenderableContainerWidget.html" title="This is an interface class for the two types of Renderable Container Widgets." alt="" coords="31,161,204,205"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets." alt="" coords="44,83,191,111"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="31,6,204,34"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget..." alt="" coords="25,425,209,453"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1Window.html" title="This is a container widget capable of holding any other widget." alt="" coords="47,352,212,381"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1RenderableContainerWidget.html" title="This is an interface class for the two types of Renderable Container Widgets." alt="" coords="35,161,224,207"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets." alt="" coords="49,83,209,112"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="35,5,224,35"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget..." alt="" coords="29,429,229,459"/>
 </map>

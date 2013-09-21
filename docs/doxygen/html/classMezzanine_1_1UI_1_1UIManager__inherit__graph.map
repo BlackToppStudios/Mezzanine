@@ -1,4 +1,4 @@
 <map id="Mezzanine::UI::UIManager" name="Mezzanine::UI::UIManager">
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="5,14,173,42"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; UIManager \&gt;" alt="" coords="197,6,339,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="5,15,192,44"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; UIManager \&gt;" alt="" coords="216,6,373,53"/>
 </map>

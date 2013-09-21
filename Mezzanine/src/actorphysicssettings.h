@@ -49,14 +49,11 @@
 
 class btCollisionObject;
 class btRigidBody;
-class btSoftBody;
 
 namespace Mezzanine
 {
     class ActorBase;
     class ActorRigid;
-    class ActorSoft;
-    class ActorTerrain;
     class Collision;
     class CollisionShape;
     namespace Physics
@@ -289,35 +286,6 @@ namespace Mezzanine
             static String SerializableName();
 
     };//actorrigidphysicssettings
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorSoftPhysicsSettings
-    /// @headerfile actorphysicssettings.h
-    /// @brief This is a helper class for configuring physics settings of an ActorSoft.
-    /// @details This class contains functions for the configuring of physics specific settings of an ActorSoft.
-    /// This class can only configure the ActorSofts physics.  For configuring actor graphics, see ActorGraphicsSettings.
-    ///////////////////////////////////////
-    class MEZZ_LIB ActorSoftPhysicsSettings : public ActorBasePhysicsSettings
-    {
-        protected:
-            /// @internal
-            /// @brief Physics Object of the actor.
-            btSoftBody* ActorSB;
-            /// @brief The Actor this belongs to.
-            ActorSoft* SoftParent;
-        public:
-            /// @brief Standard Constructor.
-            /// @param Actor The actor this settings class configures.
-            /// @param PhysicsObject The physics object belonging to the actor this class configures.
-            ActorSoftPhysicsSettings(ActorSoft* Actor, btSoftBody* PhysicsObject);
-
-            /// @brief Class destructor.
-            virtual ~ActorSoftPhysicsSettings();
-
-            /// @brief Sets the collision shape to be used.
-            /// @param Shape The shape to be applied.
-            virtual void SetCollisionShape(CollisionShape* Shape);
-    };//actorsoftphysicssettings
 }//Mezzanine
 
 /// @brief Serializes the passed Mezzanine::ActorBasePhysicsSettings to XML

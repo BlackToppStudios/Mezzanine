@@ -57,8 +57,7 @@ namespace Mezzanine
     /// @brief This is the actor class for Rigid Objects.
     /// @details This class should be used to make any rigid object that can be moved as a
     /// result of force.  Most objects will fall into this catagory.  A few examples of a
-    /// Rigid Object: Boxes, Car Frames, Chairs, etc.  For Semi Rigid bodies that are
-    /// deformable, like jello, it is better to use ActorSoft.
+    /// Rigid Object: Boxes, Car Frames, Chairs, etc.
     ///////////////////////////////////////
     class MEZZ_LIB ActorRigid : public ActorBase
     {

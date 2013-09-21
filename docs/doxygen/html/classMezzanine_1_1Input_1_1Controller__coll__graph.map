@@ -1,13 +1,13 @@
 <map id="Mezzanine::Input::Controller" name="Mezzanine::Input::Controller">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons." alt="" coords="1459,126,1621,170"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices." alt="" coords="1125,71,1288,99"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Input_1_1SequenceContainer.html" title="This class stores and provides utilities for sequenced inputs and their operations." alt="" coords="825,63,1007,107"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1Trie.html" title="Mezzanine::Trie\&lt; Input\l::MetaCode, Int32 \&gt;" alt="" coords="485,5,635,49"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time." alt="" coords="467,71,653,99"/>
-<area shape="rect" id="node12" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="196,71,345,99"/>
-<area shape="rect" id="node14" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers." alt="" coords="5,71,128,99"/>
-<area shape="rect" id="node18" href="$classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input." alt="" coords="180,130,361,158"/>
-<area shape="rect" id="node26" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="1140,239,1273,267"/>
-<area shape="rect" id="node30" title="STL class." alt="" coords="1503,351,1577,379"/>
-<area shape="rect" id="node32" title="STL class." alt="" coords="1147,343,1267,387"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1ButtonDevice.html" title="This is a base class for all input devices with buttons." alt="" coords="1584,133,1765,179"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices." alt="" coords="1221,75,1403,104"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Input_1_1SequenceContainer.html" title="This class stores and provides utilities for sequenced inputs and their operations." alt="" coords="893,66,1096,113"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1Trie.html" title="Mezzanine::Trie\&lt; Input\l::MetaCode, Int32 \&gt;" alt="" coords="525,5,691,51"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time." alt="" coords="508,75,708,104"/>
+<area shape="rect" id="node12" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="209,75,372,104"/>
+<area shape="rect" id="node14" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers." alt="" coords="5,75,139,104"/>
+<area shape="rect" id="node18" href="$classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input." alt="" coords="189,136,392,165"/>
+<area shape="rect" id="node26" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="1239,251,1385,280"/>
+<area shape="rect" id="node30" title="STL class." alt="" coords="1632,368,1717,397"/>
+<area shape="rect" id="node32" title="STL class." alt="" coords="1244,359,1380,406"/>
 </map>

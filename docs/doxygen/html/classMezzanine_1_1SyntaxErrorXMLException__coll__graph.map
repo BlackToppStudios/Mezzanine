@@ -1,5 +1,5 @@
 <map id="Mezzanine::SyntaxErrorXMLException" name="Mezzanine::SyntaxErrorXMLException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1SyntaxErrorException.html" title="Thrown when some kind of syntax exception." alt="" coords="19,161,229,189"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions." alt="" coords="52,83,196,111"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="75,6,173,34"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1SyntaxErrorException.html" title="Thrown when some kind of syntax exception." alt="" coords="17,160,252,189"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions." alt="" coords="55,83,215,112"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="79,5,191,35"/>
 </map>

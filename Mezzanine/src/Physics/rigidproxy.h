@@ -113,8 +113,6 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Used to create the physics representation of the rigid body.
-            /// @details Creates the rigid body used by the internal physics library.
-            /// This is called automatically by the constructor and should not be called manually.
             /// @param Mass The mass of the rigid body to be created.
             virtual void CreateRigidObject(const Real Mass);
         public:
@@ -128,8 +126,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc PhysicsProxy::GetPhysicsProxyType() const
-            virtual Physics::ProxyType GetPhysicsProxyType() const;
+            /// @copydoc WorldProxy::GetProxyType() const
+            virtual Mezzanine::ProxyType GetProxyType() const;
 
             /// @copydoc WorldProxy::AddToWorld()
             virtual void AddToWorld();

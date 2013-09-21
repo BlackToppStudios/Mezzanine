@@ -106,6 +106,9 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
+                /// @copydoc WorldProxy::GetProxyType() const
+                virtual Mezzanine::ProxyType GetProxyType() const;
+
                 /// @copydoc iListener::SetVelocity(const Vector3& Vel)
                 virtual void SetVelocity(const Vector3& Vel);
                 /// @copydoc iListener::GetVelocity() const
