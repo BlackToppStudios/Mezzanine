@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/Physics/actorsoftcollisionshape.h Source File</title>
+<title>/home/Code/Mezzanine/Mezzanine/src/Physics/softcollisionshape.h Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;19,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;20,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">actorsoftcollisionshape.h</div>  </div>
+<div class="title">softcollisionshape.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
@@ -123,8 +123,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">   Joseph Toppi - toppij@gmail.com</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   John Blackwood - makoenergy02@gmail.com</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#ifndef _physicsactorsoftcollisionshape_h</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _physicsactorsoftcollisionshape_h</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#ifndef _physicssoftcollisionshape_h</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _physicssoftcollisionshape_h</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;Physics/meshcollisionshape.h&quot;</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
@@ -135,46 +135,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">namespace </span>Physics</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {<span class="comment"></span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">        /// @class ActorSoftCollisionShape</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">        /// @headerfile collisionshape.h</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">        /// @brief A collision shape for soft actors.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">        /// @class SoftCollisionShape</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">        /// @headerfile softcollisionshape.h</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">        /// @brief A collision shape for soft proxies.</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">        /// @details This collision shape is different from all the other collision shapes because it&#39;s</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">        /// meant to be used for only one type of object: ActorSoft&#39;s.  This shape doesn&#39;t use triangles</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">        /// meant to be used for only one type of object: SoftProxys.  This shape doesn&#39;t use triangles</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">        /// in the traditional manner other mesh shapes do, but rather it uses the individual internal</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">        /// nodes that make the ActorSoft as points for building triangles to process collisions with.  As</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">        /// nodes that make the SoftProxy as points for building triangles to process collisions with.  As</span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">        /// a result a SoftBodyCollisionShape should never be reused and should be kept unique to the Actor</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">        /// it applies to. @n @n</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">        /// Normally the ActorSoft will be responsible for the creation of it&#39;s own collision shape, so</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">        /// Normally the SoftProxy will be responsible for the creation of it&#39;s own collision shape, so</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">        /// the user should never have to.  So there are no non-internal constructors provided for this class.</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">        ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html">   64</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Physics_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">MeshCollisionShape</a></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html">   64</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">SoftCollisionShape</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Physics_1_1MeshCollisionShape.html" title="This is the base class for all Mesh shapes.">MeshCollisionShape</a></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        {</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            btSoftBodyCollisionShape* ActorSoftShape;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            btSoftBodyCollisionShape* SoftShape;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">            /// @internal</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            /// @brief Internal Constructor.</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            /// @param Name The name of this Shape.</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            /// @param BulletShape The internal shape this shape is based on.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Name, btSoftBodyCollisionShape* BulletShape);<span class="comment"></span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">SoftCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Name, btSoftBodyCollisionShape* BulletShape);<span class="comment"></span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">            /// @brief Class Destructor.</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a>();<span class="comment"></span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">SoftCollisionShape</a>();<span class="comment"></span></div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">            /// @copydoc CollisionShape::GetType()</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.html#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> GetType() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        };<span class="comment">//ActorSoftCollisionShape</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        };<span class="comment">//SoftCollisionShape</span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }<span class="comment">//Physics</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}<span class="comment">//Mezzanine</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">/// @copydoc operator &lt;&lt; (std::ostream&amp; stream, const Mezzanine::Physics::CollisionShape&amp; ShapeToSerialize)</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span>std::ostream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::Physics::ActorSoftCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span>std::ostream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">Mezzanine::Physics::SoftCollisionShape</a>&amp; ShapeToSerialize);<span class="comment"></span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">/// @copydoc operator &gt;&gt; (std::istream&amp; stream, Mezzanine::Physics::CollisionShape&amp; x)</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"></span>std::istream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::Physics::ActorSoftCollisionShape</a>&amp; x);<span class="comment"></span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"></span>std::istream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">Mezzanine::Physics::SoftCollisionShape</a>&amp; x);<span class="comment"></span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">/// @copydoc operator &gt;&gt; (const Mezzanine::XML::Node&amp; OneNode, Mezzanine::Physics::CollisionShape&amp; x)</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::Physics::ActorSoftCollisionShape</a>&amp; x);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">Mezzanine::Physics::SoftCollisionShape</a>&amp; x);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 19 2013 22:36:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Fri Sep 20 2013 23:32:10 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

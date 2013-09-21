@@ -5,8 +5,8 @@
 <area shape="rect" id="node19" href="$classMezzanine_1_1Physics_1_1PrimitiveCollisionShape.html" title="This is the base class for all Primitive shapes." alt="" coords="209,525,385,571"/>
 <area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1HeightfieldCollisionShape.html" title="A series of values that store hieght in a grid like fashion." alt="" coords="455,5,644,51"/>
 <area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1PlaneCollisionShape.html" title="A Flat wall/floor of limitless size." alt="" coords="471,74,628,121"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors." alt="" coords="459,143,640,190"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh." alt="" coords="443,213,656,259"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh." alt="" coords="443,143,656,190"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies." alt="" coords="475,213,624,259"/>
 <area shape="rect" id="node17" href="$classMezzanine_1_1Physics_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh." alt="" coords="452,282,647,329"/>
 <area shape="rect" id="node21" href="$classMezzanine_1_1Physics_1_1BoxCollisionShape.html" title="A box physics shape." alt="" coords="476,351,623,398"/>
 <area shape="rect" id="node23" href="$classMezzanine_1_1Physics_1_1CapsuleCollisionShape.html" title="A capsule physics shape." alt="" coords="463,421,636,467"/>

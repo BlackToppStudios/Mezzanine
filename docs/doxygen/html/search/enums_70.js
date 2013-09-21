@@ -5,5 +5,5 @@ var searchData=
   ['pauselevel',['PauseLevel',['../namespaceMezzanine.html#a84bd521b90ded70d55bbc6ae3ec9723f',1,'Mezzanine']]],
   ['pollingtype',['PollingType',['../structMezzanine_1_1Internal_1_1EventManagerInternalData.html#a826edcf786a972af2dacccdf32023dc3',1,'Mezzanine::Internal::EventManagerInternalData']]],
   ['projectiontype',['ProjectionType',['../classMezzanine_1_1Camera.html#a643bf90630796bca5353967664d5f6e3',1,'Mezzanine::Camera']]],
-  ['proxytype',['ProxyType',['../namespaceMezzanine_1_1Physics.html#a80c4fbe8d2b2c4817756af89056a769c',1,'Mezzanine::Physics']]]
+  ['proxytype',['ProxyType',['../namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b',1,'Mezzanine']]]
 ];

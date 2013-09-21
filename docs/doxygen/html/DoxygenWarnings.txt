@@ -70,15 +70,15 @@
 /home/Code/Mezzanine/Mezzanine/src/managerbase.h:60: warning: Documentation for undefined enum `ManagerTypeName' found.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:1041: warning: found more than one \mainpage comment block! Skipping this block.
 /home/Code/Mezzanine/Mezzanine/src/Threading/dagframescheduler.h:82: warning: found more than one \mainpage comment block! Skipping this block.
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:122: warning: target WorldObject::_NotifyCollisionState(Physics::Collision* Col) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:140: warning: Found unknown command `\copy'
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:142: warning: Found unknown command `\copy'
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:115: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:117: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:117: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:115: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:121: warning: target WorldObject::_NotifyCollisionState(Physics::Collision* Col) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:139: warning: Found unknown command `\copy'
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:141: warning: Found unknown command `\copy'
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:117: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:115: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:132: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:136: warning: target NonStaticWorldObject::SetOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:140: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
@@ -111,7 +111,6 @@
 /home/Code/Mezzanine/Mezzanine/src/particleeffect.h:120: warning: target Mezzanine::AttachableBase::SetScaling(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/particleeffect.h:124: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: target Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/Physics/meshcollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:102: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:96: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:96: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -211,6 +210,7 @@
 /home/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:69: warning: target TypedConstraint::GetConstraintBase() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/ghostproxy.h:110: warning: target PhysicsProxy::ProtoSerializeProperties(XML::Node&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:79: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/hingeconstraint.h:142: warning: target DualTransformConstraint::SetTransformA of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/hingeconstraint.h:144: warning: target DualTransformConstraint::SetTransformB of \copydoc command not found
@@ -234,9 +234,9 @@
 /home/Code/Mezzanine/Mezzanine/src/Physics/multispherecollisionshape.h:106: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/multispherecollisionshape.h:106: warning: target CollisionShape::GetBulletShape of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:116: warning: recursive call chain of \copydoc commands detected at 116
 
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:314: warning: target WorldProxy::ProtoSerialize(XML::Node&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:311: warning: target WorldProxy::ProtoSerialize(XML::Node&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:79: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/point2pointconstraint.h:120: warning: target Constraint::ValidParamOnAxis(int) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/point2pointconstraint.h:126: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) of \copydoc command not found
@@ -246,10 +246,13 @@
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:72: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:238: warning: target PhysicsProxy::ProtoSerializeProperties(XML::Node&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:314: warning: target WorldProxy::ProtoSerialize(XML::Node&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:236: warning: target PhysicsProxy::ProtoSerializeProperties(XML::Node&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:311: warning: target WorldProxy::ProtoSerialize(XML::Node&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:137: warning: target Constraint::ValidParamOnAxis(int) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:143: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/meshcollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/softproxy.h:116: warning: target WorldProxy::ProtoSerialize(XML::Node&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/softproxy.h:118: warning: target PhysicsProxy::ProtoSerializeProperties(XML::Node&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:80: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:80: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:85: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -393,7 +396,7 @@
 /home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:155: warning: Member return (variable) of namespace Mezzanine::Threading is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:153: warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:138: warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:248: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:275: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
 /home/Code/Mezzanine/Mezzanine/src/Threading/dagframescheduler.h:202: warning: Found unknown command `\subsubsubsection'
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:698: warning: explicit link request to 'wstream' could not be resolved
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:778: warning: explicit link request to 'x' could not be resolved
@@ -401,7 +404,7 @@
 /home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:315: warning: Member ConstMetaCodeIterator (typedef) of namespace Mezzanine is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:313: warning: Member MetaCodeContainer (typedef) of namespace Mezzanine is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:314: warning: Member MetaCodeIterator (typedef) of namespace Mezzanine is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:68: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:65: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
 /home/Code/Mezzanine/Mezzanine/src/vector3.cpp:64: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
 /home/Code/Mezzanine/Mezzanine/src/smartptr.h:646: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
 /home/Code/Mezzanine/Mezzanine/src/smartptr.h:646: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
@@ -417,29 +420,24 @@
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:150: warning: Member ConstAttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:122: warning: target WorldObject::_NotifyCollisionState(Physics::Collision* Col) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:140: warning: Found unknown command `\copy'
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:142: warning: Found unknown command `\copy'
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:121: warning: target WorldObject::_NotifyCollisionState(Physics::Collision* Col) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:115: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:139: warning: Found unknown command `\copy'
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:141: warning: Found unknown command `\copy'
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:117: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/worldobject.h:272: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/worldobject.h:292: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:150: warning: Member ConstAttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:122: warning: target WorldObject::_NotifyCollisionState(Physics::Collision* Col) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:122: warning: target WorldObject::_NotifyCollisionState(Physics::Collision* Col) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:122: warning: parameters of member Mezzanine::ActorRigid::_NotifyCollisionState are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:116: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:118: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:272: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:292: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:150: warning: Member ConstAttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actormanager.h:70: warning: return type of member Mezzanine::ActorUpdateWorkUnit::operator= is not documented
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:121: warning: target WorldObject::_NotifyCollisionState(Physics::Collision* Col) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:121: warning: target WorldObject::_NotifyCollisionState(Physics::Collision* Col) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:121: warning: parameters of member Mezzanine::ActorRigid::_NotifyCollisionState are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:115: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:115: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:117: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actorrigid.h:117: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/actormanager.h:69: warning: return type of member Mezzanine::ActorUpdateWorkUnit::operator= is not documented
 /home/Code/Mezzanine/Mezzanine/src/timer.h:208: warning: return type of member Mezzanine::AlarmTimer::GoalReached is not documented
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:144: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:146: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
@@ -564,13 +562,13 @@
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: parameters of member Mezzanine::Entity::SetLocalOrientation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:343: warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:342: warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:341: warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:370: warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:369: warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:368: warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:447: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:474: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
 /home/Code/Mezzanine/Mezzanine/src/entresol.cpp:138: warning: Found unknown command `\TODO'
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:496: warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:523: warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
 /home/Code/Mezzanine/Mezzanine/src/eventgamewindow.h:108: warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
 /home/Code/Mezzanine/Mezzanine/src/eventgamewindow.cpp:63: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class Mezzanine::EventGameWindowData is not documented.
 /home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
@@ -971,14 +969,14 @@
 /home/Code/Mezzanine/Mezzanine/src/resourcemanager.cpp:98: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/Code/Mezzanine/Mezzanine/src/eventmanager.cpp:270: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Mezzanine::Singleton is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:85: warning: Member StickyConstraintConstructionInfo(const StickyConstraintConstructionInfo &Other) (function) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:76: warning: Member ActA (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:77: warning: Member ActB (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:74: warning: Member TransA (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:75: warning: Member TransB (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:99: warning: Member CreationQueue (variable) of class Mezzanine::StickyData is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:100: warning: Member MaxNumContacts (variable) of class Mezzanine::StickyData is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:98: warning: Member StickyConstraints (variable) of class Mezzanine::StickyData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:82: warning: Member StickyConstraintConstructionInfo(const StickyConstraintConstructionInfo &Other) (function) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:73: warning: Member ActA (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:74: warning: Member ActB (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:71: warning: Member TransA (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:72: warning: Member TransB (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:96: warning: Member CreationQueue (variable) of class Mezzanine::StickyData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:97: warning: Member MaxNumContacts (variable) of class Mezzanine::StickyData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:95: warning: Member StickyConstraints (variable) of class Mezzanine::StickyData is not documented.
 /home/Code/Mezzanine/Mezzanine/src/timer.h:184: warning: return type of member Mezzanine::StopWatchTimer::GoalReached is not documented
 /home/Code/Mezzanine/Mezzanine/src/trie.h:795: warning: Member operator()(const T &c) const  (function) of class Mezzanine::SymbolToIndexMapper is not documented.
 /home/Code/Mezzanine/Mezzanine/src/terrainmanager.h:109: warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::TerrainManager::DestroyTerrain(TerrainBase *ToBeDestroyed)
@@ -1170,14 +1168,14 @@
 /home/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.h:107: warning: The following parameters of Mezzanine::WorldObjectGraphicsSettings::SetMesh(Graphics::Mesh *ObjectMesh) are not documented:
   parameter 'ObjectMesh'
 /home/Code/Mezzanine/Mezzanine/src/worldobjectphysicssettings.h:85: warning: parameters of member Mezzanine::WorldObjectPhysicsSettings::AssignShape are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:86: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::WorldProxy::SetLocation(const Vector3 &Loc)=0
-/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:86: warning: The following parameters of Mezzanine::WorldProxy::SetLocation(const Vector3 &Loc)=0 are not documented:
+/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:89: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::WorldProxy::SetLocation(const Vector3 &Loc)=0
+/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:89: warning: The following parameters of Mezzanine::WorldProxy::SetLocation(const Vector3 &Loc)=0 are not documented:
   parameter 'Loc'
-/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:95: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::WorldProxy::SetOrientation(const Quaternion &Ori)=0
-/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:95: warning: The following parameters of Mezzanine::WorldProxy::SetOrientation(const Quaternion &Ori)=0 are not documented:
+/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:98: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::WorldProxy::SetOrientation(const Quaternion &Ori)=0
+/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:98: warning: The following parameters of Mezzanine::WorldProxy::SetOrientation(const Quaternion &Ori)=0 are not documented:
   parameter 'Ori'
-/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:104: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::WorldProxy::SetScale(const Vector3 &Sc)=0
-/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:104: warning: The following parameters of Mezzanine::WorldProxy::SetScale(const Vector3 &Sc)=0 are not documented:
+/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:107: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::WorldProxy::SetScale(const Vector3 &Sc)=0
+/home/Code/Mezzanine/Mezzanine/src/worldproxy.h:107: warning: The following parameters of Mezzanine::WorldProxy::SetScale(const Vector3 &Sc)=0 are not documented:
   parameter 'Sc'
 /home/Code/Mezzanine/Mezzanine/src/worldtrigger.h:56: warning: Member Name (variable) of class Mezzanine::WorldTrigger is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:76: warning: unable to resolve reference to `iEffect' for \ref command
@@ -1574,16 +1572,13 @@
 /home/Code/Mezzanine/Mezzanine/src/particleeffect.cpp:87: warning: parameters of member Mezzanine::Internal::ParticleEffectInternalData::ParticleEffectInternalData are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/scenemanager.cpp:124: warning: parameters of member Mezzanine::Internal::SceneManagerData::UpdateSkyCache are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:59: warning: Member StickyConstraint (typedef) of namespace Mezzanine::Physics is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsenumerations.h:134: warning: Member ProxyType (enumeration) of namespace Mezzanine::Physics is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Physics/collisionshape.h:153: warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::Physics::CreateShape(CollisionShape::ShapeType ShapeToCreate, const String &Name_, btCollisionShape *ShapeToModel)
 /home/Code/Mezzanine/Mezzanine/src/Physics/collisionshape.h:153: warning: The following parameters of Mezzanine::Physics::CreateShape(CollisionShape::ShapeType ShapeToCreate, const String &Name_, btCollisionShape *ShapeToModel) are not documented:
   parameter 'Name_'
 /home/Code/Mezzanine/Mezzanine/src/Physics/collisionshape.h:165: warning: argument 'BulletShapeType' of command @param is not found in the argument list of Mezzanine::Physics::InternalShapeTypeToShapeType(int InternalShapeType)
 /home/Code/Mezzanine/Mezzanine/src/Physics/collisionshape.h:165: warning: The following parameters of Mezzanine::Physics::InternalShapeTypeToShapeType(int InternalShapeType) are not documented:
   parameter 'InternalShapeType'
-/home/Code/Mezzanine/Mezzanine/src/Physics/meshcollisionshape.h:72: warning: target CollisionShape::GetBulletShape of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/Physics/meshcollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/Physics/meshcollisionshape.h:75: warning: target CollisionShape::GetBulletShape of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/Physics/actorsoftcollisionshape.h:67: warning: Member ActorSoftShape (variable) of class Mezzanine::Physics::ActorSoftCollisionShape is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:96: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:102: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:100: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -1713,7 +1708,7 @@
 /home/Code/Mezzanine/Mezzanine/src/Physics/cylindercollisionshape.h:131: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/cylindercollisionshape.h:131: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/cylindercollisionshape.h:131: warning: parameters of member Mezzanine::Physics::CylinderCollisionShape::ProtoSerialize are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:210: warning: return type of member Mezzanine::Physics::DebugDrawWorkUnit::operator= is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:214: warning: return type of member Mezzanine::Physics::DebugDrawWorkUnit::operator= is not documented
 /home/Code/Mezzanine/Mezzanine/src/Physics/dualtransformconstraint.h:101: warning: argument 'otation' of command @param is not found in the argument list of Mezzanine::Physics::DualTransformConstraint::SetPivotBRotation(const Quaternion &Rotation)
 /home/Code/Mezzanine/Mezzanine/src/Physics/dualtransformconstraint.h:101: warning: The following parameters of Mezzanine::Physics::DualTransformConstraint::SetPivotBRotation(const Quaternion &Rotation) are not documented:
   parameter 'Rotation'
@@ -1780,8 +1775,10 @@
 /home/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:114: warning: argument 'Stiffies' of command @param is not found in the argument list of Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearEnabled(const Vector3 &Enableness)
 /home/Code/Mezzanine/Mezzanine/src/Physics/generic6dofspringconstraint.h:114: warning: The following parameters of Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearEnabled(const Vector3 &Enableness) are not documented:
   parameter 'Enableness'
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:116: warning: recursive call chain of \copydoc commands detected at 116
 
+/home/Code/Mezzanine/Mezzanine/src/Physics/ghostproxy.h:127: warning: return type of member Mezzanine::Physics::GhostProxy::_GetBasePhysicsObject is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/ghostproxy.h:62: warning: argument 'Mass' of command @param is not found in the argument list of Mezzanine::Physics::GhostProxy::CreateGhostObject()
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:74: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:79: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -1850,41 +1847,42 @@
 /home/Code/Mezzanine/Mezzanine/src/Physics/collisiondispatcher.h.cpp:109: warning: The following parameters of Mezzanine::Physics::ParallelCollisionDispatcher::ParallelCollisionDispatcher(btThreadSupportInterface *ThreadInterface, unsigned int MaxNumTasks, btCollisionConfiguration *CollisionConfig) are not documented:
   parameter 'ThreadInterface'
   parameter 'MaxNumTasks'
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:281: warning: Member BulletBroadphase (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:282: warning: Member BulletCollisionConfiguration (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:283: warning: Member BulletDispatcher (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:280: warning: Member BulletDispatcherThreads (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:286: warning: Member BulletDrawer (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:285: warning: Member BulletDynamicsWorld (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:284: warning: Member BulletSolver (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:279: warning: Member BulletSolverThreads (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:275: warning: Member Collisions (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:273: warning: Member Constraints (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:266: warning: Member DebugRenderMode (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:278: warning: Member GhostCallback (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:265: warning: Member SimulationPaused (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:269: warning: Member StepSize (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:267: warning: Member SubstepModifier (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:268: warning: Member ThreadCount (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:274: warning: Member Triggers (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:271: warning: Member WorldConstructionInfo (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:519: warning: return type of member Mezzanine::Physics::PhysicsManager::_GetPhysicsWorldPointer is not documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:522: warning: return type of member Mezzanine::Physics::PhysicsManager::_GetPhysicsWorldPointer is not documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:292: warning: Member BulletBroadphase (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:293: warning: Member BulletCollisionConfiguration (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:294: warning: Member BulletDispatcher (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:291: warning: Member BulletDispatcherThreads (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:297: warning: Member BulletDrawer (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:296: warning: Member BulletDynamicsWorld (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:295: warning: Member BulletSolver (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:290: warning: Member BulletSolverThreads (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:286: warning: Member Collisions (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:284: warning: Member Constraints (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:276: warning: Member DebugRenderMode (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:289: warning: Member GhostCallback (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:283: warning: Member Proxies (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:275: warning: Member SimulationPaused (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:279: warning: Member StepSize (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:277: warning: Member SubstepModifier (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:278: warning: Member ThreadCount (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:285: warning: Member Triggers (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:281: warning: Member WorldConstructionInfo (variable) of class Mezzanine::Physics::PhysicsManager is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:561: warning: return type of member Mezzanine::Physics::PhysicsManager::_GetPhysicsWorldPointer is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:564: warning: return type of member Mezzanine::Physics::PhysicsManager::_GetPhysicsWorldPointer is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:116: warning: recursive call chain of \copydoc commands detected at 116
 
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:116: warning: recursive call chain of \copydoc commands detected at 116
 
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:116: warning: recursive call chain of \copydoc commands detected at 116
 
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: return type of member Mezzanine::Physics::PhysicsProxy::GetCreator is not documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:265: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetLocation(const Vector3 &Loc)
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:265: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetLocation(const Vector3 &Loc) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:116: warning: return type of member Mezzanine::Physics::PhysicsProxy::GetCreator is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:262: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetLocation(const Vector3 &Loc)
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:262: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetLocation(const Vector3 &Loc) are not documented:
   parameter 'Loc'
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:271: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetOrientation(const Quaternion &Ori)
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:271: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetOrientation(const Quaternion &Ori) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:268: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetOrientation(const Quaternion &Ori)
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:268: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetOrientation(const Quaternion &Ori) are not documented:
   parameter 'Ori'
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:277: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetScale(const Vector3 &Sc)
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:277: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetScale(const Vector3 &Sc) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:274: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::Physics::PhysicsProxy::SetScale(const Vector3 &Sc)
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:274: warning: The following parameters of Mezzanine::Physics::PhysicsProxy::SetScale(const Vector3 &Sc) are not documented:
   parameter 'Sc'
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:74: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/fieldcollisionshape.h:79: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -1908,14 +1906,14 @@
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:75: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:75: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/primitivecollisionshape.h:75: warning: parameters of member Mezzanine::Physics::PrimitiveCollisionShape::ProtoSerialize are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:116: warning: recursive call chain of \copydoc commands detected at 116
 
-/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:255: warning: return type of member Mezzanine::Physics::RigidProxy::_GetBasePhysicsObject is not documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:168: warning: argument 'NewMass' of command @param is not found in the argument list of Mezzanine::Physics::RigidProxy::SetMass(const Real Mass)
-/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:168: warning: The following parameters of Mezzanine::Physics::RigidProxy::SetMass(const Real Mass) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:253: warning: return type of member Mezzanine::Physics::RigidProxy::_GetBasePhysicsObject is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:166: warning: argument 'NewMass' of command @param is not found in the argument list of Mezzanine::Physics::RigidProxy::SetMass(const Real Mass)
+/home/Code/Mezzanine/Mezzanine/src/Physics/rigidproxy.h:166: warning: The following parameters of Mezzanine::Physics::RigidProxy::SetMass(const Real Mass) are not documented:
   parameter 'Mass'
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:138: warning: return type of member Mezzanine::Physics::SimulationMonopolyWorkUnit::operator= is not documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:105: warning: return type of member Mezzanine::Physics::SimulationWorkUnit::operator= is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:142: warning: return type of member Mezzanine::Physics::SimulationMonopolyWorkUnit::operator= is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:109: warning: return type of member Mezzanine::Physics::SimulationWorkUnit::operator= is not documented
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:63: warning: Member SliderConstraint(ActorRigid *ActorA, ActorRigid *ActorB, const Vector3 &VectorA, const Vector3 &VectorB, const Quaternion &QuaternionA, const Quaternion &QuaternionB, bool UseLinearReferenceA) (function) of class Mezzanine::Physics::SliderConstraint is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:71: warning: Member SliderConstraint(ActorRigid *ActorB, const Vector3 &VectorB, const Quaternion &QuaternionB, bool UseLinearReferenceA) (function) of class Mezzanine::Physics::SliderConstraint is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:143: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) const of \copydoc command not found
@@ -1955,8 +1953,22 @@
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:98: warning: argument 'otation' of command @param is not found in the argument list of Mezzanine::Physics::SliderConstraint::SetPivotBRotation(const Quaternion &Rotation)
 /home/Code/Mezzanine/Mezzanine/src/Physics/sliderconstraint.h:98: warning: The following parameters of Mezzanine::Physics::SliderConstraint::SetPivotBRotation(const Quaternion &Rotation) are not documented:
   parameter 'Rotation'
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:119: warning: recursive call chain of \copydoc commands detected at 119
+/home/Code/Mezzanine/Mezzanine/src/Physics/meshcollisionshape.h:72: warning: target CollisionShape::GetBulletShape of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/meshcollisionshape.h:77: warning: target CollisionShape::GetBulletShape of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/meshcollisionshape.h:75: warning: target CollisionShape::GetBulletShape of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Physics/softcollisionshape.h:67: warning: Member SoftShape (variable) of class Mezzanine::Physics::SoftCollisionShape is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsproxy.h:116: warning: recursive call chain of \copydoc commands detected at 116
 
+/home/Code/Mezzanine/Mezzanine/src/Physics/softproxy.h:144: warning: return type of member Mezzanine::Physics::SoftProxy::_GetBasePhysicsObject is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/softproxy.h:94: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::Physics::SoftProxy::SetLocation(const Vector3 &Loc)
+/home/Code/Mezzanine/Mezzanine/src/Physics/softproxy.h:94: warning: The following parameters of Mezzanine::Physics::SoftProxy::SetLocation(const Vector3 &Loc) are not documented:
+  parameter 'Loc'
+/home/Code/Mezzanine/Mezzanine/src/Physics/softproxy.h:100: warning: argument 'Orientation' of command @param is not found in the argument list of Mezzanine::Physics::SoftProxy::SetOrientation(const Quaternion &Ori)
+/home/Code/Mezzanine/Mezzanine/src/Physics/softproxy.h:100: warning: The following parameters of Mezzanine::Physics::SoftProxy::SetOrientation(const Quaternion &Ori) are not documented:
+  parameter 'Ori'
+/home/Code/Mezzanine/Mezzanine/src/Physics/softproxy.h:106: warning: argument 'Scale' of command @param is not found in the argument list of Mezzanine::Physics::SoftProxy::SetScale(const Vector3 &Sc)
+/home/Code/Mezzanine/Mezzanine/src/Physics/softproxy.h:106: warning: The following parameters of Mezzanine::Physics::SoftProxy::SetScale(const Vector3 &Sc) are not documented:
+  parameter 'Sc'
 /home/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:80: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:85: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/spherecollisionshape.h:83: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -1986,7 +1998,7 @@
 /home/Code/Mezzanine/Mezzanine/src/Physics/universalconstraint.h:69: warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class Mezzanine::Physics::UniversalConstraint is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Physics/universalconstraint.h:68: warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class Mezzanine::Physics::UniversalConstraint is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Physics/generic6dofconstraint.h:395: warning: target Constraint::ValidAngularAxis(ConstraintParam,int) const of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:177: warning: return type of member Mezzanine::Physics::WorldTriggerUpdateWorkUnit::operator= is not documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/physicsmanager.h:181: warning: return type of member Mezzanine::Physics::WorldTriggerUpdateWorkUnit::operator= is not documented
 /home/Code/Mezzanine/Mezzanine/src/Resource/filestream.h:73: warning: Member StandardStream (variable) of class Mezzanine::Resource::FileStream is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Resource/filestream.h:75: warning: argument 'Mode' of command @param is not found in the argument list of Mezzanine::Resource::FileStream::FileStream(std::fstream *Stream, const UInt16 Flags=DataStream::SF_Read)
 /home/Code/Mezzanine/Mezzanine/src/Resource/filestream.h:75: warning: The following parameters of Mezzanine::Resource::FileStream::FileStream(std::fstream *Stream, const UInt16 Flags=DataStream::SF_Read) are not documented:
@@ -3173,17 +3185,17 @@
 /home/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:86: warning: Member NewlineBefore (variable) of class Mezzanine::UI::Word is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:88: warning: Member Pxheight (variable) of class Mezzanine::UI::Word is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/markuptext.h:87: warning: Member Pxlength (variable) of class Mezzanine::UI::Word is not documented.
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:100: warning: unable to resolve reference to `Mezzanine::StringTool' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:114: warning: unable to resolve reference to `Mezzanine::AudioManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:116: warning: unable to resolve reference to `Mezzanine::CollisionShapeManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:118: warning: unable to resolve reference to `Mezzanine::GraphicsManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:120: warning: unable to resolve reference to `Mezzanine::NetworkManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:121: warning: unable to resolve reference to `Mezzanine::PhysicsManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:124: warning: unable to resolve reference to `Mezzanine::TimerManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:126: warning: unable to resolve reference to `Mezzanine::UIManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:131: warning: unable to resolve reference to `mainloop1' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:137: warning: unable to resolve reference to `actorcontainer1' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:145: warning: unable to resolve reference to `Mezzanine::MetaCode' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:163: warning: unable to resolve reference to `Mezzanine::Character' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:182: warning: unable to resolve reference to `Mezzanine::GraphicsManager' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/entresol.h:186: warning: unable to resolve reference to `LuaManual' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:101: warning: unable to resolve reference to `Mezzanine::StringTool' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:141: warning: unable to resolve reference to `Mezzanine::AudioManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:143: warning: unable to resolve reference to `Mezzanine::CollisionShapeManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:145: warning: unable to resolve reference to `Mezzanine::GraphicsManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:147: warning: unable to resolve reference to `Mezzanine::NetworkManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:148: warning: unable to resolve reference to `Mezzanine::PhysicsManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:151: warning: unable to resolve reference to `Mezzanine::TimerManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:153: warning: unable to resolve reference to `Mezzanine::UIManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:158: warning: unable to resolve reference to `mainloop1' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:164: warning: unable to resolve reference to `actorcontainer1' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:172: warning: unable to resolve reference to `Mezzanine::MetaCode' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:190: warning: unable to resolve reference to `Mezzanine::Character' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:209: warning: unable to resolve reference to `Mezzanine::GraphicsManager' for \ref command
+/home/Code/Mezzanine/Mezzanine/src/entresol.h:213: warning: unable to resolve reference to `LuaManual' for \ref command

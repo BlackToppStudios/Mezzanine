@@ -1,26 +1,24 @@
 <map id="/home/Code/Mezzanine/Mezzanine/src/actorbase.h" name="/home/Code/Mezzanine/Mezzanine/src/actorbase.h">
-<area shape="rect" id="node3" href="$actorbase_8cpp.html" title="Code used by all actors is implemented here." alt="" coords="969,222,1180,269"/>
-<area shape="rect" id="node5" href="$actorrigid_8h_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorrigid.h" alt="" coords="639,110,831,157"/>
-<area shape="rect" id="node8" href="$actorphysicssettings_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorphysicssettings.cpp" alt="" coords="1204,222,1481,269"/>
-<area shape="rect" id="node16" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine." alt="" coords="1688,326,1891,373"/>
-<area shape="rect" id="node25" href="$actorsoft_8h_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorsoft.h" alt="" coords="1424,110,1613,157"/>
-<area shape="rect" id="node32" href="$actorcharacter_8h_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorcharacter.h" alt="" coords="1849,110,2073,157"/>
-<area shape="rect" id="node37" href="$actormanager_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actormanager.cpp" alt="" coords="2148,110,2385,157"/>
-<area shape="rect" id="node40" href="$vector3wactor_8h_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/vector3wactor.h" alt="" coords="2409,110,2631,157"/>
-<area shape="rect" id="node45" href="$rayquerytool_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/rayquerytool.cpp" alt="" coords="2929,222,3156,269"/>
-<area shape="rect" id="node53" href="$resourcemanager_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/resourcemanager.cpp" alt="" coords="2705,110,2964,157"/>
-<area shape="rect" id="node55" href="$worldnode_8cpp.html" title="The implementation of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="2988,110,3201,157"/>
-<area shape="rect" id="node57" href="$worldobjectgraphicssettings_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/worldobjectgraphicssettings.cpp" alt="" coords="3225,110,3551,157"/>
-<area shape="rect" id="node59" href="$collision_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/collision.cpp" alt="" coords="3575,101,3745,165"/>
-<area shape="rect" id="node10" href="$actorrigid_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorrigid.cpp" alt="" coords="737,222,945,269"/>
-<area shape="rect" id="node12" href="$actorserializer_8h.html" title="This is where the declarations of any Serializers or DeSerializers for actors will go..." alt="" coords="12,222,233,269"/>
-<area shape="rect" id="node20" href="$areaeffect_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/areaeffect.cpp" alt="" coords="257,222,468,269"/>
-<area shape="rect" id="node23" href="$constraint_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/constraint.cpp" alt="" coords="543,213,713,277"/>
-<area shape="rect" id="node14" href="$actorserializer_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorserializer.cpp" alt="" coords="5,326,240,373"/>
-<area shape="rect" id="node18" href="$entresol_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="1689,422,1889,469"/>
-<area shape="rect" id="node29" href="$actorsoft_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorsoft.cpp" alt="" coords="1556,222,1759,269"/>
-<area shape="rect" id="node34" href="$actorcharacter_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorcharacter.cpp" alt="" coords="1783,222,2023,269"/>
-<area shape="rect" id="node42" href="$cameracontroller_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/cameracontroller.cpp" alt="" coords="2148,222,2401,269"/>
-<area shape="rect" id="node47" href="$vector3wactor_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/vector3wactor.cpp" alt="" coords="2425,222,2660,269"/>
-<area shape="rect" id="node49" href="$physicsmanager_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/physicsmanager.cpp" alt="" coords="2684,213,2855,277"/>
+<area shape="rect" id="node3" href="$actorbase_8cpp.html" title="Code used by all actors is implemented here." alt="" coords="5,222,216,269"/>
+<area shape="rect" id="node5" href="$actorrigid_8h_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorrigid.h" alt="" coords="908,110,1100,157"/>
+<area shape="rect" id="node8" href="$actorphysicssettings_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorphysicssettings.cpp" alt="" coords="240,222,517,269"/>
+<area shape="rect" id="node16" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine." alt="" coords="1411,326,1613,373"/>
+<area shape="rect" id="node25" href="$actorcharacter_8h_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorcharacter.h" alt="" coords="1620,110,1844,157"/>
+<area shape="rect" id="node30" href="$actormanager_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actormanager.cpp" alt="" coords="2164,110,2401,157"/>
+<area shape="rect" id="node33" href="$vector3wactor_8h_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/vector3wactor.h" alt="" coords="1868,110,2089,157"/>
+<area shape="rect" id="node38" href="$rayquerytool_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/rayquerytool.cpp" alt="" coords="2645,222,2872,269"/>
+<area shape="rect" id="node46" href="$resourcemanager_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/resourcemanager.cpp" alt="" coords="2425,110,2684,157"/>
+<area shape="rect" id="node48" href="$worldnode_8cpp.html" title="The implementation of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="2708,110,2921,157"/>
+<area shape="rect" id="node50" href="$worldobjectgraphicssettings_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/worldobjectgraphicssettings.cpp" alt="" coords="2945,110,3271,157"/>
+<area shape="rect" id="node52" href="$collision_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/collision.cpp" alt="" coords="3295,101,3465,165"/>
+<area shape="rect" id="node10" href="$actorrigid_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorrigid.cpp" alt="" coords="541,222,749,269"/>
+<area shape="rect" id="node12" href="$actorserializer_8h.html" title="This is where the declarations of any Serializers or DeSerializers for actors will go..." alt="" coords="773,222,995,269"/>
+<area shape="rect" id="node20" href="$areaeffect_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/areaeffect.cpp" alt="" coords="1019,222,1229,269"/>
+<area shape="rect" id="node23" href="$constraint_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/constraint.cpp" alt="" coords="1253,213,1424,277"/>
+<area shape="rect" id="node14" href="$actorserializer_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorserializer.cpp" alt="" coords="767,326,1001,373"/>
+<area shape="rect" id="node18" href="$entresol_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="1412,422,1612,469"/>
+<area shape="rect" id="node27" href="$actorcharacter_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/actorcharacter.cpp" alt="" coords="1549,222,1789,269"/>
+<area shape="rect" id="node35" href="$cameracontroller_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/cameracontroller.cpp" alt="" coords="1915,222,2168,269"/>
+<area shape="rect" id="node40" href="$vector3wactor_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/vector3wactor.cpp" alt="" coords="2192,222,2427,269"/>
+<area shape="rect" id="node42" href="$physicsmanager_8cpp_source.html" title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/physicsmanager.cpp" alt="" coords="2451,213,2621,277"/>
 </map>

@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;19,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;20,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -128,10 +128,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4ea68563eacb2f69a4e83a0c28392b74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#a4ea68563eacb2f69a4e83a0c28392b74">operator=</a> (const btTransform &amp;rhs)</td></tr>
 <tr class="memdesc:a4ea68563eacb2f69a4e83a0c28392b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the values of this <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> to match an existing btTransform.  <a href="#a4ea68563eacb2f69a4e83a0c28392b74">More...</a><br/></td></tr>
 <tr class="separator:a4ea68563eacb2f69a4e83a0c28392b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26cc545f580c7067be7f0260242e1952"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#a26cc545f580c7067be7f0260242e1952">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
+<tr class="memitem:a26cc545f580c7067be7f0260242e1952"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#a26cc545f580c7067be7f0260242e1952">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
 <tr class="memdesc:a26cc545f580c7067be7f0260242e1952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it.  <a href="#a26cc545f580c7067be7f0260242e1952">More...</a><br/></td></tr>
 <tr class="separator:a26cc545f580c7067be7f0260242e1952"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaab7a3c064f1b9f7465ea6ddef4d6bd7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#aaab7a3c064f1b9f7465ea6ddef4d6bd7">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr class="memitem:aaab7a3c064f1b9f7465ea6ddef4d6bd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#aaab7a3c064f1b9f7465ea6ddef4d6bd7">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr class="memdesc:aaab7a3c064f1b9f7465ea6ddef4d6bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#aaab7a3c064f1b9f7465ea6ddef4d6bd7">More...</a><br/></td></tr>
 <tr class="separator:aaab7a3c064f1b9f7465ea6ddef4d6bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d9f45cf621609dc884712c3beb3a501"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d9f45cf621609dc884712c3beb3a501"></a>
@@ -349,16 +349,13 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the freshly overwritten <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00096">96</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00095">95</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a26cc545f580c7067be7f0260242e1952"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Transform::ProtoDeSerialize </td>
@@ -368,11 +365,6 @@ Public Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it. </p>
@@ -384,16 +376,13 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>A precondition of using this is that all of the actors intended for use must already be Deserialized. </dd></dl>
 
-<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00118">118</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00117">117</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="aaab7a3c064f1b9f7465ea6ddef4d6bd7"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Transform::ProtoSerialize </td>
@@ -403,11 +392,6 @@ Public Attributes</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
@@ -418,7 +402,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00103">103</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00102">102</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
 
 </div>
 </div>
@@ -446,7 +430,7 @@ Public Attributes</h2></td></tr>
 <p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> tag this class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing "Transform" </dd></dl>
 
-<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00134">134</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00133">133</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
 
 </div>
 </div>
@@ -456,6 +440,6 @@ Public Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 19 2013 22:36:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Fri Sep 20 2013 23:32:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

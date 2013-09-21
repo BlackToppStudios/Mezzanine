@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;19,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;20,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -145,6 +145,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a98781f6b27dd4611404c0d6fb06535c9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.html#a98781f6b27dd4611404c0d6fb06535c9">GetParentObject</a> () const </td></tr>
 <tr class="memdesc:a98781f6b27dd4611404c0d6fb06535c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a pointer to the parent object controlling this proxy.  <a href="#a98781f6b27dd4611404c0d6fb06535c9">More...</a><br/></td></tr>
 <tr class="separator:a98781f6b27dd4611404c0d6fb06535c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4190d75692d156d3b0c43ea92c90f338"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b">Mezzanine::ProxyType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.html#a4190d75692d156d3b0c43ea92c90f338">GetProxyType</a> () const =0</td></tr>
+<tr class="memdesc:a4190d75692d156d3b0c43ea92c90f338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor for the type of proxy.  <a href="#a4190d75692d156d3b0c43ea92c90f338">More...</a><br/></td></tr>
+<tr class="separator:a4190d75692d156d3b0c43ea92c90f338"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57375fc83bde7097435867f7eb4189ef"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.html#a57375fc83bde7097435867f7eb4189ef">GetScale</a> () const =0</td></tr>
 <tr class="memdesc:a57375fc83bde7097435867f7eb4189ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the scaling currently being applied to this object.  <a href="#a57375fc83bde7097435867f7eb4189ef">More...</a><br/></td></tr>
 <tr class="separator:a57375fc83bde7097435867f7eb4189ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -247,7 +250,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000058">Todo:</a></b></dt><dd>Notify something? Perhaps use the new event system? </dd></dl>
 
-<p>Definition at line <a class="el" href="worldproxy_8cpp_source.html#l00075">75</a> of file <a class="el" href="worldproxy_8cpp_source.html">worldproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="worldproxy_8cpp_source.html#l00069">69</a> of file <a class="el" href="worldproxy_8cpp_source.html">worldproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -304,7 +307,7 @@ Protected Attributes</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>When creating a new <a class="el" href="classMezzanine_1_1WorldProxy.html" title="This is the base class for proxy objects belonging to the various 3D subsystems.">WorldProxy</a> class verify this method has a valid return for it in order for serialization to work properly. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the name of the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> tag from the most derived class of "this". </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#ade57416c69f8b5b1e82f7211b4244d32">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html#af0215067d080d28fd52157f1d0da9559">Mezzanine::Physics::RigidProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#ade57416c69f8b5b1e82f7211b4244d32">Mezzanine::Physics::PhysicsProxy</a>, <a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html#af0215067d080d28fd52157f1d0da9559">Mezzanine::Physics::RigidProxy</a>, <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#ab10193da1bc70c852564dc6c1d4c26c6">Mezzanine::Physics::SoftProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html#a7bf697d2a80d132ed77c61212b48b718">Mezzanine::Physics::GhostProxy</a>.</p>
 
 </div>
 </div>
@@ -334,7 +337,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TransformableObject.html#a19db95dd2c1d51cae4eff5bc455654f3">Mezzanine::TransformableObject</a>.</p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#ad29760e7413df5fee2d41fb4fb24ed77">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#ad29760e7413df5fee2d41fb4fb24ed77">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#a3500bfc5a2a2b789df1b77625cf717b6">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -364,7 +367,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TransformableObject.html#afd0ba2a6c736ee8d0671dc3a5d51f8f1">Mezzanine::TransformableObject</a>.</p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#ab193e177391f22755a1eb6d07d13ae76">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#ab193e177391f22755a1eb6d07d13ae76">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#a856fd496c3b7082adf2805e2765a58f6">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -392,7 +395,35 @@ Protected Attributes</h2></td></tr>
 <p>Gets a pointer to the parent object controlling this proxy. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a> controlling this proxy, or NULL if this proxy isn't bound to a <a class="el" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="worldproxy_8cpp_source.html#l00059">59</a> of file <a class="el" href="worldproxy_8cpp_source.html">worldproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="worldproxy_8cpp_source.html#l00057">57</a> of file <a class="el" href="worldproxy_8cpp_source.html">worldproxy.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4190d75692d156d3b0c43ea92c90f338"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b">Mezzanine::ProxyType</a> Mezzanine::WorldProxy::GetProxyType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Accessor for the type of proxy. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns enum value for the type of proxy this object is. </dd></dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html#a629a65e0a703ad86e35bb495ec738c70">Mezzanine::Physics::RigidProxy</a>, <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#aa039a7167f302b62b178fc40e0aa98cd">Mezzanine::Physics::SoftProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html#a91e3e8015c6a9e63ec519784e11bdbb7">Mezzanine::Physics::GhostProxy</a>.</p>
 
 </div>
 </div>
@@ -422,7 +453,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TransformableObject.html#a71a88f0e6234ddbeceefec8bbedf8d80">Mezzanine::TransformableObject</a>.</p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#aa6c122590516bfabd50b25541ff66bd4">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#aa6c122590516bfabd50b25541ff66bd4">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#a84a9f43926e54c38447245c41bd91895">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -450,7 +481,7 @@ Protected Attributes</h2></td></tr>
 <p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> tag the proxy class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing the name of this class. </dd></dl>
 
-<p>Definition at line <a class="el" href="worldproxy_8cpp_source.html#l00067">67</a> of file <a class="el" href="worldproxy_8cpp_source.html">worldproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="worldproxy_8cpp_source.html#l00063">63</a> of file <a class="el" href="worldproxy_8cpp_source.html">worldproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -548,7 +579,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a92fcdf47d1eb3140f6f5b9e40bc1625f">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a92fcdf47d1eb3140f6f5b9e40bc1625f">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#a9c06f4514e1842d5dd43abef0512f790">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -582,7 +613,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#abd79eb2336cc349af785a65cb410ae87">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#abd79eb2336cc349af785a65cb410ae87">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#ae4c7047e65ab9942cff504dae4fc80d4">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -831,7 +862,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TransformableObject.html#aaf629c7c78e9cb6e8841216efe3b3c6e">Mezzanine::TransformableObject</a>.</p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a2b5bec5b04620f10872ffffaa83e65ef">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a2b5bec5b04620f10872ffffaa83e65ef">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#ac04f4af3b2974d3198771576dc67dd90">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -885,7 +916,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TransformableObject.html#a020a1ff559a7bba073c3fce8ffbe4c77">Mezzanine::TransformableObject</a>.</p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a1e13699c8ff5465e606726fd9b591733">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a1e13699c8ff5465e606726fd9b591733">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#ab49e909a5d156f477d5c1811de16fe72">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -921,7 +952,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TransformableObject.html#ad3768666c30f5e094803a81f8f65e969">Mezzanine::TransformableObject</a>.</p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a3558fa69d0c863f867e640b27f619c9b">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a3558fa69d0c863f867e640b27f619c9b">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#a5996f3d159f3258a7f498ea6363e4bc9">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -982,7 +1013,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TransformableObject.html#a82f208f29ffbb576671b884bd6ae7970">Mezzanine::TransformableObject</a>.</p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a08fbe4267b3b22bd18b4dfc8720f2c45">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a08fbe4267b3b22bd18b4dfc8720f2c45">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#a65bd39f536dc87dab5d0b5a0938fb225">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -1018,7 +1049,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TransformableObject.html#aaa5fe986b55579d48a25a0bf92cc58e5">Mezzanine::TransformableObject</a>.</p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#ac31d6912be34499b78b7561ef43bef30">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#ac31d6912be34499b78b7561ef43bef30">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#a5bcde160ab546468c6e5dd6af50c9b76">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -1072,7 +1103,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1TransformableObject.html#aba33e9a778e3d69cb929b8bfec23b13a">Mezzanine::TransformableObject</a>.</p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a11302d21c6d358b16b5b3e31598563fb">Mezzanine::Physics::PhysicsProxy</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#a11302d21c6d358b16b5b3e31598563fb">Mezzanine::Physics::PhysicsProxy</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html#a655c042c767c9aedb7182b15ea71d016">Mezzanine::Physics::SoftProxy</a>.</p>
 
 </div>
 </div>
@@ -1235,6 +1266,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 19 2013 22:36:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Fri Sep 20 2013 23:32:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

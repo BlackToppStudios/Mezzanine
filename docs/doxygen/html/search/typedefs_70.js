@@ -6,5 +6,7 @@ var searchData=
   ['planeraytestresult',['PlaneRayTestResult',['../classMezzanine_1_1Ray.html#abdba7027f3a235335a589299ad8565e2',1,'Mezzanine::Ray::PlaneRayTestResult()'],['../namespaceMezzanine_1_1MathTools.html#aac42ff87c1656772e30f2cec91b3110e',1,'Mezzanine::MathTools::PlaneRayTestResult()']]],
   ['pointcontainer',['PointContainer',['../classMezzanine_1_1Track.html#a9bd4558aa3324856df22ce2825d0552f',1,'Mezzanine::Track']]],
   ['pointer',['pointer',['../classMezzanine_1_1XML_1_1AttributeIterator.html#adf736d8142b4bdf7bb413f2e49a0650c',1,'Mezzanine::XML::AttributeIterator::pointer()'],['../classMezzanine_1_1XML_1_1NodeIterator.html#aed31d5848dac3fceb2fc1be9572c5fbf',1,'Mezzanine::XML::NodeIterator::pointer()'],['../classMezzanine_1_1XML_1_1NamedNodeIterator.html#a8da8ca2c0a4072cf26ec9df61f523eaf',1,'Mezzanine::XML::NamedNodeIterator::pointer()']]],
-  ['pointiterator',['PointIterator',['../classMezzanine_1_1Track.html#ab27dfb13c4eadc181ca8476b35f0496a',1,'Mezzanine::Track']]]
+  ['pointiterator',['PointIterator',['../classMezzanine_1_1Track.html#ab27dfb13c4eadc181ca8476b35f0496a',1,'Mezzanine::Track']]],
+  ['proxycontainer',['ProxyContainer',['../classMezzanine_1_1Physics_1_1PhysicsManager.html#a419a2200388a63e463a2420a9c58acdc',1,'Mezzanine::Physics::PhysicsManager']]],
+  ['proxyiterator',['ProxyIterator',['../classMezzanine_1_1Physics_1_1PhysicsManager.html#ae96647b1b1b49c1eeb52921d06b0c6c9',1,'Mezzanine::Physics::PhysicsManager']]]
 ];

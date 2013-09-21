@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;19,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;20,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -157,12 +157,6 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorRigidPhysicsSettings.html">ActorRigidPhysicsSettings</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a helper class for configuring physics settings of an <a class="el" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>.  <a href="classMezzanine_1_1ActorRigidPhysicsSettings.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html">ActorSoft</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the actor class for Soft Objects.  <a href="classMezzanine_1_1ActorSoft.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoftPhysicsSettings.html">ActorSoftPhysicsSettings</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a helper class for configuring physics settings of an <a class="el" href="classMezzanine_1_1ActorSoft.html" title="This is the actor class for Soft Objects.">ActorSoft</a>.  <a href="classMezzanine_1_1ActorSoftPhysicsSettings.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorUpdateWorkUnit.html">ActorUpdateWorkUnit</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time.">Mezzanine::Threading::iWorkUnit</a> for the updating of actors.  <a href="classMezzanine_1_1ActorUpdateWorkUnit.html#details">More...</a><br/></td></tr>
@@ -964,6 +958,29 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a84bd521b90ded70d55bbc6ae3ec9723f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the world class to describe the extent of pausing a world. <br/></td></tr>
 <tr class="separator:a84bd521b90ded70d55bbc6ae3ec9723f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae8e2202c4d5a81566c2b8940478b68b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b">ProxyType</a> { <br/>
+&#160;&#160;<b>PT_Audio_First</b> = 1, 
+<b>PT_Audio_Listener</b> = 1, 
+<b>PT_Audio_SoundProxy</b> = 2, 
+<b>PT_Audio_Last</b> = 2, 
+<br/>
+&#160;&#160;<b>PT_Graphics_First</b> = 4, 
+<b>PT_Graphics_BillboardProxy</b> = 4, 
+<b>PT_Graphics_EntityProxy</b> = 8, 
+<b>PT_Graphics_LightProxy</b> = 16, 
+<br/>
+&#160;&#160;<b>PT_Graphics_ParticleProxy</b> = 32, 
+<b>PT_Graphics_Last</b> = 32, 
+<b>PT_Physics_First</b> = 64, 
+<b>PT_Physics_GhostProxy</b> = 64, 
+<br/>
+&#160;&#160;<b>PT_Physics_RigidProxy</b> = 128, 
+<b>PT_Physics_SoftProxy</b> = 256, 
+<b>PT_Physics_Last</b> = 256
+<br/>
+ }</td></tr>
+<tr class="memdesc:aae8e2202c4d5a81566c2b8940478b68b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by all World proxies to describe what their derived types are.  <a href="namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b">More...</a><br/></td></tr>
+<tr class="separator:aae8e2202c4d5a81566c2b8940478b68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab41a00a8c6a47b576dc987ec34e16ba1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1">StandardAxis</a> { <a class="el" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1aa96a3c4582e394fe76d3288fdfee9107">Axis_Invalid</a> = -1, 
 <a class="el" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a823c8f182393aef96f017c7279d49126">Axis_X</a> = 0, 
 <a class="el" href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1a935c7afe0104697553cf85e9214fb3fb">Axis_Y</a> = 1, 
@@ -986,36 +1003,35 @@ Enumerations</h2></td></tr>
 <tr class="memitem:ae8cd04f706f4998be62f454b7119c718"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a> { <br/>
 &#160;&#160;<b>WSO_ActorFirst</b> = 1, 
 <b>WSO_ActorRigid</b> = 1, 
-<b>WSO_ActorSoft</b> = 2, 
-<b>WSO_ActorCharacter</b> = 4, 
+<b>WSO_ActorCharacter</b> = 2, 
+<b>WSO_ActorUnknown</b> = 4, 
 <br/>
-&#160;&#160;<b>WSO_ActorUnknown</b> = 8, 
-<b>WSO_ActorLast</b> = 8, 
+&#160;&#160;<b>WSO_ActorLast</b> = 8, 
 <b>WSO_TerrainFirst</b> = 16, 
 <b>WSO_MeshTerrain</b> = 16, 
+<b>WSO_HeightfieldTerrain</b> = 32, 
 <br/>
-&#160;&#160;<b>WSO_HeightfieldTerrain</b> = 32, 
-<b>WSO_VectorFieldTerrain</b> = 64, 
+&#160;&#160;<b>WSO_VectorFieldTerrain</b> = 64, 
 <b>WSO_VoxelTerrain</b> = 128, 
 <b>WSO_MarchingCubeTerrain</b> = 256, 
+<b>WSO_UnknownTerrain</b> = 512, 
 <br/>
-&#160;&#160;<b>WSO_UnknownTerrain</b> = 512, 
-<b>WSO_TerrainLast</b> = 512, 
+&#160;&#160;<b>WSO_TerrainLast</b> = 512, 
 <b>WSO_AEFirst</b> = 1024, 
 <b>WSO_AEGravityField</b> = 1024, 
+<b>WSO_AEGravityWell</b> = 2048, 
 <br/>
-&#160;&#160;<b>WSO_AEGravityWell</b> = 2048, 
-<b>WSO_AEFieldOfForce</b> = 4069, 
+&#160;&#160;<b>WSO_AEFieldOfForce</b> = 4069, 
 <b>WSO_AEPlaceHolder1</b> = 8192, 
 <b>WSO_AEPlaceHolder2</b> = 16384, 
+<b>WSO_AEUnknown</b> = 32768, 
 <br/>
-&#160;&#160;<b>WSO_AEUnknown</b> = 32768, 
-<b>WSO_AELast</b> = 32768, 
+&#160;&#160;<b>WSO_AELast</b> = 32768, 
 <b>WSO_Camera</b> = 65536, 
 <b>WSO_Entity</b> = 131072, 
+<b>WSO_Light</b> = 262144, 
 <br/>
-&#160;&#160;<b>WSO_Light</b> = 262144, 
-<b>WSO_ParticleEffect</b> = 524288, 
+&#160;&#160;<b>WSO_ParticleEffect</b> = 524288, 
 <b>WSO_WorldNode</b> = 1048576
 <br/>
  }</td></tr>
@@ -1474,6 +1490,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 
 </div>
 </div>
+<a class="anchor" id="aae8e2202c4d5a81566c2b8940478b68b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b">Mezzanine::ProxyType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used by all <a class="el" href="classMezzanine_1_1World.html" title="This class represents a world for objects to interact within.">World</a> proxies to describe what their derived types are. </p>
+<p>This is used by the PhysicsProxy child classes to describe which proxy type they are. </p>
+
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00106">106</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ab41a00a8c6a47b576dc987ec34e16ba1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1501,7 +1534,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00107">107</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00130">130</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -1528,7 +1561,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00126">126</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00149">149</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -1545,7 +1578,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>Used by various classes to help identify what class an object is. </p>
 <p>This enum can be used to express any object which could be considered "insertable" into the game world. </p>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00136">136</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00159">159</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -2346,6 +2379,6 @@ template&lt;class T &gt; </div>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 19 2013 22:36:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Fri Sep 20 2013 23:32:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
