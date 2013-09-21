@@ -430,6 +430,14 @@ class lua51tests : public UnitTestGroup
                               "Ray", "VecXMultiply", 10, 10,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function VecXMultiply(x)\n"
+                              "   GymCoach=MezzanineSafe.StopWatchTimer()\n"
+                              "   GymCoach:SetGoalTime(x)\n"
+                              "   return GymCoach:GetGoalTime()\n"
+                              "end",
+                              "Timer", "VecXMultiply", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
             }
 
         }
