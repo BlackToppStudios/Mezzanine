@@ -187,10 +187,12 @@ namespace Mezzanine
     };//Ray
 }//Mezzanine
 
+#ifndef SWIG
 /// @brief Streaming output operator
 /// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout
 /// @param stream This is the stream we send our data to.
 /// @return This returns an std::ostream which now contains our data.
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Ray& x);
+#endif
 
 #endif
