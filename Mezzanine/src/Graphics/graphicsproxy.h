@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,38 +37,42 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphics_h
-#define _graphics_h
+#ifndef _graphicsgraphicsproxy_h
+#define _graphicsgraphicsproxy_h
+
+/// @file
+/// @brief This file contains the declaration for the base class from which graphics proxies inherit.
+
+#include "worldproxy.h"
+
+namespace Ogre
+{
+    class MovableObject;
+}
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Graphics
-    /// @brief This namespace is for all the classes belonging to the Graphics Subsystem.
-    /// @details Our Graphics system uses Ogre for all of Mezzanine's graphical/visual needs.
     namespace Graphics
     {
-
-    }
-}
-
-#include "Graphics/graphicsenumerations.h"
-#include "Graphics/graphicsmanager.h"
-
-#include "Graphics/billboardsetproxy.h"
-#include "Graphics/bone.h"
-#include "Graphics/entityproxy.h"
-#include "Graphics/gamewindow.h"
-#include "Graphics/graphicsproxy.h"
-#include "Graphics/lightproxy.h"
-#include "Graphics/material.h"
-#include "Graphics/mesh.h"
-#include "Graphics/particlesystemproxy.h"
-#include "Graphics/pass.h"
-#include "Graphics/skeleton.h"
-#include "Graphics/submesh.h"
-#include "Graphics/technique.h"
-#include "Graphics/texture.h"
-#include "Graphics/viewport.h"
-#include "Graphics/windowsettings.h"
+        class SceneManager;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the base proxy class for world proxies wrapping functionality of the graphics subsystem.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB GraphicsProxy : public WorldProxy
+        {
+        protected:
+            /// @internal
+            /// @brief This is a pointer to the scene manager that created and owns this proxy.
+            SceneManager* Manager;
+        public:
+            /// @brief Class constructor.
+            /// @param Creator A pointer to the manager that created this proxy.
+            GraphicsProxy(SceneManager* Creator);
+            /// @brief Class destructor.
+            virtual ~GraphicsProxy();
+        };//GraphicsProxy
+    }//Graphics
+}//Mezzanine
 
 #endif

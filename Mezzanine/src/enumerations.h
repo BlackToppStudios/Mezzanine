@@ -105,23 +105,23 @@ namespace Mezzanine
     /// @brief Used by all World proxies to describe what their derived types are.
     enum ProxyType
     {
-        PT_Audio_First             = 1,//1
-        PT_Audio_Listener          = 1,//1
-        PT_Audio_SoundProxy        = 2,//2
-        PT_Audio_Last              = 2,//2
+        PT_Audio_First                  = 1,//1
+        PT_Audio_Listener               = 1,//1
+        PT_Audio_SoundProxy             = 2,//2
+        PT_Audio_Last                   = 2,//2
 
-        PT_Graphics_First          = 4,//3
-        PT_Graphics_BillboardProxy = 4,//3
-        PT_Graphics_EntityProxy    = 8,//4
-        PT_Graphics_LightProxy     = 16,//5
-        PT_Graphics_ParticleProxy  = 32,//6
-        PT_Graphics_Last           = 32,//6
+        PT_Graphics_First               = 4,//3
+        PT_Graphics_BillboardSetProxy   = 4,//3
+        PT_Graphics_EntityProxy         = 8,//4
+        PT_Graphics_LightProxy          = 16,//5
+        PT_Graphics_ParticleSystemProxy = 32,//6
+        PT_Graphics_Last                = 32,//6
 
-        PT_Physics_First           = 64,//7
-        PT_Physics_GhostProxy      = 64,//7
-        PT_Physics_RigidProxy      = 128,//8
-        PT_Physics_SoftProxy       = 256,//9
-        PT_Physics_Last            = 256//9
+        PT_Physics_First                = 64,//7
+        PT_Physics_GhostProxy           = 64,//7
+        PT_Physics_RigidProxy           = 128,//8
+        PT_Physics_SoftProxy            = 256,//9
+        PT_Physics_Last                 = 256//9
     };
 
     /// @enum StandardAxis

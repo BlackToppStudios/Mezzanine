@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,38 +37,33 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphics_h
-#define _graphics_h
+#ifndef _graphicsentityproxy_h
+#define _graphicsentityproxy_h
+
+/// @file
+/// @brief This file contains the declaration for the World proxy wrapping basic entity(mesh) functionality.
+
+#include "Graphics/graphicsproxy.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Graphics
-    /// @brief This namespace is for all the classes belonging to the Graphics Subsystem.
-    /// @details Our Graphics system uses Ogre for all of Mezzanine's graphical/visual needs.
     namespace Graphics
     {
-
-    }
-}
-
-#include "Graphics/graphicsenumerations.h"
-#include "Graphics/graphicsmanager.h"
-
-#include "Graphics/billboardsetproxy.h"
-#include "Graphics/bone.h"
-#include "Graphics/entityproxy.h"
-#include "Graphics/gamewindow.h"
-#include "Graphics/graphicsproxy.h"
-#include "Graphics/lightproxy.h"
-#include "Graphics/material.h"
-#include "Graphics/mesh.h"
-#include "Graphics/particlesystemproxy.h"
-#include "Graphics/pass.h"
-#include "Graphics/skeleton.h"
-#include "Graphics/submesh.h"
-#include "Graphics/technique.h"
-#include "Graphics/texture.h"
-#include "Graphics/viewport.h"
-#include "Graphics/windowsettings.h"
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the proxy class for placing and manipulating a mesh in the scene.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB EntityProxy : public GraphicsProxy
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            /// @param Creator A pointer to the manager that created this proxy.
+            EntityProxy(SceneManager* Creator);
+            /// @brief Class destructor.
+            virtual ~EntityProxy();
+        };//EntityProxy
+    }//Graphics
+}//Mezzanine
 
 #endif
