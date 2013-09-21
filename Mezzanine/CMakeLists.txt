@@ -483,8 +483,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/textsettingsfile.cpp"
         "${${PROJECT_NAME}_SRC_DIR}scenemanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptingmanager.cpp"
-        #"${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindinglua51.cpp"
-        #"${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindinglua51unsafe.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingmainlua51.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingmainlua51unsafe.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingxmllua51.cpp"
