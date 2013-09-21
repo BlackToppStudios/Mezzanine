@@ -1662,51 +1662,55 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_GeometryRayTestResult swig_types[0]
-#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[1]
-#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[2]
-#define SWIGTYPE_p_Mezzanine__Plane swig_types[3]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[4]
-#define SWIGTYPE_p_Mezzanine__Ray swig_types[5]
-#define SWIGTYPE_p_Mezzanine__Sphere swig_types[6]
-#define SWIGTYPE_p_Mezzanine__Transform swig_types[7]
-#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[8]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[9]
-#define SWIGTYPE_p_Ogre__Plane swig_types[10]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[11]
-#define SWIGTYPE_p_Ogre__Ray swig_types[12]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[13]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[14]
-#define SWIGTYPE_p_PlaneRayTestResult swig_types[15]
-#define SWIGTYPE_p_RayTestResult swig_types[16]
-#define SWIGTYPE_p_SDL_Event swig_types[17]
-#define SWIGTYPE_p_XML__Node swig_types[18]
-#define SWIGTYPE_p_bool swig_types[19]
-#define SWIGTYPE_p_btQuaternion swig_types[20]
-#define SWIGTYPE_p_btTransform swig_types[21]
-#define SWIGTYPE_p_btVector3 swig_types[22]
-#define SWIGTYPE_p_char swig_types[23]
-#define SWIGTYPE_p_float swig_types[24]
-#define SWIGTYPE_p_int swig_types[25]
-#define SWIGTYPE_p_long_long swig_types[26]
-#define SWIGTYPE_p_short swig_types[27]
-#define SWIGTYPE_p_signed_char swig_types[28]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[29]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[30]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[31]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[32]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[33]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[34]
-#define SWIGTYPE_p_std__string swig_types[35]
-#define SWIGTYPE_p_std__stringstream swig_types[36]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[37]
-#define SWIGTYPE_p_std__wstring swig_types[38]
-#define SWIGTYPE_p_unsigned_char swig_types[39]
-#define SWIGTYPE_p_unsigned_int swig_types[40]
-#define SWIGTYPE_p_unsigned_long swig_types[41]
-#define SWIGTYPE_p_unsigned_long_long swig_types[42]
-#define SWIGTYPE_p_unsigned_short swig_types[43]
-static swig_type_info *swig_types[45];
-static swig_module_info swig_module = {swig_types, 44, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__AlarmTimer swig_types[1]
+#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[2]
+#define SWIGTYPE_p_Mezzanine__GoalTimer swig_types[3]
+#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[4]
+#define SWIGTYPE_p_Mezzanine__Plane swig_types[5]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[6]
+#define SWIGTYPE_p_Mezzanine__Ray swig_types[7]
+#define SWIGTYPE_p_Mezzanine__Sphere swig_types[8]
+#define SWIGTYPE_p_Mezzanine__StopWatchTimer swig_types[9]
+#define SWIGTYPE_p_Mezzanine__Timer swig_types[10]
+#define SWIGTYPE_p_Mezzanine__Transform swig_types[11]
+#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[12]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[13]
+#define SWIGTYPE_p_Ogre__Plane swig_types[14]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[15]
+#define SWIGTYPE_p_Ogre__Ray swig_types[16]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[17]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[18]
+#define SWIGTYPE_p_PlaneRayTestResult swig_types[19]
+#define SWIGTYPE_p_RayTestResult swig_types[20]
+#define SWIGTYPE_p_SDL_Event swig_types[21]
+#define SWIGTYPE_p_XML__Node swig_types[22]
+#define SWIGTYPE_p_bool swig_types[23]
+#define SWIGTYPE_p_btQuaternion swig_types[24]
+#define SWIGTYPE_p_btTransform swig_types[25]
+#define SWIGTYPE_p_btVector3 swig_types[26]
+#define SWIGTYPE_p_char swig_types[27]
+#define SWIGTYPE_p_float swig_types[28]
+#define SWIGTYPE_p_int swig_types[29]
+#define SWIGTYPE_p_long_long swig_types[30]
+#define SWIGTYPE_p_short swig_types[31]
+#define SWIGTYPE_p_signed_char swig_types[32]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[33]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[34]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[35]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[36]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[37]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[38]
+#define SWIGTYPE_p_std__string swig_types[39]
+#define SWIGTYPE_p_std__stringstream swig_types[40]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[41]
+#define SWIGTYPE_p_std__wstring swig_types[42]
+#define SWIGTYPE_p_unsigned_char swig_types[43]
+#define SWIGTYPE_p_unsigned_int swig_types[44]
+#define SWIGTYPE_p_unsigned_long swig_types[45]
+#define SWIGTYPE_p_unsigned_long_long swig_types[46]
+#define SWIGTYPE_p_unsigned_short swig_types[47]
+static swig_type_info *swig_types[49];
+static swig_module_info swig_module = {swig_types, 48, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -8702,6 +8706,655 @@ static swig_lua_class *swig_Mezzanine_Ray_bases[] = {0};
 static const char *swig_Mezzanine_Ray_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_Ray = { "Ray", &SWIGTYPE_p_Mezzanine__Ray,_wrap_new_Ray, swig_delete_Ray, swig_Mezzanine_Ray_methods, swig_Mezzanine_Ray_attributes, swig_Mezzanine_Ray_bases, swig_Mezzanine_Ray_base_names };
 
+static int _wrap_new_Timer(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Timer::Timer",0,0)
+  result = (Mezzanine::Timer *)new Mezzanine::Timer();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Timer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_SetCurrentTime(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Whole arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::Timer::SetCurrentTime",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::SetCurrentTime",1,"Mezzanine::Timer *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Timer::SetCurrentTime",2,"Mezzanine::Whole const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_SetCurrentTime",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
+  (arg1)->SetCurrentTime(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_SetCurrentTimeInMilliseconds(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Whole arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::Timer::SetCurrentTimeInMilliseconds",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::SetCurrentTimeInMilliseconds",1,"Mezzanine::Timer *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Timer::SetCurrentTimeInMilliseconds",2,"Mezzanine::Whole const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_SetCurrentTimeInMilliseconds",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
+  (arg1)->SetCurrentTimeInMilliseconds(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_GetCurrentTime(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Timer::GetCurrentTime",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::GetCurrentTime",1,"Mezzanine::Timer *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_GetCurrentTime",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  result = (Mezzanine::Whole)(arg1)->GetCurrentTime();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_GetCurrentTimeInMilliseconds(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Timer::GetCurrentTimeInMilliseconds",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::GetCurrentTimeInMilliseconds",1,"Mezzanine::Timer *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_GetCurrentTimeInMilliseconds",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  result = (Mezzanine::Whole)(arg1)->GetCurrentTimeInMilliseconds();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_SetInitialTime(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Whole arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::Timer::SetInitialTime",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::SetInitialTime",1,"Mezzanine::Timer *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Timer::SetInitialTime",2,"Mezzanine::Whole const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_SetInitialTime",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
+  (arg1)->SetInitialTime(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_SetInitialTimeInMilliseconds(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Whole arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::Timer::SetInitialTimeInMilliseconds",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::SetInitialTimeInMilliseconds",1,"Mezzanine::Timer *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Timer::SetInitialTimeInMilliseconds",2,"Mezzanine::Whole const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_SetInitialTimeInMilliseconds",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
+  (arg1)->SetInitialTimeInMilliseconds(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_GetInitialTime(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Timer::GetInitialTime",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::GetInitialTime",1,"Mezzanine::Timer const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_GetInitialTime",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::Timer const *)arg1)->GetInitialTime();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_GetInitialTimeInMilliseconds(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Timer::GetInitialTimeInMilliseconds",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::GetInitialTimeInMilliseconds",1,"Mezzanine::Timer const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_GetInitialTimeInMilliseconds",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::Timer const *)arg1)->GetInitialTimeInMilliseconds();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_Start(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Timer::Start",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::Start",1,"Mezzanine::Timer *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_Start",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  (arg1)->Start();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_Stop(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Timer::Stop",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::Stop",1,"Mezzanine::Timer *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_Stop",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  (arg1)->Stop();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_IsStopped(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Bool result;
+  
+  SWIG_check_num_args("Mezzanine::Timer::IsStopped",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::IsStopped",1,"Mezzanine::Timer *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_IsStopped",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  result = (Mezzanine::Bool)(arg1)->IsStopped();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_Reset(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Timer::Reset",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::Reset",1,"Mezzanine::Timer *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_Reset",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  (arg1)->Reset();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Timer_GetType(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Timer::TimerType result;
+  
+  SWIG_check_num_args("Mezzanine::Timer::GetType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::GetType",1,"Mezzanine::Timer const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_GetType",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  result = (Mezzanine::Timer::TimerType)((Mezzanine::Timer const *)arg1)->GetType();
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Timer(void *obj) {
+Mezzanine::Timer *arg1 = (Mezzanine::Timer *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Timer_methods[] = {
+    {"SetCurrentTime", _wrap_Timer_SetCurrentTime}, 
+    {"SetCurrentTimeInMilliseconds", _wrap_Timer_SetCurrentTimeInMilliseconds}, 
+    {"GetCurrentTime", _wrap_Timer_GetCurrentTime}, 
+    {"GetCurrentTimeInMilliseconds", _wrap_Timer_GetCurrentTimeInMilliseconds}, 
+    {"SetInitialTime", _wrap_Timer_SetInitialTime}, 
+    {"SetInitialTimeInMilliseconds", _wrap_Timer_SetInitialTimeInMilliseconds}, 
+    {"GetInitialTime", _wrap_Timer_GetInitialTime}, 
+    {"GetInitialTimeInMilliseconds", _wrap_Timer_GetInitialTimeInMilliseconds}, 
+    {"Start", _wrap_Timer_Start}, 
+    {"Stop", _wrap_Timer_Stop}, 
+    {"IsStopped", _wrap_Timer_IsStopped}, 
+    {"Reset", _wrap_Timer_Reset}, 
+    {"GetType", _wrap_Timer_GetType}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Timer_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Timer_bases[] = {0};
+static const char *swig_Mezzanine_Timer_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_Timer = { "Timer", &SWIGTYPE_p_Mezzanine__Timer,_wrap_new_Timer, swig_delete_Timer, swig_Mezzanine_Timer_methods, swig_Mezzanine_Timer_attributes, swig_Mezzanine_Timer_bases, swig_Mezzanine_Timer_base_names };
+
+static int _wrap_GoalTimer_SetAutoReset(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::GoalTimer::SetAutoReset",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::GoalTimer::SetAutoReset",1,"Mezzanine::GoalTimer *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::GoalTimer::SetAutoReset",2,"bool const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__GoalTimer,0))){
+    SWIG_fail_ptr("GoalTimer_SetAutoReset",1,SWIGTYPE_p_Mezzanine__GoalTimer);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->SetAutoReset(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GoalTimer_GetAutoReset(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
+  Mezzanine::Bool result;
+  
+  SWIG_check_num_args("Mezzanine::GoalTimer::GetAutoReset",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::GoalTimer::GetAutoReset",1,"Mezzanine::GoalTimer const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__GoalTimer,0))){
+    SWIG_fail_ptr("GoalTimer_GetAutoReset",1,SWIGTYPE_p_Mezzanine__GoalTimer);
+  }
+  
+  result = (Mezzanine::Bool)((Mezzanine::GoalTimer const *)arg1)->GetAutoReset();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GoalTimer_SetGoalTime(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
+  Mezzanine::Whole arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::GoalTimer::SetGoalTime",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::GoalTimer::SetGoalTime",1,"Mezzanine::GoalTimer *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::GoalTimer::SetGoalTime",2,"Mezzanine::Whole const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__GoalTimer,0))){
+    SWIG_fail_ptr("GoalTimer_SetGoalTime",1,SWIGTYPE_p_Mezzanine__GoalTimer);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
+  (arg1)->SetGoalTime(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GoalTimer_SetGoalTimeInMilliseconds(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
+  Mezzanine::Whole arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::GoalTimer::SetGoalTimeInMilliseconds",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::GoalTimer::SetGoalTimeInMilliseconds",1,"Mezzanine::GoalTimer *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::GoalTimer::SetGoalTimeInMilliseconds",2,"Mezzanine::Whole const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__GoalTimer,0))){
+    SWIG_fail_ptr("GoalTimer_SetGoalTimeInMilliseconds",1,SWIGTYPE_p_Mezzanine__GoalTimer);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
+  (arg1)->SetGoalTimeInMilliseconds(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GoalTimer_GetGoalTime(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::GoalTimer::GetGoalTime",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::GoalTimer::GetGoalTime",1,"Mezzanine::GoalTimer const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__GoalTimer,0))){
+    SWIG_fail_ptr("GoalTimer_GetGoalTime",1,SWIGTYPE_p_Mezzanine__GoalTimer);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::GoalTimer const *)arg1)->GetGoalTime();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GoalTimer_GetGoalTimeInMilliseconds(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::GoalTimer::GetGoalTimeInMilliseconds",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::GoalTimer::GetGoalTimeInMilliseconds",1,"Mezzanine::GoalTimer const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__GoalTimer,0))){
+    SWIG_fail_ptr("GoalTimer_GetGoalTimeInMilliseconds",1,SWIGTYPE_p_Mezzanine__GoalTimer);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::GoalTimer const *)arg1)->GetGoalTimeInMilliseconds();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_GoalTimer(void *obj) {
+Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_GoalTimer_methods[] = {
+    {"SetAutoReset", _wrap_GoalTimer_SetAutoReset}, 
+    {"GetAutoReset", _wrap_GoalTimer_GetAutoReset}, 
+    {"SetGoalTime", _wrap_GoalTimer_SetGoalTime}, 
+    {"SetGoalTimeInMilliseconds", _wrap_GoalTimer_SetGoalTimeInMilliseconds}, 
+    {"GetGoalTime", _wrap_GoalTimer_GetGoalTime}, 
+    {"GetGoalTimeInMilliseconds", _wrap_GoalTimer_GetGoalTimeInMilliseconds}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_GoalTimer_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_GoalTimer_bases[] = {0,0};
+static const char *swig_Mezzanine_GoalTimer_base_names[] = {"Mezzanine::Timer *",0};
+static swig_lua_class _wrap_class_Mezzanine_GoalTimer = { "GoalTimer", &SWIGTYPE_p_Mezzanine__GoalTimer,0, swig_delete_GoalTimer, swig_Mezzanine_GoalTimer_methods, swig_Mezzanine_GoalTimer_attributes, swig_Mezzanine_GoalTimer_bases, swig_Mezzanine_GoalTimer_base_names };
+
+static int _wrap_new_StopWatchTimer(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::StopWatchTimer *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::StopWatchTimer::StopWatchTimer",0,0)
+  result = (Mezzanine::StopWatchTimer *)new Mezzanine::StopWatchTimer();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__StopWatchTimer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_StopWatchTimer_GetType(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::StopWatchTimer *arg1 = (Mezzanine::StopWatchTimer *) 0 ;
+  Mezzanine::Timer::TimerType result;
+  
+  SWIG_check_num_args("Mezzanine::StopWatchTimer::GetType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::StopWatchTimer::GetType",1,"Mezzanine::StopWatchTimer const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__StopWatchTimer,0))){
+    SWIG_fail_ptr("StopWatchTimer_GetType",1,SWIGTYPE_p_Mezzanine__StopWatchTimer);
+  }
+  
+  result = (Mezzanine::Timer::TimerType)((Mezzanine::StopWatchTimer const *)arg1)->GetType();
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_StopWatchTimer(void *obj) {
+Mezzanine::StopWatchTimer *arg1 = (Mezzanine::StopWatchTimer *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_StopWatchTimer_methods[] = {
+    {"GetType", _wrap_StopWatchTimer_GetType}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_StopWatchTimer_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_StopWatchTimer_bases[] = {0,0};
+static const char *swig_Mezzanine_StopWatchTimer_base_names[] = {"Mezzanine::GoalTimer *",0};
+static swig_lua_class _wrap_class_Mezzanine_StopWatchTimer = { "StopWatchTimer", &SWIGTYPE_p_Mezzanine__StopWatchTimer,_wrap_new_StopWatchTimer, swig_delete_StopWatchTimer, swig_Mezzanine_StopWatchTimer_methods, swig_Mezzanine_StopWatchTimer_attributes, swig_Mezzanine_StopWatchTimer_bases, swig_Mezzanine_StopWatchTimer_base_names };
+
+static int _wrap_new_AlarmTimer(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::AlarmTimer *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::AlarmTimer::AlarmTimer",0,0)
+  result = (Mezzanine::AlarmTimer *)new Mezzanine::AlarmTimer();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__AlarmTimer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AlarmTimer_GetType(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::AlarmTimer *arg1 = (Mezzanine::AlarmTimer *) 0 ;
+  Mezzanine::Timer::TimerType result;
+  
+  SWIG_check_num_args("Mezzanine::AlarmTimer::GetType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AlarmTimer::GetType",1,"Mezzanine::AlarmTimer const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__AlarmTimer,0))){
+    SWIG_fail_ptr("AlarmTimer_GetType",1,SWIGTYPE_p_Mezzanine__AlarmTimer);
+  }
+  
+  result = (Mezzanine::Timer::TimerType)((Mezzanine::AlarmTimer const *)arg1)->GetType();
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_AlarmTimer(void *obj) {
+Mezzanine::AlarmTimer *arg1 = (Mezzanine::AlarmTimer *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_AlarmTimer_methods[] = {
+    {"GetType", _wrap_AlarmTimer_GetType}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_AlarmTimer_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_AlarmTimer_bases[] = {0,0};
+static const char *swig_Mezzanine_AlarmTimer_base_names[] = {"Mezzanine::GoalTimer *",0};
+static swig_lua_class _wrap_class_Mezzanine_AlarmTimer = { "AlarmTimer", &SWIGTYPE_p_Mezzanine__AlarmTimer,_wrap_new_AlarmTimer, swig_delete_AlarmTimer, swig_Mezzanine_AlarmTimer_methods, swig_Mezzanine_AlarmTimer_attributes, swig_Mezzanine_AlarmTimer_bases, swig_Mezzanine_AlarmTimer_base_names };
+
 static int _wrap_Transform_Location_set(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Transform *arg1 = (Mezzanine::Transform *) 0 ;
@@ -10208,18 +10861,40 @@ static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("Plane_S_Positive", Mezzanine::Plane::S_Positive)},
     {SWIG_LUA_CONSTTAB_INT("Plane_S_Negative", Mezzanine::Plane::S_Negative)},
     {SWIG_LUA_CONSTTAB_INT("Plane_S_Both", Mezzanine::Plane::S_Both)},
+    {SWIG_LUA_CONSTTAB_INT("Timer_Normal", Mezzanine::Timer::Normal)},
+    {SWIG_LUA_CONSTTAB_INT("Timer_StopWatch", Mezzanine::Timer::StopWatch)},
+    {SWIG_LUA_CONSTTAB_INT("Timer_Alarm", Mezzanine::Timer::Alarm)},
     {0,0,0,0,0,0}
 };
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_Mezzanine__AlarmTimerTo_p_Mezzanine__Timer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Timer *) (Mezzanine::GoalTimer *) ((Mezzanine::AlarmTimer *) x));
+}
+static void *_p_Mezzanine__StopWatchTimerTo_p_Mezzanine__Timer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Timer *) (Mezzanine::GoalTimer *) ((Mezzanine::StopWatchTimer *) x));
+}
+static void *_p_Mezzanine__GoalTimerTo_p_Mezzanine__Timer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Timer *)  ((Mezzanine::GoalTimer *) x));
+}
+static void *_p_Mezzanine__AlarmTimerTo_p_Mezzanine__GoalTimer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::GoalTimer *)  ((Mezzanine::AlarmTimer *) x));
+}
+static void *_p_Mezzanine__StopWatchTimerTo_p_Mezzanine__GoalTimer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::GoalTimer *)  ((Mezzanine::StopWatchTimer *) x));
+}
 static swig_type_info _swigt__p_GeometryRayTestResult = {"_p_GeometryRayTestResult", "GeometryRayTestResult *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__AlarmTimer = {"_p_Mezzanine__AlarmTimer", "Mezzanine::AlarmTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_AlarmTimer, 0};
 static swig_type_info _swigt__p_Mezzanine__AxisAlignedBox = {"_p_Mezzanine__AxisAlignedBox", "Mezzanine::AxisAlignedBox *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__GoalTimer = {"_p_Mezzanine__GoalTimer", "Mezzanine::GoalTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_GoalTimer, 0};
 static swig_type_info _swigt__p_Mezzanine__Matrix3x3 = {"_p_Mezzanine__Matrix3x3", "Mezzanine::Matrix3x3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Plane = {"_p_Mezzanine__Plane", "Mezzanine::Plane *", 0, 0, (void*)&_wrap_class_Mezzanine_Plane, 0};
 static swig_type_info _swigt__p_Mezzanine__Quaternion = {"_p_Mezzanine__Quaternion", "Mezzanine::Quaternion *", 0, 0, (void*)&_wrap_class_Mezzanine_Quaternion, 0};
 static swig_type_info _swigt__p_Mezzanine__Ray = {"_p_Mezzanine__Ray", "Mezzanine::Ray *", 0, 0, (void*)&_wrap_class_Mezzanine_Ray, 0};
 static swig_type_info _swigt__p_Mezzanine__Sphere = {"_p_Mezzanine__Sphere", "Mezzanine::Sphere *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__StopWatchTimer = {"_p_Mezzanine__StopWatchTimer", "Mezzanine::StopWatchTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_StopWatchTimer, 0};
+static swig_type_info _swigt__p_Mezzanine__Timer = {"_p_Mezzanine__Timer", "Mezzanine::Timer *", 0, 0, (void*)&_wrap_class_Mezzanine_Timer, 0};
 static swig_type_info _swigt__p_Mezzanine__Transform = {"_p_Mezzanine__Transform", "Mezzanine::Transform *", 0, 0, (void*)&_wrap_class_Mezzanine_Transform, 0};
 static swig_type_info _swigt__p_Mezzanine__Vector2 = {"_p_Mezzanine__Vector2", "Mezzanine::Vector2 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector2, 0};
 static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector3, 0};
@@ -10260,12 +10935,16 @@ static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "Mezzanin
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_GeometryRayTestResult,
+  &_swigt__p_Mezzanine__AlarmTimer,
   &_swigt__p_Mezzanine__AxisAlignedBox,
+  &_swigt__p_Mezzanine__GoalTimer,
   &_swigt__p_Mezzanine__Matrix3x3,
   &_swigt__p_Mezzanine__Plane,
   &_swigt__p_Mezzanine__Quaternion,
   &_swigt__p_Mezzanine__Ray,
   &_swigt__p_Mezzanine__Sphere,
+  &_swigt__p_Mezzanine__StopWatchTimer,
+  &_swigt__p_Mezzanine__Timer,
   &_swigt__p_Mezzanine__Transform,
   &_swigt__p_Mezzanine__Vector2,
   &_swigt__p_Mezzanine__Vector3,
@@ -10306,12 +10985,16 @@ static swig_type_info *swig_type_initial[] = {
 };
 
 static swig_cast_info _swigc__p_GeometryRayTestResult[] = {  {&_swigt__p_GeometryRayTestResult, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__AlarmTimer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AxisAlignedBox[] = {  {&_swigt__p_Mezzanine__AxisAlignedBox, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__GoalTimer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, _p_Mezzanine__AlarmTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__StopWatchTimer, _p_Mezzanine__StopWatchTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__GoalTimer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Matrix3x3[] = {  {&_swigt__p_Mezzanine__Matrix3x3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Plane[] = {  {&_swigt__p_Mezzanine__Plane, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Quaternion[] = {  {&_swigt__p_Mezzanine__Quaternion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Ray[] = {  {&_swigt__p_Mezzanine__Ray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Sphere[] = {  {&_swigt__p_Mezzanine__Sphere, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__StopWatchTimer[] = {  {&_swigt__p_Mezzanine__StopWatchTimer, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Timer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, _p_Mezzanine__AlarmTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__StopWatchTimer, _p_Mezzanine__StopWatchTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__GoalTimer, _p_Mezzanine__GoalTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__Timer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Transform[] = {  {&_swigt__p_Mezzanine__Transform, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector2[] = {  {&_swigt__p_Mezzanine__Vector2, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector3[] = {  {&_swigt__p_Mezzanine__Vector3, 0, 0, 0},{0, 0, 0, 0}};
@@ -10352,12 +11035,16 @@ static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_GeometryRayTestResult,
+  _swigc__p_Mezzanine__AlarmTimer,
   _swigc__p_Mezzanine__AxisAlignedBox,
+  _swigc__p_Mezzanine__GoalTimer,
   _swigc__p_Mezzanine__Matrix3x3,
   _swigc__p_Mezzanine__Plane,
   _swigc__p_Mezzanine__Quaternion,
   _swigc__p_Mezzanine__Ray,
   _swigc__p_Mezzanine__Sphere,
+  _swigc__p_Mezzanine__StopWatchTimer,
+  _swigc__p_Mezzanine__Timer,
   _swigc__p_Mezzanine__Transform,
   _swigc__p_Mezzanine__Vector2,
   _swigc__p_Mezzanine__Vector3,

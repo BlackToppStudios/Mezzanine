@@ -125,9 +125,9 @@
 #include "stringtool.h"
 #include "terrainbase.h"
 #include "terrainmanager.h"
-#include "timer.h"
 
 #endif // \no SWIG
+#include "timer.h"
 #include "transform.h"                  // done
 #include "vector2.h"                    // done
 #include "vector3.h"                    // done
