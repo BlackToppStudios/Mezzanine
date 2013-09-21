@@ -1,6 +1,5 @@
 <map id="Mezzanine::NonTriggerPhysicsSettings" name="Mezzanine::NonTriggerPhysicsSettings">
-<area shape="rect" id="node5" href="$classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor." alt="" coords="119,198,329,245"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObjectPhysicsSettings.html" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="115,6,333,53"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1ActorRigidPhysicsSettings.html" title="This is a helper class for configuring physics settings of an ActorRigid." alt="" coords="5,294,213,341"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1ActorSoftPhysicsSettings.html" title="This is a helper class for configuring physics settings of an ActorSoft." alt="" coords="237,294,440,341"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor." alt="" coords="9,198,220,245"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObjectPhysicsSettings.html" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="5,6,224,53"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1ActorRigidPhysicsSettings.html" title="This is a helper class for configuring physics settings of an ActorRigid." alt="" coords="11,294,219,341"/>
 </map>

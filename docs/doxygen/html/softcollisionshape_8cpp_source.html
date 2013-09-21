@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/Physics/actorsoftcollisionshape.cpp Source File</title>
+<title>/home/Code/Mezzanine/Mezzanine/src/Physics/softcollisionshape.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;19,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;20,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">actorsoftcollisionshape.cpp</div>  </div>
+<div class="title">softcollisionshape.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
@@ -123,10 +123,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">   Joseph Toppi - toppij@gmail.com</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   John Blackwood - makoenergy02@gmail.com</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#ifndef _actorsoftcollisionshape_cpp</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _actorsoftcollisionshape_cpp</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#ifndef _physicssoftcollisionshape_cpp</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _physicssoftcollisionshape_cpp</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;Physics/actorsoftcollisionshape.h&quot;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;Physics/softcollisionshape.h&quot;</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;collisionshapemanager.h&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;stringtool.h&quot;</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
@@ -138,39 +138,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">namespace </span>Physics</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {<span class="comment"></span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">        /////////////////////////////////////////</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"></span>        <span class="comment">// ActorSoftCollisionShape Functions</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"></span>        <span class="comment">// SoftCollisionShape Functions</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html#aceb5cc95c19bf2ba2e9a69eb25840fc4">   57</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html#aceb5cc95c19bf2ba2e9a69eb25840fc4" title="Internal Constructor.">ActorSoftCollisionShape::ActorSoftCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Name, btSoftBodyCollisionShape* BulletShape)</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html#a8d667e05ab2c13daec69b3d8d1ba189a">   57</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html#a8d667e05ab2c13daec69b3d8d1ba189a" title="Internal Constructor.">SoftCollisionShape::SoftCollisionShape</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Name, btSoftBodyCollisionShape* BulletShape)</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            this-&gt;Name = <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.html#aba6f8980ca61955ab79817d23a6271c7" title="Storage for the name of this class instance.">Name</a>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            ActorSoftShape = BulletShape;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <a class="code" href="classMezzanine_1_1Physics_1_1MeshCollisionShape.html#aedfe53887ada71aabd2f9d20d91d48e2" title="Sets the internal pointers on the base classes.">SetPointers</a>(ActorSoftShape);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            SoftShape = BulletShape;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <a class="code" href="classMezzanine_1_1Physics_1_1MeshCollisionShape.html#aedfe53887ada71aabd2f9d20d91d48e2" title="Sets the internal pointers on the base classes.">SetPointers</a>(SoftShape);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        }</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html#a02b587c785118d3c74e22ac20830d25e">   64</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html#a02b587c785118d3c74e22ac20830d25e" title="Class Destructor.">ActorSoftCollisionShape::~ActorSoftCollisionShape</a>()</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html#a82647973c1d63e434908c6722e32f2d0">   64</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html#a82647973c1d63e434908c6722e32f2d0" title="Class Destructor.">SoftCollisionShape::~SoftCollisionShape</a>()</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keyword">delete</span> ActorSoftShape;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keyword">delete</span> SoftShape;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html#a89365bbba1128fef4a44d453e533deb2">   69</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.html#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html#a89365bbba1128fef4a44d453e533deb2" title="Gets the type of Collision shape this is. ">ActorSoftCollisionShape::GetType</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html#ad3d4d98aaf5f6d9b97e6d4366cbbc7cb">   69</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.html#a985a918f81fe43d088cc1e39bbffc8ea" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a> <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html#ad3d4d98aaf5f6d9b97e6d4366cbbc7cb" title="Gets the type of Collision shape this is. ">SoftCollisionShape::GetType</a>()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.html#a985a918f81fe43d088cc1e39bbffc8eaa0fc3e066b38a7bb0ac442c8b2faaf90b" title="Indicates the class is a ActorSoftCollisionShape.">CollisionShape::ST_ActorSoft</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShape.html#a985a918f81fe43d088cc1e39bbffc8eaabbca9264286ee01f8108d35032735a17" title="Indicates the class is a SoftCollisionShape.">CollisionShape::ST_Soft</a>;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }<span class="comment">//Physics</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}<span class="comment">//Mezzanine</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::Physics::ActorSoftCollisionShape</a>&amp; ShapeToSerialize)</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">Mezzanine::Physics::SoftCollisionShape</a>&amp; ShapeToSerialize)</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    { <a class="code" href="namespaceMezzanine.html#a9015c5e668e14b857a27888c56934148" title="Convert any class that supports serialization or has a serializer to a string of chars in a stream...">Mezzanine::Serialize</a>(stream, ShapeToSerialize); <span class="keywordflow">return</span> stream; }</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::Physics::ActorSoftCollisionShape</a>&amp; x)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">Mezzanine::Physics::SoftCollisionShape</a>&amp; x)</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.html#ad8989ea81ccd1ad6d59a11921f0239a4" title="Deserialize the next xml tag in the stream into a specific in memory class instance.">Mezzanine::DeSerialize</a>(stream, x); }</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">Mezzanine::Physics::ActorSoftCollisionShape</a>&amp; x)</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">Mezzanine::Physics::SoftCollisionShape</a>&amp; x)</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    { x.<a class="code" href="classMezzanine_1_1Physics_1_1MeshCollisionShape.html#ab881981529ca4b0780338c91cbdd6d3e">ProtoDeSerialize</a>(OneNode); }</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 19 2013 22:36:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Fri Sep 20 2013 23:32:10 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

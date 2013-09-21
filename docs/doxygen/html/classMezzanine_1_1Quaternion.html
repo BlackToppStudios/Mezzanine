@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;19,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;20,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -243,10 +243,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a85b80d7a93909a60b085f693ae7a8cde"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.html#a85b80d7a93909a60b085f693ae7a8cde">operator[]</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
 <tr class="memdesc:a85b80d7a93909a60b085f693ae7a8cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows Array style access to the members of this class.  <a href="#a85b80d7a93909a60b085f693ae7a8cde">More...</a><br/></td></tr>
 <tr class="separator:a85b80d7a93909a60b085f693ae7a8cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99ce100d39dff3708da912cde76e3ee9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.html#a99ce100d39dff3708da912cde76e3ee9">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
+<tr class="memitem:a99ce100d39dff3708da912cde76e3ee9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.html#a99ce100d39dff3708da912cde76e3ee9">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
 <tr class="memdesc:a99ce100d39dff3708da912cde76e3ee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it.  <a href="#a99ce100d39dff3708da912cde76e3ee9">More...</a><br/></td></tr>
 <tr class="separator:a99ce100d39dff3708da912cde76e3ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2439bccdabc60c847174248e86dd13e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.html#ab2439bccdabc60c847174248e86dd13e">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr class="memitem:ab2439bccdabc60c847174248e86dd13e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.html#ab2439bccdabc60c847174248e86dd13e">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr class="memdesc:ab2439bccdabc60c847174248e86dd13e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#ab2439bccdabc60c847174248e86dd13e">More...</a><br/></td></tr>
 <tr class="separator:ab2439bccdabc60c847174248e86dd13e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb9d5c3d6b8092271a6c97cab0611efd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.html#acb9d5c3d6b8092271a6c97cab0611efd">SetFromAxes</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;AxisX, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;AxisY, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;AxisZ)</td></tr>
@@ -1631,9 +1631,6 @@ Public Attributes</h2></td></tr>
 <a class="anchor" id="a99ce100d39dff3708da912cde76e3ee9"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Quaternion::ProtoDeSerialize </td>
@@ -1643,11 +1640,6 @@ Public Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it. </p>
@@ -1665,9 +1657,6 @@ Public Attributes</h2></td></tr>
 <a class="anchor" id="ab2439bccdabc60c847174248e86dd13e"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Quaternion::ProtoSerialize </td>
@@ -1677,11 +1666,6 @@ Public Attributes</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
@@ -1837,6 +1821,6 @@ Public Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 19 2013 22:36:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Fri Sep 20 2013 23:32:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

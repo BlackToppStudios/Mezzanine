@@ -17,10 +17,10 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" target="_top" xlink:title="A collision shape for soft actors.">
-<polygon fill="white" stroke="black" points="311.5,-104 311.5,-138 448.5,-138 448.5,-104 311.5,-104"/>
-<text text-anchor="start" x="319.5" y="-125" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
-<text text-anchor="middle" x="380" y="-112" font-family="FreeSans" font-size="10.00">::ActorSoftCollisionShape</text>
+<a xlink:href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" target="_top" xlink:title="A triangle mesh collsion shape based on a graphics mesh.">
+<polygon fill="white" stroke="black" points="300,-104 300,-138 460,-138 460,-104 300,-104"/>
+<text text-anchor="start" x="308" y="-125" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
+<text text-anchor="middle" x="380" y="-112" font-family="FreeSans" font-size="10.00">::DynamicMeshCollisionShape</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
@@ -30,15 +30,15 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" target="_top" xlink:title="A triangle mesh collsion shape based on a graphics mesh.">
-<polygon fill="white" stroke="black" points="300,-52 300,-86 460,-86 460,-52 300,-52"/>
-<text text-anchor="start" x="308" y="-73" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
-<text text-anchor="middle" x="380" y="-60" font-family="FreeSans" font-size="10.00">::DynamicMeshCollisionShape</text>
+<a xlink:href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" target="_top" xlink:title="A collision shape for soft proxies.">
+<polygon fill="white" stroke="black" points="324,-52 324,-86 436,-86 436,-52 324,-52"/>
+<text text-anchor="start" x="332" y="-73" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
+<text text-anchor="middle" x="380" y="-60" font-family="FreeSans" font-size="10.00">::SoftCollisionShape</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge6" class="edge"><title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M274.294,-69C282.642,-69 291.222,-69 299.711,-69"/>
+<path fill="none" stroke="midnightblue" d="M274.325,-69C290.731,-69 308.029,-69 323.771,-69"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="274.247,-65.5001 264.247,-69 274.247,-72.5001 274.247,-65.5001"/>
 </g>
 <!-- Node5 -->

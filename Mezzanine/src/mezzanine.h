@@ -111,9 +111,9 @@
 #endif
 #include "plane.h"                      // done
 #include "quaternion.h"                 // done
+#include "ray.h"
 #ifndef SWIG
 
-#include "ray.h"
 #include "rayquerytool.h"               // nothing to do
 #include "resource.h"
 #include "resourcemanager.h"
@@ -126,18 +126,16 @@
 #include "stringtool.h"
 #include "terrainbase.h"
 #include "terrainmanager.h"
-#include "timer.h"
-#include "transform.h"                  // done
 
 #endif // \no SWIG
-
+#include "timer.h"
+#include "transform.h"                  // done
 #include "vector2.h"                    // done
 #include "vector3.h"                    // done
+#ifndef SWIG
 
 // more stuff swig shouldn't read yet
-#ifndef SWIG
 #include "vector3wactor.h"
-
 #include "entresol.h"
 #include "worldnode.h"                  // done
 #include "worldobjectgraphicssettings.h"// done

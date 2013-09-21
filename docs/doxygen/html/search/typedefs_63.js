@@ -24,6 +24,7 @@ var searchData=
   ['constnameddatastreamiterator',['ConstNamedDataStreamIterator',['../classMezzanine_1_1ResourceManager.html#aebf447f804ec46a85dd8bc95a388b686',1,'Mezzanine::ResourceManager']]],
   ['constparticleiterator',['ConstParticleIterator',['../classMezzanine_1_1SceneManager.html#a8efb7f6a2858d15ad5b038aa78cf43cc',1,'Mezzanine::SceneManager']]],
   ['constpointiterator',['ConstPointIterator',['../classMezzanine_1_1Track.html#a7f836353a38b2a90f89834b490cc1cad',1,'Mezzanine::Track']]],
+  ['constproxyiterator',['ConstProxyIterator',['../classMezzanine_1_1Physics_1_1PhysicsManager.html#a88a30e2ed48587e0e959fc9cac3bc784',1,'Mezzanine::Physics::PhysicsManager']]],
   ['constraintcontainer',['ConstraintContainer',['../classMezzanine_1_1Physics_1_1PhysicsManager.html#a8065dfaca8fd9ab3350b78720976aa4f',1,'Mezzanine::Physics::PhysicsManager']]],
   ['constraintiterator',['ConstraintIterator',['../classMezzanine_1_1Physics_1_1PhysicsManager.html#ad90471c9a969a4225323c59f464f83a6',1,'Mezzanine::Physics::PhysicsManager']]],
   ['constshapemapiterator',['ConstShapeMapIterator',['../classMezzanine_1_1Physics_1_1CollisionShapeManager.html#ab55c4ba4592a9dcdad5e553eb3efafd8',1,'Mezzanine::Physics::CollisionShapeManager']]],

@@ -97,28 +97,28 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1ActorSoftCollisionShape.html" target="_top" xlink:title="A collision shape for soft actors.">
-<polygon fill="white" stroke="black" points="339.5,-468 339.5,-502 476.5,-502 476.5,-468 339.5,-468"/>
-<text text-anchor="start" x="347.5" y="-489" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
-<text text-anchor="middle" x="408" y="-476" font-family="FreeSans" font-size="10.00">::ActorSoftCollisionShape</text>
+<a xlink:href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" target="_top" xlink:title="A triangle mesh collsion shape based on a graphics mesh.">
+<polygon fill="white" stroke="black" points="328,-468 328,-502 488,-502 488,-468 328,-468"/>
+<text text-anchor="start" x="336" y="-489" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
+<text text-anchor="middle" x="408" y="-476" font-family="FreeSans" font-size="10.00">::DynamicMeshCollisionShape</text>
 </a>
 </g>
 <!-- Node6&#45;&gt;Node7 -->
 <g id="edge12" class="edge"><title>Node6&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M288.206,-460.281C304.827,-463.71 322.575,-467.373 339.178,-470.799"/>
+<path fill="none" stroke="midnightblue" d="M287.833,-460.204C300.865,-462.893 314.601,-465.727 327.944,-468.481"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="288.524,-456.773 278.023,-458.179 287.11,-463.628 288.524,-456.773"/>
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" target="_top" xlink:title="A triangle mesh collsion shape based on a graphics mesh.">
-<polygon fill="white" stroke="black" points="328,-416 328,-450 488,-450 488,-416 328,-416"/>
-<text text-anchor="start" x="336" y="-437" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
-<text text-anchor="middle" x="408" y="-424" font-family="FreeSans" font-size="10.00">::DynamicMeshCollisionShape</text>
+<a xlink:href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" target="_top" xlink:title="A collision shape for soft proxies.">
+<polygon fill="white" stroke="black" points="352,-416 352,-450 464,-450 464,-416 352,-416"/>
+<text text-anchor="start" x="360" y="-437" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
+<text text-anchor="middle" x="408" y="-424" font-family="FreeSans" font-size="10.00">::SoftCollisionShape</text>
 </a>
 </g>
 <!-- Node6&#45;&gt;Node8 -->
 <g id="edge14" class="edge"><title>Node6&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M288.217,-441.239C301.134,-440.351 314.732,-439.415 327.944,-438.506"/>
+<path fill="none" stroke="midnightblue" d="M288.122,-441.246C309.027,-439.808 331.721,-438.247 351.683,-436.874"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="287.76,-437.762 278.023,-441.94 288.24,-444.746 287.76,-437.762"/>
 </g>
 <!-- Node9 -->

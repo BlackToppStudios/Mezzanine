@@ -17,26 +17,14 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1ActorRigid.html" target="_top" xlink:title="This is the actor class for Rigid Objects.">
-<polygon fill="white" stroke="black" points="16.5,-0.5 16.5,-21.5 137.5,-21.5 137.5,-0.5 16.5,-0.5"/>
-<text text-anchor="middle" x="77" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::ActorRigid</text>
+<polygon fill="white" stroke="black" points="84.5,-0.5 84.5,-21.5 205.5,-21.5 205.5,-0.5 84.5,-0.5"/>
+<text text-anchor="middle" x="145" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::ActorRigid</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
 <g id="edge10" class="edge"><title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M124.706,-51.6908C113.227,-41.8996 99.2442,-29.973 89.3932,-21.5707"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="122.648,-54.5353 132.528,-58.3619 127.191,-49.2095 122.648,-54.5353"/>
-</g>
-<!-- Node7 -->
-<g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1ActorSoft.html" target="_top" xlink:title="This is the actor class for Soft Objects.">
-<polygon fill="white" stroke="black" points="155,-0.5 155,-21.5 273,-21.5 273,-0.5 155,-0.5"/>
-<text text-anchor="middle" x="214" y="-8.5" font-family="FreeSans" font-size="10.00">Mezzanine::ActorSoft</text>
-</a>
-</g>
-<!-- Node1&#45;&gt;Node7 -->
-<g id="edge12" class="edge"><title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M165.592,-51.6908C177.24,-41.8996 191.429,-29.973 201.425,-21.5707"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="163.058,-49.2481 157.656,-58.3619 167.563,-54.6066 163.058,-49.2481"/>
+<path fill="none" stroke="midnightblue" d="M145,-48.1906C145,-39.1684 145,-28.9941 145,-21.5707"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="141.5,-48.3619 145,-58.3619 148.5,-48.3619 141.5,-48.3619"/>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
