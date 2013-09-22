@@ -182,12 +182,15 @@ namespace Mezzanine
             /// @brief Get an AttachableIterator to one past the last object.
             /// @return An Iterator to one past the last object.
             AttachableIterator EndChild();
+
+            #ifndef SWIG
             /// @brief Get a ConstAttachableIterator to the first object.
             /// @return An Iterator to the first object.
             ConstAttachableIterator BeginChild() const;
             /// @brief Get a ConstAttachableIterator to one past the last object.
             /// @return An Iterator to one past the last object.
             ConstAttachableIterator EndChild() const;
+            #endif
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

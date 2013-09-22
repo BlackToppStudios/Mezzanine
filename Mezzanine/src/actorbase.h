@@ -41,10 +41,11 @@
 #ifndef _actorbase_h
 #define _actorbase_h
 
-#include "worldnode.h"
-#include "worldobject.h"
-#include "Physics/collision.h"
-
+#ifndef SWIG
+    #include "worldnode.h"
+    #include "worldobject.h"
+    #include "Physics/collision.h"
+#endif
 /// @file
 /// @brief The base class for all Actors is defined here
 
