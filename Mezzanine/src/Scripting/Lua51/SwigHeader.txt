@@ -43,7 +43,9 @@
 #include "btBulletDynamicsCommon.h"
 #include <cAudio.h>
 #include "resource.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 using namespace Mezzanine::XML;
 using namespace Mezzanine::Resource;

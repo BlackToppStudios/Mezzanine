@@ -62,7 +62,9 @@
 #include "Graphics/viewport.h"
 #include "Input/input.h"
 #include "Physics/physics.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 #include "UI/ui.h"
 #endif
 

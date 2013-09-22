@@ -48,7 +48,9 @@
 #include "scenemanager.h"
 #include "entresol.h"
 #include "Graphics/viewport.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 #include <Ogre.h>
 

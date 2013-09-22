@@ -46,7 +46,9 @@
 #include "singleton.h"
 #include "quaternion.h"
 #include "vector3.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 #include "Threading/workunit.h"
 
 namespace Ogre

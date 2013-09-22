@@ -41,7 +41,9 @@
 #define _audiosoundset_h
 
 #include "datatypes.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 namespace Mezzanine
 {

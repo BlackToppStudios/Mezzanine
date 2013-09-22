@@ -43,7 +43,9 @@
 #include "datatypes.h"
 #include "enumerations.h"
 #include "Physics/physicsenumerations.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 class btCollisionObject;
 class btRigidBody;

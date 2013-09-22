@@ -41,7 +41,9 @@
 #define _physicscollision_h
 
 #include "vector3.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 class btPersistentManifold;
 class btBroadphasePair;

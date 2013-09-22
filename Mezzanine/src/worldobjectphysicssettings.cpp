@@ -48,7 +48,9 @@
 #include "Physics/physicsmanager.h"
 #include "serialization.h"
 #include "stringtool.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 #include <memory>
 

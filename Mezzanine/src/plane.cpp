@@ -50,7 +50,9 @@
 #include "sphere.h"
 #include "stringtool.h"
 #include "mathtool.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 #include "serialization.h"
 
 #include "Ogre.h"
@@ -96,10 +98,10 @@ namespace Mezzanine
     void Plane::Define(const Vector3& First, const Vector3& Second, const Vector3& Third)
     {
         Vector3 Edge1 = Second - First;
-		Vector3 Edge2 = Third - First;
-		this->Normal = Edge1.CrossProduct(Edge2);
-		this->Normal.Normalize();
-		this->Distance = -(this->Normal.DotProduct(First));
+        Vector3 Edge2 = Third - First;
+        this->Normal = Edge1.CrossProduct(Edge2);
+        this->Normal.Normalize();
+        this->Distance = -(this->Normal.DotProduct(First));
     }
 
     Plane::Side Plane::GetSide(const Vector3& Point) const

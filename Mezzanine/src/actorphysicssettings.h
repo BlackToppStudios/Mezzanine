@@ -44,7 +44,9 @@
 #include "enumerations.h"
 #include "worldobjectphysicssettings.h"
 
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 #include <iostream>
 
 class btCollisionObject;

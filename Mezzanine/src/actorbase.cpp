@@ -55,7 +55,9 @@
 #include "Physics/physicsmanager.h"
 #include "scenemanager.h"
 #include "entresol.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 #include "Internal/motionstate.h.cpp"
 #include "Internal/meshtools.h.cpp"
 
