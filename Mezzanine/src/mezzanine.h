@@ -55,19 +55,16 @@
 
 // This is required for the swig parser to skip the items that don't support scripting yet.
 #ifndef SWIG
-                                        // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
-
-#include "Audio/audio.h"
-#include "Threading/dagframescheduler.h"
-#include "Graphics/viewport.h"
-#include "Input/input.h"
-#include "Physics/physics.h"
-#ifndef SWIG
+    #include "Audio/audio.h"
+    #include "Threading/dagframescheduler.h"
+    #include "Graphics/viewport.h"
+    #include "Input/input.h"
+    #include "Physics/physics.h"
     #include "XML/xml.h"
-#endif
-#include "UI/ui.h"
+    #include "UI/ui.h"
 #endif
 
+                                        // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
 #ifndef SWIG
 #include "actorbase.h"                  // serializes
 #include "actorcharacter.h"
@@ -150,7 +147,9 @@
 #ifndef SWIG
 
 #include "worldobjectgraphicssettings.h"// done
+#endif // \no SWIG
 #include "worldobject.h"
+#ifndef SWIG
 #include "worldobjectphysicssettings.h"
 #include "worldtrigger.h"
 
