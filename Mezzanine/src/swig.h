@@ -61,6 +61,10 @@
         #include "btBulletDynamicsCommon.h"
         #include "Ogre.h"
 
+        #ifdef GetCurrentTime
+        #undef GetCurrentTime
+        #endif
+
         using namespace Mezzanine;
     %}
 
