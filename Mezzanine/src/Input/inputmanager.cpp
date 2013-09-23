@@ -53,6 +53,8 @@
 
 namespace Mezzanine
 {
+    template<> Input::InputManager* Singleton<Input::InputManager>::SingletonPtr = NULL;
+    
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
@@ -156,7 +158,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // InputManager Methods
 
-        template<> InputManager* Singleton<InputManager>::SingletonPtr = NULL;
+        //template<> InputManager* Singleton<InputManager>::SingletonPtr = NULL;
 
         InputManager::InputManager() :
             IMID(NULL),

@@ -86,7 +86,7 @@ namespace Mezzanine
         { return this->Origin.Distance(this->Destination); }
 
     Vector3 Ray::GetDirection() const
-        { return ( this->Origin - this->Destination ).Normalize(); }
+        { return ( this->Destination - this->Origin ).Normalize(); }
 
     Ray Ray::GetNormal() const
     {
