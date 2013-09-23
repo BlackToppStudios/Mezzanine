@@ -44,9 +44,11 @@
 #include "vector3.h"
 #include "quaternion.h"
 #include "attachable.h"
-#include "Physics/collision.h"
-#include "worldobjectgraphicssettings.h"
-#include "worldobjectphysicssettings.h"
+#ifndef SWIG
+    #include "Physics/collision.h"
+    #include "worldobjectgraphicssettings.h"
+    #include "worldobjectphysicssettings.h"
+#endif
 
 ///////////////////////////////////
 // Forward Declares

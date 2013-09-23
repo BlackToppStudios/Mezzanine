@@ -41,13 +41,13 @@
 #define _mezzanine_h
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @file mezzanine.h
+/// @file
 /// @brief A single file that includes all of the Mezzanine engine
 /// @details This file exists primarily to make it easier for engine users to include
 /// parts of the Mezzanine engine in their project with out needing to know or
 /// care about the internals of our project.
 /// \n
-/// This file is also u
+// We put headers in our headers so we can include while we include
 ///////////////////////////////////////////////////////////////////////////////
 
 // Tell SWIG to implement scripting language specific stuff, set compiler macros used else where, must be included first
@@ -55,17 +55,17 @@
 
 // This is required for the swig parser to skip the items that don't support scripting yet.
 #ifndef SWIG
+    #include "Audio/audio.h"
+    #include "Threading/dagframescheduler.h"
+    #include "Graphics/viewport.h"
+    #include "Input/input.h"
+    #include "Physics/physics.h"
+    #include "XML/xml.h"
+    #include "UI/ui.h"
+#endif
+
                                         // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
-
-#include "Audio/audio.h"
-#include "Threading/dagframescheduler.h"
-#include "Graphics/viewport.h"
-#include "Input/input.h"
-#include "Physics/physics.h"
-#include "XML/xml.h"
-#include "UI/ui.h"
-
-// We put headers in our headers so we can include while we include
+#ifndef SWIG
 #include "actorbase.h"                  // serializes
 #include "actorcharacter.h"
 #include "actormanager.h"
@@ -74,7 +74,11 @@
 #include "actorserializer.h"            // nothing to do
 #include "areaeffect.h"
 #include "areaeffectmanager.h"
+
+#ifndef SWIG
 #include "attachable.h"                 // Target for output only
+#endif
+
 #include "axisalignedbox.h"
 #include "binarybuffer.h"
 #include "camera.h"                     // done, must review after Mar27 upgrades
@@ -137,9 +141,15 @@
 // more stuff swig shouldn't read yet
 #include "vector3wactor.h"
 #include "entresol.h"
+
+#endif // \no SWIG
 #include "worldnode.h"                  // done
+#ifndef SWIG
+
 #include "worldobjectgraphicssettings.h"// done
+#endif // \no SWIG
 #include "worldobject.h"
+#ifndef SWIG
 #include "worldobjectphysicssettings.h"
 #include "worldtrigger.h"
 

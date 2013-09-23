@@ -58,9 +58,11 @@
 
 namespace Mezzanine
 {
+    template<> Audio::AudioManager* Singleton<Audio::AudioManager>::SingletonPtr = 0;
+    
     namespace Audio
     {
-        template<> AudioManager* Singleton<AudioManager>::SingletonPtr = 0;
+        //template<> AudioManager* Singleton<AudioManager>::SingletonPtr = 0;
 
         AudioManager::AudioManager()
         {

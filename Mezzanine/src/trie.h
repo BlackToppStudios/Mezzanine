@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//ï¿½ Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -201,6 +201,9 @@ public:
     typedef NodeItem<T, V, Cmp, Items> NodeItemClass;
     typedef EndNodeItem<T, V, Cmp, Items> EndNodeItemClass;
     typedef Node<T, V, Cmp, Items> NodeClass;
+private:
+    typedef typename Items::iterator ItemsContainerIter;
+    typedef typename Items::const_iterator ItemsContainerConstIter;
 
 public:
 
@@ -777,9 +780,6 @@ public:
     }
 
 private:
-    typedef typename Items::iterator ItemsContainerIter;
-    typedef typename Items::const_iterator ItemsContainerConstIter;
-
     Items mItems;
     const T mEndSymbol;
     unsigned int mSize;

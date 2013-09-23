@@ -45,7 +45,9 @@
 
     #include "datatypes.h"
     #include "smartptr.h"
-    #include "XML/xml.h"
+    #ifndef SWIG
+        #include "XML/xml.h"
+    #endif
 
     // Standard Headers are not included in SWIG preprocessing
     #ifndef SWIG

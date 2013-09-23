@@ -43,7 +43,9 @@
 #include "attachable.h"
 #include "datatypes.h"
 #include "quaternion.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 /// @file
 /// @brief Contains the declaration of the ParticleEffect class

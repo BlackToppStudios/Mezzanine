@@ -42,7 +42,9 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 namespace Ogre
 {

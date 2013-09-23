@@ -43,8 +43,9 @@
 #include "datatypes.h"
 #include "colourvalue.h"
 
-
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 namespace Ogre
 {

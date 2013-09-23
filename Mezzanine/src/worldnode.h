@@ -42,7 +42,10 @@
 
 #include "attachable.h"
 #include "enumerations.h"
-#include "XML/xml.h"
+
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 /// @file worldnode.h
 /// @brief The declaration of the WorldNode, A class to facilitate navigation in 3d environment
@@ -206,6 +209,7 @@ namespace Mezzanine
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
+#ifndef SWIG
 /// @brief Serializes the passed Mezzanine::WorldNode to XML
 /// @param stream The ostream to send the xml to.
 /// @param Ev the Mezzanine::WorldNode to be serialized
@@ -228,5 +232,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::WorldNode& 
 /// @warning This does not attempt to de-serialize the name of the WorldNode. This is not currently changeable after the creation of a WorldNode. However, the WorldNodemanager will correctly create name WorldNode upon creation then deserialize the rest of the WorldNode.
 /// @warning This does not throw an exception if the WorldNode could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::WorldNode& Ev);
+#endif // \SWIG
+
 
 #endif

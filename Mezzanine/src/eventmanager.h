@@ -51,7 +51,9 @@
 #include "singleton.h"
 #include "vector2.h"
 
-#include "XML/xml.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 #include "Threading/workunit.h"
 
 ///////////////////////////////////////////////////////////////////////////////

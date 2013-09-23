@@ -77,9 +77,11 @@
 
 namespace Mezzanine
 {
+    template<> Physics::CollisionShapeManager* Singleton<Physics::CollisionShapeManager>::SingletonPtr = NULL;
+    
     namespace Physics
     {
-        template<> CollisionShapeManager* Singleton<CollisionShapeManager>::SingletonPtr = NULL;
+        //template<> CollisionShapeManager* Singleton<CollisionShapeManager>::SingletonPtr = NULL;
 
         CollisionShapeManager::CollisionShapeManager()
         {
