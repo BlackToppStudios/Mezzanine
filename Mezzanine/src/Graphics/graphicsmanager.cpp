@@ -75,6 +75,8 @@
 
 namespace Mezzanine
 {
+    template<> Graphics::GraphicsManager* Singleton<Graphics::GraphicsManager>::SingletonPtr = NULL;
+    
     namespace Graphics
     {
         ///////////////////////////////////////////////////////////////////////////
@@ -109,7 +111,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////
         // GraphicsManager Methods
 
-        template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = NULL;
+        //template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = NULL;
 
         GraphicsManager::GraphicsManager() :
             RenderWork(NULL),

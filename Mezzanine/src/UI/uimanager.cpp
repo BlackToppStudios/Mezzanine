@@ -61,6 +61,8 @@
 
 namespace Mezzanine
 {
+    template<> UI::UIManager* Singleton<UI::UIManager>::SingletonPtr = NULL;
+    
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
@@ -93,7 +95,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // UIManager Methods
 
-        template<> UIManager* Singleton<UIManager>::SingletonPtr = NULL;
+        //template<> UIManager* Singleton<UIManager>::SingletonPtr = NULL;
 
         UIManager::UIManager() :
             HoveredWidget(NULL),
