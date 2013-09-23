@@ -11291,7 +11291,7 @@ static int _wrap_AttachableBase_ConvertLocalToGlobal(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'AttachableBase_ConvertLocalToGlobal'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttachableBase_ConvertLocalToGlobal'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::AttachableBase::ConvertLocalToGlobal(Mezzanine::Vector3 const &) const\n"
     "    Mezzanine::AttachableBase::ConvertLocalToGlobal(Mezzanine::Quaternion const &) const\n");
@@ -11389,7 +11389,7 @@ static int _wrap_AttachableBase_ConvertGlobalToLocal(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'AttachableBase_ConvertGlobalToLocal'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttachableBase_ConvertGlobalToLocal'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::AttachableBase::ConvertGlobalToLocal(Mezzanine::Vector3 const &) const\n"
     "    Mezzanine::AttachableBase::ConvertGlobalToLocal(Mezzanine::Quaternion const &) const\n");
@@ -11636,9 +11636,18 @@ static swig_lua_method swig_Mezzanine_AttachableBase_methods[] = {
 static swig_lua_attribute swig_Mezzanine_AttachableBase_attributes[] = {
     {0,0,0}
 };
+static swig_lua_attribute swig_Mezzanine_AttachableBase_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_AttachableBase_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_AttachableBase_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
 static swig_lua_class *swig_Mezzanine_AttachableBase_bases[] = {0};
 static const char *swig_Mezzanine_AttachableBase_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_AttachableBase = { "AttachableBase", &SWIGTYPE_p_Mezzanine__AttachableBase,0, swig_delete_AttachableBase, swig_Mezzanine_AttachableBase_methods, swig_Mezzanine_AttachableBase_attributes, swig_Mezzanine_AttachableBase_bases, swig_Mezzanine_AttachableBase_base_names };
+static swig_lua_class _wrap_class_Mezzanine_AttachableBase = { "AttachableBase", &SWIGTYPE_p_Mezzanine__AttachableBase,0, swig_delete_AttachableBase, swig_Mezzanine_AttachableBase_methods, swig_Mezzanine_AttachableBase_attributes, { "AttachableBase", swig_Mezzanine_AttachableBase_cls_methods, swig_Mezzanine_AttachableBase_cls_attributes, swig_Mezzanine_AttachableBase_cls_constants }, swig_Mezzanine_AttachableBase_bases, swig_Mezzanine_AttachableBase_base_names };
 
 static int _wrap_AttachableParent_AttachObject(lua_State* L) {
   int SWIG_arg = 0;
@@ -11871,9 +11880,18 @@ static swig_lua_method swig_Mezzanine_AttachableParent_methods[] = {
 static swig_lua_attribute swig_Mezzanine_AttachableParent_attributes[] = {
     {0,0,0}
 };
+static swig_lua_attribute swig_Mezzanine_AttachableParent_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_AttachableParent_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_AttachableParent_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
 static swig_lua_class *swig_Mezzanine_AttachableParent_bases[] = {0,0};
 static const char *swig_Mezzanine_AttachableParent_base_names[] = {"Mezzanine::AttachableBase *",0};
-static swig_lua_class _wrap_class_Mezzanine_AttachableParent = { "AttachableParent", &SWIGTYPE_p_Mezzanine__AttachableParent,0, swig_delete_AttachableParent, swig_Mezzanine_AttachableParent_methods, swig_Mezzanine_AttachableParent_attributes, swig_Mezzanine_AttachableParent_bases, swig_Mezzanine_AttachableParent_base_names };
+static swig_lua_class _wrap_class_Mezzanine_AttachableParent = { "AttachableParent", &SWIGTYPE_p_Mezzanine__AttachableParent,0, swig_delete_AttachableParent, swig_Mezzanine_AttachableParent_methods, swig_Mezzanine_AttachableParent_attributes, { "AttachableParent", swig_Mezzanine_AttachableParent_cls_methods, swig_Mezzanine_AttachableParent_cls_attributes, swig_Mezzanine_AttachableParent_cls_constants }, swig_Mezzanine_AttachableParent_bases, swig_Mezzanine_AttachableParent_base_names };
 
 static int _wrap_AttachableChild_GetParent(lua_State* L) {
   int SWIG_arg = 0;
@@ -12103,7 +12121,7 @@ static int _wrap_AttachableChild__RecalculateGlobalTransform(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'AttachableChild__RecalculateGlobalTransform'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttachableChild__RecalculateGlobalTransform'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::AttachableChild::_RecalculateGlobalTransform(bool)\n"
     "    Mezzanine::AttachableChild::_RecalculateGlobalTransform()\n");
@@ -12151,9 +12169,18 @@ static swig_lua_method swig_Mezzanine_AttachableChild_methods[] = {
 static swig_lua_attribute swig_Mezzanine_AttachableChild_attributes[] = {
     {0,0,0}
 };
+static swig_lua_attribute swig_Mezzanine_AttachableChild_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_AttachableChild_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_AttachableChild_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
 static swig_lua_class *swig_Mezzanine_AttachableChild_bases[] = {0,0};
 static const char *swig_Mezzanine_AttachableChild_base_names[] = {"Mezzanine::AttachableBase *",0};
-static swig_lua_class _wrap_class_Mezzanine_AttachableChild = { "AttachableChild", &SWIGTYPE_p_Mezzanine__AttachableChild,0, swig_delete_AttachableChild, swig_Mezzanine_AttachableChild_methods, swig_Mezzanine_AttachableChild_attributes, swig_Mezzanine_AttachableChild_bases, swig_Mezzanine_AttachableChild_base_names };
+static swig_lua_class _wrap_class_Mezzanine_AttachableChild = { "AttachableChild", &SWIGTYPE_p_Mezzanine__AttachableChild,0, swig_delete_AttachableChild, swig_Mezzanine_AttachableChild_methods, swig_Mezzanine_AttachableChild_attributes, { "AttachableChild", swig_Mezzanine_AttachableChild_cls_methods, swig_Mezzanine_AttachableChild_cls_attributes, swig_Mezzanine_AttachableChild_cls_constants }, swig_Mezzanine_AttachableChild_bases, swig_Mezzanine_AttachableChild_base_names };
 
 static int _wrap_new_WorldNode(lua_State* L) {
   int SWIG_arg = 0;
@@ -12412,7 +12439,7 @@ static int _wrap_WorldNode_LookAt(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'WorldNode_LookAt'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'WorldNode_LookAt'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WorldNode::LookAt(Mezzanine::Vector3 const &,Mezzanine::TransformSpace const &,Mezzanine::Vector3 const &)\n"
     "    Mezzanine::WorldNode::LookAt(Mezzanine::Vector3 const &,Mezzanine::TransformSpace const &)\n"
@@ -12626,7 +12653,7 @@ static int _wrap_WorldNode_SetDirection(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'WorldNode_SetDirection'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'WorldNode_SetDirection'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WorldNode::SetDirection(Mezzanine::Vector3 const &,Mezzanine::TransformSpace const &,Mezzanine::Vector3 const &)\n"
     "    Mezzanine::WorldNode::SetDirection(Mezzanine::Vector3 const &,Mezzanine::TransformSpace const &)\n"
@@ -12856,7 +12883,7 @@ static int _wrap_WorldNode_SetAutoTracking(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'WorldNode_SetAutoTracking'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'WorldNode_SetAutoTracking'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WorldNode::SetAutoTracking(Mezzanine::AttachableBase *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n"
     "    Mezzanine::WorldNode::SetAutoTracking(Mezzanine::AttachableBase *,Mezzanine::Vector3 const &)\n"
@@ -13197,7 +13224,7 @@ static int _wrap_WorldNode_Rotate(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'WorldNode_Rotate'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'WorldNode_Rotate'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WorldNode::Rotate(Mezzanine::Quaternion const &,Mezzanine::TransformSpace const &)\n"
     "    Mezzanine::WorldNode::Rotate(Mezzanine::Quaternion const &)\n"
@@ -13316,7 +13343,7 @@ static int _wrap_WorldNode_Yaw(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'WorldNode_Yaw'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'WorldNode_Yaw'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WorldNode::Yaw(Mezzanine::Real const &,Mezzanine::TransformSpace const &)\n"
     "    Mezzanine::WorldNode::Yaw(Mezzanine::Real const &)\n");
@@ -13433,7 +13460,7 @@ static int _wrap_WorldNode_Pitch(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'WorldNode_Pitch'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'WorldNode_Pitch'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WorldNode::Pitch(Mezzanine::Real const &,Mezzanine::TransformSpace const &)\n"
     "    Mezzanine::WorldNode::Pitch(Mezzanine::Real const &)\n");
@@ -13550,7 +13577,7 @@ static int _wrap_WorldNode_Roll(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'WorldNode_Roll'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'WorldNode_Roll'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WorldNode::Roll(Mezzanine::Real const &,Mezzanine::TransformSpace const &)\n"
     "    Mezzanine::WorldNode::Roll(Mezzanine::Real const &)\n");
@@ -13673,7 +13700,7 @@ static int _wrap_WorldNode_SetFixedYawAxis(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'WorldNode_SetFixedYawAxis'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'WorldNode_SetFixedYawAxis'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WorldNode::SetFixedYawAxis(bool,Mezzanine::Vector3 const &)\n"
     "    Mezzanine::WorldNode::SetFixedYawAxis(bool)\n");
@@ -14041,9 +14068,18 @@ static swig_lua_method swig_Mezzanine_WorldNode_methods[] = {
 static swig_lua_attribute swig_Mezzanine_WorldNode_attributes[] = {
     {0,0,0}
 };
+static swig_lua_attribute swig_Mezzanine_WorldNode_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_WorldNode_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_WorldNode_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
 static swig_lua_class *swig_Mezzanine_WorldNode_bases[] = {0,0,0};
 static const char *swig_Mezzanine_WorldNode_base_names[] = {"Mezzanine::AttachableParent *","Mezzanine::AttachableChild *",0};
-static swig_lua_class _wrap_class_Mezzanine_WorldNode = { "WorldNode", &SWIGTYPE_p_Mezzanine__WorldNode,_wrap_new_WorldNode, swig_delete_WorldNode, swig_Mezzanine_WorldNode_methods, swig_Mezzanine_WorldNode_attributes, swig_Mezzanine_WorldNode_bases, swig_Mezzanine_WorldNode_base_names };
+static swig_lua_class _wrap_class_Mezzanine_WorldNode = { "WorldNode", &SWIGTYPE_p_Mezzanine__WorldNode,_wrap_new_WorldNode, swig_delete_WorldNode, swig_Mezzanine_WorldNode_methods, swig_Mezzanine_WorldNode_attributes, { "WorldNode", swig_Mezzanine_WorldNode_cls_methods, swig_Mezzanine_WorldNode_cls_attributes, swig_Mezzanine_WorldNode_cls_constants }, swig_Mezzanine_WorldNode_bases, swig_Mezzanine_WorldNode_base_names };
 
 static int _wrap_WorldObject_SetLocation__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -14171,7 +14207,7 @@ static int _wrap_WorldObject_SetLocation(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'WorldObject_SetLocation'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'WorldObject_SetLocation'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WorldObject::SetLocation(Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Real const &)\n"
     "    Mezzanine::WorldObject::SetLocation(Mezzanine::Vector3 const &)\n");
@@ -14654,9 +14690,19 @@ static swig_lua_method swig_Mezzanine_WorldObject_methods[] = {
 static swig_lua_attribute swig_Mezzanine_WorldObject_attributes[] = {
     {0,0,0}
 };
+static swig_lua_attribute swig_Mezzanine_WorldObject_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_WorldObject_cls_methods[] = {
+    {"SerializableName", _wrap_WorldObject_SerializableName}, 
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_WorldObject_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
 static swig_lua_class *swig_Mezzanine_WorldObject_bases[] = {0};
 static const char *swig_Mezzanine_WorldObject_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_WorldObject = { "WorldObject", &SWIGTYPE_p_Mezzanine__WorldObject,0, swig_delete_WorldObject, swig_Mezzanine_WorldObject_methods, swig_Mezzanine_WorldObject_attributes, swig_Mezzanine_WorldObject_bases, swig_Mezzanine_WorldObject_base_names };
+static swig_lua_class _wrap_class_Mezzanine_WorldObject = { "WorldObject", &SWIGTYPE_p_Mezzanine__WorldObject,0, swig_delete_WorldObject, swig_Mezzanine_WorldObject_methods, swig_Mezzanine_WorldObject_attributes, { "WorldObject", swig_Mezzanine_WorldObject_cls_methods, swig_Mezzanine_WorldObject_cls_attributes, swig_Mezzanine_WorldObject_cls_constants }, swig_Mezzanine_WorldObject_bases, swig_Mezzanine_WorldObject_base_names };
 
 static int _wrap_NonStaticWorldObject_SetLocation__SWIG_0_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -14838,7 +14884,7 @@ static int _wrap_NonStaticWorldObject_SetLocation(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'NonStaticWorldObject_SetLocation'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NonStaticWorldObject_SetLocation'\n"
     "  Possible C/C++ prototypes are:\n"
     "    SetLocation(Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Real const &)\n"
     "    SetLocation(Mezzanine::Vector3 const &)\n"
@@ -15009,7 +15055,7 @@ static int _wrap_NonStaticWorldObject_SetOrientation(lua_State* L) {
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'NonStaticWorldObject_SetOrientation'\n"
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NonStaticWorldObject_SetOrientation'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::NonStaticWorldObject::SetOrientation(Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Real const &)\n"
     "    Mezzanine::NonStaticWorldObject::SetOrientation(Mezzanine::Quaternion const &)\n");
@@ -15159,9 +15205,19 @@ static swig_lua_method swig_Mezzanine_NonStaticWorldObject_methods[] = {
 static swig_lua_attribute swig_Mezzanine_NonStaticWorldObject_attributes[] = {
     {0,0,0}
 };
+static swig_lua_attribute swig_Mezzanine_NonStaticWorldObject_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_NonStaticWorldObject_cls_methods[] = {
+    {"SerializableName", _wrap_NonStaticWorldObject_SerializableName}, 
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_NonStaticWorldObject_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
 static swig_lua_class *swig_Mezzanine_NonStaticWorldObject_bases[] = {0,0,0};
 static const char *swig_Mezzanine_NonStaticWorldObject_base_names[] = {"Mezzanine::WorldObject *","Mezzanine::AttachableParent *",0};
-static swig_lua_class _wrap_class_Mezzanine_NonStaticWorldObject = { "NonStaticWorldObject", &SWIGTYPE_p_Mezzanine__NonStaticWorldObject,0, swig_delete_NonStaticWorldObject, swig_Mezzanine_NonStaticWorldObject_methods, swig_Mezzanine_NonStaticWorldObject_attributes, swig_Mezzanine_NonStaticWorldObject_bases, swig_Mezzanine_NonStaticWorldObject_base_names };
+static swig_lua_class _wrap_class_Mezzanine_NonStaticWorldObject = { "NonStaticWorldObject", &SWIGTYPE_p_Mezzanine__NonStaticWorldObject,0, swig_delete_NonStaticWorldObject, swig_Mezzanine_NonStaticWorldObject_methods, swig_Mezzanine_NonStaticWorldObject_attributes, { "NonStaticWorldObject", swig_Mezzanine_NonStaticWorldObject_cls_methods, swig_Mezzanine_NonStaticWorldObject_cls_attributes, swig_Mezzanine_NonStaticWorldObject_cls_constants }, swig_Mezzanine_NonStaticWorldObject_bases, swig_Mezzanine_NonStaticWorldObject_base_names };
 
 #ifdef __cplusplus
 }
