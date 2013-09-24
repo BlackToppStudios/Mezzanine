@@ -45,10 +45,17 @@
 
 #include "Graphics/graphicsproxy.h"
 
+namespace Ogre
+{
+    class Entity;
+    class SceneNode;
+}
+
 namespace Mezzanine
 {
     namespace Graphics
     {
+        class Mesh;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the proxy class for placing and manipulating a mesh in the scene.
         /// @details
@@ -56,10 +63,35 @@ namespace Mezzanine
         class MEZZ_LIB EntityProxy : public GraphicsProxy
         {
         protected:
+            /// @internal
+            /// @brief A pointer to the internal Entity this proxy is based on.
+            Ogre::Entity* GraphicsEntity;
+            /// @internal
+            /// @brief A pointer to the internal object storing the entity transform.
+            Ogre::SceneNode* GraphicsNode;
+
+            /// @internal
+            /// @brief Creates an internal entity based on the provided mesh.
+            /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
+            /// @param GroupName The resource group name where the mesh can be found.
+            virtual void CreateEntity(const String& MeshName, const String& GroupName);
+            /// @internal
+            /// @brief Creates an internal entity based on the provided mesh.
+            /// @param TheMesh A pointer to the to be applied to this proxy.
+            virtual void CreateEntity(Mesh* TheMesh);
+            /// @internal
+            /// @brief Destroys the internal entity in use by this proxy.
+            virtual void DestroyEntity();
         public:
-            /// @brief Class constructor.
+            /// @brief Standard constructor.
+            /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
+            /// @param GroupName The resource group name where the mesh can be found.
             /// @param Creator A pointer to the manager that created this proxy.
-            EntityProxy(SceneManager* Creator);
+            EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator);
+            /// @brief Loaded Mesh constructor.
+            /// @brief Creates an internal entity based on the provided mesh.
+            /// @param TheMesh A pointer to the to be applied to this proxy.
+            EntityProxy(Mesh* TheMesh, SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~EntityProxy();
         };//EntityProxy

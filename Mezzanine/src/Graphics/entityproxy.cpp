@@ -44,20 +44,55 @@
 /// @brief This file contains the implementation for the World proxy wrapping basic entity(mesh) functionality.
 
 #include "Graphics/entityproxy.h"
+#include "scenemanager.h"
+#include "meshmanager.h"
+#include "Graphics/mesh.h"
+
+#include <Ogre.h>
 
 namespace Mezzanine
 {
     namespace Graphics
     {
-        EntityProxy::EntityProxy(SceneManager* Creator) :
-            GraphicsProxy(Creator)
-        {
+        EntityProxy::EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator) :
+            GraphicsProxy(Creator),
+            GraphicsEntity(NULL)
+            { this->CreateEntity(MeshName,GroupName); }
 
-        }
+        EntityProxy::EntityProxy(Mesh* TheMesh, SceneManager* Creator) :
+            GraphicsProxy(Creator),
+            GraphicsEntity(NULL)
+            { this->CreateEntity(TheMesh); }
 
         EntityProxy::~EntityProxy()
-        {
+            { this->DestroyEntity(); }
 
+        void EntityProxy::CreateEntity(const String& MeshName, const String& GroupName)
+        {
+            if( this->GraphicsNode == NULL ) {
+                this->GraphicsNode = this->Manager->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+            }
+
+            Ogre::MeshPtr TheMesh = Ogre::MeshManager::getSingletonPtr()->getByName(MeshName,GroupName);
+            this->GraphicsEntity = this->Manager->GetGraphicsWorldPointer()->createEntity(TheMesh);
+        }
+
+        void EntityProxy::CreateEntity(Mesh* TheMesh)
+        {
+            if( this->GraphicsNode == NULL ) {
+                this->GraphicsNode = this->Manager->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+            }
+
+            this->GraphicsEntity = this->Manager->GetGraphicsWorldPointer()->createEntity(TheMesh->_GetInternalMesh());
+        }
+
+        void EntityProxy::DestroyEntity()
+        {
+            if( this->IsInWorld() ) {
+                this->RemoveFromWorld();
+            }
+
+            this->Manager->GetGraphicsWorldPointer()->destroyEntity(this->GraphicsEntity);
         }
     }//Graphics
 }//Mezzanine
