@@ -14,6 +14,7 @@ var searchData=
   ['lightgray',['LightGray',['../classMezzanine_1_1ColourValue.html#ae310d564cc41f0f920a38372aa784f16',1,'Mezzanine::ColourValue']]],
   ['lightgreen',['LightGreen',['../classMezzanine_1_1ColourValue.html#a4ba88982a52ec3b70f077782bcc177fa',1,'Mezzanine::ColourValue']]],
   ['lightpink',['LightPink',['../classMezzanine_1_1ColourValue.html#a59ab42d7b7397fba68809ab0e4e9dcdd',1,'Mezzanine::ColourValue']]],
+  ['lightproxy',['LightProxy',['../classMezzanine_1_1Graphics_1_1LightProxy.html#a7ee4c0b939d4d3a904fd4aa3f475af4c',1,'Mezzanine::Graphics::LightProxy']]],
   ['lightsalmon',['LightSalmon',['../classMezzanine_1_1ColourValue.html#a5b03b63b2f01079b3949ce61cbfd5494',1,'Mezzanine::ColourValue']]],
   ['lightseagreen',['LightSeaGreen',['../classMezzanine_1_1ColourValue.html#ac87e088fd7cc1e0bc16f55de96292261',1,'Mezzanine::ColourValue']]],
   ['lightskyblue',['LightSkyBlue',['../classMezzanine_1_1ColourValue.html#a62111c4f1265efc2401134f73a5e608e',1,'Mezzanine::ColourValue']]],

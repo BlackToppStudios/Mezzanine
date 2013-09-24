@@ -6,7 +6,7 @@ var searchData=
   ['unbindallkeyboardactivationkeys',['UnbindAllKeyboardActivationKeys',['../classMezzanine_1_1UI_1_1Activatable.html#ab88578653e6275ab5b0e85d4f72fbbd3',1,'Mezzanine::UI::Activatable']]],
   ['unbindallmouseactivationbuttons',['UnbindAllMouseActivationButtons',['../classMezzanine_1_1UI_1_1Activatable.html#aad559e64e7b48efc3364b077a3479bb3',1,'Mezzanine::UI::Activatable']]],
   ['unbindhotkey',['UnbindHotKey',['../classMezzanine_1_1UI_1_1UIManager.html#ace779b604494470a696f418cccc8dc48',1,'Mezzanine::UI::UIManager']]],
-  ['unique',['Unique',['../classMezzanine_1_1CountedPtr.html#aade173bb7d89add8eaed344b358eadf4',1,'Mezzanine::CountedPtr::Unique() const '],['../classMezzanine_1_1CountedPtr.html#ae991b2beca4077dc40c53110bc97308c',1,'Mezzanine::CountedPtr::unique() const ']]],
+  ['unique',['unique',['../classMezzanine_1_1CountedPtr.html#ae991b2beca4077dc40c53110bc97308c',1,'Mezzanine::CountedPtr::unique() const '],['../classMezzanine_1_1CountedPtr.html#aade173bb7d89add8eaed344b358eadf4',1,'Mezzanine::CountedPtr::Unique() const ']]],
   ['unit_5fx',['Unit_X',['../classMezzanine_1_1Vector3.html#aa3d186d62631a38fe6cd553a1a92469a',1,'Mezzanine::Vector3']]],
   ['unit_5fy',['Unit_Y',['../classMezzanine_1_1Vector3.html#a62285c6842027aec46da54553c22bc61',1,'Mezzanine::Vector3']]],
   ['unit_5fz',['Unit_Z',['../classMezzanine_1_1Vector3.html#a6a70011d21182d44fd458458b1627ea1',1,'Mezzanine::Vector3']]],

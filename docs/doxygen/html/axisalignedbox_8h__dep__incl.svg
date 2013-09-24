@@ -32,7 +32,7 @@
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 1152;
+var viewWidth = 1875;
 var viewHeight = 440;
 var sectionId = 'dynsection-1';
 </script>
@@ -40,12 +40,12 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>/home/Code/Mezzanine/Mezzanine/src/axisalignedbox.h</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-436 1149,-436 1149,5 -4,5"/>
+<polygon fill="white" stroke="white" points="-4,5 -4,-436 1872,-436 1872,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="520,-397 520,-431 690,-431 690,-397 520,-397"/>
-<text text-anchor="start" x="528" y="-418" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="middle" x="605" y="-405" font-family="FreeSans" font-size="10.00">/Mezzanine/src/axisalignedbox.h</text>
+<polygon fill="#bfbfbf" stroke="black" points="1162,-397 1162,-431 1332,-431 1332,-397 1162,-397"/>
+<text text-anchor="start" x="1170" y="-418" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="middle" x="1247" y="-405" font-family="FreeSans" font-size="10.00">/Mezzanine/src/axisalignedbox.h</text>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
@@ -57,256 +57,434 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M509.634,-404.101C426.076,-394.802 301.526,-379.424 194,-360 182.786,-357.974 170.957,-355.537 159.457,-353.002"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="509.293,-407.585 519.617,-405.205 510.063,-400.627 509.293,-407.585"/>
+<path fill="none" stroke="midnightblue" d="M1151.94,-411.264C928.985,-404.502 377.453,-385.669 194,-360 181.613,-358.267 168.528,-355.779 155.974,-353.055"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1151.88,-414.764 1161.98,-411.568 1152.09,-407.767 1151.88,-414.764"/>
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine.">
-<polygon fill="white" stroke="black" points="260,-73 260,-107 412,-107 412,-73 260,-73"/>
-<text text-anchor="start" x="268" y="-94" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="middle" x="336" y="-81" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mezzanine.h</text>
+<polygon fill="white" stroke="black" points="370,-73 370,-107 522,-107 522,-73 370,-73"/>
+<text text-anchor="start" x="378" y="-94" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="middle" x="446" y="-81" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mezzanine.h</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge4" class="edge"><title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M510.132,-398.462C467.351,-389.806 416.726,-377.231 373,-360 303.351,-332.553 264.48,-340.804 227,-276 197.628,-225.215 196.065,-193.848 227,-144 237.523,-127.043 255.13,-115.247 273.157,-107.112"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="509.49,-401.903 519.98,-400.414 510.851,-395.036 509.49,-401.903"/>
+<path fill="none" stroke="midnightblue" d="M1151.74,-409.475C993.647,-401.437 683.898,-383.299 577,-360 470.262,-336.736 442.812,-326.613 346,-276 288.629,-246.007 256.784,-249.48 227,-192 217.185,-173.058 213.844,-160.794 227,-144 244.689,-121.419 313.852,-106.999 369.783,-98.7934"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1151.77,-412.981 1161.93,-409.99 1152.12,-405.99 1151.77,-412.981"/>
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="mathtool_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/mathtool.cpp">
-<polygon fill="white" stroke="black" points="528,-319 528,-353 682,-353 682,-319 528,-319"/>
-<text text-anchor="start" x="536" y="-340" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="middle" x="605" y="-327" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mathtool.cpp</text>
+<a xlink:href="graphicsproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the base class from which graphics proxies inherit...">
+<polygon fill="white" stroke="black" points="1100.5,-312.5 1100.5,-359.5 1233.5,-359.5 1233.5,-312.5 1100.5,-312.5"/>
+<text text-anchor="start" x="1108.5" y="-346.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="1108.5" y="-333.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="1167" y="-320.5" font-family="FreeSans" font-size="10.00">/graphicsproxy.h</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge8" class="edge"><title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M605,-386.61C605,-375.519 605,-363.049 605,-353.262"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="601.5,-386.689 605,-396.689 608.5,-386.689 601.5,-386.689"/>
+<path fill="none" stroke="midnightblue" d="M1221.8,-389.429C1212.08,-379.957 1201.01,-369.164 1191.38,-359.77"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1219.64,-392.214 1229.25,-396.689 1224.53,-387.202 1219.64,-392.214"/>
 </g>
-<!-- Node6 -->
-<g id="node11" class="node"><title>Node6</title>
+<!-- Node16 -->
+<g id="node36" class="node"><title>Node16</title>
+<a xlink:href="mathtool_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/mathtool.cpp">
+<polygon fill="white" stroke="black" points="1251,-319 1251,-353 1405,-353 1405,-319 1251,-319"/>
+<text text-anchor="start" x="1259" y="-340" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="middle" x="1328" y="-327" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mathtool.cpp</text>
+</a>
+</g>
+<!-- Node1&#45;&gt;Node16 -->
+<g id="edge40" class="edge"><title>Node1&#45;&gt;Node16</title>
+<path fill="none" stroke="midnightblue" d="M1272.28,-389.659C1284.53,-377.856 1298.97,-363.957 1310.07,-353.262"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1269.75,-387.232 1264.98,-396.689 1274.61,-392.274 1269.75,-387.232"/>
+</g>
+<!-- Node17 -->
+<g id="node38" class="node"><title>Node17</title>
 <a xlink:href="plane_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/plane.cpp">
-<polygon fill="white" stroke="black" points="699.5,-319 699.5,-353 836.5,-353 836.5,-319 699.5,-319"/>
-<text text-anchor="start" x="707.5" y="-340" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="middle" x="768" y="-327" font-family="FreeSans" font-size="10.00">/Mezzanine/src/plane.cpp</text>
+<polygon fill="white" stroke="black" points="1422.5,-319 1422.5,-353 1559.5,-353 1559.5,-319 1422.5,-319"/>
+<text text-anchor="start" x="1430.5" y="-340" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="middle" x="1491" y="-327" font-family="FreeSans" font-size="10.00">/Mezzanine/src/plane.cpp</text>
 </a>
 </g>
-<!-- Node1&#45;&gt;Node6 -->
-<g id="edge10" class="edge"><title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M650.022,-392.456C675.967,-380.04 708.126,-364.651 732.312,-353.078"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="648.281,-389.409 640.771,-396.883 651.302,-395.723 648.281,-389.409"/>
+<!-- Node1&#45;&gt;Node17 -->
+<g id="edge42" class="edge"><title>Node1&#45;&gt;Node17</title>
+<path fill="none" stroke="midnightblue" d="M1309.79,-393.928C1349.32,-381.29 1399.81,-365.151 1437.45,-353.119"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1308.7,-390.6 1300.25,-396.979 1310.84,-397.268 1308.7,-390.6"/>
 </g>
-<!-- Node7 -->
-<g id="node13" class="node"><title>Node7</title>
+<!-- Node18 -->
+<g id="node40" class="node"><title>Node18</title>
 <a xlink:href="ray_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/ray.cpp">
-<polygon fill="white" stroke="black" points="853.5,-319 853.5,-353 982.5,-353 982.5,-319 853.5,-319"/>
-<text text-anchor="start" x="861.5" y="-340" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="middle" x="918" y="-327" font-family="FreeSans" font-size="10.00">/Mezzanine/src/ray.cpp</text>
+<polygon fill="white" stroke="black" points="1576.5,-319 1576.5,-353 1705.5,-353 1705.5,-319 1576.5,-319"/>
+<text text-anchor="start" x="1584.5" y="-340" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="middle" x="1641" y="-327" font-family="FreeSans" font-size="10.00">/Mezzanine/src/ray.cpp</text>
 </a>
 </g>
-<!-- Node1&#45;&gt;Node7 -->
-<g id="edge12" class="edge"><title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M699.809,-394.87C744.158,-385.36 797.542,-373.108 845,-360 852.587,-357.904 860.554,-355.5 868.324,-353.041"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="698.959,-391.473 689.908,-396.98 700.418,-398.319 698.959,-391.473"/>
+<!-- Node1&#45;&gt;Node18 -->
+<g id="edge44" class="edge"><title>Node1&#45;&gt;Node18</title>
+<path fill="none" stroke="midnightblue" d="M1342.32,-401.815C1406.59,-392.66 1493.01,-378.523 1568,-360 1576.03,-358.017 1584.45,-355.586 1592.61,-353.042"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1341.61,-398.38 1332.2,-403.241 1342.59,-405.311 1341.61,-398.38"/>
 </g>
-<!-- Node8 -->
-<g id="node15" class="node"><title>Node8</title>
+<!-- Node19 -->
+<g id="node42" class="node"><title>Node19</title>
 <a xlink:href="sphere_8cpp.html" target="_top" xlink:title="This file contains the implementation for the generic Sphere class for math and spacial query...">
-<polygon fill="white" stroke="black" points="1000,-319 1000,-353 1144,-353 1144,-319 1000,-319"/>
-<text text-anchor="start" x="1008" y="-340" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="middle" x="1072" y="-327" font-family="FreeSans" font-size="10.00">/Mezzanine/src/sphere.cpp</text>
+<polygon fill="white" stroke="black" points="1723,-319 1723,-353 1867,-353 1867,-319 1723,-319"/>
+<text text-anchor="start" x="1731" y="-340" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="middle" x="1795" y="-327" font-family="FreeSans" font-size="10.00">/Mezzanine/src/sphere.cpp</text>
 </a>
 </g>
-<!-- Node1&#45;&gt;Node8 -->
-<g id="edge14" class="edge"><title>Node1&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M700.716,-404.625C779.254,-395.974 893.061,-381.236 991,-360 1000.03,-358.042 1009.52,-355.594 1018.7,-353.016"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="699.918,-401.191 690.356,-405.754 700.676,-408.15 699.918,-401.191"/>
+<!-- Node1&#45;&gt;Node19 -->
+<g id="edge46" class="edge"><title>Node1&#45;&gt;Node19</title>
+<path fill="none" stroke="midnightblue" d="M1342.21,-407.835C1437.13,-400.558 1586.7,-386.016 1714,-360 1723.2,-358.121 1732.86,-355.681 1742.18,-353.078"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1341.77,-404.359 1332.06,-408.602 1342.3,-411.339 1341.77,-404.359"/>
 </g>
-<!-- Node9 -->
-<g id="node17" class="node"><title>Node9</title>
+<!-- Node20 -->
+<g id="node44" class="node"><title>Node20</title>
 <a xlink:href="physicsproxy_8h_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/physicsproxy.h">
-<polygon fill="white" stroke="black" points="381.5,-312.5 381.5,-359.5 510.5,-359.5 510.5,-312.5 381.5,-312.5"/>
-<text text-anchor="start" x="389.5" y="-346.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="start" x="389.5" y="-333.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
-<text text-anchor="middle" x="446" y="-320.5" font-family="FreeSans" font-size="10.00">/physicsproxy.h</text>
+<polygon fill="white" stroke="black" points="585.5,-312.5 585.5,-359.5 714.5,-359.5 714.5,-312.5 585.5,-312.5"/>
+<text text-anchor="start" x="593.5" y="-346.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="593.5" y="-333.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
+<text text-anchor="middle" x="650" y="-320.5" font-family="FreeSans" font-size="10.00">/physicsproxy.h</text>
 </a>
 </g>
-<!-- Node1&#45;&gt;Node9 -->
-<g id="edge16" class="edge"><title>Node1&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M560.88,-392.356C540.121,-382.172 515.317,-370.005 494.079,-359.586"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="559.587,-395.621 570.107,-396.883 562.67,-389.336 559.587,-395.621"/>
+<!-- Node1&#45;&gt;Node20 -->
+<g id="edge48" class="edge"><title>Node1&#45;&gt;Node20</title>
+<path fill="none" stroke="midnightblue" d="M1151.67,-401.545C1029.29,-385.556 820.206,-358.238 714.802,-344.467"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1151.41,-405.041 1161.78,-402.866 1152.32,-398.1 1151.41,-405.041"/>
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="entresol_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/entresol.cpp">
-<polygon fill="white" stroke="black" points="261,-1 261,-35 411,-35 411,-1 261,-1"/>
-<text text-anchor="start" x="269" y="-22" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="middle" x="336" y="-9" font-family="FreeSans" font-size="10.00">/Mezzanine/src/entresol.cpp</text>
+<polygon fill="white" stroke="black" points="371,-1 371,-35 521,-35 521,-1 371,-1"/>
+<text text-anchor="start" x="379" y="-22" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="middle" x="446" y="-9" font-family="FreeSans" font-size="10.00">/Mezzanine/src/entresol.cpp</text>
 </a>
 </g>
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge6" class="edge"><title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M336,-62.7193C336,-53.572 336,-43.6255 336,-35.4407"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="332.5,-62.937 336,-72.937 339.5,-62.937 332.5,-62.937"/>
+<path fill="none" stroke="midnightblue" d="M446,-62.7193C446,-53.572 446,-43.6255 446,-35.4407"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="442.5,-62.937 446,-72.937 449.5,-62.937 442.5,-62.937"/>
+</g>
+<!-- Node6 -->
+<g id="node11" class="node"><title>Node6</title>
+<a xlink:href="billboardsetproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping billboard functionality.">
+<polygon fill="white" stroke="black" points="950.5,-228.5 950.5,-275.5 1083.5,-275.5 1083.5,-228.5 950.5,-228.5"/>
+<text text-anchor="start" x="958.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="958.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="1017" y="-236.5" font-family="FreeSans" font-size="10.00">/billboardsetproxy.h</text>
+</a>
+</g>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge10" class="edge"><title>Node5&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M1115.93,-307.403C1097.44,-297.044 1076.77,-285.47 1059.13,-275.59"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1114.38,-310.545 1124.82,-312.378 1117.8,-304.438 1114.38,-310.545"/>
+</g>
+<!-- Node7 -->
+<g id="node13" class="node"><title>Node7</title>
+<a xlink:href="graphics_8h_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/graphics.h">
+<polygon fill="white" stroke="black" points="1281,-151 1281,-185 1421,-185 1421,-151 1281,-151"/>
+<text text-anchor="start" x="1289" y="-172" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="middle" x="1351" y="-159" font-family="FreeSans" font-size="10.00">/Mezzanine/src/graphics.h</text>
+</a>
+</g>
+<!-- Node5&#45;&gt;Node7 -->
+<g id="edge24" class="edge"><title>Node5&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M1243.42,-311.932C1311.76,-296.619 1351.46,-327.421 1392,-276 1413.73,-248.438 1386.59,-208.09 1367.24,-185.317"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1242.42,-308.574 1233.58,-314.412 1244.13,-315.361 1242.42,-308.574"/>
+</g>
+<!-- Node9 -->
+<g id="node18" class="node"><title>Node9</title>
+<a xlink:href="entityproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping basic entity(mesh) functionality...">
+<polygon fill="white" stroke="black" points="1250.5,-228.5 1250.5,-275.5 1383.5,-275.5 1383.5,-228.5 1250.5,-228.5"/>
+<text text-anchor="start" x="1258.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="1258.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="1317" y="-236.5" font-family="FreeSans" font-size="10.00">/entityproxy.h</text>
+</a>
+</g>
+<!-- Node5&#45;&gt;Node9 -->
+<g id="edge18" class="edge"><title>Node5&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M1218.07,-307.403C1236.56,-297.044 1257.23,-285.47 1274.87,-275.59"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1216.2,-304.438 1209.18,-312.378 1219.62,-310.545 1216.2,-304.438"/>
+</g>
+<!-- Node11 -->
+<g id="node24" class="node"><title>Node11</title>
+<a xlink:href="lightproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping light functionality.">
+<polygon fill="white" stroke="black" points="1438.5,-228.5 1438.5,-275.5 1571.5,-275.5 1571.5,-228.5 1438.5,-228.5"/>
+<text text-anchor="start" x="1446.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="1446.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="1505" y="-236.5" font-family="FreeSans" font-size="10.00">/lightproxy.h</text>
+</a>
+</g>
+<!-- Node5&#45;&gt;Node11 -->
+<g id="edge26" class="edge"><title>Node5&#45;&gt;Node11</title>
+<path fill="none" stroke="midnightblue" d="M1243.64,-311.703C1324.1,-291.656 1347.68,-295.154 1425,-276 1429.36,-274.919 1433.84,-273.748 1438.35,-272.524"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1242.37,-308.414 1233.54,-314.267 1244.09,-315.199 1242.37,-308.414"/>
+</g>
+<!-- Node13 -->
+<g id="node29" class="node"><title>Node13</title>
+<a xlink:href="particlesystemproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping particle functionality.">
+<polygon fill="white" stroke="black" points="1588.5,-228.5 1588.5,-275.5 1721.5,-275.5 1721.5,-228.5 1588.5,-228.5"/>
+<text text-anchor="start" x="1596.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="1596.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="1655" y="-236.5" font-family="FreeSans" font-size="10.00">/particlesystemproxy.h</text>
+</a>
+</g>
+<!-- Node5&#45;&gt;Node13 -->
+<g id="edge32" class="edge"><title>Node5&#45;&gt;Node13</title>
+<path fill="none" stroke="midnightblue" d="M1243.77,-311.807C1391.69,-281.923 1435.36,-306.513 1580,-276 1582.68,-275.436 1585.39,-274.813 1588.12,-274.145"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1242.96,-308.401 1233.88,-313.855 1244.38,-315.256 1242.96,-308.401"/>
+</g>
+<!-- Node15 -->
+<g id="node34" class="node"><title>Node15</title>
+<a xlink:href="graphicsproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the base class from which graphics proxies inherit...">
+<polygon fill="white" stroke="black" points="1100.5,-228.5 1100.5,-275.5 1233.5,-275.5 1233.5,-228.5 1100.5,-228.5"/>
+<text text-anchor="start" x="1108.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="1108.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="1167" y="-236.5" font-family="FreeSans" font-size="10.00">/graphicsproxy.cpp</text>
+</a>
+</g>
+<!-- Node5&#45;&gt;Node15 -->
+<g id="edge38" class="edge"><title>Node5&#45;&gt;Node15</title>
+<path fill="none" stroke="midnightblue" d="M1167,-302.066C1167,-293.193 1167,-283.821 1167,-275.615"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1163.5,-302.154 1167,-312.154 1170.5,-302.154 1163.5,-302.154"/>
+</g>
+<!-- Node6&#45;&gt;Node7 -->
+<g id="edge12" class="edge"><title>Node6&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M1093.5,-227.734C1172.77,-207.838 1195.97,-211.104 1272,-192 1280.2,-189.939 1288.82,-187.553 1297.23,-185.102"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1092.36,-224.411 1083.54,-230.279 1094.1,-231.193 1092.36,-224.411"/>
+</g>
+<!-- Node8 -->
+<g id="node16" class="node"><title>Node8</title>
+<a xlink:href="billboardsetproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping billboard functionality.">
+<polygon fill="white" stroke="black" points="965.5,-144.5 965.5,-191.5 1098.5,-191.5 1098.5,-144.5 965.5,-144.5"/>
+<text text-anchor="start" x="973.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="973.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="1032" y="-152.5" font-family="FreeSans" font-size="10.00">/billboardsetproxy.cpp</text>
+</a>
+</g>
+<!-- Node6&#45;&gt;Node8 -->
+<g id="edge16" class="edge"><title>Node6&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M1023.06,-218.066C1024.64,-209.193 1026.32,-199.821 1027.78,-191.615"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1019.57,-217.694 1021.26,-228.154 1026.46,-218.925 1019.57,-217.694"/>
+</g>
+<!-- Node7&#45;&gt;Node3 -->
+<g id="edge14" class="edge"><title>Node7&#45;&gt;Node3</title>
+<path fill="none" stroke="midnightblue" d="M1290.95,-148.204C1284.6,-146.578 1278.2,-145.129 1272,-144 1129.29,-118.015 698.007,-99.4323 522.018,-92.7362"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1290.28,-151.65 1300.85,-150.884 1292.11,-144.893 1290.28,-151.65"/>
+</g>
+<!-- Node9&#45;&gt;Node7 -->
+<g id="edge20" class="edge"><title>Node9&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M1330.44,-218.801C1335.09,-207.314 1340.11,-194.907 1344.03,-185.23"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1327.16,-217.571 1326.65,-228.154 1333.65,-220.197 1327.16,-217.571"/>
 </g>
 <!-- Node10 -->
-<g id="node19" class="node"><title>Node10</title>
-<a xlink:href="physics_8h_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/physics.h">
-<polygon fill="white" stroke="black" points="400.5,-144.5 400.5,-191.5 529.5,-191.5 529.5,-144.5 400.5,-144.5"/>
-<text text-anchor="start" x="408.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="start" x="408.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
-<text text-anchor="middle" x="465" y="-152.5" font-family="FreeSans" font-size="10.00">/physics.h</text>
+<g id="node21" class="node"><title>Node10</title>
+<a xlink:href="entityproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping basic entity(mesh) functionality...">
+<polygon fill="white" stroke="black" points="1130.5,-144.5 1130.5,-191.5 1263.5,-191.5 1263.5,-144.5 1130.5,-144.5"/>
+<text text-anchor="start" x="1138.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="1138.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="1197" y="-152.5" font-family="FreeSans" font-size="10.00">/entityproxy.cpp</text>
 </a>
 </g>
 <!-- Node9&#45;&gt;Node10 -->
-<g id="edge18" class="edge"><title>Node9&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M495.122,-305.878C504.774,-297.485 513.58,-287.47 519,-276 528.114,-256.712 526.643,-247.917 519,-228 513.728,-214.262 503.697,-201.7 493.697,-191.66"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="492.814,-303.243 487.248,-312.257 497.221,-308.681 492.814,-303.243"/>
+<g id="edge22" class="edge"><title>Node9&#45;&gt;Node10</title>
+<path fill="none" stroke="midnightblue" d="M1274.97,-222.578C1260.55,-212.484 1244.6,-201.322 1230.91,-191.736"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1273.05,-225.51 1283.25,-228.378 1277.07,-219.776 1273.05,-225.51"/>
 </g>
-<!-- Node11 -->
-<g id="node22" class="node"><title>Node11</title>
-<a xlink:href="ghostproxy_8h_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/ghostproxy.h">
-<polygon fill="white" stroke="black" points="565.5,-228.5 565.5,-275.5 694.5,-275.5 694.5,-228.5 565.5,-228.5"/>
-<text text-anchor="start" x="573.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="start" x="573.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
-<text text-anchor="middle" x="630" y="-236.5" font-family="FreeSans" font-size="10.00">/ghostproxy.h</text>
-</a>
-</g>
-<!-- Node9&#45;&gt;Node11 -->
-<g id="edge22" class="edge"><title>Node9&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M507.098,-308.107C530.178,-297.571 556.193,-285.695 578.326,-275.59"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="505.387,-305.041 497.744,-312.378 508.294,-311.409 505.387,-305.041"/>
-</g>
-<!-- Node14 -->
-<g id="node29" class="node"><title>Node14</title>
-<a xlink:href="physicsproxy_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/physicsproxy.cpp">
-<polygon fill="white" stroke="black" points="381.5,-228.5 381.5,-275.5 510.5,-275.5 510.5,-228.5 381.5,-228.5"/>
-<text text-anchor="start" x="389.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="start" x="389.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
-<text text-anchor="middle" x="446" y="-236.5" font-family="FreeSans" font-size="10.00">/physicsproxy.cpp</text>
-</a>
-</g>
-<!-- Node9&#45;&gt;Node14 -->
-<g id="edge30" class="edge"><title>Node9&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M446,-302.066C446,-293.193 446,-283.821 446,-275.615"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="442.5,-302.154 446,-312.154 449.5,-302.154 442.5,-302.154"/>
-</g>
-<!-- Node15 -->
-<g id="node31" class="node"><title>Node15</title>
-<a xlink:href="rigidproxy_8h_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/rigidproxy.h">
-<polygon fill="white" stroke="black" points="711.5,-228.5 711.5,-275.5 840.5,-275.5 840.5,-228.5 711.5,-228.5"/>
-<text text-anchor="start" x="719.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="start" x="719.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
-<text text-anchor="middle" x="776" y="-236.5" font-family="FreeSans" font-size="10.00">/rigidproxy.h</text>
-</a>
-</g>
-<!-- Node9&#45;&gt;Node15 -->
-<g id="edge32" class="edge"><title>Node9&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M520.873,-311.648C601.491,-291.382 625.525,-296.231 703,-276 705.711,-275.292 708.468,-274.539 711.246,-273.753"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="519.569,-308.369 510.754,-314.247 521.311,-315.149 519.569,-308.369"/>
-</g>
-<!-- Node17 -->
-<g id="node37" class="node"><title>Node17</title>
-<a xlink:href="softproxy_8h_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/softproxy.h">
-<polygon fill="white" stroke="black" points="235.5,-228.5 235.5,-275.5 364.5,-275.5 364.5,-228.5 235.5,-228.5"/>
-<text text-anchor="start" x="243.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="start" x="243.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
-<text text-anchor="middle" x="300" y="-236.5" font-family="FreeSans" font-size="10.00">/softproxy.h</text>
-</a>
-</g>
-<!-- Node9&#45;&gt;Node17 -->
-<g id="edge40" class="edge"><title>Node9&#45;&gt;Node17</title>
-<path fill="none" stroke="midnightblue" d="M395.804,-307.12C377.925,-296.834 358.018,-285.38 341.002,-275.59"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="394.529,-310.425 404.942,-312.378 398.02,-304.357 394.529,-310.425"/>
-</g>
-<!-- Node10&#45;&gt;Node3 -->
-<g id="edge20" class="edge"><title>Node10&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M417.36,-139.194C399.514,-128.404 379.816,-116.493 364.272,-107.095"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="415.577,-142.207 425.946,-144.386 419.199,-136.216 415.577,-142.207"/>
-</g>
-<!-- Node11&#45;&gt;Node10 -->
-<g id="edge24" class="edge"><title>Node11&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M574.658,-223.826C554.1,-213.36 531.009,-201.605 511.338,-191.59"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="573.1,-226.96 583.599,-228.378 576.275,-220.722 573.1,-226.96"/>
+<!-- Node11&#45;&gt;Node7 -->
+<g id="edge28" class="edge"><title>Node11&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M1452.9,-223.579C1429.45,-210.788 1402.54,-196.114 1382.27,-185.057"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1451.24,-226.662 1461.69,-228.378 1454.59,-220.517 1451.24,-226.662"/>
 </g>
 <!-- Node12 -->
-<g id="node25" class="node"><title>Node12</title>
-<a xlink:href="ghostproxy_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/ghostproxy.cpp">
-<polygon fill="white" stroke="black" points="546.5,-144.5 546.5,-191.5 675.5,-191.5 675.5,-144.5 546.5,-144.5"/>
-<text text-anchor="start" x="554.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="start" x="554.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
-<text text-anchor="middle" x="611" y="-152.5" font-family="FreeSans" font-size="10.00">/ghostproxy.cpp</text>
+<g id="node27" class="node"><title>Node12</title>
+<a xlink:href="lightproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping light functionality.">
+<polygon fill="white" stroke="black" points="1438.5,-144.5 1438.5,-191.5 1571.5,-191.5 1571.5,-144.5 1438.5,-144.5"/>
+<text text-anchor="start" x="1446.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="1446.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="1505" y="-152.5" font-family="FreeSans" font-size="10.00">/lightproxy.cpp</text>
 </a>
 </g>
 <!-- Node11&#45;&gt;Node12 -->
-<g id="edge26" class="edge"><title>Node11&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M622.39,-218.356C620.364,-209.397 618.218,-199.91 616.342,-191.615"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="618.986,-219.172 624.606,-228.154 625.814,-217.628 618.986,-219.172"/>
+<g id="edge30" class="edge"><title>Node11&#45;&gt;Node12</title>
+<path fill="none" stroke="midnightblue" d="M1505,-218.066C1505,-209.193 1505,-199.821 1505,-191.615"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1501.5,-218.154 1505,-228.154 1508.5,-218.154 1501.5,-218.154"/>
 </g>
-<!-- Node13 -->
-<g id="node27" class="node"><title>Node13</title>
-<a xlink:href="physicsmanager_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/physicsmanager.cpp">
-<polygon fill="white" stroke="black" points="692.5,-144.5 692.5,-191.5 821.5,-191.5 821.5,-144.5 692.5,-144.5"/>
-<text text-anchor="start" x="700.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="start" x="700.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
-<text text-anchor="middle" x="757" y="-152.5" font-family="FreeSans" font-size="10.00">/physicsmanager.cpp</text>
+<!-- Node13&#45;&gt;Node7 -->
+<g id="edge34" class="edge"><title>Node13&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M1578.72,-227.725C1512.27,-209.541 1493.19,-209.165 1430,-192 1422.12,-189.858 1413.83,-187.48 1405.7,-185.078"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1577.85,-231.115 1588.42,-230.412 1579.72,-224.369 1577.85,-231.115"/>
+</g>
+<!-- Node14 -->
+<g id="node32" class="node"><title>Node14</title>
+<a xlink:href="particlesystemproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping particle functionality.">
+<polygon fill="white" stroke="black" points="1588.5,-144.5 1588.5,-191.5 1723.5,-191.5 1723.5,-144.5 1588.5,-144.5"/>
+<text text-anchor="start" x="1596.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="1596.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
+<text text-anchor="middle" x="1656" y="-152.5" font-family="FreeSans" font-size="10.00">/particlesystemproxy.cpp</text>
 </a>
 </g>
-<!-- Node11&#45;&gt;Node13 -->
-<g id="edge28" class="edge"><title>Node11&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M674.056,-222.861C689.429,-212.692 706.485,-201.411 721.113,-191.736"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="672.124,-219.942 665.715,-228.378 675.986,-225.78 672.124,-219.942"/>
+<!-- Node13&#45;&gt;Node14 -->
+<g id="edge36" class="edge"><title>Node13&#45;&gt;Node14</title>
+<path fill="none" stroke="midnightblue" d="M1655.4,-218.066C1655.51,-209.193 1655.62,-199.821 1655.72,-191.615"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1651.9,-218.113 1655.28,-228.154 1658.9,-218.196 1651.9,-218.113"/>
 </g>
-<!-- Node15&#45;&gt;Node10 -->
-<g id="edge34" class="edge"><title>Node15&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M701.157,-227.614C628.756,-208.51 607.303,-210.899 538,-192 535.297,-191.263 532.546,-190.485 529.774,-189.679"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="700.66,-231.105 711.226,-230.321 702.478,-224.345 700.66,-231.105"/>
-</g>
-<!-- Node15&#45;&gt;Node13 -->
-<g id="edge36" class="edge"><title>Node15&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M768.39,-218.356C766.364,-209.397 764.218,-199.91 762.342,-191.615"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="764.986,-219.172 770.606,-228.154 771.814,-217.628 764.986,-219.172"/>
-</g>
-<!-- Node16 -->
-<g id="node35" class="node"><title>Node16</title>
-<a xlink:href="rigidproxy_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/rigidproxy.cpp">
-<polygon fill="white" stroke="black" points="838.5,-144.5 838.5,-191.5 967.5,-191.5 967.5,-144.5 838.5,-144.5"/>
-<text text-anchor="start" x="846.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
-<text text-anchor="start" x="846.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
-<text text-anchor="middle" x="903" y="-152.5" font-family="FreeSans" font-size="10.00">/rigidproxy.cpp</text>
+<!-- Node21 -->
+<g id="node46" class="node"><title>Node21</title>
+<a xlink:href="physics_8h_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/physics.h">
+<polygon fill="white" stroke="black" points="381.5,-144.5 381.5,-191.5 510.5,-191.5 510.5,-144.5 381.5,-144.5"/>
+<text text-anchor="start" x="389.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="389.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
+<text text-anchor="middle" x="446" y="-152.5" font-family="FreeSans" font-size="10.00">/physics.h</text>
 </a>
 </g>
-<!-- Node15&#45;&gt;Node16 -->
-<g id="edge38" class="edge"><title>Node15&#45;&gt;Node16</title>
-<path fill="none" stroke="midnightblue" d="M820.056,-222.861C835.429,-212.692 852.485,-201.411 867.113,-191.736"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="818.124,-219.942 811.715,-228.378 821.986,-225.78 818.124,-219.942"/>
+<!-- Node20&#45;&gt;Node21 -->
+<g id="edge50" class="edge"><title>Node20&#45;&gt;Node21</title>
+<path fill="none" stroke="midnightblue" d="M575.22,-331.141C497.949,-324.378 384.918,-309.012 358,-276 344.518,-259.466 348.032,-246.861 358,-228 366.035,-212.796 379.846,-200.72 394.176,-191.507"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="575.142,-334.647 585.401,-332.001 575.731,-327.672 575.142,-334.647"/>
 </g>
-<!-- Node17&#45;&gt;Node10 -->
-<g id="edge42" class="edge"><title>Node17&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M355.342,-223.826C375.9,-213.36 398.991,-201.605 418.662,-191.59"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="353.725,-220.722 346.401,-228.378 356.9,-226.96 353.725,-220.722"/>
+<!-- Node22 -->
+<g id="node49" class="node"><title>Node22</title>
+<a xlink:href="ghostproxy_8h_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/ghostproxy.h">
+<polygon fill="white" stroke="black" points="366.5,-228.5 366.5,-275.5 495.5,-275.5 495.5,-228.5 366.5,-228.5"/>
+<text text-anchor="start" x="374.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="374.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
+<text text-anchor="middle" x="431" y="-236.5" font-family="FreeSans" font-size="10.00">/ghostproxy.h</text>
+</a>
 </g>
-<!-- Node17&#45;&gt;Node13 -->
-<g id="edge44" class="edge"><title>Node17&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M374.659,-227.829C510.789,-199.203 551.286,-221.182 684,-192 686.736,-191.398 689.515,-190.734 692.31,-190.021"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="373.727,-224.449 364.69,-229.979 375.203,-231.292 373.727,-224.449"/>
+<!-- Node20&#45;&gt;Node22 -->
+<g id="edge54" class="edge"><title>Node20&#45;&gt;Node22</title>
+<path fill="none" stroke="midnightblue" d="M579.354,-308.903C551.3,-298.142 519.336,-285.882 492.28,-275.505"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="578.115,-312.176 588.705,-312.49 580.622,-305.64 578.115,-312.176"/>
 </g>
-<!-- Node18 -->
-<g id="node41" class="node"><title>Node18</title>
-<a xlink:href="softproxy_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/softproxy.cpp">
+<!-- Node25 -->
+<g id="node56" class="node"><title>Node25</title>
+<a xlink:href="physicsproxy_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/physicsproxy.cpp">
+<polygon fill="white" stroke="black" points="658.5,-228.5 658.5,-275.5 787.5,-275.5 787.5,-228.5 658.5,-228.5"/>
+<text text-anchor="start" x="666.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="666.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
+<text text-anchor="middle" x="723" y="-236.5" font-family="FreeSans" font-size="10.00">/physicsproxy.cpp</text>
+</a>
+</g>
+<!-- Node20&#45;&gt;Node25 -->
+<g id="edge62" class="edge"><title>Node20&#45;&gt;Node25</title>
+<path fill="none" stroke="midnightblue" d="M677.489,-304.369C685.777,-294.832 694.726,-284.535 702.477,-275.615"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="674.641,-302.31 670.724,-312.154 679.925,-306.902 674.641,-302.31"/>
+</g>
+<!-- Node26 -->
+<g id="node58" class="node"><title>Node26</title>
+<a xlink:href="rigidproxy_8h_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/rigidproxy.h">
+<polygon fill="white" stroke="black" points="512.5,-228.5 512.5,-275.5 641.5,-275.5 641.5,-228.5 512.5,-228.5"/>
+<text text-anchor="start" x="520.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="520.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
+<text text-anchor="middle" x="577" y="-236.5" font-family="FreeSans" font-size="10.00">/rigidproxy.h</text>
+</a>
+</g>
+<!-- Node20&#45;&gt;Node26 -->
+<g id="edge64" class="edge"><title>Node20&#45;&gt;Node26</title>
+<path fill="none" stroke="midnightblue" d="M622.511,-304.369C614.223,-294.832 605.274,-284.535 597.523,-275.615"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="620.075,-306.902 629.276,-312.154 625.359,-302.31 620.075,-306.902"/>
+</g>
+<!-- Node28 -->
+<g id="node64" class="node"><title>Node28</title>
+<a xlink:href="softproxy_8h_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/softproxy.h">
+<polygon fill="white" stroke="black" points="804.5,-228.5 804.5,-275.5 933.5,-275.5 933.5,-228.5 804.5,-228.5"/>
+<text text-anchor="start" x="812.5" y="-262.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="812.5" y="-249.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
+<text text-anchor="middle" x="869" y="-236.5" font-family="FreeSans" font-size="10.00">/softproxy.h</text>
+</a>
+</g>
+<!-- Node20&#45;&gt;Node28 -->
+<g id="edge72" class="edge"><title>Node20&#45;&gt;Node28</title>
+<path fill="none" stroke="midnightblue" d="M720.646,-308.903C748.7,-298.142 780.664,-285.882 807.72,-275.505"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="719.378,-305.64 711.295,-312.49 721.885,-312.176 719.378,-305.64"/>
+</g>
+<!-- Node21&#45;&gt;Node3 -->
+<g id="edge52" class="edge"><title>Node21&#45;&gt;Node3</title>
+<path fill="none" stroke="midnightblue" d="M446,-133.93C446,-124.611 446,-114.911 446,-107.003"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="442.5,-134.174 446,-144.174 449.5,-134.174 442.5,-134.174"/>
+</g>
+<!-- Node22&#45;&gt;Node21 -->
+<g id="edge56" class="edge"><title>Node22&#45;&gt;Node21</title>
+<path fill="none" stroke="midnightblue" d="M437.06,-218.066C438.644,-209.193 440.318,-199.821 441.783,-191.615"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="433.571,-217.694 435.258,-228.154 440.462,-218.925 433.571,-217.694"/>
+</g>
+<!-- Node23 -->
+<g id="node52" class="node"><title>Node23</title>
+<a xlink:href="ghostproxy_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/ghostproxy.cpp">
 <polygon fill="white" stroke="black" points="235.5,-144.5 235.5,-191.5 364.5,-191.5 364.5,-144.5 235.5,-144.5"/>
 <text text-anchor="start" x="243.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
 <text text-anchor="start" x="243.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
-<text text-anchor="middle" x="300" y="-152.5" font-family="FreeSans" font-size="10.00">/softproxy.cpp</text>
+<text text-anchor="middle" x="300" y="-152.5" font-family="FreeSans" font-size="10.00">/ghostproxy.cpp</text>
 </a>
 </g>
-<!-- Node17&#45;&gt;Node18 -->
-<g id="edge46" class="edge"><title>Node17&#45;&gt;Node18</title>
-<path fill="none" stroke="midnightblue" d="M300,-218.066C300,-209.193 300,-199.821 300,-191.615"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="296.5,-218.154 300,-228.154 303.5,-218.154 296.5,-218.154"/>
+<!-- Node22&#45;&gt;Node23 -->
+<g id="edge58" class="edge"><title>Node22&#45;&gt;Node23</title>
+<path fill="none" stroke="midnightblue" d="M385.556,-222.861C369.699,-212.692 352.106,-201.411 337.017,-191.736"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="383.853,-225.926 394.161,-228.378 387.632,-220.034 383.853,-225.926"/>
+</g>
+<!-- Node24 -->
+<g id="node54" class="node"><title>Node24</title>
+<a xlink:href="physicsmanager_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/physicsmanager.cpp">
+<polygon fill="white" stroke="black" points="673.5,-144.5 673.5,-191.5 802.5,-191.5 802.5,-144.5 673.5,-144.5"/>
+<text text-anchor="start" x="681.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="681.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
+<text text-anchor="middle" x="738" y="-152.5" font-family="FreeSans" font-size="10.00">/physicsmanager.cpp</text>
+</a>
+</g>
+<!-- Node22&#45;&gt;Node24 -->
+<g id="edge60" class="edge"><title>Node22&#45;&gt;Node24</title>
+<path fill="none" stroke="midnightblue" d="M505.631,-227.661C576.47,-208.739 597.348,-210.637 665,-192 667.701,-191.256 670.45,-190.472 673.221,-189.661"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="504.51,-224.338 495.779,-230.339 506.347,-231.093 504.51,-224.338"/>
+</g>
+<!-- Node26&#45;&gt;Node21 -->
+<g id="edge66" class="edge"><title>Node26&#45;&gt;Node21</title>
+<path fill="none" stroke="midnightblue" d="M531.556,-222.861C515.699,-212.692 498.106,-201.411 483.017,-191.736"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="529.853,-225.926 540.161,-228.378 533.632,-220.034 529.853,-225.926"/>
+</g>
+<!-- Node26&#45;&gt;Node24 -->
+<g id="edge68" class="edge"><title>Node26&#45;&gt;Node24</title>
+<path fill="none" stroke="midnightblue" d="M631.27,-223.685C651.262,-213.255 673.677,-201.56 692.785,-191.59"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="629.523,-220.649 622.276,-228.378 632.761,-226.855 629.523,-220.649"/>
+</g>
+<!-- Node27 -->
+<g id="node62" class="node"><title>Node27</title>
+<a xlink:href="rigidproxy_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/rigidproxy.cpp">
+<polygon fill="white" stroke="black" points="527.5,-144.5 527.5,-191.5 656.5,-191.5 656.5,-144.5 527.5,-144.5"/>
+<text text-anchor="start" x="535.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="535.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
+<text text-anchor="middle" x="592" y="-152.5" font-family="FreeSans" font-size="10.00">/rigidproxy.cpp</text>
+</a>
+</g>
+<!-- Node26&#45;&gt;Node27 -->
+<g id="edge70" class="edge"><title>Node26&#45;&gt;Node27</title>
+<path fill="none" stroke="midnightblue" d="M583.06,-218.066C584.644,-209.193 586.318,-199.821 587.783,-191.615"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="579.571,-217.694 581.258,-228.154 586.462,-218.925 579.571,-217.694"/>
+</g>
+<!-- Node28&#45;&gt;Node21 -->
+<g id="edge74" class="edge"><title>Node28&#45;&gt;Node21</title>
+<path fill="none" stroke="midnightblue" d="M794.261,-227.791C673.04,-201.462 636.868,-218.783 519,-192 516.268,-191.379 513.493,-190.699 510.701,-189.973"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="793.778,-231.269 804.299,-230.027 795.3,-224.436 793.778,-231.269"/>
+</g>
+<!-- Node28&#45;&gt;Node24 -->
+<g id="edge76" class="edge"><title>Node28&#45;&gt;Node24</title>
+<path fill="none" stroke="midnightblue" d="M823.556,-222.861C807.699,-212.692 790.106,-201.411 775.017,-191.736"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="821.853,-225.926 832.161,-228.378 825.632,-220.034 821.853,-225.926"/>
+</g>
+<!-- Node29 -->
+<g id="node68" class="node"><title>Node29</title>
+<a xlink:href="softproxy_8cpp_source.html" target="_top" xlink:title="/home/Code/Mezzanine\l/Mezzanine/src/Physics\l/softproxy.cpp">
+<polygon fill="white" stroke="black" points="819.5,-144.5 819.5,-191.5 948.5,-191.5 948.5,-144.5 819.5,-144.5"/>
+<text text-anchor="start" x="827.5" y="-178.5" font-family="FreeSans" font-size="10.00">/home/Code/Mezzanine</text>
+<text text-anchor="start" x="827.5" y="-165.5" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Physics</text>
+<text text-anchor="middle" x="884" y="-152.5" font-family="FreeSans" font-size="10.00">/softproxy.cpp</text>
+</a>
+</g>
+<!-- Node28&#45;&gt;Node29 -->
+<g id="edge78" class="edge"><title>Node28&#45;&gt;Node29</title>
+<path fill="none" stroke="midnightblue" d="M875.06,-218.066C876.644,-209.193 878.318,-199.821 879.783,-191.615"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="871.571,-217.694 873.258,-228.154 878.462,-218.925 871.571,-217.694"/>
 </g>
 </g>
 </svg>

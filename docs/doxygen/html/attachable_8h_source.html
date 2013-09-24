@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;20,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -267,78 +267,81 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment"></span>            AttachableIterator BeginChild();<span class="comment"></span></div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">            /// @brief Get an AttachableIterator to one past the last object.</span></div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">            /// @return An Iterator to one past the last object.</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment"></span>            AttachableIterator EndChild();<span class="comment"></span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">            /// @brief Get a ConstAttachableIterator to the first object.</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment">            /// @return An Iterator to the first object.</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment"></span>            ConstAttachableIterator BeginChild() <span class="keyword">const</span>;<span class="comment"></span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">            /// @brief Get a ConstAttachableIterator to one past the last object.</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">            /// @return An Iterator to one past the last object.</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment"></span>            ConstAttachableIterator EndChild() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment"></span>            <span class="comment">// Internal Methods</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">            /// @brief Recalculates the transforms of all children of this attachable.</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> _RecalculateAllChildTransforms();</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    };<span class="comment">//attachableparent</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">    /// @class AttachableChild</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">    /// @headerfile attachable.h</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">    /// @brief This class is the base class for objects that can be attached to AttachableParent.</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">    /// @details</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">    ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno"><a class="code" href="classMezzanine_1_1AttachableChild.html">  205</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent.">AttachableChild</a> : <span class="keyword">virtual</span> <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1AttachableBase.html" title="This class is the base class for other attachable classes and is responsible for transform updates to...">AttachableBase</a></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    {</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them.">AttachableParent</a>;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            <a class="code" href="classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them.">AttachableParent</a>* Parent;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="keywordtype">bool</span> LocalTransformDirty;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keywordtype">bool</span> GlobalTransformDirty;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> LocalXform;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent.">AttachableChild</a>();<span class="comment"></span></div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent.">AttachableChild</a>();</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment"></span>            <span class="comment">// Utility Functions</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment"></span>            AttachableIterator EndChild();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">            #ifndef SWIG</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="preprocessor"></span><span class="comment">            /// @brief Get a ConstAttachableIterator to the first object.</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment"></span><span class="comment">            /// @return An Iterator to the first object.</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment"></span>            ConstAttachableIterator BeginChild() <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">            /// @brief Get a ConstAttachableIterator to one past the last object.</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">            /// @return An Iterator to one past the last object.</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment"></span>            ConstAttachableIterator EndChild() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="preprocessor">            #endif</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="preprocessor"></span><span class="comment"></span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"></span>            <span class="comment">// Internal Methods</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">            /// @brief Recalculates the transforms of all children of this attachable.</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> _RecalculateAllChildTransforms();</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    };<span class="comment">//attachableparent</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">    /// @class AttachableChild</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">    /// @headerfile attachable.h</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">    /// @brief This class is the base class for objects that can be attached to AttachableParent.</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">    /// @details</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">    ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno"><a class="code" href="classMezzanine_1_1AttachableChild.html">  208</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent.">AttachableChild</a> : <span class="keyword">virtual</span> <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1AttachableBase.html" title="This class is the base class for other attachable classes and is responsible for transform updates to...">AttachableBase</a></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    {</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them.">AttachableParent</a>;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <a class="code" href="classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them.">AttachableParent</a>* Parent;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="keywordtype">bool</span> LocalTransformDirty;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            <span class="keywordtype">bool</span> GlobalTransformDirty;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> LocalXform;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent.">AttachableChild</a>();<span class="comment"></span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent.">AttachableChild</a>();</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">            /// @brief Gets the parent of this child.</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment">            /// @return Returns a pointer to the parent this object is attached to or NULL if it&#39;s not attached to anything.</span></div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them.">AttachableParent</a>* GetParent() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment"></span>            <span class="comment">// Transform Functions</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment"></span>            <span class="comment">// Utility Functions</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment">            /// @brief Gets the parent of this child.</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment">            /// @return Returns a pointer to the parent this object is attached to or NULL if it&#39;s not attached to anything.</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them.">AttachableParent</a>* GetParent() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">            /// @brief Sets the Location of this object in local space.</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">            /// @param Location A vector3 representing the location of this object.</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLocalLocation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location) = 0;<span class="comment"></span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">            /// @brief Gets the Location of this object in local space.</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">            /// @return Returns a vector3 representing the location of this object.</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetLocalLocation() <span class="keyword">const</span>;<span class="comment"></span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">            /// @brief Sets the orientation of this object in local space.</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">            /// @param Orientation A Quaternion representing the orientation of this object.</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLocalOrientation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Orientation) = 0;<span class="comment"></span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">            /// @brief Gets the orientation of this object in local space.</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">            /// @return Returns a quaternion representing the orientation of this object.</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> GetLocalOrientation() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="comment"></span>            <span class="comment">// Internal Methods</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment"></span>            <span class="comment">// Transform Functions</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">            /// @brief Sets the Location of this object in local space.</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">            /// @param Location A vector3 representing the location of this object.</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLocalLocation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location) = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">            /// @brief Gets the Location of this object in local space.</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">            /// @return Returns a vector3 representing the location of this object.</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetLocalLocation() <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">            /// @brief Sets the orientation of this object in local space.</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">            /// @param Orientation A Quaternion representing the orientation of this object.</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetLocalOrientation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Orientation) = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="comment">            /// @brief Gets the orientation of this object in local space.</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">            /// @return Returns a quaternion representing the orientation of this object.</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> GetLocalOrientation() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">            /// @brief Recalculates objects global transform from parent.</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">            /// @param FromParent Whether this is being invoked from the parent of this attachable.</span></div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> _RecalculateGlobalTransform(<span class="keywordtype">bool</span> FromParent = <span class="keyword">false</span>);<span class="comment"></span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">            /// @brief Recalculates this objects local transform based on it&#39;s current global position.</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> _RecalculateLocalTransform();</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    };<span class="comment">//attachablechild</span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment"></span>            <span class="comment">// Internal Methods</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">            /// @brief Recalculates objects global transform from parent.</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">            /// @param FromParent Whether this is being invoked from the parent of this attachable.</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> _RecalculateGlobalTransform(<span class="keywordtype">bool</span> FromParent = <span class="keyword">false</span>);<span class="comment"></span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">            /// @brief Recalculates this objects local transform based on it&#39;s current global position.</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> _RecalculateLocalTransform();</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    };<span class="comment">//attachablechild</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 20 2013 23:32:09 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Tue Sep 24 2013 00:48:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

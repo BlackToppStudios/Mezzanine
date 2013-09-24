@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;20,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -191,23 +191,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">    /// @brief Used by all World proxies to describe what their derived types are.</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno"><a class="code" href="namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b">  106</a></span>&#160;<span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b" title="Used by all World proxies to describe what their derived types are.">ProxyType</a></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        PT_Audio_First             = 1,<span class="comment">//1</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        PT_Audio_Listener          = 1,<span class="comment">//1</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        PT_Audio_SoundProxy        = 2,<span class="comment">//2</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        PT_Audio_Last              = 2,<span class="comment">//2</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        PT_Audio_First                  = 1,<span class="comment">//1</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        PT_Audio_Listener               = 1,<span class="comment">//1</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        PT_Audio_SoundProxy             = 2,<span class="comment">//2</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        PT_Audio_Last                   = 2,<span class="comment">//2</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        PT_Graphics_First          = 4,<span class="comment">//3</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        PT_Graphics_BillboardProxy = 4,<span class="comment">//3</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        PT_Graphics_EntityProxy    = 8,<span class="comment">//4</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        PT_Graphics_LightProxy     = 16,<span class="comment">//5</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        PT_Graphics_ParticleProxy  = 32,<span class="comment">//6</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        PT_Graphics_Last           = 32,<span class="comment">//6</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        PT_Graphics_First               = 4,<span class="comment">//3</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        PT_Graphics_BillboardSetProxy   = 4,<span class="comment">//3</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        PT_Graphics_EntityProxy         = 8,<span class="comment">//4</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        PT_Graphics_LightProxy          = 16,<span class="comment">//5</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        PT_Graphics_ParticleSystemProxy = 32,<span class="comment">//6</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        PT_Graphics_Last                = 32,<span class="comment">//6</span></div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        PT_Physics_First           = 64,<span class="comment">//7</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        PT_Physics_GhostProxy      = 64,<span class="comment">//7</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        PT_Physics_RigidProxy      = 128,<span class="comment">//8</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        PT_Physics_SoftProxy       = 256,<span class="comment">//9</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        PT_Physics_Last            = 256<span class="comment">//9</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        PT_Physics_First                = 64,<span class="comment">//7</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        PT_Physics_GhostProxy           = 64,<span class="comment">//7</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        PT_Physics_RigidProxy           = 128,<span class="comment">//8</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        PT_Physics_SoftProxy            = 256,<span class="comment">//9</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        PT_Physics_Last                 = 256<span class="comment">//9</span></div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    };</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">    /// @enum StandardAxis</span></div>
@@ -285,6 +285,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 20 2013 23:32:09 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Tue Sep 24 2013 00:48:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
