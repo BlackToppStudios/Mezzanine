@@ -147,15 +147,22 @@ namespace Mezzanine
 
         /// @brief Convert this class to an XML::Node ready for serialization.
         /// @param ParentNode The point in the XML hierarchy that all this renderable should be appended to.
-        virtual void ProtoSerialize(XML::Node& ParentNode) const = 0;
+        virtual void ProtoSerialize(XML::Node& ParentNode) const;
+        /// @brief Convert the properties of this class to an XML::Node ready for serialization.
+        /// @param SelfRoot The root node containing all the serialized data for this instance.
+        virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+
         /// @brief Take the data stored in an XML Node and overwrite this object with it.
         /// @param SelfRoot An XML::Node containing the data to populate this class with.
-        virtual void ProtoDeSerialize(const XML::Node& SelfRoot) = 0;
+        virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+        /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
         /// @brief Gets the most derived serializable name of this WorldProxy.
         /// @note When creating a new WorldProxy class verify this method has a valid return for it in order for serialization to work properly.
         /// @return Returns the name of the XML tag from the most derived class of "this".
-        virtual String GetDerivedSerializableName() const = 0;
+        virtual String GetDerivedSerializableName() const;
         /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
         /// @return A string containing the name of this class.
         static String GetSerializableName();

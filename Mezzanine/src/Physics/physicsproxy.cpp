@@ -654,7 +654,8 @@ namespace Mezzanine
 
         void PhysicsProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            // We're at the base implementation, so no calling of child implementations
+            this->WorldObject::ProtoSerializeProperties(SelfRoot);
+
             XML::Node PropertiesNode = SelfRoot.AppendChild( PhysicsProxy::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
@@ -669,12 +670,6 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("DeactivationTime").SetValue( this->GetDeactivationTime() ) &&
                 PropertiesNode.AppendAttribute("ContactProcessingThreshold").SetValue( this->_GetContactProcessingThreshold() ) )
             {
-                XML::Node LocationNode = PropertiesNode.AppendChild("Location");
-                this->GetLocation().ProtoSerialize( LocationNode );
-                XML::Node OrientationNode = PropertiesNode.AppendChild("Orientation");
-                this->GetOrientation().ProtoSerialize( OrientationNode );
-                XML::Node ScaleNode = PropertiesNode.AppendChild("Scale");
-                this->GetScale().ProtoSerialize( ScaleNode );
                 XML::Node AnisotropicFrictionNode = PropertiesNode.AppendChild("AnisotropicFriction");
                 this->GetAnisotropicFriction().ProtoSerialize( AnisotropicFrictionNode );
 
@@ -700,11 +695,13 @@ namespace Mezzanine
         void PhysicsProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
             this->ProtoDeSerializeProperties(SelfRoot);
+            this->ProtoDeSerializeShape(SelfRoot);
         }
 
         void PhysicsProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            // We're at the base implementation, so no calling of child implementations
+            this->WorldObject::ProtoDeSerializeProperties(SelfRoot);
+
             XML::Attribute CurrAttrib;
             XML::Node PropertiesNode = SelfRoot.GetChild( PhysicsProxy::GetSerializableName() + "Properties" );
 
@@ -753,24 +750,6 @@ namespace Mezzanine
                         this->_SetContactProcessingThreshold( CurrAttrib.AsReal() );
 
                     // Get the properties that need their own nodes
-                    XML::Node PositionNode = PropertiesNode.GetChild("Location").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
-                        Vector3 Loc(PositionNode);
-                        this->SetLocation(Loc);
-                    }
-
-                    XML::Node OrientationNode = PropertiesNode.GetChild("Orientation").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
-                        Quaternion Rot(OrientationNode);
-                        this->SetOrientation(Rot);
-                    }
-
-                    XML::Node ScaleNode = PropertiesNode.GetChild("Scale").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
-                        Vector3 Scale(ScaleNode);
-                        this->SetScale(Scale);
-                    }
-
                     XML::Node AnisotropicFrictionNode = PropertiesNode.GetChild("AnisotropicFriction").GetFirstChild();
                     if( !PositionNode.Empty() ) {
                         Vector3 AF(AnisotropicFrictionNode);

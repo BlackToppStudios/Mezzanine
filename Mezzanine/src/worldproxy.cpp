@@ -60,6 +60,72 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
+    void WorldProxy::ProtoSerialize(XML::Node& ParentNode) const
+    {
+        XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+
+        this->ProtoSerializeProperties(SelfRoot);
+    }
+
+    void WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+    {
+        XML::Node PropertiesNode = SelfRoot.AppendChild( WorldProxy::GetSerializableName() + "Properties" );
+
+        if( PropertiesNode.AppendAttribute("Version").SetValue("1") )
+        {
+            XML::Node LocationNode = PropertiesNode.AppendChild("Location");
+            this->GetLocation().ProtoSerialize( LocationNode );
+            XML::Node OrientationNode = PropertiesNode.AppendChild("Orientation");
+            this->GetOrientation().ProtoSerialize( OrientationNode );
+            XML::Node ScaleNode = PropertiesNode.AppendChild("Scale");
+            this->GetScale().ProtoSerialize( ScaleNode );
+
+            return;
+        }else{
+            SerializeError("Create XML Attribute Values",WorldProxy::GetSerializableName() + "Properties",true);
+        }
+    }
+
+    void WorldProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+    {
+        this->ProtoDeSerializeProperties(SelfRoot);
+    }
+
+    void WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    {
+        XML::Attribute CurrAttrib;
+        XML::Node PropertiesNode = SelfRoot.GetChild( WorldProxy::GetSerializableName() + "Properties" );
+
+        if( !PropertiesNode.Empty() ) {
+            if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                XML::Node PositionNode = PropertiesNode.GetChild("Location").GetFirstChild();
+                if( !PositionNode.Empty() ) {
+                    Vector3 Loc(PositionNode);
+                    this->SetLocation(Loc);
+                }
+
+                XML::Node OrientationNode = PropertiesNode.GetChild("Orientation").GetFirstChild();
+                if( !PositionNode.Empty() ) {
+                    Quaternion Rot(OrientationNode);
+                    this->SetOrientation(Rot);
+                }
+
+                XML::Node ScaleNode = PropertiesNode.GetChild("Scale").GetFirstChild();
+                if( !PositionNode.Empty() ) {
+                    Vector3 Scale(ScaleNode);
+                    this->SetScale(Scale);
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+        }
+    }
+
+    String WorldProxy::GetDerivedSerializableName() const
+        { return WorldProxy::GetSerializableName(); }
+
     String WorldProxy::GetSerializableName()
         { return "WorldProxy"; }
 
