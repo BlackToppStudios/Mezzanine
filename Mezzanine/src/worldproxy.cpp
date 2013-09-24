@@ -43,6 +43,11 @@
 #include "worldproxy.h"
 #include "worldobject.h"
 
+#include "enumerations.h"
+#include "exception.h"
+#include "serialization.h"
+#include "stringtool.h"
+
 namespace Mezzanine
 {
     WorldProxy::WorldProxy()

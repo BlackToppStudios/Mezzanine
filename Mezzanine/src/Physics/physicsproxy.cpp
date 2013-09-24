@@ -654,7 +654,7 @@ namespace Mezzanine
 
         void PhysicsProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            this->WorldObject::ProtoSerializeProperties(SelfRoot);
+            this->WorldProxy::ProtoSerializeProperties(SelfRoot);
 
             XML::Node PropertiesNode = SelfRoot.AppendChild( PhysicsProxy::GetSerializableName() + "Properties" );
 
@@ -700,7 +700,7 @@ namespace Mezzanine
 
         void PhysicsProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            this->WorldObject::ProtoDeSerializeProperties(SelfRoot);
+            this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
 
             XML::Attribute CurrAttrib;
             XML::Node PropertiesNode = SelfRoot.GetChild( PhysicsProxy::GetSerializableName() + "Properties" );
@@ -751,7 +751,7 @@ namespace Mezzanine
 
                     // Get the properties that need their own nodes
                     XML::Node AnisotropicFrictionNode = PropertiesNode.GetChild("AnisotropicFriction").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
+                    if( !AnisotropicFrictionNode.Empty() ) {
                         Vector3 AF(AnisotropicFrictionNode);
                         this->SetAnisotropicFriction(AF,AFMode);
                     }
