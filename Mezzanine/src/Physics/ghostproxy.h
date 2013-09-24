@@ -40,7 +40,7 @@ John Blackwood - makoenergy02@gmail.com
 #ifndef _ghostproxy_h
 #define _ghostproxy_h
 
-#include "Physics/physicsproxy.h"
+#include "Physics/collidableproxy.h"
 
 class btPairCachingGhostObject;
 
@@ -52,7 +52,7 @@ namespace Mezzanine
         /// @brief This is the proxy object for ghost objects with no contact response.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB GhostProxy : public PhysicsProxy
+        class MEZZ_LIB GhostProxy : public CollidableProxy
         {
         protected:
             /// @internal
@@ -88,7 +88,7 @@ namespace Mezzanine
             /// @note This method is faster than getting an overlap by collision shape, but it is also much less accurate.
             /// @param Index The index of the proxy to retrieve.
             /// @return Returns a pointer to the overlapping proxy at the specified index.
-            virtual PhysicsProxy* GetAABBOverlappingProxy(const UInt32 Index);
+            virtual CollidableProxy* GetAABBOverlappingProxy(const UInt32 Index);
             /// @brief Gets the number of proxies overlapping with the AABB of this ghost.
             /// @return Returns the number of proxies overlapping with the AABB of this ghost.
             virtual UInt32 GetNumAABBOverlappingProxies() const;
@@ -99,7 +99,7 @@ namespace Mezzanine
             /// Also note that getting overlaps by shape is slower than getting them by AABB.  Only use this if you need the extra accuracy.
             /// @param Index The index of the proxy to retrieve.
             /// @return Returns a pointer to the overlapping proxy at the specified index, or NULL if it is invalid.
-            virtual PhysicsProxy* GetShapeOverlappingProxy(const UInt32 Index);
+            virtual CollidableProxy* GetShapeOverlappingProxy(const UInt32 Index);
             /// @brief Gets the number of proxies overlapping with the actual collision shape of this ghost.
             /// @return Returns the number of proxies overlapping with the actual shape of this ghost.
             virtual UInt32 GetNumShapeOverlappingProxies() const;
@@ -107,9 +107,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc PhysicsProxy::ProtoSerializeProperties(XML::Node&) const
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @copydoc PhysicsProxy::ProtoDeSerializeProperties(const XML::Node&)
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
             /// @copydoc WorldProxy::GetDerivedSerializableName() const
@@ -124,7 +124,7 @@ namespace Mezzanine
             /// @brief Accessor for the internal ghost body physics proxy.
             /// @return Returns a pointer to the internal proxy this proxy is based on.
             virtual btPairCachingGhostObject* _GetPhysicsObject() const;
-            /// @copydoc PhysicsProxy::_GetBasePhysicsObject()
+            /// @copydoc CollidableProxy::_GetBasePhysicsObject()
             virtual btCollisionObject* _GetBasePhysicsObject() const;
         };//GhostProxy
     }//Physics

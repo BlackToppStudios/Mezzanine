@@ -830,7 +830,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Proxy Management
 
-        PhysicsProxy* PhysicsManager::GetProxy(const UInt32 Index) const
+        CollidableProxy* PhysicsManager::GetProxy(const UInt32 Index) const
         {
             return this->Proxies.at(Index);
         }
@@ -840,7 +840,7 @@ namespace Mezzanine
             return this->Proxies.size();
         }
 
-        void PhysicsManager::DestroyProxy(PhysicsProxy* ToBeDestroyed)
+        void PhysicsManager::DestroyProxy(CollidableProxy* ToBeDestroyed)
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
