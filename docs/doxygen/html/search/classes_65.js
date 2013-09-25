@@ -6,6 +6,7 @@ var searchData=
   ['endnodeitem',['EndNodeItem',['../classMezzanine_1_1EndNodeItem.html',1,'Mezzanine']]],
   ['entity',['Entity',['../classMezzanine_1_1Entity.html',1,'Mezzanine']]],
   ['entityinternaldata',['EntityInternalData',['../structMezzanine_1_1Internal_1_1EntityInternalData.html',1,'Mezzanine::Internal']]],
+  ['entityproxy',['EntityProxy',['../classMezzanine_1_1Graphics_1_1EntityProxy.html',1,'Mezzanine::Graphics']]],
   ['entresol',['Entresol',['../classMezzanine_1_1Entresol.html',1,'Mezzanine']]],
   ['equalizerparameters',['EqualizerParameters',['../structMezzanine_1_1Audio_1_1EqualizerParameters.html',1,'Mezzanine::Audio']]],
   ['eventbase',['EventBase',['../classMezzanine_1_1EventBase.html',1,'Mezzanine']]],

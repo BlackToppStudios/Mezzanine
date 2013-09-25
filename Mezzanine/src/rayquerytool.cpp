@@ -69,261 +69,14 @@ using namespace std;
 
 namespace Mezzanine
 {
-    Ogre::RaySceneQuery* RayQueryTool::RayQuery = 0;
 
-    RayQueryTool::RayQueryTool()
+    // Internal Utility methodssz
+    Ogre::RaySceneQuery* CreateRayQuery()
     {
-    }
-
-    RayQueryTool::~RayQueryTool()
-    {
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Raycasting Nonsense goe here
-    Vector3WActor* RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
-    {
-        VerifyRayQuery();
-        Ogre::Ray Ooray = ActorRay.GetOgreRay();
-
-        if(NULL != RayQuery)          //Double check that the Rayquery is valid
-        {
-            RayQuery->setRay(Ooray);
-            //RayQuery->setSortByDistance(true);
-            RayQuery->setQueryMask(-1);
-            if( RayQuery->execute().size() <= 0 ) //Did we hit anything
-            {
-                return NULL;
-            }
-        }else{                          //Whoopsie something Failed
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
-        }
-
-        // at this point we have raycast to a series of different objects bounding boxes.
-        // we need to test these different objects to see which is the first polygon hit.
-        // there are some minor optimizations (distance based) that mean we wont have to
-        // check all of the objects most of the time, but the worst case scenario is that
-        // we need to test every triangle of every object.
-        Ogre::Real closest_distance = -1.0f;
-        Vector3 closest_result;
-        Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
-        Vector3WActor* ClosestActor = new Vector3WActor();
-        for (size_t qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
-        {
-            // stop checking if we have found a raycast hit that is closer than all remaining entities
-            if ( (0.0f <= closest_distance) && (closest_distance < query_result[qr_idx].distance))
-                { break; }
-
-            // only check this result if its a hit against an entity
-            if ((NULL != query_result[qr_idx].movable) && (0 == query_result[qr_idx].movable->getMovableType().compare("Entity")))
-            {
-                // get the entity to check
-                Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);
-
-                try
-                {
-                    WorldObject* HitMetaInfo = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
-                    if(HitMetaInfo->GetType() & ObjectFlags)
-                    {
-                        // mesh data to retrieve
-                        size_t vertex_count;
-                        size_t index_count;
-                        Ogre::Vector3 *vertices;
-                        unsigned long *indices;
-
-                        // get the mesh information
-                        GetMeshInformation(pentity, vertex_count, vertices, index_count, indices,
-                                          pentity->getParentNode()->_getDerivedPosition(),
-                                          pentity->getParentNode()->_getDerivedOrientation(),
-                                          pentity->getParentNode()->_getDerivedScale());
-
-                        // test for hitting individual triangles on the mesh
-                        bool new_closest_found = false;
-                        for (size_t i = 0; i < index_count; i += 3)
-                        {
-                            // check for a hit against this triangle
-                            std::pair<bool, Ogre::Real> hit = Ogre::Math::intersects(Ooray, vertices[indices[i]], vertices[indices[i+1]], vertices[indices[i+2]], true, false);
-
-                            // if it was a hit check if its the closest
-                            if (hit.first && ((0.0f > closest_distance) || (hit.second < closest_distance)) )
-                            {
-                                    closest_distance = hit.second;                        // this is the closest so far, save it off
-                                    new_closest_found = true;
-                            }
-                        }
-
-                        // free the vertices and indices memory
-                        delete[] vertices;
-                        delete[] indices;
-
-                        // if we found a new closest raycast for this object, update the closest_result before moving on to the next object.
-                        if (new_closest_found)
-                        {
-                            closest_result = Ooray.getPoint(closest_distance);
-                            WorldObject* WO = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
-                            ClosestActor->Actor = static_cast<ActorBase*>( WO );
-                        }
-
-                    } // \if WSO_ActorRigid
-                }catch(...){
-                    MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed during cast in actor raycast.");
-                }
-            } // \if entity
-        } // \if qr_idx
-
-        //Change the closest point into a point relative to the Actor
-        if (ClosestActor->Actor != NULL)
-            //{ ClosestActor->Vector = closest_result - ClosestActor->Actor->GetLocation(); }
-            { ClosestActor->Vector = ClosestActor->Actor->GetOrientation() * ((closest_result - ClosestActor->Actor->GetLocation()) * ClosestActor->Actor->GetScaling()); }
-        return ClosestActor;
-    }
-
-    Vector3WActor* RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
-    {
-        VerifyRayQuery();
-        Ogre::Ray Ooray = ActorRay.GetOgreRay();
-
-        if(NULL != RayQuery)          //Double check that the Rayquery is valid
-        {
-            RayQuery->setRay(Ooray);
-            if( RayQuery->execute().size() <= 0 ) //Did we hit anything
-            {
-                return NULL;
-            }
-        }else{                          //Whoopsie something Failed
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery.");
-        }
-
-        Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
-
-        if (0 < query_result.size())
-        {
-            Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[0].movable);
-            Vector3WActor* ClosestActor = new Vector3WActor();
-            WorldObject* WO = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
-            ClosestActor->Actor = static_cast<ActorBase*>( WO );
-            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
-            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
-            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account
-            return ClosestActor;
-        }else{
-            return 0;
-        }
-    }
-
-    Vector3WActor* RayQueryTool::GetActorUnderMouse(Whole ObjectFlags, Real RayLength, bool UsePolygon)
-    {
-        VerifyRayQuery();
-        Vector3WActor* Results = 0;
-
-        Ray* MouseRay = GetMouseRay(RayLength);
-
-        if (UsePolygon)
-        {
-            Results = GetFirstActorOnRayByPolygon(*MouseRay,ObjectFlags);
-        }else{
-            Results = GetFirstActorOnRayByAABB(*MouseRay,ObjectFlags);
-        }
-
-        delete MouseRay;
-        return Results;
-    }
-
-    Vector3* RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
-    {
-        VerifyRayQuery();
-        try{
-            Vector3 u = QueryRay.Destination - QueryRay.Origin;
-            Vector3 p0 = Vector3(0,0,0);
-
-            if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
-            {
-                return 0;
-            }
-            else{
-                if(QueryPlane.Normal.X != 0)
-                {
-                     p0 = Vector3(QueryPlane.Distance,0,0);
-                }
-                else if(QueryPlane.Normal.Y != 0)
-                {
-                     p0 = Vector3(0,QueryPlane.Distance,0);
-                }
-                else
-                {
-                     p0 = Vector3(0,0,QueryPlane.Distance);
-                }
-            }
-
-            Vector3 w = QueryRay.Origin - p0;
-
-            Real D = u.DotProduct(QueryPlane.Normal);
-            Real N = -1 * w.DotProduct(QueryPlane.Normal);
-
-            Real SMALL_NUM = 0.00000001;
-
-            if( (D<0? -D : D) < SMALL_NUM)  //Checks if the Plane behind the RAy
-            {
-                if(N == 0)
-                {
-                    return new Vector3(QueryRay.Origin);
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-
-            Real sI = N/D;
-
-            if(sI < 0 || sI > 1) //checks if the ray is too long
-            {
-                return 0;
-            }
-
-            Vector3* return_vector = new Vector3(QueryRay.Origin + (u * sI));
-
-            Real distance = return_vector->Distance(QueryRay.Origin);
-
-            if(distance > QueryRay.Origin.Distance(QueryRay.Destination))
-            {
-                return 0;
-            }
-
-            return return_vector;
-        } catch(exception e) {
-            //In case we divide b
-            Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
-            Entresol::GetSingletonPtr()->Log(e.what());
-            return 0;
-        }
-    }
-
-    Ray* RayQueryTool::GetMouseRay(Real Length)
-    {
-        VerifyRayQuery();
-        Graphics::Viewport* HoveredViewport = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetHoveredViewport();
-        Vector2 MousePos = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
-        Ray* MouseRay = NULL;
-        if(HoveredViewport)
-        {
-            MouseRay = new Ray( HoveredViewport->GetViewportCamera()->GetCameraToViewportRay(
-                                MousePos.X / (Real)(HoveredViewport->GetActualWidth()),
-                                MousePos.Y / (Real)(HoveredViewport->GetActualHeight()) ) );
-            (*MouseRay) *= Length;
-        }
-        return MouseRay;
-    }
-
-
-    // Private Members
-    void RayQueryTool::VerifyRayQuery()
-    {
-        if(!RayQuery)
-        {
-            RayQuery = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-            RayQuery->setSortByDistance(true);
-        }
+        Ogre::RaySceneQuery* RayQuery;
+        RayQuery = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+        RayQuery->setSortByDistance(true);
+        return RayQuery;
     }
 
     void RayQueryTool::GetMeshInformation( Ogre::Entity *entity,
@@ -459,6 +212,244 @@ namespace Mezzanine
             current_offset = next_offset;
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Raycasting Nonsense goe here
+    Vector3WActor* RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
+    {
+        Ogre::RaySceneQuery* RayQuery = CreateRayQuery();
+        Ogre::Ray Ooray = ActorRay.GetOgreRay();
+
+        if(NULL != RayQuery)          //Double check that the Rayquery is valid
+        {
+            RayQuery->setRay(Ooray);
+            //RayQuery->setSortByDistance(true);
+            RayQuery->setQueryMask(-1);
+            if( RayQuery->execute().size() <= 0 ) //Did we hit anything
+            {
+                return NULL;
+            }
+        }else{                          //Whoopsie something Failed
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
+        }
+
+        // at this point we have raycast to a series of different objects bounding boxes.
+        // we need to test these different objects to see which is the first polygon hit.
+        // there are some minor optimizations (distance based) that mean we wont have to
+        // check all of the objects most of the time, but the worst case scenario is that
+        // we need to test every triangle of every object.
+        Ogre::Real closest_distance = -1.0f;
+        Vector3 closest_result;
+        Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
+        Vector3WActor* ClosestActor = new Vector3WActor();
+        for (size_t qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
+        {
+            // stop checking if we have found a raycast hit that is closer than all remaining entities
+            if ( (0.0f <= closest_distance) && (closest_distance < query_result[qr_idx].distance))
+                { break; }
+
+            // only check this result if its a hit against an entity
+            if ((NULL != query_result[qr_idx].movable) && (0 == query_result[qr_idx].movable->getMovableType().compare("Entity")))
+            {
+                // get the entity to check
+                Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);
+
+                try
+                {
+                    WorldObject* HitMetaInfo = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
+                    if(HitMetaInfo->GetType() & ObjectFlags)
+                    {
+                        // mesh data to retrieve
+                        size_t vertex_count;
+                        size_t index_count;
+                        Ogre::Vector3 *vertices;
+                        unsigned long *indices;
+
+                        // get the mesh information
+                        GetMeshInformation(pentity, vertex_count, vertices, index_count, indices,
+                                          pentity->getParentNode()->_getDerivedPosition(),
+                                          pentity->getParentNode()->_getDerivedOrientation(),
+                                          pentity->getParentNode()->_getDerivedScale());
+
+                        // test for hitting individual triangles on the mesh
+                        bool new_closest_found = false;
+                        for (size_t i = 0; i < index_count; i += 3)
+                        {
+                            // check for a hit against this triangle
+                            std::pair<bool, Ogre::Real> hit = Ogre::Math::intersects(Ooray, vertices[indices[i]], vertices[indices[i+1]], vertices[indices[i+2]], true, false);
+
+                            // if it was a hit check if its the closest
+                            if (hit.first && ((0.0f > closest_distance) || (hit.second < closest_distance)) )
+                            {
+                                    closest_distance = hit.second;                        // this is the closest so far, save it off
+                                    new_closest_found = true;
+                            }
+                        }
+
+                        // free the vertices and indices memory
+                        delete[] vertices;
+                        delete[] indices;
+
+                        // if we found a new closest raycast for this object, update the closest_result before moving on to the next object.
+                        if (new_closest_found)
+                        {
+                            closest_result = Ooray.getPoint(closest_distance);
+                            WorldObject* WO = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
+                            ClosestActor->Actor = static_cast<ActorBase*>( WO );
+                        }
+
+                    } // \if WSO_ActorRigid
+                }catch(...){
+                    MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed during cast in actor raycast.");
+                }
+            } // \if entity
+        } // \if qr_idx
+
+        //Change the closest point into a point relative to the Actor
+        if (ClosestActor->Actor != NULL)
+            //{ ClosestActor->Vector = closest_result - ClosestActor->Actor->GetLocation(); }
+            { ClosestActor->Vector = ClosestActor->Actor->GetOrientation() * ((closest_result - ClosestActor->Actor->GetLocation()) * ClosestActor->Actor->GetScaling()); }
+        return ClosestActor;
+    }
+
+    Vector3WActor* RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
+    {
+        Ogre::RaySceneQuery* RayQuery = CreateRayQuery();
+        Ogre::Ray Ooray = ActorRay.GetOgreRay();
+
+        if(NULL != RayQuery)          //Double check that the Rayquery is valid
+        {
+            RayQuery->setRay(Ooray);
+            if( RayQuery->execute().size() <= 0 ) //Did we hit anything
+            {
+                return NULL;
+            }
+        }else{                          //Whoopsie something Failed
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery.");
+        }
+
+        Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
+
+        if (0 < query_result.size())
+        {
+            Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[0].movable);
+            Vector3WActor* ClosestActor = new Vector3WActor();
+            WorldObject* WO = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
+            ClosestActor->Actor = static_cast<ActorBase*>( WO );
+            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
+            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
+            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account
+            return ClosestActor;
+        }else{
+            return 0;
+        }
+    }
+
+    Vector3WActor* RayQueryTool::GetActorUnderMouse(Whole ObjectFlags, Real RayLength, bool UsePolygon)
+    {
+        Ogre::RaySceneQuery* RayQuery = CreateRayQuery();
+        Vector3WActor* Results = 0;
+
+        Ray* MouseRay = GetMouseRay(RayLength);
+
+        if (UsePolygon)
+        {
+            Results = GetFirstActorOnRayByPolygon(*MouseRay,ObjectFlags);
+        }else{
+            Results = GetFirstActorOnRayByAABB(*MouseRay,ObjectFlags);
+        }
+
+        delete MouseRay;
+        return Results;
+    }
+
+    Vector3* RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
+    {
+        Ogre::RaySceneQuery* RayQuery = CreateRayQuery();
+        try{
+            Vector3 u = QueryRay.Destination - QueryRay.Origin;
+            Vector3 p0 = Vector3(0,0,0);
+
+            if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
+            {
+                return 0;
+            }
+            else{
+                if(QueryPlane.Normal.X != 0)
+                {
+                     p0 = Vector3(QueryPlane.Distance,0,0);
+                }
+                else if(QueryPlane.Normal.Y != 0)
+                {
+                     p0 = Vector3(0,QueryPlane.Distance,0);
+                }
+                else
+                {
+                     p0 = Vector3(0,0,QueryPlane.Distance);
+                }
+            }
+
+            Vector3 w = QueryRay.Origin - p0;
+
+            Real D = u.DotProduct(QueryPlane.Normal);
+            Real N = -1 * w.DotProduct(QueryPlane.Normal);
+
+            Real SMALL_NUM = 0.00000001;
+
+            if( (D<0? -D : D) < SMALL_NUM)  //Checks if the Plane behind the RAy
+            {
+                if(N == 0)
+                {
+                    return new Vector3(QueryRay.Origin);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+
+            Real sI = N/D;
+
+            if(sI < 0 || sI > 1) //checks if the ray is too long
+            {
+                return 0;
+            }
+
+            Vector3* return_vector = new Vector3(QueryRay.Origin + (u * sI));
+
+            Real distance = return_vector->Distance(QueryRay.Origin);
+
+            if(distance > QueryRay.Origin.Distance(QueryRay.Destination))
+            {
+                return 0;
+            }
+
+            return return_vector;
+        } catch(exception e) {
+            //In case we divide b
+            Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
+            Entresol::GetSingletonPtr()->Log(e.what());
+            return 0;
+        }
+    }
+
+    Ray* RayQueryTool::GetMouseRay(Real Length)
+    {
+        Ogre::RaySceneQuery* RayQuery = CreateRayQuery();
+        Graphics::Viewport* HoveredViewport = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetHoveredViewport();
+        Vector2 MousePos = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
+        Ray* MouseRay = NULL;
+        if(HoveredViewport)
+        {
+            MouseRay = new Ray( HoveredViewport->GetViewportCamera()->GetCameraToViewportRay(
+                                MousePos.X / (Real)(HoveredViewport->GetActualWidth()),
+                                MousePos.Y / (Real)(HoveredViewport->GetActualHeight()) ) );
+            (*MouseRay) *= Length;
+        }
+        return MouseRay;
+    }
+
+
 }
 
 

@@ -841,9 +841,60 @@ if(${Mezz_Lua51})
         add_subdirectory (libincludes/common/lua51)
 endif(${Mezz_Lua51})
 
+###############################################################################
+# Swig binding generation
+
+set(SWIG_PROJECT "")
+if(${Mezz_SWIG})
+    # Here are the original lines describing the commands from lua51scriptengine.h
+    #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o Scripting/Lua51/scriptbindinglua51.cpp mezzanine.h
+    #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindinglua51unsafe.cpp mezzanine.h
+
+    set(SWIG_PROJECT "SWIG_${PROJECT_NAME}")
+    add_library(${SWIG_PROJECT} SHARED "${${PROJECT_NAME}_SRC_DIR}blank.cpp" )
+
+    if(${Mezz_Lua51})
+        # mezzanine.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Main library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_MAIN -o Scripting/Lua51/scriptbindingmainlua51.cpp mezzanine.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unsafe Mezzanine Main library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmainlua51unsafe.cpp mezzanine.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        # XML/xml.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine XML library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_XML -o Scripting/Lua51/scriptbindingxmllua51.cpp XML/xml.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unsafe Mezzanine XML library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+    endif(${Mezz_Lua51})
+    # Add support for other languagews here
+endif(${Mezz_SWIG})
+
 #######################################
 # Library Link Dependencies
-add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames} ${LuaProject} ${SDLLibraryNames} ${SoundLibraryNames} )
+add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames} ${LuaProject} ${SDLLibraryNames} ${SoundLibraryNames} ${SWIG_PROJECT} )
 
 find_package(Threads)
 
@@ -857,52 +908,6 @@ target_link_libraries( ${PROJECT_NAME}
     ${SoundLibraryNames}
     ${CMAKE_THREAD_LIBS_INIT}
 )
-
-###############################################################################
-# Swig binding generation
-
-if(${Mezz_SWIG})
-    # Here are the original lines describing the commands from lua51scriptengine.h
-    #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o Scripting/Lua51/scriptbindinglua51.cpp mezzanine.h
-    #/// swig2.0 -c++ -v -Wall -lua -importall -includeall -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindinglua51unsafe.cpp mezzanine.h
-    if(${Mezz_Lua51})
-        # mezzanine.h
-        add_custom_command(
-            TARGET ${PROJECT_NAME}
-            PRE_BUILD
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Safe library for Lua."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_MAIN -o Scripting/Lua51/scriptbindingmainlua51.cpp mezzanine.h
-            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
-            VERBATIM
-        )
-        add_custom_command(
-            TARGET ${PROJECT_NAME}
-            PRE_BUILD
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Safe library for Lua."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmainlua51unsafe.cpp mezzanine.h
-            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
-            VERBATIM
-        )
-        # XML/xml.h
-        add_custom_command(
-            TARGET ${PROJECT_NAME}
-            PRE_BUILD
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Safe library for Lua."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_XML -o Scripting/Lua51/scriptbindingxmllua51.cpp XML/xml.h
-            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
-            VERBATIM
-        )
-        add_custom_command(
-            TARGET ${PROJECT_NAME}
-            PRE_BUILD
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Safe library for Lua."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h
-            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
-            VERBATIM
-        )
-    endif(${Mezz_Lua51})
-    # Add support for other languagews here
-endif(${Mezz_SWIG})
 
 ###############################################################################
 # Build Time File copying

@@ -48,7 +48,7 @@
 /home/Code/Mezzanine/Mezzanine/src/Resource/assetgroup.h:52: warning: Compound Mezzanine::Resource::AssetGroup is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/textureatlas.h:68: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Resource/assethandler.h:52: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:496: warning: Compound Mezzanine::Node::iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:499: warning: Compound Mezzanine::Node::iterator is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:68: warning: Compound Mezzanine::NodeItem is not documented.
 /home/Code/Mezzanine/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
 /home/Code/Mezzanine/Mezzanine/src/matrix4x4.h:58: warning: Compound Mezzanine::Matrix4x4 is not documented.
@@ -63,11 +63,11 @@
 /home/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:58: warning: Compound Mezzanine::Resource::TextSettingsFile is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/resizehandler.h:54: warning: Compound Mezzanine::UI::ResizeHandler is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/textureatlas.cpp:66: warning: Compound Mezzanine::UI::TextureAtlasInternalData is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:208: warning: Compound Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:211: warning: Compound Mezzanine::Node::const_iterator is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/listbox.h:52: warning: Compound Mezzanine::UI::TemplateParams is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Resource/archive.h:54: warning: Compound Mezzanine::Resource::Archive is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:266: warning: Compound Mezzanine::UI::OpenRenderableContainerWidget is not documented.
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:60: warning: Documentation for undefined enum `ManagerTypeName' found.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:62: warning: Documentation for undefined enum `ManagerTypeName' found.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:1041: warning: found more than one \mainpage comment block! Skipping this block.
 /home/Code/Mezzanine/Mezzanine/src/Threading/dagframescheduler.h:82: warning: found more than one \mainpage comment block! Skipping this block.
 /home/Code/Mezzanine/Mezzanine/src/actorrigid.h:115: warning: target WorldObject::AddObjectToWorld() of \copydoc command not found
@@ -92,6 +92,8 @@
 /home/Code/Mezzanine/Mezzanine/src/entity.h:75: warning: target Mezzanine::Attachable::GetName() of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:99: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsproxy.h:91: warning: target PhysicsProxy::GetCreator() of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsproxy.h:129: warning: target WorldProxy::ProtoSerialize(XML::Node&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Input/controller.h:67: warning: target Device::VerifySequenceImpl(const MetaCodeContainer& Sequence) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Input/controller.h:69: warning: target Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Input/controller.h:131: warning: target ButtonDevice::GetButtonState(const UInt16 Button) of \copydoc command not found
@@ -105,12 +107,12 @@
 /home/Code/Mezzanine/Mezzanine/src/Input/mouse.h:77: warning: target Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Input/mouse.h:131: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Input/mouse.h:131: warning: target Device::GetButtonState(const UInt16 Button) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:246: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:250: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:252: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:120: warning: target Mezzanine::AttachableBase::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:124: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: target Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:248: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:252: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:254: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:122: warning: target Mezzanine::AttachableBase::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:128: warning: target Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:102: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:96: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/boxcollisionshape.h:96: warning: target CollisionShape::GetBulletShape of \copydoc command not found
@@ -373,19 +375,19 @@
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/vector3.h:109: warning: target GetAxisValue(StandardAxis Axis) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:177: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:185: warning: target AttachableBase::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:191: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:177: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:272: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:292: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:184: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:196: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:196: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:196: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:180: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:184: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:188: warning: target AttachableBase::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:194: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:196: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:184: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:180: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:274: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:294: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/crossplatformexport.h:136: warning: Member _MEZZ_PLATFORM_DEFINED_ (macro definition) of file crossplatformexport.h is not documented.
 /home/Code/Mezzanine/Mezzanine/src/macros.h:58: warning: Member MEZZ_BITMASK(X) (macro definition) of file macros.h is not documented.
 /home/Code/Mezzanine/Mezzanine/src/macros.h:53: warning: Member MEZZ_BITMASK32MAX (macro definition) of file macros.h is not documented.
@@ -401,11 +403,11 @@
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:698: warning: explicit link request to 'wstream' could not be resolved
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:778: warning: explicit link request to 'x' could not be resolved
 /home/Code/Mezzanine/Mezzanine/src/XML/xml.h:778: warning: explicit link request to 'x' could not be resolved
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:315: warning: Member ConstMetaCodeIterator (typedef) of namespace Mezzanine is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:313: warning: Member MetaCodeContainer (typedef) of namespace Mezzanine is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:314: warning: Member MetaCodeIterator (typedef) of namespace Mezzanine is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:65: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
-/home/Code/Mezzanine/Mezzanine/src/vector3.cpp:64: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:317: warning: Member ConstMetaCodeIterator (typedef) of namespace Mezzanine is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:315: warning: Member MetaCodeContainer (typedef) of namespace Mezzanine is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:316: warning: Member MetaCodeIterator (typedef) of namespace Mezzanine is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:67: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
+/home/Code/Mezzanine/Mezzanine/src/vector3.cpp:66: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
 /home/Code/Mezzanine/Mezzanine/src/smartptr.h:646: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
 /home/Code/Mezzanine/Mezzanine/src/smartptr.h:646: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
 /home/Code/Mezzanine/Mezzanine/src/smartptr.h:664: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrDynamicCast(CountedPtr< OtherPointerTargetType > &Original)
@@ -415,8 +417,8 @@
 /home/Code/Mezzanine/Mezzanine/src/smartptr.h:612: warning: argument 'OriginalPointer' of command @param is not found in the argument list of Mezzanine::CountedPtrInternalCast(const OriginalPointer *Original)
 /home/Code/Mezzanine/Mezzanine/src/smartptr.h:300: warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > &Original)
 /home/Code/Mezzanine/Mezzanine/src/smartptr.h:300: warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrStaticCast(CountedPtr< OtherPointerTargetType > &Original)
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:272: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:292: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:274: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:294: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:150: warning: Member ConstAttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
@@ -425,8 +427,8 @@
 /home/Code/Mezzanine/Mezzanine/src/actorrigid.h:139: warning: Found unknown command `\copy'
 /home/Code/Mezzanine/Mezzanine/src/actorrigid.h:141: warning: Found unknown command `\copy'
 /home/Code/Mezzanine/Mezzanine/src/actorrigid.h:117: warning: target WorldObject::RemoveObjectFromWorld() of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:272: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:292: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:274: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:294: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:150: warning: Member ConstAttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
@@ -444,10 +446,10 @@
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:132: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:136: warning: target NonStaticWorldObject::SetOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:140: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:211: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:210: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:214: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:213: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:215: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
@@ -471,10 +473,10 @@
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:74: warning: parameters of member Mezzanine::AttachableBase::GetUpdating are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:74: warning: return type of member Mezzanine::AttachableBase::GetUpdating is not documented
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:211: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:210: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:214: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:213: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:215: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
@@ -484,10 +486,10 @@
 /home/Code/Mezzanine/Mezzanine/src/camera.h:299: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/camera.h:301: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/camera.h:295: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:211: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:210: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:214: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:213: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:215: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/camera.h:146: warning: parameters of member Mezzanine::Camera::Camera are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/camera.h:147: warning: parameters of member Mezzanine::Camera::Camera are not (all) documented
@@ -548,10 +550,10 @@
 /home/Code/Mezzanine/Mezzanine/src/entity.h:99: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:101: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:61: warning: Member EID (variable) of class Mezzanine::Entity is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:211: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:210: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:214: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:213: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:215: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/entity.h:75: warning: target Mezzanine::Attachable::GetName() of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/entity.h:75: warning: target Mezzanine::Attachable::GetName() of \copydoc command not found
@@ -569,15 +571,15 @@
 /home/Code/Mezzanine/Mezzanine/src/entresol.h:474: warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
 /home/Code/Mezzanine/Mezzanine/src/entresol.cpp:138: warning: Found unknown command `\TODO'
 /home/Code/Mezzanine/Mezzanine/src/entresol.h:523: warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
-/home/Code/Mezzanine/Mezzanine/src/eventgamewindow.h:108: warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
+/home/Code/Mezzanine/Mezzanine/src/eventgamewindow.h:110: warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
 /home/Code/Mezzanine/Mezzanine/src/eventgamewindow.cpp:63: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class Mezzanine::EventGameWindowData is not documented.
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< EventManager > is not documented.
-/home/Code/Mezzanine/Mezzanine/src/eventmanager.h:358: warning: parameters of member Mezzanine::EventManager::GetAllSpecificEvents are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/eventmanager.h:365: warning: parameters of member Mezzanine::EventManager::RemoveAllSpecificEvents are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/eventmanager.h:114: warning: return type of member Mezzanine::EventPumpWorkUnit::operator= is not documented
-/home/Code/Mezzanine/Mezzanine/src/eventquit.h:68: warning: return type of member Mezzanine::EventQuit::GetType is not documented
-/home/Code/Mezzanine/Mezzanine/src/eventuserinput.h:157: warning: parameters of member Mezzanine::EventUserInput::GetMetaCode are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/eventmanager.h:360: warning: parameters of member Mezzanine::EventManager::GetAllSpecificEvents are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/eventmanager.h:367: warning: parameters of member Mezzanine::EventManager::RemoveAllSpecificEvents are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/eventmanager.h:116: warning: return type of member Mezzanine::EventPumpWorkUnit::operator= is not documented
+/home/Code/Mezzanine/Mezzanine/src/eventquit.h:70: warning: return type of member Mezzanine::EventQuit::GetType is not documented
+/home/Code/Mezzanine/Mezzanine/src/eventuserinput.h:159: warning: parameters of member Mezzanine::EventUserInput::GetMetaCode are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/exception.h:148: warning: unable to resolve reference to `MEZZ_EXCEPTION' for \ref command
 /home/Code/Mezzanine/Mezzanine/src/exception.h:191: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory is not documented.
 /home/Code/Mezzanine/Mezzanine/src/exception.h:1835: warning: Member Type (typedef) of class Mezzanine::ExceptionFactory< ArithmeticException::ExceptionCode > is not documented.
@@ -648,10 +650,10 @@
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:132: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:136: warning: target NonStaticWorldObject::SetOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:140: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:211: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:210: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:214: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:213: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:215: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
@@ -662,10 +664,10 @@
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:132: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:136: warning: target NonStaticWorldObject::SetOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:140: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:211: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:210: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:214: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:213: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:215: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
@@ -675,130 +677,130 @@
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:132: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:136: warning: target NonStaticWorldObject::SetOrientation(Quaternion&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/areaeffect.h:140: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:211: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:210: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:214: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:213: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:215: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:150: warning: Member ConstAttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
-/home/Code/Mezzanine/Mezzanine/src/light.h:250: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:252: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:246: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:211: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:210: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/light.h:252: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:254: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:248: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:214: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:213: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:215: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
-/home/Code/Mezzanine/Mezzanine/src/light.h:250: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:250: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:250: warning: parameters of member Mezzanine::Light::SetLocalLocation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/light.h:252: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:252: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:252: warning: parameters of member Mezzanine::Light::SetLocalOrientation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/light.h:246: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:246: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/light.h:246: warning: parameters of member Mezzanine::Light::SetScaling are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/light.h:252: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:252: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:252: warning: parameters of member Mezzanine::Light::SetLocalLocation are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/light.h:254: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:254: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:254: warning: parameters of member Mezzanine::Light::SetLocalOrientation are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/light.h:248: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:248: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/light.h:248: warning: parameters of member Mezzanine::Light::SetScaling are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/linegroup.h:79: warning: return type of member Mezzanine::LineGroup::GetPoint is not documented
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 <ManagerType>:1: warning: parameters of member Mezzanine::ManagerBase::ManagerType are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:141: warning: parameters of member Mezzanine::ManagerBase::GetTypeAsString are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:144: warning: parameters of member Mezzanine::ManagerBase::GetTypeFromString are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:143: warning: parameters of member Mezzanine::ManagerBase::GetTypeAsString are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:146: warning: parameters of member Mezzanine::ManagerBase::GetTypeFromString are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/matrix3x3.h:79: warning: parameters of member Mezzanine::Matrix3x3::Matrix3x3 are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/matrix4x4.h:74: warning: parameters of member Mezzanine::Matrix4x4::Matrix4x4 are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/meshmanager.h:76: warning: Member ConstMeshIterator (typedef) of class Mezzanine::MeshManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/meshmanager.h:74: warning: Member MeshContainer (typedef) of class Mezzanine::MeshManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/meshmanager.h:75: warning: Member MeshIterator (typedef) of class Mezzanine::MeshManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/meshmanager.h:78: warning: Member GeneratedMeshes (variable) of class Mezzanine::MeshManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/meshmanager.h:79: warning: Member LoadedMeshes (variable) of class Mezzanine::MeshManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< MeshManager > is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:202: warning: Member EndNodeItemClass (typedef) of class Mezzanine::Node is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:203: warning: Member NodeClass (typedef) of class Mezzanine::Node is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:201: warning: Member NodeItemClass (typedef) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:633: warning: Member Node(const T &eSymbol, NodeClass *parent=0) (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:727: warning: Member begin() const  (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:735: warning: Member begin() (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:643: warning: Member clear() (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:649: warning: Member empty() const  (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:731: warning: Member end() const  (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:739: warning: Member end() (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:639: warning: Member endSymbol() const  (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:686: warning: Member erase(iterator pos) (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:693: warning: Member erase(const T *key) (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:743: warning: Member find(const T *key) const  (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:752: warning: Member find(const T *key) (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:701: warning: Member get(const T *key) const  (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:705: warning: Member get(const T *key) (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:715: warning: Member hasKey(const T *key) const  (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:657: warning: Member insert(const T *key, V const &value) (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:719: warning: Member parent() const  (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:723: warning: Member parent() (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:653: warning: Member size() const  (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:761: warning: Member startsWith(const T *prefix) (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:770: warning: Member startsWith(const T *prefix) const  (function) of class Mezzanine::Node is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:219: warning: Member const_iterator(const NodeClass *node, const NodeClass *root, const T *key=0, bool mooveToEnd=false) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:236: warning: Member const_iterator(const const_iterator &oth) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:270: warning: Member operator!=(const_iterator const &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:258: warning: Member operator*() const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:274: warning: Member operator++(int) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:280: warning: Member operator++() (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:285: warning: Member operator--(int) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:291: warning: Member operator--() (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:262: warning: Member operator->() const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:242: warning: Member operator=(const const_iterator &oth) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:266: warning: Member operator==(const_iterator const &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:211: warning: Member ItemsContainerConstIter (typedef) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:210: warning: Member KeyValuePair (typedef) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:463: warning: Member equals(const const_iterator &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:447: warning: Member isEnd() const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:455: warning: Member isLeftEnd() const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:400: warning: Member next() (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:309: warning: Member previous() (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:476: warning: Member pushNode(const NodeClass *node, const T *key=0, bool mooveToEnd=false) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:304: warning: Member mCheckKeyLeft (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:305: warning: Member mCheckKeyRight (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:300: warning: Member mCurrentNode (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:301: warning: Member mCurrentPos (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:306: warning: Member mEndReached (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:302: warning: Member mKeyStack (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:303: warning: Member mKeyValuePair (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:299: warning: Member mRootNode (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:510: warning: Member iterator(NodeClass *node, NodeClass *root, const T *key=0, bool mooveToEnd=false) (function) of class Mezzanine::Node::iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:512: warning: Member operator*() (function) of class Mezzanine::Node::iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:520: warning: Member operator++(int) (function) of class Mezzanine::Node::iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:526: warning: Member operator++() (function) of class Mezzanine::Node::iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:531: warning: Member operator--(int) (function) of class Mezzanine::Node::iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:537: warning: Member operator--() (function) of class Mezzanine::Node::iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:516: warning: Member operator->() (function) of class Mezzanine::Node::iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:219: warning: Member const_iterator(const NodeClass *node, const NodeClass *root, const T *key=0, bool mooveToEnd=false) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:236: warning: Member const_iterator(const const_iterator &oth) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:270: warning: Member operator!=(const_iterator const &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:258: warning: Member operator*() const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:274: warning: Member operator++(int) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:280: warning: Member operator++() (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:285: warning: Member operator--(int) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:291: warning: Member operator--() (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:262: warning: Member operator->() const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:242: warning: Member operator=(const const_iterator &oth) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:266: warning: Member operator==(const_iterator const &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:211: warning: Member ItemsContainerConstIter (typedef) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:210: warning: Member KeyValuePair (typedef) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:463: warning: Member equals(const const_iterator &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:447: warning: Member isEnd() const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:455: warning: Member isLeftEnd() const  (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:400: warning: Member next() (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:309: warning: Member previous() (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:476: warning: Member pushNode(const NodeClass *node, const T *key=0, bool mooveToEnd=false) (function) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:304: warning: Member mCheckKeyLeft (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:305: warning: Member mCheckKeyRight (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:300: warning: Member mCurrentNode (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:301: warning: Member mCurrentPos (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:306: warning: Member mEndReached (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:302: warning: Member mKeyStack (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:303: warning: Member mKeyValuePair (variable) of class Mezzanine::Node::const_iterator is not documented.
-/home/Code/Mezzanine/Mezzanine/src/trie.h:299: warning: Member mRootNode (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:636: warning: Member Node(const T &eSymbol, NodeClass *parent=0) (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:730: warning: Member begin() const  (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:738: warning: Member begin() (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:646: warning: Member clear() (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:652: warning: Member empty() const  (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:734: warning: Member end() const  (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:742: warning: Member end() (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:642: warning: Member endSymbol() const  (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:689: warning: Member erase(iterator pos) (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:696: warning: Member erase(const T *key) (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:746: warning: Member find(const T *key) const  (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:755: warning: Member find(const T *key) (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:704: warning: Member get(const T *key) const  (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:708: warning: Member get(const T *key) (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:718: warning: Member hasKey(const T *key) const  (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:660: warning: Member insert(const T *key, V const &value) (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:722: warning: Member parent() const  (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:726: warning: Member parent() (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:656: warning: Member size() const  (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:764: warning: Member startsWith(const T *prefix) (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:773: warning: Member startsWith(const T *prefix) const  (function) of class Mezzanine::Node is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:222: warning: Member const_iterator(const NodeClass *node, const NodeClass *root, const T *key=0, bool mooveToEnd=false) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:239: warning: Member const_iterator(const const_iterator &oth) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:273: warning: Member operator!=(const_iterator const &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:261: warning: Member operator*() const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:277: warning: Member operator++(int) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:283: warning: Member operator++() (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:288: warning: Member operator--(int) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:294: warning: Member operator--() (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:265: warning: Member operator->() const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:245: warning: Member operator=(const const_iterator &oth) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:269: warning: Member operator==(const_iterator const &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:214: warning: Member ItemsContainerConstIter (typedef) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:213: warning: Member KeyValuePair (typedef) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:466: warning: Member equals(const const_iterator &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:450: warning: Member isEnd() const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:458: warning: Member isLeftEnd() const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:403: warning: Member next() (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:312: warning: Member previous() (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:479: warning: Member pushNode(const NodeClass *node, const T *key=0, bool mooveToEnd=false) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:307: warning: Member mCheckKeyLeft (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:308: warning: Member mCheckKeyRight (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:303: warning: Member mCurrentNode (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:304: warning: Member mCurrentPos (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:309: warning: Member mEndReached (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:305: warning: Member mKeyStack (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:306: warning: Member mKeyValuePair (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:302: warning: Member mRootNode (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:513: warning: Member iterator(NodeClass *node, NodeClass *root, const T *key=0, bool mooveToEnd=false) (function) of class Mezzanine::Node::iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:515: warning: Member operator*() (function) of class Mezzanine::Node::iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:523: warning: Member operator++(int) (function) of class Mezzanine::Node::iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:529: warning: Member operator++() (function) of class Mezzanine::Node::iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:534: warning: Member operator--(int) (function) of class Mezzanine::Node::iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:540: warning: Member operator--() (function) of class Mezzanine::Node::iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:519: warning: Member operator->() (function) of class Mezzanine::Node::iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:222: warning: Member const_iterator(const NodeClass *node, const NodeClass *root, const T *key=0, bool mooveToEnd=false) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:239: warning: Member const_iterator(const const_iterator &oth) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:273: warning: Member operator!=(const_iterator const &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:261: warning: Member operator*() const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:277: warning: Member operator++(int) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:283: warning: Member operator++() (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:288: warning: Member operator--(int) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:294: warning: Member operator--() (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:265: warning: Member operator->() const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:245: warning: Member operator=(const const_iterator &oth) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:269: warning: Member operator==(const_iterator const &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:214: warning: Member ItemsContainerConstIter (typedef) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:213: warning: Member KeyValuePair (typedef) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:466: warning: Member equals(const const_iterator &oth) const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:450: warning: Member isEnd() const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:458: warning: Member isLeftEnd() const  (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:403: warning: Member next() (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:312: warning: Member previous() (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:479: warning: Member pushNode(const NodeClass *node, const T *key=0, bool mooveToEnd=false) (function) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:307: warning: Member mCheckKeyLeft (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:308: warning: Member mCheckKeyRight (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:303: warning: Member mCurrentNode (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:304: warning: Member mCurrentPos (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:309: warning: Member mEndReached (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:305: warning: Member mKeyStack (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:306: warning: Member mKeyValuePair (variable) of class Mezzanine::Node::const_iterator is not documented.
+/home/Code/Mezzanine/Mezzanine/src/trie.h:302: warning: Member mRootNode (variable) of class Mezzanine::Node::const_iterator is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:77: warning: Member NodeItem(const T &endSymbol, T const &key) (function) of class Mezzanine::NodeItem is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:111: warning: Member get() const  (function) of class Mezzanine::NodeItem is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:115: warning: Member getChilds() const  (function) of class Mezzanine::NodeItem is not documented.
@@ -812,97 +814,97 @@
 /home/Code/Mezzanine/Mezzanine/src/trie.h:95: warning: Member operator==(NodeItemClass const &oth) const  (function) of class Mezzanine::NodeItem is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:107: warning: Member set(T const &key) (function) of class Mezzanine::NodeItem is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:190: warning: Member operator()(const NodeItemClass *v1, const NodeItemClass *v2) (function) of class Mezzanine::NodeItemPtrCompare is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:272: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:292: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:274: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:294: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:150: warning: Member ConstAttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:152: warning: Member Attached (variable) of class Mezzanine::AttachableParent is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:272: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:272: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:272: warning: parameters of member Mezzanine::NonStaticWorldObject::SetLocation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:292: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:292: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldobject.h:292: warning: parameters of member Mezzanine::NonStaticWorldObject::SetScaling are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:274: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:274: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:274: warning: parameters of member Mezzanine::NonStaticWorldObject::SetLocation are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:294: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:294: warning: target WorldObject::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldobject.h:294: warning: parameters of member Mezzanine::NonStaticWorldObject::SetScaling are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/objectpair.h:57: warning: return type of member Mezzanine::ObjectPair::GetCombinedName is not documented
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:238: warning: Member ConstSaveGroupsIterator (typedef) of class Mezzanine::ObjectSettingFile is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:236: warning: Member SaveGroupsContainer (typedef) of class Mezzanine::ObjectSettingFile is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:237: warning: Member SaveGroupsIterator (typedef) of class Mezzanine::ObjectSettingFile is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:241: warning: Member File (variable) of class Mezzanine::ObjectSettingFile is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:242: warning: Member NeedsSave (variable) of class Mezzanine::ObjectSettingFile is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:240: warning: Member SaveGroups (variable) of class Mezzanine::ObjectSettingFile is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:201: warning: Member OptionalFile (variable) of class Mezzanine::ObjectSettingGroup is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:69: warning: Member ContainerName (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:70: warning: Member SubSets (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:67: warning: Member ConstSubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:66: warning: Member SubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:65: warning: Member SubSetVector (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:146: warning: Member ConstSettingsIterator (typedef) of class Mezzanine::ObjectSettingSet is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:145: warning: Member SettingsIterator (typedef) of class Mezzanine::ObjectSettingSet is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:144: warning: Member SettingsMap (typedef) of class Mezzanine::ObjectSettingSet is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:67: warning: Member ConstSubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:66: warning: Member SubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:65: warning: Member SubSetVector (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:150: warning: Member ParentSetOrGroup (variable) of class Mezzanine::ObjectSettingSet is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:149: warning: Member Settings (variable) of class Mezzanine::ObjectSettingSet is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:69: warning: Member ContainerName (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:70: warning: Member SubSets (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:67: warning: Member ConstSubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:66: warning: Member SubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:65: warning: Member SubSetVector (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:69: warning: Member ContainerName (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:70: warning: Member SubSets (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:300: warning: Member ConstSettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:297: warning: Member ConstSettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:298: warning: Member SettingFilesContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:299: warning: Member SettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:295: warning: Member SettingGroupContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:296: warning: Member SettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:316: warning: Member AppendCurrentSettings(XML::Node &CurrentNode)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:317: warning: Member ApplySettingGroupImpl(ObjectSettingGroup *Group)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:315: warning: Member GetObjectRootNodeName() const =0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:313: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:314: warning: Member SaveSettingSetToXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:308: warning: Member AutoGenFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:307: warning: Member AutoGenPath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:310: warning: Member CurrentSettingsSaveFile (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:306: warning: Member SettingFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:305: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:240: warning: Member ConstSaveGroupsIterator (typedef) of class Mezzanine::ObjectSettingFile is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:238: warning: Member SaveGroupsContainer (typedef) of class Mezzanine::ObjectSettingFile is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:239: warning: Member SaveGroupsIterator (typedef) of class Mezzanine::ObjectSettingFile is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:243: warning: Member File (variable) of class Mezzanine::ObjectSettingFile is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:244: warning: Member NeedsSave (variable) of class Mezzanine::ObjectSettingFile is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:242: warning: Member SaveGroups (variable) of class Mezzanine::ObjectSettingFile is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:203: warning: Member OptionalFile (variable) of class Mezzanine::ObjectSettingGroup is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:71: warning: Member ContainerName (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:72: warning: Member SubSets (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:69: warning: Member ConstSubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:68: warning: Member SubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:67: warning: Member SubSetVector (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:148: warning: Member ConstSettingsIterator (typedef) of class Mezzanine::ObjectSettingSet is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:147: warning: Member SettingsIterator (typedef) of class Mezzanine::ObjectSettingSet is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:146: warning: Member SettingsMap (typedef) of class Mezzanine::ObjectSettingSet is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:69: warning: Member ConstSubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:68: warning: Member SubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:67: warning: Member SubSetVector (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:152: warning: Member ParentSetOrGroup (variable) of class Mezzanine::ObjectSettingSet is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:151: warning: Member Settings (variable) of class Mezzanine::ObjectSettingSet is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:71: warning: Member ContainerName (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:72: warning: Member SubSets (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:69: warning: Member ConstSubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:68: warning: Member SubSetIterator (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:67: warning: Member SubSetVector (typedef) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:71: warning: Member ContainerName (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:72: warning: Member SubSets (variable) of class Mezzanine::ObjectSettingSetContainer is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:302: warning: Member ConstSettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:299: warning: Member ConstSettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:300: warning: Member SettingFilesContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:301: warning: Member SettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:297: warning: Member SettingGroupContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:298: warning: Member SettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:318: warning: Member AppendCurrentSettings(XML::Node &CurrentNode)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:319: warning: Member ApplySettingGroupImpl(ObjectSettingGroup *Group)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:317: warning: Member GetObjectRootNodeName() const =0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:315: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:316: warning: Member SaveSettingSetToXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:310: warning: Member AutoGenFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member AutoGenPath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:312: warning: Member CurrentSettingsSaveFile (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:308: warning: Member SettingFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:307: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:311: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 <LoadSettingsFromFile>:1: warning: parameters of member Mezzanine::ObjectSettingsHandler::LoadSettingsFromFile are not (all) documented
 <LoadSettingsFromFile>:1: warning: return type of member Mezzanine::ObjectSettingsHandler::LoadSettingsFromFile is not documented
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:448: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName, const String &Path)
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:448: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName, const String &Path) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:450: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName, const String &Path)
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:450: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName, const String &Path) are not documented:
   parameter 'FileName'
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:457: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName)
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:457: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:459: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName)
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:459: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingGroups(StringVector &GroupNames, const String &FileName) are not documented:
   parameter 'FileName'
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:439: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName, const String &Path)
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:439: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName, const String &Path) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:441: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName, const String &Path)
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:441: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName, const String &Path) are not documented:
   parameter 'FileName'
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:443: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName)
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:443: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:445: warning: argument 'Filename' of command @param is not found in the argument list of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName)
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:445: warning: The following parameters of Mezzanine::ObjectSettingsHandler::SaveSettingsByFile(const String &FileName) are not documented:
   parameter 'FileName'
 <SaveSettingsToFile>:1: warning: parameters of member Mezzanine::ObjectSettingsHandler::SaveSettingsToFile are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/particleaffector.h:66: warning: parameters of member Mezzanine::ParticleAffector::ParticleAffector are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/particleaffector.h:81: warning: return type of member Mezzanine::ParticleAffector::GetCustomParam is not documented
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:124: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: target Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:120: warning: target Mezzanine::AttachableBase::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:211: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:210: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:202: warning: return type of member Mezzanine::ParticleEffect::GetCustomParam is not documented
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:124: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:124: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:124: warning: parameters of member Mezzanine::ParticleEffect::SetLocalLocation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: target Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: target Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: parameters of member Mezzanine::ParticleEffect::SetLocalOrientation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:120: warning: target Mezzanine::AttachableBase::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:120: warning: target Mezzanine::AttachableBase::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:120: warning: parameters of member Mezzanine::ParticleEffect::SetScaling are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:128: warning: target Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:122: warning: target Mezzanine::AttachableBase::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:214: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:213: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:215: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:204: warning: return type of member Mezzanine::ParticleEffect::GetCustomParam is not documented
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: target Mezzanine::AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:126: warning: parameters of member Mezzanine::ParticleEffect::SetLocalLocation are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:128: warning: target Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:128: warning: target Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:128: warning: parameters of member Mezzanine::ParticleEffect::SetLocalOrientation are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:122: warning: target Mezzanine::AttachableBase::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:122: warning: target Mezzanine::AttachableBase::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/particleeffect.h:122: warning: parameters of member Mezzanine::ParticleEffect::SetScaling are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/particleemitter.h:66: warning: parameters of member Mezzanine::ParticleEmitter::ParticleEmitter are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/particleemitter.h:81: warning: return type of member Mezzanine::ParticleEmitter::GetCustomParam is not documented
 /home/Code/Mezzanine/Mezzanine/src/quaternion.h:189: warning: return type of member Mezzanine::Quaternion::GetOgreQuaternion is not documented
@@ -919,27 +921,27 @@
 /home/Code/Mezzanine/Mezzanine/src/resourcemanager.h:81: warning: unable to resolve reference to `DataStream' for \ref command
 /home/Code/Mezzanine/Mezzanine/src/resourcemanager.h:85: warning: unable to resolve reference to `DataStream' for \ref command
 /home/Code/Mezzanine/Mezzanine/src/resourcemanager.h:87: warning: unable to resolve reference to `DataStream' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< ResourceManager > is not documented.
 /home/Code/Mezzanine/Mezzanine/src/resourcemanager.h:128: warning: argument 'ArchiveType' of command @param is not found in the argument list of Mezzanine::ResourceManager::ResourceManager(const String &EngineDataPath=".", const ArchiveType ArchType=AT_FileSystem, int ArgCount=0, char **ArgVars=NULL)
 /home/Code/Mezzanine/Mezzanine/src/resourcemanager.h:128: warning: The following parameters of Mezzanine::ResourceManager::ResourceManager(const String &EngineDataPath=".", const ArchiveType ArchType=AT_FileSystem, int ArgCount=0, char **ArgVars=NULL) are not documented:
   parameter 'ArchType'
 /home/Code/Mezzanine/Mezzanine/src/resourcemanager.h:122: warning: parameters of member Mezzanine::ResourceManager::AddAssetGroupName are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/resourcemanager.h:260: warning: return type of member Mezzanine::ResourceManager::OpenAssetStream is not documented
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:248: warning: argument 'SkyPlane' of command @param is not found in the argument list of Mezzanine::SceneManager::CreateSkyPlane(const Plane &SkyPlane_, const String &Material, const String &Group, Real Scale=1000.0, Real Tiling=10.0, bool DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1)
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:248: warning: The following parameters of Mezzanine::SceneManager::CreateSkyPlane(const Plane &SkyPlane_, const String &Material, const String &Group, Real Scale=1000.0, Real Tiling=10.0, bool DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:250: warning: argument 'SkyPlane' of command @param is not found in the argument list of Mezzanine::SceneManager::CreateSkyPlane(const Plane &SkyPlane_, const String &Material, const String &Group, Real Scale=1000.0, Real Tiling=10.0, bool DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1)
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:250: warning: The following parameters of Mezzanine::SceneManager::CreateSkyPlane(const Plane &SkyPlane_, const String &Material, const String &Group, Real Scale=1000.0, Real Tiling=10.0, bool DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1) are not documented:
   parameter 'SkyPlane_'
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:450: warning: return type of member Mezzanine::SceneManager::CreateWorldNode is not documented
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:419: warning: parameters of member Mezzanine::SceneManager::GetEntity are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:422: warning: parameters of member Mezzanine::SceneManager::GetEntity are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:340: warning: parameters of member Mezzanine::SceneManager::GetLight are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:343: warning: parameters of member Mezzanine::SceneManager::GetLight are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:453: warning: parameters of member Mezzanine::SceneManager::GetNode are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:457: warning: parameters of member Mezzanine::SceneManager::GetNode are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:377: warning: parameters of member Mezzanine::SceneManager::GetParticleEffect are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:380: warning: parameters of member Mezzanine::SceneManager::GetParticleEffect are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:329: warning: argument 'Red' of command @param is not found in the argument list of Mezzanine::SceneManager::SetAmbientLight(const ColourValue &LightColor)
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:329: warning: The following parameters of Mezzanine::SceneManager::SetAmbientLight(const ColourValue &LightColor) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:452: warning: return type of member Mezzanine::SceneManager::CreateWorldNode is not documented
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:421: warning: parameters of member Mezzanine::SceneManager::GetEntity are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:424: warning: parameters of member Mezzanine::SceneManager::GetEntity are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:342: warning: parameters of member Mezzanine::SceneManager::GetLight are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:345: warning: parameters of member Mezzanine::SceneManager::GetLight are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:455: warning: parameters of member Mezzanine::SceneManager::GetNode are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:459: warning: parameters of member Mezzanine::SceneManager::GetNode are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:379: warning: parameters of member Mezzanine::SceneManager::GetParticleEffect are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:382: warning: parameters of member Mezzanine::SceneManager::GetParticleEffect are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:331: warning: argument 'Red' of command @param is not found in the argument list of Mezzanine::SceneManager::SetAmbientLight(const ColourValue &LightColor)
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:331: warning: The following parameters of Mezzanine::SceneManager::SetAmbientLight(const ColourValue &LightColor) are not documented:
   parameter 'LightColor'
 /home/Code/Mezzanine/Mezzanine/src/trie.h:942: warning: Member const_iterator (typedef) of class Mezzanine::SetItems is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:945: warning: Member EndNodeItemClass (typedef) of class Mezzanine::SetItems is not documented.
@@ -965,18 +967,23 @@
 /home/Code/Mezzanine/Mezzanine/src/trie.h:1036: warning: Member mEndSymbol (variable) of class Mezzanine::SetItems is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:1037: warning: Member mItems (variable) of class Mezzanine::SetItems is not documented.
 /home/Code/Mezzanine/Mezzanine/src/meshmanager.cpp:51: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:56: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Audio/audiomanager.cpp:61: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/Code/Mezzanine/Mezzanine/src/UI/uimanager.cpp:64: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.cpp:78: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/collisionshapemanager.cpp:80: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/Code/Mezzanine/Mezzanine/src/entresol.cpp:80: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/Code/Mezzanine/Mezzanine/src/resourcemanager.cpp:98: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/Code/Mezzanine/Mezzanine/src/eventmanager.cpp:270: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Mezzanine::Singleton is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:82: warning: Member StickyConstraintConstructionInfo(const StickyConstraintConstructionInfo &Other) (function) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:73: warning: Member ActA (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:74: warning: Member ActB (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:71: warning: Member TransA (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:72: warning: Member TransB (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:96: warning: Member CreationQueue (variable) of class Mezzanine::StickyData is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:97: warning: Member MaxNumContacts (variable) of class Mezzanine::StickyData is not documented.
-/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:95: warning: Member StickyConstraints (variable) of class Mezzanine::StickyData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:84: warning: Member StickyConstraintConstructionInfo(const StickyConstraintConstructionInfo &Other) (function) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:75: warning: Member ActA (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:76: warning: Member ActB (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:73: warning: Member TransA (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:74: warning: Member TransB (variable) of class Mezzanine::StickyConstraintConstructionInfo is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:98: warning: Member CreationQueue (variable) of class Mezzanine::StickyData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:99: warning: Member MaxNumContacts (variable) of class Mezzanine::StickyData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/actorphysicssettings.h:97: warning: Member StickyConstraints (variable) of class Mezzanine::StickyData is not documented.
 /home/Code/Mezzanine/Mezzanine/src/timer.h:184: warning: return type of member Mezzanine::StopWatchTimer::GoalReached is not documented
 /home/Code/Mezzanine/Mezzanine/src/trie.h:795: warning: Member operator()(const T &c) const  (function) of class Mezzanine::SymbolToIndexMapper is not documented.
 /home/Code/Mezzanine/Mezzanine/src/terrainmanager.h:109: warning: argument 'Name' of command @param is not found in the argument list of Mezzanine::TerrainManager::DestroyTerrain(TerrainBase *ToBeDestroyed)
@@ -1003,7 +1010,7 @@
 /home/Code/Mezzanine/Mezzanine/src/extendedtimer.h:57: warning: Member Minutes (variable) of class Mezzanine::Time is not documented.
 /home/Code/Mezzanine/Mezzanine/src/extendedtimer.h:56: warning: Member Seconds (variable) of class Mezzanine::Time is not documented.
 /home/Code/Mezzanine/Mezzanine/src/timer.h:77: warning: argument 'Style' of command @param is not found in the argument list of Mezzanine::Timer::Timer()
-/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:86: warning: return type of member Mezzanine::TrackingNodeUpdateWorkUnit::operator= is not documented
+/home/Code/Mezzanine/Mezzanine/src/scenemanager.h:88: warning: return type of member Mezzanine::TrackingNodeUpdateWorkUnit::operator= is not documented
 /home/Code/Mezzanine/Mezzanine/src/transform.h:97: warning: return type of member Mezzanine::Transform::GetBulletTransform is not documented
 /home/Code/Mezzanine/Mezzanine/src/transformableobject.h:145: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::TransformableChildObject::SetLocation(const Vector3 &Loc)=0
 /home/Code/Mezzanine/Mezzanine/src/transformableobject.h:145: warning: The following parameters of Mezzanine::TransformableChildObject::SetLocation(const Vector3 &Loc)=0 are not documented:
@@ -1119,55 +1126,55 @@
 /home/Code/Mezzanine/Mezzanine/src/trie.h:919: warning: Member mItems (variable) of class Mezzanine::VectorItems is not documented.
 /home/Code/Mezzanine/Mezzanine/src/trie.h:920: warning: Member mSymolToIndex (variable) of class Mezzanine::VectorItems is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/windowsettings.h:70: warning: Member operator=(const WindowSettings &GS) (function) of class Mezzanine::WindowSettings is not documented.
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:191: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:177: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:185: warning: target AttachableBase::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:86: warning: Member AutoTrackDirection (variable) of class Mezzanine::WorldNode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:85: warning: Member AutoTrackOffset (variable) of class Mezzanine::WorldNode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:81: warning: Member AutoTrackTarget (variable) of class Mezzanine::WorldNode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:83: warning: Member FixedYaw (variable) of class Mezzanine::WorldNode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:84: warning: Member FixedYawAxis (variable) of class Mezzanine::WorldNode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:82: warning: Member Manager (variable) of class Mezzanine::WorldNode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:87: warning: Member NodeLoc (variable) of class Mezzanine::WorldNode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:90: warning: Member NodeName (variable) of class Mezzanine::WorldNode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:89: warning: Member NodeOri (variable) of class Mezzanine::WorldNode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:88: warning: Member NodeScale (variable) of class Mezzanine::WorldNode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:194: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:196: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:180: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:184: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:188: warning: target AttachableBase::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:89: warning: Member AutoTrackDirection (variable) of class Mezzanine::WorldNode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:88: warning: Member AutoTrackOffset (variable) of class Mezzanine::WorldNode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:84: warning: Member AutoTrackTarget (variable) of class Mezzanine::WorldNode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:86: warning: Member FixedYaw (variable) of class Mezzanine::WorldNode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:87: warning: Member FixedYawAxis (variable) of class Mezzanine::WorldNode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:85: warning: Member Manager (variable) of class Mezzanine::WorldNode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:90: warning: Member NodeLoc (variable) of class Mezzanine::WorldNode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:93: warning: Member NodeName (variable) of class Mezzanine::WorldNode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:92: warning: Member NodeOri (variable) of class Mezzanine::WorldNode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:91: warning: Member NodeScale (variable) of class Mezzanine::WorldNode is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:152: warning: Member Attached (variable) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:73: warning: Member Updating (variable) of class Mezzanine::AttachableBase is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:211: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:210: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
-/home/Code/Mezzanine/Mezzanine/src/attachable.h:209: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:214: warning: Member GlobalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:213: warning: Member LocalTransformDirty (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:215: warning: Member LocalXform (variable) of class Mezzanine::AttachableChild is not documented.
+/home/Code/Mezzanine/Mezzanine/src/attachable.h:212: warning: Member Parent (variable) of class Mezzanine::AttachableChild is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:148: warning: Member AttachableContainer (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:149: warning: Member AttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
 /home/Code/Mezzanine/Mezzanine/src/attachable.h:150: warning: Member ConstAttachableIterator (typedef) of class Mezzanine::AttachableParent is not documented.
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:191: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:191: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:191: warning: parameters of member Mezzanine::WorldNode::SetLocalLocation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:193: warning: parameters of member Mezzanine::WorldNode::SetLocalOrientation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:177: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:177: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:177: warning: parameters of member Mezzanine::WorldNode::SetLocation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:181: warning: parameters of member Mezzanine::WorldNode::SetOrientation are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:185: warning: target AttachableBase::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:185: warning: target AttachableBase::SetScaling(Vector3&) of \copydoc command not found
-/home/Code/Mezzanine/Mezzanine/src/worldnode.h:185: warning: parameters of member Mezzanine::WorldNode::SetScaling are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.h:89: warning: parameters of member Mezzanine::WorldObjectGraphicsSettings::GetMaterial are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.h:89: warning: return type of member Mezzanine::WorldObjectGraphicsSettings::GetMaterial is not documented
-/home/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.h:107: warning: argument 'Mesh' of command @param is not found in the argument list of Mezzanine::WorldObjectGraphicsSettings::SetMesh(Graphics::Mesh *ObjectMesh)
-/home/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.h:107: warning: The following parameters of Mezzanine::WorldObjectGraphicsSettings::SetMesh(Graphics::Mesh *ObjectMesh) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:184: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:184: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:196: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:194: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:194: warning: target AttachableChild::SetLocalLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:194: warning: parameters of member Mezzanine::WorldNode::SetLocalLocation are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:196: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:196: warning: target AttachableChild::SetLocalOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:196: warning: parameters of member Mezzanine::WorldNode::SetLocalOrientation are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:180: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:180: warning: target AttachableBase::SetLocation(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:180: warning: parameters of member Mezzanine::WorldNode::SetLocation are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:184: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:184: warning: target AttachableBase::SetOrientation(Quaternion&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:184: warning: parameters of member Mezzanine::WorldNode::SetOrientation are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:188: warning: target AttachableBase::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:188: warning: target AttachableBase::SetScaling(Vector3&) of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/worldnode.h:188: warning: parameters of member Mezzanine::WorldNode::SetScaling are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.h:90: warning: parameters of member Mezzanine::WorldObjectGraphicsSettings::GetMaterial are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.h:90: warning: return type of member Mezzanine::WorldObjectGraphicsSettings::GetMaterial is not documented
+/home/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.h:108: warning: argument 'Mesh' of command @param is not found in the argument list of Mezzanine::WorldObjectGraphicsSettings::SetMesh(Graphics::Mesh *ObjectMesh)
+/home/Code/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.h:108: warning: The following parameters of Mezzanine::WorldObjectGraphicsSettings::SetMesh(Graphics::Mesh *ObjectMesh) are not documented:
   parameter 'ObjectMesh'
-/home/Code/Mezzanine/Mezzanine/src/worldobjectphysicssettings.h:85: warning: parameters of member Mezzanine::WorldObjectPhysicsSettings::AssignShape are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/worldobjectphysicssettings.h:87: warning: parameters of member Mezzanine::WorldObjectPhysicsSettings::AssignShape are not (all) documented
 /home/Code/Mezzanine/Mezzanine/src/worldproxy.h:89: warning: argument 'Location' of command @param is not found in the argument list of Mezzanine::WorldProxy::SetLocation(const Vector3 &Loc)=0
 /home/Code/Mezzanine/Mezzanine/src/worldproxy.h:89: warning: The following parameters of Mezzanine::WorldProxy::SetLocation(const Vector3 &Loc)=0 are not documented:
   parameter 'Loc'
@@ -1183,24 +1190,24 @@
 /home/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:106: warning: unable to resolve reference to `iSound' for \ref command
 /home/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:86: warning: unable to resolve reference to `FrequencyShifterParameters' for \ref command
 /home/Code/Mezzanine/Mezzanine/src/Audio/audioenumerations.h:92: warning: unable to resolve reference to `RqualizerParameters' for \ref command
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:300: warning: Member ConstSettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:297: warning: Member ConstSettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:298: warning: Member SettingFilesContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:299: warning: Member SettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:295: warning: Member SettingGroupContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:296: warning: Member SettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:308: warning: Member AutoGenFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:307: warning: Member AutoGenPath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:310: warning: Member CurrentSettingsSaveFile (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:306: warning: Member SettingFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:305: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:316: warning: Member AppendCurrentSettings(XML::Node &CurrentNode)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:317: warning: Member ApplySettingGroupImpl(ObjectSettingGroup *Group)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:315: warning: Member GetObjectRootNodeName() const =0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:313: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:314: warning: Member SaveSettingSetToXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:302: warning: Member ConstSettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:299: warning: Member ConstSettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:300: warning: Member SettingFilesContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:301: warning: Member SettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:297: warning: Member SettingGroupContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:298: warning: Member SettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:310: warning: Member AutoGenFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member AutoGenPath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:312: warning: Member CurrentSettingsSaveFile (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:308: warning: Member SettingFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:307: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:311: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:318: warning: Member AppendCurrentSettings(XML::Node &CurrentNode)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:319: warning: Member ApplySettingGroupImpl(ObjectSettingGroup *Group)=0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:317: warning: Member GetObjectRootNodeName() const =0 (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:315: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:316: warning: Member SaveSettingSetToXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< AudioManager > is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Audio/audiomanager.h:286: warning: argument 'SoundName' of command @param is not found in the argument list of Mezzanine::Audio::AudioManager::CreateDialogSound(const String &StreamName, Char8 *Buffer, const UInt32 Length, const Audio::Encoding Encode)
 /home/Code/Mezzanine/Mezzanine/src/Audio/audiomanager.h:286: warning: The following parameters of Mezzanine::Audio::AudioManager::CreateDialogSound(const String &StreamName, Char8 *Buffer, const UInt32 Length, const Audio::Encoding Encode) are not documented:
@@ -1313,17 +1320,18 @@
 
 /home/Code/Mezzanine/Mezzanine/src/Audio/soundproxy.h:82: warning: recursive call chain of \copydoc commands detected at 82
 
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Audio/soundscapemanager.h:258: warning: argument 'SoundName' of command @param is not found in the argument list of Mezzanine::Audio::SoundScapeManager::CreateDialogSoundProxy(const String &StreamName, Char8 *Buffer, const UInt32 Length, const Audio::Encoding Encode)
 /home/Code/Mezzanine/Mezzanine/src/Audio/soundscapemanager.h:258: warning: The following parameters of Mezzanine::Audio::SoundScapeManager::CreateDialogSoundProxy(const String &StreamName, Char8 *Buffer, const UInt32 Length, const Audio::Encoding Encode) are not documented:
   parameter 'StreamName'
-/home/Code/Mezzanine/Mezzanine/src/Audio/soundset.h:89: warning: Member SerializableName() (function) of class Mezzanine::Audio::SoundSet is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Audio/soundset.h:91: warning: Member SerializableName() (function) of class Mezzanine::Audio::SoundSet is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
 /home/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
 /home/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
 /home/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
 /home/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
 /home/Code/Mezzanine/Mezzanine/src/Audio/effectparameters.h:650: warning: argument 'copybrief' of command @param is not found in the argument list of Mezzanine::Audio::VocalMorpherParameters::VocalMorpherParameters(MorpherPhoneme phonemeA=EMP_A, MorpherPhoneme phonemeB=EMP_ER, Integer phonemeACoarseTune=0, Integer phonemeBCoarseTune=0, MorpherWaveform waveform=EMW_Sinusoid, Real rate=1.41f)
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsproxy.h:91: warning: target PhysicsProxy::GetCreator() const of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: argument 'Axis' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent)
 /home/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: argument 'Angle' of command @param is not found in the argument list of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent)
 /home/Code/Mezzanine/Mezzanine/src/Graphics/bone.h:164: warning: The following parameters of Mezzanine::Graphics::Bone::Rotate(const Quaternion &Rotation, const Mezzanine::TransformSpace Space=Mezzanine::TS_Parent) are not documented:
@@ -1342,6 +1350,7 @@
   parameter 'X'
   parameter 'Y'
   parameter 'Z'
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsproxy.h:91: warning: target PhysicsProxy::GetCreator() const of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:77: warning: Member ConstReverseViewportIterator (typedef) of class Mezzanine::Graphics::GameWindow is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:75: warning: Member ConstViewportIterator (typedef) of class Mezzanine::Graphics::GameWindow is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/gamewindow.h:76: warning: Member ReverseViewportIterator (typedef) of class Mezzanine::Graphics::GameWindow is not documented.
@@ -1368,17 +1377,17 @@
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:124: warning: Member ConstGameWindowIterator (typedef) of class Mezzanine::Graphics::GraphicsManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:122: warning: Member GameWindowContainer (typedef) of class Mezzanine::Graphics::GraphicsManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:123: warning: Member GameWindowIterator (typedef) of class Mezzanine::Graphics::GraphicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:300: warning: Member ConstSettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:297: warning: Member ConstSettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:298: warning: Member SettingFilesContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:299: warning: Member SettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:295: warning: Member SettingGroupContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:296: warning: Member SettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:302: warning: Member ConstSettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:299: warning: Member ConstSettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:300: warning: Member SettingFilesContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:301: warning: Member SettingFilesIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:297: warning: Member SettingGroupContainer (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:298: warning: Member SettingGroupIterator (typedef) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:160: warning: Member GetObjectRootNodeName() const  (function) of class Mezzanine::Graphics::GraphicsManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:159: warning: Member InitOgreRenderSystem() (function) of class Mezzanine::Graphics::GraphicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:313: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:314: warning: Member SaveSettingSetToXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:315: warning: Member LoadSettingSetFromXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:316: warning: Member SaveSettingSetToXML(XML::Node &XMLNode, ObjectSettingSet *Set) (function) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:150: warning: Member CurrRenderSys (variable) of class Mezzanine::Graphics::GraphicsManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:151: warning: Member DesktopSettings (variable) of class Mezzanine::Graphics::GraphicsManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:153: warning: Member GameWindows (variable) of class Mezzanine::Graphics::GraphicsManager is not documented.
@@ -1386,12 +1395,12 @@
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:148: warning: Member PrimaryGameWindow (variable) of class Mezzanine::Graphics::GraphicsManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:155: warning: Member SupportedDevices (variable) of class Mezzanine::Graphics::GraphicsManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:154: warning: Member SupportedResolutions (variable) of class Mezzanine::Graphics::GraphicsManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:308: warning: Member AutoGenFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:307: warning: Member AutoGenPath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:310: warning: Member CurrentSettingsSaveFile (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:306: warning: Member SettingFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:305: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
-/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:310: warning: Member AutoGenFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:309: warning: Member AutoGenPath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:312: warning: Member CurrentSettingsSaveFile (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:308: warning: Member SettingFiles (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:307: warning: Member SettingGroups (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
+/home/Code/Mezzanine/Mezzanine/src/objectsettings.h:311: warning: Member SettingsFilePath (variable) of class Mezzanine::ObjectSettingsHandler is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< GraphicsManager > is not documented.
 <AppendCurrentSettings>:1: warning: parameters of member Mezzanine::Graphics::GraphicsManager::AppendCurrentSettings are not (all) documented
 <ApplySettingGroupImpl>:1: warning: parameters of member Mezzanine::Graphics::GraphicsManager::ApplySettingGroupImpl are not (all) documented
@@ -1402,10 +1411,15 @@
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:240: warning: argument 'Returns' of command @param is not found in the argument list of Mezzanine::Graphics::GraphicsManager::GetDesktopSettings()
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:240: warning: return type of member Mezzanine::Graphics::GraphicsManager::GetDesktopSettings is not documented
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:182: warning: parameters of member Mezzanine::Graphics::GraphicsManager::GetGameWindow are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsproxy.h:91: warning: target PhysicsProxy::GetCreator() const of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsproxy.h:91: warning: target PhysicsProxy::GetCreator() const of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsproxy.h:91: warning: target PhysicsProxy::GetCreator() const  of \copydoc command not found
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsproxy.h:91: warning: return type of member Mezzanine::Graphics::GraphicsProxy::GetCreator is not documented
 /home/Code/Mezzanine/Mezzanine/src/Graphics/material.cpp:61: warning: Member GraphicsMaterial (variable) of class Mezzanine::Graphics::InternalMaterialData is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/mesh.cpp:59: warning: Member GraphicsMesh (variable) of class Mezzanine::Graphics::InternalMeshData is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/skeleton.cpp:59: warning: Member GraphicsSkeleton (variable) of class Mezzanine::Graphics::InternalSkeletonData is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/texture.cpp:61: warning: Member GraphicsTexture (variable) of class Mezzanine::Graphics::InternalTextureData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsproxy.h:91: warning: target PhysicsProxy::GetCreator() const of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Graphics/material.h:67: warning: Member MID (variable) of class Mezzanine::Graphics::Material is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:67: warning: Member ConstSubMeshIterator (typedef) of class Mezzanine::Graphics::Mesh is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:65: warning: Member SubMeshContainer (typedef) of class Mezzanine::Graphics::Mesh is not documented.
@@ -1413,6 +1427,7 @@
 /home/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:69: warning: Member IMD (variable) of class Mezzanine::Graphics::Mesh is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:70: warning: Member MeshSkel (variable) of class Mezzanine::Graphics::Mesh is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/mesh.h:71: warning: Member SubMeshes (variable) of class Mezzanine::Graphics::Mesh is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsproxy.h:91: warning: target PhysicsProxy::GetCreator() const of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:91: warning: argument 'WhichGraphicsManager' of command @param is not found in the argument list of Mezzanine::Graphics::RenderWorkUnit::RenderWorkUnit(GraphicsManager *Target)
 /home/Code/Mezzanine/Mezzanine/src/Graphics/graphicsmanager.h:91: warning: The following parameters of Mezzanine::Graphics::RenderWorkUnit::RenderWorkUnit(GraphicsManager *Target) are not documented:
   parameter 'Target'
@@ -1429,8 +1444,8 @@
 /home/Code/Mezzanine/Mezzanine/src/Graphics/viewport.h:67: warning: Member OgreViewport (variable) of class Mezzanine::Graphics::Viewport is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/viewport.h:68: warning: Member Parent (variable) of class Mezzanine::Graphics::Viewport is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Graphics/viewport.h:69: warning: Member ViewportCam (variable) of class Mezzanine::Graphics::Viewport is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:83: warning: Member InternalControlIterator (typedef) of namespace Mezzanine::Input is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:82: warning: Member InternalControlPair (typedef) of namespace Mezzanine::Input is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:85: warning: Member InternalControlIterator (typedef) of namespace Mezzanine::Input is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:84: warning: Member InternalControlPair (typedef) of namespace Mezzanine::Input is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Input/buttondevice.h:64: warning: target Device::VerifySequenceImpl(const MetaCodeContainer& Sequence) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Input/buttondevice.h:60: warning: Member Buttons (variable) of class Mezzanine::Input::ButtonDevice is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Input/buttondevice.h:59: warning: Member TransitioningIndexes (variable) of class Mezzanine::Input::ButtonDevice is not documented.
@@ -1472,14 +1487,14 @@
 /home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.h:133: warning: Member ConstControllerIterator (typedef) of class Mezzanine::Input::InputManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.h:131: warning: Member ControllerContainer (typedef) of class Mezzanine::Input::InputManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.h:132: warning: Member ControllerIterator (typedef) of class Mezzanine::Input::InputManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< InputManager > is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.h:179: warning: parameters of member Mezzanine::Input::InputManager::GetController are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:69: warning: Member ConstControllerIterator (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:67: warning: Member ControllerContainer (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:68: warning: Member ControllerIterator (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:66: warning: Member ControllerPair (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:72: warning: Member Controllers (variable) of class Mezzanine::Input::InputManagerInternalData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:71: warning: Member ConstControllerIterator (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:69: warning: Member ControllerContainer (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:70: warning: Member ControllerIterator (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:68: warning: Member ControllerPair (typedef) of class Mezzanine::Input::InputManagerInternalData is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/inputmanager.cpp:74: warning: Member Controllers (variable) of class Mezzanine::Input::InputManagerInternalData is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Input/keyboard.h:78: warning: target Device::GetButtonState(const UInt16 Button) const of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Input/keyboard.h:80: warning: target Device::GetButtonState(const Input::InputCode& Button) const of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Input/keyboard.h:65: warning: target Device::AddPressedButtons(MetaCodeContainer& GeneratedCodes) const of \copydoc command not found
@@ -1501,20 +1516,20 @@
 /home/Code/Mezzanine/Mezzanine/src/Input/keyboard.h:63: warning: target Device::VerifySequenceImpl(const MetaCodeContainer& Sequence) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Input/keyboard.h:63: warning: target Device::VerifySequenceImpl(const MetaCodeContainer& Sequence) of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Input/keyboard.h:63: warning: parameters of member Mezzanine::Input::Keyboard::VerifySequenceImpl are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:101: warning: Member Construct(const RawEvent &RawEvent_) (function) of class Mezzanine::Input::MetaCode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:102: warning: Member Construct(const Int32 &Value, const Input::InputCode &NewCode) (function) of class Mezzanine::Input::MetaCode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:108: warning: Member GetInputCodeFromSDL_JOYSTICK(const RawEvent &RawEvent_) (function) of class Mezzanine::Input::MetaCode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:106: warning: Member GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_) (function) of class Mezzanine::Input::MetaCode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:107: warning: Member GetInputCodeFromSDL_MOUSE(const RawEvent &RawEvent_) (function) of class Mezzanine::Input::MetaCode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:98: warning: Member Code (variable) of class Mezzanine::Input::MetaCode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:97: warning: Member DeviceIndex (variable) of class Mezzanine::Input::MetaCode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:95: warning: Member MetaValue (variable) of class Mezzanine::Input::MetaCode is not documented.
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:131: warning: parameters of member Mezzanine::Input::MetaCode::MetaCode are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:196: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of Mezzanine::Input::MetaCode::GetControllerButtonCode(const UInt16 ButtonNumber)
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:196: warning: The following parameters of Mezzanine::Input::MetaCode::GetControllerButtonCode(const UInt16 ButtonNumber) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:103: warning: Member Construct(const RawEvent &RawEvent_) (function) of class Mezzanine::Input::MetaCode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:104: warning: Member Construct(const Int32 &Value, const Input::InputCode &NewCode) (function) of class Mezzanine::Input::MetaCode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:110: warning: Member GetInputCodeFromSDL_JOYSTICK(const RawEvent &RawEvent_) (function) of class Mezzanine::Input::MetaCode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:108: warning: Member GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_) (function) of class Mezzanine::Input::MetaCode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:109: warning: Member GetInputCodeFromSDL_MOUSE(const RawEvent &RawEvent_) (function) of class Mezzanine::Input::MetaCode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:100: warning: Member Code (variable) of class Mezzanine::Input::MetaCode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:99: warning: Member DeviceIndex (variable) of class Mezzanine::Input::MetaCode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:97: warning: Member MetaValue (variable) of class Mezzanine::Input::MetaCode is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:133: warning: parameters of member Mezzanine::Input::MetaCode::MetaCode are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:198: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of Mezzanine::Input::MetaCode::GetControllerButtonCode(const UInt16 ButtonNumber)
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:198: warning: The following parameters of Mezzanine::Input::MetaCode::GetControllerButtonCode(const UInt16 ButtonNumber) are not documented:
   parameter 'ButtonNumber'
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:192: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of Mezzanine::Input::MetaCode::GetMouseButtonCode(const UInt16 ButtonNumber)
-/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:192: warning: The following parameters of Mezzanine::Input::MetaCode::GetMouseButtonCode(const UInt16 ButtonNumber) are not documented:
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:194: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of Mezzanine::Input::MetaCode::GetMouseButtonCode(const UInt16 ButtonNumber)
+/home/Code/Mezzanine/Mezzanine/src/Input/metacode.h:194: warning: The following parameters of Mezzanine::Input::MetaCode::GetMouseButtonCode(const UInt16 ButtonNumber) are not documented:
   parameter 'ButtonNumber'
 /home/Code/Mezzanine/Mezzanine/src/Input/metacodekey.h:106: warning: Member DeviceCompare)(const MetaCode &First, const MetaCode &Second) (typedef) of class Mezzanine::Input::MetaCodeKey is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Input/metacodekey.h:109: warning: Member Compare (variable) of class Mezzanine::Input::MetaCodeKey is not documented.
@@ -1605,9 +1620,9 @@
 /home/Code/Mezzanine/Mezzanine/src/Physics/capsulecollisionshape.h:125: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/capsulecollisionshape.h:125: warning: target CollisionShape::GetBulletShape of \copydoc command not found
 /home/Code/Mezzanine/Mezzanine/src/Physics/capsulecollisionshape.h:125: warning: parameters of member Mezzanine::Physics::CapsuleCollisionShape::ProtoSerialize are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/collision.h:112: warning: parameters of member Mezzanine::Physics::Collision::GetManifoldPoint are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/Physics/collision.h:112: warning: return type of member Mezzanine::Physics::Collision::GetManifoldPoint is not documented
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/Physics/collision.h:114: warning: parameters of member Mezzanine::Physics::Collision::GetManifoldPoint are not (all) documented
+/home/Code/Mezzanine/Mezzanine/src/Physics/collision.h:114: warning: return type of member Mezzanine::Physics::Collision::GetManifoldPoint is not documented
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/singleton.h:70: warning: Member SingletonPtr (variable) of class Singleton< CollisionShapeManager > is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Physics/collisionshapemanager.h:162: warning: argument 'UseAllSubMeshes' of command @param is not found in the argument list of Mezzanine::Physics::CollisionShapeManager::GenerateConvexHull(const String &Name, Graphics::Mesh *ObjectMesh, bool UseAllSubmeshes=false)
 /home/Code/Mezzanine/Mezzanine/src/Physics/collisionshapemanager.h:162: warning: The following parameters of Mezzanine::Physics::CollisionShapeManager::GenerateConvexHull(const String &Name, Graphics::Mesh *ObjectMesh, bool UseAllSubmeshes=false) are not documented:
@@ -2021,8 +2036,8 @@
 /home/Code/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:66: warning: Member Sections (variable) of class Mezzanine::Resource::TextSettingsFile is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h:103: warning: Member ScriptArgment (enumeration) of namespace Mezzanine::Scripting is not documented.
 <ScriptArgment>:1: warning: parameters of member Mezzanine::Scripting::ScriptArgment are not (all) documented
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/Scripting/script.h:320: warning: argument 'A' of command @param is not found in the argument list of Mezzanine::Scripting::iScriptMultipleReturn::AddReturn(CountedPtr< iScriptArgument > ReturnArg)=0
 /home/Code/Mezzanine/Mezzanine/src/Scripting/script.h:320: warning: The following parameters of Mezzanine::Scripting::iScriptMultipleReturn::AddReturn(CountedPtr< iScriptArgument > ReturnArg)=0 are not documented:
   parameter 'ReturnArg'
@@ -3069,7 +3084,7 @@
 /home/Code/Mezzanine/Mezzanine/src/UI/uimanager.h:115: warning: Member ScreenIterator (typedef) of class Mezzanine::UI::UIManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/uimanager.h:117: warning: Member VisibleScreenContainer (typedef) of class Mezzanine::UI::UIManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/uimanager.h:118: warning: Member VisibleScreenIterator (typedef) of class Mezzanine::UI::UIManager is not documented.
-/home/Code/Mezzanine/Mezzanine/src/managerbase.h:66: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
+/home/Code/Mezzanine/Mezzanine/src/managerbase.h:68: warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/uimanager.h:158: warning: Member ClearButtonActivations() (function) of class Mezzanine::UI::UIManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/uimanager.h:161: warning: Member HotKeyActivationCheck(const Input::InputCode &Code) (function) of class Mezzanine::UI::UIManager is not documented.
 /home/Code/Mezzanine/Mezzanine/src/UI/uimanager.h:156: warning: Member HotKeyAndInputCaptureChecks() (function) of class Mezzanine::UI::UIManager is not documented.

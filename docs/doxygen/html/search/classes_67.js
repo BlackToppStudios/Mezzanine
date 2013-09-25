@@ -9,6 +9,7 @@ var searchData=
   ['glyphdata',['GlyphData',['../classMezzanine_1_1UI_1_1GlyphData.html',1,'Mezzanine::UI']]],
   ['goaltimer',['GoalTimer',['../classMezzanine_1_1GoalTimer.html',1,'Mezzanine']]],
   ['graphicsmanager',['GraphicsManager',['../classMezzanine_1_1Graphics_1_1GraphicsManager.html',1,'Mezzanine::Graphics']]],
+  ['graphicsproxy',['GraphicsProxy',['../classMezzanine_1_1Graphics_1_1GraphicsProxy.html',1,'Mezzanine::Graphics']]],
   ['gravityfield',['GravityField',['../classMezzanine_1_1GravityField.html',1,'Mezzanine']]],
   ['gravitywell',['GravityWell',['../classMezzanine_1_1GravityWell.html',1,'Mezzanine']]]
 ];

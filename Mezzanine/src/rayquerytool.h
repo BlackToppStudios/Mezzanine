@@ -68,13 +68,10 @@ namespace Mezzanine
     class MEZZ_LIB RayQueryTool// : public InputQueryTool
     {
         private:
-            /// @internal
-            /// @brief An Ogre construct used to find information about the locations of graphical object
-            static Ogre::RaySceneQuery* RayQuery;
+            // @internal
+            // @brief An Ogre construct used to find information about the locations of graphical object
+            //static Ogre::RaySceneQuery* RayQuery;
 
-            /// @internal
-            /// @brief Creates a ray query data structure if one hasn't already been created.
-            static void VerifyRayQuery();
 
             /// @internal
             /// @brief used to get information about 3d graphical objects at specific locations
@@ -88,17 +85,6 @@ namespace Mezzanine
                                 const Ogre::Vector3 &scale);
 
         public:
-            ///////////////////////////////////////////////////////////////////////////////
-            // Basic Stuff
-            ///////////////////////////////////////
-            /// @brief Basic Constructor.
-            /// @details This creates a WorldQueryTool Ready to run queries on the the world you pass it.
-            RayQueryTool();
-
-            /// @brief Destructor
-            /// @details Deletes everything in the world query tool.
-            ~RayQueryTool();
-
             ///////////////////////////////////////////////////////////////////////////////
             // World Ray Queries
             ///////////////////////////////////////
