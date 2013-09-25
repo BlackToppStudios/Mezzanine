@@ -235,7 +235,7 @@ namespace Mezzanine
         if(this->GetPhysicsManager()==0)
             { this->AddManager(new Physics::PhysicsManager(PhysicsInfo)); }
         if(this->GetSceneManager()==0)
-            { this->AddManager(new SceneManager(SceneType)); }
+            { this->AddManager(new Graphics::SceneManager(SceneType)); }
         if(this->GetUIManager()==0)
             { this->AddManager(new UI::UIManager()); }
         if(this->GetMeshManager()==0)
@@ -752,7 +752,7 @@ namespace Mezzanine
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultResourceManagerFactory());
         //DefaultSceneManager
         ManIt = this->ManagerFactories.find("DefaultSceneManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultSceneManagerFactory());
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultSceneManagerFactory());
         //DefaultTerrainManager
         ManIt = this->ManagerFactories.find("DefaultTerrainManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultTerrainManagerFactory());
@@ -957,9 +957,9 @@ namespace Mezzanine
         return dynamic_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager, WhichOne) );
     }
 
-    SceneManager* Entresol::GetSceneManager(const UInt16 WhichOne)
+    Graphics::SceneManager* Entresol::GetSceneManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager, WhichOne) );
+        return dynamic_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager, WhichOne) );
     }
 
     Audio::SoundScapeManager* Entresol::GetSoundScapeManager(const UInt16 WhichOne)

@@ -43,7 +43,7 @@
 
 #include "world.h"
 #include "Physics/physicsmanager.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 //#include "pagingmanager.h"
 
 namespace Mezzanine
@@ -174,7 +174,7 @@ namespace Mezzanine
         return NULL;
     }
 
-    SceneManager* World::GetSceneManager()
+    Graphics::SceneManager* World::GetSceneManager()
     {
         //return dynamic_cast<SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) );
         return NULL;

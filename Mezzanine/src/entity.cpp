@@ -41,7 +41,7 @@
 #define _entity_cpp
 
 #include "entity.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 
 #include <Ogre.h>
 
@@ -65,11 +65,11 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Pointer to the manager that created this class.
-            SceneManager* Manager;
+            Graphics::SceneManager* Manager;
 
             /// @internal
             /// @brief Creates all the necessary data structures for the Entity.
-            EntityInternalData(const String& Name, const String& MeshName, const String& Group, SceneManager* manager)
+            EntityInternalData(const String& Name, const String& MeshName, const String& Group, Graphics::SceneManager* manager)
             {
                 this->Manager = manager;
                 Ogre::SceneManager* OgreManager = Manager->GetGraphicsWorldPointer();
@@ -88,7 +88,7 @@ namespace Mezzanine
         };//EntityInternalData
     }//internal
 
-    Entity::Entity(const String& Name, const String& MeshName, const String& Group, SceneManager* manager)
+    Entity::Entity(const String& Name, const String& MeshName, const String& Group, Graphics::SceneManager* manager)
     {
         EID = new Internal::EntityInternalData(Name,MeshName,Group,manager);
     }

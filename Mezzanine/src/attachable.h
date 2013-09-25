@@ -60,7 +60,6 @@ namespace Mezzanine
     class AttachableBase;
     class AttachableParent;
     class AttachableChild;
-    class SceneManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class AttachableBase
     /// @headerfile attachable.h

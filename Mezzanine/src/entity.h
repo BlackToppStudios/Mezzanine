@@ -48,7 +48,10 @@ namespace Mezzanine
     {
         class EntityInternalData;
     }
-    class SceneManager;
+    namespace Graphics
+    {
+        class SceneManager;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Entity
     /// @headerfile entity.h
@@ -65,7 +68,7 @@ namespace Mezzanine
             /// @param MeshName The name of the mesh to be applied to this entity.
             /// @param Group The resource group where the mesh can be found.
             /// @param manager The scenemanager to which this entity belongs.
-            Entity(const String& Name, const String& MeshName, const String& Group, SceneManager* manager);
+            Entity(const String& Name, const String& MeshName, const String& Group, Graphics::SceneManager* manager);
             /// @brief Class Destructor.
             virtual ~Entity();
 

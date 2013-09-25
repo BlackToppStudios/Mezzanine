@@ -60,15 +60,11 @@ namespace Mezzanine
     // Forward Declarations
     class Camera;
     class CameraController;
-    class SceneManager;
 
     namespace Graphics
     {
         class GraphicsManager;
-    }
-
-    namespace Internal
-    {
+        class SceneManager;
         class SceneManagerData;
     }
 
@@ -97,9 +93,7 @@ namespace Mezzanine
         /// @brief Const Iterator type for @ref CameraController instances stored by this class.
         typedef CameraControllerContainer::const_iterator  ConstCameraControllerIterator;
     protected:
-        friend class Internal::SceneManagerData;
-        friend class GraphicsManager;
-        friend class Entresol;
+        friend class Graphics::SceneManagerData;
         friend class Camera;
 
         Camera* DefaultCamera;
@@ -108,7 +102,7 @@ namespace Mezzanine
         Camera* FindCamera(const String& Name);
         /// @internal
         /// @brief Used to reference the appropriate scene
-        Mezzanine::SceneManager* SceneMan;
+        Graphics::SceneManager* SceneMan;
     public:
         /// @brief Class Constructor.
         CameraManager();
@@ -170,7 +164,7 @@ namespace Mezzanine
 
         /// @brief Gets the SceneManager this Camera Manager is working with.
         /// @return Returns a pointer to the SceneManager all cameras made with this manager belong to.
-        Mezzanine::SceneManager* GetScene() const;
+        Graphics::SceneManager* GetScene() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Type Identifier Methods

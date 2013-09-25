@@ -341,7 +341,7 @@ int main(int argc, char **argv)
 	String ExeDir = Mezzanine::ResourceManager::GetExecutableDirFromArg(argc,argv);
 	Mezzanine::ResourceManager::ChangeDirectory(ExeDir);
     #endif
-	
+
     try
     {
         Physics::ManagerConstructionInfo Info;
@@ -398,7 +398,7 @@ int main(int argc, char **argv)
 	TheEntresol->EngineInit(false);
 
     // Configure Shadows
-    TheEntresol->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Stencil_Additive);
+    TheEntresol->GetSceneManager()->SetSceneShadowTechnique(Graphics::SceneManager::SST_Stencil_Additive);
     TheEntresol->GetSceneManager()->SetShadowFarDistance(3000);
 
     //Set up polling for the letter Q

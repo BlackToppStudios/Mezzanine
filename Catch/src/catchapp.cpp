@@ -700,7 +700,7 @@ void CatchApp::UnloadLevel()
     MeshManager* MeshMan = MeshManager::GetSingletonPtr();
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
+    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
     ActorManager* ActorMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
 

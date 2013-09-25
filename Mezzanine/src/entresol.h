@@ -298,7 +298,6 @@ namespace Mezzanine
     class ResourceManager;
     class MeshManager;
     class NetworkManager;
-    class SceneManager;
     class ManagerFactory;
     namespace Audio
     {
@@ -308,6 +307,7 @@ namespace Mezzanine
     namespace Graphics
     {
         class GraphicsManager;
+        class SceneManager;
     }
     namespace Input
     {
@@ -713,7 +713,7 @@ namespace Mezzanine
             /// @brief This gets the SceneManager from the manager list.
             /// @param WhichOne If you have multiple SceneManagers this will choose which one to return.
             /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
-            SceneManager* GetSceneManager(const UInt16 WhichOne = 0);
+            Graphics::SceneManager* GetSceneManager(const UInt16 WhichOne = 0);
             /// @brief This gets the SoundScapeManager from the manager list.
             /// @param WhichOne If you have multiple SoundScapeManagers this will choose which one to return.
             /// @return This returns a pointer to a SoundScapeManager, or a NULL pointer if no matching manager exists.

@@ -46,7 +46,7 @@
 #include "Graphics/mesh.h"
 #include "serialization.h"
 #include "meshmanager.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "stringtool.h"
 #include "entresol.h"
 

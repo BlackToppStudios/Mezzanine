@@ -46,7 +46,7 @@
 #include "entresol.h"
 #include "meshmanager.h"
 #include "Physics/physicsmanager.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "actorrigid.h"
 #include "Physics/collision.h"
 #include "Physics/generic6dofconstraint.h"

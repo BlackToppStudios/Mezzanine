@@ -53,9 +53,9 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    class SceneManager;
     namespace Graphics
     {
+        class SceneManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base proxy class for world proxies wrapping functionality of the graphics subsystem.
         /// @details

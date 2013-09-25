@@ -45,7 +45,7 @@
 #include "Audio/audiomanager.h"
 #include "Audio/soundset.h"
 #include "Physics/physicsmanager.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "worldnode.h"
 #include "entresol.h"
 

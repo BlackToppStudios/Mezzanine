@@ -45,8 +45,8 @@
 #include "cameramanager.h"
 #include "stringtool.h"
 #include "exception.h"
-#include "scenemanager.h"
 #include "entresol.h"
+#include "Graphics/scenemanager.h"
 #include "Graphics/viewport.h"
 #ifndef SWIG
     #include "XML/xml.h"

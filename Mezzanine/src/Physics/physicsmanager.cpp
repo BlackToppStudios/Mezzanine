@@ -54,7 +54,7 @@ using namespace std;
 #include "worldtrigger.h"
 #include "worldobject.h"
 #include "Physics/collision.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "Graphics/graphicsmanager.h"
 #include "stringtool.h"
 #include "crossplatform.h"

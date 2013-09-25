@@ -44,8 +44,7 @@
 /// @brief This file contains the implementation for the base class from which graphics proxies inherit.
 
 #include "Graphics/graphicsproxy.h"
-
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 
 #include "enumerations.h"
 #include "exception.h"

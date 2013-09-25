@@ -48,7 +48,6 @@ namespace Mezzanine
     class ActorManager;
     class AreaEffectManager;
     class CameraManager;
-    class SceneManager;
     class TerrainManager;
     namespace Audio
     {
@@ -56,6 +55,7 @@ namespace Mezzanine
     }
     namespace Graphics
     {
+        class SceneManager;
     }
     namespace Physics
     {
@@ -143,7 +143,7 @@ namespace Mezzanine
         Physics::PhysicsManager* GetPhysicsManager();
         /// @brief This gets the SceneManager from the manager list.
         /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
-        SceneManager* GetSceneManager();
+        Graphics::SceneManager* GetSceneManager();
         /// @brief This gets the SoundScapeManager from the manager list.
         /// @return This returns a pointer to a SoundScapeManager, or a NULL pointer if no matching manager exists.
         Audio::SoundScapeManager* GetSoundScapeManager();
