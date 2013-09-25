@@ -1890,12 +1890,12 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__AttachableParent__AttachableContainer__iterator swig_types[8]
 #define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[9]
 #define SWIGTYPE_p_Mezzanine__GoalTimer swig_types[10]
-#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[11]
-#define SWIGTYPE_p_Mezzanine__NonStaticWorldObject swig_types[12]
-#define SWIGTYPE_p_Mezzanine__Plane swig_types[13]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[14]
-#define SWIGTYPE_p_Mezzanine__Ray swig_types[15]
-#define SWIGTYPE_p_Mezzanine__SceneManager swig_types[16]
+#define SWIGTYPE_p_Mezzanine__Graphics__SceneManager swig_types[11]
+#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[12]
+#define SWIGTYPE_p_Mezzanine__NonStaticWorldObject swig_types[13]
+#define SWIGTYPE_p_Mezzanine__Plane swig_types[14]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[15]
+#define SWIGTYPE_p_Mezzanine__Ray swig_types[16]
 #define SWIGTYPE_p_Mezzanine__Sphere swig_types[17]
 #define SWIGTYPE_p_Mezzanine__StopWatchTimer swig_types[18]
 #define SWIGTYPE_p_Mezzanine__Timer swig_types[19]
@@ -12185,17 +12185,17 @@ static swig_lua_class _wrap_class_Mezzanine_AttachableChild = { "AttachableChild
 static int _wrap_new_WorldNode(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
-  Mezzanine::SceneManager *arg2 = (Mezzanine::SceneManager *) 0 ;
+  Mezzanine::Graphics::SceneManager *arg2 = (Mezzanine::Graphics::SceneManager *) 0 ;
   Mezzanine::String temp1 ;
   Mezzanine::WorldNode *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::WorldNode::WorldNode",2,2)
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::WorldNode::WorldNode",1,"Mezzanine::String const &");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::WorldNode::WorldNode",2,"Mezzanine::SceneManager *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::WorldNode::WorldNode",2,"Mezzanine::Graphics::SceneManager *");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__SceneManager,0))){
-    SWIG_fail_ptr("new_WorldNode",2,SWIGTYPE_p_Mezzanine__SceneManager);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Graphics__SceneManager,0))){
+    SWIG_fail_ptr("new_WorldNode",2,SWIGTYPE_p_Mezzanine__Graphics__SceneManager);
   }
   
   result = (Mezzanine::WorldNode *)new Mezzanine::WorldNode((Mezzanine::String const &)*arg1,arg2);
@@ -15381,12 +15381,12 @@ static swig_type_info _swigt__p_Mezzanine__AttachableParent = {"_p_Mezzanine__At
 static swig_type_info _swigt__p_Mezzanine__AttachableParent__AttachableContainer__iterator = {"_p_Mezzanine__AttachableParent__AttachableContainer__iterator", "Mezzanine::AttachableParent::AttachableIterator *|Mezzanine::AttachableParent::AttachableContainer::iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__AxisAlignedBox = {"_p_Mezzanine__AxisAlignedBox", "Mezzanine::AxisAlignedBox *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__GoalTimer = {"_p_Mezzanine__GoalTimer", "Mezzanine::GoalTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_GoalTimer, 0};
+static swig_type_info _swigt__p_Mezzanine__Graphics__SceneManager = {"_p_Mezzanine__Graphics__SceneManager", "Mezzanine::Graphics::SceneManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Matrix3x3 = {"_p_Mezzanine__Matrix3x3", "Mezzanine::Matrix3x3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__NonStaticWorldObject = {"_p_Mezzanine__NonStaticWorldObject", "Mezzanine::NonStaticWorldObject *", 0, 0, (void*)&_wrap_class_Mezzanine_NonStaticWorldObject, 0};
 static swig_type_info _swigt__p_Mezzanine__Plane = {"_p_Mezzanine__Plane", "Mezzanine::Plane *", 0, 0, (void*)&_wrap_class_Mezzanine_Plane, 0};
 static swig_type_info _swigt__p_Mezzanine__Quaternion = {"_p_Mezzanine__Quaternion", "Mezzanine::Quaternion *", 0, 0, (void*)&_wrap_class_Mezzanine_Quaternion, 0};
 static swig_type_info _swigt__p_Mezzanine__Ray = {"_p_Mezzanine__Ray", "Mezzanine::Ray *", 0, 0, (void*)&_wrap_class_Mezzanine_Ray, 0};
-static swig_type_info _swigt__p_Mezzanine__SceneManager = {"_p_Mezzanine__SceneManager", "Mezzanine::SceneManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Sphere = {"_p_Mezzanine__Sphere", "Mezzanine::Sphere *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__StopWatchTimer = {"_p_Mezzanine__StopWatchTimer", "Mezzanine::StopWatchTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_StopWatchTimer, 0};
 static swig_type_info _swigt__p_Mezzanine__Timer = {"_p_Mezzanine__Timer", "Mezzanine::Timer *", 0, 0, (void*)&_wrap_class_Mezzanine_Timer, 0};
@@ -15450,12 +15450,12 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__AttachableParent__AttachableContainer__iterator,
   &_swigt__p_Mezzanine__AxisAlignedBox,
   &_swigt__p_Mezzanine__GoalTimer,
+  &_swigt__p_Mezzanine__Graphics__SceneManager,
   &_swigt__p_Mezzanine__Matrix3x3,
   &_swigt__p_Mezzanine__NonStaticWorldObject,
   &_swigt__p_Mezzanine__Plane,
   &_swigt__p_Mezzanine__Quaternion,
   &_swigt__p_Mezzanine__Ray,
-  &_swigt__p_Mezzanine__SceneManager,
   &_swigt__p_Mezzanine__Sphere,
   &_swigt__p_Mezzanine__StopWatchTimer,
   &_swigt__p_Mezzanine__Timer,
@@ -15519,12 +15519,12 @@ static swig_cast_info _swigc__p_Mezzanine__AttachableParent[] = {  {&_swigt__p_M
 static swig_cast_info _swigc__p_Mezzanine__AttachableParent__AttachableContainer__iterator[] = {  {&_swigt__p_Mezzanine__AttachableParent__AttachableContainer__iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AxisAlignedBox[] = {  {&_swigt__p_Mezzanine__AxisAlignedBox, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__GoalTimer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, _p_Mezzanine__AlarmTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__StopWatchTimer, _p_Mezzanine__StopWatchTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__GoalTimer, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Graphics__SceneManager[] = {  {&_swigt__p_Mezzanine__Graphics__SceneManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Matrix3x3[] = {  {&_swigt__p_Mezzanine__Matrix3x3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__NonStaticWorldObject[] = {  {&_swigt__p_Mezzanine__NonStaticWorldObject, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Plane[] = {  {&_swigt__p_Mezzanine__Plane, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Quaternion[] = {  {&_swigt__p_Mezzanine__Quaternion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Ray[] = {  {&_swigt__p_Mezzanine__Ray, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__SceneManager[] = {  {&_swigt__p_Mezzanine__SceneManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Sphere[] = {  {&_swigt__p_Mezzanine__Sphere, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__StopWatchTimer[] = {  {&_swigt__p_Mezzanine__StopWatchTimer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Timer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, _p_Mezzanine__AlarmTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__StopWatchTimer, _p_Mezzanine__StopWatchTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__GoalTimer, _p_Mezzanine__GoalTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__Timer, 0, 0, 0},{0, 0, 0, 0}};
@@ -15588,12 +15588,12 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__AttachableParent__AttachableContainer__iterator,
   _swigc__p_Mezzanine__AxisAlignedBox,
   _swigc__p_Mezzanine__GoalTimer,
+  _swigc__p_Mezzanine__Graphics__SceneManager,
   _swigc__p_Mezzanine__Matrix3x3,
   _swigc__p_Mezzanine__NonStaticWorldObject,
   _swigc__p_Mezzanine__Plane,
   _swigc__p_Mezzanine__Quaternion,
   _swigc__p_Mezzanine__Ray,
-  _swigc__p_Mezzanine__SceneManager,
   _swigc__p_Mezzanine__Sphere,
   _swigc__p_Mezzanine__StopWatchTimer,
   _swigc__p_Mezzanine__Timer,
