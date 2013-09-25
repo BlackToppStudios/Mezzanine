@@ -44,7 +44,7 @@
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 
 #include "entresol.h"
-#include "meshmanager.h"
+#include "Graphics/meshmanager.h"
 #include "Physics/physicsmanager.h"
 #include "Graphics/scenemanager.h"
 #include "actorrigid.h"
@@ -65,7 +65,7 @@ namespace Mezzanine
     {
         Name = name;
         // this isn't required to operate, but it does allow the mesh manager to know what is loaded.
-        MeshManager::GetSingletonPtr()->LoadMesh(file,group);
+        Graphics::MeshManager::GetSingletonPtr()->LoadMesh(file,group);
 
         this->GraphicsObject = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new Internal::AttachableMotionState(this);

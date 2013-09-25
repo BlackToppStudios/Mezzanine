@@ -296,7 +296,6 @@ namespace Mezzanine
     class EventManager;
     class CameraManager;
     class ResourceManager;
-    class MeshManager;
     class NetworkManager;
     class ManagerFactory;
     namespace Audio
@@ -307,6 +306,7 @@ namespace Mezzanine
     namespace Graphics
     {
         class GraphicsManager;
+        class MeshManager;
         class SceneManager;
     }
     namespace Input
@@ -699,7 +699,7 @@ namespace Mezzanine
             /// @brief This gets the MeshManager from the manager list.
             /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.
             /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.
-            MeshManager* GetMeshManager(const UInt16 WhichOne = 0);
+            Graphics::MeshManager* GetMeshManager(const UInt16 WhichOne = 0);
 #ifdef MEZZNETWORK
             /// @brief This gets the NetworkManager from the manager list.
             /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.

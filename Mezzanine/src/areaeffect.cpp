@@ -46,7 +46,7 @@
 #include "Physics/collisionshape.h"
 #include "Physics/collisionshapemanager.h"
 #include "Graphics/mesh.h"
-#include "meshmanager.h"
+#include "Graphics/meshmanager.h"
 #include "Graphics/scenemanager.h"
 #include "Internal/meshtools.h.cpp"
 #include "entresol.h"

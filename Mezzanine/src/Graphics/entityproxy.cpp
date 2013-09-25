@@ -45,7 +45,7 @@
 
 #include "Graphics/entityproxy.h"
 #include "scenemanager.h"
-#include "meshmanager.h"
+#include "Graphics/meshmanager.h"
 #include "Graphics/mesh.h"
 
 #include <Ogre.h>
