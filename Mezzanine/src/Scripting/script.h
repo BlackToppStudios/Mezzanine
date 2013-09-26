@@ -45,7 +45,7 @@
 
 #include "binarybuffer.h"
 #include "scriptargument.h"
-#include "smartptr.h"
+#include "countedptr.h"
 
 namespace Mezzanine
 {

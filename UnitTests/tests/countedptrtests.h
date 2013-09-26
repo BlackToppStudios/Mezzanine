@@ -43,7 +43,7 @@
 #include "mezztest.h"
 #include "mezzanine.h"
 
-#include "smartptr.h"
+#include "countedptr.h"
 
 #include <memory>
 

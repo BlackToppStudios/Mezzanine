@@ -41,7 +41,7 @@
 #define _resourcedatastream_h
 
 #include "datatypes.h"
-#include "smartptr.h"
+#include "countedptr.h"
 
 #include <iostream>
 

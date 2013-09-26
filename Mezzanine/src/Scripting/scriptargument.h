@@ -44,7 +44,7 @@
 /// @brief This file has the interfaces for Script Arguments and the associated dependency chain
 
 #include "datatypes.h"
-#include "smartptr.h"
+#include "countedptr.h"
 
 namespace Mezzanine
 {

@@ -44,7 +44,7 @@
 /// @brief This file has the interfaces for ScriptsWorkUnit
 
 #include "script.h"
-#include "smartptr.h"
+#include "countedptr.h"
 
 #include "Threading/workunit.h"
 

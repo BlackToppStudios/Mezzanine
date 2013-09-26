@@ -94,15 +94,6 @@ namespace Mezzanine
         };
     }
 
-    // Internal Utility methodssz
-    Ogre::RaySceneQuery* CreateRayQuery()
-    {
-        Ogre::RaySceneQuery* RayQuery;
-        RayQuery = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-        RayQuery->setSortByDistance(true);
-        return RayQuery;
-    }
-
     void RayQueryTool::GetMeshInformation( Ogre::Entity *entity,
                                 size_t &vertex_count,
                                 Ogre::Vector3* &vertices,
