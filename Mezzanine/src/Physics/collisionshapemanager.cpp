@@ -42,7 +42,7 @@
 
 #include "Physics/collisionshapemanager.h"
 #include "Graphics/mesh.h"
-#include "meshmanager.h"
+#include "Graphics/meshmanager.h"
 #include "resourcemanager.h"
 
 #include "Physics/collisionshape.h"
@@ -78,7 +78,7 @@
 namespace Mezzanine
 {
     template<> Physics::CollisionShapeManager* Singleton<Physics::CollisionShapeManager>::SingletonPtr = NULL;
-    
+
     namespace Physics
     {
         //template<> CollisionShapeManager* Singleton<CollisionShapeManager>::SingletonPtr = NULL;
@@ -410,7 +410,7 @@ namespace Mezzanine
 
         ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
         {
-            Graphics::Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
+            Graphics::Mesh* ObjectMesh = Graphics::MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
             return this->GenerateConvexHull(Name,ObjectMesh,UseAllSubmeshes);
         }
 
@@ -422,7 +422,7 @@ namespace Mezzanine
 
         DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
         {
-            Graphics::Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
+            Graphics::Mesh* ObjectMesh = Graphics::MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
             return this->GenerateDynamicTriMesh(Name,ObjectMesh,UseAllSubmeshes);
         }
 
@@ -434,7 +434,7 @@ namespace Mezzanine
 
         StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
         {
-            Graphics::Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
+            Graphics::Mesh* ObjectMesh = Graphics::MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
             return this->GenerateStaticTriMesh(Name,ObjectMesh,UseAllSubmeshes);
         }
 
@@ -572,7 +572,7 @@ namespace Mezzanine
 
         CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
         {
-            Graphics::Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
+            Graphics::Mesh* ObjectMesh = Graphics::MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
             return this->PerformConvexDecomposition(Name,ObjectMesh,Depth,CPercent,PPercent,UseAllSubmeshes);
         }
 

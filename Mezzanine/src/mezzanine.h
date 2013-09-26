@@ -57,7 +57,7 @@
 #ifndef SWIG
     #include "Audio/audio.h"
     #include "Threading/dagframescheduler.h"
-    #include "Graphics/viewport.h"
+    #include "Graphics/graphics.h"
     #include "Input/input.h"
     #include "Physics/physics.h"
     #include "XML/xml.h"
@@ -97,13 +97,11 @@
 #include "eventquit.h"                  // done
 #include "eventuserinput.h"             // done
 #include "exception.h"
-#include "graphics.h"
 #include "light.h"                      // done
 #include "linegroup.h"
 #include "macros.h"
 #include "managerbase.h"
 #include "mathtool.h"
-#include "meshmanager.h"
 #include "meshterrain.h"
 #include "network.h"
 #include "networkmanager.h"
@@ -121,7 +119,6 @@
 #include "rayquerytool.h"               // nothing to do
 #include "resource.h"
 #include "resourcemanager.h"
-#include "scenemanager.h"               // Done
 #include "scripting.h"
 #include "serialization.h"              // nothing to do
 #include "singleton.h"                  // nothing to do

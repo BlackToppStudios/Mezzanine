@@ -47,10 +47,10 @@
 
 namespace Mezzanine
 {
-    class SceneManager;
     namespace Graphics
     {
         class Viewport;
+        class SceneManager;
     }
     namespace UI
     {
@@ -146,7 +146,7 @@ namespace Mezzanine
                 IndexMap WidgetsRoot;
                 WidgetContainer Widgets;
 
-                virtual SceneManager* GetSceneManager();
+                virtual Graphics::SceneManager* GetSceneManager();
                 virtual Screen* GetScreen();
                 virtual Widget* CheckAndInsert(Widget* ToInsert);
                 virtual void PrepareRenderSystem();

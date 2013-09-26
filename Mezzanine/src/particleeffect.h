@@ -62,8 +62,10 @@ namespace Mezzanine
     {
         struct ParticleEffectInternalData;
     }
-
-    class SceneManager;
+    namespace Graphics
+    {
+        class SceneManager;
+    }
     class ParticleAffector;
     class ParticleEmitter;
     ///////////////////////////////////////////////////////////////////////////////
@@ -93,14 +95,14 @@ namespace Mezzanine
             /// @param Name The name of this particle effect.
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @param manager Pointer to the manager that this particle effect is to be used in.
-            ParticleEffect(const String& Name, const String& Template, SceneManager* manager);
+            ParticleEffect(const String& Name, const String& Template, Graphics::SceneManager* manager);
             /// @internal
             /// @brief Internal constructor.
             /// @details This constructor should not be called on manually.
             /// @param System Pointer to the Ogre ParticleSystem this class is based on.
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @param manager Pointer to the manager that this particle effect is to be used in.
-            ParticleEffect(Ogre::ParticleSystem* System, const String& Template, SceneManager* manager);
+            ParticleEffect(Ogre::ParticleSystem* System, const String& Template, Graphics::SceneManager* manager);
             /// @brief Class destructor.
             virtual ~ParticleEffect();
 

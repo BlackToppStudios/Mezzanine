@@ -42,7 +42,7 @@
 #define _worldnode_cpp
 
 #include "worldnode.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "exception.h"
 #include "camera.h"
 #include "light.h"
@@ -61,7 +61,7 @@
 
 namespace Mezzanine
 {
-    WorldNode::WorldNode(const String& Name, SceneManager* SManager)
+    WorldNode::WorldNode(const String& Name, Graphics::SceneManager* SManager)
         : AutoTrackTarget(NULL),
           Manager(SManager),
           FixedYaw(false),

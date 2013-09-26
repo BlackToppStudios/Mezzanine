@@ -41,10 +41,10 @@
 #define _particleeffect_cpp
 
 #include "particleeffect.h"
-#include "scenemanager.h"
 #include "stringtool.h"
 #include "worldnode.h"
 #include "entresol.h"
+#include "Graphics/scenemanager.h"
 
 #include "particleaffector.h"
 #include "particleemitter.h"
@@ -74,7 +74,7 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Pointer to the manager that created this class.
-            SceneManager* Manager;
+            Graphics::SceneManager* Manager;
 
             /// @internal
             /// @brief Stores the template, primarily for serializatino
@@ -86,7 +86,7 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Functionally, this constructs the whole ParticleEffect
-            ParticleEffectInternalData(SceneManager* manager, Ogre::ParticleSystem* System)
+            ParticleEffectInternalData(Graphics::SceneManager* manager, Ogre::ParticleSystem* System)
             {
                 Template = "";
                 SpeedCache = 0.0;
@@ -110,7 +110,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Construction
 
-    ParticleEffect::ParticleEffect(const String& Name, const String& Template, SceneManager* manager)
+    ParticleEffect::ParticleEffect(const String& Name, const String& Template, Graphics::SceneManager* manager)
     {
         this->Pie = new Internal::ParticleEffectInternalData(manager, manager->GetGraphicsWorldPointer()->createParticleSystem(Name, Template));
         this->Pie->Template = Template;
@@ -130,7 +130,7 @@ namespace Mezzanine
         }
     }
 
-    ParticleEffect::ParticleEffect(Ogre::ParticleSystem* System, const String& Template, SceneManager* manager)
+    ParticleEffect::ParticleEffect(Ogre::ParticleSystem* System, const String& Template, Graphics::SceneManager* manager)
     {
         this->Pie = new Internal::ParticleEffectInternalData(manager, System);
         this->Pie->Template = Template;

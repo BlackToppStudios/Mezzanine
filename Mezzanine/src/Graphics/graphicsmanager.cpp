@@ -76,7 +76,7 @@
 namespace Mezzanine
 {
     template<> Graphics::GraphicsManager* Singleton<Graphics::GraphicsManager>::SingletonPtr = NULL;
-    
+
     namespace Graphics
     {
         ///////////////////////////////////////////////////////////////////////////
@@ -716,31 +716,7 @@ namespace Mezzanine
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return GraphicsManager::GetSingletonPtr();
             }else{
-                if(Params.empty()) return new GraphicsManager();
-                else
-                {
-                    Whole Width = 800;
-                    Whole Height = 600;
-                    bool FullScreen = false;
-                    for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
-                    {
-                        String Lower = (*ParIt).first;
-                        StringTools::ToLowerCase(Lower);
-                        if( "width" == Lower )
-                        {
-                            Width = StringTools::ConvertToUInt32( (*ParIt).second );
-                        }
-                        else if( "height" == Lower )
-                        {
-                            Height = StringTools::ConvertToUInt32( (*ParIt).second );
-                        }
-                        else if( "fullscreen" == Lower )
-                        {
-                            FullScreen = StringTools::ConvertToBool( (*ParIt).second );
-                        }
-                    }
-                    return new GraphicsManager();
-                }
+                return new GraphicsManager();
             }
         }
 

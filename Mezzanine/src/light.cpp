@@ -41,10 +41,10 @@
 #define _light_cpp
 
 #include "light.h"
-#include "scenemanager.h"
 #include "stringtool.h"
 #include "worldnode.h"
 #include "entresol.h"
+#include "Graphics/scenemanager.h"
 
 #include <Ogre.h>
 
@@ -58,13 +58,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Construction
 
-    Light::Light(const String& Name, SceneManager* manager)
+    Light::Light(const String& Name, Graphics::SceneManager* manager)
     {
         Manager = manager;
         OgreLight = Manager->GetGraphicsWorldPointer()->createLight(Name);
     }
 
-    Light::Light(Ogre::Light* light, SceneManager* manager)
+    Light::Light(Ogre::Light* light, Graphics::SceneManager* manager)
     {
         OgreLight = light;
         Manager = manager;

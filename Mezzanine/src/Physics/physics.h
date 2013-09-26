@@ -57,6 +57,7 @@ namespace Mezzanine
 
 #include "Physics/boxcollisionshape.h"
 #include "Physics/capsulecollisionshape.h"
+#include "Physics/collidableproxy.h"
 #include "Physics/collision.h"
 #include "Physics/collisionshape.h"
 #include "Physics/compoundcollisionshape.h"
@@ -77,7 +78,6 @@ namespace Mezzanine
 #include "Physics/managerconstructioninfo.h"
 #include "Physics/meshcollisionshape.h"
 #include "Physics/multispherecollisionshape.h"
-#include "Physics/physicsproxy.h"
 #include "Physics/planecollisionshape.h"
 #include "Physics/point2pointconstraint.h"
 #include "Physics/primitivecollisionshape.h"

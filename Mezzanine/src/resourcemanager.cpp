@@ -45,7 +45,7 @@
 #include <cstdlib>
 
 #include "resourcemanager.h"
-#include "meshmanager.h"
+#include "Graphics/meshmanager.h"
 #include "actorbase.h"
 #include "stringtool.h"
 #include "Resource/filestream.h"
@@ -612,7 +612,7 @@ namespace Mezzanine
         {
             if(ResourceNames->at(X).find(".mesh"))
             {
-                MeshManager::GetSingletonPtr()->UnloadMesh(ResourceNames->at(X));
+                Graphics::MeshManager::GetSingletonPtr()->UnloadMesh(ResourceNames->at(X));
             }
         }
         this->OgreResource->destroyResourceGroup(GroupName);

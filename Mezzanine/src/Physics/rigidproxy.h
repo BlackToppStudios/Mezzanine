@@ -40,7 +40,7 @@ John Blackwood - makoenergy02@gmail.com
 #ifndef _rigidproxy_h
 #define _rigidproxy_h
 
-#include "physicsproxy.h"
+#include "collidableproxy.h"
 #include "transform.h"
 
 class btRigidBody;
@@ -99,7 +99,7 @@ namespace Mezzanine
         /// This class holds physics information from the physics sub-library and serves as a means to interact with it.
         /// Direct interaction with the internal physics proxy is discouraged.
         ///////////////////////////////////////
-        class MEZZ_LIB RigidProxy : public PhysicsProxy
+        class MEZZ_LIB RigidProxy : public CollidableProxy
         {
         protected:
             /// @internal
@@ -137,7 +137,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Settings
 
-            /// @copydoc PhysicsProxy::SetCollisionShape(CollisionShape*)
+            /// @copydoc CollidableProxy::SetCollisionShape(CollisionShape*)
             virtual void SetCollisionShape(CollisionShape* Shape);
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -233,9 +233,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc PhysicsProxy::ProtoSerializeProperties(XML::Node&) const
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @copydoc PhysicsProxy::ProtoDeSerializeProperties(const XML::Node&)
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
             /// @copydoc WorldProxy::GetDerivedSerializableName() const
@@ -250,7 +250,7 @@ namespace Mezzanine
             /// @brief Accessor for the internal rigid body physics proxy.
             /// @return Returns a pointer to the internal proxy this proxy is based on.
             virtual btRigidBody* _GetPhysicsObject() const;
-            /// @copydoc PhysicsProxy::_GetBasePhysicsObject()
+            /// @copydoc CollidableProxy::_GetBasePhysicsObject()
             virtual btCollisionObject* _GetBasePhysicsObject() const;
         };//RigidProxy
     }//Physics

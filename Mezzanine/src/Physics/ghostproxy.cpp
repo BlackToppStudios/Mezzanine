@@ -55,7 +55,7 @@ namespace Mezzanine
     namespace Physics
     {
         GhostProxy::GhostProxy(PhysicsManager* Creator) :
-            PhysicsProxy(Creator),
+            CollidableProxy(Creator),
             PhysicsGhostBody(NULL)
         {
             this->CreateGhostObject();
@@ -101,10 +101,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Overlapping Proxy Access
 
-        PhysicsProxy* GhostProxy::GetAABBOverlappingProxy(const UInt32 Index)
+        CollidableProxy* GhostProxy::GetAABBOverlappingProxy(const UInt32 Index)
         {
             btCollisionObject* OverlappingObject = this->PhysicsGhostBody->getOverlappingObject( static_cast<int>( Index ) );
-            return static_cast<PhysicsProxy*>( OverlappingObject->getUserPointer() );
+            return static_cast<CollidableProxy*>( OverlappingObject->getUserPointer() );
         }
 
         UInt32 GhostProxy::GetNumAABBOverlappingProxies() const
@@ -112,7 +112,7 @@ namespace Mezzanine
             return static_cast<UInt32>( this->PhysicsGhostBody->getNumOverlappingObjects() );
         }
 
-        PhysicsProxy* GhostProxy::GetShapeOverlappingProxy(const UInt32 Index)
+        CollidableProxy* GhostProxy::GetShapeOverlappingProxy(const UInt32 Index)
         {
             btCollisionWorld* PhysWorld = this->Manager->_GetPhysicsWorldPointer();
 
@@ -138,7 +138,7 @@ namespace Mezzanine
                         //    return NULL;
 
                         btCollisionObject* ColObj = ( Manifold->getBody0() != this->PhysicsGhostBody ? (btCollisionObject*)(Manifold->getBody0()) : (btCollisionObject*)(Manifold->getBody1()) );
-                        return static_cast<PhysicsProxy*>( ColObj->getUserPointer() );
+                        return static_cast<CollidableProxy*>( ColObj->getUserPointer() );
                     }
                 }
             }else{
@@ -156,10 +156,10 @@ namespace Mezzanine
         // Serialization
 
         void GhostProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
-            { this->PhysicsProxy::ProtoSerializeProperties(SelfRoot); }
+            { this->CollidableProxy::ProtoSerializeProperties(SelfRoot); }
 
         void GhostProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
-            { this->PhysicsProxy::ProtoDeSerializeProperties(SelfRoot); }
+            { this->CollidableProxy::ProtoDeSerializeProperties(SelfRoot); }
 
         String GhostProxy::GetDerivedSerializableName() const
             { return GhostProxy::GetSerializableName(); }

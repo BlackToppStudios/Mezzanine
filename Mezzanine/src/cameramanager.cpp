@@ -41,7 +41,7 @@
 #define _CameraManager_cpp
 
 #include "cameramanager.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "Graphics/graphicsmanager.h"
 #include "entresol.h"
 #include "camera.h"
@@ -57,7 +57,7 @@ namespace Mezzanine
     CameraManager::CameraManager()
         : SceneMan(NULL)
     {
-        SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
+        Graphics::SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
         if( SceneCheck )
             this->SceneMan = SceneCheck;
     }
@@ -65,7 +65,7 @@ namespace Mezzanine
     CameraManager::CameraManager(XML::Node& XMLNode)
         : SceneMan(NULL)
     {
-        SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
+        Graphics::SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
         if( SceneCheck )
             this->SceneMan = SceneCheck;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
@@ -104,7 +104,7 @@ namespace Mezzanine
     {
         if( !this->SceneMan )
         {
-            SceneManager* SceneTest = Entresol::GetSingletonPtr()->GetSceneManager();
+            Graphics::SceneManager* SceneTest = Entresol::GetSingletonPtr()->GetSceneManager();
             if( SceneTest ) this->SceneMan = SceneTest;
             else { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a camera before the SceneManager is created.  This is not supported."); }
         }
@@ -212,7 +212,7 @@ namespace Mezzanine
 
             if( !this->SceneMan )
             {
-                SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
+                Graphics::SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
                 if( SceneCheck ) {
                     this->SceneMan = SceneCheck;
                 }else{
@@ -232,7 +232,7 @@ namespace Mezzanine
         }
     }
 
-    SceneManager* CameraManager::GetScene() const
+    Graphics::SceneManager* CameraManager::GetScene() const
     {
         return this->SceneMan;
     }

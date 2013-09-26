@@ -56,7 +56,10 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    class SceneManager;
+    namespace Graphics
+    {
+        class SceneManager;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Light
     /// @headerfile light.h
@@ -85,7 +88,7 @@ namespace Mezzanine
             /// @brief The ogre light this class gets it's functionality from.
             Ogre::Light* OgreLight;
             /// @brief Pointer to the manager that created this class.
-            SceneManager* Manager;
+            Graphics::SceneManager* Manager;
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // Construction
@@ -93,13 +96,13 @@ namespace Mezzanine
             /// @brief Standard initialization constructor.
             /// @param Name The name of this light.
             /// @param manager Pointer to the manager that this light is to be used in.
-            Light(const String& Name, SceneManager* manager);
+            Light(const String& Name, Graphics::SceneManager* manager);
             /// @internal
             /// @brief Internal Constructor
             /// @details This constructor should not be called on manually.
             /// @param light The Ogre light this class is based on.
             /// @param manager Pointer to the manager that this light is to be used in.
-            Light(Ogre::Light* light, SceneManager* manager);
+            Light(Ogre::Light* light, Graphics::SceneManager* manager);
             /// @brief Class destructor.
             virtual ~Light();
 

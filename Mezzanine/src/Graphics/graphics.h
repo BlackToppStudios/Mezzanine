@@ -53,6 +53,8 @@ namespace Mezzanine
 
 #include "Graphics/graphicsenumerations.h"
 #include "Graphics/graphicsmanager.h"
+#include "Graphics/scenemanager.h"
+#include "Graphics/meshmanager.h"
 
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/bone.h"

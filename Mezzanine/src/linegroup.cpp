@@ -41,7 +41,7 @@
 #define _LINEGROUP_cpp
 
 #include "linegroup.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "entresol.h"
 
 #include <Ogre.h>

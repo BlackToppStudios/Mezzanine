@@ -58,7 +58,7 @@ namespace Mezzanine
     namespace Physics
     {
         RigidProxy::RigidProxy(const Real Mass, PhysicsManager* Creator) :
-            PhysicsProxy(Creator),
+            CollidableProxy(Creator),
             PhysicsRigidBody(NULL)
         {
             this->CreateRigidObject(Mass);
@@ -122,14 +122,14 @@ namespace Mezzanine
                     btVector3 Inertia(0,0,0);
                     Shape->_GetInternalShape()->calculateLocalInertia(Mass,Inertia);
                     this->PhysicsRigidBody->setMassProps(Mass,Inertia);
-                    this->PhysicsProxy::SetCollisionShape(Shape);
+                    this->CollidableProxy::SetCollisionShape(Shape);
                     this->PhysicsRigidBody->updateInertiaTensor();
                 }else{
-                    this->PhysicsProxy::SetCollisionShape(Shape);
+                    this->CollidableProxy::SetCollisionShape(Shape);
                 }
                 CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
             }else{
-                this->PhysicsProxy::SetCollisionShape(Shape);
+                this->CollidableProxy::SetCollisionShape(Shape);
             }
         }
 
@@ -241,7 +241,7 @@ namespace Mezzanine
 
         void RigidProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            this->PhysicsProxy::ProtoSerialize(SelfRoot);
+            this->CollidableProxy::ProtoSerialize(SelfRoot);
             // We're at the base implementation, so no calling of child implementations
             XML::Node PropertiesNode = SelfRoot.AppendChild( RigidProxy::GetSerializableName() + "Properties" );
 
@@ -281,7 +281,7 @@ namespace Mezzanine
         void RigidProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
             this->PhysicsRigidBody->clearForces();
-            this->PhysicsProxy::ProtoDeSerialize(SelfRoot);
+            this->CollidableProxy::ProtoDeSerialize(SelfRoot);
             // We're at the base implementation, so no calling of child implementations
             XML::Attribute CurrAttrib;
             XML::Node PropertiesNode = SelfRoot.GetChild( RigidProxy::GetSerializableName() + "Properties" );

@@ -87,7 +87,7 @@ namespace Mezzanine
         class CollisionDispatcher;
         class ParallelCollisionDispatcher;
         class PhysicsManager;
-        class PhysicsProxy;
+        class CollidableProxy;
         class GhostProxy;
         class RigidProxy;
         class SoftProxy;
@@ -239,11 +239,11 @@ namespace Mezzanine
         class MEZZ_LIB PhysicsManager : public WorldManager
         {
         public:
-            /// @brief Basic container type for @ref PhysicsProxy storage by this class.
-            typedef std::vector< PhysicsProxy* >                ProxyContainer;
-            /// @brief Iterator type for @ref PhysicsProxy instances stored by this class.
+            /// @brief Basic container type for @ref CollidableProxy storage by this class.
+            typedef std::vector< CollidableProxy* >                ProxyContainer;
+            /// @brief Iterator type for @ref CollidableProxy instances stored by this class.
             typedef ProxyContainer::iterator                    ProxyIterator;
-            /// @brief Const Iterator type for @ref PhysicsProxy instances stored by this class.
+            /// @brief Const Iterator type for @ref CollidableProxy instances stored by this class.
             typedef ProxyContainer::const_iterator              ConstProxyIterator;
             /// @brief Basic container type for @ref Constraint storage by this class.
             typedef std::vector< Constraint* >                  ConstraintContainer;
@@ -396,17 +396,17 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
 
-            /// @brief Gets a PhysicsProxy instance by index.
-            /// @param Index The index of the PhysicsProxy to be retrieved.
-            /// @return Returns a pointer to the PhysicsProxy at the specified index.
-            PhysicsProxy* GetProxy(const UInt32 Index) const;
-            /// @brief Gets the number of PhysicsProxy instances in this manager.
-            /// @return Returns a UInt32 representing the number of PhysicsProxy instances contained in this manager.
+            /// @brief Gets a CollidableProxy instance by index.
+            /// @param Index The index of the CollidableProxy to be retrieved.
+            /// @return Returns a pointer to the CollidableProxy at the specified index.
+            CollidableProxy* GetProxy(const UInt32 Index) const;
+            /// @brief Gets the number of CollidableProxy instances in this manager.
+            /// @return Returns a UInt32 representing the number of CollidableProxy instances contained in this manager.
             UInt32 GetNumProxies() const;
-            /// @brief Deletes a PhysicsProxy.
-            /// @param ToBeDestroyed A pointer to the PhysicsProxy you want deleted.
-            void DestroyProxy(PhysicsProxy* ToBeDestroyed);
-            /// @brief Deletes all stored PhysicsProxy instances.
+            /// @brief Deletes a CollidableProxy.
+            /// @param ToBeDestroyed A pointer to the CollidableProxy you want deleted.
+            void DestroyProxy(CollidableProxy* ToBeDestroyed);
+            /// @brief Deletes all stored CollidableProxy instances.
             void DestroyAllProxies();
 
             ///////////////////////////////////////////////////////////////////////////////

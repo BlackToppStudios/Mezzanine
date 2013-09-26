@@ -45,8 +45,8 @@
 #include "worldobject.h"
 #include "Graphics/mesh.h"
 #include "serialization.h"
-#include "meshmanager.h"
-#include "scenemanager.h"
+#include "Graphics/meshmanager.h"
+#include "Graphics/scenemanager.h"
 #include "stringtool.h"
 #include "entresol.h"
 
@@ -98,7 +98,7 @@ namespace Mezzanine
     {
         this->IWOGS = new Internal::InternalWorldObjectGraphicsSettings(GraphicsObject);
         if(IWOGS->WorldObjectEnt)
-            WorldObjectMesh = MeshManager::GetSingletonPtr()->GetMesh(GraphicsObject->getMesh()->getName());
+            WorldObjectMesh = Graphics::MeshManager::GetSingletonPtr()->GetMesh(GraphicsObject->getMesh()->getName());
     }
 
     WorldObjectGraphicsSettings::~WorldObjectGraphicsSettings()
@@ -135,7 +135,7 @@ namespace Mezzanine
 
     void WorldObjectGraphicsSettings::SetMesh(const String& MeshName, const String& Group)
     {
-        Graphics::Mesh* TheMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
+        Graphics::Mesh* TheMesh = Graphics::MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         this->SetMesh(TheMesh);
     }
 

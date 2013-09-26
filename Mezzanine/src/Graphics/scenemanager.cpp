@@ -59,7 +59,7 @@
 
 namespace Mezzanine
 {
-    namespace Internal
+    namespace Graphics
     {
         /// @brief Stores internal data for the SCeneManager to keep it from cluttering the Header file
         /// @internal
@@ -171,696 +171,695 @@ namespace Mezzanine
                 }
                 Ogre::Root::getSingleton().destroySceneManager(OgreManager);
             }
-        };
-    }
+        };//SceneManagerData
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // TrackingNodeUpdateWorkUnit Methods
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // TrackingNodeUpdateWorkUnit Methods
+        TrackingNodeUpdateWorkUnit::TrackingNodeUpdateWorkUnit(const TrackingNodeUpdateWorkUnit& Other)
+            {  }
 
-    TrackingNodeUpdateWorkUnit::TrackingNodeUpdateWorkUnit(const TrackingNodeUpdateWorkUnit& Other)
-        {  }
+        TrackingNodeUpdateWorkUnit& TrackingNodeUpdateWorkUnit::operator=(const TrackingNodeUpdateWorkUnit& Other)
+            { return *this; }
 
-    TrackingNodeUpdateWorkUnit& TrackingNodeUpdateWorkUnit::operator=(const TrackingNodeUpdateWorkUnit& Other)
-        { return *this; }
+        TrackingNodeUpdateWorkUnit::TrackingNodeUpdateWorkUnit(SceneManager* Target) :
+            TargetManager(Target) {  }
 
-    TrackingNodeUpdateWorkUnit::TrackingNodeUpdateWorkUnit(SceneManager* Target) :
-        TargetManager(Target) {  }
+        TrackingNodeUpdateWorkUnit::~TrackingNodeUpdateWorkUnit()
+            {  }
 
-    TrackingNodeUpdateWorkUnit::~TrackingNodeUpdateWorkUnit()
-        {  }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Utility
-
-    void TrackingNodeUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-    {
-        this->TargetManager->UpdateTrackingNodes();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // SceneManager Methods
-
-    SceneManager::SceneManager(const String& InternalManagerTypeName) :
-        TrackingNodeUpdateWork(NULL),
-        ThreadResources(NULL)
-    {
-        this->SMD = new Internal::SceneManagerData(this);
-        this->TrackingNodeUpdateWork = new TrackingNodeUpdateWorkUnit(this);
-        this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(InternalManagerTypeName);
-        //this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
-        //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
-        //OgreManager->setShadowCameraSetup(ShadowCam);
-    }
-
-    SceneManager::SceneManager(XML::Node& XMLNode) :
-        TrackingNodeUpdateWork(NULL),
-        ThreadResources(NULL)
-    {
-        this->SMD = new Internal::SceneManagerData(this);
-        this->TrackingNodeUpdateWork = new TrackingNodeUpdateWorkUnit(this);
-
-        XML::Attribute CurrAttrib;
-        // Get the name of the manager to construct.
-        String ManagerName;
-        XML::Node ManagerType = XMLNode.GetChild("ManagerType");
-        if(!ManagerType.Empty())
+        void TrackingNodeUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
-            CurrAttrib = ManagerType.GetAttribute("TypeName");
-            if(!CurrAttrib.Empty())
-                ManagerName = CurrAttrib.AsString();
+            this->TargetManager->UpdateTrackingNodes();
         }
-        if(ManagerName.empty())
-            ManagerName = "Default";
-        this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(ManagerName+"SceneManager");
 
-        // Setup the shadow configuration
-        bool TextureShadows = false;
-        XML::Node ShadowSettings = XMLNode.GetChild("ShadowSettings");
-        if(!ShadowSettings.Empty())
+        ///////////////////////////////////////////////////////////////////////////////
+        // SceneManager Methods
+
+        SceneManager::SceneManager(const String& InternalManagerTypeName) :
+            TrackingNodeUpdateWork(NULL),
+            ThreadResources(NULL)
         {
-            String TechniqueName;
-            CurrAttrib = ShadowSettings.GetAttribute("Technique");
-            if(!CurrAttrib.Empty())
+            this->SMD = new SceneManagerData(this);
+            this->TrackingNodeUpdateWork = new TrackingNodeUpdateWorkUnit(this);
+            this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(InternalManagerTypeName);
+            //this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
+            //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
+            //OgreManager->setShadowCameraSetup(ShadowCam);
+        }
+
+        SceneManager::SceneManager(XML::Node& XMLNode) :
+            TrackingNodeUpdateWork(NULL),
+            ThreadResources(NULL)
+        {
+            this->SMD = new SceneManagerData(this);
+            this->TrackingNodeUpdateWork = new TrackingNodeUpdateWorkUnit(this);
+
+            XML::Attribute CurrAttrib;
+            // Get the name of the manager to construct.
+            String ManagerName;
+            XML::Node ManagerType = XMLNode.GetChild("ManagerType");
+            if(!ManagerType.Empty())
             {
-                TechniqueName = CurrAttrib.AsString();
-                if( "StencilModulative" == TechniqueName )
-                    SetSceneShadowTechnique(SST_Stencil_Modulative);
-                else if( "StencilAdditive" == TechniqueName )
-                    SetSceneShadowTechnique(SST_Stencil_Additive);
-                else if( "TextureModulative" == TechniqueName )
-                    SetSceneShadowTechnique(SST_Texture_Modulative);
-                else if( "TextureAdditive" == TechniqueName )
-                    SetSceneShadowTechnique(SST_Texture_Additive);
-                else if( "TextureAdditiveIntegrated" == TechniqueName )
-                    SetSceneShadowTechnique(SST_Texture_Additive_Integrated);
-                else if( "TextureModulativeIntegrated" == TechniqueName )
-                    SetSceneShadowTechnique(SST_Texture_Modulative_Integrated);
+                CurrAttrib = ManagerType.GetAttribute("TypeName");
+                if(!CurrAttrib.Empty())
+                    ManagerName = CurrAttrib.AsString();
             }
+            if(ManagerName.empty())
+                ManagerName = "Default";
+            this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(ManagerName+"SceneManager");
 
-            if(!TechniqueName.empty())
+            // Setup the shadow configuration
+            bool TextureShadows = false;
+            XML::Node ShadowSettings = XMLNode.GetChild("ShadowSettings");
+            if(!ShadowSettings.Empty())
             {
-                if(String::npos != TechniqueName.find("Texture"))
-                    TextureShadows = true;
-
-                CurrAttrib = ShadowSettings.GetAttribute("ShadowColour");
-                if(!CurrAttrib)
-                    SetShadowColour(StringTools::ConvertToColourValue(CurrAttrib.AsString()));
-
-                CurrAttrib = ShadowSettings.GetAttribute("ShadowFarDistance");
-                if(!CurrAttrib)
-                    SetShadowFarDistance(CurrAttrib.AsReal());
-            }
-        }
-
-        // Setup texture shadow settings if any are set.
-        XML::Node TextureShadowSettings = XMLNode.GetChild("TextureShadowSettings");
-        if(!TextureShadowSettings.Empty() && TextureShadows)
-        {
-            CurrAttrib = TextureShadowSettings.GetAttribute("ShadowTextureCount");
-            if(!CurrAttrib.Empty())
-                SetShadowTextureCount(CurrAttrib.AsWhole());
-
-            CurrAttrib = TextureShadowSettings.GetAttribute("ShadowTextureSize");
-            if(!CurrAttrib.Empty())
-                SetShadowTextureSize(static_cast<unsigned short>(CurrAttrib.AsWhole()));
-        }
-    }
-
-    SceneManager::~SceneManager()
-    {
-        this->Deinitialize();
-
-        delete TrackingNodeUpdateWork;
-
-        this->DestroyAllLights();
-        this->DestroyAllParticleEffects();
-        this->DestroyAllWorldNodes();
-        delete SMD;
-    }
-
-    void SceneManager::UpdateTrackingNodes()
-    {
-        for( std::set<WorldNode*>::iterator it = TrackingNodes.begin() ; it != TrackingNodes.end() ; ++it )
-        {
-            (*it)->_UpdateTracking();
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Shadow Management
-
-    void SceneManager::SetSceneShadowTechnique(SceneShadowTechnique Shadows)
-    {
-        Ogre::ShadowTechnique Type;
-        switch (Shadows)
-        {
-            case SST_Stencil_Modulative:
-                Type = Ogre::SHADOWTYPE_STENCIL_MODULATIVE;
-                break;
-            case SST_Stencil_Additive:
-                Type = Ogre::SHADOWTYPE_STENCIL_ADDITIVE;
-                break;
-            case SST_Texture_Modulative:
-                Type = Ogre::SHADOWTYPE_TEXTURE_MODULATIVE;
-                break;
-            case SST_Texture_Additive:
-                Type = Ogre::SHADOWTYPE_TEXTURE_ADDITIVE;
-                break;
-            case SST_Texture_Additive_Integrated:
-                Type = Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED;
-                break;
-            case SST_Texture_Modulative_Integrated:
-                Type = Ogre::SHADOWTYPE_TEXTURE_MODULATIVE_INTEGRATED;
-                break;
-            default:
-                Type = Ogre::SHADOWTYPE_NONE;
-        }
-        this->SMD->OgreManager->setShadowTechnique(Type);
-    }
-
-    SceneManager::SceneShadowTechnique SceneManager::GetSceneShadowTechnique() const
-    {
-        Ogre::ShadowTechnique ShadowType = this->SMD->OgreManager->getShadowTechnique();
-        switch (ShadowType)
-        {
-            case Ogre::SHADOWTYPE_STENCIL_MODULATIVE:
-                return SST_Stencil_Modulative;
-                break;
-            case Ogre::SHADOWTYPE_STENCIL_ADDITIVE:
-                return SST_Stencil_Additive;
-                break;
-            case Ogre::SHADOWTYPE_TEXTURE_MODULATIVE:
-                return SST_Texture_Modulative;
-                break;
-            case Ogre::SHADOWTYPE_TEXTURE_ADDITIVE:
-                return SST_Texture_Additive;
-                break;
-            case Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED:
-                return SST_Texture_Additive_Integrated;
-                break;
-            case Ogre::SHADOWTYPE_TEXTURE_MODULATIVE_INTEGRATED:
-                return SST_Texture_Modulative_Integrated;
-                break;
-            default:
-                return SST_None;
-        }
-    }
-
-    void SceneManager::SetShadowTextureCount(const Whole& Count)
-        { this->SMD->OgreManager->setShadowTextureCount(Count); }
-
-    Whole SceneManager::GetShadowTextureCount() const
-        { return this->SMD->OgreManager->getShadowTextureCount(); }
-
-    void SceneManager::SetShadowTextureSize(unsigned short Size)
-    {
-        this->SMD->OgreManager->setShadowTextureSize(Size);
-        this->SMD->ShadowTextureSize=Size;
-    }
-
-    unsigned short SceneManager::GetShadowTextureSize() const
-        { return this->SMD->ShadowTextureSize; }
-
-    void SceneManager::SetShadowFarDistance(const Real& FarDist)
-        { this->SMD->OgreManager->setShadowFarDistance(FarDist); }
-
-    Real SceneManager::GetShadowFarDistance() const
-        { return this->SMD->OgreManager->getShadowFarDistance(); }
-
-    void SceneManager::SetShadowColour(const ColourValue& ShadowColour)
-        { this->SMD->OgreManager->setShadowColour(ShadowColour.GetOgreColourValue()); }
-
-    ColourValue SceneManager::GetShadowColour() const
-    {
-        ColourValue Shadow(this->SMD->OgreManager->getShadowColour());
-        return Shadow;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Sky Surface Management
-
-    void SceneManager::CreateSkyPlane(const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, bool DrawFirst, Real Bow, int XSegments, int YSegments)
-    {
-        this->SMD->DisableSky(this);
-        this->SMD->UpdateSkyCache(SkyPlane, Material, Quaternion(0,0,0,0), Group, DrawFirst, SkyPlane_);
-        this->SMD->OgreManager->setSkyPlane(true, SkyPlane_.GetOgrePlane(), Material, Scale, Tiling, DrawFirst, Bow, XSegments, YSegments, Group);
-    }
-
-    void SceneManager::DisableSkyPlane()
-    {
-        this->SMD->OgreManager->setSkyPlane(false, Ogre::Plane(), "");
-    }
-
-    void SceneManager::CreateSkyBox(const String& Material, const String& Group, Real Distance, bool DrawFirst, Quaternion Orientation)
-    {
-        this->SMD->DisableSky(this);
-        this->SMD->UpdateSkyCache(SkyBox, Material, Orientation, Group, DrawFirst);
-        this->SMD->OgreManager->setSkyBox(true, Material, Distance, DrawFirst, Orientation.GetOgreQuaternion(), Group);
-    }
-
-    void SceneManager::DisableSkyBox()
-    {
-        this->SMD->OgreManager->setSkyBox(false, "");
-    }
-
-    void SceneManager::CreateSkyDome(const String& Material, const String& Group, Real Distance, Real Curvature, Real Tiling, bool DrawFirst,
-                                    Quaternion Orientation, int XSegments, int YSegments)
-    {
-        this->SMD->DisableSky(this);
-        this->SMD->UpdateSkyCache(SkyDome, Material, Orientation, Group, DrawFirst);
-        this->SMD->OgreManager->setSkyDome(true, Material, Curvature, Tiling, Distance, DrawFirst, Orientation.GetOgreQuaternion(), XSegments, YSegments, -1, Group);
-    }
-
-    void SceneManager::DisableSkyDome()
-    {
-        this->SMD->OgreManager->setSkyDome(false, "");
-    }
-
-    void SceneManager::DisableSky()
-    {
-        this->SMD->DisableSky(this);
-        this->SMD->UpdateSkyCache();
-    }
-
-    SceneManager::SkyMethod SceneManager::WhichSky() const
-        { return this->SMD->ActiveSky; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Light Management
-
-    void SceneManager::SetAmbientLight(Real Red, Real Green, Real Blue, Real Alpha)
-    {
-        this->SMD->OgreManager->setAmbientLight(Ogre::ColourValue(Red, Green, Blue, Alpha));
-    }
-
-    void SceneManager::SetAmbientLight(const ColourValue &LightColor)
-    {
-        this->SMD->OgreManager->setAmbientLight(LightColor.GetOgreColourValue());
-    }
-
-    ColourValue SceneManager::GetAmbientLight() const
-    {
-
-        return ColourValue(this->SMD->OgreManager->getAmbientLight());
-    }
-
-    Light* SceneManager::CreateLight(const String& Name)
-    {
-        Light* light = new Light(this->SMD->OgreManager->createLight(Name), this);
-        Lights.push_back(light);
-        return light;
-    }
-
-    Light* SceneManager::GetLight(const String& Name) const
-    {
-        if(Lights.empty())
-            return 0;
-        for( std::vector<Light*>::const_iterator it = Lights.begin() ; it != Lights.end() ; it++ )
-        {
-            if( Name == (*it)->GetName() )
-            {
-                return (*it);
-            }
-        }
-        return 0;
-    }
-
-    Light* SceneManager::GetLight(const Whole& Index) const
-    {
-        return Lights[Index];
-    }
-
-    Whole SceneManager::GetNumLights() const
-    {
-        return Lights.size();
-    }
-
-    void SceneManager::DestroyLight(Light* ToBeDestroyed)
-    {
-        if(Lights.empty())
-            return;
-        for( std::vector<Light*>::iterator it = Lights.begin() ; it != Lights.end() ; it++ )
-        {
-            if( ToBeDestroyed == (*it) )
-            {
-                delete (*it);
-                Lights.erase(it);
-                return;
-            }
-        }
-    }
-
-    void SceneManager::DestroyAllLights()
-    {
-        for( Whole X = 0 ; X < Lights.size() ; X++ )
-            delete Lights[X];
-        Lights.clear();
-    }
-
-    SceneManager::LightIterator SceneManager::BeginLight()
-        { return this->Lights.begin(); }
-
-    SceneManager::LightIterator SceneManager::EndLight()
-        { return this->Lights.end(); }
-
-    SceneManager::ConstLightIterator SceneManager::BeginLight() const
-        { return this->Lights.begin(); }
-
-    SceneManager::ConstLightIterator SceneManager::EndLight() const
-        { return this->Lights.end(); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Particle Effect Management
-
-    ParticleEffect* SceneManager::CreateParticleEffect(const String& Name, const String& Template)
-    {
-        ParticleEffect* Particle = new ParticleEffect(Name,Template,this);
-        Particles.push_back(Particle);
-        return Particle;
-    }
-
-    ParticleEffect* SceneManager::GetParticleEffect(const String& Name) const
-    {
-        if(Particles.empty())
-            return 0;
-        for( SceneManager::ConstParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
-        {
-            if( Name == (*it)->GetName() )
-            {
-                return (*it);
-            }
-        }
-        return 0;
-    }
-
-    ParticleEffect* SceneManager::GetParticleEffect(const Whole& Index) const
-    {
-        return Particles[Index];
-    }
-
-    Whole SceneManager::GetNumParticleEffects() const
-    {
-        return Particles.size();
-    }
-
-    void SceneManager::DestroyParticleEffect(ParticleEffect* ToBeDestroyed)
-    {
-        if(Particles.empty())
-            return;
-        for( SceneManager::ParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
-        {
-            if( ToBeDestroyed == (*it) )
-            {
-                delete (*it);
-                Particles.erase(it);
-                return;
-            }
-        }
-    }
-
-    void SceneManager::DestroyAllParticleEffects()
-    {
-        for( Whole X = 0 ; X < Particles.size() ; X++ )
-            delete Particles[X];
-        Particles.clear();
-    }
-
-    void SceneManager::PauseAllParticles(bool Pause)
-    {
-        for( SceneManager::ParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
-            (*it)->PauseParticleEffect(Pause);
-    }
-
-    SceneManager::ParticleIterator SceneManager::BeginParticleEffect()
-        { return this->Particles.begin(); }
-
-    SceneManager::ParticleIterator SceneManager::EndParticleEffect()
-        { return this->Particles.end(); }
-
-    SceneManager::ConstParticleIterator SceneManager::BeginParticleEffect() const
-        { return this->Particles.begin(); }
-
-    SceneManager::ConstParticleIterator SceneManager::EndParticleEffect() const
-        { return this->Particles.end(); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Entity Management
-
-    Entity* SceneManager::CreateEntity(const String& EntName, const String& MeshName, const String& Group)
-    {
-        Entity* Ent = new Entity(EntName,MeshName,Group,this);
-        Entities.push_back(Ent);
-        return Ent;
-    }
-
-    Entity* SceneManager::GetEntity(const String& Name) const
-    {
-        if(Entities.empty())
-            return 0;
-        for( std::vector<Entity*>::const_iterator it = Entities.begin() ; it != Entities.end() ; it++ )
-        {
-            if( Name == (*it)->GetName() )
-            {
-                return (*it);
-            }
-        }
-        return 0;
-    }
-
-    Entity* SceneManager::GetEntity(const Whole& Index) const
-    {
-        return Entities[Index];
-    }
-
-    Whole SceneManager::GetNumEntities() const
-    {
-        return Entities.size();
-    }
-
-    void SceneManager::DestroyEntity(Entity* ToBeDestroyed)
-    {
-        if(Entities.empty())
-            return;
-        for( std::vector<Entity*>::iterator it = Entities.begin() ; it != Entities.end() ; it++ )
-        {
-            if( ToBeDestroyed == (*it) )
-            {
-                delete (*it);
-                Entities.erase(it);
-                return;
-            }
-        }
-    }
-
-    void SceneManager::DestroyAllEntities()
-    {
-        for( Whole X = 0 ; X < Entities.size() ; X++ )
-            delete Entities[X];
-        Entities.clear();
-    }
-
-    SceneManager::EntityIterator SceneManager::BeginEntity()
-        { return this->Entities.begin(); }
-
-    SceneManager::EntityIterator SceneManager::EndEntity()
-        { return this->Entities.end(); }
-
-    SceneManager::ConstEntityIterator SceneManager::BeginEntity() const
-        { return this->Entities.begin(); }
-
-    SceneManager::ConstEntityIterator SceneManager::EndEntity() const
-        { return this->Entities.end(); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // WorldNode Management
-
-    WorldNode* SceneManager::CreateWorldNode(const String& Name)
-    {
-        WorldNode* MezzNode = new WorldNode(Name,this);
-        WorldNodes.push_back(MezzNode);
-        return MezzNode;
-    }
-
-    WorldNode* SceneManager::GetNode(const String& Name) const
-    {
-        if(WorldNodes.empty())
-            return 0;
-        for( ConstWorldNodeIterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
-        {
-            if( Name == (*it)->GetName() )
-            {
-                WorldNode* node = (*it);
-                return node;
-            }
-        }
-        return 0;
-    }
-
-    WorldNode* SceneManager::GetNode(const Whole& Index) const
-    {
-        return WorldNodes[Index];
-    }
-
-    Whole SceneManager::GetNumNodes() const
-    {
-        return WorldNodes.size();
-    }
-
-    void SceneManager::DestroyNode(WorldNode* ToBeDestroyed)
-    {
-        if(WorldNodes.empty())
-            return;
-        for( WorldNodeIterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
-        {
-            if( ToBeDestroyed == (*it) )
-            {
-                delete (*it);
-                WorldNodes.erase(it);
-                return;
-            }
-        }
-    }
-
-    void SceneManager::DestroyAllWorldNodes()
-    {
-        for( Whole X = 0 ; X < WorldNodes.size() ; X++ )
-            delete WorldNodes[X];
-        WorldNodes.clear();
-    }
-
-    SceneManager::WorldNodeIterator SceneManager::BeginWorldNode()
-        { return this->WorldNodes.begin(); }
-
-    SceneManager::WorldNodeIterator SceneManager::EndWorldNode()
-        { return this->WorldNodes.end(); }
-
-    SceneManager::ConstWorldNodeIterator SceneManager::BeginWorldNode() const
-        { return this->WorldNodes.begin(); }
-
-    SceneManager::ConstWorldNodeIterator SceneManager::EndWorldNode() const
-        { return this->WorldNodes.end(); }
-
-    void SceneManager::_RegisterTrackingNode(WorldNode* Tracker)
-        { TrackingNodes.insert(Tracker); }
-
-    void SceneManager::_UnRegisterTrackingNode(WorldNode* Tracker)
-        { TrackingNodes.erase(TrackingNodes.find(Tracker)); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Utility
-
-    ConstString& SceneManager::GetName() const
-        { return this->SMD->OgreManager->getName(); }
-
-    void SceneManager::Pause(const UInt32 PL)
-    {
-        // Do nothing for now
-    }
-
-    void SceneManager::Initialize()
-    {
-        if( !this->Initialized )
-        {
-            //WorldManager::Initialize();
-
-            this->TheEntresol->GetScheduler().AddWorkUnitMain( this->TrackingNodeUpdateWork, "TrackingNodeUpdateWork" );
-
-            Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
-            if( PhysicsMan ) {
-                this->TrackingNodeUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
-            }
-
-            Mezzanine::AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-            if( AreaEffectMan ) {
-                this->TrackingNodeUpdateWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
-            }
-
-            this->Initialized = true;
-        }
-    }
-
-    void SceneManager::Deinitialize()
-    {
-        if( this->Initialized )
-        {
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->TrackingNodeUpdateWork );
-            this->TrackingNodeUpdateWork->ClearDependencies();
-
-            this->Initialized = false;
-        }
-    }
-
-    TrackingNodeUpdateWorkUnit* SceneManager::GetTrackingNodeUpdateWork()
-        { return this->TrackingNodeUpdateWork; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Type Identifier Methods
-
-    ManagerBase::ManagerType SceneManager::GetInterfaceType() const
-        { return ManagerBase::MT_SceneManager; }
-
-    String SceneManager::GetImplementationTypeName() const
-        { return "DefaultSceneManager"; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Internal/Other
-
-    Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
-        { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
-
-    Internal::SceneManagerData* SceneManager::GetRawInternalDataPointer() const
-        { return this->SMD; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // DefaultSceneManagerFactory Methods
-
-    DefaultSceneManagerFactory::DefaultSceneManagerFactory()
-    {
-    }
-
-    DefaultSceneManagerFactory::~DefaultSceneManagerFactory()
-    {
-    }
-
-    String DefaultSceneManagerFactory::GetManagerTypeName() const
-    {
-        return "DefaultSceneManager";
-    }
-
-    ManagerBase* DefaultSceneManagerFactory::CreateManager(NameValuePairList& Params)
-    {
-        if(Params.empty()) return new SceneManager();
-        else
-        {
-            String InternalManagerTypeName;
-            for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
-            {
-                String Lower = (*ParIt).first;
-                StringTools::ToLowerCase(Lower);
-                if( "internalmanagertypename" == Lower )
+                String TechniqueName;
+                CurrAttrib = ShadowSettings.GetAttribute("Technique");
+                if(!CurrAttrib.Empty())
                 {
-                    InternalManagerTypeName = (*ParIt).second;
+                    TechniqueName = CurrAttrib.AsString();
+                    if( "StencilModulative" == TechniqueName )
+                        SetSceneShadowTechnique(SST_Stencil_Modulative);
+                    else if( "StencilAdditive" == TechniqueName )
+                        SetSceneShadowTechnique(SST_Stencil_Additive);
+                    else if( "TextureModulative" == TechniqueName )
+                        SetSceneShadowTechnique(SST_Texture_Modulative);
+                    else if( "TextureAdditive" == TechniqueName )
+                        SetSceneShadowTechnique(SST_Texture_Additive);
+                    else if( "TextureAdditiveIntegrated" == TechniqueName )
+                        SetSceneShadowTechnique(SST_Texture_Additive_Integrated);
+                    else if( "TextureModulativeIntegrated" == TechniqueName )
+                        SetSceneShadowTechnique(SST_Texture_Modulative_Integrated);
+                }
+
+                if(!TechniqueName.empty())
+                {
+                    if(String::npos != TechniqueName.find("Texture"))
+                        TextureShadows = true;
+
+                    CurrAttrib = ShadowSettings.GetAttribute("ShadowColour");
+                    if(!CurrAttrib)
+                        SetShadowColour(StringTools::ConvertToColourValue(CurrAttrib.AsString()));
+
+                    CurrAttrib = ShadowSettings.GetAttribute("ShadowFarDistance");
+                    if(!CurrAttrib)
+                        SetShadowFarDistance(CurrAttrib.AsReal());
                 }
             }
-            return new SceneManager(InternalManagerTypeName);
+
+            // Setup texture shadow settings if any are set.
+            XML::Node TextureShadowSettings = XMLNode.GetChild("TextureShadowSettings");
+            if(!TextureShadowSettings.Empty() && TextureShadows)
+            {
+                CurrAttrib = TextureShadowSettings.GetAttribute("ShadowTextureCount");
+                if(!CurrAttrib.Empty())
+                    SetShadowTextureCount(CurrAttrib.AsWhole());
+
+                CurrAttrib = TextureShadowSettings.GetAttribute("ShadowTextureSize");
+                if(!CurrAttrib.Empty())
+                    SetShadowTextureSize(static_cast<unsigned short>(CurrAttrib.AsWhole()));
+            }
         }
-    }
 
-    ManagerBase* DefaultSceneManagerFactory::CreateManager(XML::Node& XMLNode)
-    {
-        return new SceneManager(XMLNode);
-    }
+        SceneManager::~SceneManager()
+        {
+            this->Deinitialize();
 
-    void DefaultSceneManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-    {
-        delete ToBeDestroyed;
-    }
+            delete TrackingNodeUpdateWork;
+
+            this->DestroyAllLights();
+            this->DestroyAllParticleEffects();
+            this->DestroyAllWorldNodes();
+            delete SMD;
+        }
+
+        void SceneManager::UpdateTrackingNodes()
+        {
+            for( std::set<WorldNode*>::iterator it = TrackingNodes.begin() ; it != TrackingNodes.end() ; ++it )
+            {
+                (*it)->_UpdateTracking();
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Shadow Management
+
+        void SceneManager::SetSceneShadowTechnique(SceneShadowTechnique Shadows)
+        {
+            Ogre::ShadowTechnique Type;
+            switch (Shadows)
+            {
+                case SST_Stencil_Modulative:
+                    Type = Ogre::SHADOWTYPE_STENCIL_MODULATIVE;
+                    break;
+                case SST_Stencil_Additive:
+                    Type = Ogre::SHADOWTYPE_STENCIL_ADDITIVE;
+                    break;
+                case SST_Texture_Modulative:
+                    Type = Ogre::SHADOWTYPE_TEXTURE_MODULATIVE;
+                    break;
+                case SST_Texture_Additive:
+                    Type = Ogre::SHADOWTYPE_TEXTURE_ADDITIVE;
+                    break;
+                case SST_Texture_Additive_Integrated:
+                    Type = Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED;
+                    break;
+                case SST_Texture_Modulative_Integrated:
+                    Type = Ogre::SHADOWTYPE_TEXTURE_MODULATIVE_INTEGRATED;
+                    break;
+                default:
+                    Type = Ogre::SHADOWTYPE_NONE;
+            }
+            this->SMD->OgreManager->setShadowTechnique(Type);
+        }
+
+        SceneManager::SceneShadowTechnique SceneManager::GetSceneShadowTechnique() const
+        {
+            Ogre::ShadowTechnique ShadowType = this->SMD->OgreManager->getShadowTechnique();
+            switch (ShadowType)
+            {
+                case Ogre::SHADOWTYPE_STENCIL_MODULATIVE:
+                    return SST_Stencil_Modulative;
+                    break;
+                case Ogre::SHADOWTYPE_STENCIL_ADDITIVE:
+                    return SST_Stencil_Additive;
+                    break;
+                case Ogre::SHADOWTYPE_TEXTURE_MODULATIVE:
+                    return SST_Texture_Modulative;
+                    break;
+                case Ogre::SHADOWTYPE_TEXTURE_ADDITIVE:
+                    return SST_Texture_Additive;
+                    break;
+                case Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED:
+                    return SST_Texture_Additive_Integrated;
+                    break;
+                case Ogre::SHADOWTYPE_TEXTURE_MODULATIVE_INTEGRATED:
+                    return SST_Texture_Modulative_Integrated;
+                    break;
+                default:
+                    return SST_None;
+            }
+        }
+
+        void SceneManager::SetShadowTextureCount(const Whole& Count)
+            { this->SMD->OgreManager->setShadowTextureCount(Count); }
+
+        Whole SceneManager::GetShadowTextureCount() const
+            { return this->SMD->OgreManager->getShadowTextureCount(); }
+
+        void SceneManager::SetShadowTextureSize(unsigned short Size)
+        {
+            this->SMD->OgreManager->setShadowTextureSize(Size);
+            this->SMD->ShadowTextureSize=Size;
+        }
+
+        unsigned short SceneManager::GetShadowTextureSize() const
+            { return this->SMD->ShadowTextureSize; }
+
+        void SceneManager::SetShadowFarDistance(const Real& FarDist)
+            { this->SMD->OgreManager->setShadowFarDistance(FarDist); }
+
+        Real SceneManager::GetShadowFarDistance() const
+            { return this->SMD->OgreManager->getShadowFarDistance(); }
+
+        void SceneManager::SetShadowColour(const ColourValue& ShadowColour)
+            { this->SMD->OgreManager->setShadowColour(ShadowColour.GetOgreColourValue()); }
+
+        ColourValue SceneManager::GetShadowColour() const
+        {
+            ColourValue Shadow(this->SMD->OgreManager->getShadowColour());
+            return Shadow;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Sky Surface Management
+
+        void SceneManager::CreateSkyPlane(const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, bool DrawFirst, Real Bow, int XSegments, int YSegments)
+        {
+            this->SMD->DisableSky(this);
+            this->SMD->UpdateSkyCache(SkyPlane, Material, Quaternion(0,0,0,0), Group, DrawFirst, SkyPlane_);
+            this->SMD->OgreManager->setSkyPlane(true, SkyPlane_.GetOgrePlane(), Material, Scale, Tiling, DrawFirst, Bow, XSegments, YSegments, Group);
+        }
+
+        void SceneManager::DisableSkyPlane()
+        {
+            this->SMD->OgreManager->setSkyPlane(false, Ogre::Plane(), "");
+        }
+
+        void SceneManager::CreateSkyBox(const String& Material, const String& Group, Real Distance, bool DrawFirst, Quaternion Orientation)
+        {
+            this->SMD->DisableSky(this);
+            this->SMD->UpdateSkyCache(SkyBox, Material, Orientation, Group, DrawFirst);
+            this->SMD->OgreManager->setSkyBox(true, Material, Distance, DrawFirst, Orientation.GetOgreQuaternion(), Group);
+        }
+
+        void SceneManager::DisableSkyBox()
+        {
+            this->SMD->OgreManager->setSkyBox(false, "");
+        }
+
+        void SceneManager::CreateSkyDome(const String& Material, const String& Group, Real Distance, Real Curvature, Real Tiling, bool DrawFirst,
+                                        Quaternion Orientation, int XSegments, int YSegments)
+        {
+            this->SMD->DisableSky(this);
+            this->SMD->UpdateSkyCache(SkyDome, Material, Orientation, Group, DrawFirst);
+            this->SMD->OgreManager->setSkyDome(true, Material, Curvature, Tiling, Distance, DrawFirst, Orientation.GetOgreQuaternion(), XSegments, YSegments, -1, Group);
+        }
+
+        void SceneManager::DisableSkyDome()
+        {
+            this->SMD->OgreManager->setSkyDome(false, "");
+        }
+
+        void SceneManager::DisableSky()
+        {
+            this->SMD->DisableSky(this);
+            this->SMD->UpdateSkyCache();
+        }
+
+        SceneManager::SkyMethod SceneManager::WhichSky() const
+            { return this->SMD->ActiveSky; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Light Management
+
+        void SceneManager::SetAmbientLight(Real Red, Real Green, Real Blue, Real Alpha)
+        {
+            this->SMD->OgreManager->setAmbientLight(Ogre::ColourValue(Red, Green, Blue, Alpha));
+        }
+
+        void SceneManager::SetAmbientLight(const ColourValue &LightColor)
+        {
+            this->SMD->OgreManager->setAmbientLight(LightColor.GetOgreColourValue());
+        }
+
+        ColourValue SceneManager::GetAmbientLight() const
+        {
+
+            return ColourValue(this->SMD->OgreManager->getAmbientLight());
+        }
+
+        Light* SceneManager::CreateLight(const String& Name)
+        {
+            Light* light = new Light(this->SMD->OgreManager->createLight(Name), this);
+            Lights.push_back(light);
+            return light;
+        }
+
+        Light* SceneManager::GetLight(const String& Name) const
+        {
+            if(Lights.empty())
+                return 0;
+            for( std::vector<Light*>::const_iterator it = Lights.begin() ; it != Lights.end() ; it++ )
+            {
+                if( Name == (*it)->GetName() )
+                {
+                    return (*it);
+                }
+            }
+            return 0;
+        }
+
+        Light* SceneManager::GetLight(const Whole& Index) const
+        {
+            return Lights[Index];
+        }
+
+        Whole SceneManager::GetNumLights() const
+        {
+            return Lights.size();
+        }
+
+        void SceneManager::DestroyLight(Light* ToBeDestroyed)
+        {
+            if(Lights.empty())
+                return;
+            for( std::vector<Light*>::iterator it = Lights.begin() ; it != Lights.end() ; it++ )
+            {
+                if( ToBeDestroyed == (*it) )
+                {
+                    delete (*it);
+                    Lights.erase(it);
+                    return;
+                }
+            }
+        }
+
+        void SceneManager::DestroyAllLights()
+        {
+            for( Whole X = 0 ; X < Lights.size() ; X++ )
+                delete Lights[X];
+            Lights.clear();
+        }
+
+        SceneManager::LightIterator SceneManager::BeginLight()
+            { return this->Lights.begin(); }
+
+        SceneManager::LightIterator SceneManager::EndLight()
+            { return this->Lights.end(); }
+
+        SceneManager::ConstLightIterator SceneManager::BeginLight() const
+            { return this->Lights.begin(); }
+
+        SceneManager::ConstLightIterator SceneManager::EndLight() const
+            { return this->Lights.end(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Particle Effect Management
+
+        ParticleEffect* SceneManager::CreateParticleEffect(const String& Name, const String& Template)
+        {
+            ParticleEffect* Particle = new ParticleEffect(Name,Template,this);
+            Particles.push_back(Particle);
+            return Particle;
+        }
+
+        ParticleEffect* SceneManager::GetParticleEffect(const String& Name) const
+        {
+            if(Particles.empty())
+                return 0;
+            for( SceneManager::ConstParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
+            {
+                if( Name == (*it)->GetName() )
+                {
+                    return (*it);
+                }
+            }
+            return 0;
+        }
+
+        ParticleEffect* SceneManager::GetParticleEffect(const Whole& Index) const
+        {
+            return Particles[Index];
+        }
+
+        Whole SceneManager::GetNumParticleEffects() const
+        {
+            return Particles.size();
+        }
+
+        void SceneManager::DestroyParticleEffect(ParticleEffect* ToBeDestroyed)
+        {
+            if(Particles.empty())
+                return;
+            for( SceneManager::ParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
+            {
+                if( ToBeDestroyed == (*it) )
+                {
+                    delete (*it);
+                    Particles.erase(it);
+                    return;
+                }
+            }
+        }
+
+        void SceneManager::DestroyAllParticleEffects()
+        {
+            for( Whole X = 0 ; X < Particles.size() ; X++ )
+                delete Particles[X];
+            Particles.clear();
+        }
+
+        void SceneManager::PauseAllParticles(bool Pause)
+        {
+            for( SceneManager::ParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
+                (*it)->PauseParticleEffect(Pause);
+        }
+
+        SceneManager::ParticleIterator SceneManager::BeginParticleEffect()
+            { return this->Particles.begin(); }
+
+        SceneManager::ParticleIterator SceneManager::EndParticleEffect()
+            { return this->Particles.end(); }
+
+        SceneManager::ConstParticleIterator SceneManager::BeginParticleEffect() const
+            { return this->Particles.begin(); }
+
+        SceneManager::ConstParticleIterator SceneManager::EndParticleEffect() const
+            { return this->Particles.end(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Entity Management
+
+        Entity* SceneManager::CreateEntity(const String& EntName, const String& MeshName, const String& Group)
+        {
+            Entity* Ent = new Entity(EntName,MeshName,Group,this);
+            Entities.push_back(Ent);
+            return Ent;
+        }
+
+        Entity* SceneManager::GetEntity(const String& Name) const
+        {
+            if(Entities.empty())
+                return 0;
+            for( std::vector<Entity*>::const_iterator it = Entities.begin() ; it != Entities.end() ; it++ )
+            {
+                if( Name == (*it)->GetName() )
+                {
+                    return (*it);
+                }
+            }
+            return 0;
+        }
+
+        Entity* SceneManager::GetEntity(const Whole& Index) const
+        {
+            return Entities[Index];
+        }
+
+        Whole SceneManager::GetNumEntities() const
+        {
+            return Entities.size();
+        }
+
+        void SceneManager::DestroyEntity(Entity* ToBeDestroyed)
+        {
+            if(Entities.empty())
+                return;
+            for( std::vector<Entity*>::iterator it = Entities.begin() ; it != Entities.end() ; it++ )
+            {
+                if( ToBeDestroyed == (*it) )
+                {
+                    delete (*it);
+                    Entities.erase(it);
+                    return;
+                }
+            }
+        }
+
+        void SceneManager::DestroyAllEntities()
+        {
+            for( Whole X = 0 ; X < Entities.size() ; X++ )
+                delete Entities[X];
+            Entities.clear();
+        }
+
+        SceneManager::EntityIterator SceneManager::BeginEntity()
+            { return this->Entities.begin(); }
+
+        SceneManager::EntityIterator SceneManager::EndEntity()
+            { return this->Entities.end(); }
+
+        SceneManager::ConstEntityIterator SceneManager::BeginEntity() const
+            { return this->Entities.begin(); }
+
+        SceneManager::ConstEntityIterator SceneManager::EndEntity() const
+            { return this->Entities.end(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // WorldNode Management
+
+        WorldNode* SceneManager::CreateWorldNode(const String& Name)
+        {
+            WorldNode* MezzNode = new WorldNode(Name,this);
+            WorldNodes.push_back(MezzNode);
+            return MezzNode;
+        }
+
+        WorldNode* SceneManager::GetNode(const String& Name) const
+        {
+            if(WorldNodes.empty())
+                return 0;
+            for( ConstWorldNodeIterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
+            {
+                if( Name == (*it)->GetName() )
+                {
+                    WorldNode* node = (*it);
+                    return node;
+                }
+            }
+            return 0;
+        }
+
+        WorldNode* SceneManager::GetNode(const Whole& Index) const
+        {
+            return WorldNodes[Index];
+        }
+
+        Whole SceneManager::GetNumNodes() const
+        {
+            return WorldNodes.size();
+        }
+
+        void SceneManager::DestroyNode(WorldNode* ToBeDestroyed)
+        {
+            if(WorldNodes.empty())
+                return;
+            for( WorldNodeIterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
+            {
+                if( ToBeDestroyed == (*it) )
+                {
+                    delete (*it);
+                    WorldNodes.erase(it);
+                    return;
+                }
+            }
+        }
+
+        void SceneManager::DestroyAllWorldNodes()
+        {
+            for( Whole X = 0 ; X < WorldNodes.size() ; X++ )
+                delete WorldNodes[X];
+            WorldNodes.clear();
+        }
+
+        SceneManager::WorldNodeIterator SceneManager::BeginWorldNode()
+            { return this->WorldNodes.begin(); }
+
+        SceneManager::WorldNodeIterator SceneManager::EndWorldNode()
+            { return this->WorldNodes.end(); }
+
+        SceneManager::ConstWorldNodeIterator SceneManager::BeginWorldNode() const
+            { return this->WorldNodes.begin(); }
+
+        SceneManager::ConstWorldNodeIterator SceneManager::EndWorldNode() const
+            { return this->WorldNodes.end(); }
+
+        void SceneManager::_RegisterTrackingNode(WorldNode* Tracker)
+            { TrackingNodes.insert(Tracker); }
+
+        void SceneManager::_UnRegisterTrackingNode(WorldNode* Tracker)
+            { TrackingNodes.erase(TrackingNodes.find(Tracker)); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        ConstString& SceneManager::GetName() const
+            { return this->SMD->OgreManager->getName(); }
+
+        void SceneManager::Pause(const UInt32 PL)
+        {
+            // Do nothing for now
+        }
+
+        void SceneManager::Initialize()
+        {
+            if( !this->Initialized )
+            {
+                //WorldManager::Initialize();
+
+                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->TrackingNodeUpdateWork, "TrackingNodeUpdateWork" );
+
+                Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
+                if( PhysicsMan ) {
+                    this->TrackingNodeUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
+                }
+
+                Mezzanine::AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
+                if( AreaEffectMan ) {
+                    this->TrackingNodeUpdateWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+                }
+
+                this->Initialized = true;
+            }
+        }
+
+        void SceneManager::Deinitialize()
+        {
+            if( this->Initialized )
+            {
+                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->TrackingNodeUpdateWork );
+                this->TrackingNodeUpdateWork->ClearDependencies();
+
+                this->Initialized = false;
+            }
+        }
+
+        TrackingNodeUpdateWorkUnit* SceneManager::GetTrackingNodeUpdateWork()
+            { return this->TrackingNodeUpdateWork; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Type Identifier Methods
+
+        ManagerBase::ManagerType SceneManager::GetInterfaceType() const
+            { return ManagerBase::MT_SceneManager; }
+
+        String SceneManager::GetImplementationTypeName() const
+            { return "DefaultSceneManager"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal/Other
+
+        Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
+            { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
+
+        SceneManagerData* SceneManager::GetRawInternalDataPointer() const
+            { return this->SMD; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // DefaultSceneManagerFactory Methods
+
+        DefaultSceneManagerFactory::DefaultSceneManagerFactory()
+        {
+        }
+
+        DefaultSceneManagerFactory::~DefaultSceneManagerFactory()
+        {
+        }
+
+        String DefaultSceneManagerFactory::GetManagerTypeName() const
+        {
+            return "DefaultSceneManager";
+        }
+
+        ManagerBase* DefaultSceneManagerFactory::CreateManager(NameValuePairList& Params)
+        {
+            if(Params.empty()) return new SceneManager();
+            else
+            {
+                String InternalManagerTypeName;
+                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+                {
+                    String Lower = (*ParIt).first;
+                    StringTools::ToLowerCase(Lower);
+                    if( "internalmanagertypename" == Lower )
+                    {
+                        InternalManagerTypeName = (*ParIt).second;
+                    }
+                }
+                return new SceneManager(InternalManagerTypeName);
+            }
+        }
+
+        ManagerBase* DefaultSceneManagerFactory::CreateManager(XML::Node& XMLNode)
+        {
+            return new SceneManager(XMLNode);
+        }
+
+        void DefaultSceneManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+        {
+            delete ToBeDestroyed;
+        }
+    }//Graphics
 }//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& Ev)
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::SceneManager& Ev)
 {
     stream      << "<SceneManager Version=\"1\" Name=\"" << Ev.GetName()
                 //<< "\" Type=\"" << Ev.GetType()
@@ -873,13 +872,13 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& 
                 << "<ShadowColour>" << Ev.GetShadowColour() << "</ShadowColour>"
                 << "<AmbientLight>" << Ev.GetAmbientLight() << "</AmbientLight>";
 
-                Mezzanine::Internal::SceneManagerData* SMD = Ev.GetRawInternalDataPointer();
+                Mezzanine::Graphics::SceneManagerData* SMD = Ev.GetRawInternalDataPointer();
                 switch (Ev.WhichSky())
                 {
-                    case Mezzanine::SceneManager::SkyNone:
+                    case Mezzanine::Graphics::SceneManager::SkyNone:
                         // Nothing to do
                         break;
-                    case Mezzanine::SceneManager::SkyPlane:{
+                    case Mezzanine::Graphics::SceneManager::SkyPlane:{
                         Ogre::SceneManager::SkyPlaneGenParameters Values=SMD->OgreManager->getSkyPlaneGenParameters();
                         stream  << "<SkyPlane Version=\"1"
                                 << "\" MaterialName=\"" << SMD->SkyMaterialName
@@ -896,7 +895,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& 
                             //const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, bool DrawFirst, Real Bow, int XSegments, int YSegments
                         }
                         break;
-                    case Mezzanine::SceneManager::SkyBox:{
+                    case Mezzanine::Graphics::SceneManager::SkyBox:{
                         Ogre::SceneManager::SkyBoxGenParameters Values = SMD->OgreManager->getSkyBoxGenParameters();
                         stream  << "<SkyBox Version=\"1"
                                 << "\" MaterialName=\"" << SMD->SkyMaterialName
@@ -909,7 +908,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& 
                             //const String& Material, const String& Group, Real Distance, bool DrawFirst=true, Quaternion Orientation=Quaternion()
                         }
                         break;
-                    case Mezzanine::SceneManager::SkyDome:{
+                    case Mezzanine::Graphics::SceneManager::SkyDome:{
                         Ogre::SceneManager::SkyDomeGenParameters Values=SMD->OgreManager->getSkyDomeGenParameters();
                         stream  << "<SkyDome Version=\"1"
                                 << "\" MaterialName=\"" << SMD->SkyMaterialName
@@ -930,15 +929,15 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& 
                 }
                 /*  Sky Cache Member - String SkyMaterialName; Quaternion SkyOrientation; String SkyMaterialGroupName; bool SkyDrawnFirst; Plane SkyThePlane; */
 
-                for (Mezzanine::SceneManager::ConstLightIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginLight();
+                for (Mezzanine::Graphics::SceneManager::ConstLightIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginLight();
                         Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndLight()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
-                for (Mezzanine::SceneManager::ConstParticleIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginParticleEffect();
+                for (Mezzanine::Graphics::SceneManager::ConstParticleIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginParticleEffect();
                         Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndParticleEffect()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
-                for (Mezzanine::SceneManager::ConstWorldNodeIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginWorldNode();
+                for (Mezzanine::Graphics::SceneManager::ConstWorldNodeIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginWorldNode();
                         Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndWorldNode()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
@@ -965,7 +964,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& 
     return stream;
 }
 
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::SceneManager& Ev)
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Graphics::SceneManager& Ev)
 {
     Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
     Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "SceneManager", OneTag) );
@@ -975,18 +974,18 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::SceneManage
     return stream;
 }
 
-Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::SceneManager& Ev)
+Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Graphics::SceneManager& Ev)
 {
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("SceneManager") )
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
             //Ev.SetType(static_cast<Mezzanine::SceneManager::SceneManagerType>(OneNode.GetAttribute("Type").AsInt()));
-            Ev.SetSceneShadowTechnique((Mezzanine::SceneManager::SceneShadowTechnique)(OneNode.GetAttribute("SceneShadowTechnique").AsInt()));
+            Ev.SetSceneShadowTechnique((Mezzanine::Graphics::SceneManager::SceneShadowTechnique)(OneNode.GetAttribute("SceneShadowTechnique").AsInt()));
             Ev.SetShadowTextureCount(OneNode.GetAttribute("ShadowTextureCount").AsInt());
             Ev.SetShadowTextureSize(OneNode.GetAttribute("ShadowTextureSize").AsInt());
             Ev.SetShadowFarDistance(OneNode.GetAttribute("ShadowFarDistance").AsReal());
-            Mezzanine::SceneManager::SkyMethod DoubleCheck = (Mezzanine::SceneManager::SkyMethod)(OneNode.GetAttribute("SkyMethod").AsInt());
+            Mezzanine::Graphics::SceneManager::SkyMethod DoubleCheck = (Mezzanine::Graphics::SceneManager::SkyMethod)(OneNode.GetAttribute("SkyMethod").AsInt());
 
             for(Mezzanine::XML::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
             {

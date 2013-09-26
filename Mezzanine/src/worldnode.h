@@ -57,11 +57,14 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    class SceneManager;
     class Camera;
     class Light;
     class ParticleEffect;
     class ActorBase;
+    namespace Graphics
+    {
+        class SceneManager;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class WorldNode
     /// @headerfile worldnode.h
@@ -82,7 +85,7 @@ namespace Mezzanine
     {
         protected:
             AttachableBase* AutoTrackTarget;
-            SceneManager* Manager;
+            Graphics::SceneManager* Manager;
             bool FixedYaw;
             Vector3 FixedYawAxis;
             Vector3 AutoTrackOffset;
@@ -95,7 +98,7 @@ namespace Mezzanine
             /// @brief Standard initialization constructor.
             /// @param Name The name of this node.
             /// @param SManager Pointer to the manager that this node is to be used in.
-            WorldNode(const String& Name, SceneManager* SManager);
+            WorldNode(const String& Name, Graphics::SceneManager* SManager);
             /// @brief Class destructor.
             virtual ~WorldNode();
 

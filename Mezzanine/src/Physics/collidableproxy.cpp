@@ -37,10 +37,10 @@ you have any questions.
 Joseph Toppi - toppij@gmail.com
 John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physicsproxy_cpp
-#define _physicsproxy_cpp
+#ifndef _collidableproxy_cpp
+#define _collidableproxy_cpp
 
-#include "Physics/physicsproxy.h"
+#include "Physics/collidableproxy.h"
 #include "Physics/collisionshape.h"
 #include "Physics/physicsmanager.h"
 #include "Physics/collisionshapemanager.h"
@@ -267,9 +267,9 @@ namespace Mezzanine
         };//ScalingShape
 /// @endcond
         ///////////////////////////////////////////////////////////////////////////////
-        // PhysicsProxy Methods
+        // CollidableProxy Methods
 
-        PhysicsProxy::PhysicsProxy(PhysicsManager* Creator) :
+        CollidableProxy::CollidableProxy(PhysicsManager* Creator) :
             ProxyShape(NULL),
             ScalerShape(NULL),
             Manager(Creator),
@@ -277,54 +277,54 @@ namespace Mezzanine
             CollisionMask(0)
             {  }
 
-        PhysicsProxy::~PhysicsProxy()
+        CollidableProxy::~CollidableProxy()
             {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Bool PhysicsProxy::CanLocallyScale() const
+        Bool CollidableProxy::CanLocallyScale() const
             { return ( this->ScalerShape != NULL ); }
 
-        AxisAlignedBox PhysicsProxy::GetAABB() const
+        AxisAlignedBox CollidableProxy::GetAABB() const
             { return ( this->IsInWorld() ? AxisAlignedBox( Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMin ), Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMax ) ) : AxisAlignedBox() ); }
 
-        Bool PhysicsProxy::IsInWorld() const
+        Bool CollidableProxy::IsInWorld() const
             { return ( this->_GetBasePhysicsObject()->getBroadphaseHandle() != NULL ); }
 
-        WorldManager* PhysicsProxy::GetCreator() const
+        WorldManager* CollidableProxy::GetCreator() const
             { return this->Manager; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Collision Settings
 
-        void PhysicsProxy::SetCollisionGroupAndMask(const Int16 Group, const Int16 Mask)
+        void CollidableProxy::SetCollisionGroupAndMask(const Int16 Group, const Int16 Mask)
         {
             this->CollisionGroup = Group;
             this->CollisionMask = Mask;
         }
 
-        void PhysicsProxy::SetCollisionGroup(const Int16 Group)
+        void CollidableProxy::SetCollisionGroup(const Int16 Group)
         {
             this->CollisionGroup = Group;
         }
 
-        void PhysicsProxy::SetCollisionMask(const Int16 Mask)
+        void CollidableProxy::SetCollisionMask(const Int16 Mask)
         {
             this->CollisionMask = Mask;
         }
 
-        Int16 PhysicsProxy::GetCollisionGroup() const
+        Int16 CollidableProxy::GetCollisionGroup() const
         {
             return this->CollisionGroup;
         }
 
-        Int16 PhysicsProxy::GetCollisionMask() const
+        Int16 CollidableProxy::GetCollisionMask() const
         {
             return this->CollisionMask;
         }
 
-        void PhysicsProxy::SetCollisionShape(CollisionShape* Shape)
+        void CollidableProxy::SetCollisionShape(CollisionShape* Shape)
         {
             if( this->ProxyShape != Shape )
             {
@@ -397,12 +397,12 @@ namespace Mezzanine
             }
         }
 
-        CollisionShape* PhysicsProxy::GetCollisionShape() const
+        CollisionShape* CollidableProxy::GetCollisionShape() const
         {
             return this->ProxyShape;
         }
 
-        void PhysicsProxy::SetCollisionResponse(bool Enable)
+        void CollidableProxy::SetCollisionResponse(bool Enable)
         {
             if( Enable != this->GetCollisionResponse() )
             {
@@ -415,17 +415,17 @@ namespace Mezzanine
             }
         }
 
-        bool PhysicsProxy::GetCollisionResponse() const
+        bool CollidableProxy::GetCollisionResponse() const
         {
             return !(this->_GetBasePhysicsObject()->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
         }
 
-        void PhysicsProxy::SetCollisionFlags(const Whole Flags)
+        void CollidableProxy::SetCollisionFlags(const Whole Flags)
         {
             this->_GetBasePhysicsObject()->setCollisionFlags(Flags);
         }
 
-        Whole PhysicsProxy::GetCollisionFlags() const
+        Whole CollidableProxy::GetCollisionFlags() const
         {
             return this->_GetBasePhysicsObject()->getCollisionFlags();
         }
@@ -433,29 +433,29 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Static or Kinematic Properties
 
-        void PhysicsProxy::SetKinematic()
+        void CollidableProxy::SetKinematic()
         {
             btCollisionObject* Base = this->_GetBasePhysicsObject();
             Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT );
         }
 
-        void PhysicsProxy::SetStatic()
+        void CollidableProxy::SetStatic()
         {
             btCollisionObject* Base = this->_GetBasePhysicsObject();
             Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_STATIC_OBJECT );
         }
 
-        bool PhysicsProxy::IsKinematic() const
+        bool CollidableProxy::IsKinematic() const
         {
             return this->_GetBasePhysicsObject()->isKinematicObject();
         }
 
-        bool PhysicsProxy::IsStatic() const
+        bool CollidableProxy::IsStatic() const
         {
             return this->_GetBasePhysicsObject()->isStaticObject();
         }
 
-        bool PhysicsProxy::IsStaticOrKinematic() const
+        bool CollidableProxy::IsStaticOrKinematic() const
         {
             return this->_GetBasePhysicsObject()->isStaticOrKinematicObject();
         }
@@ -463,22 +463,22 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Physics Properties
 
-        void PhysicsProxy::SetFriction(const Real Friction)
+        void CollidableProxy::SetFriction(const Real Friction)
             { this->_GetBasePhysicsObject()->setFriction(Friction); }
 
-        Real PhysicsProxy::GetFriction() const
+        Real CollidableProxy::GetFriction() const
             { return this->_GetBasePhysicsObject()->getFriction(); }
 
-        void PhysicsProxy::SetRollingFriction(const Real Friction)
+        void CollidableProxy::SetRollingFriction(const Real Friction)
             { this->_GetBasePhysicsObject()->setRollingFriction(Friction); }
 
-        Real PhysicsProxy::GetRollingFriction() const
+        Real CollidableProxy::GetRollingFriction() const
             { return this->_GetBasePhysicsObject()->getRollingFriction(); }
 
-        void PhysicsProxy::SetAnisotropicFriction(const Vector3& Friction, const Whole Mode)
+        void CollidableProxy::SetAnisotropicFriction(const Vector3& Friction, const Whole Mode)
             { this->_GetBasePhysicsObject()->setAnisotropicFriction(Friction.GetBulletVector3(),Mode); }
 
-        Physics::AnisotropicFrictionFlags PhysicsProxy::GetAnisotropicFrictionMode() const
+        Physics::AnisotropicFrictionFlags CollidableProxy::GetAnisotropicFrictionMode() const
         {
             if( this->IsAnisotropicFrictionModeSet(Physics::AFF_AnisotropicFrictionDisabled) )
                 return Physics::AFF_AnisotropicFrictionDisabled;
@@ -490,43 +490,43 @@ namespace Mezzanine
             return Physics::AFF_AnisotropicFrictionDisabled;
         }
 
-        Bool PhysicsProxy::IsAnisotropicFrictionModeSet(const Whole Mode) const
+        Bool CollidableProxy::IsAnisotropicFrictionModeSet(const Whole Mode) const
             { return this->_GetBasePhysicsObject()->hasAnisotropicFriction(Mode); }
 
-        Vector3 PhysicsProxy::GetAnisotropicFriction() const
+        Vector3 CollidableProxy::GetAnisotropicFriction() const
             { return Vector3( this->_GetBasePhysicsObject()->getAnisotropicFriction() ); }
 
-        void PhysicsProxy::SetRestitution(const Real& Restitution)
+        void CollidableProxy::SetRestitution(const Real& Restitution)
             { this->_GetBasePhysicsObject()->setRestitution(Restitution); }
 
-        Real PhysicsProxy::GetRestitution() const
+        Real CollidableProxy::GetRestitution() const
             { return this->_GetBasePhysicsObject()->getRestitution(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Activation State
 
-        void PhysicsProxy::SetActivationState(const Physics::ActivationState State, bool Force)
+        void CollidableProxy::SetActivationState(const Physics::ActivationState State, bool Force)
         {
             if(Force) this->_GetBasePhysicsObject()->forceActivationState(State);
             else this->_GetBasePhysicsObject()->setActivationState(State);
         }
 
-        Physics::ActivationState PhysicsProxy::GetActivationState() const
+        Physics::ActivationState CollidableProxy::GetActivationState() const
         {
             return static_cast<Physics::ActivationState>( this->_GetBasePhysicsObject()->getActivationState() );
         }
 
-        bool PhysicsProxy::IsActive() const
+        bool CollidableProxy::IsActive() const
         {
             return this->_GetBasePhysicsObject()->isActive();
         }
 
-        void PhysicsProxy::SetDeactivationTime(const Real Time)
+        void CollidableProxy::SetDeactivationTime(const Real Time)
         {
             this->_GetBasePhysicsObject()->setDeactivationTime(Time);
         }
 
-        Real PhysicsProxy::GetDeactivationTime() const
+        Real CollidableProxy::GetDeactivationTime() const
         {
             return this->_GetBasePhysicsObject()->getDeactivationTime();
         }
@@ -534,41 +534,41 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
 
-        void PhysicsProxy::SetLocation(const Vector3& Loc)
+        void CollidableProxy::SetLocation(const Vector3& Loc)
         {
             this->SetLocation(Loc.X,Loc.Y,Loc.Z);
         }
 
-        void PhysicsProxy::SetLocation(const Real X, const Real Y, const Real Z)
+        void CollidableProxy::SetLocation(const Real X, const Real Y, const Real Z)
         {
             btVector3 NewLoc(X,Y,Z);
             this->_GetBasePhysicsObject()->getWorldTransform().setOrigin(NewLoc);
             this->_GetBasePhysicsObject()->getInterpolationWorldTransform().setOrigin(NewLoc);
         }
 
-        Vector3 PhysicsProxy::GetLocation() const
+        Vector3 CollidableProxy::GetLocation() const
         {
             return Vector3( this->_GetBasePhysicsObject()->getWorldTransform().getOrigin() );
         }
 
-        void PhysicsProxy::SetOrientation(const Quaternion& Ori)
+        void CollidableProxy::SetOrientation(const Quaternion& Ori)
         {
             this->SetOrientation(Ori.X,Ori.Y,Ori.Z,Ori.W);
         }
 
-        void PhysicsProxy::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
+        void CollidableProxy::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
         {
             btQuaternion NewRot(X,Y,Z,W);
             this->_GetBasePhysicsObject()->getWorldTransform().setRotation(NewRot);
             this->_GetBasePhysicsObject()->getInterpolationWorldTransform().setRotation(NewRot);
         }
 
-        Quaternion PhysicsProxy::GetOrientation() const
+        Quaternion CollidableProxy::GetOrientation() const
         {
             return Quaternion( this->_GetBasePhysicsObject()->getWorldTransform().getRotation() );
         }
 
-        void PhysicsProxy::SetScale(const Vector3& Sc)
+        void CollidableProxy::SetScale(const Vector3& Sc)
         {
             this->BodyScale = Sc;
             if( this->ScalerShape != NULL ) {
@@ -578,64 +578,64 @@ namespace Mezzanine
             }
         }
 
-        void PhysicsProxy::SetScale(const Real X, const Real Y, const Real Z)
+        void CollidableProxy::SetScale(const Real X, const Real Y, const Real Z)
         {
             this->SetScale( Vector3(X,Y,Z) );
         }
 
-        Vector3 PhysicsProxy::GetScale() const
+        Vector3 CollidableProxy::GetScale() const
         {
             return this->BodyScale;
         }
 
-        void PhysicsProxy::Translate(const Vector3& Trans)
+        void CollidableProxy::Translate(const Vector3& Trans)
         {
             this->SetLocation( this->GetLocation() + Trans );
         }
 
-        void PhysicsProxy::Translate(const Real X, const Real Y, const Real Z)
+        void CollidableProxy::Translate(const Real X, const Real Y, const Real Z)
         {
             Vector3 Trans(X,Y,Z);
             this->SetLocation( this->GetLocation() + Trans );
         }
 
-        void PhysicsProxy::Yaw(const Real Angle)
+        void CollidableProxy::Yaw(const Real Angle)
         {
             Quaternion NewRot = this->GetOrientation() * Quaternion(Angle,Vector3::Unit_Y());
             this->SetOrientation(NewRot);
         }
 
-        void PhysicsProxy::Pitch(const Real Angle)
+        void CollidableProxy::Pitch(const Real Angle)
         {
             Quaternion NewRot = this->GetOrientation() * Quaternion(Angle,Vector3::Unit_X());
             this->SetOrientation(NewRot);
         }
 
-        void PhysicsProxy::Roll(const Real Angle)
+        void CollidableProxy::Roll(const Real Angle)
         {
             Quaternion NewRot = this->GetOrientation() * Quaternion(Angle,Vector3::Unit_Z());
             this->SetOrientation(NewRot);
         }
 
-        void PhysicsProxy::Rotate(const Vector3& Axis, const Real Angle)
+        void CollidableProxy::Rotate(const Vector3& Axis, const Real Angle)
         {
             Quaternion NewRot = this->GetOrientation() * Quaternion(Angle,Axis);
             this->SetOrientation(NewRot);
         }
 
-        void PhysicsProxy::Rotate(const Quaternion& Rotation)
+        void CollidableProxy::Rotate(const Quaternion& Rotation)
         {
             Quaternion NewRot = this->GetOrientation() * Rotation;
             this->SetOrientation(NewRot);
         }
 
-        void PhysicsProxy::Scale(const Vector3& Scale)
+        void CollidableProxy::Scale(const Vector3& Scale)
         {
             Vector3 NewScale = this->GetScale() * Scale;
             this->SetScale(NewScale);
         }
 
-        void PhysicsProxy::Scale(const Real X, const Real Y, const Real Z)
+        void CollidableProxy::Scale(const Real X, const Real Y, const Real Z)
         {
             Vector3 NewScale(X,Y,Z);
             this->Scale(NewScale);
@@ -644,7 +644,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void PhysicsProxy::ProtoSerialize(XML::Node& ParentNode) const
+        void CollidableProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
 
@@ -652,10 +652,11 @@ namespace Mezzanine
             this->ProtoSerializeShape(SelfRoot);
         }
 
-        void PhysicsProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        void CollidableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            // We're at the base implementation, so no calling of child implementations
-            XML::Node PropertiesNode = SelfRoot.AppendChild( PhysicsProxy::GetSerializableName() + "Properties" );
+            this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+
+            XML::Node PropertiesNode = SelfRoot.AppendChild( CollidableProxy::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
                 PropertiesNode.AppendAttribute("CollisionGroup").SetValue( this->GetCollisionGroup() ) &&
@@ -669,44 +670,40 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("DeactivationTime").SetValue( this->GetDeactivationTime() ) &&
                 PropertiesNode.AppendAttribute("ContactProcessingThreshold").SetValue( this->_GetContactProcessingThreshold() ) )
             {
-                XML::Node LocationNode = PropertiesNode.AppendChild("Location");
-                this->GetLocation().ProtoSerialize( LocationNode );
-                XML::Node OrientationNode = PropertiesNode.AppendChild("Orientation");
-                this->GetOrientation().ProtoSerialize( OrientationNode );
-                XML::Node ScaleNode = PropertiesNode.AppendChild("Scale");
-                this->GetScale().ProtoSerialize( ScaleNode );
                 XML::Node AnisotropicFrictionNode = PropertiesNode.AppendChild("AnisotropicFriction");
                 this->GetAnisotropicFriction().ProtoSerialize( AnisotropicFrictionNode );
 
                 return;
             }else{
-                SerializeError("Create XML Attribute Values",PhysicsProxy::GetSerializableName() + "Properties",true);
+                SerializeError("Create XML Attribute Values",CollidableProxy::GetSerializableName() + "Properties",true);
             }
         }
 
-        void PhysicsProxy::ProtoSerializeShape(XML::Node& SelfRoot) const
+        void CollidableProxy::ProtoSerializeShape(XML::Node& SelfRoot) const
         {
-            XML::Node ShapeNode = SelfRoot.AppendChild( PhysicsProxy::GetSerializableName() + "Shape" );
+            XML::Node ShapeNode = SelfRoot.AppendChild( CollidableProxy::GetSerializableName() + "Shape" );
 
             if( ShapeNode.AppendAttribute("Version").SetValue("1") &&
                 ShapeNode.AppendAttribute("ProxyShape").SetValue( this->ProxyShape->GetName() ) )
             {
                 return;
             }else{
-                SerializeError("Create XML Attribute Values",PhysicsProxy::GetSerializableName() + "Shape",true);
+                SerializeError("Create XML Attribute Values",CollidableProxy::GetSerializableName() + "Shape",true);
             }
         }
 
-        void PhysicsProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+        void CollidableProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
             this->ProtoDeSerializeProperties(SelfRoot);
+            this->ProtoDeSerializeShape(SelfRoot);
         }
 
-        void PhysicsProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        void CollidableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            // We're at the base implementation, so no calling of child implementations
+            this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+
             XML::Attribute CurrAttrib;
-            XML::Node PropertiesNode = SelfRoot.GetChild( PhysicsProxy::GetSerializableName() + "Properties" );
+            XML::Node PropertiesNode = SelfRoot.GetChild( CollidableProxy::GetSerializableName() + "Properties" );
 
             if( !PropertiesNode.Empty() ) {
                 if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
@@ -753,41 +750,23 @@ namespace Mezzanine
                         this->_SetContactProcessingThreshold( CurrAttrib.AsReal() );
 
                     // Get the properties that need their own nodes
-                    XML::Node PositionNode = PropertiesNode.GetChild("Location").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
-                        Vector3 Loc(PositionNode);
-                        this->SetLocation(Loc);
-                    }
-
-                    XML::Node OrientationNode = PropertiesNode.GetChild("Orientation").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
-                        Quaternion Rot(OrientationNode);
-                        this->SetOrientation(Rot);
-                    }
-
-                    XML::Node ScaleNode = PropertiesNode.GetChild("Scale").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
-                        Vector3 Scale(ScaleNode);
-                        this->SetScale(Scale);
-                    }
-
                     XML::Node AnisotropicFrictionNode = PropertiesNode.GetChild("AnisotropicFriction").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
+                    if( !AnisotropicFrictionNode.Empty() ) {
                         Vector3 AF(AnisotropicFrictionNode);
                         this->SetAnisotropicFriction(AF,AFMode);
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (PhysicsProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (CollidableProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,PhysicsProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,CollidableProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
-        void PhysicsProxy::ProtoDeSerializeShape(const XML::Node& SelfRoot)
+        void CollidableProxy::ProtoDeSerializeShape(const XML::Node& SelfRoot)
         {
             XML::Attribute CurrAttrib;
-            XML::Node ShapeNode = SelfRoot.GetChild( PhysicsProxy::GetSerializableName() + "Properties" );
+            XML::Node ShapeNode = SelfRoot.GetChild( CollidableProxy::GetSerializableName() + "Properties" );
 
             if( !ShapeNode.Empty() ) {
                 if(ShapeNode.GetAttribute("Version").AsInt() == 1) {
@@ -800,19 +779,19 @@ namespace Mezzanine
             }
         }
 
-        String PhysicsProxy::GetDerivedSerializableName() const
-            { return PhysicsProxy::GetSerializableName(); }
+        String CollidableProxy::GetDerivedSerializableName() const
+            { return CollidableProxy::GetSerializableName(); }
 
-        String PhysicsProxy::GetSerializableName()
-            { return "PhysicsProxy"; }
+        String CollidableProxy::GetSerializableName()
+            { return "CollidableProxy"; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void PhysicsProxy::_SetContactProcessingThreshold(const Real Threshold)
+        void CollidableProxy::_SetContactProcessingThreshold(const Real Threshold)
             { this->_GetBasePhysicsObject()->setContactProcessingThreshold(Threshold); }
 
-        Real PhysicsProxy::_GetContactProcessingThreshold() const
+        Real CollidableProxy::_GetContactProcessingThreshold() const
             { return this->_GetBasePhysicsObject()->getContactProcessingThreshold(); }
     }// Physics
 }// Mezzanine

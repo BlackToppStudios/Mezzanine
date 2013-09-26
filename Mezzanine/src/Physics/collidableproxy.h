@@ -37,8 +37,8 @@ you have any questions.
 Joseph Toppi - toppij@gmail.com
 John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physicsproxy_h
-#define _physicsproxy_h
+#ifndef _collidableproxy_h
+#define _collidableproxy_h
 
 #include "Physics/physicsenumerations.h"
 #include "axisalignedbox.h"
@@ -55,12 +55,12 @@ namespace Mezzanine
         class PhysicsManager;
         class CollisionShape;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a proxy from which physics objects are handled.
+        /// @brief This is a proxy from which physics objects that can collide with each other are handled.
         /// @details This class is used to hold and configure the physics information for a world object.
         /// This class holds physics information from the physics sub-library and serves as a means to interact with it.
         /// Direct interaction with the internal physics object is discouraged.
         ///////////////////////////////////////
-        class MEZZ_LIB PhysicsProxy : public WorldProxy
+        class MEZZ_LIB CollidableProxy : public WorldProxy
         {
         protected:
             /// @internal
@@ -85,9 +85,9 @@ namespace Mezzanine
         public:
             /// @brief Standard Constructor.
             /// @param Creator A pointer to the manager that created this proxy.
-            PhysicsProxy(PhysicsManager* Creator);
+            CollidableProxy(PhysicsManager* Creator);
             /// @brief Class Destructor.
-            virtual ~PhysicsProxy();
+            virtual ~CollidableProxy();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -113,7 +113,7 @@ namespace Mezzanine
             /// @copydoc WorldProxy::IsInWorld() const
             virtual Bool IsInWorld() const;
 
-            /// @copydoc PhysicsProxy::GetCreator() const
+            /// @copydoc WorldProxy::GetCreator() const
             virtual WorldManager* GetCreator() const;
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -310,8 +310,7 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
             virtual void ProtoSerialize(XML::Node& ParentNode) const;
-            /// @brief Convert the properties of this class to an XML::Node ready for serialization.
-            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the shape of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
@@ -319,8 +318,7 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
             virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
-            /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the shape of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
@@ -346,8 +344,8 @@ namespace Mezzanine
             /// @brief Accessor for the internal physics object.
             /// @return Returns a pointer to the internal object of this proxy.
             virtual btCollisionObject* _GetBasePhysicsObject() const = 0;
-        };// PhysicsProxy
-    }// Physics
-}// Mezzanine
+        };//CollidableProxy
+    }//Physics
+}//Mezzanine
 
 #endif

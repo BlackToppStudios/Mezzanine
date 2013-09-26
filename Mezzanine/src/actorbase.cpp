@@ -53,7 +53,7 @@
 #include "Audio/audiomanager.h"
 #include "Audio/soundset.h"
 #include "Physics/physicsmanager.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "entresol.h"
 #ifndef SWIG
     #include "XML/xml.h"
@@ -77,7 +77,7 @@ namespace Mezzanine
 
     ActorBase::~ActorBase()
     {
-        SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+        Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
         SceneMan->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
         delete MotionState;
     }

@@ -697,10 +697,10 @@ void CatchApp::UnloadLevel()
         return;
     ResourceManager* ResMan = ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    MeshManager* MeshMan = MeshManager::GetSingletonPtr();
+    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
+    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
     ActorManager* ActorMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
 

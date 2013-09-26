@@ -65,7 +65,7 @@
 #include "UI/renderablecontainerwidget.h"
 #include "Graphics/viewport.h"
 #include "cameramanager.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "camera.h"
 #include "mathtool.h"
 
@@ -153,7 +153,7 @@ namespace Mezzanine
             SID->RenderSys = Ogre::Root::getSingletonPtr()->getRenderSystem();
             SID->ParentScreen = this;
 
-            SceneManager* SceneMan = GetSceneManager();
+            Graphics::SceneManager* SceneMan = GetSceneManager();
             if(SceneMan)
                 SceneMan->GetGraphicsWorldPointer()->addRenderQueueListener(SID);
 
@@ -165,7 +165,7 @@ namespace Mezzanine
         {
         }
 
-        SceneManager* Screen::GetSceneManager()
+        Graphics::SceneManager* Screen::GetSceneManager()
         {
             /// @todo This function exists (as opposed to storing a pointer that doesn't change) so that if changes in the
             /// viewport configuration occur this will pick up on that.  However the render queue listener that is added in
@@ -176,7 +176,7 @@ namespace Mezzanine
                 Camera* Cam = GameViewport->GetViewportCamera();
                 if(Cam)
                 {
-                    SceneManager* SceneMan = Cam->GetCameraManager()->GetScene();
+                    Graphics::SceneManager* SceneMan = Cam->GetCameraManager()->GetScene();
                     if(SceneMan) return SceneMan;
                     else return NULL;
                 }else return NULL;
@@ -205,7 +205,7 @@ namespace Mezzanine
             this->SID->RenderSys->_setWorldMatrix( Ogre::Matrix4::IDENTITY );
             this->SID->RenderSys->_setProjectionMatrix( Ogre::Matrix4::IDENTITY );
             this->SID->RenderSys->_setViewMatrix( Ogre::Matrix4::IDENTITY );
-            SceneManager* SceneMan = GetSceneManager();
+            Graphics::SceneManager* SceneMan = GetSceneManager();
             if(SceneMan)
                 SceneMan->GetGraphicsWorldPointer()->_setPass( UIManager::GetSingletonPtr()->GetAtlas(PrimaryAtlas)->_Get2DPass() );
         }

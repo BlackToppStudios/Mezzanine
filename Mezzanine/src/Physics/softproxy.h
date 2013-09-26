@@ -40,7 +40,7 @@ John Blackwood - makoenergy02@gmail.com
 #ifndef _softproxy_h
 #define _softproxy_h
 
-#include "Physics/physicsproxy.h"
+#include "Physics/collidableproxy.h"
 
 class btSoftBody;
 
@@ -52,7 +52,7 @@ namespace Mezzanine
         /// @brief This is the proxy object for soft/compressable bodies.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB SoftProxy : public PhysicsProxy
+        class MEZZ_LIB SoftProxy : public CollidableProxy
         {
         protected:
             /// @internal
@@ -85,7 +85,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Settings
 
-            /// @copydoc PhysicsProxy::SetCollisionShape(CollisionShape*)
+            /// @copydoc CollidableProxy::SetCollisionShape(CollisionShape*)
             virtual void SetCollisionShape(CollisionShape* Shape);
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -103,9 +103,9 @@ namespace Mezzanine
             virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
             /// @copydoc WorldProxy::GetOrientation() const
             virtual Quaternion GetOrientation() const;
-            /// @copydoc PhysicsProxy::SetScale(const Vector3&)
+            /// @copydoc CollidableProxy::SetScale(const Vector3&)
             virtual void SetScale(const Vector3& Sc);
-            /// @copydoc PhysicsProxy::SetScale(const Real, const Real, const Real)
+            /// @copydoc CollidableProxy::SetScale(const Real, const Real, const Real)
             virtual void SetScale(const Real X, const Real Y, const Real Z);
             /// @copydoc WorldProxy::GetScale() const
             virtual Vector3 GetScale() const;
@@ -115,7 +115,7 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
             virtual void ProtoSerialize(XML::Node& ParentNode) const;
-            /// @copydoc PhysicsProxy::ProtoSerializeProperties(XML::Node&) const
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the nodes (and their specific properties) of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
@@ -123,7 +123,7 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
             virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
-            /// @copydoc PhysicsProxy::ProtoDeSerializeProperties(const XML::Node&)
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the nodes (and their specific properties) of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
@@ -141,7 +141,7 @@ namespace Mezzanine
             /// @brief Accessor for the internal soft body physics proxy.
             /// @return Returns a pointer to the internal proxy this proxy is based on.
             virtual btSoftBody* _GetPhysicsObject() const;
-            /// @copydoc PhysicsProxy::_GetBasePhysicsObject()
+            /// @copydoc CollidableProxy::_GetBasePhysicsObject()
             virtual btCollisionObject* _GetBasePhysicsObject() const;
         };//SoftProxy
     }//Physics
