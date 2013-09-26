@@ -50,7 +50,7 @@ namespace Mezzanine
     namespace Graphics
     {
         LightProxy::LightProxy(SceneManager* Creator) :
-            GraphicsProxy(Creator)
+            RenderableProxy(Creator)
         {
 
         }

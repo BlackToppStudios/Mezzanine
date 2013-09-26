@@ -43,7 +43,7 @@
 /// @file
 /// @brief This file contains the declaration for the World proxy wrapping billboard functionality.
 
-#include "Graphics/graphicsproxy.h"
+#include "Graphics/renderableproxy.h"
 
 namespace Ogre
 {
@@ -58,7 +58,7 @@ namespace Mezzanine
         /// @brief This is the proxy class for placing and manipulating a set of 2D billboards in the scene.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB BillboardSetProxy : public GraphicsProxy
+        class MEZZ_LIB BillboardSetProxy : public RenderableProxy
         {
         protected:
         public:

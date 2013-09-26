@@ -50,7 +50,7 @@ namespace Mezzanine
     namespace Graphics
     {
         BillboardSetProxy::BillboardSetProxy(SceneManager* Creator) :
-            GraphicsProxy(Creator)
+            RenderableProxy(Creator)
         {
 
         }

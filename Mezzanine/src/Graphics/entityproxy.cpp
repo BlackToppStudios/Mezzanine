@@ -55,12 +55,12 @@ namespace Mezzanine
     namespace Graphics
     {
         EntityProxy::EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator) :
-            GraphicsProxy(Creator),
+            RenderableProxy(Creator),
             GraphicsEntity(NULL)
             { this->CreateEntity(MeshName,GroupName); }
 
         EntityProxy::EntityProxy(Mesh* TheMesh, SceneManager* Creator) :
-            GraphicsProxy(Creator),
+            RenderableProxy(Creator),
             GraphicsEntity(NULL)
             { this->CreateEntity(TheMesh); }
 

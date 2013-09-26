@@ -50,7 +50,7 @@ namespace Mezzanine
     namespace Graphics
     {
         ParticleSystemProxy::ParticleSystemProxy(SceneManager* Creator) :
-            GraphicsProxy(Creator)
+            RenderableProxy(Creator)
         {
 
         }

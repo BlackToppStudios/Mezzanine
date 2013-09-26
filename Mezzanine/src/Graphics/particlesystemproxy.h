@@ -43,7 +43,7 @@
 /// @file
 /// @brief This file contains the declaration for the World proxy wrapping particle functionality.
 
-#include "Graphics/graphicsproxy.h"
+#include "Graphics/renderableproxy.h"
 
 namespace Mezzanine
 {
@@ -53,7 +53,7 @@ namespace Mezzanine
         /// @brief This is the proxy class for placing and manipulating particles in the scene.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB ParticleSystemProxy : public GraphicsProxy
+        class MEZZ_LIB ParticleSystemProxy : public RenderableProxy
         {
         protected:
         public:

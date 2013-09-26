@@ -37,13 +37,13 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicsgraphicsproxy_cpp
-#define _graphicsgraphicsproxy_cpp
+#ifndef _graphicsrenderableproxy_cpp
+#define _graphicsrenderableproxy_cpp
 
 /// @file
 /// @brief This file contains the implementation for the base class from which graphics proxies inherit.
 
-#include "Graphics/graphicsproxy.h"
+#include "Graphics/renderableproxy.h"
 #include "Graphics/scenemanager.h"
 
 #include "enumerations.h"
@@ -57,66 +57,66 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        GraphicsProxy::GraphicsProxy(SceneManager* Creator) :
+        RenderableProxy::RenderableProxy(SceneManager* Creator) :
             Manager(Creator)
             {  }
 
-        GraphicsProxy::~GraphicsProxy()
+        RenderableProxy::~RenderableProxy()
             {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        AxisAlignedBox GraphicsProxy::GetAABB() const
+        AxisAlignedBox RenderableProxy::GetAABB() const
             { return AxisAlignedBox( this->_GetBaseGraphicsObject()->getBoundingBox() ); }
 
-        WorldManager* GraphicsProxy::GetCreator() const
+        WorldManager* RenderableProxy::GetCreator() const
             { return this->Manager; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Graphics Properties
 
-        void GraphicsProxy::SetVisible(const Bool Visible)
+        void RenderableProxy::SetVisible(const Bool Visible)
             { this->_GetBaseGraphicsObject()->setVisible(Visible); }
 
-        Bool GraphicsProxy::GetVisible() const
+        Bool RenderableProxy::GetVisible() const
             { return this->_GetBaseGraphicsObject()->getVisible(); }
 
-        void GraphicsProxy::SetCastShadows(const Bool CastShadows)
+        void RenderableProxy::SetCastShadows(const Bool CastShadows)
             { this->_GetBaseGraphicsObject()->setCastShadows(CastShadows); }
 
-        Bool GraphicsProxy::GetCastShadows() const
+        Bool RenderableProxy::GetCastShadows() const
             { return this->_GetBaseGraphicsObject()->getCastShadows(); }
 
-        Bool GraphicsProxy::GetReceiveShadows() const
+        Bool RenderableProxy::GetReceiveShadows() const
             { return this->_GetBaseGraphicsObject()->getReceivesShadows(); }
 
-        void GraphicsProxy::SetLightMask(const UInt32 Mask)
+        void RenderableProxy::SetLightMask(const UInt32 Mask)
             { this->_GetBaseGraphicsObject()->setLightMask(Mask); }
 
-        UInt32 GraphicsProxy::GetLightMask() const
+        UInt32 RenderableProxy::GetLightMask() const
             { return this->_GetBaseGraphicsObject()->getLightMask(); }
 
-        void GraphicsProxy::SetRenderDistance(const Real Distance)
+        void RenderableProxy::SetRenderDistance(const Real Distance)
             { this->_GetBaseGraphicsObject()->setRenderingDistance(Distance); }
 
-        Real GraphicsProxy::GetRenderDistance() const
+        Real RenderableProxy::GetRenderDistance() const
             { return this->_GetBaseGraphicsObject()->getRenderingDistance(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void GraphicsProxy::ProtoSerialize(XML::Node& ParentNode) const
+        void RenderableProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
 
             this->ProtoSerializeProperties(SelfRoot);
         }
 
-        void GraphicsProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        void RenderableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             // We're at the base implementation, so no calling of child implementations
-            XML::Node PropertiesNode = SelfRoot.AppendChild( GraphicsProxy::GetSerializableName() + "Properties" );
+            XML::Node PropertiesNode = SelfRoot.AppendChild( RenderableProxy::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
                 PropertiesNode.AppendAttribute("Visible").SetValue( this->GetVisible() ? "true" : "false" ) &&
@@ -133,20 +133,20 @@ namespace Mezzanine
 
                 return;
             }else{
-                SerializeError("Create XML Attribute Values",GraphicsProxy::GetSerializableName() + "Properties",true);
+                SerializeError("Create XML Attribute Values",RenderableProxy::GetSerializableName() + "Properties",true);
             }
         }
 
-        void GraphicsProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+        void RenderableProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
             this->ProtoDeSerializeProperties(SelfRoot);
         }
 
-        void GraphicsProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        void RenderableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
             // We're at the base implementation, so no calling of child implementations
             XML::Attribute CurrAttrib;
-            XML::Node PropertiesNode = SelfRoot.GetChild( GraphicsProxy::GetSerializableName() + "Properties" );
+            XML::Node PropertiesNode = SelfRoot.GetChild( RenderableProxy::GetSerializableName() + "Properties" );
 
             if( !PropertiesNode.Empty() ) {
                 if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
@@ -185,18 +185,18 @@ namespace Mezzanine
                         this->SetScale(Scale);
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (GraphicsProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RenderableProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,GraphicsProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,RenderableProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
-        String GraphicsProxy::GetDerivedSerializableName() const
-            { return GraphicsProxy::GetSerializableName(); }
+        String RenderableProxy::GetDerivedSerializableName() const
+            { return RenderableProxy::GetSerializableName(); }
 
-        String GraphicsProxy::GetSerializableName()
-            { return "GraphicsProxy"; }
+        String RenderableProxy::GetSerializableName()
+            { return "RenderableProxy"; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods

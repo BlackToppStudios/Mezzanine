@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicsgraphicsproxy_h
-#define _graphicsgraphicsproxy_h
+#ifndef _graphicsrenderableproxy_h
+#define _graphicsrenderableproxy_h
 
 /// @file
 /// @brief This file contains the declaration for the base class from which graphics proxies inherit.
@@ -60,7 +60,7 @@ namespace Mezzanine
         /// @brief This is the base proxy class for world proxies wrapping functionality of the graphics subsystem.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB GraphicsProxy : public WorldProxy
+        class MEZZ_LIB RenderableProxy : public WorldProxy
         {
         protected:
             /// @internal
@@ -69,9 +69,9 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             /// @param Creator A pointer to the manager that created this proxy.
-            GraphicsProxy(SceneManager* Creator);
+            RenderableProxy(SceneManager* Creator);
             /// @brief Class destructor.
-            virtual ~GraphicsProxy();
+            virtual ~RenderableProxy();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -150,7 +150,7 @@ namespace Mezzanine
             /// @brief Accessor for the internal graphics object.
             /// @return Returns a pointer to the internal object of this proxy.
             virtual Ogre::MovableObject* _GetBaseGraphicsObject() const = 0;
-        };//GraphicsProxy
+        };//RenderableProxy
     }//Graphics
 }//Mezzanine
 

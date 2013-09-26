@@ -43,7 +43,7 @@
 /// @file
 /// @brief This file contains the declaration for the World proxy wrapping basic entity(mesh) functionality.
 
-#include "Graphics/graphicsproxy.h"
+#include "Graphics/renderableproxy.h"
 
 namespace Ogre
 {
@@ -60,7 +60,7 @@ namespace Mezzanine
         /// @brief This is the proxy class for placing and manipulating a mesh in the scene.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB EntityProxy : public GraphicsProxy
+        class MEZZ_LIB EntityProxy : public RenderableProxy
         {
         protected:
             /// @internal
