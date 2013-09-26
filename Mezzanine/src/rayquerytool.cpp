@@ -70,6 +70,30 @@ using namespace std;
 namespace Mezzanine
 {
 
+    namespace
+    {
+        /// @internal
+        /// @brief Ogre demands the use of special functions to delete a Ogre::RaySceneQuery, this handles that with RAII
+        class RayQueryHandle
+        {
+            public:
+                /// @brief The actual ogre object we want to use.
+                Ogre::RaySceneQuery* RayQuery;
+
+                /// @brief Create the ogre specific handle and sort items for raycasting.
+                /// @note This could be parameterized to make it more useful.
+                RayQueryHandle()
+                {
+                    RayQuery = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+                    RayQuery->setSortByDistance(true);
+                }
+
+                /// @brief When this falls out of scope, cleanup.
+                ~RayQueryHandle()
+                    { Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->destroyQuery(RayQuery); }
+        };
+    }
+
     // Internal Utility methodssz
     Ogre::RaySceneQuery* CreateRayQuery()
     {
@@ -217,13 +241,13 @@ namespace Mezzanine
     // Raycasting Nonsense goe here
     Vector3WActor* RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
     {
-        Ogre::RaySceneQuery* RayQuery = CreateRayQuery();
+        RayQueryHandle RayQ;
+        Ogre::RaySceneQuery* RayQuery = RayQ.RayQuery;
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
         if(NULL != RayQuery)          //Double check that the Rayquery is valid
         {
             RayQuery->setRay(Ooray);
-            //RayQuery->setSortByDistance(true);
             RayQuery->setQueryMask(-1);
             if( RayQuery->execute().size() <= 0 ) //Did we hit anything
             {
@@ -314,16 +338,15 @@ namespace Mezzanine
 
     Vector3WActor* RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
     {
-        Ogre::RaySceneQuery* RayQuery = CreateRayQuery();
+        RayQueryHandle RayQ;
+        Ogre::RaySceneQuery* RayQuery = RayQ.RayQuery;
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
         if(NULL != RayQuery)          //Double check that the Rayquery is valid
         {
             RayQuery->setRay(Ooray);
             if( RayQuery->execute().size() <= 0 ) //Did we hit anything
-            {
-                return NULL;
-            }
+                { return NULL; }
         }else{                          //Whoopsie something Failed
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery.");
         }
@@ -347,7 +370,6 @@ namespace Mezzanine
 
     Vector3WActor* RayQueryTool::GetActorUnderMouse(Whole ObjectFlags, Real RayLength, bool UsePolygon)
     {
-        Ogre::RaySceneQuery* RayQuery = CreateRayQuery();
         Vector3WActor* Results = 0;
 
         Ray* MouseRay = GetMouseRay(RayLength);
@@ -365,15 +387,12 @@ namespace Mezzanine
 
     Vector3* RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
     {
-        Ogre::RaySceneQuery* RayQuery = CreateRayQuery();
         try{
             Vector3 u = QueryRay.Destination - QueryRay.Origin;
             Vector3 p0 = Vector3(0,0,0);
 
             if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
-            {
-                return 0;
-            }
+                { return NULL; }
             else{
                 if(QueryPlane.Normal.X != 0)
                 {
@@ -399,13 +418,9 @@ namespace Mezzanine
             if( (D<0? -D : D) < SMALL_NUM)  //Checks if the Plane behind the RAy
             {
                 if(N == 0)
-                {
-                    return new Vector3(QueryRay.Origin);
-                }
+                    { return new Vector3(QueryRay.Origin); }
                 else
-                {
-                    return 0;
-                }
+                    { return 0; }
             }
 
             Real sI = N/D;
@@ -420,9 +435,7 @@ namespace Mezzanine
             Real distance = return_vector->Distance(QueryRay.Origin);
 
             if(distance > QueryRay.Origin.Distance(QueryRay.Destination))
-            {
-                return 0;
-            }
+                { return 0; }
 
             return return_vector;
         } catch(exception e) {
@@ -435,7 +448,6 @@ namespace Mezzanine
 
     Ray* RayQueryTool::GetMouseRay(Real Length)
     {
-        Ogre::RaySceneQuery* RayQuery = CreateRayQuery();
         Graphics::Viewport* HoveredViewport = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetHoveredViewport();
         Vector2 MousePos = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
         Ray* MouseRay = NULL;
