@@ -58,17 +58,26 @@ namespace Mezzanine
     namespace Graphics
     {
         RenderableProxy::RenderableProxy(SceneManager* Creator) :
+            GraphicsNode(NULL),
             Manager(Creator)
-            {  }
+        {
+            this->GraphicsNode = this->Manager->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        }
 
         RenderableProxy::~RenderableProxy()
-            {  }
+        {
+            this->GraphicsNode->getParentSceneNode()->removeChild(this->GraphicsNode);
+            this->Manager->GetGraphicsWorldPointer()->destroySceneNode(this->GraphicsNode);
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         AxisAlignedBox RenderableProxy::GetAABB() const
             { return AxisAlignedBox( this->_GetBaseGraphicsObject()->getBoundingBox() ); }
+
+        Bool RenderableProxy::IsInWorld() const
+            { return ( this->_GetBaseGraphicsObject()->isAttached() ); }
 
         WorldManager* RenderableProxy::GetCreator() const
             { return this->Manager; }
@@ -104,6 +113,63 @@ namespace Mezzanine
             { return this->_GetBaseGraphicsObject()->getRenderingDistance(); }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Transform Methods
+
+        void RenderableProxy::SetLocation(const Vector3& Loc)
+            { this->GraphicsNode->setPosition( Loc.GetOgreVector3() ); }
+
+        void RenderableProxy::SetLocation(const Real X, const Real Y, const Real Z)
+            { this->GraphicsNode->setPosition(X,Y,Z); }
+
+        Vector3 RenderableProxy::GetLocation() const
+            { return Vector3( this->GraphicsNode->getPosition() ); }
+
+        void RenderableProxy::SetOrientation(const Quaternion& Ori)
+            { this->GraphicsNode->setOrientation( Ori.GetOgreQuaternion() ); }
+
+        void RenderableProxy::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
+            { this->GraphicsNode->setOrientation(W,X,Y,Z); }
+
+        Quaternion RenderableProxy::GetOrientation() const
+            { return Quaternion( this->GraphicsNode->getOrientation() ); }
+
+        void RenderableProxy::SetScale(const Vector3& Sc)
+            { this->GraphicsNode->setScale( Sc.GetOgreVector3() ); }
+
+        void RenderableProxy::SetScale(const Real X, const Real Y, const Real Z)
+            { this->GraphicsNode->setScale(X,Y,Z); }
+
+        Vector3 RenderableProxy::GetScale() const
+            { return Vector3( this->GraphicsNode->getScale() ); }
+
+        void RenderableProxy::Translate(const Vector3& Trans)
+            { this->SetLocation( this->GetLocation() + Trans ); }
+
+        void RenderableProxy::Translate(const Real X, const Real Y, const Real Z)
+            { this->SetLocation( this->GetLocation() + Vector3(X,Y,Z) ); }
+
+        void RenderableProxy::Yaw(const Real Angle)
+            { this->SetOrientation( this->GetOrientation() * Quaternion(Angle,Vector3::Unit_Y()) ); }
+
+        void RenderableProxy::Pitch(const Real Angle)
+            { this->SetOrientation( this->GetOrientation() * Quaternion(Angle,Vector3::Unit_X()) ); }
+
+        void RenderableProxy::Roll(const Real Angle)
+            { this->SetOrientation( this->GetOrientation() * Quaternion(Angle,Vector3::Unit_Z()) ); }
+
+        void RenderableProxy::Rotate(const Vector3& Axis, const Real Angle)
+            { this->SetOrientation( this->GetOrientation() * Quaternion(Angle,Axis) ); }
+
+        void RenderableProxy::Rotate(const Quaternion& Rotation)
+            { this->SetOrientation( this->GetOrientation() * Rotation ); }
+
+        void RenderableProxy::Scale(const Vector3& Scale)
+            { this->SetScale( this->GetScale() * Scale ); }
+
+        void RenderableProxy::Scale(const Real X, const Real Y, const Real Z)
+            { this->SetScale( this->GetScale() * Vector3(X,Y,Z) ); }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
         void RenderableProxy::ProtoSerialize(XML::Node& ParentNode) const
@@ -115,7 +181,8 @@ namespace Mezzanine
 
         void RenderableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            // We're at the base implementation, so no calling of child implementations
+            this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+
             XML::Node PropertiesNode = SelfRoot.AppendChild( RenderableProxy::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
@@ -124,13 +191,6 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("LightMask").SetValue( this->GetLightMask() ) &&
                 PropertiesNode.AppendAttribute("RenderDistance").SetValue( this->GetRenderDistance() ) )
             {
-                XML::Node LocationNode = PropertiesNode.AppendChild("Location");
-                this->GetLocation().ProtoSerialize( LocationNode );
-                XML::Node OrientationNode = PropertiesNode.AppendChild("Orientation");
-                this->GetOrientation().ProtoSerialize( OrientationNode );
-                XML::Node ScaleNode = PropertiesNode.AppendChild("Scale");
-                this->GetScale().ProtoSerialize( ScaleNode );
-
                 return;
             }else{
                 SerializeError("Create XML Attribute Values",RenderableProxy::GetSerializableName() + "Properties",true);
@@ -144,7 +204,8 @@ namespace Mezzanine
 
         void RenderableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            // We're at the base implementation, so no calling of child implementations
+            this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+
             XML::Attribute CurrAttrib;
             XML::Node PropertiesNode = SelfRoot.GetChild( RenderableProxy::GetSerializableName() + "Properties" );
 
@@ -165,25 +226,6 @@ namespace Mezzanine
                     CurrAttrib = PropertiesNode.GetAttribute("RenderDistance");
                     if( !CurrAttrib.Empty() )
                         this->SetRenderDistance( CurrAttrib.AsReal() );
-
-                    // Get the properties that need their own nodes
-                    XML::Node PositionNode = PropertiesNode.GetChild("Location").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
-                        Vector3 Loc(PositionNode);
-                        this->SetLocation(Loc);
-                    }
-
-                    XML::Node OrientationNode = PropertiesNode.GetChild("Orientation").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
-                        Quaternion Rot(OrientationNode);
-                        this->SetOrientation(Rot);
-                    }
-
-                    XML::Node ScaleNode = PropertiesNode.GetChild("Scale").GetFirstChild();
-                    if( !PositionNode.Empty() ) {
-                        Vector3 Scale(ScaleNode);
-                        this->SetScale(Scale);
-                    }
                 }else{
                     MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RenderableProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
                 }
@@ -200,6 +242,9 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
+
+        Ogre::SceneNode* RenderableProxy::_GetGraphicsNode() const
+            { return this->GraphicsNode; }
     }//Graphics
 }//Mezzanine
 

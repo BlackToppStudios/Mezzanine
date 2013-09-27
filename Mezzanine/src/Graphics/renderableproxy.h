@@ -49,6 +49,7 @@
 namespace Ogre
 {
     class MovableObject;
+    class SceneNode;
 }
 
 namespace Mezzanine
@@ -63,6 +64,9 @@ namespace Mezzanine
         class MEZZ_LIB RenderableProxy : public WorldProxy
         {
         protected:
+            /// @internal
+            /// @brief A pointer to the internal object storing the proxy transform.
+            Ogre::SceneNode* GraphicsNode;
             /// @internal
             /// @brief This is a pointer to the scene manager that created and owns this proxy.
             SceneManager* Manager;
@@ -86,7 +90,7 @@ namespace Mezzanine
             /// @copydoc WorldProxy::RemoveFromWorld()
             virtual void RemoveFromWorld() = 0;
             /// @copydoc WorldProxy::IsInWorld() const
-            virtual Bool IsInWorld() const = 0;
+            virtual Bool IsInWorld() const;
 
             /// @copydoc PhysicsProxy::GetCreator() const
             virtual WorldManager* GetCreator() const;
@@ -124,6 +128,47 @@ namespace Mezzanine
             virtual Real GetRenderDistance() const;
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Transform Methods
+
+            /// @copydoc WorldProxy::SetLocation(const Vector3&)
+            virtual void SetLocation(const Vector3& Loc);
+            /// @copydoc WorldProxy::SetLocation(const Real, const Real, const Real)
+            virtual void SetLocation(const Real X, const Real Y, const Real Z);
+            /// @copydoc WorldProxy::GetLocation() const
+            virtual Vector3 GetLocation() const;
+            /// @copydoc WorldProxy::SetOrientation(const Quaternion&)
+            virtual void SetOrientation(const Quaternion& Ori);
+            /// @copydoc WorldProxy::SetOrientation(const Real, const Real, const Real, const Real)
+            virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
+            /// @copydoc WorldProxy::GetOrientation() const
+            virtual Quaternion GetOrientation() const;
+            /// @copydoc WorldProxy::SetScale(const Vector3&)
+            virtual void SetScale(const Vector3& Sc);
+            /// @copydoc WorldProxy::SetScale(const Real, const Real, const Real)
+            virtual void SetScale(const Real X, const Real Y, const Real Z);
+            /// @copydoc WorldProxy::GetScale() const
+            virtual Vector3 GetScale() const;
+
+            /// @copydoc WorldProxy::Translate(const Vector3&)
+            virtual void Translate(const Vector3& Trans);
+            /// @copydoc WorldProxy::Translate(const Real, const Real, const Real)
+            virtual void Translate(const Real X, const Real Y, const Real Z);
+            /// @copydoc WorldProxy::Yaw(const Real)
+            virtual void Yaw(const Real Angle);
+            /// @copydoc WorldProxy::Pitch(const Real)
+            virtual void Pitch(const Real Angle);
+            /// @copydoc WorldProxy::Roll(const Real)
+            virtual void Roll(const Real Angle);
+            /// @copydoc WorldProxy::Rotate(const Vector3&, const Real)
+            virtual void Rotate(const Vector3& Axis, const Real Angle);
+            /// @copydoc WorldProxy::Rotate(const Quaternion&)
+            virtual void Rotate(const Quaternion& Rotation);
+            /// @copydoc WorldProxy::Scale(const Vector3&)
+            virtual void Scale(const Vector3& Scale);
+            /// @copydoc WorldProxy::Scale(const Real, const Real, const Real)
+            virtual void Scale(const Real X, const Real Y, const Real Z);
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
             /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
@@ -146,6 +191,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
+            /// @internal
+            /// @brief Accessor for the internal node in the scenegraph for this proxy.
+            /// @return Returns a pointer to the scenenode storing the transform data of this proxy.
+            virtual Ogre::SceneNode* _GetGraphicsNode() const;
             /// @internal
             /// @brief Accessor for the internal graphics object.
             /// @return Returns a pointer to the internal object of this proxy.
