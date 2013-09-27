@@ -53,6 +53,69 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
+class TrackedHandle
+{
+    public:
+        /// @brief This is type ManagedPtr will use to work with a handle
+        typedef int* TargetPtrType;
+        /// @brief The ManagedPtr never access objects directly, so this is just an implementation detail
+        TargetPtrType Pointer;
+
+        /// @brief How many times was Construct called?
+        int ConstructCount;
+        /// @brief How many times was Deconstruct called?
+        int DeconstructCount;
+        /// @brief How many times was SetPointer called?
+        int SetCount;
+        /// @brief How many times was GetPointer called?
+        int GetCount;
+
+        /// @brief On Destruction of this handle store the ConstructCount count in this if it not null
+        int* ExternalConstructCount;
+        /// @brief On Destruction of this handle store the DeconstructCount count in this if it not null
+        int* ExternalDeconstructCount;
+        /// @brief On Destruction of this handle store the ExternalSetCount count in this if it not null
+        int* ExternalSetCount;
+        /// @brief On Destruction of this handle store the ExternalGetCount count in this if it not null
+        int* ExternalGetCount;
+
+        /// @brief Initialize variables for tracking data during tests.
+        TrackedHandle() : ConstructCount(0), DeconstructCount(0), SetCount(0), GetCount(0),
+            ExternalConstructCount(0), ExternalDeconstructCount(0), ExternalSetCount(0), ExternalGetCount(0)
+        {}
+
+        /// @brief used to track data for tests
+        ~TrackedHandle()
+        {
+            if(ExternalConstructCount)
+                { *ExternalConstructCount = ConstructCount; }
+            if(ExternalDeconstructCount)
+                { *ExternalDeconstructCount = DeconstructCount; }
+            if(ExternalSetCount)
+                { *ExternalSetCount = SetCount; }
+            if(ExternalGetCount)
+                { *ExternalGetCount = GetCount; }
+        }
+
+        /// @brief This is expected to leave Pointer in some valid state for dereferencing.
+        void Construct()
+            { Pointer = new int; ConstructCount++; }
+        /// @brief This can perform any cleanup, but should not fail if Pointer is NULL
+        void Deconstruct()
+            { delete Pointer; DeconstructCount++; } //deleting NULL is a no-op, otherwise a check would be needed.
+
+        /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
+        /// @param Value The new value for the pointer. If NULL the only thing that the ManagedPtr will do to the handle is call its deconstruct method.
+        void SetPointer(TargetPtrType Value)
+            { Pointer = Value; SetCount++; }
+        /// @brief This is what the ManagedPtr with use for dereferencing.
+        /// @return The pointer to the managed data. This is expected to return a value that resolves to false when used as a condition when invalid.
+        TargetPtrType GetPointer()
+            { return Pointer; GetCount++; }
+};
+
+
+
 /// @brief A small series of tests for ManagedPtr
 class managedptrtests : public UnitTestGroup
 {
@@ -65,8 +128,23 @@ class managedptrtests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            // The TEST macro will capture Line, function file Metadata while
-            TEST(true,"AutomaticTest");
+            int TestConstructCount = 0;
+            int TestDeconstructCount = 0;
+            int TestSetCount = 0;
+            int TestGetCount = 0;
+
+            {
+                TrackedHandle AuditableHandle;
+                AuditableHandle.ExternalConstructCount = &TestConstructCount;
+                AuditableHandle.ExternalDeconstructCount = &TestDeconstructCount;
+                AuditableHandle.ExternalSetCount = &TestSetCount;
+                AuditableHandle.ExternalGetCount = &TestGetCount;
+                ManagedPtr<TrackedHandle> BasicConsistencyTest(AuditableHandle);
+            }
+            TEST(TestConstructCount=1,"BaseConsistency::Construct");
+            TEST(TestDeconstructCount=1,"BaseConsistency::Deconstruct");
+
+
 
         }
 

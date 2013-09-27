@@ -64,17 +64,6 @@ namespace Mezzanine
             /// @brief This is expected to leave Pointer in some valid state for dereferencing.
             void Construct()
                 { Pointer = new int; }
-
-            /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
-            /// @param Value The new value for the pointer. If NULL the only thing that the ManagedPtr will do to the handle is call its deconstruct method.
-            void SetPointer(TargetPtrType Value)
-                { Pointer = Value; }
-
-            /// @brief This is what the ManagedPtr with use for dereferencing.
-            /// @return The pointer to the managed data.
-            TargetPtrType GetPointer()
-                { return Pointer; }
-
             /// @brief This can perform any cleanup, but should not fail if Pointer is NULL
             /// @details Copying or assigning a ManagedPtr just changes which instance of the
             /// ManagedPtr will cleanup Ptr. This movement of ownership allows passing or
@@ -83,6 +72,16 @@ namespace Mezzanine
             /// This also stops the target from being deleted multiple times.
             void Deconstruct()
                 { delete Pointer; } //deleting NULL is a no-op, otherwise a check would be needed.
+
+            /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
+            /// @param Value The new value for the pointer. If NULL the only thing that the ManagedPtr will do to the handle is call its deconstruct method.
+            void SetPointer(TargetPtrType Value)
+                { Pointer = Value; }
+            /// @brief This is what the ManagedPtr with use for dereferencing.
+            /// @return The pointer to the managed data. This is expected to return a value that resolves to false when used as a condition when invalid.
+            TargetPtrType GetPointer()
+                { return Pointer; }
+
     };
 
 
@@ -91,7 +90,7 @@ namespace Mezzanine
     /// up the mess. Even worse sometimes doing this involves more than
     /// This is exactly the size of the handle class used. It could be as small as raw pointer
     /// if constructed carefully.
-    template <class Handle, class Handle::TargetPtrType>
+    template <class Handle>
     class MEZZ_LIB ManagedPtr
     {
         private:
@@ -106,29 +105,48 @@ namespace Mezzanine
             Handle Target;
 
         public:
-            /// @brief Constructs the target
-            ManagedPtr()
-                { Target.Construct(); }
 
             /// @brief Constructs the target after passing it the desired state information
             /// @param StatefulHandle A way to pass parameters into the constructors of the underlying class being targeted.
             /// @details The Handle class can be implemented any way that is appropriate for the underlying data. So it is
             /// not limited to the members defined here. This constructor will call the copy copystructor of the handle before
             /// Calling Construct() on it.
-            ManagedPtr(Handle StatefulHandle)
+            ManagedPtr(Handle StatefulHandle = Handle())
                 : Target(StatefulHandle)
                 { Target.Construct(); }
 
-            // copy constructor
+            /// @brief Creates the Target from an already constructed one but invalidates Other ManagedPtr
+            /// @details This transfer ownership (who will deconstruct the handle) from the Other ManagedPtr to this one. This
+            /// Does not call Construct().
+            /// @param Other The ManagedPtr to copy then invalidate.
+            ManagedPtr(ManagedPtr& Other)
+                : Target(Other.Target.GetPointer())
+                { Other.Target.SetPointer(NULL); }
+
+            /// @brief Assigns the Target but invalidates Other ManagedPtr
+            /// @details This transfer ownership (who will deconstruct the handle) from the Other ManagedPtr to this one. This
+            /// Does not call Construct().
+            /// @param Other The ManagedPtr to copy then invalidate.
+            ManagedPtr& operator= (ManagedPtr& Other)
+            {
+                if(Target)
+                    { Target.Deconstruct(); }
+                Target.SetPointer(Other.Target.GetPointer());
+                Other.Target.SetPointer(NULL);
+            }
+
             // operator=
             // &
             // ->
             // * const
             // operator bool
 
-
+            /// @brief Destroy the target and invalidate it.
             ~ManagedPtr()
-                { Target.Deconstruct(); }
+            {
+                Target.Deconstruct();
+                Target.SetPointer(NULL);
+            }
     };
 
 
