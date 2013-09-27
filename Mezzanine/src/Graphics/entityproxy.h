@@ -67,8 +67,8 @@ namespace Mezzanine
             /// @brief A pointer to the internal Entity this proxy is based on.
             Ogre::Entity* GraphicsEntity;
             /// @internal
-            /// @brief A pointer to the internal object storing the entity transform.
-            Ogre::SceneNode* GraphicsNode;
+            /// @brief A pointer to the mesh being used by this proxy.
+            Mesh* ProxyMesh;
 
             /// @internal
             /// @brief Creates an internal entity based on the provided mesh.
@@ -77,8 +77,8 @@ namespace Mezzanine
             virtual void CreateEntity(const String& MeshName, const String& GroupName);
             /// @internal
             /// @brief Creates an internal entity based on the provided mesh.
-            /// @param TheMesh A pointer to the to be applied to this proxy.
-            virtual void CreateEntity(Mesh* TheMesh);
+            /// @param ProxyMesh A pointer to the to be applied to this proxy.
+            virtual void CreateEntity(Mesh* ProxyMesh);
             /// @internal
             /// @brief Destroys the internal entity in use by this proxy.
             virtual void DestroyEntity();
@@ -94,6 +94,72 @@ namespace Mezzanine
             EntityProxy(Mesh* TheMesh, SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~EntityProxy();
+
+            /// @todo Create sub-entity access methods on this class.
+            /// @todo Create minor material manipulation methods on this class.
+            /// @todo Create Animation state and Skeleton access methods on this class.
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @copydoc WorldProxy::GetProxyType() const
+            virtual Mezzanine::ProxyType GetProxyType() const;
+
+            /// @copydoc WorldProxy::AddToWorld()
+            virtual void AddToWorld();
+            /// @copydoc WorldProxy::RemoveFromWorld()
+            virtual void RemoveFromWorld();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Mesh Management
+
+            /// @brief Sets the mesh to be used by this proxy.
+            /// @param MeshName The name of the mesh to apply to this proxy.
+            /// @param Group The resource group to which the mesh belongs.
+            virtual void SetMesh(const String& MeshName, const String& Group);
+            /// @brief Sets the mesh to be used by this proxy.
+            /// @param Mesh The mesh to apply to this proxy.
+            virtual void SetMesh(Mesh* ObjectMesh);
+            /// @brief Gets the mesh currently being used by this proxy.
+            /// @return Returns a pointer to the mesh currently being used by this proxy.
+            virtual Mesh* GetMesh() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Entity Properties
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
+            virtual void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @copydoc RenderableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @brief Convert the mesh of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            virtual void ProtoSerializeMesh(XML::Node& SelfRoot) const;
+
+            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+            /// @copydoc RenderableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the mesh of this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            virtual void ProtoDeSerializeMesh(const XML::Node& SelfRoot);
+
+            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @copydoc WorldProxy::GetSerializableName()
+            static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Accessor for the internal entity.
+            /// @return Returns a pointer to the internal entity this proxy is based on.
+            virtual Ogre::Entity* _GetGraphicsObject() const;
+            /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
+            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
         };//EntityProxy
     }//Graphics
 }//Mezzanine
