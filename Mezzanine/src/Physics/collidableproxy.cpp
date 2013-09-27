@@ -766,7 +766,7 @@ namespace Mezzanine
         void CollidableProxy::ProtoDeSerializeShape(const XML::Node& SelfRoot)
         {
             XML::Attribute CurrAttrib;
-            XML::Node ShapeNode = SelfRoot.GetChild( CollidableProxy::GetSerializableName() + "Properties" );
+            XML::Node ShapeNode = SelfRoot.GetChild( CollidableProxy::GetSerializableName() + "Shape" );
 
             if( !ShapeNode.Empty() ) {
                 if(ShapeNode.GetAttribute("Version").AsInt() == 1) {
