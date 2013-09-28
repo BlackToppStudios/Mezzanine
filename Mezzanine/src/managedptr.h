@@ -45,6 +45,7 @@
 
 #include "datatypes.h"
 
+#include "exception.h"
 
 namespace Mezzanine
 {
@@ -52,11 +53,13 @@ namespace Mezzanine
     /// @details This one is pretty useless, and serves as just an example. Any
     /// class that implements at least the member function this implements can be used
     /// with the ManagedPtr to get smart pointer semantics.
-    class MEZZ_LIB IntHandle
+    class IntHandle // This class should serve as an example and should not be exported.
     {
         public:
             /// @brief This is type ManagedPtr will use to work with a handle
             typedef int* TargetPtrType;
+
+            typedef int TargetType;
 
             /// @brief The ManagedPtr never access objects directly, so this is just an implementation detail
             TargetPtrType Pointer;
@@ -98,13 +101,44 @@ namespace Mezzanine
             /// @detail This is similar to the Pimpl idiom in that much of the implemention could be abstracted into this.
             /// This is expected to have members:
             ///    - TargetPtrType - The type of the underlying pointer.
+            ///    - TargetPtrType - The type of the underlying pointer.
             ///    - void Construct() - Called on initial construction.
             ///    - void SetPointer(TargetPtrType Value) - called for copy construction, assignements and with NULL Value for invalidations.
             ///    - TargetPtrType GetPointer() - for dereferencing.
             ///    - void Deconstruct() - For cleanup/deconstruction.
+            ///
+            /// The semantics of this class also presume that copying and assigning a Handle is safe. To do that
+            /// uses these functions as well. It is intended that pointer copies be shallow copies.
+            ///    - operator= - For copying one handle to another, used in construction.
+            ///    - Sane default construction that can immediately allow for calls to the the other functions.
             Handle Target;
 
+            /// @brief Copy the state of one handle to this handle, and invalidate the old one
+            /// @param StatefulHandle the state to copy onto our handle.
+            void Copy(Handle& StatefulHandle)
+            {
+                if(StatefulHandle.GetPointer()!=Target.GetPointer())
+                {
+                    Target.Deconstruct();
+                    Target=StatefulHandle;
+                    Invalidate(StatefulHandle);
+                }
+            }
+
+            /// @brief Take whatever actions are required to invalidate a handle.
+            /// @param StatefulHandle The Handle to invalidate.
+            static void Invalidate(Handle& StatefulHandle)
+                { StatefulHandle.SetPointer(NULL); }
+            /// @brief Invalidate the handle on this ManagedPtr.
+            void Invalidate()
+                { Invalidate(Target); }
+
         public:
+
+            /// @brief Used to set the return type of pointer like returns (could be a smartpointer)
+            typedef typename Handle::TargetPtrType TargetPtrType;
+            /// @brief Used to set the value and reference type for returns.
+            typedef typename Handle::TargetType TargetType;
 
             /// @brief Constructs the target after passing it the desired state information
             /// @param StatefulHandle A way to pass parameters into the constructors of the underlying class being targeted.
@@ -112,16 +146,19 @@ namespace Mezzanine
             /// not limited to the members defined here. This constructor will call the copy copystructor of the handle before
             /// Calling Construct() on it.
             ManagedPtr(Handle StatefulHandle = Handle())
-                : Target(StatefulHandle)
-                { Target.Construct(); }
-
+            {
+                Target=StatefulHandle;
+                Target.Construct();
+            }
             /// @brief Creates the Target from an already constructed one but invalidates Other ManagedPtr
             /// @details This transfer ownership (who will deconstruct the handle) from the Other ManagedPtr to this one. This
             /// Does not call Construct().
             /// @param Other The ManagedPtr to copy then invalidate.
             ManagedPtr(ManagedPtr& Other)
-                : Target(Other.Target.GetPointer())
-                { Other.Target.SetPointer(NULL); }
+            {
+                Target=Other.Target;
+                Other.Target.SetPointer(NULL);
+            }
 
             /// @brief Assigns the Target but invalidates Other ManagedPtr
             /// @details This transfer ownership (who will deconstruct the handle) from the Other ManagedPtr to this one. This
@@ -129,17 +166,48 @@ namespace Mezzanine
             /// @param Other The ManagedPtr to copy then invalidate.
             ManagedPtr& operator= (ManagedPtr& Other)
             {
-                if(Target)
-                    { Target.Deconstruct(); }
-                Target.SetPointer(Other.Target.GetPointer());
-                Other.Target.SetPointer(NULL);
+                Copy(Other.Target);
+                return *this;
             }
 
-            // operator=
-            // &
-            // ->
-            // * const
-            // operator bool
+            /// @brief Dereference operator.
+            /// @return The managed object is returned by reference.
+            /// @throw If the pointerNothing This member function does not throw exceptions unless the underlying handle does.
+            TargetType& operator*()
+            {
+                TargetPtrType Results=Target.GetPointer();
+                if(Results)
+                    { return *Results; }
+                else
+                    { MEZZ_EXCEPTION(Exception::MM_EXCEPTION,"Attempted to Dereference a NULL ManagedPtr."); }
+            }
+
+            /// @brief The Structure dereference operator.
+            /// @return Makes it appear, syntactically, as though you are dereferencing the raw pointer.
+            TargetPtrType operator->()
+                { return Target.GetPointer(); }
+
+            /// @brief Get the raw pointer to the managed object.
+            /// @return The raw pointer to the managed object or 0 if this pointer is invalid.
+            /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
+            TargetPtrType Get()
+                { return Target.GePointer(); }
+
+            /// @copydoc Get
+            /// @note Provided to match method names on standard smart pointers
+            TargetPtrType get()
+                { return Get(); }
+
+            /// @brief Returns true if this pointer points to something.
+            /// @warning Without C++11 this can be accidentally easily be cast to a bool and can do silly things, like bogus pointer multiplication.
+            operator bool()
+            { return 0 != Target.GetPointer(); }
+
+            /// @brief Compares the underlying pointer of this and another ManagedPtr, (This had better return false)
+            /// @param Other The right hand portion of the comparison
+            /// @return Bool Hopefully thi is false, becase
+            bool operator== (ManagedPtr& Other)
+                { return Target.GetPointer() == Other.Target.GetP0inter(); }
 
             /// @brief Destroy the target and invalidate it.
             ~ManagedPtr()

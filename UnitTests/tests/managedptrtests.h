@@ -53,22 +53,14 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
-class TrackedHandle
+class TrackedHandleInt
 {
     public:
         /// @brief This is type ManagedPtr will use to work with a handle
         typedef int* TargetPtrType;
+        typedef int TargetType;
         /// @brief The ManagedPtr never access objects directly, so this is just an implementation detail
         TargetPtrType Pointer;
-
-        /// @brief How many times was Construct called?
-        int ConstructCount;
-        /// @brief How many times was Deconstruct called?
-        int DeconstructCount;
-        /// @brief How many times was SetPointer called?
-        int SetCount;
-        /// @brief How many times was GetPointer called?
-        int GetCount;
 
         /// @brief On Destruction of this handle store the ConstructCount count in this if it not null
         int* ExternalConstructCount;
@@ -80,38 +72,103 @@ class TrackedHandle
         int* ExternalGetCount;
 
         /// @brief Initialize variables for tracking data during tests.
-        TrackedHandle() : ConstructCount(0), DeconstructCount(0), SetCount(0), GetCount(0),
-            ExternalConstructCount(0), ExternalDeconstructCount(0), ExternalSetCount(0), ExternalGetCount(0)
+        TrackedHandleInt() :
+            ExternalConstructCount(NULL),
+            ExternalDeconstructCount(NULL),
+            ExternalSetCount(NULL),
+            ExternalGetCount(NULL)
         {}
-
-        /// @brief used to track data for tests
-        ~TrackedHandle()
-        {
-            if(ExternalConstructCount)
-                { *ExternalConstructCount = ConstructCount; }
-            if(ExternalDeconstructCount)
-                { *ExternalDeconstructCount = DeconstructCount; }
-            if(ExternalSetCount)
-                { *ExternalSetCount = SetCount; }
-            if(ExternalGetCount)
-                { *ExternalGetCount = GetCount; }
-        }
 
         /// @brief This is expected to leave Pointer in some valid state for dereferencing.
         void Construct()
-            { Pointer = new int; ConstructCount++; }
+        {
+            Pointer = new int(10); // Set pointee to arbitrary nonzero value for testing
+            if(ExternalConstructCount)
+                { (*ExternalConstructCount)++; }
+        }
         /// @brief This can perform any cleanup, but should not fail if Pointer is NULL
         void Deconstruct()
-            { delete Pointer; DeconstructCount++; } //deleting NULL is a no-op, otherwise a check would be needed.
+        {
+            delete Pointer; //deleting NULL is a no-op, otherwise a check would be needed.
+            if(ExternalDeconstructCount)
+                { (*ExternalDeconstructCount)++; }
+        }
 
         /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
         /// @param Value The new value for the pointer. If NULL the only thing that the ManagedPtr will do to the handle is call its deconstruct method.
         void SetPointer(TargetPtrType Value)
-            { Pointer = Value; SetCount++; }
+        {
+            Pointer = Value;
+            if(ExternalSetCount)
+                { (*ExternalSetCount)++; }
+        }
         /// @brief This is what the ManagedPtr with use for dereferencing.
         /// @return The pointer to the managed data. This is expected to return a value that resolves to false when used as a condition when invalid.
         TargetPtrType GetPointer()
-            { return Pointer; GetCount++; }
+        {
+            if(ExternalGetCount)
+                { (*ExternalGetCount)++; }
+            return Pointer;
+        }
+};
+
+class TrackedHandleVector3
+{
+    public:
+        /// @brief This is type ManagedPtr will use to work with a handle
+        typedef Vector3* TargetPtrType;
+        typedef Vector3 TargetType;
+        /// @brief The ManagedPtr never access objects directly, so this is just an implementation detail
+        TargetPtrType Pointer;
+
+        /// @brief On Destruction of this handle store the ConstructCount count in this if it not null
+        int* ExternalConstructCount;
+        /// @brief On Destruction of this handle store the DeconstructCount count in this if it not null
+        int* ExternalDeconstructCount;
+        /// @brief On Destruction of this handle store the ExternalSetCount count in this if it not null
+        int* ExternalSetCount;
+        /// @brief On Destruction of this handle store the ExternalGetCount count in this if it not null
+        int* ExternalGetCount;
+
+        /// @brief Initialize variables for tracking data during tests.
+        TrackedHandleVector3() :
+            ExternalConstructCount(NULL),
+            ExternalDeconstructCount(NULL),
+            ExternalSetCount(NULL),
+            ExternalGetCount(NULL)
+        {}
+
+        /// @brief This is expected to leave Pointer in some valid state for dereferencing.
+        void Construct()
+        {
+            Pointer = new Vector3(1,2,3); // Set pointee to arbitrary nonzero value for testing
+            if(ExternalConstructCount)
+                { (*ExternalConstructCount)++; }
+        }
+        /// @brief This can perform any cleanup, but should not fail if Pointer is NULL
+        void Deconstruct()
+        {
+            delete Pointer; //deleting NULL is a no-op, otherwise a check would be needed.
+            if(ExternalDeconstructCount)
+                { (*ExternalDeconstructCount)++; }
+        }
+
+        /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
+        /// @param Value The new value for the pointer. If NULL the only thing that the ManagedPtr will do to the handle is call its deconstruct method.
+        void SetPointer(TargetPtrType Value)
+        {
+            Pointer = Value;
+            if(ExternalSetCount)
+                { (*ExternalSetCount)++; }
+        }
+        /// @brief This is what the ManagedPtr with use for dereferencing.
+        /// @return The pointer to the managed data. This is expected to return a value that resolves to false when used as a condition when invalid.
+        TargetPtrType GetPointer()
+        {
+            if(ExternalGetCount)
+                { (*ExternalGetCount)++; }
+            return Pointer;
+        }
 };
 
 
@@ -132,19 +189,120 @@ class managedptrtests : public UnitTestGroup
             int TestDeconstructCount = 0;
             int TestSetCount = 0;
             int TestGetCount = 0;
-
+            cout << "Testing Basic consistency of ManagedPtr, by creating one and counting its calls in a simple situation." << endl;
             {
-                TrackedHandle AuditableHandle;
+                TrackedHandleInt AuditableHandle;
                 AuditableHandle.ExternalConstructCount = &TestConstructCount;
                 AuditableHandle.ExternalDeconstructCount = &TestDeconstructCount;
                 AuditableHandle.ExternalSetCount = &TestSetCount;
                 AuditableHandle.ExternalGetCount = &TestGetCount;
-                ManagedPtr<TrackedHandle> BasicConsistencyTest(AuditableHandle);
-            }
-            TEST(TestConstructCount=1,"BaseConsistency::Construct");
-            TEST(TestDeconstructCount=1,"BaseConsistency::Deconstruct");
+                ManagedPtr<TrackedHandleInt> BasicConsistencyTest(AuditableHandle);
+                TEST(10==*BasicConsistencyTest,"BaseConsistency::Dereference");
+            };
+            cout << " Constructed count: " << TestConstructCount << endl
+                 << " Deconstructed count: " << TestDeconstructCount << endl
+                 << " Set count: " << TestSetCount << endl
+                 << " Get count: " << TestGetCount << endl << endl;
+            TEST(TestConstructCount==1,"BaseConsistency::Construct");
+            TEST(TestDeconstructCount==1,"BaseConsistency::Deconstruct");
 
 
+            TestConstructCount = 0;
+            TestDeconstructCount = 0;
+            TestSetCount = 0;
+            TestGetCount = 0;
+            cout << "Testing assignment of ManagedPtr, by creating one and counting its calls in a simple situation requiring assigment." << endl;
+            {
+                TrackedHandleInt AuditableHandle;
+                AuditableHandle.ExternalConstructCount = &TestConstructCount;
+                AuditableHandle.ExternalDeconstructCount = &TestDeconstructCount;
+                AuditableHandle.ExternalSetCount = &TestSetCount;
+                AuditableHandle.ExternalGetCount = &TestGetCount;
+                ManagedPtr<TrackedHandleInt> Assigner(AuditableHandle);
+                ManagedPtr<TrackedHandleInt> Assignee;
+                Assignee=Assigner;
+                TEST_THROW(Mezzanine::MemoryManagementException&,*Assigner;,"AssignmentConsistency::Invalidate");
+                TEST(!Assigner,"AssignmentConsistency::BoolInvalidity");
+                TEST(Assignee,"AssignmentConsistency::BoolValidity");
+                TEST(10==*Assignee,"AssignmentConsistency::Dereference");
+            };
+            cout << " Constructed count: " << TestConstructCount << endl
+                 << " Deconstructed count: " << TestDeconstructCount << endl
+                 << " Set count: " << TestSetCount << endl
+                 << " Get count: " << TestGetCount << endl << endl;
+            TEST(TestConstructCount==1,"AssignmentConsistency::Construct");
+            TEST(TestDeconstructCount>0,"AssignmentConsistency::Deconstruct");
+
+
+            TestConstructCount = 0;
+            TestDeconstructCount = 0;
+            TestSetCount = 0;
+            TestGetCount = 0;
+            cout << "Testing copy construction of ManagedPtr, by creating one and counting its calls in a simple situation requiring copying." << endl;
+            {
+                TrackedHandleInt AuditableHandle;
+                AuditableHandle.ExternalConstructCount = &TestConstructCount;
+                AuditableHandle.ExternalDeconstructCount = &TestDeconstructCount;
+                AuditableHandle.ExternalSetCount = &TestSetCount;
+                AuditableHandle.ExternalGetCount = &TestGetCount;
+                ManagedPtr<TrackedHandleInt> Assigner(AuditableHandle);
+                ManagedPtr<TrackedHandleInt> Assignee(Assigner);
+                TEST_THROW(Mezzanine::MemoryManagementException&,*Assigner;,"CopyConsistency::InvalidateThrow");
+                TEST(!Assigner,"CopyConsistency::BoolInvalidity");
+                TEST(Assignee,"CopyConsistency::BoolValidity");
+                TEST(10==*Assignee,"CopyConsistency::Dereference");
+            };
+            cout << " Constructed count: " << TestConstructCount << endl
+                 << " Deconstructed count: " << TestDeconstructCount << endl
+                 << " Set count: " << TestSetCount << endl
+                 << " Get count: " << TestGetCount << endl << endl;
+            TEST(TestConstructCount==1,"CopyConsistency::Construct");
+            TEST(TestDeconstructCount>0,"CopyConsistency::Deconstruct");
+
+
+            TestConstructCount = 0;
+            TestDeconstructCount = 0;
+            TestSetCount = 0;
+            TestGetCount = 0;
+            cout << "Testing copy construction of ManagedPtr, by creating one and counting its calls in a simple situation requiring copying." << endl;
+            {
+                TrackedHandleInt AuditableHandle;
+                AuditableHandle.ExternalConstructCount = &TestConstructCount;
+                AuditableHandle.ExternalDeconstructCount = &TestDeconstructCount;
+                AuditableHandle.ExternalSetCount = &TestSetCount;
+                AuditableHandle.ExternalGetCount = &TestGetCount;
+                ManagedPtr<TrackedHandleInt> Assigner(AuditableHandle);
+                ManagedPtr<TrackedHandleInt> Assignee(Assigner);
+                TEST_THROW(Mezzanine::MemoryManagementException&,*Assigner;,"CopyConsistency::Invalidate");
+                TEST(10==*Assignee,"CopyConsistency::Dereference");
+            };
+            cout << " Constructed count: " << TestConstructCount << endl
+                 << " Deconstructed count: " << TestDeconstructCount << endl
+                 << " Set count: " << TestSetCount << endl
+                 << " Get count: " << TestGetCount << endl << endl;
+            TEST(TestConstructCount==1,"CopyConsistency::Construct");
+            TEST(TestDeconstructCount>0,"CopyConsistency::Deconstruct");
+
+            TestConstructCount = 0;
+            TestDeconstructCount = 0;
+            TestSetCount = 0;
+            TestGetCount = 0;
+            cout << "Testing copy construction of ManagedPtr, by creating one and counting its calls in a simple situation requiring copying." << endl;
+            {
+                TrackedHandleVector3 AuditableHandle;
+                AuditableHandle.ExternalConstructCount = &TestConstructCount;
+                AuditableHandle.ExternalDeconstructCount = &TestDeconstructCount;
+                AuditableHandle.ExternalSetCount = &TestSetCount;
+                AuditableHandle.ExternalGetCount = &TestGetCount;
+                ManagedPtr<TrackedHandleVector3> Deffer(AuditableHandle);
+                TEST(1==Deffer->X && 2==Deffer->Y && 3==Deffer->Z,"ArrowConsistency::Dereference");
+            };
+            cout << " Constructed count: " << TestConstructCount << endl
+                 << " Deconstructed count: " << TestDeconstructCount << endl
+                 << " Set count: " << TestSetCount << endl
+                 << " Get count: " << TestGetCount << endl << endl;
+            TEST(TestConstructCount==1,"ArrowConsistency::Construct");
+            TEST(TestDeconstructCount>0,"ArrowConsistency::Deconstruct");
 
         }
 
@@ -152,8 +310,6 @@ class managedptrtests : public UnitTestGroup
         /// @return returns true
         virtual bool HasAutomaticTests() const
             { return true; }
-
-
 
 };
 
