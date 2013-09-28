@@ -185,7 +185,13 @@ namespace Mezzanine
             /// @brief The Structure dereference operator.
             /// @return Makes it appear, syntactically, as though you are dereferencing the raw pointer.
             TargetPtrType operator->()
-                { return Target.GetPointer(); }
+            {
+                TargetPtrType Results=Target.GetPointer();
+                if(Results)
+                    { return Results; }
+                else
+                    { MEZZ_EXCEPTION(Exception::MM_EXCEPTION,"Attempted to Dereference a NULL ManagedPtr."); }
+            }
 
             /// @brief Get the raw pointer to the managed object.
             /// @return The raw pointer to the managed object or 0 if this pointer is invalid.
