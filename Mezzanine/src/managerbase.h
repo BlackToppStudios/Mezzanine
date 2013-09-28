@@ -71,6 +71,7 @@ namespace Mezzanine
             MT_AudioManager = 1,       // Audio
             MT_AnimationManager,       // Graphics
             MT_CollisionShapeManager,  // Physics
+            MT_CompositorManager,      // Gtaphics
             MT_GraphicsManager,        // Graphics
             MT_EventManager,           // Mezzanine
             MT_InputManager,           // Input
