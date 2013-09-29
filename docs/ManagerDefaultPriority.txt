@@ -1,8 +1,0 @@
--50	User Input and events
--40	Actors
--30	Physics
--20	Camera
--10	Lighting (Not yet implemented)
-0	Graphics
-10	Sound
-20  Resource
