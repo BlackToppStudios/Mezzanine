@@ -199,7 +199,8 @@ class managedptrtests : public UnitTestGroup
                 ManagedPtr<TrackedHandleInt> BasicConsistencyTest(AuditableHandle);
                 TEST(10==*BasicConsistencyTest,"BaseConsistency::Dereference");
             };
-            cout << " Constructed count: " << TestConstructCount << endl
+            cout << endl
+                 << " Constructed count: " << TestConstructCount << endl
                  << " Deconstructed count: " << TestDeconstructCount << endl
                  << " Set count: " << TestSetCount << endl
                  << " Get count: " << TestGetCount << endl << endl;
@@ -226,7 +227,8 @@ class managedptrtests : public UnitTestGroup
                 TEST(Assignee,"AssignmentConsistency::BoolValidity");
                 TEST(10==*Assignee,"AssignmentConsistency::Dereference");
             };
-            cout << " Constructed count: " << TestConstructCount << endl
+            cout << endl
+                 << " Constructed count: " << TestConstructCount << endl
                  << " Deconstructed count: " << TestDeconstructCount << endl
                  << " Set count: " << TestSetCount << endl
                  << " Get count: " << TestGetCount << endl << endl;
@@ -252,7 +254,8 @@ class managedptrtests : public UnitTestGroup
                 TEST(Assignee,"CopyConsistency::BoolValidity");
                 TEST(10==*Assignee,"CopyConsistency::Dereference");
             };
-            cout << " Constructed count: " << TestConstructCount << endl
+            cout << endl
+                 << " Constructed count: " << TestConstructCount << endl
                  << " Deconstructed count: " << TestDeconstructCount << endl
                  << " Set count: " << TestSetCount << endl
                  << " Get count: " << TestGetCount << endl << endl;
@@ -276,7 +279,8 @@ class managedptrtests : public UnitTestGroup
                 TEST_THROW(Mezzanine::MemoryManagementException&,*Assigner;,"CopyConsistency::InvalidateThrows");
                 TEST(10==*Assignee,"CopyConsistency::Dereference");
             };
-            cout << " Constructed count: " << TestConstructCount << endl
+            cout << endl
+                 << " Constructed count: " << TestConstructCount << endl
                  << " Deconstructed count: " << TestDeconstructCount << endl
                  << " Set count: " << TestSetCount << endl
                  << " Get count: " << TestGetCount << endl << endl;
@@ -300,7 +304,8 @@ class managedptrtests : public UnitTestGroup
                 TEST_THROW(Mezzanine::MemoryManagementException&,Deffer->Z;,"ArrowConsistency::InvalidateThrows");
                 TEST(1==Deffer2->X && 2==Deffer2->Y && 3==Deffer2->Z,"ArrowConsistency::CopyDereference");
             };
-            cout << " Constructed count: " << TestConstructCount << endl
+            cout << endl
+                 << " Constructed count: " << TestConstructCount << endl
                  << " Deconstructed count: " << TestDeconstructCount << endl
                  << " Set count: " << TestSetCount << endl
                  << " Get count: " << TestGetCount << endl << endl;

@@ -103,7 +103,6 @@ public:
     void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
         //User Input through a WorldQueryTool
-        static RayQueryTool* RayQueryer = new RayQueryTool();
         Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
         Input::Mouse* SysMouse = InputMan->GetSystemMouse();
         Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
@@ -170,8 +169,8 @@ public:
                         { TheEntresol->BreakMainLoop(); }
                 }
             }else{
-                Ray MouseRay = RayQueryer->GetMouseRay(5000);
-                Vector3WActor ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(MouseRay,Mezzanine::WSO_ActorRigid);
+                Ray MouseRay = RayQueryTool::GetMouseRay(5000);
+                Vector3WActor ClickOnActor = RayQueryTool::GetFirstActorOnRayByPolygon(MouseRay,Mezzanine::WSO_ActorRigid);
 
                 bool firstframe=false;
                 if (0 == ClickOnActor.Actor)

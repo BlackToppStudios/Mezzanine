@@ -84,6 +84,10 @@ namespace Mezzanine
                                 const Ogre::Quaternion &orient,
                                 const Ogre::Vector3 &scale);
 
+            /// @brief Private constructor to be certain all usage is going through static API
+            RayQueryTool()
+            {}
+
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // World Ray Queries
@@ -130,6 +134,11 @@ namespace Mezzanine
             /// @param Length how long of a ray do you want? Thsi defaults to 1000
             /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.
             static Ray GetMouseRay(Real Length=1000);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Extra Query Results
+            ///////////////////////////////////////
+
     };
 }
 
