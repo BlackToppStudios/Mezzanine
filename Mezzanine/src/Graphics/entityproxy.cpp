@@ -85,6 +85,8 @@ namespace Mezzanine
             if( ProxyMesh != NULL ) {
                 this->GraphicsEntity = this->Manager->GetGraphicsWorldPointer()->createEntity(ProxyMesh->_GetInternalMesh());
                 this->GraphicsEntity->setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
+                this->GraphicsEntity->setVisibilityFlags(0);
+                this->GraphicsEntity->setQueryFlags(0);
             }else{
                 MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to create internal entity with NULL Mesh.  This may be caused by an invalid mesh name or resource group being provided.");
             }
@@ -105,20 +107,6 @@ namespace Mezzanine
         Mezzanine::ProxyType EntityProxy::GetProxyType() const
         {
             return PT_Graphics_EntityProxy;
-        }
-
-        void EntityProxy::AddToWorld()
-        {
-            if( !this->IsInWorld() ) {
-                this->GraphicsNode->attachObject( this->GraphicsEntity );
-            }
-        }
-
-        void EntityProxy::RemoveFromWorld()
-        {
-            if( this->IsInWorld() ) {
-                this->GraphicsNode->detachObject( this->GraphicsEntity );
-            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////

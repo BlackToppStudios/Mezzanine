@@ -104,11 +104,6 @@ namespace Mezzanine
             /// @copydoc WorldProxy::GetProxyType() const
             virtual Mezzanine::ProxyType GetProxyType() const;
 
-            /// @copydoc WorldProxy::AddToWorld()
-            virtual void AddToWorld();
-            /// @copydoc WorldProxy::RemoveFromWorld()
-            virtual void RemoveFromWorld();
-
             ///////////////////////////////////////////////////////////////////////////////
             // Mesh Management
 

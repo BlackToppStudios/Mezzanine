@@ -76,8 +76,26 @@ namespace Mezzanine
         AxisAlignedBox RenderableProxy::GetAABB() const
             { return AxisAlignedBox( this->_GetBaseGraphicsObject()->getBoundingBox() ); }
 
+        void RenderableProxy::AddToWorld()
+        {
+            if( !this->InWorld ) {
+                this->_GetBaseGraphicsObject()->setVisibilityFlags( this->VisibilityMask );
+                this->_GetBaseGraphicsObject()->setQueryFlags( this->QueryMask );
+                this->InWorld = true;
+            }
+        }
+
+        void RenderableProxy::RemoveFromWorld()
+        {
+            if( this->IsWorld ) {
+                this->_GetBaseGraphicsObject()->setVisibilityFlags(0);
+                this->_GetBaseGraphicsObject()->setQueryFlags(0);
+                this->InWorld = false;
+            }
+        }
+
         Bool RenderableProxy::IsInWorld() const
-            { return ( this->_GetBaseGraphicsObject()->isAttached() ); }
+            { return this->InWorld; }
 
         WorldManager* RenderableProxy::GetCreator() const
             { return this->Manager; }
@@ -105,6 +123,28 @@ namespace Mezzanine
 
         UInt32 RenderableProxy::GetLightMask() const
             { return this->_GetBaseGraphicsObject()->getLightMask(); }
+
+        void RenderableProxy::SetVisibilityMask(const UInt32 Mask)
+        {
+            this->VisibilityMask = Mask;
+            if( this->InWorld ) {
+                this->_GetBaseGraphicsObject()->setVisibilityFlags( this->VisibilityMask );
+            }
+        }
+
+        UInt32 RenderableProxy::GetVisibilityMask() const
+            { return this->VisibilityMask; }
+
+        void RenderableProxy::SetQueryMask(const UInt32 Mask)
+        {
+            this->QueryMask = Mask;
+            if( this->InWorld ) {
+                this->_GetBaseGraphicsObject()->setQueryFlags( this->QueryMask );
+            }
+        }
+
+        UInt32 RenderableProxy::GetQueryMask() const
+            { return this->QueryMask; }
 
         void RenderableProxy::SetRenderDistance(const Real Distance)
             { this->_GetBaseGraphicsObject()->setRenderingDistance(Distance); }
@@ -189,6 +229,8 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("Visible").SetValue( this->GetVisible() ? "true" : "false" ) &&
                 PropertiesNode.AppendAttribute("CastShadows").SetValue( this->GetCastShadows() ? "true" : "false" ) &&
                 PropertiesNode.AppendAttribute("LightMask").SetValue( this->GetLightMask() ) &&
+                PropertiesNode.AppendAttribute("VisibilityMask").SetValue( this->GetVisibilityMask() ) &&
+                PropertiesNode.AppendAttribute("QueryMask").SetValue( this->GetQueryMask() ) &&
                 PropertiesNode.AppendAttribute("RenderDistance").SetValue( this->GetRenderDistance() ) )
             {
                 return;
@@ -222,6 +264,14 @@ namespace Mezzanine
                     CurrAttrib = PropertiesNode.GetAttribute("LightMask");
                     if( !CurrAttrib.Empty() )
                         this->SetLightMask( CurrAttrib.AsWhole() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("VisibilityMask");
+                    if( !CurrAttrib.Empty() )
+                        this->SetVisibilityMask( CurrAttrib.AsWhole() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("QueryMask");
+                    if( !CurrAttrib.Empty() )
+                        this->SetQueryMask( CurrAttrib.AsWhole() );
 
                     CurrAttrib = PropertiesNode.GetAttribute("RenderDistance");
                     if( !CurrAttrib.Empty() )

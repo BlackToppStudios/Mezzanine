@@ -70,6 +70,15 @@ namespace Mezzanine
             /// @internal
             /// @brief This is a pointer to the scene manager that created and owns this proxy.
             SceneManager* Manager;
+            /// @internal
+            /// @brief This is a bitmask identifying this objects type when being rendered.  Used for advanced visibility configuration.
+            UInt32 VisibilityMask;
+            /// @internal
+            /// @brief This is a bitmask identifying this objects type when being queried.  Used for advanced query configuration.
+            UInt32 QueryMask;
+            /// @internal
+            /// @brief This stores whether the proxy is currently in the graphics world or not.
+            Bool InWorld;
         public:
             /// @brief Class constructor.
             /// @param Creator A pointer to the manager that created this proxy.
@@ -86,9 +95,9 @@ namespace Mezzanine
             virtual AxisAlignedBox GetAABB() const;
 
             /// @copydoc WorldProxy::AddToWorld()
-            virtual void AddToWorld() = 0;
+            virtual void AddToWorld();
             /// @copydoc WorldProxy::RemoveFromWorld()
-            virtual void RemoveFromWorld() = 0;
+            virtual void RemoveFromWorld();
             /// @copydoc WorldProxy::IsInWorld() const
             virtual Bool IsInWorld() const;
 
@@ -113,12 +122,29 @@ namespace Mezzanine
             /// @brief Gets whether or not this proxy can be rendered with a shadow casted on it.
             /// @return Returns true if this proxy can receive shadows, false otherwise.
             virtual Bool GetReceiveShadows() const;
+
             /// @brief Sets which types of lights will affect this proxy.
             /// @param Mask A bitmask used to indicate which types of lights will be applied to this proxy.
             virtual void SetLightMask(const UInt32 Mask);
             /// @brief Gets which types of lights will affect this proxy.
             /// @return Returns a bitmask indicating the types of lights that will affect this proxies rendering.
             virtual UInt32 GetLightMask() const;
+            /// @brief Sets the bitmask that will be used to determine if this object should be visible when rendering.
+            /// @remarks This bitmask is compared against the bitmask you provide to a viewport for what should be visible during rendering.
+            /// @param Mask The bitmask to be applied.
+            virtual void SetVisibilityMask(const UInt32 Mask);
+            /// @brief Gets the bitmask that will be used to determine if this object should be visible when rendering.
+            /// @remarks This bitmask is compared against the bitmask you provide to a viewport for what should be visible during rendering.
+            /// @return Returns a bitmask describing the type of object this will be treated as when rendering.
+            virtual UInt32 GetVisibilityMask() const;
+            /// @brief Sets the bitmesk that will be used to determine if this object should be counted in scene queries.
+            /// @remarks This bitmask is compared against the bitmask you provide when performing a scene query from the scenemanager.
+            /// @param Mask The bitmask to be applied.
+            virtual void SetQueryMask(const UInt32 Mask);
+            /// @brief Gets the bitmask that will be used to determine if this object should be counted in scene queries.
+            /// @remarks This bitmask is compared against the bitmask you provide when performing a scene query from the scenemanager.
+            /// @return Returns a bitmask describing the type of object this will be treated as when discovered in scene queries.
+            virtual UInt32 GetQueryMask() const;
 
             /// @brief Sets the distance at which the proxy will stop rendering.
             /// @param Distance The distance in world units from the camera when the proxy will stop being rendered.
