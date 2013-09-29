@@ -89,9 +89,9 @@ class TrackedHandleInt
         /// @brief This can perform any cleanup, but should not fail if Pointer is NULL
         void Deconstruct()
         {
-            delete Pointer; //deleting NULL is a no-op, otherwise a check would be needed.
-            if(ExternalDeconstructCount)
+            if(Pointer&&ExternalDeconstructCount)
                 { (*ExternalDeconstructCount)++; }
+            delete Pointer; //deleting NULL is a no-op, otherwise a check would be needed.
         }
 
         /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
@@ -148,9 +148,9 @@ class TrackedHandleVector3
         /// @brief This can perform any cleanup, but should not fail if Pointer is NULL
         void Deconstruct()
         {
-            delete Pointer; //deleting NULL is a no-op, otherwise a check would be needed.
-            if(ExternalDeconstructCount)
+            if(Pointer&&ExternalDeconstructCount)
                 { (*ExternalDeconstructCount)++; }
+            delete Pointer; //deleting NULL is a no-op, otherwise a check would be needed.
         }
 
         /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
@@ -231,7 +231,7 @@ class managedptrtests : public UnitTestGroup
                  << " Set count: " << TestSetCount << endl
                  << " Get count: " << TestGetCount << endl << endl;
             TEST(TestConstructCount==1,"AssignmentConsistency::Construct");
-            TEST(TestDeconstructCount>0,"AssignmentConsistency::Deconstruct");
+            TEST(TestDeconstructCount==1,"AssignmentConsistency::Deconstruct");
 
 
             TestConstructCount = 0;
@@ -257,7 +257,7 @@ class managedptrtests : public UnitTestGroup
                  << " Set count: " << TestSetCount << endl
                  << " Get count: " << TestGetCount << endl << endl;
             TEST(TestConstructCount==1,"CopyConsistency::Construct");
-            TEST(TestDeconstructCount>0,"CopyConsistency::Deconstruct");
+            TEST(TestDeconstructCount==1,"CopyConsistency::Deconstruct");
 
 
             TestConstructCount = 0;
@@ -281,7 +281,7 @@ class managedptrtests : public UnitTestGroup
                  << " Set count: " << TestSetCount << endl
                  << " Get count: " << TestGetCount << endl << endl;
             TEST(TestConstructCount==1,"CopyConsistency::Construct");
-            TEST(TestDeconstructCount>0,"CopyConsistency::Deconstruct");
+            TEST(TestDeconstructCount==1,"CopyConsistency::Deconstruct");
 
             TestConstructCount = 0;
             TestDeconstructCount = 0;
@@ -305,7 +305,7 @@ class managedptrtests : public UnitTestGroup
                  << " Set count: " << TestSetCount << endl
                  << " Get count: " << TestGetCount << endl << endl;
             TEST(TestConstructCount==1,"ArrowConsistency::Construct");
-            TEST(TestDeconstructCount>0,"ArrowConsistency::Deconstruct");
+            TEST(TestDeconstructCount==1,"ArrowConsistency::Deconstruct");
 
         }
 

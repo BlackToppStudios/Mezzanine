@@ -94,24 +94,29 @@ namespace Mezzanine
     /// up the mess. Even worse sometimes doing this involves more than
     /// This is exactly the size of the handle class used. It could be as small as raw pointer
     /// if constructed carefully.
+    /// @n @n
+    /// To use this a 'Handle' must be created first. A good handle is trivial copyable, assignable
+    /// and implements a few functions. This is similar to the Pimpl idiom in that the details of the
+    /// implemention could be abstracted into this 'Handle'. The 'Handle' will encapsulate/have the
+    /// knowledge of how to correctly create and destroy the pointer while the ManagedPtr provides
+    /// The pointer-like semantics and esures it is destructed exactly once.
+    /// This is expected to have members:
+    ///    - TargetPtrType - The type of the underlying pointer.
+    ///    - TargetPtrType - The type of the underlying pointer.
+    ///    - void Construct() - Called on initial construction.
+    ///    - void SetPointer(TargetPtrType Value) - called for copy construction, assignements and with NULL Value for invalidations.
+    ///    - TargetPtrType GetPointer() - for dereferencing.
+    ///    - void Deconstruct() - For cleanup/deconstruction.
+    ///
+    /// The semantics of this class also presume that copying and assigning a Handle is safe. To do that
+    /// uses these functions as well. It is intended that pointer copies be shallow copies.
+    ///    - operator= - For copying one handle to another, used in construction.
+    ///    - Sane default construction that can immediately allow for calls to the the other functions.
     template <class Handle>
     class MEZZ_LIB ManagedPtr
     {
         private:
             /// @brief This handles the details of contructing and managing the raw pointer.
-            /// @detail This is similar to the Pimpl idiom in that much of the implemention could be abstracted into this.
-            /// This is expected to have members:
-            ///    - TargetPtrType - The type of the underlying pointer.
-            ///    - TargetPtrType - The type of the underlying pointer.
-            ///    - void Construct() - Called on initial construction.
-            ///    - void SetPointer(TargetPtrType Value) - called for copy construction, assignements and with NULL Value for invalidations.
-            ///    - TargetPtrType GetPointer() - for dereferencing.
-            ///    - void Deconstruct() - For cleanup/deconstruction.
-            ///
-            /// The semantics of this class also presume that copying and assigning a Handle is safe. To do that
-            /// uses these functions as well. It is intended that pointer copies be shallow copies.
-            ///    - operator= - For copying one handle to another, used in construction.
-            ///    - Sane default construction that can immediately allow for calls to the the other functions.
             Handle Target;
 
             /// @brief Copy the state of one handle to this handle, and invalidate the old one
