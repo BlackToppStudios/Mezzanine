@@ -76,8 +76,8 @@ namespace Mezzanine
             virtual void CreateEntity(const String& MeshName, const String& GroupName);
             /// @internal
             /// @brief Creates an internal entity based on the provided mesh.
-            /// @param ProxyMesh A pointer to the to be applied to this proxy.
-            virtual void CreateEntity(Mesh* ProxyMesh);
+            /// @param ObjectMesh A pointer to the to be applied to this proxy.
+            virtual void CreateEntity(Mesh* ObjectMesh);
             /// @internal
             /// @brief Destroys the internal entity in use by this proxy.
             virtual void DestroyEntity();
@@ -112,7 +112,7 @@ namespace Mezzanine
             /// @param Group The resource group to which the mesh belongs.
             virtual void SetMesh(const String& MeshName, const String& Group);
             /// @brief Sets the mesh to be used by this proxy.
-            /// @param Mesh The mesh to apply to this proxy.
+            /// @param ObjectMesh The mesh to apply to this proxy.
             virtual void SetMesh(Mesh* ObjectMesh);
             /// @brief Gets the mesh currently being used by this proxy.
             /// @return Returns a pointer to the mesh currently being used by this proxy.
