@@ -82,7 +82,7 @@ namespace Mezzanine
 
         void EntityProxy::CreateEntity(Mesh* ObjectMesh)
         {
-            if( ProxyMesh != NULL ) {
+            if( ObjectMesh != NULL ) {
                 this->GraphicsEntity = this->Manager->GetGraphicsWorldPointer()->createEntity(ObjectMesh->_GetInternalMesh());
                 this->GraphicsNode->attachObject( this->GraphicsEntity );
                 this->GraphicsEntity->setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
@@ -186,10 +186,11 @@ namespace Mezzanine
 
         void EntityProxy::ProtoSerializeMesh(XML::Node& SelfRoot) const
         {
-            XML::Node ShapeNode = SelfRoot.AppendChild( EntityProxy::GetSerializableName() + "Mesh" );
+            XML::Node MeshNode = SelfRoot.AppendChild( EntityProxy::GetSerializableName() + "Mesh" );
 
-            if( ShapeNode.AppendAttribute("Version").SetValue("1") &&
-                ShapeNode.AppendAttribute("ProxyMesh").SetValue( this->ProxyMesh->GetName() ) )
+            if( MeshNode.AppendAttribute("Version").SetValue("1") &&
+                MeshNode.AppendAttribute("ProxyMeshName").SetValue( this->ProxyMesh->GetName() ) &&
+                MeshNode.AppendAttribute("ProxyMeshGroup").SetValue( this->ProxyMesh->GetGroup() ) )
             {
                 return;
             }else{
@@ -211,16 +212,22 @@ namespace Mezzanine
         void EntityProxy::ProtoDeSerializeMesh(const XML::Node& SelfRoot)
         {
             XML::Attribute CurrAttrib;
-            XML::Node ShapeNode = SelfRoot.GetChild( EntityProxy::GetSerializableName() + "Mesh" );
+            XML::Node MeshNode = SelfRoot.GetChild( EntityProxy::GetSerializableName() + "Mesh" );
 
-            if( !ShapeNode.Empty() ) {
-                if(ShapeNode.GetAttribute("Version").AsInt() == 1) {
-                    CurrAttrib = ShapeNode.GetAttribute("ProxyMesh");
-                    if( !CurrAttrib.Empty() ) {
-                        // Adding the autodetect is a bit of a hack, but should work fine for this purpose.  Depending on resource system refactors we may want to add group name serialization to this instead.
-                        Mesh* NewMesh = MeshManager::GetSingletonPtr()->LoadMesh( CurrAttrib.AsString(), Ogre::ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME );
-                        this->SetMesh( NewMesh );
-                    }
+            if( !MeshNode.Empty() ) {
+                if(MeshNode.GetAttribute("Version").AsInt() == 1) {
+                    String MeshName, MeshGroup = Ogre::ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME;
+
+                    CurrAttrib = MeshNode.GetAttribute("ProxyMeshName");
+                    if( !CurrAttrib.Empty() )
+                        MeshName = CurrAttrib.AsString();
+
+                    CurrAttrib = MeshNode.GetAttribute("ProxyMeshGroup");
+                    if( !CurrAttrib.Empty() )
+                        MeshGroup = CurrAttrib.AsString();
+
+                    Mesh* NewMesh = MeshManager::GetSingletonPtr()->LoadMesh( MeshName, MeshGroup );
+                    this->SetMesh( NewMesh );
                 }
             }
         }
