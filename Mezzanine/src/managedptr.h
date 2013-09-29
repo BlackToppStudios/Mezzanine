@@ -59,6 +59,7 @@ namespace Mezzanine
             /// @brief This is type ManagedPtr will use to work with a handle
             typedef int* TargetPtrType;
 
+            /// @brief The Type this handle is pointer at.
             typedef int TargetType;
 
             /// @brief The ManagedPtr never access objects directly, so this is just an implementation detail

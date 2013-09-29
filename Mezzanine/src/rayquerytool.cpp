@@ -58,6 +58,7 @@ using namespace std;
 #include "ray.h"
 #include "vector3wactor.h"
 #include "Input/mouse.h"
+#include "managedptr.h"
 
 #include <Ogre.h>
 
@@ -77,21 +78,37 @@ namespace Mezzanine
         class RayQueryHandle
         {
             public:
+                /// @brief This will work with a raw pointer to a Ogre::RaySceneQuery to manage a Ogre::RaySceneQuery.
+                typedef Ogre::RaySceneQuery* TargetPtrType;
+                /// @brief This will manage a Ogre::RaySceneQuery
+                typedef Ogre::RaySceneQuery TargetType;
                 /// @brief The actual ogre object we want to use.
                 Ogre::RaySceneQuery* RayQuery;
 
                 /// @brief Create the ogre specific handle and sort items for raycasting.
-                /// @note This could be parameterized to make it more useful.
-                RayQueryHandle()
+                void Construct()
                 {
                     RayQuery = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
                     RayQuery->setSortByDistance(true);
                 }
+                /// @brief CAll the Ogre API to clean up this wierd handle thing
+                void Deconstruct()
+                {
+                    if(GetPointer())
+                        { Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->destroyQuery(RayQuery); }
+                }
 
-                /// @brief When this falls out of scope, cleanup.
-                ~RayQueryHandle()
-                    { Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->destroyQuery(RayQuery); }
+                /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
+                /// @param Value The new value for the pointer. If NULL the only thing that the ManagedPtr will do to the handle is call its deconstruct method.
+                void SetPointer(TargetPtrType Value)
+                    { RayQuery = Value; }
+                /// @brief This is what the ManagedPtr with use for dereferencing.
+                /// @return The pointer to the managed data. This is expected to return a value that resolves to false when used as a condition when invalid.
+                TargetPtrType GetPointer()
+                    { return RayQuery; }
         };
+
+        typedef ManagedPtr<RayQueryHandle> ManagedRayQuery;
     }
 
     void RayQueryTool::GetMeshInformation( Ogre::Entity *entity,
@@ -232,11 +249,11 @@ namespace Mezzanine
     // Raycasting Nonsense goe here
     Vector3WActor* RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
     {
-        RayQueryHandle RayQ;
-        Ogre::RaySceneQuery* RayQuery = RayQ.RayQuery;
+        ManagedRayQuery RayQuery;
+        //Ogre::RaySceneQuery* RayQuery = RayQ.RayQuery;
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
-        if(NULL != RayQuery)          //Double check that the Rayquery is valid
+        if(RayQuery)          //Double check that the Rayquery is valid
         {
             RayQuery->setRay(Ooray);
             RayQuery->setQueryMask(-1);
@@ -244,7 +261,7 @@ namespace Mezzanine
             {
                 return NULL;
             }
-        }else{                          //Whoopsie something Failed
+        }else{                          // Something Failed
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
         }
 
@@ -329,11 +346,10 @@ namespace Mezzanine
 
     Vector3WActor* RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
     {
-        RayQueryHandle RayQ;
-        Ogre::RaySceneQuery* RayQuery = RayQ.RayQuery;
+        ManagedRayQuery RayQuery;
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
-        if(NULL != RayQuery)          //Double check that the Rayquery is valid
+        if(RayQuery)          //Double check that the Rayquery is valid
         {
             RayQuery->setRay(Ooray);
             if( RayQuery->execute().size() <= 0 ) //Did we hit anything
