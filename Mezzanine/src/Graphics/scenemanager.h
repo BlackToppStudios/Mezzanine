@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _scenemanager_h
-#define _scenemanager_h
+#ifndef _graphicsscenemanager_h
+#define _graphicsscenemanager_h
 
 #include "colourvalue.h"
 #include "worldmanager.h"
