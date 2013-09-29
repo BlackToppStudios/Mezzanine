@@ -59,7 +59,9 @@ namespace Mezzanine
     {
         RenderableProxy::RenderableProxy(SceneManager* Creator) :
             GraphicsNode(NULL),
-            Manager(Creator)
+            Manager(Creator),
+            VisibilityMask(Ogre::MovableObject::getDefaultVisibilityFlags()),
+            QueryMask(Ogre::MovableObject::getDefaultQueryFlags())
         {
             this->GraphicsNode = this->Manager->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         }
@@ -87,7 +89,7 @@ namespace Mezzanine
 
         void RenderableProxy::RemoveFromWorld()
         {
-            if( this->IsWorld ) {
+            if( this->InWorld ) {
                 this->_GetBaseGraphicsObject()->setVisibilityFlags(0);
                 this->_GetBaseGraphicsObject()->setQueryFlags(0);
                 this->InWorld = false;
