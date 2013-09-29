@@ -170,11 +170,11 @@ public:
                         { TheEntresol->BreakMainLoop(); }
                 }
             }else{
-                Ray* MouseRay = RayQueryer->GetMouseRay(5000);
-                Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
+                Ray MouseRay = RayQueryer->GetMouseRay(5000);
+                Vector3WActor ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(MouseRay,Mezzanine::WSO_ActorRigid);
 
                 bool firstframe=false;
-                if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
+                if (0 == ClickOnActor.Actor)
                 {
                     #ifdef MEZZDEBUG
                     //TheEntresol->Log("No Actor Clicked on");
@@ -186,14 +186,14 @@ public:
                     //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
                     //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
                     #endif
-                    if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
+                    if(!(ClickOnActor.Actor->IsStaticOrKinematic()))
                     {
                         if(!Dragger) //If we have a dragger, then this is dragging, not clicking
                         {
-                            if(ClickOnActor->Actor->GetType()==Mezzanine::WSO_ActorRigid) //This is Dragging let's do some checks for sanity
+                            if(ClickOnActor.Actor->GetType()==Mezzanine::WSO_ActorRigid) //This is Dragging let's do some checks for sanity
                             {
-                                Vector3 LocalPivot = ClickOnActor->Vector;
-                                ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                                Vector3 LocalPivot = ClickOnActor.Vector;
+                                ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor.Actor);
                                 rigid->GetPhysicsSettings()->SetActivationState(Physics::AS_DisableDeactivation);
                                 //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                                 Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
@@ -216,27 +216,16 @@ public:
                 }
 
                 // This chunk of code calculates the 3d point that the actor needs to be dragged to
-                Vector3 *DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
-                if (0 == DragTo)
+                Vector3 DragTo = RayQueryTool::RayPlaneIntersection(MouseRay, PlaneOfPlay);
+                if (DragTo!=Vector3())
                 {
                     #ifdef MEZZDEBUG
                     //TheEntresol->Log("PlaneOfPlay Not Clicked on");
                     #endif
                 }else{
                     if(Dragger && !firstframe)
-                    {
-                        #ifdef MEZZDEBUG
-                        //TheEntresol->Log("Dragged To");
-                        //TheEntresol->Log(*DragTo);
-                        #endif
-                        //Dragger->SetOffsetALocation(*DragTo);
-                        Dragger->SetPivotBLocation(*DragTo);
-                    }
+                        { Dragger->SetPivotBLocation(DragTo); }
                 }
-
-                // Here we cleanup everything we needed for the clicking/dragging
-                delete DragTo;
-                delete MouseRay;
             }
 
         }else{  //Since we are no longer clicking we need to setup for the next clicking
@@ -336,10 +325,10 @@ public:
 
 int main(int argc, char **argv)
 {
-	// Temporary Hack
+    // Temporary Hack
     #ifdef MACOSX
-	String ExeDir = Mezzanine::ResourceManager::GetExecutableDirFromArg(argc,argv);
-	Mezzanine::ResourceManager::ChangeDirectory(ExeDir);
+    String ExeDir = Mezzanine::ResourceManager::GetExecutableDirFromArg(argc,argv);
+    Mezzanine::ResourceManager::ChangeDirectory(ExeDir);
     #endif
 
     try
@@ -395,7 +384,7 @@ int main(int argc, char **argv)
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostPhysicsWork, "DemoPostPhysicsWork" );
 
     // Init
-	TheEntresol->EngineInit(false);
+    TheEntresol->EngineInit(false);
 
     // Configure Shadows
     TheEntresol->GetSceneManager()->SetSceneShadowTechnique(Graphics::SceneManager::SST_Stencil_Additive);
@@ -590,7 +579,7 @@ void LoadContent()
     //BlackHole->GetGraphicsSettings()->SetMesh(MeshManager::GetSingletonPtr()->CreateSphereMesh("GravWellMesh",ColourValue(0.8,0.1,0.1,0.15),750.0));
     TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
-	//Final Steps
+    //Final Steps
     Vector3 grav;
     grav.X=0.0;
     grav.Y=-400.0;

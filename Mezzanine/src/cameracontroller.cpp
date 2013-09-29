@@ -125,24 +125,12 @@ namespace Mezzanine
     {
         Vector3 Loc(Controlled->GetLocation());
         Vector3 Dest(Loc + Vector3(0,-2000,0));
-        Ray* GroundRay = new Ray(Loc,Dest);
+        Ray GroundRay(Loc,Dest);
         int flags = Mezzanine::WSO_MeshTerrain | Mezzanine::WSO_HeightfieldTerrain | Mezzanine::WSO_VectorFieldTerrain | Mezzanine::WSO_VoxelTerrain;
-        Vector3WActor* Result = RayQueryTool::GetFirstActorOnRayByPolygon(*GroundRay,flags);
-        if(NULL == Result)
-        {
-            delete Result;
-            delete GroundRay;
-            return 0;
-        }
-        if(NULL == Result->Actor)
-        {
-            delete Result;
-            delete GroundRay;
-            return 0;
-        }
-        Real Distance = Loc.Y - (Result->Actor->GetLocation() + Result->Vector).Y;
-        delete Result;
-        delete GroundRay;
+        Vector3WActor Result = RayQueryTool::GetFirstActorOnRayByPolygon(GroundRay,flags);
+        if(NULL == Result.Actor)
+            { return 0; }
+        Real Distance = Loc.Y - (Result.Actor->GetLocation() + Result.Vector).Y;
         return Distance;
     }
 

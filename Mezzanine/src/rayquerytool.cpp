@@ -247,7 +247,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Raycasting Nonsense goe here
-    Vector3WActor* RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
+    Vector3WActor RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
         //Ogre::RaySceneQuery* RayQuery = RayQ.RayQuery;
@@ -258,9 +258,7 @@ namespace Mezzanine
             RayQuery->setRay(Ooray);
             RayQuery->setQueryMask(-1);
             if( RayQuery->execute().size() <= 0 ) //Did we hit anything
-            {
-                return NULL;
-            }
+                { return Vector3WActor(); }
         }else{                          // Something Failed
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
         }
@@ -273,7 +271,7 @@ namespace Mezzanine
         Ogre::Real closest_distance = -1.0f;
         Vector3 closest_result;
         Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
-        Vector3WActor* ClosestActor = new Vector3WActor();
+        Vector3WActor ClosestActor;
         for (size_t qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
         {
             // stop checking if we have found a raycast hit that is closer than all remaining entities
@@ -327,7 +325,7 @@ namespace Mezzanine
                         {
                             closest_result = Ooray.getPoint(closest_distance);
                             WorldObject* WO = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
-                            ClosestActor->Actor = static_cast<ActorBase*>( WO );
+                            ClosestActor.Actor = static_cast<ActorBase*>( WO );
                         }
 
                     } // \if WSO_ActorRigid
@@ -338,13 +336,12 @@ namespace Mezzanine
         } // \if qr_idx
 
         //Change the closest point into a point relative to the Actor
-        if (ClosestActor->Actor != NULL)
-            //{ ClosestActor->Vector = closest_result - ClosestActor->Actor->GetLocation(); }
-            { ClosestActor->Vector = ClosestActor->Actor->GetOrientation() * ((closest_result - ClosestActor->Actor->GetLocation()) * ClosestActor->Actor->GetScaling()); }
+        if (ClosestActor.Actor != NULL)
+            { ClosestActor.Vector = ClosestActor.Actor->GetOrientation() * ((closest_result - ClosestActor.Actor->GetLocation()) * ClosestActor.Actor->GetScaling()); }
         return ClosestActor;
     }
 
-    Vector3WActor* RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
+    Vector3WActor RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
@@ -353,7 +350,7 @@ namespace Mezzanine
         {
             RayQuery->setRay(Ooray);
             if( RayQuery->execute().size() <= 0 ) //Did we hit anything
-                { return NULL; }
+                { return Vector3WActor(); }
         }else{                          //Whoopsie something Failed
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery.");
         }
@@ -363,43 +360,42 @@ namespace Mezzanine
         if (0 < query_result.size())
         {
             Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[0].movable);
-            Vector3WActor* ClosestActor = new Vector3WActor();
+            Vector3WActor ClosestActor;
             WorldObject* WO = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
-            ClosestActor->Actor = static_cast<ActorBase*>( WO );
+            ClosestActor.Actor = static_cast<ActorBase*>( WO );
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account
             return ClosestActor;
         }else{
-            return 0;
+            return Vector3WActor();
         }
     }
 
-    Vector3WActor* RayQueryTool::GetActorUnderMouse(Whole ObjectFlags, Real RayLength, bool UsePolygon)
+    Vector3WActor RayQueryTool::GetActorUnderMouse(Whole ObjectFlags, Real RayLength, bool UsePolygon)
     {
-        Vector3WActor* Results = 0;
+        Vector3WActor Results;
 
-        Ray* MouseRay = GetMouseRay(RayLength);
+        Ray MouseRay = GetMouseRay(RayLength);
 
         if (UsePolygon)
         {
-            Results = GetFirstActorOnRayByPolygon(*MouseRay,ObjectFlags);
+            Results = GetFirstActorOnRayByPolygon(MouseRay,ObjectFlags);
         }else{
-            Results = GetFirstActorOnRayByAABB(*MouseRay,ObjectFlags);
+            Results = GetFirstActorOnRayByAABB(MouseRay,ObjectFlags);
         }
 
-        delete MouseRay;
         return Results;
     }
 
-    Vector3* RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
+    Vector3 RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
     {
         try{
             Vector3 u = QueryRay.Destination - QueryRay.Origin;
             Vector3 p0 = Vector3(0,0,0);
 
             if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
-                { return NULL; }
+            { return Vector3(); }
             else{
                 if(QueryPlane.Normal.X != 0)
                 {
@@ -425,45 +421,43 @@ namespace Mezzanine
             if( (D<0? -D : D) < SMALL_NUM)  //Checks if the Plane behind the RAy
             {
                 if(N == 0)
-                    { return new Vector3(QueryRay.Origin); }
+                    { return Vector3(QueryRay.Origin); }
                 else
-                    { return 0; }
+                    { return Vector3(); }
             }
 
             Real sI = N/D;
 
             if(sI < 0 || sI > 1) //checks if the ray is too long
-            {
-                return 0;
-            }
+                { return Vector3(); }
 
-            Vector3* return_vector = new Vector3(QueryRay.Origin + (u * sI));
+            Vector3 return_vector(QueryRay.Origin + (u * sI));
 
-            Real distance = return_vector->Distance(QueryRay.Origin);
+            Real distance = return_vector.Distance(QueryRay.Origin);
 
             if(distance > QueryRay.Origin.Distance(QueryRay.Destination))
-                { return 0; }
+                { return Vector3(); }
 
             return return_vector;
         } catch(exception e) {
             //In case we divide b
             Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
             Entresol::GetSingletonPtr()->Log(e.what());
-            return 0;
+            return Vector3();
         }
     }
 
-    Ray* RayQueryTool::GetMouseRay(Real Length)
+    Ray RayQueryTool::GetMouseRay(Real Length)
     {
         Graphics::Viewport* HoveredViewport = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetHoveredViewport();
         Vector2 MousePos = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
-        Ray* MouseRay = NULL;
+        Ray MouseRay;
         if(HoveredViewport)
         {
-            MouseRay = new Ray( HoveredViewport->GetViewportCamera()->GetCameraToViewportRay(
-                                MousePos.X / (Real)(HoveredViewport->GetActualWidth()),
-                                MousePos.Y / (Real)(HoveredViewport->GetActualHeight()) ) );
-            (*MouseRay) *= Length;
+            MouseRay = Ray( HoveredViewport->GetViewportCamera()->GetCameraToViewportRay(
+                            MousePos.X / (Real)(HoveredViewport->GetActualWidth()),
+                            MousePos.Y / (Real)(HoveredViewport->GetActualHeight()) ) );
+            MouseRay *= Length;
         }
         return MouseRay;
     }
