@@ -45,6 +45,11 @@
 
 #include "Graphics/renderableproxy.h"
 
+namespace Ogre
+{
+    class Light;
+}
+
 namespace Mezzanine
 {
     namespace Graphics
@@ -56,12 +61,47 @@ namespace Mezzanine
         class MEZZ_LIB LightProxy : public RenderableProxy
         {
         protected:
+            /// @internal
+            /// @brief A pointer to the internal Light this proxy is based on.
+            Ogre::Light* GraphicsLight;
         public:
             /// @brief Class constructor.
             /// @param Creator A pointer to the manager that created this proxy.
             LightProxy(SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~LightProxy();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @copydoc WorldProxy::GetProxyType() const
+            virtual Mezzanine::ProxyType GetProxyType() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Light Properties
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @copydoc WorldProxy::GetSerializableName()
+            static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Accessor for the internal light.
+            /// @return Returns a pointer to the internal light this proxy is based on.
+            virtual Ogre::Light* _GetGraphicsObject() const;
+            /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
+            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
         };//LightProxy
     }//Graphics
 }//Mezzanine
