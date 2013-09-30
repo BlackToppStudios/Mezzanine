@@ -63,6 +63,8 @@ namespace Mezzanine
 #include "Graphics/lightproxy.h"
 #include "Graphics/material.h"
 #include "Graphics/mesh.h"
+#include "Graphics/particleaffector.h"
+#include "Graphics/particleemitter.h"
 #include "Graphics/particlesystemproxy.h"
 #include "Graphics/pass.h"
 #include "Graphics/renderableproxy.h"
