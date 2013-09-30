@@ -71,6 +71,7 @@ namespace Mezzanine
             MT_AudioManager = 1,       // Audio
             MT_AnimationManager,       // Graphics
             MT_CollisionShapeManager,  // Physics
+            MT_CompositorManager,      // Gtaphics
             MT_GraphicsManager,        // Graphics
             MT_EventManager,           // Mezzanine
             MT_InputManager,           // Input
@@ -87,6 +88,7 @@ namespace Mezzanine
             MT_ActorManager = 100,     // Mezzanine
             MT_AreaEffectManager,      // Mezzanine
             MT_CameraManager,          // Graphics
+            MT_DebrisManager,          // Mezzanine
             MT_PagingManager,          // Paging
             MT_PhysicsManager,         // Physics
             MT_SceneManager,           // Graphics

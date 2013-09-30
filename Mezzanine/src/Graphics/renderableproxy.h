@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicsgraphicsproxy_h
-#define _graphicsgraphicsproxy_h
+#ifndef _graphicsrenderableproxy_h
+#define _graphicsrenderableproxy_h
 
 /// @file
 /// @brief This file contains the declaration for the base class from which graphics proxies inherit.
@@ -49,6 +49,7 @@
 namespace Ogre
 {
     class MovableObject;
+    class SceneNode;
 }
 
 namespace Mezzanine
@@ -60,18 +61,30 @@ namespace Mezzanine
         /// @brief This is the base proxy class for world proxies wrapping functionality of the graphics subsystem.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB GraphicsProxy : public WorldProxy
+        class MEZZ_LIB RenderableProxy : public WorldProxy
         {
         protected:
             /// @internal
+            /// @brief A pointer to the internal object storing the proxy transform.
+            Ogre::SceneNode* GraphicsNode;
+            /// @internal
             /// @brief This is a pointer to the scene manager that created and owns this proxy.
             SceneManager* Manager;
+            /// @internal
+            /// @brief This is a bitmask identifying this objects type when being rendered.  Used for advanced visibility configuration.
+            UInt32 VisibilityMask;
+            /// @internal
+            /// @brief This is a bitmask identifying this objects type when being queried.  Used for advanced query configuration.
+            UInt32 QueryMask;
+            /// @internal
+            /// @brief This stores whether the proxy is currently in the graphics world or not.
+            Bool InWorld;
         public:
             /// @brief Class constructor.
             /// @param Creator A pointer to the manager that created this proxy.
-            GraphicsProxy(SceneManager* Creator);
+            RenderableProxy(SceneManager* Creator);
             /// @brief Class destructor.
-            virtual ~GraphicsProxy();
+            virtual ~RenderableProxy();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -82,11 +95,11 @@ namespace Mezzanine
             virtual AxisAlignedBox GetAABB() const;
 
             /// @copydoc WorldProxy::AddToWorld()
-            virtual void AddToWorld() = 0;
+            virtual void AddToWorld();
             /// @copydoc WorldProxy::RemoveFromWorld()
-            virtual void RemoveFromWorld() = 0;
+            virtual void RemoveFromWorld();
             /// @copydoc WorldProxy::IsInWorld() const
-            virtual Bool IsInWorld() const = 0;
+            virtual Bool IsInWorld() const;
 
             /// @copydoc PhysicsProxy::GetCreator() const
             virtual WorldManager* GetCreator() const;
@@ -109,12 +122,29 @@ namespace Mezzanine
             /// @brief Gets whether or not this proxy can be rendered with a shadow casted on it.
             /// @return Returns true if this proxy can receive shadows, false otherwise.
             virtual Bool GetReceiveShadows() const;
+
             /// @brief Sets which types of lights will affect this proxy.
             /// @param Mask A bitmask used to indicate which types of lights will be applied to this proxy.
             virtual void SetLightMask(const UInt32 Mask);
             /// @brief Gets which types of lights will affect this proxy.
             /// @return Returns a bitmask indicating the types of lights that will affect this proxies rendering.
             virtual UInt32 GetLightMask() const;
+            /// @brief Sets the bitmask that will be used to determine if this object should be visible when rendering.
+            /// @remarks This bitmask is compared against the bitmask you provide to a viewport for what should be visible during rendering.
+            /// @param Mask The bitmask to be applied.
+            virtual void SetVisibilityMask(const UInt32 Mask);
+            /// @brief Gets the bitmask that will be used to determine if this object should be visible when rendering.
+            /// @remarks This bitmask is compared against the bitmask you provide to a viewport for what should be visible during rendering.
+            /// @return Returns a bitmask describing the type of object this will be treated as when rendering.
+            virtual UInt32 GetVisibilityMask() const;
+            /// @brief Sets the bitmesk that will be used to determine if this object should be counted in scene queries.
+            /// @remarks This bitmask is compared against the bitmask you provide when performing a scene query from the scenemanager.
+            /// @param Mask The bitmask to be applied.
+            virtual void SetQueryMask(const UInt32 Mask);
+            /// @brief Gets the bitmask that will be used to determine if this object should be counted in scene queries.
+            /// @remarks This bitmask is compared against the bitmask you provide when performing a scene query from the scenemanager.
+            /// @return Returns a bitmask describing the type of object this will be treated as when discovered in scene queries.
+            virtual UInt32 GetQueryMask() const;
 
             /// @brief Sets the distance at which the proxy will stop rendering.
             /// @param Distance The distance in world units from the camera when the proxy will stop being rendered.
@@ -124,18 +154,57 @@ namespace Mezzanine
             virtual Real GetRenderDistance() const;
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Transform Methods
+
+            /// @copydoc WorldProxy::SetLocation(const Vector3&)
+            virtual void SetLocation(const Vector3& Loc);
+            /// @copydoc WorldProxy::SetLocation(const Real, const Real, const Real)
+            virtual void SetLocation(const Real X, const Real Y, const Real Z);
+            /// @copydoc WorldProxy::GetLocation() const
+            virtual Vector3 GetLocation() const;
+            /// @copydoc WorldProxy::SetOrientation(const Quaternion&)
+            virtual void SetOrientation(const Quaternion& Ori);
+            /// @copydoc WorldProxy::SetOrientation(const Real, const Real, const Real, const Real)
+            virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
+            /// @copydoc WorldProxy::GetOrientation() const
+            virtual Quaternion GetOrientation() const;
+            /// @copydoc WorldProxy::SetScale(const Vector3&)
+            virtual void SetScale(const Vector3& Sc);
+            /// @copydoc WorldProxy::SetScale(const Real, const Real, const Real)
+            virtual void SetScale(const Real X, const Real Y, const Real Z);
+            /// @copydoc WorldProxy::GetScale() const
+            virtual Vector3 GetScale() const;
+
+            /// @copydoc WorldProxy::Translate(const Vector3&)
+            virtual void Translate(const Vector3& Trans);
+            /// @copydoc WorldProxy::Translate(const Real, const Real, const Real)
+            virtual void Translate(const Real X, const Real Y, const Real Z);
+            /// @copydoc WorldProxy::Yaw(const Real)
+            virtual void Yaw(const Real Angle);
+            /// @copydoc WorldProxy::Pitch(const Real)
+            virtual void Pitch(const Real Angle);
+            /// @copydoc WorldProxy::Roll(const Real)
+            virtual void Roll(const Real Angle);
+            /// @copydoc WorldProxy::Rotate(const Vector3&, const Real)
+            virtual void Rotate(const Vector3& Axis, const Real Angle);
+            /// @copydoc WorldProxy::Rotate(const Quaternion&)
+            virtual void Rotate(const Quaternion& Rotation);
+            /// @copydoc WorldProxy::Scale(const Vector3&)
+            virtual void Scale(const Vector3& Scale);
+            /// @copydoc WorldProxy::Scale(const Real, const Real, const Real)
+            virtual void Scale(const Real X, const Real Y, const Real Z);
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
             /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
             virtual void ProtoSerialize(XML::Node& ParentNode) const;
-            /// @brief Convert the properties of this class to an XML::Node ready for serialization.
-            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
 
             /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
             virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
-            /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
-            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
             /// @copydoc WorldProxy::GetDerivedSerializableName() const
@@ -147,10 +216,14 @@ namespace Mezzanine
             // Internal Methods
 
             /// @internal
+            /// @brief Accessor for the internal node in the scenegraph for this proxy.
+            /// @return Returns a pointer to the scenenode storing the transform data of this proxy.
+            virtual Ogre::SceneNode* _GetGraphicsNode() const;
+            /// @internal
             /// @brief Accessor for the internal graphics object.
             /// @return Returns a pointer to the internal object of this proxy.
             virtual Ogre::MovableObject* _GetBaseGraphicsObject() const = 0;
-        };//GraphicsProxy
+        };//RenderableProxy
     }//Graphics
 }//Mezzanine
 

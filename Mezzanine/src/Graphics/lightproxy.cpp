@@ -45,12 +45,15 @@
 
 #include "Graphics/lightproxy.h"
 
+#include <Ogre.h>
+
 namespace Mezzanine
 {
     namespace Graphics
     {
         LightProxy::LightProxy(SceneManager* Creator) :
-            GraphicsProxy(Creator)
+            RenderableProxy(Creator),
+            GraphicsLight(NULL)
         {
 
         }
@@ -59,6 +62,45 @@ namespace Mezzanine
         {
 
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        Mezzanine::ProxyType LightProxy::GetProxyType() const
+        {
+            return Mezzanine::PT_Graphics_LightProxy;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Light Properties
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void LightProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+
+        }
+
+        void LightProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+
+        }
+
+        String LightProxy::GetDerivedSerializableName() const
+            { return LightProxy::GetSerializableName(); }
+
+        String LightProxy::GetSerializableName()
+            { return "LightProxy"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        Ogre::Light* LightProxy::_GetGraphicsObject() const
+            { return this->GraphicsLight; }
+
+        Ogre::MovableObject* LightProxy::_GetBaseGraphicsObject() const
+            { return this->GraphicsLight; }
     }//Graphics
 }//Mezzanine
 

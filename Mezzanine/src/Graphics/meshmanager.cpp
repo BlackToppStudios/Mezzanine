@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _meshmanager_cpp
-#define _meshmanager_cpp
+#ifndef _graphicsmeshmanager_cpp
+#define _graphicsmeshmanager_cpp
 
 #include "vector2.h"
 #include "Graphics/meshmanager.h"

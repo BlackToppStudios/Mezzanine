@@ -637,7 +637,7 @@ namespace Mezzanine
 
         void CollidableProxy::Scale(const Real X, const Real Y, const Real Z)
         {
-            Vector3 NewScale(X,Y,Z);
+            Vector3 NewScale = this->GetScale() * Vector3(X,Y,Z);
             this->Scale(NewScale);
         }
 
@@ -766,7 +766,7 @@ namespace Mezzanine
         void CollidableProxy::ProtoDeSerializeShape(const XML::Node& SelfRoot)
         {
             XML::Attribute CurrAttrib;
-            XML::Node ShapeNode = SelfRoot.GetChild( CollidableProxy::GetSerializableName() + "Properties" );
+            XML::Node ShapeNode = SelfRoot.GetChild( CollidableProxy::GetSerializableName() + "Shape" );
 
             if( !ShapeNode.Empty() ) {
                 if(ShapeNode.GetAttribute("Version").AsInt() == 1) {

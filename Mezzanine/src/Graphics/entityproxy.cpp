@@ -48,6 +48,11 @@
 #include "Graphics/meshmanager.h"
 #include "Graphics/mesh.h"
 
+#include "enumerations.h"
+#include "exception.h"
+#include "serialization.h"
+#include "stringtool.h"
+
 #include <Ogre.h>
 
 namespace Mezzanine
@@ -55,13 +60,15 @@ namespace Mezzanine
     namespace Graphics
     {
         EntityProxy::EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator) :
-            GraphicsProxy(Creator),
-            GraphicsEntity(NULL)
+            RenderableProxy(Creator),
+            GraphicsEntity(NULL),
+            ProxyMesh(NULL)
             { this->CreateEntity(MeshName,GroupName); }
 
         EntityProxy::EntityProxy(Mesh* TheMesh, SceneManager* Creator) :
-            GraphicsProxy(Creator),
-            GraphicsEntity(NULL)
+            RenderableProxy(Creator),
+            GraphicsEntity(NULL),
+            ProxyMesh(NULL)
             { this->CreateEntity(TheMesh); }
 
         EntityProxy::~EntityProxy()
@@ -69,31 +76,176 @@ namespace Mezzanine
 
         void EntityProxy::CreateEntity(const String& MeshName, const String& GroupName)
         {
-            if( this->GraphicsNode == NULL ) {
-                this->GraphicsNode = this->Manager->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
-            }
-
-            Ogre::MeshPtr TheMesh = Ogre::MeshManager::getSingletonPtr()->getByName(MeshName,GroupName);
-            this->GraphicsEntity = this->Manager->GetGraphicsWorldPointer()->createEntity(TheMesh);
+            Mesh* TheMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,GroupName);
+            this->CreateEntity(TheMesh);
         }
 
-        void EntityProxy::CreateEntity(Mesh* TheMesh)
+        void EntityProxy::CreateEntity(Mesh* ObjectMesh)
         {
-            if( this->GraphicsNode == NULL ) {
-                this->GraphicsNode = this->Manager->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
-            }
+            if( ObjectMesh != NULL ) {
+                this->GraphicsEntity = this->Manager->GetGraphicsWorldPointer()->createEntity(ObjectMesh->_GetInternalMesh());
+                this->GraphicsNode->attachObject( this->GraphicsEntity );
+                this->GraphicsEntity->setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
+                this->GraphicsEntity->setVisibilityFlags(0);
+                this->GraphicsEntity->setQueryFlags(0);
 
-            this->GraphicsEntity = this->Manager->GetGraphicsWorldPointer()->createEntity(TheMesh->_GetInternalMesh());
+                this->ProxyMesh = ObjectMesh;
+            }else{
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to create internal entity with NULL Mesh.  This may be caused by an invalid mesh name or resource group being provided.");
+            }
         }
 
         void EntityProxy::DestroyEntity()
         {
-            if( this->IsInWorld() ) {
-                this->RemoveFromWorld();
-            }
-
+            this->GraphicsNode->detachObject( this->GraphicsEntity );
             this->Manager->GetGraphicsWorldPointer()->destroyEntity(this->GraphicsEntity);
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        Mezzanine::ProxyType EntityProxy::GetProxyType() const
+        {
+            return PT_Graphics_EntityProxy;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Mesh Management
+
+        void EntityProxy::SetMesh(const String& MeshName, const String& Group)
+        {
+            if( this->GraphicsEntity ) {
+                Bool Visible = this->GetVisible();
+                Bool CastShadow = this->GetCastShadows();
+                UInt32 LMask = this->GetLightMask();
+                UInt32 VMask = this->GetVisibilityMask();
+                UInt32 QMask = this->GetQueryMask();
+                Real RenderDist = this->GetRenderDistance();
+
+                this->DestroyEntity();
+                this->CreateEntity(MeshName,Group);
+
+                this->SetVisible( Visible );
+                this->SetCastShadows( CastShadow );
+                this->SetLightMask( LMask );
+                this->SetVisibilityMask( VMask );
+                this->SetQueryMask( QMask );
+                this->SetRenderDistance( RenderDist );
+            }else{
+                this->CreateEntity(MeshName,Group);
+            }
+        }
+
+        void EntityProxy::SetMesh(Mesh* ObjectMesh)
+        {
+            if( this->GraphicsEntity ) {
+                Bool Visible = this->GetVisible();
+                Bool CastShadow = this->GetCastShadows();
+                UInt32 LMask = this->GetLightMask();
+                UInt32 VMask = this->GetVisibilityMask();
+                UInt32 QMask = this->GetQueryMask();
+                Real RenderDist = this->GetRenderDistance();
+
+                this->DestroyEntity();
+                this->CreateEntity(ObjectMesh);
+
+                this->SetVisible( Visible );
+                this->SetCastShadows( CastShadow );
+                this->SetLightMask( LMask );
+                this->SetVisibilityMask( VMask );
+                this->SetQueryMask( QMask );
+                this->SetRenderDistance( RenderDist );
+            }else{
+                this->CreateEntity(ObjectMesh);
+            }
+        }
+
+        Mesh* EntityProxy::GetMesh() const
+        {
+            return this->ProxyMesh;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Entity Properties
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void EntityProxy::ProtoSerialize(XML::Node& ParentNode) const
+        {
+            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+
+            this->ProtoSerializeProperties(SelfRoot);
+            this->ProtoSerializeMesh(SelfRoot);
+        }
+
+        void EntityProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
+        }
+
+        void EntityProxy::ProtoSerializeMesh(XML::Node& SelfRoot) const
+        {
+            XML::Node MeshNode = SelfRoot.AppendChild( EntityProxy::GetSerializableName() + "Mesh" );
+
+            if( MeshNode.AppendAttribute("Version").SetValue("1") &&
+                MeshNode.AppendAttribute("ProxyMeshName").SetValue( this->ProxyMesh->GetName() ) &&
+                MeshNode.AppendAttribute("ProxyMeshGroup").SetValue( this->ProxyMesh->GetGroup() ) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",EntityProxy::GetSerializableName() + "Mesh",true);
+            }
+        }
+
+        void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+        {
+            this->ProtoDeSerializeProperties(SelfRoot);
+            this->ProtoDeSerializeMesh(SelfRoot);
+        }
+
+        void EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->RenderableProxy::ProtoDeSerializeProperties(SelfRoot);
+        }
+
+        void EntityProxy::ProtoDeSerializeMesh(const XML::Node& SelfRoot)
+        {
+            XML::Attribute CurrAttrib;
+            XML::Node MeshNode = SelfRoot.GetChild( EntityProxy::GetSerializableName() + "Mesh" );
+
+            if( !MeshNode.Empty() ) {
+                if(MeshNode.GetAttribute("Version").AsInt() == 1) {
+                    String MeshName, MeshGroup = Ogre::ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME;
+
+                    CurrAttrib = MeshNode.GetAttribute("ProxyMeshName");
+                    if( !CurrAttrib.Empty() )
+                        MeshName = CurrAttrib.AsString();
+
+                    CurrAttrib = MeshNode.GetAttribute("ProxyMeshGroup");
+                    if( !CurrAttrib.Empty() )
+                        MeshGroup = CurrAttrib.AsString();
+
+                    Mesh* NewMesh = MeshManager::GetSingletonPtr()->LoadMesh( MeshName, MeshGroup );
+                    this->SetMesh( NewMesh );
+                }
+            }
+        }
+
+        String EntityProxy::GetDerivedSerializableName() const
+            { return EntityProxy::GetSerializableName(); }
+
+        String EntityProxy::GetSerializableName()
+            { return "EntityProxy"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        Ogre::Entity* EntityProxy::_GetGraphicsObject() const
+            { return this->GraphicsEntity; }
+
+        Ogre::MovableObject* EntityProxy::_GetBaseGraphicsObject() const
+            { return this->GraphicsEntity; }
     }//Graphics
 }//Mezzanine
 
