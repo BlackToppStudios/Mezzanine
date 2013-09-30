@@ -85,6 +85,7 @@
 #include "cameracontroller.h"
 #include "cameramanager.h"
 #include "colourvalue.h"                // done
+#include "countedptr.h"
 #include "crossplatform.h"              // nothing to do
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
@@ -100,6 +101,7 @@
 #include "light.h"                      // done
 #include "linegroup.h"
 #include "macros.h"
+#include "managedptr.h"
 #include "managerbase.h"
 #include "mathtool.h"
 #include "meshterrain.h"
@@ -120,7 +122,6 @@
 #include "scripting.h"
 #include "serialization.h"              // nothing to do
 #include "singleton.h"                  // nothing to do
-#include "smartptr.h"
 #include "sphere.h"
 #include "stringtool.h"
 #include "terrainbase.h"

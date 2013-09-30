@@ -37,15 +37,13 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _smartptr_h
-#define _smartptr_h
+#ifndef _countedptr_h
+#define _countedptr_h
 
 #include "datatypes.h"
 
-#include <memory>
-
 /// @file
-/// @brief This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and exposes in its API
+/// @brief This file describes and implements a reference counted pointer that is NOT threadsafe
 namespace Mezzanine
 {
     /// @brief CountedPointer casting implementation states.

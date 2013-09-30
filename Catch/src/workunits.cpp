@@ -111,32 +111,27 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
 {
     Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
-    static RayQueryTool* RayQueryer = new RayQueryTool();
     static Physics::Point2PointConstraint* Dragger = NULL;
 
     if( SysMouse->IsButtonPressed(1) )
     {
         if( !UI::UIManager::GetSingletonPtr()->MouseIsInUISystem() )
         {
-            Vector3WActor* ClickOnActor = 0;
-            Ray* MouseRay = RayQueryer->GetMouseRay(5000);
-            if(MouseRay)
-            {
-                ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
-            }
+            Vector3WActor ClickOnActor;
+            Ray MouseRay = RayQueryTool::GetMouseRay(5000);
+            ClickOnActor = RayQueryTool::GetFirstActorOnRayByPolygon(MouseRay,Mezzanine::WSO_ActorRigid);
             //ActorBase *temp = ClickOnActor->Actor;
 
             bool firstframe=false;
-            if( 0 != ClickOnActor &&
-                0 != ClickOnActor->Actor &&
-                this->CatchApplication->IsInsideAnyStartZone(ClickOnActor->Actor) )
+            if( 0 != ClickOnActor.Actor &&
+                this->CatchApplication->IsInsideAnyStartZone(ClickOnActor.Actor) )
             {
-                if( !(ClickOnActor->Actor->IsStaticOrKinematic()) &&
-                    ClickOnActor->Actor->GetType() == Mezzanine::WSO_ActorRigid &&
+                if( !(ClickOnActor.Actor->IsStaticOrKinematic()) &&
+                    ClickOnActor.Actor->GetType() == Mezzanine::WSO_ActorRigid &&
                     !Dragger )
                 {
-                    Vector3 LocalPivot = ClickOnActor->Vector;
-                    ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                    Vector3 LocalPivot = ClickOnActor.Vector;
+                    ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor.Actor);
                     rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
                     Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
                     Dragger->SetTAU(0.001);
@@ -152,34 +147,24 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                 }
             }
 
-            Vector3* DragTo = 0;
-            if( MouseRay )
+            Vector3 DragTo;
+            // This chunk of code calculates the 3d point that the actor needs to be dragged to
+            DragTo = RayQueryTool::RayPlaneIntersection(MouseRay, this->CatchApplication->PlaneOfPlay);
+            if( DragTo != Vector3() )
             {
-                // This chunk of code calculates the 3d point that the actor needs to be dragged to
-                DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, this->CatchApplication->PlaneOfPlay);
-                if( DragTo != NULL )
+                if( !firstframe )
                 {
-                    if( Dragger && !firstframe )
-                    {
-                        Dragger->SetPivotBLocation(*DragTo);
-                    }
+                    Dragger->SetPivotBLocation(DragTo);
                 }
             }
 
-            if(Dragger && !this->CatchApplication->IsInsideAnyStartZone(this->CatchApplication->LastActorThrown))
+            if(Dragger &&
+               !this->CatchApplication->IsInsideAnyStartZone(this->CatchApplication->LastActorThrown))
             {
                 ActorRigid* Act = Dragger->GetActorA();
                 Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
-                delete Dragger;
-                Dragger = NULL;
                 Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
             }
-
-            // Here we cleanup everything we needed for the clicking/dragging
-            if( DragTo )
-                { delete DragTo; }
-            if( MouseRay )
-                { delete MouseRay; }
         }
 
     }else{  //Since we are no longer clicking we need to setup for the next clicking

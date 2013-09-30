@@ -84,6 +84,10 @@ namespace Mezzanine
                                 const Ogre::Quaternion &orient,
                                 const Ogre::Vector3 &scale);
 
+            /// @brief Private constructor to be certain all usage is going through static API
+            RayQueryTool()
+            {}
+
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // World Ray Queries
@@ -96,7 +100,7 @@ namespace Mezzanine
             /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
             /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
             /// @return This returns a pointer to an Vector3WActor, which contains the first actor along the ray and the point of intersection Relative to the actor
-            static Vector3WActor* GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags);
+            static Vector3WActor GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags);
 
             /// @brief Partially implemented. This should find the first Actor that is on or almost on the a given Ray.
             /// @details This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned.
@@ -106,7 +110,7 @@ namespace Mezzanine
             /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
             /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
             /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.
-            static Vector3WActor* GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags);
+            static Vector3WActor GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags);
 
             /// @brief This will find the actor under the mouse.
             /// @details This will use
@@ -115,7 +119,7 @@ namespace Mezzanine
             /// @param RayLength The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0.
             /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB.
             /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
-            static Vector3WActor* GetActorUnderMouse(Whole ObjectFlags, Real RayLength=1000.0, bool UsePolygon=true);
+            static Vector3WActor GetActorUnderMouse(Whole ObjectFlags, Real RayLength=1000.0, bool UsePolygon=true);
 
             /// @brief Where does this Ray Meet this Plane?
             /// @details This does some fancy math to return the point where the ray and the plane intersent.
@@ -123,13 +127,18 @@ namespace Mezzanine
             /// @param QueryRay This is the Ray that could intersent the plane
             /// @param QueryPlane This is the plane to be interesected.
             /// @return This returns a pointer to a vector that matches where the intersection of the plane and Ray, if possible
-            static Vector3* RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane);
+            static Vector3 RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane);
 
             /// @brief Get a Ray from the current viewport, following the mouse
             /// @details This calls on the graphics subsystem to get a ray from the location of the current camera
             /// @param Length how long of a ray do you want? Thsi defaults to 1000
             /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.
-            static Ray* GetMouseRay(Real Length=1000);
+            static Ray GetMouseRay(Real Length=1000);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Extra Query Results
+            ///////////////////////////////////////
+
     };
 }
 

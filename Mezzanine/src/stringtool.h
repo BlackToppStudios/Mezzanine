@@ -45,7 +45,7 @@
 #include "vector3.h"
 #include "quaternion.h"
 #include "colourvalue.h"
-#include "smartptr.h"
+#include "countedptr.h"
 
 namespace Mezzanine
 {

@@ -44,7 +44,7 @@
 /// @brief The interface for serialization
 
     #include "datatypes.h"
-    #include "smartptr.h"
+    #include "countedptr.h"
     #ifndef SWIG
         #include "XML/xml.h"
     #endif

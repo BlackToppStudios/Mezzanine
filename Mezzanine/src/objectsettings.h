@@ -45,7 +45,7 @@
 #include "vector3.h"
 #include "quaternion.h"
 #include "colourvalue.h"
-#include "smartptr.h"
+#include "countedptr.h"
 #ifndef SWIG
     #include "XML/xml.h"
 #endif
