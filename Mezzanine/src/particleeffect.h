@@ -65,9 +65,9 @@ namespace Mezzanine
     namespace Graphics
     {
         class SceneManager;
+        class ParticleAffector;
+        class ParticleEmitter;
     }
-    class ParticleAffector;
-    class ParticleEmitter;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ParticleEffect
     /// @headerfile particleeffect.h
@@ -83,10 +83,10 @@ namespace Mezzanine
             Internal::ParticleEffectInternalData* Pie;
             /// @internal
             /// @brief Vector of emitters in use by this particle effect.
-            std::vector<ParticleEmitter*> Emitters;
+            std::vector<Graphics::ParticleEmitter*> Emitters;
             /// @internal
             /// @brief Vector of affectors in use by this particle effect.
-            std::vector<ParticleAffector*> Affectors;
+            std::vector<Graphics::ParticleAffector*> Affectors;
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // Construction
@@ -136,7 +136,7 @@ namespace Mezzanine
             /// @brief Gets the Emitter at the specified index.
             /// @param Index The index of the Emitter to get.
             /// @return Returns a pointer to the Emitter at the specified index.
-            ParticleEmitter* GetEmitter(const UInt16& Index) const;
+            Graphics::ParticleEmitter* GetEmitter(const UInt16& Index) const;
             /// @brief Gets the number of Emitters in use by this particle effect.
             /// @return Returns a UInt16 representing the number of Emitters in this particle effect.
             UInt16 GetNumEmitters() const;
@@ -152,7 +152,7 @@ namespace Mezzanine
             /// @brief Gets the Affector at the specified index.
             /// @param Index The index of the Affector to get.
             /// @return Returns a pointer to the Affector at the specified index.
-            ParticleAffector* GetAffector(const UInt16& Index) const;
+            Graphics::ParticleAffector* GetAffector(const UInt16& Index) const;
             /// @brief Gets the number of Affectors in use by this particle effect.
             /// @return Returns a UInt16 representing the number of Affectors in this particle effect.
             UInt16 GetNumAffectors() const;

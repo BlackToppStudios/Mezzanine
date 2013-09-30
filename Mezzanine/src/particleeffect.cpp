@@ -46,8 +46,8 @@
 #include "entresol.h"
 #include "Graphics/scenemanager.h"
 
-#include "particleaffector.h"
-#include "particleemitter.h"
+#include "Graphics/particleaffector.h"
+#include "Graphics/particleemitter.h"
 
 #include <memory>
 
@@ -118,15 +118,15 @@ namespace Mezzanine
         UInt16 NumEmitters = Pie->OgreParticle->getNumEmitters();
         for( UInt16 X = 0 ; X < NumEmitters ; ++X )
         {
-            ParticleEmitter* NewEmitter = new ParticleEmitter(Pie->OgreParticle->getEmitter(X));
-            Emitters.push_back(NewEmitter);
+            //Graphics::ParticleEmitter* NewEmitter = new Graphics::ParticleEmitter(Pie->OgreParticle->getEmitter(X));
+            //Emitters.push_back(NewEmitter);
         }
 
         UInt16 NumAffectors = Pie->OgreParticle->getNumAffectors();
         for( UInt16 X = 0 ; X < NumAffectors ; ++X )
         {
-            ParticleAffector* NewAffector = new ParticleAffector(Pie->OgreParticle->getAffector(X));
-            Affectors.push_back(NewAffector);
+            //Graphics::ParticleAffector* NewAffector = new Graphics::ParticleAffector(Pie->OgreParticle->getAffector(X));
+            //Affectors.push_back(NewAffector);
         }
     }
 
@@ -138,15 +138,15 @@ namespace Mezzanine
         UInt16 NumEmitters = Pie->OgreParticle->getNumEmitters();
         for( UInt16 X = 0 ; X < NumEmitters ; ++X )
         {
-            ParticleEmitter* NewEmitter = new ParticleEmitter(Pie->OgreParticle->getEmitter(X));
-            Emitters.push_back(NewEmitter);
+            //Graphics::ParticleEmitter* NewEmitter = new Graphics::ParticleEmitter(Pie->OgreParticle->getEmitter(X));
+            //Emitters.push_back(NewEmitter);
         }
 
         UInt16 NumAffectors = Pie->OgreParticle->getNumAffectors();
         for( UInt16 X = 0 ; X < NumAffectors ; ++X )
         {
-            ParticleAffector* NewAffector = new ParticleAffector(Pie->OgreParticle->getAffector(X));
-            Affectors.push_back(NewAffector);
+            //Graphics::ParticleAffector* NewAffector = new Graphics::ParticleAffector(Pie->OgreParticle->getAffector(X));
+            //Affectors.push_back(NewAffector);
         }
     }
 
@@ -209,7 +209,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Emitters
 
-    ParticleEmitter* ParticleEffect::GetEmitter(const UInt16& Index) const
+    Graphics::ParticleEmitter* ParticleEffect::GetEmitter(const UInt16& Index) const
     {
         return Emitters.at(Index);
     }
@@ -221,7 +221,7 @@ namespace Mezzanine
 
     void ParticleEffect::DestroyEmitter(const UInt16& Index)
     {
-        std::vector<ParticleEmitter*>::iterator it = Emitters.begin() + Index;
+        std::vector<Graphics::ParticleEmitter*>::iterator it = Emitters.begin() + Index;
         delete (*it);
         Emitters.erase(it);
         Pie->OgreParticle->removeEmitter(Index);
@@ -229,7 +229,7 @@ namespace Mezzanine
 
     void ParticleEffect::DestroyAllEmitters()
     {
-        for( std::vector<ParticleEmitter*>::iterator it = Emitters.begin() ; it != Emitters.end() ; ++it )
+        for( std::vector<Graphics::ParticleEmitter*>::iterator it = Emitters.begin() ; it != Emitters.end() ; ++it )
             delete (*it);
         Emitters.clear();
         Pie->OgreParticle->removeAllEmitters();
@@ -238,7 +238,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Affectors
 
-    ParticleAffector* ParticleEffect::GetAffector(const UInt16& Index) const
+    Graphics::ParticleAffector* ParticleEffect::GetAffector(const UInt16& Index) const
     {
         return Affectors.at(Index);
     }
@@ -250,7 +250,7 @@ namespace Mezzanine
 
     void ParticleEffect::DestroyAffector(const UInt16& Index)
     {
-        std::vector<ParticleAffector*>::iterator it = Affectors.begin() + Index;
+        std::vector<Graphics::ParticleAffector*>::iterator it = Affectors.begin() + Index;
         delete (*it);
         Affectors.erase(it);
         Pie->OgreParticle->removeAffector(Index);
@@ -258,7 +258,7 @@ namespace Mezzanine
 
     void ParticleEffect::DestroyAllAffectors()
     {
-        for( std::vector<ParticleAffector*>::iterator it = Affectors.begin() ; it != Affectors.end() ; ++it )
+        for( std::vector<Graphics::ParticleAffector*>::iterator it = Affectors.begin() ; it != Affectors.end() ; ++it )
             delete (*it);
         Affectors.clear();
         Pie->OgreParticle->removeAllAffectors();
