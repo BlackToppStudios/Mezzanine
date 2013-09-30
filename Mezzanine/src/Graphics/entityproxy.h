@@ -126,7 +126,7 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
             virtual void ProtoSerialize(XML::Node& ParentNode) const;
-            /// @copydoc RenderableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the mesh of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
@@ -134,7 +134,7 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
             virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
-            /// @copydoc RenderableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the mesh of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
