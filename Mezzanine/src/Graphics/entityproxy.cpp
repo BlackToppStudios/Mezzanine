@@ -202,8 +202,8 @@ namespace Mezzanine
 
         void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            this->ProtoDeSerializeProperties(SelfRoot);
             this->ProtoDeSerializeMesh(SelfRoot);
+            this->ProtoDeSerializeProperties(SelfRoot);
         }
 
         void EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
