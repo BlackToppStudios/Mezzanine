@@ -831,14 +831,10 @@ namespace Mezzanine
         // Proxy Management
 
         CollidableProxy* PhysicsManager::GetProxy(const UInt32 Index) const
-        {
-            return this->Proxies.at(Index);
-        }
+            { return this->Proxies.at(Index); }
 
         UInt32 PhysicsManager::GetNumProxies() const
-        {
-            return this->Proxies.size();
-        }
+            { return this->Proxies.size(); }
 
         void PhysicsManager::DestroyProxy(CollidableProxy* ToBeDestroyed)
         {
