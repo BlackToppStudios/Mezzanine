@@ -460,6 +460,25 @@ namespace Mezzanine
         void ParticleSystemProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
             this->RenderableProxy::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( ParticleSystemProxy::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("Paused");
+                    if( !CurrAttrib.Empty() )
+                        this->PauseParticleSystem( StringTools::ConvertToBool( CurrAttrib.AsString() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("SpeedFactor");
+                    if( !CurrAttrib.Empty() )
+                        this->SetSpeedFactor( CurrAttrib.AsReal() );
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ParticleSystemProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,ParticleSystemProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
         }
 
         String ParticleSystemProxy::GetDerivedSerializableName() const
