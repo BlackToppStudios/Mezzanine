@@ -46,7 +46,6 @@
 #include "exception.h"
 #include "camera.h"
 #include "light.h"
-#include "particleeffect.h"
 #include "actorbase.h"
 #include "stringtool.h"
 #include "entresol.h"

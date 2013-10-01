@@ -47,11 +47,12 @@
 #include "entity.h"
 #include "entresol.h"
 #include "plane.h"
-#include "particleeffect.h"
 #include "UI/uimanager.h"
 #include "Physics/physicsmanager.h"
 #include "stringtool.h"
 #include "worldnode.h"
+
+#include "Graphics/particlesystemproxy.h"
 
 #include <memory>
 
@@ -146,13 +147,13 @@ namespace Mezzanine
             SceneManagerData(SceneManager* _SM):
                 SM(_SM),
                 ActiveSky(SceneManager::SkyNone),
-                OgreManager(0),
-                SkyDrawnFirst(false),
-                SkyOrientation(0,0,0,0),
                 SkyMaterialName(""),
+                SkyOrientation(0,0,0,0),
                 SkyMaterialGroupName(""),
+                SkyDrawnFirst(false),
                 SkyThePlane(Vector3(0,0,0),0),
-                ShadowTextureSize(512)
+                ShadowTextureSize(512),
+                OgreManager(0)
             {
 
             }
@@ -292,7 +293,6 @@ namespace Mezzanine
             delete TrackingNodeUpdateWork;
 
             this->DestroyAllLights();
-            this->DestroyAllParticleEffects();
             this->DestroyAllWorldNodes();
             delete SMD;
         }
@@ -445,6 +445,46 @@ namespace Mezzanine
             { return this->SMD->ActiveSky; }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Creating Proxies
+
+        ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const String& Template)
+        {
+            ParticleSystemProxy* NewProxy = new ParticleSystemProxy(Template,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Proxy Management
+
+        RenderableProxy* SceneManager::GetProxy(const UInt32 Index) const
+            { return this->Proxies.at(Index); }
+
+        UInt32 SceneManager::GetNumProxies() const
+            { return this->Proxies.size(); }
+
+        void SceneManager::DestroyProxy(RenderableProxy* ToBeDestroyed)
+        {
+            for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                if( ToBeDestroyed == (*ProxIt) ) {
+                    this->Proxies.erase(ProxIt);
+                    delete (*ProxIt);
+                    return;
+                }
+            }
+        }
+
+        void SceneManager::DestroyAllProxies()
+        {
+            for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            {
+                delete (*ProxIt);
+            }
+            this->Proxies.clear();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Light Management
 
         void SceneManager::SetAmbientLight(Real Red, Real Green, Real Blue, Real Alpha)
@@ -527,80 +567,6 @@ namespace Mezzanine
 
         SceneManager::ConstLightIterator SceneManager::EndLight() const
             { return this->Lights.end(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Particle Effect Management
-
-        ParticleEffect* SceneManager::CreateParticleEffect(const String& Name, const String& Template)
-        {
-            ParticleEffect* Particle = new ParticleEffect(Name,Template,this);
-            Particles.push_back(Particle);
-            return Particle;
-        }
-
-        ParticleEffect* SceneManager::GetParticleEffect(const String& Name) const
-        {
-            if(Particles.empty())
-                return 0;
-            for( SceneManager::ConstParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
-            {
-                if( Name == (*it)->GetName() )
-                {
-                    return (*it);
-                }
-            }
-            return 0;
-        }
-
-        ParticleEffect* SceneManager::GetParticleEffect(const Whole& Index) const
-        {
-            return Particles[Index];
-        }
-
-        Whole SceneManager::GetNumParticleEffects() const
-        {
-            return Particles.size();
-        }
-
-        void SceneManager::DestroyParticleEffect(ParticleEffect* ToBeDestroyed)
-        {
-            if(Particles.empty())
-                return;
-            for( SceneManager::ParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
-            {
-                if( ToBeDestroyed == (*it) )
-                {
-                    delete (*it);
-                    Particles.erase(it);
-                    return;
-                }
-            }
-        }
-
-        void SceneManager::DestroyAllParticleEffects()
-        {
-            for( Whole X = 0 ; X < Particles.size() ; X++ )
-                delete Particles[X];
-            Particles.clear();
-        }
-
-        void SceneManager::PauseAllParticles(bool Pause)
-        {
-            for( SceneManager::ParticleIterator it = Particles.begin() ; it != Particles.end() ; it++ )
-                (*it)->PauseParticleEffect(Pause);
-        }
-
-        SceneManager::ParticleIterator SceneManager::BeginParticleEffect()
-            { return this->Particles.begin(); }
-
-        SceneManager::ParticleIterator SceneManager::EndParticleEffect()
-            { return this->Particles.end(); }
-
-        SceneManager::ConstParticleIterator SceneManager::BeginParticleEffect() const
-            { return this->Particles.begin(); }
-
-        SceneManager::ConstParticleIterator SceneManager::EndParticleEffect() const
-            { return this->Particles.end(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Entity Management
@@ -750,6 +716,13 @@ namespace Mezzanine
 
         ConstString& SceneManager::GetName() const
             { return this->SMD->OgreManager->getName(); }
+
+        void SceneManager::PauseAllParticles(bool Pause)
+        {
+            for( SceneManager::ProxyIterator it = Proxies.begin() ; it != Proxies.end() ; it++ )
+                if( (*it)->GetProxyType() == Mezzanine::PT_Graphics_ParticleSystemProxy )
+                    static_cast<ParticleSystemProxy*>( (*it) )->PauseParticleSystem(Pause);
+        }
 
         void SceneManager::Pause(const UInt32 PL)
         {
@@ -933,10 +906,6 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
                         Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndLight()!=Iter;
                         ++Iter)
                     { stream << **Iter; }
-                for (Mezzanine::Graphics::SceneManager::ConstParticleIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginParticleEffect();
-                        Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndParticleEffect()!=Iter;
-                        ++Iter)
-                    { stream << **Iter; }
                 for (Mezzanine::Graphics::SceneManager::ConstWorldNodeIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginWorldNode();
                         Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndWorldNode()!=Iter;
                         ++Iter)
@@ -1022,28 +991,6 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                             MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element L-\"" + Name + "\".");
                         }
                         break;
-                    case 'P': // Particle Effect
-                        if(Name==Mezzanine::String("ParticleEffect"))
-                        {
-                            Mezzanine::String ChildName(Child.GetAttribute("Name").AsString());
-                            if(0!=ChildName.length())
-                            {
-                                Mezzanine::String ChildTemplate(Child.GetAttribute("Template").AsString());
-                                if(0!=ChildTemplate.length())
-                                {
-                                    Mezzanine::ParticleEffect* ChildPE = Ev.CreateParticleEffect(ChildName,ChildTemplate);
-                                    Child >> *ChildPE;
-                                }else{
-                                    MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to deserialize Templateless ParticleEffect during deserialization of SceneManager but ParticleEffects must have a Template.");
-                                }
-                            }else{
-                                MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to deserialize nameless ParticleEffect during deserialization of SceneManager but ParticleEffects must have a name.");
-                            }
-                        }else{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element P-\"" + Name + "\".");
-                        }
-                        break;
-
                     case 'W': // WorldNode
                         if(Name==Mezzanine::String("WorldNode"))
                         {

@@ -225,7 +225,7 @@ void LevelLoader::LoadFerris()
     StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     AreaEffectMan->AddAreaEffect(StartZone);// */
-    ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
+    Graphics::ParticleSystemProxy* StartParticle = SceneMan->CreateParticleSystemProxy("StartVortex");
     StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
     StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
@@ -371,7 +371,7 @@ void LevelLoader::LoadBigCurve()
     StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     AreaEffectMan->AddAreaEffect(StartZone);// */
-    ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
+    Graphics::ParticleSystemProxy* StartParticle = SceneMan->CreateParticleSystemProxy("StartVortex");
     StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
     StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
@@ -500,7 +500,7 @@ void LevelLoader::LoadBlowsNotSucks()
     FanWind->SetAttenuation(0.2f,Mezzanine::Att_Linear,Vector3(-125.5,-81,7.5));
     FanWind->SetFieldStrength(1000.f);
     AreaEffectMan->AddAreaEffect(FanWind);
-    ParticleEffect* WindParticle = SceneMan->CreateParticleEffect("WindParticle","WindTunnel");
+    Graphics::ParticleSystemProxy* WindParticle = SceneMan->CreateParticleSystemProxy("WindTunnel");
     WindParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(FanWindSize.X * (Real)1.8));
     WindParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(FanWindSize.Y * (Real)0.6));
     WindParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(FanWindSize.Z * (Real)1.8));
@@ -561,7 +561,7 @@ void LevelLoader::LoadBlowsNotSucks()
     StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     AreaEffectMan->AddAreaEffect(StartZone);// */
-    ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
+    Graphics::ParticleSystemProxy* StartParticle = SceneMan->CreateParticleSystemProxy("StartVortex");
     StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
     StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
@@ -765,7 +765,7 @@ void LevelLoader::LoadJustice()
     StartZone2->GetPhysicsSettings()->SetCollisionShape(StartAreaShape);
     StartZone2->GetGraphicsSettings()->SetMesh(StartAreaMesh);
     AreaEffectMan->AddAreaEffect(StartZone2);// */
-    ParticleEffect* StartParticle1 = SceneMan->CreateParticleEffect("StartParticle1","StartVortex");
+    Graphics::ParticleSystemProxy* StartParticle1 = SceneMan->CreateParticleSystemProxy("StartVortex");
     StartParticle1->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle1->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
     StartParticle1->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
@@ -773,7 +773,7 @@ void LevelLoader::LoadJustice()
     StartParticle1->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)4.0));
     StartParticle1->SetLocation(Vector3(-160,100,0));
     StartParticle1->AddToWorld();// */
-    ParticleEffect* StartParticle2 = SceneMan->CreateParticleEffect("StartParticle2","StartVortex");
+    Graphics::ParticleSystemProxy* StartParticle2 = SceneMan->CreateParticleSystemProxy("StartVortex");
     StartParticle2->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle2->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
     StartParticle2->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
@@ -913,7 +913,7 @@ void LevelLoader::LoadRollers()
     StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     AreaEffectMan->AddAreaEffect(StartZone);// */
-    ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
+    Graphics::ParticleSystemProxy* StartParticle = SceneMan->CreateParticleSystemProxy("StartVortex");
     StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
     StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
@@ -1056,7 +1056,7 @@ void LevelLoader::LoadJustBounce()
     StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     AreaEffectMan->AddAreaEffect(StartZone);// */
-    ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
+    Graphics::ParticleSystemProxy* StartParticle = SceneMan->CreateParticleSystemProxy("StartVortex");
     StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
     StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
     StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));

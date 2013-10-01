@@ -61,11 +61,15 @@ namespace Mezzanine
     class Entresol;
     class Light;
     class Plane;
-    class ParticleEffect;
     class Entity;
     class WorldNode;
     namespace Graphics
     {
+        class RenderableProxy;
+        class BillboardSetProxy;
+        class EntityProxy;
+        class LightProxy;
+        class ParticleSystemProxy;
         class SceneManager;
         class SceneManagerData;
 
@@ -123,18 +127,19 @@ namespace Mezzanine
             typedef LightContainer::iterator                      LightIterator;
             /// @brief Const Iterator type for @ref Light instances stored by this class.
             typedef LightContainer::const_iterator                ConstLightIterator;
-            /// @brief Basic container type for @ref ParticleEffect storage by this class.
-            typedef std::vector< ParticleEffect* >                ParticleContainer;
-            /// @brief Iterator type for @ref ParticleEffect instances stored by this class.
-            typedef ParticleContainer::iterator                   ParticleIterator;
-            /// @brief Const Iterator type for @ref ParticleEffect instances stored by this class.
-            typedef ParticleContainer::const_iterator             ConstParticleIterator;
             /// @brief Basic container type for @ref Entity storage by this class.
             typedef std::vector< Entity* >                        EntityContainer;
             /// @brief Iterator type for @ref Entity instances stored by this class.
             typedef EntityContainer::iterator                     EntityIterator;
             /// @brief Const Iterator type for @ref Entity instances stored by this class.
             typedef EntityContainer::const_iterator               ConstEntityIterator;
+
+            /// @brief Basic container type for RenderableProxy storage by this class.
+            typedef std::vector< RenderableProxy* >               ProxyContainer;
+            /// @brief Iterator type for RenderableProxy instances stored by this class.
+            typedef ProxyContainer::iterator                      ProxyIterator;
+            /// @brief Const Iterator type for RenderableProxy instances stored by this class.
+            typedef ProxyContainer::const_iterator                ConstProxyIterator;
 
             /// @brief needs to be documented
             enum SceneShadowTechnique
@@ -166,11 +171,12 @@ namespace Mezzanine
             /// @brief Vector storing all the lights in use by this class.
             LightContainer Lights;
             /// @internal
-            /// @brief Vector storing all the particle effects in use by this class.
-            ParticleContainer Particles;
-            /// @internal
             /// @brief Vector storing all the entities in use by this class.
             EntityContainer Entities;
+
+            /// @internal
+            /// @brief Container storing all of the RenderableProxy instances created by this manager.
+            ProxyContainer Proxies;
 
             /// @internal
             /// @brief Container of nodes currently tracking other objects.
@@ -314,6 +320,30 @@ namespace Mezzanine
             SkyMethod WhichSky() const;
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Creating Proxies
+
+            /// @brief Creates a new ParticleSystemProxy.
+            /// @param Template Name of the particle script to be used in creating this particle effect.
+            /// @return Returns a pointer to the created proxy.
+            ParticleSystemProxy* CreateParticleSystemProxy(const String& Template);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Proxy Management
+
+            /// @brief Gets a RenderableProxy instance by index.
+            /// @param Index The index of the RenderableProxy to be retrieved.
+            /// @return Returns a pointer to the RenderableProxy at the specified index.
+            RenderableProxy* GetProxy(const UInt32 Index) const;
+            /// @brief Gets the number of RenderableProxy instances in this manager.
+            /// @return Returns a UInt32 representing the number of RenderableProxy instances contained in this manager.
+            UInt32 GetNumProxies() const;
+            /// @brief Deletes a RenderableProxy.
+            /// @param ToBeDestroyed A pointer to the RenderableProxy you want deleted.
+            void DestroyProxy(RenderableProxy* ToBeDestroyed);
+            /// @brief Deletes all stored RenderableProxy instances.
+            void DestroyAllProxies();
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Light Management
 
             /// @brief Sets the ambient light for the scene.
@@ -362,47 +392,6 @@ namespace Mezzanine
             /// @brief Get a ConstLightIterator to one past the last Light*
             /// @return A ConstLightIterator to one past the last Light*
             ConstLightIterator EndLight() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Particle Effect Management
-
-            /// @brief Creates a particle effect.
-            /// @details Particle effects are useful when trying to create visual effects for rain, smoke, explosions, fireworks, etc..
-            /// @param Name The name to be given to this particle effect.
-            /// @param Template The particle script (from a .particle file) to base this particle effect on.
-            /// @return Returns a pointer to the particle effect class which was created by this function.
-            ParticleEffect* CreateParticleEffect(const String& Name, const String& Template);
-            /// @brief Gets an already created particle effect by name.
-            /// @return Returns a pointer to the particle effect of the specified name.
-            ParticleEffect* GetParticleEffect(const String& Name) const;
-            /// @brief Gets an already created particle effect by index.
-            /// @return Returns a pointer to the particle effect at the specified index.
-            ParticleEffect* GetParticleEffect(const Whole& Index) const;
-            /// @brief Gets the number of particle effects created and stored in this manager.
-            /// @return Returns the number of particle effects this manager is storing.
-            Whole GetNumParticleEffects() const;
-            /// @brief Deletes a particle effect and removes all trace of it from the manager.
-            /// @param ToBeDestroyed The particle effect to be destroyed.
-            void DestroyParticleEffect(ParticleEffect* ToBeDestroyed);
-            /// @brief Destroys all particle effects currently in the manager.
-            void DestroyAllParticleEffects();
-
-            /// @brief Pauses(or unpauses) all particles stored in this manager.
-            /// @param Pause Will pause all Particles if true, unpause if false.
-            void PauseAllParticles(bool Pause);
-
-            /// @brief Get a ParticleEffectIterator to the first ParticleEffect*
-            /// @return A ParticleEffectIterator to the first ParticleEffect*
-            ParticleIterator BeginParticleEffect();
-            /// @brief Get a ParticleEffectIterator to one past the last ParticleEffect*
-            /// @return A ParticleEffectIterator to one past the last ParticleEffect*
-            ParticleIterator EndParticleEffect();
-            /// @brief Get a ConstParticleEffectIterator to the first ParticleEffect*
-            /// @return A ConstParticleEffectIterator to the first ParticleEffect*
-            ConstParticleIterator BeginParticleEffect() const;
-            /// @brief Get a ConstParticleEffectIterator to one past the last ParticleEffect*
-            /// @return A ConstParticleEffectIterator to one past the last ParticleEffect*
-            ConstParticleIterator EndParticleEffect() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Entity Management
@@ -492,6 +481,10 @@ namespace Mezzanine
             /// @brief Gets the name of this manager.
             /// @return Returns the name of this manager.
             ConstString& GetName() const;
+
+            /// @brief Pauses(or unpauses) all particles stored in this manager.
+            /// @param Pause Will pause all Particles if true, unpause if false.
+            void PauseAllParticles(bool Pause);
 
             /// @copydoc WorldManager::Pause(const UInt32)
             virtual void Pause(const UInt32 PL);

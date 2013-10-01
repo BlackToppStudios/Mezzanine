@@ -83,7 +83,7 @@ namespace Mezzanine
         void EntityProxy::CreateEntity(Mesh* ObjectMesh)
         {
             if( ObjectMesh != NULL ) {
-                this->GraphicsEntity = this->Manager->GetGraphicsWorldPointer()->createEntity(ObjectMesh->_GetInternalMesh());
+                this->GraphicsEntity = this->Manager->GetGraphicsWorldPointer()->createEntity( ObjectMesh->_GetInternalMesh() );
                 this->GraphicsNode->attachObject( this->GraphicsEntity );
                 this->GraphicsEntity->setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
                 this->GraphicsEntity->setVisibilityFlags(0);
@@ -98,7 +98,9 @@ namespace Mezzanine
         void EntityProxy::DestroyEntity()
         {
             this->GraphicsNode->detachObject( this->GraphicsEntity );
-            this->Manager->GetGraphicsWorldPointer()->destroyEntity(this->GraphicsEntity);
+            if( this->GraphicsEntity ) {
+                this->Manager->GetGraphicsWorldPointer()->destroyEntity( this->GraphicsEntity );
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -200,8 +202,8 @@ namespace Mezzanine
 
         void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            this->ProtoDeSerializeProperties(SelfRoot);
             this->ProtoDeSerializeMesh(SelfRoot);
+            this->ProtoDeSerializeProperties(SelfRoot);
         }
 
         void EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)

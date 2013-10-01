@@ -59,7 +59,6 @@ namespace Mezzanine
 {
     class Camera;
     class Light;
-    class ParticleEffect;
     class ActorBase;
     namespace Graphics
     {

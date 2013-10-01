@@ -11,10 +11,10 @@ class BNS_Fan : public WorldTrigger
         ActorRigid* Fan;
         ActorRigid* Button;
         FieldOfForce* Wind;
-        ParticleEffect* WindClutter;
+        Graphics::ParticleSystemProxy* WindClutter;
         Physics::HingeConstraint* Motor;
     public:
-        BNS_Fan(const String& name, Physics::HingeConstraint* Motor, ActorRigid* Button, ActorRigid* Fan, FieldOfForce* Wind, ParticleEffect* WindClutter);
+        BNS_Fan(const String& name, Physics::HingeConstraint* Motor, ActorRigid* Button, ActorRigid* Fan, FieldOfForce* Wind, Graphics::ParticleSystemProxy* WindClutter);
         virtual ~BNS_Fan();
         virtual bool ConditionsAreMet();
         virtual void ApplyTrigger();

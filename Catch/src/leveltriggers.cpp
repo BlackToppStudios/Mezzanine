@@ -3,7 +3,7 @@
 
 #include "leveltriggers.h"
 
-BNS_Fan::BNS_Fan(const String& name, Physics::HingeConstraint* Motor, ActorRigid* Button, ActorRigid* Fan, FieldOfForce* Wind, ParticleEffect* WindClutter)
+BNS_Fan::BNS_Fan(const String& name, Physics::HingeConstraint* Motor, ActorRigid* Button, ActorRigid* Fan, FieldOfForce* Wind, Graphics::ParticleSystemProxy* WindClutter)
     : WorldTrigger(name)
 {
     this->Button = Button;
