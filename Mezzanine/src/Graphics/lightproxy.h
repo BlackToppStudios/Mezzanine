@@ -74,7 +74,12 @@ namespace Mezzanine
             /// @brief Destroys the internal light in use by this proxy.
             virtual void DestroyLight();
         public:
-            /// @brief Class constructor.
+            /// @brief Type constructor.
+            /// @remarks The type provided here can be changed later.
+            /// @param Type The type of light this light is to be constructed as.
+            /// @param Creator A pointer to the manager that created this proxy.
+            LightProxy(const Graphics::LightType Type, SceneManager* Creator);
+            /// @brief Blank constructor.
             /// @param Creator A pointer to the manager that created this proxy.
             LightProxy(SceneManager* Creator);
             /// @brief Class destructor.
