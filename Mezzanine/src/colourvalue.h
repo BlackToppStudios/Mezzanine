@@ -70,31 +70,23 @@ namespace Mezzanine
             /// @brief Value from 0.0 to 1.0 representing the transparency of the colours. 1.0 is opaque and 0.0 is clear.
             Real A;
 
-/*
-            /// @brief Non-Alpha constructor.
-            /// @details This constructor assumes the alpha value to be 1.0 (completely opaque).
-            /// @param red Real representing the amount of red present in the colour.
-            /// @param green Real representing the amount of green present in the colour.
-            /// @param blue Real representing the amount of blue present in the colour.
-            ColourValue(Real red, Real green, Real blue);
-*/
             /// @brief 4 Reals constructor.
             /// @details This constructor allows you to set any values, if unset, they default to 1.0.
             /// @param Red Real representing the amount of red present in the colour.
             /// @param Green Real representing the amount of green present in the colour.
             /// @param Blue Real representing the amount of blue present in the colour.
             /// @param Alpha Real representing the transparency of the colours.
-            ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0);
-
+            ColourValue(Real Red = 1.0, Real Green = 1.0, Real Blue = 1.0, Real Alpha = 1.0);
             /// @brief Ogre constructor.
             /// @details Internal use only.  Constructs a colourvalue class from an ogre colourvalue.
             /// @param OgreValues The Ogre ColourValue class to base this class on.
             ColourValue(const Ogre::ColourValue& OgreValues);
-
             /// @brief Copy Constructor
             /// @param OtherColour
             ColourValue(const ColourValue& OtherColour);
-
+            /// @brief XML Constructor.
+            /// @param OneNode The XML node to deserialize from.
+            ColourValue(const XML::Node& OneNode);
             /// @brief Class destructor.
             ~ColourValue();
 

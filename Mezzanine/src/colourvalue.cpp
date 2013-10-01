@@ -50,14 +50,6 @@
 #include <memory>
 namespace Mezzanine
 {
-    /*ColourValue::ColourValue(Real red, Real green, Real blue)
-    {
-        this->Red = red;
-        this->Green = green;
-        this->Blue = blue;
-        this->Alpha = 1.0;
-    }*/
-
     ColourValue::ColourValue(Real Red, Real Green, Real Blue, Real Alpha)
     {
         this->R = Red;
@@ -80,6 +72,11 @@ namespace Mezzanine
         this->G = OtherColour.G;
         this->B = OtherColour.B;
         this->A = OtherColour.A;
+    }
+
+    ColourValue::ColourValue(const XML::Node& OneNode)
+    {
+        this->ProtoDeSerialize(OneNode);
     }
 
     ColourValue::~ColourValue()
