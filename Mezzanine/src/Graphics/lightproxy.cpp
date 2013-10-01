@@ -46,6 +46,10 @@
 #include "Graphics/lightproxy.h"
 #include "Graphics/scenemanager.h"
 
+#include "exception.h"
+#include "serialization.h"
+#include "stringtool.h"
+
 #include <Ogre.h>
 
 namespace
@@ -196,12 +200,103 @@ namespace Mezzanine
 
         void LightProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
+            this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
 
+            XML::Node PropertiesNode = SelfRoot.AppendChild( LightProxy::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("LightType").SetValue( this->GetType() ) &&
+                PropertiesNode.AppendAttribute("AttenRange").SetValue( this->GetAttenuationRange() ) &&
+                PropertiesNode.AppendAttribute("AttenConstant").SetValue( this->GetAttenuationConstant() ) &&
+                PropertiesNode.AppendAttribute("AttenLinear").SetValue( this->GetAttenuationLinear() ) &&
+                PropertiesNode.AppendAttribute("AttenQuadratic").SetValue( this->GetAttenuationQuadratic() ) &&
+                PropertiesNode.AppendAttribute("PowerScale").SetValue( this->GetPowerScale() ) &&
+                PropertiesNode.AppendAttribute("SpotlightInnerAngle").SetValue( this->GetSpotlightInnerAngle() ) &&
+                PropertiesNode.AppendAttribute("SpotlightOuterAngle").SetValue( this->GetSpotlightOuterAngle() ) &&
+                PropertiesNode.AppendAttribute("SpotlightFalloff").SetValue( this->GetSpotlightFalloff() ) &&
+                PropertiesNode.AppendAttribute("SpotlightNearClipDistance").SetValue( this->GetSpotlightNearClipDistance() ) )
+            {
+                XML::Node DiffuseColourNode = PropertiesNode.AppendChild("DiffuseColour");
+                this->GetDiffuseColour().ProtoSerialize( DiffuseColourNode );
+                XML::Node SpecularColourNode = PropertiesNode.AppendChild("SpecularColour");
+                this->GetSpecularColour().ProtoSerialize( SpecularColourNode );
+
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",LightProxy::GetSerializableName() + "Properties",true);
+            }
         }
 
         void LightProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
+            this->RenderableProxy::ProtoDeSerializeProperties(SelfRoot);
 
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( LightProxy::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    Real AttenRange = 100000.0, AttenConstant = 1.0, AttenLinear = 0.0, AttenQuadratic = 0.0;
+
+                    CurrAttrib = PropertiesNode.GetAttribute("LightType");
+                    if( !CurrAttrib.Empty() )
+                        this->SetType( static_cast<Graphics::LightType>( CurrAttrib.AsWhole() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AttenRange");
+                    if( !CurrAttrib.Empty() )
+                        AttenRange = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AttenConstant");
+                    if( !CurrAttrib.Empty() )
+                        AttenConstant = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AttenLinear");
+                    if( !CurrAttrib.Empty() )
+                        AttenLinear = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AttenQuadratic");
+                    if( !CurrAttrib.Empty() )
+                        AttenQuadratic = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("PowerScale");
+                    if( !CurrAttrib.Empty() )
+                        this->SetPowerScale( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("SpotlightInnerAngle");
+                    if( !CurrAttrib.Empty() )
+                        this->SetSpotlightInnerAngle( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("SpotlightOuterAngle");
+                    if( !CurrAttrib.Empty() )
+                        this->SetSpotlightOuterAngle( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("SpotlightFalloff");
+                    if( !CurrAttrib.Empty() )
+                        this->SetSpotlightFalloff( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("SpotlightNearClipDistance");
+                    if( !CurrAttrib.Empty() )
+                        this->SetSpotlightNearClipDistance( CurrAttrib.AsReal() );
+
+                    this->SetAttenuation(AttenRange,AttenConstant,AttenLinear,AttenQuadratic);
+
+                    XML::Node DiffuseColourNode = PropertiesNode.GetChild("DiffuseColour").GetFirstChild();
+                    if( !DiffuseColourNode.Empty() ) {
+                        ColourValue Loc(DiffuseColourNode);
+                        this->SetDiffuseColour(Loc);
+                    }
+
+                    XML::Node SpecularColourNode = PropertiesNode.GetChild("SpecularColour").GetFirstChild();
+                    if( !SpecularColourNode.Empty() ) {
+                        ColourValue Loc(SpecularColourNode);
+                        this->SetSpecularColour(Loc);
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (LightProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,LightProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
         }
 
         String LightProxy::GetDerivedSerializableName() const
