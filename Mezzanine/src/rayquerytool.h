@@ -84,11 +84,33 @@ namespace Mezzanine
                                 const Ogre::Quaternion &orient,
                                 const Ogre::Vector3 &scale);
 
-            /// @brief Private constructor to be certain all usage is going through static API
-            RayQueryTool()
-            {}
+            /// @brief True if the last Query yielded a meaningful Result.
+            bool ValidResult;
+            /// @brief An Offset or location from something meaningful to the last query.
+            Vector3 Offset;
+            /// @brief If there is an Actor result to a query the result will be stored in this.
+            /// @warning This is weak reference, Some other system could delete out from under us and we cannot delete this.
+            ActorBase* IntersectedActor;
 
         public:
+
+            /// @brief Create a RayQueryTool ready for querying
+            RayQueryTool();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // World Ray Query Results
+            ///////////////////////////////////////
+            /// @brief Check to see if the last query found anything.
+            /// @return True if something was found, false otherwise.
+            bool LastQueryResultsValid() const;
+            /// @brief Get an offset from the last query. Depending on the last query, this could be an Offset from a variety of things.
+            /// @return A Vector3 if the last query worked and returns an Offset, A empty vector otherwise. Use LastQueryResultsValid() Prior to this.
+            Vector3 LastQueryResultsOffset() const;
+            /// @brief It is common to ray query for actors, if so the results can be retrieved with this.
+            /// @return A pointer to an actor if the last query returns an actor and worked, a Null pointer otherwise. Use LastQueryResultsValid() Prior to this.
+            /// @warning Does not confer ownership of actor, do not delete pointers returned by this unless you have taken special steps.
+            ActorBase* LastQueryResultsActorPtr() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // World Ray Queries
             ///////////////////////////////////////
@@ -134,11 +156,6 @@ namespace Mezzanine
             /// @param Length how long of a ray do you want? Thsi defaults to 1000
             /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.
             static Ray GetMouseRay(Real Length=1000);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Extra Query Results
-            ///////////////////////////////////////
-
     };
 }
 

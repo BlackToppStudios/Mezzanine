@@ -111,6 +111,27 @@ namespace Mezzanine
         typedef ManagedPtr<RayQueryHandle> ManagedRayQuery;
     }
 
+    RayQueryTool::RayQueryTool()
+        : ValidResult(false), IntersectedActor(NULL)
+    {}
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // World Ray Query Results
+    ///////////////////////////////////////
+
+    bool RayQueryTool::LastQueryResultsValid() const
+        { return ValidResult; }
+
+    Vector3 RayQueryTool::LastQueryResultsOffset() const
+        { return Offset; }
+
+    ActorBase* RayQueryTool::LastQueryResultsActorPtr() const
+        { return IntersectedActor; }
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // World Ray Queries
+    ///////////////////////////////////////
     void RayQueryTool::GetMeshInformation( Ogre::Entity *entity,
                                 size_t &vertex_count,
                                 Ogre::Vector3* &vertices,
