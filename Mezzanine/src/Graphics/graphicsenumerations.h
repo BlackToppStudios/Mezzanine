@@ -63,6 +63,15 @@ namespace Mezzanine
             AR_2_39_By_1   ///< 2.39
         };
 
+        /// @enum LightType
+        /// @brief This is used by LightProxies to describe how light is emitted from the proxy source.
+        enum LightType
+        {
+            LT_Directional = 0,    ///< From one direction, like sunlight.
+            LT_Point       = 1,    ///< From a point in space, like a Torch, campfire, muzzle flash, Mutant Fireflies, bonfires, light bulbs, non-hooded lantern, the DnD D20 Light spell, explosions, and scotch tape separating from the roll in a unlit vacuum. There may be other uses, be creative.
+            LT_Spotlight   = 2     ///< From a point emanating in a cone, like a flashlight, hooded lantern, really bright computer screens, flood lights, older style space heaters, Concert lights, camera flashes, etc...
+        };
+
         /// @enum RenderSystem
         /// @brief Used primarily by the graphics manager class during initialization.
         /// @details This enum specifies which Rendersystem is to be used for rendering.
