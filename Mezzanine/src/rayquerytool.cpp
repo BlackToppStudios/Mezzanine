@@ -59,6 +59,7 @@ using namespace std;
 #include "vector3wactor.h"
 #include "Input/mouse.h"
 #include "managedptr.h"
+#include "Internal/meshtools.h.cpp"
 
 #include <Ogre.h>
 
@@ -109,15 +110,41 @@ namespace Mezzanine
         };
 
         typedef ManagedPtr<RayQueryHandle> ManagedRayQuery;
+
+        /// @internal
+        /// @brief Exact an Ogre::RayQuery with some default parameters and see if we hit anything
+        /// @param RayQuery A ManagedRayQuery
+        /// @
+        bool ExecuteQuery(ManagedRayQuery& RayQuery, const Ray& ActorRay)
+        {
+            Ogre::Ray Ooray = ActorRay.GetOgreRay();
+            if(RayQuery)          //Double check that the Rayquery is valid
+            {
+                RayQuery->setRay(Ooray);
+                RayQuery->setQueryMask(-1); // GetFirstActorOnRayByAABB did not do this
+                if( RayQuery->execute().size() <= 0 ) //Did we hit anything
+                    { return false; }
+                return true;
+            }else{                          // Something Failed
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
+            }
+        }
     }
 
     RayQueryTool::RayQueryTool()
         : ValidResult(false), IntersectedActor(NULL)
-    {}
+        { ClearReturns(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // World Ray Query Results
     ///////////////////////////////////////
+
+    void RayQueryTool::ClearReturns()
+    {
+        ValidResult = false;
+        Offset = Vector3();
+        IntersectedActor = NULL;
+    }
 
     bool RayQueryTool::LastQueryResultsValid() const
         { return ValidResult; }
@@ -128,152 +155,20 @@ namespace Mezzanine
     ActorBase* RayQueryTool::LastQueryResultsActorPtr() const
         { return IntersectedActor; }
 
-
     ///////////////////////////////////////////////////////////////////////////////
-    // World Ray Queries
+    // Query Helpers
     ///////////////////////////////////////
-    void RayQueryTool::GetMeshInformation( Ogre::Entity *entity,
-                                size_t &vertex_count,
-                                Ogre::Vector3* &vertices,
-                                size_t &index_count,
-                                unsigned long* &indices,
-                                const Ogre::Vector3 &position,
-                                const Ogre::Quaternion &orient,
-                                const Ogre::Vector3 &scale)
-    {
-        bool added_shared = false;
-        size_t current_offset = 0;
-        size_t shared_offset = 0;
-        size_t next_offset = 0;
-        size_t index_offset = 0;
-        vertex_count = index_count = 0;
 
-        Ogre::MeshPtr mesh = entity->getMesh();
-
-
-        bool useSoftwareBlendingVertices = entity->hasSkeleton();
-
-        if (useSoftwareBlendingVertices)
-        {                                   //10,000th line of code
-            entity->_updateAnimation();
-        }
-
-        // Calculate how many vertices and indices we're going to need
-        for (unsigned short i = 0; i < mesh->getNumSubMeshes(); ++i)
-        {
-            Ogre::SubMesh* submesh = mesh->getSubMesh( i );
-
-            // We only need to add the shared vertices once
-            if(submesh->useSharedVertices)
-            {
-                if( !added_shared )
-                {
-                    vertex_count += mesh->sharedVertexData->vertexCount;
-                    added_shared = true;
-                }
-            }
-            else
-            {
-                vertex_count += submesh->vertexData->vertexCount;
-            }
-
-            // Add the indices
-            index_count += submesh->indexData->indexCount;
-        }
-
-
-        // Allocate space for the vertices and indices
-        vertices = new Ogre::Vector3[vertex_count];
-        indices = new unsigned long[index_count];
-
-        added_shared = false;
-
-        // Run through the submeshes again, adding the data into the arrays
-        for ( unsigned short i = 0; i < mesh->getNumSubMeshes(); ++i)
-        {
-            Ogre::SubMesh* submesh = mesh->getSubMesh(i);
-
-            //Ogre::VertexData* vertex_data = submesh->useSharedVertices ? mesh->sharedVertexData : submesh->vertexData;
-            Ogre::VertexData* vertex_data;
-
-            //When there is animation:
-            if(useSoftwareBlendingVertices)
-            {
-                //    #ifdef BUILD_AGAINST_AZATHOTH
-                //             vertex_data = submesh->useSharedVertices ? entity->_getSharedBlendedVertexData() : entity->getSubEntity(i)->_getBlendedVertexData();
-                //    #else
-                vertex_data = submesh->useSharedVertices ? entity->_getSkelAnimVertexData() : entity->getSubEntity(i)->_getSkelAnimVertexData();
-                //    #endif
-            }else{
-                vertex_data = submesh->useSharedVertices ? mesh->sharedVertexData : submesh->vertexData;
-            }
-
-            if((!submesh->useSharedVertices)||(submesh->useSharedVertices && !added_shared))
-            {
-                if(submesh->useSharedVertices)
-                {
-                    added_shared = true;
-                    shared_offset = current_offset;
-                }
-
-                const Ogre::VertexElement* posElem = vertex_data->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
-                Ogre::HardwareVertexBufferSharedPtr vbuf = vertex_data->vertexBufferBinding->getBuffer(posElem->getSource());
-                unsigned char* vertex = static_cast<unsigned char*>(vbuf->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-
-                // There is _no_ baseVertexPointerToElement() which takes an Ogre::Real or a double
-                //  as second argument. So make it float, to avoid trouble when Ogre::Real will
-                //  be comiled/typedefed as double:
-                //      Ogre::Real* pReal;
-                float* pReal;
-
-                for( size_t j = 0; j < vertex_data->vertexCount; ++j, vertex += vbuf->getVertexSize())
-                {
-                    posElem->baseVertexPointerToElement(vertex, &pReal);
-                    Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);
-                    vertices[current_offset + j] = (orient * (pt * scale)) + position;
-                }
-
-                vbuf->unlock();
-                next_offset += vertex_data->vertexCount;
-            }
-
-
-            Ogre::IndexData* index_data = submesh->indexData;
-            size_t numTris = index_data->indexCount / 3;
-            Ogre::HardwareIndexBufferSharedPtr ibuf = index_data->indexBuffer;
-
-            bool use32bitindexes = (ibuf->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
-
-            unsigned long*  pLong = static_cast<unsigned long*>(ibuf->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-            unsigned short* pShort = reinterpret_cast<unsigned short*>(pLong);
-
-
-            size_t offset = (submesh->useSharedVertices)? shared_offset : current_offset;
-            size_t index_start = index_data->indexStart;
-            size_t last_index = numTris*3 + index_start;
-
-            if (use32bitindexes)
-            {
-                for (size_t k = index_start; k < last_index; ++k)
-                    { indices[index_offset++] = pLong[k] + static_cast<unsigned long>( offset ); }
-            }else{
-                for (size_t k = index_start; k < last_index; ++k)
-                    { indices[ index_offset++ ] = static_cast<unsigned long>( pShort[k] ) + static_cast<unsigned long>( offset ); }
-            }
-
-            ibuf->unlock();
-            current_offset = next_offset;
-        }
-    }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Raycasting Nonsense goe here
+    // Ray Queries
+    ///////////////////////////////////////
     Vector3WActor RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
-        //Ogre::RaySceneQuery* RayQuery = RayQ.RayQuery;
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
+        //bool ExecuteQuery(const ManagedRayQuery& RayQuery, const Ray& ActorRay)
         if(RayQuery)          //Double check that the Rayquery is valid
         {
             RayQuery->setRay(Ooray);
@@ -317,10 +212,10 @@ namespace Mezzanine
                         unsigned long *indices;
 
                         // get the mesh information
-                        GetMeshInformation(pentity, vertex_count, vertices, index_count, indices,
-                                          pentity->getParentNode()->_getDerivedPosition(),
-                                          pentity->getParentNode()->_getDerivedOrientation(),
-                                          pentity->getParentNode()->_getDerivedScale());
+                        Internal::MeshTools::GetMeshInformation( pentity, vertex_count, vertices, index_count, indices,
+                                                                 pentity->getParentNode()->_getDerivedPosition(),
+                                                                 pentity->getParentNode()->_getDerivedOrientation(),
+                                                                 pentity->getParentNode()->_getDerivedScale());
 
                         // test for hitting individual triangles on the mesh
                         bool new_closest_found = false;
