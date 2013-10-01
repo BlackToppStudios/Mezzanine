@@ -98,6 +98,7 @@ namespace Mezzanine
             this->DestroyAllAffectors();
 
             if( this->GraphicsParticleSystem ) {
+                this->GraphicsNode->detachObject( this->GraphicsParticleSystem );
                 this->Manager->GetGraphicsWorldPointer()->destroyParticleSystem( this->GraphicsParticleSystem );
             }
             this->CustomSystemParameters.clear();

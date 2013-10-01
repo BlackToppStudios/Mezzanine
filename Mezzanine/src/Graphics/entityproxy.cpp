@@ -97,8 +97,8 @@ namespace Mezzanine
 
         void EntityProxy::DestroyEntity()
         {
-            this->GraphicsNode->detachObject( this->GraphicsEntity );
             if( this->GraphicsEntity ) {
+                this->GraphicsNode->detachObject( this->GraphicsEntity );
                 this->Manager->GetGraphicsWorldPointer()->destroyEntity( this->GraphicsEntity );
             }
         }
