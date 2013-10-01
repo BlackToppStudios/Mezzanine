@@ -711,7 +711,7 @@ void CatchApp::UnloadLevel()
     CShapeMan->DestroyAllShapes();
     MeshMan->DestroyAllGeneratedMeshes();
     SceneMan->DestroyAllLights();
-    SceneMan->DestroyAllParticleEffects();
+    SceneMan->DestroyAllProxies();
     SceneMan->DestroyAllWorldNodes();
     SceneMan->DisableSky();
     StartAreas.clear();

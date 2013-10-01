@@ -108,7 +108,6 @@
 #include "network.h"
 #include "networkmanager.h"
 #include "objectpair.h"
-#include "particleeffect.h"             // done
 
 #endif
 #include "plane.h"                      // done
