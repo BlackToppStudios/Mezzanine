@@ -89,7 +89,6 @@
 #include "crossplatform.h"              // nothing to do
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
-#include "entity.h"
 #include "entresol.h"
 #include "enumerations.h"               // nothing to do
 #include "eventbase.h"                  // done/serializes
@@ -98,7 +97,6 @@
 #include "eventquit.h"                  // done
 #include "eventuserinput.h"             // done
 #include "exception.h"
-#include "light.h"                      // done
 #include "linegroup.h"
 #include "macros.h"
 #include "managedptr.h"

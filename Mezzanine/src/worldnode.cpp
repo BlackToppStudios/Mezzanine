@@ -45,7 +45,6 @@
 #include "Graphics/scenemanager.h"
 #include "exception.h"
 #include "camera.h"
-#include "light.h"
 #include "actorbase.h"
 #include "stringtool.h"
 #include "entresol.h"

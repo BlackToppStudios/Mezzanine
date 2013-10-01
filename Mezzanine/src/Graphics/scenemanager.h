@@ -46,6 +46,7 @@
 #include "singleton.h"
 #include "quaternion.h"
 #include "vector3.h"
+#include "Graphics/graphicsenumerations.h"
 #ifndef SWIG
     #include "XML/xml.h"
 #endif
@@ -59,9 +60,7 @@ namespace Ogre
 namespace Mezzanine
 {
     class Entresol;
-    class Light;
     class Plane;
-    class Entity;
     class WorldNode;
     namespace Graphics
     {
@@ -72,6 +71,7 @@ namespace Mezzanine
         class ParticleSystemProxy;
         class SceneManager;
         class SceneManagerData;
+        class Mesh;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world.
@@ -121,18 +121,6 @@ namespace Mezzanine
             typedef WorldNodeContainer::iterator                  WorldNodeIterator;
             /// @brief Const Iterator type for @ref WorldNode instances stored by this class.
             typedef WorldNodeContainer::const_iterator            ConstWorldNodeIterator;
-            /// @brief Basic container type for @ref Light storage by this class.
-            typedef std::vector< Light* >                         LightContainer;
-            /// @brief Iterator type for @ref Light instances stored by this class.
-            typedef LightContainer::iterator                      LightIterator;
-            /// @brief Const Iterator type for @ref Light instances stored by this class.
-            typedef LightContainer::const_iterator                ConstLightIterator;
-            /// @brief Basic container type for @ref Entity storage by this class.
-            typedef std::vector< Entity* >                        EntityContainer;
-            /// @brief Iterator type for @ref Entity instances stored by this class.
-            typedef EntityContainer::iterator                     EntityIterator;
-            /// @brief Const Iterator type for @ref Entity instances stored by this class.
-            typedef EntityContainer::const_iterator               ConstEntityIterator;
 
             /// @brief Basic container type for RenderableProxy storage by this class.
             typedef std::vector< RenderableProxy* >               ProxyContainer;
@@ -167,12 +155,6 @@ namespace Mezzanine
             /// @internal
             /// @brief Vector storing all the nodes in use by this class.
             WorldNodeContainer WorldNodes;
-            /// @internal
-            /// @brief Vector storing all the lights in use by this class.
-            LightContainer Lights;
-            /// @internal
-            /// @brief Vector storing all the entities in use by this class.
-            EntityContainer Entities;
 
             /// @internal
             /// @brief Container storing all of the RenderableProxy instances created by this manager.
@@ -205,7 +187,7 @@ namespace Mezzanine
             SceneManager(XML::Node& XMLNode);
             /// @brief Class Destructor.
             /// @details The class destructor.
-            ~SceneManager();
+            virtual ~SceneManager();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Shadow Management
@@ -322,6 +304,22 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Creating Proxies
 
+            /// @brief Creates a new EntityProxy.
+            /// @param TheMesh A pointer to the mesh to be applied to this proxy.
+            /// @return Returns a pointer to the created proxy.
+            EntityProxy* CreateEntityProxy(Mesh* TheMesh);
+            /// @brief Creates a new EntityProxy.
+            /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
+            /// @param GroupName The resource group name where the mesh can be found.
+            /// @return Returns a pointer to the created proxy.
+            EntityProxy* CreateEntityProxy(const String& MeshName, const String& GroupName);
+            /// @brief Creates a new LightProxy.
+            /// @return Returns a pointer to the created proxy.
+            LightProxy* CreateLightProxy();
+            /// @brief Creates a new LightProxy.
+            /// @param Type The type of light this light is to be constructed as.
+            /// @return Returns a pointer to the created proxy.
+            LightProxy* CreateLightProxy(const Graphics::LightType Type);
             /// @brief Creates a new ParticleSystemProxy.
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @return Returns a pointer to the created proxy.
@@ -360,76 +358,6 @@ namespace Mezzanine
             /// @brief Retrieve the level of the ambient light
             /// @return A ColourValue with the ambient light levels
             ColourValue GetAmbientLight() const;
-
-            /// @brief Creates a dynamic light.
-            /// @param Name The name to be given to this light.
-            /// @return Returns a pointer to the light class which was created by this function.
-            Light* CreateLight(const String& Name);
-            /// @brief Gets an already created light by name.
-            /// @return Returns a pointer to the light of the specified name.
-            Light* GetLight(const String& Name) const;
-            /// @brief Gets an already created light by index.
-            /// @return Returns a pointer to the light at the specified index.
-            Light* GetLight(const Whole& Index) const;
-            /// @brief Gets the number of lights created and stored in this manager.
-            /// @return Returns the number of lights this manager is storing.
-            Whole GetNumLights() const;
-            /// @brief Deletes a light and removes all trace of it from the manager.
-            /// @param ToBeDestroyed The light to be destroyed.
-            void DestroyLight(Light* ToBeDestroyed);
-            /// @brief Destroys all lights currently in the manager.
-            void DestroyAllLights();
-
-            /// @brief Get a LightIterator to the first Light*
-            /// @return A LightIterator to the first Light*
-            LightIterator BeginLight();
-            /// @brief Get a LightIterator to one past the last Light*
-            /// @return A LightIterator to one past the last Light*
-            LightIterator EndLight();
-            /// @brief Get a ConstLightIterator to the first Light*
-            /// @return A ConstLightIterator to the first Light*
-            ConstLightIterator BeginLight() const;
-            /// @brief Get a ConstLightIterator to one past the last Light*
-            /// @return A ConstLightIterator to one past the last Light*
-            ConstLightIterator EndLight() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Entity Management
-
-            /// @brief Creates an entity.
-            /// @details Entities are objects that have zero physical representation, they are essentially meshes in world space.
-            /// @param EntName The name to be given to this entity.
-            /// @param MeshName The name of the mesh to construct this entity from.
-            /// @param Group The resource group to find the mesh.
-            /// @return Returns a pointer to the entity class which was created by this function.
-            Entity* CreateEntity(const String& EntName, const String& MeshName, const String& Group);
-            /// @brief Gets an already created entity by name.
-            /// @return Returns a pointer to the entity of the specified name.
-            Entity* GetEntity(const String& Name) const;
-            /// @brief Gets an already created entity by index.
-            /// @return Returns a pointer to the entity at the specified index.
-            Entity* GetEntity(const Whole& Index) const;
-            /// @brief Gets the number of entities created and stored in this manager.
-            /// @return Returns the number of entities this manager is storing.
-            Whole GetNumEntities() const;
-            /// @brief Deletes an entity and removes all trace of it from the manager.
-            /// @param ToBeDestroyed The entity to be destroyed.
-            void DestroyEntity(Entity* ToBeDestroyed);
-            /// @brief Destroys all entities currently in the manager.
-            void DestroyAllEntities();
-
-            /// @brief Get an EntityIterator to the first Entity*
-            /// @return An EntityIterator to the first Entity*
-            EntityIterator BeginEntity();
-            /// @brief Get a EntityIterator to one past the last Entity*
-            /// @return A EntityIterator to one past the last Entity*
-            EntityIterator EndEntity();
-            /// @brief Get a ConstEntityIterator to the first Entity*
-            /// @return A ConstEntityIterator to the first Entity*
-            ConstEntityIterator BeginEntity() const;
-            /// @brief Get a ConstEntityIterator to one past the last Entity*
-            /// @return A ConstEntityIterator to one past the last Entity*
-            ConstEntityIterator EndEntity() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // WorldNode Management

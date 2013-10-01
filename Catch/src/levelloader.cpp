@@ -49,8 +49,7 @@ void LevelLoader::LoadFerris()
 
 	// Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
-    Light* DLight = SceneMan->CreateLight("SceneLight");
-    DLight->SetLightType(Light::Directional);
+    Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(150,250,-200);
     DLight->SetLocation(Loc);
     Loc.Normalize();
@@ -300,8 +299,7 @@ void LevelLoader::LoadBigCurve()
 
 	// Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
-    Light* DLight = SceneMan->CreateLight("SceneLight");
-    DLight->SetLightType(Light::Directional);
+    Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(150,200,200);
     DLight->SetLocation(Loc);
     Loc.Normalize();
@@ -418,8 +416,7 @@ void LevelLoader::LoadBlowsNotSucks()
 
 	// Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
-    Light* DLight = SceneMan->CreateLight("SceneLight");
-    DLight->SetLightType(Light::Directional);
+    Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,200,200);
     DLight->SetLocation(Loc);
     Loc.Normalize();
@@ -617,8 +614,7 @@ void LevelLoader::LoadJustice()
 
 	// Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
-    Light* DLight = SceneMan->CreateLight("SceneLight");
-    DLight->SetLightType(Light::Directional);
+    Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,100,200);
     DLight->SetLocation(Loc);
     Loc.Normalize();
@@ -826,8 +822,7 @@ void LevelLoader::LoadRollers()
 
 	// Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
-    Light* DLight = SceneMan->CreateLight("SceneLight");
-    DLight->SetLightType(Light::Directional);
+    Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,100,200);
     DLight->SetLocation(Loc);
     Loc.Normalize();
@@ -960,8 +955,7 @@ void LevelLoader::LoadJustBounce()
 
 	// Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
-    Light* DLight = SceneMan->CreateLight("SceneLight");
-    DLight->SetLightType(Light::Directional);
+    Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,100,200);
     DLight->SetLocation(Loc);
     Loc.Normalize();

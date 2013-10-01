@@ -43,8 +43,6 @@
 #include "cameramanager.h"
 #include "scenemanager.h"
 #include "areaeffectmanager.h"
-#include "light.h"
-#include "entity.h"
 #include "entresol.h"
 #include "plane.h"
 #include "UI/uimanager.h"
@@ -52,6 +50,8 @@
 #include "stringtool.h"
 #include "worldnode.h"
 
+#include "Graphics/entityproxy.h"
+#include "Graphics/lightproxy.h"
 #include "Graphics/particlesystemproxy.h"
 
 #include <memory>
@@ -292,7 +292,7 @@ namespace Mezzanine
 
             delete TrackingNodeUpdateWork;
 
-            this->DestroyAllLights();
+            this->DestroyAllProxies();
             this->DestroyAllWorldNodes();
             delete SMD;
         }
@@ -447,6 +447,34 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Creating Proxies
 
+        EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh)
+        {
+            EntityProxy* NewProxy = new EntityProxy(TheMesh,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        EntityProxy* SceneManager::CreateEntityProxy(const String& MeshName, const String& GroupName)
+        {
+            EntityProxy* NewProxy = new EntityProxy(MeshName,GroupName,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        LightProxy* SceneManager::CreateLightProxy()
+        {
+            LightProxy* NewProxy = new LightProxy(this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        LightProxy* SceneManager::CreateLightProxy(const Graphics::LightType Type)
+        {
+            LightProxy* NewProxy = new LightProxy(Type,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
         ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const String& Template)
         {
             ParticleSystemProxy* NewProxy = new ParticleSystemProxy(Template,this);
@@ -502,139 +530,6 @@ namespace Mezzanine
 
             return ColourValue(this->SMD->OgreManager->getAmbientLight());
         }
-
-        Light* SceneManager::CreateLight(const String& Name)
-        {
-            Light* light = new Light(this->SMD->OgreManager->createLight(Name), this);
-            Lights.push_back(light);
-            return light;
-        }
-
-        Light* SceneManager::GetLight(const String& Name) const
-        {
-            if(Lights.empty())
-                return 0;
-            for( std::vector<Light*>::const_iterator it = Lights.begin() ; it != Lights.end() ; it++ )
-            {
-                if( Name == (*it)->GetName() )
-                {
-                    return (*it);
-                }
-            }
-            return 0;
-        }
-
-        Light* SceneManager::GetLight(const Whole& Index) const
-        {
-            return Lights[Index];
-        }
-
-        Whole SceneManager::GetNumLights() const
-        {
-            return Lights.size();
-        }
-
-        void SceneManager::DestroyLight(Light* ToBeDestroyed)
-        {
-            if(Lights.empty())
-                return;
-            for( std::vector<Light*>::iterator it = Lights.begin() ; it != Lights.end() ; it++ )
-            {
-                if( ToBeDestroyed == (*it) )
-                {
-                    delete (*it);
-                    Lights.erase(it);
-                    return;
-                }
-            }
-        }
-
-        void SceneManager::DestroyAllLights()
-        {
-            for( Whole X = 0 ; X < Lights.size() ; X++ )
-                delete Lights[X];
-            Lights.clear();
-        }
-
-        SceneManager::LightIterator SceneManager::BeginLight()
-            { return this->Lights.begin(); }
-
-        SceneManager::LightIterator SceneManager::EndLight()
-            { return this->Lights.end(); }
-
-        SceneManager::ConstLightIterator SceneManager::BeginLight() const
-            { return this->Lights.begin(); }
-
-        SceneManager::ConstLightIterator SceneManager::EndLight() const
-            { return this->Lights.end(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Entity Management
-
-        Entity* SceneManager::CreateEntity(const String& EntName, const String& MeshName, const String& Group)
-        {
-            Entity* Ent = new Entity(EntName,MeshName,Group,this);
-            Entities.push_back(Ent);
-            return Ent;
-        }
-
-        Entity* SceneManager::GetEntity(const String& Name) const
-        {
-            if(Entities.empty())
-                return 0;
-            for( std::vector<Entity*>::const_iterator it = Entities.begin() ; it != Entities.end() ; it++ )
-            {
-                if( Name == (*it)->GetName() )
-                {
-                    return (*it);
-                }
-            }
-            return 0;
-        }
-
-        Entity* SceneManager::GetEntity(const Whole& Index) const
-        {
-            return Entities[Index];
-        }
-
-        Whole SceneManager::GetNumEntities() const
-        {
-            return Entities.size();
-        }
-
-        void SceneManager::DestroyEntity(Entity* ToBeDestroyed)
-        {
-            if(Entities.empty())
-                return;
-            for( std::vector<Entity*>::iterator it = Entities.begin() ; it != Entities.end() ; it++ )
-            {
-                if( ToBeDestroyed == (*it) )
-                {
-                    delete (*it);
-                    Entities.erase(it);
-                    return;
-                }
-            }
-        }
-
-        void SceneManager::DestroyAllEntities()
-        {
-            for( Whole X = 0 ; X < Entities.size() ; X++ )
-                delete Entities[X];
-            Entities.clear();
-        }
-
-        SceneManager::EntityIterator SceneManager::BeginEntity()
-            { return this->Entities.begin(); }
-
-        SceneManager::EntityIterator SceneManager::EndEntity()
-            { return this->Entities.end(); }
-
-        SceneManager::ConstEntityIterator SceneManager::BeginEntity() const
-            { return this->Entities.begin(); }
-
-        SceneManager::ConstEntityIterator SceneManager::EndEntity() const
-            { return this->Entities.end(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // WorldNode Management
@@ -902,10 +797,6 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
                 }
                 /*  Sky Cache Member - String SkyMaterialName; Quaternion SkyOrientation; String SkyMaterialGroupName; bool SkyDrawnFirst; Plane SkyThePlane; */
 
-                for (Mezzanine::Graphics::SceneManager::ConstLightIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginLight();
-                        Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndLight()!=Iter;
-                        ++Iter)
-                    { stream << **Iter; }
                 for (Mezzanine::Graphics::SceneManager::ConstWorldNodeIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginWorldNode();
                         Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndWorldNode()!=Iter;
                         ++Iter)
@@ -974,21 +865,6 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                             }
                         }else{
                             MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Sd-\"" + Name + "\".");
-                        }
-                        break;
-                    case 'L': // Light
-                        if(Name==Mezzanine::String("Light"))
-                        {
-                            Mezzanine::String ChildName(Child.GetAttribute("Name").AsString());
-                            if(0!=ChildName.length())
-                            {
-                                Mezzanine::Light* ChildLight = Ev.CreateLight(ChildName);
-                                Child >> *ChildLight;
-                            }else{
-                                MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to deserialize nameless light during deserialization of SceneManager but lights must have a name.");
-                            }
-                        }else{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element L-\"" + Name + "\".");
                         }
                         break;
                     case 'W': // WorldNode

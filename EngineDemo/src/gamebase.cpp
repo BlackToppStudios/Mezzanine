@@ -409,8 +409,7 @@ int main(int argc, char **argv)
     //CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
     //DefaultControl->SetMovementMode(CameraController::CCM_Walk);
     //DefaultControl->SetHoverHeight(75);
-    Light *Headlight = TheEntresol->GetSceneManager()->CreateLight("Headlight");
-    Headlight->SetLightType(Light::Directional);
+    Graphics::LightProxy* Headlight = TheEntresol->GetSceneManager()->CreateLightProxy(Graphics::LT_Directional);
     Vector3 LightLoc(200,300,0);
     Headlight->SetLocation(LightLoc);
     LightLoc.X = -LightLoc.X;

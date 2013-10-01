@@ -58,7 +58,6 @@ namespace Ogre
 namespace Mezzanine
 {
     class Camera;
-    class Light;
     class ActorBase;
     namespace Graphics
     {
