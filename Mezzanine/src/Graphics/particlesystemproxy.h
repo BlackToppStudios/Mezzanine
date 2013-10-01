@@ -98,14 +98,27 @@ namespace Mezzanine
             /// @internal
             /// @brief Stores whether or not updates to this particle system are paused.
             Bool Paused;
+
+            /// @internal
+            /// @brief Constructs this particle system from a pre-made particle script.
+            /// @param Name The name of this particle effect.
+            /// @param Template Name of the particle script to be used in creating this particle effect.
+            virtual void CreateParticleSystem(const String& Template);
+            /// @internal
+            /// @brief Destroys the particle system providing this class with it's functionality.
+            virtual void DestroyParticleSystem();
+            /// @internal
+            /// @brief Generates a name for this ParticleSystem to placate the internal system.
+            /// @note This will no longer be necessary in after the switch to Ogre 2.0.
+            /// @return Returns a string containing the auto-generated name of this particle.
+            static String GenerateName();
         public:
             /// @todo Create a non-template constructor so people can make particle effects entirely from c++.
 
             /// @brief Template constructor.
-            /// @param Name The name of this particle effect.
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @param Creator A pointer to the manager that created this proxy.
-            ParticleSystemProxy(const String& Name, const String& Template, SceneManager* Creator);
+            ParticleSystemProxy(const String& Template, SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~ParticleSystemProxy();
 
@@ -186,7 +199,7 @@ namespace Mezzanine
             /// @brief Gets the Factor at which this ParticleEffect is currently progressing.
             /// @return Returns a Real representing the factor at which the ParticleEffect is currently progressing.
             /// @note If the ParticleEffect is paused, this will return what the speed would be if it were unpaused.
-            Real GetSpeedFactor();
+            Real GetSpeedFactor() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -199,6 +212,12 @@ namespace Mezzanine
             /// @brief Convert the custom altered parameters of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeCustomParameters(XML::Node& SelfRoot) const;
+            /// @brief Convert the emitters of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            virtual void ProtoSerializeEmitters(XML::Node& SelfRoot) const;
+            /// @brief Convert the affectors of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            virtual void ProtoSerializeAffectors(XML::Node& SelfRoot) const;
             /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
 
@@ -210,6 +229,12 @@ namespace Mezzanine
             /// @brief Take the data stored in an XML Node and overwrite the custom altered parameters of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             virtual void ProtoDeSerializeCustomParameters(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the emitters of this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            virtual void ProtoDeSerializeEmitters(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the affectors of this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            virtual void ProtoDeSerializeAffectors(const XML::Node& SelfRoot);
             /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
