@@ -777,10 +777,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal/Other
 
-        Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
+        Ogre::SceneManager* SceneManager::_GetGraphicsWorldPointer() const
             { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
 
-        SceneManagerData* SceneManager::GetRawInternalDataPointer() const
+        SceneManagerData* SceneManager::_GetRawInternalDataPointer() const
             { return this->SMD; }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -845,7 +845,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
                 << "<ShadowColour>" << Ev.GetShadowColour() << "</ShadowColour>"
                 << "<AmbientLight>" << Ev.GetAmbientLight() << "</AmbientLight>";
 
-                Mezzanine::Graphics::SceneManagerData* SMD = Ev.GetRawInternalDataPointer();
+                Mezzanine::Graphics::SceneManagerData* SMD = Ev._GetRawInternalDataPointer();
                 switch (Ev.WhichSky())
                 {
                     case Mezzanine::Graphics::SceneManager::SkyNone:

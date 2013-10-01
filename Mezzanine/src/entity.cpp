@@ -72,7 +72,7 @@ namespace Mezzanine
             EntityInternalData(const String& Name, const String& MeshName, const String& Group, Graphics::SceneManager* manager)
             {
                 this->Manager = manager;
-                Ogre::SceneManager* OgreManager = Manager->GetGraphicsWorldPointer();
+                Ogre::SceneManager* OgreManager = Manager->_GetGraphicsWorldPointer();
                 OgreEntity = OgreManager->createEntity(Name,MeshName,Group);
                 OgreNode = OgreManager->createSceneNode();
                 OgreManager->getRootSceneNode()->addChild(OgreNode);
@@ -82,8 +82,8 @@ namespace Mezzanine
             /// @brief Cleans up after the Entity.
             ~EntityInternalData()
             {
-                Manager->GetGraphicsWorldPointer()->destroyEntity(OgreEntity);
-                Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
+                Manager->_GetGraphicsWorldPointer()->destroyEntity(OgreEntity);
+                Manager->_GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
             }
         };//EntityInternalData
     }//internal

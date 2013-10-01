@@ -155,7 +155,7 @@ namespace Mezzanine
 
             Graphics::SceneManager* SceneMan = GetSceneManager();
             if(SceneMan)
-                SceneMan->GetGraphicsWorldPointer()->addRenderQueueListener(SID);
+                SceneMan->_GetGraphicsWorldPointer()->addRenderQueueListener(SID);
 
             VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(0,0,0,1));
             CreateVertexBuffer();
@@ -207,7 +207,7 @@ namespace Mezzanine
             this->SID->RenderSys->_setViewMatrix( Ogre::Matrix4::IDENTITY );
             Graphics::SceneManager* SceneMan = GetSceneManager();
             if(SceneMan)
-                SceneMan->GetGraphicsWorldPointer()->_setPass( UIManager::GetSingletonPtr()->GetAtlas(PrimaryAtlas)->_Get2DPass() );
+                SceneMan->_GetGraphicsWorldPointer()->_setPass( UIManager::GetSingletonPtr()->GetAtlas(PrimaryAtlas)->_Get2DPass() );
         }
 
         void Screen::CreateVertexBuffer(const Whole& InitialSize)

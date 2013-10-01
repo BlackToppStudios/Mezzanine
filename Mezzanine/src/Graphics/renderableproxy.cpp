@@ -63,13 +63,13 @@ namespace Mezzanine
             VisibilityMask(Ogre::MovableObject::getDefaultVisibilityFlags()),
             QueryMask(Ogre::MovableObject::getDefaultQueryFlags())
         {
-            this->GraphicsNode = this->Manager->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+            this->GraphicsNode = this->Manager->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         }
 
         RenderableProxy::~RenderableProxy()
         {
             this->GraphicsNode->getParentSceneNode()->removeChild(this->GraphicsNode);
-            this->Manager->GetGraphicsWorldPointer()->destroySceneNode(this->GraphicsNode);
+            this->Manager->_GetGraphicsWorldPointer()->destroySceneNode(this->GraphicsNode);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

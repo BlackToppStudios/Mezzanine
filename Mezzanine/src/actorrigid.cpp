@@ -67,7 +67,7 @@ namespace Mezzanine
         // this isn't required to operate, but it does allow the mesh manager to know what is loaded.
         Graphics::MeshManager::GetSingletonPtr()->LoadMesh(file,group);
 
-        this->GraphicsObject = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
+        this->GraphicsObject = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new Internal::AttachableMotionState(this);
         this->CreateRigidObject(mass);
         this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);

@@ -167,7 +167,7 @@ namespace Mezzanine
         Line3D::Line3D()
         {
             mRenderOp.vertexData = new Ogre::VertexData();
-            this->SelfNode = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+            this->SelfNode = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
 
             // Initialization stuff
             mRenderOp.indexData = 0;
@@ -201,7 +201,7 @@ namespace Mezzanine
 
         Line3D::~Line3D()
         {
-            Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->destroySceneNode(this->SelfNode);
+            Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->destroySceneNode(this->SelfNode);
             delete mRenderOp.vertexData;
         }
 

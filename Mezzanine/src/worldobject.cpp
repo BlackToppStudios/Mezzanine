@@ -65,7 +65,7 @@ namespace Mezzanine
         GraphicsSettings(NULL),
         PhysicsSettings(NULL)
     {
-        this->GraphicsNode = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        this->GraphicsNode = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
     }
 
     WorldObject::~WorldObject()

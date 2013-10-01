@@ -63,7 +63,7 @@ namespace Mezzanine
 {
     Camera::Camera(const String& Name, CameraManager* Manager)
     {
-        Ogre::Camera* OgreCam = Manager->SceneMan->GetGraphicsWorldPointer()->createCamera(Name);
+        Ogre::Camera* OgreCam = Manager->SceneMan->_GetGraphicsWorldPointer()->createCamera(Name);
         this->Construct(OgreCam, Manager);
     }
 
@@ -83,8 +83,8 @@ namespace Mezzanine
 
     Camera::~Camera()
     {
-        if(CamManager->SceneMan && CamManager->SceneMan->GetGraphicsWorldPointer())
-            { CamManager->SceneMan->GetGraphicsWorldPointer()->destroyCamera(Cam); }
+        if(CamManager->SceneMan && CamManager->SceneMan->_GetGraphicsWorldPointer())
+            { CamManager->SceneMan->_GetGraphicsWorldPointer()->destroyCamera(Cam); }
     }
 
     ConstString& Camera::GetName() const

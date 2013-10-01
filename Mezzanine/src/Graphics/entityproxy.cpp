@@ -44,7 +44,7 @@
 /// @brief This file contains the implementation for the World proxy wrapping basic entity(mesh) functionality.
 
 #include "Graphics/entityproxy.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "Graphics/meshmanager.h"
 #include "Graphics/mesh.h"
 
@@ -83,7 +83,7 @@ namespace Mezzanine
         void EntityProxy::CreateEntity(Mesh* ObjectMesh)
         {
             if( ObjectMesh != NULL ) {
-                this->GraphicsEntity = this->Manager->GetGraphicsWorldPointer()->createEntity( ObjectMesh->_GetInternalMesh() );
+                this->GraphicsEntity = this->Manager->_GetGraphicsWorldPointer()->createEntity( ObjectMesh->_GetInternalMesh() );
                 this->GraphicsNode->attachObject( this->GraphicsEntity );
                 this->GraphicsEntity->setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
                 this->GraphicsEntity->setVisibilityFlags(0);
@@ -99,7 +99,7 @@ namespace Mezzanine
         {
             if( this->GraphicsEntity ) {
                 this->GraphicsNode->detachObject( this->GraphicsEntity );
-                this->Manager->GetGraphicsWorldPointer()->destroyEntity( this->GraphicsEntity );
+                this->Manager->_GetGraphicsWorldPointer()->destroyEntity( this->GraphicsEntity );
             }
         }
 

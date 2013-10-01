@@ -78,7 +78,7 @@ namespace Mezzanine
     ActorBase::~ActorBase()
     {
         Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
-        SceneMan->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
+        SceneMan->_GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
         delete MotionState;
     }
 

@@ -512,11 +512,11 @@ namespace Mezzanine
             /// @internal
             /// @brief Gets the internal Ogre Scene Manager pointer.
             /// @return Returns a pointer to the ogre Scene Manager.
-            Ogre::SceneManager* GetGraphicsWorldPointer() const;
+            Ogre::SceneManager* _GetGraphicsWorldPointer() const;
             /// @internal
             /// @brief Gets the raw internal internal data.
             /// @return Returns a to the raw internal data.
-            SceneManagerData* GetRawInternalDataPointer() const;
+            SceneManagerData* _GetRawInternalDataPointer() const;
         };//SceneManager
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -111,7 +111,7 @@ namespace Mezzanine
 
     void WorldObjectGraphicsSettings::SetMesh(Graphics::Mesh* ObjectMesh)
     {
-        Ogre::SceneManager* OgreManager = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer();
+        Ogre::SceneManager* OgreManager = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer();
         if(IWOGS->WorldObjectEnt)
         {
             OgreManager->destroyEntity(IWOGS->WorldObjectEnt);

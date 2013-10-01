@@ -61,7 +61,7 @@ namespace Mezzanine
     Light::Light(const String& Name, Graphics::SceneManager* manager)
     {
         Manager = manager;
-        OgreLight = Manager->GetGraphicsWorldPointer()->createLight(Name);
+        OgreLight = Manager->_GetGraphicsWorldPointer()->createLight(Name);
     }
 
     Light::Light(Ogre::Light* light, Graphics::SceneManager* manager)
@@ -71,7 +71,7 @@ namespace Mezzanine
     }
 
     Light::~Light()
-        { Manager->GetGraphicsWorldPointer()->destroyLight(OgreLight); }
+        { Manager->_GetGraphicsWorldPointer()->destroyLight(OgreLight); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Meta

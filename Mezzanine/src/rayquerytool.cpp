@@ -88,14 +88,14 @@ namespace Mezzanine
                 /// @brief Create the ogre specific handle and sort items for raycasting.
                 void Construct()
                 {
-                    RayQuery = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+                    RayQuery = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
                     RayQuery->setSortByDistance(true);
                 }
                 /// @brief CAll the Ogre API to clean up this wierd handle thing
                 void Deconstruct()
                 {
                     if(GetPointer())
-                        { Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->destroyQuery(RayQuery); }
+                        { Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->destroyQuery(RayQuery); }
                 }
 
                 /// @brief This is what ManagedPtr will use in copy and assignment operations as well as invaliding handles.
