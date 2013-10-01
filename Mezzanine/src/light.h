@@ -205,11 +205,10 @@ namespace Mezzanine
             // Spotlight specific methods
 
             /// @brief Defines the cone of light emitted by a spotlight.
-            /// @details InnerAngle and OuterAngle should be input as Radians.
+            /// @remarks InnerAngle and OuterAngle should be input as Radians.
             /// @param InnerAngle Angle of the inner cone in radians.
             /// @param OuterAngle Angle of the outer cone in radions.
-            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.
-            /// Less means slower falloff and higher means faster falloff.
+            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.  Less means slower falloff and higher means faster falloff.
             void SetSpotlightRange(const Real& InnerAngle, const Real& OuterAngle, const Real& Falloff = 1.0);
             /// @brief Sets the Inner angle of the cone of light emitted by a spotlight.
             /// @param InnerAngle Angle of the inner cone in radians.
@@ -224,8 +223,7 @@ namespace Mezzanine
             /// @return Returns a real representing the outer angle of this spotlight, in radians.
             Real GetSpotlightOuterAngle() const;
             /// @brief Sets the rate of falloff of the cone of light emitted by a spotlight.
-            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.
-            /// Less means slower falloff and higher means faster falloff.
+            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.  Less means slower falloff and higher means faster falloff.
             void SetSpotlightFalloff(const Real& Falloff);
             /// @brief Gets the rate of falloff of the cone of light emitted by this spotlight.
             /// @return Returns a real representing the falloff of the cone of light.
