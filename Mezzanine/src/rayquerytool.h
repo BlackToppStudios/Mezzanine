@@ -68,22 +68,6 @@ namespace Mezzanine
     class MEZZ_LIB RayQueryTool// : public InputQueryTool
     {
         private:
-            // @internal
-            // @brief An Ogre construct used to find information about the locations of graphical object
-            //static Ogre::RaySceneQuery* RayQuery;
-
-
-            /// @internal
-            /// @brief used to get information about 3d graphical objects at specific locations
-            static void GetMeshInformation(Ogre::Entity *entity,
-                                size_t &vertex_count,
-                                Ogre::Vector3* &vertices,
-                                size_t &index_count,
-                                unsigned long* &indices,
-                                const Ogre::Vector3 &position,
-                                const Ogre::Quaternion &orient,
-                                const Ogre::Vector3 &scale);
-
             /// @brief True if the last Query yielded a meaningful Result.
             bool ValidResult;
             /// @brief An Offset or location from something meaningful to the last query.
@@ -98,8 +82,10 @@ namespace Mezzanine
             RayQueryTool();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // World Ray Query Results
+            // Query Results
             ///////////////////////////////////////
+            /// @brief Clears an previously stored return values.
+            void ClearReturns();
             /// @brief Check to see if the last query found anything.
             /// @return True if something was found, false otherwise.
             bool LastQueryResultsValid() const;
@@ -111,8 +97,15 @@ namespace Mezzanine
             /// @warning Does not confer ownership of actor, do not delete pointers returned by this unless you have taken special steps.
             ActorBase* LastQueryResultsActorPtr() const;
 
+        protected:
             ///////////////////////////////////////////////////////////////////////////////
-            // World Ray Queries
+            // Query Helpers
+            ///////////////////////////////////////
+
+
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Ray Queries
             ///////////////////////////////////////
             /// @brief This will find the first Actor to intesect the Given ray.
             /// @details This use the graphics subsystem to cast a ray in the world. If the ray passes through any the triangles in an actor

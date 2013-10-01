@@ -116,6 +116,15 @@ namespace Mezzanine
                 /// @param TheEntity The entity from which to extract the information.
                 /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
                 static btTriangleMesh* CreateBulletTrimesh(Ogre::Entity* TheEntity, bool UseAllSubmeshes = false);
+                /// @brief used to get information about 3d graphical objects at specific locations
+                static void GetMeshInformation(Ogre::Entity *entity,
+                                    size_t &vertex_count,
+                                    Ogre::Vector3* &vertices,
+                                    size_t &index_count,
+                                    unsigned long* &indices,
+                                    const Ogre::Vector3 &position,
+                                    const Ogre::Quaternion &orient,
+                                    const Ogre::Vector3 &scale);
         };//internalmeshtool
     }//internal
 }//Mezzanine
