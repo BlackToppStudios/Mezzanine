@@ -44,8 +44,42 @@
 /// @brief This file contains the implementation for the World proxy wrapping light functionality.
 
 #include "Graphics/lightproxy.h"
+#include "Graphics/scenemanager.h"
 
 #include <Ogre.h>
+
+namespace
+{
+    /// @internal
+    /// @brief Converts an Ogre LightType enum value to it's corresponding Mezzanine type.
+    /// @param Type The Ogre type to be converted.
+    /// @return Returns the Mezzanine LightType corresponding to the provided Ogre type.
+    Mezzanine::Graphics::LightType ConvertLightType(const Ogre::Light::LightTypes Type)
+    {
+        switch(Type)
+        {
+            case Ogre::Light::LT_DIRECTIONAL:  return Mezzanine::Graphics::LT_Directional;  break;
+            case Ogre::Light::LT_POINT:        return Mezzanine::Graphics::LT_Point;        break;
+            case Ogre::Light::LT_SPOTLIGHT:    return Mezzanine::Graphics::LT_Spotlight;    break;
+        }
+        return Mezzanine::Graphics::LT_Point;
+    }
+
+    /// @internal
+    /// @brief Converts a Mezzanine LightType enum value to it's corresponding Ogre type.
+    /// @param Type The Mezzanine type to be converted.
+    /// @return Returns the Ogre LightType corresponding to the provided Mezzanine type.
+    Ogre::Light::LightTypes ConvertLightType(const Mezzanine::Graphics::LightType Type)
+    {
+        switch(Type)
+        {
+            case Mezzanine::Graphics::LT_Directional:  return Ogre::Light::LT_DIRECTIONAL;  break;
+            case Mezzanine::Graphics::LT_Point:        return Ogre::Light::LT_POINT;        break;
+            case Mezzanine::Graphics::LT_Spotlight:    return Ogre::Light::LT_SPOTLIGHT;    break;
+        }
+        return Ogre::Light::LT_POINT;
+    }
+}
 
 namespace Mezzanine
 {
@@ -54,25 +88,108 @@ namespace Mezzanine
         LightProxy::LightProxy(SceneManager* Creator) :
             RenderableProxy(Creator),
             GraphicsLight(NULL)
-        {
-
-        }
+            { this->CreateLight(); }
 
         LightProxy::~LightProxy()
-        {
+            { this->DestroyLight(); }
 
+        void LightProxy::CreateLight()
+        {
+            this->GraphicsLight = this->Manager->_GetGraphicsWorldPointer()->createLight();
+            this->GraphicsNode->attachObject( this->GraphicsLight );
+            this->GraphicsLight->setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
+            this->GraphicsLight->setVisibilityFlags(0);
+            this->GraphicsLight->setQueryFlags(0);
+        }
+
+        void LightProxy::DestroyLight()
+        {
+            if( this->GraphicsLight ) {
+                this->GraphicsNode->detachObject( this->GraphicsLight );
+                this->Manager->_GetGraphicsWorldPointer()->destroyLight( this->GraphicsLight );
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         Mezzanine::ProxyType LightProxy::GetProxyType() const
-        {
-            return Mezzanine::PT_Graphics_LightProxy;
-        }
+            { return Mezzanine::PT_Graphics_LightProxy; }
+
+        void LightProxy::SetDirection(const Vector3& Dir)
+            { this->SetOrientation( Vector3::Unit_Z().GetRotationToAxis( Dir ) ); }
+
+        Vector3 LightProxy::GetDirection() const
+            { return ( this->GetOrientation() * Vector3::Unit_Z() ); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Light Properties
+
+        void LightProxy::SetDiffuseColour(const ColourValue& Diffuse)
+            { this->GraphicsLight->setDiffuseColour( Diffuse.GetOgreColourValue() ); }
+
+        ColourValue LightProxy::GetDiffuseColour() const
+            { return ColourValue( this->GraphicsLight->getDiffuseColour() ); }
+
+        void LightProxy::SetSpecularColour(const ColourValue& Specular)
+            { this->GraphicsLight->setSpecularColour( Specular.GetOgreColourValue() ); }
+
+        ColourValue LightProxy::GetSpecularColour() const
+            { return ColourValue( this->GraphicsLight->getSpecularColour() ); }
+
+        void LightProxy::SetType(const Graphics::LightType Type)
+            { this->GraphicsLight->setType( ConvertLightType(Type) ); }
+
+        Graphics::LightType LightProxy::GetType() const
+            { return ConvertLightType( this->GraphicsLight->getType() ); }
+
+        void LightProxy::SetAttenuation(const Real Range, const Real Constant, const Real Linear, const Real Quadratic)
+            { this->GraphicsLight->setAttenuation(Range,Constant,Linear,Quadratic); }
+
+        Real LightProxy::GetAttenuationRange() const
+            { return this->GraphicsLight->getAttenuationRange(); }
+
+        Real LightProxy::GetAttenuationConstant() const
+            { return this->GraphicsLight->getAttenuationConstant(); }
+
+        Real LightProxy::GetAttenuationLinear() const
+            { return this->GraphicsLight->getAttenuationLinear(); }
+
+        Real LightProxy::GetAttenuationQuadratic() const
+            { return this->GraphicsLight->getAttenuationQuadric(); }
+
+        void LightProxy::SetPowerScale(const Real Scale)
+            { this->GraphicsLight->setPowerScale(Scale); }
+
+        Real LightProxy::GetPowerScale() const
+            { return this->GraphicsLight->getPowerScale(); }
+
+        void LightProxy::SetSpotlightRange(const Real InnerAngle, const Real OuterAngle, const Real Falloff)
+            { this->GraphicsLight->setSpotlightRange(Ogre::Radian(InnerAngle),Ogre::Radian(OuterAngle),Falloff); }
+
+        void LightProxy::SetSpotlightInnerAngle(const Real Angle)
+            { this->GraphicsLight->setSpotlightInnerAngle(Ogre::Radian(Angle)); }
+
+        Real LightProxy::GetSpotlightInnerAngle() const
+            { return this->GraphicsLight->getSpotlightInnerAngle().valueRadians(); }
+
+        void LightProxy::SetSpotlightOuterAngle(const Real Angle)
+            { this->GraphicsLight->setSpotlightOuterAngle(Ogre::Radian(Angle)); }
+
+        Real LightProxy::GetSpotlightOuterAngle() const
+            { return this->GraphicsLight->getSpotlightOuterAngle().valueRadians(); }
+
+        void LightProxy::SetSpotlightFalloff(const Real Falloff)
+            { this->GraphicsLight->setSpotlightFalloff(Falloff); }
+
+        Real LightProxy::GetSpotlightFalloff() const
+            { return this->GraphicsLight->getSpotlightFalloff(); }
+
+        void LightProxy::SetSpotlightNearClipDistance(const Real NearClip)
+            { this->GraphicsLight->setSpotlightNearClipDistance(NearClip); }
+
+        Real LightProxy::GetSpotlightNearClipDistance() const
+            { return this->GraphicsLight->getSpotlightNearClipDistance(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
