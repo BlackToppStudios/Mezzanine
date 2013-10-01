@@ -71,26 +71,26 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Creates an internal entity based on the provided mesh.
+            /// @param ObjectMesh A pointer to the mesh to be applied to this proxy.
+            virtual void CreateEntity(Mesh* ObjectMesh);
+            /// @internal
+            /// @brief Creates an internal entity based on the provided mesh.
             /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
             /// @param GroupName The resource group name where the mesh can be found.
             virtual void CreateEntity(const String& MeshName, const String& GroupName);
             /// @internal
-            /// @brief Creates an internal entity based on the provided mesh.
-            /// @param ObjectMesh A pointer to the to be applied to this proxy.
-            virtual void CreateEntity(Mesh* ObjectMesh);
-            /// @internal
             /// @brief Destroys the internal entity in use by this proxy.
             virtual void DestroyEntity();
         public:
+            /// @brief Loaded Mesh constructor.
+            /// @param TheMesh A pointer to the mesh to be applied to this proxy.
+            /// @param Creator A pointer to the manager that created this proxy.
+            EntityProxy(Mesh* TheMesh, SceneManager* Creator);
             /// @brief Standard constructor.
             /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
             /// @param GroupName The resource group name where the mesh can be found.
             /// @param Creator A pointer to the manager that created this proxy.
             EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator);
-            /// @brief Loaded Mesh constructor.
-            /// @brief Creates an internal entity based on the provided mesh.
-            /// @param TheMesh A pointer to the to be applied to this proxy.
-            EntityProxy(Mesh* TheMesh, SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~EntityProxy();
 

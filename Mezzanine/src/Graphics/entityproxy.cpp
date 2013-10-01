@@ -59,26 +59,20 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        EntityProxy::EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator) :
-            RenderableProxy(Creator),
-            GraphicsEntity(NULL),
-            ProxyMesh(NULL)
-            { this->CreateEntity(MeshName,GroupName); }
-
         EntityProxy::EntityProxy(Mesh* TheMesh, SceneManager* Creator) :
             RenderableProxy(Creator),
             GraphicsEntity(NULL),
             ProxyMesh(NULL)
             { this->CreateEntity(TheMesh); }
 
+        EntityProxy::EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator) :
+            RenderableProxy(Creator),
+            GraphicsEntity(NULL),
+            ProxyMesh(NULL)
+            { this->CreateEntity(MeshName,GroupName); }
+
         EntityProxy::~EntityProxy()
             { this->DestroyEntity(); }
-
-        void EntityProxy::CreateEntity(const String& MeshName, const String& GroupName)
-        {
-            Mesh* TheMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,GroupName);
-            this->CreateEntity(TheMesh);
-        }
 
         void EntityProxy::CreateEntity(Mesh* ObjectMesh)
         {
@@ -93,6 +87,12 @@ namespace Mezzanine
             }else{
                 MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to create internal entity with NULL Mesh.  This may be caused by an invalid mesh name or resource group being provided.");
             }
+        }
+
+        void EntityProxy::CreateEntity(const String& MeshName, const String& GroupName)
+        {
+            Mesh* TheMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,GroupName);
+            this->CreateEntity(TheMesh);
         }
 
         void EntityProxy::DestroyEntity()
