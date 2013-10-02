@@ -130,7 +130,6 @@
 #ifndef SWIG
 
 // more stuff swig shouldn't read yet
-#include "vector3wactor.h"
 #include "entresol.h"
 
 #endif // \no SWIG

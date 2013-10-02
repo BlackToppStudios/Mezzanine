@@ -75,7 +75,6 @@ namespace Mezzanine
     // internal forward declarations
     class Entresol;
     class ActorBase;
-    class Vector3WActor;
     class AreaEffect;
     class WorldTrigger;
     namespace debug {

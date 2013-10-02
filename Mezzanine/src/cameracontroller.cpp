@@ -45,8 +45,8 @@
 #include "mathtool.h"
 #include "rayquerytool.h"
 #include "ray.h"
-#include "vector3wactor.h"
 #include "enumerations.h"
+#include "actorbase.h"
 
 namespace Mezzanine
 {
@@ -127,10 +127,9 @@ namespace Mezzanine
         Vector3 Dest(Loc + Vector3(0,-2000,0));
         Ray GroundRay(Loc,Dest);
         int flags = Mezzanine::WSO_MeshTerrain | Mezzanine::WSO_HeightfieldTerrain | Mezzanine::WSO_VectorFieldTerrain | Mezzanine::WSO_VoxelTerrain;
-        Vector3WActor Result = RayQueryTool::GetFirstActorOnRayByPolygon(GroundRay,flags);
-        if(NULL == Result.Actor)
+        if(!RayCaster.GetFirstActorOnRayByPolygon(GroundRay,flags))
             { return 0; }
-        Real Distance = Loc.Y - (Result.Actor->GetLocation() + Result.Vector).Y;
+        Real Distance = Loc.Y - (RayCaster.LastQueryResultsActorPtr()->GetLocation() + RayCaster.LastQueryResultsOffset()).Y;
         return Distance;
     }
 

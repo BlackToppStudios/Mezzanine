@@ -33,6 +33,7 @@ class CatchPostUIWorkUnit : public Threading::DefaultWorkUnit
 {
     protected:
         CatchApp* CatchApplication;
+        RayQueryTool RayCaster;
     public:
         CatchPostUIWorkUnit(CatchApp* Target);
         virtual ~CatchPostUIWorkUnit();
