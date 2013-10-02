@@ -55,7 +55,6 @@ namespace Ogre
 namespace Mezzanine
 {
     class Plane;
-    class Vector3WActor;
     class Ray;
     class ActorBase;
     ///////////////////////////////////////////////////////////////////////////////
@@ -115,7 +114,7 @@ namespace Mezzanine
             /// @param ActorRay The Ray to search along.
             /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
             /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
-            /// @return This returns a pointer to an Vector3WActor, which contains the first actor along the ray and the point of intersection Relative to the actor
+            /// @return True if something is found, false otherwise. Use LastQueryResultsOffset() and LastQueryResultsActorPtr() for more details.
             Bool GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags);
 
             /// @brief Partially implemented. This should find the first Actor that is on or almost on the a given Ray.
@@ -125,25 +124,15 @@ namespace Mezzanine
             /// @param ActorRay The Ray to search along.
             /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
             /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
-            /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.
+            /// @return True if something is found, false otherwise. Use LastQueryResultsActorPtr() for more details. Any return Offset is empty
             Bool GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags);
-
-            /// @brief This will find the actor under the mouse.
-            /// @details This will use
-            /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
-            /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
-            /// @param RayLength The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0.
-            /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB.
-            /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
-            Bool GetActorUnderMouse(Whole ObjectFlags, Real RayLength=1000.0, bool UsePolygon=true);
 
             /// @brief Where does this Ray Meet this Plane?
             /// @details This does some fancy math to return the point where the ray and the plane intersent.
-            /// This returns a NULL pointer in the event the ray and plane do not meet, or are completely coterminous.
             /// @param QueryRay This is the Ray that could intersent the plane
             /// @param QueryPlane This is the plane to be interesected.
-            /// @return This returns a pointer to a vector that matches where the intersection of the plane and Ray, if possible
-            static Vector3 RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane);
+            /// @return True if something is found, false otherwise. Use LastQueryResultsOffset() for more details. Any return Actor Pointer is NULL;
+            Bool RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane);
 
             /// @brief Get a Ray from the current viewport, following the mouse
             /// @details This calls on the graphics subsystem to get a ray from the location of the current camera

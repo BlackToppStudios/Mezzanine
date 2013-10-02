@@ -48,7 +48,6 @@ using namespace std;
 #include "vector3.h"
 #include "actormanager.h"
 #include "actorphysicssettings.h"
-#include "vector3wactor.h"
 #include "areaeffect.h"
 #include "eventmanager.h"
 #include "worldtrigger.h"
@@ -58,6 +57,7 @@ using namespace std;
 #include "Graphics/graphicsmanager.h"
 #include "stringtool.h"
 #include "crossplatform.h"
+#include "actorbase.h"
 
 #include "Physics/ghostproxy.h"
 #include "Physics/rigidproxy.h"

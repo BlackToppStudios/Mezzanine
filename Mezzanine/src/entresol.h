@@ -183,8 +183,6 @@
 
    @ref Mezzanine::Vector3
 
-   @ref Mezzanine::Vector3WActor
-
   @subsection SimpleDataTypes Simple Data Types
 
    @ref Mezzanine::Character

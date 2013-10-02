@@ -144,15 +144,10 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
                 }
             }
 
-            Vector3 DragTo;
-            // This chunk of code calculates the 3d point that the actor needs to be dragged to
-            DragTo = RayQueryTool::RayPlaneIntersection(MouseRay, this->CatchApplication->PlaneOfPlay);
-            if( DragTo != Vector3() )
+            if(Dragger && RayCaster.RayPlaneIntersection(MouseRay, this->CatchApplication->PlaneOfPlay))
             {
-                if( !firstframe )
-                {
-                    Dragger->SetPivotBLocation(DragTo);
-                }
+                if(!firstframe)
+                    { Dragger->SetPivotBLocation(RayCaster.LastQueryResultsOffset()); }
             }
 
             if(Dragger &&

@@ -56,7 +56,6 @@ using namespace std;
 #include "Graphics/viewport.h"
 #include "plane.h"
 #include "ray.h"
-#include "vector3wactor.h"
 #include "Input/mouse.h"
 #include "managedptr.h"
 #include "Internal/meshtools.h.cpp"
@@ -281,39 +280,22 @@ namespace Mezzanine
         }
     }
 
-    Bool RayQueryTool::GetActorUnderMouse(Whole ObjectFlags, Real RayLength, bool UsePolygon)
-    {
-        Ray MouseRay = GetMouseRay(RayLength);
-
-        if (UsePolygon)
-        {
-            return GetFirstActorOnRayByPolygon(MouseRay,ObjectFlags);
-        }else{
-            return GetFirstActorOnRayByAABB(MouseRay,ObjectFlags);
-        }
-    }
-
-    Vector3 RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
+    Bool RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
     {
         try{
             Vector3 u = QueryRay.Destination - QueryRay.Origin;
             Vector3 p0 = Vector3(0,0,0);
 
             if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
-            { return Vector3(); }
-            else{
+                { return ClearReturns(); }
+            else
+            {
                 if(QueryPlane.Normal.X != 0)
-                {
-                     p0 = Vector3(QueryPlane.Distance,0,0);
-                }
+                    { p0 = Vector3(QueryPlane.Distance,0,0); }
                 else if(QueryPlane.Normal.Y != 0)
-                {
-                     p0 = Vector3(0,QueryPlane.Distance,0);
-                }
+                    { p0 = Vector3(0,QueryPlane.Distance,0); }
                 else
-                {
-                     p0 = Vector3(0,0,QueryPlane.Distance);
-                }
+                    { p0 = Vector3(0,0,QueryPlane.Distance); }
             }
 
             Vector3 w = QueryRay.Origin - p0;
@@ -326,29 +308,37 @@ namespace Mezzanine
             if( (D<0? -D : D) < SMALL_NUM)  //Checks if the Plane behind the RAy
             {
                 if(N == 0)
-                    { return Vector3(QueryRay.Origin); }
+                {
+                    Offset=QueryRay.Origin;
+                    IntersectedActor=NULL;
+                    ValidResult=true;
+                    return ValidResult;
+                }
                 else
-                    { return Vector3(); }
+                    { return ClearReturns(); }
             }
 
             Real sI = N/D;
 
             if(sI < 0 || sI > 1) //checks if the ray is too long
-                { return Vector3(); }
+                { return ClearReturns(); }
 
             Vector3 return_vector(QueryRay.Origin + (u * sI));
 
             Real distance = return_vector.Distance(QueryRay.Origin);
 
             if(distance > QueryRay.Origin.Distance(QueryRay.Destination))
-                { return Vector3(); }
+                { return ClearReturns(); }
 
-            return return_vector;
+            Offset=return_vector;
+            IntersectedActor=NULL;
+            ValidResult=true;
+            return ValidResult;
         } catch(exception e) {
             //In case we divide b
             Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
             Entresol::GetSingletonPtr()->Log(e.what());
-            return Vector3();
+            return ClearReturns();
         }
     }
 

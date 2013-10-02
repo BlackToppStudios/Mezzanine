@@ -216,15 +216,10 @@ class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
                     }
 
                     // This chunk of code calculates the 3d point that the actor needs to be dragged to
-                    Vector3 DragTo = RayQueryTool::RayPlaneIntersection(MouseRay, PlaneOfPlay);
-                    if (DragTo!=Vector3())
+                    if (RayCaster.RayPlaneIntersection(MouseRay, PlaneOfPlay))
                     {
-                        #ifdef MEZZDEBUG
-                        //TheEntresol->Log("PlaneOfPlay Not Clicked on");
-                        #endif
-                    }else{
-                        if(Dragger && !firstframe)
-                            { Dragger->SetPivotBLocation(DragTo); }
+                        if(!firstframe)
+                            { Dragger->SetPivotBLocation(RayCaster.LastQueryResultsOffset()); }
                     }
                 }
 

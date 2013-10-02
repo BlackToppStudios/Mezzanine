@@ -45,8 +45,8 @@
 #include "mathtool.h"
 #include "rayquerytool.h"
 #include "ray.h"
-#include "vector3wactor.h"
 #include "enumerations.h"
+#include "actorbase.h"
 
 namespace Mezzanine
 {
