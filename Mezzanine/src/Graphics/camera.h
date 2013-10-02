@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _Camera_h
-#define _Camera_h
+#ifndef _graphicscamera_h
+#define _graphicscamera_h
 
 #include "attachable.h"
 #include "crossplatformexport.h"
@@ -56,53 +56,21 @@ namespace Ogre
 /// @file camera.h
 /// @brief Declaration of the Mezzanine::Camera class
 
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-
-/// @brief Serializes the passed Mezzanine::Camera to XML
-/// @param stream The ostream to send the xml to.
-/// @param Ev the Mezzanine::Camera to be serialized
-/// @return this returns the ostream, now with the serialized data
-/// @warning This does not attempt to store the camera aspect ratio. This is too often hardware dependent and may not be reliably re-serialized.
-/// @warning This does not s the pointer to the camera manager. When a camera manager is serialized, this data is implicitly stored by the cameras location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Camera& Ev);
-
-/// @brief Deserialize a Mezzanine::Camera
-/// @param stream The istream to get the xml from to (re)make the Mezzanine::Camera.
-/// @param Ev the Mezzanine::Camera to be deserialized.
-/// @return this returns the ostream, advanced past the Mezzanine::Camera that was recreated onto Ev.
-/// @warning This does not attempt to store the camera aspect ratio. This is too often hardware dependent and may not be reliably re-serialized.
-/// @warning This does not s the pointer to the camera manager. When a camera manager is serialized, this data is implicitly stored by the cameras location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Camera& Ev);
-
-/// @brief Set all values of a Mezzanine::Camera from parsed xml.
-/// @param OneNode The istream to get the xml from to (re)make the Mezzanine::Camera.
-/// @param Ev the Mezzanine::Camera to be reset.
-/// @return This returns theXML::Node that was passed in.
-/// @warning This does not attempt to de-serialize the name of the camera. This is not currently changeable after the creation of a camera. However, the cameramanager will correctly create name camera upon creation then deserialize the rest of the camera.
-/// @warning This does not throw an exception if the camera could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
-Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Camera& Ev);
-
-
 namespace Mezzanine
 {
-    class CameraManager;
     class Entresol;
     namespace Graphics
     {
         class Viewport;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class Camera
-    /// @headerfile camera.h
-    /// @brief This is the camera class.
-    /// @details This class contains all the functionality needed to manipulate an
-    /// individual camera that has been created.
-    /// @todo Fix all the extra occurences of the word Camera in Function names on the camera.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB Camera : public AttachableChild
-    {
+        class CameraManager;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the camera class.
+        /// @details This class contains all the functionality needed to manipulate an
+        /// individual camera that has been created.
+        /// @todo Fix all the extra occurences of the word Camera in Function names on the camera.
+        ///////////////////////////////////////////////////////////////////////////////
+        class MEZZ_LIB Camera : public AttachableChild
+        {
         public:
             /// @brief Values for storing how perspective should be interpretted
             enum ProjectionType
@@ -110,7 +78,6 @@ namespace Mezzanine
                 Orthographic    = 0,        ///< Not at all, objects at any distance are the same size.
                 Perspective     = 1         ///< Normal perspective.
             };
-
         private:
             /// @internal
             friend XML::Node& MEZZ_LIB operator >> (XML::Node& OneNode, Camera& Ev);
@@ -308,7 +275,35 @@ namespace Mezzanine
             /// @brief Gets the internal camera this camera is based on.
             /// @return Returns a pointer to the Ogre Camera this camera is based on.
             Ogre::Camera* GetOgreCamera() const;
-    };//Camera
+        };//Camera
+    }//Graphics
 }//Mezzanine
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+
+/// @brief Serializes the passed Mezzanine::Graphics::Camera to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the Mezzanine::Camera to be serialized
+/// @return this returns the ostream, now with the serialized data
+/// @warning This does not attempt to store the camera aspect ratio. This is too often hardware dependent and may not be reliably re-serialized.
+/// @warning This does not s the pointer to the camera manager. When a camera manager is serialized, this data is implicitly stored by the cameras location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Graphics::Camera& Ev);
+
+/// @brief Deserialize a Mezzanine::Graphics::Camera
+/// @param stream The istream to get the xml from to (re)make the Mezzanine::Camera.
+/// @param Ev the Mezzanine::Camera to be deserialized.
+/// @return this returns the ostream, advanced past the Mezzanine::Camera that was recreated onto Ev.
+/// @warning This does not attempt to store the camera aspect ratio. This is too often hardware dependent and may not be reliably re-serialized.
+/// @warning This does not s the pointer to the camera manager. When a camera manager is serialized, this data is implicitly stored by the cameras location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Graphics::Camera& Ev);
+
+/// @brief Set all values of a Mezzanine::Graphics::Camera from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the Mezzanine::Camera.
+/// @param Ev the Mezzanine::Camera to be reset.
+/// @return This returns theXML::Node that was passed in.
+/// @warning This does not attempt to de-serialize the name of the camera. This is not currently changeable after the creation of a camera. However, the cameramanager will correctly create name camera upon creation then deserialize the rest of the camera.
+/// @warning This does not throw an exception if the camera could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
+Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Graphics::Camera& Ev);
 
 #endif

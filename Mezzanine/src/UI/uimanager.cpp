@@ -44,7 +44,7 @@
 #include "entresol.h"
 #include "mathtool.h"
 #include "UI/textureatlas.h"
-#include "cameramanager.h"
+#include "Graphics/cameramanager.h"
 #include "Graphics/graphicsmanager.h"
 #include "eventmanager.h"
 #include "eventuserinput.h"
@@ -62,7 +62,7 @@
 namespace Mezzanine
 {
     template<> UI::UIManager* Singleton<UI::UIManager>::SingletonPtr = NULL;
-    
+
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////

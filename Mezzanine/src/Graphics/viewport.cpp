@@ -41,8 +41,8 @@
 #define _graphicsviewport_cpp
 
 #include "Graphics/viewport.h"
-#include "cameramanager.h"
-#include "camera.h"
+#include "Graphics/cameramanager.h"
+#include "Graphics/camera.h"
 #include "Graphics/gamewindow.h"
 
 #include <Ogre.h>

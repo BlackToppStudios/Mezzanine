@@ -57,11 +57,11 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    class Camera;
     class ActorBase;
     namespace Graphics
     {
         class SceneManager;
+        class Camera;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class WorldNode

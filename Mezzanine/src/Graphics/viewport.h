@@ -49,10 +49,10 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    class Camera;
     namespace Graphics
     {
         class GameWindow;
+        class Camera;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Viewport
         /// @headerfile viewport.h

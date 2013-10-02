@@ -294,7 +294,6 @@ namespace Mezzanine
     class ActorManager;
     class AreaEffectManager;
     class EventManager;
-    class CameraManager;
     class ResourceManager;
     class NetworkManager;
     class ManagerFactory;
@@ -308,6 +307,7 @@ namespace Mezzanine
         class GraphicsManager;
         class MeshManager;
         class SceneManager;
+        class CameraManager;
     }
     namespace Input
     {
@@ -679,7 +679,7 @@ namespace Mezzanine
             /// @brief This gets the CameraManager from the manager list.
             /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.
             /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
-            CameraManager* GetCameraManager(const UInt16 WhichOne = 0);
+            Graphics::CameraManager* GetCameraManager(const UInt16 WhichOne = 0);
             /// @brief This gets the CollisionShapeManager from the manager list.
             /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
             /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.

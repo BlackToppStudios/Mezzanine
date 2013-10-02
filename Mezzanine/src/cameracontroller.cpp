@@ -41,7 +41,7 @@
 #define _cameracontroller_cpp
 
 #include "cameracontroller.h"
-#include "camera.h"
+#include "Graphics/camera.h"
 #include "mathtool.h"
 #include "rayquerytool.h"
 #include "ray.h"
@@ -50,7 +50,7 @@
 
 namespace Mezzanine
 {
-    CameraController::CameraController(Camera* ToBeControlled)
+    CameraController::CameraController(Graphics::Camera* ToBeControlled)
         : Controlled(ToBeControlled),
           CurrentMMode(CCM_Fly),
           HoverHeight(2),
@@ -134,7 +134,7 @@ namespace Mezzanine
         return Distance;
     }
 
-    Camera* CameraController::GetControlledCamera() const
+    Graphics::Camera* CameraController::GetControlledCamera() const
     {
         return Controlled;
     }
