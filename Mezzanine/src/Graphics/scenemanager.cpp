@@ -40,7 +40,7 @@
 #ifndef _graphicsscenemanager_cpp
 #define _graphicsscenemanager_cpp
 
-#include "cameramanager.h"
+#include "Graphics/cameramanager.h"
 #include "scenemanager.h"
 #include "areaeffectmanager.h"
 #include "entresol.h"

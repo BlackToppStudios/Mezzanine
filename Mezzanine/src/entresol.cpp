@@ -243,7 +243,7 @@ namespace Mezzanine
         if(this->GetCollisionShapeManager()==0)
             { this->AddManager(new Physics::CollisionShapeManager()); }
         if(this->GetCameraManager()==0)
-            { this->AddManager(new CameraManager()); }
+            { this->AddManager(new Graphics::CameraManager()); }
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
         if(this->GetAudioManager()==0)
             { this->AddManager( this->CreateManager("OALSAudioManager",Params,false) ); }
@@ -725,7 +725,7 @@ namespace Mezzanine
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultAreaEffectManagerFactory());
         //DefaultCameraManager
         ManIt = this->ManagerFactories.find("DefaultCameraManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultCameraManagerFactory());
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultCameraManagerFactory());
         //DefaultCollisionShapeManager
         ManIt = this->ManagerFactories.find("DefaultCollisionShapeManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Physics::DefaultCollisionShapeManagerFactory());
@@ -917,9 +917,9 @@ namespace Mezzanine
         return dynamic_cast<Audio::AudioManager*>( this->GetManager(ManagerBase::MT_AudioManager, WhichOne) );
     }
 
-    CameraManager* Entresol::GetCameraManager(const UInt16 WhichOne)
+    Graphics::CameraManager* Entresol::GetCameraManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager, WhichOne) );
+        return dynamic_cast<Graphics::CameraManager*>( this->GetManager(ManagerBase::MT_CameraManager, WhichOne) );
     }
 
     Physics::CollisionShapeManager* Entresol::GetCollisionShapeManager(const UInt16 WhichOne)

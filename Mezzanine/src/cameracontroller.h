@@ -45,7 +45,19 @@
 
 namespace Mezzanine
 {
-    class Camera;
+    namespace Graphics
+    {
+        class Camera;
+    }
+
+    ///@brief Boundaries for rotation on one axis
+    struct AngleLimits
+    {
+        Real Upper;
+        Real Lower;
+        AngleLimits() : Upper(0),Lower(0) {}
+    };
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CameraController
     /// @headerfile cameracontroller.h
@@ -63,18 +75,10 @@ namespace Mezzanine
                 CCM_Fly,        ///< CCM_Fly: This is the default option for every Camera Controller.  Allows the camera unrestrained movement throughout the scene.
                 CCM_Walk        ///< CCM_Walk: This forces the camera to be only a certain distance above the terrain.
             };
-
         protected:
             RayQueryTool RayCaster;
 
-            ///@brief Boundaries for rotation on one axis
-            struct AngleLimits
-            {
-                Real Upper;
-                Real Lower;
-                AngleLimits() : Upper(0),Lower(0) {}
-            };
-            Camera* Controlled;
+            Graphics::Camera* Controlled;
             MovementMode CurrentMMode;
             Real HoverHeight;
 
@@ -94,12 +98,12 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             /// @param ToBeControlled The camera this controller is controlling.
-            CameraController(Camera* ToBeControlled);
+            CameraController(Graphics::Camera* ToBeControlled);
             /// @brief Class destructor.
             ~CameraController();
             /// @brief Gets the camera this controller is controlling.
             /// @return Returns a camera pointer for the camera this controller is applied to.
-            Camera* GetControlledCamera() const;
+            Graphics::Camera* GetControlledCamera() const;
             /// @brief Sets the movement mode for this camera/controller.
             /// @param MoveMode The MovementMode value for which mode you want applied.  See MovementMode enum for more info.
             void SetMovementMode(const MovementMode& MoveMode);
@@ -160,7 +164,7 @@ namespace Mezzanine
             /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
             /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
             void Rotate6DOF(Real Yaw, Real Pitch, Real Roll);
-        };//cameracontroller
+    };//cameracontroller
 }//Mezzanine
 
 #endif

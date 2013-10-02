@@ -44,7 +44,7 @@
 #include "Graphics/gamewindow.h"
 #include "crossplatform.h"
 #include "Graphics/viewport.h"
-#include "camera.h"
+#include "Graphics/camera.h"
 #include "graphicsmanager.h"
 #include "entresol.h"
 
@@ -162,7 +162,7 @@ namespace Mezzanine
             if(WF_Maximized & Flags)
             {
             }
-			
+
             #ifdef MACOSX
 			Opts["macAPI"] = "cocoa";
             #endif

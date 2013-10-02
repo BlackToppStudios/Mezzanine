@@ -50,15 +50,13 @@ struct SDL_Window;
 
 namespace Mezzanine
 {
-    // Forward Declarations for Mezzanine::
-    class Camera;
-
     namespace Graphics
     {
         // Forward Declarations for Mezzanine::Graphics::
         class GraphicsManager;
         class Viewport;
         class GameWindowInternalData;
+        class Camera;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class GameWindow

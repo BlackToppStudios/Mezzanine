@@ -64,7 +64,7 @@ CatchPostInputWorkUnit::~CatchPostInputWorkUnit()
 
 void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
-    CameraManager* CamMan = Entresol::GetSingletonPtr()->GetCameraManager();
+    Graphics::CameraManager* CamMan = Entresol::GetSingletonPtr()->GetCameraManager();
     Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();

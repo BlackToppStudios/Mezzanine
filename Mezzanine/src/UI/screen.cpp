@@ -64,9 +64,9 @@
 #include "UI/tabset.h"
 #include "UI/renderablecontainerwidget.h"
 #include "Graphics/viewport.h"
-#include "cameramanager.h"
+#include "Graphics/cameramanager.h"
 #include "Graphics/scenemanager.h"
-#include "camera.h"
+#include "Graphics/camera.h"
 #include "mathtool.h"
 
 #include <OgreRoot.h>
@@ -173,7 +173,7 @@ namespace Mezzanine
             /// the UI will be rendered at a different time then it needs to be, potentially overwritten by the scene render.
             if(GameViewport)
             {
-                Camera* Cam = GameViewport->GetViewportCamera();
+                Graphics::Camera* Cam = GameViewport->GetViewportCamera();
                 if(Cam)
                 {
                     Graphics::SceneManager* SceneMan = Cam->GetCameraManager()->GetScene();
