@@ -114,10 +114,10 @@ namespace Mezzanine
         /// @internal
         /// @brief Exact an Ogre::RayQuery with some default parameters and see if we hit anything
         /// @param RayQuery A ManagedRayQuery
-        /// @
-        bool ExecuteQuery(ManagedRayQuery& RayQuery, const Ray& ActorRay)
+        /// @param ActorRay The Ray to follow and see if it hits something
+        /// @return True if something is hit, false otherwise.
+        Bool ExecuteQuery(ManagedRayQuery& RayQuery, Ogre::Ray& Ooray)
         {
-            Ogre::Ray Ooray = ActorRay.GetOgreRay();
             if(RayQuery)          //Double check that the Rayquery is valid
             {
                 RayQuery->setRay(Ooray);
@@ -139,14 +139,15 @@ namespace Mezzanine
     // World Ray Query Results
     ///////////////////////////////////////
 
-    void RayQueryTool::ClearReturns()
+    Bool RayQueryTool::ClearReturns()
     {
         ValidResult = false;
         Offset = Vector3();
         IntersectedActor = NULL;
+        return ValidResult;
     }
 
-    bool RayQueryTool::LastQueryResultsValid() const
+    Bool RayQueryTool::LastQueryResultsValid() const
         { return ValidResult; }
 
     Vector3 RayQueryTool::LastQueryResultsOffset() const
@@ -163,21 +164,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Ray Queries
     ///////////////////////////////////////
-    Vector3WActor RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
+    Bool RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
-        //bool ExecuteQuery(const ManagedRayQuery& RayQuery, const Ray& ActorRay)
-        if(RayQuery)          //Double check that the Rayquery is valid
-        {
-            RayQuery->setRay(Ooray);
-            RayQuery->setQueryMask(-1);
-            if( RayQuery->execute().size() <= 0 ) //Did we hit anything
-                { return Vector3WActor(); }
-        }else{                          // Something Failed
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
-        }
+        if(!ExecuteQuery(RayQuery, Ooray))
+            { return ClearReturns(); }
 
         // at this point we have raycast to a series of different objects bounding boxes.
         // we need to test these different objects to see which is the first polygon hit.
@@ -186,8 +179,8 @@ namespace Mezzanine
         // we need to test every triangle of every object.
         Ogre::Real closest_distance = -1.0f;
         Vector3 closest_result;
+        IntersectedActor=NULL;
         Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
-        Vector3WActor ClosestActor;
         for (size_t qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
         {
             // stop checking if we have found a raycast hit that is closer than all remaining entities
@@ -241,67 +234,63 @@ namespace Mezzanine
                         {
                             closest_result = Ooray.getPoint(closest_distance);
                             WorldObject* WO = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
-                            ClosestActor.Actor = static_cast<ActorBase*>( WO );
+                            IntersectedActor = static_cast<ActorBase*>( WO );
                         }
 
                     } // \if WSO_ActorRigid
                 }catch(...){
+                    ClearReturns();
                     MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed during cast in actor raycast.");
                 }
             } // \if entity
         } // \if qr_idx
 
         //Change the closest point into a point relative to the Actor
-        if (ClosestActor.Actor != NULL)
-            { ClosestActor.Vector = ClosestActor.Actor->GetOrientation() * ((closest_result - ClosestActor.Actor->GetLocation()) * ClosestActor.Actor->GetScaling()); }
-        return ClosestActor;
+        if (IntersectedActor)
+        {
+            Offset = IntersectedActor->GetOrientation() * ((closest_result - IntersectedActor->GetLocation()) * IntersectedActor->GetScaling());
+            ValidResult=true;
+            return ValidResult;
+        }else{
+            return ClearReturns();
+        }
     }
 
-    Vector3WActor RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
+    Bool RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
-
-        if(RayQuery)          //Double check that the Rayquery is valid
-        {
-            RayQuery->setRay(Ooray);
-            if( RayQuery->execute().size() <= 0 ) //Did we hit anything
-                { return Vector3WActor(); }
-        }else{                          //Whoopsie something Failed
-            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery.");
-        }
+        if(!ExecuteQuery(RayQuery, Ooray))
+            { return ClearReturns(); }
 
         Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
 
         if (0 < query_result.size())
         {
             Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[0].movable);
-            Vector3WActor ClosestActor;
             WorldObject* WO = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
-            ClosestActor.Actor = static_cast<ActorBase*>( WO );
+            Offset = Vector3();
+            IntersectedActor = static_cast<ActorBase*>( WO );
+            ValidResult = true;
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account
-            return ClosestActor;
+            return ValidResult;
         }else{
-            return Vector3WActor();
+            return ClearReturns();
         }
     }
 
-    Vector3WActor RayQueryTool::GetActorUnderMouse(Whole ObjectFlags, Real RayLength, bool UsePolygon)
+    Bool RayQueryTool::GetActorUnderMouse(Whole ObjectFlags, Real RayLength, bool UsePolygon)
     {
-        Vector3WActor Results;
-
         Ray MouseRay = GetMouseRay(RayLength);
 
         if (UsePolygon)
         {
-            Results = GetFirstActorOnRayByPolygon(MouseRay,ObjectFlags);
+            return GetFirstActorOnRayByPolygon(MouseRay,ObjectFlags);
         }else{
-            Results = GetFirstActorOnRayByAABB(MouseRay,ObjectFlags);
+            return GetFirstActorOnRayByAABB(MouseRay,ObjectFlags);
         }
-
-        return Results;
     }
 
     Vector3 RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)

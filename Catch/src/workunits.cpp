@@ -117,21 +117,18 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
     {
         if( !UI::UIManager::GetSingletonPtr()->MouseIsInUISystem() )
         {
-            Vector3WActor ClickOnActor;
             Ray MouseRay = RayQueryTool::GetMouseRay(5000);
-            ClickOnActor = RayQueryTool::GetFirstActorOnRayByPolygon(MouseRay,Mezzanine::WSO_ActorRigid);
-            //ActorBase *temp = ClickOnActor->Actor;
 
             bool firstframe=false;
-            if( 0 != ClickOnActor.Actor &&
-                this->CatchApplication->IsInsideAnyStartZone(ClickOnActor.Actor) )
+            if( RayCaster.GetFirstActorOnRayByPolygon(MouseRay,Mezzanine::WSO_ActorRigid) &&
+                this->CatchApplication->IsInsideAnyStartZone(RayCaster.LastQueryResultsActorPtr()) )
             {
-                if( !(ClickOnActor.Actor->IsStaticOrKinematic()) &&
-                    ClickOnActor.Actor->GetType() == Mezzanine::WSO_ActorRigid &&
+                if( !(RayCaster.LastQueryResultsActorPtr()->IsStaticOrKinematic()) &&
+                    RayCaster.LastQueryResultsActorPtr()->GetType() == Mezzanine::WSO_ActorRigid &&
                     !Dragger )
                 {
-                    Vector3 LocalPivot = ClickOnActor.Vector;
-                    ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor.Actor);
+                    Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
+                    ActorRigid* rigid = static_cast<ActorRigid*>(RayCaster.LastQueryResultsActorPtr());
                     rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
                     Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
                     Dragger->SetTAU(0.001);

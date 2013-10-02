@@ -41,6 +41,7 @@
 #define _cameracontroller_h
 
 #include "datatypes.h"
+#include "rayquerytool.h"
 
 namespace Mezzanine
 {
@@ -64,13 +65,14 @@ namespace Mezzanine
             };
 
         protected:
+            RayQueryTool RayCaster;
 
             ///@brief Boundaries for rotation on one axis
             struct AngleLimits
             {
                 Real Upper;
                 Real Lower;
-                AngleLimits() : Upper(0),Lower(0) {};
+                AngleLimits() : Upper(0),Lower(0) {}
             };
             Camera* Controlled;
             MovementMode CurrentMMode;

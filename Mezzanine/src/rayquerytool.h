@@ -85,10 +85,11 @@ namespace Mezzanine
             // Query Results
             ///////////////////////////////////////
             /// @brief Clears an previously stored return values.
-            void ClearReturns();
+            /// @brief returns false.
+            Bool ClearReturns();
             /// @brief Check to see if the last query found anything.
             /// @return True if something was found, false otherwise.
-            bool LastQueryResultsValid() const;
+            Bool LastQueryResultsValid() const;
             /// @brief Get an offset from the last query. Depending on the last query, this could be an Offset from a variety of things.
             /// @return A Vector3 if the last query worked and returns an Offset, A empty vector otherwise. Use LastQueryResultsValid() Prior to this.
             Vector3 LastQueryResultsOffset() const;
@@ -115,7 +116,7 @@ namespace Mezzanine
             /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
             /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
             /// @return This returns a pointer to an Vector3WActor, which contains the first actor along the ray and the point of intersection Relative to the actor
-            static Vector3WActor GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags);
+            Bool GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags);
 
             /// @brief Partially implemented. This should find the first Actor that is on or almost on the a given Ray.
             /// @details This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned.
@@ -125,7 +126,7 @@ namespace Mezzanine
             /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
             /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
             /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.
-            static Vector3WActor GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags);
+            Bool GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags);
 
             /// @brief This will find the actor under the mouse.
             /// @details This will use
@@ -134,7 +135,7 @@ namespace Mezzanine
             /// @param RayLength The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0.
             /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB.
             /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
-            static Vector3WActor GetActorUnderMouse(Whole ObjectFlags, Real RayLength=1000.0, bool UsePolygon=true);
+            Bool GetActorUnderMouse(Whole ObjectFlags, Real RayLength=1000.0, bool UsePolygon=true);
 
             /// @brief Where does this Ray Meet this Plane?
             /// @details This does some fancy math to return the point where the ray and the plane intersent.

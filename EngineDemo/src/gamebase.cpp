@@ -96,148 +96,149 @@ public:
 
 class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
 {
-public:
-    DemoPostInputWorkUnit() {  }
-    virtual ~DemoPostInputWorkUnit() {  }
+        RayQueryTool RayCaster;
+    public:
+        DemoPostInputWorkUnit() {  }
+        virtual ~DemoPostInputWorkUnit() {  }
 
-    void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-    {
-        //User Input through a WorldQueryTool
-        Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
-        Input::Mouse* SysMouse = InputMan->GetSystemMouse();
-        Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-        Input::Controller* Controller1 = NULL;
-        if( InputMan->GetNumControllers() > 0 )
-            Controller1 = InputMan->GetController(0);
-
-        CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
-        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
-            { DefaultControl->StrafeLeft(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
-
-        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
-            { DefaultControl->StrafeRight(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
-
-        if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
-            { DefaultControl->MoveForward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
-
-        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
-            { DefaultControl->MoveBackward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
-
-        static bool MouseCam = false;
-        if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
-            { MouseCam = true; }
-
-        if( SysKeyboard->IsButtonPressed(Input::KEY_END))
-            { MouseCam = false; }
-
-        Vector2 Offset = SysMouse->GetMouseDelta();
-        if( MouseCam && Vector2(0,0) != Offset )
-            DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
-
-        if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) )
+        void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {
-            Audio::iSound* Theme = Soundtrack->at(1);
-            if(!Theme->IsPlaying())
-                { Theme->Play(); }
-        }
+            //User Input through a WorldQueryTool
+            Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
+            Input::Mouse* SysMouse = InputMan->GetSystemMouse();
+            Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
+            Input::Controller* Controller1 = NULL;
+            if( InputMan->GetNumControllers() > 0 )
+                Controller1 = InputMan->GetController(0);
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) )
-        {
-            Audio::iSound* Theme = Soundtrack->at(1);
-            if(Theme->IsPlaying())
-                { Theme->Stop(); }
-        }
+            CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
+            if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
+                { DefaultControl->StrafeLeft(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
 
-        // Make a declaration for a static constrain so it survives the function lifetime
-        static Physics::Point2PointConstraint* Dragger=NULL;
+            if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
+                { DefaultControl->StrafeRight(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
 
-        if( SysMouse->IsButtonPressed(1) )
-        {
-            UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-            if(UIMan->MouseIsInUISystem())
+            if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
+                { DefaultControl->MoveForward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+
+            if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
+                { DefaultControl->MoveBackward(300 * (TheEntresol->GetLastFrameTimeMilliseconds() * 0.001)); }
+
+            static bool MouseCam = false;
+            if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
+                { MouseCam = true; }
+
+            if( SysKeyboard->IsButtonPressed(Input::KEY_END))
+                { MouseCam = false; }
+
+            Vector2 Offset = SysMouse->GetMouseDelta();
+            if( MouseCam && Vector2(0,0) != Offset )
+                DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+
+            if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) )
             {
-                UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
-                UI::Widget* Hover = UIMan->GetHoveredWidget();
-                if(Hover)
-                {
-                    Hover = Hover->GetBottomMostHoveredWidget();
-                    if("D_MenuAccess" == Hover->GetName())
-                        { DScreen->GetWidget("D_Menu")->Show(); }
-                    if("D_Return" == Hover->GetName())
-                        { DScreen->GetWidget("D_Menu")->Hide(); }
-                    if("D_Exit" == Hover->GetName())
-                        { TheEntresol->BreakMainLoop(); }
-                }
-            }else{
-                Ray MouseRay = RayQueryTool::GetMouseRay(5000);
-                Vector3WActor ClickOnActor = RayQueryTool::GetFirstActorOnRayByPolygon(MouseRay,Mezzanine::WSO_ActorRigid);
+                Audio::iSound* Theme = Soundtrack->at(1);
+                if(!Theme->IsPlaying())
+                    { Theme->Play(); }
+            }
 
-                bool firstframe=false;
-                if (0 == ClickOnActor.Actor)
+            if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) )
+            {
+                Audio::iSound* Theme = Soundtrack->at(1);
+                if(Theme->IsPlaying())
+                    { Theme->Stop(); }
+            }
+
+            // Make a declaration for a static constrain so it survives the function lifetime
+            static Physics::Point2PointConstraint* Dragger=NULL;
+
+            if( SysMouse->IsButtonPressed(1) )
+            {
+                UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
+                if(UIMan->MouseIsInUISystem())
                 {
-                    #ifdef MEZZDEBUG
-                    //TheEntresol->Log("No Actor Clicked on");
-                    #endif
-                }else{
-                    #ifdef MEZZDEBUG
-                    //TheEntresol->Log("Actor Clicked on"); TheEntresol->Log(*ClickOnActor);
-                    //TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
-                    //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
-                    //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
-                    #endif
-                    if(!(ClickOnActor.Actor->IsStaticOrKinematic()))
+                    UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
+                    UI::Widget* Hover = UIMan->GetHoveredWidget();
+                    if(Hover)
                     {
-                        if(!Dragger) //If we have a dragger, then this is dragging, not clicking
-                        {
-                            if(ClickOnActor.Actor->GetType()==Mezzanine::WSO_ActorRigid) //This is Dragging let's do some checks for sanity
-                            {
-                                Vector3 LocalPivot = ClickOnActor.Vector;
-                                ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor.Actor);
-                                rigid->GetPhysicsSettings()->SetActivationState(Physics::AS_DisableDeactivation);
-                                //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
-                                Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
-                                Dragger->SetTAU(0.001);
-                                TheEntresol->GetPhysicsManager()->AddConstraint(Dragger);
-                                Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
-                                Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
-                                firstframe=true;
-                            }else{  // since we don't
-                                #ifdef MEZZDEBUG
-                                //TheEntresol->Log("Actor is not an ActorRigid.  Aborting.");
-                                #endif
-                            }
-                        }
+                        Hover = Hover->GetBottomMostHoveredWidget();
+                        if("D_MenuAccess" == Hover->GetName())
+                            { DScreen->GetWidget("D_Menu")->Show(); }
+                        if("D_Return" == Hover->GetName())
+                            { DScreen->GetWidget("D_Menu")->Hide(); }
+                        if("D_Exit" == Hover->GetName())
+                            { TheEntresol->BreakMainLoop(); }
+                    }
+                }else{
+                    Ray MouseRay = RayQueryTool::GetMouseRay(5000);
+                    RayCaster.GetFirstActorOnRayByPolygon(MouseRay,Mezzanine::WSO_ActorRigid);
+
+                    bool firstframe=false;
+                    if (0 == RayCaster.LastQueryResultsActorPtr())
+                    {
+                        #ifdef MEZZDEBUG
+                        //TheEntresol->Log("No Actor Clicked on");
+                        #endif
                     }else{
                         #ifdef MEZZDEBUG
-                        //TheEntresol->Log("Actor is Static/Kinematic.  Aborting.");
+                        //TheEntresol->Log("Actor Clicked on"); TheEntresol->Log(*ClickOnActor);
+                        //TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
+                        //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
+                        //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
                         #endif
+                        if(!(RayCaster.LastQueryResultsActorPtr()->IsStaticOrKinematic()))
+                        {
+                            if(!Dragger) //If we have a dragger, then this is dragging, not clicking
+                            {
+                                if(RayCaster.LastQueryResultsActorPtr()->GetType()==Mezzanine::WSO_ActorRigid) //This is Dragging let's do some checks for sanity
+                                {
+                                    Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
+                                    ActorRigid* rigid = static_cast<ActorRigid*>(RayCaster.LastQueryResultsActorPtr());
+                                    rigid->GetPhysicsSettings()->SetActivationState(Physics::AS_DisableDeactivation);
+                                    //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
+                                    Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
+                                    Dragger->SetTAU(0.001);
+                                    TheEntresol->GetPhysicsManager()->AddConstraint(Dragger);
+                                    Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
+                                    Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
+                                    firstframe=true;
+                                }else{  // since we don't
+                                    #ifdef MEZZDEBUG
+                                    //TheEntresol->Log("Actor is not an ActorRigid.  Aborting.");
+                                    #endif
+                                }
+                            }
+                        }else{
+                            #ifdef MEZZDEBUG
+                            //TheEntresol->Log("Actor is Static/Kinematic.  Aborting.");
+                            #endif
+                        }
+                    }
+
+                    // This chunk of code calculates the 3d point that the actor needs to be dragged to
+                    Vector3 DragTo = RayQueryTool::RayPlaneIntersection(MouseRay, PlaneOfPlay);
+                    if (DragTo!=Vector3())
+                    {
+                        #ifdef MEZZDEBUG
+                        //TheEntresol->Log("PlaneOfPlay Not Clicked on");
+                        #endif
+                    }else{
+                        if(Dragger && !firstframe)
+                            { Dragger->SetPivotBLocation(DragTo); }
                     }
                 }
 
-                // This chunk of code calculates the 3d point that the actor needs to be dragged to
-                Vector3 DragTo = RayQueryTool::RayPlaneIntersection(MouseRay, PlaneOfPlay);
-                if (DragTo!=Vector3())
+            }else{  //Since we are no longer clicking we need to setup for the next clicking
+                if(Dragger)
                 {
-                    #ifdef MEZZDEBUG
-                    //TheEntresol->Log("PlaneOfPlay Not Clicked on");
-                    #endif
-                }else{
-                    if(Dragger && !firstframe)
-                        { Dragger->SetPivotBLocation(DragTo); }
+                    ActorRigid* Act = Dragger->GetActorA();
+                    TheEntresol->GetPhysicsManager()->RemoveConstraint(Dragger);
+                    delete Dragger;
+                    Dragger = NULL;
+                    Act->GetPhysicsSettings()->SetActivationState(Physics::AS_Active);
                 }
             }
-
-        }else{  //Since we are no longer clicking we need to setup for the next clicking
-            if(Dragger)
-            {
-                ActorRigid* Act = Dragger->GetActorA();
-                TheEntresol->GetPhysicsManager()->RemoveConstraint(Dragger);
-                delete Dragger;
-                Dragger = NULL;
-                Act->GetPhysicsSettings()->SetActivationState(Physics::AS_Active);
-            }
         }
-    }
 };//DemoPostInputWorkUnit
 
 class DemoPostRenderWorkUnit : public Threading::DefaultWorkUnit
