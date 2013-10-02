@@ -56,6 +56,7 @@ void LevelLoader::LoadFerris()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->AddToWorld();
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
@@ -306,6 +307,7 @@ void LevelLoader::LoadBigCurve()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->AddToWorld();
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
@@ -423,6 +425,7 @@ void LevelLoader::LoadBlowsNotSucks()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->AddToWorld();
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
@@ -621,6 +624,7 @@ void LevelLoader::LoadJustice()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->AddToWorld();
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
@@ -829,6 +833,7 @@ void LevelLoader::LoadRollers()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->AddToWorld();
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
@@ -962,6 +967,7 @@ void LevelLoader::LoadJustBounce()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->AddToWorld();
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
