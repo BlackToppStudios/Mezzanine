@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,45 +37,50 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphics_h
-#define _graphics_h
+#ifndef _graphicscameraproxy_h
+#define _graphicscameraproxy_h
+
+/// @file
+/// @brief This file contains the declaration for the World proxy wrapping camera functionality.
+
+#include "Graphics/renderableproxy.h"
+
+namespace Ogre
+{
+    class Camera;
+}
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Graphics
-    /// @brief This namespace is for all the classes belonging to the Graphics Subsystem.
-    /// @details Our Graphics system uses Ogre for all of Mezzanine's graphical/visual needs.
     namespace Graphics
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the proxy class for placing and manipulating a camera in the scene.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB CameraProxy : public RenderableProxy
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            /// @param Creator A pointer to the manager that created this proxy.
+            CameraProxy(SceneManager* Creator);
+            /// @brief Class destructor.
+            virtual ~CameraProxy();
 
-    }
-}
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-#include "Graphics/graphicsenumerations.h"
-#include "Graphics/graphicsmanager.h"
-#include "Graphics/scenemanager.h"
-#include "Graphics/cameramanager.h"
-#include "Graphics/meshmanager.h"
+            ///////////////////////////////////////////////////////////////////////////////
+            // Camera Properties
 
-#include "Graphics/billboardsetproxy.h"
-#include "Graphics/bone.h"
-#include "Graphics/camera.h"
-#include "Graphics/cameraproxy.h"
-#include "Graphics/entityproxy.h"
-#include "Graphics/gamewindow.h"
-#include "Graphics/lightproxy.h"
-#include "Graphics/material.h"
-#include "Graphics/mesh.h"
-#include "Graphics/particleaffector.h"
-#include "Graphics/particleemitter.h"
-#include "Graphics/particlesystemproxy.h"
-#include "Graphics/pass.h"
-#include "Graphics/renderableproxy.h"
-#include "Graphics/skeleton.h"
-#include "Graphics/submesh.h"
-#include "Graphics/technique.h"
-#include "Graphics/texture.h"
-#include "Graphics/viewport.h"
-#include "Graphics/windowsettings.h"
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+        };//CameraProxy
+    }//Graphics
+}//Mezzanine
 
 #endif
