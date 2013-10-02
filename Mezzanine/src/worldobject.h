@@ -69,6 +69,7 @@ namespace Mezzanine
     class Entresol;
     class World;
     class WorldNode;
+    class WorldProxy;
     class ActorBasePhysicsSettings;
     namespace Audio
     {
@@ -200,6 +201,11 @@ namespace Mezzanine
         /// @param Col A pointer to the collision pertaining to this World Object.
         /// @param State The state of the collision pertaining to this World Object.
         virtual void _NotifyCollisionState(Physics::Collision* Col, const Physics::Collision::CollisionState& State);
+        /// @internal
+        /// @brief Notifies that a proxy belonging to this WorldObject is being forcibly destroyed, and it needs to update.
+        /// @note Forced destruction should only happen if a subsystem is being shutdown at a time when the WorldObject is still operational.
+        /// @param ToBeDestroyed The WorldProxy that is marked for destruction.
+        virtual void _NotifyProxyDestroyed(WorldProxy* ToBeDestroyed);
         /// @internal
         /// @brief Gets the internal physics object this World Object is based on.
         /// @return Returns a pointer to the internal Bullet object.

@@ -175,6 +175,11 @@ namespace Mezzanine
         }
     }
 
+    void WorldObject::_NotifyProxyDestroyed(WorldProxy* ToBeDestroyed)
+    {
+        // This needs to be removed when the refactor is done, as it should be pure virtual.
+    }
+
     btCollisionObject* WorldObject::_GetBasePhysicsObject() const
     {
         return PhysicsObject;
