@@ -111,9 +111,9 @@
 #include "plane.h"                      // done
 #include "quaternion.h"                 // done
 #include "ray.h"
+#include "rayquerytool.h"               // done
 
 #ifndef SWIG
-#include "rayquerytool.h"               // nothing to do
 #include "resource.h"
 #include "resourcemanager.h"
 #include "scripting.h"
