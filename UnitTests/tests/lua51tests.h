@@ -383,6 +383,12 @@ class lua51tests : public UnitTestGroup
 
 
             {
+                // files/Classes not tested
+                // worldnode.h
+                // worldobjectgraphicssettings.h
+                // worldobject.h
+                // worldobjectphysicssettings.h
+
                 // Specific class swig wrapping tests
                 TestLuaScript("function MakePlane(x)\n"
                               "   d=x*3\n"

@@ -136,15 +136,11 @@
 #endif // \no SWIG
 
 #include "worldnode.h"                  // done
-
-#ifndef SWIG
 #include "worldobjectgraphicssettings.h"// done
-#endif // \no SWIG
-
 #include "worldobject.h"
+#include "worldobjectphysicssettings.h"
 
 #ifndef SWIG
-#include "worldobjectphysicssettings.h"
 #include "worldtrigger.h"
 #endif // \no SWIG
 
