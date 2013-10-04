@@ -80,6 +80,9 @@ namespace Mezzanine
             Bool HasOwnDimensions() const;
             /// @brief Resets whatever dimensions are on this billboard to the default provided to the parent BillboardSetProxy.
             void ResetDimensions();
+            /// @brief Gets whether or not this billboard is using custom texture coordinates.
+            /// @return Returns true if custom texture coordinates have been set for this billboard, false otherwise.
+            Bool IsUsingTextureCoordRect() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Billboard Properties

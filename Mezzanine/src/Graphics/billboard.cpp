@@ -45,6 +45,10 @@
 
 #include "Graphics/billboard.h"
 
+#include "exception.h"
+#include "serialization.h"
+#include "stringtool.h"
+
 #include <Ogre.h>
 
 namespace Mezzanine
@@ -66,6 +70,9 @@ namespace Mezzanine
 
         void Billboard::ResetDimensions()
             { this->GraphicsBillboard->resetDimensions(); }
+
+        Bool Billboard::IsUsingTextureCoordRect() const
+            { return this->GraphicsBillboard->isUseTexcoordRect(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Billboard Properties
@@ -123,12 +130,110 @@ namespace Mezzanine
 
         void Billboard::ProtoSerialize(XML::Node& ParentNode) const
         {
+            XML::Node SelfRoot = SelfRoot.AppendChild( Billboard::GetSerializableName() );
 
+            if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
+                SelfRoot.AppendAttribute("Rotation").SetValue( this->GetRotation() ) )
+            {
+                if( this->HasOwnDimensions() ) {
+                    if( !( SelfRoot.AppendAttribute("OwnWidth").SetValue( this->GetOwnWidth() ) &&
+                           SelfRoot.AppendAttribute("OwnHeight").SetValue( this->GetOwnHeight() ) ) )
+                    {
+                        SerializeError("Create XML Attribute Values",Billboard::GetSerializableName(),true);
+                    }
+                }
+
+                if( this->IsUsingTextureCoordRect() ) {
+                    if( !( SelfRoot.AppendAttribute("LeftTexCoord").SetValue( this->GetLeftTextureCoord() ) &&
+                           SelfRoot.AppendAttribute("TopTexCoord").SetValue( this->GetTopTextureCoord() ) &&
+                           SelfRoot.AppendAttribute("RightTexCoord").SetValue( this->GetRightTextureCoord() ) &&
+                           SelfRoot.AppendAttribute("BottomTexCoord").SetValue( this->GetBottomTextureCoord() ) ) )
+                    {
+                        SerializeError("Create XML Attribute Values",Billboard::GetSerializableName(),true);
+                    }
+                }
+
+                XML::Node LocationNode = SelfRoot.AppendChild("Location");
+                this->GetLocation().ProtoSerialize( LocationNode );
+                XML::Node DirectionNode = SelfRoot.AppendChild("Direction");
+                this->GetDirection().ProtoSerialize( DirectionNode );
+                XML::Node ColourNode = SelfRoot.AppendChild("Colour");
+                this->GetColour().ProtoSerialize( ColourNode );
+
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",Billboard::GetSerializableName(),true);
+            }
         }
 
         void Billboard::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
+            XML::Attribute CurrAttrib;
 
+            if( String( SelfRoot.Name() ) == Billboard::GetSerializableName() ) {
+                if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                    Real OwnWidth = -1.0, OwnHeight = -1.0;
+                    Real LeftTexCoord = -1.0, TopTexCoord = -1.0, RightTexCoord = -1.0, BottomTexCoord = -1.0;
+
+                    CurrAttrib = SelfRoot.GetAttribute("Rotation");
+                    if( !CurrAttrib.Empty() )
+                        this->SetRotation( CurrAttrib.AsReal() );
+
+                    CurrAttrib = SelfRoot.GetAttribute("OwnWidth");
+                    if( !CurrAttrib.Empty() )
+                        OwnWidth = CurrAttrib.AsReal();
+
+                    CurrAttrib = SelfRoot.GetAttribute("OwnHeight");
+                    if( !CurrAttrib.Empty() )
+                        OwnHeight = CurrAttrib.AsReal();
+
+                    if( OwnWidth >= 0 && OwnHeight >= 0 ) {
+                        this->SetDimensions(OwnWidth,OwnHeight);
+                    }
+
+                    CurrAttrib = SelfRoot.GetAttribute("LeftTexCoord");
+                    if( !CurrAttrib.Empty() )
+                        LeftTexCoord = CurrAttrib.AsReal();
+
+                    CurrAttrib = SelfRoot.GetAttribute("TopTexCoord");
+                    if( !CurrAttrib.Empty() )
+                        TopTexCoord = CurrAttrib.AsReal();
+
+                    CurrAttrib = SelfRoot.GetAttribute("RightTexCoord");
+                    if( !CurrAttrib.Empty() )
+                        RightTexCoord = CurrAttrib.AsReal();
+
+                    CurrAttrib = SelfRoot.GetAttribute("BottomTexCoord");
+                    if( !CurrAttrib.Empty() )
+                        BottomTexCoord = CurrAttrib.AsReal();
+
+                    if( LeftTexCoord >= 0 && TopTexCoord >= 0 && RightTexCoord >= 0 && BottomTexCoord >= 0 ) {
+                        this->SetTextureCoordRect(LeftTexCoord,TopTexCoord,RightTexCoord,BottomTexCoord);
+                    }
+
+                    XML::Node LocationNode = SelfRoot.GetChild("Location").GetFirstChild();
+                    if( !LocationNode.Empty() ) {
+                        Vector3 Loc(LocationNode);
+                        this->SetLocation(Loc);
+                    }
+
+                    XML::Node DirectionNode = SelfRoot.GetChild("Direction").GetFirstChild();
+                    if( !DirectionNode.Empty() ) {
+                        Vector3 Dir(DirectionNode);
+                        this->SetDirection(Dir);
+                    }
+
+                    XML::Node ColourNode = SelfRoot.GetChild("Colour").GetFirstChild();
+                    if( !ColourNode.Empty() ) {
+                        ColourValue Colour(ColourNode);
+                        this->SetColour(Colour);
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Billboard::GetSerializableName() + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Billboard::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+            }
         }
 
         String Billboard::GetSerializableName()
