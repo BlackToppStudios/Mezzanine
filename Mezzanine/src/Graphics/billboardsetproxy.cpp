@@ -321,32 +321,139 @@ namespace Mezzanine
 
         void BillboardSetProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
+            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
 
+            this->ProtoSerializeProperties(SelfRoot);
+            this->ProtoSerializeBillboards(SelfRoot);
         }
 
         void BillboardSetProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
+            this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
 
+            XML::Node PropertiesNode = SelfRoot.AppendChild( BillboardSetProxy::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("AutoExtend").SetValue( this->GetAutoExtend() ? "true" : "false" ) &&
+                PropertiesNode.AppendAttribute("AccurateFacing").SetValue( this->GetAccurateFacing() ? "true" : "false" ) &&
+                PropertiesNode.AppendAttribute("PoolSize").SetValue( this->GetPoolSize() ) &&
+                PropertiesNode.AppendAttribute("BillboardOrigin").SetValue( static_cast<Whole>( this->GetBillboardOrigin() ) ) &&
+                PropertiesNode.AppendAttribute("BillboardRotation").SetValue( static_cast<Whole>( this->GetBillboardRotation() ) ) &&
+                PropertiesNode.AppendAttribute("BillboardType").SetValue( static_cast<Whole>( this->GetBillboardType() ) ) &&
+                PropertiesNode.AppendAttribute("DefaultWidth").SetValue( this->GetDefaultWidth() ) &&
+                PropertiesNode.AppendAttribute("DefaultHeight").SetValue( this->GetDefaultHeight() ) &&
+                PropertiesNode.AppendAttribute("MaterialName").SetValue( this->GetMaterialName() ) )
+            {
+                XML::Node CommonDirectionNode = PropertiesNode.AppendChild("CommonDirection");
+                this->GetCommonDirection().ProtoSerialize( CommonDirectionNode );
+                XML::Node CommonUpVectorNode = PropertiesNode.AppendChild("CommonUpVector");
+                this->GetCommonUpVector().ProtoSerialize( CommonUpVectorNode );
+
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",BillboardSetProxy::GetSerializableName() + "Properties",true);
+            }
         }
 
         void BillboardSetProxy::ProtoSerializeBillboards(XML::Node& SelfRoot) const
         {
+            XML::Node BillboardsNode = SelfRoot.AppendChild( BillboardSetProxy::GetSerializableName() + "Billboards" );
 
+            if( BillboardsNode.AppendAttribute("Version").SetValue("1") )
+            {
+                for( ConstBillboardIterator BillIt = this->Billboards.begin() ; BillIt != this->Billboards.end() ; ++BillIt )
+                {
+                    (*BillIt)->ProtoSerialize( BillboardsNode );
+                }
+            }else{
+                SerializeError("Create XML Attribute Values",BillboardSetProxy::GetSerializableName() + "Billboards",true);
+            }
         }
 
         void BillboardSetProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-
+            this->DestroyAllBillboards();
+            this->ProtoDeSerializeProperties(SelfRoot);
+            this->ProtoDeSerializeBillboards(SelfRoot);
         }
 
         void BillboardSetProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
+            this->RenderableProxy::ProtoDeSerializeProperties(SelfRoot);
 
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( BillboardSetProxy::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("AutoExtend");
+                    if( !CurrAttrib.Empty() )
+                        this->SetAutoExtend( StringTools::ConvertToBool( CurrAttrib.AsString() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AccurateFacing");
+                    if( !CurrAttrib.Empty() )
+                        this->SetAccurateFacing( StringTools::ConvertToBool( CurrAttrib.AsString() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("PoolSize");
+                    if( !CurrAttrib.Empty() )
+                        this->SetPoolSize( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("BillboardOrigin");
+                    if( !CurrAttrib.Empty() )
+                        this->SetBillboardOrigin( static_cast<Graphics::BillboardOrigin>( CurrAttrib.AsWhole() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("BillboardRotation");
+                    if( !CurrAttrib.Empty() )
+                        this->SetBillboardRotation( static_cast<Graphics::BillboardRotation>( CurrAttrib.AsWhole() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("BillboardType");
+                    if( !CurrAttrib.Empty() )
+                        this->SetBillboardType( static_cast<Graphics::BillboardType>( CurrAttrib.AsWhole() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("DefaultWidth");
+                    if( !CurrAttrib.Empty() )
+                        this->SetDefaultWidth( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("DefaultHeight");
+                    if( !CurrAttrib.Empty() )
+                        this->SetDefaultHeight( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("MaterialName");
+                    if( !CurrAttrib.Empty() )
+                        this->SetMaterialName( CurrAttrib.AsString() );
+
+                    XML::Node CommonDirectionNode = PropertiesNode.GetChild("CommonDirection").GetFirstChild();
+                    if( !CommonDirectionNode.Empty() ) {
+                        Vector3 CommonDir(CommonDirectionNode);
+                        this->SetCommonDirection(CommonDir);
+                    }
+
+                    XML::Node CommonUpVectorNode = PropertiesNode.GetChild("CommonUpVector").GetFirstChild();
+                    if( !CommonUpVectorNode.Empty() ) {
+                        Vector3 CommonUpVec(CommonUpVectorNode);
+                        this->SetCommonUpVector(CommonUpVec);
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (BillboardSetProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,BillboardSetProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
         }
 
         void BillboardSetProxy::ProtoDeSerializeBillboards(const XML::Node& SelfRoot)
         {
+            XML::Node BillboardsNode = SelfRoot.GetChild( BillboardSetProxy::GetSerializableName() + "Billboards" );
 
+            if( !BillboardsNode.Empty() ) {
+                if(BillboardsNode.GetAttribute("Version").AsInt() == 1) {
+                    for( XML::NodeIterator BillIt = BillboardsNode.begin() ; BillIt != BillboardsNode.end() ; ++BillIt )
+                    {
+                        Billboard* NewBB = this->CreateBillboard( Vector3() );
+                        NewBB->ProtoDeSerialize( (*BillIt) );
+                    }
+                }
+            }
         }
 
         String BillboardSetProxy::GetDerivedSerializableName() const
