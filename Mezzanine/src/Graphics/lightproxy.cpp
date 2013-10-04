@@ -287,14 +287,14 @@ namespace Mezzanine
 
                     XML::Node DiffuseColourNode = PropertiesNode.GetChild("DiffuseColour").GetFirstChild();
                     if( !DiffuseColourNode.Empty() ) {
-                        ColourValue Loc(DiffuseColourNode);
-                        this->SetDiffuseColour(Loc);
+                        ColourValue Diffuse(DiffuseColourNode);
+                        this->SetDiffuseColour(Diffuse);
                     }
 
                     XML::Node SpecularColourNode = PropertiesNode.GetChild("SpecularColour").GetFirstChild();
                     if( !SpecularColourNode.Empty() ) {
-                        ColourValue Loc(SpecularColourNode);
-                        this->SetSpecularColour(Loc);
+                        ColourValue Specular(SpecularColourNode);
+                        this->SetSpecularColour(Specular);
                     }
                 }else{
                     MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (LightProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
