@@ -57,6 +57,7 @@ namespace Mezzanine
 #include "Graphics/cameramanager.h"
 #include "Graphics/meshmanager.h"
 
+#include "Graphics/billboard.h"
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/bone.h"
 #include "Graphics/camera.h"
