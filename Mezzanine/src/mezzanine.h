@@ -74,11 +74,13 @@
 #include "actorserializer.h"            // nothing to do
 #include "areaeffect.h"
 #include "areaeffectmanager.h"
+#endif
 
 #ifndef SWIG
 #include "attachable.h"                 // Target for output only
 #endif
 
+#ifndef SWIG
 #include "axisalignedbox.h"
 #include "binarybuffer.h"
 #include "cameracontroller.h"
@@ -104,14 +106,14 @@
 #include "network.h"
 #include "networkmanager.h"
 #include "objectpair.h"
-
 #endif
+
 #include "plane.h"                      // done
 #include "quaternion.h"                 // done
 #include "ray.h"
-#ifndef SWIG
+#include "rayquerytool.h"               // done
 
-#include "rayquerytool.h"               // nothing to do
+#ifndef SWIG
 #include "resource.h"
 #include "resourcemanager.h"
 #include "scripting.h"
@@ -121,28 +123,29 @@
 #include "stringtool.h"
 #include "terrainbase.h"
 #include "terrainmanager.h"
-
 #endif // \no SWIG
+
 #include "timer.h"
 #include "transform.h"                  // done
 #include "vector2.h"                    // done
 #include "vector3.h"                    // done
-#ifndef SWIG
 
+#ifndef SWIG
 // more stuff swig shouldn't read yet
 #include "entresol.h"
-
 #endif // \no SWIG
-#include "worldnode.h"                  // done
-#ifndef SWIG
 
+#include "worldnode.h"                  // done
+
+#ifndef SWIG
 #include "worldobjectgraphicssettings.h"// done
 #endif // \no SWIG
+
 #include "worldobject.h"
+
 #ifndef SWIG
 #include "worldobjectphysicssettings.h"
 #include "worldtrigger.h"
-
 #endif // \no SWIG
 
 #endif // \ _mezzanine_h

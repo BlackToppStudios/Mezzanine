@@ -139,6 +139,20 @@ namespace Mezzanine
             /// @param Length how long of a ray do you want? Thsi defaults to 1000
             /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.
             static Ray GetMouseRay(Real Length=1000);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+            void ProtoSerialize(XML::Node& CurrentRoot) const;
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and XML::Node containing the data.
+            void ProtoDeSerialize(const XML::Node& OneNode);
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Vector3"
+            static String SerializableName();
+
     };
 }
 

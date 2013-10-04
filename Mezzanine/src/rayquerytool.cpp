@@ -59,6 +59,7 @@ using namespace std;
 #include "Input/mouse.h"
 #include "managedptr.h"
 #include "Internal/meshtools.h.cpp"
+#include "serialization.h"
 
 #include <Ogre.h>
 
@@ -356,6 +357,73 @@ namespace Mezzanine
         }
         return MouseRay;
     }
+
+    void RayQueryTool::ProtoSerialize(XML::Node& CurrentRoot) const
+    {
+        Mezzanine::XML::Node RayQueryToolNode = CurrentRoot.AppendChild(SerializableName());
+        RayQueryToolNode.SetName(SerializableName());
+
+        Mezzanine::XML::Attribute VersionAttr = RayQueryToolNode.AppendAttribute("Version");
+        if( VersionAttr && VersionAttr.SetValue("1"))
+        {
+            Mezzanine::XML::Attribute ResultAttr = RayQueryToolNode.AppendAttribute("ValidResult");
+            if( ResultAttr && ResultAttr.SetValue(ValidResult))
+                {}
+            else
+                { SerializeError("Create XML Attribute for ValidResult", SerializableName(), true); }
+
+            Mezzanine::XML::Node OffsetNode = RayQueryToolNode.AppendChild("Offset");
+            if( OffsetNode )
+                { Offset.ProtoSerialize(OffsetNode); }
+            else
+                { SerializeError("Create XML Node for Offset", SerializableName(), true); }
+
+            Mezzanine::XML::Attribute ActorAttr = RayQueryToolNode.AppendAttribute("Actor");
+            if( ActorAttr )
+            {
+                if( IntersectedActor )
+                {
+                    if(ActorAttr.SetValue(IntersectedActor->GetName().c_str()))
+                        {}
+                    else
+                        { SerializeError("Create XML Node for Offset", SerializableName(),true); }
+                }
+            }
+            else
+                { SerializeError("Create XML Attribute for Offset", SerializableName(),true); }
+        }else{
+            SerializeError("Create XML Version Attibute", SerializableName(),true);
+        }
+    }
+
+    void RayQueryTool::ProtoDeSerialize(const XML::Node& OneNode)
+    {
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                ValidResult=OneNode.GetAttribute("ValidResult").AsBool();
+
+                XML::Node VecNode = OneNode.GetChild("Offset");
+                if(!VecNode)
+                    { DeSerializeError("Could not Deserialize Offset",SerializableName()); }
+                Offset.ProtoDeSerialize(VecNode);
+
+                String ActorName(OneNode.GetAttribute("Actor").AsString());
+                if (ActorName.size())
+                    { IntersectedActor = Entresol::GetSingletonPtr()->GetActorManager()->GetActor(ActorName); }
+                else
+                    { IntersectedActor = NULL; }
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+        }
+    }
+
+    Mezzanine::String Mezzanine::RayQueryTool::SerializableName()
+        { return "RayQueryTool"; }
 
 
 }

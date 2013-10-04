@@ -345,6 +345,8 @@ class lua51tests : public UnitTestGroup
                                         "MezzanineXML", "XML.Document",
                                         Scripting::Lua::Lua51ScriptingEngine::MezzLib|Scripting::Lua::Lua51ScriptingEngine::MezzXMLLib);
 
+
+
                 /// @TODO still need to test OS, Debug, Mezz and MezzSafe
                 /*
                 virtual void OpenOSLibrary();
@@ -438,6 +440,14 @@ class lua51tests : public UnitTestGroup
                               "Timer", "VecXMultiply", 100, 100,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                // cannot be include until after engine startup can be include
+                /*TestLuaScript("function RayDump(x)\n"
+                              "   RayCaster=MezzanineSafe.RayQueryTool()\n"
+                              "   return x\n"
+                              "end",
+                              "RayQueryTool", "RayDump", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+                               */
             }
 
         }
