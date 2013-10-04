@@ -304,6 +304,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Creating Proxies
 
+            /// @brief Creates a new BillboardSetProxy.
+            /// @param InitialPoolSize The number of billboards to reserve space for.
+            /// @return Returns a pointer to the created proxy.
+            BillboardSetProxy* CreateBillboardSetProxy(const UInt32 InitialPoolSize = 20);
             /// @brief Creates a new EntityProxy.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
             /// @return Returns a pointer to the created proxy.

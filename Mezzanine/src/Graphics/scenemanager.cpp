@@ -50,6 +50,7 @@
 #include "stringtool.h"
 #include "worldnode.h"
 
+#include "Graphics/billboardsetproxy.h"
 #include "Graphics/entityproxy.h"
 #include "Graphics/lightproxy.h"
 #include "Graphics/particlesystemproxy.h"
@@ -446,6 +447,13 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Creating Proxies
+
+        BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const UInt32 InitialPoolSize)
+        {
+            BillboardSetProxy* NewProxy = new BillboardSetProxy(InitialPoolSize,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
 
         EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh)
         {
