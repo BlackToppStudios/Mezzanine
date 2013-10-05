@@ -57,16 +57,16 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        CameraManager::CameraManager()
-            : SceneMan(NULL)
+        CameraManager::CameraManager() :
+            SceneMan(NULL)
         {
             Graphics::SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
             if( SceneCheck )
                 this->SceneMan = SceneCheck;
         }
 
-        CameraManager::CameraManager(XML::Node& XMLNode)
-            : SceneMan(NULL)
+        CameraManager::CameraManager(XML::Node& XMLNode) :
+            SceneMan(NULL)
         {
             Graphics::SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
             if( SceneCheck )
@@ -77,20 +77,6 @@ namespace Mezzanine
         CameraManager::~CameraManager()
         {
             this->Deinitialize();
-            this->DestroyAllCameraControllers();
-            this->DestroyAllCameras();
-        }
-
-        Camera* CameraManager::FindCamera(const String& Name)
-        {
-            for( CameraIterator CamIt = this->Cameras.begin() ; CamIt != this->Cameras.end() ; ++CamIt )
-            {
-                if( Name == (*CamIt)->GetName() )
-                {
-                    return *CamIt;
-                }
-            }
-            return NULL;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -105,21 +91,22 @@ namespace Mezzanine
 
         Camera* CameraManager::CreateCamera(const String& Name)
         {
-            if( !this->SceneMan )
-            {
-                Graphics::SceneManager* SceneTest = Entresol::GetSingletonPtr()->GetSceneManager();
-                if( SceneTest ) this->SceneMan = SceneTest;
-                else { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a camera before the SceneManager is created.  This is not supported."); }
+            if( !this->Initialized ) {
+                this->Initialize();
             }
-            Camera* tempcam = new Camera(Name, this);
-            this->Cameras.push_back(tempcam);
-            return tempcam;
+            Camera* NewCam = new Camera(Name,this);
+            this->Cameras.push_back(NewCam);
+            return NewCam;
         }
 
         Camera* CameraManager::GetCamera(const String& Name)
         {
-            Camera* tempcam = this->FindCamera(Name);
-            return tempcam;
+            for( CameraIterator CamIt = this->Cameras.begin() ; CamIt != this->Cameras.end() ; ++CamIt )
+            {
+                if( Name == (*CamIt)->GetName() )
+                    return *CamIt;
+            }
+            return NULL;
         }
 
         Camera* CameraManager::GetCamera(const Whole& Index)
@@ -215,7 +202,7 @@ namespace Mezzanine
 
                 if( !this->SceneMan )
                 {
-                    Graphics::SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
+                    SceneManager* SceneCheck = this->TheEntresol->GetSceneManager();
                     if( SceneCheck ) {
                         this->SceneMan = SceneCheck;
                     }else{
@@ -231,11 +218,15 @@ namespace Mezzanine
         {
             if( this->Initialized )
             {
+                this->DestroyAllCameraControllers();
+                this->DestroyAllCameras();
+
+                this->SceneMan = NULL;
                 this->Initialized = false;
             }
         }
 
-        Graphics::SceneManager* CameraManager::GetScene() const
+        SceneManager* CameraManager::GetScene() const
         {
             return this->SceneMan;
         }

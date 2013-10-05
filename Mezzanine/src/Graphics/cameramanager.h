@@ -89,16 +89,15 @@ namespace Mezzanine
             /// @brief Const Iterator type for @ref CameraController instances stored by this class.
             typedef CameraControllerContainer::const_iterator  ConstCameraControllerIterator;
         protected:
-            friend class Graphics::SceneManagerData;
-            friend class Camera;
-
-            Camera* DefaultCamera;
+            /// @internal
+            /// @brief Container storing all of the Camera instances created by this manager.
             CameraContainer Cameras;
+            /// @internal
+            /// @brief Container storing all of the CameraController instances created by this manager.
             CameraControllerContainer CameraControllers;
-            Camera* FindCamera(const String& Name);
             /// @internal
             /// @brief Used to reference the appropriate scene
-            Graphics::SceneManager* SceneMan;
+            SceneManager* SceneMan;
         public:
             /// @brief Class Constructor.
             CameraManager();
@@ -153,14 +152,14 @@ namespace Mezzanine
             /// @copydoc WorldManager::Pause(const UInt32)
             virtual void Pause(const UInt32 PL);
 
-            /// @copydoc WorldManager::Initialize()
+            /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
             /// @copydoc ManagerBase::Deinitialize()
             virtual void Deinitialize();
 
             /// @brief Gets the SceneManager this Camera Manager is working with.
             /// @return Returns a pointer to the SceneManager all cameras made with this manager belong to.
-            Graphics::SceneManager* GetScene() const;
+            SceneManager* GetScene() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods
