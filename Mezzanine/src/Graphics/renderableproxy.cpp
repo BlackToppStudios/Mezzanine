@@ -61,7 +61,8 @@ namespace Mezzanine
             GraphicsNode(NULL),
             Manager(Creator),
             VisibilityMask(Ogre::MovableObject::getDefaultVisibilityFlags()),
-            QueryMask(Ogre::MovableObject::getDefaultQueryFlags())
+            QueryMask(Ogre::MovableObject::getDefaultQueryFlags()),
+            InWorld(false)
         {
             this->GraphicsNode = this->Manager->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         }

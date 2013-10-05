@@ -415,6 +415,7 @@ int main(int argc, char **argv)
     Headlight->SetDiffuseColour(ColourValue(0.7,0.7,0.7,1.0));
     Headlight->SetSpecularColour(ColourValue(0.7,0.7,0.7,1.0));
     Headlight->SetLocation(Vector3(0,150,0));
+    Headlight->AddToWorld();
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
     //CameraNode->AttachObject(Headlight);
 

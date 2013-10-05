@@ -48,19 +48,52 @@ namespace Mezzanine
     namespace Graphics
     {
         /// @enum AspectRatio
-        /// @brief This is used primarily by the GraphicsManager to keep track of the supported
-        /// and currently used aspect ratios.
+        /// @brief This is used primarily by the GraphicsManager to keep track of the supported and currently used aspect ratios.
         enum AspectRatio
         {
-            AR_3_By_2,     ///< 1.5
-            AR_4_By_3,     ///< 1.334
-            AR_5_By_3,     ///< 1.667
-            AR_5_By_4,     ///< 1.25
-            AR_8_By_5,     ///< 1.6
-            AR_16_By_9,    ///< 1.778
-            AR_17_By_9,    ///< 1.889
-            AR_1_85_By_1,  ///< 1.85
-            AR_2_39_By_1   ///< 2.39
+            AR_3_By_2    = 1,   ///< 1.5
+            AR_4_By_3    = 2,   ///< 1.334
+            AR_5_By_3    = 3,   ///< 1.667
+            AR_5_By_4    = 4,   ///< 1.25
+            AR_8_By_5    = 5,   ///< 1.6
+            AR_16_By_9   = 6,   ///< 1.778
+            AR_17_By_9   = 7,   ///< 1.889
+            AR_1_85_By_1 = 8,   ///< 1.85
+            AR_2_39_By_1 = 9    ///< 2.39
+        };
+
+        /// @enum BillboardOrigin
+        /// @brief This is used by the BillboardSetProxy to describe which part of the billboard will be treated as the local origin for placement and rotation.
+        enum BillboardOrigin
+        {
+            BBO_Top_Left,        ///< Position/Rotate around the Top-Left corner of the billboard.
+            BBO_Top_Center,      ///< Position/Rotate around the Top-Center of the billboard.
+            BBO_Top_Right,       ///< Position/Rotate around the Top-Right corner of the billboard.
+            BBO_Center_Left,     ///< Position/Rotate around the Center-Left side of the billboard.
+            BBO_Center,          ///< Position/Rotate around the Center of the billboard.
+            BBO_Center_Right,    ///< Position/Rotate around the Center-Right side of the billboard.
+            BBO_Bottom_Left,     ///< Position/Rotate around the Bottom-Left corner of the billboard.
+            BBO_Bottom_Center,   ///< Position/Rotate around the Bottom-Center of the billboard.
+            BBO_Bottom_Right     ///< Position/Rotate around the Bottom-Right corner of the billboard.
+        };
+
+        /// @enum BillboardRotation
+        /// @brief This is used by the BillboardSetProxy to decide how billboards should be rotated when they are requested to rotate.
+        enum BillboardRotation
+        {
+            BBR_Vertex,        ///< Rotates the vertices of the billboard when rotated.
+            BBR_TexureCoord    ///< Rotates the texture coordinates of the billboard when rotated, preserving the vertex positions.
+        };
+
+        /// @enum BillboardType
+        /// @brief This is used by BillboardSetProxies to describe how the billboards are to be oriented.
+        enum BillboardType
+        {
+            BBT_Point,                  ///< Default setting.  Billboard direction always faces the camera and is always oriented to be upright.
+            BBT_Oriented_Common,        ///< Billboards are oriented around a common axis provided to the BillboardSetProxy, which will act as their local Y axis. Common Direction needs to be defined for this setting.
+            BBT_Oriented_Self,          ///< Billboards are oriented around their own individually set direction axis, which will act as their local Y axis.
+            BBT_Perpendicular_Common,   ///< Billboards are oriented around a common axis provided to the BillboardSetProxy, which will act as their local Z axis.  Common Direction and Common Up Vector needs to be defined for this setting.
+            BBT_Perpendicular_Self      ///< Billboards are oriented around their own individually set direction axis, which will act as their local Z axis.  Common Up Vector needs to be defined for this setting.
         };
 
         /// @enum LightType
