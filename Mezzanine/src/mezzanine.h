@@ -131,9 +131,8 @@
 #include "vector3.h"                    // done
 
 #ifndef SWIG
-// more stuff swig shouldn't read yet
 #include "entresol.h"
-#endif // \no SWIG
+#endif
 
 #include "worldnode.h"                  // done
 #include "worldobjectgraphicssettings.h"// done

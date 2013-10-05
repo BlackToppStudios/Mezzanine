@@ -100,22 +100,24 @@ namespace Mezzanine
                     /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries open a little easier.
                     enum Lua51Libraries
                     {
-                        NoLib            = 0,        ///< No libraries
-                        BaseLib          = 1,        ///< Correlates to @ref Lua51ScriptingEngine::OpenBaseLibrary
-                        PackageLib       = 2,        ///< Correlates to @ref Lua51ScriptingEngine::OpenPackageLibrary
-                        StringLib        = 4,        ///< Correlates to @ref Lua51ScriptingEngine::OpenStringLibrary
-                        TableLib         = 8,        ///< Correlates to @ref Lua51ScriptingEngine::OpenTableLibrary
-                        MathLib          = 16,       ///< Correlates to @ref Lua51ScriptingEngine::OpenMathLibrary
-                        IOLib            = 32,       ///< Correlates to @ref Lua51ScriptingEngine::OpenIOLibrary
-                        OSLib            = 64,       ///< Correlates to @ref Lua51ScriptingEngine::OpenOSLibrary
-                        DebugLib         = 128,      ///< Correlates to @ref Lua51ScriptingEngine::OpenDebugLibrary
-                        MezzLib          = 256,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
-                        MezzSafeLib      = 512,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
-                        MezzXMLLib       = 1024,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
-                        MezzXMLSafeLib   = 2048,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        NoLib                  = 0,        ///< No libraries
+                        BaseLib                = 1,        ///< Correlates to @ref Lua51ScriptingEngine::OpenBaseLibrary
+                        PackageLib             = 2,        ///< Correlates to @ref Lua51ScriptingEngine::OpenPackageLibrary
+                        StringLib              = 4,        ///< Correlates to @ref Lua51ScriptingEngine::OpenStringLibrary
+                        TableLib               = 8,        ///< Correlates to @ref Lua51ScriptingEngine::OpenTableLibrary
+                        MathLib                = 16,       ///< Correlates to @ref Lua51ScriptingEngine::OpenMathLibrary
+                        IOLib                  = 32,       ///< Correlates to @ref Lua51ScriptingEngine::OpenIOLibrary
+                        OSLib                  = 64,       ///< Correlates to @ref Lua51ScriptingEngine::OpenOSLibrary
+                        DebugLib               = 128,      ///< Correlates to @ref Lua51ScriptingEngine::OpenDebugLibrary
+                        MezzLib                = 256,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
+                        MezzSafeLib            = 512,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        MezzXMLLib             = 1024,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
+                        MezzXMLSafeLib         = 2048,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        MezzThreadingLib       = 4096,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
+                        MezzThreadingSafeLib   = 8192,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
 
                         DefaultLibs = BaseLib | StringLib | TableLib | MathLib | MezzSafeLib | MezzXMLSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
-                        AllLibs     = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib | MezzXMLLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
+                        AllLibs     = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib | MezzXMLLib | MezzThreadingLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
                     };
                 ///////////////////////////////////////////////////////////////////////////////////////
                 // Construction/Deconstruction
@@ -210,7 +212,6 @@ namespace Mezzanine
                     /// output or execution abilities.
                     /// @warning This enables lua scripts to load and execute arbitrary Lua scripts.
                     virtual void OpenDefaultLibraries();
-
                     /// @brief Make all Mezzanine and Lua functionality
                     /// @warning This makes arbitrary execution of programs and file IO available to scripts. This is not suitable if untrusted scripts will be run.
                     virtual void OpenAllLibraries();
@@ -220,35 +221,28 @@ namespace Mezzanine
                     /// functionality this enables.
                     /// @warning This enables lua scripts to load and execute arbitrary Lua scripts.
                     virtual void OpenBaseLibrary();
-
                     /// @brief Allow Lua scripts to load other libraries.
                     /// @details see the Lua manual at http://www.lua.org/manual/5.1/manual.html#5.3 for details on what this enables. This does allow Lua scripts to load
                     /// other libraries, inlcuding the IO or OS libraries.
                     /// @warning This can makes full OS and file IO available to scripts. This is not suitable if untrusted scripts will be run.
                     virtual void OpenPackageLibrary();
-
                     /// @brief Allow Lua scripts access to the Lua string manipulation libary.
                     /// @details The details of what this enables can be read about in the Lua manual at http://www.lua.org/manual/5.1/manual.html#5.4 .
                     virtual void OpenStringLibrary();
-
                     /// @brief Enable Lua table manipulation functionality.
                     /// @details See the Lua manual at http://www.lua.org/manual/5.1/manual.html#5.5 for details.
                     virtual void OpenTableLibrary();
-
                     /// @brief Enable Lua math and random number functionality
                     /// @details The Lua manual at http://www.lua.org/manual/5.1/manual.html#5.6 as further details.
                     virtual void OpenMathLibrary();
-
                     /// @brief Enable Input/Output in lua scripts for reading and writing files
                     /// @detail See http://www.lua.org/manual/5.1/manual.html#5.7 in the Lua manual for details
                     /// @warning This makes file IO available to scripts. This is not suitable if untrustedscripts will be run.
                     virtual void OpenIOLibrary();
-
                     /// @brief EnableOS facilities in lua scriptsm such as file managements, time and shell execution.
                     /// @detail See http://www.lua.org/manual/5.1/manual.html#5.7 in the Lua manual for details
                     /// @warning This makes arbitrary execution of programs and file management available to scripts. This is not suitable if untrusted scripts will be run.
                     virtual void OpenOSLibrary();
-
                     /// @brief Enable Debugging Lua features.
                     /// @details This is the only Lua library omitted from the Defaults for functionality rather than security reasons. This
                     /// unimportant for most game uses and is primarily include for completeness. More details in the
@@ -258,7 +252,6 @@ namespace Mezzanine
                     /// @brief Make everything in the Mezzanine Libary available for use in Lua51 scripts.
                     /// @warning This makes arbitrary execution of programs and file management available to scripts. This is not suitable if untrusted scripts will be run.
                     virtual void OpenMezzanineLibrary();
-
                     /// @brief Make a subset of the Mezzanine Library available for use in Lua51 scripts.
                     /// @details This should not allow access to any functions, methods or classes than can execute code or manage files.
                     virtual void OpenMezzanineSafeLibrary();
@@ -266,17 +259,28 @@ namespace Mezzanine
                     /// @brief Make the XML parts of the Mezzanine Libary available for use in Lua51 scripts.
                     /// @warning This makes arbitrary execution of programs and file management available to scripts. This is not suitable if untrusted scripts will be run.
                     virtual void OpenMezzanineXMLLibrary();
-
                     /// @brief Make the XML parts of the Mezzanine Libary available for use in Lua51 scripts.
                     /// @details This should not allow access to any functions, methods or classes than can execute code or manage files.
                     virtual void OpenMezzanineXMLSafeLibrary();
 
+                    /// @brief Make the Threading parts of the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @warning This makes a number of powerful feature available that could cause Denial of Service if untrusted scripts are run.
+                    virtual void OpenMezzanineThreadingLibrary();
+                    /// @brief Make the Threading parts of the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @details This should not allow access to any functions, methods or classes than can execute code or manage files or crash the client malicious ways.
+                    virtual void OpenMezzanineThreadingSafeLibrary();
+
                 protected:
                     /// @brief Set The MezzanineXML library as the XML member of the Mezzanine library or fail silently
                     void SetXML();
-
                     /// @brief Set The MezzanineXMLSafe library as the XML member of the MezzanineSafe library or fail silently
                     void SetXMLSafe();
+
+
+                    /// @brief Set The MezzanineThreading library as the Threading member of the Mezzanine library or fail silently
+                    void SetThreading();
+                    /// @brief Set The MezzanineThreadingSafe library as the Threading member of the MezzanineSafe library or fail silently
+                    void SetThreadingSafe();
             };
 
             //simplistic error checking function, to be replace with proper exception driven code later.

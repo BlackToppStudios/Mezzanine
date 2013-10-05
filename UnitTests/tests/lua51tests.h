@@ -134,7 +134,7 @@ class lua51tests : public UnitTestGroup
             {
                 TEST(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName(), "Engine::ImplementationName");
                 TEST(541+2048==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
-                TEST(511+1024==Scripting::Lua::Lua51ScriptingEngine::AllLibs, "Engine::LuaLibEnumUnsafe");
+                TEST(511+1024+4096==Scripting::Lua::Lua51ScriptingEngine::AllLibs, "Engine::LuaLibEnumUnsafe");
             }
 
             //////////////////////////////////////////////////////////////////////////////////////////

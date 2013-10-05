@@ -44,6 +44,7 @@
 /// @file
 /// @brief This is the file that code using this library should include. It includes all the required components.
 
+#ifndef SWIG
 #include "asynchronousfileloadingworkunit.h"
 #include "asynchronousworkunit.h"
 #include "atomicoperations.h"
@@ -63,6 +64,18 @@
 #include "threadingenumerations.h"
 #include "workunit.h"
 #include "workunitkey.h"
+#endif
+
+#include "swig.h"
+#ifdef SWIG_THREADING
+    #ifdef SWIG_UNSAFE
+        %module MezzanineThreading
+    #else
+        #define SWIG_SAFE
+        %module MezzanineThreadingSafe
+    #endif
+    #define SWIG_MODULE_SET
+#endif
 
 /// @def MEZZ_DAGFRAMESCHEDULER_MAJOR_VERSION
 /// @brief The Major version number of the library. (The front/left number)

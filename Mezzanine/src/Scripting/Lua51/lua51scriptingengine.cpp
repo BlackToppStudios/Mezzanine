@@ -64,9 +64,10 @@ extern "C"
 
     int luaopen_MezzanineXML(lua_State* L);
     int luaopen_MezzanineXMLSafe(lua_State* L);
-}
 
-#include <iostream>
+    int luaopen_MezzanineThreading(lua_State* L);
+    int luaopen_MezzanineThreadingSafe(lua_State* L);
+}
 
 namespace Mezzanine
  {
@@ -321,7 +322,11 @@ namespace Mezzanine
                 if(LibrariesToOpen & MezzXMLLib)
                     { OpenMezzanineXMLLibrary(); }
                 if(LibrariesToOpen & MezzXMLSafeLib)
-                { OpenMezzanineXMLSafeLibrary(); }
+                    { OpenMezzanineXMLSafeLibrary(); }
+                if(LibrariesToOpen & MezzThreadingLib)
+                    { OpenMezzanineThreadingLibrary(); }
+                if(LibrariesToOpen & MezzThreadingSafeLib)
+                    { OpenMezzanineThreadingSafeLibrary(); }
             }
 
             void Lua51ScriptingEngine::AliasLibrary(const String& Base, const String& Sub, const String& Alias)
@@ -379,11 +384,26 @@ namespace Mezzanine
                 SetXMLSafe();
             }
 
+            void Lua51ScriptingEngine::OpenMezzanineThreadingLibrary()
+            {
+                luaopen_MezzanineThreading(State);
+                SetThreading();
+            }
+            void Lua51ScriptingEngine::OpenMezzanineThreadingSafeLibrary()
+            {
+                luaopen_MezzanineThreadingSafe(State);
+                SetThreadingSafe();
+            }
+
             void Lua51ScriptingEngine::SetXML()
                 { AliasLibrary("Mezzanine", "MezzanineXML", "XML"); }
-
             void Lua51ScriptingEngine::SetXMLSafe()
                 { AliasLibrary("MezzanineSafe", "MezzanineXMLSafe", "XML"); }
+
+            void Lua51ScriptingEngine::SetThreading()
+                { AliasLibrary("Mezzanine", "MezzanineThreading", "Threading"); }
+            void Lua51ScriptingEngine::SetThreadingSafe()
+                { AliasLibrary("MezzanineSafe", "MezzanineThreadingSafe", "Threading"); }
 
         } // Lua
     } // Scripting

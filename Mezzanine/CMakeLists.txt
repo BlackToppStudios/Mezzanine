@@ -484,6 +484,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingmainlua51unsafe.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingxmllua51.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingxmllua51unsafe.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingthreadinglua51.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51script.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptargument.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptingengine.cpp"
@@ -881,6 +883,23 @@ if(${Mezz_SWIG})
             PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unsafe Mezzanine XML library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        # Threading/dagframescheduler.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Threading library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_THREADING -o Scripting/Lua51/scriptbindingthreadinglua51.cpp Threading/dagframescheduler.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unsafe Mezzanine Threading library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
