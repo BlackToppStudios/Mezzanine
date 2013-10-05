@@ -130,13 +130,17 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
 
+        #ifndef SWIG
         /// @brief Manually sets the location of the World Object.
         /// @details Calling this function prior to adding it to the World will have no effect. @n
         /// In most situations you won't want to use this function, and instead produce movement through physics functions.
         /// @param x Location on the X vector.
         /// @param y Location on the Y vector.
         /// @param z Location on the Z vector.
+        /// @note This overload is not available in scripting Languages, use SetLocation(const Vector3& Location)
         virtual void SetLocation(const Real& x, const Real& y, const Real& z);
+        #endif// \SWIG
+
         /// @brief Manually sets the location of the World Object.
         /// @details Calling this function prior to adding it to the World will have no effect. @n
         /// In most situations you won't want to use this function, and instead produce movement through physics functions.
@@ -277,8 +281,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
 
+        #ifndef SWIG
         /// @copydoc WorldObject::SetLocation(Vector3&)
         virtual void SetLocation(const Vector3& Location);
+        #endif // \SWIG To prevent overload errors
         /// @copydoc WorldObject::GetLocation()
         virtual Vector3 GetLocation() const;
 

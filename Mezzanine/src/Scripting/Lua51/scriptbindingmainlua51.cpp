@@ -18998,42 +18998,7 @@ static swig_lua_class *swig_Mezzanine_WorldObjectGraphicsSettings_bases[] = {0};
 static const char *swig_Mezzanine_WorldObjectGraphicsSettings_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_WorldObjectGraphicsSettings = { "WorldObjectGraphicsSettings", &SWIGTYPE_p_Mezzanine__WorldObjectGraphicsSettings,_wrap_new_WorldObjectGraphicsSettings, swig_delete_WorldObjectGraphicsSettings, swig_Mezzanine_WorldObjectGraphicsSettings_methods, swig_Mezzanine_WorldObjectGraphicsSettings_attributes, swig_Mezzanine_WorldObjectGraphicsSettings_bases, swig_Mezzanine_WorldObjectGraphicsSettings_base_names };
 
-static int _wrap_WorldObject_SetLocation__SWIG_0(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Real *arg3 = 0 ;
-  Mezzanine::Real *arg4 = 0 ;
-  Mezzanine::Real temp2 ;
-  Mezzanine::Real temp3 ;
-  Mezzanine::Real temp4 ;
-  
-  SWIG_check_num_args("Mezzanine::WorldObject::SetLocation",4,4)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldObject::SetLocation",1,"Mezzanine::WorldObject *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::WorldObject::SetLocation",2,"Mezzanine::Real const &");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::WorldObject::SetLocation",3,"Mezzanine::Real const &");
-  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::WorldObject::SetLocation",4,"Mezzanine::Real const &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WorldObject,0))){
-    SWIG_fail_ptr("WorldObject_SetLocation",1,SWIGTYPE_p_Mezzanine__WorldObject);
-  }
-  
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  temp3=(Mezzanine::Real)lua_tonumber(L,3); arg3=&temp3;
-  temp4=(Mezzanine::Real)lua_tonumber(L,4); arg4=&temp4;
-  (arg1)->SetLocation((Mezzanine::Real const &)*arg2,(Mezzanine::Real const &)*arg3,(Mezzanine::Real const &)*arg4);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_WorldObject_SetLocation__SWIG_1(lua_State* L) {
+static int _wrap_WorldObject_SetLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
@@ -19060,75 +19025,6 @@ static int _wrap_WorldObject_SetLocation__SWIG_1(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_WorldObject_SetLocation(lua_State* L) {
-  int argc;
-  int argv[5]={
-    1,2,3,4,5
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__WorldObject, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector3, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        return _wrap_WorldObject_SetLocation__SWIG_1(L);
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__WorldObject, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_WorldObject_SetLocation__SWIG_0(L);
-          }
-        }
-      }
-    }
-  }
-  
-  lua_pushstring(L,"Wrong arguments for overloaded function 'WorldObject_SetLocation'\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::WorldObject::SetLocation(Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Real const &)\n"
-    "    Mezzanine::WorldObject::SetLocation(Mezzanine::Vector3 const &)\n");
-  lua_error(L);return 0;
 }
 
 
@@ -19642,42 +19538,7 @@ static swig_lua_class *swig_Mezzanine_WorldObject_bases[] = {0};
 static const char *swig_Mezzanine_WorldObject_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_WorldObject = { "WorldObject", &SWIGTYPE_p_Mezzanine__WorldObject,0, swig_delete_WorldObject, swig_Mezzanine_WorldObject_methods, swig_Mezzanine_WorldObject_attributes, swig_Mezzanine_WorldObject_bases, swig_Mezzanine_WorldObject_base_names };
 
-static int _wrap_NonStaticWorldObject_SetLocation__SWIG_0_0(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
-  Mezzanine::Real *arg2 = 0 ;
-  Mezzanine::Real *arg3 = 0 ;
-  Mezzanine::Real *arg4 = 0 ;
-  Mezzanine::Real temp2 ;
-  Mezzanine::Real temp3 ;
-  Mezzanine::Real temp4 ;
-  
-  SWIG_check_num_args("SetLocation",4,4)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("SetLocation",1,"Mezzanine::NonStaticWorldObject *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("SetLocation",2,"Mezzanine::Real const &");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("SetLocation",3,"Mezzanine::Real const &");
-  if(!lua_isnumber(L,4)) SWIG_fail_arg("SetLocation",4,"Mezzanine::Real const &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__NonStaticWorldObject,0))){
-    SWIG_fail_ptr("NonStaticWorldObject_SetLocation",1,SWIGTYPE_p_Mezzanine__NonStaticWorldObject);
-  }
-  
-  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
-  temp3=(Mezzanine::Real)lua_tonumber(L,3); arg3=&temp3;
-  temp4=(Mezzanine::Real)lua_tonumber(L,4); arg4=&temp4;
-  (arg1)->SetLocation((Mezzanine::Real const &)*arg2,(Mezzanine::Real const &)*arg3,(Mezzanine::Real const &)*arg4);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_NonStaticWorldObject_SetLocation__SWIG_0_1(lua_State* L) {
+static int _wrap_NonStaticWorldObject_SetLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
@@ -19704,130 +19565,6 @@ static int _wrap_NonStaticWorldObject_SetLocation__SWIG_0_1(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_NonStaticWorldObject_SetLocation__SWIG_1(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::NonStaticWorldObject::SetLocation",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::NonStaticWorldObject::SetLocation",1,"Mezzanine::NonStaticWorldObject *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::NonStaticWorldObject::SetLocation",2,"Mezzanine::Vector3 const &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__NonStaticWorldObject,0))){
-    SWIG_fail_ptr("NonStaticWorldObject_SetLocation",1,SWIGTYPE_p_Mezzanine__NonStaticWorldObject);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
-    SWIG_fail_ptr("NonStaticWorldObject_SetLocation",2,SWIGTYPE_p_Mezzanine__Vector3);
-  }
-  
-  (arg1)->SetLocation((Mezzanine::Vector3 const &)*arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_NonStaticWorldObject_SetLocation(lua_State* L) {
-  int argc;
-  int argv[5]={
-    1,2,3,4,5
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__NonStaticWorldObject, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector3, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        return _wrap_NonStaticWorldObject_SetLocation__SWIG_0_1(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__NonStaticWorldObject, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector3, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        return _wrap_NonStaticWorldObject_SetLocation__SWIG_1(L);
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__NonStaticWorldObject, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_NonStaticWorldObject_SetLocation__SWIG_0_0(L);
-          }
-        }
-      }
-    }
-  }
-  
-  lua_pushstring(L,"Wrong arguments for overloaded function 'NonStaticWorldObject_SetLocation'\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    SetLocation(Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Real const &)\n"
-    "    SetLocation(Mezzanine::Vector3 const &)\n"
-    "    Mezzanine::NonStaticWorldObject::SetLocation(Mezzanine::Vector3 const &)\n");
-  lua_error(L);return 0;
 }
 
 

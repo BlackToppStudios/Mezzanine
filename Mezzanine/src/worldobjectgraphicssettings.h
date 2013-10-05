@@ -199,6 +199,7 @@ namespace Mezzanine
     };//worldobjectgraphicssettings
 }//Mezzanine
 
+#ifndef SWIG
 /// @brief Serializes the passed Mezzanine::WorldObjectGraphicsSettings to XML
 /// @param stream The ostream to send the xml to.
 /// @param Ev the Mezzanine::WorldObjectGraphicsSettings to be serialized
@@ -216,5 +217,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::WorldObject
 /// @param Ev the Mezzanine::WorldObjectGraphicsSettings to be reset.
 /// @return This returns theXML::Node that was passed in.
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::WorldObjectGraphicsSettings& Ev);
+#endif // \ SWIG
 
 #endif
