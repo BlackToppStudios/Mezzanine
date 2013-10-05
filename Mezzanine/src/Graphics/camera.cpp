@@ -63,9 +63,10 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        Camera::Camera(const String& Name, CameraManager* Manager)
+        Camera::Camera(const String& Name, CameraManager* Manager) :
+            CamManager(Manager)
         {
-            Ogre::Camera* OgreCam = Manager->SceneMan->_GetGraphicsWorldPointer()->createCamera(Name);
+            Ogre::Camera* OgreCam = this->CamManager->GetScene()->_GetGraphicsWorldPointer()->createCamera(Name);
             this->Construct(OgreCam, Manager);
         }
 
@@ -77,7 +78,6 @@ namespace Mezzanine
         void Camera::Construct(Ogre::Camera* Camera, CameraManager* Manager)
         {
             this->Cam = Camera;
-            this->CamManager = Manager;
             this->SetNearClipDistance(5.0f);
             this->SetFarClipDistance(5000.0f);
             this->SetFixedYawAxis(true,Mezzanine::Vector3(0,1,0));
@@ -85,8 +85,8 @@ namespace Mezzanine
 
         Camera::~Camera()
         {
-            if(CamManager->SceneMan && CamManager->SceneMan->_GetGraphicsWorldPointer())
-                { CamManager->SceneMan->_GetGraphicsWorldPointer()->destroyCamera(Cam); }
+            if(this->CamManager->GetScene() && this->CamManager->GetScene()->_GetGraphicsWorldPointer())
+                { this->CamManager->GetScene()->_GetGraphicsWorldPointer()->destroyCamera(Cam); }
         }
 
         ConstString& Camera::GetName() const
