@@ -97,9 +97,9 @@ namespace
     }
 
     /// @internal
-    /// @brief Converts an Ogre BillboardType enum value to it's corresponding Mezzanine type.
-    /// @param Type The Ogre type to be converted.
-    /// @return Returns the Mezzanine BillboardType corresponding to the provided Ogre type.
+    /// @brief Converts an Ogre BillboardRotation enum value to it's corresponding Mezzanine type.
+    /// @param Rotation The Ogre type to be converted.
+    /// @return Returns the Mezzanine BillboardRotation corresponding to the provided Ogre type.
     Mezzanine::Graphics::BillboardRotation ConvertBillboardRotation(const Ogre::BillboardRotationType Rotation)
     {
         switch(Rotation)
@@ -110,9 +110,9 @@ namespace
         return Mezzanine::Graphics::BBR_TexureCoord;
     }
     /// @internal
-    /// @brief Converts a Mezzanine BillboardType enum value to it's corresponding Ogre type.
-    /// @param Type The Mezzanine type to be converted.
-    /// @return Returns the Ogre BillboardType corresponding to the provided Mezzanine type.
+    /// @brief Converts a Mezzanine BillboardRotation enum value to it's corresponding Ogre type.
+    /// @param Rotation The Mezzanine type to be converted.
+    /// @return Returns the Ogre BillboardRotation corresponding to the provided Mezzanine type.
     Ogre::BillboardRotationType ConvertBillboardRotation(const Mezzanine::Graphics::BillboardRotation Rotation)
     {
         switch(Rotation)
