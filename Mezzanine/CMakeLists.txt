@@ -720,6 +720,8 @@ set(OGRE_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build."
 set(OGRE_CONFIG_THREADS 0 CACHE INT "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_CONFIG_THREAD_PROVIDER "" CACHE STRING "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_BUILD_PLUGIN_CG FALSE CACHE BOOL "Forcing Ogre to disable CG, because it is disgusting." FORCE)
+set(OGRE_CONFIG_ALLOCATOR 1 CACHE STRING "Forcing static build for Mezzanine build." FORCE)
+
 
 # Bullet related values
 set(BUILD_AMD_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
