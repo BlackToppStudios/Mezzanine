@@ -96,6 +96,15 @@ namespace Mezzanine
             BBT_Perpendicular_Self      ///< Billboards are oriented around their own individually set direction axis, which will act as their local Z axis.  Common Up Vector needs to be defined for this setting.
         };
 
+        /// @enum CameraPolyMode
+        /// @brief This is used by CameraProxies to quickly set a different render mode that is useful for debugging graphics renders.
+        enum CameraPolyMode
+        {
+            CPM_Points    = 1,        ///< Only points for each of the vertices are rendered.
+            CPM_WireFrame = 2,        ///< Wireframes for all the meshes and geometry are rendered.
+            CPM_Solid     = 3         ///< Normal rendering.
+        };
+
         /// @enum LightType
         /// @brief This is used by LightProxies to describe how light is emitted from the proxy source.
         enum LightType
@@ -103,6 +112,28 @@ namespace Mezzanine
             LT_Directional = 0,    ///< From one direction, like sunlight.
             LT_Point       = 1,    ///< From a point in space, like a Torch, campfire, muzzle flash, Mutant Fireflies, bonfires, light bulbs, non-hooded lantern, the DnD D20 Light spell, explosions, and scotch tape separating from the roll in a unlit vacuum. There may be other uses, be creative.
             LT_Spotlight   = 2     ///< From a point emanating in a cone, like a flashlight, hooded lantern, really bright computer screens, flood lights, older style space heaters, Concert lights, camera flashes, etc...
+        };
+
+        /// @enum OrientationMode
+        /// @brief This is used by CameraProxies to determine the orientation of the camera frustrum.
+        enum OrientationMode
+        {
+            OM_Degree_0       = 0,
+            OM_Degree_90      = 1,
+            OM_Degree_180     = 2,
+            OM_Degree_270     = 3,
+
+            OM_Portrait       = OM_Degree_0,
+            OM_LandscapeRight = OM_Degree_90,
+            OM_LandscapeLeft  = OM_Degree_270
+        };
+
+        /// @enum ProjectionType
+        /// @brief Values for storing how perspective should be interpretted
+        enum ProjectionType
+        {
+            PT_Orthographic    = 0,        ///< No projection is used, objects appear to be flat.
+            PT_Perspective     = 1         ///< Normal (realistic) perspective.
         };
 
         /// @enum RenderSystem
