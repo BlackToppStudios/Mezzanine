@@ -42,7 +42,7 @@
 
 #include "Graphics/viewport.h"
 #include "Graphics/cameramanager.h"
-#include "Graphics/camera.h"
+#include "Graphics/cameraproxy.h"
 #include "Graphics/gamewindow.h"
 
 #include <Ogre.h>
@@ -51,11 +51,11 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        Viewport::Viewport(Camera* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow)
+        Viewport::Viewport(CameraProxy* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow)
             : Parent(ParentWindow),
               ViewportCam(ViewportCamera)
         {
-            Ogre::Camera* ViewCam = ViewportCamera ? ViewportCamera->GetOgreCamera() : NULL;
+            Ogre::Camera* ViewCam = ViewportCamera ? ViewportCamera->_GetGraphicsObject() : NULL;
             OgreViewport = Parent->_GetOgreWindowPointer()->addViewport(ViewCam,ZOrder);
         }
 
@@ -67,9 +67,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Camera and parent Management
 
-        void Viewport::SetCamera(Camera* ViewportCamera)
+        void Viewport::SetCamera(CameraProxy* ViewportCamera)
         {
-            Ogre::Camera* ViewCam = ViewportCamera ? ViewportCamera->GetOgreCamera() : NULL;
+            Ogre::Camera* ViewCam = ViewportCamera ? ViewportCamera->_GetGraphicsObject() : NULL;
             if(ViewportCam && ViewportCam != ViewportCamera)
                 ViewportCam->CameraVP = NULL;
 
@@ -79,7 +79,7 @@ namespace Mezzanine
                 ViewportCam->CameraVP = this;
         }
 
-        Camera* Viewport::GetViewportCamera()
+        CameraProxy* Viewport::GetViewportCamera()
         {
             return ViewportCam;
         }

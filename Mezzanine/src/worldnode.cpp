@@ -44,7 +44,7 @@
 #include "worldnode.h"
 #include "Graphics/scenemanager.h"
 #include "exception.h"
-#include "Graphics/camera.h"
+#include "Graphics/cameraproxy.h"
 #include "actorbase.h"
 #include "stringtool.h"
 #include "entresol.h"

@@ -348,7 +348,7 @@ int main(int argc, char **argv)
 
     //Create the windows!
     Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
-    Graphics::Camera* FirstCam = TheEntresol->GetCameraManager()->CreateCamera("FirstCam");
+    Graphics::CameraProxy* FirstCam = TheEntresol->GetCameraManager()->CreateCamera("FirstCam");
     //Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
     FirstWindow->CreateViewport(FirstCam);
     FirstCam->SetLocation( Vector3(0,50,900) );

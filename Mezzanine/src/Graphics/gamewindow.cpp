@@ -44,7 +44,7 @@
 #include "Graphics/gamewindow.h"
 #include "crossplatform.h"
 #include "Graphics/viewport.h"
-#include "Graphics/camera.h"
+#include "Graphics/cameraproxy.h"
 #include "graphicsmanager.h"
 #include "entresol.h"
 
@@ -196,7 +196,7 @@ namespace Mezzanine
         {
             for( ViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
             {
-                Camera* Cam = (*ViewIt).second->GetViewportCamera();
+                CameraProxy* Cam = (*ViewIt).second->GetViewportCamera();
                 if(Cam)
                     Cam->SetAspectRatio((Real)((*ViewIt).second->GetActualWidth()) / (Real)((*ViewIt).second->GetActualHeight()));
             }
@@ -217,7 +217,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Viewport Management
 
-        Viewport* GameWindow::CreateViewport(Camera* ViewportCamera, const Integer ZOrder)
+        Viewport* GameWindow::CreateViewport(CameraProxy* ViewportCamera, const Integer ZOrder)
         {
             Whole Order = ( ZOrder == 0 ? this->Viewports.size() : ZOrder );
             Viewport* NewViewport = new Viewport(ViewportCamera,Order,this);
@@ -415,90 +415,58 @@ namespace Mezzanine
         // Window Settings Methods
 
         const String& GameWindow::GetWindowCaption()
-        {
-            return this->OgreWindow->getName();
-        }
+            { return this->OgreWindow->getName(); }
 
         Whole GameWindow::GetFSAALevel() const
-        {
-            return this->OgreWindow->getFSAA();
-        }
+            { return this->OgreWindow->getFSAA(); }
 
         void GameWindow::EnableVsync(bool Enable)
-        {
-            this->OgreWindow->setVSyncEnabled(Enable);
-        }
+            { this->OgreWindow->setVSyncEnabled(Enable); }
 
         bool GameWindow::VsyncEnabled() const
-        {
-            return this->OgreWindow->isVSyncEnabled();
-        }
+            { return this->OgreWindow->isVSyncEnabled(); }
 
         void GameWindow::SetHidden(bool Hidden)
-        {
-            this->OgreWindow->setHidden(Hidden);
-        }
+            { this->OgreWindow->setHidden(Hidden); }
 
         bool GameWindow::IsHidden() const
-        {
-            return this->OgreWindow->isHidden();
-        }
+            { return this->OgreWindow->isHidden(); }
 
         bool GameWindow::BorderIsResizeable() const
-        {
-            return this->GWID->Resizeable;
-        }
+            { return this->GWID->Resizeable; }
 
         bool GameWindow::IsBorderless() const
-        {
-            return this->GWID->Borderless;
-        }
+            { return this->GWID->Borderless; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Window Stats Methods
 
         Real GameWindow::GetLastFPS() const
-        {
-            return this->OgreWindow->getLastFPS();
-        }
+            { return this->OgreWindow->getLastFPS(); }
 
         Real GameWindow::GetAverageFPS() const
-        {
-            return this->OgreWindow->getAverageFPS();
-        }
+            { return this->OgreWindow->getAverageFPS(); }
 
         Real GameWindow::GetBestFPS() const
-        {
-            return this->OgreWindow->getBestFPS();
-        }
+            { return this->OgreWindow->getBestFPS(); }
 
         Real GameWindow::GetWorstFPS() const
-        {
-            return this->OgreWindow->getWorstFPS();
-        }
+            { return this->OgreWindow->getWorstFPS(); }
 
         Real GameWindow::GetBestFrameTime() const
-        {
-            return this->OgreWindow->getBestFrameTime();
-        }
+            { return this->OgreWindow->getBestFrameTime(); }
 
         Real GameWindow::GetWorstFrameTime() const
-        {
-            return this->OgreWindow->getWorstFrameTime();
-        }
+            { return this->OgreWindow->getWorstFrameTime(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
         Ogre::RenderWindow* GameWindow::_GetOgreWindowPointer()
-        {
-            return this->OgreWindow;
-        }
+            { return this->OgreWindow; }
 
         SDL_Window* GameWindow::_GetSDLWindowPointer()
-        {
-            return this->SDLWindow;
-        }
+            { return this->SDLWindow; }
     }//Graphics
 }//Mezzanine
 

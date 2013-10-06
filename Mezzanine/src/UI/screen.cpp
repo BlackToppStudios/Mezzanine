@@ -66,7 +66,7 @@
 #include "Graphics/viewport.h"
 #include "Graphics/cameramanager.h"
 #include "Graphics/scenemanager.h"
-#include "Graphics/camera.h"
+#include "Graphics/cameraproxy.h"
 #include "mathtool.h"
 
 #include <OgreRoot.h>
@@ -171,12 +171,10 @@ namespace Mezzanine
             /// viewport configuration occur this will pick up on that.  However the render queue listener that is added in
             /// this class' constructor never gets re-assigned.  This needs to be fixed.  Until then if a change does occur
             /// the UI will be rendered at a different time then it needs to be, potentially overwritten by the scene render.
-            if(GameViewport)
-            {
-                Graphics::Camera* Cam = GameViewport->GetViewportCamera();
-                if(Cam)
-                {
-                    Graphics::SceneManager* SceneMan = Cam->GetCameraManager()->GetScene();
+            if(GameViewport) {
+                Graphics::CameraProxy* Cam = GameViewport->GetViewportCamera();
+                if(Cam) {
+                    Graphics::SceneManager* SceneMan = static_cast<Graphics::CameraManager*>( Cam->GetCreator() )->GetScene();
                     if(SceneMan) return SceneMan;
                     else return NULL;
                 }else return NULL;

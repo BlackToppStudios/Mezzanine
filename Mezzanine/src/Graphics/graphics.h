@@ -60,7 +60,6 @@ namespace Mezzanine
 #include "Graphics/billboard.h"
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/bone.h"
-#include "Graphics/camera.h"
 #include "Graphics/cameraproxy.h"
 #include "Graphics/entityproxy.h"
 #include "Graphics/gamewindow.h"

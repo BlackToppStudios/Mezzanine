@@ -58,6 +58,7 @@ namespace Mezzanine
     namespace Graphics
     {
         class Viewport;
+        class CameraManager;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the proxy class for placing and manipulating a camera in the scene.
         /// @details
@@ -65,12 +66,17 @@ namespace Mezzanine
         class MEZZ_LIB CameraProxy : public RenderableProxy
         {
         protected:
+            friend class Viewport;
+
             /// @internal
             /// @brief A string containing the forward facing name of this proxy.
             String CamName;
             /// @internal
             /// @brief A vector3 representing the fixed axis on which this camera will always Yaw/rotate.
             Vector3 FixedYawAxis;
+            /// @internal
+            /// @brief A pointer to the CameraManager that created this camera.
+            CameraManager* CamManager;
             /// @internal
             /// @brief A pointer to the internal Camera this proxy is based on.
             Ogre::Camera* GraphicsCamera;
@@ -97,7 +103,7 @@ namespace Mezzanine
             /// @brief Class constructor.
             /// @param Name The name to be given to this CameraProxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            CameraProxy(const String& Name, SceneManager* Creator);
+            CameraProxy(const String& Name, CameraManager* Creator);
             /// @brief Class destructor.
             virtual ~CameraProxy();
 
@@ -109,6 +115,8 @@ namespace Mezzanine
 
             /// @copydoc WorldProxy::GetProxyType() const
             virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc WorldProxy::GetCreator() const
+            virtual WorldManager* GetCreator() const;
             /// @brief Gets the Viewport this camera is attached to, if any.
             /// @return Returns a pointer to the Viewport this camera is rendering to, or NULL if not attached.
             virtual Viewport* GetViewport() const;

@@ -56,7 +56,7 @@ namespace Mezzanine
         class GraphicsManager;
         class Viewport;
         class GameWindowInternalData;
-        class Camera;
+        class CameraProxy;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class GameWindow
@@ -117,7 +117,7 @@ namespace Mezzanine
                 /// @param VeiwportCamera The camera that is to be attached to this Viewport.
                 /// @param ZOrder The render order of this viewport relative to other viewports in this window.
                 /// 0 means it'll use the current viewport count to determine the ZOrder.
-                Viewport* CreateViewport(Camera* ViewportCamera, const Integer ZOrder = 0);
+                Viewport* CreateViewport(CameraProxy* ViewportCamera, const Integer ZOrder = 0);
                 /// @brief Gets a viewport by index.
                 /// @return Returns a pointer to the viewport requested.
                 Viewport* GetViewport(const Whole Index) const;

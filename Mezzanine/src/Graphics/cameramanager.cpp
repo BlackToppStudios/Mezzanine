@@ -43,7 +43,7 @@
 #include "Graphics/cameramanager.h"
 #include "Graphics/scenemanager.h"
 #include "Graphics/graphicsmanager.h"
-#include "Graphics/camera.h"
+#include "Graphics/cameraproxy.h"
 
 #include "cameracontroller.h"
 #include "entresol.h"
@@ -82,24 +82,24 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Camera Management
 
-        Camera* CameraManager::CreateCamera()
+        CameraProxy* CameraManager::CreateCamera()
         {
             StringStream CamName;
             CamName << "Camera" << this->Cameras.size() + 1;
             return this->CreateCamera(CamName.str());
         }
 
-        Camera* CameraManager::CreateCamera(const String& Name)
+        CameraProxy* CameraManager::CreateCamera(const String& Name)
         {
             if( !this->Initialized ) {
                 this->Initialize();
             }
-            Camera* NewCam = new Camera(Name,this);
+            CameraProxy* NewCam = new CameraProxy(Name,this);
             this->Cameras.push_back(NewCam);
             return NewCam;
         }
 
-        Camera* CameraManager::GetCamera(const String& Name)
+        CameraProxy* CameraManager::GetCamera(const String& Name)
         {
             for( CameraIterator CamIt = this->Cameras.begin() ; CamIt != this->Cameras.end() ; ++CamIt )
             {
@@ -109,7 +109,7 @@ namespace Mezzanine
             return NULL;
         }
 
-        Camera* CameraManager::GetCamera(const Whole& Index)
+        CameraProxy* CameraManager::GetCamera(const Whole& Index)
         {
             return this->Cameras[Index];
         }
@@ -121,7 +121,7 @@ namespace Mezzanine
 
         void CameraManager::DestroyAllCameras()
         {
-            Camera* camera = NULL;
+            CameraProxy* camera = NULL;
             for( CameraIterator it = this->Cameras.begin() ; it != this->Cameras.end() ; it++ )
             {
                 camera = (*it);
@@ -134,7 +134,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Camera Controller Management
 
-        CameraController* CameraManager::GetOrCreateCameraController(Camera* Controlled)
+        CameraController* CameraManager::GetOrCreateCameraController(CameraProxy* Controlled)
         {
             CameraControllerIterator CamIt = this->CameraControllers.find(Controlled);
             if(CamIt == this->CameraControllers.end())
@@ -162,7 +162,7 @@ namespace Mezzanine
             }
         }
 
-        void CameraManager::DestroyCameraController(Camera* ControlledCam)
+        void CameraManager::DestroyCameraController(CameraProxy* ControlledCam)
         {
             if(this->CameraControllers.empty())
                 return;

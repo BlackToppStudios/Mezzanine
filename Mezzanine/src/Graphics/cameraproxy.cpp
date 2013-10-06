@@ -147,8 +147,9 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        CameraProxy::CameraProxy(const String& Name, SceneManager* Creator) :
-            RenderableProxy(Creator),
+        CameraProxy::CameraProxy(const String& Name, CameraManager* Creator) :
+            RenderableProxy(Creator->GetScene()),
+            CamManager(Creator),
             GraphicsCamera(NULL),
             CameraVP(NULL),
             UseFixedYaw(true)
@@ -189,6 +190,9 @@ namespace Mezzanine
 
         Mezzanine::ProxyType CameraProxy::GetProxyType() const
             { return Mezzanine::PT_Graphics_CameraProxy; }
+
+        WorldManager* CameraProxy::GetCreator() const
+            { return this->CamManager; }
 
         Viewport* CameraProxy::GetViewport() const
             { return this->CameraVP; }
