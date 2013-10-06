@@ -101,7 +101,6 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Functions
-
             /// @brief Gets the name of this attachable.
             /// @return Returns a const reference to a string containing the name of this attachable.
             virtual ConstString& GetName() const = 0;

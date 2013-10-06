@@ -134,7 +134,7 @@ class lua51tests : public UnitTestGroup
             {
                 TEST(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName(), "Engine::ImplementationName");
                 TEST(541+2048==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
-                TEST(511+1024==Scripting::Lua::Lua51ScriptingEngine::AllLibs, "Engine::LuaLibEnumUnsafe");
+                TEST(511+1024+4096==Scripting::Lua::Lua51ScriptingEngine::AllLibs, "Engine::LuaLibEnumUnsafe");
             }
 
             //////////////////////////////////////////////////////////////////////////////////////////
@@ -383,6 +383,12 @@ class lua51tests : public UnitTestGroup
 
 
             {
+                // files/Classes not tested
+                // worldnode.h
+                // worldobjectgraphicssettings.h
+                // worldobject.h
+                // worldobjectphysicssettings.h
+
                 // Specific class swig wrapping tests
                 TestLuaScript("function MakePlane(x)\n"
                               "   d=x*3\n"

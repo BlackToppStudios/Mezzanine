@@ -553,6 +553,7 @@ namespace Mezzanine
     };//colorvalue
 }//Mezzanine
 
+#ifndef SWIG
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 /// @brief Serializes the passed Mezzanine::ColourValue to XML
@@ -571,7 +572,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ColourValue
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::ColourValue.
 /// @param Ev the Mezzanine::ColourValue to be reset.
 void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ColourValue& Ev);
-
+#endif
 
 
 #endif

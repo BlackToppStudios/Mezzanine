@@ -484,6 +484,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingmainlua51unsafe.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingxmllua51.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingxmllua51unsafe.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingthreadinglua51.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51script.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptargument.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptingengine.cpp"
@@ -580,8 +582,8 @@ option(Mezz_Audio_UseOALS "Use OpenAL-Soft as the audio provider for the engine.
 
 if(Mezz_Audio_UseOALS)
     if(AudioProviderSet)
-    message(FATAL_ERROR "A provider for the Audio subsystem has already been set.  Only one provider may be selected.")
-        endif(AudioProviderSet)
+        message(FATAL_ERROR "A provider for the Audio subsystem has already been set.  Only one provider may be selected.")
+    endif(AudioProviderSet)
     set(AudioProviderSet 1)
 
     set(Mezzanine_sources ${Mezzanine_sources}
@@ -710,12 +712,13 @@ endfunction(CopyFilesDuringBuild)
 set(LIBTYPE "STATIC") # OpenAL
 file(MAKE_DIRECTORY "${ProjectBinaryDir}include") # To not interfere with SDL build process
 set(OGRE_STATIC TRUE CACHE BOOL "Forcing static build for Mezzanine build." FORCE)
-#set(OGRE_STATIC_LIB TRUE CACHE BOOL "Forcing static build for Mezzanine build." FORCE)
 set(OGRE_SET_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_CONFIG_THREADS 0 CACHE INT "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_CONFIG_THREAD_PROVIDER "" CACHE STRING "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_BUILD_PLUGIN_CG FALSE CACHE BOOL "Forcing Ogre to disable CG, because it is disgusting." FORCE)
+set(OGRE_CONFIG_ALLOCATOR 1 CACHE STRING "Forcing static build for Mezzanine build." FORCE)
+
 
 # Bullet related values
 set(BUILD_AMD_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
@@ -881,6 +884,23 @@ if(${Mezz_SWIG})
             PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unsafe Mezzanine XML library for Lua."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        # Threading/dagframescheduler.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Threading library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_THREADING -o Scripting/Lua51/scriptbindingthreadinglua51.cpp Threading/dagframescheduler.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unsafe Mezzanine Threading library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )

@@ -131,20 +131,15 @@
 #include "vector3.h"                    // done
 
 #ifndef SWIG
-// more stuff swig shouldn't read yet
 #include "entresol.h"
-#endif // \no SWIG
+#endif
 
 #include "worldnode.h"                  // done
-
-#ifndef SWIG
 #include "worldobjectgraphicssettings.h"// done
-#endif // \no SWIG
-
 #include "worldobject.h"
+#include "worldobjectphysicssettings.h"
 
 #ifndef SWIG
-#include "worldobjectphysicssettings.h"
 #include "worldtrigger.h"
 #endif // \no SWIG
 
