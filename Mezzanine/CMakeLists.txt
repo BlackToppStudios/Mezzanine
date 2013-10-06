@@ -584,8 +584,8 @@ option(Mezz_Audio_UseOALS "Use OpenAL-Soft as the audio provider for the engine.
 
 if(Mezz_Audio_UseOALS)
     if(AudioProviderSet)
-    message(FATAL_ERROR "A provider for the Audio subsystem has already been set.  Only one provider may be selected.")
-        endif(AudioProviderSet)
+        message(FATAL_ERROR "A provider for the Audio subsystem has already been set.  Only one provider may be selected.")
+    endif(AudioProviderSet)
     set(AudioProviderSet 1)
 
     set(Mezzanine_sources ${Mezzanine_sources}
@@ -714,7 +714,6 @@ endfunction(CopyFilesDuringBuild)
 set(LIBTYPE "STATIC") # OpenAL
 file(MAKE_DIRECTORY "${ProjectBinaryDir}include") # To not interfere with SDL build process
 set(OGRE_STATIC TRUE CACHE BOOL "Forcing static build for Mezzanine build." FORCE)
-#set(OGRE_STATIC_LIB TRUE CACHE BOOL "Forcing static build for Mezzanine build." FORCE)
 set(OGRE_SET_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGRE_CONFIG_THREADS 0 CACHE INT "Forcing minimal build for Mezzanine build." FORCE)
