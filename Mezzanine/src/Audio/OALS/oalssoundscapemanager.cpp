@@ -425,13 +425,8 @@ namespace Mezzanine
             {
                 if( this->Initialized )
                 {
-                    OALS::AudioManager* AudioMan = static_cast<OALS::AudioManager*>(Audio::AudioManager::GetSingletonPtr());
-                    if( AudioMan == NULL )
-                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"A valid AudioManager is required for SoundScape operations."); }
-
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->BufferUpdate3DWork );
                     this->BufferUpdate3DWork->ClearDependencies();
-
                     this->Initialized = false;
                 }
             }
