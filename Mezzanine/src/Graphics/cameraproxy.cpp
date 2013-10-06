@@ -286,12 +286,103 @@ namespace Mezzanine
 
         void CameraProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
+            this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
 
+            XML::Node PropertiesNode = SelfRoot.AppendChild( CameraProxy::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("Name").SetValue( this->GetName() ) &&
+                PropertiesNode.AppendAttribute("PolygonMode").SetValue( this->GetPolygonMode() ) &&
+                PropertiesNode.AppendAttribute("ProjectionType").SetValue( this->GetProjectionType() ) &&
+                PropertiesNode.AppendAttribute("OrientationMode").SetValue( this->GetOrientationMode() ) &&
+                PropertiesNode.AppendAttribute("OrthoWidth").SetValue( this->GetOrthoWindowWidth() ) &&
+                PropertiesNode.AppendAttribute("OrthoHeight").SetValue( this->GetOrthoWindowHeight() ) &&
+                PropertiesNode.AppendAttribute("NearClipDistance").SetValue( this->GetNearClipDistance() ) &&
+                PropertiesNode.AppendAttribute("FarClipDistance").SetValue( this->GetFarClipDistance() ) &&
+                PropertiesNode.AppendAttribute("FieldOfView").SetValue( this->GetFieldOfViewY() ) &&
+                PropertiesNode.AppendAttribute("AspectRatio").SetValue( this->GetAspectRatio() ) &&
+                PropertiesNode.AppendAttribute("UseFixedYaw").SetValue( this->IsFixedYawEnabled() ) )
+            {
+                XML::Node FixedYawAxisNode = PropertiesNode.AppendChild("FixedYawAxis");
+                this->GetFixedYawAxis().ProtoSerialize( FixedYawAxisNode );
+
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",CameraProxy::GetSerializableName() + "Properties",true);
+            }
         }
 
         void CameraProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
+            this->RenderableProxy::ProtoDeSerializeProperties(SelfRoot);
 
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( CameraProxy::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    Bool UseFixed = true;
+                    Vector3 FixedYaw = Vector3::Unit_Y();
+                    Real OrthoWidth = 0, OrthoHeight = 0;
+
+                    CurrAttrib = PropertiesNode.GetAttribute("Name");
+                    if( !CurrAttrib.Empty() )
+                        this->CamName = CurrAttrib.AsString();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("PolygonMode");
+                    if( !CurrAttrib.Empty() )
+                        this->SetPolygonMode( static_cast<Graphics::CameraPolyMode>( CurrAttrib.AsWhole() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("ProjectionType");
+                    if( !CurrAttrib.Empty() )
+                        this->SetProjectionType( static_cast<Graphics::ProjectionType>( CurrAttrib.AsWhole() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("OrientationMode");
+                    if( !CurrAttrib.Empty() )
+                        this->SetOrientationMode( static_cast<Graphics::OrientationMode>( CurrAttrib.AsWhole() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("OrthoWidth");
+                    if( !CurrAttrib.Empty() )
+                        OrthoWidth = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("OrthoHeight");
+                    if( !CurrAttrib.Empty() )
+                        OrthoHeight = CurrAttrib.AsReal();
+
+                    this->SetOrthoWindow(OrthoWidth,OrthoHeight);
+
+                    CurrAttrib = PropertiesNode.GetAttribute("NearClipDistance");
+                    if( !CurrAttrib.Empty() )
+                        this->SetNearClipDistance( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("FarClipDistance");
+                    if( !CurrAttrib.Empty() )
+                        this->SetFarClipDistance( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("FieldOfView");
+                    if( !CurrAttrib.Empty() )
+                        this->SetFieldOfViewY( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AspectRatio");
+                    if( !CurrAttrib.Empty() )
+                        this->SetAspectRatio( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("UseFixedYaw");
+                    if( !CurrAttrib.Empty() )
+                        UseFixed = StringTools::ConvertToBool( CurrAttrib.AsString() );
+
+                    XML::Node FixedYawAxisNode = PropertiesNode.GetChild("FixedYawAxis").GetFirstChild();
+                    if( !FixedYawAxisNode.Empty() ) {
+                        FixedYaw.ProtoDeSerialize(FixedYawAxisNode);
+                    }
+
+                    this->SetFixedYawAxis(UseFixed,FixedYaw);
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (CameraProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,CameraProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
         }
 
         String CameraProxy::GetDerivedSerializableName() const
