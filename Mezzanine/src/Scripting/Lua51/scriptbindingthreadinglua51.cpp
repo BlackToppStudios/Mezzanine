@@ -1665,7 +1665,7 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[1]
 #define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[2]
 #define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[3]
-#define SWIGTYPE_p_Mezzanine__Threading__id swig_types[4]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[4]
 #define SWIGTYPE_p_SDL_Event swig_types[5]
 #define SWIGTYPE_p_bool swig_types[6]
 #define SWIGTYPE_p_char swig_types[7]
@@ -2630,7 +2630,7 @@ fail:
 static int _wrap_Thread_get_id(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Threading::Thread *arg1 = (Mezzanine::Threading::Thread *) 0 ;
-  Mezzanine::Threading::id result;
+  Mezzanine::Threading::ThreadId result;
   
   SWIG_check_num_args("Mezzanine::Threading::Thread::get_id",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::Thread::get_id",1,"Mezzanine::Threading::Thread const *");
@@ -2641,8 +2641,8 @@ static int _wrap_Thread_get_id(lua_State* L) {
   
   result = ((Mezzanine::Threading::Thread const *)arg1)->get_id();
   {
-    Mezzanine::Threading::id * resultptr = new Mezzanine::Threading::id((const Mezzanine::Threading::id &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Threading__id,1); SWIG_arg++;
+    Mezzanine::Threading::ThreadId * resultptr = new Mezzanine::Threading::ThreadId((const Mezzanine::Threading::ThreadId &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Threading__ThreadId,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -2717,13 +2717,13 @@ static swig_lua_class *swig_Mezzanine_Threading_Thread_bases[] = {0};
 static const char *swig_Mezzanine_Threading_Thread_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_Threading_Thread = { "Thread", &SWIGTYPE_p_Mezzanine__Threading__Thread,_wrap_new_Thread, swig_delete_Thread, swig_Mezzanine_Threading_Thread_methods, swig_Mezzanine_Threading_Thread_attributes, swig_Mezzanine_Threading_Thread_bases, swig_Mezzanine_Threading_Thread_base_names };
 
-static int _wrap_new_id__SWIG_0(lua_State* L) {
+static int _wrap_new_ThreadId__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Threading::id *result = 0 ;
+  Mezzanine::Threading::ThreadId *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::Threading::id::id",0,0)
-  result = (Mezzanine::Threading::id *)new Mezzanine::Threading::id();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__id,1); SWIG_arg++; 
+  SWIG_check_num_args("Mezzanine::Threading::ThreadId::ThreadId",0,0)
+  result = (Mezzanine::Threading::ThreadId *)new Mezzanine::Threading::ThreadId();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__ThreadId,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -2734,17 +2734,17 @@ fail:
 }
 
 
-static int _wrap_new_id__SWIG_1(lua_State* L) {
+static int _wrap_new_ThreadId__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   unsigned long arg1 ;
-  Mezzanine::Threading::id *result = 0 ;
+  Mezzanine::Threading::ThreadId *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::Threading::id::id",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Threading::id::id",1,"unsigned long");
+  SWIG_check_num_args("Mezzanine::Threading::ThreadId::ThreadId",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Threading::ThreadId::ThreadId",1,"unsigned long");
   SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
   arg1 = (unsigned long)lua_tonumber(L, 1);
-  result = (Mezzanine::Threading::id *)new Mezzanine::Threading::id(arg1);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__id,1); SWIG_arg++; 
+  result = (Mezzanine::Threading::ThreadId *)new Mezzanine::Threading::ThreadId(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__ThreadId,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -2755,20 +2755,20 @@ fail:
 }
 
 
-static int _wrap_new_id__SWIG_2(lua_State* L) {
+static int _wrap_new_ThreadId__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Threading::id *arg1 = 0 ;
-  Mezzanine::Threading::id *result = 0 ;
+  Mezzanine::Threading::ThreadId *arg1 = 0 ;
+  Mezzanine::Threading::ThreadId *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::Threading::id::id",1,1)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Threading::id::id",1,"Mezzanine::Threading::id const &");
+  SWIG_check_num_args("Mezzanine::Threading::ThreadId::ThreadId",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Threading::ThreadId::ThreadId",1,"Mezzanine::Threading::ThreadId const &");
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__id,0))){
-    SWIG_fail_ptr("new_id",1,SWIGTYPE_p_Mezzanine__Threading__id);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ThreadId,0))){
+    SWIG_fail_ptr("new_ThreadId",1,SWIGTYPE_p_Mezzanine__Threading__ThreadId);
   }
   
-  result = (Mezzanine::Threading::id *)new Mezzanine::Threading::id((Mezzanine::Threading::id const &)*arg1);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__id,1); SWIG_arg++; 
+  result = (Mezzanine::Threading::ThreadId *)new Mezzanine::Threading::ThreadId((Mezzanine::Threading::ThreadId const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__ThreadId,1); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -2779,7 +2779,7 @@ fail:
 }
 
 
-static int _wrap_new_id(lua_State* L) {
+static int _wrap_new_ThreadId(lua_State* L) {
   int argc;
   int argv[2]={
     1,2
@@ -2787,20 +2787,20 @@ static int _wrap_new_id(lua_State* L) {
   
   argc = lua_gettop(L);
   if (argc == 0) {
-    return _wrap_new_id__SWIG_0(L);
+    return _wrap_new_ThreadId__SWIG_0(L);
   }
   if (argc == 1) {
     int _v;
     {
       void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Threading__id, 0)) {
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Threading__ThreadId, 0)) {
         _v = 0;
       } else {
         _v = 1;
       }
     }
     if (_v) {
-      return _wrap_new_id__SWIG_2(L);
+      return _wrap_new_ThreadId__SWIG_2(L);
     }
   }
   if (argc == 1) {
@@ -2809,42 +2809,42 @@ static int _wrap_new_id(lua_State* L) {
       _v = lua_isnumber(L,argv[0]);
     }
     if (_v) {
-      return _wrap_new_id__SWIG_1(L);
+      return _wrap_new_ThreadId__SWIG_1(L);
     }
   }
   
-  lua_pushstring(L,"Wrong arguments for overloaded function 'new_id'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_ThreadId'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Threading::id::id()\n"
-    "    Mezzanine::Threading::id::id(unsigned long)\n"
-    "    Mezzanine::Threading::id::id(Mezzanine::Threading::id const &)\n");
+    "    Mezzanine::Threading::ThreadId::ThreadId()\n"
+    "    Mezzanine::Threading::ThreadId::ThreadId(unsigned long)\n"
+    "    Mezzanine::Threading::ThreadId::ThreadId(Mezzanine::Threading::ThreadId const &)\n");
   lua_error(L);return 0;
 }
 
 
-static void swig_delete_id(void *obj) {
-Mezzanine::Threading::id *arg1 = (Mezzanine::Threading::id *) obj;
+static void swig_delete_ThreadId(void *obj) {
+Mezzanine::Threading::ThreadId *arg1 = (Mezzanine::Threading::ThreadId *) obj;
 delete arg1;
 }
-static swig_lua_method swig_Mezzanine_Threading_id_methods[] = {
+static swig_lua_method swig_Mezzanine_Threading_ThreadId_methods[] = {
     {0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_id_attributes[] = {
+static swig_lua_attribute swig_Mezzanine_Threading_ThreadId_attributes[] = {
     {0,0,0}
 };
-static swig_lua_class *swig_Mezzanine_Threading_id_bases[] = {0};
-static const char *swig_Mezzanine_Threading_id_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_id = { "id", &SWIGTYPE_p_Mezzanine__Threading__id,_wrap_new_id, swig_delete_id, swig_Mezzanine_Threading_id_methods, swig_Mezzanine_Threading_id_attributes, swig_Mezzanine_Threading_id_bases, swig_Mezzanine_Threading_id_base_names };
+static swig_lua_class *swig_Mezzanine_Threading_ThreadId_bases[] = {0};
+static const char *swig_Mezzanine_Threading_ThreadId_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_ThreadId = { "ThreadId", &SWIGTYPE_p_Mezzanine__Threading__ThreadId,_wrap_new_ThreadId, swig_delete_ThreadId, swig_Mezzanine_Threading_ThreadId_methods, swig_Mezzanine_Threading_ThreadId_attributes, swig_Mezzanine_Threading_ThreadId_bases, swig_Mezzanine_Threading_ThreadId_base_names };
 
 static int _wrap_get_id(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Threading::id result;
+  Mezzanine::Threading::ThreadId result;
   
   SWIG_check_num_args("Mezzanine::Threading::this_thread::get_id",0,0)
   result = Mezzanine::Threading::this_thread::get_id();
   {
-    Mezzanine::Threading::id * resultptr = new Mezzanine::Threading::id((const Mezzanine::Threading::id &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Threading__id,1); SWIG_arg++;
+    Mezzanine::Threading::ThreadId * resultptr = new Mezzanine::Threading::ThreadId((const Mezzanine::Threading::ThreadId &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Threading__ThreadId,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -2930,7 +2930,7 @@ static swig_type_info _swigt__p_Mezzanine__Threading__Barrier = {"_p_Mezzanine__
 static swig_type_info _swigt__p_Mezzanine__Threading__Mutex = {"_p_Mezzanine__Threading__Mutex", "Mezzanine::Threading::Mutex *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Mutex, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__SpinLock = {"_p_Mezzanine__Threading__SpinLock", "Mezzanine::Threading::SpinLock *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_SpinLock, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Thread = {"_p_Mezzanine__Threading__Thread", "Mezzanine::Threading::Thread *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Thread, 0};
-static swig_type_info _swigt__p_Mezzanine__Threading__id = {"_p_Mezzanine__Threading__id", "Mezzanine::Threading::id *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_id, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__ThreadId = {"_p_Mezzanine__Threading__ThreadId", "Mezzanine::Threading::ThreadId *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ThreadId, 0};
 static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzanine::RawEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "Mezzanine::Bool *|bool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *|Mezzanine::Char8 *", 0, 0, (void*)0, 0};
@@ -2961,7 +2961,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__Threading__Mutex,
   &_swigt__p_Mezzanine__Threading__SpinLock,
   &_swigt__p_Mezzanine__Threading__Thread,
-  &_swigt__p_Mezzanine__Threading__id,
+  &_swigt__p_Mezzanine__Threading__ThreadId,
   &_swigt__p_SDL_Event,
   &_swigt__p_bool,
   &_swigt__p_char,
@@ -2992,7 +2992,7 @@ static swig_cast_info _swigc__p_Mezzanine__Threading__Barrier[] = {  {&_swigt__p
 static swig_cast_info _swigc__p_Mezzanine__Threading__Mutex[] = {  {&_swigt__p_Mezzanine__Threading__Mutex, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__SpinLock[] = {  {&_swigt__p_Mezzanine__Threading__SpinLock, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Thread[] = {  {&_swigt__p_Mezzanine__Threading__Thread, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Threading__id[] = {  {&_swigt__p_Mezzanine__Threading__id, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__ThreadId[] = {  {&_swigt__p_Mezzanine__Threading__ThreadId, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDL_Event[] = {  {&_swigt__p_SDL_Event, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
@@ -3023,7 +3023,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__Threading__Mutex,
   _swigc__p_Mezzanine__Threading__SpinLock,
   _swigc__p_Mezzanine__Threading__Thread,
-  _swigc__p_Mezzanine__Threading__id,
+  _swigc__p_Mezzanine__Threading__ThreadId,
   _swigc__p_SDL_Event,
   _swigc__p_bool,
   _swigc__p_char,

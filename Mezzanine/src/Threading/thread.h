@@ -81,7 +81,7 @@ namespace Mezzanine
     namespace Threading
     {
         // Forward Declaration
-        class id;
+        class ThreadId;
 
         /// @brief A small wrapper around the system thread.
         /// @details In general game code should not be creating this if they are using the
@@ -157,7 +157,7 @@ namespace Mezzanine
 
                 /// @brief Return the thread ID of a thread object.
                 /// @return A platform specific handle for the thread.
-                id get_id() const;
+                ThreadId get_id() const;
 
                 /// @brief Get the native handle for this thread.
                 /// @note Under Windows, this is a @c HANDLE, and under POSIX systems, this is a @c pthread_t.
@@ -206,29 +206,29 @@ namespace Mezzanine
 
         /// @brief The thread ID is a unique identifier for each thread.
         /// @see thread::get_id()
-        class MEZZ_LIB id
+        class MEZZ_LIB ThreadId
         {
             public:
                 /// @brief Default constructor.
                 /// @details The default constructed ID is that of thread without a thread of
                 /// execution.
-                id() : mId(0)
+                ThreadId() : mId(0)
                     {}
 
                 /// @brief Creation from long.
                 /// @param aId The OS provided long to create an ID from.
-                id(unsigned long int aId) : mId(aId)
+                ThreadId(unsigned long int aId) : mId(aId)
                     {}
 
                 /// @brief Copy constructor.
                 /// @param aId The other id to create a copy of.
-                id(const id& aId) : mId(aId.mId)
+                ThreadId(const ThreadId& aId) : mId(aId.mId)
                     {}
 
                 /// @brief Assignment Operator.
                 /// @param aId The right hand operand during assignment.
                 /// @return A reference to the left hand operand after it has been assigned.
-                inline id & operator=(const id &aId)
+                inline ThreadId & operator=(const ThreadId &aId)
                 {
                       mId = aId.mId;
                       return *this;
@@ -238,42 +238,42 @@ namespace Mezzanine
                 /// @param aId1 Left hand operand.
                 /// @param aId2 Right hand operand.
                 /// @returns True boolean value if the OS specific IDs match and false otherwise.
-                inline friend bool operator==(const id &aId1, const id &aId2)
+                inline friend bool operator==(const ThreadId &aId1, const ThreadId &aId2)
                     { return (aId1.mId == aId2.mId); }
 
                 /// @brief Inequality Comparison.
                 /// @param aId1 Left hand operand.
                 /// @param aId2 Right hand operand.
                 /// @returns False boolean value if the OS specific IDs match and true otherwise.
-                inline friend bool operator!=(const id &aId1, const id &aId2)
+                inline friend bool operator!=(const ThreadId &aId1, const ThreadId &aId2)
                     { return (aId1.mId != aId2.mId); }
 
                 /// @brief Greater than or equal to Comparison.
                 /// @param aId1 Left hand operand.
                 /// @param aId2 Right hand operand.
                 /// @returns A consistent value to allow for sorting/ordering of threads.
-                inline friend bool operator<=(const id &aId1, const id &aId2)
+                inline friend bool operator<=(const ThreadId &aId1, const ThreadId &aId2)
                     { return (aId1.mId <= aId2.mId); }
 
                 /// @brief Greater than Comparison.
                 /// @param aId1 Left hand operand.
                 /// @param aId2 Right hand operand.
                 /// @returns A consistent value to allow for sorting/ordering of threads.
-                inline friend bool operator<(const id &aId1, const id &aId2)
+                inline friend bool operator<(const ThreadId &aId1, const ThreadId &aId2)
                     { return (aId1.mId < aId2.mId); }
 
                 /// @brief Less than or equal to Comparison.
                 /// @param aId1 Left hand operand.
                 /// @param aId2 Right hand operand.
                 /// @returns A consistent value to allow for sorting/ordering of threads.
-                inline friend bool operator>=(const id &aId1, const id &aId2)
+                inline friend bool operator>=(const ThreadId &aId1, const ThreadId &aId2)
                     { return (aId1.mId >= aId2.mId); }
 
                 /// @brief Less than Comparison.
                 /// @param aId1 Left hand operand.
                 /// @param aId2 Right hand operand.
                 /// @returns A consistent value to allow for sorting/ordering of threads.
-                inline friend bool operator>(const id &aId1, const id &aId2)
+                inline friend bool operator>(const ThreadId &aId1, const ThreadId &aId2)
                     { return (aId1.mId > aId2.mId); }
 
                 #ifndef SWIG
@@ -281,7 +281,7 @@ namespace Mezzanine
                 /// @param os The output stream to send the id into.
                 /// @param obj the streamed id.
                 /// @returns A reference to the output stream to allow for operator chaining.
-                inline friend std::ostream& operator <<(std::ostream &os, const id &obj)
+                inline friend std::ostream& operator <<(std::ostream &os, const ThreadId &obj)
                 {
                       os << obj.mId;
                       return os;
@@ -299,7 +299,7 @@ namespace Mezzanine
         {
             /// @brief Return the thread ID of the calling thread.
             /// @return A thread::id unique to this thread.
-            id MEZZ_LIB get_id();
+            ThreadId MEZZ_LIB get_id();
 
             /// @brief Yield execution to another thread.
             /// @details Offers the operating system the opportunity to schedule another thread

@@ -646,7 +646,7 @@ namespace Mezzanine
         ////////////////////////////////////////////////////////////////////////////////
         // Other Utility Features
 
-        FrameScheduler::Resource* FrameScheduler::GetThreadResource(id ID)
+        FrameScheduler::Resource* FrameScheduler::GetThreadResource(ThreadId ID)
         {
             std::vector<Resource*>::iterator Results = Resources.begin();
             if(ID == MainThreadID)
@@ -661,7 +661,7 @@ namespace Mezzanine
             return NULL;
         }
 
-        Logger* FrameScheduler::GetThreadUsableLogger(id ID)
+        Logger* FrameScheduler::GetThreadUsableLogger(ThreadId ID)
         {
             Resource* AlmostResults = GetThreadResource(ID);
             if(AlmostResults)
