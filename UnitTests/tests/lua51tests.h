@@ -456,6 +456,7 @@ class lua51tests : public UnitTestGroup
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
                                */
 
+                /// @todo We need to test that there isn't any mechanism in Lua that circumvents the basic purpose of basic threading mechanisms like Mutex, Barrier, etc...
                 TestLuaScript("function TestFuncMutex(x)\n"
                               "   mut=MezzanineSafe.Threading.Mutex()\n"
                               "   mut:Lock()\n"
@@ -479,6 +480,18 @@ class lua51tests : public UnitTestGroup
                               "end",
                               "Threading::Thread", "TestFuncThread", 100, 100,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncAvg(x)\n"
+                              "   Avg=MezzanineSafe.Threading.BufferedRollingAverageWhole(3)\n"
+                              "   Avg:Insert( 9+x)\n"
+                              "   Avg:Insert(10+x)\n"
+                              "   Avg:Insert(11+x)\n"
+                              "   return Avg:GetAverage()\n"
+                              "end",
+                              "Threading::BufferedRollingAverageWhole", "TestFuncAvg", 100, 110,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+
             }
 
         }

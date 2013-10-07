@@ -1661,37 +1661,47 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_Mezzanine__Threading__Barrier swig_types[0]
-#define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[1]
-#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[2]
-#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[3]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[4]
-#define SWIGTYPE_p_SDL_Event swig_types[5]
-#define SWIGTYPE_p_bool swig_types[6]
-#define SWIGTYPE_p_char swig_types[7]
-#define SWIGTYPE_p_f_p_void__void swig_types[8]
-#define SWIGTYPE_p_float swig_types[9]
-#define SWIGTYPE_p_int swig_types[10]
-#define SWIGTYPE_p_long_long swig_types[11]
-#define SWIGTYPE_p_native_handle_type swig_types[12]
-#define SWIGTYPE_p_pthread_t swig_types[13]
-#define SWIGTYPE_p_short swig_types[14]
-#define SWIGTYPE_p_signed_char swig_types[15]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[16]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[17]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[18]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[19]
-#define SWIGTYPE_p_std__string swig_types[20]
-#define SWIGTYPE_p_std__stringstream swig_types[21]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[22]
-#define SWIGTYPE_p_std__wstring swig_types[23]
-#define SWIGTYPE_p_unsigned_char swig_types[24]
-#define SWIGTYPE_p_unsigned_int swig_types[25]
-#define SWIGTYPE_p_unsigned_long swig_types[26]
-#define SWIGTYPE_p_unsigned_long_long swig_types[27]
-#define SWIGTYPE_p_unsigned_short swig_types[28]
-static swig_type_info *swig_types[30];
-static swig_module_info swig_module = {swig_types, 29, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t swig_types[0]
+#define SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t swig_types[1]
+#define SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t swig_types[2]
+#define SWIGTYPE_p_Mezzanine__RollingAverageT_float_t swig_types[3]
+#define SWIGTYPE_p_Mezzanine__RollingAverageT_int_t swig_types[4]
+#define SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t swig_types[5]
+#define SWIGTYPE_p_Mezzanine__Threading__Barrier swig_types[6]
+#define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[7]
+#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[8]
+#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[9]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[10]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[11]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[12]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[13]
+#define SWIGTYPE_p_SDL_Event swig_types[14]
+#define SWIGTYPE_p_Type swig_types[15]
+#define SWIGTYPE_p_bool swig_types[16]
+#define SWIGTYPE_p_char swig_types[17]
+#define SWIGTYPE_p_f_p_void__void swig_types[18]
+#define SWIGTYPE_p_float swig_types[19]
+#define SWIGTYPE_p_int swig_types[20]
+#define SWIGTYPE_p_long_long swig_types[21]
+#define SWIGTYPE_p_native_handle_type swig_types[22]
+#define SWIGTYPE_p_pthread_t swig_types[23]
+#define SWIGTYPE_p_short swig_types[24]
+#define SWIGTYPE_p_signed_char swig_types[25]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[26]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[27]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[28]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[29]
+#define SWIGTYPE_p_std__string swig_types[30]
+#define SWIGTYPE_p_std__stringstream swig_types[31]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[32]
+#define SWIGTYPE_p_std__wstring swig_types[33]
+#define SWIGTYPE_p_unsigned_char swig_types[34]
+#define SWIGTYPE_p_unsigned_int swig_types[35]
+#define SWIGTYPE_p_unsigned_long swig_types[36]
+#define SWIGTYPE_p_unsigned_long_long swig_types[37]
+#define SWIGTYPE_p_unsigned_short swig_types[38]
+static swig_type_info *swig_types[40];
+static swig_module_info swig_module = {swig_types, 39, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2346,6 +2356,1347 @@ static swig_lua_class *swig_Mezzanine_Threading_SpinLock_bases[] = {0};
 static const char *swig_Mezzanine_Threading_SpinLock_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_Threading_SpinLock = { "SpinLock", &SWIGTYPE_p_Mezzanine__Threading__SpinLock,_wrap_new_SpinLock, swig_delete_SpinLock, swig_Mezzanine_Threading_SpinLock_methods, swig_Mezzanine_Threading_SpinLock_attributes, swig_Mezzanine_Threading_SpinLock_bases, swig_Mezzanine_Threading_SpinLock_base_names };
 
+static int _wrap_RollingAverageWhole_RecordCapacity(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RollingAverage< Mezzanine::Whole > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Whole > *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::RollingAverage< Mezzanine::Whole >::RecordCapacity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Whole >::RecordCapacity",1,"Mezzanine::RollingAverage< Mezzanine::Whole > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t,0))){
+    SWIG_fail_ptr("RollingAverageWhole_RecordCapacity",1,SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::RollingAverage< Mezzanine::Whole > const *)arg1)->RecordCapacity();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RollingAverageWhole_Insert(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RollingAverage< Mezzanine::Whole > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Whole > *) 0 ;
+  unsigned long arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::RollingAverage< Mezzanine::Whole >::Insert",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Whole >::Insert",1,"Mezzanine::RollingAverage< Mezzanine::Whole > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Whole >::Insert",2,"unsigned long");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t,0))){
+    SWIG_fail_ptr("RollingAverageWhole_Insert",1,SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (unsigned long)lua_tonumber(L, 2);
+  (arg1)->Insert(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RollingAverageWhole_GetAverage(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RollingAverage< Mezzanine::Whole > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Whole > *) 0 ;
+  unsigned long result;
+  
+  SWIG_check_num_args("Mezzanine::RollingAverage< Mezzanine::Whole >::GetAverage",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Whole >::GetAverage",1,"Mezzanine::RollingAverage< Mezzanine::Whole > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t,0))){
+    SWIG_fail_ptr("RollingAverageWhole_GetAverage",1,SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t);
+  }
+  
+  result = (unsigned long)((Mezzanine::RollingAverage< Mezzanine::Whole > const *)arg1)->GetAverage();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_RollingAverageWhole(void *obj) {
+Mezzanine::RollingAverage< Mezzanine::Whole > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Whole > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__methods[] = {
+    {"RecordCapacity", _wrap_RollingAverageWhole_RecordCapacity}, 
+    {"Insert", _wrap_RollingAverageWhole_Insert}, 
+    {"GetAverage", _wrap_RollingAverageWhole_GetAverage}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__bases[] = {0};
+static const char *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg_ = { "RollingAverageWhole", &SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t,0, swig_delete_RollingAverageWhole, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__attributes, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__bases, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__base_names };
+
+static int _wrap_new_WeightedRollingAverageWhole__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole *arg1 = 0 ;
+  Mezzanine::Whole temp1 ;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::WeightedRollingAverage",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::WeightedRollingAverage",1,"Mezzanine::Whole const &");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  temp1=(Mezzanine::Whole)lua_tonumber(L,1); arg1=&temp1;
+  result = (Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *)new Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >((Mezzanine::Whole const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_WeightedRollingAverageWhole__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::WeightedRollingAverage",0,0)
+  result = (Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *)new Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_WeightedRollingAverageWhole(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_WeightedRollingAverageWhole__SWIG_1(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_WeightedRollingAverageWhole__SWIG_0(L);
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_WeightedRollingAverageWhole'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::WeightedRollingAverage(Mezzanine::Whole const &)\n"
+    "    Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::WeightedRollingAverage()\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_WeightedRollingAverageWhole_RecordCapacity(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::RecordCapacity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::RecordCapacity",1,"Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,0))){
+    SWIG_fail_ptr("WeightedRollingAverageWhole_RecordCapacity",1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > const *)arg1)->RecordCapacity();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WeightedRollingAverageWhole_Insert(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *) 0 ;
+  unsigned long arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::Insert",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::Insert",1,"Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::Insert",2,"unsigned long");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,0))){
+    SWIG_fail_ptr("WeightedRollingAverageWhole_Insert",1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (unsigned long)lua_tonumber(L, 2);
+  (arg1)->Insert(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WeightedRollingAverageWhole_GetAverage(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *) 0 ;
+  unsigned long result;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::GetAverage",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::GetAverage",1,"Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,0))){
+    SWIG_fail_ptr("WeightedRollingAverageWhole_GetAverage",1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t);
+  }
+  
+  result = (unsigned long)((Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > const *)arg1)->GetAverage();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_WeightedRollingAverageWhole(void *obj) {
+Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__methods[] = {
+    {"RecordCapacity", _wrap_WeightedRollingAverageWhole_RecordCapacity}, 
+    {"Insert", _wrap_WeightedRollingAverageWhole_Insert}, 
+    {"GetAverage", _wrap_WeightedRollingAverageWhole_GetAverage}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__bases[] = {0,0};
+static const char *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Whole > *",0};
+static swig_lua_class _wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg_ = { "WeightedRollingAverageWhole", &SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,_wrap_new_WeightedRollingAverageWhole, swig_delete_WeightedRollingAverageWhole, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__attributes, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__bases, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__base_names };
+
+static int _wrap_new_BufferedRollingAverageWhole__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole *arg1 = 0 ;
+  Mezzanine::Whole temp1 ;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::BufferedRollingAverage",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::BufferedRollingAverage",1,"Mezzanine::Whole const &");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  temp1=(Mezzanine::Whole)lua_tonumber(L,1); arg1=&temp1;
+  result = (Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *)new Mezzanine::BufferedRollingAverage< Mezzanine::Whole >((Mezzanine::Whole const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BufferedRollingAverageWhole__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::BufferedRollingAverage",0,0)
+  result = (Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *)new Mezzanine::BufferedRollingAverage< Mezzanine::Whole >();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_BufferedRollingAverageWhole_RecordCapacity(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::RecordCapacity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::RecordCapacity",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Whole > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,0))){
+    SWIG_fail_ptr("BufferedRollingAverageWhole_RecordCapacity",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::BufferedRollingAverage< Mezzanine::Whole > const *)arg1)->RecordCapacity();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_BufferedRollingAverageWhole_Insert(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *) 0 ;
+  unsigned long arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::Insert",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::Insert",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::Insert",2,"unsigned long");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,0))){
+    SWIG_fail_ptr("BufferedRollingAverageWhole_Insert",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (unsigned long)lua_tonumber(L, 2);
+  (arg1)->Insert(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_BufferedRollingAverageWhole_GetAverage(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *) 0 ;
+  unsigned long result;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::GetAverage",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::GetAverage",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Whole > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,0))){
+    SWIG_fail_ptr("BufferedRollingAverageWhole_GetAverage",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t);
+  }
+  
+  result = (unsigned long)((Mezzanine::BufferedRollingAverage< Mezzanine::Whole > const *)arg1)->GetAverage();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BufferedRollingAverageWhole__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *arg1 = 0 ;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::BufferedRollingAverage",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::BufferedRollingAverage",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Whole > const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,0))){
+    SWIG_fail_ptr("new_BufferedRollingAverageWhole",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t);
+  }
+  
+  result = (Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *)new Mezzanine::BufferedRollingAverage< Mezzanine::Whole >((Mezzanine::BufferedRollingAverage< Mezzanine::Whole > const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BufferedRollingAverageWhole(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_BufferedRollingAverageWhole__SWIG_1(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_BufferedRollingAverageWhole__SWIG_2(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_BufferedRollingAverageWhole__SWIG_0(L);
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_BufferedRollingAverageWhole'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::BufferedRollingAverage(Mezzanine::Whole const &)\n"
+    "    Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::BufferedRollingAverage()\n"
+    "    Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::BufferedRollingAverage(Mezzanine::BufferedRollingAverage< Mezzanine::Whole > const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static void swig_delete_BufferedRollingAverageWhole(void *obj) {
+Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__methods[] = {
+    {"RecordCapacity", _wrap_BufferedRollingAverageWhole_RecordCapacity}, 
+    {"Insert", _wrap_BufferedRollingAverageWhole_Insert}, 
+    {"GetAverage", _wrap_BufferedRollingAverageWhole_GetAverage}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__bases[] = {0,0};
+static const char *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Whole > *",0};
+static swig_lua_class _wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg_ = { "BufferedRollingAverageWhole", &SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,_wrap_new_BufferedRollingAverageWhole, swig_delete_BufferedRollingAverageWhole, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__attributes, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__bases, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__base_names };
+
+static int _wrap_RollingAverageReal_RecordCapacity(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RollingAverage< Mezzanine::Real > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Real > *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::RollingAverage< Mezzanine::Real >::RecordCapacity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Real >::RecordCapacity",1,"Mezzanine::RollingAverage< Mezzanine::Real > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RollingAverageT_float_t,0))){
+    SWIG_fail_ptr("RollingAverageReal_RecordCapacity",1,SWIGTYPE_p_Mezzanine__RollingAverageT_float_t);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::RollingAverage< Mezzanine::Real > const *)arg1)->RecordCapacity();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RollingAverageReal_Insert(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RollingAverage< Mezzanine::Real > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Real > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::RollingAverage< Mezzanine::Real >::Insert",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Real >::Insert",1,"Mezzanine::RollingAverage< Mezzanine::Real > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Real >::Insert",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RollingAverageT_float_t,0))){
+    SWIG_fail_ptr("RollingAverageReal_Insert",1,SWIGTYPE_p_Mezzanine__RollingAverageT_float_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->Insert(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RollingAverageReal_GetAverage(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RollingAverage< Mezzanine::Real > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Real > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Mezzanine::RollingAverage< Mezzanine::Real >::GetAverage",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Real >::GetAverage",1,"Mezzanine::RollingAverage< Mezzanine::Real > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RollingAverageT_float_t,0))){
+    SWIG_fail_ptr("RollingAverageReal_GetAverage",1,SWIGTYPE_p_Mezzanine__RollingAverageT_float_t);
+  }
+  
+  result = (float)((Mezzanine::RollingAverage< Mezzanine::Real > const *)arg1)->GetAverage();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_RollingAverageReal(void *obj) {
+Mezzanine::RollingAverage< Mezzanine::Real > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Real > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__methods[] = {
+    {"RecordCapacity", _wrap_RollingAverageReal_RecordCapacity}, 
+    {"Insert", _wrap_RollingAverageReal_Insert}, 
+    {"GetAverage", _wrap_RollingAverageReal_GetAverage}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__bases[] = {0};
+static const char *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg_ = { "RollingAverageReal", &SWIGTYPE_p_Mezzanine__RollingAverageT_float_t,0, swig_delete_RollingAverageReal, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__attributes, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__bases, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__base_names };
+
+static int _wrap_new_WeightedRollingAverageReal__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole *arg1 = 0 ;
+  Mezzanine::Whole temp1 ;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::WeightedRollingAverage",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::WeightedRollingAverage",1,"Mezzanine::Whole const &");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  temp1=(Mezzanine::Whole)lua_tonumber(L,1); arg1=&temp1;
+  result = (Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *)new Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >((Mezzanine::Whole const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_WeightedRollingAverageReal__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::WeightedRollingAverage",0,0)
+  result = (Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *)new Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_WeightedRollingAverageReal(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_WeightedRollingAverageReal__SWIG_1(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_WeightedRollingAverageReal__SWIG_0(L);
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_WeightedRollingAverageReal'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::WeightedRollingAverage(Mezzanine::Whole const &)\n"
+    "    Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::WeightedRollingAverage()\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_WeightedRollingAverageReal_RecordCapacity(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::RecordCapacity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::RecordCapacity",1,"Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t,0))){
+    SWIG_fail_ptr("WeightedRollingAverageReal_RecordCapacity",1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > const *)arg1)->RecordCapacity();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WeightedRollingAverageReal_Insert(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::Insert",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::Insert",1,"Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::Insert",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t,0))){
+    SWIG_fail_ptr("WeightedRollingAverageReal_Insert",1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->Insert(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WeightedRollingAverageReal_GetAverage(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::GetAverage",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::GetAverage",1,"Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t,0))){
+    SWIG_fail_ptr("WeightedRollingAverageReal_GetAverage",1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t);
+  }
+  
+  result = (float)((Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > const *)arg1)->GetAverage();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_WeightedRollingAverageReal(void *obj) {
+Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__methods[] = {
+    {"RecordCapacity", _wrap_WeightedRollingAverageReal_RecordCapacity}, 
+    {"Insert", _wrap_WeightedRollingAverageReal_Insert}, 
+    {"GetAverage", _wrap_WeightedRollingAverageReal_GetAverage}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__bases[] = {0,0};
+static const char *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Real > *",0};
+static swig_lua_class _wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg_ = { "WeightedRollingAverageReal", &SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t,_wrap_new_WeightedRollingAverageReal, swig_delete_WeightedRollingAverageReal, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__attributes, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__bases, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__base_names };
+
+static int _wrap_new_BufferedRollingAverageReal__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole *arg1 = 0 ;
+  Mezzanine::Whole temp1 ;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Real > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::BufferedRollingAverage",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::BufferedRollingAverage",1,"Mezzanine::Whole const &");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  temp1=(Mezzanine::Whole)lua_tonumber(L,1); arg1=&temp1;
+  result = (Mezzanine::BufferedRollingAverage< Mezzanine::Real > *)new Mezzanine::BufferedRollingAverage< Mezzanine::Real >((Mezzanine::Whole const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BufferedRollingAverageReal__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Real > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::BufferedRollingAverage",0,0)
+  result = (Mezzanine::BufferedRollingAverage< Mezzanine::Real > *)new Mezzanine::BufferedRollingAverage< Mezzanine::Real >();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_BufferedRollingAverageReal_RecordCapacity(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Real > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Real > *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::RecordCapacity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::RecordCapacity",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Real > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t,0))){
+    SWIG_fail_ptr("BufferedRollingAverageReal_RecordCapacity",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::BufferedRollingAverage< Mezzanine::Real > const *)arg1)->RecordCapacity();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_BufferedRollingAverageReal_Insert(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Real > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Real > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::Insert",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::Insert",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Real > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::Insert",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t,0))){
+    SWIG_fail_ptr("BufferedRollingAverageReal_Insert",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->Insert(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_BufferedRollingAverageReal_GetAverage(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Real > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Real > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::GetAverage",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::GetAverage",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Real > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t,0))){
+    SWIG_fail_ptr("BufferedRollingAverageReal_GetAverage",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t);
+  }
+  
+  result = (float)((Mezzanine::BufferedRollingAverage< Mezzanine::Real > const *)arg1)->GetAverage();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BufferedRollingAverageReal__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Real > *arg1 = 0 ;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Real > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::BufferedRollingAverage",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Real >::BufferedRollingAverage",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Real > const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t,0))){
+    SWIG_fail_ptr("new_BufferedRollingAverageReal",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t);
+  }
+  
+  result = (Mezzanine::BufferedRollingAverage< Mezzanine::Real > *)new Mezzanine::BufferedRollingAverage< Mezzanine::Real >((Mezzanine::BufferedRollingAverage< Mezzanine::Real > const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BufferedRollingAverageReal(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_BufferedRollingAverageReal__SWIG_1(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_BufferedRollingAverageReal__SWIG_2(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_BufferedRollingAverageReal__SWIG_0(L);
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_BufferedRollingAverageReal'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::BufferedRollingAverage< Mezzanine::Real >::BufferedRollingAverage(Mezzanine::Whole const &)\n"
+    "    Mezzanine::BufferedRollingAverage< Mezzanine::Real >::BufferedRollingAverage()\n"
+    "    Mezzanine::BufferedRollingAverage< Mezzanine::Real >::BufferedRollingAverage(Mezzanine::BufferedRollingAverage< Mezzanine::Real > const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static void swig_delete_BufferedRollingAverageReal(void *obj) {
+Mezzanine::BufferedRollingAverage< Mezzanine::Real > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Real > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__methods[] = {
+    {"RecordCapacity", _wrap_BufferedRollingAverageReal_RecordCapacity}, 
+    {"Insert", _wrap_BufferedRollingAverageReal_Insert}, 
+    {"GetAverage", _wrap_BufferedRollingAverageReal_GetAverage}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__bases[] = {0,0};
+static const char *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Real > *",0};
+static swig_lua_class _wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg_ = { "BufferedRollingAverageReal", &SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t,_wrap_new_BufferedRollingAverageReal, swig_delete_BufferedRollingAverageReal, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__attributes, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__bases, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__base_names };
+
+static int _wrap_RollingAverageInteger_RecordCapacity(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RollingAverage< Mezzanine::Integer > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Integer > *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::RollingAverage< Mezzanine::Integer >::RecordCapacity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Integer >::RecordCapacity",1,"Mezzanine::RollingAverage< Mezzanine::Integer > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RollingAverageT_int_t,0))){
+    SWIG_fail_ptr("RollingAverageInteger_RecordCapacity",1,SWIGTYPE_p_Mezzanine__RollingAverageT_int_t);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::RollingAverage< Mezzanine::Integer > const *)arg1)->RecordCapacity();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RollingAverageInteger_Insert(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RollingAverage< Mezzanine::Integer > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Integer > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::RollingAverage< Mezzanine::Integer >::Insert",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Integer >::Insert",1,"Mezzanine::RollingAverage< Mezzanine::Integer > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Integer >::Insert",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RollingAverageT_int_t,0))){
+    SWIG_fail_ptr("RollingAverageInteger_Insert",1,SWIGTYPE_p_Mezzanine__RollingAverageT_int_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->Insert(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RollingAverageInteger_GetAverage(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RollingAverage< Mezzanine::Integer > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Integer > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Mezzanine::RollingAverage< Mezzanine::Integer >::GetAverage",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RollingAverage< Mezzanine::Integer >::GetAverage",1,"Mezzanine::RollingAverage< Mezzanine::Integer > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RollingAverageT_int_t,0))){
+    SWIG_fail_ptr("RollingAverageInteger_GetAverage",1,SWIGTYPE_p_Mezzanine__RollingAverageT_int_t);
+  }
+  
+  result = (int)((Mezzanine::RollingAverage< Mezzanine::Integer > const *)arg1)->GetAverage();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_RollingAverageInteger(void *obj) {
+Mezzanine::RollingAverage< Mezzanine::Integer > *arg1 = (Mezzanine::RollingAverage< Mezzanine::Integer > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__methods[] = {
+    {"RecordCapacity", _wrap_RollingAverageInteger_RecordCapacity}, 
+    {"Insert", _wrap_RollingAverageInteger_Insert}, 
+    {"GetAverage", _wrap_RollingAverageInteger_GetAverage}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__bases[] = {0};
+static const char *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg_ = { "RollingAverageInteger", &SWIGTYPE_p_Mezzanine__RollingAverageT_int_t,0, swig_delete_RollingAverageInteger, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__attributes, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__bases, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__base_names };
+
+static int _wrap_new_WeightedRollingAverageInteger__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole *arg1 = 0 ;
+  Mezzanine::Whole temp1 ;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::WeightedRollingAverage",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::WeightedRollingAverage",1,"Mezzanine::Whole const &");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  temp1=(Mezzanine::Whole)lua_tonumber(L,1); arg1=&temp1;
+  result = (Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *)new Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >((Mezzanine::Whole const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_WeightedRollingAverageInteger__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::WeightedRollingAverage",0,0)
+  result = (Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *)new Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_WeightedRollingAverageInteger(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_WeightedRollingAverageInteger__SWIG_1(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_WeightedRollingAverageInteger__SWIG_0(L);
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_WeightedRollingAverageInteger'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::WeightedRollingAverage(Mezzanine::Whole const &)\n"
+    "    Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::WeightedRollingAverage()\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_WeightedRollingAverageInteger_RecordCapacity(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::RecordCapacity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::RecordCapacity",1,"Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t,0))){
+    SWIG_fail_ptr("WeightedRollingAverageInteger_RecordCapacity",1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > const *)arg1)->RecordCapacity();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WeightedRollingAverageInteger_Insert(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::Insert",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::Insert",1,"Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::Insert",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t,0))){
+    SWIG_fail_ptr("WeightedRollingAverageInteger_Insert",1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->Insert(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WeightedRollingAverageInteger_GetAverage(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::GetAverage",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::GetAverage",1,"Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t,0))){
+    SWIG_fail_ptr("WeightedRollingAverageInteger_GetAverage",1,SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t);
+  }
+  
+  result = (int)((Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > const *)arg1)->GetAverage();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_WeightedRollingAverageInteger(void *obj) {
+Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *arg1 = (Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__methods[] = {
+    {"RecordCapacity", _wrap_WeightedRollingAverageInteger_RecordCapacity}, 
+    {"Insert", _wrap_WeightedRollingAverageInteger_Insert}, 
+    {"GetAverage", _wrap_WeightedRollingAverageInteger_GetAverage}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__bases[] = {0,0};
+static const char *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Integer > *",0};
+static swig_lua_class _wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg_ = { "WeightedRollingAverageInteger", &SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t,_wrap_new_WeightedRollingAverageInteger, swig_delete_WeightedRollingAverageInteger, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__attributes, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__bases, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__base_names };
+
+static int _wrap_new_BufferedRollingAverageInteger__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole *arg1 = 0 ;
+  Mezzanine::Whole temp1 ;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::BufferedRollingAverage",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::BufferedRollingAverage",1,"Mezzanine::Whole const &");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  temp1=(Mezzanine::Whole)lua_tonumber(L,1); arg1=&temp1;
+  result = (Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *)new Mezzanine::BufferedRollingAverage< Mezzanine::Integer >((Mezzanine::Whole const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BufferedRollingAverageInteger__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::BufferedRollingAverage",0,0)
+  result = (Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *)new Mezzanine::BufferedRollingAverage< Mezzanine::Integer >();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_BufferedRollingAverageInteger_RecordCapacity(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::RecordCapacity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::RecordCapacity",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Integer > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,0))){
+    SWIG_fail_ptr("BufferedRollingAverageInteger_RecordCapacity",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::BufferedRollingAverage< Mezzanine::Integer > const *)arg1)->RecordCapacity();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_BufferedRollingAverageInteger_Insert(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::Insert",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::Insert",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::Insert",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,0))){
+    SWIG_fail_ptr("BufferedRollingAverageInteger_Insert",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->Insert(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_BufferedRollingAverageInteger_GetAverage(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::GetAverage",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::GetAverage",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Integer > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,0))){
+    SWIG_fail_ptr("BufferedRollingAverageInteger_GetAverage",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t);
+  }
+  
+  result = (int)((Mezzanine::BufferedRollingAverage< Mezzanine::Integer > const *)arg1)->GetAverage();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BufferedRollingAverageInteger__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *arg1 = 0 ;
+  Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::BufferedRollingAverage",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::BufferedRollingAverage",1,"Mezzanine::BufferedRollingAverage< Mezzanine::Integer > const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,0))){
+    SWIG_fail_ptr("new_BufferedRollingAverageInteger",1,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t);
+  }
+  
+  result = (Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *)new Mezzanine::BufferedRollingAverage< Mezzanine::Integer >((Mezzanine::BufferedRollingAverage< Mezzanine::Integer > const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_BufferedRollingAverageInteger(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_BufferedRollingAverageInteger__SWIG_1(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_BufferedRollingAverageInteger__SWIG_2(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_BufferedRollingAverageInteger__SWIG_0(L);
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_BufferedRollingAverageInteger'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::BufferedRollingAverage(Mezzanine::Whole const &)\n"
+    "    Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::BufferedRollingAverage()\n"
+    "    Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::BufferedRollingAverage(Mezzanine::BufferedRollingAverage< Mezzanine::Integer > const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static void swig_delete_BufferedRollingAverageInteger(void *obj) {
+Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *arg1 = (Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__methods[] = {
+    {"RecordCapacity", _wrap_BufferedRollingAverageInteger_RecordCapacity}, 
+    {"Insert", _wrap_BufferedRollingAverageInteger_Insert}, 
+    {"GetAverage", _wrap_BufferedRollingAverageInteger_GetAverage}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__bases[] = {0,0};
+static const char *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Integer > *",0};
+static swig_lua_class _wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg_ = { "BufferedRollingAverageInteger", &SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,_wrap_new_BufferedRollingAverageInteger, swig_delete_BufferedRollingAverageInteger, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__attributes, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__bases, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__base_names };
+
 static int _wrap_GetTimeStamp(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::MaxInt result;
@@ -2926,12 +4277,40 @@ static swig_lua_const_info swig_constants[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_Mezzanine__BufferedRollingAverageT_int_tTo_p_Mezzanine__RollingAverageT_int_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::RollingAverage< int > *)  ((Mezzanine::BufferedRollingAverage< int > *) x));
+}
+static void *_p_Mezzanine__WeightedRollingAverageT_int_int_tTo_p_Mezzanine__RollingAverageT_int_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::RollingAverage< int > *)  ((Mezzanine::WeightedRollingAverage< int,int > *) x));
+}
+static void *_p_Mezzanine__WeightedRollingAverageT_float_float_tTo_p_Mezzanine__RollingAverageT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::RollingAverage< float > *)  ((Mezzanine::WeightedRollingAverage< float,float > *) x));
+}
+static void *_p_Mezzanine__BufferedRollingAverageT_float_tTo_p_Mezzanine__RollingAverageT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::RollingAverage< float > *)  ((Mezzanine::BufferedRollingAverage< float > *) x));
+}
+static void *_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::RollingAverage< unsigned long > *)  ((Mezzanine::WeightedRollingAverage< unsigned long,unsigned long > *) x));
+}
+static void *_p_Mezzanine__BufferedRollingAverageT_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::RollingAverage< unsigned long > *)  ((Mezzanine::BufferedRollingAverage< unsigned long > *) x));
+}
+static swig_type_info _swigt__p_Mezzanine__BufferedRollingAverageT_float_t = {"_p_Mezzanine__BufferedRollingAverageT_float_t", "Mezzanine::BufferedRollingAverage< Mezzanine::Real > *|Mezzanine::BufferedRollingAverage< float > *", 0, 0, (void*)&_wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg_, 0};
+static swig_type_info _swigt__p_Mezzanine__BufferedRollingAverageT_int_t = {"_p_Mezzanine__BufferedRollingAverageT_int_t", "Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *|Mezzanine::BufferedRollingAverage< int > *", 0, 0, (void*)&_wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg_, 0};
+static swig_type_info _swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t = {"_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t", "Mezzanine::BufferedRollingAverage< unsigned long > *|Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *", 0, 0, (void*)&_wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg_, 0};
+static swig_type_info _swigt__p_Mezzanine__RollingAverageT_float_t = {"_p_Mezzanine__RollingAverageT_float_t", "Mezzanine::RollingAverage< float > *|Mezzanine::RollingAverage< Mezzanine::Real > *", 0, 0, (void*)&_wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg_, 0};
+static swig_type_info _swigt__p_Mezzanine__RollingAverageT_int_t = {"_p_Mezzanine__RollingAverageT_int_t", "Mezzanine::RollingAverage< Mezzanine::Integer > *|Mezzanine::RollingAverage< int > *", 0, 0, (void*)&_wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg_, 0};
+static swig_type_info _swigt__p_Mezzanine__RollingAverageT_unsigned_long_t = {"_p_Mezzanine__RollingAverageT_unsigned_long_t", "Mezzanine::RollingAverage< unsigned long > *|Mezzanine::RollingAverage< Mezzanine::Whole > *", 0, 0, (void*)&_wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg_, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Barrier = {"_p_Mezzanine__Threading__Barrier", "Mezzanine::Threading::Barrier *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Barrier, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Mutex = {"_p_Mezzanine__Threading__Mutex", "Mezzanine::Threading::Mutex *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Mutex, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__SpinLock = {"_p_Mezzanine__Threading__SpinLock", "Mezzanine::Threading::SpinLock *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_SpinLock, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Thread = {"_p_Mezzanine__Threading__Thread", "Mezzanine::Threading::Thread *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Thread, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__ThreadId = {"_p_Mezzanine__Threading__ThreadId", "Mezzanine::Threading::ThreadId *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ThreadId, 0};
+static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t = {"_p_Mezzanine__WeightedRollingAverageT_float_float_t", "Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *|Mezzanine::WeightedRollingAverage< float,float > *", 0, 0, (void*)&_wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg_, 0};
+static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t = {"_p_Mezzanine__WeightedRollingAverageT_int_int_t", "Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *|Mezzanine::WeightedRollingAverage< int,int > *", 0, 0, (void*)&_wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg_, 0};
+static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t = {"_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t", "Mezzanine::WeightedRollingAverage< unsigned long,unsigned long > *|Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *", 0, 0, (void*)&_wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg_, 0};
 static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzanine::RawEvent *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Type = {"_p_Type", "Type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "Mezzanine::Bool *|bool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *|Mezzanine::Char8 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void__void = {"_p_f_p_void__void", "void (*)(void *)", 0, 0, (void*)0, 0};
@@ -2957,12 +4336,22 @@ static swig_type_info _swigt__p_unsigned_long_long = {"_p_unsigned_long_long", "
 static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "Mezzanine::UInt16 *|unsigned short *|uint_least16_t *|uint16_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_Mezzanine__BufferedRollingAverageT_float_t,
+  &_swigt__p_Mezzanine__BufferedRollingAverageT_int_t,
+  &_swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,
+  &_swigt__p_Mezzanine__RollingAverageT_float_t,
+  &_swigt__p_Mezzanine__RollingAverageT_int_t,
+  &_swigt__p_Mezzanine__RollingAverageT_unsigned_long_t,
   &_swigt__p_Mezzanine__Threading__Barrier,
   &_swigt__p_Mezzanine__Threading__Mutex,
   &_swigt__p_Mezzanine__Threading__SpinLock,
   &_swigt__p_Mezzanine__Threading__Thread,
   &_swigt__p_Mezzanine__Threading__ThreadId,
+  &_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t,
+  &_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t,
+  &_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,
   &_swigt__p_SDL_Event,
+  &_swigt__p_Type,
   &_swigt__p_bool,
   &_swigt__p_char,
   &_swigt__p_f_p_void__void,
@@ -2988,12 +4377,22 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_unsigned_short,
 };
 
+static swig_cast_info _swigc__p_Mezzanine__BufferedRollingAverageT_float_t[] = {  {&_swigt__p_Mezzanine__BufferedRollingAverageT_float_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__BufferedRollingAverageT_int_t[] = {  {&_swigt__p_Mezzanine__BufferedRollingAverageT_int_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t[] = {  {&_swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__RollingAverageT_float_t[] = {  {&_swigt__p_Mezzanine__RollingAverageT_float_t, 0, 0, 0},  {&_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t, _p_Mezzanine__WeightedRollingAverageT_float_float_tTo_p_Mezzanine__RollingAverageT_float_t, 0, 0},  {&_swigt__p_Mezzanine__BufferedRollingAverageT_float_t, _p_Mezzanine__BufferedRollingAverageT_float_tTo_p_Mezzanine__RollingAverageT_float_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__RollingAverageT_int_t[] = {  {&_swigt__p_Mezzanine__RollingAverageT_int_t, 0, 0, 0},  {&_swigt__p_Mezzanine__BufferedRollingAverageT_int_t, _p_Mezzanine__BufferedRollingAverageT_int_tTo_p_Mezzanine__RollingAverageT_int_t, 0, 0},  {&_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t, _p_Mezzanine__WeightedRollingAverageT_int_int_tTo_p_Mezzanine__RollingAverageT_int_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__RollingAverageT_unsigned_long_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t, _p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t, 0, 0},  {&_swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t, _p_Mezzanine__BufferedRollingAverageT_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t, 0, 0},  {&_swigt__p_Mezzanine__RollingAverageT_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Barrier[] = {  {&_swigt__p_Mezzanine__Threading__Barrier, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Mutex[] = {  {&_swigt__p_Mezzanine__Threading__Mutex, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__SpinLock[] = {  {&_swigt__p_Mezzanine__Threading__SpinLock, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Thread[] = {  {&_swigt__p_Mezzanine__Threading__Thread, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__ThreadId[] = {  {&_swigt__p_Mezzanine__Threading__ThreadId, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_float_float_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_int_int_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDL_Event[] = {  {&_swigt__p_SDL_Event, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Type[] = {  {&_swigt__p_Type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void__void[] = {  {&_swigt__p_f_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
@@ -3019,12 +4418,22 @@ static swig_cast_info _swigc__p_unsigned_long_long[] = {  {&_swigt__p_unsigned_l
 static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_Mezzanine__BufferedRollingAverageT_float_t,
+  _swigc__p_Mezzanine__BufferedRollingAverageT_int_t,
+  _swigc__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,
+  _swigc__p_Mezzanine__RollingAverageT_float_t,
+  _swigc__p_Mezzanine__RollingAverageT_int_t,
+  _swigc__p_Mezzanine__RollingAverageT_unsigned_long_t,
   _swigc__p_Mezzanine__Threading__Barrier,
   _swigc__p_Mezzanine__Threading__Mutex,
   _swigc__p_Mezzanine__Threading__SpinLock,
   _swigc__p_Mezzanine__Threading__Thread,
   _swigc__p_Mezzanine__Threading__ThreadId,
+  _swigc__p_Mezzanine__WeightedRollingAverageT_float_float_t,
+  _swigc__p_Mezzanine__WeightedRollingAverageT_int_int_t,
+  _swigc__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,
   _swigc__p_SDL_Event,
+  _swigc__p_Type,
   _swigc__p_bool,
   _swigc__p_char,
   _swigc__p_f_p_void__void,

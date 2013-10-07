@@ -44,7 +44,9 @@
 /// @file
 /// @brief This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage
 
+#ifndef SWIG
 #include <vector>
+#endif
 
 #include "datatypes.h"
 
@@ -151,8 +153,8 @@ namespace Mezzanine
             /// @param Rhs The Rolling average to copy.
             BufferedRollingAverage(const BufferedRollingAverage& Rhs)
             {
-                this->Current=this->Records.end() - (Rhs->Records.end()-Rhs->Current);
-                this->Records(Rhs->Records);
+                this->Current=this->Records.end() - (Rhs.Records.end()-Rhs.Current);
+                this->Records = std::vector<Type> (Rhs.Records);
             }
 
             /// @brief Assignment operator, performs deep copy.
@@ -160,8 +162,8 @@ namespace Mezzanine
             /// @return A reference to this rolling average after assignment has occurred, to allow for operator chaining.
             BufferedRollingAverage& operator=(const BufferedRollingAverage& Rhs)
             {
-                this->Current=this->Records.end() - (Rhs->Records.end()-Rhs->Current);
-                this->Records(Rhs->Records);
+                this->Current=this->Records.end() - (Rhs.Records.end()-Rhs.Current);
+                this->Records = std::vector<Type> (Rhs.Records);
             }
 
             /// @brief Get an accurate record of insertions up to RecordCapacity()
@@ -272,6 +274,21 @@ namespace Mezzanine
         //typedef BufferedRollingAverage<RecordType> Type;
         typedef WeightedRollingAverage<RecordType,RecordType> Type;
     };//DefaultRollingAverage
+
+#ifdef SWIG
+    %template(RollingAverageWhole) RollingAverage<Whole>;
+    %template(WeightedRollingAverageWhole) WeightedRollingAverage<Whole,Whole>;
+    %template(BufferedRollingAverageWhole) BufferedRollingAverage<Whole>;
+
+    %template(RollingAverageReal) RollingAverage<Real>;
+    %template(WeightedRollingAverageReal) WeightedRollingAverage<Real,Real>;
+    %template(BufferedRollingAverageReal) BufferedRollingAverage<Real>;
+
+    %template(RollingAverageInteger) RollingAverage<Integer>;
+    %template(WeightedRollingAverageInteger) WeightedRollingAverage<Integer,Integer>;
+    %template(BufferedRollingAverageInteger) BufferedRollingAverage<Integer>;
+#endif
+
 }//Mezzanine
 #endif
 
