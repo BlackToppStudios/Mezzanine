@@ -20874,6 +20874,7 @@ static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("PT_Audio_Last", Mezzanine::PT_Audio_Last)},
     {SWIG_LUA_CONSTTAB_INT("PT_Graphics_First", Mezzanine::PT_Graphics_First)},
     {SWIG_LUA_CONSTTAB_INT("PT_Graphics_BillboardSetProxy", Mezzanine::PT_Graphics_BillboardSetProxy)},
+    {SWIG_LUA_CONSTTAB_INT("PT_Graphics_CameraProxy", Mezzanine::PT_Graphics_CameraProxy)},
     {SWIG_LUA_CONSTTAB_INT("PT_Graphics_EntityProxy", Mezzanine::PT_Graphics_EntityProxy)},
     {SWIG_LUA_CONSTTAB_INT("PT_Graphics_LightProxy", Mezzanine::PT_Graphics_LightProxy)},
     {SWIG_LUA_CONSTTAB_INT("PT_Graphics_ParticleSystemProxy", Mezzanine::PT_Graphics_ParticleSystemProxy)},

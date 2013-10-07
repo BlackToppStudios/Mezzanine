@@ -48,7 +48,11 @@
 #include "asynchronousfileloadingworkunit.h"
 #include "asynchronousworkunit.h"
 #include "atomicoperations.h"
+#endif
+
 #include "barrier.h"
+
+#ifndef SWIG
 //#include "crossplatformincludes.h" // This is omitted because windows.h include a ton of macros that break clean code, so this vile file's scope must be minimized
 #include "crossplatformexport.h"
 #include "datatypes.h"
@@ -64,7 +68,11 @@
 #ifndef SWIG
 #include "rollingaverage.h"
 #include "systemcalls.h"
+#endif
+
 #include "thread.h"
+
+#ifndef SWIG
 #include "threadingenumerations.h"
 #include "workunit.h"
 #include "workunitkey.h"

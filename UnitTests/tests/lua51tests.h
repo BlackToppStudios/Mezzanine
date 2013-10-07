@@ -456,13 +456,28 @@ class lua51tests : public UnitTestGroup
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
                                */
 
-                TestLuaScript("function TestFunc(x)\n"
+                TestLuaScript("function TestFuncMutex(x)\n"
                               "   mut=MezzanineSafe.Threading.Mutex()\n"
                               "   mut:Lock()\n"
                               "   mut:Unlock()\n"
                               "   return x\n"
                               "end",
-                              "Threading::Mutex", "TestFunc", 100, 100,
+                              "Threading::Mutex", "TestFuncMutex", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncBarrier(x)\n"
+                              "   foo=MezzanineSafe.Threading.Barrier(1)\n"
+                              "   --No Bar around here!!\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::Barrier", "TestFuncBarrier", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncThread(x)\n"
+                              "   MezzanineSafe.Threading.sleep_for(x)\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::Thread", "TestFuncThread", 100, 100,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
             }
 

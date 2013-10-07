@@ -71,13 +71,18 @@ freely, subject to the following restrictions:
 #include "systemcalls.h"
 #include "mutex.h"
 
+#ifndef SWIG
 #include <ostream>
 #include <vector>
+#endif
 
 namespace Mezzanine
 {
     namespace Threading
     {
+        // Forward Declaration
+        class id;
+
         /// @brief A small wrapper around the system thread.
         /// @details In general game code should not be creating this if they are using the
         /// DAG Frame Scheduler, as it tries to maintain control over the threads created
@@ -100,9 +105,6 @@ namespace Mezzanine
             #else
                 typedef pthread_t native_handle_type;
             #endif
-
-                // Forward Declaration
-                class id;
 
                 /// @brief Default constructor.
                 /// @details Construct a @c thread object without an associated thread of execution
@@ -204,7 +206,7 @@ namespace Mezzanine
 
         /// @brief The thread ID is a unique identifier for each thread.
         /// @see thread::get_id()
-        class MEZZ_LIB Thread::id
+        class MEZZ_LIB id
         {
             public:
                 /// @brief Default constructor.
@@ -274,6 +276,7 @@ namespace Mezzanine
                 inline friend bool operator>(const id &aId1, const id &aId2)
                     { return (aId1.mId > aId2.mId); }
 
+                #ifndef SWIG
                 /// @brief Output Streaming operator.
                 /// @param os The output stream to send the id into.
                 /// @param obj the streamed id.
@@ -283,6 +286,7 @@ namespace Mezzanine
                       os << obj.mId;
                       return os;
                 }
+                #endif
 
             private:
                 /// @internal
@@ -295,7 +299,7 @@ namespace Mezzanine
         {
             /// @brief Return the thread ID of the calling thread.
             /// @return A thread::id unique to this thread.
-            Thread::id MEZZ_LIB get_id();
+            id MEZZ_LIB get_id();
 
             /// @brief Yield execution to another thread.
             /// @details Offers the operating system the opportunity to schedule another thread

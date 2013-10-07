@@ -197,7 +197,7 @@ namespace Mezzanine
                 Integer TimingCostAllowance;
 
                 /// @brief For some task it is important to know the ID of the main thread.
-                Thread::id MainThreadID;
+                id MainThreadID;
 
                 /// @brief Set based on which constructor is called, and only used during destruction.
                 bool LoggingToAnOwnedFileStream;
@@ -529,14 +529,14 @@ namespace Mezzanine
                 /// @warning The thread that 'owns' this resource could do just about anything
                 /// with it while the frame is running, so this should only outside a frame
                 /// and carefully or inside a frame and only from the owning thread.
-                Resource* GetThreadResource(Thread::id ID = this_thread::get_id());
+                Resource* GetThreadResource(id ID = this_thread::get_id());
 
                 /// @brief Get the logger safe to use this thread.
                 /// @warning This is written in terms of GetThreadResource and has all the
                 /// same limitations.
                 /// @param ID This uses the current Threads ID by default but can search for any thread.
                 /// @return A null pointer if there is an error or a pointer to the Logger that goes with the passed Thread::Id
-                Logger* GetThreadUsableLogger(Thread::id ID = this_thread::get_id());
+                Logger* GetThreadUsableLogger(id ID = this_thread::get_id());
 
                 /// @brief Indicate to the framescheduler if dependencies need to be logged
                 /// @param Changed Defaults to true, and sets a flag that tells the framescheduler if it needs to log dependencies.
