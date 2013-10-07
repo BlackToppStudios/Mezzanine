@@ -133,7 +133,7 @@ class lua51tests : public UnitTestGroup
             // Static Data Tests
             {
                 TEST(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName(), "Engine::ImplementationName");
-                TEST(541+2048==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
+                TEST(541+2048+8192==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
                 TEST(511+1024+4096==Scripting::Lua::Lua51ScriptingEngine::AllLibs, "Engine::LuaLibEnumUnsafe");
             }
 
@@ -388,6 +388,7 @@ class lua51tests : public UnitTestGroup
                 // worldobjectgraphicssettings.h
                 // worldobject.h
                 // worldobjectphysicssettings.h
+                // Attachable
 
                 // Specific class swig wrapping tests
                 TestLuaScript("function MakePlane(x)\n"
@@ -454,6 +455,15 @@ class lua51tests : public UnitTestGroup
                               "RayQueryTool", "RayDump", 100, 100,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
                                */
+
+                TestLuaScript("function TestFunc(x)\n"
+                              "   mut=MezzanineSafe.Threading.Mutex()\n"
+                              "   mut:Lock()\n"
+                              "   mut:Unlock()\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::Mutex", "TestFunc", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
             }
 
         }

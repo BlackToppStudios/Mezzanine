@@ -57,7 +57,11 @@
 #include "frameschedulerworkunits.h"
 #include "logtools.h"
 #include "monopoly.h"
+#endif
+
 #include "mutex.h"
+
+#ifndef SWIG
 #include "rollingaverage.h"
 #include "systemcalls.h"
 #include "thread.h"
@@ -65,6 +69,7 @@
 #include "workunit.h"
 #include "workunitkey.h"
 #endif
+
 
 #include "swig.h"
 #ifdef SWIG_THREADING
