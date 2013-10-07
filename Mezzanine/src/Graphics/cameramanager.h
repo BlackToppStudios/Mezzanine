@@ -60,7 +60,7 @@ namespace Mezzanine
     class CameraController;
     namespace Graphics
     {
-        class Camera;
+        class CameraProxy;
         class GraphicsManager;
         class SceneManager;
         class SceneManagerData;
@@ -76,29 +76,28 @@ namespace Mezzanine
         class MEZZ_LIB CameraManager : public WorldManager
         {
         public:
-            /// @brief Basic container type for @ref Camera storage by this class.
-            typedef std::vector< Camera* >                     CameraContainer;
+            /// @brief Basic container type for @ref CameraProxy storage by this class.
+            typedef std::vector< CameraProxy* >                     CameraContainer;
             /// @brief Iterator type for @ref Camera instances stored by this class.
-            typedef CameraContainer::iterator                  CameraIterator;
+            typedef CameraContainer::iterator                       CameraIterator;
             /// @brief Const Iterator type for @ref Camera instances stored by this class.
-            typedef CameraContainer::const_iterator            ConstCameraIterator;
+            typedef CameraContainer::const_iterator                 ConstCameraIterator;
             /// @brief Basic container type for @ref CameraController storage by this class.
-            typedef std::map< Camera*, CameraController* >     CameraControllerContainer;
+            typedef std::map< CameraProxy*, CameraController* >     CameraControllerContainer;
             /// @brief Iterator type for @ref CameraController instances stored by this class.
-            typedef CameraControllerContainer::iterator        CameraControllerIterator;
+            typedef CameraControllerContainer::iterator             CameraControllerIterator;
             /// @brief Const Iterator type for @ref CameraController instances stored by this class.
-            typedef CameraControllerContainer::const_iterator  ConstCameraControllerIterator;
+            typedef CameraControllerContainer::const_iterator       ConstCameraControllerIterator;
         protected:
-            friend class Graphics::SceneManagerData;
-            friend class Camera;
-
-            Camera* DefaultCamera;
+            /// @internal
+            /// @brief Container storing all of the Camera instances created by this manager.
             CameraContainer Cameras;
+            /// @internal
+            /// @brief Container storing all of the CameraController instances created by this manager.
             CameraControllerContainer CameraControllers;
-            Camera* FindCamera(const String& Name);
             /// @internal
             /// @brief Used to reference the appropriate scene
-            Graphics::SceneManager* SceneMan;
+            SceneManager* SceneMan;
         public:
             /// @brief Class Constructor.
             CameraManager();
@@ -114,17 +113,17 @@ namespace Mezzanine
             /// @brief Creates a camera.
             /// @remarks This function will autogenerate the name for the camera.
             /// @return Returns a pointer to the created camera.
-            Camera* CreateCamera();
+            CameraProxy* CreateCamera();
             /// @brief Creates a camera.
             /// @param Name The name to be assigned to the created camera.
             /// @return Returns a pointer to the created camera.
-            Camera* CreateCamera(const String& Name);
+            CameraProxy* CreateCamera(const String& Name);
             /// @brief Gets an already created camera by name.
             /// @return Returns a pointer to the camera of the specified name.
-            Camera* GetCamera(const String& Name);
+            CameraProxy* GetCamera(const String& Name);
             /// @brief Gets an already created camera by index.
             /// @return Returns a pointer to the camera at the specified index.
-            Camera* GetCamera(const Whole& Index);
+            CameraProxy* GetCamera(const Whole& Index);
             /// @brief Gets the number of cameras created and stored in this manager.
             /// @return Returns the number of cameras this manager is storing.
             Whole GetNumCameras();
@@ -137,13 +136,13 @@ namespace Mezzanine
             /// @brief Gets a camera controller if it exists, otherwise creates it.
             /// @param Controlled The camera that will be controlled by the controller returned.
             /// @return Returns a pointer to the created or retrieved camera controller for the camera.
-            CameraController* GetOrCreateCameraController(Camera* Controlled);
+            CameraController* GetOrCreateCameraController(CameraProxy* Controlled);
             /// @brief Destroys a cameracontroller.
             /// @param ToBeDestroyed Pointer to the cameracontrolled you want destroyed.
             void DestroyCameraController(CameraController* ToBeDestroyed);
             /// @brief Destroys a cameracontroller by camera.
             /// @param ControlledCam The camera who's controller will be destroyed.  This doesn't do anything to the camera.
-            void DestroyCameraController(Camera* ControlledCam);
+            void DestroyCameraController(CameraProxy* ControlledCam);
             /// @brief Destroys all camera controllers being stored in this manager.
             void DestroyAllCameraControllers();
 
@@ -153,14 +152,14 @@ namespace Mezzanine
             /// @copydoc WorldManager::Pause(const UInt32)
             virtual void Pause(const UInt32 PL);
 
-            /// @copydoc WorldManager::Initialize()
+            /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
             /// @copydoc ManagerBase::Deinitialize()
             virtual void Deinitialize();
 
             /// @brief Gets the SceneManager this Camera Manager is working with.
             /// @return Returns a pointer to the SceneManager all cameras made with this manager belong to.
-            Graphics::SceneManager* GetScene() const;
+            SceneManager* GetScene() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods

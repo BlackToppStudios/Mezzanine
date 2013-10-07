@@ -41,7 +41,7 @@
 #define _graphicsscenemanager_cpp
 
 #include "Graphics/cameramanager.h"
-#include "scenemanager.h"
+#include "Graphics/scenemanager.h"
 #include "areaeffectmanager.h"
 #include "entresol.h"
 #include "plane.h"
@@ -164,13 +164,6 @@ namespace Mezzanine
             /// @brief Destructor
             ~SceneManagerData()
             {
-                CameraManager* CamMan = Entresol::GetSingletonPtr()->GetCameraManager();
-                if(CamMan)
-                {
-                    CamMan->DestroyAllCameraControllers();
-                    CamMan->DestroyAllCameras();
-                    CamMan->SceneMan = 0;
-                }
                 Ogre::Root::getSingleton().destroySceneManager(OgreManager);
             }
         };//SceneManagerData
@@ -292,9 +285,6 @@ namespace Mezzanine
             this->Deinitialize();
 
             delete TrackingNodeUpdateWork;
-
-            this->DestroyAllProxies();
-            this->DestroyAllWorldNodes();
             delete SMD;
         }
 
@@ -636,8 +626,15 @@ namespace Mezzanine
         {
             if( !this->Initialized )
             {
+                // Manager Initializations
                 //WorldManager::Initialize();
 
+                CameraManager* CamMan = this->TheEntresol->GetCameraManager();
+                if( CamMan ) {
+                    CamMan->Initialize();
+                }
+
+                // WorkUnit Initializations
                 this->TheEntresol->GetScheduler().AddWorkUnitMain( this->TrackingNodeUpdateWork, "TrackingNodeUpdateWork" );
 
                 Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
@@ -658,6 +655,16 @@ namespace Mezzanine
         {
             if( this->Initialized )
             {
+                this->DestroyAllProxies();
+                this->DestroyAllWorldNodes();
+
+                // Manager Initializations
+                CameraManager* CamMan = this->TheEntresol->GetCameraManager();
+                if( CamMan ) {
+                    CamMan->Deinitialize();
+                }
+
+                // WorkUnit Initializations
                 this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->TrackingNodeUpdateWork );
                 this->TrackingNodeUpdateWork->ClearDependencies();
 

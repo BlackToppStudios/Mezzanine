@@ -61,7 +61,7 @@ namespace Mezzanine
     namespace Graphics
     {
         class SceneManager;
-        class Camera;
+        class CameraProxy;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class WorldNode

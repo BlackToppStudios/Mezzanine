@@ -52,7 +52,7 @@ namespace Mezzanine
     namespace Graphics
     {
         class GameWindow;
-        class Camera;
+        class CameraProxy;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Viewport
         /// @headerfile viewport.h
@@ -66,25 +66,25 @@ namespace Mezzanine
             protected:
                 Ogre::Viewport* OgreViewport;
                 GameWindow* Parent;
-                Camera* ViewportCam;
+                CameraProxy* ViewportCam;
             public:
                 /// @brief Class constructor.
-                /// @param ViewportCamera The camera that is to be attached to this veiwport.
+                /// @param ViewportCamera The CameraProxy that is to be attached to this veiwport.
                 /// @param ZOrder The render order of this viewport relative to other viewports in the game window.
                 /// @param ParentWindow The game window this viewport belongs to.
-                Viewport(Camera* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow);
+                Viewport(CameraProxy* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow);
                 /// @brief Class destructor.
                 ~Viewport();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Camera and parent Management
 
-                /// @brief Sets which camera is bound to this viewport.
-                /// @param ViewportCamera Pointer to the camera to be bount to this viewport, or NULL to simply unbind a camera.
-                void SetCamera(Camera* ViewportCamera);
-                /// @brief Gets the camera associated with this viewport.
-                /// @return Returns a pointer to the camera using this viewport.
-                Camera* GetViewportCamera();
+                /// @brief Sets which CameraProxy is bound to this viewport.
+                /// @param ViewportCamera Pointer to the CameraProxy to be bount to this viewport, or NULL to simply unbind a CameraProxy.
+                void SetCamera(CameraProxy* ViewportCamera);
+                /// @brief Gets the CameraProxy associated with this viewport.
+                /// @return Returns a pointer to the CameraProxy using this viewport.
+                CameraProxy* GetViewportCamera();
                 /// @brief Gets the game window this viewport belongs to.
                 /// @return Returns a pointer to the game window that created this viewport.
                 GameWindow* GetParentWindow();

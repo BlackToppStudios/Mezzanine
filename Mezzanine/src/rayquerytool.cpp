@@ -51,7 +51,7 @@ using namespace std;
 #include "entresol.h"
 #include "Graphics/cameramanager.h"
 #include "Input/inputmanager.h"
-#include "Graphics/camera.h"
+#include "Graphics/cameraproxy.h"
 #include "Graphics/gamewindow.h"
 #include "Graphics/viewport.h"
 #include "plane.h"

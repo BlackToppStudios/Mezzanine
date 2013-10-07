@@ -112,16 +112,17 @@ namespace Mezzanine
 
         PT_Graphics_First               = 4,//3
         PT_Graphics_BillboardSetProxy   = 4,//3
-        PT_Graphics_EntityProxy         = 8,//4
-        PT_Graphics_LightProxy          = 16,//5
-        PT_Graphics_ParticleSystemProxy = 32,//6
-        PT_Graphics_Last                = 32,//6
+        PT_Graphics_CameraProxy         = 8,//4
+        PT_Graphics_EntityProxy         = 16,//5
+        PT_Graphics_LightProxy          = 32,//6
+        PT_Graphics_ParticleSystemProxy = 64,//7
+        PT_Graphics_Last                = 64,//7
 
-        PT_Physics_First                = 64,//7
-        PT_Physics_GhostProxy           = 64,//7
-        PT_Physics_RigidProxy           = 128,//8
-        PT_Physics_SoftProxy            = 256,//9
-        PT_Physics_Last                 = 256//9
+        PT_Physics_First                = 128,//8
+        PT_Physics_GhostProxy           = 128,//8
+        PT_Physics_RigidProxy           = 256,//9
+        PT_Physics_SoftProxy            = 512,//10
+        PT_Physics_Last                 = 512//10
     };
 
     /// @enum StandardAxis

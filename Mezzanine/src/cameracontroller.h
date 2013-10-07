@@ -47,7 +47,7 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        class Camera;
+        class CameraProxy;
     }
 
     ///@brief Boundaries for rotation on one axis
@@ -67,103 +67,115 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB CameraController
     {
-        public:
-            /// @enum MovementMode
-            /// @brief Possible options for determining how the camera should move relative to the world.
-            enum MovementMode
-            {
-                CCM_Fly,        ///< CCM_Fly: This is the default option for every Camera Controller.  Allows the camera unrestrained movement throughout the scene.
-                CCM_Walk        ///< CCM_Walk: This forces the camera to be only a certain distance above the terrain.
-            };
-        protected:
-            RayQueryTool RayCaster;
+    public:
+        /// @enum MovementMode
+        /// @brief Possible options for determining how the camera should move relative to the world.
+        enum MovementMode
+        {
+            CCM_Fly,        ///< CCM_Fly: This is the default option for every Camera Controller.  Allows the camera unrestrained movement throughout the scene.
+            CCM_Walk        ///< CCM_Walk: This forces the camera to be only a certain distance above the terrain.
+        };
+    protected:
+        RayQueryTool RayCaster;
 
-            Graphics::Camera* Controlled;
-            MovementMode CurrentMMode;
-            Real HoverHeight;
+        Graphics::CameraProxy* Controlled;
+        MovementMode CurrentMMode;
+        Real HoverHeight;
 
-            Real YawRad;
-            Real PitchRad;
-            Real RollRad;
+        Real YawRad;
+        Real PitchRad;
+        Real RollRad;
 
-            AngleLimits* YawLimits;
-            AngleLimits* PitchLimits;
-            AngleLimits* RollLimits;
+        AngleLimits* YawLimits;
+        AngleLimits* PitchLimits;
+        AngleLimits* RollLimits;
 
-            void CheckAngleRollover(Real Angle);
-            void CheckAngleLimits();
-            void CheckAllAngles();
-            void CheckHeight();
-            Real FindDistanceToGround();
-        public:
-            /// @brief Class constructor.
-            /// @param ToBeControlled The camera this controller is controlling.
-            CameraController(Graphics::Camera* ToBeControlled);
-            /// @brief Class destructor.
-            ~CameraController();
-            /// @brief Gets the camera this controller is controlling.
-            /// @return Returns a camera pointer for the camera this controller is applied to.
-            Graphics::Camera* GetControlledCamera() const;
-            /// @brief Sets the movement mode for this camera/controller.
-            /// @param MoveMode The MovementMode value for which mode you want applied.  See MovementMode enum for more info.
-            void SetMovementMode(const MovementMode& MoveMode);
-            /// @brief Gets the currently set movement mode.
-            /// @return Returns an enum value representing the current movement mode.  See MovementMode enum for more info.
-            MovementMode GetMovementMode() const;
-            /// @brief Sets the hover distance for the camera while it's moving.
-            /// @details Hover is only applied in CCM_Walk mode.  Default: 1.0.
-            /// @param Hover The distance above the ground to hover, in world units.
-            void SetHoverHeight(const Real& Hover);
-            /// @brief Gets the distance the camera hovers over terrain while in CCM_Walk mode.
-            /// @return Returns a Real represening the distance above terrain the camera is to hover, in world units.
-            Real GetHoverHeight() const;
-            /// @brief Sets rotational limits on the Y axis.
-            /// @details The rotation range is from -Pi to Pi.
-            /// @param UpperLimit The allowed upper rotation limit in radians.
-            /// @param LowerLimit The allowed lower rotation limit in radians.
-            void SetYawLimits(const Real& UpperLimit, const Real& LowerLimit);
-            /// @brief Clears any set limits on yaw(Y axis) rotation.
-            void RemoveYawLimits();
-            /// @brief Sets rotational limits on the X axis.
-            /// @details The rotation range is from -Pi to Pi.
-            /// @param UpperLimit The allowed upper rotation limit in radians.
-            /// @param LowerLimit The allowed upper rotation limit in radians.
-            void SetPitchLimits(const Real& UpperLimit, const Real& LowerLimit);
-            /// @brief Clears any set limits on pitch(X axis) rotation.
-            void RemovePitchLimits();
-            /// @brief Sets rotational limits on the Z axis.
-            /// @details The rotation range is from -Pi to Pi.
-            /// @param UpperLimit The allowed upper rotation limit in radians.
-            /// @param LowerLimit The allowed upper rotation limit in radians.
-            void SetRollLimits(const Real& UpperLimit, const Real& LowerLimit);
-            /// @brief Clears any set limits on roll(Z axis) rotation.
-            void RemoveRollLimits();
-            /// @brief Moves the camera forward.
-            /// @param Units The distance to be moved in world units.
-            void MoveForward(Real Units);
-            /// @brief Moves the camera backward.
-            /// @param Units The distance to be moved in world units.
-            void MoveBackward(Real Units);
-            /// @brief Moves the camera to the left.
-            /// @param Units The distance to be moved in world units.
-            void StrafeLeft(Real Units);
-            /// @brief Moves the camera to the right.
-            /// @param Units The distance to be moved in world units.
-            void StrafeRight(Real Units);
-            /// @brief Rotates the camera.
-            /// @details This is a safer rotation method that applies all the checks and can lock behaviors
-            /// such as roll if configured to do so.
-            /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
-            /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
-            /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
-            void Rotate(Real Yaw, Real Pitch, Real Roll);
-            /// @brief Rotates the camera.
-            /// @details This is a freeform rotation method that will apply the rotation desired to the
-            /// camera without any checks.  This is ideal for spacecraft style controls.
-            /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
-            /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
-            /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
-            void Rotate6DOF(Real Yaw, Real Pitch, Real Roll);
+        void CheckAngleRollover(Real Angle);
+        void CheckAngleLimits();
+        void CheckAllAngles();
+        void CheckHeight();
+        Real FindDistanceToGround();
+    public:
+        /// @brief Class constructor.
+        /// @param ToBeControlled The camera this controller is controlling.
+        CameraController(Graphics::CameraProxy* ToBeControlled);
+        /// @brief Class destructor.
+        ~CameraController();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Gets the camera this controller is controlling.
+        /// @return Returns a camera pointer for the camera this controller is applied to.
+        Graphics::CameraProxy* GetControlledCamera() const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // CameraController Properties
+
+        /// @brief Sets the movement mode for this camera/controller.
+        /// @param MoveMode The MovementMode value for which mode you want applied.  See MovementMode enum for more info.
+        void SetMovementMode(const MovementMode& MoveMode);
+        /// @brief Gets the currently set movement mode.
+        /// @return Returns an enum value representing the current movement mode.  See MovementMode enum for more info.
+        MovementMode GetMovementMode() const;
+        /// @brief Sets the hover distance for the camera while it's moving.
+        /// @details Hover is only applied in CCM_Walk mode.  Default: 1.0.
+        /// @param Hover The distance above the ground to hover, in world units.
+        void SetHoverHeight(const Real& Hover);
+        /// @brief Gets the distance the camera hovers over terrain while in CCM_Walk mode.
+        /// @return Returns a Real represening the distance above terrain the camera is to hover, in world units.
+        Real GetHoverHeight() const;
+        /// @brief Sets rotational limits on the Y axis.
+        /// @details The rotation range is from -Pi to Pi.
+        /// @param UpperLimit The allowed upper rotation limit in radians.
+        /// @param LowerLimit The allowed lower rotation limit in radians.
+        void SetYawLimits(const Real& UpperLimit, const Real& LowerLimit);
+        /// @brief Clears any set limits on yaw(Y axis) rotation.
+        void RemoveYawLimits();
+        /// @brief Sets rotational limits on the X axis.
+        /// @details The rotation range is from -Pi to Pi.
+        /// @param UpperLimit The allowed upper rotation limit in radians.
+        /// @param LowerLimit The allowed upper rotation limit in radians.
+        void SetPitchLimits(const Real& UpperLimit, const Real& LowerLimit);
+        /// @brief Clears any set limits on pitch(X axis) rotation.
+        void RemovePitchLimits();
+        /// @brief Sets rotational limits on the Z axis.
+        /// @details The rotation range is from -Pi to Pi.
+        /// @param UpperLimit The allowed upper rotation limit in radians.
+        /// @param LowerLimit The allowed upper rotation limit in radians.
+        void SetRollLimits(const Real& UpperLimit, const Real& LowerLimit);
+        /// @brief Clears any set limits on roll(Z axis) rotation.
+        void RemoveRollLimits();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Transform Methods
+
+        /// @brief Moves the camera forward.
+        /// @param Units The distance to be moved in world units.
+        void MoveForward(Real Units);
+        /// @brief Moves the camera backward.
+        /// @param Units The distance to be moved in world units.
+        void MoveBackward(Real Units);
+        /// @brief Moves the camera to the left.
+        /// @param Units The distance to be moved in world units.
+        void StrafeLeft(Real Units);
+        /// @brief Moves the camera to the right.
+        /// @param Units The distance to be moved in world units.
+        void StrafeRight(Real Units);
+        /// @brief Rotates the camera.
+        /// @details This is a safer rotation method that applies all the checks and can lock behaviors
+        /// such as roll if configured to do so.
+        /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
+        /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
+        /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
+        void Rotate(Real Yaw, Real Pitch, Real Roll);
+        /// @brief Rotates the camera.
+        /// @details This is a freeform rotation method that will apply the rotation desired to the
+        /// camera without any checks.  This is ideal for spacecraft style controls.
+        /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
+        /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
+        /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
+        void Rotate6DOF(Real Yaw, Real Pitch, Real Roll);
     };//cameracontroller
 }//Mezzanine
 

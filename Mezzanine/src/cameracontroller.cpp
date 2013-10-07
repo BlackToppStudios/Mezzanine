@@ -41,7 +41,7 @@
 #define _cameracontroller_cpp
 
 #include "cameracontroller.h"
-#include "Graphics/camera.h"
+#include "Graphics/cameraproxy.h"
 #include "mathtool.h"
 #include "rayquerytool.h"
 #include "ray.h"
@@ -50,7 +50,7 @@
 
 namespace Mezzanine
 {
-    CameraController::CameraController(Graphics::Camera* ToBeControlled)
+    CameraController::CameraController(Graphics::CameraProxy* ToBeControlled)
         : Controlled(ToBeControlled),
           CurrentMMode(CCM_Fly),
           HoverHeight(2),
@@ -133,10 +133,16 @@ namespace Mezzanine
         return Distance;
     }
 
-    Graphics::Camera* CameraController::GetControlledCamera() const
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    Graphics::CameraProxy* CameraController::GetControlledCamera() const
     {
         return Controlled;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // CameraController Properties
 
     void CameraController::SetMovementMode(const CameraController::MovementMode& MoveMode)
     {
@@ -209,10 +215,13 @@ namespace Mezzanine
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Transform Methods
+
     void CameraController::MoveForward(Real Units)
     {
         Vector3 Move(0,0,-Units);
-        Controlled->MoveRelative(Move);
+        Controlled->Translate(Move);
         if(CCM_Walk == CurrentMMode)
             CheckHeight();
     }
@@ -220,7 +229,7 @@ namespace Mezzanine
     void CameraController::MoveBackward(Real Units)
     {
         Vector3 Move(0,0,Units);
-        Controlled->MoveRelative(Move);
+        Controlled->Translate(Move);
         if(CCM_Walk == CurrentMMode)
             CheckHeight();
     }
@@ -228,7 +237,7 @@ namespace Mezzanine
     void CameraController::StrafeLeft(Real Units)
     {
         Vector3 Move(-Units,0,0);
-        Controlled->MoveRelative(Move);
+        Controlled->Translate(Move);
         if(CCM_Walk == CurrentMMode)
             CheckHeight();
     }
@@ -236,7 +245,7 @@ namespace Mezzanine
     void CameraController::StrafeRight(Real Units)
     {
         Vector3 Move(Units,0,0);
-        Controlled->MoveRelative(Move);
+        Controlled->Translate(Move);
         if(CCM_Walk == CurrentMMode)
             CheckHeight();
     }
