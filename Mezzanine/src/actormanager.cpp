@@ -105,10 +105,10 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Managing all actors
 
-    void ActorManager::AddActor(ActorBase* Actor)
+    void ActorManager::AddActor(ActorBase* ToBeAdded)
     {
-        this->Actors.push_back(Actor);
-        Actor->AddToWorld();
+        this->Actors.push_back(ToBeAdded);
+        ToBeAdded->AddToWorld();
     }
 
     ActorBase* ActorManager::GetActor(const Whole& Index) const

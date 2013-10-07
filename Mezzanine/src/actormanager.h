@@ -129,8 +129,8 @@ namespace Mezzanine
         /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
         /// function facilitates this. @n
         /// This function is also necessary for anyone inheriting from our actors to add their actors to the world.
-        /// @param Actor The actor to be added to the manager.
-        virtual void AddActor(ActorBase* Actor);
+        /// @param ToBeAdded The actor to be added to the manager.
+        virtual void AddActor(ActorBase* ToBeAdded);
         /// @brief Gets an Actor by Index.
         /// @param Index The index of the actor you wish to retrieve.
         /// @return Returns a pointer to the actor at the specified index.
