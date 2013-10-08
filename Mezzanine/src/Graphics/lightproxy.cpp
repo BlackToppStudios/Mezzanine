@@ -99,6 +99,14 @@ namespace Mezzanine
             GraphicsLight(NULL)
             { this->CreateLight(); }
 
+        LightProxy::LightProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
+            RenderableProxy(Creator),
+            GraphicsLight(NULL)
+        {
+            this->CreateLight();
+            this->ProtoDeSerialize(SelfRoot);
+        }
+
         LightProxy::~LightProxy()
             { this->DestroyLight(); }
 

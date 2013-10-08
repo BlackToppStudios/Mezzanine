@@ -445,6 +445,13 @@ namespace Mezzanine
             return NewProxy;
         }
 
+        BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const XML::Node& SelfRoot)
+        {
+            BillboardSetProxy* NewProxy = new BillboardSetProxy(SelfRoot,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
         EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh)
         {
             EntityProxy* NewProxy = new EntityProxy(TheMesh,this);
@@ -455,6 +462,13 @@ namespace Mezzanine
         EntityProxy* SceneManager::CreateEntityProxy(const String& MeshName, const String& GroupName)
         {
             EntityProxy* NewProxy = new EntityProxy(MeshName,GroupName,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        EntityProxy* SceneManager::CreateEntityProxy(const XML::Node& SelfRoot)
+        {
+            EntityProxy* NewProxy = new EntityProxy(SelfRoot,this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -473,9 +487,23 @@ namespace Mezzanine
             return NewProxy;
         }
 
+        LightProxy* CreateLightProxy(const XML::Node& SelfRoot)
+        {
+            LightProxy* NewProxy = new LightProxy(SelfRoot,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
         ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const String& Template)
         {
             ParticleSystemProxy* NewProxy = new ParticleSystemProxy(Template,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        ParticleSystemProxy* CreateParticleSystemProxy(const XML::Node& SelfRoot)
+        {
+            ParticleSystemProxy* NewProxy = new ParticleSystemProxy(SelfRoot,this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }

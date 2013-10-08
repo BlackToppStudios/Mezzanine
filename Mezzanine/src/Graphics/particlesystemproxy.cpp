@@ -65,6 +65,13 @@ namespace Mezzanine
             Paused(false)
             { this->CreateParticleSystem(Template); }
 
+        ParticleSystemProxy::ParticleSystemProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
+            RenderableProxy(Creator),
+            GraphicsParticleSystem(NULL),
+            SpeedFactor(1.0),
+            Paused(false)
+            { this->ProtoDeSerialize(SelfRoot); }
+
         ParticleSystemProxy::~ParticleSystemProxy()
             { this->DestroyParticleSystem(); }
 

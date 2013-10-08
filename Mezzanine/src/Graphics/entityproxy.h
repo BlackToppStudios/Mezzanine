@@ -91,6 +91,10 @@ namespace Mezzanine
             /// @param GroupName The resource group name where the mesh can be found.
             /// @param Creator A pointer to the manager that created this proxy.
             EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator);
+            /// @brief XML constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param Creator A pointer to the manager that created this proxy.
+            EntityProxy(const XML::Node& SelfRoot, SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~EntityProxy();
 

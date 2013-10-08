@@ -90,6 +90,10 @@ namespace Mezzanine
             /// @param InitialPoolSize The number of billboards to reserve space for.
             /// @param Creator A pointer to the manager that created this proxy.
             BillboardSetProxy(const UInt32 InitialPoolSize, SceneManager* Creator);
+            /// @brief XML constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param Creator A pointer to the manager that created this proxy.
+            BillboardSetProxy(const XML::Node& SelfRoot, SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~BillboardSetProxy();
 

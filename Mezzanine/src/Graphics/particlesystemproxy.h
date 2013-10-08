@@ -119,6 +119,10 @@ namespace Mezzanine
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @param Creator A pointer to the manager that created this proxy.
             ParticleSystemProxy(const String& Template, SceneManager* Creator);
+            /// @brief XML constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param Creator A pointer to the manager that created this proxy.
+            ParticleSystemProxy(const XML::Node& SelfRoot, SceneManager* Creator);
             /// @brief Class destructor.
             virtual ~ParticleSystemProxy();
 

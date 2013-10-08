@@ -308,6 +308,10 @@ namespace Mezzanine
             /// @param InitialPoolSize The number of billboards to reserve space for.
             /// @return Returns a pointer to the created proxy.
             BillboardSetProxy* CreateBillboardSetProxy(const UInt32 InitialPoolSize = 20);
+            /// @brief Creates a new BillboardSetProxy.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created proxy.
+            BillboardSetProxy* CreateBillboardSetProxy(const XML::Node& SelfRoot);
             /// @brief Creates a new EntityProxy.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
             /// @return Returns a pointer to the created proxy.
@@ -317,6 +321,10 @@ namespace Mezzanine
             /// @param GroupName The resource group name where the mesh can be found.
             /// @return Returns a pointer to the created proxy.
             EntityProxy* CreateEntityProxy(const String& MeshName, const String& GroupName);
+            /// @brief Creates a new EntityProxy.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created proxy.
+            EntityProxy* CreateEntityProxy(const XML::Node& SelfRoot);
             /// @brief Creates a new LightProxy.
             /// @return Returns a pointer to the created proxy.
             LightProxy* CreateLightProxy();
@@ -324,10 +332,18 @@ namespace Mezzanine
             /// @param Type The type of light this light is to be constructed as.
             /// @return Returns a pointer to the created proxy.
             LightProxy* CreateLightProxy(const Graphics::LightType Type);
+            /// @brief Creates a new LightProxy.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created proxy.
+            LightProxy* CreateLightProxy(const XML::Node& SelfRoot);
             /// @brief Creates a new ParticleSystemProxy.
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @return Returns a pointer to the created proxy.
             ParticleSystemProxy* CreateParticleSystemProxy(const String& Template);
+            /// @brief Creates a new ParticleSystemProxy.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created proxy.
+            ParticleSystemProxy* CreateParticleSystemProxy(const XML::Node& SelfRoot);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management

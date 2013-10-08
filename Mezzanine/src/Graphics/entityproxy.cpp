@@ -71,6 +71,12 @@ namespace Mezzanine
             ProxyMesh(NULL)
             { this->CreateEntity(MeshName,GroupName); }
 
+        EntityProxy::EntityProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
+            RenderableProxy(Creator),
+            GraphicsEntity(NULL),
+            ProxyMesh(NULL)
+            { this->ProtoDeSerialize(SelfRoot); }
+
         EntityProxy::~EntityProxy()
             { this->DestroyEntity(); }
 

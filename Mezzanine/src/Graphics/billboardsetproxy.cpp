@@ -165,6 +165,13 @@ namespace Mezzanine
             RenderableProxy(Creator)
             { this->CreateBillboardSet(InitialPoolSize); }
 
+        BillboardSetProxy::BillboardSetProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
+            RenderableProxy(Creator)
+        {
+            this->CreateBillboardSet(20);
+            this->ProtoDeSerialize(SelfRoot);
+        }
+
         BillboardSetProxy::~BillboardSetProxy()
             { this->DestroyBillboardSet(); }
 
