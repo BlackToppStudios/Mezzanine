@@ -176,6 +176,9 @@ namespace Mezzanine
         void EntityProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+            if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
+                SerializeError("Create XML Attribute Values",EntityProxy::GetSerializableName(),true);
+            }
 
             this->ProtoSerializeProperties(SelfRoot);
             this->ProtoSerializeMesh(SelfRoot);
@@ -202,8 +205,18 @@ namespace Mezzanine
 
         void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
+            Bool WasInWorld = false;
+            XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
+            if( !InWorldAttrib.Empty() ) {
+                WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
+            }
+
             this->ProtoDeSerializeMesh(SelfRoot);
             this->ProtoDeSerializeProperties(SelfRoot);
+
+            if( WasInWorld ) {
+                this->AddToWorld();
+            }
         }
 
         void EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)

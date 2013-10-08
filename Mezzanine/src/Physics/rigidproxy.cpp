@@ -248,8 +248,7 @@ namespace Mezzanine
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
                 PropertiesNode.AppendAttribute("Mass").SetValue( this->GetMass() ) &&
                 PropertiesNode.AppendAttribute("LinearDamping").SetValue( this->GetLinearDamping() ) &&
-                PropertiesNode.AppendAttribute("AngularDamping").SetValue( this->GetAngularDamping() ) &&
-                PropertiesNode.AppendAttribute("IsInWorld").SetValue( this->IsInWorld() ? "true" : "false" ) )
+                PropertiesNode.AppendAttribute("AngularDamping").SetValue( this->GetAngularDamping() ) )
             {
                 XML::Node LinVelNode = PropertiesNode.AppendChild("LinearVelocty");
                 this->GetLinearVelocity().ProtoSerialize( LinVelNode );
@@ -289,7 +288,6 @@ namespace Mezzanine
             if( !PropertiesNode.Empty() ) {
                 if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
                     Real LinDam = 0, AngDam = 0;
-                    bool InWorld = false;
 
                     CurrAttrib = PropertiesNode.GetAttribute("Mass");
                     if( !CurrAttrib.Empty() )
@@ -302,10 +300,6 @@ namespace Mezzanine
                     CurrAttrib = PropertiesNode.GetAttribute("AngularDamping");
                     if( !CurrAttrib.Empty() )
                         AngDam = CurrAttrib.AsReal();
-
-                    CurrAttrib = PropertiesNode.GetAttribute("IsInWorld");
-                    if( !CurrAttrib.Empty() )
-                        InWorld = StringTools::ConvertToBool( CurrAttrib.AsString() );
 
                     this->SetDamping(LinDam,AngDam);
 
@@ -350,10 +344,6 @@ namespace Mezzanine
                     if( !GravityNode.Empty() ) {
                         Vector3 Gravity(GravityNode);
                         this->SetGravity(Gravity);
-                    }
-
-                    if( InWorld ) {
-                        this->AddToWorld();
                     }
                 }else{
                     MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RigidProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");

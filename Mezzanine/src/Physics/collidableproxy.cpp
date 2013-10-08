@@ -647,6 +647,9 @@ namespace Mezzanine
         void CollidableProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+            if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
+                SerializeError("Create XML Attribute Values",CollidableProxy::GetSerializableName(),true);
+            }
 
             this->ProtoSerializeProperties(SelfRoot);
             this->ProtoSerializeShape(SelfRoot);
@@ -694,8 +697,18 @@ namespace Mezzanine
 
         void CollidableProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
+            Bool WasInWorld = false;
+            XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
+            if( !InWorldAttrib.Empty() ) {
+                WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
+            }
+
             this->ProtoDeSerializeProperties(SelfRoot);
             this->ProtoDeSerializeShape(SelfRoot);
+
+            if( WasInWorld ) {
+                this->AddToWorld();
+            }
         }
 
         void CollidableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
