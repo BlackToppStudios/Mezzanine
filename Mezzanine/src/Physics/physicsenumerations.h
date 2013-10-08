@@ -103,6 +103,30 @@ namespace Mezzanine
             CF_DisableSPUCollisionProcessing  = 64
         };
 
+        /// @enum CollisionState
+        /// @brief Enum specifying the state change occuring in the collision.
+        enum CollisionState
+        {
+            Col_Begin,
+            Col_Contacts_Updated,
+            Col_End
+        };
+
+        /// @enum CollisionType
+        /// @brief Enum specifying what kind of collision this class is storing.
+        enum CollisionType
+        {
+            Col_Actor_Actor,            ///< Specifies a collision between two Actors.
+            Col_Actor_AreaEffect,       ///< Specifies a collision between an Actor and an AreaRffect.
+            Col_Actor_Debris,           ///< Specifies a collision between an Actor and a Debris.
+            Col_Actor_Terrain,          ///< Specifies a collision between an Actor and some Terrain.
+            Col_AreaEffect_AreaEffect,  ///< Specifies a collision between two AreaEffects.
+            Col_AreaEffect_Debris,      ///< Specifies a collision between an AreaEffect and a Debris.
+            Col_AreaEffect_Terrain,     ///< Specifies a collision between an AreaEffect and some Terrain.
+            Col_Debris_Debris,          ///< Specifies a collision between two Debris.
+            Col_Debris_Terrain          ///< Specifies a collision between a Debris and some Terrain.
+        };
+
         /// @enum DebugDrawMode
         /// @brief This is a collection of flags designed to describe what to draw when the Debug Drawer is enabled.
         /// @details Most of these options work, with the exception of text-based modes and contact point modes.

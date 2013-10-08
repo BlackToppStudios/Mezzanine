@@ -41,6 +41,7 @@
 #define _physicscollision_h
 
 #include "vector3.h"
+#include "Physics/physicsenumerations.h"
 #ifndef SWIG
     #include "XML/xml.h"
 #endif
@@ -72,24 +73,6 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Collision
         {
-        public:
-            /// @enum CollisionState
-            /// @brief Enum specifying the state change occuring in the collision.
-            enum CollisionState
-            {
-                Col_Begin,
-                Col_Contacts_Updated,
-                Col_End
-            };
-            /// @enum CollisionType
-            /// @brief Enum specifying what kind of collision this class is storing.
-            enum CollisionType
-            {
-                Col_Actor_Actor,        ///< Specifies a collision between two Actors.
-                Col_Actor_Terrain,      ///< Specifies a collision between an Actor and some Terrain.
-                Col_Actor_AreaEffect,   ///< Specifies a collision between an Actor and an AreaRffect.
-                Col_AreaEffect_Terrain  ///< Specifies a collision between an AreaEffect and some Terrain.
-            };
         protected:
             friend class Mezzanine::Physics::CollisionDispatcher;
             friend class Mezzanine::Physics::ParallelCollisionDispatcher;
