@@ -41,7 +41,7 @@
 #define actormanager_cpp
 
 #include "actormanager.h"
-#include "actorbase.h"
+#include "actor.h"
 #include "Physics/physicsmanager.h"
 #include "entresol.h"
 
@@ -99,24 +99,24 @@ namespace Mezzanine
         this->Deinitialize();
         this->DestroyAllActors();
 
-        delete ActorUpdateWork;
+        delete this->ActorUpdateWork;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Managing all actors
 
-    void ActorManager::AddActor(ActorBase* ToBeAdded)
+    void ActorManager::AddActor(Actor* ToBeAdded)
     {
         this->Actors.push_back(ToBeAdded);
         ToBeAdded->AddToWorld();
     }
 
-    ActorBase* ActorManager::GetActor(const Whole& Index) const
+    Actor* ActorManager::GetActor(const Whole& Index) const
     {
         return this->Actors.at(Index);
     }
 
-    ActorBase* ActorManager::GetActor(const String& Name) const
+    Actor* ActorManager::GetActor(const String& Name) const
     {
         for( ConstActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
         {
@@ -138,7 +138,7 @@ namespace Mezzanine
         this->Actors.erase(it);
     }
 
-    void ActorManager::RemoveActor(ActorBase* ToBeRemoved)
+    void ActorManager::RemoveActor(Actor* ToBeRemoved)
     {
         for( ActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
         {
@@ -168,7 +168,7 @@ namespace Mezzanine
         this->Actors.erase(it);
     }
 
-    void ActorManager::DestroyActor(ActorBase* ToBeDestroyed)
+    void ActorManager::DestroyActor(Actor* ToBeDestroyed)
     {
         for( ActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
         {
@@ -230,9 +230,7 @@ namespace Mezzanine
     }
 
     ActorUpdateWorkUnit* ActorManager::GetActorUpdateWork()
-    {
-        return this->ActorUpdateWork;
-    }
+        { return this->ActorUpdateWork; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Type Identifier Methods
@@ -247,32 +245,22 @@ namespace Mezzanine
     // DefaultActorManagerFactory Methods
 
     DefaultActorManagerFactory::DefaultActorManagerFactory()
-    {
-    }
+        {  }
 
     DefaultActorManagerFactory::~DefaultActorManagerFactory()
-    {
-    }
+        {  }
 
     String DefaultActorManagerFactory::GetManagerTypeName() const
-    {
-        return "DefaultActorManager";
-    }
+        { return "DefaultActorManager"; }
 
     ManagerBase* DefaultActorManagerFactory::CreateManager(NameValuePairList& Params)
-    {
-        return new ActorManager();
-    }
+        { return new ActorManager(); }
 
     ManagerBase* DefaultActorManagerFactory::CreateManager(XML::Node& XMLNode)
-    {
-        return new ActorManager(XMLNode);
-    }
+        { return new ActorManager(XMLNode); }
 
     void DefaultActorManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-    {
-        delete ToBeDestroyed;
-    }
+        { delete ToBeDestroyed; }
 }//Mezzanine
 
 #endif

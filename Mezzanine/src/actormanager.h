@@ -40,18 +40,14 @@
 #ifndef actormanager_h
 #define actormanager_h
 
-#include "datatypes.h"
 #include "worldmanager.h"
 #include "managerfactory.h"
-#include "singleton.h"
 #include "Threading/workunit.h"
 
 namespace Mezzanine
 {
-    class ActorBase;
-    class ActorRigid;
+    class Actor;
     class ActorManager;
-
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of actors.
     /// @details
@@ -94,11 +90,11 @@ namespace Mezzanine
     class MEZZ_LIB ActorManager : public WorldManager
     {
     public:
-        /// @brief Basic container type for @ref ActorBase storage by this class.
-        typedef std::vector<ActorBase*>              ActorContainer;
-        /// @brief Iterator type for @ref ActorBase instances stored by this class.
+        /// @brief Basic container type for @ref Actor storage by this class.
+        typedef std::vector<Actor*>                  ActorContainer;
+        /// @brief Iterator type for @ref Actor instances stored by this class.
         typedef ActorContainer::iterator             ActorIterator;
-        /// @brief Const Iterator type for @ref ActorBase instances stored by this class.
+        /// @brief Const Iterator type for @ref Actor instances stored by this class.
         typedef ActorContainer::const_iterator       ConstActorIterator;
     protected:
         friend class ActorUpdateWorkUnit;
@@ -130,15 +126,15 @@ namespace Mezzanine
         /// function facilitates this. @n
         /// This function is also necessary for anyone inheriting from our actors to add their actors to the world.
         /// @param ToBeAdded The actor to be added to the manager.
-        virtual void AddActor(ActorBase* ToBeAdded);
+        virtual void AddActor(Actor* ToBeAdded);
         /// @brief Gets an Actor by Index.
         /// @param Index The index of the actor you wish to retrieve.
         /// @return Returns a pointer to the actor at the specified index.
-        virtual ActorBase* GetActor(const Whole& Index) const;
+        virtual Actor* GetActor(const Whole& Index) const;
         /// @brief Gets an Actor by Name.
         /// @param Name The name of the actor you wish to retrieve.
         /// @return Returns a pointer to the actor of the specified name.
-        virtual ActorBase* GetActor(const String& Name) const;
+        virtual Actor* GetActor(const String& Name) const;
         /// @brief Gets the number of actors stored in this manager.
         /// @return Returns a whole representing the current actor count.
         virtual Whole GetNumActors() const;
@@ -155,7 +151,7 @@ namespace Mezzanine
         /// function facilitates this. @n
         /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
         /// @param ToBeRemoved The actor to be removed from the manager.
-        virtual void RemoveActor(ActorBase* ToBeRemoved);
+        virtual void RemoveActor(Actor* ToBeRemoved);
         /// @brief Removes all actors from this manager without destroying them.
         virtual void RemoveAllActors();
         /// @brief Destroys an actor at the specified index.
@@ -163,7 +159,7 @@ namespace Mezzanine
         virtual void DestroyActor(const Whole& Index);
         /// @brief Destroys an actor.
         /// @param ToBeDestroyed The actor to be destroyed.
-        virtual void DestroyActor(ActorBase* ToBeDestroyed);
+        virtual void DestroyActor(Actor* ToBeDestroyed);
         /// @brief Destroys all actors currently within this manager.
         virtual void DestroyAllActors();
 
