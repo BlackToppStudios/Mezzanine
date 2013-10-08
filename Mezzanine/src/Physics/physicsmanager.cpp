@@ -813,6 +813,13 @@ namespace Mezzanine
             return NewProxy;
         }
 
+        GhostProxy* PhysicsManager::CreateGhostProxy(const XML::Node& SelfRoot)
+        {
+            GhostProxy* NewProxy = new GhostProxy(SelfRoot,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
         RigidProxy* PhysicsManager::CreateRigidProxy(const Real Mass)
         {
             RigidProxy* NewProxy = new RigidProxy(Mass,this);
@@ -820,9 +827,23 @@ namespace Mezzanine
             return NewProxy;
         }
 
+        RigidProxy* PhysicsManager::CreateRigidProxy(const XML::Node& SelfRoot)
+        {
+            RigidProxy* NewProxy = new RigidProxy(SelfRoot,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
         SoftProxy* PhysicsManager::CreateSoftProxy(const Real Mass)
         {
             SoftProxy* NewProxy = new SoftProxy(Mass,this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        SoftProxy* PhysicsManager::CreateSoftProxy(const XML::Node& SelfRoot)
+        {
+            SoftProxy* NewProxy = new SoftProxy(SelfRoot,this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }

@@ -64,6 +64,14 @@ namespace Mezzanine
             this->CreateRigidObject(Mass);
         }
 
+        RigidProxy::RigidProxy(const XML::Node& SelfRoot, PhysicsManager* Creator) :
+            CollidableProxy(Creator),
+            PhysicsRigidBody(NULL)
+        {
+            this->CreateRigidObject(1);
+            this->ProtoDeSerialize(SelfRoot);
+        }
+
         RigidProxy::~RigidProxy()
         {
             if( this->IsInWorld() )

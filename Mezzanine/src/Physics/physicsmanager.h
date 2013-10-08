@@ -383,14 +383,26 @@ namespace Mezzanine
             /// @brief Creates a new GhostProxy.
             /// @return Returns a pointer to the created proxy.
             GhostProxy* CreateGhostProxy();
+            /// @brief Creates a new GhostProxy.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created proxy.
+            GhostProxy* CreateGhostProxy(const XML::Node& SelfRoot);
             /// @brief Creates a new RigidProxy.
             /// @param Mass The mass of the new proxy.
             /// @return Returns a pointer to the created proxy.
             RigidProxy* CreateRigidProxy(const Real Mass);
+            /// @brief Creates a new RigidProxy.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created proxy.
+            RigidProxy* CreateRigidProxy(const XML::Node& SelfRoot);
             /// @brief Creates a new SoftProxy.
             /// @param Mass The total mass of the new proxy.
             /// @return Returns a pointer to the created proxy.
             SoftProxy* CreateSoftProxy(const Real Mass);
+            /// @brief Creates a new SoftProxy.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @return Returns a pointer to the created proxy.
+            SoftProxy* CreateSoftProxy(const XML::Node& SelfRoot);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management

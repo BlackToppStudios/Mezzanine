@@ -61,6 +61,14 @@ namespace Mezzanine
             this->CreateGhostObject();
         }
 
+        GhostProxy::GhostProxy(const XML::Node& SelfRoot, PhysicsManager* Creator) :
+            CollidableProxy(Creator),
+            PhysicsGhostBody(NULL)
+        {
+            this->CreateGhostObject();
+            this->ProtoDeSerialize(SelfRoot);
+        }
+
         GhostProxy::~GhostProxy()
         {
             if( this->IsInWorld() )

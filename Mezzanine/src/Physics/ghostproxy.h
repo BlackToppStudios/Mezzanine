@@ -67,6 +67,10 @@ namespace Mezzanine
             /// @brief Class constructor.
             /// @param Creator A pointer to the manager that created this proxy.
             GhostProxy(PhysicsManager* Creator);
+            /// @brief XML constructor.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            /// @param Creator A pointer to the manager that created this proxy.
+            GhostProxy(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class destructor.
             virtual ~GhostProxy();
 

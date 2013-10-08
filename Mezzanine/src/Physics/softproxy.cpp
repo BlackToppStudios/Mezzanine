@@ -91,6 +91,15 @@ namespace Mezzanine
             this->CreateSoftObject(Mass);
         }
 
+        SoftProxy::SoftProxy(const XML::Node& SelfRoot, PhysicsManager* Creator) :
+            CollidableProxy(Creator),
+            PhysicsSoftBody(NULL)
+        {
+            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Soft body support is still under construction and not complete.");
+            this->CreateSoftObject(1);
+            this->ProtoDeSerialize(SelfRoot);
+        }
+
         SoftProxy::~SoftProxy()
         {
             if( this->IsInWorld() )
