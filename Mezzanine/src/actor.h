@@ -37,37 +37,46 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorcharacter_h
-#define _actorcharacter_h
 
-#include "actorbase.h"
-#include "crossplatformexport.h"
+#ifndef _actor_h
+#define _actor_h
 
-class btRigidBody;
+#ifndef SWIG
+    #include "worldobject.h"
+#endif
 
-// Do not put in documentation until this is done
-/// @cond INTERNAL
+/// @file
+/// @brief The base class for all Actors is defined here.
+
+namespace Ogre
+{
+    class AnimationState;
+}
 
 namespace Mezzanine
 {
-    typedef std::vector< btRigidBody* > BodyParts;
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorCharacter
-    /// @headerfile actorcharacter.h
-    /// @brief This is the character class for actors.
-    /// @details This class is a specialized actor intended for use as a controllable character
-    /// (AI or player) through a character controller.
-    ///////////////////////////////////////
-    class MEZZ_LIB ActorCharacter : public ActorBase
+    namespace Internal
     {
-        protected:
-            BodyParts* Limbs;
-        public:
-            ActorCharacter(String name, String file, String group);
-            ~ActorCharacter();
-    };
-}
-
-/// @endcond
+        class AttachableMotionState;
+    }
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is the base class from which all the actors inherit.
+    /// @details The actor classes are responsible for character and character-like objects in the
+    /// 3D world.
+    ///////////////////////////////////////
+    class MEZZ_LIB Actor : public WorldObject
+    {
+    protected:
+        /// @brief This class encapsulates the functionality of the Ogre::AnimationState using this
+        Ogre::AnimationState* Animation;
+        /// @brief This class encapsulates the functionality of the PhysMotionState using this
+        Internal::AttachableMotionState* MotionState;
+    public:
+        /// @brief Class constructor.
+        Actor();
+        /// @brief Class destructor.
+        virtual ~Actor();
+    };//Actor
+}//Mezzanine
 
 #endif

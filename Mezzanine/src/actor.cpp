@@ -37,29 +37,35 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorcharacter_cpp
-#define _actorcharacter_cpp
 
-#include "btBulletDynamicsCommon.h"
-#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+#ifndef _actor_cpp
+#define _actor_cpp
 
-#include "actorcharacter.h"
+#include "actor.h"
+#include "Physics/physicsmanager.h"
+#include "Graphics/scenemanager.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
+#include "Internal/motionstate.h.cpp"
+#include "Internal/meshtools.h.cpp"
 
-// Do not put in documentation until this is done
-/// @cond DontDocumentInternal
+#include "entresol.h"
+
+#include "serialization.h"
+
+/// @file
+/// @brief Code used by all actors is implemented here.
 
 namespace Mezzanine
 {
-    ActorCharacter::ActorCharacter(String name, String file, String group)
-        : ActorBase()
-    {
-    }
+    Actor::Actor() :
+        Animation(NULL),
+        MotionState(NULL)
+        {  }
 
-    ActorCharacter::~ActorCharacter()
-    {
-    }
-}
-
-/// @endcond
+    Actor::~Actor()
+        { delete this->MotionState; }
+}//Mezzanine
 
 #endif
