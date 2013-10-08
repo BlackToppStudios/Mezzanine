@@ -59,15 +59,14 @@ namespace Mezzanine
     {
         public:
             /// @brief Class constructor.
-            ManagerFactory() {};
+            ManagerFactory() {  };
             /// @brief Class destructor.
-            virtual ~ManagerFactory() {};
+            virtual ~ManagerFactory() {  };
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Virtual Methods
             /// @brief Gets the name of the Manager that is created by this factory.
             /// @return Returns the typename of the manager created by this factory.
             virtual String GetManagerTypeName() const = 0;
+
             /// @brief Creates a manager of the type represented by this factory.
             /// @param Params A NameValuePairList containing the params to be applied during construction.
             /// @return Returns a pointer to the manager created.
