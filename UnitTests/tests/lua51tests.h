@@ -80,6 +80,15 @@ class lua51tests : public UnitTestGroup
             cout << "End " << FeatureName << " Test" << endl << endl;
         }
 
+        void TestLuaScript(const String& Source, const String& FeatureName, const String& FunctionToCall,
+                           Real Input, Real ExpectedOutput,
+                           Whole Libset)
+        {
+            TestLuaScript(Source, FeatureName,FunctionToCall,
+                          Input, ExpectedOutput,
+                          static_cast<Scripting::Lua::Lua51ScriptingEngine::Lua51Libraries>(Libset));
+        }
+
         void TestLuaLibraryExclusion(const String& Source, const String& LibName, const String& FeatureInLibName,
                                      Scripting::Lua::Lua51ScriptingEngine::Lua51Libraries Libset)
         {
@@ -491,6 +500,11 @@ class lua51tests : public UnitTestGroup
                               "Threading::BufferedRollingAverageWhole", "TestFuncAvg", 100, 110,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestFuncSyscall(x)\n"
+                              "   return MezzanineSafe.Threading.GetCPUCount()\n"
+                              "end",
+                              "Threading::SystemCalls", "TestFuncSyscall", GetCPUCount(), GetCPUCount(),
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
             }
 

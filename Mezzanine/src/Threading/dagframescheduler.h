@@ -65,9 +65,9 @@
 
 #include "mutex.h"
 #include "rollingaverage.h"
+#include "systemcalls.h"
 
 #ifndef SWIG
-#include "systemcalls.h"
 #endif
 
 #include "thread.h"
