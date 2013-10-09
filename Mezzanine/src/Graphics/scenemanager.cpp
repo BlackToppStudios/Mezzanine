@@ -487,7 +487,7 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        LightProxy* CreateLightProxy(const XML::Node& SelfRoot)
+        LightProxy* SceneManager::CreateLightProxy(const XML::Node& SelfRoot)
         {
             LightProxy* NewProxy = new LightProxy(SelfRoot,this);
             this->Proxies.push_back(NewProxy);
@@ -501,7 +501,7 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        ParticleSystemProxy* CreateParticleSystemProxy(const XML::Node& SelfRoot)
+        ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const XML::Node& SelfRoot)
         {
             ParticleSystemProxy* NewProxy = new ParticleSystemProxy(SelfRoot,this);
             this->Proxies.push_back(NewProxy);
