@@ -46,28 +46,27 @@
 #include "rayquerytool.h"
 #include "ray.h"
 #include "enumerations.h"
-#include "actorbase.h"
+#include "actor.h"
 
 namespace Mezzanine
 {
-    CameraController::CameraController(Graphics::CameraProxy* ToBeControlled)
-        : Controlled(ToBeControlled),
-          CurrentMMode(CCM_Fly),
-          HoverHeight(2),
-          YawRad(0),
-          PitchRad(0),
-          RollRad(0),
-          YawLimits(NULL),
-          PitchLimits(NULL),
-          RollLimits(NULL)
-    {
-    }
+    CameraController::CameraController(Graphics::CameraProxy* ToBeControlled) :
+        Controlled(ToBeControlled),
+        CurrentMMode(CCM_Fly),
+        HoverHeight(2),
+        YawRad(0),
+        PitchRad(0),
+        RollRad(0),
+        YawLimits(NULL),
+        PitchLimits(NULL),
+        RollLimits(NULL)
+        {  }
 
     CameraController::~CameraController()
     {
-        RemoveYawLimits();
-        RemovePitchLimits();
-        RemoveRollLimits();
+        this->RemoveYawLimits();
+        this->RemovePitchLimits();
+        this->RemoveRollLimits();
     }
 
     void CameraController::CheckAngleRollover(Real Angle)
@@ -85,51 +84,51 @@ namespace Mezzanine
 
     void CameraController::CheckAngleLimits()
     {
-        if(YawLimits)
+        if(this->YawLimits)
         {
-            if(YawRad > YawLimits->Upper) YawRad = YawLimits->Upper;
-            if(YawRad < YawLimits->Lower) YawRad = YawLimits->Lower;
+            if(YawRad > this->YawLimits->Upper) YawRad = this->YawLimits->Upper;
+            if(YawRad < this->YawLimits->Lower) YawRad = this->YawLimits->Lower;
         }
-        if(PitchLimits)
+        if(this->PitchLimits)
         {
-            if(PitchRad > PitchLimits->Upper) PitchRad = PitchLimits->Upper;
-            if(PitchRad < PitchLimits->Lower) PitchRad = PitchLimits->Lower;
+            if(PitchRad > this->PitchLimits->Upper) PitchRad = this->PitchLimits->Upper;
+            if(PitchRad < this->PitchLimits->Lower) PitchRad = this->PitchLimits->Lower;
         }
-        if(YawLimits)
+        if(this->YawLimits)
         {
-            if(RollRad > RollLimits->Upper) RollRad = RollLimits->Upper;
-            if(RollRad < RollLimits->Lower) RollRad = RollLimits->Lower;
+            if(RollRad > this->RollLimits->Upper) RollRad = this->RollLimits->Upper;
+            if(RollRad < this->RollLimits->Lower) RollRad = this->RollLimits->Lower;
         }
     }
 
     void CameraController::CheckAllAngles()
     {
-        CheckAngleLimits();
-        CheckAngleRollover(YawRad);
-        CheckAngleRollover(PitchRad);
-        CheckAngleRollover(RollRad);
+        this->CheckAngleLimits();
+        this->CheckAngleRollover(this->YawRad);
+        this->CheckAngleRollover(this->PitchRad);
+        this->CheckAngleRollover(this->RollRad);
     }
 
     void CameraController::CheckHeight()
     {
-        Vector3 Loc(Controlled->GetLocation());
-        Real Dist = FindDistanceToGround();
+        Vector3 Loc(this->Controlled->GetLocation());
+        Real Dist = this->FindDistanceToGround();
         if(0==Dist)
             return;
-        Real DeltaDist = Dist - HoverHeight;
-        Loc.Y-=DeltaDist;
-        Controlled->SetLocation(Loc);
+        Real DeltaDist = Dist - this->HoverHeight;
+        Loc.Y -= DeltaDist;
+        this->Controlled->SetLocation(Loc);
     }
 
     Real CameraController::FindDistanceToGround()
     {
-        Vector3 Loc(Controlled->GetLocation());
+        Vector3 Loc(this->Controlled->GetLocation());
         Vector3 Dest(Loc + Vector3(0,-2000,0));
         Ray GroundRay(Loc,Dest);
-        int flags = Mezzanine::WSO_MeshTerrain | Mezzanine::WSO_HeightfieldTerrain | Mezzanine::WSO_VectorFieldTerrain | Mezzanine::WSO_VoxelTerrain;
-        if(!RayCaster.GetFirstActorOnRayByPolygon(GroundRay,flags))
+        UInt32 flags = Mezzanine::WO_MeshTerrain | Mezzanine::WO_HeightfieldTerrain | Mezzanine::WO_VectorFieldTerrain | Mezzanine::WO_VoxelTerrain;
+        if(!RayCaster.GetFirstObjectOnRayByPolygon(GroundRay,flags))
             { return 0; }
-        Real Distance = Loc.Y - (RayCaster.LastQueryResultsActorPtr()->GetLocation() + RayCaster.LastQueryResultsOffset()).Y;
+        Real Distance = Loc.Y - (RayCaster.LastQueryResultsObjectPtr()->GetLocation() + RayCaster.LastQueryResultsOffset()).Y;
         return Distance;
     }
 
@@ -138,7 +137,7 @@ namespace Mezzanine
 
     Graphics::CameraProxy* CameraController::GetControlledCamera() const
     {
-        return Controlled;
+        return this->Controlled;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -146,72 +145,72 @@ namespace Mezzanine
 
     void CameraController::SetMovementMode(const CameraController::MovementMode& MoveMode)
     {
-        CurrentMMode = MoveMode;
+        this->CurrentMMode = MoveMode;
     }
 
     CameraController::MovementMode CameraController::GetMovementMode() const
     {
-        return CurrentMMode;
+        return this->CurrentMMode;
     }
 
     void CameraController::SetHoverHeight(const Real& Hover)
     {
-        HoverHeight = Hover;
+        this->HoverHeight = Hover;
     }
 
     Real CameraController::GetHoverHeight() const
     {
-        return HoverHeight;
+        return this->HoverHeight;
     }
 
     void CameraController::SetYawLimits(const Real& UpperLimit, const Real& LowerLimit)
     {
-        if(!YawLimits)
-            YawLimits = new AngleLimits();
-        YawLimits->Upper = UpperLimit;
-        YawLimits->Lower = LowerLimit;
+        if(!this->YawLimits)
+            this->YawLimits = new AngleLimits();
+        this->YawLimits->Upper = UpperLimit;
+        this->YawLimits->Lower = LowerLimit;
     }
 
     void CameraController::RemoveYawLimits()
     {
-        if(YawLimits)
+        if(this->YawLimits)
         {
-            delete YawLimits;
-            YawLimits = NULL;
+            delete this->YawLimits;
+            this->YawLimits = NULL;
         }
     }
 
     void CameraController::SetPitchLimits(const Real& UpperLimit, const Real& LowerLimit)
     {
-        if(!PitchLimits)
-            PitchLimits = new AngleLimits();
-        PitchLimits->Upper = UpperLimit;
-        PitchLimits->Lower = LowerLimit;
+        if(!this->PitchLimits)
+            this->PitchLimits = new AngleLimits();
+        this->PitchLimits->Upper = UpperLimit;
+        this->PitchLimits->Lower = LowerLimit;
     }
 
     void CameraController::RemovePitchLimits()
     {
-        if(PitchLimits)
+        if(this->PitchLimits)
         {
-            delete PitchLimits;
-            PitchLimits = NULL;
+            delete this->PitchLimits;
+            this->PitchLimits = NULL;
         }
     }
 
     void CameraController::SetRollLimits(const Real& UpperLimit, const Real& LowerLimit)
     {
-        if(!RollLimits)
-            RollLimits = new AngleLimits();
-        RollLimits->Upper = UpperLimit;
-        RollLimits->Lower = LowerLimit;
+        if(!this->RollLimits)
+            this->RollLimits = new AngleLimits();
+        this->RollLimits->Upper = UpperLimit;
+        this->RollLimits->Lower = LowerLimit;
     }
 
     void CameraController::RemoveRollLimits()
     {
-        if(RollLimits)
+        if(this->RollLimits)
         {
-            delete RollLimits;
-            RollLimits = NULL;
+            delete this->RollLimits;
+            this->RollLimits = NULL;
         }
     }
 
@@ -221,17 +220,17 @@ namespace Mezzanine
     void CameraController::MoveForward(Real Units)
     {
         Vector3 Move(0,0,-Units);
-        Controlled->Translate(Move);
-        if(CCM_Walk == CurrentMMode)
-            CheckHeight();
+        this->Controlled->Translate(Move);
+        if(CCM_Walk == this->CurrentMMode)
+            this->CheckHeight();
     }
 
     void CameraController::MoveBackward(Real Units)
     {
         Vector3 Move(0,0,Units);
-        Controlled->Translate(Move);
-        if(CCM_Walk == CurrentMMode)
-            CheckHeight();
+        this->Controlled->Translate(Move);
+        if(CCM_Walk == this->CurrentMMode)
+            this->CheckHeight();
     }
 
     void CameraController::StrafeLeft(Real Units)
@@ -245,46 +244,46 @@ namespace Mezzanine
     void CameraController::StrafeRight(Real Units)
     {
         Vector3 Move(Units,0,0);
-        Controlled->Translate(Move);
-        if(CCM_Walk == CurrentMMode)
-            CheckHeight();
+        this->Controlled->Translate(Move);
+        if(CCM_Walk == this->CurrentMMode)
+            this->CheckHeight();
     }
 
     void CameraController::Rotate(Real Yaw, Real Pitch, Real Roll)
     {
-        YawRad+=Yaw;
-        PitchRad+=Pitch;
-        RollRad+=Roll;
-        CheckAllAngles();
+        this->YawRad += Yaw;
+        this->PitchRad += Pitch;
+        this->RollRad += Roll;
+        this->CheckAllAngles();
         Quaternion YawQuat, PitchQuat, RollQuat;
 
-        if(0==YawRad)
+        if(0 == this->YawRad)
             YawQuat = Quaternion(0,0,0,1);
         else
             YawQuat = Quaternion(-YawRad,Vector3::Unit_Y());
 
-        if(0==PitchRad)
+        if(0 == this->PitchRad)
             PitchQuat = Quaternion(0,0,0,1);
         else
             PitchQuat = Quaternion(-PitchRad,Vector3::Unit_X());
 
-        if(0==RollRad)
+        if(0 == this->RollRad)
             RollQuat = Quaternion(0,0,0,1);
         else
             RollQuat = Quaternion(-RollRad,Vector3::Unit_Z());
 
         Quaternion CamRot = YawQuat * PitchQuat * RollQuat;
-        Controlled->SetOrientation(CamRot);
+        this->Controlled->SetOrientation(CamRot);
     }
 
     void CameraController::Rotate6DOF(Real Yaw, Real Pitch, Real Roll)
     {
-        Quaternion CamRot(Controlled->GetOrientation());
+        Quaternion CamRot(this->Controlled->GetOrientation());
         CamRot = CamRot *
             Quaternion(-Yaw,Vector3::Unit_Y()) *
             Quaternion(-Pitch,Vector3::Unit_X()) *
             Quaternion(-Roll,Vector3::Unit_Z());
-        Controlled->SetOrientation(CamRot);// */
+        this->Controlled->SetOrientation(CamRot);// */
     }
 }
 
