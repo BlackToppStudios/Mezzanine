@@ -155,7 +155,7 @@ namespace Mezzanine
             UseFixedYaw(true)
             { this->CreateCamera(Name); }
 
-        CameraProxy::CameraProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
+        CameraProxy::CameraProxy(const XML::Node& SelfRoot, CameraManager* Creator) :
             RenderableProxy(Creator->GetScene()),
             CamManager(Creator),
             GraphicsCamera(NULL),

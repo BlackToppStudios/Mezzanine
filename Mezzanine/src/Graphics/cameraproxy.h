@@ -107,7 +107,7 @@ namespace Mezzanine
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.
-            CameraProxy(const XML::Node& SelfRoot, SceneManager* Creator);
+            CameraProxy(const XML::Node& SelfRoot, CameraManager* Creator);
             /// @brief Class destructor.
             virtual ~CameraProxy();
 
