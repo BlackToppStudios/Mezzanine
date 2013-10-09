@@ -42,11 +42,13 @@
 #ifndef _frameschedulerworkunits_h
 #define _frameschedulerworkunits_h
 
-#include "datatypes.h"
-#include "workunit.h"
-#include "workunitkey.h"
+#ifndef SWIG
+    #include "datatypes.h"
+    #include "workunit.h"
+    #include "workunitkey.h"
 
-#include <vector>
+    #include <vector>
+#endif
 
 /// @file
 /// @brief This defines a number of workunits that are required for doing some tasks that the Framescheduler requires.

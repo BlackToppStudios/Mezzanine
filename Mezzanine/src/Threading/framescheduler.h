@@ -42,20 +42,24 @@
 #define _framescheduler_h
 
 #include "datatypes.h"
-#include "doublebufferedresource.h"
-#include "thread.h"
-#include "workunitkey.h"
-#include "systemcalls.h"
-#include "rollingaverage.h"
+
+#ifndef SWIG
+    #include "doublebufferedresource.h"
+    #include "thread.h"
+    #include "workunitkey.h"
+    #include "systemcalls.h"
+    #include "rollingaverage.h"
+#endif
 
 #ifdef MEZZ_USEBARRIERSEACHFRAME
     #include "barrier.h"
 #endif
 
-
-#include <map>
-#include <set>
-#include <fstream>
+#ifndef SWIG
+    #include <map>
+    #include <set>
+    #include <fstream>
+#endif
 
 /// @file
 /// @brief This file has the Declarations for the main FrameScheduler class.
@@ -231,11 +235,11 @@ namespace Mezzanine
                 // Construction and Destruction
 
                 /// @brief Create a Framescheduler that owns a filestream for logging.
-                /// @param _LogDestination An fstream that will be closed and deleted when this framescheduler is destroyed. Defaults to a new Filestream Logging to 'Log.txt'.
+                /// @param _LogDestination An fstream that will be closed and deleted when this framescheduler is destroyed. Defaults to a new Filestream Logging to local file.
                 /// @param StartingThreadCount How many threads. Defaults to the value returned by @ref Mezzanine::GetCPUCount "GetCPUCount()".
                 /// @warning This must be constructed from the Main(only) thread for any features with thread affinity to work correctly.
                 FrameScheduler(
-                        std::fstream* _LogDestination = new std::fstream("Mezzanine.log", std::ios::out | std::ios::trunc),
+                        std::fstream* _LogDestination = 0,
                         Whole StartingThreadCount = GetCPUCount()
                     );
 

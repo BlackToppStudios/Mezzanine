@@ -41,10 +41,12 @@
 #ifndef _logtools_h
 #define _logtools_h
 
-#include "datatypes.h"
-#include "systemcalls.h"
+#ifndef SWIG
+    #include "datatypes.h"
+    #include "systemcalls.h"
 
-#include <ostream>
+    #include <ostream>
+#endif
 
 /// @file
 /// @brief The definitions of the logging tools

@@ -41,7 +41,9 @@
 #ifndef _asynchronousfileloadingworkunit_h
 #define _asynchronousfileloadingworkunit_h
 
-#include "asynchronousworkunit.h"
+#ifndef SWIG
+    #include "asynchronousworkunit.h"
+#endif
 
 /// @file
 /// @brief The declaration of the @ref Mezzanine::Threading::AsynchronousFileLoadWorkUnit "AsynchronousFileLoadWorkUnit" a workunit that loads a listing of files asynchronously.

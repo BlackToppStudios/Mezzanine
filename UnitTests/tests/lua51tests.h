@@ -398,6 +398,8 @@ class lua51tests : public UnitTestGroup
                 // worldobject.h
                 // worldobjectphysicssettings.h
                 // Attachable
+                // FrameScheduler
+                // DoubleBuffered Resource
 
                 // Specific class swig wrapping tests
                 TestLuaScript("function MakePlane(x)\n"
@@ -506,6 +508,12 @@ class lua51tests : public UnitTestGroup
                               "Threading::SystemCalls", "TestFuncSyscall", GetCPUCount(), GetCPUCount(),
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestFuncWorkUnitKey(x)\n"
+                              "   key=MezzanineSafe.Threading.WorkUnitKey()\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::WorkUnitKey", "TestFuncWorkUnitKey", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
             }
 
         }

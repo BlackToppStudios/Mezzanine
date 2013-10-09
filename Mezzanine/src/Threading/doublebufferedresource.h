@@ -43,9 +43,11 @@
 
 #include "datatypes.h"
 
-#include <algorithm>
-#include <sstream>
-#include <vector>
+#ifndef SWIG
+    #include <algorithm>
+    #include <sstream>
+    #include <vector>
+#endif
 
 /// @file
 /// @brief This file defines the template double buffered resources that can be attached to a thread.
@@ -54,6 +56,7 @@ namespace Mezzanine
 {
     namespace Threading
     {
+#ifndef SWIG
         /// @brief Double buffered resources are identified by a @ref Whole which is their type ID, This number identifies an invalid entry.
         const static Whole DBRInvalid = 10000000;
 
@@ -63,7 +66,7 @@ namespace Mezzanine
         /// @brief Double buffered resources are identified by a @ref Whole which is their type ID, All System Type IDs will be less than this amount.
         /// @note Do not use the value of this directly, it is subject to change. In code using this, use: @code const static whole FreshDBRType = BDRUser+YourValue; @endcode
         const static Whole DBRUser = 1;
-
+#endif
         /// @brief A thread specific resource that uses double buffering to avoid multithreaded synchronization mechanisms.
         /// @details It is intended for a Mezzanine::Threading::iWorkUnit "iWorkUnit" like the to provide asynchronous
         /// access to resources that to not need immediate atomicity. For example, it is ok if logs are gathered asynchronously

@@ -79,6 +79,10 @@ namespace Mezzanine
                 /// in parrellel.
                 Whole Time;
 
+                /// @brief Default Constructor
+                /// @details This creates an empty and quite useless Key, needs to be filled with data before being useful.
+                WorkUnitKey();
+
                 /// @brief Constructor
                 /// @param Dependers_ How many items depend on this. This needs to be calculated the same for all WorkUnitKeys.
                 /// @param Time_ How long is this workunit expected to execute for. This needs to be calculated the same for all WorkUnitKeys.

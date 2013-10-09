@@ -44,41 +44,6 @@
 /// @file
 /// @brief This is the file that code using this library should include. It includes all the required components.
 
-#ifndef SWIG
-#include "asynchronousfileloadingworkunit.h"
-#include "asynchronousworkunit.h"
-#include "atomicoperations.h"
-#endif
-
-#include "barrier.h"
-
-#ifndef SWIG
-//#include "crossplatformincludes.h" // This is omitted because windows.h include a ton of macros that break clean code, so this vile file's scope must be minimized
-#include "crossplatformexport.h"
-#include "datatypes.h"
-#include "doublebufferedresource.h"
-#include "framescheduler.h"
-#include "frameschedulerworkunits.h"
-#include "logtools.h"
-#include "monopoly.h"
-#endif
-
-#include "mutex.h"
-#include "rollingaverage.h"
-#include "systemcalls.h"
-
-#ifndef SWIG
-#endif
-
-#include "thread.h"
-
-#ifndef SWIG
-#include "threadingenumerations.h"
-#include "workunit.h"
-#include "workunitkey.h"
-#endif
-
-
 #include "swig.h"
 #ifdef SWIG_THREADING
     #ifdef SWIG_UNSAFE
@@ -89,6 +54,35 @@
     #endif
     #define SWIG_MODULE_SET
 #endif
+
+#ifndef SWIG
+    #include "asynchronousfileloadingworkunit.h"
+    #include "asynchronousworkunit.h"
+    #include "atomicoperations.h"
+#endif
+
+#include "barrier.h"
+//#include "crossplatformincludes.h" // This is omitted because windows.h include a ton of macros that break clean code, so this vile file's scope must be minimized
+#include "crossplatformexport.h"
+#include "datatypes.h"
+
+#include "doublebufferedresource.h"
+#include "framescheduler.h"
+
+#ifndef SWIG
+    #include "frameschedulerworkunits.h"
+    #include "logtools.h"
+    #include "monopoly.h"
+#endif
+
+#include "mutex.h"
+#include "rollingaverage.h"
+#include "systemcalls.h"
+#include "thread.h"
+#include "threadingenumerations.h"
+#include "workunit.h"
+#include "workunitkey.h"
+
 
 /// @def MEZZ_DAGFRAMESCHEDULER_MAJOR_VERSION
 /// @brief The Major version number of the library. (The front/left number)

@@ -42,8 +42,10 @@
 #define _asynchronousworkunit_h
 
 #include "datatypes.h"
-#include "doublebufferedresource.h"
-#include "workunit.h"
+#ifndef SWIG
+    #include "doublebufferedresource.h"
+    #include "workunit.h"
+#endif
 
 /// @file
 /// @brief Contains an interface for a kind of WorkUnit that loads or does other work even when the frame scheduler is paused.

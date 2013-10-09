@@ -72,8 +72,8 @@ freely, subject to the following restrictions:
 #include "mutex.h"
 
 #ifndef SWIG
-#include <ostream>
-#include <vector>
+    #include <ostream>
+    #include <vector>
 #endif
 
 namespace Mezzanine

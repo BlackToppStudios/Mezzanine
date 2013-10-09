@@ -168,7 +168,7 @@ namespace Mezzanine
             PauseTimeLog(MEZZ_FRAMESTOTRACK),
             CurrentFrameStart(GetTimeStamp()),
             CurrentPauseStart(GetTimeStamp()),
-            LogDestination(_LogDestination),
+            LogDestination(_LogDestination ? _LogDestination : new std::fstream("Mezzanine.log", std::ios::out | std::ios::trunc)),
             Sorter(0),
             #ifdef MEZZ_USEBARRIERSEACHFRAME
             StartFrameSync(StartingThreadCount),
