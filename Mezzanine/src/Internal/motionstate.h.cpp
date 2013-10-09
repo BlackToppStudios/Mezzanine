@@ -120,7 +120,7 @@ namespace Mezzanine
         class AttachableMotionState : public btMotionState
         {
             protected:
-                NonStaticWorldObject* ParentObject;
+                WorldObject* ParentObject;
                 btTransform WorldTrans;
             public:
                 /// @brief Default Constructor.
@@ -129,7 +129,7 @@ namespace Mezzanine
                 /// @brief Constructor.
                 /// @details The class constructor.
                 /// @param PO Pointer to the parent object.
-                AttachableMotionState(NonStaticWorldObject* PO);
+                AttachableMotionState(WorldObject* PO);
                 /// @brief Destructor.
                 /// @details The class destructor.
                 virtual ~AttachableMotionState();
@@ -137,7 +137,7 @@ namespace Mezzanine
                 /// @brief Sets the parent object to be updated.
                 /// @details Sets the parent object to be sync'd every step.
                 /// @param PO Pointer to the parent object.
-                void SetParentObject(NonStaticWorldObject* PO);
+                void SetParentObject(WorldObject* PO);
 
                 /// @brief Sets the initial position.
                 /// @details Sets the position the actor will be placed in when it is added to the world.

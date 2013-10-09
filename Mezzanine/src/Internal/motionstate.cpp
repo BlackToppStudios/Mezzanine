@@ -106,7 +106,7 @@ namespace Mezzanine
             WorldTrans.setIdentity();
         }
 
-        AttachableMotionState::AttachableMotionState(NonStaticWorldObject* PO)
+        AttachableMotionState::AttachableMotionState(WorldObject* PO)
         {
             ParentObject = PO;
             WorldTrans.setIdentity();
@@ -116,7 +116,7 @@ namespace Mezzanine
         {
         }
 
-        void AttachableMotionState::SetParentObject(NonStaticWorldObject* PO)
+        void AttachableMotionState::SetParentObject(WorldObject* PO)
         {
             ParentObject = PO;
         }
