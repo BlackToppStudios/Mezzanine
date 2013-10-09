@@ -60,6 +60,7 @@
 namespace Mezzanine
 {
     Actor::Actor() :
+        WorldObject("",NULL),
         Animation(NULL),
         MotionState(NULL)
         {  }
