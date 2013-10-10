@@ -130,7 +130,7 @@ namespace Mezzanine
         bool SequenceContainer::InputSequenceExists(const MetaCodeContainer& Codes)
         {
             this->VerifyInputSequence(Codes);
-            this->SequencedInputs.hasKey(Codes);
+            return this->SequencedInputs.hasKey(Codes);
         }
 
         Int32 SequenceContainer::GetIDofInputSequence(const MetaCodeContainer& Codes)
