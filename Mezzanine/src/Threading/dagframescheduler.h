@@ -55,22 +55,18 @@
     #define SWIG_MODULE_SET
 #endif
 
-#ifndef SWIG
-    #include "asynchronousfileloadingworkunit.h"
-    #include "asynchronousworkunit.h"
-#endif
-
+#include "asynchronousfileloadingworkunit.h"
+#include "asynchronousworkunit.h"
 #include "atomicoperations.h"
 #include "barrier.h"
 //#include "crossplatformincludes.h" // This is omitted because windows.h include a ton of macros that break clean code, so this vile file's scope must be minimized
 #include "crossplatformexport.h"
 #include "datatypes.h"
-
 #include "doublebufferedresource.h"
 #include "framescheduler.h"
+#include "frameschedulerworkunits.h"
 
 #ifndef SWIG
-    #include "frameschedulerworkunits.h"
     #include "logtools.h"
     #include "monopoly.h"
 #endif

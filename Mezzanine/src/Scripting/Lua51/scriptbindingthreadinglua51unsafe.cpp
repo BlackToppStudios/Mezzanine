@@ -1668,54 +1668,61 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__RollingAverageT_float_t swig_types[4]
 #define SWIGTYPE_p_Mezzanine__RollingAverageT_int_t swig_types[5]
 #define SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t swig_types[6]
-#define SWIGTYPE_p_Mezzanine__Threading__Barrier swig_types[7]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage swig_types[8]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[9]
-#define SWIGTYPE_p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t swig_types[10]
-#define SWIGTYPE_p_Mezzanine__Threading__FrameScheduler swig_types[11]
-#define SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit swig_types[12]
-#define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[13]
-#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[14]
-#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[15]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[16]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[17]
-#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[18]
-#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[19]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[20]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[21]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[22]
-#define SWIGTYPE_p_Resource swig_types[23]
-#define SWIGTYPE_p_SDL_Event swig_types[24]
-#define SWIGTYPE_p_ThreadId swig_types[25]
-#define SWIGTYPE_p_Type swig_types[26]
-#define SWIGTYPE_p_WorkUnitKey swig_types[27]
-#define SWIGTYPE_p_bool swig_types[28]
-#define SWIGTYPE_p_char swig_types[29]
-#define SWIGTYPE_p_f_p_void__void swig_types[30]
-#define SWIGTYPE_p_float swig_types[31]
-#define SWIGTYPE_p_int swig_types[32]
-#define SWIGTYPE_p_long_long swig_types[33]
-#define SWIGTYPE_p_native_handle_type swig_types[34]
-#define SWIGTYPE_p_pthread_t swig_types[35]
-#define SWIGTYPE_p_short swig_types[36]
-#define SWIGTYPE_p_signed_char swig_types[37]
-#define SWIGTYPE_p_std__fstream swig_types[38]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[39]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[40]
-#define SWIGTYPE_p_std__ostream swig_types[41]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[42]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[43]
-#define SWIGTYPE_p_std__string swig_types[44]
-#define SWIGTYPE_p_std__stringstream swig_types[45]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[46]
-#define SWIGTYPE_p_std__wstring swig_types[47]
-#define SWIGTYPE_p_unsigned_char swig_types[48]
-#define SWIGTYPE_p_unsigned_int swig_types[49]
-#define SWIGTYPE_p_unsigned_long swig_types[50]
-#define SWIGTYPE_p_unsigned_long_long swig_types[51]
-#define SWIGTYPE_p_unsigned_short swig_types[52]
-static swig_type_info *swig_types[54];
-static swig_module_info swig_module = {swig_types, 53, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit swig_types[7]
+#define SWIGTYPE_p_Mezzanine__Threading__Barrier swig_types[8]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage swig_types[9]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[10]
+#define SWIGTYPE_p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t swig_types[11]
+#define SWIGTYPE_p_Mezzanine__Threading__FrameScheduler swig_types[12]
+#define SWIGTYPE_p_Mezzanine__Threading__LogAggregator swig_types[13]
+#define SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit swig_types[14]
+#define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[15]
+#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[16]
+#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[17]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[18]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[19]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkSorter swig_types[20]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[21]
+#define SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit swig_types[22]
+#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[23]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[24]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[25]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[26]
+#define SWIGTYPE_p_RawFile swig_types[27]
+#define SWIGTYPE_p_Resource swig_types[28]
+#define SWIGTYPE_p_RollingAverageT_unsigned_long_t swig_types[29]
+#define SWIGTYPE_p_RunningState swig_types[30]
+#define SWIGTYPE_p_SDL_Event swig_types[31]
+#define SWIGTYPE_p_ThreadId swig_types[32]
+#define SWIGTYPE_p_Type swig_types[33]
+#define SWIGTYPE_p_WorkUnitKey swig_types[34]
+#define SWIGTYPE_p_bool swig_types[35]
+#define SWIGTYPE_p_char swig_types[36]
+#define SWIGTYPE_p_f_p_void__void swig_types[37]
+#define SWIGTYPE_p_float swig_types[38]
+#define SWIGTYPE_p_int swig_types[39]
+#define SWIGTYPE_p_long_long swig_types[40]
+#define SWIGTYPE_p_native_handle_type swig_types[41]
+#define SWIGTYPE_p_pthread_t swig_types[42]
+#define SWIGTYPE_p_short swig_types[43]
+#define SWIGTYPE_p_signed_char swig_types[44]
+#define SWIGTYPE_p_std__fstream swig_types[45]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[46]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[47]
+#define SWIGTYPE_p_std__ostream swig_types[48]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[49]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[50]
+#define SWIGTYPE_p_std__string swig_types[51]
+#define SWIGTYPE_p_std__stringstream swig_types[52]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[53]
+#define SWIGTYPE_p_std__wstring swig_types[54]
+#define SWIGTYPE_p_unsigned_char swig_types[55]
+#define SWIGTYPE_p_unsigned_int swig_types[56]
+#define SWIGTYPE_p_unsigned_long swig_types[57]
+#define SWIGTYPE_p_unsigned_long_long swig_types[58]
+#define SWIGTYPE_p_unsigned_short swig_types[59]
+static swig_type_info *swig_types[61];
+static swig_module_info swig_module = {swig_types, 60, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2017,93 +2024,6 @@ static swig_lua_class *swig_std_string_bases[] = {0};
 static const char *swig_std_string_base_names[] = {0};
 static swig_lua_class _wrap_class_std_string = { "string", &SWIGTYPE_p_std__string,_wrap_new_string, swig_delete_string, swig_std_string_methods, swig_std_string_attributes, swig_std_string_bases, swig_std_string_base_names };
 
-static int _wrap_new_Barrier(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Int32 *arg1 = 0 ;
-  Mezzanine::Int32 temp1 ;
-  Mezzanine::Threading::Barrier *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::Barrier::Barrier",1,1)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Threading::Barrier::Barrier",1,"Mezzanine::Int32 const &");
-  temp1=(Mezzanine::Int32)lua_tonumber(L,1); arg1=&temp1;
-  result = (Mezzanine::Threading::Barrier *)new Mezzanine::Threading::Barrier((Mezzanine::Int32 const &)*arg1);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__Barrier,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Barrier_Wait(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::Barrier::Wait",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::Barrier::Wait",1,"Mezzanine::Threading::Barrier *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__Barrier,0))){
-    SWIG_fail_ptr("Barrier_Wait",1,SWIGTYPE_p_Mezzanine__Threading__Barrier);
-  }
-  
-  result = (bool)(arg1)->Wait();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Barrier_SetThreadSyncCount(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) 0 ;
-  Mezzanine::Int32 arg2 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::Barrier::SetThreadSyncCount",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::Barrier::SetThreadSyncCount",1,"Mezzanine::Threading::Barrier *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::Barrier::SetThreadSyncCount",2,"Mezzanine::Int32");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__Barrier,0))){
-    SWIG_fail_ptr("Barrier_SetThreadSyncCount",1,SWIGTYPE_p_Mezzanine__Threading__Barrier);
-  }
-  
-  arg2 = (Mezzanine::Int32)lua_tonumber(L, 2);
-  (arg1)->SetThreadSyncCount(arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_Barrier(void *obj) {
-Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) obj;
-delete arg1;
-}
-static swig_lua_method swig_Mezzanine_Threading_Barrier_methods[] = {
-    {"Wait", _wrap_Barrier_Wait}, 
-    {"SetThreadSyncCount", _wrap_Barrier_SetThreadSyncCount}, 
-    {0,0}
-};
-static swig_lua_attribute swig_Mezzanine_Threading_Barrier_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_Mezzanine_Threading_Barrier_bases[] = {0};
-static const char *swig_Mezzanine_Threading_Barrier_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_Barrier = { "Barrier", &SWIGTYPE_p_Mezzanine__Threading__Barrier,_wrap_new_Barrier, swig_delete_Barrier, swig_Mezzanine_Threading_Barrier_methods, swig_Mezzanine_Threading_Barrier_attributes, swig_Mezzanine_Threading_Barrier_bases, swig_Mezzanine_Threading_Barrier_base_names };
-
 static int _wrap_new_ThreadSpecificStorage(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Threading::FrameScheduler *arg1 = (Mezzanine::Threading::FrameScheduler *) 0 ;
@@ -2246,6 +2166,1266 @@ static swig_lua_attribute swig_Mezzanine_Threading_DefaultThreadSpecificStorage_
 static swig_lua_class *swig_Mezzanine_Threading_DefaultThreadSpecificStorage_bases[] = {0};
 static const char *swig_Mezzanine_Threading_DefaultThreadSpecificStorage_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_Threading_DefaultThreadSpecificStorage = { "DefaultThreadSpecificStorage", &SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage,_wrap_new_DefaultThreadSpecificStorage, swig_delete_DefaultThreadSpecificStorage, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_methods, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_attributes, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_bases, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_base_names };
+
+static int _wrap_iWorkUnit_GetDependentCount(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetDependentCount",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetDependentCount",1,"Mezzanine::Threading::iWorkUnit *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetDependentCount",2,"Mezzanine::Threading::FrameScheduler &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_GetDependentCount",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0))){
+    SWIG_fail_ptr("iWorkUnit_GetDependentCount",2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler);
+  }
+  
+  result = (Mezzanine::Whole)(arg1)->GetDependentCount(*arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_GetDependency(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Whole arg2 ;
+  Mezzanine::Threading::iWorkUnit *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetDependency",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetDependency",1,"Mezzanine::Threading::iWorkUnit const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetDependency",2,"Mezzanine::Whole");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_GetDependency",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
+  result = (Mezzanine::Threading::iWorkUnit *)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetDependency(arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_GetImmediateDependencyCount(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetImmediateDependencyCount",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetImmediateDependencyCount",1,"Mezzanine::Threading::iWorkUnit const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_GetImmediateDependencyCount",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetImmediateDependencyCount();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_GetDependencyCount(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetDependencyCount",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetDependencyCount",1,"Mezzanine::Threading::iWorkUnit const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_GetDependencyCount",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetDependencyCount();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_AddDependency(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::AddDependency",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::AddDependency",1,"Mezzanine::Threading::iWorkUnit *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::AddDependency",2,"Mezzanine::Threading::iWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_AddDependency",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_AddDependency",2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  (arg1)->AddDependency(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_RemoveDependency(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::RemoveDependency",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::RemoveDependency",1,"Mezzanine::Threading::iWorkUnit *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::RemoveDependency",2,"Mezzanine::Threading::iWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_RemoveDependency",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_RemoveDependency",2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  (arg1)->RemoveDependency(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_ClearDependencies(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::ClearDependencies",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::ClearDependencies",1,"Mezzanine::Threading::iWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_ClearDependencies",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  (arg1)->ClearDependencies();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_IsEveryDependencyComplete(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::IsEveryDependencyComplete",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::IsEveryDependencyComplete",1,"Mezzanine::Threading::iWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_IsEveryDependencyComplete",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  result = (bool)(arg1)->IsEveryDependencyComplete();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_TakeOwnerShip(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  RunningState result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::TakeOwnerShip",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::TakeOwnerShip",1,"Mezzanine::Threading::iWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_TakeOwnerShip",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  result = (arg1)->TakeOwnerShip();
+  {
+    RunningState * resultptr = new RunningState((const RunningState &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_RunningState,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_GetRunningState(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  RunningState result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetRunningState",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetRunningState",1,"Mezzanine::Threading::iWorkUnit const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_GetRunningState",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  result = ((Mezzanine::Threading::iWorkUnit const *)arg1)->GetRunningState();
+  {
+    RunningState * resultptr = new RunningState((const RunningState &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_RunningState,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_PrepareForNextFrame(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::PrepareForNextFrame",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::PrepareForNextFrame",1,"Mezzanine::Threading::iWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_PrepareForNextFrame",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  (arg1)->PrepareForNextFrame();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_GetPerformance(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetPerformance",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetPerformance",1,"Mezzanine::Threading::iWorkUnit const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_GetPerformance",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetPerformance();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit___call(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::operator ()",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::operator ()",1,"Mezzanine::Threading::iWorkUnit *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::operator ()",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit___call",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
+    SWIG_fail_ptr("iWorkUnit___call",2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
+  }
+  
+  (arg1)->operator ()(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_GetSortingKey(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
+  WorkUnitKey result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetSortingKey",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetSortingKey",1,"Mezzanine::Threading::iWorkUnit *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetSortingKey",2,"Mezzanine::Threading::FrameScheduler &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_GetSortingKey",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0))){
+    SWIG_fail_ptr("iWorkUnit_GetSortingKey",2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler);
+  }
+  
+  result = (arg1)->GetSortingKey(*arg2);
+  {
+    WorkUnitKey * resultptr = new WorkUnitKey((const WorkUnitKey &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_WorkUnitKey,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_iWorkUnit_DoWork(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::DoWork",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::DoWork",1,"Mezzanine::Threading::iWorkUnit *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("iWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
+    SWIG_fail_ptr("iWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
+  }
+  
+  (arg1)->DoWork(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_iWorkUnit(void *obj) {
+Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_iWorkUnit_methods[] = {
+    {"GetDependentCount", _wrap_iWorkUnit_GetDependentCount}, 
+    {"GetDependency", _wrap_iWorkUnit_GetDependency}, 
+    {"GetImmediateDependencyCount", _wrap_iWorkUnit_GetImmediateDependencyCount}, 
+    {"GetDependencyCount", _wrap_iWorkUnit_GetDependencyCount}, 
+    {"AddDependency", _wrap_iWorkUnit_AddDependency}, 
+    {"RemoveDependency", _wrap_iWorkUnit_RemoveDependency}, 
+    {"ClearDependencies", _wrap_iWorkUnit_ClearDependencies}, 
+    {"IsEveryDependencyComplete", _wrap_iWorkUnit_IsEveryDependencyComplete}, 
+    {"TakeOwnerShip", _wrap_iWorkUnit_TakeOwnerShip}, 
+    {"GetRunningState", _wrap_iWorkUnit_GetRunningState}, 
+    {"PrepareForNextFrame", _wrap_iWorkUnit_PrepareForNextFrame}, 
+    {"GetPerformance", _wrap_iWorkUnit_GetPerformance}, 
+    {"__call", _wrap_iWorkUnit___call}, 
+    {"GetSortingKey", _wrap_iWorkUnit_GetSortingKey}, 
+    {"DoWork", _wrap_iWorkUnit_DoWork}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_iWorkUnit_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_iWorkUnit_bases[] = {0};
+static const char *swig_Mezzanine_Threading_iWorkUnit_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_iWorkUnit = { "iWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0, swig_delete_iWorkUnit, swig_Mezzanine_Threading_iWorkUnit_methods, swig_Mezzanine_Threading_iWorkUnit_attributes, swig_Mezzanine_Threading_iWorkUnit_bases, swig_Mezzanine_Threading_iWorkUnit_base_names };
+
+static int _wrap_DefaultWorkUnit_GetDependentCount(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetDependentCount",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetDependentCount",1,"Mezzanine::Threading::DefaultWorkUnit *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetDependentCount",2,"Mezzanine::Threading::FrameScheduler &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_GetDependentCount",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_GetDependentCount",2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler);
+  }
+  
+  result = (Mezzanine::Whole)(arg1)->GetDependentCount(*arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_GetDependency(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Whole arg2 ;
+  Mezzanine::Threading::iWorkUnit *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetDependency",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetDependency",1,"Mezzanine::Threading::DefaultWorkUnit const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetDependency",2,"Mezzanine::Whole");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_GetDependency",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
+  result = (Mezzanine::Threading::iWorkUnit *)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetDependency(arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_GetImmediateDependencyCount(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetImmediateDependencyCount",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetImmediateDependencyCount",1,"Mezzanine::Threading::DefaultWorkUnit const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_GetImmediateDependencyCount",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetImmediateDependencyCount();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_GetDependencyCount(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetDependencyCount",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetDependencyCount",1,"Mezzanine::Threading::DefaultWorkUnit const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_GetDependencyCount",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetDependencyCount();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_AddDependency(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::AddDependency",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::AddDependency",1,"Mezzanine::Threading::DefaultWorkUnit *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::AddDependency",2,"Mezzanine::Threading::iWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_AddDependency",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_AddDependency",2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  (arg1)->AddDependency(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_RemoveDependency(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::RemoveDependency",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::RemoveDependency",1,"Mezzanine::Threading::DefaultWorkUnit *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::RemoveDependency",2,"Mezzanine::Threading::iWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_RemoveDependency",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_RemoveDependency",2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  (arg1)->RemoveDependency(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_ClearDependencies(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::ClearDependencies",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::ClearDependencies",1,"Mezzanine::Threading::DefaultWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_ClearDependencies",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  (arg1)->ClearDependencies();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_IsEveryDependencyComplete(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::IsEveryDependencyComplete",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::IsEveryDependencyComplete",1,"Mezzanine::Threading::DefaultWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_IsEveryDependencyComplete",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  result = (bool)(arg1)->IsEveryDependencyComplete();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_TakeOwnerShip(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  RunningState result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::TakeOwnerShip",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::TakeOwnerShip",1,"Mezzanine::Threading::DefaultWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_TakeOwnerShip",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  result = (arg1)->TakeOwnerShip();
+  {
+    RunningState * resultptr = new RunningState((const RunningState &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_RunningState,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_GetRunningState(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  RunningState result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetRunningState",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetRunningState",1,"Mezzanine::Threading::DefaultWorkUnit const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_GetRunningState",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  result = ((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetRunningState();
+  {
+    RunningState * resultptr = new RunningState((const RunningState &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_RunningState,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_PrepareForNextFrame(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::PrepareForNextFrame",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::PrepareForNextFrame",1,"Mezzanine::Threading::DefaultWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_PrepareForNextFrame",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  (arg1)->PrepareForNextFrame();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_GetPerformance(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetPerformance",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetPerformance",1,"Mezzanine::Threading::DefaultWorkUnit const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_GetPerformance",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetPerformance();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_GetPerformanceLog(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  RollingAverage< Mezzanine::Whole > *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetPerformanceLog",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetPerformanceLog",1,"Mezzanine::Threading::DefaultWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_GetPerformanceLog",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  result = (RollingAverage< Mezzanine::Whole > *) &(arg1)->GetPerformanceLog();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_RollingAverageT_unsigned_long_t,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit___call(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::operator ()",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::operator ()",1,"Mezzanine::Threading::DefaultWorkUnit *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::operator ()",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit___call",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
+    SWIG_fail_ptr("DefaultWorkUnit___call",2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
+  }
+  
+  (arg1)->operator ()(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DefaultWorkUnit_GetSortingKey(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
+  WorkUnitKey result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetSortingKey",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetSortingKey",1,"Mezzanine::Threading::DefaultWorkUnit *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetSortingKey",2,"Mezzanine::Threading::FrameScheduler &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_GetSortingKey",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0))){
+    SWIG_fail_ptr("DefaultWorkUnit_GetSortingKey",2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler);
+  }
+  
+  result = (arg1)->GetSortingKey(*arg2);
+  {
+    WorkUnitKey * resultptr = new WorkUnitKey((const WorkUnitKey &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_WorkUnitKey,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_DefaultWorkUnit(void *obj) {
+Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_DefaultWorkUnit_methods[] = {
+    {"GetDependentCount", _wrap_DefaultWorkUnit_GetDependentCount}, 
+    {"GetDependency", _wrap_DefaultWorkUnit_GetDependency}, 
+    {"GetImmediateDependencyCount", _wrap_DefaultWorkUnit_GetImmediateDependencyCount}, 
+    {"GetDependencyCount", _wrap_DefaultWorkUnit_GetDependencyCount}, 
+    {"AddDependency", _wrap_DefaultWorkUnit_AddDependency}, 
+    {"RemoveDependency", _wrap_DefaultWorkUnit_RemoveDependency}, 
+    {"ClearDependencies", _wrap_DefaultWorkUnit_ClearDependencies}, 
+    {"IsEveryDependencyComplete", _wrap_DefaultWorkUnit_IsEveryDependencyComplete}, 
+    {"TakeOwnerShip", _wrap_DefaultWorkUnit_TakeOwnerShip}, 
+    {"GetRunningState", _wrap_DefaultWorkUnit_GetRunningState}, 
+    {"PrepareForNextFrame", _wrap_DefaultWorkUnit_PrepareForNextFrame}, 
+    {"GetPerformance", _wrap_DefaultWorkUnit_GetPerformance}, 
+    {"GetPerformanceLog", _wrap_DefaultWorkUnit_GetPerformanceLog}, 
+    {"__call", _wrap_DefaultWorkUnit___call}, 
+    {"GetSortingKey", _wrap_DefaultWorkUnit_GetSortingKey}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_DefaultWorkUnit_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_DefaultWorkUnit_bases[] = {0,0};
+static const char *swig_Mezzanine_Threading_DefaultWorkUnit_base_names[] = {"Mezzanine::Threading::iWorkUnit *",0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_DefaultWorkUnit = { "DefaultWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0, swig_delete_DefaultWorkUnit, swig_Mezzanine_Threading_DefaultWorkUnit_methods, swig_Mezzanine_Threading_DefaultWorkUnit_attributes, swig_Mezzanine_Threading_DefaultWorkUnit_bases, swig_Mezzanine_Threading_DefaultWorkUnit_base_names };
+
+static int _wrap_iAsynchronousWorkUnit_IsWorkDone(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::iAsynchronousWorkUnit *arg1 = (Mezzanine::Threading::iAsynchronousWorkUnit *) 0 ;
+  RunningState result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::iAsynchronousWorkUnit::IsWorkDone",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iAsynchronousWorkUnit::IsWorkDone",1,"Mezzanine::Threading::iAsynchronousWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit,0))){
+    SWIG_fail_ptr("iAsynchronousWorkUnit_IsWorkDone",1,SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit);
+  }
+  
+  result = (arg1)->IsWorkDone();
+  {
+    RunningState * resultptr = new RunningState((const RunningState &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_RunningState,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_iAsynchronousWorkUnit(void *obj) {
+Mezzanine::Threading::iAsynchronousWorkUnit *arg1 = (Mezzanine::Threading::iAsynchronousWorkUnit *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_iAsynchronousWorkUnit_methods[] = {
+    {"IsWorkDone", _wrap_iAsynchronousWorkUnit_IsWorkDone}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_iAsynchronousWorkUnit_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_iAsynchronousWorkUnit_bases[] = {0,0};
+static const char *swig_Mezzanine_Threading_iAsynchronousWorkUnit_base_names[] = {"Mezzanine::Threading::DefaultWorkUnit *",0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_iAsynchronousWorkUnit = { "iAsynchronousWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit,0, swig_delete_iAsynchronousWorkUnit, swig_Mezzanine_Threading_iAsynchronousWorkUnit_methods, swig_Mezzanine_Threading_iAsynchronousWorkUnit_attributes, swig_Mezzanine_Threading_iAsynchronousWorkUnit_bases, swig_Mezzanine_Threading_iAsynchronousWorkUnit_base_names };
+
+static int _wrap_new_AsynchronousFileLoadWorkUnit(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::AsynchronousFileLoadWorkUnit",0,0)
+  result = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *)new Mezzanine::Threading::AsynchronousFileLoadWorkUnit();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AsynchronousFileLoadWorkUnit_BeginLoading(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  std::vector< Mezzanine::String > *arg2 = 0 ;
+  RunningState result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::BeginLoading",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::BeginLoading",1,"Mezzanine::Threading::AsynchronousFileLoadWorkUnit *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::BeginLoading",2,"std::vector< Mezzanine::String > const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,0))){
+    SWIG_fail_ptr("AsynchronousFileLoadWorkUnit_BeginLoading",1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__vectorT_std__string_t,0))){
+    SWIG_fail_ptr("AsynchronousFileLoadWorkUnit_BeginLoading",2,SWIGTYPE_p_std__vectorT_std__string_t);
+  }
+  
+  result = (arg1)->BeginLoading((std::vector< Mezzanine::String > const &)*arg2);
+  {
+    RunningState * resultptr = new RunningState((const RunningState &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_RunningState,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AsynchronousFileLoadWorkUnit_DoWork(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::DoWork",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::DoWork",1,"Mezzanine::Threading::AsynchronousFileLoadWorkUnit *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,0))){
+    SWIG_fail_ptr("AsynchronousFileLoadWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
+    SWIG_fail_ptr("AsynchronousFileLoadWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
+  }
+  
+  (arg1)->DoWork(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AsynchronousFileLoadWorkUnit_IsWorkDone(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  RunningState result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::IsWorkDone",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::IsWorkDone",1,"Mezzanine::Threading::AsynchronousFileLoadWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,0))){
+    SWIG_fail_ptr("AsynchronousFileLoadWorkUnit_IsWorkDone",1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit);
+  }
+  
+  result = (arg1)->IsWorkDone();
+  {
+    RunningState * resultptr = new RunningState((const RunningState &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_RunningState,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  RawFile *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile",1,"Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,0))){
+    SWIG_fail_ptr("AsynchronousFileLoadWorkUnit_GetFile",1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (RawFile *)((Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *)arg1)->GetFile((Mezzanine::String const &)*arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_RawFile,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  Mezzanine::Whole *arg2 = 0 ;
+  Mezzanine::Whole temp2 ;
+  RawFile *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile",1,"Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile",2,"Mezzanine::Whole const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,0))){
+    SWIG_fail_ptr("AsynchronousFileLoadWorkUnit_GetFile",1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
+  result = (RawFile *)((Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *)arg1)->GetFile((Mezzanine::Whole const &)*arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_RawFile,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AsynchronousFileLoadWorkUnit_GetFile(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_0(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'AsynchronousFileLoadWorkUnit_GetFile'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile(Mezzanine::String const &) const\n"
+    "    Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile(Mezzanine::Whole const &) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AsynchronousFileLoadWorkUnit_DeleteLoadedFiles(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::DeleteLoadedFiles",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::DeleteLoadedFiles",1,"Mezzanine::Threading::AsynchronousFileLoadWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,0))){
+    SWIG_fail_ptr("AsynchronousFileLoadWorkUnit_DeleteLoadedFiles",1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit);
+  }
+  
+  (arg1)->DeleteLoadedFiles();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_AsynchronousFileLoadWorkUnit(void *obj) {
+Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_methods[] = {
+    {"BeginLoading", _wrap_AsynchronousFileLoadWorkUnit_BeginLoading}, 
+    {"DoWork", _wrap_AsynchronousFileLoadWorkUnit_DoWork}, 
+    {"IsWorkDone", _wrap_AsynchronousFileLoadWorkUnit_IsWorkDone}, 
+    {"GetFile", _wrap_AsynchronousFileLoadWorkUnit_GetFile}, 
+    {"DeleteLoadedFiles", _wrap_AsynchronousFileLoadWorkUnit_DeleteLoadedFiles}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_bases[] = {0,0};
+static const char *swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_base_names[] = {"Mezzanine::Threading::iAsynchronousWorkUnit *",0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_AsynchronousFileLoadWorkUnit = { "AsynchronousFileLoadWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,_wrap_new_AsynchronousFileLoadWorkUnit, swig_delete_AsynchronousFileLoadWorkUnit, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_methods, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_attributes, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_bases, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_base_names };
+
+static int _wrap_new_Barrier(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Int32 *arg1 = 0 ;
+  Mezzanine::Int32 temp1 ;
+  Mezzanine::Threading::Barrier *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::Barrier::Barrier",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Threading::Barrier::Barrier",1,"Mezzanine::Int32 const &");
+  temp1=(Mezzanine::Int32)lua_tonumber(L,1); arg1=&temp1;
+  result = (Mezzanine::Threading::Barrier *)new Mezzanine::Threading::Barrier((Mezzanine::Int32 const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__Barrier,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Barrier_Wait(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::Barrier::Wait",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::Barrier::Wait",1,"Mezzanine::Threading::Barrier *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__Barrier,0))){
+    SWIG_fail_ptr("Barrier_Wait",1,SWIGTYPE_p_Mezzanine__Threading__Barrier);
+  }
+  
+  result = (bool)(arg1)->Wait();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Barrier_SetThreadSyncCount(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) 0 ;
+  Mezzanine::Int32 arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::Barrier::SetThreadSyncCount",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::Barrier::SetThreadSyncCount",1,"Mezzanine::Threading::Barrier *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::Barrier::SetThreadSyncCount",2,"Mezzanine::Int32");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__Barrier,0))){
+    SWIG_fail_ptr("Barrier_SetThreadSyncCount",1,SWIGTYPE_p_Mezzanine__Threading__Barrier);
+  }
+  
+  arg2 = (Mezzanine::Int32)lua_tonumber(L, 2);
+  (arg1)->SetThreadSyncCount(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Barrier(void *obj) {
+Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_Barrier_methods[] = {
+    {"Wait", _wrap_Barrier_Wait}, 
+    {"SetThreadSyncCount", _wrap_Barrier_SetThreadSyncCount}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_Barrier_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_Barrier_bases[] = {0};
+static const char *swig_Mezzanine_Threading_Barrier_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_Barrier = { "Barrier", &SWIGTYPE_p_Mezzanine__Threading__Barrier,_wrap_new_Barrier, swig_delete_Barrier, swig_Mezzanine_Threading_Barrier_methods, swig_Mezzanine_Threading_Barrier_attributes, swig_Mezzanine_Threading_Barrier_bases, swig_Mezzanine_Threading_Barrier_base_names };
 
 static int _wrap_new_FrameScheduler__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -4100,6 +5280,570 @@ static swig_lua_attribute swig_Mezzanine_Threading_FrameScheduler_attributes[] =
 static swig_lua_class *swig_Mezzanine_Threading_FrameScheduler_bases[] = {0};
 static const char *swig_Mezzanine_Threading_FrameScheduler_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_Threading_FrameScheduler = { "FrameScheduler", &SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,_wrap_new_FrameScheduler, swig_delete_FrameScheduler, swig_Mezzanine_Threading_FrameScheduler_methods, swig_Mezzanine_Threading_FrameScheduler_attributes, swig_Mezzanine_Threading_FrameScheduler_bases, swig_Mezzanine_Threading_FrameScheduler_base_names };
+
+static int _wrap_WorkUnitKey_Unit_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Unit",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Unit",1,"Mezzanine::Threading::WorkUnitKey *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Unit",2,"Mezzanine::Threading::iWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
+    SWIG_fail_ptr("WorkUnitKey_Unit_set",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("WorkUnitKey_Unit_set",2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  if (arg1) (arg1)->Unit = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorkUnitKey_Unit_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Threading::iWorkUnit *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Unit",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Unit",1,"Mezzanine::Threading::WorkUnitKey *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
+    SWIG_fail_ptr("WorkUnitKey_Unit_get",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+  }
+  
+  result = (Mezzanine::Threading::iWorkUnit *) ((arg1)->Unit);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorkUnitKey_Dependers_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Whole arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Dependers",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Dependers",1,"Mezzanine::Threading::WorkUnitKey *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Dependers",2,"Mezzanine::Whole");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
+    SWIG_fail_ptr("WorkUnitKey_Dependers_set",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
+  if (arg1) (arg1)->Dependers = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorkUnitKey_Dependers_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Dependers",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Dependers",1,"Mezzanine::Threading::WorkUnitKey *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
+    SWIG_fail_ptr("WorkUnitKey_Dependers_get",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+  }
+  
+  result = (Mezzanine::Whole) ((arg1)->Dependers);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorkUnitKey_Time_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Whole arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Time",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Time",1,"Mezzanine::Threading::WorkUnitKey *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Time",2,"Mezzanine::Whole");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
+    SWIG_fail_ptr("WorkUnitKey_Time_set",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
+  if (arg1) (arg1)->Time = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorkUnitKey_Time_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Time",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Time",1,"Mezzanine::Threading::WorkUnitKey *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
+    SWIG_fail_ptr("WorkUnitKey_Time_get",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+  }
+  
+  result = (Mezzanine::Whole) ((arg1)->Time);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_WorkUnitKey__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkUnitKey *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::WorkUnitKey",0,0)
+  result = (Mezzanine::Threading::WorkUnitKey *)new Mezzanine::Threading::WorkUnitKey();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_WorkUnitKey__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole *arg1 = 0 ;
+  Mezzanine::Whole *arg2 = 0 ;
+  Mezzanine::Threading::iWorkUnit *arg3 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Whole temp1 ;
+  Mezzanine::Whole temp2 ;
+  Mezzanine::Threading::WorkUnitKey *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::WorkUnitKey",3,3)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::WorkUnitKey",1,"Mezzanine::Whole const &");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::WorkUnitKey",2,"Mezzanine::Whole const &");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::WorkUnitKey",3,"Mezzanine::Threading::iWorkUnit *");
+  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
+  temp1=(Mezzanine::Whole)lua_tonumber(L,1); arg1=&temp1;
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
+    SWIG_fail_ptr("new_WorkUnitKey",3,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
+  }
+  
+  result = (Mezzanine::Threading::WorkUnitKey *)new Mezzanine::Threading::WorkUnitKey((Mezzanine::Whole const &)*arg1,(Mezzanine::Whole const &)*arg2,arg3);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_WorkUnitKey(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_WorkUnitKey__SWIG_0(L);
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_new_WorkUnitKey__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_WorkUnitKey'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::Threading::WorkUnitKey::WorkUnitKey()\n"
+    "    Mezzanine::Threading::WorkUnitKey::WorkUnitKey(Mezzanine::Whole const &,Mezzanine::Whole const &,Mezzanine::Threading::iWorkUnit *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_WorkUnitKey___lt(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Threading::WorkUnitKey *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::operator <",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::operator <",1,"Mezzanine::Threading::WorkUnitKey const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::operator <",2,"Mezzanine::Threading::WorkUnitKey const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
+    SWIG_fail_ptr("WorkUnitKey___lt",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
+    SWIG_fail_ptr("WorkUnitKey___lt",2,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+  }
+  
+  result = (bool)((Mezzanine::Threading::WorkUnitKey const *)arg1)->operator <((Mezzanine::Threading::WorkUnitKey const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorkUnitKey___eq(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Threading::WorkUnitKey *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::operator ==",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::operator ==",1,"Mezzanine::Threading::WorkUnitKey const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::operator ==",2,"Mezzanine::Threading::WorkUnitKey const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
+    SWIG_fail_ptr("WorkUnitKey___eq",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
+    SWIG_fail_ptr("WorkUnitKey___eq",2,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+  }
+  
+  result = (bool)((Mezzanine::Threading::WorkUnitKey const *)arg1)->operator ==((Mezzanine::Threading::WorkUnitKey const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_WorkUnitKey(void *obj) {
+Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_WorkUnitKey_methods[] = {
+    {"__lt", _wrap_WorkUnitKey___lt}, 
+    {"__eq", _wrap_WorkUnitKey___eq}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_WorkUnitKey_attributes[] = {
+    { "Unit", _wrap_WorkUnitKey_Unit_get, _wrap_WorkUnitKey_Unit_set},
+    { "Dependers", _wrap_WorkUnitKey_Dependers_get, _wrap_WorkUnitKey_Dependers_set},
+    { "Time", _wrap_WorkUnitKey_Time_get, _wrap_WorkUnitKey_Time_set},
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_WorkUnitKey_bases[] = {0};
+static const char *swig_Mezzanine_Threading_WorkUnitKey_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_WorkUnitKey = { "WorkUnitKey", &SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,_wrap_new_WorkUnitKey, swig_delete_WorkUnitKey, swig_Mezzanine_Threading_WorkUnitKey_methods, swig_Mezzanine_Threading_WorkUnitKey_attributes, swig_Mezzanine_Threading_WorkUnitKey_bases, swig_Mezzanine_Threading_WorkUnitKey_base_names };
+
+static int _wrap_new_LogAggregator(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::LogAggregator *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::LogAggregator::LogAggregator",0,0)
+  result = (Mezzanine::Threading::LogAggregator *)new Mezzanine::Threading::LogAggregator();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__LogAggregator,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_LogAggregator_DoWork(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::LogAggregator *arg1 = (Mezzanine::Threading::LogAggregator *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::LogAggregator::DoWork",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::LogAggregator::DoWork",1,"Mezzanine::Threading::LogAggregator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::LogAggregator::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__LogAggregator,0))){
+    SWIG_fail_ptr("LogAggregator_DoWork",1,SWIGTYPE_p_Mezzanine__Threading__LogAggregator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
+    SWIG_fail_ptr("LogAggregator_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
+  }
+  
+  (arg1)->DoWork(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_LogAggregator_GetAggregationTarget(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::LogAggregator *arg1 = (Mezzanine::Threading::LogAggregator *) 0 ;
+  Mezzanine::Threading::FrameScheduler *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::LogAggregator::GetAggregationTarget",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::LogAggregator::GetAggregationTarget",1,"Mezzanine::Threading::LogAggregator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__LogAggregator,0))){
+    SWIG_fail_ptr("LogAggregator_GetAggregationTarget",1,SWIGTYPE_p_Mezzanine__Threading__LogAggregator);
+  }
+  
+  result = (Mezzanine::Threading::FrameScheduler *)((Mezzanine::Threading::LogAggregator const *)arg1)->GetAggregationTarget();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_LogAggregator_SetAggregationTarget(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::LogAggregator *arg1 = (Mezzanine::Threading::LogAggregator *) 0 ;
+  Mezzanine::Threading::FrameScheduler *arg2 = (Mezzanine::Threading::FrameScheduler *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::LogAggregator::SetAggregationTarget",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::LogAggregator::SetAggregationTarget",1,"Mezzanine::Threading::LogAggregator *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::LogAggregator::SetAggregationTarget",2,"Mezzanine::Threading::FrameScheduler *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__LogAggregator,0))){
+    SWIG_fail_ptr("LogAggregator_SetAggregationTarget",1,SWIGTYPE_p_Mezzanine__Threading__LogAggregator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0))){
+    SWIG_fail_ptr("LogAggregator_SetAggregationTarget",2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler);
+  }
+  
+  (arg1)->SetAggregationTarget(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_LogAggregator(void *obj) {
+Mezzanine::Threading::LogAggregator *arg1 = (Mezzanine::Threading::LogAggregator *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_LogAggregator_methods[] = {
+    {"DoWork", _wrap_LogAggregator_DoWork}, 
+    {"GetAggregationTarget", _wrap_LogAggregator_GetAggregationTarget}, 
+    {"SetAggregationTarget", _wrap_LogAggregator_SetAggregationTarget}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_LogAggregator_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_LogAggregator_bases[] = {0,0};
+static const char *swig_Mezzanine_Threading_LogAggregator_base_names[] = {"Mezzanine::Threading::DefaultWorkUnit *",0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_LogAggregator = { "LogAggregator", &SWIGTYPE_p_Mezzanine__Threading__LogAggregator,_wrap_new_LogAggregator, swig_delete_LogAggregator, swig_Mezzanine_Threading_LogAggregator_methods, swig_Mezzanine_Threading_LogAggregator_attributes, swig_Mezzanine_Threading_LogAggregator_bases, swig_Mezzanine_Threading_LogAggregator_base_names };
+
+static int _wrap_new_WorkSorter(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkSorter *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkSorter::WorkSorter",0,0)
+  result = (Mezzanine::Threading::WorkSorter *)new Mezzanine::Threading::WorkSorter();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__WorkSorter,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorkSorter_DoWork(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkSorter *arg1 = (Mezzanine::Threading::WorkSorter *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkSorter::DoWork",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkSorter::DoWork",1,"Mezzanine::Threading::WorkSorter *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkSorter::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkSorter,0))){
+    SWIG_fail_ptr("WorkSorter_DoWork",1,SWIGTYPE_p_Mezzanine__Threading__WorkSorter);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
+    SWIG_fail_ptr("WorkSorter_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
+  }
+  
+  (arg1)->DoWork(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorkSorter_SetSortingFrequency(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkSorter *arg1 = (Mezzanine::Threading::WorkSorter *) 0 ;
+  Mezzanine::Whole arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkSorter::SetSortingFrequency",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkSorter::SetSortingFrequency",1,"Mezzanine::Threading::WorkSorter *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkSorter::SetSortingFrequency",2,"Mezzanine::Whole");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkSorter,0))){
+    SWIG_fail_ptr("WorkSorter_SetSortingFrequency",1,SWIGTYPE_p_Mezzanine__Threading__WorkSorter);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
+  (arg1)->SetSortingFrequency(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorkSorter_GetSortingFrequency(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::WorkSorter *arg1 = (Mezzanine::Threading::WorkSorter *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::WorkSorter::GetSortingFrequency",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkSorter::GetSortingFrequency",1,"Mezzanine::Threading::WorkSorter *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkSorter,0))){
+    SWIG_fail_ptr("WorkSorter_GetSortingFrequency",1,SWIGTYPE_p_Mezzanine__Threading__WorkSorter);
+  }
+  
+  result = (Mezzanine::Whole)(arg1)->GetSortingFrequency();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_WorkSorter(void *obj) {
+Mezzanine::Threading::WorkSorter *arg1 = (Mezzanine::Threading::WorkSorter *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_WorkSorter_methods[] = {
+    {"DoWork", _wrap_WorkSorter_DoWork}, 
+    {"SetSortingFrequency", _wrap_WorkSorter_SetSortingFrequency}, 
+    {"GetSortingFrequency", _wrap_WorkSorter_GetSortingFrequency}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_WorkSorter_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_WorkSorter_bases[] = {0,0};
+static const char *swig_Mezzanine_Threading_WorkSorter_base_names[] = {"Mezzanine::Threading::DefaultWorkUnit *",0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_WorkSorter = { "WorkSorter", &SWIGTYPE_p_Mezzanine__Threading__WorkSorter,_wrap_new_WorkSorter, swig_delete_WorkSorter, swig_Mezzanine_Threading_WorkSorter_methods, swig_Mezzanine_Threading_WorkSorter_attributes, swig_Mezzanine_Threading_WorkSorter_bases, swig_Mezzanine_Threading_WorkSorter_base_names };
 
 static int _wrap_new_Mutex(lua_State* L) {
   int SWIG_arg = 0;
@@ -6196,1195 +7940,6 @@ fail:
 }
 
 
-static int _wrap_iWorkUnit_GetDependentCount(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetDependentCount",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetDependentCount",1,"Mezzanine::Threading::iWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetDependentCount",2,"Mezzanine::Threading::FrameScheduler &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_GetDependentCount",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0))){
-    SWIG_fail_ptr("iWorkUnit_GetDependentCount",2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler);
-  }
-  
-  result = (Mezzanine::Whole)(arg1)->GetDependentCount(*arg2);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_GetDependency(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Whole arg2 ;
-  Mezzanine::Threading::iWorkUnit *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetDependency",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetDependency",1,"Mezzanine::Threading::iWorkUnit const *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetDependency",2,"Mezzanine::Whole");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_GetDependency",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
-  result = (Mezzanine::Threading::iWorkUnit *)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetDependency(arg2);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_GetImmediateDependencyCount(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetImmediateDependencyCount",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetImmediateDependencyCount",1,"Mezzanine::Threading::iWorkUnit const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_GetImmediateDependencyCount",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetImmediateDependencyCount();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_GetDependencyCount(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetDependencyCount",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetDependencyCount",1,"Mezzanine::Threading::iWorkUnit const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_GetDependencyCount",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetDependencyCount();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_AddDependency(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::AddDependency",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::AddDependency",1,"Mezzanine::Threading::iWorkUnit *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::AddDependency",2,"Mezzanine::Threading::iWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_AddDependency",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_AddDependency",2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  (arg1)->AddDependency(arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_RemoveDependency(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::RemoveDependency",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::RemoveDependency",1,"Mezzanine::Threading::iWorkUnit *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::RemoveDependency",2,"Mezzanine::Threading::iWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_RemoveDependency",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_RemoveDependency",2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  (arg1)->RemoveDependency(arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_ClearDependencies(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::ClearDependencies",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::ClearDependencies",1,"Mezzanine::Threading::iWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_ClearDependencies",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  (arg1)->ClearDependencies();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_IsEveryDependencyComplete(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::IsEveryDependencyComplete",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::IsEveryDependencyComplete",1,"Mezzanine::Threading::iWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_IsEveryDependencyComplete",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  result = (bool)(arg1)->IsEveryDependencyComplete();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_TakeOwnerShip(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::RunningState result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::TakeOwnerShip",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::TakeOwnerShip",1,"Mezzanine::Threading::iWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_TakeOwnerShip",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  result = (Mezzanine::Threading::RunningState)(arg1)->TakeOwnerShip();
-  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_GetRunningState(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::RunningState result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetRunningState",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetRunningState",1,"Mezzanine::Threading::iWorkUnit const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_GetRunningState",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  result = (Mezzanine::Threading::RunningState)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetRunningState();
-  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_PrepareForNextFrame(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::PrepareForNextFrame",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::PrepareForNextFrame",1,"Mezzanine::Threading::iWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_PrepareForNextFrame",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  (arg1)->PrepareForNextFrame();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_GetPerformance(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetPerformance",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetPerformance",1,"Mezzanine::Threading::iWorkUnit const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_GetPerformance",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetPerformance();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit___call(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::operator ()",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::operator ()",1,"Mezzanine::Threading::iWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::operator ()",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit___call",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
-    SWIG_fail_ptr("iWorkUnit___call",2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
-  }
-  
-  (arg1)->operator ()(*arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_GetSortingKey(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
-  WorkUnitKey result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::GetSortingKey",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetSortingKey",1,"Mezzanine::Threading::iWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::GetSortingKey",2,"Mezzanine::Threading::FrameScheduler &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_GetSortingKey",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0))){
-    SWIG_fail_ptr("iWorkUnit_GetSortingKey",2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler);
-  }
-  
-  result = (arg1)->GetSortingKey(*arg2);
-  {
-    WorkUnitKey * resultptr = new WorkUnitKey((const WorkUnitKey &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_WorkUnitKey,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_iWorkUnit_DoWork(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::iWorkUnit::DoWork",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::DoWork",1,"Mezzanine::Threading::iWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::iWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("iWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
-    SWIG_fail_ptr("iWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
-  }
-  
-  (arg1)->DoWork(*arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_iWorkUnit(void *obj) {
-Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) obj;
-delete arg1;
-}
-static swig_lua_method swig_Mezzanine_Threading_iWorkUnit_methods[] = {
-    {"GetDependentCount", _wrap_iWorkUnit_GetDependentCount}, 
-    {"GetDependency", _wrap_iWorkUnit_GetDependency}, 
-    {"GetImmediateDependencyCount", _wrap_iWorkUnit_GetImmediateDependencyCount}, 
-    {"GetDependencyCount", _wrap_iWorkUnit_GetDependencyCount}, 
-    {"AddDependency", _wrap_iWorkUnit_AddDependency}, 
-    {"RemoveDependency", _wrap_iWorkUnit_RemoveDependency}, 
-    {"ClearDependencies", _wrap_iWorkUnit_ClearDependencies}, 
-    {"IsEveryDependencyComplete", _wrap_iWorkUnit_IsEveryDependencyComplete}, 
-    {"TakeOwnerShip", _wrap_iWorkUnit_TakeOwnerShip}, 
-    {"GetRunningState", _wrap_iWorkUnit_GetRunningState}, 
-    {"PrepareForNextFrame", _wrap_iWorkUnit_PrepareForNextFrame}, 
-    {"GetPerformance", _wrap_iWorkUnit_GetPerformance}, 
-    {"__call", _wrap_iWorkUnit___call}, 
-    {"GetSortingKey", _wrap_iWorkUnit_GetSortingKey}, 
-    {"DoWork", _wrap_iWorkUnit_DoWork}, 
-    {0,0}
-};
-static swig_lua_attribute swig_Mezzanine_Threading_iWorkUnit_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_Mezzanine_Threading_iWorkUnit_bases[] = {0};
-static const char *swig_Mezzanine_Threading_iWorkUnit_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_iWorkUnit = { "iWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0, swig_delete_iWorkUnit, swig_Mezzanine_Threading_iWorkUnit_methods, swig_Mezzanine_Threading_iWorkUnit_attributes, swig_Mezzanine_Threading_iWorkUnit_bases, swig_Mezzanine_Threading_iWorkUnit_base_names };
-
-static int _wrap_DefaultWorkUnit_GetDependentCount(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetDependentCount",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetDependentCount",1,"Mezzanine::Threading::DefaultWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetDependentCount",2,"Mezzanine::Threading::FrameScheduler &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_GetDependentCount",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_GetDependentCount",2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler);
-  }
-  
-  result = (Mezzanine::Whole)(arg1)->GetDependentCount(*arg2);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_GetDependency(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Whole arg2 ;
-  Mezzanine::Threading::iWorkUnit *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetDependency",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetDependency",1,"Mezzanine::Threading::DefaultWorkUnit const *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetDependency",2,"Mezzanine::Whole");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_GetDependency",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
-  result = (Mezzanine::Threading::iWorkUnit *)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetDependency(arg2);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_GetImmediateDependencyCount(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetImmediateDependencyCount",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetImmediateDependencyCount",1,"Mezzanine::Threading::DefaultWorkUnit const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_GetImmediateDependencyCount",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetImmediateDependencyCount();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_GetDependencyCount(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetDependencyCount",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetDependencyCount",1,"Mezzanine::Threading::DefaultWorkUnit const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_GetDependencyCount",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetDependencyCount();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_AddDependency(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::AddDependency",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::AddDependency",1,"Mezzanine::Threading::DefaultWorkUnit *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::AddDependency",2,"Mezzanine::Threading::iWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_AddDependency",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_AddDependency",2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  (arg1)->AddDependency(arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_RemoveDependency(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::RemoveDependency",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::RemoveDependency",1,"Mezzanine::Threading::DefaultWorkUnit *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::RemoveDependency",2,"Mezzanine::Threading::iWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_RemoveDependency",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_RemoveDependency",2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  (arg1)->RemoveDependency(arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_ClearDependencies(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::ClearDependencies",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::ClearDependencies",1,"Mezzanine::Threading::DefaultWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_ClearDependencies",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  (arg1)->ClearDependencies();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_IsEveryDependencyComplete(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::IsEveryDependencyComplete",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::IsEveryDependencyComplete",1,"Mezzanine::Threading::DefaultWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_IsEveryDependencyComplete",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  result = (bool)(arg1)->IsEveryDependencyComplete();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_TakeOwnerShip(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::RunningState result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::TakeOwnerShip",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::TakeOwnerShip",1,"Mezzanine::Threading::DefaultWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_TakeOwnerShip",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  result = (Mezzanine::Threading::RunningState)(arg1)->TakeOwnerShip();
-  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_GetRunningState(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::RunningState result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetRunningState",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetRunningState",1,"Mezzanine::Threading::DefaultWorkUnit const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_GetRunningState",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  result = (Mezzanine::Threading::RunningState)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetRunningState();
-  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_PrepareForNextFrame(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::PrepareForNextFrame",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::PrepareForNextFrame",1,"Mezzanine::Threading::DefaultWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_PrepareForNextFrame",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  (arg1)->PrepareForNextFrame();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_GetPerformance(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetPerformance",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetPerformance",1,"Mezzanine::Threading::DefaultWorkUnit const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_GetPerformance",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetPerformance();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_GetPerformanceLog(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::RollingAverage< Mezzanine::Whole > *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetPerformanceLog",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetPerformanceLog",1,"Mezzanine::Threading::DefaultWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_GetPerformanceLog",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  result = (Mezzanine::RollingAverage< Mezzanine::Whole > *) &(arg1)->GetPerformanceLog();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit___call(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::operator ()",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::operator ()",1,"Mezzanine::Threading::DefaultWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::operator ()",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit___call",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
-    SWIG_fail_ptr("DefaultWorkUnit___call",2,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
-  }
-  
-  (arg1)->operator ()(*arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_DefaultWorkUnit_GetSortingKey(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
-  WorkUnitKey result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::DefaultWorkUnit::GetSortingKey",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetSortingKey",1,"Mezzanine::Threading::DefaultWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::DefaultWorkUnit::GetSortingKey",2,"Mezzanine::Threading::FrameScheduler &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_GetSortingKey",1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,0))){
-    SWIG_fail_ptr("DefaultWorkUnit_GetSortingKey",2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler);
-  }
-  
-  result = (arg1)->GetSortingKey(*arg2);
-  {
-    WorkUnitKey * resultptr = new WorkUnitKey((const WorkUnitKey &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_WorkUnitKey,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_DefaultWorkUnit(void *obj) {
-Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) obj;
-delete arg1;
-}
-static swig_lua_method swig_Mezzanine_Threading_DefaultWorkUnit_methods[] = {
-    {"GetDependentCount", _wrap_DefaultWorkUnit_GetDependentCount}, 
-    {"GetDependency", _wrap_DefaultWorkUnit_GetDependency}, 
-    {"GetImmediateDependencyCount", _wrap_DefaultWorkUnit_GetImmediateDependencyCount}, 
-    {"GetDependencyCount", _wrap_DefaultWorkUnit_GetDependencyCount}, 
-    {"AddDependency", _wrap_DefaultWorkUnit_AddDependency}, 
-    {"RemoveDependency", _wrap_DefaultWorkUnit_RemoveDependency}, 
-    {"ClearDependencies", _wrap_DefaultWorkUnit_ClearDependencies}, 
-    {"IsEveryDependencyComplete", _wrap_DefaultWorkUnit_IsEveryDependencyComplete}, 
-    {"TakeOwnerShip", _wrap_DefaultWorkUnit_TakeOwnerShip}, 
-    {"GetRunningState", _wrap_DefaultWorkUnit_GetRunningState}, 
-    {"PrepareForNextFrame", _wrap_DefaultWorkUnit_PrepareForNextFrame}, 
-    {"GetPerformance", _wrap_DefaultWorkUnit_GetPerformance}, 
-    {"GetPerformanceLog", _wrap_DefaultWorkUnit_GetPerformanceLog}, 
-    {"__call", _wrap_DefaultWorkUnit___call}, 
-    {"GetSortingKey", _wrap_DefaultWorkUnit_GetSortingKey}, 
-    {0,0}
-};
-static swig_lua_attribute swig_Mezzanine_Threading_DefaultWorkUnit_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_Mezzanine_Threading_DefaultWorkUnit_bases[] = {0,0};
-static const char *swig_Mezzanine_Threading_DefaultWorkUnit_base_names[] = {"Mezzanine::Threading::iWorkUnit *",0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_DefaultWorkUnit = { "DefaultWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0, swig_delete_DefaultWorkUnit, swig_Mezzanine_Threading_DefaultWorkUnit_methods, swig_Mezzanine_Threading_DefaultWorkUnit_attributes, swig_Mezzanine_Threading_DefaultWorkUnit_bases, swig_Mezzanine_Threading_DefaultWorkUnit_base_names };
-
-static int _wrap_WorkUnitKey_Unit_set(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Unit",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Unit",1,"Mezzanine::Threading::WorkUnitKey *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Unit",2,"Mezzanine::Threading::iWorkUnit *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
-    SWIG_fail_ptr("WorkUnitKey_Unit_set",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,SWIG_POINTER_DISOWN))){
-    SWIG_fail_ptr("WorkUnitKey_Unit_set",2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  if (arg1) (arg1)->Unit = arg2;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_WorkUnitKey_Unit_get(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Threading::iWorkUnit *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Unit",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Unit",1,"Mezzanine::Threading::WorkUnitKey *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
-    SWIG_fail_ptr("WorkUnitKey_Unit_get",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-  }
-  
-  result = (Mezzanine::Threading::iWorkUnit *) ((arg1)->Unit);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_WorkUnitKey_Dependers_set(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Whole arg2 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Dependers",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Dependers",1,"Mezzanine::Threading::WorkUnitKey *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Dependers",2,"Mezzanine::Whole");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
-    SWIG_fail_ptr("WorkUnitKey_Dependers_set",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-  }
-  
-  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
-  if (arg1) (arg1)->Dependers = arg2;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_WorkUnitKey_Dependers_get(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Dependers",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Dependers",1,"Mezzanine::Threading::WorkUnitKey *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
-    SWIG_fail_ptr("WorkUnitKey_Dependers_get",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-  }
-  
-  result = (Mezzanine::Whole) ((arg1)->Dependers);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_WorkUnitKey_Time_set(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Whole arg2 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Time",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Time",1,"Mezzanine::Threading::WorkUnitKey *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Time",2,"Mezzanine::Whole");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
-    SWIG_fail_ptr("WorkUnitKey_Time_set",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-  }
-  
-  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
-  if (arg1) (arg1)->Time = arg2;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_WorkUnitKey_Time_get(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::Time",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::Time",1,"Mezzanine::Threading::WorkUnitKey *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
-    SWIG_fail_ptr("WorkUnitKey_Time_get",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-  }
-  
-  result = (Mezzanine::Whole) ((arg1)->Time);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_WorkUnitKey__SWIG_0(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::WorkUnitKey *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::WorkUnitKey",0,0)
-  result = (Mezzanine::Threading::WorkUnitKey *)new Mezzanine::Threading::WorkUnitKey();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_WorkUnitKey__SWIG_1(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Whole *arg1 = 0 ;
-  Mezzanine::Whole *arg2 = 0 ;
-  Mezzanine::Threading::iWorkUnit *arg3 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Whole temp1 ;
-  Mezzanine::Whole temp2 ;
-  Mezzanine::Threading::WorkUnitKey *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::WorkUnitKey",3,3)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::WorkUnitKey",1,"Mezzanine::Whole const &");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::WorkUnitKey",2,"Mezzanine::Whole const &");
-  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::WorkUnitKey",3,"Mezzanine::Threading::iWorkUnit *");
-  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
-  temp1=(Mezzanine::Whole)lua_tonumber(L,1); arg1=&temp1;
-  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0))){
-    SWIG_fail_ptr("new_WorkUnitKey",3,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit);
-  }
-  
-  result = (Mezzanine::Threading::WorkUnitKey *)new Mezzanine::Threading::WorkUnitKey((Mezzanine::Whole const &)*arg1,(Mezzanine::Whole const &)*arg2,arg3);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_WorkUnitKey(lua_State* L) {
-  int argc;
-  int argv[4]={
-    1,2,3,4
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 0) {
-    return _wrap_new_WorkUnitKey__SWIG_0(L);
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      _v = lua_isnumber(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          void *ptr;
-          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0)) {
-            _v = 0;
-          } else {
-            _v = 1;
-          }
-        }
-        if (_v) {
-          return _wrap_new_WorkUnitKey__SWIG_1(L);
-        }
-      }
-    }
-  }
-  
-  lua_pushstring(L,"Wrong arguments for overloaded function 'new_WorkUnitKey'\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Threading::WorkUnitKey::WorkUnitKey()\n"
-    "    Mezzanine::Threading::WorkUnitKey::WorkUnitKey(Mezzanine::Whole const &,Mezzanine::Whole const &,Mezzanine::Threading::iWorkUnit *)\n");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_WorkUnitKey___lt(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Threading::WorkUnitKey *arg2 = 0 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::operator <",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::operator <",1,"Mezzanine::Threading::WorkUnitKey const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::operator <",2,"Mezzanine::Threading::WorkUnitKey const &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
-    SWIG_fail_ptr("WorkUnitKey___lt",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
-    SWIG_fail_ptr("WorkUnitKey___lt",2,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-  }
-  
-  result = (bool)((Mezzanine::Threading::WorkUnitKey const *)arg1)->operator <((Mezzanine::Threading::WorkUnitKey const &)*arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_WorkUnitKey___eq(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Threading::WorkUnitKey *arg2 = 0 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::Threading::WorkUnitKey::operator ==",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::operator ==",1,"Mezzanine::Threading::WorkUnitKey const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Threading::WorkUnitKey::operator ==",2,"Mezzanine::Threading::WorkUnitKey const &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
-    SWIG_fail_ptr("WorkUnitKey___eq",1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,0))){
-    SWIG_fail_ptr("WorkUnitKey___eq",2,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-  }
-  
-  result = (bool)((Mezzanine::Threading::WorkUnitKey const *)arg1)->operator ==((Mezzanine::Threading::WorkUnitKey const &)*arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_WorkUnitKey(void *obj) {
-Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) obj;
-delete arg1;
-}
-static swig_lua_method swig_Mezzanine_Threading_WorkUnitKey_methods[] = {
-    {"__lt", _wrap_WorkUnitKey___lt}, 
-    {"__eq", _wrap_WorkUnitKey___eq}, 
-    {0,0}
-};
-static swig_lua_attribute swig_Mezzanine_Threading_WorkUnitKey_attributes[] = {
-    { "Unit", _wrap_WorkUnitKey_Unit_get, _wrap_WorkUnitKey_Unit_set},
-    { "Dependers", _wrap_WorkUnitKey_Dependers_get, _wrap_WorkUnitKey_Dependers_set},
-    { "Time", _wrap_WorkUnitKey_Time_get, _wrap_WorkUnitKey_Time_set},
-    {0,0,0}
-};
-static swig_lua_class *swig_Mezzanine_Threading_WorkUnitKey_bases[] = {0};
-static const char *swig_Mezzanine_Threading_WorkUnitKey_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_WorkUnitKey = { "WorkUnitKey", &SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,_wrap_new_WorkUnitKey, swig_delete_WorkUnitKey, swig_Mezzanine_Threading_WorkUnitKey_methods, swig_Mezzanine_Threading_WorkUnitKey_attributes, swig_Mezzanine_Threading_WorkUnitKey_bases, swig_Mezzanine_Threading_WorkUnitKey_base_names };
-
 #ifdef __cplusplus
 }
 #endif
@@ -7428,8 +7983,35 @@ static void *_p_Mezzanine__BufferedRollingAverageT_int_tTo_p_Mezzanine__RollingA
 static void *_p_Mezzanine__WeightedRollingAverageT_int_int_tTo_p_Mezzanine__RollingAverageT_int_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< int > *)  ((Mezzanine::WeightedRollingAverage< int,int > *) x));
 }
+static void *_p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *) ((Mezzanine::Threading::LogAggregator *) x));
+}
 static void *_p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Threading::iWorkUnit *)  ((Mezzanine::Threading::DefaultWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *) ((Mezzanine::Threading::iAsynchronousWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *)(Mezzanine::Threading::iAsynchronousWorkUnit *) ((Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *) ((Mezzanine::Threading::WorkSorter *) x));
+}
+static void *_p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::Threading::LogAggregator *) x));
+}
+static void *_p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::Threading::iAsynchronousWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *) (Mezzanine::Threading::iAsynchronousWorkUnit *) ((Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::Threading::WorkSorter *) x));
+}
+static void *_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iAsynchronousWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iAsynchronousWorkUnit *)  ((Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) x));
 }
 static void *_p_Mezzanine__WeightedRollingAverageT_float_float_tTo_p_Mezzanine__RollingAverageT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< float > *)  ((Mezzanine::WeightedRollingAverage< float,float > *) x));
@@ -7450,23 +8032,30 @@ static swig_type_info _swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long
 static swig_type_info _swigt__p_Mezzanine__RollingAverageT_float_t = {"_p_Mezzanine__RollingAverageT_float_t", "Mezzanine::RollingAverage< float > *|Mezzanine::RollingAverage< Mezzanine::Real > *", 0, 0, (void*)&_wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg_, 0};
 static swig_type_info _swigt__p_Mezzanine__RollingAverageT_int_t = {"_p_Mezzanine__RollingAverageT_int_t", "Mezzanine::RollingAverage< Mezzanine::Integer > *|Mezzanine::RollingAverage< int > *", 0, 0, (void*)&_wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg_, 0};
 static swig_type_info _swigt__p_Mezzanine__RollingAverageT_unsigned_long_t = {"_p_Mezzanine__RollingAverageT_unsigned_long_t", "Mezzanine::RollingAverage< unsigned long > *|Mezzanine::RollingAverage< Mezzanine::Whole > *", 0, 0, (void*)&_wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg_, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit = {"_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit", "Mezzanine::Threading::AsynchronousFileLoadWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_AsynchronousFileLoadWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Barrier = {"_p_Mezzanine__Threading__Barrier", "Mezzanine::Threading::Barrier *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Barrier, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage = {"_p_Mezzanine__Threading__DefaultThreadSpecificStorage", "Mezzanine::Threading::DefaultThreadSpecificStorage *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_DefaultThreadSpecificStorage, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__DefaultWorkUnit = {"_p_Mezzanine__Threading__DefaultWorkUnit", "Mezzanine::Threading::DefaultWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_DefaultWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t = {"_p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t", "Mezzanine::Threading::DoubleBufferedLogger *|Mezzanine::Threading::DoubleBufferedResource< std::stringstream > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__FrameScheduler = {"_p_Mezzanine__Threading__FrameScheduler", "Mezzanine::Threading::FrameScheduler *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_FrameScheduler, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__LogAggregator = {"_p_Mezzanine__Threading__LogAggregator", "Mezzanine::Threading::LogAggregator *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_LogAggregator, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__MonopolyWorkUnit = {"_p_Mezzanine__Threading__MonopolyWorkUnit", "Mezzanine::Threading::MonopolyWorkUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Mutex = {"_p_Mezzanine__Threading__Mutex", "Mezzanine::Threading::Mutex *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Mutex, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__SpinLock = {"_p_Mezzanine__Threading__SpinLock", "Mezzanine::Threading::SpinLock *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_SpinLock, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Thread = {"_p_Mezzanine__Threading__Thread", "Mezzanine::Threading::Thread *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Thread, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__ThreadId = {"_p_Mezzanine__Threading__ThreadId", "Mezzanine::Threading::ThreadId *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ThreadId, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__ThreadSpecificStorage = {"_p_Mezzanine__Threading__ThreadSpecificStorage", "Mezzanine::Threading::ThreadSpecificStorage *|Mezzanine::Threading::FrameScheduler::Resource *|Mezzanine::Threading::DefaultThreadSpecificStorage::Type *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ThreadSpecificStorage, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__WorkSorter = {"_p_Mezzanine__Threading__WorkSorter", "Mezzanine::Threading::WorkSorter *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_WorkSorter, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__WorkUnitKey = {"_p_Mezzanine__Threading__WorkUnitKey", "Mezzanine::Threading::WorkUnitKey *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_WorkUnitKey, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit = {"_p_Mezzanine__Threading__iAsynchronousWorkUnit", "Mezzanine::Threading::iAsynchronousWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_iAsynchronousWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__iWorkUnit = {"_p_Mezzanine__Threading__iWorkUnit", "Mezzanine::Threading::iWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_iWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t = {"_p_Mezzanine__WeightedRollingAverageT_float_float_t", "Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *|Mezzanine::WeightedRollingAverage< float,float > *", 0, 0, (void*)&_wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg_, 0};
 static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t = {"_p_Mezzanine__WeightedRollingAverageT_int_int_t", "Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *|Mezzanine::WeightedRollingAverage< int,int > *", 0, 0, (void*)&_wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg_, 0};
 static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t = {"_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t", "Mezzanine::WeightedRollingAverage< unsigned long,unsigned long > *|Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *", 0, 0, (void*)&_wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg_, 0};
+static swig_type_info _swigt__p_RawFile = {"_p_RawFile", "RawFile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Resource = {"_p_Resource", "Resource *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RollingAverageT_unsigned_long_t = {"_p_RollingAverageT_unsigned_long_t", "RollingAverage< unsigned long > *|RollingAverage< Mezzanine::Whole > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RunningState = {"_p_RunningState", "RunningState *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzanine::RawEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ThreadId = {"_p_ThreadId", "ThreadId *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Type = {"_p_Type", "Type *", 0, 0, (void*)0, 0};
@@ -7489,7 +8078,7 @@ static swig_type_info _swigt__p_std__pairT_std__string_std__string_t = {"_p_std_
 static swig_type_info _swigt__p_std__setT_std__string_t = {"_p_std__setT_std__string_t", "std::set< std::string > *|Mezzanine::StringSet *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *|Mezzanine::String *|Mezzanine::ConstString *", 0, 0, (void*)&_wrap_class_std_string, 0};
 static swig_type_info _swigt__p_std__stringstream = {"_p_std__stringstream", "Mezzanine::Logger *|std::stringstream *|Mezzanine::StringStream *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_std__string_t = {"_p_std__vectorT_std__string_t", "std::vector< std::string > *|Mezzanine::StringVector *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_std__string_t = {"_p_std__vectorT_std__string_t", "std::vector< std::string > *|std::vector< Mezzanine::String > *|Mezzanine::StringVector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__wstring = {"_p_std__wstring", "std::wstring *|Mezzanine::WideString *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned char *|Mezzanine::UInt8 *|uint_least8_t *|uint_fast8_t *|uint8_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "uintptr_t *|uint_least32_t *|uint_fast32_t *|uint32_t *|Mezzanine::UInt32 *|unsigned int *|Mezzanine::TimeMarker *|uint_fast16_t *", 0, 0, (void*)0, 0};
@@ -7505,23 +8094,30 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__RollingAverageT_float_t,
   &_swigt__p_Mezzanine__RollingAverageT_int_t,
   &_swigt__p_Mezzanine__RollingAverageT_unsigned_long_t,
+  &_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,
   &_swigt__p_Mezzanine__Threading__Barrier,
   &_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage,
   &_swigt__p_Mezzanine__Threading__DefaultWorkUnit,
   &_swigt__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t,
   &_swigt__p_Mezzanine__Threading__FrameScheduler,
+  &_swigt__p_Mezzanine__Threading__LogAggregator,
   &_swigt__p_Mezzanine__Threading__MonopolyWorkUnit,
   &_swigt__p_Mezzanine__Threading__Mutex,
   &_swigt__p_Mezzanine__Threading__SpinLock,
   &_swigt__p_Mezzanine__Threading__Thread,
   &_swigt__p_Mezzanine__Threading__ThreadId,
   &_swigt__p_Mezzanine__Threading__ThreadSpecificStorage,
+  &_swigt__p_Mezzanine__Threading__WorkSorter,
   &_swigt__p_Mezzanine__Threading__WorkUnitKey,
+  &_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit,
   &_swigt__p_Mezzanine__Threading__iWorkUnit,
   &_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t,
   &_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t,
   &_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,
+  &_swigt__p_RawFile,
   &_swigt__p_Resource,
+  &_swigt__p_RollingAverageT_unsigned_long_t,
+  &_swigt__p_RunningState,
   &_swigt__p_SDL_Event,
   &_swigt__p_ThreadId,
   &_swigt__p_Type,
@@ -7560,23 +8156,30 @@ static swig_cast_info _swigc__p_Mezzanine__BufferedRollingAverageT_unsigned_long
 static swig_cast_info _swigc__p_Mezzanine__RollingAverageT_float_t[] = {  {&_swigt__p_Mezzanine__RollingAverageT_float_t, 0, 0, 0},  {&_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t, _p_Mezzanine__WeightedRollingAverageT_float_float_tTo_p_Mezzanine__RollingAverageT_float_t, 0, 0},  {&_swigt__p_Mezzanine__BufferedRollingAverageT_float_t, _p_Mezzanine__BufferedRollingAverageT_float_tTo_p_Mezzanine__RollingAverageT_float_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__RollingAverageT_int_t[] = {  {&_swigt__p_Mezzanine__RollingAverageT_int_t, 0, 0, 0},  {&_swigt__p_Mezzanine__BufferedRollingAverageT_int_t, _p_Mezzanine__BufferedRollingAverageT_int_tTo_p_Mezzanine__RollingAverageT_int_t, 0, 0},  {&_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t, _p_Mezzanine__WeightedRollingAverageT_int_int_tTo_p_Mezzanine__RollingAverageT_int_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__RollingAverageT_unsigned_long_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t, _p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t, 0, 0},  {&_swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t, _p_Mezzanine__BufferedRollingAverageT_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t, 0, 0},  {&_swigt__p_Mezzanine__RollingAverageT_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Barrier[] = {  {&_swigt__p_Mezzanine__Threading__Barrier, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage[] = {  {&_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, _p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, _p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__WorkSorter, _p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t[] = {  {&_swigt__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__FrameScheduler[] = {  {&_swigt__p_Mezzanine__Threading__FrameScheduler, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__LogAggregator[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__MonopolyWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__MonopolyWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Mutex[] = {  {&_swigt__p_Mezzanine__Threading__Mutex, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__SpinLock[] = {  {&_swigt__p_Mezzanine__Threading__SpinLock, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Thread[] = {  {&_swigt__p_Mezzanine__Threading__Thread, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__ThreadId[] = {  {&_swigt__p_Mezzanine__Threading__ThreadId, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__ThreadSpecificStorage[] = {  {&_swigt__p_Mezzanine__Threading__ThreadSpecificStorage, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__WorkSorter[] = {  {&_swigt__p_Mezzanine__Threading__WorkSorter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__WorkUnitKey[] = {  {&_swigt__p_Mezzanine__Threading__WorkUnitKey, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Threading__iWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__iWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, _p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__iAsynchronousWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iAsynchronousWorkUnit, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__iWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, _p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__iWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, _p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, _p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__WorkSorter, _p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_float_float_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_int_int_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RawFile[] = {  {&_swigt__p_RawFile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Resource[] = {  {&_swigt__p_Resource, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RollingAverageT_unsigned_long_t[] = {  {&_swigt__p_RollingAverageT_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RunningState[] = {  {&_swigt__p_RunningState, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDL_Event[] = {  {&_swigt__p_SDL_Event, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ThreadId[] = {  {&_swigt__p_ThreadId, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Type[] = {  {&_swigt__p_Type, 0, 0, 0},{0, 0, 0, 0}};
@@ -7615,23 +8218,30 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__RollingAverageT_float_t,
   _swigc__p_Mezzanine__RollingAverageT_int_t,
   _swigc__p_Mezzanine__RollingAverageT_unsigned_long_t,
+  _swigc__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,
   _swigc__p_Mezzanine__Threading__Barrier,
   _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage,
   _swigc__p_Mezzanine__Threading__DefaultWorkUnit,
   _swigc__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t,
   _swigc__p_Mezzanine__Threading__FrameScheduler,
+  _swigc__p_Mezzanine__Threading__LogAggregator,
   _swigc__p_Mezzanine__Threading__MonopolyWorkUnit,
   _swigc__p_Mezzanine__Threading__Mutex,
   _swigc__p_Mezzanine__Threading__SpinLock,
   _swigc__p_Mezzanine__Threading__Thread,
   _swigc__p_Mezzanine__Threading__ThreadId,
   _swigc__p_Mezzanine__Threading__ThreadSpecificStorage,
+  _swigc__p_Mezzanine__Threading__WorkSorter,
   _swigc__p_Mezzanine__Threading__WorkUnitKey,
+  _swigc__p_Mezzanine__Threading__iAsynchronousWorkUnit,
   _swigc__p_Mezzanine__Threading__iWorkUnit,
   _swigc__p_Mezzanine__WeightedRollingAverageT_float_float_t,
   _swigc__p_Mezzanine__WeightedRollingAverageT_int_int_t,
   _swigc__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,
+  _swigc__p_RawFile,
   _swigc__p_Resource,
+  _swigc__p_RollingAverageT_unsigned_long_t,
+  _swigc__p_RunningState,
   _swigc__p_SDL_Event,
   _swigc__p_ThreadId,
   _swigc__p_Type,

@@ -182,9 +182,10 @@ namespace Mezzanine
                 DefaultWorkUnit& operator=(DefaultWorkUnit& Unused);
 
             public:
+#ifndef SWIG
                 /// @brief Simple constructor.
                 DefaultWorkUnit();
-
+#endif
                 /// @brief Virtual destructor, doesn't actually do much.
                 virtual ~DefaultWorkUnit();
 

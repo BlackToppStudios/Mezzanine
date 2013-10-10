@@ -41,11 +41,10 @@
 #ifndef _logtools_h
 #define _logtools_h
 
+#include "datatypes.h"
+#include "systemcalls.h"
 #ifndef SWIG
-    #include "datatypes.h"
-    #include "systemcalls.h"
-
-    #include <ostream>
+    #include <iostream>
 #endif
 
 /// @file
@@ -55,6 +54,7 @@ namespace Mezzanine
 {
     namespace Threading
     {
+#ifndef SWIG
         #ifndef SCOPEDTIMER
             /// @def SCOPEDTIMER
             /// @brief The easiest way to time the given scope
@@ -66,7 +66,8 @@ namespace Mezzanine
             #endif
         #endif
 
-        /// @brief Used to time fromthis objects creation to its desctruction
+        /// @brief Used to time from this objects creation to its destruction
+        /// @note not available in swig provide scripting languages, Useless if garbage collection must happen before Deconstructor is called
         class MEZZ_LIB ScopedTimer
         {
             private:
@@ -91,14 +92,16 @@ namespace Mezzanine
                 /// @param ScopeToMeasure The name of the current function or a user provided name.
                 /// @param ScopeFile Defaults to an empty string, should be set to __FILE__ or similar.
                 /// @param CurrentLine Defaults to 0, should be set to __LINE__ or similar.
-                ScopedTimer(std::ostream& LogSink,
-                            String ScopeToMeasure,
+                ScopedTimer(std::ostream& LogSink = std::cout,
+                            String ScopeToMeasure = "UnknownScope",
                             String ScopeFile = String(),
                             Whole CurrentLine = 0
                             );
 
                 /// @brief Destructor, logs duration and current timestamp in ScopedTimerEnd xml element
                 ~ScopedTimer();
+#endif
+
         };
     }//Threading
 }//Mezzanine

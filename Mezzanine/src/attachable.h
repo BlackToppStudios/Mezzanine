@@ -149,8 +149,11 @@ namespace Mezzanine
         protected:
             AttachableContainer Attached;
         public:
+            #ifndef SWIG
             /// @brief Class constructor.
             AttachableParent();
+            #endif
+
             /// @brief Class destructor.
             virtual ~AttachableParent();
 

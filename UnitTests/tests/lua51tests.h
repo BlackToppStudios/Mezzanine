@@ -515,13 +515,14 @@ class lua51tests : public UnitTestGroup
                               "Threading::WorkUnitKey", "TestFuncWorkUnitKey", 100, 100,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
-                TestLuaScript("function TestFuncWorkUnitKey(x)\n"
+                TestLuaScript("function TestFuncFrameScheduler(x)\n"
                               "   FS=MezzanineSafe.Threading.FrameScheduler()\n"
                               "   FS:SetFrameRate(60)\n"
                               "   return FS:GetFrameLength()\n"
                               "end",
-                              "Threading::FrameScheduler", "TestFuncWorkUnitKey", 100, 16666,
+                              "Threading::FrameScheduler", "TestFuncFrameScheduler", 100, 16666,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
 /* // I would like to figure this one out, by I suspect it is impossible.
                 TestLuaScript("function TestFuncAtomicAdd(x)\n"
                               "   aa=MezzanineSafe.Threading.AtomicAdd(3,2)\n"
@@ -530,7 +531,27 @@ class lua51tests : public UnitTestGroup
                               "Threading::AtomicOperations", "TestFuncAtomicAdd", 100, 102,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 */
+                TestLuaScript("function TestFuncWorkUnitAsync(x)\n"
+                              "   key=MezzanineSafe.Threading.AsynchronousFileLoadWorkUnit()\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::WorkUnitAsync", "TestFuncWorkUnitAsync", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestFuncWorkUnitLogAgg(x)\n"
+                              "   key=MezzanineSafe.Threading.LogAggregator()\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::WorkUnitLogAggregator", "TestFuncWorkUnitLogAgg", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                /* //Kinda useless in garbage collected languages
+                TestLuaScript("function TestFuncScop(x)\n"
+                              "   STimer=MezzanineSafe.Threading.ScopedTimer()"
+                              "   return x\n"
+                              "end",
+                              "Threading::ScopedTimer", "TestFuncWorkUnitKey", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs); */
             }
 
         }

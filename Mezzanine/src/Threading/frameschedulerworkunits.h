@@ -42,11 +42,11 @@
 #ifndef _frameschedulerworkunits_h
 #define _frameschedulerworkunits_h
 
-#ifndef SWIG
-    #include "datatypes.h"
-    #include "workunit.h"
-    #include "workunitkey.h"
+#include "datatypes.h"
+#include "workunit.h"
+#include "workunitkey.h"
 
+#ifndef SWIG
     #include <vector>
 #endif
 
