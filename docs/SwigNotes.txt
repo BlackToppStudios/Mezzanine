@@ -1,0 +1,12 @@
+rules for wrapping swig
+  Primary Tool:
+    #ifndef SWIG
+    #endif
+  each major namespace gets its own module
+  actively exclude the std headers
+	swig blows up on them
+  never exclude datatypes.h
+	causes odd problems
+	Be careful about what it includes.
+
+  const static POD in a namespace breaks SWIG
