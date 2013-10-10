@@ -58,9 +58,9 @@
 #ifndef SWIG
     #include "asynchronousfileloadingworkunit.h"
     #include "asynchronousworkunit.h"
-    #include "atomicoperations.h"
 #endif
 
+#include "atomicoperations.h"
 #include "barrier.h"
 //#include "crossplatformincludes.h" // This is omitted because windows.h include a ton of macros that break clean code, so this vile file's scope must be minimized
 #include "crossplatformexport.h"

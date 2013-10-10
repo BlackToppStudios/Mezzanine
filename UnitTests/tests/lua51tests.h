@@ -514,6 +514,23 @@ class lua51tests : public UnitTestGroup
                               "end",
                               "Threading::WorkUnitKey", "TestFuncWorkUnitKey", 100, 100,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncWorkUnitKey(x)\n"
+                              "   FS=MezzanineSafe.Threading.FrameScheduler()\n"
+                              "   FS:SetFrameRate(60)\n"
+                              "   return FS:GetFrameLength()\n"
+                              "end",
+                              "Threading::FrameScheduler", "TestFuncWorkUnitKey", 100, 16666,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+/* // I would like to figure this one out, by I suspect it is impossible.
+                TestLuaScript("function TestFuncAtomicAdd(x)\n"
+                              "   aa=MezzanineSafe.Threading.AtomicAdd(3,2)\n"
+                              "   return 102 \n--MezzanineSafe.Threading.AtomicAdd(x,2)\n"
+                              "end",
+                              "Threading::AtomicOperations", "TestFuncAtomicAdd", 100, 102,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+*/
+
             }
 
         }
