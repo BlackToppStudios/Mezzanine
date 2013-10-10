@@ -41,9 +41,10 @@
 #define _internalmotionstate_cpp
 
 #include "Internal/motionstate.h.cpp"
+#include "Physics/rigidproxy.h"
+#include "exception.h"
 
-#include "Physics/physicsmanager.h"
-#include "areaeffect.h"
+#include <algorithm>
 
 // Keeps this file form being documented by doxygen
 /// @cond 0
@@ -53,100 +54,119 @@ namespace Mezzanine
     namespace Internal
     {
         ///////////////////////////////////////////////////////////////////////////////
-        // PhysMotionState methods
+        // SimpleProxyMotionState methods
 
-        PhysMotionState::PhysMotionState()
+        SimpleProxyMotionState::SimpleProxyMotionState() :
+            ParentObject(NULL),
+            SyncObject(NULL)
+            { this->WorldTrans.setIdentity(); }
+
+        SimpleProxyMotionState::SimpleProxyMotionState(Physics::RigidProxy* PO, WorldProxy* WP) :
+            ParentObject(PO),
+            SyncObject(NULL)
+            { this->WorldTrans.setIdentity();  this->SetSyncObject(WP); }
+
+        SimpleProxyMotionState::~SimpleProxyMotionState()
+            {  }
+
+        void SimpleProxyMotionState::SetParentObject(Physics::RigidProxy* PO)
+            { this->ParentObject = PO; }
+
+        void SimpleProxyMotionState::SetSyncObject(WorldProxy* WP)
         {
-            this->worldtrans.setIdentity();
+            UInt32 ProxType = WP->GetProxyType();
+            if( ProxType != Mezzanine::PT_Physics_RigidProxy || ProxType != Mezzanine::PT_Physics_SoftProxy ) {
+                this->SyncObject = WP;
+            }else{
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to create motionstate sync object between two physics objects that do not support this configuration.");
+            }
         }
 
-        PhysMotionState::PhysMotionState(Ogre::SceneNode* scenenode)
-        {
-            this->snode = scenenode;
-            this->worldtrans.setIdentity();
-        }
+        void SimpleProxyMotionState::SetPosition(const Vector3& Position)
+            { this->WorldTrans.setOrigin( Position.GetBulletVector3() ); }
 
-        PhysMotionState::~PhysMotionState()
-        {
-        }
+        void SimpleProxyMotionState::SetOrientation(const Quaternion& Orientation)
+            { this->WorldTrans.setRotation(Orientation.GetBulletQuaternion()); }
 
-        void PhysMotionState::SetNode(Ogre::SceneNode* scenenode)
-        {
-            this->snode = scenenode;
-        }
+        void SimpleProxyMotionState::getWorldTransform(btTransform& worldTrans) const
+            { worldTrans = this->WorldTrans; }
 
-        void PhysMotionState::SetPosition(const Vector3& position)
+        void SimpleProxyMotionState::setWorldTransform(const btTransform& worldTrans)
         {
-            this->worldtrans.setOrigin(position.GetBulletVector3());
-        }
+            this->WorldTrans = worldTrans;
 
-        void PhysMotionState::SetOrientation(const Quaternion& orientation)
-        {
-            this->worldtrans.setRotation(orientation.GetBulletQuaternion());
-        }
-
-        void PhysMotionState::getWorldTransform(btTransform &worldTrans) const
-        {
-            worldTrans = this->worldtrans;
-        }
-
-        void PhysMotionState::setWorldTransform(const btTransform &worldTrans)
-        {
-            btQuaternion rotation = worldTrans.getRotation();
-            this->snode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
-            btVector3 position = worldTrans.getOrigin();
-            this->snode->setPosition(position.x(), position.y(), position.z());
+            if( this->ParentObject != NULL && this->SyncObject != NULL ) {
+                this->SyncObject->SetLocation( Vector3( worldTrans.getOrigin() ) );
+                this->SyncObject->SetOrientation( Quaternion( worldTrans.getRotation() ) );
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // AttachableMotionState methods
+        // MultiProxyMotionState methods
 
-        AttachableMotionState::AttachableMotionState()
+        MultiProxyMotionState::MultiProxyMotionState() :
+            ParentObject(NULL)
+            { this->WorldTrans.setIdentity(); }
+
+        MultiProxyMotionState::MultiProxyMotionState(Physics::RigidProxy* PO) :
+            ParentObject(PO)
+            { this->WorldTrans.setIdentity(); }
+
+        MultiProxyMotionState::~MultiProxyMotionState()
+            { this->RemoveAllSyncProxies(); }
+
+        void MultiProxyMotionState::SetParentObject(Physics::RigidProxy* PO)
+            { this->ParentObject = PO; }
+
+        void MultiProxyMotionState::AddSyncProxy(WorldProxy* ToBeAdded)
         {
-            WorldTrans.setIdentity();
+            ProxyIterator ProxIt = std::find( this->SyncObjects.begin(), this->SyncObjects.end(), ToBeAdded );
+            if( ProxIt == this->SyncObjects.end() )
+                this->SyncObjects.push_back( ToBeAdded );
         }
 
-        AttachableMotionState::AttachableMotionState(WorldObject* PO)
+        WorldProxy* MultiProxyMotionState::GetSyncProxy(const UInt32 Index) const
+            { return this->SyncObjects.at(Index); }
+
+        UInt32 MultiProxyMotionState::GetNumSyncProxies() const
+            { return this->SyncObjects.size(); }
+
+        void MultiProxyMotionState::RemoveSyncProxy(WorldProxy* ToBeRemoved)
         {
-            ParentObject = PO;
-            WorldTrans.setIdentity();
+            ProxyIterator ProxIt = std::find( this->SyncObjects.begin(), this->SyncObjects.end(), ToBeRemoved );
+            if( ProxIt != this->SyncObjects.end() )
+                this->SyncObjects.erase( ProxIt );
         }
 
-        AttachableMotionState::~AttachableMotionState()
-        {
-        }
+        void MultiProxyMotionState::RemoveAllSyncProxies()
+            { this->SyncObjects.clear(); }
 
-        void AttachableMotionState::SetParentObject(WorldObject* PO)
-        {
-            ParentObject = PO;
-        }
+        void MultiProxyMotionState::SetPosition(const Vector3& Position)
+            { this->WorldTrans.setOrigin( Position.GetBulletVector3() ); }
 
-        void AttachableMotionState::SetPosition(const Vector3& Position)
-        {
-            this->WorldTrans.setOrigin(Position.GetBulletVector3());
-        }
+        void MultiProxyMotionState::SetOrientation(const Quaternion& Orientation)
+            { this->WorldTrans.setRotation(Orientation.GetBulletQuaternion()); }
 
-        void AttachableMotionState::SetOrientation(const Quaternion& Orientation)
-        {
-            this->WorldTrans.setRotation(Orientation.GetBulletQuaternion());
-        }
+        void MultiProxyMotionState::getWorldTransform(btTransform& worldTrans) const
+            { worldTrans = this->WorldTrans; }
 
-        void AttachableMotionState::getWorldTransform(btTransform &worldTrans) const
+        void MultiProxyMotionState::setWorldTransform(const btTransform& worldTrans)
         {
-            worldTrans = this->WorldTrans;
-        }
+            this->WorldTrans = worldTrans;
 
-        void AttachableMotionState::setWorldTransform(const btTransform &worldTrans)
-        {
-            btQuaternion rotation = worldTrans.getRotation();
-            this->ParentObject->_GetGraphicsNode()->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
-            btVector3 position = worldTrans.getOrigin();
-            this->ParentObject->_GetGraphicsNode()->setPosition(position.x(), position.y(), position.z());
+            if( this->ParentObject != NULL ) {
+                Vector3 TargetLocation( worldTrans.getOrigin() );
+                Quaternion TargetOrientation( worldTrans.getRotation() );
 
-            this->ParentObject->_RecalculateAllChildTransforms();
+                for( ProxyIterator ProxIt = this->SyncObjects.begin() ; ProxIt != this->SyncObjects.end() ; ++ProxIt )
+                {
+                    (*ProxIt)->SetLocation( TargetLocation );
+                    (*ProxIt)->SetOrientation( TargetOrientation );
+                }
+            }
         }
-    }// /internal
-}// /Mezz
+    }//Internal
+}//Mezzanine
 
 /// @endcond
 
