@@ -106,7 +106,7 @@ namespace Mezzanine
             virtual ConstString& GetName() const = 0;
             /// @brief Gets the type of World or Scene object this attachable is.
             /// @return Returns the type of World or Scene object this attachable is.
-            virtual WorldAndSceneObjectType GetType() const = 0;
+            virtual WorldObjectType GetType() const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Functions
