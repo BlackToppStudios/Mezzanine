@@ -333,6 +333,10 @@ namespace Mezzanine
             // Internal Methods
 
             /// @internal
+            /// @brief Gets the unique ID assigned to the internal object.
+            /// @return Returns a unique number greater than zero if the object is in the world, or Zero if the
+            virtual Integer _GetBroadphaseUniqueID() const;
+            /// @internal
             /// @brief Sets the maximum distance to be considered for processing collisions with this object.
             /// @param Threshold The maximum distance in world units that will be considered a collision with this object.
             virtual void _SetContactProcessingThreshold(const Real Threshold);

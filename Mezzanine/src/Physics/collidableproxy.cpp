@@ -45,6 +45,10 @@ John Blackwood - makoenergy02@gmail.com
 #include "Physics/physicsmanager.h"
 #include "Physics/collisionshapemanager.h"
 
+#include "stringtool.h"
+#include "serialization.h"
+#include "exception.h"
+
 #include <btBulletDynamicsCommon.h>
 
 namespace
@@ -800,6 +804,9 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
+
+        Integer CollidableProxy::_GetBroadphaseUniqueID() const
+            { return ( this->IsInWorld() ? this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_uniqueId : 0 ); }
 
         void CollidableProxy::_SetContactProcessingThreshold(const Real Threshold)
             { this->_GetBasePhysicsObject()->setContactProcessingThreshold(Threshold); }
