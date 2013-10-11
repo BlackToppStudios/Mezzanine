@@ -146,7 +146,7 @@ namespace Mezzanine
         FieldOfForce* CreateFieldOfForce(const XML::Node& SelfRoot);
         /// @brief Creates a new GravityField.
         /// @param Name The name to be given to the new GravityField.
-        /// @return Returns a pointer to the created proxy.
+        /// @return Returns a pointer to the created AreaEffect.
         GravityField* CreateGravityField(const String& Name);
         /// @brief Creates a new GravityField.
         /// @param SelfRoot An XML::Node containing the data to populate this class with.
