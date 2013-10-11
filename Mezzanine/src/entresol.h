@@ -291,6 +291,7 @@ namespace Mezzanine
     // Forward declarations
     class ActorManager;
     class AreaEffectManager;
+    class DebrisManager;
     class EventManager;
     class ResourceManager;
     class NetworkManager;
@@ -682,6 +683,10 @@ namespace Mezzanine
             /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
             /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.
             Physics::CollisionShapeManager* GetCollisionShapeManager(const UInt16 WhichOne = 0);
+            /// @brief This gets the DebrisManager from the manager list.
+            /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.
+            /// @return This returns a pointer to a DebrisManager, or a NULL pointer if no matching manager exists.
+            DebrisManager* GetDebrisManager(const UInt16 WhichOne = 0);
             /// @brief This gets the EventManager from the manager list.
             /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
             /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.

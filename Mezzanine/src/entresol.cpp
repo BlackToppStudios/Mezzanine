@@ -244,6 +244,8 @@ namespace Mezzanine
             { this->AddManager(new Physics::CollisionShapeManager()); }
         if(this->GetCameraManager()==0)
             { this->AddManager(new Graphics::CameraManager()); }
+        if(this->GetDebrisManager()==0)
+            { this->AddManager(new DebrisManager()); }
         #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
         if(this->GetAudioManager()==0)
             { this->AddManager( this->CreateManager("OALSAudioManager",Params,false) ); }
@@ -688,9 +690,7 @@ namespace Mezzanine
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ImplName);
         if( ManIt != this->ManagerFactories.end() )
-        {
-            this->ManagerFactories.erase(ManIt);
-        }
+            { this->ManagerFactories.erase(ManIt); }
     }
 
     void Entresol::DestroyManagerFactory(ManagerFactory* ToBeRemoved)
@@ -708,9 +708,7 @@ namespace Mezzanine
     void Entresol::DestroyAllManagerFactories()
     {
         for( ManagerFactoryIterator ManIt = this->ManagerFactories.begin() ; ManIt != this->ManagerFactories.end() ; ++ManIt )
-        {
-            delete (*ManIt).second;
-        }
+            { delete (*ManIt).second; }
         this->ManagerFactories.clear();
     }
 
@@ -729,6 +727,9 @@ namespace Mezzanine
         //DefaultCollisionShapeManager
         ManIt = this->ManagerFactories.find("DefaultCollisionShapeManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Physics::DefaultCollisionShapeManagerFactory());
+        //DefaultDebrisManager
+        ManIt = this->ManagerFactories.find("DefaultDebrisManager");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultDebrisManagerFactory());
         //DefaultEventManager
         ManIt = this->ManagerFactories.find("DefaultEventManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultEventManagerFactory());
@@ -925,6 +926,11 @@ namespace Mezzanine
     Physics::CollisionShapeManager* Entresol::GetCollisionShapeManager(const UInt16 WhichOne)
     {
         return dynamic_cast<Physics::CollisionShapeManager*>( this->GetManager(ManagerBase::MT_CollisionShapeManager, WhichOne) );
+    }
+
+    DebrisManager* Entresol::GetDebrisManager(const UInt16 WhichOne)
+    {
+        return dynamic_cast<DebrisManager*>( this->GetManager(ManagerBase::MT_DebrisManager, WhichOne) );
     }
 
     EventManager* Entresol::GetEventManager(const UInt16 WhichOne)
