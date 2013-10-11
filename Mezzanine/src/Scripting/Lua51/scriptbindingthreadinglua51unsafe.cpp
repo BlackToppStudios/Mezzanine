@@ -1677,52 +1677,53 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__Threading__LogAggregator swig_types[13]
 #define SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit swig_types[14]
 #define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[15]
-#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[16]
-#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[17]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[18]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[19]
-#define SWIGTYPE_p_Mezzanine__Threading__WorkSorter swig_types[20]
-#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[21]
-#define SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit swig_types[22]
-#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[23]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[24]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[25]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[26]
-#define SWIGTYPE_p_RawFile swig_types[27]
-#define SWIGTYPE_p_Resource swig_types[28]
-#define SWIGTYPE_p_RollingAverageT_unsigned_long_t swig_types[29]
-#define SWIGTYPE_p_RunningState swig_types[30]
-#define SWIGTYPE_p_SDL_Event swig_types[31]
-#define SWIGTYPE_p_ThreadId swig_types[32]
-#define SWIGTYPE_p_Type swig_types[33]
-#define SWIGTYPE_p_WorkUnitKey swig_types[34]
-#define SWIGTYPE_p_bool swig_types[35]
-#define SWIGTYPE_p_char swig_types[36]
-#define SWIGTYPE_p_f_p_void__void swig_types[37]
-#define SWIGTYPE_p_float swig_types[38]
-#define SWIGTYPE_p_int swig_types[39]
-#define SWIGTYPE_p_long_long swig_types[40]
-#define SWIGTYPE_p_native_handle_type swig_types[41]
-#define SWIGTYPE_p_pthread_t swig_types[42]
-#define SWIGTYPE_p_short swig_types[43]
-#define SWIGTYPE_p_signed_char swig_types[44]
-#define SWIGTYPE_p_std__fstream swig_types[45]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[46]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[47]
-#define SWIGTYPE_p_std__ostream swig_types[48]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[49]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[50]
-#define SWIGTYPE_p_std__string swig_types[51]
-#define SWIGTYPE_p_std__stringstream swig_types[52]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[53]
-#define SWIGTYPE_p_std__wstring swig_types[54]
-#define SWIGTYPE_p_unsigned_char swig_types[55]
-#define SWIGTYPE_p_unsigned_int swig_types[56]
-#define SWIGTYPE_p_unsigned_long swig_types[57]
-#define SWIGTYPE_p_unsigned_long_long swig_types[58]
-#define SWIGTYPE_p_unsigned_short swig_types[59]
-static swig_type_info *swig_types[61];
-static swig_module_info swig_module = {swig_types, 60, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__Threading__ScopedTimer swig_types[16]
+#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[17]
+#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[18]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[19]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[20]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkSorter swig_types[21]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[22]
+#define SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit swig_types[23]
+#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[24]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[25]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[26]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[27]
+#define SWIGTYPE_p_RawFile swig_types[28]
+#define SWIGTYPE_p_Resource swig_types[29]
+#define SWIGTYPE_p_RollingAverageT_unsigned_long_t swig_types[30]
+#define SWIGTYPE_p_RunningState swig_types[31]
+#define SWIGTYPE_p_SDL_Event swig_types[32]
+#define SWIGTYPE_p_ThreadId swig_types[33]
+#define SWIGTYPE_p_Type swig_types[34]
+#define SWIGTYPE_p_WorkUnitKey swig_types[35]
+#define SWIGTYPE_p_bool swig_types[36]
+#define SWIGTYPE_p_char swig_types[37]
+#define SWIGTYPE_p_f_p_void__void swig_types[38]
+#define SWIGTYPE_p_float swig_types[39]
+#define SWIGTYPE_p_int swig_types[40]
+#define SWIGTYPE_p_long_long swig_types[41]
+#define SWIGTYPE_p_native_handle_type swig_types[42]
+#define SWIGTYPE_p_pthread_t swig_types[43]
+#define SWIGTYPE_p_short swig_types[44]
+#define SWIGTYPE_p_signed_char swig_types[45]
+#define SWIGTYPE_p_std__fstream swig_types[46]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[47]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[48]
+#define SWIGTYPE_p_std__ostream swig_types[49]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[50]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[51]
+#define SWIGTYPE_p_std__string swig_types[52]
+#define SWIGTYPE_p_std__stringstream swig_types[53]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[54]
+#define SWIGTYPE_p_std__wstring swig_types[55]
+#define SWIGTYPE_p_unsigned_char swig_types[56]
+#define SWIGTYPE_p_unsigned_int swig_types[57]
+#define SWIGTYPE_p_unsigned_long swig_types[58]
+#define SWIGTYPE_p_unsigned_long_long swig_types[59]
+#define SWIGTYPE_p_unsigned_short swig_types[60]
+static swig_type_info *swig_types[62];
+static swig_module_info swig_module = {swig_types, 61, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -5845,6 +5846,345 @@ static swig_lua_class *swig_Mezzanine_Threading_WorkSorter_bases[] = {0,0};
 static const char *swig_Mezzanine_Threading_WorkSorter_base_names[] = {"Mezzanine::Threading::DefaultWorkUnit *",0};
 static swig_lua_class _wrap_class_Mezzanine_Threading_WorkSorter = { "WorkSorter", &SWIGTYPE_p_Mezzanine__Threading__WorkSorter,_wrap_new_WorkSorter, swig_delete_WorkSorter, swig_Mezzanine_Threading_WorkSorter_methods, swig_Mezzanine_Threading_WorkSorter_attributes, swig_Mezzanine_Threading_WorkSorter_bases, swig_Mezzanine_Threading_WorkSorter_base_names };
 
+static int _wrap_GetTimeStamp(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::MaxInt result;
+  
+  SWIG_check_num_args("Mezzanine::GetTimeStamp",0,0)
+  result = (Mezzanine::MaxInt)Mezzanine::GetTimeStamp();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetTimeStampResolution(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::GetTimeStampResolution",0,0)
+  result = (Mezzanine::Whole)Mezzanine::GetTimeStampResolution();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetCPUCount(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::GetCPUCount",0,0)
+  result = (Mezzanine::Whole)Mezzanine::GetCPUCount();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetCacheSize(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::GetCacheSize",0,0)
+  result = (Mezzanine::Whole)Mezzanine::GetCacheSize();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetCachelineSize(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::GetCachelineSize",0,0)
+  result = (Mezzanine::Whole)Mezzanine::GetCachelineSize();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScopedTimer__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  std::ostream *arg1 = 0 ;
+  Mezzanine::String arg2 ;
+  Mezzanine::String arg3 ;
+  Mezzanine::Whole arg4 ;
+  Mezzanine::Threading::ScopedTimer *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::ScopedTimer::ScopedTimer",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Threading::ScopedTimer::ScopedTimer",1,"std::ostream &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::Threading::ScopedTimer::ScopedTimer",2,"Mezzanine::String");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::Threading::ScopedTimer::ScopedTimer",3,"Mezzanine::String");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::Threading::ScopedTimer::ScopedTimer",4,"Mezzanine::Whole");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__ostream,0))){
+    SWIG_fail_ptr("new_ScopedTimer",1,SWIGTYPE_p_std__ostream);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_rawlen(L,2));
+  (&arg3)->assign(lua_tostring(L,3),lua_rawlen(L,3));
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  arg4 = (Mezzanine::Whole)lua_tonumber(L, 4);
+  result = (Mezzanine::Threading::ScopedTimer *)new Mezzanine::Threading::ScopedTimer(*arg1,arg2,arg3,arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__ScopedTimer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScopedTimer__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  std::ostream *arg1 = 0 ;
+  Mezzanine::String arg2 ;
+  Mezzanine::String arg3 ;
+  Mezzanine::Threading::ScopedTimer *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::ScopedTimer::ScopedTimer",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Threading::ScopedTimer::ScopedTimer",1,"std::ostream &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::Threading::ScopedTimer::ScopedTimer",2,"Mezzanine::String");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::Threading::ScopedTimer::ScopedTimer",3,"Mezzanine::String");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__ostream,0))){
+    SWIG_fail_ptr("new_ScopedTimer",1,SWIGTYPE_p_std__ostream);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_rawlen(L,2));
+  (&arg3)->assign(lua_tostring(L,3),lua_rawlen(L,3));
+  result = (Mezzanine::Threading::ScopedTimer *)new Mezzanine::Threading::ScopedTimer(*arg1,arg2,arg3);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__ScopedTimer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScopedTimer__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  std::ostream *arg1 = 0 ;
+  Mezzanine::String arg2 ;
+  Mezzanine::Threading::ScopedTimer *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::ScopedTimer::ScopedTimer",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Threading::ScopedTimer::ScopedTimer",1,"std::ostream &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::Threading::ScopedTimer::ScopedTimer",2,"Mezzanine::String");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__ostream,0))){
+    SWIG_fail_ptr("new_ScopedTimer",1,SWIGTYPE_p_std__ostream);
+  }
+  
+  (&arg2)->assign(lua_tostring(L,2),lua_rawlen(L,2));
+  result = (Mezzanine::Threading::ScopedTimer *)new Mezzanine::Threading::ScopedTimer(*arg1,arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__ScopedTimer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScopedTimer__SWIG_3(lua_State* L) {
+  int SWIG_arg = 0;
+  std::ostream *arg1 = 0 ;
+  Mezzanine::Threading::ScopedTimer *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::ScopedTimer::ScopedTimer",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Threading::ScopedTimer::ScopedTimer",1,"std::ostream &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__ostream,0))){
+    SWIG_fail_ptr("new_ScopedTimer",1,SWIGTYPE_p_std__ostream);
+  }
+  
+  result = (Mezzanine::Threading::ScopedTimer *)new Mezzanine::Threading::ScopedTimer(*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__ScopedTimer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScopedTimer__SWIG_4(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ScopedTimer *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::ScopedTimer::ScopedTimer",0,0)
+  result = (Mezzanine::Threading::ScopedTimer *)new Mezzanine::Threading::ScopedTimer();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__ScopedTimer,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScopedTimer(lua_State* L) {
+  int argc;
+  int argv[5]={
+    1,2,3,4,5
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_ScopedTimer__SWIG_4(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__ostream, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_ScopedTimer__SWIG_3(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__ostream, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_new_ScopedTimer__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__ostream, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_new_ScopedTimer__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__ostream, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_ScopedTimer__SWIG_0(L);
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_ScopedTimer'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::Threading::ScopedTimer::ScopedTimer(std::ostream &,Mezzanine::String,Mezzanine::String,Mezzanine::Whole)\n"
+    "    Mezzanine::Threading::ScopedTimer::ScopedTimer(std::ostream &,Mezzanine::String,Mezzanine::String)\n"
+    "    Mezzanine::Threading::ScopedTimer::ScopedTimer(std::ostream &,Mezzanine::String)\n"
+    "    Mezzanine::Threading::ScopedTimer::ScopedTimer(std::ostream &)\n"
+    "    Mezzanine::Threading::ScopedTimer::ScopedTimer()\n");
+  lua_error(L);return 0;
+}
+
+
+static void swig_delete_ScopedTimer(void *obj) {
+Mezzanine::Threading::ScopedTimer *arg1 = (Mezzanine::Threading::ScopedTimer *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_ScopedTimer_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_ScopedTimer_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_ScopedTimer_bases[] = {0};
+static const char *swig_Mezzanine_Threading_ScopedTimer_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_ScopedTimer = { "ScopedTimer", &SWIGTYPE_p_Mezzanine__Threading__ScopedTimer,_wrap_new_ScopedTimer, swig_delete_ScopedTimer, swig_Mezzanine_Threading_ScopedTimer_methods, swig_Mezzanine_Threading_ScopedTimer_attributes, swig_Mezzanine_Threading_ScopedTimer_bases, swig_Mezzanine_Threading_ScopedTimer_base_names };
+
 static int _wrap_new_Mutex(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Threading::Mutex *result = 0 ;
@@ -7394,91 +7734,6 @@ static swig_lua_class *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Intege
 static const char *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Integer > *",0};
 static swig_lua_class _wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg_ = { "BufferedRollingAverageInteger", &SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,_wrap_new_BufferedRollingAverageInteger, swig_delete_BufferedRollingAverageInteger, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__attributes, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__bases, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__base_names };
 
-static int _wrap_GetTimeStamp(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::MaxInt result;
-  
-  SWIG_check_num_args("Mezzanine::GetTimeStamp",0,0)
-  result = (Mezzanine::MaxInt)Mezzanine::GetTimeStamp();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_GetTimeStampResolution(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::GetTimeStampResolution",0,0)
-  result = (Mezzanine::Whole)Mezzanine::GetTimeStampResolution();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_GetCPUCount(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::GetCPUCount",0,0)
-  result = (Mezzanine::Whole)Mezzanine::GetCPUCount();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_GetCacheSize(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::GetCacheSize",0,0)
-  result = (Mezzanine::Whole)Mezzanine::GetCacheSize();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_GetCachelineSize(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Whole result;
-  
-  SWIG_check_num_args("Mezzanine::GetCachelineSize",0,0)
-  result = (Mezzanine::Whole)Mezzanine::GetCachelineSize();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_new_Thread__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Threading::Thread *result = 0 ;
@@ -8041,6 +8296,7 @@ static swig_type_info _swigt__p_Mezzanine__Threading__FrameScheduler = {"_p_Mezz
 static swig_type_info _swigt__p_Mezzanine__Threading__LogAggregator = {"_p_Mezzanine__Threading__LogAggregator", "Mezzanine::Threading::LogAggregator *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_LogAggregator, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__MonopolyWorkUnit = {"_p_Mezzanine__Threading__MonopolyWorkUnit", "Mezzanine::Threading::MonopolyWorkUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Mutex = {"_p_Mezzanine__Threading__Mutex", "Mezzanine::Threading::Mutex *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Mutex, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__ScopedTimer = {"_p_Mezzanine__Threading__ScopedTimer", "Mezzanine::Threading::ScopedTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ScopedTimer, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__SpinLock = {"_p_Mezzanine__Threading__SpinLock", "Mezzanine::Threading::SpinLock *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_SpinLock, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Thread = {"_p_Mezzanine__Threading__Thread", "Mezzanine::Threading::Thread *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Thread, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__ThreadId = {"_p_Mezzanine__Threading__ThreadId", "Mezzanine::Threading::ThreadId *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ThreadId, 0};
@@ -8103,6 +8359,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__Threading__LogAggregator,
   &_swigt__p_Mezzanine__Threading__MonopolyWorkUnit,
   &_swigt__p_Mezzanine__Threading__Mutex,
+  &_swigt__p_Mezzanine__Threading__ScopedTimer,
   &_swigt__p_Mezzanine__Threading__SpinLock,
   &_swigt__p_Mezzanine__Threading__Thread,
   &_swigt__p_Mezzanine__Threading__ThreadId,
@@ -8165,6 +8422,7 @@ static swig_cast_info _swigc__p_Mezzanine__Threading__FrameScheduler[] = {  {&_s
 static swig_cast_info _swigc__p_Mezzanine__Threading__LogAggregator[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__MonopolyWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__MonopolyWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Mutex[] = {  {&_swigt__p_Mezzanine__Threading__Mutex, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__ScopedTimer[] = {  {&_swigt__p_Mezzanine__Threading__ScopedTimer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__SpinLock[] = {  {&_swigt__p_Mezzanine__Threading__SpinLock, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Thread[] = {  {&_swigt__p_Mezzanine__Threading__Thread, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__ThreadId[] = {  {&_swigt__p_Mezzanine__Threading__ThreadId, 0, 0, 0},{0, 0, 0, 0}};
@@ -8227,6 +8485,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__Threading__LogAggregator,
   _swigc__p_Mezzanine__Threading__MonopolyWorkUnit,
   _swigc__p_Mezzanine__Threading__Mutex,
+  _swigc__p_Mezzanine__Threading__ScopedTimer,
   _swigc__p_Mezzanine__Threading__SpinLock,
   _swigc__p_Mezzanine__Threading__Thread,
   _swigc__p_Mezzanine__Threading__ThreadId,

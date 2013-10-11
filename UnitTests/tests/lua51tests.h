@@ -545,13 +545,13 @@ class lua51tests : public UnitTestGroup
                               "Threading::WorkUnitLogAggregator", "TestFuncWorkUnitLogAgg", 100, 100,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
-                /* //Kinda useless in garbage collected languages
+                //Kinda useless in garbage collected languages, Maybe useful for determining when collection happens
                 TestLuaScript("function TestFuncScop(x)\n"
                               "   STimer=MezzanineSafe.Threading.ScopedTimer()"
                               "   return x\n"
                               "end",
-                              "Threading::ScopedTimer", "TestFuncWorkUnitKey", 100, 100,
-                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs); */
+                              "Threading::ScopedTimer", "TestFuncScop", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
             }
 
         }

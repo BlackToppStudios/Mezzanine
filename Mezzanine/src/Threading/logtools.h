@@ -65,9 +65,8 @@ namespace Mezzanine
                 #define SCOPEDTIMER(Stream) ScopedTimer TimeThisScope( Stream, __func__, __FILE__, __LINE__ );
             #endif
         #endif
-
+#endif
         /// @brief Used to time from this objects creation to its destruction
-        /// @note not available in swig provide scripting languages, Useless if garbage collection must happen before Deconstructor is called
         class MEZZ_LIB ScopedTimer
         {
             private:
@@ -100,7 +99,6 @@ namespace Mezzanine
 
                 /// @brief Destructor, logs duration and current timestamp in ScopedTimerEnd xml element
                 ~ScopedTimer();
-#endif
 
         };
     }//Threading

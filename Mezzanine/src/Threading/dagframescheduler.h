@@ -65,12 +65,8 @@
 #include "doublebufferedresource.h"
 #include "framescheduler.h"
 #include "frameschedulerworkunits.h"
-
-#ifndef SWIG
-    #include "logtools.h"
-    #include "monopoly.h"
-#endif
-
+#include "logtools.h"
+#include "monopoly.h"
 #include "mutex.h"
 #include "rollingaverage.h"
 #include "systemcalls.h"

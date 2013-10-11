@@ -41,11 +41,9 @@
 #ifndef _threadmonopoly_h
 #define _threadmonopoly_h
 
-#ifndef SWIG
-    #include "datatypes.h"
-    #include "doublebufferedresource.h"
-    #include "workunit.h"
-#endif
+#include "datatypes.h"
+#include "doublebufferedresource.h"
+#include "workunit.h"
 
 /// @file
 /// @brief Contains an interface for a kind of WorkUnit that consumes time on multiple thread
