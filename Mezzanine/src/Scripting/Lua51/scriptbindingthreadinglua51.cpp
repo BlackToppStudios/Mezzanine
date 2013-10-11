@@ -6185,6 +6185,74 @@ static swig_lua_class *swig_Mezzanine_Threading_ScopedTimer_bases[] = {0};
 static const char *swig_Mezzanine_Threading_ScopedTimer_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_Threading_ScopedTimer = { "ScopedTimer", &SWIGTYPE_p_Mezzanine__Threading__ScopedTimer,_wrap_new_ScopedTimer, swig_delete_ScopedTimer, swig_Mezzanine_Threading_ScopedTimer_methods, swig_Mezzanine_Threading_ScopedTimer_attributes, swig_Mezzanine_Threading_ScopedTimer_bases, swig_Mezzanine_Threading_ScopedTimer_base_names };
 
+static int _wrap_MonopolyWorkUnit_UseThreads(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::MonopolyWorkUnit *arg1 = (Mezzanine::Threading::MonopolyWorkUnit *) 0 ;
+  Mezzanine::Whole *arg2 = 0 ;
+  Mezzanine::Whole temp2 ;
+  
+  SWIG_check_num_args("Mezzanine::Threading::MonopolyWorkUnit::UseThreads",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::MonopolyWorkUnit::UseThreads",1,"Mezzanine::Threading::MonopolyWorkUnit *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Threading::MonopolyWorkUnit::UseThreads",2,"Mezzanine::Whole const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit,0))){
+    SWIG_fail_ptr("MonopolyWorkUnit_UseThreads",1,SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
+  (arg1)->UseThreads((Mezzanine::Whole const &)*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MonopolyWorkUnit_UsingThreadCount(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::MonopolyWorkUnit *arg1 = (Mezzanine::Threading::MonopolyWorkUnit *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::MonopolyWorkUnit::UsingThreadCount",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::MonopolyWorkUnit::UsingThreadCount",1,"Mezzanine::Threading::MonopolyWorkUnit *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit,0))){
+    SWIG_fail_ptr("MonopolyWorkUnit_UsingThreadCount",1,SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit);
+  }
+  
+  result = (Mezzanine::Whole)(arg1)->UsingThreadCount();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_MonopolyWorkUnit(void *obj) {
+Mezzanine::Threading::MonopolyWorkUnit *arg1 = (Mezzanine::Threading::MonopolyWorkUnit *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_MonopolyWorkUnit_methods[] = {
+    {"UseThreads", _wrap_MonopolyWorkUnit_UseThreads}, 
+    {"UsingThreadCount", _wrap_MonopolyWorkUnit_UsingThreadCount}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_MonopolyWorkUnit_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_MonopolyWorkUnit_bases[] = {0,0};
+static const char *swig_Mezzanine_Threading_MonopolyWorkUnit_base_names[] = {"Mezzanine::Threading::DefaultWorkUnit *",0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_MonopolyWorkUnit = { "MonopolyWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit,0, swig_delete_MonopolyWorkUnit, swig_Mezzanine_Threading_MonopolyWorkUnit_methods, swig_Mezzanine_Threading_MonopolyWorkUnit_attributes, swig_Mezzanine_Threading_MonopolyWorkUnit_bases, swig_Mezzanine_Threading_MonopolyWorkUnit_base_names };
+
 static int _wrap_new_Mutex(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Threading::Mutex *result = 0 ;
@@ -8225,7 +8293,7 @@ static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("Complete", Mezzanine::Threading::Complete)},
     {SWIG_LUA_CONSTTAB_INT("Failed", Mezzanine::Threading::Failed)},
     {SWIG_LUA_CONSTTAB_INT("MEZZ_DAGFRAMESCHEDULER_MAJOR_VERSION", 1)},
-    {SWIG_LUA_CONSTTAB_INT("MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION", 10)},
+    {SWIG_LUA_CONSTTAB_INT("MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION", 11)},
     {SWIG_LUA_CONSTTAB_INT("MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION", 0)},
     {0,0,0,0,0,0}
 };
@@ -8253,6 +8321,9 @@ static void *_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine
 static void *_p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *) ((Mezzanine::Threading::WorkSorter *) x));
 }
+static void *_p_Mezzanine__Threading__MonopolyWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *) ((Mezzanine::Threading::MonopolyWorkUnit *) x));
+}
 static void *_p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::Threading::LogAggregator *) x));
 }
@@ -8264,6 +8335,9 @@ static void *_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine
 }
 static void *_p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::Threading::WorkSorter *) x));
+}
+static void *_p_Mezzanine__Threading__MonopolyWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::Threading::MonopolyWorkUnit *) x));
 }
 static void *_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iAsynchronousWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Threading::iAsynchronousWorkUnit *)  ((Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) x));
@@ -8294,7 +8368,7 @@ static swig_type_info _swigt__p_Mezzanine__Threading__DefaultWorkUnit = {"_p_Mez
 static swig_type_info _swigt__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t = {"_p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t", "Mezzanine::Threading::DoubleBufferedLogger *|Mezzanine::Threading::DoubleBufferedResource< std::stringstream > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__FrameScheduler = {"_p_Mezzanine__Threading__FrameScheduler", "Mezzanine::Threading::FrameScheduler *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_FrameScheduler, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__LogAggregator = {"_p_Mezzanine__Threading__LogAggregator", "Mezzanine::Threading::LogAggregator *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_LogAggregator, 0};
-static swig_type_info _swigt__p_Mezzanine__Threading__MonopolyWorkUnit = {"_p_Mezzanine__Threading__MonopolyWorkUnit", "Mezzanine::Threading::MonopolyWorkUnit *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__MonopolyWorkUnit = {"_p_Mezzanine__Threading__MonopolyWorkUnit", "Mezzanine::Threading::MonopolyWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_MonopolyWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Mutex = {"_p_Mezzanine__Threading__Mutex", "Mezzanine::Threading::Mutex *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Mutex, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__ScopedTimer = {"_p_Mezzanine__Threading__ScopedTimer", "Mezzanine::Threading::ScopedTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ScopedTimer, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__SpinLock = {"_p_Mezzanine__Threading__SpinLock", "Mezzanine::Threading::SpinLock *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_SpinLock, 0};
@@ -8416,7 +8490,7 @@ static swig_cast_info _swigc__p_Mezzanine__RollingAverageT_unsigned_long_t[] = {
 static swig_cast_info _swigc__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Barrier[] = {  {&_swigt__p_Mezzanine__Threading__Barrier, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage[] = {  {&_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, _p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, _p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__WorkSorter, _p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, _p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, _p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__WorkSorter, _p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__MonopolyWorkUnit, _p_Mezzanine__Threading__MonopolyWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t[] = {  {&_swigt__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__FrameScheduler[] = {  {&_swigt__p_Mezzanine__Threading__FrameScheduler, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__LogAggregator[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, 0, 0, 0},{0, 0, 0, 0}};
@@ -8430,7 +8504,7 @@ static swig_cast_info _swigc__p_Mezzanine__Threading__ThreadSpecificStorage[] = 
 static swig_cast_info _swigc__p_Mezzanine__Threading__WorkSorter[] = {  {&_swigt__p_Mezzanine__Threading__WorkSorter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__WorkUnitKey[] = {  {&_swigt__p_Mezzanine__Threading__WorkUnitKey, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__iAsynchronousWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iAsynchronousWorkUnit, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Threading__iWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, _p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__iWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, _p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, _p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__WorkSorter, _p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__iWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, _p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__iWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, _p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, _p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__WorkSorter, _p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__MonopolyWorkUnit, _p_Mezzanine__Threading__MonopolyWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_float_float_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_int_int_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};

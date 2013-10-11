@@ -69,8 +69,8 @@ freely, subject to the following restrictions:
 */
 
 
+#include "atomicoperations.h"
 #ifndef SWIG
-    #include "atomicoperations.h"
     // Swig shouldn't parse the stanard headers
     #include <string>
 #endif

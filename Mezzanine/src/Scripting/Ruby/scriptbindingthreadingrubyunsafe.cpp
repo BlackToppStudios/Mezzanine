@@ -1823,58 +1823,66 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_Mezzanine__RollingAverageT_float_t swig_types[4]
 #define SWIGTYPE_p_Mezzanine__RollingAverageT_int_t swig_types[5]
 #define SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t swig_types[6]
-#define SWIGTYPE_p_Mezzanine__Threading__Barrier swig_types[7]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage swig_types[8]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[9]
-#define SWIGTYPE_p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t swig_types[10]
-#define SWIGTYPE_p_Mezzanine__Threading__FrameScheduler swig_types[11]
-#define SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit swig_types[12]
-#define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[13]
-#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[14]
-#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[15]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[16]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[17]
-#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[18]
-#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[19]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[20]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[21]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[22]
-#define SWIGTYPE_p_Resource swig_types[23]
-#define SWIGTYPE_p_SDL_Event swig_types[24]
-#define SWIGTYPE_p_ThreadId swig_types[25]
-#define SWIGTYPE_p_Type swig_types[26]
-#define SWIGTYPE_p_WorkUnitKey swig_types[27]
-#define SWIGTYPE_p_bool swig_types[28]
-#define SWIGTYPE_p_char swig_types[29]
-#define SWIGTYPE_p_f_p_void__void swig_types[30]
-#define SWIGTYPE_p_float swig_types[31]
-#define SWIGTYPE_p_int swig_types[32]
-#define SWIGTYPE_p_long_long swig_types[33]
-#define SWIGTYPE_p_native_handle_type swig_types[34]
-#define SWIGTYPE_p_pthread_t swig_types[35]
-#define SWIGTYPE_p_short swig_types[36]
-#define SWIGTYPE_p_signed_char swig_types[37]
-#define SWIGTYPE_p_std__fstream swig_types[38]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[39]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[40]
-#define SWIGTYPE_p_std__ostream swig_types[41]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[42]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[43]
-#define SWIGTYPE_p_std__string swig_types[44]
-#define SWIGTYPE_p_std__stringstream swig_types[45]
-#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[46]
-#define SWIGTYPE_p_std__wstring swig_types[47]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[48]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[49]
-#define SWIGTYPE_p_swig__Iterator swig_types[50]
-#define SWIGTYPE_p_unsigned_char swig_types[51]
-#define SWIGTYPE_p_unsigned_int swig_types[52]
-#define SWIGTYPE_p_unsigned_long swig_types[53]
-#define SWIGTYPE_p_unsigned_long_long swig_types[54]
-#define SWIGTYPE_p_unsigned_short swig_types[55]
-#define SWIGTYPE_p_void swig_types[56]
-static swig_type_info *swig_types[58];
-static swig_module_info swig_module = {swig_types, 57, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit swig_types[7]
+#define SWIGTYPE_p_Mezzanine__Threading__Barrier swig_types[8]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage swig_types[9]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[10]
+#define SWIGTYPE_p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t swig_types[11]
+#define SWIGTYPE_p_Mezzanine__Threading__FrameScheduler swig_types[12]
+#define SWIGTYPE_p_Mezzanine__Threading__LogAggregator swig_types[13]
+#define SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit swig_types[14]
+#define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[15]
+#define SWIGTYPE_p_Mezzanine__Threading__ScopedTimer swig_types[16]
+#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[17]
+#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[18]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[19]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[20]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkSorter swig_types[21]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[22]
+#define SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit swig_types[23]
+#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[24]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[25]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[26]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[27]
+#define SWIGTYPE_p_RawFile swig_types[28]
+#define SWIGTYPE_p_Resource swig_types[29]
+#define SWIGTYPE_p_RollingAverageT_unsigned_long_t swig_types[30]
+#define SWIGTYPE_p_RunningState swig_types[31]
+#define SWIGTYPE_p_SDL_Event swig_types[32]
+#define SWIGTYPE_p_ThreadId swig_types[33]
+#define SWIGTYPE_p_Type swig_types[34]
+#define SWIGTYPE_p_WorkUnitKey swig_types[35]
+#define SWIGTYPE_p_bool swig_types[36]
+#define SWIGTYPE_p_char swig_types[37]
+#define SWIGTYPE_p_f_p_void__void swig_types[38]
+#define SWIGTYPE_p_float swig_types[39]
+#define SWIGTYPE_p_int swig_types[40]
+#define SWIGTYPE_p_long_long swig_types[41]
+#define SWIGTYPE_p_native_handle_type swig_types[42]
+#define SWIGTYPE_p_pthread_t swig_types[43]
+#define SWIGTYPE_p_short swig_types[44]
+#define SWIGTYPE_p_signed_char swig_types[45]
+#define SWIGTYPE_p_std__fstream swig_types[46]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[47]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[48]
+#define SWIGTYPE_p_std__ostream swig_types[49]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[50]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[51]
+#define SWIGTYPE_p_std__string swig_types[52]
+#define SWIGTYPE_p_std__stringstream swig_types[53]
+#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[54]
+#define SWIGTYPE_p_std__wstring swig_types[55]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[56]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[57]
+#define SWIGTYPE_p_swig__Iterator swig_types[58]
+#define SWIGTYPE_p_unsigned_char swig_types[59]
+#define SWIGTYPE_p_unsigned_int swig_types[60]
+#define SWIGTYPE_p_unsigned_long swig_types[61]
+#define SWIGTYPE_p_unsigned_long_long swig_types[62]
+#define SWIGTYPE_p_unsigned_short swig_types[63]
+#define SWIGTYPE_p_void swig_types[64]
+static swig_type_info *swig_types[66];
+static swig_module_info swig_module = {swig_types, 65, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1900,18 +1908,14 @@ static VALUE mMezzanineThreading;
 #include <stdexcept>
 
 
-        // code to be inserted verbatim into the swig file goes here
-        #include "mezzanine.h"
-        #include "btBulletDynamicsCommon.h"
-        #include "Ogre.h"
+            // code to be inserted verbatim into the swig file goes here
+            #ifdef GetCurrentTime
+            #undef GetCurrentTime
+            #endif
 
-        #ifdef GetCurrentTime
-        #undef GetCurrentTime
-        #endif
-
-        using namespace Mezzanine;
-        using namespace Mezzanine::Threading;
-    
+            using namespace Mezzanine;
+            using namespace Mezzanine::Threading;
+        
 
 #include <stdexcept>
 
@@ -2602,19 +2606,23 @@ SWIG_From_int  (int value)
 }
 
 
-SWIGINTERN int
-SWIG_AsVal_int (VALUE obj, int *val)
+        // code to be inserted verbatim into the swig file goes here
+        #include "mezzanine.h"
+        #include "btBulletDynamicsCommon.h"
+        #include "Ogre.h"
+
+        #ifdef GetCurrentTime
+        #undef GetCurrentTime
+        #endif
+
+        using namespace Mezzanine;
+        using namespace Mezzanine::Threading;
+    
+
+SWIGINTERNINLINE VALUE
+SWIG_From_unsigned_SS_long  (unsigned long value)
 {
-  long v;
-  int res = SWIG_AsVal_long (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v < INT_MIN || v > INT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< int >(v);
-    }
-  }  
-  return res;
+  return ULONG2NUM(value); 
 }
 
 
@@ -2701,6 +2709,22 @@ SWIG_AsPtr_std_string (VALUE obj, std::string **val)
 
 
 SWIGINTERN int
+SWIG_AsVal_int (VALUE obj, int *val)
+{
+  long v;
+  int res = SWIG_AsVal_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v < INT_MIN || v > INT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< int >(v);
+    }
+  }  
+  return res;
+}
+
+
+SWIGINTERN int
 SWIG_AsVal_bool (VALUE obj, bool *val)
 {
   if (obj == Qtrue) {
@@ -2717,13 +2741,6 @@ SWIG_AsVal_bool (VALUE obj, bool *val)
     }
   }  
   return SWIG_TypeError;
-}
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_unsigned_SS_long  (unsigned long value)
-{
-  return ULONG2NUM(value); 
 }
 
 
@@ -4054,108 +4071,6 @@ free_swig_Iterator(swig::Iterator *arg1) {
     delete arg1;
 }
 
-static swig_class SwigClassBarrier;
-
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-SWIGINTERN VALUE
-_wrap_Barrier_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_Barrier_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Mezzanine__Threading__Barrier);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
-SWIGINTERN VALUE
-_wrap_new_Barrier(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Int32 *arg1 = 0 ;
-  Mezzanine::Int32 temp1 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  Mezzanine::Threading::Barrier *result = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_int(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Int32","Mezzanine::Threading::Barrier", 1, argv[0] ));
-  } 
-  temp1 = static_cast< Mezzanine::Int32 >(val1);
-  arg1 = &temp1;
-  result = (Mezzanine::Threading::Barrier *)new Mezzanine::Threading::Barrier((Mezzanine::Int32 const &)*arg1);
-  DATA_PTR(self) = result;
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Barrier_Wait(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__Barrier, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::Barrier *","Wait", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::Barrier * >(argp1);
-  result = (bool)(arg1)->Wait();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Barrier_SetThreadSyncCount(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) 0 ;
-  Mezzanine::Int32 arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__Barrier, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::Barrier *","SetThreadSyncCount", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::Barrier * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Int32","SetThreadSyncCount", 2, argv[0] ));
-  } 
-  arg2 = static_cast< Mezzanine::Int32 >(val2);
-  (arg1)->SetThreadSyncCount(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN void
-free_Mezzanine_Threading_Barrier(Mezzanine::Threading::Barrier *arg1) {
-    delete arg1;
-}
-
 static swig_class SwigClassThreadSpecificStorage;
 
 #ifdef HAVE_RB_DEFINE_ALLOC_FUNC
@@ -4308,6 +4223,1238 @@ fail:
 
 SWIGINTERN void
 free_Mezzanine_Threading_DefaultThreadSpecificStorage(Mezzanine::Threading::DefaultThreadSpecificStorage *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassIWorkUnit;
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_GetDependentCount(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","GetDependentCount", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::FrameScheduler &","GetDependentCount", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::FrameScheduler &","GetDependentCount", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::FrameScheduler * >(argp2);
+  result = (Mezzanine::Whole)(arg1)->GetDependentCount(*arg2);
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_GetDependency(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Whole arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  Mezzanine::Threading::iWorkUnit *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit const *","GetDependency", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","GetDependency", 2, argv[0] ));
+  } 
+  arg2 = static_cast< Mezzanine::Whole >(val2);
+  result = (Mezzanine::Threading::iWorkUnit *)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetDependency(arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_GetImmediateDependencyCount(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit const *","GetImmediateDependencyCount", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetImmediateDependencyCount();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_GetDependencyCount(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit const *","GetDependencyCount", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetDependencyCount();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_AddDependency(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","AddDependency", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","AddDependency", 2, argv[0] )); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp2);
+  (arg1)->AddDependency(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_RemoveDependency(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","RemoveDependency", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","RemoveDependency", 2, argv[0] )); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp2);
+  (arg1)->RemoveDependency(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_ClearDependencies(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","ClearDependencies", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  (arg1)->ClearDependencies();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_IsEveryDependencyComplete(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","IsEveryDependencyComplete", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  result = (bool)(arg1)->IsEveryDependencyComplete();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_TakeOwnerShip(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  RunningState result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","TakeOwnerShip", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  result = (arg1)->TakeOwnerShip();
+  vresult = SWIG_NewPointerObj((new RunningState(static_cast< const RunningState& >(result))), SWIGTYPE_p_RunningState, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_GetRunningState(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  RunningState result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit const *","GetRunningState", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  result = ((Mezzanine::Threading::iWorkUnit const *)arg1)->GetRunningState();
+  vresult = SWIG_NewPointerObj((new RunningState(static_cast< const RunningState& >(result))), SWIGTYPE_p_RunningState, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_PrepareForNextFrame(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","PrepareForNextFrame", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  (arg1)->PrepareForNextFrame();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_GetPerformance(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit const *","GetPerformance", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetPerformance();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit___call__(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","operator ()", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","operator ()", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","operator ()", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::DefaultThreadSpecificStorage::Type * >(argp2);
+  (arg1)->operator ()(*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_GetSortingKey(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  WorkUnitKey result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","GetSortingKey", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::FrameScheduler &","GetSortingKey", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::FrameScheduler &","GetSortingKey", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::FrameScheduler * >(argp2);
+  result = (arg1)->GetSortingKey(*arg2);
+  vresult = SWIG_NewPointerObj((new WorkUnitKey(static_cast< const WorkUnitKey& >(result))), SWIGTYPE_p_WorkUnitKey, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_iWorkUnit_DoWork(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","DoWork", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","DoWork", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","DoWork", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::DefaultThreadSpecificStorage::Type * >(argp2);
+  (arg1)->DoWork(*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_Threading_iWorkUnit(Mezzanine::Threading::iWorkUnit *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassDefaultWorkUnit;
+
+SWIGINTERN void
+free_Mezzanine_Threading_DefaultWorkUnit(Mezzanine::Threading::DefaultWorkUnit *arg1) {
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_GetDependentCount(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","GetDependentCount", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::FrameScheduler &","GetDependentCount", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::FrameScheduler &","GetDependentCount", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::FrameScheduler * >(argp2);
+  result = (Mezzanine::Whole)(arg1)->GetDependentCount(*arg2);
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_GetDependency(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Whole arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  Mezzanine::Threading::iWorkUnit *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit const *","GetDependency", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","GetDependency", 2, argv[0] ));
+  } 
+  arg2 = static_cast< Mezzanine::Whole >(val2);
+  result = (Mezzanine::Threading::iWorkUnit *)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetDependency(arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_GetImmediateDependencyCount(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit const *","GetImmediateDependencyCount", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetImmediateDependencyCount();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_GetDependencyCount(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit const *","GetDependencyCount", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetDependencyCount();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_AddDependency(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","AddDependency", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","AddDependency", 2, argv[0] )); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp2);
+  (arg1)->AddDependency(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_RemoveDependency(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","RemoveDependency", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","RemoveDependency", 2, argv[0] )); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp2);
+  (arg1)->RemoveDependency(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_ClearDependencies(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","ClearDependencies", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  (arg1)->ClearDependencies();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_IsEveryDependencyComplete(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","IsEveryDependencyComplete", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  result = (bool)(arg1)->IsEveryDependencyComplete();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_TakeOwnerShip(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  RunningState result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","TakeOwnerShip", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  result = (arg1)->TakeOwnerShip();
+  vresult = SWIG_NewPointerObj((new RunningState(static_cast< const RunningState& >(result))), SWIGTYPE_p_RunningState, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_GetRunningState(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  RunningState result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit const *","GetRunningState", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  result = ((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetRunningState();
+  vresult = SWIG_NewPointerObj((new RunningState(static_cast< const RunningState& >(result))), SWIGTYPE_p_RunningState, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_PrepareForNextFrame(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","PrepareForNextFrame", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  (arg1)->PrepareForNextFrame();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_GetPerformance(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit const *","GetPerformance", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetPerformance();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_GetPerformanceLog(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  RollingAverage< Mezzanine::Whole > *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","GetPerformanceLog", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  result = (RollingAverage< Mezzanine::Whole > *) &(arg1)->GetPerformanceLog();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RollingAverageT_unsigned_long_t, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit___call__(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","operator ()", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","operator ()", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","operator ()", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::DefaultThreadSpecificStorage::Type * >(argp2);
+  (arg1)->operator ()(*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_DefaultWorkUnit_GetSortingKey(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
+  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  WorkUnitKey result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","GetSortingKey", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::FrameScheduler &","GetSortingKey", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::FrameScheduler &","GetSortingKey", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::FrameScheduler * >(argp2);
+  result = (arg1)->GetSortingKey(*arg2);
+  vresult = SWIG_NewPointerObj((new WorkUnitKey(static_cast< const WorkUnitKey& >(result))), SWIGTYPE_p_WorkUnitKey, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+static swig_class SwigClassIAsynchronousWorkUnit;
+
+SWIGINTERN VALUE
+_wrap_iAsynchronousWorkUnit_IsWorkDone(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::iAsynchronousWorkUnit *arg1 = (Mezzanine::Threading::iAsynchronousWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  RunningState result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iAsynchronousWorkUnit *","IsWorkDone", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::iAsynchronousWorkUnit * >(argp1);
+  result = (arg1)->IsWorkDone();
+  vresult = SWIG_NewPointerObj((new RunningState(static_cast< const RunningState& >(result))), SWIGTYPE_p_RunningState, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_Threading_iAsynchronousWorkUnit(Mezzanine::Threading::iAsynchronousWorkUnit *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassAsynchronousFileLoadWorkUnit;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_AsynchronousFileLoadWorkUnit_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_AsynchronousFileLoadWorkUnit_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_AsynchronousFileLoadWorkUnit(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *)new Mezzanine::Threading::AsynchronousFileLoadWorkUnit();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_Threading_AsynchronousFileLoadWorkUnit(Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1) {
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_AsynchronousFileLoadWorkUnit_BeginLoading(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  std::vector< Mezzanine::String,std::allocator< Mezzanine::String > > *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  RunningState result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::AsynchronousFileLoadWorkUnit *","BeginLoading", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::AsynchronousFileLoadWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< Mezzanine::String,std::allocator< Mezzanine::String > > const &","BeginLoading", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< Mezzanine::String,std::allocator< Mezzanine::String > > const &","BeginLoading", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< std::vector< Mezzanine::String,std::allocator< Mezzanine::String > > * >(argp2);
+  result = (arg1)->BeginLoading((std::vector< Mezzanine::String,std::allocator< Mezzanine::String > > const &)*arg2);
+  vresult = SWIG_NewPointerObj((new RunningState(static_cast< const RunningState& >(result))), SWIGTYPE_p_RunningState, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_AsynchronousFileLoadWorkUnit_DoWork(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::AsynchronousFileLoadWorkUnit *","DoWork", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::AsynchronousFileLoadWorkUnit * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","DoWork", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","DoWork", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::DefaultThreadSpecificStorage::Type * >(argp2);
+  (arg1)->DoWork(*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_AsynchronousFileLoadWorkUnit_IsWorkDone(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  RunningState result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::AsynchronousFileLoadWorkUnit *","IsWorkDone", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::AsynchronousFileLoadWorkUnit * >(argp1);
+  result = (arg1)->IsWorkDone();
+  vresult = SWIG_NewPointerObj((new RunningState(static_cast< const RunningState& >(result))), SWIGTYPE_p_RunningState, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  RawFile *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *","GetFile", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::AsynchronousFileLoadWorkUnit * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::String const &","GetFile", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::String const &","GetFile", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  result = (RawFile *)((Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *)arg1)->GetFile((Mezzanine::String const &)*arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RawFile, 0 |  0 );
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  Mezzanine::Whole *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole temp2 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  RawFile *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *","GetFile", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::AsynchronousFileLoadWorkUnit * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","GetFile", 2, argv[0] ));
+  } 
+  temp2 = static_cast< Mezzanine::Whole >(val2);
+  arg2 = &temp2;
+  result = (RawFile *)((Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *)arg1)->GetFile((Mezzanine::Whole const &)*arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RawFile, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_AsynchronousFileLoadWorkUnit_GetFile(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_long(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "AsynchronousFileLoadWorkUnit.GetFile", 
+    "    RawFile * AsynchronousFileLoadWorkUnit.GetFile(Mezzanine::String const &FileName)\n"
+    "    RawFile * AsynchronousFileLoadWorkUnit.GetFile(Mezzanine::Whole const &Index)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_AsynchronousFileLoadWorkUnit_DeleteLoadedFiles(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::AsynchronousFileLoadWorkUnit *","DeleteLoadedFiles", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::AsynchronousFileLoadWorkUnit * >(argp1);
+  (arg1)->DeleteLoadedFiles();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+static swig_class SwigClassBarrier;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_Barrier_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_Barrier_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Mezzanine__Threading__Barrier);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_Barrier(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Int32 *arg1 = 0 ;
+  Mezzanine::Int32 temp1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Threading::Barrier *result = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_int(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Int32","Mezzanine::Threading::Barrier", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Int32 >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Threading::Barrier *)new Mezzanine::Threading::Barrier((Mezzanine::Int32 const &)*arg1);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Barrier_Wait(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__Barrier, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::Barrier *","Wait", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::Barrier * >(argp1);
+  result = (bool)(arg1)->Wait();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Barrier_SetThreadSyncCount(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) 0 ;
+  Mezzanine::Int32 arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__Barrier, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::Barrier *","SetThreadSyncCount", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::Barrier * >(argp1);
+  ecode2 = SWIG_AsVal_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Int32","SetThreadSyncCount", 2, argv[0] ));
+  } 
+  arg2 = static_cast< Mezzanine::Int32 >(val2);
+  (arg1)->SetThreadSyncCount(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_Threading_Barrier(Mezzanine::Threading::Barrier *arg1) {
     delete arg1;
 }
 
@@ -6112,6 +7259,1058 @@ fail:
 }
 
 
+static swig_class SwigClassWorkUnitKey;
+
+SWIGINTERN VALUE
+_wrap_WorkUnitKey_Unit_set(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Unit", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","Unit", 2, argv[0] )); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp2);
+  if (arg1) (arg1)->Unit = arg2;
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_WorkUnitKey_Unit_get(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Threading::iWorkUnit *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Unit", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
+  result = (Mezzanine::Threading::iWorkUnit *) ((arg1)->Unit);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_WorkUnitKey_Dependers_set(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Whole arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Dependers", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","Dependers", 2, argv[0] ));
+  } 
+  arg2 = static_cast< Mezzanine::Whole >(val2);
+  if (arg1) (arg1)->Dependers = arg2;
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_WorkUnitKey_Dependers_get(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Dependers", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
+  result = (Mezzanine::Whole) ((arg1)->Dependers);
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_WorkUnitKey_Time_set(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Whole arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Time", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","Time", 2, argv[0] ));
+  } 
+  arg2 = static_cast< Mezzanine::Whole >(val2);
+  if (arg1) (arg1)->Time = arg2;
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_WorkUnitKey_Time_get(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Time", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
+  result = (Mezzanine::Whole) ((arg1)->Time);
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_WorkUnitKey__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkUnitKey *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Threading::WorkUnitKey *)new Mezzanine::Threading::WorkUnitKey();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_WorkUnitKey_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_WorkUnitKey_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_WorkUnitKey__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Whole *arg1 = 0 ;
+  Mezzanine::Whole *arg2 = 0 ;
+  Mezzanine::Threading::iWorkUnit *arg3 = (Mezzanine::Threading::iWorkUnit *) 0 ;
+  Mezzanine::Whole temp1 ;
+  unsigned long val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Whole temp2 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  Mezzanine::Threading::WorkUnitKey *result = 0 ;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_unsigned_SS_long(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Whole","Mezzanine::Threading::WorkUnitKey", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Whole >(val1);
+  arg1 = &temp1;
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","Mezzanine::Threading::WorkUnitKey", 2, argv[1] ));
+  } 
+  temp2 = static_cast< Mezzanine::Whole >(val2);
+  arg2 = &temp2;
+  res3 = SWIG_ConvertPtr(argv[2], &argp3,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","Mezzanine::Threading::WorkUnitKey", 3, argv[2] )); 
+  }
+  arg3 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp3);
+  result = (Mezzanine::Threading::WorkUnitKey *)new Mezzanine::Threading::WorkUnitKey((Mezzanine::Whole const &)*arg1,(Mezzanine::Whole const &)*arg2,arg3);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_new_WorkUnitKey(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs;
+  if (argc > 3) SWIG_fail;
+  for (ii = 0; (ii < argc); ++ii) {
+    argv[ii] = args[ii];
+  }
+  if (argc == 0) {
+    return _wrap_new_WorkUnitKey__SWIG_0(nargs, args, self);
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      int res = SWIG_AsVal_unsigned_SS_long(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_long(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_new_WorkUnitKey__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "WorkUnitKey.new", 
+    "    WorkUnitKey.new()\n"
+    "    WorkUnitKey.new(Mezzanine::Whole const &Dependers_, Mezzanine::Whole const &Time_, Mezzanine::Threading::iWorkUnit *WorkUnit_)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_Threading_WorkUnitKey(Mezzanine::Threading::WorkUnitKey *arg1) {
+    delete arg1;
+}
+
+
+/*
+  Document-method: MezzanineThreading::WorkUnitKey.<
+
+  call-seq:
+    <(rhs) -> bool
+
+Lower than comparison operator.
+*/
+SWIGINTERN VALUE
+_wrap_WorkUnitKey___lt__(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Threading::WorkUnitKey *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey const *","operator <", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey const &","operator <", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::WorkUnitKey const &","operator <", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp2);
+  result = (bool)((Mezzanine::Threading::WorkUnitKey const *)arg1)->operator <((Mezzanine::Threading::WorkUnitKey const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: MezzanineThreading::WorkUnitKey.==
+
+  call-seq:
+    ==(rhs) -> bool
+
+Equality comparison operator.
+*/
+SWIGINTERN VALUE
+_wrap_WorkUnitKey___eq__(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
+  Mezzanine::Threading::WorkUnitKey *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey const *","operator ==", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey const &","operator ==", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::WorkUnitKey const &","operator ==", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp2);
+  result = (bool)((Mezzanine::Threading::WorkUnitKey const *)arg1)->operator ==((Mezzanine::Threading::WorkUnitKey const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+static swig_class SwigClassLogAggregator;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_LogAggregator_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_LogAggregator_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Mezzanine__Threading__LogAggregator);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_LogAggregator(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::LogAggregator *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Threading::LogAggregator *)new Mezzanine::Threading::LogAggregator();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_Threading_LogAggregator(Mezzanine::Threading::LogAggregator *arg1) {
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_LogAggregator_DoWork(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::LogAggregator *arg1 = (Mezzanine::Threading::LogAggregator *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__LogAggregator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::LogAggregator *","DoWork", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::LogAggregator * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","DoWork", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","DoWork", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::DefaultThreadSpecificStorage::Type * >(argp2);
+  (arg1)->DoWork(*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_LogAggregator_GetAggregationTarget(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::LogAggregator *arg1 = (Mezzanine::Threading::LogAggregator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Threading::FrameScheduler *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__LogAggregator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::LogAggregator const *","GetAggregationTarget", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::LogAggregator * >(argp1);
+  result = (Mezzanine::Threading::FrameScheduler *)((Mezzanine::Threading::LogAggregator const *)arg1)->GetAggregationTarget();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Threading__FrameScheduler, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_LogAggregator_SetAggregationTarget(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::LogAggregator *arg1 = (Mezzanine::Threading::LogAggregator *) 0 ;
+  Mezzanine::Threading::FrameScheduler *arg2 = (Mezzanine::Threading::FrameScheduler *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__LogAggregator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::LogAggregator *","SetAggregationTarget", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::LogAggregator * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__FrameScheduler, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::FrameScheduler *","SetAggregationTarget", 2, argv[0] )); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::FrameScheduler * >(argp2);
+  (arg1)->SetAggregationTarget(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+static swig_class SwigClassWorkSorter;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_WorkSorter_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_WorkSorter_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Mezzanine__Threading__WorkSorter);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_WorkSorter(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkSorter *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Threading::WorkSorter *)new Mezzanine::Threading::WorkSorter();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_WorkSorter_DoWork(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkSorter *arg1 = (Mezzanine::Threading::WorkSorter *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkSorter, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkSorter *","DoWork", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkSorter * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","DoWork", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","DoWork", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Threading::DefaultThreadSpecificStorage::Type * >(argp2);
+  (arg1)->DoWork(*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_WorkSorter_SetSortingFrequency(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkSorter *arg1 = (Mezzanine::Threading::WorkSorter *) 0 ;
+  Mezzanine::Whole arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkSorter, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkSorter *","SetSortingFrequency", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkSorter * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","SetSortingFrequency", 2, argv[0] ));
+  } 
+  arg2 = static_cast< Mezzanine::Whole >(val2);
+  (arg1)->SetSortingFrequency(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_WorkSorter_GetSortingFrequency(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::WorkSorter *arg1 = (Mezzanine::Threading::WorkSorter *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkSorter, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkSorter *","GetSortingFrequency", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::WorkSorter * >(argp1);
+  result = (Mezzanine::Whole)(arg1)->GetSortingFrequency();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_Threading_WorkSorter(Mezzanine::Threading::WorkSorter *arg1) {
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_GetTimeStamp(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::MaxInt result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::MaxInt)Mezzanine::GetTimeStamp();
+  vresult = SWIG_From_long_SS_long(static_cast< long long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_GetTimeStampResolution(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Whole)Mezzanine::GetTimeStampResolution();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_GetCPUCount(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Whole)Mezzanine::GetCPUCount();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_GetCacheSize(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Whole)Mezzanine::GetCacheSize();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_GetCachelineSize(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Whole)Mezzanine::GetCachelineSize();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+static swig_class SwigClassScopedTimer;
+
+SWIGINTERN VALUE
+_wrap_new_ScopedTimer__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  std::ostream *arg1 = 0 ;
+  Mezzanine::String arg2 ;
+  Mezzanine::String arg3 ;
+  Mezzanine::Whole arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long val4 ;
+  int ecode4 = 0 ;
+  Mezzanine::Threading::ScopedTimer *result = 0 ;
+  
+  if ((argc < 4) || (argc > 4)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__ostream,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::ostream &","Mezzanine::Threading::ScopedTimer", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::ostream &","Mezzanine::Threading::ScopedTimer", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< std::ostream * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "Mezzanine::String","Mezzanine::Threading::ScopedTimer", 2, argv[1] )); 
+    }
+    arg2 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[2], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "Mezzanine::String","Mezzanine::Threading::ScopedTimer", 3, argv[2] )); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  ecode4 = SWIG_AsVal_unsigned_SS_long(argv[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "Mezzanine::Whole","Mezzanine::Threading::ScopedTimer", 4, argv[3] ));
+  } 
+  arg4 = static_cast< Mezzanine::Whole >(val4);
+  result = (Mezzanine::Threading::ScopedTimer *)new Mezzanine::Threading::ScopedTimer(*arg1,arg2,arg3,arg4);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_ScopedTimer__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  std::ostream *arg1 = 0 ;
+  Mezzanine::String arg2 ;
+  Mezzanine::String arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Threading::ScopedTimer *result = 0 ;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__ostream,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::ostream &","Mezzanine::Threading::ScopedTimer", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::ostream &","Mezzanine::Threading::ScopedTimer", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< std::ostream * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "Mezzanine::String","Mezzanine::Threading::ScopedTimer", 2, argv[1] )); 
+    }
+    arg2 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[2], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "Mezzanine::String","Mezzanine::Threading::ScopedTimer", 3, argv[2] )); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  result = (Mezzanine::Threading::ScopedTimer *)new Mezzanine::Threading::ScopedTimer(*arg1,arg2,arg3);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_ScopedTimer__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  std::ostream *arg1 = 0 ;
+  Mezzanine::String arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Threading::ScopedTimer *result = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__ostream,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::ostream &","Mezzanine::Threading::ScopedTimer", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::ostream &","Mezzanine::Threading::ScopedTimer", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< std::ostream * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "Mezzanine::String","Mezzanine::Threading::ScopedTimer", 2, argv[1] )); 
+    }
+    arg2 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  result = (Mezzanine::Threading::ScopedTimer *)new Mezzanine::Threading::ScopedTimer(*arg1,arg2);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_ScopedTimer__SWIG_3(int argc, VALUE *argv, VALUE self) {
+  std::ostream *arg1 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Threading::ScopedTimer *result = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__ostream,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::ostream &","Mezzanine::Threading::ScopedTimer", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::ostream &","Mezzanine::Threading::ScopedTimer", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< std::ostream * >(argp1);
+  result = (Mezzanine::Threading::ScopedTimer *)new Mezzanine::Threading::ScopedTimer(*arg1);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_ScopedTimer_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_ScopedTimer_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Mezzanine__Threading__ScopedTimer);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_ScopedTimer__SWIG_4(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::ScopedTimer *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Threading::ScopedTimer *)new Mezzanine::Threading::ScopedTimer();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_new_ScopedTimer(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs;
+  if (argc > 4) SWIG_fail;
+  for (ii = 0; (ii < argc); ++ii) {
+    argv[ii] = args[ii];
+  }
+  if (argc == 0) {
+    return _wrap_new_ScopedTimer__SWIG_4(nargs, args, self);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__ostream, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_ScopedTimer__SWIG_3(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__ostream, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_ScopedTimer__SWIG_2(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__ostream, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_new_ScopedTimer__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__ostream, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          {
+            int res = SWIG_AsVal_unsigned_SS_long(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            return _wrap_new_ScopedTimer__SWIG_0(nargs, args, self);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "ScopedTimer.new", 
+    "    ScopedTimer.new(std::ostream &LogSink, Mezzanine::String ScopeToMeasure, Mezzanine::String ScopeFile, Mezzanine::Whole CurrentLine)\n"
+    "    ScopedTimer.new(std::ostream &LogSink, Mezzanine::String ScopeToMeasure, Mezzanine::String ScopeFile)\n"
+    "    ScopedTimer.new(std::ostream &LogSink, Mezzanine::String ScopeToMeasure)\n"
+    "    ScopedTimer.new(std::ostream &LogSink)\n"
+    "    ScopedTimer.new()\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_Threading_ScopedTimer(Mezzanine::Threading::ScopedTimer *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassMonopolyWorkUnit;
+
+SWIGINTERN VALUE
+_wrap_MonopolyWorkUnit_UseThreads(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::MonopolyWorkUnit *arg1 = (Mezzanine::Threading::MonopolyWorkUnit *) 0 ;
+  Mezzanine::Whole *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole temp2 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::MonopolyWorkUnit *","UseThreads", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::MonopolyWorkUnit * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","UseThreads", 2, argv[0] ));
+  } 
+  temp2 = static_cast< Mezzanine::Whole >(val2);
+  arg2 = &temp2;
+  (arg1)->UseThreads((Mezzanine::Whole const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_MonopolyWorkUnit_UsingThreadCount(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Threading::MonopolyWorkUnit *arg1 = (Mezzanine::Threading::MonopolyWorkUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::MonopolyWorkUnit *","UsingThreadCount", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Threading::MonopolyWorkUnit * >(argp1);
+  result = (Mezzanine::Whole)(arg1)->UsingThreadCount();
+  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_Threading_MonopolyWorkUnit(Mezzanine::Threading::MonopolyWorkUnit *arg1) {
+    delete arg1;
+}
+
 static swig_class SwigClassMutex;
 
 #ifdef HAVE_RB_DEFINE_ALLOC_FUNC
@@ -7726,86 +9925,6 @@ free_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg_(Mezzanine::Buffer
     delete arg1;
 }
 
-SWIGINTERN VALUE
-_wrap_GetTimeStamp(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::MaxInt result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (Mezzanine::MaxInt)Mezzanine::GetTimeStamp();
-  vresult = SWIG_From_long_SS_long(static_cast< long long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_GetTimeStampResolution(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (Mezzanine::Whole)Mezzanine::GetTimeStampResolution();
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_GetCPUCount(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (Mezzanine::Whole)Mezzanine::GetCPUCount();
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_GetCacheSize(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (Mezzanine::Whole)Mezzanine::GetCacheSize();
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_GetCachelineSize(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (Mezzanine::Whole)Mezzanine::GetCachelineSize();
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
 static swig_class SwigClassThread;
 
 SWIGINTERN VALUE
@@ -8252,1225 +10371,59 @@ fail:
 }
 
 
-static swig_class SwigClassIWorkUnit;
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_GetDependentCount(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","GetDependentCount", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::FrameScheduler &","GetDependentCount", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::FrameScheduler &","GetDependentCount", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::FrameScheduler * >(argp2);
-  result = (Mezzanine::Whole)(arg1)->GetDependentCount(*arg2);
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_GetDependency(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Whole arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned long val2 ;
-  int ecode2 = 0 ;
-  Mezzanine::Threading::iWorkUnit *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit const *","GetDependency", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","GetDependency", 2, argv[0] ));
-  } 
-  arg2 = static_cast< Mezzanine::Whole >(val2);
-  result = (Mezzanine::Threading::iWorkUnit *)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetDependency(arg2);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_GetImmediateDependencyCount(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit const *","GetImmediateDependencyCount", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetImmediateDependencyCount();
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_GetDependencyCount(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit const *","GetDependencyCount", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetDependencyCount();
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_AddDependency(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","AddDependency", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","AddDependency", 2, argv[0] )); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp2);
-  (arg1)->AddDependency(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_RemoveDependency(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","RemoveDependency", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","RemoveDependency", 2, argv[0] )); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp2);
-  (arg1)->RemoveDependency(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_ClearDependencies(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","ClearDependencies", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  (arg1)->ClearDependencies();
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_IsEveryDependencyComplete(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","IsEveryDependencyComplete", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  result = (bool)(arg1)->IsEveryDependencyComplete();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_TakeOwnerShip(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Threading::RunningState result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","TakeOwnerShip", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  result = (Mezzanine::Threading::RunningState)(arg1)->TakeOwnerShip();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_GetRunningState(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Threading::RunningState result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit const *","GetRunningState", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  result = (Mezzanine::Threading::RunningState)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetRunningState();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_PrepareForNextFrame(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","PrepareForNextFrame", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  (arg1)->PrepareForNextFrame();
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_GetPerformance(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit const *","GetPerformance", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  result = (Mezzanine::Whole)((Mezzanine::Threading::iWorkUnit const *)arg1)->GetPerformance();
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit___call__(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","operator ()", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","operator ()", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","operator ()", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::DefaultThreadSpecificStorage::Type * >(argp2);
-  (arg1)->operator ()(*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_GetSortingKey(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  WorkUnitKey result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","GetSortingKey", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::FrameScheduler &","GetSortingKey", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::FrameScheduler &","GetSortingKey", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::FrameScheduler * >(argp2);
-  result = (arg1)->GetSortingKey(*arg2);
-  vresult = SWIG_NewPointerObj((new WorkUnitKey(static_cast< const WorkUnitKey& >(result))), SWIGTYPE_p_WorkUnitKey, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_iWorkUnit_DoWork(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::iWorkUnit *arg1 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","DoWork", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","DoWork", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","DoWork", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::DefaultThreadSpecificStorage::Type * >(argp2);
-  (arg1)->DoWork(*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN void
-free_Mezzanine_Threading_iWorkUnit(Mezzanine::Threading::iWorkUnit *arg1) {
-    delete arg1;
-}
-
-static swig_class SwigClassDefaultWorkUnit;
-
-SWIGINTERN void
-free_Mezzanine_Threading_DefaultWorkUnit(Mezzanine::Threading::DefaultWorkUnit *arg1) {
-    delete arg1;
-}
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_GetDependentCount(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","GetDependentCount", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::FrameScheduler &","GetDependentCount", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::FrameScheduler &","GetDependentCount", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::FrameScheduler * >(argp2);
-  result = (Mezzanine::Whole)(arg1)->GetDependentCount(*arg2);
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_GetDependency(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Whole arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned long val2 ;
-  int ecode2 = 0 ;
-  Mezzanine::Threading::iWorkUnit *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit const *","GetDependency", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","GetDependency", 2, argv[0] ));
-  } 
-  arg2 = static_cast< Mezzanine::Whole >(val2);
-  result = (Mezzanine::Threading::iWorkUnit *)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetDependency(arg2);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_GetImmediateDependencyCount(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit const *","GetImmediateDependencyCount", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetImmediateDependencyCount();
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_GetDependencyCount(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit const *","GetDependencyCount", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetDependencyCount();
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_AddDependency(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","AddDependency", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","AddDependency", 2, argv[0] )); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp2);
-  (arg1)->AddDependency(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_RemoveDependency(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","RemoveDependency", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","RemoveDependency", 2, argv[0] )); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp2);
-  (arg1)->RemoveDependency(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_ClearDependencies(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","ClearDependencies", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  (arg1)->ClearDependencies();
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_IsEveryDependencyComplete(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","IsEveryDependencyComplete", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  result = (bool)(arg1)->IsEveryDependencyComplete();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_TakeOwnerShip(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Threading::RunningState result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","TakeOwnerShip", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  result = (Mezzanine::Threading::RunningState)(arg1)->TakeOwnerShip();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_GetRunningState(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Threading::RunningState result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit const *","GetRunningState", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  result = (Mezzanine::Threading::RunningState)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetRunningState();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_PrepareForNextFrame(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","PrepareForNextFrame", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  (arg1)->PrepareForNextFrame();
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_GetPerformance(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit const *","GetPerformance", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  result = (Mezzanine::Whole)((Mezzanine::Threading::DefaultWorkUnit const *)arg1)->GetPerformance();
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_GetPerformanceLog(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::RollingAverage< Mezzanine::Whole > *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","GetPerformanceLog", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  result = (Mezzanine::RollingAverage< Mezzanine::Whole > *) &(arg1)->GetPerformanceLog();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit___call__(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","operator ()", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","operator ()", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type &","operator ()", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::DefaultThreadSpecificStorage::Type * >(argp2);
-  (arg1)->operator ()(*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_DefaultWorkUnit_GetSortingKey(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::DefaultWorkUnit *arg1 = (Mezzanine::Threading::DefaultWorkUnit *) 0 ;
-  Mezzanine::Threading::FrameScheduler *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  WorkUnitKey result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::DefaultWorkUnit *","GetSortingKey", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::DefaultWorkUnit * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::FrameScheduler &","GetSortingKey", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::FrameScheduler &","GetSortingKey", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::FrameScheduler * >(argp2);
-  result = (arg1)->GetSortingKey(*arg2);
-  vresult = SWIG_NewPointerObj((new WorkUnitKey(static_cast< const WorkUnitKey& >(result))), SWIGTYPE_p_WorkUnitKey, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-static swig_class SwigClassWorkUnitKey;
-
-SWIGINTERN VALUE
-_wrap_WorkUnitKey_Unit_set(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Threading::iWorkUnit *arg2 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Unit", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","Unit", 2, argv[0] )); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp2);
-  if (arg1) (arg1)->Unit = arg2;
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_WorkUnitKey_Unit_get(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Threading::iWorkUnit *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Unit", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
-  result = (Mezzanine::Threading::iWorkUnit *) ((arg1)->Unit);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_WorkUnitKey_Dependers_set(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Whole arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned long val2 ;
-  int ecode2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Dependers", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","Dependers", 2, argv[0] ));
-  } 
-  arg2 = static_cast< Mezzanine::Whole >(val2);
-  if (arg1) (arg1)->Dependers = arg2;
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_WorkUnitKey_Dependers_get(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Dependers", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
-  result = (Mezzanine::Whole) ((arg1)->Dependers);
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_WorkUnitKey_Time_set(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Whole arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned long val2 ;
-  int ecode2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Time", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","Time", 2, argv[0] ));
-  } 
-  arg2 = static_cast< Mezzanine::Whole >(val2);
-  if (arg1) (arg1)->Time = arg2;
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_WorkUnitKey_Time_get(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Whole result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey *","Time", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
-  result = (Mezzanine::Whole) ((arg1)->Time);
-  vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_new_WorkUnitKey__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::WorkUnitKey *result = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (Mezzanine::Threading::WorkUnitKey *)new Mezzanine::Threading::WorkUnitKey();
-  DATA_PTR(self) = result;
-  return self;
-fail:
-  return Qnil;
-}
-
-
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-SWIGINTERN VALUE
-_wrap_WorkUnitKey_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_WorkUnitKey_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
-SWIGINTERN VALUE
-_wrap_new_WorkUnitKey__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Whole *arg1 = 0 ;
-  Mezzanine::Whole *arg2 = 0 ;
-  Mezzanine::Threading::iWorkUnit *arg3 = (Mezzanine::Threading::iWorkUnit *) 0 ;
-  Mezzanine::Whole temp1 ;
-  unsigned long val1 ;
-  int ecode1 = 0 ;
-  Mezzanine::Whole temp2 ;
-  unsigned long val2 ;
-  int ecode2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  Mezzanine::Threading::WorkUnitKey *result = 0 ;
-  
-  if ((argc < 3) || (argc > 3)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_unsigned_SS_long(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Whole","Mezzanine::Threading::WorkUnitKey", 1, argv[0] ));
-  } 
-  temp1 = static_cast< Mezzanine::Whole >(val1);
-  arg1 = &temp1;
-  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","Mezzanine::Threading::WorkUnitKey", 2, argv[1] ));
-  } 
-  temp2 = static_cast< Mezzanine::Whole >(val2);
-  arg2 = &temp2;
-  res3 = SWIG_ConvertPtr(argv[2], &argp3,SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::Threading::iWorkUnit *","Mezzanine::Threading::WorkUnitKey", 3, argv[2] )); 
-  }
-  arg3 = reinterpret_cast< Mezzanine::Threading::iWorkUnit * >(argp3);
-  result = (Mezzanine::Threading::WorkUnitKey *)new Mezzanine::Threading::WorkUnitKey((Mezzanine::Whole const &)*arg1,(Mezzanine::Whole const &)*arg2,arg3);
-  DATA_PTR(self) = result;
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_new_WorkUnitKey(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 3) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 0) {
-    return _wrap_new_WorkUnitKey__SWIG_0(nargs, args, self);
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_long(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_long(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_new_WorkUnitKey__SWIG_1(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "WorkUnitKey.new", 
-    "    WorkUnitKey.new()\n"
-    "    WorkUnitKey.new(Mezzanine::Whole const &Dependers_, Mezzanine::Whole const &Time_, Mezzanine::Threading::iWorkUnit *WorkUnit_)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN void
-free_Mezzanine_Threading_WorkUnitKey(Mezzanine::Threading::WorkUnitKey *arg1) {
-    delete arg1;
-}
-
-
-/*
-  Document-method: MezzanineThreading::WorkUnitKey.<
-
-  call-seq:
-    <(rhs) -> bool
-
-Lower than comparison operator.
-*/
-SWIGINTERN VALUE
-_wrap_WorkUnitKey___lt__(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Threading::WorkUnitKey *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey const *","operator <", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey const &","operator <", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::WorkUnitKey const &","operator <", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp2);
-  result = (bool)((Mezzanine::Threading::WorkUnitKey const *)arg1)->operator <((Mezzanine::Threading::WorkUnitKey const &)*arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-
-/*
-  Document-method: MezzanineThreading::WorkUnitKey.==
-
-  call-seq:
-    ==(rhs) -> bool
-
-Equality comparison operator.
-*/
-SWIGINTERN VALUE
-_wrap_WorkUnitKey___eq__(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::Threading::WorkUnitKey *arg1 = (Mezzanine::Threading::WorkUnitKey *) 0 ;
-  Mezzanine::Threading::WorkUnitKey *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey const *","operator ==", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Threading::WorkUnitKey const &","operator ==", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Threading::WorkUnitKey const &","operator ==", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Threading::WorkUnitKey * >(argp2);
-  result = (bool)((Mezzanine::Threading::WorkUnitKey const *)arg1)->operator ==((Mezzanine::Threading::WorkUnitKey const &)*arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_swig__IteratorTo_p_swig__ConstIterator(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((swig::ConstIterator *)  ((swig::Iterator *) x));
+}
 static void *_p_Mezzanine__BufferedRollingAverageT_int_tTo_p_Mezzanine__RollingAverageT_int_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< int > *)  ((Mezzanine::BufferedRollingAverage< int > *) x));
 }
 static void *_p_Mezzanine__WeightedRollingAverageT_int_int_tTo_p_Mezzanine__RollingAverageT_int_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< int > *)  ((Mezzanine::WeightedRollingAverage< int,int > *) x));
 }
-static void *_p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::Threading::iWorkUnit *)  ((Mezzanine::Threading::DefaultWorkUnit *) x));
-}
-static void *_p_swig__IteratorTo_p_swig__ConstIterator(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((swig::ConstIterator *)  ((swig::Iterator *) x));
-}
 static void *_p_Mezzanine__WeightedRollingAverageT_float_float_tTo_p_Mezzanine__RollingAverageT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< float > *)  ((Mezzanine::WeightedRollingAverage< float,float > *) x));
 }
 static void *_p_Mezzanine__BufferedRollingAverageT_float_tTo_p_Mezzanine__RollingAverageT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< float > *)  ((Mezzanine::BufferedRollingAverage< float > *) x));
+}
+static void *_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iAsynchronousWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iAsynchronousWorkUnit *)  ((Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::Threading::LogAggregator *) x));
+}
+static void *_p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::Threading::iAsynchronousWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *) (Mezzanine::Threading::iAsynchronousWorkUnit *) ((Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::Threading::WorkSorter *) x));
+}
+static void *_p_Mezzanine__Threading__MonopolyWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::Threading::MonopolyWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *) ((Mezzanine::Threading::LogAggregator *) x));
+}
+static void *_p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *)  ((Mezzanine::Threading::DefaultWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *) ((Mezzanine::Threading::iAsynchronousWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *)(Mezzanine::Threading::iAsynchronousWorkUnit *) ((Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) x));
+}
+static void *_p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *) ((Mezzanine::Threading::WorkSorter *) x));
+}
+static void *_p_Mezzanine__Threading__MonopolyWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *) ((Mezzanine::Threading::MonopolyWorkUnit *) x));
 }
 static void *_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< unsigned long > *)  ((Mezzanine::WeightedRollingAverage< unsigned long,unsigned long > *) x));
@@ -9485,23 +10438,31 @@ static swig_type_info _swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long
 static swig_type_info _swigt__p_Mezzanine__RollingAverageT_float_t = {"_p_Mezzanine__RollingAverageT_float_t", "Mezzanine::RollingAverage< float > *|Mezzanine::RollingAverage< Mezzanine::Real > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__RollingAverageT_int_t = {"_p_Mezzanine__RollingAverageT_int_t", "Mezzanine::RollingAverage< Mezzanine::Integer > *|Mezzanine::RollingAverage< int > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__RollingAverageT_unsigned_long_t = {"_p_Mezzanine__RollingAverageT_unsigned_long_t", "Mezzanine::RollingAverage< unsigned long > *|Mezzanine::RollingAverage< Mezzanine::Whole > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit = {"_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit", "Mezzanine::Threading::AsynchronousFileLoadWorkUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Barrier = {"_p_Mezzanine__Threading__Barrier", "Mezzanine::Threading::Barrier *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage = {"_p_Mezzanine__Threading__DefaultThreadSpecificStorage", "Mezzanine::Threading::DefaultThreadSpecificStorage *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__DefaultWorkUnit = {"_p_Mezzanine__Threading__DefaultWorkUnit", "Mezzanine::Threading::DefaultWorkUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t = {"_p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t", "Mezzanine::Threading::DoubleBufferedLogger *|Mezzanine::Threading::DoubleBufferedResource< std::stringstream > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__FrameScheduler = {"_p_Mezzanine__Threading__FrameScheduler", "Mezzanine::Threading::FrameScheduler *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__LogAggregator = {"_p_Mezzanine__Threading__LogAggregator", "Mezzanine::Threading::LogAggregator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__MonopolyWorkUnit = {"_p_Mezzanine__Threading__MonopolyWorkUnit", "Mezzanine::Threading::MonopolyWorkUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Mutex = {"_p_Mezzanine__Threading__Mutex", "Mezzanine::Threading::Mutex *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__ScopedTimer = {"_p_Mezzanine__Threading__ScopedTimer", "Mezzanine::Threading::ScopedTimer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__SpinLock = {"_p_Mezzanine__Threading__SpinLock", "Mezzanine::Threading::SpinLock *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Thread = {"_p_Mezzanine__Threading__Thread", "Mezzanine::Threading::Thread *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__ThreadId = {"_p_Mezzanine__Threading__ThreadId", "Mezzanine::Threading::ThreadId *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__ThreadSpecificStorage = {"_p_Mezzanine__Threading__ThreadSpecificStorage", "Mezzanine::Threading::ThreadSpecificStorage *|Mezzanine::Threading::FrameScheduler::Resource *|Mezzanine::Threading::DefaultThreadSpecificStorage::Type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__WorkSorter = {"_p_Mezzanine__Threading__WorkSorter", "Mezzanine::Threading::WorkSorter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__WorkUnitKey = {"_p_Mezzanine__Threading__WorkUnitKey", "Mezzanine::Threading::WorkUnitKey *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit = {"_p_Mezzanine__Threading__iAsynchronousWorkUnit", "Mezzanine::Threading::iAsynchronousWorkUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__iWorkUnit = {"_p_Mezzanine__Threading__iWorkUnit", "Mezzanine::Threading::iWorkUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t = {"_p_Mezzanine__WeightedRollingAverageT_float_float_t", "Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *|Mezzanine::WeightedRollingAverage< float,float > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t = {"_p_Mezzanine__WeightedRollingAverageT_int_int_t", "Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *|Mezzanine::WeightedRollingAverage< int,int > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t = {"_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t", "Mezzanine::WeightedRollingAverage< unsigned long,unsigned long > *|Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RawFile = {"_p_RawFile", "RawFile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Resource = {"_p_Resource", "Resource *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RollingAverageT_unsigned_long_t = {"_p_RollingAverageT_unsigned_long_t", "RollingAverage< unsigned long > *|RollingAverage< Mezzanine::Whole > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RunningState = {"_p_RunningState", "RunningState *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzanine::RawEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ThreadId = {"_p_ThreadId", "ThreadId *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Type = {"_p_Type", "Type *", 0, 0, (void*)0, 0};
@@ -9524,7 +10485,7 @@ static swig_type_info _swigt__p_std__pairT_std__string_std__string_t = {"_p_std_
 static swig_type_info _swigt__p_std__setT_std__string_t = {"_p_std__setT_std__string_t", "std::set< std::string > *|Mezzanine::StringSet *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *|Mezzanine::String *|Mezzanine::ConstString *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__stringstream = {"_p_std__stringstream", "Mezzanine::Logger *|std::stringstream *|Mezzanine::StringStream *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_std__string_std__allocatorT_std__string_t_t = {"_p_std__vectorT_std__string_std__allocatorT_std__string_t_t", "std::vector< std::string,std::allocator< std::string > > *|Mezzanine::StringVector *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_std__string_std__allocatorT_std__string_t_t = {"_p_std__vectorT_std__string_std__allocatorT_std__string_t_t", "std::vector< Mezzanine::String,std::allocator< Mezzanine::String > > *|std::vector< std::string,std::allocator< std::string > > *|Mezzanine::StringVector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__wstring = {"_p_std__wstring", "std::wstring *|Mezzanine::WideString *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__ConstIterator = {"_p_swig__ConstIterator", "swig::ConstIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__GC_VALUE = {"_p_swig__GC_VALUE", "swig::GC_VALUE *", 0, 0, (void*)0, 0};
@@ -9544,23 +10505,31 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__RollingAverageT_float_t,
   &_swigt__p_Mezzanine__RollingAverageT_int_t,
   &_swigt__p_Mezzanine__RollingAverageT_unsigned_long_t,
+  &_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,
   &_swigt__p_Mezzanine__Threading__Barrier,
   &_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage,
   &_swigt__p_Mezzanine__Threading__DefaultWorkUnit,
   &_swigt__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t,
   &_swigt__p_Mezzanine__Threading__FrameScheduler,
+  &_swigt__p_Mezzanine__Threading__LogAggregator,
   &_swigt__p_Mezzanine__Threading__MonopolyWorkUnit,
   &_swigt__p_Mezzanine__Threading__Mutex,
+  &_swigt__p_Mezzanine__Threading__ScopedTimer,
   &_swigt__p_Mezzanine__Threading__SpinLock,
   &_swigt__p_Mezzanine__Threading__Thread,
   &_swigt__p_Mezzanine__Threading__ThreadId,
   &_swigt__p_Mezzanine__Threading__ThreadSpecificStorage,
+  &_swigt__p_Mezzanine__Threading__WorkSorter,
   &_swigt__p_Mezzanine__Threading__WorkUnitKey,
+  &_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit,
   &_swigt__p_Mezzanine__Threading__iWorkUnit,
   &_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t,
   &_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t,
   &_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,
+  &_swigt__p_RawFile,
   &_swigt__p_Resource,
+  &_swigt__p_RollingAverageT_unsigned_long_t,
+  &_swigt__p_RunningState,
   &_swigt__p_SDL_Event,
   &_swigt__p_ThreadId,
   &_swigt__p_Type,
@@ -9603,23 +10572,31 @@ static swig_cast_info _swigc__p_Mezzanine__BufferedRollingAverageT_unsigned_long
 static swig_cast_info _swigc__p_Mezzanine__RollingAverageT_float_t[] = {  {&_swigt__p_Mezzanine__RollingAverageT_float_t, 0, 0, 0},  {&_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t, _p_Mezzanine__WeightedRollingAverageT_float_float_tTo_p_Mezzanine__RollingAverageT_float_t, 0, 0},  {&_swigt__p_Mezzanine__BufferedRollingAverageT_float_t, _p_Mezzanine__BufferedRollingAverageT_float_tTo_p_Mezzanine__RollingAverageT_float_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__RollingAverageT_int_t[] = {  {&_swigt__p_Mezzanine__RollingAverageT_int_t, 0, 0, 0},  {&_swigt__p_Mezzanine__BufferedRollingAverageT_int_t, _p_Mezzanine__BufferedRollingAverageT_int_tTo_p_Mezzanine__RollingAverageT_int_t, 0, 0},  {&_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t, _p_Mezzanine__WeightedRollingAverageT_int_int_tTo_p_Mezzanine__RollingAverageT_int_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__RollingAverageT_unsigned_long_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t, _p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t, 0, 0},  {&_swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t, _p_Mezzanine__BufferedRollingAverageT_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t, 0, 0},  {&_swigt__p_Mezzanine__RollingAverageT_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Barrier[] = {  {&_swigt__p_Mezzanine__Threading__Barrier, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage[] = {  {&_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, _p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, _p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__WorkSorter, _p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__MonopolyWorkUnit, _p_Mezzanine__Threading__MonopolyWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t[] = {  {&_swigt__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__FrameScheduler[] = {  {&_swigt__p_Mezzanine__Threading__FrameScheduler, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__LogAggregator[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__MonopolyWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__MonopolyWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Mutex[] = {  {&_swigt__p_Mezzanine__Threading__Mutex, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__ScopedTimer[] = {  {&_swigt__p_Mezzanine__Threading__ScopedTimer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__SpinLock[] = {  {&_swigt__p_Mezzanine__Threading__SpinLock, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Thread[] = {  {&_swigt__p_Mezzanine__Threading__Thread, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__ThreadId[] = {  {&_swigt__p_Mezzanine__Threading__ThreadId, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__ThreadSpecificStorage[] = {  {&_swigt__p_Mezzanine__Threading__ThreadSpecificStorage, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__WorkSorter[] = {  {&_swigt__p_Mezzanine__Threading__WorkSorter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__WorkUnitKey[] = {  {&_swigt__p_Mezzanine__Threading__WorkUnitKey, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Threading__iWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__iWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, _p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__iAsynchronousWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iAsynchronousWorkUnit, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__iWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, _p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__iWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, _p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, _p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__WorkSorter, _p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__MonopolyWorkUnit, _p_Mezzanine__Threading__MonopolyWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_float_float_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_int_int_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RawFile[] = {  {&_swigt__p_RawFile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Resource[] = {  {&_swigt__p_Resource, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RollingAverageT_unsigned_long_t[] = {  {&_swigt__p_RollingAverageT_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RunningState[] = {  {&_swigt__p_RunningState, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDL_Event[] = {  {&_swigt__p_SDL_Event, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ThreadId[] = {  {&_swigt__p_ThreadId, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Type[] = {  {&_swigt__p_Type, 0, 0, 0},{0, 0, 0, 0}};
@@ -9662,23 +10639,31 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__RollingAverageT_float_t,
   _swigc__p_Mezzanine__RollingAverageT_int_t,
   _swigc__p_Mezzanine__RollingAverageT_unsigned_long_t,
+  _swigc__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,
   _swigc__p_Mezzanine__Threading__Barrier,
   _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage,
   _swigc__p_Mezzanine__Threading__DefaultWorkUnit,
   _swigc__p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t,
   _swigc__p_Mezzanine__Threading__FrameScheduler,
+  _swigc__p_Mezzanine__Threading__LogAggregator,
   _swigc__p_Mezzanine__Threading__MonopolyWorkUnit,
   _swigc__p_Mezzanine__Threading__Mutex,
+  _swigc__p_Mezzanine__Threading__ScopedTimer,
   _swigc__p_Mezzanine__Threading__SpinLock,
   _swigc__p_Mezzanine__Threading__Thread,
   _swigc__p_Mezzanine__Threading__ThreadId,
   _swigc__p_Mezzanine__Threading__ThreadSpecificStorage,
+  _swigc__p_Mezzanine__Threading__WorkSorter,
   _swigc__p_Mezzanine__Threading__WorkUnitKey,
+  _swigc__p_Mezzanine__Threading__iAsynchronousWorkUnit,
   _swigc__p_Mezzanine__Threading__iWorkUnit,
   _swigc__p_Mezzanine__WeightedRollingAverageT_float_float_t,
   _swigc__p_Mezzanine__WeightedRollingAverageT_int_int_t,
   _swigc__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,
+  _swigc__p_RawFile,
   _swigc__p_Resource,
+  _swigc__p_RollingAverageT_unsigned_long_t,
+  _swigc__p_RunningState,
   _swigc__p_SDL_Event,
   _swigc__p_ThreadId,
   _swigc__p_Type,
@@ -10017,16 +11002,6 @@ SWIGEXPORT void Init_MezzanineThreading(void) {
   rb_define_const(mMezzanineThreading, "MEZZANINE_CORE", SWIG_From_int(static_cast< int >(1)));
   rb_define_const(mMezzanineThreading, "MEZZ_FRAMESTOTRACK", SWIG_From_int(static_cast< int >(10)));
   
-  SwigClassBarrier.klass = rb_define_class_under(mMezzanineThreading, "Barrier", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__Barrier, (void *) &SwigClassBarrier);
-  rb_define_alloc_func(SwigClassBarrier.klass, _wrap_Barrier_allocate);
-  rb_define_method(SwigClassBarrier.klass, "initialize", VALUEFUNC(_wrap_new_Barrier), -1);
-  rb_define_method(SwigClassBarrier.klass, "Wait", VALUEFUNC(_wrap_Barrier_Wait), -1);
-  rb_define_method(SwigClassBarrier.klass, "SetThreadSyncCount", VALUEFUNC(_wrap_Barrier_SetThreadSyncCount), -1);
-  SwigClassBarrier.mark = 0;
-  SwigClassBarrier.destroy = (void (*)(void *)) free_Mezzanine_Threading_Barrier;
-  SwigClassBarrier.trackObjects = 0;
-  
   SwigClassThreadSpecificStorage.klass = rb_define_class_under(mMezzanineThreading, "ThreadSpecificStorage", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage, (void *) &SwigClassThreadSpecificStorage);
   rb_define_alloc_func(SwigClassThreadSpecificStorage.klass, _wrap_ThreadSpecificStorage_allocate);
@@ -10045,6 +11020,81 @@ SWIGEXPORT void Init_MezzanineThreading(void) {
   SwigClassDefaultThreadSpecificStorage.mark = 0;
   SwigClassDefaultThreadSpecificStorage.destroy = (void (*)(void *)) free_Mezzanine_Threading_DefaultThreadSpecificStorage;
   SwigClassDefaultThreadSpecificStorage.trackObjects = 0;
+  
+  SwigClassIWorkUnit.klass = rb_define_class_under(mMezzanineThreading, "IWorkUnit", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, (void *) &SwigClassIWorkUnit);
+  rb_undef_alloc_func(SwigClassIWorkUnit.klass);
+  rb_define_method(SwigClassIWorkUnit.klass, "GetDependentCount", VALUEFUNC(_wrap_iWorkUnit_GetDependentCount), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "GetDependency", VALUEFUNC(_wrap_iWorkUnit_GetDependency), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "GetImmediateDependencyCount", VALUEFUNC(_wrap_iWorkUnit_GetImmediateDependencyCount), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "GetDependencyCount", VALUEFUNC(_wrap_iWorkUnit_GetDependencyCount), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "AddDependency", VALUEFUNC(_wrap_iWorkUnit_AddDependency), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "RemoveDependency", VALUEFUNC(_wrap_iWorkUnit_RemoveDependency), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "ClearDependencies", VALUEFUNC(_wrap_iWorkUnit_ClearDependencies), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "IsEveryDependencyComplete", VALUEFUNC(_wrap_iWorkUnit_IsEveryDependencyComplete), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "TakeOwnerShip", VALUEFUNC(_wrap_iWorkUnit_TakeOwnerShip), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "GetRunningState", VALUEFUNC(_wrap_iWorkUnit_GetRunningState), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "PrepareForNextFrame", VALUEFUNC(_wrap_iWorkUnit_PrepareForNextFrame), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "GetPerformance", VALUEFUNC(_wrap_iWorkUnit_GetPerformance), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "call", VALUEFUNC(_wrap_iWorkUnit___call__), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "GetSortingKey", VALUEFUNC(_wrap_iWorkUnit_GetSortingKey), -1);
+  rb_define_method(SwigClassIWorkUnit.klass, "DoWork", VALUEFUNC(_wrap_iWorkUnit_DoWork), -1);
+  SwigClassIWorkUnit.mark = 0;
+  SwigClassIWorkUnit.destroy = (void (*)(void *)) free_Mezzanine_Threading_iWorkUnit;
+  SwigClassIWorkUnit.trackObjects = 0;
+  
+  SwigClassDefaultWorkUnit.klass = rb_define_class_under(mMezzanineThreading, "DefaultWorkUnit", ((swig_class *) SWIGTYPE_p_Mezzanine__Threading__iWorkUnit->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, (void *) &SwigClassDefaultWorkUnit);
+  rb_undef_alloc_func(SwigClassDefaultWorkUnit.klass);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetDependentCount", VALUEFUNC(_wrap_DefaultWorkUnit_GetDependentCount), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetDependency", VALUEFUNC(_wrap_DefaultWorkUnit_GetDependency), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetImmediateDependencyCount", VALUEFUNC(_wrap_DefaultWorkUnit_GetImmediateDependencyCount), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetDependencyCount", VALUEFUNC(_wrap_DefaultWorkUnit_GetDependencyCount), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "AddDependency", VALUEFUNC(_wrap_DefaultWorkUnit_AddDependency), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "RemoveDependency", VALUEFUNC(_wrap_DefaultWorkUnit_RemoveDependency), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "ClearDependencies", VALUEFUNC(_wrap_DefaultWorkUnit_ClearDependencies), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "IsEveryDependencyComplete", VALUEFUNC(_wrap_DefaultWorkUnit_IsEveryDependencyComplete), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "TakeOwnerShip", VALUEFUNC(_wrap_DefaultWorkUnit_TakeOwnerShip), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetRunningState", VALUEFUNC(_wrap_DefaultWorkUnit_GetRunningState), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "PrepareForNextFrame", VALUEFUNC(_wrap_DefaultWorkUnit_PrepareForNextFrame), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetPerformance", VALUEFUNC(_wrap_DefaultWorkUnit_GetPerformance), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetPerformanceLog", VALUEFUNC(_wrap_DefaultWorkUnit_GetPerformanceLog), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "call", VALUEFUNC(_wrap_DefaultWorkUnit___call__), -1);
+  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetSortingKey", VALUEFUNC(_wrap_DefaultWorkUnit_GetSortingKey), -1);
+  SwigClassDefaultWorkUnit.mark = 0;
+  SwigClassDefaultWorkUnit.destroy = (void (*)(void *)) free_Mezzanine_Threading_DefaultWorkUnit;
+  SwigClassDefaultWorkUnit.trackObjects = 0;
+  
+  SwigClassIAsynchronousWorkUnit.klass = rb_define_class_under(mMezzanineThreading, "IAsynchronousWorkUnit", ((swig_class *) SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit, (void *) &SwigClassIAsynchronousWorkUnit);
+  rb_undef_alloc_func(SwigClassIAsynchronousWorkUnit.klass);
+  rb_define_method(SwigClassIAsynchronousWorkUnit.klass, "IsWorkDone", VALUEFUNC(_wrap_iAsynchronousWorkUnit_IsWorkDone), -1);
+  SwigClassIAsynchronousWorkUnit.mark = 0;
+  SwigClassIAsynchronousWorkUnit.destroy = (void (*)(void *)) free_Mezzanine_Threading_iAsynchronousWorkUnit;
+  SwigClassIAsynchronousWorkUnit.trackObjects = 0;
+  
+  SwigClassAsynchronousFileLoadWorkUnit.klass = rb_define_class_under(mMezzanineThreading, "AsynchronousFileLoadWorkUnit", ((swig_class *) SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, (void *) &SwigClassAsynchronousFileLoadWorkUnit);
+  rb_define_alloc_func(SwigClassAsynchronousFileLoadWorkUnit.klass, _wrap_AsynchronousFileLoadWorkUnit_allocate);
+  rb_define_method(SwigClassAsynchronousFileLoadWorkUnit.klass, "initialize", VALUEFUNC(_wrap_new_AsynchronousFileLoadWorkUnit), -1);
+  rb_define_method(SwigClassAsynchronousFileLoadWorkUnit.klass, "BeginLoading", VALUEFUNC(_wrap_AsynchronousFileLoadWorkUnit_BeginLoading), -1);
+  rb_define_method(SwigClassAsynchronousFileLoadWorkUnit.klass, "DoWork", VALUEFUNC(_wrap_AsynchronousFileLoadWorkUnit_DoWork), -1);
+  rb_define_method(SwigClassAsynchronousFileLoadWorkUnit.klass, "IsWorkDone", VALUEFUNC(_wrap_AsynchronousFileLoadWorkUnit_IsWorkDone), -1);
+  rb_define_method(SwigClassAsynchronousFileLoadWorkUnit.klass, "GetFile", VALUEFUNC(_wrap_AsynchronousFileLoadWorkUnit_GetFile), -1);
+  rb_define_method(SwigClassAsynchronousFileLoadWorkUnit.klass, "DeleteLoadedFiles", VALUEFUNC(_wrap_AsynchronousFileLoadWorkUnit_DeleteLoadedFiles), -1);
+  SwigClassAsynchronousFileLoadWorkUnit.mark = 0;
+  SwigClassAsynchronousFileLoadWorkUnit.destroy = (void (*)(void *)) free_Mezzanine_Threading_AsynchronousFileLoadWorkUnit;
+  SwigClassAsynchronousFileLoadWorkUnit.trackObjects = 0;
+  
+  SwigClassBarrier.klass = rb_define_class_under(mMezzanineThreading, "Barrier", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__Barrier, (void *) &SwigClassBarrier);
+  rb_define_alloc_func(SwigClassBarrier.klass, _wrap_Barrier_allocate);
+  rb_define_method(SwigClassBarrier.klass, "initialize", VALUEFUNC(_wrap_new_Barrier), -1);
+  rb_define_method(SwigClassBarrier.klass, "Wait", VALUEFUNC(_wrap_Barrier_Wait), -1);
+  rb_define_method(SwigClassBarrier.klass, "SetThreadSyncCount", VALUEFUNC(_wrap_Barrier_SetThreadSyncCount), -1);
+  SwigClassBarrier.mark = 0;
+  SwigClassBarrier.destroy = (void (*)(void *)) free_Mezzanine_Threading_Barrier;
+  SwigClassBarrier.trackObjects = 0;
   
   SwigClassFrameScheduler.klass = rb_define_class_under(mMezzanineThreading, "FrameScheduler", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__FrameScheduler, (void *) &SwigClassFrameScheduler);
@@ -10093,6 +11143,66 @@ SWIGEXPORT void Init_MezzanineThreading(void) {
   SwigClassFrameScheduler.mark = 0;
   SwigClassFrameScheduler.destroy = (void (*)(void *)) free_Mezzanine_Threading_FrameScheduler;
   SwigClassFrameScheduler.trackObjects = 0;
+  
+  SwigClassWorkUnitKey.klass = rb_define_class_under(mMezzanineThreading, "WorkUnitKey", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, (void *) &SwigClassWorkUnitKey);
+  rb_define_alloc_func(SwigClassWorkUnitKey.klass, _wrap_WorkUnitKey_allocate);
+  rb_define_method(SwigClassWorkUnitKey.klass, "initialize", VALUEFUNC(_wrap_new_WorkUnitKey), -1);
+  rb_define_method(SwigClassWorkUnitKey.klass, "Unit=", VALUEFUNC(_wrap_WorkUnitKey_Unit_set), -1);
+  rb_define_method(SwigClassWorkUnitKey.klass, "Unit", VALUEFUNC(_wrap_WorkUnitKey_Unit_get), -1);
+  rb_define_method(SwigClassWorkUnitKey.klass, "Dependers=", VALUEFUNC(_wrap_WorkUnitKey_Dependers_set), -1);
+  rb_define_method(SwigClassWorkUnitKey.klass, "Dependers", VALUEFUNC(_wrap_WorkUnitKey_Dependers_get), -1);
+  rb_define_method(SwigClassWorkUnitKey.klass, "Time=", VALUEFUNC(_wrap_WorkUnitKey_Time_set), -1);
+  rb_define_method(SwigClassWorkUnitKey.klass, "Time", VALUEFUNC(_wrap_WorkUnitKey_Time_get), -1);
+  rb_define_method(SwigClassWorkUnitKey.klass, "<", VALUEFUNC(_wrap_WorkUnitKey___lt__), -1);
+  rb_define_method(SwigClassWorkUnitKey.klass, "==", VALUEFUNC(_wrap_WorkUnitKey___eq__), -1);
+  SwigClassWorkUnitKey.mark = 0;
+  SwigClassWorkUnitKey.destroy = (void (*)(void *)) free_Mezzanine_Threading_WorkUnitKey;
+  SwigClassWorkUnitKey.trackObjects = 0;
+  
+  SwigClassLogAggregator.klass = rb_define_class_under(mMezzanineThreading, "LogAggregator", ((swig_class *) SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__LogAggregator, (void *) &SwigClassLogAggregator);
+  rb_define_alloc_func(SwigClassLogAggregator.klass, _wrap_LogAggregator_allocate);
+  rb_define_method(SwigClassLogAggregator.klass, "initialize", VALUEFUNC(_wrap_new_LogAggregator), -1);
+  rb_define_method(SwigClassLogAggregator.klass, "DoWork", VALUEFUNC(_wrap_LogAggregator_DoWork), -1);
+  rb_define_method(SwigClassLogAggregator.klass, "GetAggregationTarget", VALUEFUNC(_wrap_LogAggregator_GetAggregationTarget), -1);
+  rb_define_method(SwigClassLogAggregator.klass, "SetAggregationTarget", VALUEFUNC(_wrap_LogAggregator_SetAggregationTarget), -1);
+  SwigClassLogAggregator.mark = 0;
+  SwigClassLogAggregator.destroy = (void (*)(void *)) free_Mezzanine_Threading_LogAggregator;
+  SwigClassLogAggregator.trackObjects = 0;
+  
+  SwigClassWorkSorter.klass = rb_define_class_under(mMezzanineThreading, "WorkSorter", ((swig_class *) SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__WorkSorter, (void *) &SwigClassWorkSorter);
+  rb_define_alloc_func(SwigClassWorkSorter.klass, _wrap_WorkSorter_allocate);
+  rb_define_method(SwigClassWorkSorter.klass, "initialize", VALUEFUNC(_wrap_new_WorkSorter), -1);
+  rb_define_method(SwigClassWorkSorter.klass, "DoWork", VALUEFUNC(_wrap_WorkSorter_DoWork), -1);
+  rb_define_method(SwigClassWorkSorter.klass, "SetSortingFrequency", VALUEFUNC(_wrap_WorkSorter_SetSortingFrequency), -1);
+  rb_define_method(SwigClassWorkSorter.klass, "GetSortingFrequency", VALUEFUNC(_wrap_WorkSorter_GetSortingFrequency), -1);
+  SwigClassWorkSorter.mark = 0;
+  SwigClassWorkSorter.destroy = (void (*)(void *)) free_Mezzanine_Threading_WorkSorter;
+  SwigClassWorkSorter.trackObjects = 0;
+  rb_define_module_function(mMezzanineThreading, "GetTimeStamp", VALUEFUNC(_wrap_GetTimeStamp), -1);
+  rb_define_module_function(mMezzanineThreading, "GetTimeStampResolution", VALUEFUNC(_wrap_GetTimeStampResolution), -1);
+  rb_define_module_function(mMezzanineThreading, "GetCPUCount", VALUEFUNC(_wrap_GetCPUCount), -1);
+  rb_define_module_function(mMezzanineThreading, "GetCacheSize", VALUEFUNC(_wrap_GetCacheSize), -1);
+  rb_define_module_function(mMezzanineThreading, "GetCachelineSize", VALUEFUNC(_wrap_GetCachelineSize), -1);
+  
+  SwigClassScopedTimer.klass = rb_define_class_under(mMezzanineThreading, "ScopedTimer", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__ScopedTimer, (void *) &SwigClassScopedTimer);
+  rb_define_alloc_func(SwigClassScopedTimer.klass, _wrap_ScopedTimer_allocate);
+  rb_define_method(SwigClassScopedTimer.klass, "initialize", VALUEFUNC(_wrap_new_ScopedTimer), -1);
+  SwigClassScopedTimer.mark = 0;
+  SwigClassScopedTimer.destroy = (void (*)(void *)) free_Mezzanine_Threading_ScopedTimer;
+  SwigClassScopedTimer.trackObjects = 0;
+  
+  SwigClassMonopolyWorkUnit.klass = rb_define_class_under(mMezzanineThreading, "MonopolyWorkUnit", ((swig_class *) SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit, (void *) &SwigClassMonopolyWorkUnit);
+  rb_undef_alloc_func(SwigClassMonopolyWorkUnit.klass);
+  rb_define_method(SwigClassMonopolyWorkUnit.klass, "UseThreads", VALUEFUNC(_wrap_MonopolyWorkUnit_UseThreads), -1);
+  rb_define_method(SwigClassMonopolyWorkUnit.klass, "UsingThreadCount", VALUEFUNC(_wrap_MonopolyWorkUnit_UsingThreadCount), -1);
+  SwigClassMonopolyWorkUnit.mark = 0;
+  SwigClassMonopolyWorkUnit.destroy = (void (*)(void *)) free_Mezzanine_Threading_MonopolyWorkUnit;
+  SwigClassMonopolyWorkUnit.trackObjects = 0;
   
   SwigClassMutex.klass = rb_define_class_under(mMezzanineThreading, "Mutex", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__Mutex, (void *) &SwigClassMutex);
@@ -10211,11 +11321,6 @@ SWIGEXPORT void Init_MezzanineThreading(void) {
   SwigClassBufferedRollingAverageInteger.mark = 0;
   SwigClassBufferedRollingAverageInteger.destroy = (void (*)(void *)) free_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg_;
   SwigClassBufferedRollingAverageInteger.trackObjects = 0;
-  rb_define_module_function(mMezzanineThreading, "GetTimeStamp", VALUEFUNC(_wrap_GetTimeStamp), -1);
-  rb_define_module_function(mMezzanineThreading, "GetTimeStampResolution", VALUEFUNC(_wrap_GetTimeStampResolution), -1);
-  rb_define_module_function(mMezzanineThreading, "GetCPUCount", VALUEFUNC(_wrap_GetCPUCount), -1);
-  rb_define_module_function(mMezzanineThreading, "GetCacheSize", VALUEFUNC(_wrap_GetCacheSize), -1);
-  rb_define_module_function(mMezzanineThreading, "GetCachelineSize", VALUEFUNC(_wrap_GetCachelineSize), -1);
   
   SwigClassThread.klass = rb_define_class_under(mMezzanineThreading, "Thread", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__Thread, (void *) &SwigClassThread);
@@ -10246,68 +11351,8 @@ SWIGEXPORT void Init_MezzanineThreading(void) {
   rb_define_const(mMezzanineThreading, "Running", SWIG_From_int(static_cast< int >(Mezzanine::Threading::Running)));
   rb_define_const(mMezzanineThreading, "Complete", SWIG_From_int(static_cast< int >(Mezzanine::Threading::Complete)));
   rb_define_const(mMezzanineThreading, "Failed", SWIG_From_int(static_cast< int >(Mezzanine::Threading::Failed)));
-  
-  SwigClassIWorkUnit.klass = rb_define_class_under(mMezzanineThreading, "IWorkUnit", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__iWorkUnit, (void *) &SwigClassIWorkUnit);
-  rb_undef_alloc_func(SwigClassIWorkUnit.klass);
-  rb_define_method(SwigClassIWorkUnit.klass, "GetDependentCount", VALUEFUNC(_wrap_iWorkUnit_GetDependentCount), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "GetDependency", VALUEFUNC(_wrap_iWorkUnit_GetDependency), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "GetImmediateDependencyCount", VALUEFUNC(_wrap_iWorkUnit_GetImmediateDependencyCount), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "GetDependencyCount", VALUEFUNC(_wrap_iWorkUnit_GetDependencyCount), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "AddDependency", VALUEFUNC(_wrap_iWorkUnit_AddDependency), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "RemoveDependency", VALUEFUNC(_wrap_iWorkUnit_RemoveDependency), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "ClearDependencies", VALUEFUNC(_wrap_iWorkUnit_ClearDependencies), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "IsEveryDependencyComplete", VALUEFUNC(_wrap_iWorkUnit_IsEveryDependencyComplete), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "TakeOwnerShip", VALUEFUNC(_wrap_iWorkUnit_TakeOwnerShip), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "GetRunningState", VALUEFUNC(_wrap_iWorkUnit_GetRunningState), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "PrepareForNextFrame", VALUEFUNC(_wrap_iWorkUnit_PrepareForNextFrame), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "GetPerformance", VALUEFUNC(_wrap_iWorkUnit_GetPerformance), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "call", VALUEFUNC(_wrap_iWorkUnit___call__), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "GetSortingKey", VALUEFUNC(_wrap_iWorkUnit_GetSortingKey), -1);
-  rb_define_method(SwigClassIWorkUnit.klass, "DoWork", VALUEFUNC(_wrap_iWorkUnit_DoWork), -1);
-  SwigClassIWorkUnit.mark = 0;
-  SwigClassIWorkUnit.destroy = (void (*)(void *)) free_Mezzanine_Threading_iWorkUnit;
-  SwigClassIWorkUnit.trackObjects = 0;
-  
-  SwigClassDefaultWorkUnit.klass = rb_define_class_under(mMezzanineThreading, "DefaultWorkUnit", ((swig_class *) SWIGTYPE_p_Mezzanine__Threading__iWorkUnit->clientdata)->klass);
-  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit, (void *) &SwigClassDefaultWorkUnit);
-  rb_undef_alloc_func(SwigClassDefaultWorkUnit.klass);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetDependentCount", VALUEFUNC(_wrap_DefaultWorkUnit_GetDependentCount), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetDependency", VALUEFUNC(_wrap_DefaultWorkUnit_GetDependency), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetImmediateDependencyCount", VALUEFUNC(_wrap_DefaultWorkUnit_GetImmediateDependencyCount), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetDependencyCount", VALUEFUNC(_wrap_DefaultWorkUnit_GetDependencyCount), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "AddDependency", VALUEFUNC(_wrap_DefaultWorkUnit_AddDependency), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "RemoveDependency", VALUEFUNC(_wrap_DefaultWorkUnit_RemoveDependency), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "ClearDependencies", VALUEFUNC(_wrap_DefaultWorkUnit_ClearDependencies), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "IsEveryDependencyComplete", VALUEFUNC(_wrap_DefaultWorkUnit_IsEveryDependencyComplete), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "TakeOwnerShip", VALUEFUNC(_wrap_DefaultWorkUnit_TakeOwnerShip), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetRunningState", VALUEFUNC(_wrap_DefaultWorkUnit_GetRunningState), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "PrepareForNextFrame", VALUEFUNC(_wrap_DefaultWorkUnit_PrepareForNextFrame), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetPerformance", VALUEFUNC(_wrap_DefaultWorkUnit_GetPerformance), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetPerformanceLog", VALUEFUNC(_wrap_DefaultWorkUnit_GetPerformanceLog), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "call", VALUEFUNC(_wrap_DefaultWorkUnit___call__), -1);
-  rb_define_method(SwigClassDefaultWorkUnit.klass, "GetSortingKey", VALUEFUNC(_wrap_DefaultWorkUnit_GetSortingKey), -1);
-  SwigClassDefaultWorkUnit.mark = 0;
-  SwigClassDefaultWorkUnit.destroy = (void (*)(void *)) free_Mezzanine_Threading_DefaultWorkUnit;
-  SwigClassDefaultWorkUnit.trackObjects = 0;
-  
-  SwigClassWorkUnitKey.klass = rb_define_class_under(mMezzanineThreading, "WorkUnitKey", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey, (void *) &SwigClassWorkUnitKey);
-  rb_define_alloc_func(SwigClassWorkUnitKey.klass, _wrap_WorkUnitKey_allocate);
-  rb_define_method(SwigClassWorkUnitKey.klass, "initialize", VALUEFUNC(_wrap_new_WorkUnitKey), -1);
-  rb_define_method(SwigClassWorkUnitKey.klass, "Unit=", VALUEFUNC(_wrap_WorkUnitKey_Unit_set), -1);
-  rb_define_method(SwigClassWorkUnitKey.klass, "Unit", VALUEFUNC(_wrap_WorkUnitKey_Unit_get), -1);
-  rb_define_method(SwigClassWorkUnitKey.klass, "Dependers=", VALUEFUNC(_wrap_WorkUnitKey_Dependers_set), -1);
-  rb_define_method(SwigClassWorkUnitKey.klass, "Dependers", VALUEFUNC(_wrap_WorkUnitKey_Dependers_get), -1);
-  rb_define_method(SwigClassWorkUnitKey.klass, "Time=", VALUEFUNC(_wrap_WorkUnitKey_Time_set), -1);
-  rb_define_method(SwigClassWorkUnitKey.klass, "Time", VALUEFUNC(_wrap_WorkUnitKey_Time_get), -1);
-  rb_define_method(SwigClassWorkUnitKey.klass, "<", VALUEFUNC(_wrap_WorkUnitKey___lt__), -1);
-  rb_define_method(SwigClassWorkUnitKey.klass, "==", VALUEFUNC(_wrap_WorkUnitKey___eq__), -1);
-  SwigClassWorkUnitKey.mark = 0;
-  SwigClassWorkUnitKey.destroy = (void (*)(void *)) free_Mezzanine_Threading_WorkUnitKey;
-  SwigClassWorkUnitKey.trackObjects = 0;
   rb_define_const(mMezzanineThreading, "MEZZ_DAGFRAMESCHEDULER_MAJOR_VERSION", SWIG_From_int(static_cast< int >(1)));
-  rb_define_const(mMezzanineThreading, "MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION", SWIG_From_int(static_cast< int >(10)));
+  rb_define_const(mMezzanineThreading, "MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION", SWIG_From_int(static_cast< int >(11)));
   rb_define_const(mMezzanineThreading, "MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION", SWIG_From_int(static_cast< int >(0)));
 }
 

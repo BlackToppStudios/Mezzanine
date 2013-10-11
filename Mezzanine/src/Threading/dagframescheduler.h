@@ -44,7 +44,40 @@
 /// @file
 /// @brief This is the file that code using this library should include. It includes all the required components.
 
-#include "swig.h"
+#include "datatypes.h"
+
+#ifndef MEZZANINE_CORE
+    #ifdef SWIG
+        // Tell SWIG to create a module that scripting languages can use called "mezzanine"
+        // and insert a minimum of documentation into the bindingfile
+        %{
+            // code to be inserted verbatim into the swig file goes here
+            #ifdef GetCurrentTime
+            #undef GetCurrentTime
+            #endif
+
+            using namespace Mezzanine;
+            using namespace Mezzanine::Threading;
+        %}
+
+        %include stl.i
+        %include stdint.i
+        %include std_except.i
+        %include std_common.i
+        //%include std_container.i
+        %include std_deque.i
+        %include std_except.i
+        //%include std_list.i
+        %include std_map.i
+        %include std_pair.i
+        %include std_string.i
+        %include std_vector.i
+    #endif
+#else
+	#include "swig.h"
+#endif
+
+
 #ifdef SWIG_THREADING
     #ifdef SWIG_UNSAFE
         %module MezzanineThreading
@@ -82,7 +115,7 @@
 
 /// @def MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION
 /// @brief The Minor version number of the library. (The middle number)
-#define MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION 10
+#define MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION 11
 
 /// @def MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION
 /// @brief The revision version number of the library. (This right/back number)

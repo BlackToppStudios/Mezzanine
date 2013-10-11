@@ -42,9 +42,8 @@
 #define _barrier_h
 
 #include "datatypes.h"
-#ifndef SWIG
-    #include "atomicoperations.h"
-#endif
+#include "atomicoperations.h"
+
 
 
 /// @file
