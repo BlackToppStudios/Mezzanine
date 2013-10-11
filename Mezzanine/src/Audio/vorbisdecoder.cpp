@@ -235,6 +235,7 @@ namespace Mezzanine
                     return ( ov_time_seek( &(this->VDID->VorbisFile), Seconds ) == 0 );
                 }
             }
+            return false;
         }
 
         UInt32 VorbisDecoder::ReadAudioData(void* Output, UInt32 Amount)

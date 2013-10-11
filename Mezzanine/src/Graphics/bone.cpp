@@ -61,12 +61,13 @@ namespace Mezzanine
                     case Mezzanine::TS_Parent: return Ogre::Node::TS_PARENT;
                     case Mezzanine::TS_World:  return Ogre::Node::TS_WORLD;
                 }
+                return Ogre::Node::TS_WORLD;
             }
         }
 
         Bone::Bone(Skeleton* HostSkel, Ogre::Bone* InternalBone)
-            : Host(HostSkel),
-              GraphicsBone(InternalBone)
+            : GraphicsBone(InternalBone),
+              Host(HostSkel)
         {
             Ogre::Any OgreRef(this);
             GraphicsBone->setUserAny(OgreRef);

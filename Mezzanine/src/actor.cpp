@@ -66,7 +66,7 @@ namespace Mezzanine
         {  }
 
     Actor::~Actor()
-        { delete this->MotionState; }
+        {  }
 }//Mezzanine
 
 #endif

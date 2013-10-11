@@ -209,7 +209,7 @@ namespace Mezzanine
             { return this->CameraVP; }
 
         Bool CameraProxy::IsFixedYawEnabled() const
-            { this->UseFixedYaw; }
+            { return this->UseFixedYaw; }
 
         void CameraProxy::LookAt(const Vector3& TargetLoc)
             { this->GraphicsCamera->lookAt( TargetLoc.GetOgreVector3() ); }
