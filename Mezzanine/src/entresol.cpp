@@ -701,8 +701,10 @@ namespace Mezzanine
     void Entresol::DestroyManagerFactory(const String& ImplName)
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ImplName);
-        delete ManIt->second;
-        this->ManagerFactories.erase(ManIt);
+        if( ManIt != this->ManagerFactories.end() ) {
+            delete ManIt->second;
+            this->ManagerFactories.erase(ManIt);
+        }
     }
 
     void Entresol::DestroyAllManagerFactories()
