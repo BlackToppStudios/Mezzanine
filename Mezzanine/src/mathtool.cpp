@@ -81,6 +81,8 @@ namespace
 
         if( NewEnd < PosPair.second )
             PosPair.second = NewEnd;
+
+        return true;
     }
 }
 /// @endcond

@@ -121,12 +121,12 @@ namespace Mezzanine
 
         ConstString& Skeleton::GetName() const
         {
-            _GetInternalSkeleton()->getName();
+            return this->_GetInternalSkeleton()->getName();
         }
 
         ConstString& Skeleton::GetGroup() const
         {
-            _GetInternalSkeleton()->getGroup();
+            return this->_GetInternalSkeleton()->getGroup();
         }
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -263,10 +263,10 @@ namespace Mezzanine
 
                 if( this->RenderSystems.size() == 1 )
                 {
-                    Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->RenderSystemTypes[0] ) );
+                    //Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->RenderSystemTypes[0] ) );
                     OgreCore->setRenderSystem( OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->RenderSystemTypes[0] ) ) );
                 }else{
-                    Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->CurrRenderSys ) );
+                    //Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->CurrRenderSys ) );
                     OgreCore->setRenderSystem( OgreCore->getRenderSystemByName( this->GetRenderSystemName( this->CurrRenderSys ) ) );
                 }
 
