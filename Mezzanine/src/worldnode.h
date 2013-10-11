@@ -191,7 +191,7 @@ namespace Mezzanine
             /// @copydoc AttachableBase::GetScaling()
             Vector3 GetScaling() const;
             /// @copydoc AttachableBase::GetType()
-            WorldAndSceneObjectType GetType() const;
+            WorldObjectType GetType() const;
             /// @copydoc AttachableChild::SetLocalLocation(Vector3&)
             void SetLocalLocation(const Vector3& Location);
             /// @copydoc AttachableChild::SetLocalOrientation(Quaternion&)

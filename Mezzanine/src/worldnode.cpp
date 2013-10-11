@@ -293,9 +293,9 @@ namespace Mezzanine
         return NodeScale;
     }
 
-    WorldAndSceneObjectType WorldNode::GetType() const
+    WorldObjectType WorldNode::GetType() const
     {
-        return Mezzanine::WSO_WorldNode;
+        return Mezzanine::WO_WorldNode;
     }
 
     void WorldNode::SetLocalLocation(const Vector3& Location)
