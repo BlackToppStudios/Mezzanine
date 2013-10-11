@@ -42,33 +42,32 @@
 
 using namespace std;
 
-#include "linegroup.h"
-#include "physicsmanager.h"
-#include "entresol.h"
-#include "vector3.h"
-#include "actormanager.h"
-#include "actorphysicssettings.h"
-#include "areaeffect.h"
-#include "eventmanager.h"
-#include "worldtrigger.h"
-#include "worldobject.h"
+#include "Physics/physicsmanager.h"
 #include "Physics/collision.h"
-#include "Graphics/scenemanager.h"
-#include "Graphics/graphicsmanager.h"
-#include "stringtool.h"
-#include "crossplatform.h"
-#include "actorbase.h"
 
 #include "Physics/ghostproxy.h"
 #include "Physics/rigidproxy.h"
 #include "Physics/softproxy.h"
 
+#include "Graphics/graphicsmanager.h"
+
+// WorldObject Manager includes are here for the debug draw work unit dependency setting
+#include "actormanager.h"
+#include "areaeffectmanager.h"
+#include "debrismanager.h"
+
+#include "stringtool.h"
+#include "linegroup.h"
+#include "vector3.h"
+#include "worldtrigger.h"
+#include "worldobject.h"
+#include "crossplatform.h"
+#include "entresol.h"
+
 #include "Physics/collisiondispatcher.h.cpp"
 
 #include <queue>
 #include <algorithm>
-
-#include <Ogre.h>
 
 #include <btBulletDynamicsCommon.h>
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
@@ -509,17 +508,18 @@ namespace Mezzanine
             btCollisionObjectArray ObjectArray( BulletDynamicsWorld->getCollisionObjectArray() );
             for( Integer X = 0 ; X < BulletDynamicsWorld->getNumCollisionObjects() ; ++X )
             {
-                WorldObject* WO = static_cast<WorldObject*>( ObjectArray[X]->getUserPointer() );
-                WO->RemoveFromWorld();
+                CollidableProxy* Prox = static_cast<CollidableProxy*>( ObjectArray[X]->getUserPointer() );
+                Prox->RemoveFromWorld();
             }
 
-            DestroyAllConstraints();
-            DestroyAllWorldTriggers();
+            this->DestroyAllConstraints();
+            this->DestroyAllProxies();
+            this->DestroyAllWorldTriggers();
 
             this->Deinitialize();
 
             //Destroy the physical world that we loved and cherished
-            Destroy();
+            this->Destroy();
         }
 
         void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
@@ -714,8 +714,8 @@ namespace Mezzanine
             btCollisionAlgorithm* NewAlgo = AlgoQueue->front();
             while( NewAlgo != NULL )
             {
-                WorldObject* ObjectA = NULL;
-                WorldObject* ObjectB = NULL;
+                CollidableProxy* ProxA = NULL;
+                CollidableProxy* ProxB = NULL;
                 /// @todo This is an absurd round-about way to get the data we need,
                 /// and bullet will probably have to be extended to change this so it's actually good.
                 btBroadphasePairArray& PairArray = BulletBroadphase->getOverlappingPairCache()->getOverlappingPairArray();
@@ -724,25 +724,24 @@ namespace Mezzanine
                     if( NewAlgo == PairArray[X].m_algorithm )
                     {
                         btCollisionObject* COA = (btCollisionObject*)PairArray[X].m_pProxy0->m_clientObject;
-                        ObjectA = (WorldObject*)COA->getUserPointer();
+                        ProxA = static_cast<CollidableProxy*>( COA->getUserPointer() );
                         btCollisionObject* COB = (btCollisionObject*)PairArray[X].m_pProxy1->m_clientObject;
-                        ObjectB = (WorldObject*)COB->getUserPointer();
+                        ProxB = static_cast<CollidableProxy*>( COB->getUserPointer() );
                         break;
                     }
                 }
 
-                if( (ObjectA && ObjectA->GetPhysicsSettings()->GetCollisionResponse()) &&
-                    (ObjectB && ObjectB->GetPhysicsSettings()->GetCollisionResponse()) )
+                if( ProxA->GetCollisionResponse() && ProxB->GetCollisionResponse() )
                 {
-                    // Creat the collision
-                    ObjectPair NewPair(ObjectA,ObjectB);
+                    // Create the collision
+                    CollidablePair NewPair(ProxA,ProxB);
                     PhysicsManager::CollisionIterator ColIt = Collisions.find(NewPair);
                     if(ColIt == Collisions.end())
                     {
-                        Physics::Collision* NewCol = new Physics::Collision(ObjectA,ObjectB,NewAlgo);
+                        Physics::Collision* NewCol = new Physics::Collision(ProxA,ProxB,NewAlgo);
                         //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                         //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
-                        Collisions.insert(std::pair<ObjectPair,Physics::Collision*>(NewPair,NewCol));
+                        Collisions.insert( CollisionSortPair(NewPair,NewCol) );
                     }
                 }
                 AlgoQueue->pop_front();
@@ -792,15 +791,6 @@ namespace Mezzanine
         {
             Vector3 sgrav(this->BulletDynamicsWorld->getWorldInfo().m_gravity);
             return sgrav;
-        }
-
-        void PhysicsManager::SetIndividualGravity(ActorBase* Actor, const Vector3& igrav)
-        {
-            if( Mezzanine::WSO_ActorRigid==Actor->GetType() )
-            {
-                btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->_GetBasePhysicsObject());
-                Rigid->setGravity(igrav.GetBulletVector3());
-            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -972,7 +962,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Collision Management
 
-        Physics::Collision* PhysicsManager::GetCollision(ObjectPair* Pair)
+        Physics::Collision* PhysicsManager::GetCollision(CollidablePair* Pair)
         {
             ConstCollisionIterator ColIt = this->Collisions.find(*Pair);
             if(ColIt != this->Collisions.end()) return (*ColIt).second;
@@ -988,29 +978,28 @@ namespace Mezzanine
         {
             //((CollisionDispatcher*)BulletDispatcher)->releaseManifoldManual(Col->Manifold);
             btBroadphasePair* btPair = this->BulletBroadphase->getOverlappingPairCache()->findPair(
-                Col->ObjectA->_GetBasePhysicsObject()->getBroadphaseHandle(),
-                Col->ObjectB->_GetBasePhysicsObject()->getBroadphaseHandle());
+                Col->ProxyA->_GetBasePhysicsObject()->getBroadphaseHandle(),
+                Col->ProxyB->_GetBasePhysicsObject()->getBroadphaseHandle());
             this->BulletBroadphase->getOverlappingPairCache()->removeOverlappingPair(
-                Col->ObjectA->_GetBasePhysicsObject()->getBroadphaseHandle(),
-                Col->ObjectB->_GetBasePhysicsObject()->getBroadphaseHandle(),
+                Col->ProxyA->_GetBasePhysicsObject()->getBroadphaseHandle(),
+                Col->ProxyB->_GetBasePhysicsObject()->getBroadphaseHandle(),
                 this->BulletDispatcher);// */
             this->BulletBroadphase->getOverlappingPairCache()->cleanOverlappingPair(*btPair,this->BulletDispatcher);
             delete btPair;
         }
 
-        void PhysicsManager::RemoveCollisionsContainingObject(WorldObject* Object)
+        void PhysicsManager::RemoveCollisionsContainingProxy(CollidableProxy* Proxy)
         {
-            if(!Object->IsInWorld())
+            if( !Proxy->IsInWorld() )
                 return;
 
-            this->BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs(Object->_GetBasePhysicsObject()->getBroadphaseHandle(),this->BulletDispatcher);
+            this->BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs( Proxy->_GetBasePhysicsObject()->getBroadphaseHandle(), this->BulletDispatcher );
 
             CollisionIterator ColIt = this->Collisions.begin();
             while( ColIt != this->Collisions.end() )
             {
                 Physics::Collision* ToBeDestroyed = (*ColIt).second;
-                if( Object == (*ColIt).second->ObjectA || Object == (*ColIt).second->ObjectB )
-                {
+                if( Proxy == (*ColIt).second->ProxyA || Proxy == (*ColIt).second->ProxyB ) {
                     CollisionIterator Delete = ColIt;
                     ++ColIt;
                     this->Collisions.erase(Delete);
@@ -1154,18 +1143,24 @@ namespace Mezzanine
                     this->SimulationWork->AddDependency( GraphicsMan->GetRenderWork() );
 
                 Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
+                Mezzanine::AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+                Mezzanine::DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
                 this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork, "DebugDrawWork" );
                 this->DebugDrawWork->AddDependency( this->SimulationWork );
                 if( ActorMan )
                     this->DebugDrawWork->AddDependency( ActorMan->GetActorUpdateWork() );
+                if( AEMan )
+                    this->DebugDrawWork->AddDependency( AEMan->GetAreaEffectUpdateWork() );
+                if( DebrisMan )
+                    this->DebugDrawWork->AddDependency( DebrisMan->GetDebrisUpdateWork() );
 
                 // World Trigger Update work configuration
                 this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WorldTriggerUpdateWork, "WorldTriggerUpdateWork" );
                 this->WorldTriggerUpdateWork->AddDependency( this->SimulationWork );
-                if( ActorMan )
-                    this->WorldTriggerUpdateWork->AddDependency( ActorMan->GetActorUpdateWork() );
+                if( DebrisMan )
+                    this->WorldTriggerUpdateWork->AddDependency( DebrisMan->GetDebrisUpdateWork() );
 
                 this->Initialized = true;
             }

@@ -37,56 +37,70 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _objectpair_h
-#define _objectpair_h
+#ifndef _collidablepair_h
+#define _collidablepair_h
 
 #include "datatypes.h"
 
 namespace Mezzanine
 {
-    class WorldObject;
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ObjectPair
-    /// @headerfile objectpair.h
-    /// @brief This is an interface class for pairs of world objects.
-    /// @details Most commonly this class is used in collision tracking.
-    ///////////////////////////////////////
-    class MEZZ_LIB ObjectPair
+    namespace Physics
     {
+        class CollidableProxy;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a helper class for storing pairs of collidable proxies in associative containers.
+        /// @details Most commonly this class is used in collision tracking.
+        ///////////////////////////////////////
+        class MEZZ_LIB CollidablePair
+        {
         protected:
             /// @internal
-            /// @brief Gets a string containing the combined names of the objects in this pair.
-            virtual String GetCombinedName() const;
+            /// @brief Gets the combined ID of the objects in this pair.
+            virtual UInt64 GetPairID() const;
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Data Members
+
             /// @brief The first world object in the pair.
-            WorldObject* ObjectA;
+            CollidableProxy* ProxyA;
             /// @brief The second world object in the pair.
-            WorldObject* ObjectB;
+            CollidableProxy* ProxyB;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
 
             /// @brief Class constructor.
-            ObjectPair(WorldObject* A, WorldObject* B);
+            CollidablePair(CollidableProxy* A, CollidableProxy* B);
             /// @brief Class destructor.
-            virtual ~ObjectPair();
+            virtual ~CollidablePair();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
             /// @brief Checks to see if this pair is the same as another pair.
             /// @param Pair The other pair to compare against.
             /// @return Returns true if the pairs match regardless of ordering, false otherwise.
-            virtual bool PairsMatch(const ObjectPair& Pair) const;
+            virtual bool PairsMatch(const CollidablePair& Pair) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
             /// @brief Checks to see if this pair is the same as another pair.
             /// @param Pair The other pair to compare against.
             /// @return Returns true if the pairs match regardless of ordering, false otherwise.
-            virtual bool operator==(const ObjectPair& Pair) const;
+            virtual bool operator==(const CollidablePair& Pair) const;
             /// @brief Checks to see if this pair is less than another pair.
             /// @remarks This check is based on combining the names of the objects and performing a std::string::compare on them.
             /// @param Pair The other pair to compare against.
             /// @return Returns true if this pair is found to be less then the passed in pair, false otherwise.
-            virtual bool operator<(const ObjectPair& Pair) const;
+            virtual bool operator<(const CollidablePair& Pair) const;
             /// @brief Checks to see if this pair is greater than another pair.
             /// @remarks This check is based on combining the names of the objects and performing a std::string::compare on them.
             /// @param Pair The other pair to compare against.
             /// @return Returns true if this pair is found to be greater then the passed in pair, false otherwise.
-            virtual bool operator>(const ObjectPair& Pair) const;
-    };//ObjectPair
+            virtual bool operator>(const CollidablePair& Pair) const;
+        };//CollidablePair
+    }//Physics
 }//Mezzanine
 
 #endif

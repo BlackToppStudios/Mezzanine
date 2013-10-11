@@ -40,11 +40,14 @@
 #ifndef _physicscollision_cpp
 #define _physicscollision_cpp
 
-#include "actorbase.h"
-#include "actormanager.h"
 #include "collision.h"
+#include "worldobject.h"
+
 #include "entresol.h"
 #include "stringtool.h"
+
+#include "Physics/physicsenumerations.h"
+#include "Physics/collidableproxy.h"
 
 #include <btBulletDynamicsCommon.h>
 #include <memory>
@@ -61,229 +64,223 @@ namespace Mezzanine
             btManifoldArray Manifolds;
         };
 
-        Collision::Collision(WorldObject* A, WorldObject* B, btCollisionAlgorithm* PhysicsAlgo)
+        Collision::Collision(CollidableProxy* A, CollidableProxy* B, btCollisionAlgorithm* PhysicsAlgo) :
+            InternalAlgo(PhysicsAlgo),
+            ProxyA(A),
+            ProxyB(B)
         {
-            ObjectA = A;
-            ObjectB = B;
-            InternalAlgo = PhysicsAlgo;
-            InternalData = new CollisionInternalData();
+            this->InternalData = new CollisionInternalData();
 
-            ObjectA->_NotifyCollisionState(this,Collision::Col_Begin);
-            ObjectB->_NotifyCollisionState(this,Collision::Col_Begin);
+            WorldObject* ObjectA = this->ProxyA->GetParentObject();
+            if( ObjectA ) {
+                ObjectA->_NotifyCollisionState(this,Physics::Col_Begin);
+            }
 
-            InternalAlgo->getAllContactManifolds(InternalData->Manifolds);
+            WorldObject* ObjectB = this->ProxyB->GetParentObject();
+            if( ObjectB ) {
+                ObjectB->_NotifyCollisionState(this,Physics::Col_Begin);
+            }
+
+            this->InternalAlgo->getAllContactManifolds(this->InternalData->Manifolds);
         }
 
-        Collision::Collision()
+        Collision::Collision() :
+            InternalAlgo(NULL),
+            ProxyA(NULL),
+            ProxyB(NULL)
         {
-            ObjectA = NULL;
-            ObjectB = NULL;
-            InternalAlgo = NULL;
-            InternalData = new CollisionInternalData();
+            this->InternalData = new CollisionInternalData();
         }
 
-        Collision::Collision(const Collision& Other)
+        Collision::Collision(const Collision& Other) :
+            InternalAlgo(Other.InternalAlgo),
+            ProxyA(Other.ProxyA),
+            ProxyB(Other.ProxyB)
         {
-            ObjectA = Other.ObjectA;
-            ObjectB = Other.ObjectB;
-            InternalAlgo = Other.InternalAlgo;
             for( Whole X = 0 ; X < Other.InternalData->Manifolds.size() ; ++X )
-                InternalData->Manifolds.push_back(Other.InternalData->Manifolds[X]);
+                this->InternalData->Manifolds.push_back(Other.InternalData->Manifolds[X]);
 
             // Double notifies seems like a bad idea.
-            //ObjectA->_NotifyCollisionState(this,Collision::Col_Begin);
-            //ObjectB->_NotifyCollisionState(this,Collision::Col_Begin);
+            //this->ProxyA->_NotifyCollisionState(this,Physics::Col_Begin);
+            //this->ProxyB->_NotifyCollisionState(this,Physics::Col_Begin);
         }
 
         Collision::~Collision()
         {
-            ObjectA->_NotifyCollisionState(this,Collision::Col_End);
-            ObjectB->_NotifyCollisionState(this,Collision::Col_End);
-            delete InternalData;
+            WorldObject* ObjectA = this->ProxyA->GetParentObject();
+            if( ObjectA ) {
+                ObjectA->_NotifyCollisionState(this,Physics::Col_End);
+            }
+
+            WorldObject* ObjectB = this->ProxyB->GetParentObject();
+            if( ObjectB ) {
+                ObjectB->_NotifyCollisionState(this,Physics::Col_End);
+            }
+
+            delete this->InternalData;
         }
 
         btManifoldPoint& Collision::GetManifoldPoint(const Whole& Index)
         {
-            if(Index >= InternalData->Manifolds.size())
+            if( static_cast<Integer>( Index ) >= this->InternalData->Manifolds.size() )
                 MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to access invalid index in Collision.");
 
-            if(Index > 3)
-            {
+            if( Index > 3 ) {
                 Whole SuperIndex = Index/4;
                 Whole SubIndex = Index%4;
-                return (InternalData->Manifolds.at(SuperIndex)->getContactPoint(SubIndex));
+                return (this->InternalData->Manifolds.at(SuperIndex)->getContactPoint(SubIndex));
             }else{
-                return (InternalData->Manifolds.at(0)->getContactPoint(Index));
+                return (this->InternalData->Manifolds.at(0)->getContactPoint(Index));
             }
         }
 
         void Collision::UpdatePenetrationDistances()
         {
-            if( InternalData->Manifolds.size() > PenetrationDistances.size() )
-                PenetrationDistances.resize(InternalData->Manifolds.size());
-            PenetrationDistances.clear();
-            for( Whole X = 0 ; X < InternalData->Manifolds.size() ; ++X )
+            if( this->InternalData->Manifolds.size() > this->PenetrationDistances.size() )
+                this->PenetrationDistances.resize( this->InternalData->Manifolds.size() );
+            this->PenetrationDistances.clear();
+            for( Integer X = 0 ; X < this->InternalData->Manifolds.size() ; ++X )
             {
-                PenetrationDistances[X] = GetManifoldPoint(X).m_distance1;
+                this->PenetrationDistances[X] = this->GetManifoldPoint(X).m_distance1;
             }
         }
 
-        void Collision::SetObjectA(WorldObject* A)
-        {
-            if(ObjectA)
-            {
-                Entresol::GetSingletonPtr()->Log("Attepting to change Object pointer Member in Collision.  This is not permitted.");
-            }else{
-                ObjectA = A;
-                ObjectA->_NotifyCollisionState(this,Collision::Col_Begin);
-            }
-        }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        CollidableProxy* Collision::GetProxyA() const
+            { return this->ProxyA; }
+
+        CollidableProxy* Collision::GetProxyB() const
+            { return this->ProxyB; }
 
         WorldObject* Collision::GetObjectA() const
-        {
-            return ObjectA;
-        }
-
-        void Collision::SetObjectB(WorldObject* B)
-        {
-            if(ObjectB)
-            {
-                Entresol::GetSingletonPtr()->Log("Attepting to change Object pointer Member in Collision.  This is not permitted.");
-            }else{
-                ObjectB = B;
-                ObjectB->_NotifyCollisionState(this,Collision::Col_Begin);
-            }
-        }
+            { return this->ProxyA->GetParentObject(); }
 
         WorldObject* Collision::GetObjectB() const
-        {
-            return ObjectB;
-        }
-
-        Whole Collision::GetNumContactPoints()
-        {
-            return (Whole)InternalData->Manifolds.size();
-        }
-
-        Vector3 Collision::GetWorldLocation(const Whole& Point)
-        {
-            btVector3 PointA = GetManifoldPoint(Point).m_localPointA;
-            btVector3 PointB = GetManifoldPoint(Point).m_localPointB;
-            return Vector3((PointA+PointB) /= 2);
-        }
-
-        Vector3 Collision::GetLocalALocation(const Whole& Point)
-        {
-            return Vector3(GetManifoldPoint(Point).m_localPointA);
-        }
-
-        Vector3 Collision::GetLocalBLocation(const Whole& Point)
-        {
-            return Vector3(GetManifoldPoint(Point).m_localPointB);
-        }
-
-        Vector3 Collision::GetNormal(const Whole& Point)
-        {
-            return Vector3(GetManifoldPoint(Point).m_normalWorldOnB);
-        }
-
-        Real Collision::GetAppliedImpulse(const Whole& Point)
-        {
-            return GetManifoldPoint(Point).m_appliedImpulse;
-        }
-
-        Real Collision::GetDistance(const Whole& Point)
-        {
-            return GetManifoldPoint(Point).m_distance1;
-        }
-
-        Whole Collision::GetAge(const Whole& Point)
-        {
-            return (Whole)GetManifoldPoint(Point).m_lifeTime;
-        }
+            { return this->ProxyB->GetParentObject(); }
 
         bool Collision::PairsMatch(WorldObject* A, WorldObject* B) const
         {
-            bool ContainsA = (A == ObjectA) || (A == ObjectB);
-            bool ContainsB = (B == ObjectA) || (B == ObjectB);
+            WorldObject* ObjA = this->GetObjectA();
+            WorldObject* ObjB = this->GetObjectB();
+            if( ObjA && ObjB ) {
+                bool ContainsA = ( A == ObjA ) || ( A == ObjB );
+                bool ContainsB = ( B == ObjA ) || ( B == ObjB );
+                return (ContainsA && ContainsB);
+            }else{
+                return false;
+            }
+        }
+
+        bool Collision::PairsMatch(CollidableProxy* A, CollidableProxy* B) const
+        {
+            bool ContainsA = ( A == this->GetProxyA() ) || ( A == this->GetProxyB() );
+            bool ContainsB = ( B == this->GetProxyA() ) || ( B == this->GetProxyB() );
             return (ContainsA && ContainsB);
         }
 
         void Collision::Update()
         {
-            InternalAlgo->getAllContactManifolds(InternalData->Manifolds);
-            Whole NumManifolds = InternalData->Manifolds.size();
-            if( PenetrationDistances.size() != NumManifolds )
+            this->InternalAlgo->getAllContactManifolds(this->InternalData->Manifolds);
+            Whole NumManifolds = this->InternalData->Manifolds.size();
+            if( this->PenetrationDistances.size() != NumManifolds )
             {
-                UpdatePenetrationDistances();
-                ObjectA->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
-                ObjectB->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
+                this->UpdatePenetrationDistances();
+
+                WorldObject* ObjectA = this->ProxyA->GetParentObject();
+                if( ObjectA ) {
+                    ObjectA->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
+                }
+
+                WorldObject* ObjectB = this->ProxyB->GetParentObject();
+                if( ObjectB ) {
+                    ObjectB->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
+                }
+
                 return;
             }
             for( Whole X = 0 ; X < NumManifolds ; ++X )
             {
-                if( PenetrationDistances[X] != GetDistance(X) )
+                if( this->PenetrationDistances[X] != this->GetDistance(X) )
                 {
-                    UpdatePenetrationDistances();
-                    ObjectA->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
-                    ObjectB->_NotifyCollisionState(this,Collision::Col_Contacts_Updated);
+                    this->UpdatePenetrationDistances();
+
+                    WorldObject* ObjectA = this->ProxyA->GetParentObject();
+                    if( ObjectA ) {
+                        ObjectA->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
+                    }
+
+                    WorldObject* ObjectB = this->ProxyB->GetParentObject();
+                    if( ObjectB ) {
+                        ObjectB->_NotifyCollisionState(this,Physics::Col_Contacts_Updated);
+                    }
+
                     return;
+                }
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Contact Query
+
+        Whole Collision::GetNumContactPoints()
+            { return (Whole)this->InternalData->Manifolds.size(); }
+
+        Vector3 Collision::GetWorldLocation(const Whole& Point)
+        {
+            btVector3 PointA = this->GetManifoldPoint(Point).m_localPointA;
+            btVector3 PointB = this->GetManifoldPoint(Point).m_localPointB;
+            return Vector3((PointA+PointB) /= 2);
+        }
+
+        Vector3 Collision::GetLocalALocation(const Whole& Point)
+            { return Vector3(this->GetManifoldPoint(Point).m_localPointA); }
+
+        Vector3 Collision::GetLocalBLocation(const Whole& Point)
+            { return Vector3(this->GetManifoldPoint(Point).m_localPointB); }
+
+        Vector3 Collision::GetNormal(const Whole& Point)
+            { return Vector3(this->GetManifoldPoint(Point).m_normalWorldOnB); }
+
+        Real Collision::GetAppliedImpulse(const Whole& Point)
+            { return this->GetManifoldPoint(Point).m_appliedImpulse; }
+
+        Real Collision::GetDistance(const Whole& Point)
+            { return this->GetManifoldPoint(Point).m_distance1; }
+
+        Whole Collision::GetAge(const Whole& Point)
+            { return (Whole)this->GetManifoldPoint(Point).m_lifeTime; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        void Collision::_SetProxyA(CollidableProxy* A)
+        {
+            if( this->ProxyA ) {
+                Entresol::GetSingletonPtr()->Log("Attepting to change Proxy pointer Member in Collision.  This is not permitted.");
+            }else{
+                this->ProxyA = A;
+                WorldObject* ObjectA = this->ProxyA->GetParentObject();
+                if( ObjectA ) {
+                    ObjectA->_NotifyCollisionState(this,Physics::Col_Begin);
+                }
+            }
+        }
+
+        void Collision::_SetProxyB(CollidableProxy* B)
+        {
+            if( this->ProxyB ) {
+                Entresol::GetSingletonPtr()->Log("Attepting to change Proxy pointer Member in Collision.  This is not permitted.");
+            }else{
+                this->ProxyB = B;
+                WorldObject* ObjectB = this->ProxyB->GetParentObject();
+                if( ObjectB ) {
+                    ObjectB->_NotifyCollisionState(this,Physics::Col_Begin);
                 }
             }
         }
     }//Physics
 }//Mezzanine
-
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-
-std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::Collision& Col)
-{
-    stream  << "<Collision Version=\"1" //Impulse=\"" << Ev.Impulse
-            << "\" ObjectA=\"" << Col.GetObjectA()->GetName()
-            << "\" ObjectB=\"" << Col.GetObjectB()->GetName()
-            << "\" >"
-            //<<  Ev.WorldLocation
-            << "</Collision>";
-    return stream;
-}
-
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Collision& Col)
-{
-    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
-    Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "Collision", OneTag) );
-
-    Doc->GetFirstChild() >> Col;
-
-    return stream;
-}
-
-/// @todo This whole thing needs to be updated, and have a serializer added.
-
-void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Collision& Col)
-{
-    if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("Collision"))
-    {
-        if(OneNode.GetAttribute("Version").AsInt() == 1)
-        {
-
-            //Col.SetObjectA(Mezzanine::ActorManager::GetSingletonPtr()->GetActor(OneNode.GetAttribute("ObjectA").AsString()));
-            //Col.SetObjectB(Mezzanine::ActorManager::GetSingletonPtr()->GetActor(OneNode.GetAttribute("ObjectB").AsString()));
-            //Col.Impulse=OneNode.GetAttribute("Impulse").AsReal();
-
-            //if(OneNode.GetFirstChild())
-            //{
-            //    OneNode.GetFirstChild() >> Col.WorldLocation;
-            //}else{
-            //    throw(Mezzanine::Exception("Normal not found while parsing Mezzanine::Collision"));
-            //}
-
-        }else{
-            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Collision: Not Version 1");
-        }
-    }else{
-        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a Collision, found a " + Mezzanine::String(OneNode.Name()));
-    }
-}
 
 #endif

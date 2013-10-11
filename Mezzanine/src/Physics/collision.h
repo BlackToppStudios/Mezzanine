@@ -54,16 +54,14 @@ class btManifoldPoint;
 namespace Mezzanine
 {
     class WorldObject;
-    class ActorBase;
     namespace Physics
     {
         class PhysicsManager;
         class CollisionDispatcher;
         class ParallelCollisionDispatcher;
         struct CollisionInternalData;
+        class CollidableProxy;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Collision
-        /// @headerfile collision.h
         /// @brief This is an event class used to track collsions in the physics world.
         /// @details This class will be used for tracking collisions in the physics world and will keep track of basic data related to the collision.
         /// This class stores the information in the form of contact points.  Often when a collision occurs there will be more then one place where
@@ -77,23 +75,30 @@ namespace Mezzanine
             friend class Mezzanine::Physics::CollisionDispatcher;
             friend class Mezzanine::Physics::ParallelCollisionDispatcher;
             friend class Mezzanine::Physics::PhysicsManager;
+
+            /// @internal
             /// @brief The internal collision class this event is based on.
             btCollisionAlgorithm* InternalAlgo;
+            /// @internal
             /// @brief Array of manifolds that apply to this collision.
             CollisionInternalData* InternalData;
-            /// @brief The first Object involved in the collision.
-            WorldObject* ObjectA;
-            /// @brief The second Object invovled in the collision.
-            WorldObject* ObjectB;
+            /// @internal
+            /// @brief The first CollidableProxy involved in the collision.
+            CollidableProxy* ProxyA;
+            /// @internal
+            /// @brief The second CollidableProxy invovled in the collision.
+            CollidableProxy* ProxyB;
+            /// @internal
             /// @brief This stores the distance of each contact point in this collision, for using to track updates.
             std::vector<Real> PenetrationDistances;
+
             /// @internal
             /// @brief Class Constructor.
             /// @details This will construct a basic event class with the minimum data needed.
-            /// @param A The first Object involved in the collision.
-            /// @param B The second Object invovled in the collision.
+            /// @param A The first CollidableProxy involved in the collision.
+            /// @param B The second CollidableProxy invovled in the collision.
             /// @param PhysicsAlgo The internal algorithm used for generating collision data.
-            Collision(WorldObject* A, WorldObject* B, btCollisionAlgorithm* PhysicsAlgo);
+            Collision(CollidableProxy* A, CollidableProxy* B, btCollisionAlgorithm* PhysicsAlgo);
             /// @internal
             /// @brief Internal function responsible for fetching the appropriate contact point.
             btManifoldPoint& GetManifoldPoint(const Whole& Index);
@@ -110,24 +115,37 @@ namespace Mezzanine
             /// @details Basic Class Destructor.
             virtual ~Collision();
 
-            /// @brief Sets the first Object this collision applies to.
-            /// @warning Collision events can't/shouldn't have the bodies they apply to changed.  This function
-            /// exists mostly just for the blank constructor when you need to set them afterward.  If you attempt
-            /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
-            /// @param A The first Object in this event.
-            virtual void SetObjectA(WorldObject* A);
-            /// @brief Gets the first Object this collision applies to.
-            /// @return Returns a pointer to the first Object in this event.
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Gets the first CollidableProxy this collision applies to.
+            /// @return Returns a pointer to the first CollidableProxy in this event.
+            virtual CollidableProxy* GetProxyA() const;
+            /// @brief Gets the second CollidableProxy this collision applies to.
+            /// @return Returns a pointer to the second CollidableProxy in this event.
+            virtual CollidableProxy* GetProxyB() const;
+            /// @brief Gets the parent Object of CollidableProxy A.
+            /// @return Returns a pointer to the parent WorldObject of CollidableProxyA.
             virtual WorldObject* GetObjectA() const;
-            /// @brief Sets the second Object this collision applies to.
-            /// @warning Collision events can't/shouldn't have the bodies they apply to changed.  This function
-            /// exists mostly just for the blank constructor when you need to set them afterward.  If you attempt
-            /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
-            /// @param B The second Object in this event.
-            virtual void SetObjectB(WorldObject* B);
-            /// @brief Gets the second Object this collision applies to.
-            /// @return Returns a pointer to the second Object in this event.
+            /// @brief Gets the parent Object of CollidableProxy B.
+            /// @return Returns a pointer to the parent WorldObject of CollidableProxyB.
             virtual WorldObject* GetObjectB() const;
+
+            /// @brief Convenience function to see if the provided WorldObject pair match the pair in this class.
+            /// @param A The first WorldObject to be compared.  Will be checked against both objects in this collision.
+            /// @param B The second WorldObject to be compared.  Will be checked against both objects in this collision.
+            /// @return Returns a bool, true if the pairs match, false otherwise.
+            virtual bool PairsMatch(WorldObject* A, WorldObject* B) const;
+            /// @brief Convenience function to see if the provided CollidableProxy pair match the pair in this class.
+            /// @param A The first CollidableProxy to be compared.  Will be checked against both objects in this collision.
+            /// @param B The second CollidableProxy to be compared.  Will be checked against both objects in this collision.
+            /// @return Returns a bool, true if the pairs match, false otherwise.
+            virtual bool PairsMatch(CollidableProxy* A, CollidableProxy* B) const;
+            /// @brief Updates this collisions contact point data if it needs updating.
+            virtual void Update();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Contact Query
 
             /// @brief Gets the number of contact points this collision is storing.
             /// @return Returns the number of contact points that currently exist for this collision.
@@ -163,38 +181,23 @@ namespace Mezzanine
             /// @return Returns a Whole representing the amount of simulation steps a point has existed.
             virtual Whole GetAge(const Whole& Point);
 
-            /// @brief Convenience function to see if the provided pair match the pair in this class.
-            /// @param A The first object to be compared.  Will be checked against both objects in this collision.
-            /// @param B The second object to be compared.  Will be checked against both objects in this collision.
-            /// @return Returns a bool, true if the pairs match, false otherwise.
-            virtual bool PairsMatch(WorldObject* A, WorldObject* B) const;
-            /// @brief Updates this collisions contact point data if it needs updating.
-            virtual void Update();
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @brief Sets the first Collidable this collision applies to.
+            /// @warning Collision events can't/shouldn't have the bodies they apply to changed.  This function
+            /// exists mostly just for the blank constructor when you need to set them afterward.  If you attempt
+            /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
+            /// @param A The first Object in this event.
+            virtual void _SetProxyA(CollidableProxy* A);
+            /// @brief Sets the second Collidable this collision applies to.
+            /// @warning Collision events can't/shouldn't have the bodies they apply to changed.  This function
+            /// exists mostly just for the blank constructor when you need to set them afterward.  If you attempt
+            /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
+            /// @param B The second Object in this event.
+            virtual void _SetProxyB(CollidableProxy* B);
         };//Collision
     }//Physics
 }//Mezzanine
-
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-
-/// @brief Serializes the passed Mezzanine::Physics::Collision to XML
-/// @param stream The ostream to send the xml to.
-/// @param Col the Mezzanine::Physics::Collision to be serialized
-/// @return this returns the ostream, now with the serialized data
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::Collision& Col);
-
-/// @brief Deserialize a Mezzanine::Physics::Collision
-/// @param stream The istream to get the xml from to (re)make the Mezzanine::Physics::Collision.
-/// @param Col the Mezzanine::Physics::Collision to be deserialized.
-/// @return this returns the ostream, advanced past the Mezzanine::Collision that was recreated onto Ev.
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Collision& Col);
-
-/// @brief Set all values of a Mezzanine::Physics::Collision from parsed xml.
-/// @param OneNode The istream to get the xml from to (re)make the Mezzanine::Physics::Collision.
-/// @param Col the Mezzanine::Physics::Collision to be reset.
-/// @return This returns the XML::Node that was passed in.
-void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Collision& Col);
-
-
 
 #endif

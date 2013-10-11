@@ -64,7 +64,7 @@ typedef float btScalar;
 #include "worldmanager.h"
 #include "managerfactory.h"
 #include "singleton.h"
-#include "objectpair.h"
+#include "Physics/collidablepair.h"
 #include "Physics/constraint.h"
 #include "Physics/managerconstructioninfo.h"
 #include "Threading/workunit.h"
@@ -74,8 +74,6 @@ namespace Mezzanine
 {
     // internal forward declarations
     class Entresol;
-    class ActorBase;
-    class AreaEffect;
     class WorldTrigger;
     namespace debug {
         class InternalDebugDrawer;
@@ -257,11 +255,13 @@ namespace Mezzanine
             /// @brief Const Iterator type for @ref WorldTrigger instances stored by this class.
             typedef WorldTriggerContainer::const_iterator       ConstWorldTriggerIterator;
             /// @brief Basic container type for @ref Collision storage by this class.
-            typedef std::map< ObjectPair, Collision* >          CollisionContainer;
+            typedef std::map< CollidablePair, Collision* >      CollisionContainer;
             /// @brief Iterator type for @ref Collision instances stored by this class.
             typedef CollisionContainer::iterator                CollisionIterator;
             /// @brief Const Iterator type for @ref Collision instances stored by this class.
             typedef CollisionContainer::const_iterator          ConstCollisionIterator;
+            /// @brief A std::pair to assist with collision sorting operations.
+            typedef std::pair< CollidablePair, Collision* >     CollisionSortPair;
         protected:
             friend class CollisionDispatcher;
             friend class ParallelCollisionDispatcher;
@@ -371,11 +371,6 @@ namespace Mezzanine
             /// @details Gets the currently set soft body world gravity.
             /// @return Returns the currently set soft body world gravity.
             Vector3 GetSoftGravity();
-            /// @brief Sets the gravity to be applied to a single object.
-            /// @details This function does not change the global gravity, only how gravity behaves for this specific object.  Note: This function only works on ActorRigid's.
-            /// @param Actor The actor whos gravity is to be changed.
-            /// @param igrav The value of the gravity to be applied.
-            void SetIndividualGravity(ActorBase* Actor, const Vector3& igrav);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Creating Proxies
@@ -471,10 +466,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Management
 
-            /// @brief Gets a Collision by object pair.
-            /// @param Pair A pair of objects.
+            /// @brief Gets a Collision by collidable pair.
+            /// @param Pair A pair of CollidableProxies.
             /// @return Returns a pointer to the Collision if a collision for the provided pair exists, NULL otherwise.
-            Physics::Collision* GetCollision(ObjectPair* Pair);
+            Physics::Collision* GetCollision(CollidablePair* Pair);
             /// @brief Gets the number of Collisions currently in the world.
             /// @return Returns a whole representing the number of Collisions in the world.
             Whole GetNumCollisions();
@@ -484,9 +479,9 @@ namespace Mezzanine
             /// In such cases you have to clean up traces of the collision.
             /// @param Col The collision to be removed.
             void RemoveCollision(Physics::Collision* Col);
-            /// @brief Removes all stored collisions that involve the specified Object.
-            /// @param Object The Object which will have all of it's collisions removed.
-            void RemoveCollisionsContainingObject(WorldObject* Object);
+            /// @brief Removes all stored collisions that involve the specified CollidableProxy.
+            /// @param Proxy The Proxy which will have all of it's collisions removed.
+            void RemoveCollisionsContainingProxy(CollidableProxy* Proxy);
             /// @brief Destroys all collisions currently being stored and processed in the manager.
             void DestroyAllCollisions();
 

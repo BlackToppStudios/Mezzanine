@@ -37,55 +37,55 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _objectpair_cpp
-#define _objectpair_cpp
+#ifndef _collidablepair_cpp
+#define _collidablepair_cpp
 
-#include "objectpair.h"
-#include "worldobject.h"
+#include "collidablepair.h"
+#include "collidableproxy.h"
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    // ObjectPair
-    ObjectPair::ObjectPair(WorldObject* A, WorldObject* B)
-        : ObjectA(A), ObjectB(B)
+    namespace Physics
     {
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
 
-    ObjectPair::~ObjectPair()
-    {
-    }
+        CollidablePair::CollidablePair(CollidableProxy* A, CollidableProxy* B) :
+            ProxyA(A), ProxyB(B)
+            {  }
 
-    String ObjectPair::GetCombinedName() const
-    {
-        return String(ObjectA->GetName()+ObjectB->GetName());
-    }
+        CollidablePair::~CollidablePair()
+            {  }
 
-    bool ObjectPair::PairsMatch(const ObjectPair& Pair) const
-    {
-        bool ContainsA = ( this->ObjectA == Pair.ObjectA ) || ( this->ObjectA == Pair.ObjectB );
-        bool ContainsB = ( this->ObjectB == Pair.ObjectA ) || ( this->ObjectB == Pair.ObjectB );
-        return (ContainsA && ContainsB);
-    }
+        UInt64 CollidablePair::GetPairID() const
+        {
+            UInt64 AID = static_cast<UInt64>( this->ProxyA->_GetBroadphaseUniqueID() );
+            UInt64 BID = static_cast<UInt64>( this->ProxyB->_GetBroadphaseUniqueID() );
+            return UInt64( ( AID << 32 ) | ( BID ) );
+        }
 
-    bool ObjectPair::operator==(const ObjectPair& Pair) const
-    {
-        return PairsMatch(Pair);
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-    bool ObjectPair::operator<(const ObjectPair& Pair) const
-    {
-        String PairAName = this->GetCombinedName();
-        String PairBName = Pair.GetCombinedName();
-        return PairAName.compare(PairBName) < 0;
-    }
+        bool CollidablePair::PairsMatch(const CollidablePair& Pair) const
+        {
+            bool ContainsA = ( this->ProxyA == Pair.ProxyA ) || ( this->ProxyA == Pair.ProxyB );
+            bool ContainsB = ( this->ProxyB == Pair.ProxyA ) || ( this->ProxyB == Pair.ProxyB );
+            return (ContainsA && ContainsB);
+        }
 
-    bool ObjectPair::operator>(const ObjectPair& Pair) const
-    {
-        String PairAName = this->GetCombinedName();
-        String PairBName = Pair.GetCombinedName();
-        return PairAName.compare(PairBName) > 0;
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        bool CollidablePair::operator==(const CollidablePair& Pair) const
+            { return this->PairsMatch(Pair); }
+
+        bool CollidablePair::operator<(const CollidablePair& Pair) const
+            { return this->GetPairID() < Pair.GetPairID(); }
+
+        bool CollidablePair::operator>(const CollidablePair& Pair) const
+            { return this->GetPairID() > Pair.GetPairID(); }
+    }//Physics
 }//Mezzanine
 
 #endif
