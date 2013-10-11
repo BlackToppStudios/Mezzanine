@@ -399,7 +399,7 @@ namespace Mezzanine
             #endif
 
             // This function assumes that the cursor in the Ogre stream is the equal to egptr()
-            Whole WhereIsBufferEnd = this->OgreStream->tell();
+            //Whole WhereIsBufferEnd = this->OgreStream->tell();
             Whole BufferEnd = this->OgreStream->tell();
             Whole BufferStart = BufferEnd - BufferSize;
             #ifdef MEZZDEBUG

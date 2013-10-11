@@ -222,6 +222,7 @@ namespace Mezzanine
                     return ( ov_raw_seek( &(this->VDID->VorbisFile), Position ) == 0 );
                 }
             }
+            return false;
         }
 
         bool VorbisDecoder::Seek(const Real Seconds, bool Relative)
