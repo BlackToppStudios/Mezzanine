@@ -40,348 +40,235 @@
 #ifndef _areaeffect_h
 #define _areaeffect_h
 
-#include "colourvalue.h"
-#include "datatypes.h"
 #include "worldobject.h"
-
-class btCollisionShape;
-class btPairCachingGhostObject;
-
-namespace Ogre
-{
-    class SceneNode;
-    class Entity;
-    class MaterialPtr;
-}
+#include "colourvalue.h"
 
 namespace Mezzanine
 {
-    class ActorBase;
-    class Entresol;
-    class CollisionShape;
-    class Mesh;
+    namespace Physics
+    {
+        class GhostProxy;
+    }
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class AreaEffect
-    /// @headerfile areaeffect.h
     /// @brief This class is used to define area's in the world that have unique effects.
     /// @details Common uses for this class are for gravity fields, and explosions.  But can be made to do more. @n
     /// Note: This is a base class intended to be derived from.  This class cannot be created itself.  To make an
     /// AreaEffect class that does what you want it to, simple inherit from this class with an AE class of your own,
     /// and define the ApplyEffect() function to do what you want your effect to do.
     ///////////////////////////////////////
-    class MEZZ_LIB AreaEffect : public NonStaticWorldObject, public AttachableChild
+    class MEZZ_LIB AreaEffect : public WorldObject
     {
-        public:
-            using WorldObject::SetLocation;
-            using NonStaticWorldObject::SetOrientation;
-        protected:
-            /// @brief The object representing the AE field itself.
-            btPairCachingGhostObject* Ghost;
-            /// @brief Container for actors within the field area.
-            std::list < ActorBase* > OverlappingActors;
-            /// @brief Container of actors that have been added since last frame.
-            std::vector < ActorBase* > AddedActors;
-            /// @brief Container of actors that have been removed since last frame.
-            std::vector < ActorBase* > RemovedActors;
-            /// @brief Constructor Function.
-            /// @param Location The location of the AE field.
-            virtual void CreateGhostObject(const Vector3& Location);
-            /// @brief Helper function for adding actors to relevant lists.
-            virtual void AddActorToList(ActorBase* Actor);
-            /// @brief Helper function for adding actors to relevant lists.
-            virtual void RemoveActorFromList(ActorBase* Actor);
-        public:
-            /// @brief Constructor.
-            /// @details Basic initialization constructor.
-            /// @param name The name of the field.
-            /// @param Location The location of the AE field.
-            AreaEffect(const String &name, const Vector3& Location);
-            /// @brief Destructor.
-            /// @details Class destructor.
-            virtual ~AreaEffect();
-            /// @brief Defines and applies the effect of the field.
-            /// @details When inheriting this class, this function is what defines the effect the field has. @n
-            /// This function will be called on by the physics manager and shouldn't be called manually.
-            virtual void ApplyEffect() = 0;
-            /// @brief Gets the number of actors currently overlapping with this AE.
-            /// @return Returns the number of actors inside this AE.
-            Whole GetNumOverlappingActors();
-            /// @brief Gets the number of actors added to this AE since the last update.
-            /// @note Updates are usually once per frame, but can be manipulated to be more or less frequent.
-            /// @return Returns the number of new actors overlapping with this AE.
-            Whole GetNumAddedActors();
-            /// @brief Gets the number of actors removed from this AE since the last update.
-            /// @note Updates are usually once per frame, but can be manipulated to be more or less frequent.
-            /// @return Returns the number of actors that were found to no longer be overlapping during the last update.
-            Whole GetNumRemovedActors();
-            /// @brief Gets the list of actors within this field.
-            /// @return Returns the list of actors contained within this field.
-            std::list<ActorBase*>& GetOverlappingActors();
-            /// @brief Gets the list of actors that have been added to the list since the last simulation step.
-            /// @return Returns the vector storing all the actors that have been added to the list since the last simulation step.
-            std::vector<ActorBase*>& GetAddedActors();
-            /// @brief Gets the list of actors that have been removed from the list since the last simulation step.
-            /// @return Returns the vector storing all the actors that have been removed from the list since the last simulation step.
-            std::vector<ActorBase*>& GetRemovedActors();
+    public:
+        /// @brief Basic container type for Object storage by this class.
+        typedef std::vector< WorldObject* >         ObjectContainer;
+        /// @brief Iterator type for Object instances stored by this class.
+        typedef ObjectContainer::iterator           ObjectIterator;
+        /// @brief Const Iterator type for Object instances stored by this class.
+        typedef ObjectContainer::const_iterator     ConstObjectIterator;
+    protected:
+        /// @internal
+        /// @brief Container for actors within the field area.
+        ObjectContainer OverlappingObjects;
+        /// @internal
+        /// @brief Container of actors that have been added since last frame.
+        ObjectContainer AddedObjects;
+        /// @internal
+        /// @brief Container of actors that have been removed since last frame.
+        ObjectContainer RemovedObjects;
+        /// @internal
+        /// @brief A pointer to the ghost powering this AE field.
+        Physics::GhostProxy* Ghost;
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Attachable classes
+        /// @internal
+        /// @brief Common constructor method for AreaEffect base class.
+        virtual void CreateAreaEffect();
+        /// @internal
+        /// @brief Common destructor method for AreaEffect base class.
+        virtual void DestroyAreaEffect();
+    public:
+        /// @brief Blank constructor.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        AreaEffect(World* TheWorld);
+        /// @brief Class constructor.
+        /// @param Name The name to be given to this object.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        AreaEffect(const String& Name, World* TheWorld);
+        /// @brief Class destructor.
+        virtual ~AreaEffect();
 
-            /// @copydoc WorldObject::GetName()
-            ConstString& GetName() const;
-            /// @copydoc WorldObject::SetLocation(Vector3&)
-            void SetLocation(const Vector3& Location);
-            /// @copydoc WorldObject::GetLocation()
-            Vector3 GetLocation() const;
-            /// @copydoc NonStaticWorldObject::SetOrientation(Quaternion&)
-            void SetOrientation(const Quaternion& Rotation);
-            /// @copydoc NonStaticWorldObject::GetOrientation()
-            Quaternion GetOrientation() const;
-            /// @copydoc WorldObject::SetScaling(Vector3&)
-            void SetScaling(const Vector3& Scale);
-            /// @copydoc WorldObject::GetScaling()
-            Vector3 GetScaling() const;
-            /// @copydoc AttachableChild::SetLocalLocation(Vector3&)
-            void SetLocalLocation(const Vector3& Location);
-            /// @copydoc AttachableChild::SetLocalOrientation(Quaternion&)
-            void SetLocalOrientation(const Quaternion& Orientation);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from WorldObject
+        /// @copydoc Mezzanine::WorldObject::GetType() const
+        virtual WorldObjectType GetType() const;
 
-            /// @copydoc Mezzanine::WorldObject::GetType()
-            virtual WorldAndSceneObjectType GetType() const;
-            /// @copydoc Mezzanine::WorldObject::AddToWorld()
-            virtual void AddToWorld();
-            /// @copydoc Mezzanine::WorldObject::RemoveFromWorld()
-            virtual void RemoveFromWorld();
-            /// @copydoc Mezzanine::WorldObject::_Update()
-            virtual void _Update();
+        /// @brief Defines and applies the effect of the field.
+        /// @details When inheriting this class, this function is what defines the effect the field has. @n
+        /// This function will be called on by the physics manager and shouldn't be called manually.
+        virtual void ApplyEffect() = 0;
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Internal Methods
+        /// @copydoc Mezzanine::WorldObject::IsInWorld() const
+        virtual Bool IsInWorld() const;
 
-            /// @internal
-            /// @brief Gets the internal object this AreaEffect is based on.
-            /// @return Returns a pointer to the internal Ghost object representing this AreaEffect.
-            btPairCachingGhostObject* _GetBulletObject() const;
+        /// @copydoc Mezzanine::WorldObject::IsStatic() const
+        virtual Bool IsStatic() const;
+        /// @copydoc Mezzanine::WorldObject::IsKinematic() const
+        virtual Bool IsKinematic() const;
 
-        protected:
-            /// @internal
-            /// @brief a Helper function that assembles strings and throws an exception
-            /// @param Fail The item that failed.
-            virtual void ThrowSerialError(const String& Fail) const;
+        /// @copydoc Mezzanine::WorldObject::GetProxies(ProxyContainer&)
+        virtual void GetProxies(ProxyContainer& Proxies);
+        /// @copydoc Mezzanine::WorldObject::GetProxies(const UInt32, ProxyContainer&)
+        virtual void GetProxies(const UInt32 Types, ProxyContainer& Proxies);
 
-            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings.
-            /// @return A string containing name of the serialized graphics settings.
-            virtual String GraphicsSettingsSerializableName() const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Working with the World
 
-            /// @brief Get the name of the the XML tag that implementations of this class will use to save the serialized s settings.
-            /// @return A string containing name of the serialized graphics settings.
-            virtual String PhysicsSettingsSerializableName() const;
+        /// @copydoc Mezzanine::WorldObject::AddToWorld()
+        virtual void AddToWorld();
+        /// @copydoc Mezzanine::WorldObject::RemoveFromWorld()
+        virtual void RemoveFromWorld();
 
-            // Serializable
-            /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Overlapping Object Management
 
-            // DeSerializable
-            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and XML::Node containing the data.
-            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const XML::Node& OneNode);
+        /// @brief Gets the number of objects currently overlapping with this AE.
+        /// @return Returns the number of objects inside this AE.
+        UInt32 GetNumOverlappingObjects() const;
+        /// @brief Gets the number of objects added to this AE since the last update.
+        /// @note Updates are usually once per frame, but can be manipulated to be more or less frequent.
+        /// @return Returns the number of new objects overlapping with this AE.
+        UInt32 GetNumAddedObjects() const;
+        /// @brief Gets the number of objects removed from this AE since the last update.
+        /// @note Updates are usually once per frame, but can be manipulated to be more or less frequent.
+        /// @return Returns the number of objects that were found to no longer be overlapping during the last update.
+        UInt32 GetNumRemovedObjects() const;
+        /// @brief Gets the list of objects within this field.
+        /// @return Returns the list of objects contained within this field.
+        ObjectContainer& GetOverlappingObjects();
+        /// @brief Gets the list of objects that have been added to the list since the last simulation step.
+        /// @return Returns the vector storing all the objects that have been added to the list since the last simulation step.
+        ObjectContainer& GetAddedObjects();
+        /// @brief Gets the list of objects that have been removed from the list since the last simulation step.
+        /// @return Returns the vector storing all the objects that have been removed from the list since the last simulation step.
+        ObjectContainer& GetRemovedObjects();
 
-        public:
-            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "Point2PointConstraint"
-            static String SerializableName();
-    };//areaeffect
+        ///////////////////////////////////////////////////////////////////////////////
+        // AreaEffect Properties
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Transform Methods
+
+        /// @copydoc TransformableObject::SetLocation(const Vector3&)
+        virtual void SetLocation(const Vector3& Loc);
+        /// @copydoc TransformableObject::SetLocation(const Real, const Real, const Real)
+        virtual void SetLocation(const Real X, const Real Y, const Real Z);
+        /// @copydoc TransformableObject::GetLocation() const
+        virtual Vector3 GetLocation() const;
+        /// @copydoc TransformableObject::SetOrientation(const Quaternion&)
+        virtual void SetOrientation(const Quaternion& Ori);
+        /// @copydoc TransformableObject::SetOrientation(const Real, const Real, const Real, const Real)
+        virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
+        /// @copydoc TransformableObject::GetOrientation() const
+        virtual Quaternion GetOrientation() const;
+        /// @copydoc TransformableObject::SetScale(const Vector3&)
+        virtual void SetScale(const Vector3& Sc);
+        /// @copydoc TransformableObject::SetScale(const Real, const Real, const Real)
+        virtual void SetScale(const Real X, const Real Y, const Real Z);
+        /// @copydoc TransformableObject::GetScale() const
+        virtual Vector3 GetScale() const;
+
+        /// @copydoc TransformableObject::Translate(const Vector3&)
+        virtual void Translate(const Vector3& Trans);
+        /// @copydoc TransformableObject::Translate(const Real, const Real, const Real)
+        virtual void Translate(const Real X, const Real Y, const Real Z);
+        /// @copydoc TransformableObject::Yaw(const Real)
+        virtual void Yaw(const Real Angle);
+        /// @copydoc TransformableObject::Pitch(const Real)
+        virtual void Pitch(const Real Angle);
+        /// @copydoc TransformableObject::Roll(const Real)
+        virtual void Roll(const Real Angle);
+        /// @copydoc TransformableObject::Rotate(const Vector3&, const Real)
+        virtual void Rotate(const Vector3& Axis, const Real Angle);
+        /// @copydoc TransformableObject::Rotate(const Quaternion&)
+        virtual void Rotate(const Quaternion& Rotation);
+        /// @copydoc TransformableObject::Scale(const Vector3&)
+        virtual void Scale(const Vector3& Scale);
+        /// @copydoc TransformableObject::Scale(const Real, const Real, const Real)
+        virtual void Scale(const Real X, const Real Y, const Real Z);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+        /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+        /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
+        virtual String GetDerivedSerializableName() const;
+        /// @copydoc Mezzanine::WorldObject::GetSerializableName()
+        static String GetSerializableName();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        /// @copydoc Mezzanine::WorldObject::_Update()
+        virtual void _Update();
+        /// @copydoc Mezzanine::WorldObject::_NotifyProxyDestroyed(WorldProxy*)
+        virtual void _NotifyProxyDestroyed(WorldProxy* ToBeDestroyed);
+    };//AreaEffect
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class TestAE
-    /// @headerfile areaeffect.h
+    /// @brief A base factory type for the creation of AreaEffect objects.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB AreaEffectFactory
+    {
+    public:
+        /// @brief Class constructor.
+        AreaEffectFactory() {  };
+        /// @brief Class destructor.
+        virtual ~AreaEffectFactory() {  };
+
+        /// @brief Gets the name of the AreaEffect that is created by this factory.
+        /// @return Returns the typename of the AreaEffect created by this factory.
+        virtual String GetTypeName() const = 0;
+
+        /// @brief Creates a AreaEffect of the type represented by this factory.
+        /// @param Name The name to be given to this object.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param Params A NameValuePairList containing the params to be applied during construction.
+        /// @return Returns a pointer to the AreaEffect created.
+        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, NameValuePairList& Params) = 0;
+        /// @brief Creates a AreaEffect from XML.
+        /// @param XMLNode The node of the xml document to construct from.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @return Returns a pointer to the AreaEffect created.
+        virtual AreaEffect* CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld) = 0;
+        /// @brief Destroys a AreaEffect created by this factory.
+        /// @param ToBeDestroyed A pointer to the AreaEffect to be destroyed.
+        virtual void DestroyAreaEffect(AreaEffect* ToBeDestroyed) = 0;
+    };//DebrisFactory
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a dummy class to test if the AE field works.  Details will be output to the log.
     ///////////////////////////////////////
     class MEZZ_LIB TestAE : public AreaEffect
     {
-        public:
-            /// @brief Constructor.
-            /// @details Basic initialization constructor.
-            /// @param name The name of the field.
-            /// @param Location The location of the AE field.
-            TestAE(const String& name, const Vector3& Location);
-            /// @brief Destructor.
-            /// @details Class destructor.
-            virtual ~TestAE();
-            /// @brief Applies the effect this field has to object inside.
-            /// @details This function defines the behavior for the class.
-            virtual void ApplyEffect();
+    public:
+        /// @brief Blank constructor.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        TestAE(World* TheWorld);
+        /// @brief Class constructor.
+        /// @param Name The name to be given to this object.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        TestAE(const String& Name, World* TheWorld);
+        /// @brief Class destructor.
+        virtual ~TestAE();
+
+        /// @brief Applies the effect this field has to object inside.
+        virtual void ApplyEffect();
     };//testAE
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class GravityField
-    /// @headerfile areaeffect.h
-    /// @brief This is a gravity field implementation of the AreaEffect class.
-    /// @details This class is not a gravity well, where gravity is pulling to one point.  Instead this class uniformly
-    /// pulls gravity in one direction that is different from the world gravity.
-    ///////////////////////////////////////
-    class MEZZ_LIB GravityField : public AreaEffect
-    {
-        protected:
-            /// @brief The stored value for this fields gravity.
-            Vector3 Grav;
-        public:
-            /// @brief Constructor.
-            /// @details Basic initialization constructor.
-            /// @param name The name of the field.
-            /// @param Location The location of the AE field.
-            GravityField(const String &name, const Vector3& Location);
-            /// @brief Destructor.
-            /// @details Class destructor.
-            virtual ~GravityField();
-            /// @brief Applies the effect this field has to object inside.
-            /// @details This function defines the behavior for the class.
-            virtual void ApplyEffect();
-            /// @brief Sets the gravity force for this field.
-            /// @details Sets the strength and direction of gravity this field will have.
-            /// @param Gravity The vector3 representing the force and direction of gravity this field will have.
-            virtual void SetFieldGravity(const Vector3& Gravity);
-            /// @brief Gets the gravity of this field.
-            /// @details Gets the strength and direction of gravity this field has.
-            /// @return Returns a vector3 representing the force and direction of gravity this field has.
-            virtual Vector3 GetFieldGravity() const;
-            /// @copydoc Mezzanine::WorldObject::GetType()
-            virtual WorldAndSceneObjectType GetType() const;
-    };//GravityField
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class GravityWell
-    /// @headerfile areaeffect.h
-    /// @brief This is a gravity well implementation of the AreaEffect class.
-    /// @details This class is not a gravity field, where gravity only pulls in one direction.  Instead this class will always
-    /// pull objects inside it towards the field center.  @n
-    /// This class works best with sphere's, but can be made to work with any shape.
-    ///////////////////////////////////////
-    class MEZZ_LIB GravityWell : public AreaEffect
-    {
-        protected:
-            /// @brief The amount of force exerted on other objects
-            Real Strength;
-            /// @brief Should world gravity ne ignored
-            bool AllowWorldGrav;
-            /// @brief How does gravity
-            Mezzanine::AttenuationStyle AttenStyle;
-            /// @brief how much does the Gravity attenuate.
-            Real AttenAmount;
-        public:
-            /// @brief Constructor.
-            /// @details Basic initialization constructor.
-            /// @param name The name of the field.
-            /// @param Location The location of the AE field.
-            GravityWell(const String &name, const Vector3& Location);
-            /// @brief Destructor.
-            /// @details Class destructor.
-            virtual ~GravityWell();
-            /// @brief Applies the effect this field has to object inside.
-            /// @details This function defines the behavior for the class.
-            virtual void ApplyEffect();
-            /// @brief Sets the strenth of the field.
-            /// @details The direction of the field is based on the current position of the object in the field.
-            /// Once that direction is calculated it will be multiplied by this value to determine the force the field will apply to the object.
-            /// @param FieldStrength The strength the field will have when exerting force onto other objects.
-            virtual void SetFieldStrength(const Real& FieldStrength);
-            /// @brief Gets the strength of the field.
-            /// @return Returns a Real representing the value that is being multiplied by the direction to determine force appied to objects.
-            virtual Real GetFieldStrength() const;
-            /// @brief Sets whether or not world gravity should be removed for objects in this field.
-            /// @remarks Changing this value while the field is in the world and active is not recommended.
-            /// @param WorldGravity If true, then forces exerted by this field will be added to the world gravity, otherwise
-            /// world gravity for objects inside will be set to zero.
-            virtual void SetAllowWorldGravity(bool WorldGravity);
-            /// @brief Gets whether or not world gravity is is removed for objects inside this field.
-            /// @return Returns a bool indicating whether objects inside are affected by world gravity.
-            virtual bool GetAllowWorldGravity() const;
-            /// @brief Sets the attenuation for this field.
-            /// @param Amount The amount of force that is dropped off per 1 unit of distance objects are from the AE center.
-            /// @param Style The style of attenuation to apply, see the AttenuationStyle enum for more details.
-            virtual void SetAttenuation(const Real& Amount, const Mezzanine::AttenuationStyle& Style);
-            /// @brief Gets the Style of attenuation applied.
-            /// @details See the AttenuationStyle enum for more details.
-            /// @return Returns the style of attenuation currently being used by this field.
-            virtual Mezzanine::AttenuationStyle GetAttenuationStyle() const;
-            /// @brief Gets the amount force is attenuated over distance.
-            /// @details See SetAttenuation() for more details.
-            /// @return Returns a Real value
-            virtual Real GetAttenuationAmount() const;
-            /// @copydoc Mezzanine::WorldObject::GetType()
-            virtual WorldAndSceneObjectType GetType() const;
-    };//GravityWell
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class FieldOfForce
-    /// @headerfile areaeffect.h
-    /// @brief This is field that applies force in a direction, and doesn't tamper with gravity.
-    /// @details This class is similiar to a gravity well in that it can attenuate, but different in
-    /// that the direction is constant, the source of force(for calculating attenuation) can be outside the
-    /// field itself, and the direction is constant.  @n
-    /// Placing the source of attenuation inside the field will cause the object to accelerate as it gets close
-    /// to the source, and then will be applied less force(but in the same direction) as it moves from the source.
-    /// This behavior makes this class good for creating a booster-like AE.
-    ///////////////////////////////////////
-    class MEZZ_LIB FieldOfForce : public AreaEffect
-    {
-        protected:
-            /// @brief The amount of force exerted on other objects
-            Real Strength;
-            /// @brief The direction the force is applied.
-            Vector3 Direction;
-            /// @brief How gravity weakens over distance, if at all.
-            Mezzanine::AttenuationStyle AttenStyle;
-            /// @brief How much the Gravity weakens over distance.
-            Real AttenAmount;
-            /// @brief The user defined source if enabled.
-            Vector3 AttenSource;
-        public:
-            /// @brief Class Constructor.
-            /// @param name The name of the field.
-            /// @param Location The location of the AE field.
-            FieldOfForce(const String &name, const Vector3& Location);
-            /// @brief Class Destructor
-            virtual ~FieldOfForce();
-            /// @brief Applies the effect this field has to object inside.
-            /// @details This function defines the behavior for the class.
-            virtual void ApplyEffect();
-            /// @brief Sets the strenth of the field.
-            /// @param FieldStrength The strength the field will have when exerting force onto other objects.
-            virtual void SetFieldStrength(const Real& FieldStrength);
-            /// @brief Gets the strength of the field.
-            /// @return Returns a Real representing the value that is being multiplied by the direction to determine force appied to objects.
-            virtual Real GetFieldStrength() const;
-            /// @brief Sets the direction force is to be applied within this field.
-            /// @param ForceDirection A vector3 representing the direction force is to be applied.
-            virtual void SetDirectionOfForce(const Vector3& ForceDirection);
-            /// @brief Gets the currenly set direction force is to be applied.
-            /// @return Returns a vector3 representing the direction of force in this field.
-            virtual Vector3 GetDirectionOfForce();
-            /// @brief Sets the attenuation for this field.
-            /// @param Amount The amount of force that is dropped off per 1 unit of distance objects are from the AE source.
-            /// @param Style The style of attenuation to apply, see the AttenuationStyle enum for more details.
-            /// @param Source A vector3 representing the source of force to use when calculating attenuation.
-            virtual void SetAttenuation(const Real& Amount, const Mezzanine::AttenuationStyle& Style, const Vector3& Source);
-            /// @brief Gets the Style of attenuation applied.
-            /// @details See the AttenuationStyle enum for more details.
-            /// @return Returns the style of attenuation currently being used by this field.
-            virtual Mezzanine::AttenuationStyle GetAttenuationStyle() const;
-            /// @brief Gets the amount force is attenuated over distance.
-            /// @details See SetAttenuation() for more details.
-            /// @return Returns a Real value
-            virtual Real GetAttenuationAmount() const;
-            /// @brief Gets the source of the force for calculating attenuation.
-            /// @return Returns a Vector3 representing the source of the attenuating force.
-            virtual Vector3 GetAttenuationSource() const;
-            /// @copydoc Mezzanine::WorldObject::GetType()
-            virtual WorldAndSceneObjectType GetType() const;
-    };//feildofforce
 }//Mezzanine
 
 #endif

@@ -41,19 +41,21 @@
 #define _areaeffect_cpp
 
 #include "areaeffect.h"
-#include "actorrigid.h"
+
 #include "Physics/physicsmanager.h"
 #include "Physics/collisionshape.h"
 #include "Physics/collisionshapemanager.h"
+#include "Physics/ghostproxy.h"
+
 #include "Graphics/mesh.h"
 #include "Graphics/meshmanager.h"
 #include "Graphics/scenemanager.h"
-#include "Internal/meshtools.h.cpp"
+
+#include "serialization.h"
+#include "exception.h"
 #include "entresol.h"
 
-#include <BulletCollision/CollisionDispatch/btGhostObject.h>
-#include <BulletCollision/Gimpact/btGImpactShape.h>
-#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
+#include <algorithm>
 
 #ifdef GetObject
 #undef GetObject
@@ -61,642 +63,311 @@
 
 namespace Mezzanine
 {
-    AreaEffect::AreaEffect(const String &name, const Vector3& Location)
-    {
-        Name = name;
-        this->GraphicsNode = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
-        CreateGhostObject(Location);
+    AreaEffect::AreaEffect(World* TheWorld) :
+        WorldObject(TheWorld),
+        Ghost(NULL)
+        { this->CreateAreaEffect(); }
 
-        short CollisionGroup = btBroadphaseProxy::SensorTrigger;
-        short CollisionMask = GetPhysicsSettings()->IsStatic() ? btBroadphaseProxy::AllFilter ^ (btBroadphaseProxy::SensorTrigger|btBroadphaseProxy::StaticFilter) : btBroadphaseProxy::AllFilter ^ btBroadphaseProxy::SensorTrigger;
-        PhysicsSettings->SetCollisionGroupAndMask(CollisionGroup,CollisionMask);
-    }
+    AreaEffect::AreaEffect(const String& Name, World* TheWorld) :
+        WorldObject(Name,TheWorld),
+        Ghost(NULL)
+        { this->CreateAreaEffect(); }
 
     AreaEffect::~AreaEffect()
+        { this->DestroyAreaEffect(); }
+
+    void AreaEffect::CreateAreaEffect()
     {
-        delete Ghost;
-        delete GraphicsSettings;
-        delete PhysicsSettings;
+        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        if( PhysMan != NULL ) {
+            this->Ghost = PhysMan->CreateGhostProxy();
 
-        Ogre::SceneManager* OgreManager = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer();
-        if(GraphicsObject)
-            OgreManager->destroyEntity(GraphicsObject);
-        OgreManager->destroySceneNode(GraphicsNode);
-    }
-
-    void AreaEffect::CreateGhostObject(const Vector3& Location)
-    {
-        Ghost = new btPairCachingGhostObject();
-        Ghost->setCollisionFlags(Ghost->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
-        Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
-        Ghost->setUserPointer( (WorldObject*)this );
-
-        PhysicsObject = Ghost;
-        this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
-        this->PhysicsSettings = new WorldObjectPhysicsSettings(this,PhysicsObject);
-    }
-
-    void AreaEffect::AddActorToList(ActorBase* Actor)
-    {
-        AddedActors.push_back(Actor);
-        OverlappingActors.push_back(Actor);
-    }
-
-    void AreaEffect::RemoveActorFromList(ActorBase* Actor)
-    {
-        RemovedActors.push_back(Actor);
-        for( std::list<ActorBase*>::iterator c=OverlappingActors.begin(); c!=OverlappingActors.end(); c++)
-        {
-            if ( Actor == (*c) )
-            {
-                OverlappingActors.erase(c);
-                return;
-            }
+            UInt16 ColGroup = Physics::CF_SensorFilter;
+            UInt16 ColMask = Physics::CF_AllFilter & ~(Physics::CF_SensorFilter | Physics::CF_StaticFilter);
+            this->Ghost->SetCollisionGroupAndMask(ColGroup,ColMask);
         }
     }
 
-    Whole AreaEffect::GetNumOverlappingActors()
+    void AreaEffect::DestroyAreaEffect()
     {
-        return OverlappingActors.size();
+        this->RemoveFromWorld();
+        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        if( this->Ghost != NULL && PhysMan != NULL ) {
+            PhysMan->DestroyProxy( this->Ghost );
+        }
     }
 
-    Whole AreaEffect::GetNumAddedActors()
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    Mezzanine::WorldObjectType AreaEffect::GetType() const
+        { return Mezzanine::WO_AreaEffectUnknown; }
+
+    Bool AreaEffect::IsInWorld() const
+        { return this->Ghost->IsInWorld(); }
+
+    Bool AreaEffect::IsStatic() const
+        { return this->Ghost->IsStatic(); }
+
+    Bool AreaEffect::IsKinematic() const
+        { return this->Ghost->IsKinematic(); }
+
+    void AreaEffect::GetProxies(ProxyContainer& Proxies)
     {
-        return AddedActors.size();
+        Proxies.clear();
+        Proxies.push_back( this->Ghost );
     }
 
-    Whole AreaEffect::GetNumRemovedActors()
+    void AreaEffect::GetProxies(const UInt32 Types, ProxyContainer& Proxies)
     {
-        return RemovedActors.size();
+        Proxies.clear();
+        if( Types & Mezzanine::PT_Physics_GhostProxy ) {
+            Proxies.push_back( this->Ghost );
+        }
     }
 
-    std::list<ActorBase*>& AreaEffect::GetOverlappingActors()
-    {
-        return OverlappingActors;
-    }
-
-    std::vector<ActorBase*>& AreaEffect::GetAddedActors()
-    {
-        return AddedActors;
-    }
-
-    std::vector<ActorBase*>& AreaEffect::GetRemovedActors()
-    {
-        return RemovedActors;
-    }
-
-    ConstString& AreaEffect::GetName() const
-    {
-        return WorldObject::GetName();
-    }
-
-    void AreaEffect::SetLocation(const Vector3& Location)
-    {
-        WorldObject::SetLocation(Location);
-        LocalTransformDirty = !(GetUpdating(Parent));
-
-        _RecalculateLocalTransform();
-        _RecalculateAllChildTransforms();
-    }
-
-    Vector3 AreaEffect::GetLocation() const
-    {
-        return WorldObject::GetLocation();
-    }
-
-    void AreaEffect::SetOrientation(const Quaternion& Rotation)
-    {
-        NonStaticWorldObject::InternalSetOrientation(Rotation);
-        LocalTransformDirty = !(GetUpdating(Parent));
-
-        _RecalculateLocalTransform();
-        _RecalculateAllChildTransforms();
-    }
-
-    Quaternion AreaEffect::GetOrientation() const
-    {
-        return NonStaticWorldObject::GetOrientation();
-    }
-
-    void AreaEffect::SetScaling(const Vector3& Scale)
-    {
-        WorldObject::SetScaling(Scale);
-        LocalTransformDirty = true;
-
-        _RecalculateLocalTransform();
-        _RecalculateAllChildTransforms();
-    }
-
-    Vector3 AreaEffect::GetScaling() const
-    {
-        return WorldObject::GetScaling();
-    }
-
-    void AreaEffect::SetLocalLocation(const Vector3& Location)
-    {
-        LocalXform.Location = Location;
-        GlobalTransformDirty = true;
-
-        _RecalculateGlobalTransform();
-        _RecalculateAllChildTransforms();
-    }
-
-    void AreaEffect::SetLocalOrientation(const Quaternion& Orientation)
-    {
-        LocalXform.Rotation = Orientation;
-        GlobalTransformDirty = true;
-
-        _RecalculateGlobalTransform();
-        _RecalculateAllChildTransforms();
-    }
-
-    WorldAndSceneObjectType AreaEffect::GetType() const
-    {
-        return Mezzanine::WSO_AEUnknown;
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Working with the World
 
     void AreaEffect::AddToWorld()
     {
-        Entresol::GetSingletonPtr()->GetPhysicsManager()->_GetPhysicsWorldPointer()->addCollisionObject(this->PhysicsObject,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
-        this->AttachToGraphics();
+        this->Ghost->AddToWorld();
     }
 
     void AreaEffect::RemoveFromWorld()
     {
-        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-        btSoftRigidDynamicsWorld* BWorld = PhysMan->_GetPhysicsWorldPointer();
-        //first remove any collision metadata
-        /*if( !CurrentCollisions.empty() )
-        {
-            PhysMan->RemoveCollisionsContainingActor(this);
-        }// */
-        BWorld->removeCollisionObject(this->PhysicsObject);
-        this->DetachFromGraphics();
-        DetachAllChildren();
+        this->Ghost->RemoveFromWorld();
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Overlapping Object Management
+
+    UInt32 AreaEffect::GetNumOverlappingObjects() const
+        { return this->OverlappingObjects.size(); }
+
+    UInt32 AreaEffect::GetNumAddedObjects() const
+        { return this->AddedObjects.size(); }
+
+    UInt32 AreaEffect::GetNumRemovedObjects() const
+        { return this->RemovedObjects.size(); }
+
+    AreaEffect::ObjectContainer& AreaEffect::GetOverlappingObjects()
+        { return this->OverlappingObjects; }
+
+    AreaEffect::ObjectContainer& AreaEffect::GetAddedObjects()
+        { return this->AddedObjects; }
+
+    AreaEffect::ObjectContainer& AreaEffect::GetRemovedObjects()
+        { return this->RemovedObjects; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // AreaEffect Properties
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Transform Methods
+
+    void AreaEffect::SetLocation(const Vector3& Loc)
+    {
+        this->Ghost->SetLocation(Loc);
+    }
+
+    void AreaEffect::SetLocation(const Real X, const Real Y, const Real Z)
+    {
+        this->Ghost->SetLocation(X,Y,Z);
+    }
+
+    Vector3 AreaEffect::GetLocation() const
+    {
+        return this->Ghost->GetLocation();
+    }
+
+    void AreaEffect::SetOrientation(const Quaternion& Ori)
+    {
+        this->Ghost->SetOrientation(Ori);
+    }
+
+    void AreaEffect::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
+    {
+        this->Ghost->SetOrientation(X,Y,Z,W);
+    }
+
+    Quaternion AreaEffect::GetOrientation() const
+    {
+        return this->Ghost->GetOrientation();
+    }
+
+    void AreaEffect::SetScale(const Vector3& Sc)
+    {
+        this->Ghost->SetScale(Sc);
+    }
+
+    void AreaEffect::SetScale(const Real X, const Real Y, const Real Z)
+    {
+        this->Ghost->SetScale(X,Y,Z);
+    }
+
+    Vector3 AreaEffect::GetScale() const
+    {
+        return this->Ghost->GetScale();
+    }
+
+    void AreaEffect::Translate(const Vector3& Trans)
+    {
+        this->Ghost->Translate(Trans);
+    }
+
+    void AreaEffect::Translate(const Real X, const Real Y, const Real Z)
+    {
+        this->Ghost->Translate(X,Y,Z);
+    }
+
+    void AreaEffect::Yaw(const Real Angle)
+    {
+        this->Ghost->Yaw(Angle);
+    }
+
+    void AreaEffect::Pitch(const Real Angle)
+    {
+        this->Ghost->Pitch(Angle);
+    }
+
+    void AreaEffect::Roll(const Real Angle)
+    {
+        this->Ghost->Roll(Angle);
+    }
+
+    void AreaEffect::Rotate(const Vector3& Axis, const Real Angle)
+    {
+        this->Ghost->Rotate(Axis,Angle);
+    }
+
+    void AreaEffect::Rotate(const Quaternion& Rotation)
+    {
+        this->Ghost->Rotate(Rotation);
+    }
+
+    void AreaEffect::Scale(const Vector3& Scale)
+    {
+        this->Ghost->Scale(Scale);
+    }
+
+    void AreaEffect::Scale(const Real X, const Real Y, const Real Z)
+    {
+        this->Ghost->Scale(X,Y,Z);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void AreaEffect::ProtoSerializeProperties(XML::Node& SelfRoot) const
+    {
+        this->WorldObject::ProtoSerializeProperties(SelfRoot);
+    }
+
+    void AreaEffect::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    {
+        this->WorldObject::ProtoDeSerializeProperties(SelfRoot);
+    }
+
+    String AreaEffect::GetDerivedSerializableName() const
+        { return AreaEffect::GetSerializableName(); }
+
+    String AreaEffect::GetSerializableName()
+        { return "AreaEffect"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
 
     void AreaEffect::_Update()
     {
-        // Notes for the new post refactor way to update
-        // Everything in vectors.  Create a new temp vector composed of the old frames "overlapping" items.
-        // Go through all items detected by ghost proxy and attempt to remove them from the temporary vector.
-        // If it successfully removes, add it to the current overlapping vector.  If it fails add to the added vector.
-        // Once one iteration of this is done, all the remaining items in the temp vector are placed in the removed vector.
+        this->AddedObjects.clear();
+        this->RemovedObjects.clear();
 
-        if ( !AddedActors.empty() )
-            this->AddedActors.clear();
-        if ( !RemovedActors.empty() )
-            this->RemovedActors.clear();
-        btSoftRigidDynamicsWorld* PhysWorld = Entresol::GetSingletonPtr()->GetPhysicsManager()->_GetPhysicsWorldPointer();
+        ObjectContainer PrevOverlapping;
+        PrevOverlapping.swap( this->OverlappingObjects );
 
-        std::list<ActorBase*>::iterator it = OverlappingActors.begin();
-        // Make a bool vector to keep track of which actors to keep when updating.
-        std::vector<bool> Tracker;
-        Tracker.resize(OverlappingActors.size());
-        std::vector<bool>::iterator bit;
-        for ( bit = Tracker.begin() ; bit != Tracker.end() ; bit++ )
+        const UInt32 NumProxies = this->Ghost->GetNumShapeOverlappingProxies();
+        for( UInt32 ProxIndex = 0 ; ProxIndex < NumProxies ; ++ProxIndex )
         {
-            (*bit) = false;
-        }
-
-        btManifoldArray manifoldArray;
-        btBroadphasePairArray& pairArray = Ghost->getOverlappingPairCache()->getOverlappingPairArray();
-        int numPairs = pairArray.size();
-        for (int i=0;i<numPairs;i++)
-        {
-            manifoldArray.clear();
-            const btBroadphasePair& pair = pairArray[i];
-            btBroadphasePair* collisionPair = PhysWorld->getPairCache()->findPair(pair.m_pProxy0,pair.m_pProxy1);
-            if (!collisionPair)
-                continue;
-            if (collisionPair->m_algorithm)
-                collisionPair->m_algorithm->getAllContactManifolds(manifoldArray);
-
-            for (int j=0;j<manifoldArray.size();j++)
-            {
-                btPersistentManifold* manifold = manifoldArray[j];
-                for (int p=0;p<manifold->getNumContacts();p++)
-                {
-                    //const btManifoldPoint& pt = manifold->getContactPoint(p);
-                    //if(pt.m_distance1 > 0)
-                    //    continue;
-                    btCollisionObject* ColObj = manifold->getBody0() != Ghost ? (btCollisionObject*)(manifold->getBody0()) : (btCollisionObject*)(manifold->getBody1());
-
-                    WorldObject* WO = static_cast<WorldObject*>(ColObj->getUserPointer());
-                    ActorBase* Actor = NULL;
-                    if( Mezzanine::WSO_TerrainFirst > WO->GetType() )
-                        Actor = static_cast<ActorBase*>( WO );
-                    else
-                        continue;
-                    // Check list for the actor in the pair.
-                    for( it = this->OverlappingActors.begin(), bit = Tracker.begin() ; it != this->OverlappingActors.end() ; it++, bit++ )
-                    {
-                        if ( Actor == (*it) )
-                        {
-                            (*bit) = true;
-                            break;
+            Physics::CollidableProxy* CurrProxy = this->Ghost->GetShapeOverlappingProxy( ProxIndex );
+            if( CurrProxy != NULL ) {
+                WorldObject* CurrObject = CurrProxy->GetParentObject();
+                if( CurrObject != NULL ) {
+                    // We need to check for unique world objects just in case a world object contains multiple collidable proxies
+                    ObjectIterator UniqueCheck = std::find( this->OverlappingObjects.begin(), this->OverlappingObjects.end(), CurrObject );
+                    if( UniqueCheck == this->OverlappingObjects.end() ) {
+                        // We've established that this object is unique, so lets try to remove it from our temporary vector
+                        ObjectIterator PrevCheck = std::find( PrevOverlapping.begin(), PrevOverlapping.end(), CurrObject );
+                        if( PrevCheck == PrevOverlapping.end() ) {
+                            // If we've failed to find it, then it's new
+                            this->OverlappingObjects.push_back( CurrObject );
+                            this->AddedObjects.push_back( CurrObject );
+                        }else{
+                            // If it was in the previous frame it isn't new, but it may be removed
+                            this->OverlappingObjects.push_back( CurrObject );
+                            PrevOverlapping.erase( PrevCheck );
                         }
                     }
-                    if ( it == this->OverlappingActors.end() )
-                    {
-                        this->AddActorToList(Actor);
-                        Tracker.push_back(true);
-                    }
                 }
             }
         }
 
-        // Verify they are the same size.  Then remove items from the list as necessary.
-        if ( OverlappingActors.size() == Tracker.size() )
-        {
-            std::list<ActorBase*>::iterator sit = OverlappingActors.begin();
-            for ( bit = Tracker.begin() ; bit != Tracker.end() ; )
-            {
-                if ( (*bit) == false )
-                {
-                    bit = Tracker.erase(bit);
-                    ActorBase* Act = (*sit);
-                    RemovedActors.push_back(Act);
-                    sit = OverlappingActors.erase(sit);
-                }else{
-                    sit++;
-                    bit++;
-                }
-            }
-        }// */
-    }
-
-    btPairCachingGhostObject* AreaEffect::_GetBulletObject() const
-        { return this->Ghost; }
-
-    void AreaEffect::ThrowSerialError(const String& Fail) const
-        { SerializeError(Fail, SerializableName()); }
-
-    String AreaEffect::GraphicsSettingsSerializableName() const
-        { return String("WorldObjectGraphicsSettings"); }
-
-    String AreaEffect::PhysicsSettingsSerializableName() const
-        { return String("WorldObjectBasePhysicsSettings"); }
-
-    void AreaEffect::ProtoSerialize(XML::Node& CurrentRoot) const
-    {
-        XML::Node AreaEffectNode = CurrentRoot.AppendChild("AreaEffect");
-        if (!AreaEffectNode) { ThrowSerialError("create AreaEffectNode");}
-
-        XML::Attribute AreaEffectVersion = AreaEffectNode.AppendAttribute("Version");
-        AreaEffectVersion.SetValue(1);
-
-        NonStaticWorldObject::ProtoSerialize(AreaEffectNode);
-    }
-
-    void AreaEffect::ProtoDeSerialize(const XML::Node& OneNode)
-    {
-        if ( Mezzanine::String(OneNode.Name())==this->AreaEffect::SerializableName() )
-        {
-            if(OneNode.GetAttribute("Version").AsInt() == 1)
-            {
-                NonStaticWorldObject::ProtoDeSerialize(OneNode.GetChild(this->NonStaticWorldObject::SerializableName()));
-            }
+        // If we have anything left over in our prev-overlapping, it's not inside this anymore so put them in the removed vector
+        if( !PrevOverlapping.empty() ) {
+            this->RemovedObjects.swap( PrevOverlapping );
         }
     }
 
-    String AreaEffect::SerializableName()
-        { return "AreaEffect"; }
+    void AreaEffect::_NotifyProxyDestroyed(WorldProxy* ToBeDestroyed)
+    {
+        if( ToBeDestroyed == NULL )
+            return;
+
+        if( this->Ghost == ToBeDestroyed ) {
+            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+            if( PhysMan != NULL ) {
+                PhysMan->DestroyProxy( this->Ghost );
+                this->Ghost = NULL;
+            }
+        }
+    }
 
     ///////////////////////////////////
     // TestAE functions
 
-    TestAE::TestAE(const String& name, const Vector3& Location) : AreaEffect(name, Location)
-    {
-    }
+    TestAE::TestAE(World* TheWorld) :
+        AreaEffect(TheWorld)
+        {  }
+
+    TestAE::TestAE(const String& Name, World* TheWorld) :
+        AreaEffect(Name,TheWorld)
+        {  }
 
     TestAE::~TestAE()
-    {
-    }
+        {  }
 
     void TestAE::ApplyEffect()
     {
         Entresol* TheEntresol = Entresol::GetSingletonPtr();
-        std::vector<ActorBase*>::iterator AaRIt;
-        std::list<ActorBase*>::iterator CurrIt;
-        ActorBase* Act = NULL;
+        ObjectIterator ObjIt;
 
-        if ( !AddedActors.empty() )
-        {
-            TheEntresol->Log("Actors Added to field this frame:");
-            for ( AaRIt = AddedActors.begin() ; AaRIt != AddedActors.end() ; AaRIt++ )
-            {
-                Act = (*AaRIt);
-                TheEntresol->Log(Act);
-            }
+        if ( !AddedObjects.empty() ) {
+            TheEntresol->Log("Objects Added to field this frame:");
+            for ( ObjIt = AddedObjects.begin() ; ObjIt != AddedObjects.end() ; ObjIt++ )
+                { TheEntresol->Log( (*ObjIt) ); }
         }
-        if ( !RemovedActors.empty() )
-        {
-            TheEntresol->Log("Actors Removed from field this frame:");
-            for ( AaRIt = RemovedActors.begin() ; AaRIt != RemovedActors.end() ; AaRIt++ )
-            {
-                Act = (*AaRIt);
-                TheEntresol->Log(Act);
-            }
+
+        if ( !RemovedObjects.empty() ) {
+            TheEntresol->Log("Objects Removed from field this frame:");
+            for ( ObjIt = RemovedObjects.begin() ; ObjIt != RemovedObjects.end() ; ObjIt++ )
+                { TheEntresol->Log( (*ObjIt) ); }
         }
-        if ( !OverlappingActors.empty() )
-        {
-            TheEntresol->Log("Actors Currently in field this frame:");
-            for ( CurrIt = OverlappingActors.begin() ; CurrIt != OverlappingActors.end() ; CurrIt++ )
-            {
-                Act = (*CurrIt);
-                TheEntresol->Log(Act);
-            }
+
+        if ( !OverlappingObjects.empty() ) {
+            TheEntresol->Log("Objects Currently in field this frame:");
+            for ( ObjIt = OverlappingObjects.begin() ; ObjIt != OverlappingObjects.end() ; ObjIt++ )
+                { TheEntresol->Log( (*ObjIt) ); }
         }
-    }
-
-    ///////////////////////////////////
-    // GravityField functions
-
-    GravityField::GravityField(const String &name, const Vector3& Location) : AreaEffect(name, Location)
-    {
-    }
-
-    GravityField::~GravityField()
-    {
-    }
-
-    void GravityField::ApplyEffect()
-    {
-        std::vector<ActorBase*>::iterator It;
-        Physics::PhysicsManager* Physics = Entresol::GetSingletonPtr()->GetPhysicsManager();
-        ActorBase* Act = NULL;
-
-        if ( !AddedActors.empty() )
-        {
-            for ( It = AddedActors.begin() ; It != AddedActors.end() ; It++ )
-            {
-                Act = (*It);
-                Physics->SetIndividualGravity(Act, Grav);
-            }
-        }
-        if ( !RemovedActors.empty() )
-        {
-            for ( It = RemovedActors.begin() ; It != RemovedActors.end() ; It++ )
-            {
-                Act = (*It);
-                Physics->SetIndividualGravity(Act, Physics->GetGravity());
-            }
-        }
-    }
-
-    void GravityField::SetFieldGravity(const Vector3& Gravity)
-    {
-        Grav = Gravity;
-    }
-
-    Vector3 GravityField::GetFieldGravity() const
-    {
-        return Grav;
-    }
-
-    WorldAndSceneObjectType GravityField::GetType() const
-    {
-        return Mezzanine::WSO_AEGravityField;
-    }
-
-    ///////////////////////////////////
-    // GravityWell functions
-
-    GravityWell::GravityWell(const String &name, const Vector3& Location)
-        : AreaEffect(name, Location),
-          Strength(0),
-          AllowWorldGrav(true),
-          AttenStyle(Mezzanine::Att_None),
-          AttenAmount(0)
-    {
-    }
-
-    GravityWell::~GravityWell()
-    {
-    }
-
-    void GravityWell::ApplyEffect()
-    {
-        if(0 == Strength)
-            return;
-        //ActorBase* Act = NULL;
-        ActorRigid* ActRig = NULL;
-        if(!AllowWorldGrav && !AddedActors.empty())
-        {
-            for ( std::vector<ActorBase*>::iterator AA = AddedActors.begin() ; AA != AddedActors.end() ; AA++ )
-            {
-                if(Mezzanine::WSO_ActorRigid != (*AA)->GetType())
-                    continue;
-                ActRig = dynamic_cast<ActorRigid*>(*AA);
-                ActRig->GetPhysicsSettings()->SetIndividualGravity(Vector3());
-            }
-        }
-        if(!OverlappingActors.empty())
-        {
-            Vector3 ActorLoc, Direction;
-            Real Distance, AppliedStrength, InvMass;
-            Vector3 GhostLoc = this->GetLocation();
-            for ( std::list<ActorBase*>::iterator OA = OverlappingActors.begin() ; OA != OverlappingActors.end() ; OA++ )
-            {
-                if(Mezzanine::WSO_ActorRigid != (*OA)->GetType())
-                    continue;
-                //Collect necessary data
-                ActorLoc = (*OA)->GetLocation();
-                Distance = ActorLoc.Distance(GhostLoc);
-                Direction = (GhostLoc - ActorLoc) / Distance;
-                switch(AttenStyle)
-                {
-                    case Mezzanine::Att_Linear:
-                        AppliedStrength = Strength - (AttenAmount * Distance);
-                        break;
-                    case Mezzanine::Att_Quadratic:
-                        AppliedStrength = Strength - (AttenAmount * (Distance * Distance));
-                        break;
-                    default:
-                        AppliedStrength = Strength;
-                        break;
-                }
-                ActRig = static_cast<ActorRigid*>(*OA);
-                InvMass = ActRig->GetBulletObject()->getInvMass();
-                if(0 != InvMass)
-                    AppliedStrength *= (1 / ActRig->GetBulletObject()->getInvMass());
-                else
-                    AppliedStrength = 0;
-                if(0 > AppliedStrength)
-                    AppliedStrength = 0;
-                //Apply the Force
-                ActRig->GetBulletObject()->applyCentralForce((Direction * AppliedStrength).GetBulletVector3());
-            }
-        }
-        if(!AllowWorldGrav && !RemovedActors.empty())
-        {
-            Vector3 WorldGrav = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetGravity();
-            for ( std::vector<ActorBase*>::iterator RA = RemovedActors.begin() ; RA != RemovedActors.end() ; RA++ )
-            {
-                if(Mezzanine::WSO_ActorRigid != (*RA)->GetType())
-                    continue;
-                ActRig = dynamic_cast<ActorRigid*>(*RA);
-                ActRig->GetPhysicsSettings()->SetIndividualGravity(WorldGrav);
-            }
-        }
-    }
-
-    void GravityWell::SetFieldStrength(const Real& FieldStrength)
-    {
-        Strength = FieldStrength;
-    }
-
-    Real GravityWell::GetFieldStrength() const
-    {
-        return Strength;
-    }
-
-    void GravityWell::SetAllowWorldGravity(bool WorldGravity)
-    {
-        AllowWorldGrav = WorldGravity;
-    }
-
-    bool GravityWell::GetAllowWorldGravity() const
-    {
-        return AllowWorldGrav;
-    }
-
-    void GravityWell::SetAttenuation(const Real& Amount, const Mezzanine::AttenuationStyle& Style)
-    {
-        AttenAmount = Amount;
-        AttenStyle = Style;
-    }
-
-    Mezzanine::AttenuationStyle GravityWell::GetAttenuationStyle() const
-    {
-        return AttenStyle;
-    }
-
-    Real GravityWell::GetAttenuationAmount() const
-    {
-        return AttenAmount;
-    }
-
-    WorldAndSceneObjectType GravityWell::GetType() const
-    {
-        return Mezzanine::WSO_AEGravityWell;
-    }
-
-    ///////////////////////////////////
-    // FieldOfForce functions
-
-    FieldOfForce::FieldOfForce(const String &name, const Vector3& Location)
-        : AreaEffect(name, Location),
-          Strength(0),
-          Direction(Vector3(0,1,0)),
-          AttenStyle(Mezzanine::Att_None),
-          AttenAmount(0),
-          AttenSource(Vector3(0,0,0))
-    {
-    }
-
-    FieldOfForce::~FieldOfForce()
-    {
-    }
-
-    void FieldOfForce::ApplyEffect()
-    {
-        if(0 == Strength)
-            return;
-        //ActorBase* Act = NULL;
-        ActorRigid* ActRig = NULL;
-        if(!OverlappingActors.empty())
-        {
-            Vector3 ActorLoc;
-            //Real Distance, AppliedStrength, InvMass;
-            Real Distance, AppliedStrength;
-            for ( std::list<ActorBase*>::iterator OA = OverlappingActors.begin() ; OA != OverlappingActors.end() ; OA++ )
-            {
-                if(Mezzanine::WSO_ActorRigid != (*OA)->GetType())
-                    continue;
-                ActorLoc = (*OA)->GetLocation();
-                switch(AttenStyle)
-                {
-                    case Mezzanine::Att_Linear:
-                    {
-                        Distance = ActorLoc.Distance(AttenSource);
-                        AppliedStrength = Strength - (AttenAmount * Distance);
-                        break;
-                    }
-                    case Mezzanine::Att_Quadratic:
-                    {
-                        Distance = ActorLoc.Distance(AttenSource);
-                        AppliedStrength = Strength - (AttenAmount * (Distance * Distance));
-                        break;
-                    }
-                    case Mezzanine::Att_None:
-                    {
-                        AppliedStrength = Strength;
-                        break;
-                    }
-                }
-                //Collect necessary data
-                ActRig = static_cast<ActorRigid*>(*OA);
-                //InvMass = ActRig->GetBulletObject()->getInvMass();
-                //if(0 != InvMass)
-                //    AppliedStrength *= (1 / ActRig->GetBulletObject()->getInvMass());
-                //else
-                //    AppliedStrength = 0;
-                if(0 > AppliedStrength)
-                    AppliedStrength = 0;
-                //Apply the Force
-                ActRig->GetBulletObject()->applyCentralForce((Direction * AppliedStrength).GetBulletVector3());
-                //ActRig->GetBulletObject()->applyCentralImpulse((Direction * AppliedStrength).GetBulletVector3());
-            }
-        }
-    }
-
-    void FieldOfForce::SetFieldStrength(const Real& FieldStrength)
-    {
-        Strength = FieldStrength;
-    }
-
-    Real FieldOfForce::GetFieldStrength() const
-    {
-        return Strength;
-    }
-
-    void FieldOfForce::SetDirectionOfForce(const Vector3& ForceDirection)
-    {
-        Direction = ForceDirection;
-    }
-
-    Vector3 FieldOfForce::GetDirectionOfForce()
-    {
-        return Direction;
-    }
-
-    void FieldOfForce::SetAttenuation(const Real& Amount, const Mezzanine::AttenuationStyle& Style, const Vector3& Source)
-    {
-        AttenAmount = Amount;
-        AttenStyle = Style;
-        AttenSource = Source;
-    }
-
-    Mezzanine::AttenuationStyle FieldOfForce::GetAttenuationStyle() const
-    {
-        return AttenStyle;
-    }
-
-    Real FieldOfForce::GetAttenuationAmount() const
-    {
-        return AttenAmount;
-    }
-
-    Vector3 FieldOfForce::GetAttenuationSource() const
-    {
-        return AttenSource;
-    }
-
-    WorldAndSceneObjectType FieldOfForce::GetType() const
-    {
-        return Mezzanine::WSO_AEFieldOfForce;
     }
 }
 

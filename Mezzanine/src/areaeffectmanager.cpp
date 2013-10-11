@@ -41,13 +41,18 @@
 #define _areaeffectmanager_cpp
 
 #include "areaeffectmanager.h"
-#include "areaeffect.h"
-#include "entresol.h"
+
+#include "fieldofforce.h"
+#include "gravityfield.h"
+#include "gravitywell.h"
 
 #include "Physics/physicsmanager.h"
+
 #include "actormanager.h"
+#include "entresol.h"
 
 #include <sstream>
+#include <algorithm>
 
 namespace Mezzanine
 {
@@ -85,6 +90,10 @@ namespace Mezzanine
         AreaEffectUpdateWork(NULL),
         ThreadResources(NULL)
     {
+        this->AddAreaEffectFactory( new FieldOfForceFactory() );
+        this->AddAreaEffectFactory( new GravityFieldFactory() );
+        this->AddAreaEffectFactory( new GravityWellFactory() );
+
         this->AreaEffectUpdateWork = new AreaEffectUpdateWorkUnit(this);
     }
 
@@ -94,6 +103,10 @@ namespace Mezzanine
     {
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
 
+        this->AddAreaEffectFactory( new FieldOfForceFactory() );
+        this->AddAreaEffectFactory( new GravityFieldFactory() );
+        this->AddAreaEffectFactory( new GravityWellFactory() );
+
         this->AreaEffectUpdateWork = new AreaEffectUpdateWorkUnit(this);
     }
 
@@ -101,20 +114,102 @@ namespace Mezzanine
     {
         this->Deinitialize();
         this->DestroyAllAreaEffects();
+        this->DestroyAllAreaEffectFactories();
 
-        delete AreaEffectUpdateWork;
+        delete this->AreaEffectUpdateWork;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Managing all actors
+    // Prefab AreaEffect Type Creation
 
-    void AreaEffectManager::AddAreaEffect(AreaEffect* ToBeAdded)
+    FieldOfForce* AreaEffectManager::CreateFieldOfForce(const String& Name)
     {
-        this->AreaEffects.push_back(ToBeAdded);
-        ToBeAdded->AddToWorld();
+        FactoryIterator AEFactIt = this->AreaEffectFactories.find( FieldOfForce::GetSerializableName() );
+        if( AEFactIt != this->AreaEffectFactories.end() ) {
+            FieldOfForce* Ret = static_cast<FieldOfForceFactory*>( (*AEFactIt).second )->CreateFieldOfForce( Name, this->ParentWorld );
+            this->AreaEffects.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
+        }
     }
 
-    AreaEffect* AreaEffectManager::GetAreaEffect(const Whole& Index) const
+    FieldOfForce* AreaEffectManager::CreateFieldOfForce(const XML::Node& SelfRoot)
+    {
+        FactoryIterator AEFactIt = this->AreaEffectFactories.find( FieldOfForce::GetSerializableName() );
+        if( AEFactIt != this->AreaEffectFactories.end() ) {
+            FieldOfForce* Ret = static_cast<FieldOfForceFactory*>( (*AEFactIt).second )->CreateFieldOfForce( SelfRoot, this->ParentWorld );
+            this->AreaEffects.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a FieldOfForce AreaEffect without it's factory registered.");
+        }
+    }
+
+    GravityField* AreaEffectManager::CreateGravityField(const String& Name)
+    {
+        FactoryIterator AEFactIt = this->AreaEffectFactories.find( GravityField::GetSerializableName() );
+        if( AEFactIt != this->AreaEffectFactories.end() ) {
+            GravityField* Ret = static_cast<GravityFieldFactory*>( (*AEFactIt).second )->CreateGravityField( Name, this->ParentWorld );
+            this->AreaEffects.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
+        }
+    }
+
+    GravityField* AreaEffectManager::CreateGravityField(const XML::Node& SelfRoot)
+    {
+        FactoryIterator AEFactIt = this->AreaEffectFactories.find( GravityField::GetSerializableName() );
+        if( AEFactIt != this->AreaEffectFactories.end() ) {
+            GravityField* Ret = static_cast<GravityFieldFactory*>( (*AEFactIt).second )->CreateGravityField( SelfRoot, this->ParentWorld );
+            this->AreaEffects.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityField AreaEffect without it's factory registered.");
+        }
+    }
+
+    GravityWell* AreaEffectManager::CreateGravityWell(const String& Name)
+    {
+        FactoryIterator AEFactIt = this->AreaEffectFactories.find( GravityWell::GetSerializableName() );
+        if( AEFactIt != this->AreaEffectFactories.end() ) {
+            GravityWell* Ret = static_cast<GravityWellFactory*>( (*AEFactIt).second )->CreateGravityWell( Name, this->ParentWorld );
+            this->AreaEffects.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
+        }
+    }
+
+    GravityWell* AreaEffectManager::CreateGravityWell(const XML::Node& SelfRoot)
+    {
+        FactoryIterator AEFactIt = this->AreaEffectFactories.find( GravityWell::GetSerializableName() );
+        if( AEFactIt != this->AreaEffectFactories.end() ) {
+            GravityWell* Ret = static_cast<GravityWellFactory*>( (*AEFactIt).second )->CreateGravityWell( SelfRoot, this->ParentWorld );
+            this->AreaEffects.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a GravityWell AreaEffect without it's factory registered.");
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // AreaEffect Management
+
+    AreaEffect* AreaEffectManager::CreateAreaEffect(const XML::Node& SelfRoot)
+    {
+        FactoryIterator AEFactIt = this->AreaEffectFactories.find( SelfRoot.Name() );
+        if( AEFactIt != this->AreaEffectFactories.end() ) {
+            AreaEffect* Ret = (*AEFactIt).second->CreateAreaEffect( SelfRoot, this->ParentWorld );
+            this->AreaEffects.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an AreaEffect of unknown type.");
+        }
+    }
+
+    AreaEffect* AreaEffectManager::GetAreaEffect(const Whole Index) const
     {
         return this->AreaEffects.at(Index);
     }
@@ -134,67 +229,91 @@ namespace Mezzanine
         return this->AreaEffects.size();
     }
 
-    void AreaEffectManager::RemoveAreaEffect(const Whole& Index)
+    void AreaEffectManager::DestroyAreaEffect(const Whole Index)
     {
-        AreaEffectIterator it = this->AreaEffects.begin() + Index;
-        (*it)->RemoveFromWorld();
-        this->AreaEffects.erase(it);
-    }
-
-    void AreaEffectManager::RemoveAreaEffect(AreaEffect* ToBeRemoved)
-    {
-        for( AreaEffectIterator it = this->AreaEffects.begin() ; it != this->AreaEffects.end() ; ++it )
+        AreaEffectIterator AEIt = ( Index < this->GetNumAreaEffects() ? this->AreaEffects.begin() + Index : this->AreaEffects.end() );
+        if( AEIt != this->AreaEffects.end() )
         {
-            if(ToBeRemoved == (*it))
-            {
-                (*it)->RemoveFromWorld();
-                this->AreaEffects.erase(it);
-                return;
+            FactoryIterator AEFactIt = this->AreaEffectFactories.find( (*AEIt)->GetDerivedSerializableName() );
+            if( AEFactIt != this->AreaEffectFactories.end() ) {
+                (*AEFactIt).second->DestroyAreaEffect( (*AEIt) );
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
             }
+
+            this->AreaEffects.erase(AEIt);
         }
-    }
-
-    void AreaEffectManager::RemoveAllAreaEffects()
-    {
-        if( this->AreaEffects.empty() )
-            return;
-        for( AreaEffectIterator it = this->AreaEffects.begin() ; it != this->AreaEffects.end() ; ++it )
-            (*it)->RemoveFromWorld();
-        this->AreaEffects.clear();
-    }
-
-    void AreaEffectManager::DestroyAreaEffect(const Whole& Index)
-    {
-        AreaEffectIterator it = this->AreaEffects.begin() + Index;
-        (*it)->RemoveFromWorld();
-        delete (*it);
-        this->AreaEffects.erase(it);
     }
 
     void AreaEffectManager::DestroyAreaEffect(AreaEffect* ToBeDestroyed)
     {
-        for( AreaEffectIterator it = this->AreaEffects.begin() ; it != this->AreaEffects.end() ; ++it )
+        AreaEffectIterator AEIt = std::find( this->AreaEffects.begin(), this->AreaEffects.end(), ToBeDestroyed );
+        if( AEIt != this->AreaEffects.end() )
         {
-            if(ToBeDestroyed == (*it))
-            {
-                (*it)->RemoveFromWorld();
-                delete (*it);
-                this->AreaEffects.erase(it);
-                return;
+            FactoryIterator AEFactIt = this->AreaEffectFactories.find( (*AEIt)->GetDerivedSerializableName() );
+            if( AEFactIt != this->AreaEffectFactories.end() ) {
+                (*AEFactIt).second->DestroyAreaEffect( (*AEIt) );
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
             }
+
+            this->AreaEffects.erase(AEIt);
         }
     }
 
     void AreaEffectManager::DestroyAllAreaEffects()
     {
-        if( this->AreaEffects.empty() )
-            return;
-        for( AreaEffectIterator it = this->AreaEffects.begin() ; it != this->AreaEffects.end() ; ++it )
+        for( AreaEffectIterator AEIt = this->AreaEffects.begin() ; AEIt != this->AreaEffects.end() ; ++AEIt )
         {
-            (*it)->RemoveFromWorld();
-            delete (*it);
+            FactoryIterator AEFactIt = this->AreaEffectFactories.find( (*AEIt)->GetDerivedSerializableName() );
+            if( AEFactIt != this->AreaEffectFactories.end() ) {
+                (*AEFactIt).second->DestroyAreaEffect( (*AEIt) );
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy an AreaEffect of unknown type.");
+            }
         }
         this->AreaEffects.clear();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // AreaEffectFactory Management
+
+    void AreaEffectManager::AddAreaEffectFactory(AreaEffectFactory* ToBeAdded)
+    {
+        this->AreaEffectFactories.insert(std::pair<String,AreaEffectFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
+    }
+
+    void AreaEffectManager::RemoveAreaEffectFactory(AreaEffectFactory* ToBeRemoved)
+    {
+        this->RemoveAreaEffectFactory(ToBeRemoved->GetTypeName());
+    }
+
+    void AreaEffectManager::RemoveAreaEffectFactory(const String& ImplName)
+    {
+        FactoryIterator AEFactIt = this->AreaEffectFactories.find(ImplName);
+        if( AEFactIt != this->AreaEffectFactories.end() )
+            { this->AreaEffectFactories.erase(AEFactIt); }
+    }
+
+    void AreaEffectManager::DestroyAreaEffectFactory(AreaEffectFactory* ToBeRemoved)
+    {
+        this->DestroyAreaEffectFactory(ToBeRemoved->GetTypeName());
+    }
+
+    void AreaEffectManager::DestroyAreaEffectFactory(const String& ImplName)
+    {
+        FactoryIterator AEFactIt = this->AreaEffectFactories.find(ImplName);
+        if( AEFactIt != this->AreaEffectFactories.end() ) {
+            delete AEFactIt->second;
+            this->AreaEffectFactories.erase(AEFactIt);
+        }
+    }
+
+    void AreaEffectManager::DestroyAllAreaEffectFactories()
+    {
+        for( FactoryIterator AEFactIt = this->AreaEffectFactories.begin() ; AEFactIt != this->AreaEffectFactories.end() ; ++AEFactIt )
+            { delete (*AEFactIt).second; }
+        this->AreaEffectFactories.clear();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -250,9 +369,7 @@ namespace Mezzanine
     }
 
     AreaEffectUpdateWorkUnit* AreaEffectManager::GetAreaEffectUpdateWork()
-    {
-        return this->AreaEffectUpdateWork;
-    }
+        { return this->AreaEffectUpdateWork; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Type Identifier Methods
@@ -267,32 +384,22 @@ namespace Mezzanine
     // DefaultAreaEffectManagerFactory Methods
 
     DefaultAreaEffectManagerFactory::DefaultAreaEffectManagerFactory()
-    {
-    }
+        {  }
 
     DefaultAreaEffectManagerFactory::~DefaultAreaEffectManagerFactory()
-    {
-    }
+        {  }
 
     String DefaultAreaEffectManagerFactory::GetManagerTypeName() const
-    {
-        return "DefaultAreaEffectManager";
-    }
+        { return "DefaultAreaEffectManager"; }
 
     ManagerBase* DefaultAreaEffectManagerFactory::CreateManager(NameValuePairList& Params)
-    {
-        return new AreaEffectManager();
-    }
+        { return new AreaEffectManager(); }
 
     ManagerBase* DefaultAreaEffectManagerFactory::CreateManager(XML::Node& XMLNode)
-    {
-        return new AreaEffectManager(XMLNode);
-    }
+        { return new AreaEffectManager(XMLNode); }
 
     void DefaultAreaEffectManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-    {
-        delete ToBeDestroyed;
-    }
+        { delete ToBeDestroyed; }
 }//Mezzanine
 
 #endif

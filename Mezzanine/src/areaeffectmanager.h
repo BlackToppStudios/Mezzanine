@@ -40,16 +40,19 @@
 #ifndef _areaeffectmanager_h
 #define _areaeffectmanager_h
 
-#include "datatypes.h"
 #include "worldmanager.h"
 #include "managerfactory.h"
-#include "singleton.h"
 #include "Threading/workunit.h"
 
 namespace Mezzanine
 {
     class AreaEffect;
+    class AreaEffectFactory;
     class AreaEffectManager;
+
+    class FieldOfForce;
+    class GravityField;
+    class GravityWell;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of AreaEffects.
@@ -93,15 +96,25 @@ namespace Mezzanine
     class MEZZ_LIB AreaEffectManager : public WorldManager
     {
     public:
-        /// @brief Basic container type for @ref AreaEffect storage by this class.
+        /// @brief Basic container type for AreaEffectFactory storage by this class.
+        typedef std::map<String,AreaEffectFactory*>   FactoryMap;
+        /// @brief Iterator type for AreaEffectFactory instances stored by this class.
+        typedef FactoryMap::iterator                  FactoryIterator;
+        /// @brief Const Iterator type for AreaEffectFactory instances stored by this class.
+        typedef FactoryMap::const_iterator            ConstFactoryIterator;
+        /// @brief Basic container type for AreaEffect storage by this class.
         typedef std::vector<AreaEffect*>              AreaEffectContainer;
-        /// @brief Iterator type for @ref AreaEffect instances stored by this class.
+        /// @brief Iterator type for AreaEffect instances stored by this class.
         typedef AreaEffectContainer::iterator         AreaEffectIterator;
-        /// @brief Const Iterator type for @ref AreaEffect instances stored by this class.
+        /// @brief Const Iterator type for AreaEffect instances stored by this class.
         typedef AreaEffectContainer::const_iterator   ConstAreaEffectIterator;
     protected:
         friend class AreaEffectUpdateWorkUnit;
 
+        /// @internal
+        /// @brief A map containing all registered AreaEffect type factories.
+        FactoryMap AreaEffectFactories;
+        /// @internal
         /// @brief The actual areaeffect container.
         AreaEffectContainer AreaEffects;
 
@@ -121,19 +134,45 @@ namespace Mezzanine
         virtual ~AreaEffectManager();
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Managing all actors
+        // Prefab AreaEffect Type Creation
 
-        /// @brief Adds a pre-created areaeffect to the manager.
-        /// @details In some cases you may want to add and remove an areaeffect from the world without destroying it and do some special
-        /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
-        /// function facilitates this. @n
-        /// This function is also necessary for anyone inheriting from our actors to add their actors to the world.
-        /// @param ToBeAdded The areaeffects to be added to the manager.
-        virtual void AddAreaEffect(AreaEffect* ToBeAdded);
+        /// @brief Creates a new FieldOfForce.
+        /// @param Name The name to be given to the new FieldOfForce.
+        /// @return Returns a pointer to the created AreaEffect.
+        FieldOfForce* CreateFieldOfForce(const String& Name);
+        /// @brief Creates a new FieldOfForce.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @return Returns a pointer to the created AreaEffect.
+        FieldOfForce* CreateFieldOfForce(const XML::Node& SelfRoot);
+        /// @brief Creates a new GravityField.
+        /// @param Name The name to be given to the new GravityField.
+        /// @return Returns a pointer to the created proxy.
+        GravityField* CreateGravityField(const String& Name);
+        /// @brief Creates a new GravityField.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @return Returns a pointer to the created AreaEffect.
+        GravityField* CreateGravityField(const XML::Node& SelfRoot);
+        /// @brief Creates a new GravityWell.
+        /// @param Name The name to be given to the new GravityWell.
+        /// @return Returns a pointer to the created AreaEffect.
+        GravityWell* CreateGravityWell(const String& Name);
+        /// @brief Creates a new GravityWell.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        /// @return Returns a pointer to the created AreaEffect.
+        GravityWell* CreateGravityWell(const XML::Node& SelfRoot);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // AreaEffect Management
+
+        /// @brief Creates a new AreaEffect class from an XML node.
+        /// @remarks This is mostly useful for deserialization.
+        /// @return Returns a pointer to the created AreaEffect.
+        AreaEffect* CreateAreaEffect(const XML::Node& SelfRoot);
+
         /// @brief Gets an AreaEffect by Index.
         /// @param Index The index of the areaeffect you wish to retrieve.
         /// @return Returns a pointer to the areaeffect at the specified index.
-        virtual AreaEffect* GetAreaEffect(const Whole& Index) const;
+        virtual AreaEffect* GetAreaEffect(const Whole Index) const;
         /// @brief Gets an AreaEffect by Name.
         /// @param Name The name of the areaeffect you wish to retrieve.
         /// @return Returns a pointer to the areaeffect of the specified name.
@@ -141,30 +180,36 @@ namespace Mezzanine
         /// @brief Gets the number of actors stored in this manager.
         /// @return Returns a whole representing the current areaeffect count.
         virtual Whole GetNumAreaEffects() const;
-        /// @brief Removes an areaeffect from this manager without destroying it.
-        /// @details In some cases you may want to add and remove an areaeffect from the world without destroying it and do some special
-        /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
-        /// function facilitates this. @n
-        /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
-        /// @param Index The index at which to remove the areaeffect.
-        virtual void RemoveAreaEffect(const Whole& Index);
-        /// @brief Removes an areaeffect from this manager without destroying it.
-        /// @details In some cases you may want to add and remove an areaeffect from the world without destroying it and do some special
-        /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
-        /// function facilitates this. @n
-        /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
-        /// @param ToBeRemoved The areaeffect to be removed from the manager.
-        virtual void RemoveAreaEffect(AreaEffect* ToBeRemoved);
-        /// @brief Removes all actors from this manager without destroying them.
-        virtual void RemoveAllAreaEffects();
         /// @brief Destroys an areaeffect at the specified index.
         /// @param Index The index at which to destroy the areaeffect.
-        virtual void DestroyAreaEffect(const Whole& Index);
+        virtual void DestroyAreaEffect(const Whole Index);
         /// @brief Destroys an areaeffect.
         /// @param ToBeDestroyed The areaeffect to be destroyed.
         virtual void DestroyAreaEffect(AreaEffect* ToBeDestroyed);
         /// @brief Destroys all actors currently within this manager.
         virtual void DestroyAllAreaEffects();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // AreaEffectFactory Management
+
+        /// @brief Adds/registers a AreaEffect factory with this manager, allowing it to be constructed through this API.
+        /// @param ToBeAdded The AreaEffect factory to be added.
+        virtual void AddAreaEffectFactory(AreaEffectFactory* ToBeAdded);
+        /// @brief Removes a AreaEffect factory from this manager.
+        /// @param ToBeRemoved A pointer to the AreaEffect factory that is to be removed.
+        virtual void RemoveAreaEffectFactory(AreaEffectFactory* ToBeRemoved);
+        /// @brief Removes a AreaEffect factory from this manager.
+        /// @param ImplName The name of the AreaEffect implementation created by the factory to be removed.
+        virtual void RemoveAreaEffectFactory(const String& ImplName);
+        /// @brief Removes and destroys a AreaEffect factory in this manager.
+        /// @param ToBeRemoved A pointer to the AreaEffect factory that is to be removed and destroyed.
+        virtual void DestroyAreaEffectFactory(AreaEffectFactory* ToBeRemoved);
+        /// @brief Removes and destroys a AreaEffect factory in this manager.
+        /// @param ImplName The name of the AreaEffect implementation created by the factory to be removed and destroyed.
+        virtual void DestroyAreaEffectFactory(const String& ImplName);
+        /// @brief Destroys all AreaEffect factories in this manager.
+        /// @warning The destruction of AreaEffect factories should only be done after the corresponding managers have been destroyed, otherwise this will cause an exception.
+        virtual void DestroyAllAreaEffectFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -173,7 +218,7 @@ namespace Mezzanine
         virtual void Pause(const UInt32 PL);
 
         /// @brief Does all of the necessary configuration to prepare for the start of the main loop.
-        void MainLoopInitialize();
+        virtual void MainLoopInitialize();
         /// @copydoc WorldManager::Initialize()
         virtual void Initialize();
         /// @copydoc ManagerBase::Deinitialize()
