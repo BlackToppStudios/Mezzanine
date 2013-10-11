@@ -208,7 +208,7 @@ namespace Mezzanine
         /// @param ImplName The name of the AreaEffect implementation created by the factory to be removed and destroyed.
         virtual void DestroyAreaEffectFactory(const String& ImplName);
         /// @brief Destroys all AreaEffect factories in this manager.
-        /// @warning The destruction of AreaEffect factories should only be done after the corresponding managers have been destroyed, otherwise this will cause an exception.
+        /// @warning The destruction of AreaEffect factories should only be done after all the AreaEffects have been destroyed, otherwise this will cause an exception.
         virtual void DestroyAllAreaEffectFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
