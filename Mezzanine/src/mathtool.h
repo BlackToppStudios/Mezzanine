@@ -60,6 +60,21 @@ namespace Mezzanine
         typedef std::pair<Bool,Ray> GeometryRayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Predefined Constants
+
+        /// @brief This is Pi.
+        extern const Real Pi;
+        /// @brief This is Pi * 2.
+        extern const Real TwoPi;
+        /// @brief This is Pi * 0.5.
+        extern const Real HalfPi;
+
+        /// @brief This is a convenience multiplier for the conversion of Radians to Degrees.
+        extern const Real RadToDegMult;
+        /// @brief This is a convenience multiplier for the conversion of Degrees to Radians.
+        extern const Real DegToRadMult;
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Real Math & Check Functions
 
         /// @brief Rounds a Real up.
@@ -123,13 +138,6 @@ namespace Mezzanine
         /// @return Returns a Real representing the principal value of the arc Tangent of the angle provided in Radians.
         Real MEZZ_LIB ATan(const Real& Interval);
 
-        /// @brief This is Pi.
-        const Real Pi = Real( 4.0 * MathTools::ATan(1.0) );
-        /// @brief This is Pi * 2.
-        const Real TwoPi = ( Real( 4.0 * MathTools::ATan(1.0) ) ) * 2.0;
-        /// @brief This is Pi * 0.5.
-        const Real HalfPi = ( Real( 4.0 * MathTools::ATan(1.0) ) ) * 0.5;
-
         ///////////////////////////////////////////////////////////////////////////////
         // Angle Conversion Functions and Values
 
@@ -141,11 +149,6 @@ namespace Mezzanine
         /// @param Radians The number of Radians's to convert.
         /// @return Returns the converted number in Degrees.
         Real MEZZ_LIB RadiansToDegrees(const Real& Radians);
-
-        /// @brief This is a convenience multiplier for the conversion of Radians to Degrees.
-        const Real RadToDegMult = Real( Real(180.0) / Real( 4.0 * MathTools::ATan(1.0) ) );
-        /// @brief This is a convenience multiplier for the conversion of Degrees to Radians.
-        const Real DegToRadMult = Real( Real( 4.0 * MathTools::ATan(1.0) ) / Real(180.0) );
 
         ///////////////////////////////////////////////////////////////////////////////
         // Geometry Math

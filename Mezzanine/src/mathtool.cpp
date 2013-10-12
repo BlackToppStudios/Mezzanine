@@ -92,6 +92,15 @@ namespace Mezzanine
     namespace MathTools
     {
         ///////////////////////////////////////////////////////////////////////////////
+        // Predefined Constants
+
+        const Real Pi = Real( 4.0 * MathTools::ATan(1.0) );
+        const Real TwoPi = ( Real( 4.0 * MathTools::ATan(1.0) ) ) * 2.0;
+        const Real HalfPi = ( Real( 4.0 * MathTools::ATan(1.0) ) ) * 0.5;
+        const Real RadToDegMult = Real( Real(180.0) / Real( 4.0 * MathTools::ATan(1.0) ) );
+        const Real DegToRadMult = Real( Real( 4.0 * MathTools::ATan(1.0) ) / Real(180.0) );
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Real Math & Check Functions
 
         Real Ceil(const Real& Val)
