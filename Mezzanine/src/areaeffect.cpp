@@ -85,6 +85,7 @@ namespace Mezzanine
             UInt16 ColGroup = Physics::CF_SensorFilter;
             UInt16 ColMask = Physics::CF_AllFilter & ~(Physics::CF_SensorFilter | Physics::CF_StaticFilter);
             this->Ghost->SetCollisionGroupAndMask(ColGroup,ColMask);
+            this->Ghost->_Bind(this);
         }
     }
 

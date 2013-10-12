@@ -202,8 +202,8 @@ namespace Mezzanine
         /// @param ImplName The name of the AreaEffect implementation created by the factory to be removed.
         virtual void RemoveAreaEffectFactory(const String& ImplName);
         /// @brief Removes and destroys a AreaEffect factory in this manager.
-        /// @param ToBeRemoved A pointer to the AreaEffect factory that is to be removed and destroyed.
-        virtual void DestroyAreaEffectFactory(AreaEffectFactory* ToBeRemoved);
+        /// @param ToBeDestroyed A pointer to the AreaEffect factory that is to be removed and destroyed.
+        virtual void DestroyAreaEffectFactory(AreaEffectFactory* ToBeDestroyed);
         /// @brief Removes and destroys a AreaEffect factory in this manager.
         /// @param ImplName The name of the AreaEffect implementation created by the factory to be removed and destroyed.
         virtual void DestroyAreaEffectFactory(const String& ImplName);

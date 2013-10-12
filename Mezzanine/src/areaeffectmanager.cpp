@@ -295,9 +295,9 @@ namespace Mezzanine
             { this->AreaEffectFactories.erase(AEFactIt); }
     }
 
-    void AreaEffectManager::DestroyAreaEffectFactory(AreaEffectFactory* ToBeRemoved)
+    void AreaEffectManager::DestroyAreaEffectFactory(AreaEffectFactory* ToBeDestroyed)
     {
-        this->DestroyAreaEffectFactory(ToBeRemoved->GetTypeName());
+        this->DestroyAreaEffectFactory(ToBeDestroyed->GetTypeName());
     }
 
     void AreaEffectManager::DestroyAreaEffectFactory(const String& ImplName)
