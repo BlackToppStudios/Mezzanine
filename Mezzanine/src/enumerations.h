@@ -122,7 +122,11 @@ namespace Mezzanine
         PT_Physics_GhostProxy           = 128,//8
         PT_Physics_RigidProxy           = 256,//9
         PT_Physics_SoftProxy            = 512,//10
-        PT_Physics_Last                 = 512//10
+        PT_Physics_Last                 = 512,//10
+
+        PT_Audio_All_Proxies            = ( PT_Audio_Listener | PT_Audio_SoundProxy ),
+        PT_Graphics_All_Proxies         = ( PT_Graphics_BillboardSetProxy | PT_Graphics_CameraProxy |PT_Graphics_EntityProxy |PT_Graphics_LightProxy |PT_Graphics_ParticleSystemProxy ),
+        PT_Physics_All_Proxies          = ( PT_Physics_GhostProxy | PT_Physics_RigidProxy | PT_Physics_SoftProxy )
     };
 
     /// @enum StandardAxis
@@ -157,44 +161,51 @@ namespace Mezzanine
     /// @enum WorldAndSceneObjectType
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This enum can be used to express any object which could be considered "insertable" into the game world.
-    enum WorldAndSceneObjectType
+    enum WorldObjectType
     {
-        // Actors
-        WSO_ActorFirst             = 1,//MEZZ_BITMASK(1),//1,
-        WSO_ActorRigid             = 1,//MEZZ_BITMASK(1),//1,
-        WSO_ActorCharacter         = 2,//MEZZ_BITMASK(2),//2,
-        WSO_ActorUnknown           = 4,//MEZZ_BITMASK(3),//4,
-        WSO_ActorLast              = 8,//MEZZ_BITMASK(4),//8,
+        // Terrain Objects
+        WO_TerrainFirst           = 1,//MEZZ_BITMASK(1),//1,
+        WO_MeshTerrain            = 1,//MEZZ_BITMASK(1),//1,
+        WO_HeightfieldTerrain     = 2,//MEZZ_BITMASK(2),//2,
+        WO_VectorFieldTerrain     = 4,//MEZZ_BITMASK(3),//4,
+        WO_VoxelTerrain           = 8,//MEZZ_BITMASK(4),//8,
+        WO_MarchingCubeTerrain    = 16,//MEZZ_BITMASK(5),//16,
+        WO_UnknownTerrain         = 32,//MEZZ_BITMASK(6),//32,
+        WO_TerrainLast            = 32,//MEZZ_BITMASK(6),//32,
 
-        // Terrains go here
-        WSO_TerrainFirst           = 16,//MEZZ_BITMASK(5),//16,
-        WSO_MeshTerrain            = 16,//MEZZ_BITMASK(5),//16,
-        WSO_HeightfieldTerrain     = 32,//MEZZ_BITMASK(6),//32, // should rename to Heightfield terrain
-        WSO_VectorFieldTerrain     = 64,//MEZZ_BITMASK(7),//64, // should rename to Vectorfield terrain
-        WSO_VoxelTerrain           = 128,//MEZZ_BITMASK(8),//128, // should rename to Voxel Terrain
-        WSO_MarchingCubeTerrain    = 256,//MEZZ_BITMASK(9),//256, // should rename to MarchingCube Terrain
-        WSO_UnknownTerrain         = 512,//MEZZ_BITMASK(10),//512,
-        WSO_TerrainLast            = 512,//MEZZ_BITMASK(10),//512,
+        // Debris Objects
+        WO_DebrisFirst            = 64,//MEZZ_BITMASK(7),//64,
+        WO_DebrisRigid            = 64,//MEZZ_BITMASK(7),//64,
+        WO_DebrisSoft             = 128,//MEZZ_BITMASK(8),//128,
+        WO_DebrisUnknown          = 256,//MEZZ_BITMASK(9),//256,
+        WO_DebrisLast             = 256,//MEZZ_BITMASK(9),//256,
 
-        // AE Fields
-        WSO_AEFirst                = 1024,//MEZZ_BITMASK(11),//1024,
-        WSO_AEGravityField         = 1024,//MEZZ_BITMASK(11),//1024,
-        WSO_AEGravityWell          = 2048,//MEZZ_BITMASK(12),//2048,
-        WSO_AEFieldOfForce         = 4069,//MEZZ_BITMASK(13),//4096,
-        WSO_AEPlaceHolder1         = 8192,//MEZZ_BITMASK(14),//8192,
-        WSO_AEPlaceHolder2         = 16384,//MEZZ_BITMASK(15),//16384,
-        WSO_AEUnknown              = 32768,//MEZZ_BITMASK(16),//32768,
-        WSO_AELast                 = 32768,// MEZZ_BITMASK(16),//32768,
+        // AreaEffect Objects
+        WO_AreaEffectFirst        = 512,//MEZZ_BITMASK(10),//512,
+        WO_AreaEffectGravityField = 512,//MEZZ_BITMASK(10),//512,
+        WO_AreaEffectGravityWell  = 1024,//MEZZ_BITMASK(11),//1024,
+        WO_AreaEffectFieldOfForce = 2048,//MEZZ_BITMASK(12),//2048,
+        WO_AreaEffectPlaceHolder1 = 4069,//MEZZ_BITMASK(13),//4096,
+        WO_AreaEffectPlaceHolder2 = 8192,//MEZZ_BITMASK(14),//8192,
+        WO_AreaEffectUnknown      = 16384,//MEZZ_BITMASK(15),//16384,
+        WO_AreaEffectLast         = 16384,//MEZZ_BITMASK(15),//16384,
 
-        // Scene Objects
-        WSO_Camera                 = 65536,//MEZZ_BITMASK(17),//65536,
-        WSO_Entity                 = 131072,//MEZZ_BITMASK(18),//131072,
-        WSO_Light                  = 262144,//MEZZ_BITMASK(19),//262144,
-        WSO_ParticleEffect         = 524288,//MEZZ_BITMASK(20),//524288,
+        // Actor Objects
+        WO_ActorFirst             = 32768,//MEZZ_BITMASK(16),//32768,
+        WO_ActorPlaceHolder1      = 32768,//MEZZ_BITMASK(16),//32768,
+        WO_ActorPlaceHolder2      = 65536,//MEZZ_BITMASK(17),//65536,
+        WO_ActorPlaceHolder3      = 131072,//MEZZ_BITMASK(18),//131072,
+        WO_ActorLast              = 131072,//MEZZ_BITMASK(18),//131072,
 
-        // Other Objects
-        WSO_WorldNode              = 1048576//x MEZZ_BITMASK(21)//1048576
+        // Vehicle Objects
+        WO_VehicleFirst           = 262144,//MEZZ_BITMASK(19),//262144,
+        WO_VehiclePlaceHolder1    = 262144,//MEZZ_BITMASK(19),//262144,
+        WO_VehiclePlaceHolder2    = 524288,//MEZZ_BITMASK(20),//524288,
+        WO_VehiclePlaceHolder3    = 1048576,//MEZZ_BITMASK(21),//1048576,
+        WO_VehiclePlaceHolder4    = 2097152,//MEZZ_BITMASK(22),//2097152,
+        WO_VehiclePlaceHolder5    = 4194304,//MEZZ_BITMASK(23),//4194304,
+        WO_VehicleLast            = 4194304//MEZZ_BITMASK(23)//4194304
     };
-}
+}//Mezzanine
 
 #endif
