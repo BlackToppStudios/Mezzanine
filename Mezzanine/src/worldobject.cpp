@@ -42,402 +42,127 @@
 
 #include "worldobject.h"
 #include "serialization.h"
-#include "Audio/audiomanager.h"
-#include "Audio/soundset.h"
-#include "Physics/physicsmanager.h"
-#include "Graphics/scenemanager.h"
-#include "worldnode.h"
+#include "exception.h"
 #include "entresol.h"
 
-#include <Ogre.h>
-#include "btBulletDynamicsCommon.h"
-#include <sstream>
-#include <memory>
+#include "Physics/collision.h"
 
 namespace Mezzanine
 {
-    WorldObject::WorldObject() :
-        ParentWorld(NULL),
-        GraphicsObject(NULL),
-        GraphicsNode(NULL),
-        PhysicsShape(NULL),
-        PhysicsObject(NULL),
-        GraphicsSettings(NULL),
-        PhysicsSettings(NULL)
-    {
-        this->GraphicsNode = Entresol::GetSingletonPtr()->GetSceneManager()->_GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
-    }
+    WorldObject::WorldObject(World* TheWorld) :
+        ParentWorld(TheWorld)
+        {  }
+
+    WorldObject::WorldObject(const String& Name, World* TheWorld) :
+        ObjectName(Name),
+        ParentWorld(TheWorld)
+        {  }
 
     WorldObject::~WorldObject()
-    {
-    }
-
-    void WorldObject::AttachToGraphics()
-    {
-        if(GraphicsNode && GraphicsObject)
-        {
-            Vector3 tempv(PhysicsObject->getWorldTransform().getOrigin());
-            Quaternion tempq(PhysicsObject->getWorldTransform().getRotation());
-            this->GraphicsNode->setPosition(tempv.GetOgreVector3());
-            this->GraphicsNode->setOrientation(tempq.GetOgreQuaternion());
-            this->GraphicsNode->attachObject(this->GraphicsObject);
-        }
-    }
-
-    void WorldObject::DetachFromGraphics()
-    {
-        if(GraphicsNode && GraphicsObject)
-            this->GraphicsNode->detachObject(this->GraphicsObject);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Transform Methods
-
-    void WorldObject::SetLocation(const Real& x, const Real& y, const Real& z)
-    {
-        Vector3 temp(x,y,z);
-        this->SetLocation(temp);
-    }
-
-    void WorldObject::SetLocation(const Vector3& Location)
-    {
-        //Bullet
-        this->PhysicsObject->getWorldTransform().setOrigin(Location.GetBulletVector3());
-        this->PhysicsObject->getInterpolationWorldTransform().setOrigin(Location.GetBulletVector3());
-        //Ogre
-        this->GraphicsNode->setPosition(Location.GetOgreVector3());
-    }
-
-    Vector3 WorldObject::GetLocation() const
-    {
-        Vector3 temp(this->PhysicsObject->getWorldTransform().getOrigin());
-        return temp;
-    }
-
-    void WorldObject::SetScaling(const Vector3& Scale)
-    {
-        this->GraphicsNode->setScale(Scale.GetOgreVector3());
-        this->PhysicsShape->setLocalScaling(Scale.GetBulletVector3());
-    }
-
-    Vector3 WorldObject::GetScaling() const
-    {
-        Vector3 Scale(this->PhysicsShape->getLocalScaling());
-        return Scale;
-    }
+        {  }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    ConstString& WorldObject::GetName() const
-    {
-        return this->Name;
-    }
-
-    bool WorldObject::IsStaticOrKinematic() const
-    {
-        return this->PhysicsSettings->IsStaticOrKinematic();
-    }
-
-    bool WorldObject::IsInWorld() const
-    {
-        return this->PhysicsObject->getBroadphaseHandle() != 0;
-    }
+    const String& WorldObject::GetName() const
+        { return this->ObjectName; }
 
     World* WorldObject::GetWorld() const
+        { return this->ParentWorld(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Working with the World
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void WorldObject::ProtoSerialize(XML::Node& ParentNode) const
     {
-        return this->ParentWorld;
+        XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+
+        this->ProtoSerializeProperties(SelfRoot);
     }
 
-    WorldObjectGraphicsSettings* WorldObject::GetGraphicsSettings() const
+    void WorldObject::ProtoSerializeProperties(XML::Node& SelfRoot) const
     {
-        return this->GraphicsSettings;
+        XML::Node PropertiesNode = SelfRoot.AppendChild( WorldObject::GetSerializableName() + "Properties" );
+
+        if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+            PropertiesNode.AppendAttribute("Name").SetValue( this->GetName() ) )
+        {
+            XML::Node LocationNode = PropertiesNode.AppendChild("Location");
+            this->GetLocation().ProtoSerialize( LocationNode );
+            XML::Node OrientationNode = PropertiesNode.AppendChild("Orientation");
+            this->GetOrientation().ProtoSerialize( OrientationNode );
+            XML::Node ScaleNode = PropertiesNode.AppendChild("Scale");
+            this->GetScale().ProtoSerialize( ScaleNode );
+
+            return;
+        }else{
+            SerializeError("Create XML Attribute Values",WorldObject::GetSerializableName() + "Properties",true);
+        }
     }
 
-    WorldObjectPhysicsSettings* WorldObject::GetPhysicsSettings() const
+    void WorldObject::ProtoDeSerialize(const XML::Node& SelfRoot)
     {
-        return this->PhysicsSettings;
+        this->ProtoDeSerializeProperties(SelfRoot);
     }
+
+    void WorldObject::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    {
+        XML::Attribute CurrAttrib;
+        XML::Node PropertiesNode = SelfRoot.GetChild( WorldObject::GetSerializableName() + "Properties" );
+
+        if( !PropertiesNode.Empty() ) {
+            if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                CurrAttrib = PropertiesNode.GetAttribute("Name");
+                if( !CurrAttrib.Empty() )
+                    this->ObjectName = CurrAttrib.AsString();
+
+                XML::Node PositionNode = PropertiesNode.GetChild("Location").GetFirstChild();
+                if( !PositionNode.Empty() ) {
+                    Vector3 Loc(PositionNode);
+                    this->SetLocation(Loc);
+                }
+
+                XML::Node OrientationNode = PropertiesNode.GetChild("Orientation").GetFirstChild();
+                if( !OrientationNode.Empty() ) {
+                    Quaternion Rot(OrientationNode);
+                    this->SetOrientation(Rot);
+                }
+
+                XML::Node ScaleNode = PropertiesNode.GetChild("Scale").GetFirstChild();
+                if( !ScaleNode.Empty() ) {
+                    Vector3 Scale(ScaleNode);
+                    this->SetScale(Scale);
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldObject::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldObject::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+        }
+    }
+
+    String WorldObject::GetDerivedSerializableName() const
+        { return WorldObject::GetSerializableName(); }
+
+    String WorldObject::GetSerializableName()
+        { return "WorldObject"; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void WorldObject::_NotifyCollisionState(Physics::Collision* Col, const Physics::Collision::CollisionState& State)
+    void WorldObject::_NotifyCollisionState(Physics::Collision* Col, const Physics::CollisionState State)
     {
-        if(Physics::Collision::Col_Begin == State)
-        {
-            CurrentCollisions.insert(Col);
-        }
-        else if(Physics::Collision::Col_End == State)
-        {
-            std::set<Physics::Collision*>::iterator ColIt = CurrentCollisions.find(Col);
-            if( ColIt != CurrentCollisions.end() ) CurrentCollisions.erase(ColIt);
+        if(Physics::Col_Begin == State) {
+            this->CurrentCollisions.insert(Col);
+        }else if(Physics::Col_End == State) {
+            std::set<Physics::Collision*>::iterator ColIt = this->CurrentCollisions.find(Col);
+            if( ColIt != this->CurrentCollisions.end() )
+                this->CurrentCollisions.erase(ColIt);
         }
     }
-
-    void WorldObject::_NotifyProxyDestroyed(WorldProxy* ToBeDestroyed)
-    {
-        // This needs to be removed when the refactor is done, as it should be pure virtual.
-    }
-
-    btCollisionObject* WorldObject::_GetBasePhysicsObject() const
-    {
-        return PhysicsObject;
-    }
-
-    Ogre::Entity* WorldObject::_GetGraphicsObject() const
-    {
-        return GraphicsObject;
-    }
-
-    Ogre::SceneNode* WorldObject::_GetGraphicsNode() const
-    {
-        return GraphicsNode;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Serialization
-
-    void WorldObject::ThrowSerialError(const String& Fail) const
-        { SerializeError(Fail, SerializableName()); }
-
-    void WorldObject::ProtoSerialize(XML::Node& CurrentRoot) const
-    {
-        XML::Node WorldObjectNode = CurrentRoot.AppendChild("WorldObject");
-        if (!WorldObjectNode) { ThrowSerialError("create WorldObjectNode");}
-
-        XML::Node LocationNode = WorldObjectNode.AppendChild("Location");
-        if (!LocationNode) { ThrowSerialError("create LocationNode"); }
-        this->GetLocation().ProtoSerialize(LocationNode);
-
-        XML::Node ScalingNode = WorldObjectNode.AppendChild("Scaling");
-        if (!ScalingNode) { ThrowSerialError("create ScalingNode"); }
-        this->GetScaling().ProtoSerialize(ScalingNode);
-
-        this->GetGraphicsSettings()->ProtoSerialize(WorldObjectNode);
-        this->GetPhysicsSettings()->ProtoSerialize(WorldObjectNode);
-
-        XML::Attribute WorldObjectName = WorldObjectNode.AppendAttribute("Name");
-            WorldObjectName.SetValue(this->GetName());
-        XML::Attribute WorldObjectVersion = WorldObjectNode.AppendAttribute("Version");
-            WorldObjectVersion.SetValue(1);
-        XML::Attribute WorldObjectIsInWorld = WorldObjectNode.AppendAttribute("IsInWorld");
-            WorldObjectIsInWorld.SetValue(this->IsInWorld());
-        if ( !(WorldObjectName && WorldObjectVersion && WorldObjectIsInWorld) )
-            { ThrowSerialError("create WorldObjectNode Attributes"); }
-
-        /*XML::Attribute WorldObjectSoundSetName = WorldObjectNode.AppendAttribute("SoundSet");
-        if(this->GetSounds())
-        {
-            WorldObjectSoundSetName.SetValue(this->GetSounds()->GetName());
-        }else{
-            WorldObjectSoundSetName.SetValue("");
-        }//*/
-    }
-
-    void WorldObject::ProtoDeSerialize(const XML::Node& OneNode)
-    {
-        if ( Mezzanine::String(OneNode.Name())==this->WorldObject::SerializableName() )
-        {
-            if(OneNode.GetAttribute("Version").AsInt() == 1)
-            {
-                Vector3 TempVec;
-                XML::Node LocationNode = OneNode.GetChild("Location").GetFirstChild();
-                if(!LocationNode)
-                    { DeSerializeError("locate Location node",SerializableName()); }
-                TempVec.ProtoDeSerialize(LocationNode);
-                this->SetLocation(TempVec);
-
-                XML::Node GraphicsSettingsNode = OneNode.GetChild(this->GraphicsSettingsSerializableName());
-                if(!GraphicsSettingsNode)
-                    { DeSerializeError("locate Graphics Settings node",SerializableName()); }
-                this->GetGraphicsSettings()->ProtoDeSerialize(GraphicsSettingsNode);
-
-                XML::Node PhysicsSettingsNode = OneNode.GetChild(this->PhysicsSettingsSerializableName());
-                if(!PhysicsSettingsNode)
-                    { DeSerializeError(String("locate Physics Settings node, ")+this->PhysicsSettingsSerializableName()+", ",SerializableName()); }
-                this->GetPhysicsSettings()->ProtoDeSerialize(PhysicsSettingsNode);
-
-                XML::Node ScalingNode = OneNode.GetChild("Scaling").GetFirstChild();
-                if(!ScalingNode)
-                    { DeSerializeError("locate Scaling node",SerializableName()); }
-                TempVec.ProtoDeSerialize(ScalingNode);
-                this->SetScaling(TempVec);
-
-                if( this->IsInWorld() != OneNode.GetAttribute("IsInWorld").AsBool() )
-                {
-                    if(this->IsInWorld())
-                        { this->RemoveFromWorld(); }
-                    else
-                        { this->AddToWorld(); }
-                }
-
-                /*if( 0!=OneNode.GetAttribute("SoundSet") && ""!=OneNode.GetAttribute("SoundSet").AsString())
-                    { this->ObjectSounds = Audio::AudioManager::GetSingletonPtr()->GetSoundSet(OneNode.GetAttribute("SoundSet").AsString()); }
-                else
-                    { this->ObjectSounds = 0; }//*/
-            }else{
-                DeSerializeError("find usable serialization version",SerializableName());
-            }
-        }else{
-            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
-        }
-    }
-
-    String WorldObject::SerializableName()
-        {   return String("WorldObject"); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // NonStaticWorldObject Methods
-
-    NonStaticWorldObject::NonStaticWorldObject()
-    {
-    }
-
-    NonStaticWorldObject::~NonStaticWorldObject()
-    {
-    }
-
-    void NonStaticWorldObject::InternalSetOrientation(const Quaternion& Rotation)
-    {
-        //Bullet
-        this->PhysicsObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
-        this->PhysicsObject->getInterpolationWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
-        //Ogre
-        this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Transform Methods
-
-    void NonStaticWorldObject::SetLocation(const Vector3& Location)
-    {
-        WorldObject::SetLocation(Location);
-
-        _RecalculateAllChildTransforms();
-    }
-
-    Vector3 NonStaticWorldObject::GetLocation() const
-    {
-        return WorldObject::GetLocation();
-    }
-
-    void NonStaticWorldObject::SetOrientation(const Real& x, const Real& y, const Real& z, const Real& w)
-    {
-        Quaternion temp(x,y,z,w);
-        this->SetOrientation(temp);
-    }
-
-    void NonStaticWorldObject::SetOrientation(const Quaternion& Rotation)
-    {
-        InternalSetOrientation(Rotation);
-
-        _RecalculateAllChildTransforms();
-    }
-
-    Quaternion NonStaticWorldObject::GetOrientation() const
-    {
-        Quaternion temp(PhysicsObject->getWorldTransform().getRotation());
-        return temp;
-    }
-
-    void NonStaticWorldObject::SetScaling(const Vector3& Scale)
-    {
-        WorldObject::SetScaling(Scale);
-
-        _RecalculateAllChildTransforms();
-    }
-
-    Vector3 NonStaticWorldObject::GetScaling() const
-    {
-        return WorldObject::GetScaling();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Utility and Configuration
-
-    ConstString& NonStaticWorldObject::GetName() const
-    {
-        return WorldObject::GetName();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Serialization
-
-    void NonStaticWorldObject::ThrowSerialError(const String& Fail) const
-        { SerializeError(Fail, SerializableName()); }
-
-    void NonStaticWorldObject::ProtoSerialize(XML::Node& CurrentRoot) const
-    {
-        XML::Node NonStaticWorldObjectNode = CurrentRoot.AppendChild("NonStaticWorldObject");
-        if (!NonStaticWorldObjectNode) { ThrowSerialError("create NonStaticWorldObjectNode");}
-
-        XML::Attribute Version = NonStaticWorldObjectNode.AppendAttribute("Version");
-        Version.SetValue(1);
-
-        XML::Node OrientationNode = NonStaticWorldObjectNode.AppendChild("Orientation");
-        if(!OrientationNode)  { ThrowSerialError("create OrientationNode"); }
-
-        this->GetOrientation().ProtoSerialize(OrientationNode);
-
-        // if actor node is in scenemanager just save a name
-        /*if( Entresol::GetSingletonPtr()->GetSceneManager()->GetNode( this->ObjectWorldNode->GetName() ) )
-        {
-            XML::Attribute NonStaticWorldObjectNodeAttrib = NonStaticWorldObjectNode.AppendAttribute("WorldNode");
-            if(!NonStaticWorldObjectNodeAttrib.SetValue(this->ObjectWorldNode->GetName()))
-                {ThrowSerialError("store WorldNode Name");}
-        }else{
-            SloppyProtoSerialize( *(this->ObjectWorldNode),NonStaticWorldObjectNode);                                   //Serialization performed in older style
-        }// */
-
-        WorldObject::ProtoSerialize(NonStaticWorldObjectNode);
-    }
-
-    void NonStaticWorldObject::ProtoDeSerialize(const XML::Node& OneNode)
-    {
-        if ( Mezzanine::String(OneNode.Name())==this->NonStaticWorldObject::SerializableName() )
-        {
-            if(OneNode.GetAttribute("Version").AsInt() == 1)
-            {
-                this->WorldObject::ProtoDeSerialize(OneNode.GetChild(this->WorldObject::SerializableName()));
-
-                Quaternion TempQuat;
-                XML::Node OrientationNode = OneNode.GetChild("Orientation").GetFirstChild();
-                if(!OrientationNode)
-                    { DeSerializeError("locate Orientation node",SerializableName()); }
-                TempQuat.ProtoDeSerialize(OrientationNode);
-                this->SetOrientation(TempQuat);
-
-                /*if(0==OneNode.GetAttribute("WorldNode"))         // Are we dealing with a WorldNode Node or WorldNode Attribute.
-                {
-                    //Since the Attribute didn't exist we must have a node
-                    XML::Node ObjectWorldNode = OneNode.GetChild("WorldNode");                               // Assumption made base on old style serialization
-                    if(!ObjectWorldNode)
-                        { DeSerializeError("locate ObjectWorldNode node",SerializableName()); }
-                    if (0!=this->ObjectWorldNode && !Entresol::GetSingletonPtr()->GetSceneManager()->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
-                        { delete this->ObjectWorldNode; }
-                    this->ObjectWorldNode = new WorldNode(ObjectWorldNode.GetAttribute("Name").AsString(),0);
-                    ObjectWorldNode >> *(this->ObjectWorldNode);                                              // Deserialized with old style serialization
-                }else{
-                    WorldNode *TempWorldNode = Entresol::GetSingletonPtr()->GetSceneManager()->GetNode(OneNode.GetAttribute("WorldNode").AsString());
-                    if( TempWorldNode == this->ObjectWorldNode )
-                        { return; }                                                                         //This already has the correct node we are done
-                    if (0!=this->ObjectWorldNode && !Entresol::GetSingletonPtr()->GetSceneManager()->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
-                        { delete this->ObjectWorldNode; }
-                    this->ObjectWorldNode = TempWorldNode;                                                   // The old node has bee cleaned up and the new node is in place
-                    if (0==this->ObjectWorldNode)
-                        { DeSerializeError("locate ObjectWorldNode attribute",SerializableName()); }
-                }//*/
-            }else{
-                DeSerializeError("find usable serialization version",SerializableName());
-            }
-        }else{
-            DeSerializeError(String("find correct class to deserialize, found a ")+OneNode.Name(),SerializableName());
-        }
-    }
-
-    String NonStaticWorldObject::SerializableName()
-        { return String("NonStaticWorldObject"); }
 }//Mezzanine
 
 #endif
