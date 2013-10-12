@@ -40,7 +40,9 @@
 #ifndef _physicsuniversalconstraint_cpp
 #define _physicsuniversalconstraint_cpp
 
-#include "universalconstraint.h"
+#include "Physics/universalconstraint.h"
+#include "Physics/rigidproxy.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -53,33 +55,29 @@ namespace Mezzanine
         /////////////////////////////////////////
         // UniversalConstraint Constraint Functions
 
-        UniversalConstraint::UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+        UniversalConstraint::UniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
         {
-            SetBodies(ActorA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
 
             btVector3 temp1(Anchor.GetBulletVector3());
             btVector3 temp2(Axis1.GetBulletVector3());
             btVector3 temp3(Axis2.GetBulletVector3());
-            Universal = new btUniversalConstraint(*BodyA, *BodyB, temp1, temp2, temp3);
-            Generic6dof = Universal;
+            this->Universal = new btUniversalConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), temp1, temp2, temp3);
+            this->Generic6dof = this->Universal;
         }
 
         UniversalConstraint::~UniversalConstraint()
         {
-            delete Universal;
-            Universal = NULL;
-            Generic6dof = NULL;
+            delete this->Universal;
+            this->Universal = NULL;
+            this->Generic6dof = NULL;
         }
 
         void UniversalConstraint::SetUpperLimit(Real Ang1Max, Real Ang2Max)
-        {
-            this->Universal->setUpperLimit(Ang1Max, Ang2Max);
-        }
+            { this->Universal->setUpperLimit(Ang1Max, Ang2Max); }
 
         void UniversalConstraint::SetLowerLimit(Real Ang1Min, Real Ang2Min)
-        {
-            this->Universal->setLowerLimit(Ang1Min, Ang2Min);
-        }
+            { this->Universal->setLowerLimit(Ang1Min, Ang2Min); }
     }//Physics
 }//Mezzanine
 

@@ -40,7 +40,9 @@
 #ifndef _physicssliderconstraint_cpp
 #define _physicssliderconstraint_cpp
 
-#include "sliderconstraint.h"
+#include "Physics/sliderconstraint.h"
+#include "Physics/rigidproxy.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -53,36 +55,37 @@ namespace Mezzanine
         /////////////////////////////////////////
         // Slider Constraint Functions
 
-        SliderConstraint::SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
+        SliderConstraint::SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
         {
-            SetBodies(ActorA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
 
             btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
             btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-            Slider = new btSliderConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
+            this->Slider = new btSliderConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), transa, transb, UseLinearReferenceA);
         }
 
-        SliderConstraint::SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
+        SliderConstraint::SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
         {
-            SetBodies(ActorA,ActorB);
-            Slider = new btSliderConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
+            this->SetBodies(ProxyA,ProxyB);
+            this->Slider = new btSliderConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
         }
 
-        SliderConstraint::SliderConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceA)
+        SliderConstraint::SliderConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceA)
         {
-            SetBodies(ActorB);
+            this->SetBodies(ProxyB);
 
             btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-            Slider = new btSliderConstraint(*BodyA, transb, UseLinearReferenceA);
+            this->Slider = new btSliderConstraint(*(ProxA->_GetPhysicsObject()), transb, UseLinearReferenceA);
         }
 
         SliderConstraint::~SliderConstraint()
         {
-            delete Slider;
+            delete this->Slider;
         }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofConstraint Location and Rotation
+
         void SliderConstraint::SetPivotATransform(const Transform& TranA)
             { this->Slider->getFrameOffsetA() = TranA.GetBulletTransform(); }
 
@@ -268,6 +271,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // SliderConstraint Axis, Params and other Details
+
         Constraint::ParamList SliderConstraint::ValidParamOnAxis(int Axis) const
         {
             Constraint::ParamList Results;

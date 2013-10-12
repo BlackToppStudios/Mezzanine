@@ -63,39 +63,38 @@ namespace Mezzanine
             ////////////////////////////////////////////////////////////////////////////////
             // HingeConstraint Construction and Destruction
 
-            /// @brief Creates a Hinge constraint that will connect two actors together by their offsets.
-            /// @param ActorA The first actor to apply this constraint to.
-            /// @param ActorB The second actor to apply this constraint to.
-            /// @param PivotA The location in ActorA's local space to apply the constraint to.
-            /// @param PivotB The location in ActorB's local space to apply the constraint to.
-            /// @param AxisInA The axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
-            /// @param AxisInB The axis(for ActorB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
-            /// @param UseReferenceFrameA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead.
-            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceFrameA=false);
-            /// @brief Creates a Hinge constraint that will attach an actor to a point in world space.
-            /// @param ActorA The actor to apply this constraint to.
-            /// @param PivotInA The point in the object's(ActorA) local space where the constraint is to be attached to world space.
-            /// @param AxisInA The axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
-            /// @param UseReferenceFrameA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead.
-            HingeConstraint(ActorRigid* ActorA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceFrameA=false);
+            /// @brief Creates a Hinge constraint that will connect two proxies together by their offsets.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The location in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The location in ProxyB's local space to apply the constraint to.
+            /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param AxisInB The axis(for ProxyB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param UseReferenceFrameA By default, this constraint uses ProxyB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyA's local space instead.
+            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceFrameA=false);
+            /// @brief Creates a Hinge constraint that will attach an proxy to a point in world space.
+            /// @param ProxyA The proxy to apply this constraint to.
+            /// @param PivotInA The point in the objects(ProxyA) local space where the constraint is to be attached to world space.
+            /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param UseReferenceFrameA By default, this constraint uses ProxyB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyA's local space instead.
+            HingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceFrameA=false);
             /// @brief Create a Hinge with components of a tranform
-            /// @param ActorA The first actor to apply this constraint to.
-            /// @param ActorB The second actor to apply this constraint to.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
             /// @param VectorA The location component of Transform A
             /// @param VectorB The location component of Transform B
             /// @param QuaternionA The rotation component of Transform A
             /// @param QuaternionB The rotation component of Transform B
-            /// @param UseReferenceFrameA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead.
-            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceFrameA=false);
+            /// @param UseReferenceFrameA By default, this constraint uses ProxyB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyAs local space instead.
+            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceFrameA=false);
             /// @brief Create a Hinge with components of a tranform
-            /// @param ActorA The first actor to apply this constraint to.
-            /// @param ActorB The second actor to apply this constraint to.
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
             /// @param TransformA The location component of Transform A
             /// @param TransformB The location component of Transform B
-            /// @param UseReferenceFrameA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ActorA's local space instead.
-            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseReferenceFrameA=false);
+            /// @param UseReferenceFrameA By default, this constraint uses ProxyBs local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyAs local space instead.
+            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseReferenceFrameA=false);
             /// @brief Class destructor.
-            /// @details The class destructor.
             virtual ~HingeConstraint();
 
             ////////////////////////////////////////////////////////////////////////////////

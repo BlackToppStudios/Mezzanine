@@ -102,35 +102,35 @@ namespace Mezzanine
             ////////////////////////////////////////////////////////////////////////////////
             // Generic6DofConstraint Construction and Destruction
 
-            /// @brief Two body Verbose constructor
-            /// @param ActorA The First body to be bound
-            /// @param ActorB  The Second body to be bound
-            /// @param VectorA The offset from ActorA's center of gravity to get to match an offset from ActorB
-            /// @param VectorB The offset from ActorB's center of gravity.
-            /// @param QuaternionA Relative rotation from ActorA
-            /// @param QuaternionB Relative rotation from ActorB
-            /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
-            Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA = false);
-            /// @brief Two body Terse constructor
-            /// @param ActorA The First body to be bound
-            /// @param ActorB  The Second body to be bound
-            /// @param TransformA The offset and rotation from ActorA's center of gravity to get to match an offset from ActorB
-            /// @param TransformB The offset and rotation from ActorB's center of gravity.
-            /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
-            Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
-            /// @brief Body and World Verbose constructor
-            /// @param ActorA The body to be bound to the world
-            /// @param VectorB The offset for the ActorB pivot/hinge/joint
-            /// @param QuaternionB The rotation
-            /// @param UseLinearReferenceB Perform Linear math from ActorB's perspective, default to true.
+            /// @brief Two proxy Verbose constructor.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param VectorA The offset from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param VectorB The offset from ProxyBs center of gravity.
+            /// @param QuaternionA Relative rotation from ProxyA.
+            /// @param QuaternionB Relative rotation from ProxyB.
+            /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
+            Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA = false);
+            /// @brief Two proxy Terse constructor.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param TransformA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransformB The offset and rotation from ProxyBs center of gravity.
+            /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
+            Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
+            /// @brief Body and World Verbose constructor.
+            /// @param ProxyB The proxy to be bound to the world.
+            /// @param VectorB The offset for the ProxyB pivot/hinge/joint.
+            /// @param QuaternionB The rotation.
+            /// @param UseLinearReferenceB Perform Linear math from ProxyBs perspective, default to true.
             /// @details This Joins an object to the world.
-            Generic6DofConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceB = true);
-            /// @brief Body and World Terse constructor
-            /// @param ActorA The body to be bound to the world
-            /// @param TransformB The offset and rotation for the ActorB pivot/hinge/joint
-            /// @param UseLinearReferenceB Perform Linear math from ActorB's perspective, default to true.
+            Generic6DofConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceB = true);
+            /// @brief Body and World Terse constructor.
+            /// @param ProxyB The proxy to be bound to the world.
+            /// @param TransformB The offset and rotation for the ProxyB pivot/hinge/joint.
+            /// @param UseLinearReferenceB Perform Linear math from ProxyB's perspective, default to true.
             /// @details This Joins an object to the world.
-            Generic6DofConstraint(ActorRigid* ActorB, const Transform& TransformB, bool UseLinearReferenceB = true);
+            Generic6DofConstraint(RigidProxy* ProxyB, const Transform& TransformB, bool UseLinearReferenceB = true);
             /// @brief Class destructor.
             virtual ~Generic6DofConstraint();
 
@@ -204,7 +204,7 @@ namespace Mezzanine
             Real GetAngularLimitLowerOnAxis(int RotationalAxis) const;
             /// @brief Get a specific upper rotational limit
             /// @param RotationalAxis The Axis to work with.
-            /// @details This  selects axis with
+            /// @details This selects axis with
             /// @return A real containing the specified upper limit
             Real GetAngularLimitUpperOnAxis(int RotationalAxis) const;
 

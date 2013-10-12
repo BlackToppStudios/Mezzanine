@@ -40,7 +40,9 @@
 #ifndef _physicsgeneric6dofconstraint_cpp
 #define _physicsgeneric6dofconstraint_cpp
 
-#include "generic6dofconstraint.h"
+#include "Physics/generic6dofconstraint.h"
+#include "Physics/rigidproxy.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -52,6 +54,7 @@ namespace Mezzanine
     {
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6Dof Constraint Functions
+
         Generic6DofConstraint::Generic6DofConstraint()
             { }
 
@@ -60,44 +63,46 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofConstraint Construction and Destruction
-        Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA,
+
+        Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA,
                                                       const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
         {
-            SetBodies(ActorA,ActorB);
+            this->SetBodies(ProxyA,ActorB);
             Transform TransformA(VectorA, QuaternionA);
             Transform TransformB(VectorB, QuaternionB);
-            Generic6dof = new btGeneric6DofConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
+            this->Generic6dof = new btGeneric6DofConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
         }
 
-        Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
+        Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
         {
-            SetBodies(ActorA,ActorB);
-            Generic6dof = new btGeneric6DofConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
+            this->SetBodies(ProxyA,ActorB);
+            this->Generic6dof = new btGeneric6DofConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
         }
 
-        Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceB)
+        Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceB)
         {
-            SetBodies(ActorB);
+            this->SetBodies(ProxyB);
 
             btTransform transa(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-            Generic6dof = new btGeneric6DofConstraint(*BodyA, transa, UseLinearReferenceB);
+            this->Generic6dof = new btGeneric6DofConstraint(*(ProxA->_GetPhysicsObject()), transa, UseLinearReferenceB);
         }
 
-        Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorB, const Transform& TransformB, bool UseLinearReferenceB)
+        Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyB, const Transform& TransformB, bool UseLinearReferenceB)
         {
-            SetBodies(ActorB);
+            this->SetBodies(ProxyB);
 
-            Generic6dof = new btGeneric6DofConstraint(*BodyA, TransformB.GetBulletTransform(), UseLinearReferenceB);
+            this->Generic6dof = new btGeneric6DofConstraint(*(ProxA->_GetPhysicsObject()), TransformB.GetBulletTransform(), UseLinearReferenceB);
         }
 
         Generic6DofConstraint::~Generic6DofConstraint()
         {
-            if(Generic6dof)
-                delete Generic6dof;
+            if(this->Generic6dof)
+                delete this->Generic6dof;
         }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofConstraint Location and Rotation
+
         void Generic6DofConstraint::SetPivotATransform(const Transform& TranA)
             { this->Generic6dof->getFrameOffsetA() = TranA.GetBulletTransform(); }
 
@@ -138,6 +143,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofConstraint Basic Limit Accessors
+
         void Generic6DofConstraint::SetLimit(int Axis, Real Lower, Real Upper)
             { this->Generic6dof->setLimit(Axis, Lower, Upper); }
 
@@ -160,10 +166,10 @@ namespace Mezzanine
             { this->Generic6dof->setAngularLowerLimit(Limit.GetBulletVector3()); }
 
         Vector3 Generic6DofConstraint::GetAngularLimitUpper() const
-            { return Vector3(GetAngularLimitUpperOnAxis(0),GetAngularLimitUpperOnAxis(1),GetAngularLimitUpperOnAxis(2)); }
+            { return Vector3(this->GetAngularLimitUpperOnAxis(0),this->GetAngularLimitUpperOnAxis(1),this->GetAngularLimitUpperOnAxis(2)); }
 
         Vector3 Generic6DofConstraint::GetAngularLimitLower() const
-            { return Vector3(GetAngularLimitLowerOnAxis(0),GetAngularLimitLowerOnAxis(1),GetAngularLimitLowerOnAxis(2)); }
+            { return Vector3(this->GetAngularLimitLowerOnAxis(0),this->GetAngularLimitLowerOnAxis(1),this->GetAngularLimitLowerOnAxis(2)); }
 
         Real Generic6DofConstraint::GetAngularLimitLowerOnAxis(int RotationalAxis) const
             { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(RotationalAxis))->m_loLimit; }
@@ -173,53 +179,54 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofConstraint Angular Limit and Motor Details
+
         void Generic6DofConstraint::SetAngularLimitMaxForce(const Vector3& MaxLimitForces)
-            { SetAngularLimitMaxForceOnAxis(MaxLimitForces.X,AngularXAsRotationalAxis);  SetAngularLimitMaxForceOnAxis(MaxLimitForces.Y,AngularYAsRotationalAxis);  SetAngularLimitMaxForceOnAxis(MaxLimitForces.Z,AngularZAsRotationalAxis); }
+            { this->SetAngularLimitMaxForceOnAxis(MaxLimitForces.X,AngularXAsRotationalAxis);  this->SetAngularLimitMaxForceOnAxis(MaxLimitForces.Y,AngularYAsRotationalAxis);  this->SetAngularLimitMaxForceOnAxis(MaxLimitForces.Z,AngularZAsRotationalAxis); }
 
         void Generic6DofConstraint::SetAngularLimitMaxForceOnAxis(Real MaxLimitForce, int Axis)
             { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxLimitForce = MaxLimitForce; }
 
         Vector3 Generic6DofConstraint::GetAngularLimitMaxForce() const
-            { return Vector3(GetAngularLimitMaxForceOnAxis(AngularXAsRotationalAxis), GetAngularLimitMaxForceOnAxis(AngularYAsRotationalAxis), GetAngularLimitMaxForceOnAxis(AngularZAsRotationalAxis)); }
+            { return Vector3(this->GetAngularLimitMaxForceOnAxis(AngularXAsRotationalAxis), this->GetAngularLimitMaxForceOnAxis(AngularYAsRotationalAxis), this->GetAngularLimitMaxForceOnAxis(AngularZAsRotationalAxis)); }
 
         Real Generic6DofConstraint::GetAngularLimitMaxForceOnAxis(int Axis) const
             { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxLimitForce; }
 
 
         void Generic6DofConstraint::SetAngularMotorTargetVelocity(const Vector3& Velocities)
-            { SetAngularMotorTargetVelocityOnAxis(Velocities.X,AngularXAsRotationalAxis);  SetAngularMotorTargetVelocityOnAxis(Velocities.Y,AngularYAsRotationalAxis);  SetAngularMotorTargetVelocityOnAxis(Velocities.Z,AngularZAsRotationalAxis); }
+            { this->SetAngularMotorTargetVelocityOnAxis(Velocities.X,AngularXAsRotationalAxis);  this->SetAngularMotorTargetVelocityOnAxis(Velocities.Y,AngularYAsRotationalAxis);  this->SetAngularMotorTargetVelocityOnAxis(Velocities.Z,AngularZAsRotationalAxis); }
 
         void Generic6DofConstraint::SetAngularMotorTargetVelocityOnAxis(Real Velocity, int Axis)
             { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_targetVelocity = Velocity; }
 
         Vector3 Generic6DofConstraint::GetAngularMotorTargetVelocity() const
-            { return Vector3(GetAngularMotorTargetVelocityOnAxis(AngularXAsRotationalAxis), GetAngularMotorTargetVelocityOnAxis(AngularYAsRotationalAxis), GetAngularMotorTargetVelocityOnAxis(AngularZAsRotationalAxis)); }
+            { return Vector3(this->GetAngularMotorTargetVelocityOnAxis(AngularXAsRotationalAxis), this->GetAngularMotorTargetVelocityOnAxis(AngularYAsRotationalAxis), this->GetAngularMotorTargetVelocityOnAxis(AngularZAsRotationalAxis)); }
 
         Real Generic6DofConstraint::GetAngularMotorTargetVelocityOnAxis(int Axis) const
             { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_targetVelocity; }
 
 
         void Generic6DofConstraint::SetAngularMotorMaxForce(const Vector3& Forces)
-            { SetAngularMotorMaxForceOnAxis(Forces.X,AngularXAsRotationalAxis);  SetAngularMotorMaxForceOnAxis(Forces.Y,AngularYAsRotationalAxis);  SetAngularMotorMaxForceOnAxis(Forces.Z,AngularZAsRotationalAxis); }
+            { this->SetAngularMotorMaxForceOnAxis(Forces.X,AngularXAsRotationalAxis);  this->SetAngularMotorMaxForceOnAxis(Forces.Y,AngularYAsRotationalAxis);  this->SetAngularMotorMaxForceOnAxis(Forces.Z,AngularZAsRotationalAxis); }
 
         void Generic6DofConstraint::SetAngularMotorMaxForceOnAxis(Real Force, int Axis)
             { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxMotorForce = Force; }
 
         Vector3 Generic6DofConstraint::GetAngularMotorMaxForce() const
-            { return Vector3(GetAngularMotorMaxForceOnAxis(AngularXAsRotationalAxis), GetAngularMotorMaxForceOnAxis(AngularYAsRotationalAxis), GetAngularMotorMaxForceOnAxis(AngularZAsRotationalAxis)); }
+            { return Vector3(this->GetAngularMotorMaxForceOnAxis(AngularXAsRotationalAxis), this->GetAngularMotorMaxForceOnAxis(AngularYAsRotationalAxis), this->GetAngularMotorMaxForceOnAxis(AngularZAsRotationalAxis)); }
 
         Real Generic6DofConstraint::GetAngularMotorMaxForceOnAxis(int Axis) const
             { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_maxMotorForce; }
 
 
         void Generic6DofConstraint::SetAngularMotorDamping(const Vector3& Dampings)
-            { SetAngularMotorDampingOnAxis(Dampings.X,AngularXAsRotationalAxis);  SetAngularMotorDampingOnAxis(Dampings.Y,AngularYAsRotationalAxis);  SetAngularMotorDampingOnAxis(Dampings.Z,AngularZAsRotationalAxis); }
+            { this->SetAngularMotorDampingOnAxis(Dampings.X,AngularXAsRotationalAxis);  this->SetAngularMotorDampingOnAxis(Dampings.Y,AngularYAsRotationalAxis);  this->SetAngularMotorDampingOnAxis(Dampings.Z,AngularZAsRotationalAxis); }
 
         void Generic6DofConstraint::SetAngularMotorDampingOnAxis(Real Damping, int Axis)
             { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_damping = Damping; }
 
         Vector3 Generic6DofConstraint::GetAngularMotorDamping() const
-            { return Vector3(GetAngularMotorDampingOnAxis(AngularXAsRotationalAxis), GetAngularMotorDampingOnAxis(AngularYAsRotationalAxis), GetAngularMotorDampingOnAxis(AngularZAsRotationalAxis)); }
+            { return Vector3(this->GetAngularMotorDampingOnAxis(AngularXAsRotationalAxis), this->GetAngularMotorDampingOnAxis(AngularYAsRotationalAxis), this->GetAngularMotorDampingOnAxis(AngularZAsRotationalAxis)); }
 
         Real Generic6DofConstraint::GetAngularMotorDampingOnAxis(int Axis) const
             { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_damping; }
@@ -252,6 +259,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofConstraint Linear Limit and Motor Details
+
         void Generic6DofConstraint::SetLinearLimitSoftness(Real Softness)
             { this->Generic6dof->getTranslationalLimitMotor()->m_limitSoftness = Softness; }
 
@@ -272,38 +280,38 @@ namespace Mezzanine
 
 
         void Generic6DofConstraint::SetLinearMotorMaxForce(const Vector3& Forces)
-            { SetLinearMotorMaxForceOnAxis(Forces.X,LinearX);  SetLinearMotorMaxForceOnAxis(Forces.Y,LinearY);  SetLinearMotorMaxForceOnAxis(Forces.Z,LinearZ); }
+            { this->SetLinearMotorMaxForceOnAxis(Forces.X,LinearX);  this->SetLinearMotorMaxForceOnAxis(Forces.Y,LinearY);  this->SetLinearMotorMaxForceOnAxis(Forces.Z,LinearZ); }
 
         void Generic6DofConstraint::SetLinearMotorMaxForceOnAxis(Real Force, int Axis)
             { this->Generic6dof->getTranslationalLimitMotor()->m_maxMotorForce[Axis] = Force; }
 
         Vector3 Generic6DofConstraint::GetLinearMotorMaxForce() const
-            { return Vector3(GetLinearMotorMaxForceOnAxis(LinearX), GetLinearMotorMaxForceOnAxis(LinearY), GetLinearMotorMaxForceOnAxis(LinearZ)); }
+            { return Vector3(this->GetLinearMotorMaxForceOnAxis(LinearX), this->GetLinearMotorMaxForceOnAxis(LinearY), this->GetLinearMotorMaxForceOnAxis(LinearZ)); }
 
         Real Generic6DofConstraint::GetLinearMotorMaxForceOnAxis(int Axis) const
             { return this->Generic6dof->getTranslationalLimitMotor()->m_maxMotorForce[Axis]; }
 
         void Generic6DofConstraint::SetLinearMotorTargetVelocity(const Vector3& Velocities)
-            { SetLinearMotorTargetVelocityOnAxis(Velocities.X,LinearX);  SetLinearMotorTargetVelocityOnAxis(Velocities.Y,LinearY);  SetLinearMotorTargetVelocityOnAxis(Velocities.Z,LinearZ); }
+            { this->SetLinearMotorTargetVelocityOnAxis(Velocities.X,LinearX);  this->SetLinearMotorTargetVelocityOnAxis(Velocities.Y,LinearY);  this->SetLinearMotorTargetVelocityOnAxis(Velocities.Z,LinearZ); }
 
         void Generic6DofConstraint::SetLinearMotorTargetVelocityOnAxis(Real Velocity, int Axis)
             { this->Generic6dof->getTranslationalLimitMotor()->m_targetVelocity[Axis] = Velocity; }
 
         Vector3 Generic6DofConstraint::GetLinearMotorTargetVelocity() const
-            { return Vector3(GetLinearMotorTargetVelocityOnAxis(LinearX), GetLinearMotorTargetVelocityOnAxis(LinearY), GetLinearMotorTargetVelocityOnAxis(LinearZ)); }
+            { return Vector3(this->GetLinearMotorTargetVelocityOnAxis(LinearX), this->GetLinearMotorTargetVelocityOnAxis(LinearY), this->GetLinearMotorTargetVelocityOnAxis(LinearZ)); }
 
         Real Generic6DofConstraint::GetLinearMotorTargetVelocityOnAxis(int Axis) const
             { return this->Generic6dof->getTranslationalLimitMotor()->m_targetVelocity[Axis]; }
 
 
         void Generic6DofConstraint::SetLinearMotorEnabled(const Vector3& Enableds)
-            { SetLinearMotorEnabledOnAxis(Enableds.X,LinearX);  SetLinearMotorEnabledOnAxis(Enableds.Y,LinearY);  SetLinearMotorEnabledOnAxis(Enableds.Z,LinearZ); }
+            { this->SetLinearMotorEnabledOnAxis(Enableds.X,LinearX);  this->SetLinearMotorEnabledOnAxis(Enableds.Y,LinearY);  this->SetLinearMotorEnabledOnAxis(Enableds.Z,LinearZ); }
 
         void Generic6DofConstraint::SetLinearMotorEnabledOnAxis(bool Enabled, int Axis)
             { this->Generic6dof->getTranslationalLimitMotor()->m_enableMotor[Axis] = Enabled; }
 
         Vector3 Generic6DofConstraint::GetLinearMotorEnabled() const
-            { return Vector3(GetLinearMotorEnabledOnAxis(LinearX), GetLinearMotorEnabledOnAxis(LinearY), GetLinearMotorEnabledOnAxis(LinearZ)); }
+            { return Vector3(this->GetLinearMotorEnabledOnAxis(LinearX), this->GetLinearMotorEnabledOnAxis(LinearY), this->GetLinearMotorEnabledOnAxis(LinearZ)); }
 
         bool Generic6DofConstraint::GetLinearMotorEnabledOnAxis(int Axis) const
             { return this->Generic6dof->getTranslationalLimitMotor()->m_enableMotor[Axis]; }
@@ -312,6 +320,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofConstraint Axis, Params and other Details
+
         Constraint::ParamList Generic6DofConstraint::ValidParamOnAxis(int Axis) const
         {
             Constraint::ParamList Results;
@@ -354,11 +363,13 @@ namespace Mezzanine
 
         bool Generic6DofConstraint::GetUseFrameOffset() const
             { return this->Generic6dof->getUseFrameOffset(); }
+
         void Generic6DofConstraint::SetUseFrameOffset(bool FrameOffset)
             { this->Generic6dof->setUseFrameOffset(FrameOffset); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Generic6DofConstraint Serialization
+
         void Generic6DofConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
         {
 

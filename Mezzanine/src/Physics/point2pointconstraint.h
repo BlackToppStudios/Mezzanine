@@ -64,33 +64,32 @@ namespace Mezzanine
             // Point2PointConstraint Construction and Destruction
 
             /// @brief Double body constructor.  Binds the two bodies.
-            /// @param ActorA The first actor to apply this constraint to.
-            /// @param ActorB The second actor to apply this constraint to.
-            /// @param PivotA The location in ActorA's local space to apply the constraint to.
-            /// @param PivotB The location in ActorB's local space to apply the constraint to.
-            Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotA, const Vector3& PivotB);
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The location in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The location in ProxyB's local space to apply the constraint to.
+            Point2PointConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotA, const Vector3& PivotB);
             /// @brief Single body constructor.  Binds the body to world space.
-            /// @param ActorA The actor to apply this constraint to.
-            /// @param PivotA The position relative to ActorA's center of gravity to "Pin" to the world.
-            Point2PointConstraint(ActorRigid* ActorA, const Vector3& PivotA);
+            /// @param ProxyA The proxy to apply this constraint to.
+            /// @param PivotA The position relative to ProxyA's center of gravity to "Pin" to the world.
+            Point2PointConstraint(RigidProxy* ProxyA, const Vector3& PivotA);
             /// @brief Class destructor.
-            /// @details The class destructor.
             virtual ~Point2PointConstraint();
 
             ////////////////////////////////////////////////////////////////////////////////
             // Point2PointConstraint Position and Orientation
 
-            /// @brief Set offset of the first actor.
-            /// @param PivotA The offset as a Vector3 relative to the center of mass of ActorA.
+            /// @brief Set offset of the first proxy.
+            /// @param PivotA The offset as a Vector3 relative to the center of mass of ProxyA.
             virtual void SetPivotALocation(const Vector3& PivotA);
-            /// @brief Set offset of the second actor.
-            /// @param PivotB The offset as a Vector3 relative to the center of mass of ActorB.
+            /// @brief Set offset of the second proxy.
+            /// @param PivotB The offset as a Vector3 relative to the center of mass of ProxyB.
             virtual void SetPivotBLocation(const Vector3& PivotB);
-            /// @brief Get offset of the first actor.
-            /// @return The offset as a Vector3 relative to the center of mass of ActorA.
+            /// @brief Get offset of the first proxy.
+            /// @return The offset as a Vector3 relative to the center of mass of ProxyA.
             virtual Vector3 GetPivotALocation() const;
-            /// @brief Get offset of the second actor.
-            /// @return The offset as a Vector3 relative to the center of mass of ActorB.
+            /// @brief Get offset of the second proxy.
+            /// @return The offset as a Vector3 relative to the center of mass of ProxyB.
             virtual Vector3 GetPivotBLocation() const;
 
             ////////////////////////////////////////////////////////////////////////////////

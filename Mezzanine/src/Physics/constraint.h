@@ -46,11 +46,6 @@
 #include "transform.h"
 #include "vector3.h"
 
-namespace Mezzanine
-{
-    class ActorRigid;
-}
-
 class btRigidBody;
 class btTypedConstraint;
 
@@ -58,6 +53,8 @@ namespace Mezzanine
 {
     namespace Physics
     {
+        class RigidProxy;
+
         /// @enum ConstraintParam
         /// @brief Used by constraints for setting some parameters.
         /// @details See the constraint class documentation for more details.
@@ -121,23 +118,21 @@ namespace Mezzanine
         {
         protected:
             friend class PhysicsManager;
-            ////////////////////////////////////////////////////////////////////////////////
-            // Constraint Data Members
-            /// @brief First rigid body the constraint applies to.
-            btRigidBody* BodyA;
-            /// @brief Second rigid body the constraint applies to(if applicable).
-            btRigidBody* BodyB;
-            /// @brief First Actor the constraint applies to.
-            ActorRigid* ActA;
-            /// @brief Second Actor the constraint applies to.
-            ActorRigid* ActB;
 
-            ////////////////////////////////////////////////////////////////////////////////
-            // Constraint Protected Methods
-            /// @brief Sets the Internal actor pointers.
-            void SetBodies(ActorRigid* Act1, ActorRigid* Act2);
-            /// @brief Sets the Internal actor pointers.
-            void SetBodies(ActorRigid* Act1);
+            /// @internal
+            /// @brief The first Collidable this constraint applies to.
+            RigidProxy* ProxA;
+            /// @internal
+            /// @brief The second Collidable this constraint applies to.
+            RigidProxy* ProxB;
+
+            /// @internal
+            /// @brief Sets the Internal Proxy pointers.
+            void SetBodies(RigidProxy* Prox1, RigidProxy* Prox2);
+            /// @internal
+            /// @brief Sets the Internal Proxy pointers.
+            void SetBodies(RigidProxy* Prox1);
+            /// @internal
             /// @brief No initialization constructor.
             /// @details This is protected to prevent creating an instance of this directly.
             Constraint();
@@ -148,12 +143,12 @@ namespace Mezzanine
             /// @details The class destructor.
             virtual ~Constraint();
 
-            /// @brief Gets the first actor this constraint applies to.
-            /// @return Returns a pointer to the first actor this constraint applies to.
-            virtual ActorRigid* GetActorA() const;
-            /// @brief Gets the second actor this constraint applies to.
-            /// @return Returns a pointer to the second actor this constraint applies to.
-            virtual ActorRigid* GetActorB() const;
+            /// @brief Gets the first Proxy this constraint applies to.
+            /// @return Returns a pointer to the first Proxy this constraint applies to.
+            virtual RigidProxy* GetProxyA() const;
+            /// @brief Gets the second Proxy this constraint applies to.
+            /// @return Returns a pointer to the second Proxy this constraint applies to.
+            virtual RigidProxy* GetProxyB() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Constraint Parameters

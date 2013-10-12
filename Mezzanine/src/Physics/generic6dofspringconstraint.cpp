@@ -40,7 +40,9 @@
 #ifndef _physicsgeneric6dofspringconstraint_cpp
 #define _physicsgeneric6dofspringconstraint_cpp
 
-#include "generic6dofspringconstraint.h"
+#include "Physics/generic6dofspringconstraint.h"
+#include "Physics/rigidproxy.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -54,83 +56,82 @@ namespace Mezzanine
         // Generic6Dof Spring Constraint Functions
 
         Generic6DofSpringConstraint::Generic6DofSpringConstraint()
-        {
-        }
+            {  }
 
         btGeneric6DofSpringConstraint* Generic6DofSpringConstraint::Generic6dofSpring() const
-        {
-            return static_cast<btGeneric6DofSpringConstraint*>(Generic6dof);
-        }
+            { return static_cast<btGeneric6DofSpringConstraint*>( this->Generic6dof ); }
 
-        Generic6DofSpringConstraint::Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA,
-                                                                  const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
+        Generic6DofSpringConstraint::Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
         {
-            SetBodies(ActorA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
 
             btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
             btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-            Generic6dof = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
+            this->Generic6dof = new btGeneric6DofSpringConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), transa, transb, UseLinearReferenceA);
         }
 
-        Generic6DofSpringConstraint::Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
+        Generic6DofSpringConstraint::Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
         {
-            SetBodies(ActorA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
 
-            Generic6dof = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
+            this->Generic6dof = new btGeneric6DofSpringConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
         }
 
 
         Generic6DofSpringConstraint::~Generic6DofSpringConstraint()
         {
-            if(Generic6dof)
+            if(this->Generic6dof)
             {
-                delete Generic6dof;
-                Generic6dof = NULL;
+                delete this->Generic6dof;
+                this->Generic6dof = NULL;
             }
         }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofSpringConstraint Linear Spring Settings
+
         void Generic6DofSpringConstraint::SetSpringLinearStiffness(const Vector3& Stiffies)
-            { SetSpringStiffness(LinearX, Stiffies.X); SetSpringStiffness(LinearY, Stiffies.Y); SetSpringStiffness(LinearZ, Stiffies.Z); }
+            { this->SetSpringStiffness(LinearX, Stiffies.X); this->SetSpringStiffness(LinearY, Stiffies.Y); this->SetSpringStiffness(LinearZ, Stiffies.Z); }
 
         void Generic6DofSpringConstraint::SetSpringLinearDamping(const Vector3& Damps)
-            { SetSpringDamping(LinearX, Damps.X); SetSpringDamping(LinearY, Damps.Y); SetSpringDamping(LinearZ, Damps.Z); }
+            { this->SetSpringDamping(LinearX, Damps.X); this->SetSpringDamping(LinearY, Damps.Y); this->SetSpringDamping(LinearZ, Damps.Z); }
 
         void Generic6DofSpringConstraint::SetSpringLinearEnabled(const Vector3& Enableness)
-            { SetSpringEnabled(LinearX, Enableness.X); SetSpringEnabled(LinearY, Enableness.Y); SetSpringEnabled(LinearZ, Enableness.Z); }
+            { this->SetSpringEnabled(LinearX, Enableness.X); this->SetSpringEnabled(LinearY, Enableness.Y); this->SetSpringEnabled(LinearZ, Enableness.Z); }
 
         Vector3 Generic6DofSpringConstraint::GetSpringLinearStiffness() const
-            { return Vector3(GetSpringStiffness(LinearX),GetSpringStiffness(LinearY),GetSpringStiffness(LinearZ)); }
+            { return Vector3(this->GetSpringStiffness(LinearX),this->GetSpringStiffness(LinearY),this->GetSpringStiffness(LinearZ)); }
 
         Vector3 Generic6DofSpringConstraint::GetSpringLinearDamping() const
-            { return Vector3(GetSpringDamping(LinearX),GetSpringDamping(LinearY),GetSpringDamping(LinearZ)); }
+            { return Vector3(this->GetSpringDamping(LinearX),this->GetSpringDamping(LinearY),this->GetSpringDamping(LinearZ)); }
 
         Vector3 Generic6DofSpringConstraint::GetSpringLinearEnabled() const
-            { return Vector3(GetSpringEnabled(LinearX),GetSpringEnabled(LinearY),GetSpringEnabled(LinearZ)); }
+            { return Vector3(this->GetSpringEnabled(LinearX),this->GetSpringEnabled(LinearY),this->GetSpringEnabled(LinearZ)); }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofSpringConstraint Angular Spring Settings
+
         void Generic6DofSpringConstraint::SetSpringAngularStiffness(const Vector3& Stiffies)
-            { SetSpringStiffness(AngularX, Stiffies.X); SetSpringStiffness(AngularY, Stiffies.Y); SetSpringStiffness(AngularZ, Stiffies.Z); }
+            { this->SetSpringStiffness(AngularX, Stiffies.X); this->SetSpringStiffness(AngularY, Stiffies.Y); this->SetSpringStiffness(AngularZ, Stiffies.Z); }
 
         void Generic6DofSpringConstraint::SetSpringAngularDamping(const Vector3& Damps)
-            { SetSpringDamping(AngularX, Damps.X); SetSpringDamping(AngularY, Damps.Y); SetSpringDamping(AngularZ, Damps.Z); }
+            { this->SetSpringDamping(AngularX, Damps.X); this->SetSpringDamping(AngularY, Damps.Y); this->SetSpringDamping(AngularZ, Damps.Z); }
 
         void Generic6DofSpringConstraint::SetSpringAngularEnabled(const Vector3& Enableness)
-            { SetSpringEnabled(AngularX, Enableness.X); SetSpringEnabled(AngularY, Enableness.Y); SetSpringEnabled(AngularZ, Enableness.Z); }
+            { this->SetSpringEnabled(AngularX, Enableness.X); this->SetSpringEnabled(AngularY, Enableness.Y); this->SetSpringEnabled(AngularZ, Enableness.Z); }
 
         Vector3 Generic6DofSpringConstraint::GetSpringAngularStiffness() const
-            { return Vector3(GetSpringStiffness(AngularX),GetSpringStiffness(AngularY),GetSpringStiffness(AngularZ)); }
+            { return Vector3(this->GetSpringStiffness(AngularX),this->GetSpringStiffness(AngularY),this->GetSpringStiffness(AngularZ)); }
 
         Vector3 Generic6DofSpringConstraint::GetSpringAngularDamping() const
-            { return Vector3(GetSpringDamping(AngularX),GetSpringDamping(AngularY),GetSpringDamping(AngularZ)); }
+            { return Vector3(this->GetSpringDamping(AngularX),this->GetSpringDamping(AngularY),this->GetSpringDamping(AngularZ)); }
 
         Vector3 Generic6DofSpringConstraint::GetSpringAngularEnabled() const
-            { return Vector3(GetSpringEnabled(AngularX),GetSpringEnabled(AngularY),GetSpringEnabled(AngularZ)); }
+            { return Vector3(this->GetSpringEnabled(AngularX),this->GetSpringEnabled(AngularY),this->GetSpringEnabled(AngularZ)); }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofSpringConstraint Per Axis Spring Settings
+
         void Generic6DofSpringConstraint::SetSpringStiffness(int Index, Real Stiffness)
             { this->Generic6dofSpring()->setStiffness(Index, Stiffness); }
 
@@ -151,6 +152,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofSpringConstraint Calculated Items
+
         void Generic6DofSpringConstraint::CalculateSpringEquilibriumPoint()
             { this->Generic6dofSpring()->setEquilibriumPoint(); }
 
@@ -158,16 +160,17 @@ namespace Mezzanine
             { this->Generic6dofSpring()->setEquilibriumPoint(Index); }
 
         Vector3 Generic6DofSpringConstraint::GetCurrentSpringAngularEquilibriumPoints() const
-            { return Vector3(GetCurrentSpringEquilibriumPoint(AngularX),GetCurrentSpringEquilibriumPoint(AngularY),GetCurrentSpringEquilibriumPoint(AngularZ)); }
+            { return Vector3(this->GetCurrentSpringEquilibriumPoint(AngularX),this->GetCurrentSpringEquilibriumPoint(AngularY),this->GetCurrentSpringEquilibriumPoint(AngularZ)); }
 
         Vector3 Generic6DofSpringConstraint::GetCurrentSpringLinearEquilibriumPoints() const
-            { return Vector3(GetCurrentSpringEquilibriumPoint(LinearX),GetCurrentSpringEquilibriumPoint(LinearY),GetCurrentSpringEquilibriumPoint(LinearZ)); }
+            { return Vector3(this->GetCurrentSpringEquilibriumPoint(LinearX),this->GetCurrentSpringEquilibriumPoint(LinearY),this->GetCurrentSpringEquilibriumPoint(LinearZ)); }
 
         Real Generic6DofSpringConstraint::GetCurrentSpringEquilibriumPoint(int Index) const
             { return this->Generic6dofSpring()->getEquilibriumPoint(Index); }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofSpringConstraint Serialization
+
         void Generic6DofSpringConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node G6dofSpringNode = CurrentRoot.AppendChild(SerializableName());                        // The base node all the base constraint stuff will go in

@@ -40,7 +40,9 @@
 #ifndef _physicshinge2constraint_cpp
 #define _physicshinge2constraint_cpp
 
-#include "hinge2constraint.h"
+#include "Physics/hinge2constraint.h"
+#include "Physics/rigidproxy.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -52,33 +54,29 @@ namespace Mezzanine
     {
         /////////////////////////////////////////
         // Hinge2 Constraint Functions
-        Hinge2Constraint::Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+        Hinge2Constraint::Hinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
         {
-            SetBodies(ActorA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
 
             btVector3 temp1(Anchor.GetBulletVector3());
             btVector3 temp2(Axis1.GetBulletVector3());
             btVector3 temp3(Axis2.GetBulletVector3());
-            Hinge2 = new btHinge2Constraint(*BodyA, *BodyB, temp1, temp2, temp3);
-            Generic6dof = Hinge2;
+            this->Hinge2 = new btHinge2Constraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), temp1, temp2, temp3);
+            this->Generic6dof = this->Hinge2;
         }
 
         Hinge2Constraint::~Hinge2Constraint()
         {
-            delete Hinge2;
-            Hinge2 = NULL;
-            Generic6dof = NULL;
+            delete this->Hinge2;
+            this->Hinge2 = NULL;
+            this->Generic6dof = NULL;
         }
 
         void Hinge2Constraint::SetUpperLimit(Real Ang1Max)
-        {
-            this->Hinge2->setUpperLimit(Ang1Max);
-        }
+            { this->Hinge2->setUpperLimit(Ang1Max); }
 
         void Hinge2Constraint::SetLowerLimit(Real Ang1Min)
-        {
-            this->Hinge2->setLowerLimit(Ang1Min);
-        }
+            { this->Hinge2->setLowerLimit(Ang1Min); }
     }//Physics
 }//Mezzanine
 

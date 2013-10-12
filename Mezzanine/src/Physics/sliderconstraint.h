@@ -60,17 +60,16 @@ namespace Mezzanine
             /// @brief Bullet constraint that this class encapsulates.
             btSliderConstraint* Slider;
         public:
-            SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA);
-            /// @brief Two body Terse constructor
-            /// @param ActorA The First body to be bound
-            /// @param ActorB  The Second body to be bound
-            /// @param TransformA The offset and rotation from ActorA's center of gravity to get to match an offset from ActorB
-            /// @param TransformB The offset and rotation from ActorB's center of gravity.
-            /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
-            SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
-            SliderConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceA);
+            SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA);
+            /// @brief Two body Terse constructor.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param TransformA The offset and rotation from ProxyA's center of gravity to get to match an offset from ProxyB.
+            /// @param TransformB The offset and rotation from ProxyB's center of gravity.
+            /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
+            SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
+            SliderConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceA);
             /// @brief Class destructor.
-            /// @details The class destructor.
             virtual ~SliderConstraint();
 
             ////////////////////////////////////////////////////////////////////////////////

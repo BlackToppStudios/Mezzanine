@@ -60,10 +60,11 @@ namespace Mezzanine
             /// @brief Bullet constraint that this class encapsulates.
             btConeTwistConstraint* ConeTwist;
         public:
-            ConeTwistConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& Vectorb, const Quaternion& QuaternionA, const Quaternion& QuaternionB);
-            ConeTwistConstraint(ActorRigid* ActorA, const Vector3& VectorA, const Quaternion& QuaternionA);
+            /// @brief Class constructor.
+            ConeTwistConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& Vectorb, const Quaternion& QuaternionA, const Quaternion& QuaternionB);
+            /// @brief Single body constructor.
+            ConeTwistConstraint(RigidProxy* ProxyA, const Vector3& VectorA, const Quaternion& QuaternionA);
             /// @brief Class destructor.
-            /// @details The class destructor.
             virtual ~ConeTwistConstraint();
 
             virtual void SetAngularOnly(bool AngularOnly);

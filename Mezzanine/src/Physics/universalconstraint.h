@@ -60,9 +60,9 @@ namespace Mezzanine
             /// @brief Bullet constraint that this class encapsulates.
             btUniversalConstraint* Universal;
         public:
-            UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+            /// @brief Class constructor.
+            UniversalConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
             /// @brief Class destructor.
-            /// @details The class destructor.
             virtual ~UniversalConstraint();
 
             virtual void SetUpperLimit(Real Ang1Max, Real Ang2Max);

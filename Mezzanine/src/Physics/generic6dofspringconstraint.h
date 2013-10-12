@@ -82,22 +82,22 @@ namespace Mezzanine
             ////////////////////////////////////////////////////////////////////////////////
             // Generic6DofSpringConstraint Construction and Destruction
 
-            /// @brief Two body Verbose constructor
-            /// @param ActorA The First body to be bound
-            /// @param ActorB  The Second body to be bound
-            /// @param VectorA The offset from ActorA's center of gravity to get to match an offset from ActorB
-            /// @param VectorB The offset from ActorB's center of gravity.
-            /// @param QuaternionA Relative rotation from ActorA
-            /// @param QuaternionB Relative rotation from ActorB
-            /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
-            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA = false);
-            /// @brief Two body Terse constructor
-            /// @param ActorA The First body to be bound
-            /// @param ActorB  The Second body to be bound
-            /// @param TransformA The offset and rotation from ActorA's center of gravity to get to match an offset from ActorB
-            /// @param TransformB The offset and rotation from ActorB's center of gravity.
-            /// @param UseLinearReferenceA Perform Linear math from ActorA's perspective, default to false.
-            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
+            /// @brief Two proxy Verbose constructor.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param VectorA The offset from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param VectorB The offset from ProxyBs center of gravity.
+            /// @param QuaternionA Relative rotation from ProxyA.
+            /// @param QuaternionB Relative rotation from ProxyB.
+            /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
+            Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA = false);
+            /// @brief Two proxy Terse constructor.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param TransformA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
+            /// @param TransformB The offset and rotation from ProxyBs center of gravity.
+            /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
+            Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Generic6DofSpringConstraint();

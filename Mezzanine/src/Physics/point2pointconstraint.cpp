@@ -40,7 +40,9 @@
 #ifndef _physicspoint2pointconstraint_cpp
 #define _physicspoint2pointconstraint_cpp
 
-#include "point2pointconstraint.h"
+#include "Physics/point2pointconstraint.h"
+#include "Physics/rigidproxy.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -51,19 +53,20 @@ namespace Mezzanine
     namespace Physics
     {
         ////////////////////////////////////////////////////////////////////////////////
-        // Point2PointConstraint Position and Orientation
-        Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotA, const Vector3& PivotB)
-        {
-            this->SetBodies(ActorA,ActorB);
+        // Point2PointConstraint Construction and Destruction
 
-            this->Point2Point = new btPoint2PointConstraint(*BodyA, *BodyB, PivotA.GetBulletVector3(), PivotB.GetBulletVector3());
+        Point2PointConstraint::Point2PointConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotA, const Vector3& PivotB)
+        {
+            this->SetBodies(ProxyA,ProxyB);
+
+            this->Point2Point = new btPoint2PointConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), PivotA.GetBulletVector3(), PivotB.GetBulletVector3());
         }
 
-        Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, const Vector3& PivotA)
+        Point2PointConstraint::Point2PointConstraint(RigidProxy* ProxyA, const Vector3& PivotA)
         {
-            this->SetBodies(ActorA);
+            this->SetBodies(ProxyA);
 
-            this->Point2Point = new btPoint2PointConstraint(*BodyA, PivotA.GetBulletVector3());
+            this->Point2Point = new btPoint2PointConstraint(*(ProxA->_GetPhysicsObject()), PivotA.GetBulletVector3());
         }
 
         Point2PointConstraint::~Point2PointConstraint()
@@ -71,8 +74,10 @@ namespace Mezzanine
 
         btTypedConstraint* Point2PointConstraint::GetConstraintBase() const
             { return this->Point2Point; }
+
         ////////////////////////////////////////////////////////////////////////////////
         // Point2PointConstraint Position and Orientation
+
         void Point2PointConstraint::SetPivotALocation(const Vector3& PivotA)
             { this->Point2Point->setPivotA(PivotA.GetBulletVector3()); }
 
@@ -87,6 +92,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Point2PointConstraint Specific Physics Settings
+
         void Point2PointConstraint::SetImpulseClamping(Real Clamping)
             { this->Point2Point->m_setting.m_impulseClamp = Clamping; }
 

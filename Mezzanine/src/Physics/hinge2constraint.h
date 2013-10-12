@@ -60,9 +60,9 @@ namespace Mezzanine
             /// @brief Bullet constraint that this class encapsulates.
             btHinge2Constraint* Hinge2;
         public:
-            Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+            /// @brief Class constructor.
+            Hinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
             /// @brief Class destructor.
-            /// @details The class destructor.
             virtual ~Hinge2Constraint();
 
             virtual void SetUpperLimit(Real Ang1Max);

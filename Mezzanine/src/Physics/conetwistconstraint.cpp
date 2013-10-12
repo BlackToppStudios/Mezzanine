@@ -40,7 +40,9 @@
 #ifndef _physicsconetwistconstraint_cpp
 #define _physicsconetwistconstraint_cpp
 
-#include "conetwistconstraint.h"
+#include "Physics/conetwistconstraint.h"
+#include "Physics/rigidproxy.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -53,87 +55,62 @@ namespace Mezzanine
         /////////////////////////////////////////
         // ConeTwist Constraint Functions
 
-        ConeTwistConstraint::ConeTwistConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA,
+        ConeTwistConstraint::ConeTwistConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA,
                                                   const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB)
         {
-            SetBodies(ActorA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
 
             btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
             btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-            ConeTwist = new btConeTwistConstraint (*BodyA, *BodyB, transa, transb);
+            this->ConeTwist = new btConeTwistConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), transa, transb);
         }
 
-        ConeTwistConstraint::ConeTwistConstraint(ActorRigid* ActorA, const Vector3& VectorA, const Quaternion& QuaternionA)
+        ConeTwistConstraint::ConeTwistConstraint(RigidProxy* ProxyA, const Vector3& VectorA, const Quaternion& QuaternionA)
         {
-            SetBodies(ActorA);
+            this->SetBodies(ProxyA);
 
             btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
-            ConeTwist = new btConeTwistConstraint (*BodyA, transa);
+            this->ConeTwist = new btConeTwistConstraint(*(ProxA->_GetPhysicsObject()), transa);
         }
 
         ConeTwistConstraint::~ConeTwistConstraint()
-        {
-            delete ConeTwist;
-        }
+            { delete this->ConeTwist; }
 
         btTypedConstraint* ConeTwistConstraint::GetConstraintBase() const
-                    { return this->ConeTwist; }
+            { return this->ConeTwist; }
 
         void ConeTwistConstraint::SetAngularOnly(bool AngularOnly)
-        {
-            this->ConeTwist->setAngularOnly(AngularOnly);
-        }
+            { this->ConeTwist->setAngularOnly(AngularOnly); }
 
         void ConeTwistConstraint::SetLimit(int LimitIndex, Real LimitValue)
-        {
-            this->ConeTwist->setLimit(LimitIndex, LimitValue);
-        }
+            { this->ConeTwist->setLimit(LimitIndex, LimitValue); }
 
-        void ConeTwistConstraint::SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan,
-                                           Real Softness, Real BiasFactor, Real RelaxationFactor)
-        {
-            this->ConeTwist->setLimit(SwingSpan1, SwingSpan2, Twistspan, Softness, BiasFactor, RelaxationFactor);
-        }
+        void ConeTwistConstraint::SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness, Real BiasFactor, Real RelaxationFactor)
+            { this->ConeTwist->setLimit(SwingSpan1, SwingSpan2, Twistspan, Softness, BiasFactor, RelaxationFactor); }
 
         void ConeTwistConstraint::SetDamping(Real Damping)
-        {
-            this->ConeTwist->setDamping(Damping);
-        }
+            { this->ConeTwist->setDamping(Damping); }
 
         void ConeTwistConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
-        {
-            this->ConeTwist->setMaxMotorImpulse(MaxMotorImpulse);
-        }
+            { this->ConeTwist->setMaxMotorImpulse(MaxMotorImpulse); }
 
         void ConeTwistConstraint::SetMaxMotorImpulseNormalized(Real MaxMotorImpulse)
-        {
-            this->ConeTwist->setMaxMotorImpulseNormalized(MaxMotorImpulse);
-        }
+            { this->ConeTwist->setMaxMotorImpulseNormalized(MaxMotorImpulse); }
 
         void ConeTwistConstraint::SetFixThresh(Real FixThresh)
-        {
-            this->ConeTwist->setFixThresh(FixThresh);
-        }
+            { this->ConeTwist->setFixThresh(FixThresh); }
 
         void ConeTwistConstraint::SetMotorTarget(const Quaternion& Quat)
-        {
-            this->ConeTwist->setMotorTarget(Quat.GetBulletQuaternion());
-        }
+            { this->ConeTwist->setMotorTarget( Quat.GetBulletQuaternion() ); }
 
         void ConeTwistConstraint::SetMotorTargetInConstraintSpace(const Quaternion& Quat)
-        {
-            this->ConeTwist->setMotorTargetInConstraintSpace(Quat.GetBulletQuaternion());
-        }
+            { this->ConeTwist->setMotorTargetInConstraintSpace( Quat.GetBulletQuaternion() ); }
 
         void ConeTwistConstraint::EnableMotor(bool Enable)
-        {
-            this->ConeTwist->enableMotor(Enable);
-        }
+            { this->ConeTwist->enableMotor(Enable); }
 
         bool ConeTwistConstraint::IsPassedSwingLimit()
-        {
-            return this->ConeTwist->isPastSwingLimit();
-        }
+            { return this->ConeTwist->isPastSwingLimit(); }
     }//Physics
 }//Mezzanine
 

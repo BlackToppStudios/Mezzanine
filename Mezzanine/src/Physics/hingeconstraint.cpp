@@ -40,7 +40,9 @@
 #ifndef _physicshingeconstraint_cpp
 #define _physicshingeconstraint_cpp
 
-#include "hingeconstraint.h"
+#include "Physics/hingeconstraint.h"
+#include "Physics/rigidproxy.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -52,53 +54,55 @@ namespace Mezzanine
     {
         ////////////////////////////////////////////////////////////////////////////////
         // Hinge Constraint Functions
-        /////////////////////////////////////////
+
         btTypedConstraint* HingeConstraint::GetConstraintBase() const
             { return this->Hinge; }
 
         ////////////////////////////////////////////////////////////////////////////////
         // HingeConstraint Construction and Destruction
-        HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceFrameA)
+
+        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceFrameA)
         {
-            SetBodies(ActorA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
 
             btVector3 tempA(AxisInA.GetBulletVector3());
             btVector3 tempB(AxisInB.GetBulletVector3());
-            Hinge = new btHingeConstraint(*BodyA, *BodyB, PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, bool(UseReferenceFrameA));
+            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, bool(UseReferenceFrameA));
         }
 
-        HingeConstraint::HingeConstraint(ActorRigid* ActorA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceFrameA)
+        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceFrameA)
         {
-            SetBodies(ActorA);
+            this->SetBodies(ProxyA);
 
             btVector3 tempA(AxisInA.GetBulletVector3());
-            Hinge = new btHingeConstraint(*BodyA, PivotInA.GetBulletVector3(), tempA, bool(UseReferenceFrameA));
+            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), PivotInA.GetBulletVector3(), tempA, bool(UseReferenceFrameA));
         }
 
-        HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceFrameA)
+        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceFrameA)
         {
-            SetBodies(ActorA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
 
             btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
             btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-            Hinge = new btHingeConstraint(*BodyA, *BodyB, transa, transb, UseReferenceFrameA);
+            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), transa, transb, UseReferenceFrameA);
         }
 
-        HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Transform& TransformA, const Transform& TransformB, bool UseReferenceFrameA)
+        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseReferenceFrameA)
         {
-            SetBodies(ActorA,ActorB);
-            Hinge = new btHingeConstraint(*BodyA, *BodyB, TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseReferenceFrameA);
+            this->SetBodies(ProxyA,ProxyB);
+            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseReferenceFrameA);
         }
 
 
         HingeConstraint::~HingeConstraint()
         {
-            if(Hinge)
-                delete Hinge;
+            if(this->Hinge)
+                delete this->Hinge;
         }
 
         ////////////////////////////////////////////////////////////////////////////////
         // HingeConstraint Position and Orientation
+
         void HingeConstraint::SetPivotALocation(const Vector3& Location)
             { this->Hinge->getAFrame().setOrigin(Location.GetBulletVector3()); }
 
@@ -137,6 +141,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // HingeConstraint Angular Motor
+
         void HingeConstraint::EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
             { this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse); }
 
@@ -166,6 +171,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // HingeConstraint Limits
+
         void HingeConstraint::SetLimit(Real Low, Real High, Real Softness, Real BiasFactor, Real RelaxationFactor)
             { this->Hinge->setLimit(Low, High, Softness, BiasFactor, RelaxationFactor); }
 
@@ -186,6 +192,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // HingeConstraint Details
+
         void HingeConstraint::SetAxis(const Vector3& AxisInA)
         {
             btVector3 temp(AxisInA.GetBulletVector3());
@@ -247,6 +254,7 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // HingeConstraint Serialization
+
         void HingeConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node HingeNode = CurrentRoot.AppendChild(SerializableName());          // The base node all the base constraint stuff will go in

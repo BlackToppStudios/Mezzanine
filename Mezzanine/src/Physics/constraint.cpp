@@ -40,10 +40,13 @@
 #ifndef _physicsconstraint_cpp
 #define _physicsconstraint_cpp
 
-#include "constraint.h"
-#include "entresol.h"
+#include "Physics/constraint.h"
+#include "Physics/physicsenumerations.h"
+#include "Physics/rigidproxy.h"
+
 #include "actormanager.h"
-#include "actorrigid.h"
+#include "entresol.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -130,41 +133,40 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Constraint Protected Methods
+
         Constraint::Constraint()
             { }
 
-        void Constraint::SetBodies(ActorRigid* Act1, ActorRigid* Act2)
+        void Constraint::SetBodies(RigidProxy* Prox1, RigidProxy* Prox2)
         {
-            ActA = Act1;
-            ActB = Act2;
-            BodyA = Act1->PhysicsRigidBody;
-            BodyB = Act2->PhysicsRigidBody;
-            BodyA->setActivationState(Mezzanine::Physics::AS_DisableDeactivation);
-            BodyB->setActivationState(Mezzanine::Physics::AS_DisableDeactivation);
+            this->ProxA = Prox1;
+            this->ProxB = Prox2;
+            this->ProxA->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
+            this->ProxB->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
         }
 
-        void Constraint::SetBodies(ActorRigid* Act1)
+        void Constraint::SetBodies(RigidProxy* Prox1)
         {
-            ActA = Act1;
-            ActB = NULL;
-            BodyA = Act1->PhysicsRigidBody;
-            BodyB = NULL;
-            BodyA->setActivationState(Mezzanine::Physics::AS_DisableDeactivation);
+            this->ProxA = Prox1;
+            this->ProxB = NULL;
+            this->ProxA->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
         }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Constraint Core Functionality
+
         Constraint::~Constraint()
             { }
 
-        ActorRigid* Constraint::GetActorA() const
-            { return ActA; }
+        RigidProxy* Constraint::GetProxyA() const
+            { return ProxA; }
 
-        ActorRigid* Constraint::GetActorB() const
-            { return ActB; }
+        RigidProxy* Constraint::GetProxyB() const
+            { return ProxB; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Constraint Parameters
+
         void Constraint::SetParam(ConstraintParam Param, Real Value, int Axis)
             { this->GetConstraintBase()->setParam(Param, Value, Axis); }
 
@@ -173,7 +175,7 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Constraint Serialization
-        // Serializable
+
         void Constraint::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node ConstraintNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
@@ -220,7 +222,6 @@ namespace Mezzanine
             }
         }
 
-        // DeSerializable
         void Constraint::ProtoDeSerialize(const XML::Node& OneNode)
         {
             if ( Mezzanine::String(OneNode.Name())==this->Constraint::SerializableName() )
@@ -278,7 +279,6 @@ namespace Mezzanine
 
         String Constraint::SerializableName()
             { return String("Constraint"); }
-
     }//Physics
 }//Mezzanine
 
