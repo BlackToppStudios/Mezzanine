@@ -189,8 +189,8 @@ namespace Mezzanine
             if (Version && ActorNameA && ActorNameB)
             {
                 Version.SetValue(1);
-                ActorNameA.SetValue( this->GetActorA()->GetName() );
-                ActorNameB.SetValue( this->GetActorB()->GetName() );
+                /*ActorNameA.SetValue( this->GetActorA()->GetName() );
+                ActorNameB.SetValue( this->GetActorB()->GetName() );//*/
             }else{
                 SerializeError("Create Attributes on ConstraintNode", SerializableName());
             }
@@ -228,7 +228,7 @@ namespace Mezzanine
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    String ActorNameA(OneNode.GetAttribute("ActorNameA").AsString());                                                           // get Actors from the XML
+                    /*String ActorNameA(OneNode.GetAttribute("ActorNameA").AsString());                                                           // get Actors from the XML
                     String ActorNameB(OneNode.GetAttribute("ActorNameB").AsString());
                     if (""!=ActorNameA)                                                                                                         //Figure out if the actors are fine
                     {
@@ -247,7 +247,7 @@ namespace Mezzanine
                         }
                     }else{
                         DeSerializeError("retrieve ActorNameA",SerializableName());
-                    }
+                    }//*/
 
                     XML::Node TheAxis = OneNode.GetFirstChild();
                     while(TheAxis)

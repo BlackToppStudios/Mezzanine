@@ -57,6 +57,7 @@ namespace Mezzanine
 
 #include "Physics/boxcollisionshape.h"
 #include "Physics/capsulecollisionshape.h"
+#include "Physics/collidablepair.h"
 #include "Physics/collidableproxy.h"
 #include "Physics/collision.h"
 #include "Physics/collisionshape.h"
@@ -69,6 +70,7 @@ namespace Mezzanine
 #include "Physics/dualtransformconstraint.h"
 #include "Physics/dynamicmeshcollisionshape.h"
 #include "Physics/fieldcollisionshape.h"
+#include "Physics/gearconstraint.h"
 #include "Physics/generic6dofconstraint.h"
 #include "Physics/generic6dofspringconstraint.h"
 #include "Physics/ghostproxy.h"

@@ -67,7 +67,7 @@ namespace Mezzanine
         Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA,
                                                       const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
         {
-            this->SetBodies(ProxyA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
             Transform TransformA(VectorA, QuaternionA);
             Transform TransformB(VectorB, QuaternionB);
             this->Generic6dof = new btGeneric6DofConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
@@ -75,7 +75,7 @@ namespace Mezzanine
 
         Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
         {
-            this->SetBodies(ProxyA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
             this->Generic6dof = new btGeneric6DofConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
         }
 

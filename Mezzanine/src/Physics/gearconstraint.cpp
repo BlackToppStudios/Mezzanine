@@ -41,6 +41,8 @@
 #define _physicsgearconstraint_cpp
 
 #include "Physics/gearconstraint.h"
+#include "Physics/rigidproxy.h"
+
 #include "stringtool.h"
 #include "serialization.h"
 
@@ -50,11 +52,11 @@ namespace Mezzanine
 {
     namespace Physics
     {
-        GearConstraint::GearConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio)
+        GearConstraint::GearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio)
         {
-            this->SetBodies(ActorA,ActorB);
+            this->SetBodies(ProxyA,ProxyB);
 
-            this->Gear = new btGearConstraint(*BodyA, *BodyB, AxisA.GetBulletVector3(), AxisB.GetBulletVector3(), Ratio);
+            this->Gear = new btGearConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), AxisA.GetBulletVector3(), AxisB.GetBulletVector3(), Ratio);
         }
 
         GearConstraint::~GearConstraint()

@@ -61,12 +61,12 @@ namespace Mezzanine
             btGearConstraint* Gear;
         public:
             /// @brief Double body constructor.  Binds the two bodies.
-            /// @param ActorA The first actor to apply this constraint to.
-            /// @param ActorB The second actor to apply this constraint to.
-            /// @param PivotA The axis in ActorA's local space to apply the constraint to.
-            /// @param PivotB The axis in ActorB's local space to apply the constraint to.
-            /// @param Ratio The amount the rotation from ActorA that shall be used to be applied to ActorB.
-            GearConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio);
+            /// @param ProxyA The first proxy to apply this constraint to.
+            /// @param ProxyB The second proxy to apply this constraint to.
+            /// @param PivotA The axis in ProxyA's local space to apply the constraint to.
+            /// @param PivotB The axis in ProxyB's local space to apply the constraint to.
+            /// @param Ratio The amount the rotation from ProxyA that shall be used to be applied to ProxyB.
+            GearConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& AxisA, const Vector3& AxisB, const Real Ratio);
             /// @brief Class destructor.
             virtual ~GearConstraint();
 
