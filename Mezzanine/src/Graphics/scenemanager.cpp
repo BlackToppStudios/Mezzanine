@@ -48,7 +48,6 @@
 #include "UI/uimanager.h"
 #include "Physics/physicsmanager.h"
 #include "stringtool.h"
-#include "worldnode.h"
 
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/entityproxy.h"
@@ -169,37 +168,12 @@ namespace Mezzanine
         };//SceneManagerData
 
         ///////////////////////////////////////////////////////////////////////////////
-        // TrackingNodeUpdateWorkUnit Methods
-
-        TrackingNodeUpdateWorkUnit::TrackingNodeUpdateWorkUnit(const TrackingNodeUpdateWorkUnit& Other)
-            {  }
-
-        TrackingNodeUpdateWorkUnit& TrackingNodeUpdateWorkUnit::operator=(const TrackingNodeUpdateWorkUnit& Other)
-            { return *this; }
-
-        TrackingNodeUpdateWorkUnit::TrackingNodeUpdateWorkUnit(SceneManager* Target) :
-            TargetManager(Target) {  }
-
-        TrackingNodeUpdateWorkUnit::~TrackingNodeUpdateWorkUnit()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        void TrackingNodeUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-        {
-            this->TargetManager->UpdateTrackingNodes();
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
         // SceneManager Methods
 
         SceneManager::SceneManager(const String& InternalManagerTypeName) :
-            TrackingNodeUpdateWork(NULL),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
-            this->TrackingNodeUpdateWork = new TrackingNodeUpdateWorkUnit(this);
             this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(InternalManagerTypeName);
             //this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
             //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
@@ -207,11 +181,9 @@ namespace Mezzanine
         }
 
         SceneManager::SceneManager(XML::Node& XMLNode) :
-            TrackingNodeUpdateWork(NULL),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
-            this->TrackingNodeUpdateWork = new TrackingNodeUpdateWorkUnit(this);
 
             XML::Attribute CurrAttrib;
             // Get the name of the manager to construct.
@@ -284,16 +256,7 @@ namespace Mezzanine
         {
             this->Deinitialize();
 
-            delete TrackingNodeUpdateWork;
-            delete SMD;
-        }
-
-        void SceneManager::UpdateTrackingNodes()
-        {
-            for( std::set<WorldNode*>::iterator it = TrackingNodes.begin() ; it != TrackingNodes.end() ; ++it )
-            {
-                (*it)->_UpdateTracking();
-            }
+            delete this->SMD;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -558,81 +521,6 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // WorldNode Management
-
-        WorldNode* SceneManager::CreateWorldNode(const String& Name)
-        {
-            WorldNode* MezzNode = new WorldNode(Name,this);
-            WorldNodes.push_back(MezzNode);
-            return MezzNode;
-        }
-
-        WorldNode* SceneManager::GetNode(const String& Name) const
-        {
-            if(WorldNodes.empty())
-                return 0;
-            for( ConstWorldNodeIterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
-            {
-                if( Name == (*it)->GetName() )
-                {
-                    WorldNode* node = (*it);
-                    return node;
-                }
-            }
-            return 0;
-        }
-
-        WorldNode* SceneManager::GetNode(const Whole& Index) const
-        {
-            return WorldNodes[Index];
-        }
-
-        Whole SceneManager::GetNumNodes() const
-        {
-            return WorldNodes.size();
-        }
-
-        void SceneManager::DestroyNode(WorldNode* ToBeDestroyed)
-        {
-            if(WorldNodes.empty())
-                return;
-            for( WorldNodeIterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
-            {
-                if( ToBeDestroyed == (*it) )
-                {
-                    delete (*it);
-                    WorldNodes.erase(it);
-                    return;
-                }
-            }
-        }
-
-        void SceneManager::DestroyAllWorldNodes()
-        {
-            for( Whole X = 0 ; X < WorldNodes.size() ; X++ )
-                delete WorldNodes[X];
-            WorldNodes.clear();
-        }
-
-        SceneManager::WorldNodeIterator SceneManager::BeginWorldNode()
-            { return this->WorldNodes.begin(); }
-
-        SceneManager::WorldNodeIterator SceneManager::EndWorldNode()
-            { return this->WorldNodes.end(); }
-
-        SceneManager::ConstWorldNodeIterator SceneManager::BeginWorldNode() const
-            { return this->WorldNodes.begin(); }
-
-        SceneManager::ConstWorldNodeIterator SceneManager::EndWorldNode() const
-            { return this->WorldNodes.end(); }
-
-        void SceneManager::_RegisterTrackingNode(WorldNode* Tracker)
-            { TrackingNodes.insert(Tracker); }
-
-        void SceneManager::_UnRegisterTrackingNode(WorldNode* Tracker)
-            { TrackingNodes.erase(TrackingNodes.find(Tracker)); }
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         ConstString& SceneManager::GetName() const
@@ -662,19 +550,6 @@ namespace Mezzanine
                     CamMan->Initialize();
                 }
 
-                // WorkUnit Initializations
-                this->TheEntresol->GetScheduler().AddWorkUnitMain( this->TrackingNodeUpdateWork, "TrackingNodeUpdateWork" );
-
-                Physics::PhysicsManager* PhysicsMan = this->TheEntresol->GetPhysicsManager();
-                if( PhysicsMan ) {
-                    this->TrackingNodeUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
-                }
-
-                Mezzanine::AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-                if( AreaEffectMan ) {
-                    this->TrackingNodeUpdateWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
-                }
-
                 this->Initialized = true;
             }
         }
@@ -684,7 +559,6 @@ namespace Mezzanine
             if( this->Initialized )
             {
                 this->DestroyAllProxies();
-                this->DestroyAllWorldNodes();
 
                 // Manager Initializations
                 CameraManager* CamMan = this->TheEntresol->GetCameraManager();
@@ -692,16 +566,9 @@ namespace Mezzanine
                     CamMan->Deinitialize();
                 }
 
-                // WorkUnit Initializations
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->TrackingNodeUpdateWork );
-                this->TrackingNodeUpdateWork->ClearDependencies();
-
                 this->Initialized = false;
             }
         }
-
-        TrackingNodeUpdateWorkUnit* SceneManager::GetTrackingNodeUpdateWork()
-            { return this->TrackingNodeUpdateWork; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Type Identifier Methods
@@ -839,11 +706,6 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
                         break;
                 }
                 /*  Sky Cache Member - String SkyMaterialName; Quaternion SkyOrientation; String SkyMaterialGroupName; bool SkyDrawnFirst; Plane SkyThePlane; */
-
-                for (Mezzanine::Graphics::SceneManager::ConstWorldNodeIterator Iter = Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->BeginWorldNode();
-                        Mezzanine::Entresol::GetSingletonPtr()->GetSceneManager()->EndWorldNode()!=Iter;
-                        ++Iter)
-                    { stream << **Iter; }
     stream      << "</SceneManager>";
 
 
@@ -908,21 +770,6 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                             }
                         }else{
                             MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element Sd-\"" + Name + "\".");
-                        }
-                        break;
-                    case 'W': // WorldNode
-                        if(Name==Mezzanine::String("WorldNode"))
-                        {
-
-                            Mezzanine::String ChildName(Child.GetAttribute("Name").AsString());
-                            if(0!=ChildName.length())
-                            {
-                                Mezzanine::WorldNode* ChildNode = Ev.CreateWorldNode(ChildName);
-                            }else{
-                                MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Attemping to deserialize nameless WorldNode during deserialization of SceneManager but WorldNodes must have a name.");
-                            }
-                        }else{
-                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML for SceneManager: Includes unknown Element W-\"" + Name + "\".");
                         }
                         break;
                     case 'S': // Sky of some kind or "ShadowColor"

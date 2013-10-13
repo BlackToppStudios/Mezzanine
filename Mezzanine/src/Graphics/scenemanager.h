@@ -61,7 +61,6 @@ namespace Mezzanine
 {
     class Entresol;
     class Plane;
-    class WorldNode;
     namespace Graphics
     {
         class RenderableProxy;
@@ -74,39 +73,6 @@ namespace Mezzanine
         class Mesh;
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of tracking world nodes in the world.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB TrackingNodeUpdateWorkUnit : public Threading::DefaultWorkUnit
-        {
-        protected:
-            /// @internal
-            /// @brief A pointer to the manager this work unit is processing.
-            SceneManager* TargetManager;
-            /// @internal
-            /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
-            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
-            TrackingNodeUpdateWorkUnit(const TrackingNodeUpdateWorkUnit& Other);
-            /// @internal
-            /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
-            /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
-            TrackingNodeUpdateWorkUnit& operator=(const TrackingNodeUpdateWorkUnit& Other);
-        public:
-            /// @brief Class constructor.
-            /// @param Target The SceneManager this work unit will process during the frame.
-            TrackingNodeUpdateWorkUnit(SceneManager* Target);
-            /// @brief Class destructor.
-            virtual ~TrackingNodeUpdateWorkUnit();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            /// @brief This does any required update of the Tracking nodes in the world.
-            /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
-            virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-        };//TrackingNodeUpdateWorkUnit
-
-        ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class contains utilities and functions to allow the manipulation of the Graphical
         /// scene, rather then the physics inside, or the object inside.
         /// @details This class contains functions that allow the manipulation of lighting, skyboxes, internal
@@ -115,13 +81,6 @@ namespace Mezzanine
         class MEZZ_LIB SceneManager : public WorldManager
         {
         public:
-            /// @brief Basic container type for @ref WorldNode storage by this class.
-            typedef std::vector< WorldNode* >                     WorldNodeContainer;
-            /// @brief Iterator type for @ref WorldNode instances stored by this class.
-            typedef WorldNodeContainer::iterator                  WorldNodeIterator;
-            /// @brief Const Iterator type for @ref WorldNode instances stored by this class.
-            typedef WorldNodeContainer::const_iterator            ConstWorldNodeIterator;
-
             /// @brief Basic container type for RenderableProxy storage by this class.
             typedef std::vector< RenderableProxy* >               ProxyContainer;
             /// @brief Iterator type for RenderableProxy instances stored by this class.
@@ -153,30 +112,16 @@ namespace Mezzanine
             friend class TrackingNodeUpdateWorkUnit;
 
             /// @internal
-            /// @brief Vector storing all the nodes in use by this class.
-            WorldNodeContainer WorldNodes;
-
-            /// @internal
             /// @brief Container storing all of the RenderableProxy instances created by this manager.
             ProxyContainer Proxies;
-
-            /// @internal
-            /// @brief Container of nodes currently tracking other objects.
-            std::set< WorldNode* > TrackingNodes;
 
             /// @internal
             /// @brief Pointer to a class storing sensative internal data for the scene.
             SceneManagerData* SMD;
 
             /// @internal
-            /// @brief The work unit that updates the tracking nodes so they are directed at their targets.
-            TrackingNodeUpdateWorkUnit* TrackingNodeUpdateWork;
-            /// @internal
             /// @brief Can be used for thread safe logging and other thread specific resources.
             Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
-
-            /// @brief Updates all nodes tracking other objects.
-            void UpdateTrackingNodes();
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -380,50 +325,6 @@ namespace Mezzanine
             ColourValue GetAmbientLight() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // WorldNode Management
-
-            /// @brief Creates a world node that can be manipulated.
-            /// @param Name The name to be given to the node.
-            WorldNode* CreateWorldNode(const String& Name);
-            /// @brief Gets an already created node by name.
-            /// @return Returns a pointer to the node of the specified name, or 0 if no matching WorldNode could be Found.
-            /// @details This runs in Linear time
-            WorldNode* GetNode(const String& Name) const;
-            /// @brief Gets an already created node by index.
-            /// @return Returns a pointer to the node at the specified index.
-            /// @details This runs in constant time.
-            WorldNode* GetNode(const Whole& Index) const;
-            /// @brief Gets the number of nodes created and stored in this manager.
-            /// @return Returns the number of nodes this manager is storing.
-            /// @details This runs in constant time, this data is cached constantly.
-            Whole GetNumNodes() const;
-            /// @brief Deletes a node and removes all trace of it from the manager.
-            /// @param ToBeDestroyed The node to be destroyed.
-            void DestroyNode(WorldNode* ToBeDestroyed);
-            /// @brief Destroys all world nodes currently in the manager.
-            void DestroyAllWorldNodes();
-
-            /// @brief Get a WorldNodeIterator to the first WorldNode*
-            /// @return A WorldNodeIterator to the first WorldNode*
-            WorldNodeIterator BeginWorldNode();
-            /// @brief Get a WorldNodeIterator to one past the last WorldNode*
-            /// @return A WorldNodeIterator to one past the last WorldNode*
-            WorldNodeIterator EndWorldNode();
-            /// @brief Get a ConstWorldNodeIterator to the first WorldNode*
-            /// @return A ConstWorldNodeIterator to the first WorldNode*
-            ConstWorldNodeIterator BeginWorldNode() const;
-            /// @brief Get a ConstWorldNodeIterator to one past the last WorldNode*
-            /// @return A ConstWorldNodeIterator to one past the last WorldNode*
-            ConstWorldNodeIterator EndWorldNode() const;
-
-            /// @brief Informs this manager that a node needs periodic updates for tracking.
-            /// @param Tracker The node that is getting tracking enabled.
-            void _RegisterTrackingNode(WorldNode* Tracker);
-            /// @brief Informs this manager a node is no longer tracking another object.
-            /// @param Tracker The node that is getting tracking disabled.
-            void _UnRegisterTrackingNode(WorldNode* Tracker);
-
-            ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
             /// @brief Gets the name of this manager.
@@ -441,10 +342,6 @@ namespace Mezzanine
             virtual void Initialize();
             /// @copydoc ManagerBase::Deinitialize()
             virtual void Deinitialize();
-
-            /// @brief Gets the work unit responsible for updating the tracking nodes in this manager.
-            /// @return Returns a pointer to the TrackingNodeUpdateWorkUnit used by this manager.
-            TrackingNodeUpdateWorkUnit* GetTrackingNodeUpdateWork();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods
