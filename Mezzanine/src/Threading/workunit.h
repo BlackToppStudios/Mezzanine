@@ -41,17 +41,13 @@
 #ifndef _workunit_h
 #define _workunit_h
 
-#ifndef SWIG
-    #include "datatypes.h"
-    #include "framescheduler.h"
-    #include "mutex.h"
-    #include "rollingaverage.h"
-    #include "threadingenumerations.h"
-    #include "thread.h"
-    #include "workunitkey.h"
-
-    #include <vector>
-#endif
+#include "datatypes.h"
+#include "framescheduler.h"
+#include "mutex.h"
+#include "rollingaverage.h"
+#include "threadingenumerations.h"
+#include "thread.h"
+#include "workunitkey.h"
 
 /// @file
 /// @brief This file has the definition of the workunit.

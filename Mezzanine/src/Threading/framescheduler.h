@@ -43,22 +43,14 @@
 
 #include "datatypes.h"
 
-#ifndef SWIG
-    #include "doublebufferedresource.h"
-    #include "thread.h"
-    #include "workunitkey.h"
-    #include "systemcalls.h"
-    #include "rollingaverage.h"
-#endif
+#include "doublebufferedresource.h"
+#include "thread.h"
+#include "workunitkey.h"
+#include "systemcalls.h"
+#include "rollingaverage.h"
 
 #ifdef MEZZ_USEBARRIERSEACHFRAME
     #include "barrier.h"
-#endif
-
-#ifndef SWIG
-    #include <map>
-    #include <set>
-    #include <fstream>
 #endif
 
 /// @file

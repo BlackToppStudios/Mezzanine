@@ -71,11 +71,6 @@ freely, subject to the following restrictions:
 #include "systemcalls.h"
 #include "mutex.h"
 
-#ifndef SWIG
-    #include <ostream>
-    #include <vector>
-#endif
-
 namespace Mezzanine
 {
     namespace Threading

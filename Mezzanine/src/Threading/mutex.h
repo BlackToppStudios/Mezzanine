@@ -68,12 +68,7 @@ freely, subject to the following restrictions:
     distribution.
 */
 
-
 #include "atomicoperations.h"
-#ifndef SWIG
-    // Swig shouldn't parse the stanard headers
-    #include <string>
-#endif
 
 /// @file
 /// @brief Declares a Mutex, Mutex tools, and at least one MutexLike object.

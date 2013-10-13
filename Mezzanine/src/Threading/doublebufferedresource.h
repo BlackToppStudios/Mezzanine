@@ -43,12 +43,6 @@
 
 #include "datatypes.h"
 
-#ifndef SWIG
-    #include <algorithm>
-    #include <sstream>
-    #include <vector>
-#endif
-
 /// @file
 /// @brief This file defines the template double buffered resources that can be attached to a thread.
 

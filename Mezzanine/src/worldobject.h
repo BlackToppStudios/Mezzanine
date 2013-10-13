@@ -130,7 +130,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
 
-        #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
         /// @brief Manually sets the location of the World Object.
         /// @details Calling this function prior to adding it to the World will have no effect. @n
         /// In most situations you won't want to use this function, and instead produce movement through physics functions.
@@ -139,7 +139,7 @@ namespace Mezzanine
         /// @param z Location on the Z vector.
         /// @note This overload is not available in scripting Languages, use SetLocation(const Vector3& Location)
         virtual void SetLocation(const Real& x, const Real& y, const Real& z);
-        #endif// \SWIG
+#endif// \SWIG
 
         /// @brief Manually sets the location of the World Object.
         /// @details Calling this function prior to adding it to the World will have no effect. @n
@@ -281,10 +281,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
 
-        #ifndef SWIG
-        /// @copydoc WorldObject::SetLocation(Vector3&)
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages        /// @copydoc WorldObject::SetLocation(Vector3&)
         virtual void SetLocation(const Vector3& Location);
-        #endif // \SWIG To prevent overload errors
+#endif // \SWIG & Lua To prevent overload errors
         /// @copydoc WorldObject::GetLocation()
         virtual Vector3 GetLocation() const;
 

@@ -51,8 +51,7 @@ namespace Mezzanine
 {
     namespace Threading
     {
-#ifndef SWIG
-
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
         /// @brief Atomically Compares And Swaps a 32 bit value.
         /// @details In such a way that this cannot be interupted by another thread this performs a number of steps.
         /// First, it compares the dereferenced value VariableToChange to OldValue. Then if they match it writes NewValue

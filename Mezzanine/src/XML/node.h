@@ -126,14 +126,14 @@ namespace Mezzanine
                 /// @return Returns false if the internal pointer NodeStruct is set and true otherwise.
                 bool operator!() const;
 
-                #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
                 /// @brief Compares the internal values to check equality.
                 /// @param r The other @ref Node this is being compared to.
                 /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
                 /// @return Returns true if all the internal values match between this and the other Node.
                 /// @note Not available in scripting languages
                 bool operator==(const Node& r) const;
-                #endif
+#endif
 
                 /// @brief Compares the internal values to check inequality.
                 /// @param r The other @ref Node this is being compared to.
@@ -221,13 +221,13 @@ namespace Mezzanine
                 /// @return An @ref Mezzanine::XML::NodeText which represents the PCData of this node.
                 NodeText GetText() const;
 
-                #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
                 /// @brief Attempt to get a child Node with a given name.
                 /// @param Name The name of the desired child Node.
                 /// @return A Node that represents the first desired child, or an empty Node on failure.
                 /// @note Not available in scripting languages in favor of the overload of this function that accepts String as a parameter.
                 Node GetChild(const Char8* Name) const;
-                #endif
+#endif
 
                 /// @brief Attempt to get a child Node with a given name.
                 /// @param Name The name of the desired child Node.
@@ -281,7 +281,7 @@ namespace Mezzanine
                 /// @todo Review for possiblity of buffer overflow.
                 bool SetValue(const Char8* rhs);
 
-                #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
                 /// @brief Creates an Attribute and puts it at the end of this Nodes attributes.
                 /// @param Name The name of the New attribute to be created
                 /// @details This attempts to create an Attribute and stick it at the end of the list of attribute on the current
@@ -290,7 +290,7 @@ namespace Mezzanine
                 /// @return The created Attribute or an empty Attribute on Failure.
                 /// @note Not available in scripting languages in favor of the overload of this function that accepts String as a parameter.
                 Attribute AppendAttribute(const Char8* Name);
-                #endif
+#endif
 
                 /// @brief Creates an Attribute and puts it at the end of this Nodes attributes.
                 /// @param Name The name of the New attribute to be created
@@ -383,14 +383,14 @@ namespace Mezzanine
                 /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
                 Node InsertChildBefore(NodeType Type, const Node& node);
 
-                #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
                 /// @brief Creates an element Node as a child of this Node, with the given name.
                 /// @param Name The name of the Node to be created.
                 /// @details Calls @ref Node::AppendChild(NodeType); using NodeElement as the NodeType.
                 /// @return The desired Node on success, an empty Node on failure.
                 /// @note Not available in scripting languages in favor of the overload of this function that accepts String as a parameter.
                 Node AppendChild(const Char8* Name);
-                #endif
+#endif
 
                 /// @brief Creates an element Node as a child of this Node, with the given name.
                 /// @param Name The name of the Node to be created.
@@ -399,14 +399,14 @@ namespace Mezzanine
                 Node AppendChild(const String& Name)
                     { return AppendChild(Name.c_str()); }
 
-                #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
                 /// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
                 /// @param Name The name of the Node to be created.
                 /// @details Calls @ref Node::PrependChild(NodeType); using NodeElement as the NodeType.
                 /// @return The desired Node on success, an empty Node on failure.
                 /// @note Not available in scripting languages in favor of the overload of this function that accepts String as a parameter.
                 Node PrependChild(const Char8* Name);
-                #endif
+#endif
 
                 /// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
                 /// @param Name The name of the Node to be created.

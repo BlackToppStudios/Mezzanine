@@ -2899,11 +2899,11 @@ SWIG_From_std_string  (const std::string& s)
   return SWIG_FromCharPtrAndSize(s.data(), s.size());
 }
 
-static swig_class SwigClassGC_VALUE;
+static swig_class SwigClassGCVALUE;
 
 
 /*
-  Document-method: MezzanineXML::GC_VALUE.inspect
+  Document-method: MezzanineXML::GCVALUE.inspect
 
   call-seq:
     inspect -> VALUE
@@ -2911,7 +2911,7 @@ static swig_class SwigClassGC_VALUE;
 Inspect class and its contents.
 */
 SWIGINTERN VALUE
-_wrap_GC_VALUE_inspect(int argc, VALUE *argv, VALUE self) {
+_wrap_GCVALUE_inspect(int argc, VALUE *argv, VALUE self) {
   swig::GC_VALUE *arg1 = (swig::GC_VALUE *) 0 ;
   swig::GC_VALUE r1 ;
   VALUE result;
@@ -2931,7 +2931,7 @@ fail:
 
 
 /*
-  Document-method: MezzanineXML::GC_VALUE.to_s
+  Document-method: MezzanineXML::GCVALUE.to_s
 
   call-seq:
     to_s -> VALUE
@@ -2939,7 +2939,7 @@ fail:
 Convert class to a String representation.
 */
 SWIGINTERN VALUE
-_wrap_GC_VALUE_to_s(int argc, VALUE *argv, VALUE self) {
+_wrap_GCVALUE_to_s(int argc, VALUE *argv, VALUE self) {
   swig::GC_VALUE *arg1 = (swig::GC_VALUE *) 0 ;
   swig::GC_VALUE r1 ;
   VALUE result;
@@ -4405,7 +4405,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_Empty(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_empty(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -4429,7 +4429,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_Name(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -4453,7 +4453,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_Value(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -4477,7 +4477,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsString__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_string__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -4512,7 +4512,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsString__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_string__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -4535,7 +4535,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Attribute_AsString(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Attribute_as_string(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -4552,7 +4552,7 @@ SWIGINTERN VALUE _wrap_Attribute_AsString(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Attribute_AsString__SWIG_1(nargs, args, self);
+      return _wrap_Attribute_as_string__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -4564,22 +4564,22 @@ SWIGINTERN VALUE _wrap_Attribute_AsString(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Attribute_AsString__SWIG_0(nargs, args, self);
+        return _wrap_Attribute_as_string__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsString", 
-    "    Mezzanine::Char8 const * Attribute.AsString(Mezzanine::Char8 const *def)\n"
-    "    Mezzanine::Char8 const * Attribute.AsString()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_string", 
+    "    Mezzanine::Char8 const * Attribute.as_string(Mezzanine::Char8 const *def)\n"
+    "    Mezzanine::Char8 const * Attribute.as_string()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsInt__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_int__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   int arg2 ;
   void *argp1 = 0 ;
@@ -4611,7 +4611,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsInt__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_int__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -4634,7 +4634,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Attribute_AsInt(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Attribute_as_int(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -4651,7 +4651,7 @@ SWIGINTERN VALUE _wrap_Attribute_AsInt(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Attribute_AsInt__SWIG_1(nargs, args, self);
+      return _wrap_Attribute_as_int__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -4665,22 +4665,22 @@ SWIGINTERN VALUE _wrap_Attribute_AsInt(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Attribute_AsInt__SWIG_0(nargs, args, self);
+        return _wrap_Attribute_as_int__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsInt", 
-    "    int Attribute.AsInt(int def)\n"
-    "    int Attribute.AsInt()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_int", 
+    "    int Attribute.as_int(int def)\n"
+    "    int Attribute.as_int()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsUint__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_uint__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   unsigned int arg2 ;
   void *argp1 = 0 ;
@@ -4712,7 +4712,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsUint__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_uint__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -4735,7 +4735,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Attribute_AsUint(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Attribute_as_uint(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -4752,7 +4752,7 @@ SWIGINTERN VALUE _wrap_Attribute_AsUint(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Attribute_AsUint__SWIG_1(nargs, args, self);
+      return _wrap_Attribute_as_uint__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -4766,22 +4766,22 @@ SWIGINTERN VALUE _wrap_Attribute_AsUint(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Attribute_AsUint__SWIG_0(nargs, args, self);
+        return _wrap_Attribute_as_uint__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsUint", 
-    "    unsigned int Attribute.AsUint(unsigned int def)\n"
-    "    unsigned int Attribute.AsUint()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_uint", 
+    "    unsigned int Attribute.as_uint(unsigned int def)\n"
+    "    unsigned int Attribute.as_uint()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsDouble__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_double__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -4813,7 +4813,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsDouble__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_double__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -4836,7 +4836,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Attribute_AsDouble(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Attribute_as_double(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -4853,7 +4853,7 @@ SWIGINTERN VALUE _wrap_Attribute_AsDouble(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Attribute_AsDouble__SWIG_1(nargs, args, self);
+      return _wrap_Attribute_as_double__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -4867,22 +4867,22 @@ SWIGINTERN VALUE _wrap_Attribute_AsDouble(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Attribute_AsDouble__SWIG_0(nargs, args, self);
+        return _wrap_Attribute_as_double__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsDouble", 
-    "    double Attribute.AsDouble(double def)\n"
-    "    double Attribute.AsDouble()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_double", 
+    "    double Attribute.as_double(double def)\n"
+    "    double Attribute.as_double()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsFloat__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_float__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   float arg2 ;
   void *argp1 = 0 ;
@@ -4914,7 +4914,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsFloat__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_float__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -4937,7 +4937,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Attribute_AsFloat(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Attribute_as_float(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -4954,7 +4954,7 @@ SWIGINTERN VALUE _wrap_Attribute_AsFloat(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Attribute_AsFloat__SWIG_1(nargs, args, self);
+      return _wrap_Attribute_as_float__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -4968,22 +4968,22 @@ SWIGINTERN VALUE _wrap_Attribute_AsFloat(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Attribute_AsFloat__SWIG_0(nargs, args, self);
+        return _wrap_Attribute_as_float__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsFloat", 
-    "    float Attribute.AsFloat(float def)\n"
-    "    float Attribute.AsFloat()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_float", 
+    "    float Attribute.as_float(float def)\n"
+    "    float Attribute.as_float()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsReal__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_real__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   Mezzanine::Real arg2 ;
   void *argp1 = 0 ;
@@ -5015,7 +5015,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsReal__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_real__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5038,7 +5038,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Attribute_AsReal(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Attribute_as_real(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -5055,7 +5055,7 @@ SWIGINTERN VALUE _wrap_Attribute_AsReal(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Attribute_AsReal__SWIG_1(nargs, args, self);
+      return _wrap_Attribute_as_real__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -5069,22 +5069,22 @@ SWIGINTERN VALUE _wrap_Attribute_AsReal(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Attribute_AsReal__SWIG_0(nargs, args, self);
+        return _wrap_Attribute_as_real__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsReal", 
-    "    Mezzanine::Real Attribute.AsReal(Mezzanine::Real def)\n"
-    "    Mezzanine::Real Attribute.AsReal()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_real", 
+    "    Mezzanine::Real Attribute.as_real(Mezzanine::Real def)\n"
+    "    Mezzanine::Real Attribute.as_real()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsWhole__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_whole__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
@@ -5116,7 +5116,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsWhole__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_whole__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5139,7 +5139,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Attribute_AsWhole(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Attribute_as_whole(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -5156,7 +5156,7 @@ SWIGINTERN VALUE _wrap_Attribute_AsWhole(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Attribute_AsWhole__SWIG_1(nargs, args, self);
+      return _wrap_Attribute_as_whole__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -5170,22 +5170,22 @@ SWIGINTERN VALUE _wrap_Attribute_AsWhole(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Attribute_AsWhole__SWIG_0(nargs, args, self);
+        return _wrap_Attribute_as_whole__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsWhole", 
-    "    Mezzanine::Whole Attribute.AsWhole(Mezzanine::Whole def)\n"
-    "    Mezzanine::Whole Attribute.AsWhole()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_whole", 
+    "    Mezzanine::Whole Attribute.as_whole(Mezzanine::Whole def)\n"
+    "    Mezzanine::Whole Attribute.as_whole()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsInteger__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_integer__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   Mezzanine::Integer arg2 ;
   void *argp1 = 0 ;
@@ -5217,7 +5217,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsInteger__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_integer__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5240,7 +5240,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Attribute_AsInteger(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Attribute_as_integer(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -5257,7 +5257,7 @@ SWIGINTERN VALUE _wrap_Attribute_AsInteger(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Attribute_AsInteger__SWIG_1(nargs, args, self);
+      return _wrap_Attribute_as_integer__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -5271,22 +5271,22 @@ SWIGINTERN VALUE _wrap_Attribute_AsInteger(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Attribute_AsInteger__SWIG_0(nargs, args, self);
+        return _wrap_Attribute_as_integer__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsInteger", 
-    "    Mezzanine::Integer Attribute.AsInteger(Mezzanine::Integer def)\n"
-    "    Mezzanine::Integer Attribute.AsInteger()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_integer", 
+    "    Mezzanine::Integer Attribute.as_integer(Mezzanine::Integer def)\n"
+    "    Mezzanine::Integer Attribute.as_integer()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsBool__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_bool__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   bool arg2 ;
   void *argp1 = 0 ;
@@ -5318,7 +5318,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_AsBool__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_as_bool__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5341,7 +5341,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Attribute_AsBool(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Attribute_as_bool(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -5358,7 +5358,7 @@ SWIGINTERN VALUE _wrap_Attribute_AsBool(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Attribute_AsBool__SWIG_1(nargs, args, self);
+      return _wrap_Attribute_as_bool__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -5372,22 +5372,22 @@ SWIGINTERN VALUE _wrap_Attribute_AsBool(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Attribute_AsBool__SWIG_0(nargs, args, self);
+        return _wrap_Attribute_as_bool__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsBool", 
-    "    bool Attribute.AsBool(bool def)\n"
-    "    bool Attribute.AsBool()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_bool", 
+    "    bool Attribute.as_bool(bool def)\n"
+    "    bool Attribute.as_bool()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_SetName(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_set_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -5426,7 +5426,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_SetValue(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_set_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -5465,7 +5465,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_GetNextAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_get_next_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5489,7 +5489,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_GetPreviousAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_get_previous_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5513,7 +5513,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_HashValue(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_hash_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5537,7 +5537,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Attribute_InternalObject(int argc, VALUE *argv, VALUE self) {
+_wrap_Attribute_internal_object(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5850,6 +5850,50 @@ fail:
 
 
 /*
+  Document-method: MezzanineXML::Node.==
+
+  call-seq:
+    ==(r) -> bool
+
+Equality comparison operator.
+*/
+SWIGINTERN VALUE
+_wrap_Node___eq__(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__Node, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::Node const *","operator ==", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::Node * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__XML__Node,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::XML::Node const &","operator ==", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::XML::Node const &","operator ==", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::XML::Node * >(argp2);
+  result = (bool)((Mezzanine::XML::Node const *)arg1)->operator ==((Mezzanine::XML::Node const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
   Document-method: MezzanineXML::Node.<
 
   call-seq:
@@ -6025,7 +6069,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Empty(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_empty(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6049,7 +6093,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Type(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6073,7 +6117,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Name(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6097,7 +6141,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Value(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6121,7 +6165,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetFirstAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_first_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6145,7 +6189,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetLastAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_last_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6169,7 +6213,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetFirstChild(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_first_child(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6193,7 +6237,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetLastChild(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_last_child(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6217,7 +6261,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetNextSibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_next_sibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6241,7 +6285,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetPreviousSibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_previous_sibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6265,7 +6309,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetParent(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_parent(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6289,7 +6333,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetRoot(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_root(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6313,7 +6357,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetText(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_text(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6337,7 +6381,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetChild(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Node result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__Node, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::Node const *","GetChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::Node * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","GetChild", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = ((Mezzanine::XML::Node const *)arg1)->GetChild((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Node(static_cast< const Mezzanine::XML::Node& >(result))), SWIGTYPE_p_Mezzanine__XML__Node, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Node_get_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6375,8 +6454,55 @@ fail:
 }
 
 
+SWIGINTERN VALUE _wrap_Node_get_child(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Node_get_child__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Node_get_child__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_child", 
+    "    Mezzanine::XML::Node Node.get_child(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Node Node.get_child(Mezzanine::String const &Name)\n");
+  
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE
-_wrap_Node_GetAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -6411,7 +6537,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetNextSibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_next_sibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -6445,7 +6571,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_GetNextSibling(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_get_next_sibling(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -6462,7 +6588,7 @@ SWIGINTERN VALUE _wrap_Node_GetNextSibling(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Node_GetNextSibling__SWIG_0(nargs, args, self);
+      return _wrap_Node_get_next_sibling__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -6474,22 +6600,22 @@ SWIGINTERN VALUE _wrap_Node_GetNextSibling(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_GetNextSibling__SWIG_1(nargs, args, self);
+        return _wrap_Node_get_next_sibling__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetNextSibling", 
-    "    Mezzanine::XML::Node Node.GetNextSibling()\n"
-    "    Mezzanine::XML::Node Node.GetNextSibling(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_next_sibling", 
+    "    Mezzanine::XML::Node Node.get_next_sibling()\n"
+    "    Mezzanine::XML::Node Node.get_next_sibling(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetPreviousSibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_previous_sibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -6523,7 +6649,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_GetPreviousSibling(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_get_previous_sibling(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -6540,7 +6666,7 @@ SWIGINTERN VALUE _wrap_Node_GetPreviousSibling(int nargs, VALUE *args, VALUE sel
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Node_GetPreviousSibling__SWIG_0(nargs, args, self);
+      return _wrap_Node_get_previous_sibling__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -6552,22 +6678,22 @@ SWIGINTERN VALUE _wrap_Node_GetPreviousSibling(int nargs, VALUE *args, VALUE sel
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_GetPreviousSibling__SWIG_1(nargs, args, self);
+        return _wrap_Node_get_previous_sibling__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetPreviousSibling", 
-    "    Mezzanine::XML::Node Node.GetPreviousSibling()\n"
-    "    Mezzanine::XML::Node Node.GetPreviousSibling(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_previous_sibling", 
+    "    Mezzanine::XML::Node Node.get_previous_sibling()\n"
+    "    Mezzanine::XML::Node Node.get_previous_sibling(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetChildValue__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_child_value__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6591,7 +6717,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetChildValue__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_child_value__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -6625,7 +6751,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_GetChildValue(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_get_child_value(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -6642,7 +6768,7 @@ SWIGINTERN VALUE _wrap_Node_GetChildValue(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Node_GetChildValue__SWIG_0(nargs, args, self);
+      return _wrap_Node_get_child_value__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -6654,22 +6780,22 @@ SWIGINTERN VALUE _wrap_Node_GetChildValue(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_GetChildValue__SWIG_1(nargs, args, self);
+        return _wrap_Node_get_child_value__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetChildValue", 
-    "    Mezzanine::Char8 const * Node.GetChildValue()\n"
-    "    Mezzanine::Char8 const * Node.GetChildValue(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_child_value", 
+    "    Mezzanine::Char8 const * Node.get_child_value()\n"
+    "    Mezzanine::Char8 const * Node.get_child_value(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_SetName(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_set_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6708,7 +6834,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_SetValue(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_set_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -6743,7 +6869,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_AppendAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_append_attribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Attribute result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__Node, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::Node *","AppendAttribute", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::Node * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","AppendAttribute", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (arg1)->AppendAttribute((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Attribute(static_cast< const Mezzanine::XML::Attribute& >(result))), SWIGTYPE_p_Mezzanine__XML__Attribute, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Node_append_attribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6781,8 +6942,55 @@ fail:
 }
 
 
+SWIGINTERN VALUE _wrap_Node_append_attribute(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Node_append_attribute__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Node_append_attribute__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Node.append_attribute", 
+    "    Mezzanine::XML::Attribute Node.append_attribute(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Attribute Node.append_attribute(Mezzanine::String const &Name)\n");
+  
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE
-_wrap_Node_PrependAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_prepend_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -6817,7 +7025,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_InsertAttributeAfter(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_insert_attribute_after(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -6863,7 +7071,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_InsertAttributeBefore(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_insert_attribute_before(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -6909,7 +7117,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_AppendCopy__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_append_copy__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6944,7 +7152,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_PrependCopy__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_prepend_copy__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6979,7 +7187,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_InsertCopyAfter__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_insert_copy_after__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -7025,7 +7233,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_InsertCopyBefore__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_insert_copy_before__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -7071,7 +7279,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_AppendChild__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_append_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   void *argp1 = 0 ;
@@ -7103,7 +7311,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_AppendChild__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_append_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7127,7 +7335,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_PrependChild__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_prepend_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   void *argp1 = 0 ;
@@ -7159,7 +7367,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_PrependChild__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_prepend_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7183,7 +7391,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_InsertChildAfter__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_insert_child_after__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -7226,7 +7434,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_InsertChildBefore__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_insert_child_before__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -7269,7 +7477,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_AppendChild__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_append_child__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Node result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__Node, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::Node *","AppendChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::Node * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","AppendChild", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (arg1)->AppendChild((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Node(static_cast< const Mezzanine::XML::Node& >(result))), SWIGTYPE_p_Mezzanine__XML__Node, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Node_append_child__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7307,7 +7550,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_AppendChild(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_append_child(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -7324,7 +7567,7 @@ SWIGINTERN VALUE _wrap_Node_AppendChild(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Node_AppendChild__SWIG_1(nargs, args, self);
+      return _wrap_Node_append_child__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -7338,7 +7581,7 @@ SWIGINTERN VALUE _wrap_Node_AppendChild(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Node_AppendChild__SWIG_0(nargs, args, self);
+        return _wrap_Node_append_child__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -7351,23 +7594,72 @@ SWIGINTERN VALUE _wrap_Node_AppendChild(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_AppendChild__SWIG_2(nargs, args, self);
+        return _wrap_Node_append_child__SWIG_3(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Node_append_child__SWIG_2(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.AppendChild", 
-    "    Mezzanine::XML::Node Node.AppendChild(Mezzanine::XML::NodeType Type)\n"
-    "    Mezzanine::XML::Node Node.AppendChild()\n"
-    "    Mezzanine::XML::Node Node.AppendChild(Mezzanine::String const &Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.append_child", 
+    "    Mezzanine::XML::Node Node.append_child(Mezzanine::XML::NodeType Type)\n"
+    "    Mezzanine::XML::Node Node.append_child()\n"
+    "    Mezzanine::XML::Node Node.append_child(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Node Node.append_child(Mezzanine::String const &Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_PrependChild__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_prepend_child__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Node result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__Node, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::Node *","PrependChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::Node * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","PrependChild", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (arg1)->PrependChild((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Node(static_cast< const Mezzanine::XML::Node& >(result))), SWIGTYPE_p_Mezzanine__XML__Node, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Node_prepend_child__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7405,7 +7697,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_PrependChild(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_prepend_child(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -7422,7 +7714,7 @@ SWIGINTERN VALUE _wrap_Node_PrependChild(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Node_PrependChild__SWIG_1(nargs, args, self);
+      return _wrap_Node_prepend_child__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -7436,7 +7728,7 @@ SWIGINTERN VALUE _wrap_Node_PrependChild(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Node_PrependChild__SWIG_0(nargs, args, self);
+        return _wrap_Node_prepend_child__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -7449,23 +7741,37 @@ SWIGINTERN VALUE _wrap_Node_PrependChild(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_PrependChild__SWIG_2(nargs, args, self);
+        return _wrap_Node_prepend_child__SWIG_3(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Node_prepend_child__SWIG_2(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.PrependChild", 
-    "    Mezzanine::XML::Node Node.PrependChild(Mezzanine::XML::NodeType Type)\n"
-    "    Mezzanine::XML::Node Node.PrependChild()\n"
-    "    Mezzanine::XML::Node Node.PrependChild(Mezzanine::String const &Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.prepend_child", 
+    "    Mezzanine::XML::Node Node.prepend_child(Mezzanine::XML::NodeType Type)\n"
+    "    Mezzanine::XML::Node Node.prepend_child()\n"
+    "    Mezzanine::XML::Node Node.prepend_child(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Node Node.prepend_child(Mezzanine::String const &Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_InsertChildAfter__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_insert_child_after__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -7510,7 +7816,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_InsertChildAfter(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_insert_child_after(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -7536,7 +7842,7 @@ SWIGINTERN VALUE _wrap_Node_InsertChildAfter(int nargs, VALUE *args, VALUE self)
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_InsertChildAfter__SWIG_0(nargs, args, self);
+          return _wrap_Node_insert_child_after__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -7554,23 +7860,23 @@ SWIGINTERN VALUE _wrap_Node_InsertChildAfter(int nargs, VALUE *args, VALUE self)
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_InsertChildAfter__SWIG_1(nargs, args, self);
+          return _wrap_Node_insert_child_after__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertChildAfter", 
-    "    Mezzanine::XML::Node Node.InsertChildAfter(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
-    "    Mezzanine::XML::Node Node.InsertChildAfter(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_child_after", 
+    "    Mezzanine::XML::Node Node.insert_child_after(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
+    "    Mezzanine::XML::Node Node.insert_child_after(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_InsertChildBefore__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_insert_child_before__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -7615,7 +7921,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_InsertChildBefore(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_insert_child_before(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -7641,7 +7947,7 @@ SWIGINTERN VALUE _wrap_Node_InsertChildBefore(int nargs, VALUE *args, VALUE self
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_InsertChildBefore__SWIG_0(nargs, args, self);
+          return _wrap_Node_insert_child_before__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -7659,23 +7965,23 @@ SWIGINTERN VALUE _wrap_Node_InsertChildBefore(int nargs, VALUE *args, VALUE self
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_InsertChildBefore__SWIG_1(nargs, args, self);
+          return _wrap_Node_insert_child_before__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertChildBefore", 
-    "    Mezzanine::XML::Node Node.InsertChildBefore(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
-    "    Mezzanine::XML::Node Node.InsertChildBefore(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_child_before", 
+    "    Mezzanine::XML::Node Node.insert_child_before(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
+    "    Mezzanine::XML::Node Node.insert_child_before(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_AppendCopy__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_append_copy__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7709,7 +8015,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_AppendCopy(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_append_copy(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -7730,7 +8036,7 @@ SWIGINTERN VALUE _wrap_Node_AppendCopy(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_AppendCopy__SWIG_0(nargs, args, self);
+        return _wrap_Node_append_copy__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -7744,22 +8050,22 @@ SWIGINTERN VALUE _wrap_Node_AppendCopy(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_AppendCopy__SWIG_1(nargs, args, self);
+        return _wrap_Node_append_copy__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.AppendCopy", 
-    "    Mezzanine::XML::Node Node.AppendCopy(Mezzanine::XML::Attribute const &proto)\n"
-    "    Mezzanine::XML::Node Node.AppendCopy(Mezzanine::XML::Node const &proto)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.append_copy", 
+    "    Mezzanine::XML::Node Node.append_copy(Mezzanine::XML::Attribute const &proto)\n"
+    "    Mezzanine::XML::Node Node.append_copy(Mezzanine::XML::Node const &proto)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_PrependCopy__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_prepend_copy__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7793,7 +8099,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_PrependCopy(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_prepend_copy(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -7814,7 +8120,7 @@ SWIGINTERN VALUE _wrap_Node_PrependCopy(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_PrependCopy__SWIG_0(nargs, args, self);
+        return _wrap_Node_prepend_copy__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -7828,22 +8134,22 @@ SWIGINTERN VALUE _wrap_Node_PrependCopy(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_PrependCopy__SWIG_1(nargs, args, self);
+        return _wrap_Node_prepend_copy__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.PrependCopy", 
-    "    Mezzanine::XML::Node Node.PrependCopy(Mezzanine::XML::Attribute const &proto)\n"
-    "    Mezzanine::XML::Node Node.PrependCopy(Mezzanine::XML::Node const &proto)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.prepend_copy", 
+    "    Mezzanine::XML::Node Node.prepend_copy(Mezzanine::XML::Attribute const &proto)\n"
+    "    Mezzanine::XML::Node Node.prepend_copy(Mezzanine::XML::Node const &proto)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_InsertCopyAfter__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_insert_copy_after__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -7888,7 +8194,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_InsertCopyAfter(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_insert_copy_after(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -7913,7 +8219,7 @@ SWIGINTERN VALUE _wrap_Node_InsertCopyAfter(int nargs, VALUE *args, VALUE self) 
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_InsertCopyAfter__SWIG_0(nargs, args, self);
+          return _wrap_Node_insert_copy_after__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -7932,23 +8238,23 @@ SWIGINTERN VALUE _wrap_Node_InsertCopyAfter(int nargs, VALUE *args, VALUE self) 
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_InsertCopyAfter__SWIG_1(nargs, args, self);
+          return _wrap_Node_insert_copy_after__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertCopyAfter", 
-    "    Mezzanine::XML::Node Node.InsertCopyAfter(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
-    "    Mezzanine::XML::Node Node.InsertCopyAfter(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_copy_after", 
+    "    Mezzanine::XML::Node Node.insert_copy_after(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
+    "    Mezzanine::XML::Node Node.insert_copy_after(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_InsertCopyBefore__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_insert_copy_before__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -7993,7 +8299,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_InsertCopyBefore(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_insert_copy_before(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -8018,7 +8324,7 @@ SWIGINTERN VALUE _wrap_Node_InsertCopyBefore(int nargs, VALUE *args, VALUE self)
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_InsertCopyBefore__SWIG_0(nargs, args, self);
+          return _wrap_Node_insert_copy_before__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -8037,23 +8343,23 @@ SWIGINTERN VALUE _wrap_Node_InsertCopyBefore(int nargs, VALUE *args, VALUE self)
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_InsertCopyBefore__SWIG_1(nargs, args, self);
+          return _wrap_Node_insert_copy_before__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertCopyBefore", 
-    "    Mezzanine::XML::Node Node.InsertCopyBefore(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
-    "    Mezzanine::XML::Node Node.InsertCopyBefore(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_copy_before", 
+    "    Mezzanine::XML::Node Node.insert_copy_before(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
+    "    Mezzanine::XML::Node Node.insert_copy_before(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_RemoveAttribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_remove_attribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -8088,7 +8394,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_RemoveAttribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_remove_attribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -8122,7 +8428,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_RemoveAttribute(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_remove_attribute(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -8143,7 +8449,7 @@ SWIGINTERN VALUE _wrap_Node_RemoveAttribute(int nargs, VALUE *args, VALUE self) 
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_RemoveAttribute__SWIG_0(nargs, args, self);
+        return _wrap_Node_remove_attribute__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -8156,22 +8462,22 @@ SWIGINTERN VALUE _wrap_Node_RemoveAttribute(int nargs, VALUE *args, VALUE self) 
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_RemoveAttribute__SWIG_1(nargs, args, self);
+        return _wrap_Node_remove_attribute__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.RemoveAttribute", 
-    "    bool Node.RemoveAttribute(Mezzanine::XML::Attribute const &a)\n"
-    "    bool Node.RemoveAttribute(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.remove_attribute", 
+    "    bool Node.remove_attribute(Mezzanine::XML::Attribute const &a)\n"
+    "    bool Node.remove_attribute(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_RemoveChild__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_remove_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -8206,7 +8512,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_RemoveChild__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_remove_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -8240,7 +8546,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_RemoveChild(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_remove_child(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -8261,7 +8567,7 @@ SWIGINTERN VALUE _wrap_Node_RemoveChild(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_RemoveChild__SWIG_0(nargs, args, self);
+        return _wrap_Node_remove_child__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -8274,22 +8580,22 @@ SWIGINTERN VALUE _wrap_Node_RemoveChild(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_RemoveChild__SWIG_1(nargs, args, self);
+        return _wrap_Node_remove_child__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.RemoveChild", 
-    "    bool Node.RemoveChild(Mezzanine::XML::Node const &n)\n"
-    "    bool Node.RemoveChild(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.remove_child", 
+    "    bool Node.remove_child(Mezzanine::XML::Node const &n)\n"
+    "    bool Node.remove_child(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_FindChildbyAttribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_find_childby_attribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -8346,7 +8652,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_FindChildbyAttribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_find_childby_attribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -8391,7 +8697,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_FindChildbyAttribute(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_find_childby_attribute(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -8414,7 +8720,7 @@ SWIGINTERN VALUE _wrap_Node_FindChildbyAttribute(int nargs, VALUE *args, VALUE s
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_FindChildbyAttribute__SWIG_1(nargs, args, self);
+          return _wrap_Node_find_childby_attribute__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -8434,7 +8740,7 @@ SWIGINTERN VALUE _wrap_Node_FindChildbyAttribute(int nargs, VALUE *args, VALUE s
           int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_Node_FindChildbyAttribute__SWIG_0(nargs, args, self);
+            return _wrap_Node_find_childby_attribute__SWIG_0(nargs, args, self);
           }
         }
       }
@@ -8442,16 +8748,16 @@ SWIGINTERN VALUE _wrap_Node_FindChildbyAttribute(int nargs, VALUE *args, VALUE s
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "Node.FindChildbyAttribute", 
-    "    Mezzanine::XML::Node Node.FindChildbyAttribute(Mezzanine::Char8 const *Name, Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n"
-    "    Mezzanine::XML::Node Node.FindChildbyAttribute(Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n");
+  Ruby_Format_OverloadedError( argc, 5, "Node.find_childby_attribute", 
+    "    Mezzanine::XML::Node Node.find_childby_attribute(Mezzanine::Char8 const *Name, Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n"
+    "    Mezzanine::XML::Node Node.find_childby_attribute(Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_Path__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_path__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 arg2 ;
   void *argp1 = 0 ;
@@ -8483,7 +8789,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Path__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_path__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -8506,7 +8812,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_Path(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_path(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -8523,7 +8829,7 @@ SWIGINTERN VALUE _wrap_Node_Path(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Node_Path__SWIG_1(nargs, args, self);
+      return _wrap_Node_path__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -8537,22 +8843,22 @@ SWIGINTERN VALUE _wrap_Node_Path(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Node_Path__SWIG_0(nargs, args, self);
+        return _wrap_Node_path__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.Path", 
-    "    Mezzanine::String Node.Path(Mezzanine::Char8 delimiter)\n"
-    "    Mezzanine::String Node.Path()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.path", 
+    "    Mezzanine::String Node.path(Mezzanine::Char8 delimiter)\n"
+    "    Mezzanine::String Node.path()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_FirstElementByPath__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_first_element_by_path__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::Char8 arg3 ;
@@ -8595,7 +8901,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_FirstElementByPath__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_first_element_by_path__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -8629,7 +8935,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_FirstElementByPath(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_first_element_by_path(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -8649,7 +8955,7 @@ SWIGINTERN VALUE _wrap_Node_FirstElementByPath(int nargs, VALUE *args, VALUE sel
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_FirstElementByPath__SWIG_1(nargs, args, self);
+        return _wrap_Node_first_element_by_path__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -8667,23 +8973,23 @@ SWIGINTERN VALUE _wrap_Node_FirstElementByPath(int nargs, VALUE *args, VALUE sel
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Node_FirstElementByPath__SWIG_0(nargs, args, self);
+          return _wrap_Node_first_element_by_path__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.FirstElementByPath", 
-    "    Mezzanine::XML::Node Node.FirstElementByPath(Mezzanine::Char8 const *Path, Mezzanine::Char8 delimiter)\n"
-    "    Mezzanine::XML::Node Node.FirstElementByPath(Mezzanine::Char8 const *Path)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.first_element_by_path", 
+    "    Mezzanine::XML::Node Node.first_element_by_path(Mezzanine::Char8 const *Path, Mezzanine::Char8 delimiter)\n"
+    "    Mezzanine::XML::Node Node.first_element_by_path(Mezzanine::Char8 const *Path)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_Traverse(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_traverse(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::TreeWalker *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -8718,7 +9024,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_FindSingleNode__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_find_single_node__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
@@ -8761,7 +9067,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_FindSingleNode__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_find_single_node__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -8796,7 +9102,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_FindSingleNode__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_find_single_node__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::XPathQuery *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -8830,7 +9136,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_FindSingleNode(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_find_single_node(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -8851,7 +9157,7 @@ SWIGINTERN VALUE _wrap_Node_FindSingleNode(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_FindSingleNode__SWIG_2(nargs, args, self);
+        return _wrap_Node_find_single_node__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -8864,7 +9170,7 @@ SWIGINTERN VALUE _wrap_Node_FindSingleNode(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_FindSingleNode__SWIG_1(nargs, args, self);
+        return _wrap_Node_find_single_node__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -8881,24 +9187,24 @@ SWIGINTERN VALUE _wrap_Node_FindSingleNode(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_FindSingleNode__SWIG_0(nargs, args, self);
+          return _wrap_Node_find_single_node__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.FindSingleNode", 
-    "    Mezzanine::XML::XPathNode Node.FindSingleNode(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
-    "    Mezzanine::XML::XPathNode Node.FindSingleNode(Mezzanine::Char8 const *query)\n"
-    "    Mezzanine::XML::XPathNode Node.FindSingleNode(Mezzanine::XML::XPathQuery const &query)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.find_single_node", 
+    "    Mezzanine::XML::XPathNode Node.find_single_node(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
+    "    Mezzanine::XML::XPathNode Node.find_single_node(Mezzanine::Char8 const *query)\n"
+    "    Mezzanine::XML::XPathNode Node.find_single_node(Mezzanine::XML::XPathQuery const &query)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_FindNodes__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_find_nodes__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
@@ -8941,7 +9247,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_FindNodes__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_find_nodes__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -8976,7 +9282,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_FindNodes__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_find_nodes__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::XPathQuery *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -9010,7 +9316,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_FindNodes(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_find_nodes(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -9031,7 +9337,7 @@ SWIGINTERN VALUE _wrap_Node_FindNodes(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_FindNodes__SWIG_2(nargs, args, self);
+        return _wrap_Node_find_nodes__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -9044,7 +9350,7 @@ SWIGINTERN VALUE _wrap_Node_FindNodes(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_FindNodes__SWIG_1(nargs, args, self);
+        return _wrap_Node_find_nodes__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -9061,24 +9367,24 @@ SWIGINTERN VALUE _wrap_Node_FindNodes(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_FindNodes__SWIG_0(nargs, args, self);
+          return _wrap_Node_find_nodes__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.FindNodes", 
-    "    Mezzanine::XML::XPathNodeSet Node.FindNodes(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
-    "    Mezzanine::XML::XPathNodeSet Node.FindNodes(Mezzanine::Char8 const *query)\n"
-    "    Mezzanine::XML::XPathNodeSet Node.FindNodes(Mezzanine::XML::XPathQuery const &query)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.find_nodes", 
+    "    Mezzanine::XML::XPathNodeSet Node.find_nodes(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
+    "    Mezzanine::XML::XPathNodeSet Node.find_nodes(Mezzanine::Char8 const *query)\n"
+    "    Mezzanine::XML::XPathNodeSet Node.find_nodes(Mezzanine::XML::XPathQuery const &query)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9145,7 +9451,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9204,7 +9510,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9255,7 +9561,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9298,7 +9604,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_4(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -9330,7 +9636,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_5(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_5(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9397,7 +9703,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_6(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_6(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9456,7 +9762,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_7(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_7(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9507,7 +9813,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_8(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_8(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9550,7 +9856,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_9(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_9(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -9582,7 +9888,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_10(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_10(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9641,7 +9947,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_11(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_11(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9692,7 +9998,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_12(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_12(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -9735,7 +10041,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_Print__SWIG_13(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_print__SWIG_13(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -9766,7 +10072,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_print(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[7];
   int ii;
@@ -9787,7 +10093,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_Print__SWIG_4(nargs, args, self);
+        return _wrap_Node_print__SWIG_4(nargs, args, self);
       }
     }
   }
@@ -9801,7 +10107,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_Print__SWIG_9(nargs, args, self);
+        return _wrap_Node_print__SWIG_9(nargs, args, self);
       }
     }
   }
@@ -9815,7 +10121,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_Print__SWIG_13(nargs, args, self);
+        return _wrap_Node_print__SWIG_13(nargs, args, self);
       }
     }
   }
@@ -9832,7 +10138,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_Print__SWIG_3(nargs, args, self);
+          return _wrap_Node_print__SWIG_3(nargs, args, self);
         }
       }
     }
@@ -9850,7 +10156,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_Print__SWIG_12(nargs, args, self);
+          return _wrap_Node_print__SWIG_12(nargs, args, self);
         }
       }
     }
@@ -9868,7 +10174,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Node_Print__SWIG_8(nargs, args, self);
+          return _wrap_Node_print__SWIG_8(nargs, args, self);
         }
       }
     }
@@ -9891,7 +10197,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Node_Print__SWIG_11(nargs, args, self);
+            return _wrap_Node_print__SWIG_11(nargs, args, self);
           }
         }
       }
@@ -9915,7 +10221,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Node_Print__SWIG_2(nargs, args, self);
+            return _wrap_Node_print__SWIG_2(nargs, args, self);
           }
         }
       }
@@ -9939,7 +10245,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Node_Print__SWIG_7(nargs, args, self);
+            return _wrap_Node_print__SWIG_7(nargs, args, self);
           }
         }
       }
@@ -9968,7 +10274,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Node_Print__SWIG_6(nargs, args, self);
+              return _wrap_Node_print__SWIG_6(nargs, args, self);
             }
           }
         }
@@ -9998,7 +10304,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Node_Print__SWIG_1(nargs, args, self);
+              return _wrap_Node_print__SWIG_1(nargs, args, self);
             }
           }
         }
@@ -10028,7 +10334,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Node_Print__SWIG_10(nargs, args, self);
+              return _wrap_Node_print__SWIG_10(nargs, args, self);
             }
           }
         }
@@ -10063,7 +10369,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
                 _v = SWIG_CheckState(res);
               }
               if (_v) {
-                return _wrap_Node_Print__SWIG_0(nargs, args, self);
+                return _wrap_Node_print__SWIG_0(nargs, args, self);
               }
             }
           }
@@ -10099,7 +10405,7 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
                 _v = SWIG_CheckState(res);
               }
               if (_v) {
-                return _wrap_Node_Print__SWIG_5(nargs, args, self);
+                return _wrap_Node_print__SWIG_5(nargs, args, self);
               }
             }
           }
@@ -10109,21 +10415,21 @@ SWIGINTERN VALUE _wrap_Node_Print(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 7, "Node.Print", 
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags, unsigned int Depth)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os)\n");
+  Ruby_Format_OverloadedError( argc, 7, "Node.print", 
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags, unsigned int Depth)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os)\n");
   
   return Qnil;
 }
@@ -10244,7 +10550,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetChildren__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_children__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10268,7 +10574,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_GetChildren__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_get_children__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -10302,7 +10608,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Node_GetChildren(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Node_get_children(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -10319,7 +10625,7 @@ SWIGINTERN VALUE _wrap_Node_GetChildren(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Node_GetChildren__SWIG_0(nargs, args, self);
+      return _wrap_Node_get_children__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -10331,15 +10637,15 @@ SWIGINTERN VALUE _wrap_Node_GetChildren(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Node_GetChildren__SWIG_1(nargs, args, self);
+        return _wrap_Node_get_children__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetChildren", 
-    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.GetChildren()\n"
-    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.GetChildren(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_children", 
+    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.get_children()\n"
+    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.get_children(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
@@ -10370,7 +10676,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_OffSetDebug(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_off_set_debug(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10394,7 +10700,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_HashValue(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_hash_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10418,7 +10724,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Node_InternalObject(int argc, VALUE *argv, VALUE self) {
+_wrap_Node_internal_object(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10823,7 +11129,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_Empty(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_empty(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10847,7 +11153,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_Name(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10871,7 +11177,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_Value(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10895,7 +11201,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsString__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_string__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -10930,7 +11236,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsString__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_string__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10953,7 +11259,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttributeIterator_AsString(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttributeIterator_as_string(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -10970,7 +11276,7 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsString(int nargs, VALUE *args, VALUE 
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AttributeIterator_AsString__SWIG_1(nargs, args, self);
+      return _wrap_AttributeIterator_as_string__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -10982,22 +11288,22 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsString(int nargs, VALUE *args, VALUE 
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_AttributeIterator_AsString__SWIG_0(nargs, args, self);
+        return _wrap_AttributeIterator_as_string__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsString", 
-    "    Mezzanine::Char8 const * Attribute.AsString(Mezzanine::Char8 const *def)\n"
-    "    Mezzanine::Char8 const * Attribute.AsString()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_string", 
+    "    Mezzanine::Char8 const * Attribute.as_string(Mezzanine::Char8 const *def)\n"
+    "    Mezzanine::Char8 const * Attribute.as_string()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsInt__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_int__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   int arg2 ;
   void *argp1 = 0 ;
@@ -11029,7 +11335,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsInt__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_int__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11052,7 +11358,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttributeIterator_AsInt(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttributeIterator_as_int(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -11069,7 +11375,7 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsInt(int nargs, VALUE *args, VALUE sel
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AttributeIterator_AsInt__SWIG_1(nargs, args, self);
+      return _wrap_AttributeIterator_as_int__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -11083,22 +11389,22 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsInt(int nargs, VALUE *args, VALUE sel
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_AttributeIterator_AsInt__SWIG_0(nargs, args, self);
+        return _wrap_AttributeIterator_as_int__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsInt", 
-    "    int Attribute.AsInt(int def)\n"
-    "    int Attribute.AsInt()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_int", 
+    "    int Attribute.as_int(int def)\n"
+    "    int Attribute.as_int()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsUint__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_uint__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   unsigned int arg2 ;
   void *argp1 = 0 ;
@@ -11130,7 +11436,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsUint__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_uint__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11153,7 +11459,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttributeIterator_AsUint(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttributeIterator_as_uint(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -11170,7 +11476,7 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsUint(int nargs, VALUE *args, VALUE se
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AttributeIterator_AsUint__SWIG_1(nargs, args, self);
+      return _wrap_AttributeIterator_as_uint__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -11184,22 +11490,22 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsUint(int nargs, VALUE *args, VALUE se
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_AttributeIterator_AsUint__SWIG_0(nargs, args, self);
+        return _wrap_AttributeIterator_as_uint__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsUint", 
-    "    unsigned int Attribute.AsUint(unsigned int def)\n"
-    "    unsigned int Attribute.AsUint()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_uint", 
+    "    unsigned int Attribute.as_uint(unsigned int def)\n"
+    "    unsigned int Attribute.as_uint()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsDouble__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_double__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -11231,7 +11537,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsDouble__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_double__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11254,7 +11560,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttributeIterator_AsDouble(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttributeIterator_as_double(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -11271,7 +11577,7 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsDouble(int nargs, VALUE *args, VALUE 
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AttributeIterator_AsDouble__SWIG_1(nargs, args, self);
+      return _wrap_AttributeIterator_as_double__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -11285,22 +11591,22 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsDouble(int nargs, VALUE *args, VALUE 
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_AttributeIterator_AsDouble__SWIG_0(nargs, args, self);
+        return _wrap_AttributeIterator_as_double__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsDouble", 
-    "    double Attribute.AsDouble(double def)\n"
-    "    double Attribute.AsDouble()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_double", 
+    "    double Attribute.as_double(double def)\n"
+    "    double Attribute.as_double()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsFloat__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_float__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   float arg2 ;
   void *argp1 = 0 ;
@@ -11332,7 +11638,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsFloat__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_float__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11355,7 +11661,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttributeIterator_AsFloat(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttributeIterator_as_float(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -11372,7 +11678,7 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsFloat(int nargs, VALUE *args, VALUE s
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AttributeIterator_AsFloat__SWIG_1(nargs, args, self);
+      return _wrap_AttributeIterator_as_float__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -11386,22 +11692,22 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsFloat(int nargs, VALUE *args, VALUE s
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_AttributeIterator_AsFloat__SWIG_0(nargs, args, self);
+        return _wrap_AttributeIterator_as_float__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsFloat", 
-    "    float Attribute.AsFloat(float def)\n"
-    "    float Attribute.AsFloat()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_float", 
+    "    float Attribute.as_float(float def)\n"
+    "    float Attribute.as_float()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsReal__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_real__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   Mezzanine::Real arg2 ;
   void *argp1 = 0 ;
@@ -11433,7 +11739,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsReal__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_real__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11456,7 +11762,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttributeIterator_AsReal(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttributeIterator_as_real(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -11473,7 +11779,7 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsReal(int nargs, VALUE *args, VALUE se
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AttributeIterator_AsReal__SWIG_1(nargs, args, self);
+      return _wrap_AttributeIterator_as_real__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -11487,22 +11793,22 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsReal(int nargs, VALUE *args, VALUE se
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_AttributeIterator_AsReal__SWIG_0(nargs, args, self);
+        return _wrap_AttributeIterator_as_real__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsReal", 
-    "    Mezzanine::Real Attribute.AsReal(Mezzanine::Real def)\n"
-    "    Mezzanine::Real Attribute.AsReal()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_real", 
+    "    Mezzanine::Real Attribute.as_real(Mezzanine::Real def)\n"
+    "    Mezzanine::Real Attribute.as_real()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsWhole__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_whole__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
@@ -11534,7 +11840,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsWhole__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_whole__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11557,7 +11863,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttributeIterator_AsWhole(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttributeIterator_as_whole(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -11574,7 +11880,7 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsWhole(int nargs, VALUE *args, VALUE s
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AttributeIterator_AsWhole__SWIG_1(nargs, args, self);
+      return _wrap_AttributeIterator_as_whole__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -11588,22 +11894,22 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsWhole(int nargs, VALUE *args, VALUE s
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_AttributeIterator_AsWhole__SWIG_0(nargs, args, self);
+        return _wrap_AttributeIterator_as_whole__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsWhole", 
-    "    Mezzanine::Whole Attribute.AsWhole(Mezzanine::Whole def)\n"
-    "    Mezzanine::Whole Attribute.AsWhole()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_whole", 
+    "    Mezzanine::Whole Attribute.as_whole(Mezzanine::Whole def)\n"
+    "    Mezzanine::Whole Attribute.as_whole()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsInteger__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_integer__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   Mezzanine::Integer arg2 ;
   void *argp1 = 0 ;
@@ -11635,7 +11941,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsInteger__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_integer__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11658,7 +11964,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttributeIterator_AsInteger(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttributeIterator_as_integer(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -11675,7 +11981,7 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsInteger(int nargs, VALUE *args, VALUE
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AttributeIterator_AsInteger__SWIG_1(nargs, args, self);
+      return _wrap_AttributeIterator_as_integer__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -11689,22 +11995,22 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsInteger(int nargs, VALUE *args, VALUE
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_AttributeIterator_AsInteger__SWIG_0(nargs, args, self);
+        return _wrap_AttributeIterator_as_integer__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsInteger", 
-    "    Mezzanine::Integer Attribute.AsInteger(Mezzanine::Integer def)\n"
-    "    Mezzanine::Integer Attribute.AsInteger()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_integer", 
+    "    Mezzanine::Integer Attribute.as_integer(Mezzanine::Integer def)\n"
+    "    Mezzanine::Integer Attribute.as_integer()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsBool__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_bool__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   bool arg2 ;
   void *argp1 = 0 ;
@@ -11736,7 +12042,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_AsBool__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_as_bool__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11759,7 +12065,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttributeIterator_AsBool(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttributeIterator_as_bool(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -11776,7 +12082,7 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsBool(int nargs, VALUE *args, VALUE se
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AttributeIterator_AsBool__SWIG_1(nargs, args, self);
+      return _wrap_AttributeIterator_as_bool__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -11790,22 +12096,22 @@ SWIGINTERN VALUE _wrap_AttributeIterator_AsBool(int nargs, VALUE *args, VALUE se
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_AttributeIterator_AsBool__SWIG_0(nargs, args, self);
+        return _wrap_AttributeIterator_as_bool__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Attribute.AsBool", 
-    "    bool Attribute.AsBool(bool def)\n"
-    "    bool Attribute.AsBool()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Attribute.as_bool", 
+    "    bool Attribute.as_bool(bool def)\n"
+    "    bool Attribute.as_bool()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_SetName(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_set_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -11844,7 +12150,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_SetValue(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_set_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -11883,7 +12189,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_GetNextAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_get_next_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11907,7 +12213,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_GetPreviousAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_get_previous_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11931,7 +12237,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_HashValue(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_hash_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11955,7 +12261,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttributeIterator_InternalObject(int argc, VALUE *argv, VALUE self) {
+_wrap_AttributeIterator_internal_object(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -12172,7 +12478,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ParseResult_Description(int argc, VALUE *argv, VALUE self) {
+_wrap_ParseResult_description(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::ParseResult *arg1 = (Mezzanine::XML::ParseResult *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -12208,7 +12514,7 @@ free_Mezzanine_XML_Writer(Mezzanine::XML::Writer *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_Writer_Write(int argc, VALUE *argv, VALUE self) {
+_wrap_Writer_write(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Writer *arg1 = (Mezzanine::XML::Writer *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -12283,7 +12589,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WriterFile_Write(int argc, VALUE *argv, VALUE self) {
+_wrap_WriterFile_write(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::WriterFile *arg1 = (Mezzanine::XML::WriterFile *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -12432,7 +12738,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WriterStream_Write(int argc, VALUE *argv, VALUE self) {
+_wrap_WriterStream_write(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::WriterStream *arg1 = (Mezzanine::XML::WriterStream *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -12519,7 +12825,7 @@ free_Mezzanine_XML_XMLStreamWrapper(Mezzanine::XML::XMLStreamWrapper *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_XMLStreamWrapper_Write(int argc, VALUE *argv, VALUE self) {
+_wrap_XMLStreamWrapper_write(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XMLStreamWrapper *arg1 = (Mezzanine::XML::XMLStreamWrapper *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -12593,7 +12899,7 @@ free_Mezzanine_XML_Document(Mezzanine::XML::Document *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_Document_Reset__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_reset__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -12614,7 +12920,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Reset__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_reset__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Mezzanine::XML::Document *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -12645,7 +12951,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Document_Reset(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Document_reset(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -12662,7 +12968,7 @@ SWIGINTERN VALUE _wrap_Document_Reset(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Document, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Document_Reset__SWIG_0(nargs, args, self);
+      return _wrap_Document_reset__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -12675,22 +12981,22 @@ SWIGINTERN VALUE _wrap_Document_Reset(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Document, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_Reset__SWIG_1(nargs, args, self);
+        return _wrap_Document_reset__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Document.Reset", 
-    "    void Document.Reset()\n"
-    "    void Document.Reset(Mezzanine::XML::Document const &proto)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Document.reset", 
+    "    void Document.reset()\n"
+    "    void Document.reset(Mezzanine::XML::Document const &proto)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Document_Load__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Resource::DataStream *arg2 = 0 ;
   unsigned int arg3 ;
@@ -12741,7 +13047,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Load__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Resource::DataStream *arg2 = 0 ;
   unsigned int arg3 ;
@@ -12784,7 +13090,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Load__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Resource::DataStream *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -12819,7 +13125,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Load__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_istream< char,std::char_traits< char > > *arg2 = 0 ;
   unsigned int arg3 ;
@@ -12870,7 +13176,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Load__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load__SWIG_4(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_istream< char,std::char_traits< char > > *arg2 = 0 ;
   unsigned int arg3 ;
@@ -12913,7 +13219,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Load__SWIG_5(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load__SWIG_5(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_istream< char,std::char_traits< char > > *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -12948,7 +13254,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Load__SWIG_6(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load__SWIG_6(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_istream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   unsigned int arg3 ;
@@ -12991,7 +13297,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Load__SWIG_7(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load__SWIG_7(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_istream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13026,7 +13332,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Load__SWIG_8(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load__SWIG_8(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   unsigned int arg3 ;
@@ -13069,7 +13375,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Load__SWIG_9(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load__SWIG_9(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -13103,7 +13409,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Document_load(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -13124,7 +13430,7 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Resource__DataStream, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_Load__SWIG_2(nargs, args, self);
+        return _wrap_Document_load__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -13138,7 +13444,7 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__basic_istreamT_char_std__char_traitsT_char_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_Load__SWIG_5(nargs, args, self);
+        return _wrap_Document_load__SWIG_5(nargs, args, self);
       }
     }
   }
@@ -13152,7 +13458,7 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__basic_istreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_Load__SWIG_7(nargs, args, self);
+        return _wrap_Document_load__SWIG_7(nargs, args, self);
       }
     }
   }
@@ -13165,7 +13471,7 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_Load__SWIG_9(nargs, args, self);
+        return _wrap_Document_load__SWIG_9(nargs, args, self);
       }
     }
   }
@@ -13184,7 +13490,7 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Document_Load__SWIG_6(nargs, args, self);
+          return _wrap_Document_load__SWIG_6(nargs, args, self);
         }
       }
     }
@@ -13204,7 +13510,7 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Document_Load__SWIG_4(nargs, args, self);
+          return _wrap_Document_load__SWIG_4(nargs, args, self);
         }
       }
     }
@@ -13224,7 +13530,7 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Document_Load__SWIG_1(nargs, args, self);
+          return _wrap_Document_load__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -13243,7 +13549,7 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Document_Load__SWIG_8(nargs, args, self);
+          return _wrap_Document_load__SWIG_8(nargs, args, self);
         }
       }
     }
@@ -13268,7 +13574,7 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_Load__SWIG_0(nargs, args, self);
+            return _wrap_Document_load__SWIG_0(nargs, args, self);
           }
         }
       }
@@ -13294,7 +13600,7 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_Load__SWIG_3(nargs, args, self);
+            return _wrap_Document_load__SWIG_3(nargs, args, self);
           }
         }
       }
@@ -13302,24 +13608,24 @@ SWIGINTERN VALUE _wrap_Document_Load(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "Document.Load", 
-    "    Mezzanine::XML::ParseResult Document.Load(Resource::DataStream &stream, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    Mezzanine::XML::ParseResult Document.Load(Resource::DataStream &stream, unsigned int options)\n"
-    "    Mezzanine::XML::ParseResult Document.Load(Resource::DataStream &stream)\n"
-    "    Mezzanine::XML::ParseResult Document.Load(std::basic_istream< char,std::char_traits< char > > &stream, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    Mezzanine::XML::ParseResult Document.Load(std::basic_istream< char,std::char_traits< char > > &stream, unsigned int options)\n"
-    "    Mezzanine::XML::ParseResult Document.Load(std::basic_istream< char,std::char_traits< char > > &stream)\n"
-    "    Mezzanine::XML::ParseResult Document.Load(std::basic_istream< wchar_t,std::char_traits< wchar_t > > &stream, unsigned int options)\n"
-    "    Mezzanine::XML::ParseResult Document.Load(std::basic_istream< wchar_t,std::char_traits< wchar_t > > &stream)\n"
-    "    Mezzanine::XML::ParseResult Document.Load(Mezzanine::Char8 const *contents, unsigned int options)\n"
-    "    Mezzanine::XML::ParseResult Document.Load(Mezzanine::Char8 const *contents)\n");
+  Ruby_Format_OverloadedError( argc, 5, "Document.load", 
+    "    Mezzanine::XML::ParseResult Document.load(Resource::DataStream &stream, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    Mezzanine::XML::ParseResult Document.load(Resource::DataStream &stream, unsigned int options)\n"
+    "    Mezzanine::XML::ParseResult Document.load(Resource::DataStream &stream)\n"
+    "    Mezzanine::XML::ParseResult Document.load(std::basic_istream< char,std::char_traits< char > > &stream, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    Mezzanine::XML::ParseResult Document.load(std::basic_istream< char,std::char_traits< char > > &stream, unsigned int options)\n"
+    "    Mezzanine::XML::ParseResult Document.load(std::basic_istream< char,std::char_traits< char > > &stream)\n"
+    "    Mezzanine::XML::ParseResult Document.load(std::basic_istream< wchar_t,std::char_traits< wchar_t > > &stream, unsigned int options)\n"
+    "    Mezzanine::XML::ParseResult Document.load(std::basic_istream< wchar_t,std::char_traits< wchar_t > > &stream)\n"
+    "    Mezzanine::XML::ParseResult Document.load(Mezzanine::Char8 const *contents, unsigned int options)\n"
+    "    Mezzanine::XML::ParseResult Document.load(Mezzanine::Char8 const *contents)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadFile__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_file__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   char *arg2 = (char *) 0 ;
   unsigned int arg3 ;
@@ -13370,7 +13676,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadFile__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_file__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   char *arg2 = (char *) 0 ;
   unsigned int arg3 ;
@@ -13413,7 +13719,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadFile__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_file__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   char *arg2 = (char *) 0 ;
   void *argp1 = 0 ;
@@ -13448,7 +13754,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadFile__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_file__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   wchar_t *arg2 = (wchar_t *) 0 ;
   unsigned int arg3 ;
@@ -13496,7 +13802,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadFile__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_file__SWIG_4(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   wchar_t *arg2 = (wchar_t *) 0 ;
   unsigned int arg3 ;
@@ -13536,7 +13842,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadFile__SWIG_5(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_file__SWIG_5(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   wchar_t *arg2 = (wchar_t *) 0 ;
   void *argp1 = 0 ;
@@ -13567,7 +13873,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Document_LoadFile(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Document_load_file(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -13588,7 +13894,7 @@ SWIGINTERN VALUE _wrap_Document_LoadFile(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_wchar_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_LoadFile__SWIG_5(nargs, args, self);
+        return _wrap_Document_load_file__SWIG_5(nargs, args, self);
       }
     }
   }
@@ -13601,7 +13907,7 @@ SWIGINTERN VALUE _wrap_Document_LoadFile(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_LoadFile__SWIG_2(nargs, args, self);
+        return _wrap_Document_load_file__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -13620,7 +13926,7 @@ SWIGINTERN VALUE _wrap_Document_LoadFile(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Document_LoadFile__SWIG_4(nargs, args, self);
+          return _wrap_Document_load_file__SWIG_4(nargs, args, self);
         }
       }
     }
@@ -13639,7 +13945,7 @@ SWIGINTERN VALUE _wrap_Document_LoadFile(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Document_LoadFile__SWIG_1(nargs, args, self);
+          return _wrap_Document_load_file__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -13664,7 +13970,7 @@ SWIGINTERN VALUE _wrap_Document_LoadFile(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_LoadFile__SWIG_3(nargs, args, self);
+            return _wrap_Document_load_file__SWIG_3(nargs, args, self);
           }
         }
       }
@@ -13689,7 +13995,7 @@ SWIGINTERN VALUE _wrap_Document_LoadFile(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_LoadFile__SWIG_0(nargs, args, self);
+            return _wrap_Document_load_file__SWIG_0(nargs, args, self);
           }
         }
       }
@@ -13697,20 +14003,20 @@ SWIGINTERN VALUE _wrap_Document_LoadFile(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "Document.LoadFile", 
-    "    Mezzanine::XML::ParseResult Document.LoadFile(char const *Path, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadFile(char const *Path, unsigned int options)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadFile(char const *Path)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadFile(wchar_t const *Path, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadFile(wchar_t const *Path, unsigned int options)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadFile(wchar_t const *Path)\n");
+  Ruby_Format_OverloadedError( argc, 5, "Document.load_file", 
+    "    Mezzanine::XML::ParseResult Document.load_file(char const *Path, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    Mezzanine::XML::ParseResult Document.load_file(char const *Path, unsigned int options)\n"
+    "    Mezzanine::XML::ParseResult Document.load_file(char const *Path)\n"
+    "    Mezzanine::XML::ParseResult Document.load_file(wchar_t const *Path, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    Mezzanine::XML::ParseResult Document.load_file(wchar_t const *Path, unsigned int options)\n"
+    "    Mezzanine::XML::ParseResult Document.load_file(wchar_t const *Path)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadBuffer__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_buffer__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -13764,7 +14070,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadBuffer__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_buffer__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -13810,7 +14116,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadBuffer__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_buffer__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -13847,7 +14153,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Document_LoadBuffer(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Document_load_buffer(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
   int ii;
@@ -13873,7 +14179,7 @@ SWIGINTERN VALUE _wrap_Document_LoadBuffer(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Document_LoadBuffer__SWIG_2(nargs, args, self);
+          return _wrap_Document_load_buffer__SWIG_2(nargs, args, self);
         }
       }
     }
@@ -13898,7 +14204,7 @@ SWIGINTERN VALUE _wrap_Document_LoadBuffer(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_LoadBuffer__SWIG_1(nargs, args, self);
+            return _wrap_Document_load_buffer__SWIG_1(nargs, args, self);
           }
         }
       }
@@ -13929,7 +14235,7 @@ SWIGINTERN VALUE _wrap_Document_LoadBuffer(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Document_LoadBuffer__SWIG_0(nargs, args, self);
+              return _wrap_Document_load_buffer__SWIG_0(nargs, args, self);
             }
           }
         }
@@ -13938,17 +14244,17 @@ SWIGINTERN VALUE _wrap_Document_LoadBuffer(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 6, "Document.LoadBuffer", 
-    "    Mezzanine::XML::ParseResult Document.LoadBuffer(void const *contents, size_t size, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadBuffer(void const *contents, size_t size, unsigned int options)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadBuffer(void const *contents, size_t size)\n");
+  Ruby_Format_OverloadedError( argc, 6, "Document.load_buffer", 
+    "    Mezzanine::XML::ParseResult Document.load_buffer(void const *contents, size_t size, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    Mezzanine::XML::ParseResult Document.load_buffer(void const *contents, size_t size, unsigned int options)\n"
+    "    Mezzanine::XML::ParseResult Document.load_buffer(void const *contents, size_t size)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadBufferInplace__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_buffer_inplace__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -14002,7 +14308,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadBufferInplace__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_buffer_inplace__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -14048,7 +14354,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadBufferInplace__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_buffer_inplace__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -14085,7 +14391,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Document_LoadBufferInplace(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Document_load_buffer_inplace(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
   int ii;
@@ -14111,7 +14417,7 @@ SWIGINTERN VALUE _wrap_Document_LoadBufferInplace(int nargs, VALUE *args, VALUE 
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Document_LoadBufferInplace__SWIG_2(nargs, args, self);
+          return _wrap_Document_load_buffer_inplace__SWIG_2(nargs, args, self);
         }
       }
     }
@@ -14136,7 +14442,7 @@ SWIGINTERN VALUE _wrap_Document_LoadBufferInplace(int nargs, VALUE *args, VALUE 
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_LoadBufferInplace__SWIG_1(nargs, args, self);
+            return _wrap_Document_load_buffer_inplace__SWIG_1(nargs, args, self);
           }
         }
       }
@@ -14167,7 +14473,7 @@ SWIGINTERN VALUE _wrap_Document_LoadBufferInplace(int nargs, VALUE *args, VALUE 
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Document_LoadBufferInplace__SWIG_0(nargs, args, self);
+              return _wrap_Document_load_buffer_inplace__SWIG_0(nargs, args, self);
             }
           }
         }
@@ -14176,17 +14482,17 @@ SWIGINTERN VALUE _wrap_Document_LoadBufferInplace(int nargs, VALUE *args, VALUE 
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 6, "Document.LoadBufferInplace", 
-    "    Mezzanine::XML::ParseResult Document.LoadBufferInplace(void *contents, size_t size, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadBufferInplace(void *contents, size_t size, unsigned int options)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadBufferInplace(void *contents, size_t size)\n");
+  Ruby_Format_OverloadedError( argc, 6, "Document.load_buffer_inplace", 
+    "    Mezzanine::XML::ParseResult Document.load_buffer_inplace(void *contents, size_t size, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    Mezzanine::XML::ParseResult Document.load_buffer_inplace(void *contents, size_t size, unsigned int options)\n"
+    "    Mezzanine::XML::ParseResult Document.load_buffer_inplace(void *contents, size_t size)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadBufferInplaceOwn__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_buffer_inplace_own__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -14240,7 +14546,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadBufferInplaceOwn__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_buffer_inplace_own__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -14286,7 +14592,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_LoadBufferInplaceOwn__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_load_buffer_inplace_own__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *arg2 = (void *) 0 ;
   size_t arg3 ;
@@ -14323,7 +14629,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Document_LoadBufferInplaceOwn(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Document_load_buffer_inplace_own(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
   int ii;
@@ -14349,7 +14655,7 @@ SWIGINTERN VALUE _wrap_Document_LoadBufferInplaceOwn(int nargs, VALUE *args, VAL
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Document_LoadBufferInplaceOwn__SWIG_2(nargs, args, self);
+          return _wrap_Document_load_buffer_inplace_own__SWIG_2(nargs, args, self);
         }
       }
     }
@@ -14374,7 +14680,7 @@ SWIGINTERN VALUE _wrap_Document_LoadBufferInplaceOwn(int nargs, VALUE *args, VAL
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_LoadBufferInplaceOwn__SWIG_1(nargs, args, self);
+            return _wrap_Document_load_buffer_inplace_own__SWIG_1(nargs, args, self);
           }
         }
       }
@@ -14405,7 +14711,7 @@ SWIGINTERN VALUE _wrap_Document_LoadBufferInplaceOwn(int nargs, VALUE *args, VAL
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Document_LoadBufferInplaceOwn__SWIG_0(nargs, args, self);
+              return _wrap_Document_load_buffer_inplace_own__SWIG_0(nargs, args, self);
             }
           }
         }
@@ -14414,17 +14720,17 @@ SWIGINTERN VALUE _wrap_Document_LoadBufferInplaceOwn(int nargs, VALUE *args, VAL
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 6, "Document.LoadBufferInplaceOwn", 
-    "    Mezzanine::XML::ParseResult Document.LoadBufferInplaceOwn(void *contents, size_t size, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadBufferInplaceOwn(void *contents, size_t size, unsigned int options)\n"
-    "    Mezzanine::XML::ParseResult Document.LoadBufferInplaceOwn(void *contents, size_t size)\n");
+  Ruby_Format_OverloadedError( argc, 6, "Document.load_buffer_inplace_own", 
+    "    Mezzanine::XML::ParseResult Document.load_buffer_inplace_own(void *contents, size_t size, unsigned int options, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    Mezzanine::XML::ParseResult Document.load_buffer_inplace_own(void *contents, size_t size, unsigned int options)\n"
+    "    Mezzanine::XML::ParseResult Document.load_buffer_inplace_own(void *contents, size_t size)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Resource::DataStream *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -14483,7 +14789,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Resource::DataStream *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -14534,7 +14840,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Resource::DataStream *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -14577,7 +14883,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Resource::DataStream *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -14609,7 +14915,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_4(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -14668,7 +14974,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_5(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_5(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -14719,7 +15025,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_6(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_6(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -14762,7 +15068,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_7(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_7(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -14794,7 +15100,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_8(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_8(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -14853,7 +15159,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_9(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_9(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -14904,7 +15210,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_10(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_10(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -14947,7 +15253,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_11(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_11(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -14979,7 +15285,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_12(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_12(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -15030,7 +15336,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_13(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_13(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -15073,7 +15379,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_Save__SWIG_14(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save__SWIG_14(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -15104,7 +15410,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Document_save(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
   int ii;
@@ -15125,7 +15431,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Resource__DataStream, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_Save__SWIG_3(nargs, args, self);
+        return _wrap_Document_save__SWIG_3(nargs, args, self);
       }
     }
   }
@@ -15139,7 +15445,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_Save__SWIG_7(nargs, args, self);
+        return _wrap_Document_save__SWIG_7(nargs, args, self);
       }
     }
   }
@@ -15153,7 +15459,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_Save__SWIG_11(nargs, args, self);
+        return _wrap_Document_save__SWIG_11(nargs, args, self);
       }
     }
   }
@@ -15167,7 +15473,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_Save__SWIG_14(nargs, args, self);
+        return _wrap_Document_save__SWIG_14(nargs, args, self);
       }
     }
   }
@@ -15184,7 +15490,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Document_Save__SWIG_10(nargs, args, self);
+          return _wrap_Document_save__SWIG_10(nargs, args, self);
         }
       }
     }
@@ -15202,7 +15508,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Document_Save__SWIG_6(nargs, args, self);
+          return _wrap_Document_save__SWIG_6(nargs, args, self);
         }
       }
     }
@@ -15220,7 +15526,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Document_Save__SWIG_13(nargs, args, self);
+          return _wrap_Document_save__SWIG_13(nargs, args, self);
         }
       }
     }
@@ -15238,7 +15544,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Document_Save__SWIG_2(nargs, args, self);
+          return _wrap_Document_save__SWIG_2(nargs, args, self);
         }
       }
     }
@@ -15261,7 +15567,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_Save__SWIG_5(nargs, args, self);
+            return _wrap_Document_save__SWIG_5(nargs, args, self);
           }
         }
       }
@@ -15285,7 +15591,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_Save__SWIG_12(nargs, args, self);
+            return _wrap_Document_save__SWIG_12(nargs, args, self);
           }
         }
       }
@@ -15309,7 +15615,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_Save__SWIG_9(nargs, args, self);
+            return _wrap_Document_save__SWIG_9(nargs, args, self);
           }
         }
       }
@@ -15333,7 +15639,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_Save__SWIG_1(nargs, args, self);
+            return _wrap_Document_save__SWIG_1(nargs, args, self);
           }
         }
       }
@@ -15362,7 +15668,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Document_Save__SWIG_4(nargs, args, self);
+              return _wrap_Document_save__SWIG_4(nargs, args, self);
             }
           }
         }
@@ -15392,7 +15698,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Document_Save__SWIG_0(nargs, args, self);
+              return _wrap_Document_save__SWIG_0(nargs, args, self);
             }
           }
         }
@@ -15422,7 +15728,7 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Document_Save__SWIG_8(nargs, args, self);
+              return _wrap_Document_save__SWIG_8(nargs, args, self);
             }
           }
         }
@@ -15431,29 +15737,29 @@ SWIGINTERN VALUE _wrap_Document_Save(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 6, "Document.Save", 
-    "    void Document.Save(Resource::DataStream &stream, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    void Document.Save(Resource::DataStream &stream, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Document.Save(Resource::DataStream &stream, Mezzanine::Char8 const *indent)\n"
-    "    void Document.Save(Resource::DataStream &stream)\n"
-    "    void Document.Save(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    void Document.Save(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Document.Save(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent)\n"
-    "    void Document.Save(Mezzanine::XML::Writer &WriterInstance)\n"
-    "    void Document.Save(std::basic_ostream< char,std::char_traits< char > > &stream, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    void Document.Save(std::basic_ostream< char,std::char_traits< char > > &stream, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Document.Save(std::basic_ostream< char,std::char_traits< char > > &stream, Mezzanine::Char8 const *indent)\n"
-    "    void Document.Save(std::basic_ostream< char,std::char_traits< char > > &stream)\n"
-    "    void Document.Save(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &stream, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Document.Save(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &stream, Mezzanine::Char8 const *indent)\n"
-    "    void Document.Save(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &stream)\n");
+  Ruby_Format_OverloadedError( argc, 6, "Document.save", 
+    "    void Document.save(Resource::DataStream &stream, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    void Document.save(Resource::DataStream &stream, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Document.save(Resource::DataStream &stream, Mezzanine::Char8 const *indent)\n"
+    "    void Document.save(Resource::DataStream &stream)\n"
+    "    void Document.save(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    void Document.save(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Document.save(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent)\n"
+    "    void Document.save(Mezzanine::XML::Writer &WriterInstance)\n"
+    "    void Document.save(std::basic_ostream< char,std::char_traits< char > > &stream, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    void Document.save(std::basic_ostream< char,std::char_traits< char > > &stream, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Document.save(std::basic_ostream< char,std::char_traits< char > > &stream, Mezzanine::Char8 const *indent)\n"
+    "    void Document.save(std::basic_ostream< char,std::char_traits< char > > &stream)\n"
+    "    void Document.save(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &stream, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Document.save(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &stream, Mezzanine::Char8 const *indent)\n"
+    "    void Document.save(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &stream)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Document_SaveFile__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save_file__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   char *arg2 = (char *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -15515,7 +15821,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_SaveFile__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save_file__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   char *arg2 = (char *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -15569,7 +15875,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_SaveFile__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save_file__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   char *arg2 = (char *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -15615,7 +15921,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_SaveFile__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save_file__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   char *arg2 = (char *) 0 ;
   void *argp1 = 0 ;
@@ -15650,7 +15956,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_SaveFile__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save_file__SWIG_4(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   wchar_t *arg2 = (wchar_t *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -15709,7 +16015,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_SaveFile__SWIG_5(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save_file__SWIG_5(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   wchar_t *arg2 = (wchar_t *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -15760,7 +16066,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_SaveFile__SWIG_6(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save_file__SWIG_6(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   wchar_t *arg2 = (wchar_t *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -15803,7 +16109,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Document_SaveFile__SWIG_7(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_save_file__SWIG_7(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   wchar_t *arg2 = (wchar_t *) 0 ;
   void *argp1 = 0 ;
@@ -15834,7 +16140,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Document_SaveFile(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Document_save_file(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
   int ii;
@@ -15855,7 +16161,7 @@ SWIGINTERN VALUE _wrap_Document_SaveFile(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_wchar_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_SaveFile__SWIG_7(nargs, args, self);
+        return _wrap_Document_save_file__SWIG_7(nargs, args, self);
       }
     }
   }
@@ -15868,7 +16174,7 @@ SWIGINTERN VALUE _wrap_Document_SaveFile(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Document_SaveFile__SWIG_3(nargs, args, self);
+        return _wrap_Document_save_file__SWIG_3(nargs, args, self);
       }
     }
   }
@@ -15885,7 +16191,7 @@ SWIGINTERN VALUE _wrap_Document_SaveFile(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Document_SaveFile__SWIG_6(nargs, args, self);
+          return _wrap_Document_save_file__SWIG_6(nargs, args, self);
         }
       }
     }
@@ -15902,7 +16208,7 @@ SWIGINTERN VALUE _wrap_Document_SaveFile(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Document_SaveFile__SWIG_2(nargs, args, self);
+          return _wrap_Document_save_file__SWIG_2(nargs, args, self);
         }
       }
     }
@@ -15925,7 +16231,7 @@ SWIGINTERN VALUE _wrap_Document_SaveFile(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_SaveFile__SWIG_5(nargs, args, self);
+            return _wrap_Document_save_file__SWIG_5(nargs, args, self);
           }
         }
       }
@@ -15948,7 +16254,7 @@ SWIGINTERN VALUE _wrap_Document_SaveFile(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_Document_SaveFile__SWIG_1(nargs, args, self);
+            return _wrap_Document_save_file__SWIG_1(nargs, args, self);
           }
         }
       }
@@ -15977,7 +16283,7 @@ SWIGINTERN VALUE _wrap_Document_SaveFile(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Document_SaveFile__SWIG_4(nargs, args, self);
+              return _wrap_Document_save_file__SWIG_4(nargs, args, self);
             }
           }
         }
@@ -16006,7 +16312,7 @@ SWIGINTERN VALUE _wrap_Document_SaveFile(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Document_SaveFile__SWIG_0(nargs, args, self);
+              return _wrap_Document_save_file__SWIG_0(nargs, args, self);
             }
           }
         }
@@ -16015,22 +16321,22 @@ SWIGINTERN VALUE _wrap_Document_SaveFile(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 6, "Document.SaveFile", 
-    "    bool Document.SaveFile(char const *Path, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    bool Document.SaveFile(char const *Path, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    bool Document.SaveFile(char const *Path, Mezzanine::Char8 const *indent)\n"
-    "    bool Document.SaveFile(char const *Path)\n"
-    "    bool Document.SaveFile(wchar_t const *Path, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    bool Document.SaveFile(wchar_t const *Path, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    bool Document.SaveFile(wchar_t const *Path, Mezzanine::Char8 const *indent)\n"
-    "    bool Document.SaveFile(wchar_t const *Path)\n");
+  Ruby_Format_OverloadedError( argc, 6, "Document.save_file", 
+    "    bool Document.save_file(char const *Path, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    bool Document.save_file(char const *Path, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    bool Document.save_file(char const *Path, Mezzanine::Char8 const *indent)\n"
+    "    bool Document.save_file(char const *Path)\n"
+    "    bool Document.save_file(wchar_t const *Path, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    bool Document.save_file(wchar_t const *Path, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    bool Document.save_file(wchar_t const *Path, Mezzanine::Char8 const *indent)\n"
+    "    bool Document.save_file(wchar_t const *Path)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Document_DocumentElement(int argc, VALUE *argv, VALUE self) {
+_wrap_Document_document_element(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16054,7 +16360,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_SetMemoryManagementFunctions(int argc, VALUE *argv, VALUE self) {
+_wrap_set_memory_management_functions(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AllocationFunction arg1 = (Mezzanine::XML::AllocationFunction) 0 ;
   Mezzanine::XML::DeAllocationFunction arg2 = (Mezzanine::XML::DeAllocationFunction) 0 ;
   
@@ -16081,7 +16387,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_GetMemoryAllocationFunction(int argc, VALUE *argv, VALUE self) {
+_wrap_get_memory_allocation_function(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::AllocationFunction result;
   VALUE vresult = Qnil;
   
@@ -16097,7 +16403,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_GetMemoryDeallocationFunction(int argc, VALUE *argv, VALUE self) {
+_wrap_get_memory_deallocation_function(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::DeAllocationFunction result;
   VALUE vresult = Qnil;
   
@@ -16478,7 +16784,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Empty(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_empty(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16502,7 +16808,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Type(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16526,7 +16832,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Name(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16550,7 +16856,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Value(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16574,7 +16880,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetFirstAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_first_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16598,7 +16904,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetLastAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_last_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16622,7 +16928,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetFirstChild(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_first_child(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16646,7 +16952,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetLastChild(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_last_child(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16670,7 +16976,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetNextSibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_next_sibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16694,7 +17000,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetNextSibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_next_sibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -16728,7 +17034,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_GetNextSibling(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_get_next_sibling(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -16745,7 +17051,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_GetNextSibling(int nargs, VALUE *args, VALUE
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeIterator_GetNextSibling__SWIG_0(nargs, args, self);
+      return _wrap_NodeIterator_get_next_sibling__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -16757,22 +17063,22 @@ SWIGINTERN VALUE _wrap_NodeIterator_GetNextSibling(int nargs, VALUE *args, VALUE
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_GetNextSibling__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_get_next_sibling__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetNextSibling", 
-    "    Mezzanine::XML::Node Node.GetNextSibling()\n"
-    "    Mezzanine::XML::Node Node.GetNextSibling(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_next_sibling", 
+    "    Mezzanine::XML::Node Node.get_next_sibling()\n"
+    "    Mezzanine::XML::Node Node.get_next_sibling(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetPreviousSibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_previous_sibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16796,7 +17102,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetPreviousSibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_previous_sibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -16830,7 +17136,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_GetPreviousSibling(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_get_previous_sibling(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -16847,7 +17153,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_GetPreviousSibling(int nargs, VALUE *args, V
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeIterator_GetPreviousSibling__SWIG_0(nargs, args, self);
+      return _wrap_NodeIterator_get_previous_sibling__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -16859,22 +17165,22 @@ SWIGINTERN VALUE _wrap_NodeIterator_GetPreviousSibling(int nargs, VALUE *args, V
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_GetPreviousSibling__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_get_previous_sibling__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetPreviousSibling", 
-    "    Mezzanine::XML::Node Node.GetPreviousSibling()\n"
-    "    Mezzanine::XML::Node Node.GetPreviousSibling(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_previous_sibling", 
+    "    Mezzanine::XML::Node Node.get_previous_sibling()\n"
+    "    Mezzanine::XML::Node Node.get_previous_sibling(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetParent(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_parent(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16898,7 +17204,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetRoot(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_root(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16922,7 +17228,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetText(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_text(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16946,7 +17252,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetChild(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Node result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NodeIterator const *","GetChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NodeIterator * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","GetChild", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (*arg1)->GetChild((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Node(static_cast< const Mezzanine::XML::Node& >(result))), SWIGTYPE_p_Mezzanine__XML__Node, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NodeIterator_get_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -16984,8 +17325,55 @@ fail:
 }
 
 
+SWIGINTERN VALUE _wrap_NodeIterator_get_child(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NodeIterator_get_child__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NodeIterator_get_child__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_child", 
+    "    Mezzanine::XML::Node Node.get_child(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Node Node.get_child(Mezzanine::String const &Name)\n");
+  
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -17020,7 +17408,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetChildValue__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_child_value__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -17044,7 +17432,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetChildValue__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_child_value__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -17078,7 +17466,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_GetChildValue(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_get_child_value(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -17095,7 +17483,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_GetChildValue(int nargs, VALUE *args, VALUE 
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeIterator_GetChildValue__SWIG_0(nargs, args, self);
+      return _wrap_NodeIterator_get_child_value__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -17107,22 +17495,22 @@ SWIGINTERN VALUE _wrap_NodeIterator_GetChildValue(int nargs, VALUE *args, VALUE 
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_GetChildValue__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_get_child_value__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetChildValue", 
-    "    Mezzanine::Char8 const * Node.GetChildValue()\n"
-    "    Mezzanine::Char8 const * Node.GetChildValue(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_child_value", 
+    "    Mezzanine::Char8 const * Node.get_child_value()\n"
+    "    Mezzanine::Char8 const * Node.get_child_value(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_SetName(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_set_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -17161,7 +17549,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_SetValue(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_set_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -17196,7 +17584,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_AppendAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_append_attribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Attribute result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NodeIterator *","AppendAttribute", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NodeIterator * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","AppendAttribute", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (*arg1)->AppendAttribute((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Attribute(static_cast< const Mezzanine::XML::Attribute& >(result))), SWIGTYPE_p_Mezzanine__XML__Attribute, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NodeIterator_append_attribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -17234,8 +17657,55 @@ fail:
 }
 
 
+SWIGINTERN VALUE _wrap_NodeIterator_append_attribute(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NodeIterator_append_attribute__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NodeIterator_append_attribute__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Node.append_attribute", 
+    "    Mezzanine::XML::Attribute Node.append_attribute(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Attribute Node.append_attribute(Mezzanine::String const &Name)\n");
+  
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE
-_wrap_NodeIterator_PrependAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_prepend_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -17270,7 +17740,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InsertAttributeAfter(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_insert_attribute_after(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -17316,7 +17786,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InsertAttributeBefore(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_insert_attribute_before(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -17362,7 +17832,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_AppendCopy__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_append_copy__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -17397,7 +17867,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_AppendCopy__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_append_copy__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -17431,7 +17901,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_AppendCopy(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_append_copy(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -17452,7 +17922,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_AppendCopy(int nargs, VALUE *args, VALUE sel
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_AppendCopy__SWIG_0(nargs, args, self);
+        return _wrap_NodeIterator_append_copy__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -17466,22 +17936,22 @@ SWIGINTERN VALUE _wrap_NodeIterator_AppendCopy(int nargs, VALUE *args, VALUE sel
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_AppendCopy__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_append_copy__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.AppendCopy", 
-    "    Mezzanine::XML::Node Node.AppendCopy(Mezzanine::XML::Attribute const &proto)\n"
-    "    Mezzanine::XML::Node Node.AppendCopy(Mezzanine::XML::Node const &proto)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.append_copy", 
+    "    Mezzanine::XML::Node Node.append_copy(Mezzanine::XML::Attribute const &proto)\n"
+    "    Mezzanine::XML::Node Node.append_copy(Mezzanine::XML::Node const &proto)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_PrependCopy__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_prepend_copy__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -17516,7 +17986,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_PrependCopy__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_prepend_copy__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -17550,7 +18020,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_PrependCopy(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_prepend_copy(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -17571,7 +18041,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_PrependCopy(int nargs, VALUE *args, VALUE se
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_PrependCopy__SWIG_0(nargs, args, self);
+        return _wrap_NodeIterator_prepend_copy__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -17585,22 +18055,22 @@ SWIGINTERN VALUE _wrap_NodeIterator_PrependCopy(int nargs, VALUE *args, VALUE se
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_PrependCopy__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_prepend_copy__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.PrependCopy", 
-    "    Mezzanine::XML::Node Node.PrependCopy(Mezzanine::XML::Attribute const &proto)\n"
-    "    Mezzanine::XML::Node Node.PrependCopy(Mezzanine::XML::Node const &proto)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.prepend_copy", 
+    "    Mezzanine::XML::Node Node.prepend_copy(Mezzanine::XML::Attribute const &proto)\n"
+    "    Mezzanine::XML::Node Node.prepend_copy(Mezzanine::XML::Node const &proto)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InsertCopyAfter__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_insert_copy_after__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -17646,7 +18116,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InsertCopyAfter__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_insert_copy_after__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -17691,7 +18161,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_InsertCopyAfter(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_insert_copy_after(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -17716,7 +18186,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_InsertCopyAfter(int nargs, VALUE *args, VALU
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_InsertCopyAfter__SWIG_0(nargs, args, self);
+          return _wrap_NodeIterator_insert_copy_after__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -17735,23 +18205,23 @@ SWIGINTERN VALUE _wrap_NodeIterator_InsertCopyAfter(int nargs, VALUE *args, VALU
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_InsertCopyAfter__SWIG_1(nargs, args, self);
+          return _wrap_NodeIterator_insert_copy_after__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertCopyAfter", 
-    "    Mezzanine::XML::Node Node.InsertCopyAfter(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
-    "    Mezzanine::XML::Node Node.InsertCopyAfter(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_copy_after", 
+    "    Mezzanine::XML::Node Node.insert_copy_after(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
+    "    Mezzanine::XML::Node Node.insert_copy_after(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InsertCopyBefore__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_insert_copy_before__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -17797,7 +18267,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InsertCopyBefore__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_insert_copy_before__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -17842,7 +18312,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_InsertCopyBefore(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_insert_copy_before(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -17867,7 +18337,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_InsertCopyBefore(int nargs, VALUE *args, VAL
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_InsertCopyBefore__SWIG_0(nargs, args, self);
+          return _wrap_NodeIterator_insert_copy_before__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -17886,23 +18356,23 @@ SWIGINTERN VALUE _wrap_NodeIterator_InsertCopyBefore(int nargs, VALUE *args, VAL
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_InsertCopyBefore__SWIG_1(nargs, args, self);
+          return _wrap_NodeIterator_insert_copy_before__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertCopyBefore", 
-    "    Mezzanine::XML::Node Node.InsertCopyBefore(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
-    "    Mezzanine::XML::Node Node.InsertCopyBefore(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_copy_before", 
+    "    Mezzanine::XML::Node Node.insert_copy_before(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
+    "    Mezzanine::XML::Node Node.insert_copy_before(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_AppendChild__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_append_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   void *argp1 = 0 ;
@@ -17934,7 +18404,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_AppendChild__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_append_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -17958,7 +18428,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_AppendChild__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_append_child__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Node result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NodeIterator *","AppendChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NodeIterator * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","AppendChild", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (*arg1)->AppendChild((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Node(static_cast< const Mezzanine::XML::Node& >(result))), SWIGTYPE_p_Mezzanine__XML__Node, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NodeIterator_append_child__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -17996,7 +18501,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_AppendChild(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_append_child(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -18013,7 +18518,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_AppendChild(int nargs, VALUE *args, VALUE se
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeIterator_AppendChild__SWIG_1(nargs, args, self);
+      return _wrap_NodeIterator_append_child__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -18027,7 +18532,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_AppendChild(int nargs, VALUE *args, VALUE se
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeIterator_AppendChild__SWIG_0(nargs, args, self);
+        return _wrap_NodeIterator_append_child__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -18040,23 +18545,37 @@ SWIGINTERN VALUE _wrap_NodeIterator_AppendChild(int nargs, VALUE *args, VALUE se
       int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_AppendChild__SWIG_2(nargs, args, self);
+        return _wrap_NodeIterator_append_child__SWIG_3(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NodeIterator_append_child__SWIG_2(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.AppendChild", 
-    "    Mezzanine::XML::Node Node.AppendChild(Mezzanine::XML::NodeType Type)\n"
-    "    Mezzanine::XML::Node Node.AppendChild()\n"
-    "    Mezzanine::XML::Node Node.AppendChild(Mezzanine::String const &Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.append_child", 
+    "    Mezzanine::XML::Node Node.append_child(Mezzanine::XML::NodeType Type)\n"
+    "    Mezzanine::XML::Node Node.append_child()\n"
+    "    Mezzanine::XML::Node Node.append_child(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Node Node.append_child(Mezzanine::String const &Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_PrependChild__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_prepend_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   void *argp1 = 0 ;
@@ -18088,7 +18607,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_PrependChild__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_prepend_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -18112,7 +18631,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_PrependChild__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_prepend_child__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Node result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NodeIterator *","PrependChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NodeIterator * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","PrependChild", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (*arg1)->PrependChild((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Node(static_cast< const Mezzanine::XML::Node& >(result))), SWIGTYPE_p_Mezzanine__XML__Node, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NodeIterator_prepend_child__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -18150,7 +18704,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_PrependChild(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_prepend_child(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -18167,7 +18721,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_PrependChild(int nargs, VALUE *args, VALUE s
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeIterator_PrependChild__SWIG_1(nargs, args, self);
+      return _wrap_NodeIterator_prepend_child__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -18181,7 +18735,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_PrependChild(int nargs, VALUE *args, VALUE s
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeIterator_PrependChild__SWIG_0(nargs, args, self);
+        return _wrap_NodeIterator_prepend_child__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -18194,23 +18748,37 @@ SWIGINTERN VALUE _wrap_NodeIterator_PrependChild(int nargs, VALUE *args, VALUE s
       int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_PrependChild__SWIG_2(nargs, args, self);
+        return _wrap_NodeIterator_prepend_child__SWIG_3(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NodeIterator_prepend_child__SWIG_2(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.PrependChild", 
-    "    Mezzanine::XML::Node Node.PrependChild(Mezzanine::XML::NodeType Type)\n"
-    "    Mezzanine::XML::Node Node.PrependChild()\n"
-    "    Mezzanine::XML::Node Node.PrependChild(Mezzanine::String const &Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.prepend_child", 
+    "    Mezzanine::XML::Node Node.prepend_child(Mezzanine::XML::NodeType Type)\n"
+    "    Mezzanine::XML::Node Node.prepend_child()\n"
+    "    Mezzanine::XML::Node Node.prepend_child(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Node Node.prepend_child(Mezzanine::String const &Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InsertChildAfter__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_insert_child_after__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -18253,7 +18821,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InsertChildAfter__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_insert_child_after__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -18298,7 +18866,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_InsertChildAfter(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_insert_child_after(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -18324,7 +18892,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_InsertChildAfter(int nargs, VALUE *args, VAL
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_InsertChildAfter__SWIG_0(nargs, args, self);
+          return _wrap_NodeIterator_insert_child_after__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -18342,23 +18910,23 @@ SWIGINTERN VALUE _wrap_NodeIterator_InsertChildAfter(int nargs, VALUE *args, VAL
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_InsertChildAfter__SWIG_1(nargs, args, self);
+          return _wrap_NodeIterator_insert_child_after__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertChildAfter", 
-    "    Mezzanine::XML::Node Node.InsertChildAfter(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
-    "    Mezzanine::XML::Node Node.InsertChildAfter(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_child_after", 
+    "    Mezzanine::XML::Node Node.insert_child_after(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
+    "    Mezzanine::XML::Node Node.insert_child_after(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InsertChildBefore__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_insert_child_before__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -18401,7 +18969,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InsertChildBefore__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_insert_child_before__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -18446,7 +19014,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_InsertChildBefore(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_insert_child_before(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -18472,7 +19040,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_InsertChildBefore(int nargs, VALUE *args, VA
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_InsertChildBefore__SWIG_0(nargs, args, self);
+          return _wrap_NodeIterator_insert_child_before__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -18490,23 +19058,23 @@ SWIGINTERN VALUE _wrap_NodeIterator_InsertChildBefore(int nargs, VALUE *args, VA
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_InsertChildBefore__SWIG_1(nargs, args, self);
+          return _wrap_NodeIterator_insert_child_before__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertChildBefore", 
-    "    Mezzanine::XML::Node Node.InsertChildBefore(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
-    "    Mezzanine::XML::Node Node.InsertChildBefore(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_child_before", 
+    "    Mezzanine::XML::Node Node.insert_child_before(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
+    "    Mezzanine::XML::Node Node.insert_child_before(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_RemoveAttribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_remove_attribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -18541,7 +19109,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_RemoveAttribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_remove_attribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -18575,7 +19143,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_RemoveAttribute(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_remove_attribute(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -18596,7 +19164,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_RemoveAttribute(int nargs, VALUE *args, VALU
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_RemoveAttribute__SWIG_0(nargs, args, self);
+        return _wrap_NodeIterator_remove_attribute__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -18609,22 +19177,22 @@ SWIGINTERN VALUE _wrap_NodeIterator_RemoveAttribute(int nargs, VALUE *args, VALU
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_RemoveAttribute__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_remove_attribute__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.RemoveAttribute", 
-    "    bool Node.RemoveAttribute(Mezzanine::XML::Attribute const &a)\n"
-    "    bool Node.RemoveAttribute(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.remove_attribute", 
+    "    bool Node.remove_attribute(Mezzanine::XML::Attribute const &a)\n"
+    "    bool Node.remove_attribute(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_RemoveChild__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_remove_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -18659,7 +19227,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_RemoveChild__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_remove_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -18693,7 +19261,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_RemoveChild(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_remove_child(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -18714,7 +19282,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_RemoveChild(int nargs, VALUE *args, VALUE se
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_RemoveChild__SWIG_0(nargs, args, self);
+        return _wrap_NodeIterator_remove_child__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -18727,22 +19295,22 @@ SWIGINTERN VALUE _wrap_NodeIterator_RemoveChild(int nargs, VALUE *args, VALUE se
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_RemoveChild__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_remove_child__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.RemoveChild", 
-    "    bool Node.RemoveChild(Mezzanine::XML::Node const &n)\n"
-    "    bool Node.RemoveChild(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.remove_child", 
+    "    bool Node.remove_child(Mezzanine::XML::Node const &n)\n"
+    "    bool Node.remove_child(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_FindChildbyAttribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_find_childby_attribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -18799,7 +19367,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_FindChildbyAttribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_find_childby_attribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -18844,7 +19412,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_FindChildbyAttribute(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_find_childby_attribute(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -18867,7 +19435,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_FindChildbyAttribute(int nargs, VALUE *args,
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_FindChildbyAttribute__SWIG_1(nargs, args, self);
+          return _wrap_NodeIterator_find_childby_attribute__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -18887,7 +19455,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_FindChildbyAttribute(int nargs, VALUE *args,
           int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_NodeIterator_FindChildbyAttribute__SWIG_0(nargs, args, self);
+            return _wrap_NodeIterator_find_childby_attribute__SWIG_0(nargs, args, self);
           }
         }
       }
@@ -18895,16 +19463,16 @@ SWIGINTERN VALUE _wrap_NodeIterator_FindChildbyAttribute(int nargs, VALUE *args,
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "Node.FindChildbyAttribute", 
-    "    Mezzanine::XML::Node Node.FindChildbyAttribute(Mezzanine::Char8 const *Name, Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n"
-    "    Mezzanine::XML::Node Node.FindChildbyAttribute(Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n");
+  Ruby_Format_OverloadedError( argc, 5, "Node.find_childby_attribute", 
+    "    Mezzanine::XML::Node Node.find_childby_attribute(Mezzanine::Char8 const *Name, Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n"
+    "    Mezzanine::XML::Node Node.find_childby_attribute(Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Path__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_path__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 arg2 ;
   void *argp1 = 0 ;
@@ -18936,7 +19504,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Path__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_path__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -18959,7 +19527,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_Path(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_path(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -18976,7 +19544,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Path(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeIterator_Path__SWIG_1(nargs, args, self);
+      return _wrap_NodeIterator_path__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -18990,22 +19558,22 @@ SWIGINTERN VALUE _wrap_NodeIterator_Path(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeIterator_Path__SWIG_0(nargs, args, self);
+        return _wrap_NodeIterator_path__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.Path", 
-    "    Mezzanine::String Node.Path(Mezzanine::Char8 delimiter)\n"
-    "    Mezzanine::String Node.Path()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.path", 
+    "    Mezzanine::String Node.path(Mezzanine::Char8 delimiter)\n"
+    "    Mezzanine::String Node.path()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_FirstElementByPath__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_first_element_by_path__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::Char8 arg3 ;
@@ -19048,7 +19616,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_FirstElementByPath__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_first_element_by_path__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -19082,7 +19650,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_FirstElementByPath(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_first_element_by_path(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -19102,7 +19670,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_FirstElementByPath(int nargs, VALUE *args, V
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_FirstElementByPath__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_first_element_by_path__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -19120,23 +19688,23 @@ SWIGINTERN VALUE _wrap_NodeIterator_FirstElementByPath(int nargs, VALUE *args, V
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_NodeIterator_FirstElementByPath__SWIG_0(nargs, args, self);
+          return _wrap_NodeIterator_first_element_by_path__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.FirstElementByPath", 
-    "    Mezzanine::XML::Node Node.FirstElementByPath(Mezzanine::Char8 const *Path, Mezzanine::Char8 delimiter)\n"
-    "    Mezzanine::XML::Node Node.FirstElementByPath(Mezzanine::Char8 const *Path)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.first_element_by_path", 
+    "    Mezzanine::XML::Node Node.first_element_by_path(Mezzanine::Char8 const *Path, Mezzanine::Char8 delimiter)\n"
+    "    Mezzanine::XML::Node Node.first_element_by_path(Mezzanine::Char8 const *Path)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Traverse(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_traverse(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::TreeWalker *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19171,7 +19739,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_FindSingleNode__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_find_single_node__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
@@ -19214,7 +19782,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_FindSingleNode__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_find_single_node__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -19249,7 +19817,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_FindSingleNode__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_find_single_node__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::XPathQuery *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19283,7 +19851,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_FindSingleNode(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_find_single_node(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -19304,7 +19872,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_FindSingleNode(int nargs, VALUE *args, VALUE
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_FindSingleNode__SWIG_2(nargs, args, self);
+        return _wrap_NodeIterator_find_single_node__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -19317,7 +19885,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_FindSingleNode(int nargs, VALUE *args, VALUE
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_FindSingleNode__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_find_single_node__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -19334,24 +19902,24 @@ SWIGINTERN VALUE _wrap_NodeIterator_FindSingleNode(int nargs, VALUE *args, VALUE
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_FindSingleNode__SWIG_0(nargs, args, self);
+          return _wrap_NodeIterator_find_single_node__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.FindSingleNode", 
-    "    Mezzanine::XML::XPathNode Node.FindSingleNode(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
-    "    Mezzanine::XML::XPathNode Node.FindSingleNode(Mezzanine::Char8 const *query)\n"
-    "    Mezzanine::XML::XPathNode Node.FindSingleNode(Mezzanine::XML::XPathQuery const &query)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.find_single_node", 
+    "    Mezzanine::XML::XPathNode Node.find_single_node(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
+    "    Mezzanine::XML::XPathNode Node.find_single_node(Mezzanine::Char8 const *query)\n"
+    "    Mezzanine::XML::XPathNode Node.find_single_node(Mezzanine::XML::XPathQuery const &query)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_FindNodes__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_find_nodes__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
@@ -19394,7 +19962,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_FindNodes__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_find_nodes__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -19429,7 +19997,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_FindNodes__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_find_nodes__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::XPathQuery *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19463,7 +20031,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_FindNodes(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_find_nodes(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -19484,7 +20052,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_FindNodes(int nargs, VALUE *args, VALUE self
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_FindNodes__SWIG_2(nargs, args, self);
+        return _wrap_NodeIterator_find_nodes__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -19497,7 +20065,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_FindNodes(int nargs, VALUE *args, VALUE self
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_FindNodes__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_find_nodes__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -19514,24 +20082,24 @@ SWIGINTERN VALUE _wrap_NodeIterator_FindNodes(int nargs, VALUE *args, VALUE self
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_FindNodes__SWIG_0(nargs, args, self);
+          return _wrap_NodeIterator_find_nodes__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.FindNodes", 
-    "    Mezzanine::XML::XPathNodeSet Node.FindNodes(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
-    "    Mezzanine::XML::XPathNodeSet Node.FindNodes(Mezzanine::Char8 const *query)\n"
-    "    Mezzanine::XML::XPathNodeSet Node.FindNodes(Mezzanine::XML::XPathQuery const &query)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.find_nodes", 
+    "    Mezzanine::XML::XPathNodeSet Node.find_nodes(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
+    "    Mezzanine::XML::XPathNodeSet Node.find_nodes(Mezzanine::Char8 const *query)\n"
+    "    Mezzanine::XML::XPathNodeSet Node.find_nodes(Mezzanine::XML::XPathQuery const &query)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -19598,7 +20166,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -19657,7 +20225,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -19708,7 +20276,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -19751,7 +20319,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_4(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19783,7 +20351,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_5(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_5(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -19850,7 +20418,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_6(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_6(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -19909,7 +20477,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_7(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_7(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -19960,7 +20528,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_8(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_8(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -20003,7 +20571,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_9(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_9(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -20035,7 +20603,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_10(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_10(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -20094,7 +20662,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_11(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_11(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -20145,7 +20713,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_12(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_12(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -20188,7 +20756,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_Print__SWIG_13(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_print__SWIG_13(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -20219,7 +20787,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_print(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[7];
   int ii;
@@ -20240,7 +20808,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_Print__SWIG_4(nargs, args, self);
+        return _wrap_NodeIterator_print__SWIG_4(nargs, args, self);
       }
     }
   }
@@ -20254,7 +20822,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_Print__SWIG_9(nargs, args, self);
+        return _wrap_NodeIterator_print__SWIG_9(nargs, args, self);
       }
     }
   }
@@ -20268,7 +20836,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_Print__SWIG_13(nargs, args, self);
+        return _wrap_NodeIterator_print__SWIG_13(nargs, args, self);
       }
     }
   }
@@ -20285,7 +20853,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_Print__SWIG_3(nargs, args, self);
+          return _wrap_NodeIterator_print__SWIG_3(nargs, args, self);
         }
       }
     }
@@ -20303,7 +20871,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_Print__SWIG_12(nargs, args, self);
+          return _wrap_NodeIterator_print__SWIG_12(nargs, args, self);
         }
       }
     }
@@ -20321,7 +20889,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NodeIterator_Print__SWIG_8(nargs, args, self);
+          return _wrap_NodeIterator_print__SWIG_8(nargs, args, self);
         }
       }
     }
@@ -20344,7 +20912,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_NodeIterator_Print__SWIG_11(nargs, args, self);
+            return _wrap_NodeIterator_print__SWIG_11(nargs, args, self);
           }
         }
       }
@@ -20368,7 +20936,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_NodeIterator_Print__SWIG_2(nargs, args, self);
+            return _wrap_NodeIterator_print__SWIG_2(nargs, args, self);
           }
         }
       }
@@ -20392,7 +20960,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_NodeIterator_Print__SWIG_7(nargs, args, self);
+            return _wrap_NodeIterator_print__SWIG_7(nargs, args, self);
           }
         }
       }
@@ -20421,7 +20989,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_NodeIterator_Print__SWIG_6(nargs, args, self);
+              return _wrap_NodeIterator_print__SWIG_6(nargs, args, self);
             }
           }
         }
@@ -20451,7 +21019,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_NodeIterator_Print__SWIG_1(nargs, args, self);
+              return _wrap_NodeIterator_print__SWIG_1(nargs, args, self);
             }
           }
         }
@@ -20481,7 +21049,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_NodeIterator_Print__SWIG_10(nargs, args, self);
+              return _wrap_NodeIterator_print__SWIG_10(nargs, args, self);
             }
           }
         }
@@ -20516,7 +21084,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
                 _v = SWIG_CheckState(res);
               }
               if (_v) {
-                return _wrap_NodeIterator_Print__SWIG_0(nargs, args, self);
+                return _wrap_NodeIterator_print__SWIG_0(nargs, args, self);
               }
             }
           }
@@ -20552,7 +21120,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
                 _v = SWIG_CheckState(res);
               }
               if (_v) {
-                return _wrap_NodeIterator_Print__SWIG_5(nargs, args, self);
+                return _wrap_NodeIterator_print__SWIG_5(nargs, args, self);
               }
             }
           }
@@ -20562,21 +21130,21 @@ SWIGINTERN VALUE _wrap_NodeIterator_Print(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 7, "Node.Print", 
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags, unsigned int Depth)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os)\n");
+  Ruby_Format_OverloadedError( argc, 7, "Node.print", 
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags, unsigned int Depth)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os)\n");
   
   return Qnil;
 }
@@ -20697,7 +21265,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetChildren__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_children__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20721,7 +21289,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_GetChildren__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_get_children__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -20755,7 +21323,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeIterator_GetChildren(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeIterator_get_children(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -20772,7 +21340,7 @@ SWIGINTERN VALUE _wrap_NodeIterator_GetChildren(int nargs, VALUE *args, VALUE se
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeIterator_GetChildren__SWIG_0(nargs, args, self);
+      return _wrap_NodeIterator_get_children__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -20784,15 +21352,15 @@ SWIGINTERN VALUE _wrap_NodeIterator_GetChildren(int nargs, VALUE *args, VALUE se
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeIterator_GetChildren__SWIG_1(nargs, args, self);
+        return _wrap_NodeIterator_get_children__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetChildren", 
-    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.GetChildren()\n"
-    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.GetChildren(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_children", 
+    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.get_children()\n"
+    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.get_children(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
@@ -20823,7 +21391,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_OffSetDebug(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_off_set_debug(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20847,7 +21415,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_HashValue(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_hash_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20871,7 +21439,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeIterator_InternalObject(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeIterator_internal_object(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21275,7 +21843,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Empty(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_empty(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21299,7 +21867,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Type(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21323,7 +21891,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Name(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21347,7 +21915,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Value(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21371,7 +21939,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetFirstAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_first_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21395,7 +21963,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetLastAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_last_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21419,7 +21987,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetFirstChild(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_first_child(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21443,7 +22011,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetLastChild(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_last_child(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21467,7 +22035,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetNextSibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_next_sibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21491,7 +22059,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetNextSibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_next_sibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -21525,7 +22093,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_GetNextSibling(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_get_next_sibling(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -21542,7 +22110,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_GetNextSibling(int nargs, VALUE *args, 
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NamedNodeIterator_GetNextSibling__SWIG_0(nargs, args, self);
+      return _wrap_NamedNodeIterator_get_next_sibling__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -21554,22 +22122,22 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_GetNextSibling(int nargs, VALUE *args, 
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_GetNextSibling__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_get_next_sibling__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetNextSibling", 
-    "    Mezzanine::XML::Node Node.GetNextSibling()\n"
-    "    Mezzanine::XML::Node Node.GetNextSibling(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_next_sibling", 
+    "    Mezzanine::XML::Node Node.get_next_sibling()\n"
+    "    Mezzanine::XML::Node Node.get_next_sibling(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetPreviousSibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_previous_sibling__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21593,7 +22161,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetPreviousSibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_previous_sibling__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -21627,7 +22195,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_GetPreviousSibling(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_get_previous_sibling(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -21644,7 +22212,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_GetPreviousSibling(int nargs, VALUE *ar
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NamedNodeIterator_GetPreviousSibling__SWIG_0(nargs, args, self);
+      return _wrap_NamedNodeIterator_get_previous_sibling__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -21656,22 +22224,22 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_GetPreviousSibling(int nargs, VALUE *ar
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_GetPreviousSibling__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_get_previous_sibling__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetPreviousSibling", 
-    "    Mezzanine::XML::Node Node.GetPreviousSibling()\n"
-    "    Mezzanine::XML::Node Node.GetPreviousSibling(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_previous_sibling", 
+    "    Mezzanine::XML::Node Node.get_previous_sibling()\n"
+    "    Mezzanine::XML::Node Node.get_previous_sibling(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetParent(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_parent(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21695,7 +22263,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetRoot(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_root(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21719,7 +22287,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetText(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_text(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21743,7 +22311,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetChild(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Node result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NamedNodeIterator const *","GetChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NamedNodeIterator * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","GetChild", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (*arg1)->GetChild((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Node(static_cast< const Mezzanine::XML::Node& >(result))), SWIGTYPE_p_Mezzanine__XML__Node, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NamedNodeIterator_get_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -21781,8 +22384,55 @@ fail:
 }
 
 
+SWIGINTERN VALUE _wrap_NamedNodeIterator_get_child(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NamedNodeIterator_get_child__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NamedNodeIterator_get_child__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_child", 
+    "    Mezzanine::XML::Node Node.get_child(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Node Node.get_child(Mezzanine::String const &Name)\n");
+  
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -21817,7 +22467,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetChildValue__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_child_value__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21841,7 +22491,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetChildValue__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_child_value__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -21875,7 +22525,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_GetChildValue(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_get_child_value(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -21892,7 +22542,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_GetChildValue(int nargs, VALUE *args, V
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NamedNodeIterator_GetChildValue__SWIG_0(nargs, args, self);
+      return _wrap_NamedNodeIterator_get_child_value__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -21904,22 +22554,22 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_GetChildValue(int nargs, VALUE *args, V
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_GetChildValue__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_get_child_value__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetChildValue", 
-    "    Mezzanine::Char8 const * Node.GetChildValue()\n"
-    "    Mezzanine::Char8 const * Node.GetChildValue(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_child_value", 
+    "    Mezzanine::Char8 const * Node.get_child_value()\n"
+    "    Mezzanine::Char8 const * Node.get_child_value(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_SetName(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_set_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -21958,7 +22608,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_SetValue(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_set_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -21993,7 +22643,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_AppendAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_append_attribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Attribute result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NamedNodeIterator *","AppendAttribute", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NamedNodeIterator * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","AppendAttribute", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (*arg1)->AppendAttribute((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Attribute(static_cast< const Mezzanine::XML::Attribute& >(result))), SWIGTYPE_p_Mezzanine__XML__Attribute, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NamedNodeIterator_append_attribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -22031,8 +22716,55 @@ fail:
 }
 
 
+SWIGINTERN VALUE _wrap_NamedNodeIterator_append_attribute(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NamedNodeIterator_append_attribute__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NamedNodeIterator_append_attribute__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Node.append_attribute", 
+    "    Mezzanine::XML::Attribute Node.append_attribute(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Attribute Node.append_attribute(Mezzanine::String const &Name)\n");
+  
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_PrependAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_prepend_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -22067,7 +22799,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InsertAttributeAfter(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_insert_attribute_after(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -22113,7 +22845,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InsertAttributeBefore(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_insert_attribute_before(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -22159,7 +22891,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_AppendCopy__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_append_copy__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -22194,7 +22926,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_AppendCopy__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_append_copy__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -22228,7 +22960,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_AppendCopy(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_append_copy(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -22249,7 +22981,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_AppendCopy(int nargs, VALUE *args, VALU
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_AppendCopy__SWIG_0(nargs, args, self);
+        return _wrap_NamedNodeIterator_append_copy__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -22263,22 +22995,22 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_AppendCopy(int nargs, VALUE *args, VALU
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_AppendCopy__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_append_copy__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.AppendCopy", 
-    "    Mezzanine::XML::Node Node.AppendCopy(Mezzanine::XML::Attribute const &proto)\n"
-    "    Mezzanine::XML::Node Node.AppendCopy(Mezzanine::XML::Node const &proto)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.append_copy", 
+    "    Mezzanine::XML::Node Node.append_copy(Mezzanine::XML::Attribute const &proto)\n"
+    "    Mezzanine::XML::Node Node.append_copy(Mezzanine::XML::Node const &proto)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_PrependCopy__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_prepend_copy__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -22313,7 +23045,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_PrependCopy__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_prepend_copy__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -22347,7 +23079,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_PrependCopy(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_prepend_copy(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -22368,7 +23100,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_PrependCopy(int nargs, VALUE *args, VAL
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_PrependCopy__SWIG_0(nargs, args, self);
+        return _wrap_NamedNodeIterator_prepend_copy__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -22382,22 +23114,22 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_PrependCopy(int nargs, VALUE *args, VAL
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_PrependCopy__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_prepend_copy__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.PrependCopy", 
-    "    Mezzanine::XML::Node Node.PrependCopy(Mezzanine::XML::Attribute const &proto)\n"
-    "    Mezzanine::XML::Node Node.PrependCopy(Mezzanine::XML::Node const &proto)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.prepend_copy", 
+    "    Mezzanine::XML::Node Node.prepend_copy(Mezzanine::XML::Attribute const &proto)\n"
+    "    Mezzanine::XML::Node Node.prepend_copy(Mezzanine::XML::Node const &proto)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InsertCopyAfter__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_insert_copy_after__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -22443,7 +23175,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InsertCopyAfter__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_insert_copy_after__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -22488,7 +23220,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertCopyAfter(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_insert_copy_after(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -22513,7 +23245,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertCopyAfter(int nargs, VALUE *args,
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_InsertCopyAfter__SWIG_0(nargs, args, self);
+          return _wrap_NamedNodeIterator_insert_copy_after__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -22532,23 +23264,23 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertCopyAfter(int nargs, VALUE *args,
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_InsertCopyAfter__SWIG_1(nargs, args, self);
+          return _wrap_NamedNodeIterator_insert_copy_after__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertCopyAfter", 
-    "    Mezzanine::XML::Node Node.InsertCopyAfter(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
-    "    Mezzanine::XML::Node Node.InsertCopyAfter(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_copy_after", 
+    "    Mezzanine::XML::Node Node.insert_copy_after(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
+    "    Mezzanine::XML::Node Node.insert_copy_after(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InsertCopyBefore__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_insert_copy_before__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   Mezzanine::XML::Attribute *arg3 = 0 ;
@@ -22594,7 +23326,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InsertCopyBefore__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_insert_copy_before__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -22639,7 +23371,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertCopyBefore(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_insert_copy_before(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -22664,7 +23396,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertCopyBefore(int nargs, VALUE *args
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_InsertCopyBefore__SWIG_0(nargs, args, self);
+          return _wrap_NamedNodeIterator_insert_copy_before__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -22683,23 +23415,23 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertCopyBefore(int nargs, VALUE *args
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_InsertCopyBefore__SWIG_1(nargs, args, self);
+          return _wrap_NamedNodeIterator_insert_copy_before__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertCopyBefore", 
-    "    Mezzanine::XML::Node Node.InsertCopyBefore(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
-    "    Mezzanine::XML::Node Node.InsertCopyBefore(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_copy_before", 
+    "    Mezzanine::XML::Node Node.insert_copy_before(Mezzanine::XML::Attribute const &proto, Mezzanine::XML::Attribute const &attr)\n"
+    "    Mezzanine::XML::Node Node.insert_copy_before(Mezzanine::XML::Node const &proto, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_AppendChild__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_append_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   void *argp1 = 0 ;
@@ -22731,7 +23463,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_AppendChild__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_append_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -22755,7 +23487,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_AppendChild__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_append_child__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Node result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NamedNodeIterator *","AppendChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NamedNodeIterator * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","AppendChild", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (*arg1)->AppendChild((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Node(static_cast< const Mezzanine::XML::Node& >(result))), SWIGTYPE_p_Mezzanine__XML__Node, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NamedNodeIterator_append_child__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -22793,7 +23560,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_AppendChild(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_append_child(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -22810,7 +23577,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_AppendChild(int nargs, VALUE *args, VAL
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NamedNodeIterator_AppendChild__SWIG_1(nargs, args, self);
+      return _wrap_NamedNodeIterator_append_child__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -22824,7 +23591,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_AppendChild(int nargs, VALUE *args, VAL
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NamedNodeIterator_AppendChild__SWIG_0(nargs, args, self);
+        return _wrap_NamedNodeIterator_append_child__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -22837,23 +23604,37 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_AppendChild(int nargs, VALUE *args, VAL
       int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_AppendChild__SWIG_2(nargs, args, self);
+        return _wrap_NamedNodeIterator_append_child__SWIG_3(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NamedNodeIterator_append_child__SWIG_2(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.AppendChild", 
-    "    Mezzanine::XML::Node Node.AppendChild(Mezzanine::XML::NodeType Type)\n"
-    "    Mezzanine::XML::Node Node.AppendChild()\n"
-    "    Mezzanine::XML::Node Node.AppendChild(Mezzanine::String const &Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.append_child", 
+    "    Mezzanine::XML::Node Node.append_child(Mezzanine::XML::NodeType Type)\n"
+    "    Mezzanine::XML::Node Node.append_child()\n"
+    "    Mezzanine::XML::Node Node.append_child(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Node Node.append_child(Mezzanine::String const &Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_PrependChild__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_prepend_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   void *argp1 = 0 ;
@@ -22885,7 +23666,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_PrependChild__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_prepend_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -22909,7 +23690,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_PrependChild__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_prepend_child__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::Node result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NamedNodeIterator *","PrependChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NamedNodeIterator * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","PrependChild", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (*arg1)->PrependChild((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::XML::Node(static_cast< const Mezzanine::XML::Node& >(result))), SWIGTYPE_p_Mezzanine__XML__Node, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NamedNodeIterator_prepend_child__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -22947,7 +23763,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_PrependChild(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_prepend_child(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -22964,7 +23780,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_PrependChild(int nargs, VALUE *args, VA
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NamedNodeIterator_PrependChild__SWIG_1(nargs, args, self);
+      return _wrap_NamedNodeIterator_prepend_child__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -22978,7 +23794,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_PrependChild(int nargs, VALUE *args, VA
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NamedNodeIterator_PrependChild__SWIG_0(nargs, args, self);
+        return _wrap_NamedNodeIterator_prepend_child__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -22991,23 +23807,37 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_PrependChild(int nargs, VALUE *args, VA
       int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_PrependChild__SWIG_2(nargs, args, self);
+        return _wrap_NamedNodeIterator_prepend_child__SWIG_3(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NamedNodeIterator_prepend_child__SWIG_2(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.PrependChild", 
-    "    Mezzanine::XML::Node Node.PrependChild(Mezzanine::XML::NodeType Type)\n"
-    "    Mezzanine::XML::Node Node.PrependChild()\n"
-    "    Mezzanine::XML::Node Node.PrependChild(Mezzanine::String const &Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.prepend_child", 
+    "    Mezzanine::XML::Node Node.prepend_child(Mezzanine::XML::NodeType Type)\n"
+    "    Mezzanine::XML::Node Node.prepend_child()\n"
+    "    Mezzanine::XML::Node Node.prepend_child(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::Node Node.prepend_child(Mezzanine::String const &Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InsertChildAfter__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_insert_child_after__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -23050,7 +23880,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InsertChildAfter__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_insert_child_after__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -23095,7 +23925,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertChildAfter(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_insert_child_after(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -23121,7 +23951,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertChildAfter(int nargs, VALUE *args
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_InsertChildAfter__SWIG_0(nargs, args, self);
+          return _wrap_NamedNodeIterator_insert_child_after__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -23139,23 +23969,23 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertChildAfter(int nargs, VALUE *args
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_InsertChildAfter__SWIG_1(nargs, args, self);
+          return _wrap_NamedNodeIterator_insert_child_after__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertChildAfter", 
-    "    Mezzanine::XML::Node Node.InsertChildAfter(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
-    "    Mezzanine::XML::Node Node.InsertChildAfter(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_child_after", 
+    "    Mezzanine::XML::Node Node.insert_child_after(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
+    "    Mezzanine::XML::Node Node.insert_child_after(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InsertChildBefore__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_insert_child_before__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::NodeType arg2 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -23198,7 +24028,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InsertChildBefore__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_insert_child_before__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::Node *arg3 = 0 ;
@@ -23243,7 +24073,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertChildBefore(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_insert_child_before(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -23269,7 +24099,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertChildBefore(int nargs, VALUE *arg
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_InsertChildBefore__SWIG_0(nargs, args, self);
+          return _wrap_NamedNodeIterator_insert_child_before__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -23287,23 +24117,23 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_InsertChildBefore(int nargs, VALUE *arg
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_InsertChildBefore__SWIG_1(nargs, args, self);
+          return _wrap_NamedNodeIterator_insert_child_before__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.InsertChildBefore", 
-    "    Mezzanine::XML::Node Node.InsertChildBefore(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
-    "    Mezzanine::XML::Node Node.InsertChildBefore(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.insert_child_before", 
+    "    Mezzanine::XML::Node Node.insert_child_before(Mezzanine::XML::NodeType Type, Mezzanine::XML::Node const &node)\n"
+    "    Mezzanine::XML::Node Node.insert_child_before(Mezzanine::Char8 const *Name, Mezzanine::XML::Node const &node)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_RemoveAttribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_remove_attribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Attribute *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -23338,7 +24168,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_RemoveAttribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_remove_attribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -23372,7 +24202,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_RemoveAttribute(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_remove_attribute(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -23393,7 +24223,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_RemoveAttribute(int nargs, VALUE *args,
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_RemoveAttribute__SWIG_0(nargs, args, self);
+        return _wrap_NamedNodeIterator_remove_attribute__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -23406,22 +24236,22 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_RemoveAttribute(int nargs, VALUE *args,
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_RemoveAttribute__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_remove_attribute__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.RemoveAttribute", 
-    "    bool Node.RemoveAttribute(Mezzanine::XML::Attribute const &a)\n"
-    "    bool Node.RemoveAttribute(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.remove_attribute", 
+    "    bool Node.remove_attribute(Mezzanine::XML::Attribute const &a)\n"
+    "    bool Node.remove_attribute(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_RemoveChild__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_remove_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -23456,7 +24286,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_RemoveChild__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_remove_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -23490,7 +24320,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_RemoveChild(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_remove_child(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -23511,7 +24341,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_RemoveChild(int nargs, VALUE *args, VAL
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_RemoveChild__SWIG_0(nargs, args, self);
+        return _wrap_NamedNodeIterator_remove_child__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -23524,22 +24354,22 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_RemoveChild(int nargs, VALUE *args, VAL
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_RemoveChild__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_remove_child__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.RemoveChild", 
-    "    bool Node.RemoveChild(Mezzanine::XML::Node const &n)\n"
-    "    bool Node.RemoveChild(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.remove_child", 
+    "    bool Node.remove_child(Mezzanine::XML::Node const &n)\n"
+    "    bool Node.remove_child(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_FindChildbyAttribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_find_childby_attribute__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -23596,7 +24426,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_FindChildbyAttribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_find_childby_attribute__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -23641,7 +24471,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_FindChildbyAttribute(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_find_childby_attribute(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -23664,7 +24494,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FindChildbyAttribute(int nargs, VALUE *
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_FindChildbyAttribute__SWIG_1(nargs, args, self);
+          return _wrap_NamedNodeIterator_find_childby_attribute__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -23684,7 +24514,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FindChildbyAttribute(int nargs, VALUE *
           int res = SWIG_AsCharPtrAndSize(argv[3], 0, NULL, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_NamedNodeIterator_FindChildbyAttribute__SWIG_0(nargs, args, self);
+            return _wrap_NamedNodeIterator_find_childby_attribute__SWIG_0(nargs, args, self);
           }
         }
       }
@@ -23692,16 +24522,16 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FindChildbyAttribute(int nargs, VALUE *
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "Node.FindChildbyAttribute", 
-    "    Mezzanine::XML::Node Node.FindChildbyAttribute(Mezzanine::Char8 const *Name, Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n"
-    "    Mezzanine::XML::Node Node.FindChildbyAttribute(Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n");
+  Ruby_Format_OverloadedError( argc, 5, "Node.find_childby_attribute", 
+    "    Mezzanine::XML::Node Node.find_childby_attribute(Mezzanine::Char8 const *Name, Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n"
+    "    Mezzanine::XML::Node Node.find_childby_attribute(Mezzanine::Char8 const *AttrName, Mezzanine::Char8 const *AttrValue)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Path__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_path__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 arg2 ;
   void *argp1 = 0 ;
@@ -23733,7 +24563,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Path__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_path__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -23756,7 +24586,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_Path(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_path(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -23773,7 +24603,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Path(int nargs, VALUE *args, VALUE self
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NamedNodeIterator_Path__SWIG_1(nargs, args, self);
+      return _wrap_NamedNodeIterator_path__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -23787,22 +24617,22 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Path(int nargs, VALUE *args, VALUE self
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NamedNodeIterator_Path__SWIG_0(nargs, args, self);
+        return _wrap_NamedNodeIterator_path__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.Path", 
-    "    Mezzanine::String Node.Path(Mezzanine::Char8 delimiter)\n"
-    "    Mezzanine::String Node.Path()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.path", 
+    "    Mezzanine::String Node.path(Mezzanine::Char8 delimiter)\n"
+    "    Mezzanine::String Node.path()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_FirstElementByPath__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_first_element_by_path__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::Char8 arg3 ;
@@ -23845,7 +24675,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_FirstElementByPath__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_first_element_by_path__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -23879,7 +24709,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_FirstElementByPath(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_first_element_by_path(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -23899,7 +24729,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FirstElementByPath(int nargs, VALUE *ar
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_FirstElementByPath__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_first_element_by_path__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -23917,23 +24747,23 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FirstElementByPath(int nargs, VALUE *ar
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_NamedNodeIterator_FirstElementByPath__SWIG_0(nargs, args, self);
+          return _wrap_NamedNodeIterator_first_element_by_path__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.FirstElementByPath", 
-    "    Mezzanine::XML::Node Node.FirstElementByPath(Mezzanine::Char8 const *Path, Mezzanine::Char8 delimiter)\n"
-    "    Mezzanine::XML::Node Node.FirstElementByPath(Mezzanine::Char8 const *Path)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.first_element_by_path", 
+    "    Mezzanine::XML::Node Node.first_element_by_path(Mezzanine::Char8 const *Path, Mezzanine::Char8 delimiter)\n"
+    "    Mezzanine::XML::Node Node.first_element_by_path(Mezzanine::Char8 const *Path)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Traverse(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_traverse(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::TreeWalker *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -23968,7 +24798,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_FindSingleNode__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_find_single_node__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
@@ -24011,7 +24841,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_FindSingleNode__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_find_single_node__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -24046,7 +24876,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_FindSingleNode__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_find_single_node__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::XPathQuery *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -24080,7 +24910,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_FindSingleNode(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_find_single_node(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -24101,7 +24931,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FindSingleNode(int nargs, VALUE *args, 
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_FindSingleNode__SWIG_2(nargs, args, self);
+        return _wrap_NamedNodeIterator_find_single_node__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -24114,7 +24944,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FindSingleNode(int nargs, VALUE *args, 
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_FindSingleNode__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_find_single_node__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -24131,24 +24961,24 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FindSingleNode(int nargs, VALUE *args, 
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_FindSingleNode__SWIG_0(nargs, args, self);
+          return _wrap_NamedNodeIterator_find_single_node__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.FindSingleNode", 
-    "    Mezzanine::XML::XPathNode Node.FindSingleNode(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
-    "    Mezzanine::XML::XPathNode Node.FindSingleNode(Mezzanine::Char8 const *query)\n"
-    "    Mezzanine::XML::XPathNode Node.FindSingleNode(Mezzanine::XML::XPathQuery const &query)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.find_single_node", 
+    "    Mezzanine::XML::XPathNode Node.find_single_node(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
+    "    Mezzanine::XML::XPathNode Node.find_single_node(Mezzanine::Char8 const *query)\n"
+    "    Mezzanine::XML::XPathNode Node.find_single_node(Mezzanine::XML::XPathQuery const &query)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_FindNodes__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_find_nodes__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
@@ -24191,7 +25021,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_FindNodes__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_find_nodes__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -24226,7 +25056,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_FindNodes__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_find_nodes__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::XPathQuery *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -24260,7 +25090,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_FindNodes(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_find_nodes(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -24281,7 +25111,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FindNodes(int nargs, VALUE *args, VALUE
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_FindNodes__SWIG_2(nargs, args, self);
+        return _wrap_NamedNodeIterator_find_nodes__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -24294,7 +25124,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FindNodes(int nargs, VALUE *args, VALUE
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_FindNodes__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_find_nodes__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -24311,24 +25141,24 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_FindNodes(int nargs, VALUE *args, VALUE
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_FindNodes__SWIG_0(nargs, args, self);
+          return _wrap_NamedNodeIterator_find_nodes__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Node.FindNodes", 
-    "    Mezzanine::XML::XPathNodeSet Node.FindNodes(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
-    "    Mezzanine::XML::XPathNodeSet Node.FindNodes(Mezzanine::Char8 const *query)\n"
-    "    Mezzanine::XML::XPathNodeSet Node.FindNodes(Mezzanine::XML::XPathQuery const &query)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Node.find_nodes", 
+    "    Mezzanine::XML::XPathNodeSet Node.find_nodes(Mezzanine::Char8 const *query, Mezzanine::XML::XPathVariableSet *variables)\n"
+    "    Mezzanine::XML::XPathNodeSet Node.find_nodes(Mezzanine::Char8 const *query)\n"
+    "    Mezzanine::XML::XPathNodeSet Node.find_nodes(Mezzanine::XML::XPathQuery const &query)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24395,7 +25225,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24454,7 +25284,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24505,7 +25335,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24548,7 +25378,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_4(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::XML::Writer *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -24580,7 +25410,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_5(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_5(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24647,7 +25477,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_6(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_6(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24706,7 +25536,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_7(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_7(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24757,7 +25587,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_8(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_8(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24800,7 +25630,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_9(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_9(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   std::basic_ostream< char,std::char_traits< char > > *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -24832,7 +25662,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_10(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_10(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24891,7 +25721,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_11(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_11(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24942,7 +25772,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_12(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_12(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -24985,7 +25815,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_Print__SWIG_13(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_print__SWIG_13(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   std::basic_ostream< wchar_t,std::char_traits< wchar_t > > *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -25016,7 +25846,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_print(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[7];
   int ii;
@@ -25037,7 +25867,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Writer, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_Print__SWIG_4(nargs, args, self);
+        return _wrap_NamedNodeIterator_print__SWIG_4(nargs, args, self);
       }
     }
   }
@@ -25051,7 +25881,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__basic_ostreamT_char_std__char_traitsT_char_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_Print__SWIG_9(nargs, args, self);
+        return _wrap_NamedNodeIterator_print__SWIG_9(nargs, args, self);
       }
     }
   }
@@ -25065,7 +25895,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_Print__SWIG_13(nargs, args, self);
+        return _wrap_NamedNodeIterator_print__SWIG_13(nargs, args, self);
       }
     }
   }
@@ -25082,7 +25912,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_Print__SWIG_3(nargs, args, self);
+          return _wrap_NamedNodeIterator_print__SWIG_3(nargs, args, self);
         }
       }
     }
@@ -25100,7 +25930,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_Print__SWIG_12(nargs, args, self);
+          return _wrap_NamedNodeIterator_print__SWIG_12(nargs, args, self);
         }
       }
     }
@@ -25118,7 +25948,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_NamedNodeIterator_Print__SWIG_8(nargs, args, self);
+          return _wrap_NamedNodeIterator_print__SWIG_8(nargs, args, self);
         }
       }
     }
@@ -25141,7 +25971,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_NamedNodeIterator_Print__SWIG_11(nargs, args, self);
+            return _wrap_NamedNodeIterator_print__SWIG_11(nargs, args, self);
           }
         }
       }
@@ -25165,7 +25995,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_NamedNodeIterator_Print__SWIG_2(nargs, args, self);
+            return _wrap_NamedNodeIterator_print__SWIG_2(nargs, args, self);
           }
         }
       }
@@ -25189,7 +26019,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_NamedNodeIterator_Print__SWIG_7(nargs, args, self);
+            return _wrap_NamedNodeIterator_print__SWIG_7(nargs, args, self);
           }
         }
       }
@@ -25218,7 +26048,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_NamedNodeIterator_Print__SWIG_6(nargs, args, self);
+              return _wrap_NamedNodeIterator_print__SWIG_6(nargs, args, self);
             }
           }
         }
@@ -25248,7 +26078,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_NamedNodeIterator_Print__SWIG_1(nargs, args, self);
+              return _wrap_NamedNodeIterator_print__SWIG_1(nargs, args, self);
             }
           }
         }
@@ -25278,7 +26108,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_NamedNodeIterator_Print__SWIG_10(nargs, args, self);
+              return _wrap_NamedNodeIterator_print__SWIG_10(nargs, args, self);
             }
           }
         }
@@ -25313,7 +26143,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
                 _v = SWIG_CheckState(res);
               }
               if (_v) {
-                return _wrap_NamedNodeIterator_Print__SWIG_0(nargs, args, self);
+                return _wrap_NamedNodeIterator_print__SWIG_0(nargs, args, self);
               }
             }
           }
@@ -25349,7 +26179,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
                 _v = SWIG_CheckState(res);
               }
               if (_v) {
-                return _wrap_NamedNodeIterator_Print__SWIG_5(nargs, args, self);
+                return _wrap_NamedNodeIterator_print__SWIG_5(nargs, args, self);
               }
             }
           }
@@ -25359,21 +26189,21 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_Print(int nargs, VALUE *args, VALUE sel
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 7, "Node.Print", 
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent)\n"
-    "    void Node.Print(Mezzanine::XML::Writer &WriterInstance)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent)\n"
-    "    void Node.Print(std::basic_ostream< char,std::char_traits< char > > &os)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags, unsigned int Depth)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent)\n"
-    "    void Node.Print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os)\n");
+  Ruby_Format_OverloadedError( argc, 7, "Node.print", 
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance, Mezzanine::Char8 const *indent)\n"
+    "    void Node.print(Mezzanine::XML::Writer &WriterInstance)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding, unsigned int Depth)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags, Mezzanine::XML::Encoding DocumentEncoding)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os, Mezzanine::Char8 const *indent)\n"
+    "    void Node.print(std::basic_ostream< char,std::char_traits< char > > &os)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags, unsigned int Depth)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent, unsigned int flags)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os, Mezzanine::Char8 const *indent)\n"
+    "    void Node.print(std::basic_ostream< wchar_t,std::char_traits< wchar_t > > &os)\n");
   
   return Qnil;
 }
@@ -25494,7 +26324,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetChildren__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_children__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -25518,7 +26348,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_GetChildren__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_get_children__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -25552,7 +26382,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NamedNodeIterator_GetChildren(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NamedNodeIterator_get_children(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -25569,7 +26399,7 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_GetChildren(int nargs, VALUE *args, VAL
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NamedNodeIterator_GetChildren__SWIG_0(nargs, args, self);
+      return _wrap_NamedNodeIterator_get_children__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -25581,15 +26411,15 @@ SWIGINTERN VALUE _wrap_NamedNodeIterator_GetChildren(int nargs, VALUE *args, VAL
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NamedNodeIterator_GetChildren__SWIG_1(nargs, args, self);
+        return _wrap_NamedNodeIterator_get_children__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Node.GetChildren", 
-    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.GetChildren()\n"
-    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.GetChildren(Mezzanine::Char8 const *Name)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Node.get_children", 
+    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.get_children()\n"
+    "    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > Node.get_children(Mezzanine::Char8 const *Name)\n");
   
   return Qnil;
 }
@@ -25620,7 +26450,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_OffSetDebug(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_off_set_debug(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -25644,7 +26474,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_HashValue(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_hash_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -25668,7 +26498,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NamedNodeIterator_InternalObject(int argc, VALUE *argv, VALUE self) {
+_wrap_NamedNodeIterator_internal_object(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -25726,7 +26556,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_Empty(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_empty(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -25750,7 +26580,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_GetString(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_get_string(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -25774,7 +26604,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsString__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_string__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -25809,7 +26639,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsString__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_string__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -25832,7 +26662,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeText_AsString(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeText_as_string(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -25849,7 +26679,7 @@ SWIGINTERN VALUE _wrap_NodeText_AsString(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeText_AsString__SWIG_1(nargs, args, self);
+      return _wrap_NodeText_as_string__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -25861,22 +26691,22 @@ SWIGINTERN VALUE _wrap_NodeText_AsString(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NodeText_AsString__SWIG_0(nargs, args, self);
+        return _wrap_NodeText_as_string__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "NodeText.AsString", 
-    "    Mezzanine::Char8 const * NodeText.AsString(Mezzanine::Char8 const *def)\n"
-    "    Mezzanine::Char8 const * NodeText.AsString()\n");
+  Ruby_Format_OverloadedError( argc, 3, "NodeText.as_string", 
+    "    Mezzanine::Char8 const * NodeText.as_string(Mezzanine::Char8 const *def)\n"
+    "    Mezzanine::Char8 const * NodeText.as_string()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsInt__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_int__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   int arg2 ;
   void *argp1 = 0 ;
@@ -25908,7 +26738,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsInt__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_int__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -25931,7 +26761,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeText_AsInt(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeText_as_int(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -25948,7 +26778,7 @@ SWIGINTERN VALUE _wrap_NodeText_AsInt(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeText_AsInt__SWIG_1(nargs, args, self);
+      return _wrap_NodeText_as_int__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -25962,22 +26792,22 @@ SWIGINTERN VALUE _wrap_NodeText_AsInt(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeText_AsInt__SWIG_0(nargs, args, self);
+        return _wrap_NodeText_as_int__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "NodeText.AsInt", 
-    "    int NodeText.AsInt(int def)\n"
-    "    int NodeText.AsInt()\n");
+  Ruby_Format_OverloadedError( argc, 3, "NodeText.as_int", 
+    "    int NodeText.as_int(int def)\n"
+    "    int NodeText.as_int()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsUint__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_uint__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   unsigned int arg2 ;
   void *argp1 = 0 ;
@@ -26009,7 +26839,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsUint__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_uint__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -26032,7 +26862,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeText_AsUint(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeText_as_uint(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -26049,7 +26879,7 @@ SWIGINTERN VALUE _wrap_NodeText_AsUint(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeText_AsUint__SWIG_1(nargs, args, self);
+      return _wrap_NodeText_as_uint__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -26063,22 +26893,22 @@ SWIGINTERN VALUE _wrap_NodeText_AsUint(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeText_AsUint__SWIG_0(nargs, args, self);
+        return _wrap_NodeText_as_uint__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "NodeText.AsUint", 
-    "    unsigned int NodeText.AsUint(unsigned int def)\n"
-    "    unsigned int NodeText.AsUint()\n");
+  Ruby_Format_OverloadedError( argc, 3, "NodeText.as_uint", 
+    "    unsigned int NodeText.as_uint(unsigned int def)\n"
+    "    unsigned int NodeText.as_uint()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsDouble__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_double__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -26110,7 +26940,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsDouble__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_double__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -26133,7 +26963,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeText_AsDouble(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeText_as_double(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -26150,7 +26980,7 @@ SWIGINTERN VALUE _wrap_NodeText_AsDouble(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeText_AsDouble__SWIG_1(nargs, args, self);
+      return _wrap_NodeText_as_double__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -26164,22 +26994,22 @@ SWIGINTERN VALUE _wrap_NodeText_AsDouble(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeText_AsDouble__SWIG_0(nargs, args, self);
+        return _wrap_NodeText_as_double__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "NodeText.AsDouble", 
-    "    double NodeText.AsDouble(double def)\n"
-    "    double NodeText.AsDouble()\n");
+  Ruby_Format_OverloadedError( argc, 3, "NodeText.as_double", 
+    "    double NodeText.as_double(double def)\n"
+    "    double NodeText.as_double()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsFloat__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_float__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   float arg2 ;
   void *argp1 = 0 ;
@@ -26211,7 +27041,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsFloat__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_float__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -26234,7 +27064,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeText_AsFloat(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeText_as_float(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -26251,7 +27081,7 @@ SWIGINTERN VALUE _wrap_NodeText_AsFloat(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeText_AsFloat__SWIG_1(nargs, args, self);
+      return _wrap_NodeText_as_float__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -26265,22 +27095,22 @@ SWIGINTERN VALUE _wrap_NodeText_AsFloat(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeText_AsFloat__SWIG_0(nargs, args, self);
+        return _wrap_NodeText_as_float__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "NodeText.AsFloat", 
-    "    float NodeText.AsFloat(float def)\n"
-    "    float NodeText.AsFloat()\n");
+  Ruby_Format_OverloadedError( argc, 3, "NodeText.as_float", 
+    "    float NodeText.as_float(float def)\n"
+    "    float NodeText.as_float()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsReal__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_real__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   Mezzanine::Real arg2 ;
   void *argp1 = 0 ;
@@ -26312,7 +27142,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsReal__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_real__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -26335,7 +27165,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeText_AsReal(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeText_as_real(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -26352,7 +27182,7 @@ SWIGINTERN VALUE _wrap_NodeText_AsReal(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeText_AsReal__SWIG_1(nargs, args, self);
+      return _wrap_NodeText_as_real__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -26366,22 +27196,22 @@ SWIGINTERN VALUE _wrap_NodeText_AsReal(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeText_AsReal__SWIG_0(nargs, args, self);
+        return _wrap_NodeText_as_real__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "NodeText.AsReal", 
-    "    Mezzanine::Real NodeText.AsReal(Mezzanine::Real def)\n"
-    "    Mezzanine::Real NodeText.AsReal()\n");
+  Ruby_Format_OverloadedError( argc, 3, "NodeText.as_real", 
+    "    Mezzanine::Real NodeText.as_real(Mezzanine::Real def)\n"
+    "    Mezzanine::Real NodeText.as_real()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsWhole__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_whole__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
@@ -26413,7 +27243,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsWhole__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_whole__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -26436,7 +27266,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeText_AsWhole(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeText_as_whole(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -26453,7 +27283,7 @@ SWIGINTERN VALUE _wrap_NodeText_AsWhole(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeText_AsWhole__SWIG_1(nargs, args, self);
+      return _wrap_NodeText_as_whole__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -26467,22 +27297,22 @@ SWIGINTERN VALUE _wrap_NodeText_AsWhole(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeText_AsWhole__SWIG_0(nargs, args, self);
+        return _wrap_NodeText_as_whole__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "NodeText.AsWhole", 
-    "    Mezzanine::Whole NodeText.AsWhole(Mezzanine::Whole def)\n"
-    "    Mezzanine::Whole NodeText.AsWhole()\n");
+  Ruby_Format_OverloadedError( argc, 3, "NodeText.as_whole", 
+    "    Mezzanine::Whole NodeText.as_whole(Mezzanine::Whole def)\n"
+    "    Mezzanine::Whole NodeText.as_whole()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsInteger__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_integer__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   Mezzanine::Integer arg2 ;
   void *argp1 = 0 ;
@@ -26514,7 +27344,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsInteger__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_integer__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -26537,7 +27367,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeText_AsInteger(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeText_as_integer(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -26554,7 +27384,7 @@ SWIGINTERN VALUE _wrap_NodeText_AsInteger(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeText_AsInteger__SWIG_1(nargs, args, self);
+      return _wrap_NodeText_as_integer__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -26568,22 +27398,22 @@ SWIGINTERN VALUE _wrap_NodeText_AsInteger(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeText_AsInteger__SWIG_0(nargs, args, self);
+        return _wrap_NodeText_as_integer__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "NodeText.AsInteger", 
-    "    Mezzanine::Integer NodeText.AsInteger(Mezzanine::Integer def)\n"
-    "    Mezzanine::Integer NodeText.AsInteger()\n");
+  Ruby_Format_OverloadedError( argc, 3, "NodeText.as_integer", 
+    "    Mezzanine::Integer NodeText.as_integer(Mezzanine::Integer def)\n"
+    "    Mezzanine::Integer NodeText.as_integer()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsBool__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_bool__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   bool arg2 ;
   void *argp1 = 0 ;
@@ -26615,7 +27445,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_AsBool__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_as_bool__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -26638,7 +27468,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NodeText_AsBool(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NodeText_as_bool(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -26655,7 +27485,7 @@ SWIGINTERN VALUE _wrap_NodeText_AsBool(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_NodeText_AsBool__SWIG_1(nargs, args, self);
+      return _wrap_NodeText_as_bool__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -26669,22 +27499,22 @@ SWIGINTERN VALUE _wrap_NodeText_AsBool(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_NodeText_AsBool__SWIG_0(nargs, args, self);
+        return _wrap_NodeText_as_bool__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "NodeText.AsBool", 
-    "    bool NodeText.AsBool(bool def)\n"
-    "    bool NodeText.AsBool()\n");
+  Ruby_Format_OverloadedError( argc, 3, "NodeText.as_bool", 
+    "    bool NodeText.as_bool(bool def)\n"
+    "    bool NodeText.as_bool()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NodeText_Set(int argc, VALUE *argv, VALUE self) {
+_wrap_NodeText_set__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -26714,6 +27544,231 @@ _wrap_NodeText_Set(int argc, VALUE *argv, VALUE self) {
   return vresult;
 fail:
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NodeText_set__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NodeText, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NodeText *","Set", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NodeText * >(argp1);
+  ecode2 = SWIG_AsVal_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","Set", 2, argv[0] ));
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (bool)(arg1)->Set(arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NodeText_set__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NodeText, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NodeText *","Set", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NodeText * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","Set", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  result = (bool)(arg1)->Set(arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NodeText_set__SWIG_3(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NodeText, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NodeText *","Set", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NodeText * >(argp1);
+  ecode2 = SWIG_AsVal_double(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "double","Set", 2, argv[0] ));
+  } 
+  arg2 = static_cast< double >(val2);
+  result = (bool)(arg1)->Set(arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_NodeText_set__SWIG_4(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__NodeText, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::NodeText *","Set", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::NodeText * >(argp1);
+  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","Set", 2, argv[0] ));
+  } 
+  arg2 = static_cast< bool >(val2);
+  result = (bool)(arg1)->Set(arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_NodeText_set(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_NodeText_set__SWIG_2(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_NodeText_set__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_NodeText_set__SWIG_3(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_NodeText_set__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_bool(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_NodeText_set__SWIG_4(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "NodeText.set", 
+    "    bool NodeText.set(Mezzanine::Char8 const *rhs)\n"
+    "    bool NodeText.set(int rhs)\n"
+    "    bool NodeText.set(unsigned int rhs)\n"
+    "    bool NodeText.set(double rhs)\n"
+    "    bool NodeText.set(bool rhs)\n");
+  
   return Qnil;
 }
 
@@ -26755,7 +27810,7 @@ free_Mezzanine_XML_TreeWalker(Mezzanine::XML::TreeWalker *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_TreeWalker_OnTraversalBegin(int argc, VALUE *argv, VALUE self) {
+_wrap_TreeWalker_on_traversal_begin(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -26790,7 +27845,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_TreeWalker_OnEachNode(int argc, VALUE *argv, VALUE self) {
+_wrap_TreeWalker_on_each_node(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -26825,7 +27880,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_TreeWalker_OnTraversalEnd(int argc, VALUE *argv, VALUE self) {
+_wrap_TreeWalker_on_traversal_end(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -26860,7 +27915,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AsUtf8__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_as_utf8__SWIG_0(int argc, VALUE *argv, VALUE self) {
   wchar_t *arg1 = (wchar_t *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -26884,7 +27939,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AsUtf8__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_as_utf8__SWIG_1(int argc, VALUE *argv, VALUE self) {
   std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
@@ -26910,7 +27965,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AsUtf8(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_as_utf8(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[1];
   int ii;
@@ -26926,7 +27981,7 @@ SWIGINTERN VALUE _wrap_AsUtf8(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_wchar_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AsUtf8__SWIG_0(nargs, args, self);
+      return _wrap_as_utf8__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 1) {
@@ -26935,21 +27990,21 @@ SWIGINTERN VALUE _wrap_AsUtf8(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AsUtf8__SWIG_1(nargs, args, self);
+      return _wrap_as_utf8__SWIG_1(nargs, args, self);
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 1, "AsUtf8", 
-    "    std::basic_string< char,std::char_traits< char >,std::allocator< char > > AsUtf8(wchar_t const *str)\n"
-    "    std::basic_string< char,std::char_traits< char >,std::allocator< char > > AsUtf8(std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > const &str)\n");
+  Ruby_Format_OverloadedError( argc, 1, "as_utf8", 
+    "    std::basic_string< char,std::char_traits< char >,std::allocator< char > > as_utf8(wchar_t const *str)\n"
+    "    std::basic_string< char,std::char_traits< char >,std::allocator< char > > as_utf8(std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > const &str)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AsWide__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_as_wide__SWIG_0(int argc, VALUE *argv, VALUE self) {
   char *arg1 = (char *) 0 ;
   int res1 ;
   char *buf1 = 0 ;
@@ -26976,7 +28031,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AsWide__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_as_wide__SWIG_1(int argc, VALUE *argv, VALUE self) {
   std::basic_string< char,std::char_traits< char >,std::allocator< char > > *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
@@ -27002,7 +28057,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AsWide(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_as_wide(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[1];
   int ii;
@@ -27018,7 +28073,7 @@ SWIGINTERN VALUE _wrap_AsWide(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AsWide__SWIG_1(nargs, args, self);
+      return _wrap_as_wide__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 1) {
@@ -27026,21 +28081,21 @@ SWIGINTERN VALUE _wrap_AsWide(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AsWide__SWIG_0(nargs, args, self);
+      return _wrap_as_wide__SWIG_0(nargs, args, self);
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 1, "AsWide", 
-    "    std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > AsWide(char const *str)\n"
-    "    std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > AsWide(std::basic_string< char,std::char_traits< char >,std::allocator< char > > const &str)\n");
+  Ruby_Format_OverloadedError( argc, 1, "as_wide", 
+    "    std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > as_wide(char const *str)\n"
+    "    std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > as_wide(std::basic_string< char,std::char_traits< char >,std::allocator< char > > const &str)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_GetOneTag(int argc, VALUE *argv, VALUE self) {
+_wrap_get_one_tag(int argc, VALUE *argv, VALUE self) {
   std::istream *arg1 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27067,7 +28122,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_PreParseClassFromSingleTag__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_pre_parse_class_from_single_tag__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String *arg1 = 0 ;
   Mezzanine::String *arg2 = 0 ;
   Mezzanine::String *arg3 = 0 ;
@@ -27128,7 +28183,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_PreParseClassFromSingleTag__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_pre_parse_class_from_single_tag__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String *arg1 = 0 ;
   Mezzanine::String *arg2 = 0 ;
   int res1 = SWIG_OLDOBJ ;
@@ -27173,7 +28228,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_PreParseClassFromSingleTag(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_pre_parse_class_from_single_tag(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -27191,7 +28246,7 @@ SWIGINTERN VALUE _wrap_PreParseClassFromSingleTag(int nargs, VALUE *args, VALUE 
       int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_PreParseClassFromSingleTag__SWIG_1(nargs, args, self);
+        return _wrap_pre_parse_class_from_single_tag__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -27206,23 +28261,23 @@ SWIGINTERN VALUE _wrap_PreParseClassFromSingleTag(int nargs, VALUE *args, VALUE 
         int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_PreParseClassFromSingleTag__SWIG_0(nargs, args, self);
+          return _wrap_pre_parse_class_from_single_tag__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "PreParseClassFromSingleTag", 
-    "    Mezzanine::XML::Document * PreParseClassFromSingleTag(Mezzanine::String const &NameSpace, Mezzanine::String const &ClassName, Mezzanine::String const &OneTag)\n"
-    "    Mezzanine::XML::Document * PreParseClassFromSingleTag(Mezzanine::String const &ClassName, Mezzanine::String const &OneTag)\n");
+  Ruby_Format_OverloadedError( argc, 3, "pre_parse_class_from_single_tag", 
+    "    Mezzanine::XML::Document * pre_parse_class_from_single_tag(Mezzanine::String const &NameSpace, Mezzanine::String const &ClassName, Mezzanine::String const &OneTag)\n"
+    "    Mezzanine::XML::Document * pre_parse_class_from_single_tag(Mezzanine::String const &ClassName, Mezzanine::String const &OneTag)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_EscapeXML(int argc, VALUE *argv, VALUE self) {
+_wrap_escape_xml(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String *arg1 = 0 ;
   int res1 = SWIG_OLDOBJ ;
   Mezzanine::String result;
@@ -27397,7 +28452,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathNode_GetNode(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathNode_get_node(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathNode *arg1 = (Mezzanine::XML::XPathNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27421,7 +28476,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathNode_GetAttribute(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathNode_get_attribute(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathNode *arg1 = (Mezzanine::XML::XPathNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27445,7 +28500,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathNode_GetParent(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathNode_get_parent(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathNode *arg1 = (Mezzanine::XML::XPathNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27721,7 +28776,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathNodeSet_Type(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathNodeSet_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27972,7 +29027,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathNodeSet_Empty(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathNodeSet_empty(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -28083,7 +29138,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathParseResult_Description(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathParseResult_description(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -28114,7 +29169,7 @@ free_Mezzanine_XML_XPathParseResult(Mezzanine::XML::XPathParseResult *arg1) {
 static swig_class SwigClassXPathVariable;
 
 SWIGINTERN VALUE
-_wrap_XPathVariable_Name(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -28138,7 +29193,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariable_Type(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariable_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -28162,7 +29217,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariable_GetBoolean(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariable_get_boolean(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -28186,7 +29241,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariable_GetNumber(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariable_get_number(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -28210,7 +29265,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariable_GetString(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariable_get_string(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -28234,7 +29289,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariable_GetNodeSet(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariable_get_node_set(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -28258,7 +29313,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariable_Set__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariable_set__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
   bool arg2 ;
   void *argp1 = 0 ;
@@ -28290,7 +29345,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariable_Set__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariable_set__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -28322,7 +29377,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariable_Set__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariable_set__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -28357,7 +29412,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariable_Set__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariable_set__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
   Mezzanine::XML::XPathNodeSet *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -28391,7 +29446,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_XPathVariable_Set(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_XPathVariable_set(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -28412,7 +29467,7 @@ SWIGINTERN VALUE _wrap_XPathVariable_Set(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathNodeSet, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_XPathVariable_Set__SWIG_3(nargs, args, self);
+        return _wrap_XPathVariable_set__SWIG_3(nargs, args, self);
       }
     }
   }
@@ -28427,7 +29482,7 @@ SWIGINTERN VALUE _wrap_XPathVariable_Set(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_XPathVariable_Set__SWIG_1(nargs, args, self);
+        return _wrap_XPathVariable_set__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -28440,7 +29495,7 @@ SWIGINTERN VALUE _wrap_XPathVariable_Set(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_XPathVariable_Set__SWIG_2(nargs, args, self);
+        return _wrap_XPathVariable_set__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -28455,17 +29510,17 @@ SWIGINTERN VALUE _wrap_XPathVariable_Set(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_XPathVariable_Set__SWIG_0(nargs, args, self);
+        return _wrap_XPathVariable_set__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "XPathVariable.Set", 
-    "    bool XPathVariable.Set(bool Value)\n"
-    "    bool XPathVariable.Set(double Value)\n"
-    "    bool XPathVariable.Set(Mezzanine::Char8 const *Value)\n"
-    "    bool XPathVariable.Set(Mezzanine::XML::XPathNodeSet const &Value)\n");
+  Ruby_Format_OverloadedError( argc, 3, "XPathVariable.set", 
+    "    bool XPathVariable.set(bool Value)\n"
+    "    bool XPathVariable.set(double Value)\n"
+    "    bool XPathVariable.set(Mezzanine::Char8 const *Value)\n"
+    "    bool XPathVariable.set(Mezzanine::XML::XPathNodeSet const &Value)\n");
   
   return Qnil;
 }
@@ -28516,7 +29571,7 @@ free_Mezzanine_XML_XPathVariableSet(Mezzanine::XML::XPathVariableSet *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_XPathVariableSet_Add(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariableSet_add(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::XPathValueType arg3 ;
@@ -28559,7 +29614,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariableSet_Set__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariableSet_set__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   bool arg3 ;
@@ -28602,7 +29657,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariableSet_Set__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariableSet_set__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   double arg3 ;
@@ -28645,7 +29700,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariableSet_Set__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariableSet_set__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
@@ -28691,7 +29746,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariableSet_Set__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariableSet_set__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   Mezzanine::XML::XPathNodeSet *arg3 = 0 ;
@@ -28736,7 +29791,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_XPathVariableSet_Set(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_XPathVariableSet_set(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -28760,7 +29815,7 @@ SWIGINTERN VALUE _wrap_XPathVariableSet_Set(int nargs, VALUE *args, VALUE self) 
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathNodeSet, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_XPathVariableSet_Set__SWIG_3(nargs, args, self);
+          return _wrap_XPathVariableSet_set__SWIG_3(nargs, args, self);
         }
       }
     }
@@ -28779,7 +29834,7 @@ SWIGINTERN VALUE _wrap_XPathVariableSet_Set(int nargs, VALUE *args, VALUE self) 
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_XPathVariableSet_Set__SWIG_1(nargs, args, self);
+          return _wrap_XPathVariableSet_set__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -28796,7 +29851,7 @@ SWIGINTERN VALUE _wrap_XPathVariableSet_Set(int nargs, VALUE *args, VALUE self) 
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_XPathVariableSet_Set__SWIG_2(nargs, args, self);
+          return _wrap_XPathVariableSet_set__SWIG_2(nargs, args, self);
         }
       }
     }
@@ -28815,25 +29870,25 @@ SWIGINTERN VALUE _wrap_XPathVariableSet_Set(int nargs, VALUE *args, VALUE self) 
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_XPathVariableSet_Set__SWIG_0(nargs, args, self);
+          return _wrap_XPathVariableSet_set__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "XPathVariableSet.Set", 
-    "    bool XPathVariableSet.Set(Mezzanine::Char8 const *Name, bool Value)\n"
-    "    bool XPathVariableSet.Set(Mezzanine::Char8 const *Name, double Value)\n"
-    "    bool XPathVariableSet.Set(Mezzanine::Char8 const *Name, Mezzanine::Char8 const *Value)\n"
-    "    bool XPathVariableSet.Set(Mezzanine::Char8 const *Name, Mezzanine::XML::XPathNodeSet const &Value)\n");
+  Ruby_Format_OverloadedError( argc, 4, "XPathVariableSet.set", 
+    "    bool XPathVariableSet.set(Mezzanine::Char8 const *Name, bool Value)\n"
+    "    bool XPathVariableSet.set(Mezzanine::Char8 const *Name, double Value)\n"
+    "    bool XPathVariableSet.set(Mezzanine::Char8 const *Name, Mezzanine::Char8 const *Value)\n"
+    "    bool XPathVariableSet.set(Mezzanine::Char8 const *Name, Mezzanine::XML::XPathNodeSet const &Value)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_XPathVariableSet_Get(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathVariableSet_get__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   void *argp1 = 0 ;
@@ -28863,6 +29918,88 @@ _wrap_XPathVariableSet_Get(int argc, VALUE *argv, VALUE self) {
   return vresult;
 fail:
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XPathVariableSet_get__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  Mezzanine::XML::XPathVariable *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::XPathVariableSet const *","Get", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::XPathVariableSet * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Char8 const *","Get", 2, argv[0] ));
+  }
+  arg2 = reinterpret_cast< Mezzanine::Char8 * >(buf2);
+  result = (Mezzanine::XML::XPathVariable *)((Mezzanine::XML::XPathVariableSet const *)arg1)->Get((Mezzanine::Char8 const *)arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__XML__XPathVariable, 0 |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return vresult;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_XPathVariableSet_get(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_XPathVariableSet_get__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_XPathVariableSet_get__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "XPathVariableSet.get", 
+    "    Mezzanine::XML::XPathVariable const * XPathVariableSet.get(Mezzanine::Char8 const *Name)\n"
+    "    Mezzanine::XML::XPathVariable const * XPathVariableSet.get(Mezzanine::Char8 const *Name)\n");
+  
   return Qnil;
 }
 
@@ -28993,7 +30130,7 @@ free_Mezzanine_XML_XPathQuery(Mezzanine::XML::XPathQuery *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_XPathQuery_ReturnType(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathQuery_return_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -29017,7 +30154,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathQuery_EvaluateBoolean(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathQuery_evaluate_boolean(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
   Mezzanine::XML::XPathNode *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -29052,7 +30189,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathQuery_EvaluateNumber(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathQuery_evaluate_number(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
   Mezzanine::XML::XPathNode *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -29087,7 +30224,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathQuery_EvaluateString__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathQuery_evaluate_string__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
   Mezzanine::XML::XPathNode *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -29122,7 +30259,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathQuery_EvaluateString__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathQuery_evaluate_string__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
   size_t arg3 ;
@@ -29175,7 +30312,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_XPathQuery_EvaluateString(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_XPathQuery_evaluate_string(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -29196,7 +30333,7 @@ SWIGINTERN VALUE _wrap_XPathQuery_EvaluateString(int nargs, VALUE *args, VALUE s
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathNode, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_XPathQuery_EvaluateString__SWIG_0(nargs, args, self);
+        return _wrap_XPathQuery_evaluate_string__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -29218,7 +30355,7 @@ SWIGINTERN VALUE _wrap_XPathQuery_EvaluateString(int nargs, VALUE *args, VALUE s
           int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_Mezzanine__XML__XPathNode, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_XPathQuery_EvaluateString__SWIG_1(nargs, args, self);
+            return _wrap_XPathQuery_evaluate_string__SWIG_1(nargs, args, self);
           }
         }
       }
@@ -29226,16 +30363,16 @@ SWIGINTERN VALUE _wrap_XPathQuery_EvaluateString(int nargs, VALUE *args, VALUE s
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "XPathQuery.EvaluateString", 
-    "    size_t XPathQuery.EvaluateString(Mezzanine::XML::XPathNode const &n)\n"
-    "    size_t XPathQuery.EvaluateString(Mezzanine::Char8 *buffer, size_t capacity, Mezzanine::XML::XPathNode const &n)\n");
+  Ruby_Format_OverloadedError( argc, 5, "XPathQuery.evaluate_string", 
+    "    size_t XPathQuery.evaluate_string(Mezzanine::XML::XPathNode const &n)\n"
+    "    size_t XPathQuery.evaluate_string(Mezzanine::Char8 *buffer, size_t capacity, Mezzanine::XML::XPathNode const &n)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_XPathQuery_EvaluateNodeSet(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathQuery_evaluate_node_set(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
   Mezzanine::XML::XPathNode *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -29270,7 +30407,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XPathQuery_Result(int argc, VALUE *argv, VALUE self) {
+_wrap_XPathQuery_result(int argc, VALUE *argv, VALUE self) {
   Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -29838,13 +30975,13 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SWIG_RubyInitializeTrackings();
   rb_define_const(mMezzanineXML, "XML_VERSION", SWIG_From_int(static_cast< int >(100)));
   
-  SwigClassGC_VALUE.klass = rb_define_class_under(mMezzanineXML, "GC_VALUE", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_swig__GC_VALUE, (void *) &SwigClassGC_VALUE);
-  rb_undef_alloc_func(SwigClassGC_VALUE.klass);
-  rb_define_method(SwigClassGC_VALUE.klass, "inspect", VALUEFUNC(_wrap_GC_VALUE_inspect), -1);
-  rb_define_method(SwigClassGC_VALUE.klass, "to_s", VALUEFUNC(_wrap_GC_VALUE_to_s), -1);
-  SwigClassGC_VALUE.mark = 0;
-  SwigClassGC_VALUE.trackObjects = 0;
+  SwigClassGCVALUE.klass = rb_define_class_under(mMezzanineXML, "GCVALUE", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_swig__GC_VALUE, (void *) &SwigClassGCVALUE);
+  rb_undef_alloc_func(SwigClassGCVALUE.klass);
+  rb_define_method(SwigClassGCVALUE.klass, "inspect", VALUEFUNC(_wrap_GCVALUE_inspect), -1);
+  rb_define_method(SwigClassGCVALUE.klass, "to_s", VALUEFUNC(_wrap_GCVALUE_to_s), -1);
+  SwigClassGCVALUE.mark = 0;
+  SwigClassGCVALUE.trackObjects = 0;
   
   swig::GC_VALUE::initialize();
   
@@ -29891,24 +31028,24 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   rb_define_method(SwigClassAttribute.klass, ">", VALUEFUNC(_wrap_Attribute___gt__), -1);
   rb_define_method(SwigClassAttribute.klass, "<=", VALUEFUNC(_wrap_Attribute___le__), -1);
   rb_define_method(SwigClassAttribute.klass, ">=", VALUEFUNC(_wrap_Attribute___ge__), -1);
-  rb_define_method(SwigClassAttribute.klass, "Empty", VALUEFUNC(_wrap_Attribute_Empty), -1);
-  rb_define_method(SwigClassAttribute.klass, "Name", VALUEFUNC(_wrap_Attribute_Name), -1);
-  rb_define_method(SwigClassAttribute.klass, "Value", VALUEFUNC(_wrap_Attribute_Value), -1);
-  rb_define_method(SwigClassAttribute.klass, "AsString", VALUEFUNC(_wrap_Attribute_AsString), -1);
-  rb_define_method(SwigClassAttribute.klass, "AsInt", VALUEFUNC(_wrap_Attribute_AsInt), -1);
-  rb_define_method(SwigClassAttribute.klass, "AsUint", VALUEFUNC(_wrap_Attribute_AsUint), -1);
-  rb_define_method(SwigClassAttribute.klass, "AsDouble", VALUEFUNC(_wrap_Attribute_AsDouble), -1);
-  rb_define_method(SwigClassAttribute.klass, "AsFloat", VALUEFUNC(_wrap_Attribute_AsFloat), -1);
-  rb_define_method(SwigClassAttribute.klass, "AsReal", VALUEFUNC(_wrap_Attribute_AsReal), -1);
-  rb_define_method(SwigClassAttribute.klass, "AsWhole", VALUEFUNC(_wrap_Attribute_AsWhole), -1);
-  rb_define_method(SwigClassAttribute.klass, "AsInteger", VALUEFUNC(_wrap_Attribute_AsInteger), -1);
-  rb_define_method(SwigClassAttribute.klass, "AsBool", VALUEFUNC(_wrap_Attribute_AsBool), -1);
-  rb_define_method(SwigClassAttribute.klass, "SetName", VALUEFUNC(_wrap_Attribute_SetName), -1);
-  rb_define_method(SwigClassAttribute.klass, "SetValue", VALUEFUNC(_wrap_Attribute_SetValue), -1);
-  rb_define_method(SwigClassAttribute.klass, "GetNextAttribute", VALUEFUNC(_wrap_Attribute_GetNextAttribute), -1);
-  rb_define_method(SwigClassAttribute.klass, "GetPreviousAttribute", VALUEFUNC(_wrap_Attribute_GetPreviousAttribute), -1);
-  rb_define_method(SwigClassAttribute.klass, "HashValue", VALUEFUNC(_wrap_Attribute_HashValue), -1);
-  rb_define_method(SwigClassAttribute.klass, "InternalObject", VALUEFUNC(_wrap_Attribute_InternalObject), -1);
+  rb_define_method(SwigClassAttribute.klass, "empty", VALUEFUNC(_wrap_Attribute_empty), -1);
+  rb_define_method(SwigClassAttribute.klass, "name", VALUEFUNC(_wrap_Attribute_name), -1);
+  rb_define_method(SwigClassAttribute.klass, "value", VALUEFUNC(_wrap_Attribute_value), -1);
+  rb_define_method(SwigClassAttribute.klass, "as_string", VALUEFUNC(_wrap_Attribute_as_string), -1);
+  rb_define_method(SwigClassAttribute.klass, "as_int", VALUEFUNC(_wrap_Attribute_as_int), -1);
+  rb_define_method(SwigClassAttribute.klass, "as_uint", VALUEFUNC(_wrap_Attribute_as_uint), -1);
+  rb_define_method(SwigClassAttribute.klass, "as_double", VALUEFUNC(_wrap_Attribute_as_double), -1);
+  rb_define_method(SwigClassAttribute.klass, "as_float", VALUEFUNC(_wrap_Attribute_as_float), -1);
+  rb_define_method(SwigClassAttribute.klass, "as_real", VALUEFUNC(_wrap_Attribute_as_real), -1);
+  rb_define_method(SwigClassAttribute.klass, "as_whole", VALUEFUNC(_wrap_Attribute_as_whole), -1);
+  rb_define_method(SwigClassAttribute.klass, "as_integer", VALUEFUNC(_wrap_Attribute_as_integer), -1);
+  rb_define_method(SwigClassAttribute.klass, "as_bool", VALUEFUNC(_wrap_Attribute_as_bool), -1);
+  rb_define_method(SwigClassAttribute.klass, "set_name", VALUEFUNC(_wrap_Attribute_set_name), -1);
+  rb_define_method(SwigClassAttribute.klass, "set_value", VALUEFUNC(_wrap_Attribute_set_value), -1);
+  rb_define_method(SwigClassAttribute.klass, "get_next_attribute", VALUEFUNC(_wrap_Attribute_get_next_attribute), -1);
+  rb_define_method(SwigClassAttribute.klass, "get_previous_attribute", VALUEFUNC(_wrap_Attribute_get_previous_attribute), -1);
+  rb_define_method(SwigClassAttribute.klass, "hash_value", VALUEFUNC(_wrap_Attribute_hash_value), -1);
+  rb_define_method(SwigClassAttribute.klass, "internal_object", VALUEFUNC(_wrap_Attribute_internal_object), -1);
   SwigClassAttribute.mark = 0;
   SwigClassAttribute.destroy = (void (*)(void *)) free_Mezzanine_XML_Attribute;
   SwigClassAttribute.trackObjects = 0;
@@ -29977,58 +31114,59 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__Node, (void *) &SwigClassNode);
   rb_define_alloc_func(SwigClassNode.klass, _wrap_Node_allocate);
   rb_define_method(SwigClassNode.klass, "initialize", VALUEFUNC(_wrap_new_Node), -1);
+  rb_define_method(SwigClassNode.klass, "==", VALUEFUNC(_wrap_Node___eq__), -1);
   rb_define_method(SwigClassNode.klass, "<", VALUEFUNC(_wrap_Node___lt__), -1);
   rb_define_method(SwigClassNode.klass, ">", VALUEFUNC(_wrap_Node___gt__), -1);
   rb_define_method(SwigClassNode.klass, "<=", VALUEFUNC(_wrap_Node___le__), -1);
   rb_define_method(SwigClassNode.klass, ">=", VALUEFUNC(_wrap_Node___ge__), -1);
-  rb_define_method(SwigClassNode.klass, "Empty", VALUEFUNC(_wrap_Node_Empty), -1);
-  rb_define_method(SwigClassNode.klass, "Type", VALUEFUNC(_wrap_Node_Type), -1);
-  rb_define_method(SwigClassNode.klass, "Name", VALUEFUNC(_wrap_Node_Name), -1);
-  rb_define_method(SwigClassNode.klass, "Value", VALUEFUNC(_wrap_Node_Value), -1);
-  rb_define_method(SwigClassNode.klass, "GetFirstAttribute", VALUEFUNC(_wrap_Node_GetFirstAttribute), -1);
-  rb_define_method(SwigClassNode.klass, "GetLastAttribute", VALUEFUNC(_wrap_Node_GetLastAttribute), -1);
-  rb_define_method(SwigClassNode.klass, "GetFirstChild", VALUEFUNC(_wrap_Node_GetFirstChild), -1);
-  rb_define_method(SwigClassNode.klass, "GetLastChild", VALUEFUNC(_wrap_Node_GetLastChild), -1);
-  rb_define_method(SwigClassNode.klass, "GetParent", VALUEFUNC(_wrap_Node_GetParent), -1);
-  rb_define_method(SwigClassNode.klass, "GetRoot", VALUEFUNC(_wrap_Node_GetRoot), -1);
-  rb_define_method(SwigClassNode.klass, "GetText", VALUEFUNC(_wrap_Node_GetText), -1);
-  rb_define_method(SwigClassNode.klass, "GetChild", VALUEFUNC(_wrap_Node_GetChild), -1);
-  rb_define_method(SwigClassNode.klass, "GetAttribute", VALUEFUNC(_wrap_Node_GetAttribute), -1);
-  rb_define_method(SwigClassNode.klass, "GetNextSibling", VALUEFUNC(_wrap_Node_GetNextSibling), -1);
-  rb_define_method(SwigClassNode.klass, "GetPreviousSibling", VALUEFUNC(_wrap_Node_GetPreviousSibling), -1);
-  rb_define_method(SwigClassNode.klass, "GetChildValue", VALUEFUNC(_wrap_Node_GetChildValue), -1);
-  rb_define_method(SwigClassNode.klass, "SetName", VALUEFUNC(_wrap_Node_SetName), -1);
-  rb_define_method(SwigClassNode.klass, "SetValue", VALUEFUNC(_wrap_Node_SetValue), -1);
-  rb_define_method(SwigClassNode.klass, "AppendAttribute", VALUEFUNC(_wrap_Node_AppendAttribute), -1);
-  rb_define_method(SwigClassNode.klass, "PrependAttribute", VALUEFUNC(_wrap_Node_PrependAttribute), -1);
-  rb_define_method(SwigClassNode.klass, "InsertAttributeAfter", VALUEFUNC(_wrap_Node_InsertAttributeAfter), -1);
-  rb_define_method(SwigClassNode.klass, "InsertAttributeBefore", VALUEFUNC(_wrap_Node_InsertAttributeBefore), -1);
-  rb_define_method(SwigClassNode.klass, "AppendChild", VALUEFUNC(_wrap_Node_AppendChild), -1);
-  rb_define_method(SwigClassNode.klass, "PrependChild", VALUEFUNC(_wrap_Node_PrependChild), -1);
-  rb_define_method(SwigClassNode.klass, "InsertChildAfter", VALUEFUNC(_wrap_Node_InsertChildAfter), -1);
-  rb_define_method(SwigClassNode.klass, "InsertChildBefore", VALUEFUNC(_wrap_Node_InsertChildBefore), -1);
-  rb_define_method(SwigClassNode.klass, "AppendCopy", VALUEFUNC(_wrap_Node_AppendCopy), -1);
-  rb_define_method(SwigClassNode.klass, "PrependCopy", VALUEFUNC(_wrap_Node_PrependCopy), -1);
-  rb_define_method(SwigClassNode.klass, "InsertCopyAfter", VALUEFUNC(_wrap_Node_InsertCopyAfter), -1);
-  rb_define_method(SwigClassNode.klass, "InsertCopyBefore", VALUEFUNC(_wrap_Node_InsertCopyBefore), -1);
-  rb_define_method(SwigClassNode.klass, "RemoveAttribute", VALUEFUNC(_wrap_Node_RemoveAttribute), -1);
-  rb_define_method(SwigClassNode.klass, "RemoveChild", VALUEFUNC(_wrap_Node_RemoveChild), -1);
-  rb_define_method(SwigClassNode.klass, "FindChildbyAttribute", VALUEFUNC(_wrap_Node_FindChildbyAttribute), -1);
-  rb_define_method(SwigClassNode.klass, "Path", VALUEFUNC(_wrap_Node_Path), -1);
-  rb_define_method(SwigClassNode.klass, "FirstElementByPath", VALUEFUNC(_wrap_Node_FirstElementByPath), -1);
-  rb_define_method(SwigClassNode.klass, "Traverse", VALUEFUNC(_wrap_Node_Traverse), -1);
-  rb_define_method(SwigClassNode.klass, "FindSingleNode", VALUEFUNC(_wrap_Node_FindSingleNode), -1);
-  rb_define_method(SwigClassNode.klass, "FindNodes", VALUEFUNC(_wrap_Node_FindNodes), -1);
-  rb_define_method(SwigClassNode.klass, "Print", VALUEFUNC(_wrap_Node_Print), -1);
+  rb_define_method(SwigClassNode.klass, "empty", VALUEFUNC(_wrap_Node_empty), -1);
+  rb_define_method(SwigClassNode.klass, "type", VALUEFUNC(_wrap_Node_type), -1);
+  rb_define_method(SwigClassNode.klass, "name", VALUEFUNC(_wrap_Node_name), -1);
+  rb_define_method(SwigClassNode.klass, "value", VALUEFUNC(_wrap_Node_value), -1);
+  rb_define_method(SwigClassNode.klass, "get_first_attribute", VALUEFUNC(_wrap_Node_get_first_attribute), -1);
+  rb_define_method(SwigClassNode.klass, "get_last_attribute", VALUEFUNC(_wrap_Node_get_last_attribute), -1);
+  rb_define_method(SwigClassNode.klass, "get_first_child", VALUEFUNC(_wrap_Node_get_first_child), -1);
+  rb_define_method(SwigClassNode.klass, "get_last_child", VALUEFUNC(_wrap_Node_get_last_child), -1);
+  rb_define_method(SwigClassNode.klass, "get_parent", VALUEFUNC(_wrap_Node_get_parent), -1);
+  rb_define_method(SwigClassNode.klass, "get_root", VALUEFUNC(_wrap_Node_get_root), -1);
+  rb_define_method(SwigClassNode.klass, "get_text", VALUEFUNC(_wrap_Node_get_text), -1);
+  rb_define_method(SwigClassNode.klass, "get_child", VALUEFUNC(_wrap_Node_get_child), -1);
+  rb_define_method(SwigClassNode.klass, "get_attribute", VALUEFUNC(_wrap_Node_get_attribute), -1);
+  rb_define_method(SwigClassNode.klass, "get_next_sibling", VALUEFUNC(_wrap_Node_get_next_sibling), -1);
+  rb_define_method(SwigClassNode.klass, "get_previous_sibling", VALUEFUNC(_wrap_Node_get_previous_sibling), -1);
+  rb_define_method(SwigClassNode.klass, "get_child_value", VALUEFUNC(_wrap_Node_get_child_value), -1);
+  rb_define_method(SwigClassNode.klass, "set_name", VALUEFUNC(_wrap_Node_set_name), -1);
+  rb_define_method(SwigClassNode.klass, "set_value", VALUEFUNC(_wrap_Node_set_value), -1);
+  rb_define_method(SwigClassNode.klass, "append_attribute", VALUEFUNC(_wrap_Node_append_attribute), -1);
+  rb_define_method(SwigClassNode.klass, "prepend_attribute", VALUEFUNC(_wrap_Node_prepend_attribute), -1);
+  rb_define_method(SwigClassNode.klass, "insert_attribute_after", VALUEFUNC(_wrap_Node_insert_attribute_after), -1);
+  rb_define_method(SwigClassNode.klass, "insert_attribute_before", VALUEFUNC(_wrap_Node_insert_attribute_before), -1);
+  rb_define_method(SwigClassNode.klass, "append_child", VALUEFUNC(_wrap_Node_append_child), -1);
+  rb_define_method(SwigClassNode.klass, "prepend_child", VALUEFUNC(_wrap_Node_prepend_child), -1);
+  rb_define_method(SwigClassNode.klass, "insert_child_after", VALUEFUNC(_wrap_Node_insert_child_after), -1);
+  rb_define_method(SwigClassNode.klass, "insert_child_before", VALUEFUNC(_wrap_Node_insert_child_before), -1);
+  rb_define_method(SwigClassNode.klass, "append_copy", VALUEFUNC(_wrap_Node_append_copy), -1);
+  rb_define_method(SwigClassNode.klass, "prepend_copy", VALUEFUNC(_wrap_Node_prepend_copy), -1);
+  rb_define_method(SwigClassNode.klass, "insert_copy_after", VALUEFUNC(_wrap_Node_insert_copy_after), -1);
+  rb_define_method(SwigClassNode.klass, "insert_copy_before", VALUEFUNC(_wrap_Node_insert_copy_before), -1);
+  rb_define_method(SwigClassNode.klass, "remove_attribute", VALUEFUNC(_wrap_Node_remove_attribute), -1);
+  rb_define_method(SwigClassNode.klass, "remove_child", VALUEFUNC(_wrap_Node_remove_child), -1);
+  rb_define_method(SwigClassNode.klass, "find_childby_attribute", VALUEFUNC(_wrap_Node_find_childby_attribute), -1);
+  rb_define_method(SwigClassNode.klass, "path", VALUEFUNC(_wrap_Node_path), -1);
+  rb_define_method(SwigClassNode.klass, "first_element_by_path", VALUEFUNC(_wrap_Node_first_element_by_path), -1);
+  rb_define_method(SwigClassNode.klass, "traverse", VALUEFUNC(_wrap_Node_traverse), -1);
+  rb_define_method(SwigClassNode.klass, "find_single_node", VALUEFUNC(_wrap_Node_find_single_node), -1);
+  rb_define_method(SwigClassNode.klass, "find_nodes", VALUEFUNC(_wrap_Node_find_nodes), -1);
+  rb_define_method(SwigClassNode.klass, "print", VALUEFUNC(_wrap_Node_print), -1);
   rb_define_method(SwigClassNode.klass, "begin", VALUEFUNC(_wrap_Node_begin), -1);
   rb_define_method(SwigClassNode.klass, "end", VALUEFUNC(_wrap_Node_end), -1);
   rb_define_method(SwigClassNode.klass, "attributes_begin", VALUEFUNC(_wrap_Node_attributes_begin), -1);
   rb_define_method(SwigClassNode.klass, "attributes_end", VALUEFUNC(_wrap_Node_attributes_end), -1);
-  rb_define_method(SwigClassNode.klass, "GetChildren", VALUEFUNC(_wrap_Node_GetChildren), -1);
+  rb_define_method(SwigClassNode.klass, "get_children", VALUEFUNC(_wrap_Node_get_children), -1);
   rb_define_method(SwigClassNode.klass, "attributes", VALUEFUNC(_wrap_Node_attributes), -1);
-  rb_define_method(SwigClassNode.klass, "OffSetDebug", VALUEFUNC(_wrap_Node_OffSetDebug), -1);
-  rb_define_method(SwigClassNode.klass, "HashValue", VALUEFUNC(_wrap_Node_HashValue), -1);
-  rb_define_method(SwigClassNode.klass, "InternalObject", VALUEFUNC(_wrap_Node_InternalObject), -1);
+  rb_define_method(SwigClassNode.klass, "off_set_debug", VALUEFUNC(_wrap_Node_off_set_debug), -1);
+  rb_define_method(SwigClassNode.klass, "hash_value", VALUEFUNC(_wrap_Node_hash_value), -1);
+  rb_define_method(SwigClassNode.klass, "internal_object", VALUEFUNC(_wrap_Node_internal_object), -1);
   SwigClassNode.mark = 0;
   SwigClassNode.destroy = (void (*)(void *)) free_Mezzanine_XML_Node;
   SwigClassNode.trackObjects = 0;
@@ -30044,24 +31182,24 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   rb_define_method(SwigClassAttributeIterator.klass, ">", VALUEFUNC(_wrap_AttributeIterator___gt__), -1);
   rb_define_method(SwigClassAttributeIterator.klass, "<=", VALUEFUNC(_wrap_AttributeIterator___le__), -1);
   rb_define_method(SwigClassAttributeIterator.klass, ">=", VALUEFUNC(_wrap_AttributeIterator___ge__), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "Empty", VALUEFUNC(_wrap_AttributeIterator_Empty), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "Name", VALUEFUNC(_wrap_AttributeIterator_Name), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "Value", VALUEFUNC(_wrap_AttributeIterator_Value), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "AsString", VALUEFUNC(_wrap_AttributeIterator_AsString), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "AsInt", VALUEFUNC(_wrap_AttributeIterator_AsInt), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "AsUint", VALUEFUNC(_wrap_AttributeIterator_AsUint), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "AsDouble", VALUEFUNC(_wrap_AttributeIterator_AsDouble), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "AsFloat", VALUEFUNC(_wrap_AttributeIterator_AsFloat), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "AsReal", VALUEFUNC(_wrap_AttributeIterator_AsReal), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "AsWhole", VALUEFUNC(_wrap_AttributeIterator_AsWhole), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "AsInteger", VALUEFUNC(_wrap_AttributeIterator_AsInteger), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "AsBool", VALUEFUNC(_wrap_AttributeIterator_AsBool), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "SetName", VALUEFUNC(_wrap_AttributeIterator_SetName), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "SetValue", VALUEFUNC(_wrap_AttributeIterator_SetValue), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "GetNextAttribute", VALUEFUNC(_wrap_AttributeIterator_GetNextAttribute), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "GetPreviousAttribute", VALUEFUNC(_wrap_AttributeIterator_GetPreviousAttribute), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "HashValue", VALUEFUNC(_wrap_AttributeIterator_HashValue), -1);
-  rb_define_method(SwigClassAttributeIterator.klass, "InternalObject", VALUEFUNC(_wrap_AttributeIterator_InternalObject), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "empty", VALUEFUNC(_wrap_AttributeIterator_empty), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "name", VALUEFUNC(_wrap_AttributeIterator_name), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "value", VALUEFUNC(_wrap_AttributeIterator_value), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "as_string", VALUEFUNC(_wrap_AttributeIterator_as_string), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "as_int", VALUEFUNC(_wrap_AttributeIterator_as_int), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "as_uint", VALUEFUNC(_wrap_AttributeIterator_as_uint), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "as_double", VALUEFUNC(_wrap_AttributeIterator_as_double), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "as_float", VALUEFUNC(_wrap_AttributeIterator_as_float), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "as_real", VALUEFUNC(_wrap_AttributeIterator_as_real), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "as_whole", VALUEFUNC(_wrap_AttributeIterator_as_whole), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "as_integer", VALUEFUNC(_wrap_AttributeIterator_as_integer), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "as_bool", VALUEFUNC(_wrap_AttributeIterator_as_bool), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "set_name", VALUEFUNC(_wrap_AttributeIterator_set_name), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "set_value", VALUEFUNC(_wrap_AttributeIterator_set_value), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "get_next_attribute", VALUEFUNC(_wrap_AttributeIterator_get_next_attribute), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "get_previous_attribute", VALUEFUNC(_wrap_AttributeIterator_get_previous_attribute), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "hash_value", VALUEFUNC(_wrap_AttributeIterator_hash_value), -1);
+  rb_define_method(SwigClassAttributeIterator.klass, "internal_object", VALUEFUNC(_wrap_AttributeIterator_internal_object), -1);
   SwigClassAttributeIterator.mark = 0;
   SwigClassAttributeIterator.destroy = (void (*)(void *)) free_Mezzanine_XML_AttributeIterator;
   SwigClassAttributeIterator.trackObjects = 0;
@@ -30076,7 +31214,7 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   rb_define_method(SwigClassParseResult.klass, "Offset", VALUEFUNC(_wrap_ParseResult_Offset_get), -1);
   rb_define_method(SwigClassParseResult.klass, "DocumentEncoding=", VALUEFUNC(_wrap_ParseResult_DocumentEncoding_set), -1);
   rb_define_method(SwigClassParseResult.klass, "DocumentEncoding", VALUEFUNC(_wrap_ParseResult_DocumentEncoding_get), -1);
-  rb_define_method(SwigClassParseResult.klass, "Description", VALUEFUNC(_wrap_ParseResult_Description), -1);
+  rb_define_method(SwigClassParseResult.klass, "description", VALUEFUNC(_wrap_ParseResult_description), -1);
   SwigClassParseResult.mark = 0;
   SwigClassParseResult.destroy = (void (*)(void *)) free_Mezzanine_XML_ParseResult;
   SwigClassParseResult.trackObjects = 0;
@@ -30084,7 +31222,7 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SwigClassWriter.klass = rb_define_class_under(mMezzanineXML, "Writer", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__Writer, (void *) &SwigClassWriter);
   rb_undef_alloc_func(SwigClassWriter.klass);
-  rb_define_method(SwigClassWriter.klass, "Write", VALUEFUNC(_wrap_Writer_Write), -1);
+  rb_define_method(SwigClassWriter.klass, "write", VALUEFUNC(_wrap_Writer_write), -1);
   SwigClassWriter.mark = 0;
   SwigClassWriter.destroy = (void (*)(void *)) free_Mezzanine_XML_Writer;
   SwigClassWriter.trackObjects = 0;
@@ -30093,7 +31231,7 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__WriterFile, (void *) &SwigClassWriterFile);
   rb_define_alloc_func(SwigClassWriterFile.klass, _wrap_WriterFile_allocate);
   rb_define_method(SwigClassWriterFile.klass, "initialize", VALUEFUNC(_wrap_new_WriterFile), -1);
-  rb_define_method(SwigClassWriterFile.klass, "Write", VALUEFUNC(_wrap_WriterFile_Write), -1);
+  rb_define_method(SwigClassWriterFile.klass, "write", VALUEFUNC(_wrap_WriterFile_write), -1);
   SwigClassWriterFile.mark = 0;
   SwigClassWriterFile.destroy = (void (*)(void *)) free_Mezzanine_XML_WriterFile;
   SwigClassWriterFile.trackObjects = 0;
@@ -30102,7 +31240,7 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__WriterStream, (void *) &SwigClassWriterStream);
   rb_define_alloc_func(SwigClassWriterStream.klass, _wrap_WriterStream_allocate);
   rb_define_method(SwigClassWriterStream.klass, "initialize", VALUEFUNC(_wrap_new_WriterStream), -1);
-  rb_define_method(SwigClassWriterStream.klass, "Write", VALUEFUNC(_wrap_WriterStream_Write), -1);
+  rb_define_method(SwigClassWriterStream.klass, "write", VALUEFUNC(_wrap_WriterStream_write), -1);
   SwigClassWriterStream.mark = 0;
   SwigClassWriterStream.destroy = (void (*)(void *)) free_Mezzanine_XML_WriterStream;
   SwigClassWriterStream.trackObjects = 0;
@@ -30111,7 +31249,7 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__XMLStreamWrapper, (void *) &SwigClassXMLStreamWrapper);
   rb_define_alloc_func(SwigClassXMLStreamWrapper.klass, _wrap_XMLStreamWrapper_allocate);
   rb_define_method(SwigClassXMLStreamWrapper.klass, "initialize", VALUEFUNC(_wrap_new_XMLStreamWrapper), -1);
-  rb_define_method(SwigClassXMLStreamWrapper.klass, "Write", VALUEFUNC(_wrap_XMLStreamWrapper_Write), -1);
+  rb_define_method(SwigClassXMLStreamWrapper.klass, "write", VALUEFUNC(_wrap_XMLStreamWrapper_write), -1);
   SwigClassXMLStreamWrapper.mark = 0;
   SwigClassXMLStreamWrapper.destroy = (void (*)(void *)) free_Mezzanine_XML_XMLStreamWrapper;
   SwigClassXMLStreamWrapper.trackObjects = 0;
@@ -30120,21 +31258,21 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__Document, (void *) &SwigClassDocument);
   rb_define_alloc_func(SwigClassDocument.klass, _wrap_Document_allocate);
   rb_define_method(SwigClassDocument.klass, "initialize", VALUEFUNC(_wrap_new_Document), -1);
-  rb_define_method(SwigClassDocument.klass, "Reset", VALUEFUNC(_wrap_Document_Reset), -1);
-  rb_define_method(SwigClassDocument.klass, "Load", VALUEFUNC(_wrap_Document_Load), -1);
-  rb_define_method(SwigClassDocument.klass, "LoadFile", VALUEFUNC(_wrap_Document_LoadFile), -1);
-  rb_define_method(SwigClassDocument.klass, "LoadBuffer", VALUEFUNC(_wrap_Document_LoadBuffer), -1);
-  rb_define_method(SwigClassDocument.klass, "LoadBufferInplace", VALUEFUNC(_wrap_Document_LoadBufferInplace), -1);
-  rb_define_method(SwigClassDocument.klass, "LoadBufferInplaceOwn", VALUEFUNC(_wrap_Document_LoadBufferInplaceOwn), -1);
-  rb_define_method(SwigClassDocument.klass, "Save", VALUEFUNC(_wrap_Document_Save), -1);
-  rb_define_method(SwigClassDocument.klass, "SaveFile", VALUEFUNC(_wrap_Document_SaveFile), -1);
-  rb_define_method(SwigClassDocument.klass, "DocumentElement", VALUEFUNC(_wrap_Document_DocumentElement), -1);
+  rb_define_method(SwigClassDocument.klass, "reset", VALUEFUNC(_wrap_Document_reset), -1);
+  rb_define_method(SwigClassDocument.klass, "load", VALUEFUNC(_wrap_Document_load), -1);
+  rb_define_method(SwigClassDocument.klass, "load_file", VALUEFUNC(_wrap_Document_load_file), -1);
+  rb_define_method(SwigClassDocument.klass, "load_buffer", VALUEFUNC(_wrap_Document_load_buffer), -1);
+  rb_define_method(SwigClassDocument.klass, "load_buffer_inplace", VALUEFUNC(_wrap_Document_load_buffer_inplace), -1);
+  rb_define_method(SwigClassDocument.klass, "load_buffer_inplace_own", VALUEFUNC(_wrap_Document_load_buffer_inplace_own), -1);
+  rb_define_method(SwigClassDocument.klass, "save", VALUEFUNC(_wrap_Document_save), -1);
+  rb_define_method(SwigClassDocument.klass, "save_file", VALUEFUNC(_wrap_Document_save_file), -1);
+  rb_define_method(SwigClassDocument.klass, "document_element", VALUEFUNC(_wrap_Document_document_element), -1);
   SwigClassDocument.mark = 0;
   SwigClassDocument.destroy = (void (*)(void *)) free_Mezzanine_XML_Document;
   SwigClassDocument.trackObjects = 0;
-  rb_define_module_function(mMezzanineXML, "SetMemoryManagementFunctions", VALUEFUNC(_wrap_SetMemoryManagementFunctions), -1);
-  rb_define_module_function(mMezzanineXML, "GetMemoryAllocationFunction", VALUEFUNC(_wrap_GetMemoryAllocationFunction), -1);
-  rb_define_module_function(mMezzanineXML, "GetMemoryDeallocationFunction", VALUEFUNC(_wrap_GetMemoryDeallocationFunction), -1);
+  rb_define_module_function(mMezzanineXML, "set_memory_management_functions", VALUEFUNC(_wrap_set_memory_management_functions), -1);
+  rb_define_module_function(mMezzanineXML, "get_memory_allocation_function", VALUEFUNC(_wrap_get_memory_allocation_function), -1);
+  rb_define_module_function(mMezzanineXML, "get_memory_deallocation_function", VALUEFUNC(_wrap_get_memory_deallocation_function), -1);
   
   SwigClassNodeIterator.klass = rb_define_class_under(mMezzanineXML, "NodeIterator", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__NodeIterator, (void *) &SwigClassNodeIterator);
@@ -30147,54 +31285,54 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   rb_define_method(SwigClassNodeIterator.klass, ">", VALUEFUNC(_wrap_NodeIterator___gt__), -1);
   rb_define_method(SwigClassNodeIterator.klass, "<=", VALUEFUNC(_wrap_NodeIterator___le__), -1);
   rb_define_method(SwigClassNodeIterator.klass, ">=", VALUEFUNC(_wrap_NodeIterator___ge__), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "Empty", VALUEFUNC(_wrap_NodeIterator_Empty), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "Type", VALUEFUNC(_wrap_NodeIterator_Type), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "Name", VALUEFUNC(_wrap_NodeIterator_Name), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "Value", VALUEFUNC(_wrap_NodeIterator_Value), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetFirstAttribute", VALUEFUNC(_wrap_NodeIterator_GetFirstAttribute), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetLastAttribute", VALUEFUNC(_wrap_NodeIterator_GetLastAttribute), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetFirstChild", VALUEFUNC(_wrap_NodeIterator_GetFirstChild), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetLastChild", VALUEFUNC(_wrap_NodeIterator_GetLastChild), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetNextSibling", VALUEFUNC(_wrap_NodeIterator_GetNextSibling), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetPreviousSibling", VALUEFUNC(_wrap_NodeIterator_GetPreviousSibling), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetParent", VALUEFUNC(_wrap_NodeIterator_GetParent), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetRoot", VALUEFUNC(_wrap_NodeIterator_GetRoot), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetText", VALUEFUNC(_wrap_NodeIterator_GetText), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetChild", VALUEFUNC(_wrap_NodeIterator_GetChild), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetAttribute", VALUEFUNC(_wrap_NodeIterator_GetAttribute), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetChildValue", VALUEFUNC(_wrap_NodeIterator_GetChildValue), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "SetName", VALUEFUNC(_wrap_NodeIterator_SetName), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "SetValue", VALUEFUNC(_wrap_NodeIterator_SetValue), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "AppendAttribute", VALUEFUNC(_wrap_NodeIterator_AppendAttribute), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "PrependAttribute", VALUEFUNC(_wrap_NodeIterator_PrependAttribute), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "InsertAttributeAfter", VALUEFUNC(_wrap_NodeIterator_InsertAttributeAfter), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "InsertAttributeBefore", VALUEFUNC(_wrap_NodeIterator_InsertAttributeBefore), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "AppendCopy", VALUEFUNC(_wrap_NodeIterator_AppendCopy), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "PrependCopy", VALUEFUNC(_wrap_NodeIterator_PrependCopy), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "InsertCopyAfter", VALUEFUNC(_wrap_NodeIterator_InsertCopyAfter), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "InsertCopyBefore", VALUEFUNC(_wrap_NodeIterator_InsertCopyBefore), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "AppendChild", VALUEFUNC(_wrap_NodeIterator_AppendChild), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "PrependChild", VALUEFUNC(_wrap_NodeIterator_PrependChild), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "InsertChildAfter", VALUEFUNC(_wrap_NodeIterator_InsertChildAfter), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "InsertChildBefore", VALUEFUNC(_wrap_NodeIterator_InsertChildBefore), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "RemoveAttribute", VALUEFUNC(_wrap_NodeIterator_RemoveAttribute), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "RemoveChild", VALUEFUNC(_wrap_NodeIterator_RemoveChild), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "FindChildbyAttribute", VALUEFUNC(_wrap_NodeIterator_FindChildbyAttribute), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "Path", VALUEFUNC(_wrap_NodeIterator_Path), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "FirstElementByPath", VALUEFUNC(_wrap_NodeIterator_FirstElementByPath), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "Traverse", VALUEFUNC(_wrap_NodeIterator_Traverse), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "FindSingleNode", VALUEFUNC(_wrap_NodeIterator_FindSingleNode), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "FindNodes", VALUEFUNC(_wrap_NodeIterator_FindNodes), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "Print", VALUEFUNC(_wrap_NodeIterator_Print), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "empty", VALUEFUNC(_wrap_NodeIterator_empty), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "type", VALUEFUNC(_wrap_NodeIterator_type), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "name", VALUEFUNC(_wrap_NodeIterator_name), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "value", VALUEFUNC(_wrap_NodeIterator_value), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_first_attribute", VALUEFUNC(_wrap_NodeIterator_get_first_attribute), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_last_attribute", VALUEFUNC(_wrap_NodeIterator_get_last_attribute), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_first_child", VALUEFUNC(_wrap_NodeIterator_get_first_child), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_last_child", VALUEFUNC(_wrap_NodeIterator_get_last_child), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_next_sibling", VALUEFUNC(_wrap_NodeIterator_get_next_sibling), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_previous_sibling", VALUEFUNC(_wrap_NodeIterator_get_previous_sibling), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_parent", VALUEFUNC(_wrap_NodeIterator_get_parent), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_root", VALUEFUNC(_wrap_NodeIterator_get_root), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_text", VALUEFUNC(_wrap_NodeIterator_get_text), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_child", VALUEFUNC(_wrap_NodeIterator_get_child), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_attribute", VALUEFUNC(_wrap_NodeIterator_get_attribute), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_child_value", VALUEFUNC(_wrap_NodeIterator_get_child_value), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "set_name", VALUEFUNC(_wrap_NodeIterator_set_name), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "set_value", VALUEFUNC(_wrap_NodeIterator_set_value), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "append_attribute", VALUEFUNC(_wrap_NodeIterator_append_attribute), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "prepend_attribute", VALUEFUNC(_wrap_NodeIterator_prepend_attribute), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "insert_attribute_after", VALUEFUNC(_wrap_NodeIterator_insert_attribute_after), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "insert_attribute_before", VALUEFUNC(_wrap_NodeIterator_insert_attribute_before), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "append_copy", VALUEFUNC(_wrap_NodeIterator_append_copy), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "prepend_copy", VALUEFUNC(_wrap_NodeIterator_prepend_copy), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "insert_copy_after", VALUEFUNC(_wrap_NodeIterator_insert_copy_after), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "insert_copy_before", VALUEFUNC(_wrap_NodeIterator_insert_copy_before), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "append_child", VALUEFUNC(_wrap_NodeIterator_append_child), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "prepend_child", VALUEFUNC(_wrap_NodeIterator_prepend_child), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "insert_child_after", VALUEFUNC(_wrap_NodeIterator_insert_child_after), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "insert_child_before", VALUEFUNC(_wrap_NodeIterator_insert_child_before), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "remove_attribute", VALUEFUNC(_wrap_NodeIterator_remove_attribute), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "remove_child", VALUEFUNC(_wrap_NodeIterator_remove_child), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "find_childby_attribute", VALUEFUNC(_wrap_NodeIterator_find_childby_attribute), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "path", VALUEFUNC(_wrap_NodeIterator_path), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "first_element_by_path", VALUEFUNC(_wrap_NodeIterator_first_element_by_path), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "traverse", VALUEFUNC(_wrap_NodeIterator_traverse), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "find_single_node", VALUEFUNC(_wrap_NodeIterator_find_single_node), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "find_nodes", VALUEFUNC(_wrap_NodeIterator_find_nodes), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "print", VALUEFUNC(_wrap_NodeIterator_print), -1);
   rb_define_method(SwigClassNodeIterator.klass, "begin", VALUEFUNC(_wrap_NodeIterator_begin), -1);
   rb_define_method(SwigClassNodeIterator.klass, "end", VALUEFUNC(_wrap_NodeIterator_end), -1);
   rb_define_method(SwigClassNodeIterator.klass, "attributes_begin", VALUEFUNC(_wrap_NodeIterator_attributes_begin), -1);
   rb_define_method(SwigClassNodeIterator.klass, "attributes_end", VALUEFUNC(_wrap_NodeIterator_attributes_end), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "GetChildren", VALUEFUNC(_wrap_NodeIterator_GetChildren), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "get_children", VALUEFUNC(_wrap_NodeIterator_get_children), -1);
   rb_define_method(SwigClassNodeIterator.klass, "attributes", VALUEFUNC(_wrap_NodeIterator_attributes), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "OffSetDebug", VALUEFUNC(_wrap_NodeIterator_OffSetDebug), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "HashValue", VALUEFUNC(_wrap_NodeIterator_HashValue), -1);
-  rb_define_method(SwigClassNodeIterator.klass, "InternalObject", VALUEFUNC(_wrap_NodeIterator_InternalObject), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "off_set_debug", VALUEFUNC(_wrap_NodeIterator_off_set_debug), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "hash_value", VALUEFUNC(_wrap_NodeIterator_hash_value), -1);
+  rb_define_method(SwigClassNodeIterator.klass, "internal_object", VALUEFUNC(_wrap_NodeIterator_internal_object), -1);
   SwigClassNodeIterator.mark = 0;
   SwigClassNodeIterator.destroy = (void (*)(void *)) free_Mezzanine_XML_NodeIterator;
   SwigClassNodeIterator.trackObjects = 0;
@@ -30210,54 +31348,54 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   rb_define_method(SwigClassNamedNodeIterator.klass, ">", VALUEFUNC(_wrap_NamedNodeIterator___gt__), -1);
   rb_define_method(SwigClassNamedNodeIterator.klass, "<=", VALUEFUNC(_wrap_NamedNodeIterator___le__), -1);
   rb_define_method(SwigClassNamedNodeIterator.klass, ">=", VALUEFUNC(_wrap_NamedNodeIterator___ge__), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "Empty", VALUEFUNC(_wrap_NamedNodeIterator_Empty), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "Type", VALUEFUNC(_wrap_NamedNodeIterator_Type), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "Name", VALUEFUNC(_wrap_NamedNodeIterator_Name), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "Value", VALUEFUNC(_wrap_NamedNodeIterator_Value), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetFirstAttribute", VALUEFUNC(_wrap_NamedNodeIterator_GetFirstAttribute), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetLastAttribute", VALUEFUNC(_wrap_NamedNodeIterator_GetLastAttribute), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetFirstChild", VALUEFUNC(_wrap_NamedNodeIterator_GetFirstChild), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetLastChild", VALUEFUNC(_wrap_NamedNodeIterator_GetLastChild), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetNextSibling", VALUEFUNC(_wrap_NamedNodeIterator_GetNextSibling), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetPreviousSibling", VALUEFUNC(_wrap_NamedNodeIterator_GetPreviousSibling), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetParent", VALUEFUNC(_wrap_NamedNodeIterator_GetParent), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetRoot", VALUEFUNC(_wrap_NamedNodeIterator_GetRoot), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetText", VALUEFUNC(_wrap_NamedNodeIterator_GetText), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetChild", VALUEFUNC(_wrap_NamedNodeIterator_GetChild), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetAttribute", VALUEFUNC(_wrap_NamedNodeIterator_GetAttribute), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetChildValue", VALUEFUNC(_wrap_NamedNodeIterator_GetChildValue), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "SetName", VALUEFUNC(_wrap_NamedNodeIterator_SetName), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "SetValue", VALUEFUNC(_wrap_NamedNodeIterator_SetValue), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "AppendAttribute", VALUEFUNC(_wrap_NamedNodeIterator_AppendAttribute), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "PrependAttribute", VALUEFUNC(_wrap_NamedNodeIterator_PrependAttribute), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "InsertAttributeAfter", VALUEFUNC(_wrap_NamedNodeIterator_InsertAttributeAfter), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "InsertAttributeBefore", VALUEFUNC(_wrap_NamedNodeIterator_InsertAttributeBefore), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "AppendCopy", VALUEFUNC(_wrap_NamedNodeIterator_AppendCopy), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "PrependCopy", VALUEFUNC(_wrap_NamedNodeIterator_PrependCopy), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "InsertCopyAfter", VALUEFUNC(_wrap_NamedNodeIterator_InsertCopyAfter), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "InsertCopyBefore", VALUEFUNC(_wrap_NamedNodeIterator_InsertCopyBefore), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "AppendChild", VALUEFUNC(_wrap_NamedNodeIterator_AppendChild), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "PrependChild", VALUEFUNC(_wrap_NamedNodeIterator_PrependChild), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "InsertChildAfter", VALUEFUNC(_wrap_NamedNodeIterator_InsertChildAfter), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "InsertChildBefore", VALUEFUNC(_wrap_NamedNodeIterator_InsertChildBefore), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "RemoveAttribute", VALUEFUNC(_wrap_NamedNodeIterator_RemoveAttribute), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "RemoveChild", VALUEFUNC(_wrap_NamedNodeIterator_RemoveChild), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "FindChildbyAttribute", VALUEFUNC(_wrap_NamedNodeIterator_FindChildbyAttribute), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "Path", VALUEFUNC(_wrap_NamedNodeIterator_Path), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "FirstElementByPath", VALUEFUNC(_wrap_NamedNodeIterator_FirstElementByPath), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "Traverse", VALUEFUNC(_wrap_NamedNodeIterator_Traverse), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "FindSingleNode", VALUEFUNC(_wrap_NamedNodeIterator_FindSingleNode), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "FindNodes", VALUEFUNC(_wrap_NamedNodeIterator_FindNodes), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "Print", VALUEFUNC(_wrap_NamedNodeIterator_Print), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "empty", VALUEFUNC(_wrap_NamedNodeIterator_empty), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "type", VALUEFUNC(_wrap_NamedNodeIterator_type), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "name", VALUEFUNC(_wrap_NamedNodeIterator_name), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "value", VALUEFUNC(_wrap_NamedNodeIterator_value), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_first_attribute", VALUEFUNC(_wrap_NamedNodeIterator_get_first_attribute), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_last_attribute", VALUEFUNC(_wrap_NamedNodeIterator_get_last_attribute), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_first_child", VALUEFUNC(_wrap_NamedNodeIterator_get_first_child), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_last_child", VALUEFUNC(_wrap_NamedNodeIterator_get_last_child), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_next_sibling", VALUEFUNC(_wrap_NamedNodeIterator_get_next_sibling), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_previous_sibling", VALUEFUNC(_wrap_NamedNodeIterator_get_previous_sibling), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_parent", VALUEFUNC(_wrap_NamedNodeIterator_get_parent), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_root", VALUEFUNC(_wrap_NamedNodeIterator_get_root), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_text", VALUEFUNC(_wrap_NamedNodeIterator_get_text), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_child", VALUEFUNC(_wrap_NamedNodeIterator_get_child), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_attribute", VALUEFUNC(_wrap_NamedNodeIterator_get_attribute), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_child_value", VALUEFUNC(_wrap_NamedNodeIterator_get_child_value), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "set_name", VALUEFUNC(_wrap_NamedNodeIterator_set_name), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "set_value", VALUEFUNC(_wrap_NamedNodeIterator_set_value), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "append_attribute", VALUEFUNC(_wrap_NamedNodeIterator_append_attribute), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "prepend_attribute", VALUEFUNC(_wrap_NamedNodeIterator_prepend_attribute), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "insert_attribute_after", VALUEFUNC(_wrap_NamedNodeIterator_insert_attribute_after), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "insert_attribute_before", VALUEFUNC(_wrap_NamedNodeIterator_insert_attribute_before), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "append_copy", VALUEFUNC(_wrap_NamedNodeIterator_append_copy), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "prepend_copy", VALUEFUNC(_wrap_NamedNodeIterator_prepend_copy), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "insert_copy_after", VALUEFUNC(_wrap_NamedNodeIterator_insert_copy_after), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "insert_copy_before", VALUEFUNC(_wrap_NamedNodeIterator_insert_copy_before), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "append_child", VALUEFUNC(_wrap_NamedNodeIterator_append_child), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "prepend_child", VALUEFUNC(_wrap_NamedNodeIterator_prepend_child), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "insert_child_after", VALUEFUNC(_wrap_NamedNodeIterator_insert_child_after), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "insert_child_before", VALUEFUNC(_wrap_NamedNodeIterator_insert_child_before), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "remove_attribute", VALUEFUNC(_wrap_NamedNodeIterator_remove_attribute), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "remove_child", VALUEFUNC(_wrap_NamedNodeIterator_remove_child), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "find_childby_attribute", VALUEFUNC(_wrap_NamedNodeIterator_find_childby_attribute), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "path", VALUEFUNC(_wrap_NamedNodeIterator_path), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "first_element_by_path", VALUEFUNC(_wrap_NamedNodeIterator_first_element_by_path), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "traverse", VALUEFUNC(_wrap_NamedNodeIterator_traverse), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "find_single_node", VALUEFUNC(_wrap_NamedNodeIterator_find_single_node), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "find_nodes", VALUEFUNC(_wrap_NamedNodeIterator_find_nodes), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "print", VALUEFUNC(_wrap_NamedNodeIterator_print), -1);
   rb_define_method(SwigClassNamedNodeIterator.klass, "begin", VALUEFUNC(_wrap_NamedNodeIterator_begin), -1);
   rb_define_method(SwigClassNamedNodeIterator.klass, "end", VALUEFUNC(_wrap_NamedNodeIterator_end), -1);
   rb_define_method(SwigClassNamedNodeIterator.klass, "attributes_begin", VALUEFUNC(_wrap_NamedNodeIterator_attributes_begin), -1);
   rb_define_method(SwigClassNamedNodeIterator.klass, "attributes_end", VALUEFUNC(_wrap_NamedNodeIterator_attributes_end), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "GetChildren", VALUEFUNC(_wrap_NamedNodeIterator_GetChildren), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "get_children", VALUEFUNC(_wrap_NamedNodeIterator_get_children), -1);
   rb_define_method(SwigClassNamedNodeIterator.klass, "attributes", VALUEFUNC(_wrap_NamedNodeIterator_attributes), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "OffSetDebug", VALUEFUNC(_wrap_NamedNodeIterator_OffSetDebug), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "HashValue", VALUEFUNC(_wrap_NamedNodeIterator_HashValue), -1);
-  rb_define_method(SwigClassNamedNodeIterator.klass, "InternalObject", VALUEFUNC(_wrap_NamedNodeIterator_InternalObject), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "off_set_debug", VALUEFUNC(_wrap_NamedNodeIterator_off_set_debug), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "hash_value", VALUEFUNC(_wrap_NamedNodeIterator_hash_value), -1);
+  rb_define_method(SwigClassNamedNodeIterator.klass, "internal_object", VALUEFUNC(_wrap_NamedNodeIterator_internal_object), -1);
   SwigClassNamedNodeIterator.mark = 0;
   SwigClassNamedNodeIterator.destroy = (void (*)(void *)) free_Mezzanine_XML_NamedNodeIterator;
   SwigClassNamedNodeIterator.trackObjects = 0;
@@ -30266,18 +31404,18 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__NodeText, (void *) &SwigClassNodeText);
   rb_define_alloc_func(SwigClassNodeText.klass, _wrap_NodeText_allocate);
   rb_define_method(SwigClassNodeText.klass, "initialize", VALUEFUNC(_wrap_new_NodeText), -1);
-  rb_define_method(SwigClassNodeText.klass, "Empty", VALUEFUNC(_wrap_NodeText_Empty), -1);
-  rb_define_method(SwigClassNodeText.klass, "GetString", VALUEFUNC(_wrap_NodeText_GetString), -1);
-  rb_define_method(SwigClassNodeText.klass, "AsString", VALUEFUNC(_wrap_NodeText_AsString), -1);
-  rb_define_method(SwigClassNodeText.klass, "AsInt", VALUEFUNC(_wrap_NodeText_AsInt), -1);
-  rb_define_method(SwigClassNodeText.klass, "AsUint", VALUEFUNC(_wrap_NodeText_AsUint), -1);
-  rb_define_method(SwigClassNodeText.klass, "AsDouble", VALUEFUNC(_wrap_NodeText_AsDouble), -1);
-  rb_define_method(SwigClassNodeText.klass, "AsFloat", VALUEFUNC(_wrap_NodeText_AsFloat), -1);
-  rb_define_method(SwigClassNodeText.klass, "AsReal", VALUEFUNC(_wrap_NodeText_AsReal), -1);
-  rb_define_method(SwigClassNodeText.klass, "AsWhole", VALUEFUNC(_wrap_NodeText_AsWhole), -1);
-  rb_define_method(SwigClassNodeText.klass, "AsInteger", VALUEFUNC(_wrap_NodeText_AsInteger), -1);
-  rb_define_method(SwigClassNodeText.klass, "AsBool", VALUEFUNC(_wrap_NodeText_AsBool), -1);
-  rb_define_method(SwigClassNodeText.klass, "Set", VALUEFUNC(_wrap_NodeText_Set), -1);
+  rb_define_method(SwigClassNodeText.klass, "empty", VALUEFUNC(_wrap_NodeText_empty), -1);
+  rb_define_method(SwigClassNodeText.klass, "get_string", VALUEFUNC(_wrap_NodeText_get_string), -1);
+  rb_define_method(SwigClassNodeText.klass, "as_string", VALUEFUNC(_wrap_NodeText_as_string), -1);
+  rb_define_method(SwigClassNodeText.klass, "as_int", VALUEFUNC(_wrap_NodeText_as_int), -1);
+  rb_define_method(SwigClassNodeText.klass, "as_uint", VALUEFUNC(_wrap_NodeText_as_uint), -1);
+  rb_define_method(SwigClassNodeText.klass, "as_double", VALUEFUNC(_wrap_NodeText_as_double), -1);
+  rb_define_method(SwigClassNodeText.klass, "as_float", VALUEFUNC(_wrap_NodeText_as_float), -1);
+  rb_define_method(SwigClassNodeText.klass, "as_real", VALUEFUNC(_wrap_NodeText_as_real), -1);
+  rb_define_method(SwigClassNodeText.klass, "as_whole", VALUEFUNC(_wrap_NodeText_as_whole), -1);
+  rb_define_method(SwigClassNodeText.klass, "as_integer", VALUEFUNC(_wrap_NodeText_as_integer), -1);
+  rb_define_method(SwigClassNodeText.klass, "as_bool", VALUEFUNC(_wrap_NodeText_as_bool), -1);
+  rb_define_method(SwigClassNodeText.klass, "set", VALUEFUNC(_wrap_NodeText_set), -1);
   rb_define_method(SwigClassNodeText.klass, "data", VALUEFUNC(_wrap_NodeText_data), -1);
   SwigClassNodeText.mark = 0;
   SwigClassNodeText.destroy = (void (*)(void *)) free_Mezzanine_XML_NodeText;
@@ -30286,25 +31424,25 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SwigClassTreeWalker.klass = rb_define_class_under(mMezzanineXML, "TreeWalker", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__TreeWalker, (void *) &SwigClassTreeWalker);
   rb_undef_alloc_func(SwigClassTreeWalker.klass);
-  rb_define_method(SwigClassTreeWalker.klass, "OnTraversalBegin", VALUEFUNC(_wrap_TreeWalker_OnTraversalBegin), -1);
-  rb_define_method(SwigClassTreeWalker.klass, "OnEachNode", VALUEFUNC(_wrap_TreeWalker_OnEachNode), -1);
-  rb_define_method(SwigClassTreeWalker.klass, "OnTraversalEnd", VALUEFUNC(_wrap_TreeWalker_OnTraversalEnd), -1);
+  rb_define_method(SwigClassTreeWalker.klass, "on_traversal_begin", VALUEFUNC(_wrap_TreeWalker_on_traversal_begin), -1);
+  rb_define_method(SwigClassTreeWalker.klass, "on_each_node", VALUEFUNC(_wrap_TreeWalker_on_each_node), -1);
+  rb_define_method(SwigClassTreeWalker.klass, "on_traversal_end", VALUEFUNC(_wrap_TreeWalker_on_traversal_end), -1);
   SwigClassTreeWalker.mark = 0;
   SwigClassTreeWalker.destroy = (void (*)(void *)) free_Mezzanine_XML_TreeWalker;
   SwigClassTreeWalker.trackObjects = 0;
-  rb_define_module_function(mMezzanineXML, "AsUtf8", VALUEFUNC(_wrap_AsUtf8), -1);
-  rb_define_module_function(mMezzanineXML, "AsWide", VALUEFUNC(_wrap_AsWide), -1);
-  rb_define_module_function(mMezzanineXML, "GetOneTag", VALUEFUNC(_wrap_GetOneTag), -1);
-  rb_define_module_function(mMezzanineXML, "PreParseClassFromSingleTag", VALUEFUNC(_wrap_PreParseClassFromSingleTag), -1);
-  rb_define_module_function(mMezzanineXML, "EscapeXML", VALUEFUNC(_wrap_EscapeXML), -1);
+  rb_define_module_function(mMezzanineXML, "as_utf8", VALUEFUNC(_wrap_as_utf8), -1);
+  rb_define_module_function(mMezzanineXML, "as_wide", VALUEFUNC(_wrap_as_wide), -1);
+  rb_define_module_function(mMezzanineXML, "get_one_tag", VALUEFUNC(_wrap_get_one_tag), -1);
+  rb_define_module_function(mMezzanineXML, "pre_parse_class_from_single_tag", VALUEFUNC(_wrap_pre_parse_class_from_single_tag), -1);
+  rb_define_module_function(mMezzanineXML, "escape_xml", VALUEFUNC(_wrap_escape_xml), -1);
   
   SwigClassXPathNode.klass = rb_define_class_under(mMezzanineXML, "XPathNode", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__XPathNode, (void *) &SwigClassXPathNode);
   rb_define_alloc_func(SwigClassXPathNode.klass, _wrap_XPathNode_allocate);
   rb_define_method(SwigClassXPathNode.klass, "initialize", VALUEFUNC(_wrap_new_XPathNode), -1);
-  rb_define_method(SwigClassXPathNode.klass, "GetNode", VALUEFUNC(_wrap_XPathNode_GetNode), -1);
-  rb_define_method(SwigClassXPathNode.klass, "GetAttribute", VALUEFUNC(_wrap_XPathNode_GetAttribute), -1);
-  rb_define_method(SwigClassXPathNode.klass, "GetParent", VALUEFUNC(_wrap_XPathNode_GetParent), -1);
+  rb_define_method(SwigClassXPathNode.klass, "get_node", VALUEFUNC(_wrap_XPathNode_get_node), -1);
+  rb_define_method(SwigClassXPathNode.klass, "get_attribute", VALUEFUNC(_wrap_XPathNode_get_attribute), -1);
+  rb_define_method(SwigClassXPathNode.klass, "get_parent", VALUEFUNC(_wrap_XPathNode_get_parent), -1);
   rb_define_method(SwigClassXPathNode.klass, "==", VALUEFUNC(_wrap_XPathNode___eq__), -1);
   SwigClassXPathNode.mark = 0;
   SwigClassXPathNode.destroy = (void (*)(void *)) free_Mezzanine_XML_XPathNode;
@@ -30317,13 +31455,13 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   rb_define_const(SwigClassXPathNodeSet.klass, "TypeUnsorted", SWIG_From_int(static_cast< int >(Mezzanine::XML::XPathNodeSet::TypeUnsorted)));
   rb_define_const(SwigClassXPathNodeSet.klass, "TypeSorted", SWIG_From_int(static_cast< int >(Mezzanine::XML::XPathNodeSet::TypeSorted)));
   rb_define_const(SwigClassXPathNodeSet.klass, "TypeSortedReverse", SWIG_From_int(static_cast< int >(Mezzanine::XML::XPathNodeSet::TypeSortedReverse)));
-  rb_define_method(SwigClassXPathNodeSet.klass, "Type", VALUEFUNC(_wrap_XPathNodeSet_Type), -1);
+  rb_define_method(SwigClassXPathNodeSet.klass, "type", VALUEFUNC(_wrap_XPathNodeSet_type), -1);
   rb_define_method(SwigClassXPathNodeSet.klass, "size", VALUEFUNC(_wrap_XPathNodeSet_size), -1);
   rb_define_method(SwigClassXPathNodeSet.klass, "begin", VALUEFUNC(_wrap_XPathNodeSet_begin), -1);
   rb_define_method(SwigClassXPathNodeSet.klass, "end", VALUEFUNC(_wrap_XPathNodeSet_end), -1);
   rb_define_method(SwigClassXPathNodeSet.klass, "sort", VALUEFUNC(_wrap_XPathNodeSet_sort), -1);
   rb_define_method(SwigClassXPathNodeSet.klass, "first", VALUEFUNC(_wrap_XPathNodeSet_first), -1);
-  rb_define_method(SwigClassXPathNodeSet.klass, "Empty", VALUEFUNC(_wrap_XPathNodeSet_Empty), -1);
+  rb_define_method(SwigClassXPathNodeSet.klass, "empty", VALUEFUNC(_wrap_XPathNodeSet_empty), -1);
   SwigClassXPathNodeSet.mark = 0;
   SwigClassXPathNodeSet.destroy = (void (*)(void *)) free_Mezzanine_XML_XPathNodeSet;
   SwigClassXPathNodeSet.trackObjects = 0;
@@ -30334,7 +31472,7 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   rb_define_method(SwigClassXPathParseResult.klass, "initialize", VALUEFUNC(_wrap_new_XPathParseResult), -1);
   rb_define_method(SwigClassXPathParseResult.klass, "Offset=", VALUEFUNC(_wrap_XPathParseResult_Offset_set), -1);
   rb_define_method(SwigClassXPathParseResult.klass, "Offset", VALUEFUNC(_wrap_XPathParseResult_Offset_get), -1);
-  rb_define_method(SwigClassXPathParseResult.klass, "Description", VALUEFUNC(_wrap_XPathParseResult_Description), -1);
+  rb_define_method(SwigClassXPathParseResult.klass, "description", VALUEFUNC(_wrap_XPathParseResult_description), -1);
   SwigClassXPathParseResult.mark = 0;
   SwigClassXPathParseResult.destroy = (void (*)(void *)) free_Mezzanine_XML_XPathParseResult;
   SwigClassXPathParseResult.trackObjects = 0;
@@ -30342,13 +31480,13 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SwigClassXPathVariable.klass = rb_define_class_under(mMezzanineXML, "XPathVariable", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__XPathVariable, (void *) &SwigClassXPathVariable);
   rb_undef_alloc_func(SwigClassXPathVariable.klass);
-  rb_define_method(SwigClassXPathVariable.klass, "Name", VALUEFUNC(_wrap_XPathVariable_Name), -1);
-  rb_define_method(SwigClassXPathVariable.klass, "Type", VALUEFUNC(_wrap_XPathVariable_Type), -1);
-  rb_define_method(SwigClassXPathVariable.klass, "GetBoolean", VALUEFUNC(_wrap_XPathVariable_GetBoolean), -1);
-  rb_define_method(SwigClassXPathVariable.klass, "GetNumber", VALUEFUNC(_wrap_XPathVariable_GetNumber), -1);
-  rb_define_method(SwigClassXPathVariable.klass, "GetString", VALUEFUNC(_wrap_XPathVariable_GetString), -1);
-  rb_define_method(SwigClassXPathVariable.klass, "GetNodeSet", VALUEFUNC(_wrap_XPathVariable_GetNodeSet), -1);
-  rb_define_method(SwigClassXPathVariable.klass, "Set", VALUEFUNC(_wrap_XPathVariable_Set), -1);
+  rb_define_method(SwigClassXPathVariable.klass, "name", VALUEFUNC(_wrap_XPathVariable_name), -1);
+  rb_define_method(SwigClassXPathVariable.klass, "type", VALUEFUNC(_wrap_XPathVariable_type), -1);
+  rb_define_method(SwigClassXPathVariable.klass, "get_boolean", VALUEFUNC(_wrap_XPathVariable_get_boolean), -1);
+  rb_define_method(SwigClassXPathVariable.klass, "get_number", VALUEFUNC(_wrap_XPathVariable_get_number), -1);
+  rb_define_method(SwigClassXPathVariable.klass, "get_string", VALUEFUNC(_wrap_XPathVariable_get_string), -1);
+  rb_define_method(SwigClassXPathVariable.klass, "get_node_set", VALUEFUNC(_wrap_XPathVariable_get_node_set), -1);
+  rb_define_method(SwigClassXPathVariable.klass, "set", VALUEFUNC(_wrap_XPathVariable_set), -1);
   SwigClassXPathVariable.mark = 0;
   SwigClassXPathVariable.destroy = (void (*)(void *)) free_Mezzanine_XML_XPathVariable;
   SwigClassXPathVariable.trackObjects = 0;
@@ -30357,9 +31495,9 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, (void *) &SwigClassXPathVariableSet);
   rb_define_alloc_func(SwigClassXPathVariableSet.klass, _wrap_XPathVariableSet_allocate);
   rb_define_method(SwigClassXPathVariableSet.klass, "initialize", VALUEFUNC(_wrap_new_XPathVariableSet), -1);
-  rb_define_method(SwigClassXPathVariableSet.klass, "Add", VALUEFUNC(_wrap_XPathVariableSet_Add), -1);
-  rb_define_method(SwigClassXPathVariableSet.klass, "Set", VALUEFUNC(_wrap_XPathVariableSet_Set), -1);
-  rb_define_method(SwigClassXPathVariableSet.klass, "Get", VALUEFUNC(_wrap_XPathVariableSet_Get), -1);
+  rb_define_method(SwigClassXPathVariableSet.klass, "add", VALUEFUNC(_wrap_XPathVariableSet_add), -1);
+  rb_define_method(SwigClassXPathVariableSet.klass, "set", VALUEFUNC(_wrap_XPathVariableSet_set), -1);
+  rb_define_method(SwigClassXPathVariableSet.klass, "get", VALUEFUNC(_wrap_XPathVariableSet_get), -1);
   SwigClassXPathVariableSet.mark = 0;
   SwigClassXPathVariableSet.destroy = (void (*)(void *)) free_Mezzanine_XML_XPathVariableSet;
   SwigClassXPathVariableSet.trackObjects = 0;
@@ -30368,12 +31506,12 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__XPathQuery, (void *) &SwigClassXPathQuery);
   rb_define_alloc_func(SwigClassXPathQuery.klass, _wrap_XPathQuery_allocate);
   rb_define_method(SwigClassXPathQuery.klass, "initialize", VALUEFUNC(_wrap_new_XPathQuery), -1);
-  rb_define_method(SwigClassXPathQuery.klass, "ReturnType", VALUEFUNC(_wrap_XPathQuery_ReturnType), -1);
-  rb_define_method(SwigClassXPathQuery.klass, "EvaluateBoolean", VALUEFUNC(_wrap_XPathQuery_EvaluateBoolean), -1);
-  rb_define_method(SwigClassXPathQuery.klass, "EvaluateNumber", VALUEFUNC(_wrap_XPathQuery_EvaluateNumber), -1);
-  rb_define_method(SwigClassXPathQuery.klass, "EvaluateString", VALUEFUNC(_wrap_XPathQuery_EvaluateString), -1);
-  rb_define_method(SwigClassXPathQuery.klass, "EvaluateNodeSet", VALUEFUNC(_wrap_XPathQuery_EvaluateNodeSet), -1);
-  rb_define_method(SwigClassXPathQuery.klass, "Result", VALUEFUNC(_wrap_XPathQuery_Result), -1);
+  rb_define_method(SwigClassXPathQuery.klass, "return_type", VALUEFUNC(_wrap_XPathQuery_return_type), -1);
+  rb_define_method(SwigClassXPathQuery.klass, "evaluate_boolean", VALUEFUNC(_wrap_XPathQuery_evaluate_boolean), -1);
+  rb_define_method(SwigClassXPathQuery.klass, "evaluate_number", VALUEFUNC(_wrap_XPathQuery_evaluate_number), -1);
+  rb_define_method(SwigClassXPathQuery.klass, "evaluate_string", VALUEFUNC(_wrap_XPathQuery_evaluate_string), -1);
+  rb_define_method(SwigClassXPathQuery.klass, "evaluate_node_set", VALUEFUNC(_wrap_XPathQuery_evaluate_node_set), -1);
+  rb_define_method(SwigClassXPathQuery.klass, "result", VALUEFUNC(_wrap_XPathQuery_result), -1);
   SwigClassXPathQuery.mark = 0;
   SwigClassXPathQuery.destroy = (void (*)(void *)) free_Mezzanine_XML_XPathQuery;
   SwigClassXPathQuery.trackObjects = 0;

@@ -1825,79 +1825,80 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_Mezzanine__AttachableBase swig_types[6]
 #define SWIGTYPE_p_Mezzanine__AttachableChild swig_types[7]
 #define SWIGTYPE_p_Mezzanine__AttachableParent swig_types[8]
-#define SWIGTYPE_p_Mezzanine__AttachableParent__AttachableContainer__iterator swig_types[9]
-#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[10]
-#define SWIGTYPE_p_Mezzanine__ColourValue swig_types[11]
-#define SWIGTYPE_p_Mezzanine__GoalTimer swig_types[12]
-#define SWIGTYPE_p_Mezzanine__Graphics__Mesh swig_types[13]
-#define SWIGTYPE_p_Mezzanine__Graphics__SceneManager swig_types[14]
-#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[15]
-#define SWIGTYPE_p_Mezzanine__NonStaticWorldObject swig_types[16]
-#define SWIGTYPE_p_Mezzanine__NonTriggerPhysicsSettings swig_types[17]
-#define SWIGTYPE_p_Mezzanine__Physics__CollisionShape swig_types[18]
-#define SWIGTYPE_p_Mezzanine__Plane swig_types[19]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[20]
-#define SWIGTYPE_p_Mezzanine__Ray swig_types[21]
-#define SWIGTYPE_p_Mezzanine__RayQueryTool swig_types[22]
-#define SWIGTYPE_p_Mezzanine__Sphere swig_types[23]
-#define SWIGTYPE_p_Mezzanine__StopWatchTimer swig_types[24]
-#define SWIGTYPE_p_Mezzanine__Timer swig_types[25]
-#define SWIGTYPE_p_Mezzanine__Transform swig_types[26]
-#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[27]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[28]
-#define SWIGTYPE_p_Mezzanine__World swig_types[29]
-#define SWIGTYPE_p_Mezzanine__WorldNode swig_types[30]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[31]
-#define SWIGTYPE_p_Mezzanine__WorldObjectGraphicsSettings swig_types[32]
-#define SWIGTYPE_p_Mezzanine__WorldObjectPhysicsSettings swig_types[33]
-#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[34]
-#define SWIGTYPE_p_Ogre__ColourValue swig_types[35]
-#define SWIGTYPE_p_Ogre__Entity swig_types[36]
-#define SWIGTYPE_p_Ogre__Plane swig_types[37]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[38]
-#define SWIGTYPE_p_Ogre__Ray swig_types[39]
-#define SWIGTYPE_p_Ogre__SceneNode swig_types[40]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[41]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[42]
-#define SWIGTYPE_p_Physics__Collision swig_types[43]
-#define SWIGTYPE_p_Physics__Collision__CollisionState swig_types[44]
-#define SWIGTYPE_p_PlaneRayTestResult swig_types[45]
-#define SWIGTYPE_p_RayTestResult swig_types[46]
-#define SWIGTYPE_p_SDL_Event swig_types[47]
-#define SWIGTYPE_p_WorldObjectPhysicsSettings swig_types[48]
-#define SWIGTYPE_p_XML__Node swig_types[49]
-#define SWIGTYPE_p_bool swig_types[50]
-#define SWIGTYPE_p_btCollisionObject swig_types[51]
-#define SWIGTYPE_p_btQuaternion swig_types[52]
-#define SWIGTYPE_p_btTransform swig_types[53]
-#define SWIGTYPE_p_btVector3 swig_types[54]
-#define SWIGTYPE_p_char swig_types[55]
-#define SWIGTYPE_p_float swig_types[56]
-#define SWIGTYPE_p_int swig_types[57]
-#define SWIGTYPE_p_long_long swig_types[58]
-#define SWIGTYPE_p_short swig_types[59]
-#define SWIGTYPE_p_signed_char swig_types[60]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[61]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[62]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[63]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[64]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[65]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[66]
-#define SWIGTYPE_p_std__string swig_types[67]
-#define SWIGTYPE_p_std__stringstream swig_types[68]
-#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[69]
-#define SWIGTYPE_p_std__wstring swig_types[70]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[71]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[72]
-#define SWIGTYPE_p_swig__Iterator swig_types[73]
-#define SWIGTYPE_p_unsigned_char swig_types[74]
-#define SWIGTYPE_p_unsigned_int swig_types[75]
-#define SWIGTYPE_p_unsigned_long swig_types[76]
-#define SWIGTYPE_p_unsigned_long_long swig_types[77]
-#define SWIGTYPE_p_unsigned_short swig_types[78]
-#define SWIGTYPE_p_void swig_types[79]
-static swig_type_info *swig_types[81];
-static swig_module_info swig_module = {swig_types, 80, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__AttachableParent__AttachableContainer__const_iterator swig_types[9]
+#define SWIGTYPE_p_Mezzanine__AttachableParent__AttachableContainer__iterator swig_types[10]
+#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[11]
+#define SWIGTYPE_p_Mezzanine__ColourValue swig_types[12]
+#define SWIGTYPE_p_Mezzanine__GoalTimer swig_types[13]
+#define SWIGTYPE_p_Mezzanine__Graphics__Mesh swig_types[14]
+#define SWIGTYPE_p_Mezzanine__Graphics__SceneManager swig_types[15]
+#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[16]
+#define SWIGTYPE_p_Mezzanine__NonStaticWorldObject swig_types[17]
+#define SWIGTYPE_p_Mezzanine__NonTriggerPhysicsSettings swig_types[18]
+#define SWIGTYPE_p_Mezzanine__Physics__CollisionShape swig_types[19]
+#define SWIGTYPE_p_Mezzanine__Plane swig_types[20]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[21]
+#define SWIGTYPE_p_Mezzanine__Ray swig_types[22]
+#define SWIGTYPE_p_Mezzanine__RayQueryTool swig_types[23]
+#define SWIGTYPE_p_Mezzanine__Sphere swig_types[24]
+#define SWIGTYPE_p_Mezzanine__StopWatchTimer swig_types[25]
+#define SWIGTYPE_p_Mezzanine__Timer swig_types[26]
+#define SWIGTYPE_p_Mezzanine__Transform swig_types[27]
+#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[28]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[29]
+#define SWIGTYPE_p_Mezzanine__World swig_types[30]
+#define SWIGTYPE_p_Mezzanine__WorldNode swig_types[31]
+#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[32]
+#define SWIGTYPE_p_Mezzanine__WorldObjectGraphicsSettings swig_types[33]
+#define SWIGTYPE_p_Mezzanine__WorldObjectPhysicsSettings swig_types[34]
+#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[35]
+#define SWIGTYPE_p_Ogre__ColourValue swig_types[36]
+#define SWIGTYPE_p_Ogre__Entity swig_types[37]
+#define SWIGTYPE_p_Ogre__Plane swig_types[38]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[39]
+#define SWIGTYPE_p_Ogre__Ray swig_types[40]
+#define SWIGTYPE_p_Ogre__SceneNode swig_types[41]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[42]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[43]
+#define SWIGTYPE_p_Physics__Collision swig_types[44]
+#define SWIGTYPE_p_Physics__Collision__CollisionState swig_types[45]
+#define SWIGTYPE_p_PlaneRayTestResult swig_types[46]
+#define SWIGTYPE_p_RayTestResult swig_types[47]
+#define SWIGTYPE_p_SDL_Event swig_types[48]
+#define SWIGTYPE_p_WorldObjectPhysicsSettings swig_types[49]
+#define SWIGTYPE_p_XML__Node swig_types[50]
+#define SWIGTYPE_p_bool swig_types[51]
+#define SWIGTYPE_p_btCollisionObject swig_types[52]
+#define SWIGTYPE_p_btQuaternion swig_types[53]
+#define SWIGTYPE_p_btTransform swig_types[54]
+#define SWIGTYPE_p_btVector3 swig_types[55]
+#define SWIGTYPE_p_char swig_types[56]
+#define SWIGTYPE_p_float swig_types[57]
+#define SWIGTYPE_p_int swig_types[58]
+#define SWIGTYPE_p_long_long swig_types[59]
+#define SWIGTYPE_p_short swig_types[60]
+#define SWIGTYPE_p_signed_char swig_types[61]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[62]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[63]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[64]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[65]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[66]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[67]
+#define SWIGTYPE_p_std__string swig_types[68]
+#define SWIGTYPE_p_std__stringstream swig_types[69]
+#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[70]
+#define SWIGTYPE_p_std__wstring swig_types[71]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[72]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[73]
+#define SWIGTYPE_p_swig__Iterator swig_types[74]
+#define SWIGTYPE_p_unsigned_char swig_types[75]
+#define SWIGTYPE_p_unsigned_int swig_types[76]
+#define SWIGTYPE_p_unsigned_long swig_types[77]
+#define SWIGTYPE_p_unsigned_long_long swig_types[78]
+#define SWIGTYPE_p_unsigned_short swig_types[79]
+#define SWIGTYPE_p_void swig_types[80]
+static swig_type_info *swig_types[82];
+static swig_module_info swig_module = {swig_types, 81, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2831,11 +2832,11 @@ SWIG_AsPtr_std_string (VALUE obj, std::string **val)
   return SWIG_ERROR;
 }
 
-static swig_class SwigClassGC_VALUE;
+static swig_class SwigClassGCVALUE;
 
 
 /*
-  Document-method: Mezzanine::GC_VALUE.inspect
+  Document-method: Mezzanine::GCVALUE.inspect
 
   call-seq:
     inspect -> VALUE
@@ -2843,7 +2844,7 @@ static swig_class SwigClassGC_VALUE;
 Inspect class and its contents.
 */
 SWIGINTERN VALUE
-_wrap_GC_VALUE_inspect(int argc, VALUE *argv, VALUE self) {
+_wrap_GCVALUE_inspect(int argc, VALUE *argv, VALUE self) {
   swig::GC_VALUE *arg1 = (swig::GC_VALUE *) 0 ;
   swig::GC_VALUE r1 ;
   VALUE result;
@@ -2863,7 +2864,7 @@ fail:
 
 
 /*
-  Document-method: Mezzanine::GC_VALUE.to_s
+  Document-method: Mezzanine::GCVALUE.to_s
 
   call-seq:
     to_s -> VALUE
@@ -2871,7 +2872,7 @@ fail:
 Convert class to a String representation.
 */
 SWIGINTERN VALUE
-_wrap_GC_VALUE_to_s(int argc, VALUE *argv, VALUE self) {
+_wrap_GCVALUE_to_s(int argc, VALUE *argv, VALUE self) {
   swig::GC_VALUE *arg1 = (swig::GC_VALUE *) 0 ;
   swig::GC_VALUE r1 ;
   VALUE result;
@@ -4072,7 +4073,7 @@ free_swig_Iterator(swig::Iterator *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_PrintHello(int argc, VALUE *argv, VALUE self) {
+_wrap_print_hello(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
@@ -4245,7 +4246,42 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_GetAxisValue(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_get_axis_value__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
+  Mezzanine::StandardAxis *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 ;
+  Mezzanine::StandardAxis temp2 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Vector3, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const *","GetAxisValue", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Vector3 * >(argp1);
+  ecode2 = SWIG_AsVal_int (argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::StandardAxis const &","GetAxisValue", 2, argv[0] ));
+  } else {
+    temp2 = static_cast< Mezzanine::StandardAxis >(val2);
+    arg2 = &temp2;
+  }
+  result = (Mezzanine::Real)((Mezzanine::Vector3 const *)arg1)->GetAxisValue((Mezzanine::StandardAxis const &)*arg2);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Vector3_get_axis_value__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -4274,6 +4310,158 @@ _wrap_Vector3_GetAxisValue(int argc, VALUE *argv, VALUE self) {
   vresult = SWIG_From_float(static_cast< float >(result));
   return vresult;
 fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Vector3_get_axis_value__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
+  Mezzanine::StandardAxis *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 ;
+  Mezzanine::StandardAxis temp2 ;
+  Mezzanine::Real *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Vector3, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Vector3 *","GetAxisValue", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Vector3 * >(argp1);
+  ecode2 = SWIG_AsVal_int (argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::StandardAxis const &","GetAxisValue", 2, argv[0] ));
+  } else {
+    temp2 = static_cast< Mezzanine::StandardAxis >(val2);
+    arg2 = &temp2;
+  }
+  result = (Mezzanine::Real *) &(arg1)->GetAxisValue((Mezzanine::StandardAxis const &)*arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_float, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Vector3_get_axis_value__SWIG_3(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
+  Mezzanine::Whole *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Whole temp2 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  Mezzanine::Real *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Vector3, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Vector3 *","GetAxisValue", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Vector3 * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","GetAxisValue", 2, argv[0] ));
+  } 
+  temp2 = static_cast< Mezzanine::Whole >(val2);
+  arg2 = &temp2;
+  result = (Mezzanine::Real *) &(arg1)->GetAxisValue((Mezzanine::Whole const &)*arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_float, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_Vector3_get_axis_value(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Vector3_get_axis_value__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Vector3_get_axis_value__SWIG_2(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_long(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Vector3_get_axis_value__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_long(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Vector3_get_axis_value__SWIG_3(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Vector3.get_axis_value", 
+    "    Mezzanine::Real & Vector3.get_axis_value(Mezzanine::StandardAxis const &Axis)\n"
+    "    Mezzanine::Real & Vector3.get_axis_value(Mezzanine::Whole const &Axis)\n"
+    "    Mezzanine::Real & Vector3.get_axis_value(Mezzanine::StandardAxis const &Axis)\n"
+    "    Mezzanine::Real & Vector3.get_axis_value(Mezzanine::Whole const &Axis)\n");
+  
   return Qnil;
 }
 
@@ -4548,7 +4736,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Unit_X(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_unit_x(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 result;
   VALUE vresult = Qnil;
   
@@ -4564,7 +4752,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Unit_Y(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_unit_y(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 result;
   VALUE vresult = Qnil;
   
@@ -4580,7 +4768,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Unit_Z(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_unit_z(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 result;
   VALUE vresult = Qnil;
   
@@ -4596,7 +4784,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Neg_Unit_X(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_neg_unit_x(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 result;
   VALUE vresult = Qnil;
   
@@ -4612,7 +4800,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Neg_Unit_Y(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_neg_unit_y(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 result;
   VALUE vresult = Qnil;
   
@@ -4628,7 +4816,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Neg_Unit_Z(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_neg_unit_z(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 result;
   VALUE vresult = Qnil;
   
@@ -4644,7 +4832,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_UnitOnAxis(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_unit_on_axis(int argc, VALUE *argv, VALUE self) {
   Mezzanine::StandardAxis arg1 ;
   int val1 ;
   int ecode1 = 0 ;
@@ -4668,7 +4856,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_IsStandardUnitAxis(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_is_standard_unit_axis(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5747,7 +5935,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_CrossProduct(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_cross_product(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -5782,7 +5970,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_DotProduct(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_dot_product(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -5817,7 +6005,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Normalize(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_normalize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5841,7 +6029,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_GetNormal(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_get_normal(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5865,7 +6053,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_GetDirection(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_get_direction(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -5900,7 +6088,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Inverse(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_inverse(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5924,7 +6112,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Reflect(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_reflect(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -5959,7 +6147,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Distance(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_distance(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -5994,7 +6182,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_SquaredDistance(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_squared_distance(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6029,7 +6217,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Length(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_length(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6053,7 +6241,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_SquaredLength(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_squared_length(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6077,7 +6265,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_IsZeroLength(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_is_zero_length(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6101,7 +6289,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_GetRotationToAxis__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_get_rotation_to_axis__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -6147,7 +6335,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_GetRotationToAxis__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_get_rotation_to_axis__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6181,7 +6369,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Vector3_GetRotationToAxis(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Vector3_get_rotation_to_axis(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -6202,7 +6390,7 @@ SWIGINTERN VALUE _wrap_Vector3_GetRotationToAxis(int nargs, VALUE *args, VALUE s
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Vector3_GetRotationToAxis__SWIG_1(nargs, args, self);
+        return _wrap_Vector3_get_rotation_to_axis__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -6220,23 +6408,23 @@ SWIGINTERN VALUE _wrap_Vector3_GetRotationToAxis(int nargs, VALUE *args, VALUE s
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Vector3_GetRotationToAxis__SWIG_0(nargs, args, self);
+          return _wrap_Vector3_get_rotation_to_axis__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Vector3.GetRotationToAxis", 
-    "    Mezzanine::Quaternion Vector3.GetRotationToAxis(Mezzanine::Vector3 const &Axis, Mezzanine::Vector3 const &FallBackAxis)\n"
-    "    Mezzanine::Quaternion Vector3.GetRotationToAxis(Mezzanine::Vector3 const &Axis)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Vector3.get_rotation_to_axis", 
+    "    Mezzanine::Quaternion Vector3.get_rotation_to_axis(Mezzanine::Vector3 const &Axis, Mezzanine::Vector3 const &FallBackAxis)\n"
+    "    Mezzanine::Quaternion Vector3.get_rotation_to_axis(Mezzanine::Vector3 const &Axis)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Zero(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_zero(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6257,7 +6445,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_SetValues(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_set_values(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Real *arg3 = 0 ;
@@ -6308,7 +6496,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Ceil(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_ceil(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6343,7 +6531,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_Floor(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_floor(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6378,7 +6566,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_GetBulletVector3(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_get_bullet_vector3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6402,7 +6590,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_ExtractBulletVector3(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_extract_bullet_vector3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   btVector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6434,7 +6622,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_GetOgreVector3(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_get_ogre_vector3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6458,7 +6646,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_ExtractOgreVector3(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_extract_ogre_vector3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   Ogre::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6490,7 +6678,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6522,7 +6710,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -6554,7 +6742,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector3_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector3_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -6932,7 +7120,7 @@ free_Mezzanine_Plane(Mezzanine::Plane *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_Plane_Define__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_define__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::Real arg3 ;
@@ -6972,7 +7160,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Plane_Define__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_define__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -7025,7 +7213,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Plane_Define(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Plane_define(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -7051,7 +7239,7 @@ SWIGINTERN VALUE _wrap_Plane_Define(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Plane_Define__SWIG_0(nargs, args, self);
+          return _wrap_Plane_define__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -7074,7 +7262,7 @@ SWIGINTERN VALUE _wrap_Plane_Define(int nargs, VALUE *args, VALUE self) {
           int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_Plane_Define__SWIG_1(nargs, args, self);
+            return _wrap_Plane_define__SWIG_1(nargs, args, self);
           }
         }
       }
@@ -7082,16 +7270,16 @@ SWIGINTERN VALUE _wrap_Plane_Define(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "Plane.Define", 
-    "    void Plane.Define(Mezzanine::Vector3 const &Norm, Mezzanine::Real const Dist)\n"
-    "    void Plane.Define(Mezzanine::Vector3 const &First, Mezzanine::Vector3 const &Second, Mezzanine::Vector3 const &Third)\n");
+  Ruby_Format_OverloadedError( argc, 5, "Plane.define", 
+    "    void Plane.define(Mezzanine::Vector3 const &Norm, Mezzanine::Real const Dist)\n"
+    "    void Plane.define(Mezzanine::Vector3 const &First, Mezzanine::Vector3 const &Second, Mezzanine::Vector3 const &Third)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Plane_GetSide__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_get_side__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7126,7 +7314,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Plane_GetSide__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_get_side__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -7171,7 +7359,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Plane_GetSide(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Plane_get_side(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -7192,7 +7380,7 @@ SWIGINTERN VALUE _wrap_Plane_GetSide(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Plane_GetSide__SWIG_0(nargs, args, self);
+        return _wrap_Plane_get_side__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -7210,23 +7398,23 @@ SWIGINTERN VALUE _wrap_Plane_GetSide(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_Plane_GetSide__SWIG_1(nargs, args, self);
+          return _wrap_Plane_get_side__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Plane.GetSide", 
-    "    Mezzanine::Plane::Side Plane.GetSide(Mezzanine::Vector3 const &Point)\n"
-    "    Mezzanine::Plane::Side Plane.GetSide(Mezzanine::Vector3 const &Center, Mezzanine::Vector3 const &HalfSize)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Plane.get_side", 
+    "    Mezzanine::Plane::Side Plane.get_side(Mezzanine::Vector3 const &Point)\n"
+    "    Mezzanine::Plane::Side Plane.get_side(Mezzanine::Vector3 const &Center, Mezzanine::Vector3 const &HalfSize)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Plane_GetDistance(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_get_distance(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7261,7 +7449,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Plane_IsOverlapping__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_is_overlapping__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Sphere *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7296,7 +7484,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Plane_IsOverlapping__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_is_overlapping__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::AxisAlignedBox *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7331,7 +7519,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Plane_IsOverlapping__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_is_overlapping__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Plane *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7365,7 +7553,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Plane_IsOverlapping(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Plane_is_overlapping(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -7386,7 +7574,7 @@ SWIGINTERN VALUE _wrap_Plane_IsOverlapping(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Sphere, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Plane_IsOverlapping__SWIG_0(nargs, args, self);
+        return _wrap_Plane_is_overlapping__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -7400,7 +7588,7 @@ SWIGINTERN VALUE _wrap_Plane_IsOverlapping(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__AxisAlignedBox, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Plane_IsOverlapping__SWIG_1(nargs, args, self);
+        return _wrap_Plane_is_overlapping__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -7414,23 +7602,23 @@ SWIGINTERN VALUE _wrap_Plane_IsOverlapping(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Plane, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Plane_IsOverlapping__SWIG_2(nargs, args, self);
+        return _wrap_Plane_is_overlapping__SWIG_2(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Plane.IsOverlapping", 
-    "    Mezzanine::Bool Plane.IsOverlapping(Mezzanine::Sphere const &ToCheck)\n"
-    "    Mezzanine::Bool Plane.IsOverlapping(Mezzanine::AxisAlignedBox const &ToCheck)\n"
-    "    Mezzanine::Bool Plane.IsOverlapping(Mezzanine::Plane const &ToCheck)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Plane.is_overlapping", 
+    "    Mezzanine::Bool Plane.is_overlapping(Mezzanine::Sphere const &ToCheck)\n"
+    "    Mezzanine::Bool Plane.is_overlapping(Mezzanine::AxisAlignedBox const &ToCheck)\n"
+    "    Mezzanine::Bool Plane.is_overlapping(Mezzanine::Plane const &ToCheck)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Plane_Intersects(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_intersects(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Ray *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7465,7 +7653,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Plane_ExtractOgrePlane(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_extract_ogre_plane(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Ogre::Plane *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7497,7 +7685,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Plane_GetOgrePlane(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_get_ogre_plane(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7521,7 +7709,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Plane_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7553,7 +7741,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Plane_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7585,7 +7773,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Plane_GetSerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_Plane_get_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -8297,7 +8485,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_SetIdentity(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_set_identity(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -8318,7 +8506,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_SetValues(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_set_values(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Real *arg3 = 0 ;
@@ -8379,7 +8567,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_SetFromAxisAngle(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_set_from_axis_angle(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -8421,7 +8609,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_SetFromMatrix3x3(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_set_from_matrix_3x3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   Mezzanine::Matrix3x3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -8453,7 +8641,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_SetFromAxes(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_set_from_axes(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -8507,7 +8695,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_DotProduct(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_dot_product(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   Mezzanine::Quaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -8542,7 +8730,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_Length(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_length(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -8566,7 +8754,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_LengthSqrd(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_length_sqrd(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -8590,7 +8778,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_Normalize(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_normalize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -8614,7 +8802,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_GetNormalizedCopy(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_get_normalized_copy(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -8638,7 +8826,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_GetInverse(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_get_inverse(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -8662,7 +8850,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_GetBulletQuaternion__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_get_bullet_quaternion__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   bool arg2 ;
   void *argp1 = 0 ;
@@ -8694,7 +8882,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_GetBulletQuaternion__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_get_bullet_quaternion__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -8717,7 +8905,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Quaternion_GetBulletQuaternion(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Quaternion_get_bullet_quaternion(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -8734,7 +8922,7 @@ SWIGINTERN VALUE _wrap_Quaternion_GetBulletQuaternion(int nargs, VALUE *args, VA
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Quaternion, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Quaternion_GetBulletQuaternion__SWIG_1(nargs, args, self);
+      return _wrap_Quaternion_get_bullet_quaternion__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -8748,22 +8936,22 @@ SWIGINTERN VALUE _wrap_Quaternion_GetBulletQuaternion(int nargs, VALUE *args, VA
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Quaternion_GetBulletQuaternion__SWIG_0(nargs, args, self);
+        return _wrap_Quaternion_get_bullet_quaternion__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Quaternion.GetBulletQuaternion", 
-    "    btQuaternion Quaternion.GetBulletQuaternion(bool normalize)\n"
-    "    btQuaternion Quaternion.GetBulletQuaternion()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Quaternion.get_bullet_quaternion", 
+    "    btQuaternion Quaternion.get_bullet_quaternion(bool normalize)\n"
+    "    btQuaternion Quaternion.get_bullet_quaternion()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_ExtractBulletQuaternion(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_extract_bullet_quaternion(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   btQuaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -8795,7 +8983,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_GetOgreQuaternion__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_get_ogre_quaternion__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   bool arg2 ;
   void *argp1 = 0 ;
@@ -8827,7 +9015,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_GetOgreQuaternion__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_get_ogre_quaternion__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -8850,7 +9038,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Quaternion_GetOgreQuaternion(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Quaternion_get_ogre_quaternion(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -8867,7 +9055,7 @@ SWIGINTERN VALUE _wrap_Quaternion_GetOgreQuaternion(int nargs, VALUE *args, VALU
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Quaternion, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Quaternion_GetOgreQuaternion__SWIG_1(nargs, args, self);
+      return _wrap_Quaternion_get_ogre_quaternion__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -8881,22 +9069,22 @@ SWIGINTERN VALUE _wrap_Quaternion_GetOgreQuaternion(int nargs, VALUE *args, VALU
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Quaternion_GetOgreQuaternion__SWIG_0(nargs, args, self);
+        return _wrap_Quaternion_get_ogre_quaternion__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Quaternion.GetOgreQuaternion", 
-    "    Ogre::Quaternion Quaternion.GetOgreQuaternion(bool normalize)\n"
-    "    Ogre::Quaternion Quaternion.GetOgreQuaternion()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Quaternion.get_ogre_quaternion", 
+    "    Ogre::Quaternion Quaternion.get_ogre_quaternion(bool normalize)\n"
+    "    Ogre::Quaternion Quaternion.get_ogre_quaternion()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_ExtractOgreQuaternion(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_extract_ogre_quaternion(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   Ogre::Quaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -9771,7 +9959,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -9803,7 +9991,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Quaternion *arg1 = (Mezzanine::Quaternion *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -9835,7 +10023,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Quaternion_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_Quaternion_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -10183,7 +10371,7 @@ free_Mezzanine_Ray(Mezzanine::Ray *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_Ray_Length(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_length(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10207,7 +10395,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Ray_GetDirection(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_get_direction(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10231,7 +10419,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Ray_GetNormal(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_get_normal(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10255,7 +10443,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Ray_Normalize(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_normalize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10279,7 +10467,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Ray_Intersects__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_intersects__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   Mezzanine::Plane *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -10314,7 +10502,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Ray_Intersects__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_intersects__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   Mezzanine::Sphere *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -10349,7 +10537,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Ray_Intersects__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_intersects__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   Mezzanine::AxisAlignedBox *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -10383,7 +10571,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Ray_Intersects(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Ray_intersects(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -10404,7 +10592,7 @@ SWIGINTERN VALUE _wrap_Ray_Intersects(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Plane, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Ray_Intersects__SWIG_0(nargs, args, self);
+        return _wrap_Ray_intersects__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -10418,7 +10606,7 @@ SWIGINTERN VALUE _wrap_Ray_Intersects(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Sphere, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Ray_Intersects__SWIG_1(nargs, args, self);
+        return _wrap_Ray_intersects__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -10432,23 +10620,23 @@ SWIGINTERN VALUE _wrap_Ray_Intersects(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__AxisAlignedBox, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Ray_Intersects__SWIG_2(nargs, args, self);
+        return _wrap_Ray_intersects__SWIG_2(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Ray.Intersects", 
-    "    Mezzanine::Ray::GeometryRayTestResult Ray.Intersects(Mezzanine::Plane const &ToCheck)\n"
-    "    Mezzanine::Ray::GeometryRayTestResult Ray.Intersects(Mezzanine::Sphere const &ToCheck)\n"
-    "    Mezzanine::Ray::GeometryRayTestResult Ray.Intersects(Mezzanine::AxisAlignedBox const &ToCheck)\n");
+  Ruby_Format_OverloadedError( argc, 3, "Ray.intersects", 
+    "    Mezzanine::Ray::GeometryRayTestResult Ray.intersects(Mezzanine::Plane const &ToCheck)\n"
+    "    Mezzanine::Ray::GeometryRayTestResult Ray.intersects(Mezzanine::Sphere const &ToCheck)\n"
+    "    Mezzanine::Ray::GeometryRayTestResult Ray.intersects(Mezzanine::AxisAlignedBox const &ToCheck)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Ray_ExtractOgreRay(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_extract_ogre_ray(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   Ogre::Ray *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -10480,7 +10668,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Ray_GetOgreRay(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_get_ogre_ray(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10504,7 +10692,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Ray_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -10536,7 +10724,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Ray_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -10568,7 +10756,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Ray_GetSerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_Ray_get_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -10726,7 +10914,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_ClearReturns(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_clear_returns(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10750,7 +10938,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_LastQueryResultsValid(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_last_query_results_valid(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10774,7 +10962,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_LastQueryResultsOffset(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_last_query_results_offset(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10798,7 +10986,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_LastQueryResultsActorPtr(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_last_query_results_actor_ptr(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10822,7 +11010,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_GetFirstActorOnRayByPolygon(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_get_first_actor_on_ray_by_polygon(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   Mezzanine::Ray arg2 ;
   Mezzanine::Whole arg3 ;
@@ -10868,7 +11056,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_GetFirstActorOnRayByAABB(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_get_first_actor_on_ray_by_aabb(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   Mezzanine::Ray arg2 ;
   Mezzanine::Whole arg3 ;
@@ -10914,7 +11102,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_RayPlaneIntersection(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_ray_plane_intersection(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   Mezzanine::Ray *arg2 = 0 ;
   Mezzanine::Plane *arg3 = 0 ;
@@ -10960,7 +11148,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_GetMouseRay__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_get_mouse_ray__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Real arg1 ;
   float val1 ;
   int ecode1 = 0 ;
@@ -10984,7 +11172,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_GetMouseRay__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_get_mouse_ray__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Ray result;
   VALUE vresult = Qnil;
   
@@ -10999,7 +11187,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_RayQueryTool_GetMouseRay(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_RayQueryTool_get_mouse_ray(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[1];
   int ii;
@@ -11010,7 +11198,7 @@ SWIGINTERN VALUE _wrap_RayQueryTool_GetMouseRay(int nargs, VALUE *args, VALUE se
     argv[ii] = args[ii];
   }
   if (argc == 0) {
-    return _wrap_RayQueryTool_GetMouseRay__SWIG_1(nargs, args, self);
+    return _wrap_RayQueryTool_get_mouse_ray__SWIG_1(nargs, args, self);
   }
   if (argc == 1) {
     int _v;
@@ -11019,21 +11207,21 @@ SWIGINTERN VALUE _wrap_RayQueryTool_GetMouseRay(int nargs, VALUE *args, VALUE se
       _v = SWIG_CheckState(res);
     }
     if (_v) {
-      return _wrap_RayQueryTool_GetMouseRay__SWIG_0(nargs, args, self);
+      return _wrap_RayQueryTool_get_mouse_ray__SWIG_0(nargs, args, self);
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 1, "RayQueryTool.GetMouseRay", 
-    "    Mezzanine::Ray RayQueryTool.GetMouseRay(Mezzanine::Real Length)\n"
-    "    Mezzanine::Ray RayQueryTool.GetMouseRay()\n");
+  Ruby_Format_OverloadedError( argc, 1, "RayQueryTool.get_mouse_ray", 
+    "    Mezzanine::Ray RayQueryTool.get_mouse_ray(Mezzanine::Real Length)\n"
+    "    Mezzanine::Ray RayQueryTool.get_mouse_ray()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -11065,7 +11253,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -11097,7 +11285,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_RayQueryTool_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_RayQueryTool_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -11157,7 +11345,7 @@ free_Mezzanine_Timer(Mezzanine::Timer *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_Timer_SetCurrentTime(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_set_current_time(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
@@ -11186,7 +11374,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_SetCurrentTimeInMilliseconds(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_set_current_time_in_milliseconds(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
@@ -11215,7 +11403,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_GetCurrentTime(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_get_current_time(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11239,7 +11427,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_GetCurrentTimeInMilliseconds(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_get_current_time_in_milliseconds(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11263,7 +11451,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_SetInitialTime(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_set_initial_time(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
@@ -11292,7 +11480,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_SetInitialTimeInMilliseconds(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_set_initial_time_in_milliseconds(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
@@ -11321,7 +11509,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_GetInitialTime(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_get_initial_time(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11345,7 +11533,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_GetInitialTimeInMilliseconds(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_get_initial_time_in_milliseconds(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11369,7 +11557,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_Start(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_start(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11390,7 +11578,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_Stop(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_stop(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11411,7 +11599,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_IsStopped(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_is_stopped(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11435,7 +11623,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_Reset(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_reset(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11456,7 +11644,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Timer_GetType(int argc, VALUE *argv, VALUE self) {
+_wrap_Timer_get_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11487,7 +11675,7 @@ free_Mezzanine_GoalTimer(Mezzanine::GoalTimer *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_GoalTimer_SetAutoReset(int argc, VALUE *argv, VALUE self) {
+_wrap_GoalTimer_set_auto_reset(int argc, VALUE *argv, VALUE self) {
   Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
   bool arg2 ;
   void *argp1 = 0 ;
@@ -11516,7 +11704,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_GoalTimer_GetAutoReset(int argc, VALUE *argv, VALUE self) {
+_wrap_GoalTimer_get_auto_reset(int argc, VALUE *argv, VALUE self) {
   Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11540,7 +11728,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_GoalTimer_SetGoalTime(int argc, VALUE *argv, VALUE self) {
+_wrap_GoalTimer_set_goal_time(int argc, VALUE *argv, VALUE self) {
   Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
   Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
@@ -11569,7 +11757,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_GoalTimer_SetGoalTimeInMilliseconds(int argc, VALUE *argv, VALUE self) {
+_wrap_GoalTimer_set_goal_time_in_milliseconds(int argc, VALUE *argv, VALUE self) {
   Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
   Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
@@ -11598,7 +11786,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_GoalTimer_GetGoalTime(int argc, VALUE *argv, VALUE self) {
+_wrap_GoalTimer_get_goal_time(int argc, VALUE *argv, VALUE self) {
   Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11622,7 +11810,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_GoalTimer_GetGoalTimeInMilliseconds(int argc, VALUE *argv, VALUE self) {
+_wrap_GoalTimer_get_goal_time_in_milliseconds(int argc, VALUE *argv, VALUE self) {
   Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11685,7 +11873,7 @@ free_Mezzanine_StopWatchTimer(Mezzanine::StopWatchTimer *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_StopWatchTimer_GetType(int argc, VALUE *argv, VALUE self) {
+_wrap_StopWatchTimer_get_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::StopWatchTimer *arg1 = (Mezzanine::StopWatchTimer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -11748,7 +11936,7 @@ free_Mezzanine_AlarmTimer(Mezzanine::AlarmTimer *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_AlarmTimer_GetType(int argc, VALUE *argv, VALUE self) {
+_wrap_AlarmTimer_get_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AlarmTimer *arg1 = (Mezzanine::AlarmTimer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -12094,7 +12282,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Transform_SetIdentity(int argc, VALUE *argv, VALUE self) {
+_wrap_Transform_set_identity(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Transform *arg1 = (Mezzanine::Transform *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -12115,7 +12303,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Transform_GetBulletTransform(int argc, VALUE *argv, VALUE self) {
+_wrap_Transform_get_bullet_transform(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Transform *arg1 = (Mezzanine::Transform *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -12139,7 +12327,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Transform_ExtractBulletTransform(int argc, VALUE *argv, VALUE self) {
+_wrap_Transform_extract_bullet_transform(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Transform *arg1 = (Mezzanine::Transform *) 0 ;
   btTransform *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -12171,7 +12359,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Transform_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Transform_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Transform *arg1 = (Mezzanine::Transform *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -12203,7 +12391,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Transform_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Transform_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Transform *arg1 = (Mezzanine::Transform *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -12235,7 +12423,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Transform_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_Transform_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -12506,7 +12694,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector2_GetOgreVector2(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector2_get_ogre_vector2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -12530,7 +12718,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector2_ExtractOgreVector2(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector2_extract_ogre_vector2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   Ogre::Vector2 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -12562,7 +12750,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector2_SetIdentity(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector2_set_identity(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -12583,7 +12771,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector2_SetValues(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector2_set_values(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Real *arg3 = 0 ;
@@ -13079,7 +13267,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector2_Perpendicular(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector2_perpendicular(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13103,7 +13291,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector2_Normalize(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector2_normalize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13127,7 +13315,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector2_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector2_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13159,7 +13347,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector2_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector2_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13191,7 +13379,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Vector2_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_Vector2_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -13219,7 +13407,7 @@ free_Mezzanine_AttachableBase(Mezzanine::AttachableBase *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_ConvertLocalToGlobal__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_convert_local_to_global__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13254,7 +13442,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_ConvertGlobalToLocal__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_convert_global_to_local__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13289,7 +13477,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_ConvertLocalToGlobal__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_convert_local_to_global__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   Mezzanine::Quaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13323,7 +13511,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttachableBase_ConvertLocalToGlobal(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttachableBase_convert_local_to_global(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -13344,7 +13532,7 @@ SWIGINTERN VALUE _wrap_AttachableBase_ConvertLocalToGlobal(int nargs, VALUE *arg
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_AttachableBase_ConvertLocalToGlobal__SWIG_0(nargs, args, self);
+        return _wrap_AttachableBase_convert_local_to_global__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -13358,22 +13546,22 @@ SWIGINTERN VALUE _wrap_AttachableBase_ConvertLocalToGlobal(int nargs, VALUE *arg
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Quaternion, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_AttachableBase_ConvertLocalToGlobal__SWIG_1(nargs, args, self);
+        return _wrap_AttachableBase_convert_local_to_global__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "AttachableBase.ConvertLocalToGlobal", 
-    "    Mezzanine::Quaternion AttachableBase.ConvertLocalToGlobal(Mezzanine::Vector3 const &Location)\n"
-    "    Mezzanine::Quaternion AttachableBase.ConvertLocalToGlobal(Mezzanine::Quaternion const &Orientation)\n");
+  Ruby_Format_OverloadedError( argc, 3, "AttachableBase.convert_local_to_global", 
+    "    Mezzanine::Quaternion AttachableBase.convert_local_to_global(Mezzanine::Vector3 const &Location)\n"
+    "    Mezzanine::Quaternion AttachableBase.convert_local_to_global(Mezzanine::Quaternion const &Orientation)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_ConvertGlobalToLocal__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_convert_global_to_local__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   Mezzanine::Quaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13407,7 +13595,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttachableBase_ConvertGlobalToLocal(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttachableBase_convert_global_to_local(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -13428,7 +13616,7 @@ SWIGINTERN VALUE _wrap_AttachableBase_ConvertGlobalToLocal(int nargs, VALUE *arg
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_AttachableBase_ConvertGlobalToLocal__SWIG_0(nargs, args, self);
+        return _wrap_AttachableBase_convert_global_to_local__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -13442,22 +13630,22 @@ SWIGINTERN VALUE _wrap_AttachableBase_ConvertGlobalToLocal(int nargs, VALUE *arg
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Quaternion, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_AttachableBase_ConvertGlobalToLocal__SWIG_1(nargs, args, self);
+        return _wrap_AttachableBase_convert_global_to_local__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "AttachableBase.ConvertGlobalToLocal", 
-    "    Mezzanine::Quaternion AttachableBase.ConvertGlobalToLocal(Mezzanine::Vector3 const &Location)\n"
-    "    Mezzanine::Quaternion AttachableBase.ConvertGlobalToLocal(Mezzanine::Quaternion const &Orientation)\n");
+  Ruby_Format_OverloadedError( argc, 3, "AttachableBase.convert_global_to_local", 
+    "    Mezzanine::Quaternion AttachableBase.convert_global_to_local(Mezzanine::Vector3 const &Location)\n"
+    "    Mezzanine::Quaternion AttachableBase.convert_global_to_local(Mezzanine::Quaternion const &Orientation)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_GetName(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_get_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13481,7 +13669,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_GetType(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_get_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13505,7 +13693,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_SetLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_set_location(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13537,7 +13725,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_GetLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_get_location(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13561,7 +13749,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_SetOrientation(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_set_orientation(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   Mezzanine::Quaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13593,7 +13781,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_GetOrientation(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_get_orientation(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13617,7 +13805,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_SetScaling(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_set_scaling(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13649,7 +13837,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableBase_GetScaling(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableBase_get_scaling(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13680,7 +13868,7 @@ free_Mezzanine_AttachableParent(Mezzanine::AttachableParent *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_AttachableParent_AttachObject(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableParent_attach_object(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableParent *arg1 = (Mezzanine::AttachableParent *) 0 ;
   Mezzanine::AttachableChild *arg2 = (Mezzanine::AttachableChild *) 0 ;
   void *argp1 = 0 ;
@@ -13709,7 +13897,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableParent_DetachObject(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableParent_detach_object(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableParent *arg1 = (Mezzanine::AttachableParent *) 0 ;
   Mezzanine::AttachableChild *arg2 = (Mezzanine::AttachableChild *) 0 ;
   void *argp1 = 0 ;
@@ -13738,7 +13926,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableParent_DetachAllChildren(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableParent_detach_all_children(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableParent *arg1 = (Mezzanine::AttachableParent *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13759,7 +13947,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableParent_GetNumAttached(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableParent_get_num_attached(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableParent *arg1 = (Mezzanine::AttachableParent *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13783,7 +13971,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableParent_GetAttached(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableParent_get_attached(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableParent *arg1 = (Mezzanine::AttachableParent *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13817,7 +14005,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableParent_BeginChild(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableParent_begin_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableParent *arg1 = (Mezzanine::AttachableParent *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13841,7 +14029,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableParent_EndChild(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableParent_end_child__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableParent *arg1 = (Mezzanine::AttachableParent *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13865,7 +14053,133 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableParent__RecalculateAllChildTransforms(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableParent_begin_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::AttachableParent *arg1 = (Mezzanine::AttachableParent *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::AttachableParent::ConstAttachableIterator result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__AttachableParent, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AttachableParent const *","BeginChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::AttachableParent * >(argp1);
+  result = ((Mezzanine::AttachableParent const *)arg1)->BeginChild();
+  vresult = SWIG_NewPointerObj((new Mezzanine::AttachableParent::ConstAttachableIterator(static_cast< const Mezzanine::AttachableParent::ConstAttachableIterator& >(result))), SWIGTYPE_p_Mezzanine__AttachableParent__AttachableContainer__const_iterator, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_AttachableParent_begin_child(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[2];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 2) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__AttachableParent, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_AttachableParent_begin_child__SWIG_0(nargs, args, self);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__AttachableParent, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_AttachableParent_begin_child__SWIG_1(nargs, args, self);
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 2, "AttachableParent.begin_child", 
+    "    Mezzanine::AttachableParent::ConstAttachableIterator AttachableParent.begin_child()\n"
+    "    Mezzanine::AttachableParent::ConstAttachableIterator AttachableParent.begin_child()\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_AttachableParent_end_child__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::AttachableParent *arg1 = (Mezzanine::AttachableParent *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::AttachableParent::ConstAttachableIterator result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__AttachableParent, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AttachableParent const *","EndChild", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::AttachableParent * >(argp1);
+  result = ((Mezzanine::AttachableParent const *)arg1)->EndChild();
+  vresult = SWIG_NewPointerObj((new Mezzanine::AttachableParent::ConstAttachableIterator(static_cast< const Mezzanine::AttachableParent::ConstAttachableIterator& >(result))), SWIGTYPE_p_Mezzanine__AttachableParent__AttachableContainer__const_iterator, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_AttachableParent_end_child(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[2];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 2) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__AttachableParent, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_AttachableParent_end_child__SWIG_0(nargs, args, self);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__AttachableParent, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_AttachableParent_end_child__SWIG_1(nargs, args, self);
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 2, "AttachableParent.end_child", 
+    "    Mezzanine::AttachableParent::ConstAttachableIterator AttachableParent.end_child()\n"
+    "    Mezzanine::AttachableParent::ConstAttachableIterator AttachableParent.end_child()\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_AttachableParent__recalculate_all_child_transforms(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableParent *arg1 = (Mezzanine::AttachableParent *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13893,7 +14207,7 @@ free_Mezzanine_AttachableChild(Mezzanine::AttachableChild *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_AttachableChild_GetParent(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableChild_get_parent(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableChild *arg1 = (Mezzanine::AttachableChild *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13917,7 +14231,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableChild_SetLocalLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableChild_set_local_location(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableChild *arg1 = (Mezzanine::AttachableChild *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -13949,7 +14263,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableChild_GetLocalLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableChild_get_local_location(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableChild *arg1 = (Mezzanine::AttachableChild *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -13973,7 +14287,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableChild_SetLocalOrientation(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableChild_set_local_orientation(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableChild *arg1 = (Mezzanine::AttachableChild *) 0 ;
   Mezzanine::Quaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -14005,7 +14319,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableChild_GetLocalOrientation(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableChild_get_local_orientation(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableChild *arg1 = (Mezzanine::AttachableChild *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14029,7 +14343,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableChild__RecalculateGlobalTransform__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableChild__recalculate_global_transform__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableChild *arg1 = (Mezzanine::AttachableChild *) 0 ;
   bool arg2 ;
   void *argp1 = 0 ;
@@ -14058,7 +14372,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_AttachableChild__RecalculateGlobalTransform__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableChild__recalculate_global_transform__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableChild *arg1 = (Mezzanine::AttachableChild *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14078,7 +14392,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_AttachableChild__RecalculateGlobalTransform(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_AttachableChild__recalculate_global_transform(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -14095,7 +14409,7 @@ SWIGINTERN VALUE _wrap_AttachableChild__RecalculateGlobalTransform(int nargs, VA
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__AttachableChild, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_AttachableChild__RecalculateGlobalTransform__SWIG_1(nargs, args, self);
+      return _wrap_AttachableChild__recalculate_global_transform__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -14109,22 +14423,22 @@ SWIGINTERN VALUE _wrap_AttachableChild__RecalculateGlobalTransform(int nargs, VA
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_AttachableChild__RecalculateGlobalTransform__SWIG_0(nargs, args, self);
+        return _wrap_AttachableChild__recalculate_global_transform__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "AttachableChild._RecalculateGlobalTransform", 
-    "    void AttachableChild._RecalculateGlobalTransform(bool FromParent)\n"
-    "    void AttachableChild._RecalculateGlobalTransform()\n");
+  Ruby_Format_OverloadedError( argc, 3, "AttachableChild._recalculate_global_transform", 
+    "    void AttachableChild._recalculate_global_transform(bool FromParent)\n"
+    "    void AttachableChild._recalculate_global_transform()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_AttachableChild__RecalculateLocalTransform(int argc, VALUE *argv, VALUE self) {
+_wrap_AttachableChild__recalculate_local_transform(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableChild *arg1 = (Mezzanine::AttachableChild *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14207,7 +14521,7 @@ free_Mezzanine_WorldNode(Mezzanine::WorldNode *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_WorldNode_GetName(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_get_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14231,7 +14545,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_LookAt__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_look_at__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::TransformSpace *arg3 = 0 ;
@@ -14285,7 +14599,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_LookAt__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_look_at__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::TransformSpace *arg3 = 0 ;
@@ -14328,7 +14642,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_LookAt__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_look_at__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -14359,7 +14673,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldNode_LookAt(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldNode_look_at(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -14380,7 +14694,7 @@ SWIGINTERN VALUE _wrap_WorldNode_LookAt(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_WorldNode_LookAt__SWIG_2(nargs, args, self);
+        return _wrap_WorldNode_look_at__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -14399,7 +14713,7 @@ SWIGINTERN VALUE _wrap_WorldNode_LookAt(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldNode_LookAt__SWIG_1(nargs, args, self);
+          return _wrap_WorldNode_look_at__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -14423,7 +14737,7 @@ SWIGINTERN VALUE _wrap_WorldNode_LookAt(int nargs, VALUE *args, VALUE self) {
           int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_WorldNode_LookAt__SWIG_0(nargs, args, self);
+            return _wrap_WorldNode_look_at__SWIG_0(nargs, args, self);
           }
         }
       }
@@ -14431,17 +14745,17 @@ SWIGINTERN VALUE _wrap_WorldNode_LookAt(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "WorldNode.LookAt", 
-    "    void WorldNode.LookAt(Mezzanine::Vector3 const &LookAt, Mezzanine::TransformSpace const &TS, Mezzanine::Vector3 const &LocalDirection)\n"
-    "    void WorldNode.LookAt(Mezzanine::Vector3 const &LookAt, Mezzanine::TransformSpace const &TS)\n"
-    "    void WorldNode.LookAt(Mezzanine::Vector3 const &LookAt)\n");
+  Ruby_Format_OverloadedError( argc, 5, "WorldNode.look_at", 
+    "    void WorldNode.look_at(Mezzanine::Vector3 const &LookAt, Mezzanine::TransformSpace const &TS, Mezzanine::Vector3 const &LocalDirection)\n"
+    "    void WorldNode.look_at(Mezzanine::Vector3 const &LookAt, Mezzanine::TransformSpace const &TS)\n"
+    "    void WorldNode.look_at(Mezzanine::Vector3 const &LookAt)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetDirection__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_direction__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::TransformSpace *arg3 = 0 ;
@@ -14495,7 +14809,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetDirection__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_direction__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::TransformSpace *arg3 = 0 ;
@@ -14538,7 +14852,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetDirection__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_direction__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -14569,7 +14883,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldNode_SetDirection(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldNode_set_direction(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -14590,7 +14904,7 @@ SWIGINTERN VALUE _wrap_WorldNode_SetDirection(int nargs, VALUE *args, VALUE self
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_WorldNode_SetDirection__SWIG_2(nargs, args, self);
+        return _wrap_WorldNode_set_direction__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -14609,7 +14923,7 @@ SWIGINTERN VALUE _wrap_WorldNode_SetDirection(int nargs, VALUE *args, VALUE self
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldNode_SetDirection__SWIG_1(nargs, args, self);
+          return _wrap_WorldNode_set_direction__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -14633,7 +14947,7 @@ SWIGINTERN VALUE _wrap_WorldNode_SetDirection(int nargs, VALUE *args, VALUE self
           int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_WorldNode_SetDirection__SWIG_0(nargs, args, self);
+            return _wrap_WorldNode_set_direction__SWIG_0(nargs, args, self);
           }
         }
       }
@@ -14641,17 +14955,17 @@ SWIGINTERN VALUE _wrap_WorldNode_SetDirection(int nargs, VALUE *args, VALUE self
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "WorldNode.SetDirection", 
-    "    void WorldNode.SetDirection(Mezzanine::Vector3 const &Direction, Mezzanine::TransformSpace const &TS, Mezzanine::Vector3 const &LocalAxis)\n"
-    "    void WorldNode.SetDirection(Mezzanine::Vector3 const &Direction, Mezzanine::TransformSpace const &TS)\n"
-    "    void WorldNode.SetDirection(Mezzanine::Vector3 const &Direction)\n");
+  Ruby_Format_OverloadedError( argc, 5, "WorldNode.set_direction", 
+    "    void WorldNode.set_direction(Mezzanine::Vector3 const &Direction, Mezzanine::TransformSpace const &TS, Mezzanine::Vector3 const &LocalAxis)\n"
+    "    void WorldNode.set_direction(Mezzanine::Vector3 const &Direction, Mezzanine::TransformSpace const &TS)\n"
+    "    void WorldNode.set_direction(Mezzanine::Vector3 const &Direction)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetAutoTracking__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_auto_tracking__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::AttachableBase *arg2 = (Mezzanine::AttachableBase *) 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -14702,7 +15016,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetAutoTracking__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_auto_tracking__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::AttachableBase *arg2 = (Mezzanine::AttachableBase *) 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -14742,7 +15056,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetAutoTracking__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_auto_tracking__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::AttachableBase *arg2 = (Mezzanine::AttachableBase *) 0 ;
   void *argp1 = 0 ;
@@ -14770,7 +15084,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldNode_SetAutoTracking(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldNode_set_auto_tracking(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -14791,7 +15105,7 @@ SWIGINTERN VALUE _wrap_WorldNode_SetAutoTracking(int nargs, VALUE *args, VALUE s
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__AttachableBase, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_WorldNode_SetAutoTracking__SWIG_2(nargs, args, self);
+        return _wrap_WorldNode_set_auto_tracking__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -14809,7 +15123,7 @@ SWIGINTERN VALUE _wrap_WorldNode_SetAutoTracking(int nargs, VALUE *args, VALUE s
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_WorldNode_SetAutoTracking__SWIG_1(nargs, args, self);
+          return _wrap_WorldNode_set_auto_tracking__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -14832,7 +15146,7 @@ SWIGINTERN VALUE _wrap_WorldNode_SetAutoTracking(int nargs, VALUE *args, VALUE s
           int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_WorldNode_SetAutoTracking__SWIG_0(nargs, args, self);
+            return _wrap_WorldNode_set_auto_tracking__SWIG_0(nargs, args, self);
           }
         }
       }
@@ -14840,17 +15154,17 @@ SWIGINTERN VALUE _wrap_WorldNode_SetAutoTracking(int nargs, VALUE *args, VALUE s
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "WorldNode.SetAutoTracking", 
-    "    void WorldNode.SetAutoTracking(Mezzanine::AttachableBase *Target, Mezzanine::Vector3 const &LocalDirection, Mezzanine::Vector3 const &Offset)\n"
-    "    void WorldNode.SetAutoTracking(Mezzanine::AttachableBase *Target, Mezzanine::Vector3 const &LocalDirection)\n"
-    "    void WorldNode.SetAutoTracking(Mezzanine::AttachableBase *Target)\n");
+  Ruby_Format_OverloadedError( argc, 5, "WorldNode.set_auto_tracking", 
+    "    void WorldNode.set_auto_tracking(Mezzanine::AttachableBase *Target, Mezzanine::Vector3 const &LocalDirection, Mezzanine::Vector3 const &Offset)\n"
+    "    void WorldNode.set_auto_tracking(Mezzanine::AttachableBase *Target, Mezzanine::Vector3 const &LocalDirection)\n"
+    "    void WorldNode.set_auto_tracking(Mezzanine::AttachableBase *Target)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_GetAutoTrackingTarget(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_get_auto_tracking_target(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14874,7 +15188,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_GetAutoTrackingDirection(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_get_auto_tracking_direction(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14898,7 +15212,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_GetAutoTrackingOffset(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_get_auto_tracking_offset(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14922,7 +15236,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_Rotate__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_rotate__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Quaternion *arg2 = 0 ;
   Mezzanine::TransformSpace *arg3 = 0 ;
@@ -14965,7 +15279,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_Rotate__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_rotate__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Quaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -14997,7 +15311,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_Rotate__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_rotate__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -15050,7 +15364,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_Rotate__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_rotate__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -15091,7 +15405,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldNode_Rotate(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldNode_rotate(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
   int ii;
@@ -15112,7 +15426,7 @@ SWIGINTERN VALUE _wrap_WorldNode_Rotate(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Quaternion, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_WorldNode_Rotate__SWIG_1(nargs, args, self);
+        return _wrap_WorldNode_rotate__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -15131,7 +15445,7 @@ SWIGINTERN VALUE _wrap_WorldNode_Rotate(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldNode_Rotate__SWIG_0(nargs, args, self);
+          return _wrap_WorldNode_rotate__SWIG_0(nargs, args, self);
         }
       }
     }
@@ -15151,7 +15465,7 @@ SWIGINTERN VALUE _wrap_WorldNode_Rotate(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_WorldNode_Rotate__SWIG_3(nargs, args, self);
+          return _wrap_WorldNode_rotate__SWIG_3(nargs, args, self);
         }
       }
     }
@@ -15176,7 +15490,7 @@ SWIGINTERN VALUE _wrap_WorldNode_Rotate(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_WorldNode_Rotate__SWIG_2(nargs, args, self);
+            return _wrap_WorldNode_rotate__SWIG_2(nargs, args, self);
           }
         }
       }
@@ -15184,18 +15498,18 @@ SWIGINTERN VALUE _wrap_WorldNode_Rotate(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 5, "WorldNode.Rotate", 
-    "    void WorldNode.Rotate(Mezzanine::Quaternion const &Rotation, Mezzanine::TransformSpace const &TS)\n"
-    "    void WorldNode.Rotate(Mezzanine::Quaternion const &Rotation)\n"
-    "    void WorldNode.Rotate(Mezzanine::Real const &Angle, Mezzanine::Vector3 const &Axis, Mezzanine::TransformSpace const &TS)\n"
-    "    void WorldNode.Rotate(Mezzanine::Real const &Angle, Mezzanine::Vector3 const &Axis)\n");
+  Ruby_Format_OverloadedError( argc, 5, "WorldNode.rotate", 
+    "    void WorldNode.rotate(Mezzanine::Quaternion const &Rotation, Mezzanine::TransformSpace const &TS)\n"
+    "    void WorldNode.rotate(Mezzanine::Quaternion const &Rotation)\n"
+    "    void WorldNode.rotate(Mezzanine::Real const &Angle, Mezzanine::Vector3 const &Axis, Mezzanine::TransformSpace const &TS)\n"
+    "    void WorldNode.rotate(Mezzanine::Real const &Angle, Mezzanine::Vector3 const &Axis)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_Yaw__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_yaw__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::TransformSpace *arg3 = 0 ;
@@ -15237,7 +15551,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_Yaw__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_yaw__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -15267,7 +15581,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldNode_Yaw(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldNode_yaw(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -15289,7 +15603,7 @@ SWIGINTERN VALUE _wrap_WorldNode_Yaw(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_WorldNode_Yaw__SWIG_1(nargs, args, self);
+        return _wrap_WorldNode_yaw__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -15309,23 +15623,23 @@ SWIGINTERN VALUE _wrap_WorldNode_Yaw(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldNode_Yaw__SWIG_0(nargs, args, self);
+          return _wrap_WorldNode_yaw__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldNode.Yaw", 
-    "    void WorldNode.Yaw(Mezzanine::Real const &Angle, Mezzanine::TransformSpace const &TS)\n"
-    "    void WorldNode.Yaw(Mezzanine::Real const &Angle)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldNode.yaw", 
+    "    void WorldNode.yaw(Mezzanine::Real const &Angle, Mezzanine::TransformSpace const &TS)\n"
+    "    void WorldNode.yaw(Mezzanine::Real const &Angle)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_Pitch__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_pitch__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::TransformSpace *arg3 = 0 ;
@@ -15367,7 +15681,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_Pitch__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_pitch__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -15397,7 +15711,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldNode_Pitch(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldNode_pitch(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -15419,7 +15733,7 @@ SWIGINTERN VALUE _wrap_WorldNode_Pitch(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_WorldNode_Pitch__SWIG_1(nargs, args, self);
+        return _wrap_WorldNode_pitch__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -15439,23 +15753,23 @@ SWIGINTERN VALUE _wrap_WorldNode_Pitch(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldNode_Pitch__SWIG_0(nargs, args, self);
+          return _wrap_WorldNode_pitch__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldNode.Pitch", 
-    "    void WorldNode.Pitch(Mezzanine::Real const &Angle, Mezzanine::TransformSpace const &TS)\n"
-    "    void WorldNode.Pitch(Mezzanine::Real const &Angle)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldNode.pitch", 
+    "    void WorldNode.pitch(Mezzanine::Real const &Angle, Mezzanine::TransformSpace const &TS)\n"
+    "    void WorldNode.pitch(Mezzanine::Real const &Angle)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_Roll__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_roll__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::TransformSpace *arg3 = 0 ;
@@ -15497,7 +15811,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_Roll__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_roll__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -15527,7 +15841,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldNode_Roll(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldNode_roll(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -15549,7 +15863,7 @@ SWIGINTERN VALUE _wrap_WorldNode_Roll(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_WorldNode_Roll__SWIG_1(nargs, args, self);
+        return _wrap_WorldNode_roll__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -15569,23 +15883,23 @@ SWIGINTERN VALUE _wrap_WorldNode_Roll(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldNode_Roll__SWIG_0(nargs, args, self);
+          return _wrap_WorldNode_roll__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldNode.Roll", 
-    "    void WorldNode.Roll(Mezzanine::Real const &Angle, Mezzanine::TransformSpace const &TS)\n"
-    "    void WorldNode.Roll(Mezzanine::Real const &Angle)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldNode.roll", 
+    "    void WorldNode.roll(Mezzanine::Real const &Angle, Mezzanine::TransformSpace const &TS)\n"
+    "    void WorldNode.roll(Mezzanine::Real const &Angle)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetFixedYawAxis__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_fixed_yaw_axis__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   bool arg2 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -15625,7 +15939,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetFixedYawAxis__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_fixed_yaw_axis__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   bool arg2 ;
   void *argp1 = 0 ;
@@ -15653,7 +15967,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldNode_SetFixedYawAxis(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldNode_set_fixed_yaw_axis(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -15675,7 +15989,7 @@ SWIGINTERN VALUE _wrap_WorldNode_SetFixedYawAxis(int nargs, VALUE *args, VALUE s
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_WorldNode_SetFixedYawAxis__SWIG_1(nargs, args, self);
+        return _wrap_WorldNode_set_fixed_yaw_axis__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -15694,23 +16008,23 @@ SWIGINTERN VALUE _wrap_WorldNode_SetFixedYawAxis(int nargs, VALUE *args, VALUE s
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_WorldNode_SetFixedYawAxis__SWIG_0(nargs, args, self);
+          return _wrap_WorldNode_set_fixed_yaw_axis__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldNode.SetFixedYawAxis", 
-    "    void WorldNode.SetFixedYawAxis(bool Enable, Mezzanine::Vector3 const &FixedAxis)\n"
-    "    void WorldNode.SetFixedYawAxis(bool Enable)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldNode.set_fixed_yaw_axis", 
+    "    void WorldNode.set_fixed_yaw_axis(bool Enable, Mezzanine::Vector3 const &FixedAxis)\n"
+    "    void WorldNode.set_fixed_yaw_axis(bool Enable)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_GetFixedYawAxisEnabled(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_get_fixed_yaw_axis_enabled(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15734,7 +16048,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_GetFixedYawAxis(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_get_fixed_yaw_axis(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15758,7 +16072,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_location(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -15790,7 +16104,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_GetLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_get_location(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15814,7 +16128,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetOrientation(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_orientation(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Quaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -15846,7 +16160,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_GetOrientation(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_get_orientation(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15870,7 +16184,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetScaling(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_scaling(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -15902,7 +16216,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_GetScaling(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_get_scaling(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15926,7 +16240,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_GetType(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_get_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15950,7 +16264,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetLocalLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_local_location(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -15982,7 +16296,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode_SetLocalOrientation(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode_set_local_orientation(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   Mezzanine::Quaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -16014,7 +16328,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldNode__UpdateTracking(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldNode__update_tracking(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldNode *arg1 = (Mezzanine::WorldNode *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16636,7 +16950,7 @@ free_Mezzanine_ColourValue(Mezzanine::ColourValue *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_ColourValue_GetOgreColourValue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_get_ogre_colour_value(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16704,7 +17018,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Transparent(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_transparent(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16720,7 +17034,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_AliceBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_alice_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16736,7 +17050,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_AntiqueWhite(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_antique_white(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16752,7 +17066,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Aqua(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_aqua(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16768,7 +17082,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Aquamarine(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_aquamarine(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16784,7 +17098,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Azure(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_azure(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16800,7 +17114,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Beige(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_beige(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16816,7 +17130,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Bisque(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_bisque(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16832,7 +17146,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Black(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_black(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16848,7 +17162,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Blanchedalmond(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_blanchedalmond(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16864,7 +17178,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Blue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16880,7 +17194,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_BlueViolet(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_blue_violet(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16896,7 +17210,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Brown(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_brown(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16912,7 +17226,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_BurlyWood(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_burly_wood(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16928,7 +17242,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_CadetBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_cadet_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16944,7 +17258,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Chartreuse(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_chartreuse(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16960,7 +17274,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Chocolate(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_chocolate(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16976,7 +17290,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Coral(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_coral(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -16992,7 +17306,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_CornFlowerBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_corn_flower_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17008,7 +17322,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_CornSilk(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_corn_silk(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17024,7 +17338,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Crimson(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_crimson(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17040,7 +17354,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Cyan(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_cyan(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17056,7 +17370,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17072,7 +17386,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkCyan(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_cyan(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17088,7 +17402,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkGoldenRod(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_golden_rod(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17104,7 +17418,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkGray(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_gray(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17120,7 +17434,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17136,7 +17450,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkKhaki(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_khaki(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17152,7 +17466,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkMagenta(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_magenta(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17168,7 +17482,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkOliveGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_olive_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17184,7 +17498,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkOrange(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_orange(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17200,7 +17514,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkOrchid(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_orchid(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17216,7 +17530,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkRed(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_red(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17232,7 +17546,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkSalmon(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_salmon(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17248,7 +17562,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkSeaGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_sea_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17264,7 +17578,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkSlateBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_slate_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17280,7 +17594,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkSlateGray(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_slate_gray(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17296,7 +17610,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkTurquoise(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_turquoise(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17312,7 +17626,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DarkViolet(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dark_violet(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17328,7 +17642,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DeepPink(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_deep_pink(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17344,7 +17658,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DeepSkyBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_deep_sky_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17360,7 +17674,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DimGray(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dim_gray(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17376,7 +17690,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_DodgerBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_dodger_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17392,7 +17706,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_FireBrick(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_fire_brick(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17408,7 +17722,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_FloralWhite(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_floral_white(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17424,7 +17738,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_ForestGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_forest_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17440,7 +17754,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Fuchsia(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_fuchsia(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17456,7 +17770,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Gainsboro(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_gainsboro(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17472,7 +17786,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_GhostWhite(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_ghost_white(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17488,7 +17802,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Gold(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_gold(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17504,7 +17818,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_GoldenRod(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_golden_rod(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17520,7 +17834,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Gray(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_gray(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17536,7 +17850,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Green(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17552,7 +17866,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_GreenYellow(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_green_yellow(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17568,7 +17882,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_HoneyDew(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_honey_dew(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17584,7 +17898,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_HotPink(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_hot_pink(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17600,7 +17914,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_IndianRed(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_indian_red(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17616,7 +17930,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Indigo(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_indigo(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17632,7 +17946,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Ivory(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_ivory(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17648,7 +17962,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Khaki(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_khaki(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17664,7 +17978,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Lavender(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_lavender(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17680,7 +17994,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LavenderBlush(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_lavender_blush(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17696,7 +18010,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LawnGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_lawn_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17712,7 +18026,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LemonChiffon(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_lemon_chiffon(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17728,7 +18042,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17744,7 +18058,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightCoral(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_coral(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17760,7 +18074,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightCyan(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_cyan(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17776,7 +18090,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightGoldenRodYellow(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_golden_rod_yellow(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17792,7 +18106,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightGray(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_gray(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17808,7 +18122,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17824,7 +18138,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightPink(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_pink(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17840,7 +18154,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightSalmon(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_salmon(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17856,7 +18170,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightSeaGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_sea_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17872,7 +18186,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightSkyBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_sky_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17888,7 +18202,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightSlateGray(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_slate_gray(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17904,7 +18218,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightSteelBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_steel_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17920,7 +18234,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LightYellow(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_light_yellow(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17936,7 +18250,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Lime(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_lime(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17952,7 +18266,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_LimeGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_lime_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17968,7 +18282,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Linen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_linen(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -17984,7 +18298,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Magenta(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_magenta(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18000,7 +18314,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Maroon(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_maroon(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18016,7 +18330,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MediumAquamarine(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_medium_aquamarine(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18032,7 +18346,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MediumBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_medium_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18048,7 +18362,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MediumOrchid(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_medium_orchid(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18064,7 +18378,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MediumPurple(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_medium_purple(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18080,7 +18394,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MediumSeaGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_medium_sea_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18096,7 +18410,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MediumSlateBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_medium_slate_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18112,7 +18426,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MediumSpringGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_medium_spring_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18128,7 +18442,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MediumTurquoise(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_medium_turquoise(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18144,7 +18458,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MediumVioletRed(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_medium_violet_red(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18160,7 +18474,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MidnightBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_midnight_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18176,7 +18490,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MintCream(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_mint_cream(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18192,7 +18506,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_MistyRose(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_misty_rose(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18208,7 +18522,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Moccasin(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_moccasin(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18224,7 +18538,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_NavajoWhite(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_navajo_white(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18240,7 +18554,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Navy(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_navy(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18256,7 +18570,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_OldLace(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_old_lace(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18272,7 +18586,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Olive(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_olive(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18288,7 +18602,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_OliveDrab(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_olive_drab(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18304,7 +18618,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Orange(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_orange(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18320,7 +18634,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_OrangeRed(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_orange_red(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18336,7 +18650,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Orchid(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_orchid(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18352,7 +18666,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_PaleGoldenRod(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_pale_golden_rod(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18368,7 +18682,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_PaleGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_pale_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18384,7 +18698,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_PaleTurquoise(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_pale_turquoise(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18400,7 +18714,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_PaleVioletRed(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_pale_violet_red(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18416,7 +18730,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_PapayaWhip(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_papaya_whip(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18432,7 +18746,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_PeachPuff(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_peach_puff(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18448,7 +18762,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Peru(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_peru(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18464,7 +18778,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Pink(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_pink(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18480,7 +18794,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Plum(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_plum(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18496,7 +18810,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_PowderBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_powder_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18512,7 +18826,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Purple(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_purple(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18528,7 +18842,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Red(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_red(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18544,7 +18858,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_RosyBrown(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_rosy_brown(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18560,7 +18874,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_RoyalBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_royal_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18576,7 +18890,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_SaddleBrown(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_saddle_brown(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18592,7 +18906,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Salmon(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_salmon(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18608,7 +18922,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_SandyBrown(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_sandy_brown(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18624,7 +18938,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_SeaGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_sea_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18640,7 +18954,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_SeaShell(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_sea_shell(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18656,7 +18970,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Sienna(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_sienna(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18672,7 +18986,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Silver(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_silver(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18688,7 +19002,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_SkyBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_sky_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18704,7 +19018,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_SlateBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_slate_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18720,7 +19034,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_SlateGray(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_slate_gray(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18736,7 +19050,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Snow(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_snow(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18752,7 +19066,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_SpringGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_spring_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18768,7 +19082,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_SteelBlue(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_steel_blue(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18784,7 +19098,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Tan(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_tan(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18800,7 +19114,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Teal(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_teal(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18816,7 +19130,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Thistle(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_thistle(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18832,7 +19146,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Tomato(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_tomato(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18848,7 +19162,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Turquoise(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_turquoise(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18864,7 +19178,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Violet(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_violet(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18880,7 +19194,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Wheat(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_wheat(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18896,7 +19210,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_White(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_white(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18912,7 +19226,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_WhiteSmoke(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_white_smoke(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18928,7 +19242,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_Yellow(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_yellow(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18944,7 +19258,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_YellowGreen(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_yellow_green(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue result;
   VALUE vresult = Qnil;
   
@@ -18960,7 +19274,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -18992,7 +19306,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19024,7 +19338,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ColourValue_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_ColourValue_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -19095,7 +19409,7 @@ free_Mezzanine_WorldObjectGraphicsSettings(Mezzanine::WorldObjectGraphicsSetting
 }
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SetMesh__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_set_mesh__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::Graphics::Mesh *arg2 = (Mezzanine::Graphics::Mesh *) 0 ;
   void *argp1 = 0 ;
@@ -19124,7 +19438,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SetMesh__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_set_mesh__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   Mezzanine::String *arg3 = 0 ;
@@ -19174,7 +19488,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMesh(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_set_mesh(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -19195,7 +19509,7 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMesh(int nargs, VALUE *arg
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Graphics__Mesh, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_WorldObjectGraphicsSettings_SetMesh__SWIG_0(nargs, args, self);
+        return _wrap_WorldObjectGraphicsSettings_set_mesh__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -19211,23 +19525,23 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMesh(int nargs, VALUE *arg
         int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_WorldObjectGraphicsSettings_SetMesh__SWIG_1(nargs, args, self);
+          return _wrap_WorldObjectGraphicsSettings_set_mesh__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldObjectGraphicsSettings.SetMesh", 
-    "    void WorldObjectGraphicsSettings.SetMesh(Mezzanine::Graphics::Mesh *ObjectMesh)\n"
-    "    void WorldObjectGraphicsSettings.SetMesh(Mezzanine::String const &MeshName, Mezzanine::String const &Group)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldObjectGraphicsSettings.set_mesh", 
+    "    void WorldObjectGraphicsSettings.set_mesh(Mezzanine::Graphics::Mesh *ObjectMesh)\n"
+    "    void WorldObjectGraphicsSettings.set_mesh(Mezzanine::String const &MeshName, Mezzanine::String const &Group)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_GetMesh(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_get_mesh(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -19251,7 +19565,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SetMaterial__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_set_material__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   Mezzanine::Whole *arg3 = 0 ;
@@ -19297,7 +19611,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SetMaterial__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_set_material__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19332,7 +19646,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterial(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_set_material(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -19352,7 +19666,7 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterial(int nargs, VALUE 
       int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_WorldObjectGraphicsSettings_SetMaterial__SWIG_1(nargs, args, self);
+        return _wrap_WorldObjectGraphicsSettings_set_material__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -19370,23 +19684,23 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterial(int nargs, VALUE 
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldObjectGraphicsSettings_SetMaterial__SWIG_0(nargs, args, self);
+          return _wrap_WorldObjectGraphicsSettings_set_material__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldObjectGraphicsSettings.SetMaterial", 
-    "    void WorldObjectGraphicsSettings.SetMaterial(Mezzanine::String const &MatName, Mezzanine::Whole const &Submesh)\n"
-    "    void WorldObjectGraphicsSettings.SetMaterial(Mezzanine::String const &MatName)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldObjectGraphicsSettings.set_material", 
+    "    void WorldObjectGraphicsSettings.set_material(Mezzanine::String const &MatName, Mezzanine::Whole const &Submesh)\n"
+    "    void WorldObjectGraphicsSettings.set_material(Mezzanine::String const &MatName)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_GetMaterialName__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_get_material_name__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19420,7 +19734,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_GetMaterialName__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_get_material_name__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -19443,7 +19757,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialName(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_get_material_name(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -19460,7 +19774,7 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialName(int nargs, VA
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldObjectGraphicsSettings, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_WorldObjectGraphicsSettings_GetMaterialName__SWIG_1(nargs, args, self);
+      return _wrap_WorldObjectGraphicsSettings_get_material_name__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -19474,22 +19788,22 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialName(int nargs, VA
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_WorldObjectGraphicsSettings_GetMaterialName__SWIG_0(nargs, args, self);
+        return _wrap_WorldObjectGraphicsSettings_get_material_name__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "WorldObjectGraphicsSettings.GetMaterialName", 
-    "    Mezzanine::ConstString WorldObjectGraphicsSettings.GetMaterialName(Mezzanine::Whole const &Submesh)\n"
-    "    Mezzanine::ConstString WorldObjectGraphicsSettings.GetMaterialName()\n");
+  Ruby_Format_OverloadedError( argc, 3, "WorldObjectGraphicsSettings.get_material_name", 
+    "    Mezzanine::ConstString WorldObjectGraphicsSettings.get_material_name(Mezzanine::Whole const &Submesh)\n"
+    "    Mezzanine::ConstString WorldObjectGraphicsSettings.get_material_name()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_HasMaterialSet__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_has_material_set__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19523,7 +19837,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_HasMaterialSet__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_has_material_set__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -19546,7 +19860,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_HasMaterialSet(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_has_material_set(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -19563,7 +19877,7 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_HasMaterialSet(int nargs, VAL
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldObjectGraphicsSettings, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_WorldObjectGraphicsSettings_HasMaterialSet__SWIG_1(nargs, args, self);
+      return _wrap_WorldObjectGraphicsSettings_has_material_set__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -19577,22 +19891,22 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_HasMaterialSet(int nargs, VAL
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_WorldObjectGraphicsSettings_HasMaterialSet__SWIG_0(nargs, args, self);
+        return _wrap_WorldObjectGraphicsSettings_has_material_set__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "WorldObjectGraphicsSettings.HasMaterialSet", 
-    "    bool WorldObjectGraphicsSettings.HasMaterialSet(Mezzanine::Whole const &Submesh)\n"
-    "    bool WorldObjectGraphicsSettings.HasMaterialSet()\n");
+  Ruby_Format_OverloadedError( argc, 3, "WorldObjectGraphicsSettings.has_material_set", 
+    "    bool WorldObjectGraphicsSettings.has_material_set(Mezzanine::Whole const &Submesh)\n"
+    "    bool WorldObjectGraphicsSettings.has_material_set()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_GetNumSubmeshes(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_get_num_submeshes(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -19616,7 +19930,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_CloneMaterial(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_clone_material(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19652,7 +19966,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SetMaterialAmbient__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_set_material_ambient__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::ColourValue *arg2 = 0 ;
   Mezzanine::Whole *arg3 = 0 ;
@@ -19694,7 +20008,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SetMaterialAmbient__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_set_material_ambient__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::ColourValue *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19725,7 +20039,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterialAmbient(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_set_material_ambient(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -19746,7 +20060,7 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterialAmbient(int nargs,
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__ColourValue, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_WorldObjectGraphicsSettings_SetMaterialAmbient__SWIG_1(nargs, args, self);
+        return _wrap_WorldObjectGraphicsSettings_set_material_ambient__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -19765,23 +20079,23 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterialAmbient(int nargs,
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldObjectGraphicsSettings_SetMaterialAmbient__SWIG_0(nargs, args, self);
+          return _wrap_WorldObjectGraphicsSettings_set_material_ambient__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldObjectGraphicsSettings.SetMaterialAmbient", 
-    "    void WorldObjectGraphicsSettings.SetMaterialAmbient(Mezzanine::ColourValue const &Ambient, Mezzanine::Whole const &Submesh)\n"
-    "    void WorldObjectGraphicsSettings.SetMaterialAmbient(Mezzanine::ColourValue const &Ambient)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldObjectGraphicsSettings.set_material_ambient", 
+    "    void WorldObjectGraphicsSettings.set_material_ambient(Mezzanine::ColourValue const &Ambient, Mezzanine::Whole const &Submesh)\n"
+    "    void WorldObjectGraphicsSettings.set_material_ambient(Mezzanine::ColourValue const &Ambient)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SetMaterialSpecular__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_set_material_specular__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::ColourValue *arg2 = 0 ;
   Mezzanine::Whole *arg3 = 0 ;
@@ -19823,7 +20137,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SetMaterialSpecular__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_set_material_specular__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::ColourValue *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19854,7 +20168,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterialSpecular(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_set_material_specular(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -19875,7 +20189,7 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterialSpecular(int nargs
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__ColourValue, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_WorldObjectGraphicsSettings_SetMaterialSpecular__SWIG_1(nargs, args, self);
+        return _wrap_WorldObjectGraphicsSettings_set_material_specular__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -19894,23 +20208,23 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterialSpecular(int nargs
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldObjectGraphicsSettings_SetMaterialSpecular__SWIG_0(nargs, args, self);
+          return _wrap_WorldObjectGraphicsSettings_set_material_specular__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldObjectGraphicsSettings.SetMaterialSpecular", 
-    "    void WorldObjectGraphicsSettings.SetMaterialSpecular(Mezzanine::ColourValue const &Specular, Mezzanine::Whole const &Submesh)\n"
-    "    void WorldObjectGraphicsSettings.SetMaterialSpecular(Mezzanine::ColourValue const &Specular)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldObjectGraphicsSettings.set_material_specular", 
+    "    void WorldObjectGraphicsSettings.set_material_specular(Mezzanine::ColourValue const &Specular, Mezzanine::Whole const &Submesh)\n"
+    "    void WorldObjectGraphicsSettings.set_material_specular(Mezzanine::ColourValue const &Specular)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SetMaterialDiffuse__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_set_material_diffuse__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::ColourValue *arg2 = 0 ;
   Mezzanine::Whole *arg3 = 0 ;
@@ -19952,7 +20266,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SetMaterialDiffuse__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_set_material_diffuse__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::ColourValue *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -19983,7 +20297,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterialDiffuse(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_set_material_diffuse(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -20004,7 +20318,7 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterialDiffuse(int nargs,
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__ColourValue, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_WorldObjectGraphicsSettings_SetMaterialDiffuse__SWIG_1(nargs, args, self);
+        return _wrap_WorldObjectGraphicsSettings_set_material_diffuse__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -20023,23 +20337,23 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_SetMaterialDiffuse(int nargs,
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldObjectGraphicsSettings_SetMaterialDiffuse__SWIG_0(nargs, args, self);
+          return _wrap_WorldObjectGraphicsSettings_set_material_diffuse__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldObjectGraphicsSettings.SetMaterialDiffuse", 
-    "    void WorldObjectGraphicsSettings.SetMaterialDiffuse(Mezzanine::ColourValue const &Diffuse, Mezzanine::Whole const &Submesh)\n"
-    "    void WorldObjectGraphicsSettings.SetMaterialDiffuse(Mezzanine::ColourValue const &Diffuse)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldObjectGraphicsSettings.set_material_diffuse", 
+    "    void WorldObjectGraphicsSettings.set_material_diffuse(Mezzanine::ColourValue const &Diffuse, Mezzanine::Whole const &Submesh)\n"
+    "    void WorldObjectGraphicsSettings.set_material_diffuse(Mezzanine::ColourValue const &Diffuse)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_GetMaterialAmbient__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_get_material_ambient__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -20073,7 +20387,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_GetMaterialAmbient__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_get_material_ambient__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20096,7 +20410,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialAmbient(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_get_material_ambient(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -20113,7 +20427,7 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialAmbient(int nargs,
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldObjectGraphicsSettings, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_WorldObjectGraphicsSettings_GetMaterialAmbient__SWIG_1(nargs, args, self);
+      return _wrap_WorldObjectGraphicsSettings_get_material_ambient__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -20127,22 +20441,22 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialAmbient(int nargs,
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_WorldObjectGraphicsSettings_GetMaterialAmbient__SWIG_0(nargs, args, self);
+        return _wrap_WorldObjectGraphicsSettings_get_material_ambient__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "WorldObjectGraphicsSettings.GetMaterialAmbient", 
-    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.GetMaterialAmbient(Mezzanine::Whole const &Submesh)\n"
-    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.GetMaterialAmbient()\n");
+  Ruby_Format_OverloadedError( argc, 3, "WorldObjectGraphicsSettings.get_material_ambient", 
+    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.get_material_ambient(Mezzanine::Whole const &Submesh)\n"
+    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.get_material_ambient()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_GetMaterialSpecular__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_get_material_specular__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -20176,7 +20490,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_GetMaterialSpecular__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_get_material_specular__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20199,7 +20513,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialSpecular(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_get_material_specular(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -20216,7 +20530,7 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialSpecular(int nargs
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldObjectGraphicsSettings, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_WorldObjectGraphicsSettings_GetMaterialSpecular__SWIG_1(nargs, args, self);
+      return _wrap_WorldObjectGraphicsSettings_get_material_specular__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -20230,22 +20544,22 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialSpecular(int nargs
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_WorldObjectGraphicsSettings_GetMaterialSpecular__SWIG_0(nargs, args, self);
+        return _wrap_WorldObjectGraphicsSettings_get_material_specular__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "WorldObjectGraphicsSettings.GetMaterialSpecular", 
-    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.GetMaterialSpecular(Mezzanine::Whole const &Submesh)\n"
-    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.GetMaterialSpecular()\n");
+  Ruby_Format_OverloadedError( argc, 3, "WorldObjectGraphicsSettings.get_material_specular", 
+    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.get_material_specular(Mezzanine::Whole const &Submesh)\n"
+    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.get_material_specular()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_GetMaterialDiffuse__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_get_material_diffuse__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -20279,7 +20593,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_GetMaterialDiffuse__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_get_material_diffuse__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20302,7 +20616,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialDiffuse(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_get_material_diffuse(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -20319,7 +20633,7 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialDiffuse(int nargs,
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldObjectGraphicsSettings, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_WorldObjectGraphicsSettings_GetMaterialDiffuse__SWIG_1(nargs, args, self);
+      return _wrap_WorldObjectGraphicsSettings_get_material_diffuse__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -20333,22 +20647,22 @@ SWIGINTERN VALUE _wrap_WorldObjectGraphicsSettings_GetMaterialDiffuse(int nargs,
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_WorldObjectGraphicsSettings_GetMaterialDiffuse__SWIG_0(nargs, args, self);
+        return _wrap_WorldObjectGraphicsSettings_get_material_diffuse__SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "WorldObjectGraphicsSettings.GetMaterialDiffuse", 
-    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.GetMaterialDiffuse(Mezzanine::Whole const &Submesh)\n"
-    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.GetMaterialDiffuse()\n");
+  Ruby_Format_OverloadedError( argc, 3, "WorldObjectGraphicsSettings.get_material_diffuse", 
+    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.get_material_diffuse(Mezzanine::Whole const &Submesh)\n"
+    "    Mezzanine::ColourValue WorldObjectGraphicsSettings.get_material_diffuse()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -20380,7 +20694,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectGraphicsSettings *arg1 = (Mezzanine::WorldObjectGraphicsSettings *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -20412,7 +20726,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectGraphicsSettings_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectGraphicsSettings_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -20435,7 +20749,58 @@ free_Mezzanine_WorldObject(Mezzanine::WorldObject *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_WorldObject_SetLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_set_location__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+  Mezzanine::Real *arg2 = 0 ;
+  Mezzanine::Real *arg3 = 0 ;
+  Mezzanine::Real *arg4 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Real temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  Mezzanine::Real temp3 ;
+  float val3 ;
+  int ecode3 = 0 ;
+  Mezzanine::Real temp4 ;
+  float val4 ;
+  int ecode4 = 0 ;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","SetLocation", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  ecode2 = SWIG_AsVal_float(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","SetLocation", 2, argv[0] ));
+  } 
+  temp2 = static_cast< Mezzanine::Real >(val2);
+  arg2 = &temp2;
+  ecode3 = SWIG_AsVal_float(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Real","SetLocation", 3, argv[1] ));
+  } 
+  temp3 = static_cast< Mezzanine::Real >(val3);
+  arg3 = &temp3;
+  ecode4 = SWIG_AsVal_float(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "Mezzanine::Real","SetLocation", 4, argv[2] ));
+  } 
+  temp4 = static_cast< Mezzanine::Real >(val4);
+  arg4 = &temp4;
+  (arg1)->SetLocation((Mezzanine::Real const &)*arg2,(Mezzanine::Real const &)*arg3,(Mezzanine::Real const &)*arg4);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_WorldObject_set_location__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -20466,8 +20831,70 @@ fail:
 }
 
 
+SWIGINTERN VALUE _wrap_WorldObject_set_location(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[5];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 5) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldObject, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_WorldObject_set_location__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldObject, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_float(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_float(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            return _wrap_WorldObject_set_location__SWIG_0(nargs, args, self);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 5, "WorldObject.set_location", 
+    "    void WorldObject.set_location(Mezzanine::Real const &x, Mezzanine::Real const &y, Mezzanine::Real const &z)\n"
+    "    void WorldObject.set_location(Mezzanine::Vector3 const &Location)\n");
+  
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE
-_wrap_WorldObject_GetLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_get_location(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20491,7 +20918,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_SetScaling(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_set_scaling(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -20523,7 +20950,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_GetScaling(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_get_scaling(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20547,7 +20974,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_GetName(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_get_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20571,7 +20998,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_GetType(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_get_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20595,7 +21022,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_IsStaticOrKinematic(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_is_static_or_kinematic(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20619,7 +21046,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_IsInWorld(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_is_in_world(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20643,7 +21070,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_GetWorld(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_get_world(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20667,7 +21094,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_GetGraphicsSettings(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_get_graphics_settings(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20691,7 +21118,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_GetPhysicsSettings(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_get_physics_settings(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20715,7 +21142,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_AddToWorld(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_add_to_world(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20736,7 +21163,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_RemoveFromWorld(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_remove_from_world(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20757,7 +21184,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject__Update(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject__update(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20778,7 +21205,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject__NotifyCollisionState(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject__notify_collision_state(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   Physics::Collision *arg2 = (Physics::Collision *) 0 ;
   Physics::Collision::CollisionState *arg3 = 0 ;
@@ -20818,7 +21245,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject__NotifyProxyDestroyed(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject__notify_proxy_destroyed(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   Mezzanine::WorldProxy *arg2 = (Mezzanine::WorldProxy *) 0 ;
   void *argp1 = 0 ;
@@ -20847,7 +21274,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject__GetBasePhysicsObject(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject__get_base_physics_object(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20871,7 +21298,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject__GetGraphicsObject(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject__get_graphics_object(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20895,7 +21322,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject__GetGraphicsNode(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject__get_graphics_node(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20919,7 +21346,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObject_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -20936,8 +21363,13 @@ fail:
 
 static swig_class SwigClassNonStaticWorldObject;
 
+SWIGINTERN void
+free_Mezzanine_NonStaticWorldObject(Mezzanine::NonStaticWorldObject *arg1) {
+    delete arg1;
+}
+
 SWIGINTERN VALUE
-_wrap_NonStaticWorldObject_SetLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_NonStaticWorldObject_set_location(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -20968,13 +21400,8 @@ fail:
 }
 
 
-SWIGINTERN void
-free_Mezzanine_NonStaticWorldObject(Mezzanine::NonStaticWorldObject *arg1) {
-    delete arg1;
-}
-
 SWIGINTERN VALUE
-_wrap_NonStaticWorldObject_GetLocation(int argc, VALUE *argv, VALUE self) {
+_wrap_NonStaticWorldObject_get_location(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20998,7 +21425,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonStaticWorldObject_SetOrientation__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_NonStaticWorldObject_set_orientation__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Real *arg3 = 0 ;
@@ -21059,7 +21486,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonStaticWorldObject_SetOrientation__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_NonStaticWorldObject_set_orientation__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
   Mezzanine::Quaternion *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -21090,7 +21517,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_NonStaticWorldObject_SetOrientation(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_NonStaticWorldObject_set_orientation(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
   int ii;
@@ -21111,7 +21538,7 @@ SWIGINTERN VALUE _wrap_NonStaticWorldObject_SetOrientation(int nargs, VALUE *arg
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Quaternion, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_NonStaticWorldObject_SetOrientation__SWIG_1(nargs, args, self);
+        return _wrap_NonStaticWorldObject_set_orientation__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -21141,7 +21568,7 @@ SWIGINTERN VALUE _wrap_NonStaticWorldObject_SetOrientation(int nargs, VALUE *arg
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_NonStaticWorldObject_SetOrientation__SWIG_0(nargs, args, self);
+              return _wrap_NonStaticWorldObject_set_orientation__SWIG_0(nargs, args, self);
             }
           }
         }
@@ -21150,16 +21577,16 @@ SWIGINTERN VALUE _wrap_NonStaticWorldObject_SetOrientation(int nargs, VALUE *arg
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 6, "NonStaticWorldObject.SetOrientation", 
-    "    void NonStaticWorldObject.SetOrientation(Mezzanine::Real const &x, Mezzanine::Real const &y, Mezzanine::Real const &z, Mezzanine::Real const &w)\n"
-    "    void NonStaticWorldObject.SetOrientation(Mezzanine::Quaternion const &Rotation)\n");
+  Ruby_Format_OverloadedError( argc, 6, "NonStaticWorldObject.set_orientation", 
+    "    void NonStaticWorldObject.set_orientation(Mezzanine::Real const &x, Mezzanine::Real const &y, Mezzanine::Real const &z, Mezzanine::Real const &w)\n"
+    "    void NonStaticWorldObject.set_orientation(Mezzanine::Quaternion const &Rotation)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_NonStaticWorldObject_GetOrientation(int argc, VALUE *argv, VALUE self) {
+_wrap_NonStaticWorldObject_get_orientation(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21183,7 +21610,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonStaticWorldObject_SetScaling(int argc, VALUE *argv, VALUE self) {
+_wrap_NonStaticWorldObject_set_scaling(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -21215,7 +21642,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonStaticWorldObject_GetScaling(int argc, VALUE *argv, VALUE self) {
+_wrap_NonStaticWorldObject_get_scaling(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21239,7 +21666,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonStaticWorldObject_GetName(int argc, VALUE *argv, VALUE self) {
+_wrap_NonStaticWorldObject_get_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonStaticWorldObject *arg1 = (Mezzanine::NonStaticWorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21263,7 +21690,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonStaticWorldObject_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_NonStaticWorldObject_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -21334,7 +21761,7 @@ free_Mezzanine_WorldObjectPhysicsSettings(Mezzanine::WorldObjectPhysicsSettings 
 }
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_SetCollisionShape(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_set_collision_shape(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   Mezzanine::Physics::CollisionShape *arg2 = (Mezzanine::Physics::CollisionShape *) 0 ;
   void *argp1 = 0 ;
@@ -21363,7 +21790,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_GetCollisionShape(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_get_collision_shape(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21387,7 +21814,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_SetCollisionGroupAndMask(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_set_collision_group_and_mask(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   Mezzanine::Whole *arg3 = 0 ;
@@ -21428,7 +21855,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_GetCollisionGroup(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_get_collision_group(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21452,7 +21879,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_GetCollisionMask(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_get_collision_mask(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21476,7 +21903,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_IsKinematic(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_is_kinematic(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21500,7 +21927,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_IsStatic(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_is_static(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21524,7 +21951,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_IsStaticOrKinematic(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_is_static_or_kinematic(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21548,7 +21975,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_GetCollisionResponse(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_get_collision_response(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21572,7 +21999,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_IsActive(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_is_active(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21596,7 +22023,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_SetActivationState__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_set_activation_state__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   Mezzanine::Physics::ActivationState *arg2 = 0 ;
   bool arg3 ;
@@ -21636,7 +22063,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_SetActivationState__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_set_activation_state__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   Mezzanine::Physics::ActivationState *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -21667,7 +22094,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObjectPhysicsSettings_SetActivationState(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldObjectPhysicsSettings_set_activation_state(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -21689,7 +22116,7 @@ SWIGINTERN VALUE _wrap_WorldObjectPhysicsSettings_SetActivationState(int nargs, 
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_WorldObjectPhysicsSettings_SetActivationState__SWIG_1(nargs, args, self);
+        return _wrap_WorldObjectPhysicsSettings_set_activation_state__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -21709,23 +22136,23 @@ SWIGINTERN VALUE _wrap_WorldObjectPhysicsSettings_SetActivationState(int nargs, 
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_WorldObjectPhysicsSettings_SetActivationState__SWIG_0(nargs, args, self);
+          return _wrap_WorldObjectPhysicsSettings_set_activation_state__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldObjectPhysicsSettings.SetActivationState", 
-    "    void WorldObjectPhysicsSettings.SetActivationState(Mezzanine::Physics::ActivationState const &State, bool Force)\n"
-    "    void WorldObjectPhysicsSettings.SetActivationState(Mezzanine::Physics::ActivationState const &State)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldObjectPhysicsSettings.set_activation_state", 
+    "    void WorldObjectPhysicsSettings.set_activation_state(Mezzanine::Physics::ActivationState const &State, bool Force)\n"
+    "    void WorldObjectPhysicsSettings.set_activation_state(Mezzanine::Physics::ActivationState const &State)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_GetActivationState(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_get_activation_state(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21749,7 +22176,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -21781,7 +22208,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObjectPhysicsSettings *arg1 = (Mezzanine::WorldObjectPhysicsSettings *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -21813,7 +22240,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObjectPhysicsSettings_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldObjectPhysicsSettings_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -21884,7 +22311,7 @@ free_Mezzanine_NonTriggerPhysicsSettings(Mezzanine::NonTriggerPhysicsSettings *a
 }
 
 SWIGINTERN VALUE
-_wrap_NonTriggerPhysicsSettings_SetCollisionResponse(int argc, VALUE *argv, VALUE self) {
+_wrap_NonTriggerPhysicsSettings_set_collision_response(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonTriggerPhysicsSettings *arg1 = (Mezzanine::NonTriggerPhysicsSettings *) 0 ;
   bool arg2 ;
   void *argp1 = 0 ;
@@ -21913,7 +22340,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonTriggerPhysicsSettings_SetFriction(int argc, VALUE *argv, VALUE self) {
+_wrap_NonTriggerPhysicsSettings_set_friction(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonTriggerPhysicsSettings *arg1 = (Mezzanine::NonTriggerPhysicsSettings *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -21944,7 +22371,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonTriggerPhysicsSettings_GetFriction(int argc, VALUE *argv, VALUE self) {
+_wrap_NonTriggerPhysicsSettings_get_friction(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonTriggerPhysicsSettings *arg1 = (Mezzanine::NonTriggerPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21968,7 +22395,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonTriggerPhysicsSettings_SetRestitution(int argc, VALUE *argv, VALUE self) {
+_wrap_NonTriggerPhysicsSettings_set_restitution(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonTriggerPhysicsSettings *arg1 = (Mezzanine::NonTriggerPhysicsSettings *) 0 ;
   Mezzanine::Real *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -21999,7 +22426,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonTriggerPhysicsSettings_GetRestitution(int argc, VALUE *argv, VALUE self) {
+_wrap_NonTriggerPhysicsSettings_get_restitution(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonTriggerPhysicsSettings *arg1 = (Mezzanine::NonTriggerPhysicsSettings *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -22023,7 +22450,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonTriggerPhysicsSettings_ProtoSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_NonTriggerPhysicsSettings_proto_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonTriggerPhysicsSettings *arg1 = (Mezzanine::NonTriggerPhysicsSettings *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -22055,7 +22482,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonTriggerPhysicsSettings_ProtoDeSerialize(int argc, VALUE *argv, VALUE self) {
+_wrap_NonTriggerPhysicsSettings_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   Mezzanine::NonTriggerPhysicsSettings *arg1 = (Mezzanine::NonTriggerPhysicsSettings *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -22087,7 +22514,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_NonTriggerPhysicsSettings_SerializableName(int argc, VALUE *argv, VALUE self) {
+_wrap_NonTriggerPhysicsSettings_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
   
@@ -22159,6 +22586,7 @@ static swig_type_info _swigt__p_Mezzanine__AlarmTimer = {"_p_Mezzanine__AlarmTim
 static swig_type_info _swigt__p_Mezzanine__AttachableBase = {"_p_Mezzanine__AttachableBase", "Mezzanine::AttachableBase *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__AttachableChild = {"_p_Mezzanine__AttachableChild", "Mezzanine::AttachableChild *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__AttachableParent = {"_p_Mezzanine__AttachableParent", "Mezzanine::AttachableParent *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__AttachableParent__AttachableContainer__const_iterator = {"_p_Mezzanine__AttachableParent__AttachableContainer__const_iterator", "Mezzanine::AttachableParent::ConstAttachableIterator *|Mezzanine::AttachableParent::AttachableContainer::const_iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__AttachableParent__AttachableContainer__iterator = {"_p_Mezzanine__AttachableParent__AttachableContainer__iterator", "Mezzanine::AttachableParent::AttachableIterator *|Mezzanine::AttachableParent::AttachableContainer::iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__AxisAlignedBox = {"_p_Mezzanine__AxisAlignedBox", "Mezzanine::AxisAlignedBox *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__ColourValue = {"_p_Mezzanine__ColourValue", "Mezzanine::ColourValue *", 0, 0, (void*)0, 0};
@@ -22241,6 +22669,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__AttachableBase,
   &_swigt__p_Mezzanine__AttachableChild,
   &_swigt__p_Mezzanine__AttachableParent,
+  &_swigt__p_Mezzanine__AttachableParent__AttachableContainer__const_iterator,
   &_swigt__p_Mezzanine__AttachableParent__AttachableContainer__iterator,
   &_swigt__p_Mezzanine__AxisAlignedBox,
   &_swigt__p_Mezzanine__ColourValue,
@@ -22323,6 +22752,7 @@ static swig_cast_info _swigc__p_Mezzanine__AlarmTimer[] = {  {&_swigt__p_Mezzani
 static swig_cast_info _swigc__p_Mezzanine__AttachableBase[] = {  {&_swigt__p_Mezzanine__WorldNode, _p_Mezzanine__WorldNodeTo_p_Mezzanine__AttachableBase, 0, 0},  {&_swigt__p_Mezzanine__NonStaticWorldObject, _p_Mezzanine__NonStaticWorldObjectTo_p_Mezzanine__AttachableBase, 0, 0},  {&_swigt__p_Mezzanine__AttachableBase, 0, 0, 0},  {&_swigt__p_Mezzanine__AttachableParent, _p_Mezzanine__AttachableParentTo_p_Mezzanine__AttachableBase, 0, 0},  {&_swigt__p_Mezzanine__AttachableChild, _p_Mezzanine__AttachableChildTo_p_Mezzanine__AttachableBase, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AttachableChild[] = {  {&_swigt__p_Mezzanine__WorldNode, _p_Mezzanine__WorldNodeTo_p_Mezzanine__AttachableChild, 0, 0},  {&_swigt__p_Mezzanine__AttachableChild, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AttachableParent[] = {  {&_swigt__p_Mezzanine__WorldNode, _p_Mezzanine__WorldNodeTo_p_Mezzanine__AttachableParent, 0, 0},  {&_swigt__p_Mezzanine__NonStaticWorldObject, _p_Mezzanine__NonStaticWorldObjectTo_p_Mezzanine__AttachableParent, 0, 0},  {&_swigt__p_Mezzanine__AttachableParent, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__AttachableParent__AttachableContainer__const_iterator[] = {  {&_swigt__p_Mezzanine__AttachableParent__AttachableContainer__const_iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AttachableParent__AttachableContainer__iterator[] = {  {&_swigt__p_Mezzanine__AttachableParent__AttachableContainer__iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AxisAlignedBox[] = {  {&_swigt__p_Mezzanine__AxisAlignedBox, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__ColourValue[] = {  {&_swigt__p_Mezzanine__ColourValue, 0, 0, 0},{0, 0, 0, 0}};
@@ -22405,6 +22835,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__AttachableBase,
   _swigc__p_Mezzanine__AttachableChild,
   _swigc__p_Mezzanine__AttachableParent,
+  _swigc__p_Mezzanine__AttachableParent__AttachableContainer__const_iterator,
   _swigc__p_Mezzanine__AttachableParent__AttachableContainer__iterator,
   _swigc__p_Mezzanine__AxisAlignedBox,
   _swigc__p_Mezzanine__ColourValue,
@@ -22736,13 +23167,13 @@ SWIGEXPORT void Init_Mezzanine(void) {
   
   SWIG_RubyInitializeTrackings();
   
-  SwigClassGC_VALUE.klass = rb_define_class_under(mMezzanine, "GC_VALUE", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_swig__GC_VALUE, (void *) &SwigClassGC_VALUE);
-  rb_undef_alloc_func(SwigClassGC_VALUE.klass);
-  rb_define_method(SwigClassGC_VALUE.klass, "inspect", VALUEFUNC(_wrap_GC_VALUE_inspect), -1);
-  rb_define_method(SwigClassGC_VALUE.klass, "to_s", VALUEFUNC(_wrap_GC_VALUE_to_s), -1);
-  SwigClassGC_VALUE.mark = 0;
-  SwigClassGC_VALUE.trackObjects = 0;
+  SwigClassGCVALUE.klass = rb_define_class_under(mMezzanine, "GCVALUE", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_swig__GC_VALUE, (void *) &SwigClassGCVALUE);
+  rb_undef_alloc_func(SwigClassGCVALUE.klass);
+  rb_define_method(SwigClassGCVALUE.klass, "inspect", VALUEFUNC(_wrap_GCVALUE_inspect), -1);
+  rb_define_method(SwigClassGCVALUE.klass, "to_s", VALUEFUNC(_wrap_GCVALUE_to_s), -1);
+  SwigClassGCVALUE.mark = 0;
+  SwigClassGCVALUE.trackObjects = 0;
   
   swig::GC_VALUE::initialize();
   
@@ -22850,7 +23281,7 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_const(mMezzanine, "WSO_Light", SWIG_From_int(static_cast< int >(Mezzanine::WSO_Light)));
   rb_define_const(mMezzanine, "WSO_ParticleEffect", SWIG_From_int(static_cast< int >(Mezzanine::WSO_ParticleEffect)));
   rb_define_const(mMezzanine, "WSO_WorldNode", SWIG_From_int(static_cast< int >(Mezzanine::WSO_WorldNode)));
-  rb_define_module_function(mMezzanine, "PrintHello", VALUEFUNC(_wrap_PrintHello), -1);
+  rb_define_module_function(mMezzanine, "print_hello", VALUEFUNC(_wrap_print_hello), -1);
   
   SwigClassVector3.klass = rb_define_class_under(mMezzanine, "Vector3", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Vector3, (void *) &SwigClassVector3);
@@ -22862,45 +23293,45 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_method(SwigClassVector3.klass, "Y", VALUEFUNC(_wrap_Vector3_Y_get), -1);
   rb_define_method(SwigClassVector3.klass, "Z=", VALUEFUNC(_wrap_Vector3_Z_set), -1);
   rb_define_method(SwigClassVector3.klass, "Z", VALUEFUNC(_wrap_Vector3_Z_get), -1);
-  rb_define_method(SwigClassVector3.klass, "GetAxisValue", VALUEFUNC(_wrap_Vector3_GetAxisValue), -1);
-  rb_define_singleton_method(SwigClassVector3.klass, "Unit_X", VALUEFUNC(_wrap_Vector3_Unit_X), -1);
-  rb_define_singleton_method(SwigClassVector3.klass, "Unit_Y", VALUEFUNC(_wrap_Vector3_Unit_Y), -1);
-  rb_define_singleton_method(SwigClassVector3.klass, "Unit_Z", VALUEFUNC(_wrap_Vector3_Unit_Z), -1);
-  rb_define_singleton_method(SwigClassVector3.klass, "Neg_Unit_X", VALUEFUNC(_wrap_Vector3_Neg_Unit_X), -1);
-  rb_define_singleton_method(SwigClassVector3.klass, "Neg_Unit_Y", VALUEFUNC(_wrap_Vector3_Neg_Unit_Y), -1);
-  rb_define_singleton_method(SwigClassVector3.klass, "Neg_Unit_Z", VALUEFUNC(_wrap_Vector3_Neg_Unit_Z), -1);
-  rb_define_singleton_method(SwigClassVector3.klass, "UnitOnAxis", VALUEFUNC(_wrap_Vector3_UnitOnAxis), -1);
-  rb_define_method(SwigClassVector3.klass, "IsStandardUnitAxis", VALUEFUNC(_wrap_Vector3_IsStandardUnitAxis), -1);
+  rb_define_method(SwigClassVector3.klass, "get_axis_value", VALUEFUNC(_wrap_Vector3_get_axis_value), -1);
+  rb_define_singleton_method(SwigClassVector3.klass, "unit_x", VALUEFUNC(_wrap_Vector3_unit_x), -1);
+  rb_define_singleton_method(SwigClassVector3.klass, "unit_y", VALUEFUNC(_wrap_Vector3_unit_y), -1);
+  rb_define_singleton_method(SwigClassVector3.klass, "unit_z", VALUEFUNC(_wrap_Vector3_unit_z), -1);
+  rb_define_singleton_method(SwigClassVector3.klass, "neg_unit_x", VALUEFUNC(_wrap_Vector3_neg_unit_x), -1);
+  rb_define_singleton_method(SwigClassVector3.klass, "neg_unit_y", VALUEFUNC(_wrap_Vector3_neg_unit_y), -1);
+  rb_define_singleton_method(SwigClassVector3.klass, "neg_unit_z", VALUEFUNC(_wrap_Vector3_neg_unit_z), -1);
+  rb_define_singleton_method(SwigClassVector3.klass, "unit_on_axis", VALUEFUNC(_wrap_Vector3_unit_on_axis), -1);
+  rb_define_method(SwigClassVector3.klass, "is_standard_unit_axis", VALUEFUNC(_wrap_Vector3_is_standard_unit_axis), -1);
   rb_define_method(SwigClassVector3.klass, "-@", VALUEFUNC(_wrap_Vector3___neg__), -1);
   rb_define_method(SwigClassVector3.klass, "==", VALUEFUNC(_wrap_Vector3___eq__), -1);
   rb_define_method(SwigClassVector3.klass, "+", VALUEFUNC(_wrap_Vector3___add__), -1);
   rb_define_method(SwigClassVector3.klass, "-", VALUEFUNC(_wrap_Vector3___sub__), -1);
   rb_define_method(SwigClassVector3.klass, "*", VALUEFUNC(_wrap_Vector3___mul__), -1);
   rb_define_method(SwigClassVector3.klass, "/", VALUEFUNC(_wrap_Vector3___div__), -1);
-  rb_define_method(SwigClassVector3.klass, "CrossProduct", VALUEFUNC(_wrap_Vector3_CrossProduct), -1);
-  rb_define_method(SwigClassVector3.klass, "DotProduct", VALUEFUNC(_wrap_Vector3_DotProduct), -1);
-  rb_define_method(SwigClassVector3.klass, "Normalize", VALUEFUNC(_wrap_Vector3_Normalize), -1);
-  rb_define_method(SwigClassVector3.klass, "GetNormal", VALUEFUNC(_wrap_Vector3_GetNormal), -1);
-  rb_define_method(SwigClassVector3.klass, "GetDirection", VALUEFUNC(_wrap_Vector3_GetDirection), -1);
-  rb_define_method(SwigClassVector3.klass, "Inverse", VALUEFUNC(_wrap_Vector3_Inverse), -1);
-  rb_define_method(SwigClassVector3.klass, "Reflect", VALUEFUNC(_wrap_Vector3_Reflect), -1);
-  rb_define_method(SwigClassVector3.klass, "Distance", VALUEFUNC(_wrap_Vector3_Distance), -1);
-  rb_define_method(SwigClassVector3.klass, "SquaredDistance", VALUEFUNC(_wrap_Vector3_SquaredDistance), -1);
-  rb_define_method(SwigClassVector3.klass, "Length", VALUEFUNC(_wrap_Vector3_Length), -1);
-  rb_define_method(SwigClassVector3.klass, "SquaredLength", VALUEFUNC(_wrap_Vector3_SquaredLength), -1);
-  rb_define_method(SwigClassVector3.klass, "IsZeroLength", VALUEFUNC(_wrap_Vector3_IsZeroLength), -1);
-  rb_define_method(SwigClassVector3.klass, "GetRotationToAxis", VALUEFUNC(_wrap_Vector3_GetRotationToAxis), -1);
-  rb_define_method(SwigClassVector3.klass, "Zero", VALUEFUNC(_wrap_Vector3_Zero), -1);
-  rb_define_method(SwigClassVector3.klass, "SetValues", VALUEFUNC(_wrap_Vector3_SetValues), -1);
-  rb_define_method(SwigClassVector3.klass, "Ceil", VALUEFUNC(_wrap_Vector3_Ceil), -1);
-  rb_define_method(SwigClassVector3.klass, "Floor", VALUEFUNC(_wrap_Vector3_Floor), -1);
-  rb_define_method(SwigClassVector3.klass, "GetBulletVector3", VALUEFUNC(_wrap_Vector3_GetBulletVector3), -1);
-  rb_define_method(SwigClassVector3.klass, "ExtractBulletVector3", VALUEFUNC(_wrap_Vector3_ExtractBulletVector3), -1);
-  rb_define_method(SwigClassVector3.klass, "GetOgreVector3", VALUEFUNC(_wrap_Vector3_GetOgreVector3), -1);
-  rb_define_method(SwigClassVector3.klass, "ExtractOgreVector3", VALUEFUNC(_wrap_Vector3_ExtractOgreVector3), -1);
-  rb_define_method(SwigClassVector3.klass, "ProtoSerialize", VALUEFUNC(_wrap_Vector3_ProtoSerialize), -1);
-  rb_define_method(SwigClassVector3.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_Vector3_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassVector3.klass, "SerializableName", VALUEFUNC(_wrap_Vector3_SerializableName), -1);
+  rb_define_method(SwigClassVector3.klass, "cross_product", VALUEFUNC(_wrap_Vector3_cross_product), -1);
+  rb_define_method(SwigClassVector3.klass, "dot_product", VALUEFUNC(_wrap_Vector3_dot_product), -1);
+  rb_define_method(SwigClassVector3.klass, "normalize", VALUEFUNC(_wrap_Vector3_normalize), -1);
+  rb_define_method(SwigClassVector3.klass, "get_normal", VALUEFUNC(_wrap_Vector3_get_normal), -1);
+  rb_define_method(SwigClassVector3.klass, "get_direction", VALUEFUNC(_wrap_Vector3_get_direction), -1);
+  rb_define_method(SwigClassVector3.klass, "inverse", VALUEFUNC(_wrap_Vector3_inverse), -1);
+  rb_define_method(SwigClassVector3.klass, "reflect", VALUEFUNC(_wrap_Vector3_reflect), -1);
+  rb_define_method(SwigClassVector3.klass, "distance", VALUEFUNC(_wrap_Vector3_distance), -1);
+  rb_define_method(SwigClassVector3.klass, "squared_distance", VALUEFUNC(_wrap_Vector3_squared_distance), -1);
+  rb_define_method(SwigClassVector3.klass, "length", VALUEFUNC(_wrap_Vector3_length), -1);
+  rb_define_method(SwigClassVector3.klass, "squared_length", VALUEFUNC(_wrap_Vector3_squared_length), -1);
+  rb_define_method(SwigClassVector3.klass, "is_zero_length", VALUEFUNC(_wrap_Vector3_is_zero_length), -1);
+  rb_define_method(SwigClassVector3.klass, "get_rotation_to_axis", VALUEFUNC(_wrap_Vector3_get_rotation_to_axis), -1);
+  rb_define_method(SwigClassVector3.klass, "zero", VALUEFUNC(_wrap_Vector3_zero), -1);
+  rb_define_method(SwigClassVector3.klass, "set_values", VALUEFUNC(_wrap_Vector3_set_values), -1);
+  rb_define_method(SwigClassVector3.klass, "ceil", VALUEFUNC(_wrap_Vector3_ceil), -1);
+  rb_define_method(SwigClassVector3.klass, "floor", VALUEFUNC(_wrap_Vector3_floor), -1);
+  rb_define_method(SwigClassVector3.klass, "get_bullet_vector3", VALUEFUNC(_wrap_Vector3_get_bullet_vector3), -1);
+  rb_define_method(SwigClassVector3.klass, "extract_bullet_vector3", VALUEFUNC(_wrap_Vector3_extract_bullet_vector3), -1);
+  rb_define_method(SwigClassVector3.klass, "get_ogre_vector3", VALUEFUNC(_wrap_Vector3_get_ogre_vector3), -1);
+  rb_define_method(SwigClassVector3.klass, "extract_ogre_vector3", VALUEFUNC(_wrap_Vector3_extract_ogre_vector3), -1);
+  rb_define_method(SwigClassVector3.klass, "proto_serialize", VALUEFUNC(_wrap_Vector3_proto_serialize), -1);
+  rb_define_method(SwigClassVector3.klass, "proto_de_serialize", VALUEFUNC(_wrap_Vector3_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassVector3.klass, "serializable_name", VALUEFUNC(_wrap_Vector3_serializable_name), -1);
   SwigClassVector3.mark = 0;
   SwigClassVector3.destroy = (void (*)(void *)) free_Mezzanine_Vector3;
   SwigClassVector3.trackObjects = 0;
@@ -22917,16 +23348,16 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_method(SwigClassPlane.klass, "Normal", VALUEFUNC(_wrap_Plane_Normal_get), -1);
   rb_define_method(SwigClassPlane.klass, "Distance=", VALUEFUNC(_wrap_Plane_Distance_set), -1);
   rb_define_method(SwigClassPlane.klass, "Distance", VALUEFUNC(_wrap_Plane_Distance_get), -1);
-  rb_define_method(SwigClassPlane.klass, "Define", VALUEFUNC(_wrap_Plane_Define), -1);
-  rb_define_method(SwigClassPlane.klass, "GetSide", VALUEFUNC(_wrap_Plane_GetSide), -1);
-  rb_define_method(SwigClassPlane.klass, "GetDistance", VALUEFUNC(_wrap_Plane_GetDistance), -1);
-  rb_define_method(SwigClassPlane.klass, "IsOverlapping", VALUEFUNC(_wrap_Plane_IsOverlapping), -1);
-  rb_define_method(SwigClassPlane.klass, "Intersects", VALUEFUNC(_wrap_Plane_Intersects), -1);
-  rb_define_method(SwigClassPlane.klass, "ExtractOgrePlane", VALUEFUNC(_wrap_Plane_ExtractOgrePlane), -1);
-  rb_define_method(SwigClassPlane.klass, "GetOgrePlane", VALUEFUNC(_wrap_Plane_GetOgrePlane), -1);
-  rb_define_method(SwigClassPlane.klass, "ProtoSerialize", VALUEFUNC(_wrap_Plane_ProtoSerialize), -1);
-  rb_define_method(SwigClassPlane.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_Plane_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassPlane.klass, "GetSerializableName", VALUEFUNC(_wrap_Plane_GetSerializableName), -1);
+  rb_define_method(SwigClassPlane.klass, "define", VALUEFUNC(_wrap_Plane_define), -1);
+  rb_define_method(SwigClassPlane.klass, "get_side", VALUEFUNC(_wrap_Plane_get_side), -1);
+  rb_define_method(SwigClassPlane.klass, "get_distance", VALUEFUNC(_wrap_Plane_get_distance), -1);
+  rb_define_method(SwigClassPlane.klass, "is_overlapping", VALUEFUNC(_wrap_Plane_is_overlapping), -1);
+  rb_define_method(SwigClassPlane.klass, "intersects", VALUEFUNC(_wrap_Plane_intersects), -1);
+  rb_define_method(SwigClassPlane.klass, "extract_ogre_plane", VALUEFUNC(_wrap_Plane_extract_ogre_plane), -1);
+  rb_define_method(SwigClassPlane.klass, "get_ogre_plane", VALUEFUNC(_wrap_Plane_get_ogre_plane), -1);
+  rb_define_method(SwigClassPlane.klass, "proto_serialize", VALUEFUNC(_wrap_Plane_proto_serialize), -1);
+  rb_define_method(SwigClassPlane.klass, "proto_de_serialize", VALUEFUNC(_wrap_Plane_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassPlane.klass, "get_serializable_name", VALUEFUNC(_wrap_Plane_get_serializable_name), -1);
   rb_define_method(SwigClassPlane.klass, "==", VALUEFUNC(_wrap_Plane___eq__), -1);
   SwigClassPlane.mark = 0;
   SwigClassPlane.destroy = (void (*)(void *)) free_Mezzanine_Plane;
@@ -22944,29 +23375,29 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_method(SwigClassQuaternion.klass, "Z", VALUEFUNC(_wrap_Quaternion_Z_get), -1);
   rb_define_method(SwigClassQuaternion.klass, "W=", VALUEFUNC(_wrap_Quaternion_W_set), -1);
   rb_define_method(SwigClassQuaternion.klass, "W", VALUEFUNC(_wrap_Quaternion_W_get), -1);
-  rb_define_method(SwigClassQuaternion.klass, "SetIdentity", VALUEFUNC(_wrap_Quaternion_SetIdentity), -1);
-  rb_define_method(SwigClassQuaternion.klass, "SetValues", VALUEFUNC(_wrap_Quaternion_SetValues), -1);
-  rb_define_method(SwigClassQuaternion.klass, "SetFromAxisAngle", VALUEFUNC(_wrap_Quaternion_SetFromAxisAngle), -1);
-  rb_define_method(SwigClassQuaternion.klass, "SetFromMatrix3x3", VALUEFUNC(_wrap_Quaternion_SetFromMatrix3x3), -1);
-  rb_define_method(SwigClassQuaternion.klass, "SetFromAxes", VALUEFUNC(_wrap_Quaternion_SetFromAxes), -1);
-  rb_define_method(SwigClassQuaternion.klass, "DotProduct", VALUEFUNC(_wrap_Quaternion_DotProduct), -1);
-  rb_define_method(SwigClassQuaternion.klass, "Length", VALUEFUNC(_wrap_Quaternion_Length), -1);
-  rb_define_method(SwigClassQuaternion.klass, "LengthSqrd", VALUEFUNC(_wrap_Quaternion_LengthSqrd), -1);
-  rb_define_method(SwigClassQuaternion.klass, "Normalize", VALUEFUNC(_wrap_Quaternion_Normalize), -1);
-  rb_define_method(SwigClassQuaternion.klass, "GetNormalizedCopy", VALUEFUNC(_wrap_Quaternion_GetNormalizedCopy), -1);
-  rb_define_method(SwigClassQuaternion.klass, "GetInverse", VALUEFUNC(_wrap_Quaternion_GetInverse), -1);
-  rb_define_method(SwigClassQuaternion.klass, "GetBulletQuaternion", VALUEFUNC(_wrap_Quaternion_GetBulletQuaternion), -1);
-  rb_define_method(SwigClassQuaternion.klass, "ExtractBulletQuaternion", VALUEFUNC(_wrap_Quaternion_ExtractBulletQuaternion), -1);
-  rb_define_method(SwigClassQuaternion.klass, "GetOgreQuaternion", VALUEFUNC(_wrap_Quaternion_GetOgreQuaternion), -1);
-  rb_define_method(SwigClassQuaternion.klass, "ExtractOgreQuaternion", VALUEFUNC(_wrap_Quaternion_ExtractOgreQuaternion), -1);
+  rb_define_method(SwigClassQuaternion.klass, "set_identity", VALUEFUNC(_wrap_Quaternion_set_identity), -1);
+  rb_define_method(SwigClassQuaternion.klass, "set_values", VALUEFUNC(_wrap_Quaternion_set_values), -1);
+  rb_define_method(SwigClassQuaternion.klass, "set_from_axis_angle", VALUEFUNC(_wrap_Quaternion_set_from_axis_angle), -1);
+  rb_define_method(SwigClassQuaternion.klass, "set_from_matrix_3x3", VALUEFUNC(_wrap_Quaternion_set_from_matrix_3x3), -1);
+  rb_define_method(SwigClassQuaternion.klass, "set_from_axes", VALUEFUNC(_wrap_Quaternion_set_from_axes), -1);
+  rb_define_method(SwigClassQuaternion.klass, "dot_product", VALUEFUNC(_wrap_Quaternion_dot_product), -1);
+  rb_define_method(SwigClassQuaternion.klass, "length", VALUEFUNC(_wrap_Quaternion_length), -1);
+  rb_define_method(SwigClassQuaternion.klass, "length_sqrd", VALUEFUNC(_wrap_Quaternion_length_sqrd), -1);
+  rb_define_method(SwigClassQuaternion.klass, "normalize", VALUEFUNC(_wrap_Quaternion_normalize), -1);
+  rb_define_method(SwigClassQuaternion.klass, "get_normalized_copy", VALUEFUNC(_wrap_Quaternion_get_normalized_copy), -1);
+  rb_define_method(SwigClassQuaternion.klass, "get_inverse", VALUEFUNC(_wrap_Quaternion_get_inverse), -1);
+  rb_define_method(SwigClassQuaternion.klass, "get_bullet_quaternion", VALUEFUNC(_wrap_Quaternion_get_bullet_quaternion), -1);
+  rb_define_method(SwigClassQuaternion.klass, "extract_bullet_quaternion", VALUEFUNC(_wrap_Quaternion_extract_bullet_quaternion), -1);
+  rb_define_method(SwigClassQuaternion.klass, "get_ogre_quaternion", VALUEFUNC(_wrap_Quaternion_get_ogre_quaternion), -1);
+  rb_define_method(SwigClassQuaternion.klass, "extract_ogre_quaternion", VALUEFUNC(_wrap_Quaternion_extract_ogre_quaternion), -1);
   rb_define_method(SwigClassQuaternion.klass, "/", VALUEFUNC(_wrap_Quaternion___div__), -1);
   rb_define_method(SwigClassQuaternion.klass, "+", VALUEFUNC(_wrap_Quaternion___add__), -1);
   rb_define_method(SwigClassQuaternion.klass, "-", VALUEFUNC(_wrap_Quaternion___sub__), -1);
   rb_define_method(SwigClassQuaternion.klass, "*", VALUEFUNC(_wrap_Quaternion___mul__), -1);
   rb_define_method(SwigClassQuaternion.klass, "==", VALUEFUNC(_wrap_Quaternion___eq__), -1);
-  rb_define_method(SwigClassQuaternion.klass, "ProtoSerialize", VALUEFUNC(_wrap_Quaternion_ProtoSerialize), -1);
-  rb_define_method(SwigClassQuaternion.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_Quaternion_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassQuaternion.klass, "SerializableName", VALUEFUNC(_wrap_Quaternion_SerializableName), -1);
+  rb_define_method(SwigClassQuaternion.klass, "proto_serialize", VALUEFUNC(_wrap_Quaternion_proto_serialize), -1);
+  rb_define_method(SwigClassQuaternion.klass, "proto_de_serialize", VALUEFUNC(_wrap_Quaternion_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassQuaternion.klass, "serializable_name", VALUEFUNC(_wrap_Quaternion_serializable_name), -1);
   SwigClassQuaternion.mark = 0;
   SwigClassQuaternion.destroy = (void (*)(void *)) free_Mezzanine_Quaternion;
   SwigClassQuaternion.trackObjects = 0;
@@ -22979,16 +23410,16 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_method(SwigClassRay.klass, "Origin", VALUEFUNC(_wrap_Ray_Origin_get), -1);
   rb_define_method(SwigClassRay.klass, "Destination=", VALUEFUNC(_wrap_Ray_Destination_set), -1);
   rb_define_method(SwigClassRay.klass, "Destination", VALUEFUNC(_wrap_Ray_Destination_get), -1);
-  rb_define_method(SwigClassRay.klass, "Length", VALUEFUNC(_wrap_Ray_Length), -1);
-  rb_define_method(SwigClassRay.klass, "GetDirection", VALUEFUNC(_wrap_Ray_GetDirection), -1);
-  rb_define_method(SwigClassRay.klass, "GetNormal", VALUEFUNC(_wrap_Ray_GetNormal), -1);
-  rb_define_method(SwigClassRay.klass, "Normalize", VALUEFUNC(_wrap_Ray_Normalize), -1);
-  rb_define_method(SwigClassRay.klass, "Intersects", VALUEFUNC(_wrap_Ray_Intersects), -1);
-  rb_define_method(SwigClassRay.klass, "ExtractOgreRay", VALUEFUNC(_wrap_Ray_ExtractOgreRay), -1);
-  rb_define_method(SwigClassRay.klass, "GetOgreRay", VALUEFUNC(_wrap_Ray_GetOgreRay), -1);
-  rb_define_method(SwigClassRay.klass, "ProtoSerialize", VALUEFUNC(_wrap_Ray_ProtoSerialize), -1);
-  rb_define_method(SwigClassRay.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_Ray_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassRay.klass, "GetSerializableName", VALUEFUNC(_wrap_Ray_GetSerializableName), -1);
+  rb_define_method(SwigClassRay.klass, "length", VALUEFUNC(_wrap_Ray_length), -1);
+  rb_define_method(SwigClassRay.klass, "get_direction", VALUEFUNC(_wrap_Ray_get_direction), -1);
+  rb_define_method(SwigClassRay.klass, "get_normal", VALUEFUNC(_wrap_Ray_get_normal), -1);
+  rb_define_method(SwigClassRay.klass, "normalize", VALUEFUNC(_wrap_Ray_normalize), -1);
+  rb_define_method(SwigClassRay.klass, "intersects", VALUEFUNC(_wrap_Ray_intersects), -1);
+  rb_define_method(SwigClassRay.klass, "extract_ogre_ray", VALUEFUNC(_wrap_Ray_extract_ogre_ray), -1);
+  rb_define_method(SwigClassRay.klass, "get_ogre_ray", VALUEFUNC(_wrap_Ray_get_ogre_ray), -1);
+  rb_define_method(SwigClassRay.klass, "proto_serialize", VALUEFUNC(_wrap_Ray_proto_serialize), -1);
+  rb_define_method(SwigClassRay.klass, "proto_de_serialize", VALUEFUNC(_wrap_Ray_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassRay.klass, "get_serializable_name", VALUEFUNC(_wrap_Ray_get_serializable_name), -1);
   rb_define_method(SwigClassRay.klass, "*", VALUEFUNC(_wrap_Ray___mul__), -1);
   rb_define_method(SwigClassRay.klass, "/", VALUEFUNC(_wrap_Ray___div__), -1);
   rb_define_method(SwigClassRay.klass, "==", VALUEFUNC(_wrap_Ray___eq__), -1);
@@ -23000,17 +23431,17 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__RayQueryTool, (void *) &SwigClassRayQueryTool);
   rb_define_alloc_func(SwigClassRayQueryTool.klass, _wrap_RayQueryTool_allocate);
   rb_define_method(SwigClassRayQueryTool.klass, "initialize", VALUEFUNC(_wrap_new_RayQueryTool), -1);
-  rb_define_method(SwigClassRayQueryTool.klass, "ClearReturns", VALUEFUNC(_wrap_RayQueryTool_ClearReturns), -1);
-  rb_define_method(SwigClassRayQueryTool.klass, "LastQueryResultsValid", VALUEFUNC(_wrap_RayQueryTool_LastQueryResultsValid), -1);
-  rb_define_method(SwigClassRayQueryTool.klass, "LastQueryResultsOffset", VALUEFUNC(_wrap_RayQueryTool_LastQueryResultsOffset), -1);
-  rb_define_method(SwigClassRayQueryTool.klass, "LastQueryResultsActorPtr", VALUEFUNC(_wrap_RayQueryTool_LastQueryResultsActorPtr), -1);
-  rb_define_method(SwigClassRayQueryTool.klass, "GetFirstActorOnRayByPolygon", VALUEFUNC(_wrap_RayQueryTool_GetFirstActorOnRayByPolygon), -1);
-  rb_define_method(SwigClassRayQueryTool.klass, "GetFirstActorOnRayByAABB", VALUEFUNC(_wrap_RayQueryTool_GetFirstActorOnRayByAABB), -1);
-  rb_define_method(SwigClassRayQueryTool.klass, "RayPlaneIntersection", VALUEFUNC(_wrap_RayQueryTool_RayPlaneIntersection), -1);
-  rb_define_singleton_method(SwigClassRayQueryTool.klass, "GetMouseRay", VALUEFUNC(_wrap_RayQueryTool_GetMouseRay), -1);
-  rb_define_method(SwigClassRayQueryTool.klass, "ProtoSerialize", VALUEFUNC(_wrap_RayQueryTool_ProtoSerialize), -1);
-  rb_define_method(SwigClassRayQueryTool.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_RayQueryTool_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassRayQueryTool.klass, "SerializableName", VALUEFUNC(_wrap_RayQueryTool_SerializableName), -1);
+  rb_define_method(SwigClassRayQueryTool.klass, "clear_returns", VALUEFUNC(_wrap_RayQueryTool_clear_returns), -1);
+  rb_define_method(SwigClassRayQueryTool.klass, "last_query_results_valid", VALUEFUNC(_wrap_RayQueryTool_last_query_results_valid), -1);
+  rb_define_method(SwigClassRayQueryTool.klass, "last_query_results_offset", VALUEFUNC(_wrap_RayQueryTool_last_query_results_offset), -1);
+  rb_define_method(SwigClassRayQueryTool.klass, "last_query_results_actor_ptr", VALUEFUNC(_wrap_RayQueryTool_last_query_results_actor_ptr), -1);
+  rb_define_method(SwigClassRayQueryTool.klass, "get_first_actor_on_ray_by_polygon", VALUEFUNC(_wrap_RayQueryTool_get_first_actor_on_ray_by_polygon), -1);
+  rb_define_method(SwigClassRayQueryTool.klass, "get_first_actor_on_ray_by_aabb", VALUEFUNC(_wrap_RayQueryTool_get_first_actor_on_ray_by_aabb), -1);
+  rb_define_method(SwigClassRayQueryTool.klass, "ray_plane_intersection", VALUEFUNC(_wrap_RayQueryTool_ray_plane_intersection), -1);
+  rb_define_singleton_method(SwigClassRayQueryTool.klass, "get_mouse_ray", VALUEFUNC(_wrap_RayQueryTool_get_mouse_ray), -1);
+  rb_define_method(SwigClassRayQueryTool.klass, "proto_serialize", VALUEFUNC(_wrap_RayQueryTool_proto_serialize), -1);
+  rb_define_method(SwigClassRayQueryTool.klass, "proto_de_serialize", VALUEFUNC(_wrap_RayQueryTool_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassRayQueryTool.klass, "serializable_name", VALUEFUNC(_wrap_RayQueryTool_serializable_name), -1);
   SwigClassRayQueryTool.mark = 0;
   SwigClassRayQueryTool.destroy = (void (*)(void *)) free_Mezzanine_RayQueryTool;
   SwigClassRayQueryTool.trackObjects = 0;
@@ -23022,19 +23453,19 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_const(SwigClassTimer.klass, "Normal", SWIG_From_int(static_cast< int >(Mezzanine::Timer::Normal)));
   rb_define_const(SwigClassTimer.klass, "StopWatch", SWIG_From_int(static_cast< int >(Mezzanine::Timer::StopWatch)));
   rb_define_const(SwigClassTimer.klass, "Alarm", SWIG_From_int(static_cast< int >(Mezzanine::Timer::Alarm)));
-  rb_define_method(SwigClassTimer.klass, "SetCurrentTime", VALUEFUNC(_wrap_Timer_SetCurrentTime), -1);
-  rb_define_method(SwigClassTimer.klass, "SetCurrentTimeInMilliseconds", VALUEFUNC(_wrap_Timer_SetCurrentTimeInMilliseconds), -1);
-  rb_define_method(SwigClassTimer.klass, "GetCurrentTime", VALUEFUNC(_wrap_Timer_GetCurrentTime), -1);
-  rb_define_method(SwigClassTimer.klass, "GetCurrentTimeInMilliseconds", VALUEFUNC(_wrap_Timer_GetCurrentTimeInMilliseconds), -1);
-  rb_define_method(SwigClassTimer.klass, "SetInitialTime", VALUEFUNC(_wrap_Timer_SetInitialTime), -1);
-  rb_define_method(SwigClassTimer.klass, "SetInitialTimeInMilliseconds", VALUEFUNC(_wrap_Timer_SetInitialTimeInMilliseconds), -1);
-  rb_define_method(SwigClassTimer.klass, "GetInitialTime", VALUEFUNC(_wrap_Timer_GetInitialTime), -1);
-  rb_define_method(SwigClassTimer.klass, "GetInitialTimeInMilliseconds", VALUEFUNC(_wrap_Timer_GetInitialTimeInMilliseconds), -1);
-  rb_define_method(SwigClassTimer.klass, "Start", VALUEFUNC(_wrap_Timer_Start), -1);
-  rb_define_method(SwigClassTimer.klass, "Stop", VALUEFUNC(_wrap_Timer_Stop), -1);
-  rb_define_method(SwigClassTimer.klass, "IsStopped", VALUEFUNC(_wrap_Timer_IsStopped), -1);
-  rb_define_method(SwigClassTimer.klass, "Reset", VALUEFUNC(_wrap_Timer_Reset), -1);
-  rb_define_method(SwigClassTimer.klass, "GetType", VALUEFUNC(_wrap_Timer_GetType), -1);
+  rb_define_method(SwigClassTimer.klass, "set_current_time", VALUEFUNC(_wrap_Timer_set_current_time), -1);
+  rb_define_method(SwigClassTimer.klass, "set_current_time_in_milliseconds", VALUEFUNC(_wrap_Timer_set_current_time_in_milliseconds), -1);
+  rb_define_method(SwigClassTimer.klass, "get_current_time", VALUEFUNC(_wrap_Timer_get_current_time), -1);
+  rb_define_method(SwigClassTimer.klass, "get_current_time_in_milliseconds", VALUEFUNC(_wrap_Timer_get_current_time_in_milliseconds), -1);
+  rb_define_method(SwigClassTimer.klass, "set_initial_time", VALUEFUNC(_wrap_Timer_set_initial_time), -1);
+  rb_define_method(SwigClassTimer.klass, "set_initial_time_in_milliseconds", VALUEFUNC(_wrap_Timer_set_initial_time_in_milliseconds), -1);
+  rb_define_method(SwigClassTimer.klass, "get_initial_time", VALUEFUNC(_wrap_Timer_get_initial_time), -1);
+  rb_define_method(SwigClassTimer.klass, "get_initial_time_in_milliseconds", VALUEFUNC(_wrap_Timer_get_initial_time_in_milliseconds), -1);
+  rb_define_method(SwigClassTimer.klass, "start", VALUEFUNC(_wrap_Timer_start), -1);
+  rb_define_method(SwigClassTimer.klass, "stop", VALUEFUNC(_wrap_Timer_stop), -1);
+  rb_define_method(SwigClassTimer.klass, "is_stopped", VALUEFUNC(_wrap_Timer_is_stopped), -1);
+  rb_define_method(SwigClassTimer.klass, "reset", VALUEFUNC(_wrap_Timer_reset), -1);
+  rb_define_method(SwigClassTimer.klass, "get_type", VALUEFUNC(_wrap_Timer_get_type), -1);
   SwigClassTimer.mark = 0;
   SwigClassTimer.destroy = (void (*)(void *)) free_Mezzanine_Timer;
   SwigClassTimer.trackObjects = 0;
@@ -23042,12 +23473,12 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassGoalTimer.klass = rb_define_class_under(mMezzanine, "GoalTimer", ((swig_class *) SWIGTYPE_p_Mezzanine__Timer->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__GoalTimer, (void *) &SwigClassGoalTimer);
   rb_undef_alloc_func(SwigClassGoalTimer.klass);
-  rb_define_method(SwigClassGoalTimer.klass, "SetAutoReset", VALUEFUNC(_wrap_GoalTimer_SetAutoReset), -1);
-  rb_define_method(SwigClassGoalTimer.klass, "GetAutoReset", VALUEFUNC(_wrap_GoalTimer_GetAutoReset), -1);
-  rb_define_method(SwigClassGoalTimer.klass, "SetGoalTime", VALUEFUNC(_wrap_GoalTimer_SetGoalTime), -1);
-  rb_define_method(SwigClassGoalTimer.klass, "SetGoalTimeInMilliseconds", VALUEFUNC(_wrap_GoalTimer_SetGoalTimeInMilliseconds), -1);
-  rb_define_method(SwigClassGoalTimer.klass, "GetGoalTime", VALUEFUNC(_wrap_GoalTimer_GetGoalTime), -1);
-  rb_define_method(SwigClassGoalTimer.klass, "GetGoalTimeInMilliseconds", VALUEFUNC(_wrap_GoalTimer_GetGoalTimeInMilliseconds), -1);
+  rb_define_method(SwigClassGoalTimer.klass, "set_auto_reset", VALUEFUNC(_wrap_GoalTimer_set_auto_reset), -1);
+  rb_define_method(SwigClassGoalTimer.klass, "get_auto_reset", VALUEFUNC(_wrap_GoalTimer_get_auto_reset), -1);
+  rb_define_method(SwigClassGoalTimer.klass, "set_goal_time", VALUEFUNC(_wrap_GoalTimer_set_goal_time), -1);
+  rb_define_method(SwigClassGoalTimer.klass, "set_goal_time_in_milliseconds", VALUEFUNC(_wrap_GoalTimer_set_goal_time_in_milliseconds), -1);
+  rb_define_method(SwigClassGoalTimer.klass, "get_goal_time", VALUEFUNC(_wrap_GoalTimer_get_goal_time), -1);
+  rb_define_method(SwigClassGoalTimer.klass, "get_goal_time_in_milliseconds", VALUEFUNC(_wrap_GoalTimer_get_goal_time_in_milliseconds), -1);
   SwigClassGoalTimer.mark = 0;
   SwigClassGoalTimer.destroy = (void (*)(void *)) free_Mezzanine_GoalTimer;
   SwigClassGoalTimer.trackObjects = 0;
@@ -23056,7 +23487,7 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__StopWatchTimer, (void *) &SwigClassStopWatchTimer);
   rb_define_alloc_func(SwigClassStopWatchTimer.klass, _wrap_StopWatchTimer_allocate);
   rb_define_method(SwigClassStopWatchTimer.klass, "initialize", VALUEFUNC(_wrap_new_StopWatchTimer), -1);
-  rb_define_method(SwigClassStopWatchTimer.klass, "GetType", VALUEFUNC(_wrap_StopWatchTimer_GetType), -1);
+  rb_define_method(SwigClassStopWatchTimer.klass, "get_type", VALUEFUNC(_wrap_StopWatchTimer_get_type), -1);
   SwigClassStopWatchTimer.mark = 0;
   SwigClassStopWatchTimer.destroy = (void (*)(void *)) free_Mezzanine_StopWatchTimer;
   SwigClassStopWatchTimer.trackObjects = 0;
@@ -23065,7 +23496,7 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__AlarmTimer, (void *) &SwigClassAlarmTimer);
   rb_define_alloc_func(SwigClassAlarmTimer.klass, _wrap_AlarmTimer_allocate);
   rb_define_method(SwigClassAlarmTimer.klass, "initialize", VALUEFUNC(_wrap_new_AlarmTimer), -1);
-  rb_define_method(SwigClassAlarmTimer.klass, "GetType", VALUEFUNC(_wrap_AlarmTimer_GetType), -1);
+  rb_define_method(SwigClassAlarmTimer.klass, "get_type", VALUEFUNC(_wrap_AlarmTimer_get_type), -1);
   SwigClassAlarmTimer.mark = 0;
   SwigClassAlarmTimer.destroy = (void (*)(void *)) free_Mezzanine_AlarmTimer;
   SwigClassAlarmTimer.trackObjects = 0;
@@ -23078,12 +23509,12 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_method(SwigClassTransform.klass, "Location", VALUEFUNC(_wrap_Transform_Location_get), -1);
   rb_define_method(SwigClassTransform.klass, "Rotation=", VALUEFUNC(_wrap_Transform_Rotation_set), -1);
   rb_define_method(SwigClassTransform.klass, "Rotation", VALUEFUNC(_wrap_Transform_Rotation_get), -1);
-  rb_define_method(SwigClassTransform.klass, "SetIdentity", VALUEFUNC(_wrap_Transform_SetIdentity), -1);
-  rb_define_method(SwigClassTransform.klass, "GetBulletTransform", VALUEFUNC(_wrap_Transform_GetBulletTransform), -1);
-  rb_define_method(SwigClassTransform.klass, "ExtractBulletTransform", VALUEFUNC(_wrap_Transform_ExtractBulletTransform), -1);
-  rb_define_method(SwigClassTransform.klass, "ProtoSerialize", VALUEFUNC(_wrap_Transform_ProtoSerialize), -1);
-  rb_define_method(SwigClassTransform.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_Transform_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassTransform.klass, "SerializableName", VALUEFUNC(_wrap_Transform_SerializableName), -1);
+  rb_define_method(SwigClassTransform.klass, "set_identity", VALUEFUNC(_wrap_Transform_set_identity), -1);
+  rb_define_method(SwigClassTransform.klass, "get_bullet_transform", VALUEFUNC(_wrap_Transform_get_bullet_transform), -1);
+  rb_define_method(SwigClassTransform.klass, "extract_bullet_transform", VALUEFUNC(_wrap_Transform_extract_bullet_transform), -1);
+  rb_define_method(SwigClassTransform.klass, "proto_serialize", VALUEFUNC(_wrap_Transform_proto_serialize), -1);
+  rb_define_method(SwigClassTransform.klass, "proto_de_serialize", VALUEFUNC(_wrap_Transform_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassTransform.klass, "serializable_name", VALUEFUNC(_wrap_Transform_serializable_name), -1);
   SwigClassTransform.mark = 0;
   SwigClassTransform.destroy = (void (*)(void *)) free_Mezzanine_Transform;
   SwigClassTransform.trackObjects = 0;
@@ -23096,20 +23527,20 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_method(SwigClassVector2.klass, "X", VALUEFUNC(_wrap_Vector2_X_get), -1);
   rb_define_method(SwigClassVector2.klass, "Y=", VALUEFUNC(_wrap_Vector2_Y_set), -1);
   rb_define_method(SwigClassVector2.klass, "Y", VALUEFUNC(_wrap_Vector2_Y_get), -1);
-  rb_define_method(SwigClassVector2.klass, "GetOgreVector2", VALUEFUNC(_wrap_Vector2_GetOgreVector2), -1);
-  rb_define_method(SwigClassVector2.klass, "ExtractOgreVector2", VALUEFUNC(_wrap_Vector2_ExtractOgreVector2), -1);
-  rb_define_method(SwigClassVector2.klass, "SetIdentity", VALUEFUNC(_wrap_Vector2_SetIdentity), -1);
-  rb_define_method(SwigClassVector2.klass, "SetValues", VALUEFUNC(_wrap_Vector2_SetValues), -1);
+  rb_define_method(SwigClassVector2.klass, "get_ogre_vector2", VALUEFUNC(_wrap_Vector2_get_ogre_vector2), -1);
+  rb_define_method(SwigClassVector2.klass, "extract_ogre_vector2", VALUEFUNC(_wrap_Vector2_extract_ogre_vector2), -1);
+  rb_define_method(SwigClassVector2.klass, "set_identity", VALUEFUNC(_wrap_Vector2_set_identity), -1);
+  rb_define_method(SwigClassVector2.klass, "set_values", VALUEFUNC(_wrap_Vector2_set_values), -1);
   rb_define_method(SwigClassVector2.klass, "==", VALUEFUNC(_wrap_Vector2___eq__), -1);
   rb_define_method(SwigClassVector2.klass, "+", VALUEFUNC(_wrap_Vector2___add__), -1);
   rb_define_method(SwigClassVector2.klass, "-", VALUEFUNC(_wrap_Vector2___sub__), -1);
   rb_define_method(SwigClassVector2.klass, "*", VALUEFUNC(_wrap_Vector2___mul__), -1);
   rb_define_method(SwigClassVector2.klass, "/", VALUEFUNC(_wrap_Vector2___div__), -1);
-  rb_define_method(SwigClassVector2.klass, "Perpendicular", VALUEFUNC(_wrap_Vector2_Perpendicular), -1);
-  rb_define_method(SwigClassVector2.klass, "Normalize", VALUEFUNC(_wrap_Vector2_Normalize), -1);
-  rb_define_method(SwigClassVector2.klass, "ProtoSerialize", VALUEFUNC(_wrap_Vector2_ProtoSerialize), -1);
-  rb_define_method(SwigClassVector2.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_Vector2_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassVector2.klass, "SerializableName", VALUEFUNC(_wrap_Vector2_SerializableName), -1);
+  rb_define_method(SwigClassVector2.klass, "perpendicular", VALUEFUNC(_wrap_Vector2_perpendicular), -1);
+  rb_define_method(SwigClassVector2.klass, "normalize", VALUEFUNC(_wrap_Vector2_normalize), -1);
+  rb_define_method(SwigClassVector2.klass, "proto_serialize", VALUEFUNC(_wrap_Vector2_proto_serialize), -1);
+  rb_define_method(SwigClassVector2.klass, "proto_de_serialize", VALUEFUNC(_wrap_Vector2_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassVector2.klass, "serializable_name", VALUEFUNC(_wrap_Vector2_serializable_name), -1);
   SwigClassVector2.mark = 0;
   SwigClassVector2.destroy = (void (*)(void *)) free_Mezzanine_Vector2;
   SwigClassVector2.trackObjects = 0;
@@ -23117,16 +23548,16 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassAttachableBase.klass = rb_define_class_under(mMezzanine, "AttachableBase", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__AttachableBase, (void *) &SwigClassAttachableBase);
   rb_undef_alloc_func(SwigClassAttachableBase.klass);
-  rb_define_method(SwigClassAttachableBase.klass, "ConvertLocalToGlobal", VALUEFUNC(_wrap_AttachableBase_ConvertLocalToGlobal), -1);
-  rb_define_method(SwigClassAttachableBase.klass, "ConvertGlobalToLocal", VALUEFUNC(_wrap_AttachableBase_ConvertGlobalToLocal), -1);
-  rb_define_method(SwigClassAttachableBase.klass, "GetName", VALUEFUNC(_wrap_AttachableBase_GetName), -1);
-  rb_define_method(SwigClassAttachableBase.klass, "GetType", VALUEFUNC(_wrap_AttachableBase_GetType), -1);
-  rb_define_method(SwigClassAttachableBase.klass, "SetLocation", VALUEFUNC(_wrap_AttachableBase_SetLocation), -1);
-  rb_define_method(SwigClassAttachableBase.klass, "GetLocation", VALUEFUNC(_wrap_AttachableBase_GetLocation), -1);
-  rb_define_method(SwigClassAttachableBase.klass, "SetOrientation", VALUEFUNC(_wrap_AttachableBase_SetOrientation), -1);
-  rb_define_method(SwigClassAttachableBase.klass, "GetOrientation", VALUEFUNC(_wrap_AttachableBase_GetOrientation), -1);
-  rb_define_method(SwigClassAttachableBase.klass, "SetScaling", VALUEFUNC(_wrap_AttachableBase_SetScaling), -1);
-  rb_define_method(SwigClassAttachableBase.klass, "GetScaling", VALUEFUNC(_wrap_AttachableBase_GetScaling), -1);
+  rb_define_method(SwigClassAttachableBase.klass, "convert_local_to_global", VALUEFUNC(_wrap_AttachableBase_convert_local_to_global), -1);
+  rb_define_method(SwigClassAttachableBase.klass, "convert_global_to_local", VALUEFUNC(_wrap_AttachableBase_convert_global_to_local), -1);
+  rb_define_method(SwigClassAttachableBase.klass, "get_name", VALUEFUNC(_wrap_AttachableBase_get_name), -1);
+  rb_define_method(SwigClassAttachableBase.klass, "get_type", VALUEFUNC(_wrap_AttachableBase_get_type), -1);
+  rb_define_method(SwigClassAttachableBase.klass, "set_location", VALUEFUNC(_wrap_AttachableBase_set_location), -1);
+  rb_define_method(SwigClassAttachableBase.klass, "get_location", VALUEFUNC(_wrap_AttachableBase_get_location), -1);
+  rb_define_method(SwigClassAttachableBase.klass, "set_orientation", VALUEFUNC(_wrap_AttachableBase_set_orientation), -1);
+  rb_define_method(SwigClassAttachableBase.klass, "get_orientation", VALUEFUNC(_wrap_AttachableBase_get_orientation), -1);
+  rb_define_method(SwigClassAttachableBase.klass, "set_scaling", VALUEFUNC(_wrap_AttachableBase_set_scaling), -1);
+  rb_define_method(SwigClassAttachableBase.klass, "get_scaling", VALUEFUNC(_wrap_AttachableBase_get_scaling), -1);
   SwigClassAttachableBase.mark = 0;
   SwigClassAttachableBase.destroy = (void (*)(void *)) free_Mezzanine_AttachableBase;
   SwigClassAttachableBase.trackObjects = 0;
@@ -23134,14 +23565,14 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassAttachableParent.klass = rb_define_class_under(mMezzanine, "AttachableParent", ((swig_class *) SWIGTYPE_p_Mezzanine__AttachableBase->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__AttachableParent, (void *) &SwigClassAttachableParent);
   rb_undef_alloc_func(SwigClassAttachableParent.klass);
-  rb_define_method(SwigClassAttachableParent.klass, "AttachObject", VALUEFUNC(_wrap_AttachableParent_AttachObject), -1);
-  rb_define_method(SwigClassAttachableParent.klass, "DetachObject", VALUEFUNC(_wrap_AttachableParent_DetachObject), -1);
-  rb_define_method(SwigClassAttachableParent.klass, "DetachAllChildren", VALUEFUNC(_wrap_AttachableParent_DetachAllChildren), -1);
-  rb_define_method(SwigClassAttachableParent.klass, "GetNumAttached", VALUEFUNC(_wrap_AttachableParent_GetNumAttached), -1);
-  rb_define_method(SwigClassAttachableParent.klass, "GetAttached", VALUEFUNC(_wrap_AttachableParent_GetAttached), -1);
-  rb_define_method(SwigClassAttachableParent.klass, "BeginChild", VALUEFUNC(_wrap_AttachableParent_BeginChild), -1);
-  rb_define_method(SwigClassAttachableParent.klass, "EndChild", VALUEFUNC(_wrap_AttachableParent_EndChild), -1);
-  rb_define_method(SwigClassAttachableParent.klass, "_RecalculateAllChildTransforms", VALUEFUNC(_wrap_AttachableParent__RecalculateAllChildTransforms), -1);
+  rb_define_method(SwigClassAttachableParent.klass, "attach_object", VALUEFUNC(_wrap_AttachableParent_attach_object), -1);
+  rb_define_method(SwigClassAttachableParent.klass, "detach_object", VALUEFUNC(_wrap_AttachableParent_detach_object), -1);
+  rb_define_method(SwigClassAttachableParent.klass, "detach_all_children", VALUEFUNC(_wrap_AttachableParent_detach_all_children), -1);
+  rb_define_method(SwigClassAttachableParent.klass, "get_num_attached", VALUEFUNC(_wrap_AttachableParent_get_num_attached), -1);
+  rb_define_method(SwigClassAttachableParent.klass, "get_attached", VALUEFUNC(_wrap_AttachableParent_get_attached), -1);
+  rb_define_method(SwigClassAttachableParent.klass, "begin_child", VALUEFUNC(_wrap_AttachableParent_begin_child), -1);
+  rb_define_method(SwigClassAttachableParent.klass, "end_child", VALUEFUNC(_wrap_AttachableParent_end_child), -1);
+  rb_define_method(SwigClassAttachableParent.klass, "_recalculate_all_child_transforms", VALUEFUNC(_wrap_AttachableParent__recalculate_all_child_transforms), -1);
   SwigClassAttachableParent.mark = 0;
   SwigClassAttachableParent.destroy = (void (*)(void *)) free_Mezzanine_AttachableParent;
   SwigClassAttachableParent.trackObjects = 0;
@@ -23149,13 +23580,13 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassAttachableChild.klass = rb_define_class_under(mMezzanine, "AttachableChild", ((swig_class *) SWIGTYPE_p_Mezzanine__AttachableBase->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__AttachableChild, (void *) &SwigClassAttachableChild);
   rb_undef_alloc_func(SwigClassAttachableChild.klass);
-  rb_define_method(SwigClassAttachableChild.klass, "GetParent", VALUEFUNC(_wrap_AttachableChild_GetParent), -1);
-  rb_define_method(SwigClassAttachableChild.klass, "SetLocalLocation", VALUEFUNC(_wrap_AttachableChild_SetLocalLocation), -1);
-  rb_define_method(SwigClassAttachableChild.klass, "GetLocalLocation", VALUEFUNC(_wrap_AttachableChild_GetLocalLocation), -1);
-  rb_define_method(SwigClassAttachableChild.klass, "SetLocalOrientation", VALUEFUNC(_wrap_AttachableChild_SetLocalOrientation), -1);
-  rb_define_method(SwigClassAttachableChild.klass, "GetLocalOrientation", VALUEFUNC(_wrap_AttachableChild_GetLocalOrientation), -1);
-  rb_define_method(SwigClassAttachableChild.klass, "_RecalculateGlobalTransform", VALUEFUNC(_wrap_AttachableChild__RecalculateGlobalTransform), -1);
-  rb_define_method(SwigClassAttachableChild.klass, "_RecalculateLocalTransform", VALUEFUNC(_wrap_AttachableChild__RecalculateLocalTransform), -1);
+  rb_define_method(SwigClassAttachableChild.klass, "get_parent", VALUEFUNC(_wrap_AttachableChild_get_parent), -1);
+  rb_define_method(SwigClassAttachableChild.klass, "set_local_location", VALUEFUNC(_wrap_AttachableChild_set_local_location), -1);
+  rb_define_method(SwigClassAttachableChild.klass, "get_local_location", VALUEFUNC(_wrap_AttachableChild_get_local_location), -1);
+  rb_define_method(SwigClassAttachableChild.klass, "set_local_orientation", VALUEFUNC(_wrap_AttachableChild_set_local_orientation), -1);
+  rb_define_method(SwigClassAttachableChild.klass, "get_local_orientation", VALUEFUNC(_wrap_AttachableChild_get_local_orientation), -1);
+  rb_define_method(SwigClassAttachableChild.klass, "_recalculate_global_transform", VALUEFUNC(_wrap_AttachableChild__recalculate_global_transform), -1);
+  rb_define_method(SwigClassAttachableChild.klass, "_recalculate_local_transform", VALUEFUNC(_wrap_AttachableChild__recalculate_local_transform), -1);
   SwigClassAttachableChild.mark = 0;
   SwigClassAttachableChild.destroy = (void (*)(void *)) free_Mezzanine_AttachableChild;
   SwigClassAttachableChild.trackObjects = 0;
@@ -23164,30 +23595,30 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__WorldNode, (void *) &SwigClassWorldNode);
   rb_define_alloc_func(SwigClassWorldNode.klass, _wrap_WorldNode_allocate);
   rb_define_method(SwigClassWorldNode.klass, "initialize", VALUEFUNC(_wrap_new_WorldNode), -1);
-  rb_define_method(SwigClassWorldNode.klass, "GetName", VALUEFUNC(_wrap_WorldNode_GetName), -1);
-  rb_define_method(SwigClassWorldNode.klass, "LookAt", VALUEFUNC(_wrap_WorldNode_LookAt), -1);
-  rb_define_method(SwigClassWorldNode.klass, "SetDirection", VALUEFUNC(_wrap_WorldNode_SetDirection), -1);
-  rb_define_method(SwigClassWorldNode.klass, "SetAutoTracking", VALUEFUNC(_wrap_WorldNode_SetAutoTracking), -1);
-  rb_define_method(SwigClassWorldNode.klass, "GetAutoTrackingTarget", VALUEFUNC(_wrap_WorldNode_GetAutoTrackingTarget), -1);
-  rb_define_method(SwigClassWorldNode.klass, "GetAutoTrackingDirection", VALUEFUNC(_wrap_WorldNode_GetAutoTrackingDirection), -1);
-  rb_define_method(SwigClassWorldNode.klass, "GetAutoTrackingOffset", VALUEFUNC(_wrap_WorldNode_GetAutoTrackingOffset), -1);
-  rb_define_method(SwigClassWorldNode.klass, "Rotate", VALUEFUNC(_wrap_WorldNode_Rotate), -1);
-  rb_define_method(SwigClassWorldNode.klass, "Yaw", VALUEFUNC(_wrap_WorldNode_Yaw), -1);
-  rb_define_method(SwigClassWorldNode.klass, "Pitch", VALUEFUNC(_wrap_WorldNode_Pitch), -1);
-  rb_define_method(SwigClassWorldNode.klass, "Roll", VALUEFUNC(_wrap_WorldNode_Roll), -1);
-  rb_define_method(SwigClassWorldNode.klass, "SetFixedYawAxis", VALUEFUNC(_wrap_WorldNode_SetFixedYawAxis), -1);
-  rb_define_method(SwigClassWorldNode.klass, "GetFixedYawAxisEnabled", VALUEFUNC(_wrap_WorldNode_GetFixedYawAxisEnabled), -1);
-  rb_define_method(SwigClassWorldNode.klass, "GetFixedYawAxis", VALUEFUNC(_wrap_WorldNode_GetFixedYawAxis), -1);
-  rb_define_method(SwigClassWorldNode.klass, "SetLocation", VALUEFUNC(_wrap_WorldNode_SetLocation), -1);
-  rb_define_method(SwigClassWorldNode.klass, "GetLocation", VALUEFUNC(_wrap_WorldNode_GetLocation), -1);
-  rb_define_method(SwigClassWorldNode.klass, "SetOrientation", VALUEFUNC(_wrap_WorldNode_SetOrientation), -1);
-  rb_define_method(SwigClassWorldNode.klass, "GetOrientation", VALUEFUNC(_wrap_WorldNode_GetOrientation), -1);
-  rb_define_method(SwigClassWorldNode.klass, "SetScaling", VALUEFUNC(_wrap_WorldNode_SetScaling), -1);
-  rb_define_method(SwigClassWorldNode.klass, "GetScaling", VALUEFUNC(_wrap_WorldNode_GetScaling), -1);
-  rb_define_method(SwigClassWorldNode.klass, "GetType", VALUEFUNC(_wrap_WorldNode_GetType), -1);
-  rb_define_method(SwigClassWorldNode.klass, "SetLocalLocation", VALUEFUNC(_wrap_WorldNode_SetLocalLocation), -1);
-  rb_define_method(SwigClassWorldNode.klass, "SetLocalOrientation", VALUEFUNC(_wrap_WorldNode_SetLocalOrientation), -1);
-  rb_define_method(SwigClassWorldNode.klass, "_UpdateTracking", VALUEFUNC(_wrap_WorldNode__UpdateTracking), -1);
+  rb_define_method(SwigClassWorldNode.klass, "get_name", VALUEFUNC(_wrap_WorldNode_get_name), -1);
+  rb_define_method(SwigClassWorldNode.klass, "look_at", VALUEFUNC(_wrap_WorldNode_look_at), -1);
+  rb_define_method(SwigClassWorldNode.klass, "set_direction", VALUEFUNC(_wrap_WorldNode_set_direction), -1);
+  rb_define_method(SwigClassWorldNode.klass, "set_auto_tracking", VALUEFUNC(_wrap_WorldNode_set_auto_tracking), -1);
+  rb_define_method(SwigClassWorldNode.klass, "get_auto_tracking_target", VALUEFUNC(_wrap_WorldNode_get_auto_tracking_target), -1);
+  rb_define_method(SwigClassWorldNode.klass, "get_auto_tracking_direction", VALUEFUNC(_wrap_WorldNode_get_auto_tracking_direction), -1);
+  rb_define_method(SwigClassWorldNode.klass, "get_auto_tracking_offset", VALUEFUNC(_wrap_WorldNode_get_auto_tracking_offset), -1);
+  rb_define_method(SwigClassWorldNode.klass, "rotate", VALUEFUNC(_wrap_WorldNode_rotate), -1);
+  rb_define_method(SwigClassWorldNode.klass, "yaw", VALUEFUNC(_wrap_WorldNode_yaw), -1);
+  rb_define_method(SwigClassWorldNode.klass, "pitch", VALUEFUNC(_wrap_WorldNode_pitch), -1);
+  rb_define_method(SwigClassWorldNode.klass, "roll", VALUEFUNC(_wrap_WorldNode_roll), -1);
+  rb_define_method(SwigClassWorldNode.klass, "set_fixed_yaw_axis", VALUEFUNC(_wrap_WorldNode_set_fixed_yaw_axis), -1);
+  rb_define_method(SwigClassWorldNode.klass, "get_fixed_yaw_axis_enabled", VALUEFUNC(_wrap_WorldNode_get_fixed_yaw_axis_enabled), -1);
+  rb_define_method(SwigClassWorldNode.klass, "get_fixed_yaw_axis", VALUEFUNC(_wrap_WorldNode_get_fixed_yaw_axis), -1);
+  rb_define_method(SwigClassWorldNode.klass, "set_location", VALUEFUNC(_wrap_WorldNode_set_location), -1);
+  rb_define_method(SwigClassWorldNode.klass, "get_location", VALUEFUNC(_wrap_WorldNode_get_location), -1);
+  rb_define_method(SwigClassWorldNode.klass, "set_orientation", VALUEFUNC(_wrap_WorldNode_set_orientation), -1);
+  rb_define_method(SwigClassWorldNode.klass, "get_orientation", VALUEFUNC(_wrap_WorldNode_get_orientation), -1);
+  rb_define_method(SwigClassWorldNode.klass, "set_scaling", VALUEFUNC(_wrap_WorldNode_set_scaling), -1);
+  rb_define_method(SwigClassWorldNode.klass, "get_scaling", VALUEFUNC(_wrap_WorldNode_get_scaling), -1);
+  rb_define_method(SwigClassWorldNode.klass, "get_type", VALUEFUNC(_wrap_WorldNode_get_type), -1);
+  rb_define_method(SwigClassWorldNode.klass, "set_local_location", VALUEFUNC(_wrap_WorldNode_set_local_location), -1);
+  rb_define_method(SwigClassWorldNode.klass, "set_local_orientation", VALUEFUNC(_wrap_WorldNode_set_local_orientation), -1);
+  rb_define_method(SwigClassWorldNode.klass, "_update_tracking", VALUEFUNC(_wrap_WorldNode__update_tracking), -1);
   SwigClassWorldNode.mark = 0;
   SwigClassWorldNode.destroy = (void (*)(void *)) free_Mezzanine_WorldNode;
   SwigClassWorldNode.trackObjects = 0;
@@ -23204,152 +23635,152 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_method(SwigClassColourValue.klass, "B", VALUEFUNC(_wrap_ColourValue_B_get), -1);
   rb_define_method(SwigClassColourValue.klass, "A=", VALUEFUNC(_wrap_ColourValue_A_set), -1);
   rb_define_method(SwigClassColourValue.klass, "A", VALUEFUNC(_wrap_ColourValue_A_get), -1);
-  rb_define_method(SwigClassColourValue.klass, "GetOgreColourValue", VALUEFUNC(_wrap_ColourValue_GetOgreColourValue), -1);
+  rb_define_method(SwigClassColourValue.klass, "get_ogre_colour_value", VALUEFUNC(_wrap_ColourValue_get_ogre_colour_value), -1);
   rb_define_method(SwigClassColourValue.klass, "==", VALUEFUNC(_wrap_ColourValue___eq__), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Transparent", VALUEFUNC(_wrap_ColourValue_Transparent), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "AliceBlue", VALUEFUNC(_wrap_ColourValue_AliceBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "AntiqueWhite", VALUEFUNC(_wrap_ColourValue_AntiqueWhite), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Aqua", VALUEFUNC(_wrap_ColourValue_Aqua), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Aquamarine", VALUEFUNC(_wrap_ColourValue_Aquamarine), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Azure", VALUEFUNC(_wrap_ColourValue_Azure), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Beige", VALUEFUNC(_wrap_ColourValue_Beige), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Bisque", VALUEFUNC(_wrap_ColourValue_Bisque), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Black", VALUEFUNC(_wrap_ColourValue_Black), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Blanchedalmond", VALUEFUNC(_wrap_ColourValue_Blanchedalmond), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Blue", VALUEFUNC(_wrap_ColourValue_Blue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "BlueViolet", VALUEFUNC(_wrap_ColourValue_BlueViolet), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Brown", VALUEFUNC(_wrap_ColourValue_Brown), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "BurlyWood", VALUEFUNC(_wrap_ColourValue_BurlyWood), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "CadetBlue", VALUEFUNC(_wrap_ColourValue_CadetBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Chartreuse", VALUEFUNC(_wrap_ColourValue_Chartreuse), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Chocolate", VALUEFUNC(_wrap_ColourValue_Chocolate), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Coral", VALUEFUNC(_wrap_ColourValue_Coral), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "CornFlowerBlue", VALUEFUNC(_wrap_ColourValue_CornFlowerBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "CornSilk", VALUEFUNC(_wrap_ColourValue_CornSilk), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Crimson", VALUEFUNC(_wrap_ColourValue_Crimson), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Cyan", VALUEFUNC(_wrap_ColourValue_Cyan), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkBlue", VALUEFUNC(_wrap_ColourValue_DarkBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkCyan", VALUEFUNC(_wrap_ColourValue_DarkCyan), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkGoldenRod", VALUEFUNC(_wrap_ColourValue_DarkGoldenRod), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkGray", VALUEFUNC(_wrap_ColourValue_DarkGray), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkGreen", VALUEFUNC(_wrap_ColourValue_DarkGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkKhaki", VALUEFUNC(_wrap_ColourValue_DarkKhaki), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkMagenta", VALUEFUNC(_wrap_ColourValue_DarkMagenta), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkOliveGreen", VALUEFUNC(_wrap_ColourValue_DarkOliveGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkOrange", VALUEFUNC(_wrap_ColourValue_DarkOrange), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkOrchid", VALUEFUNC(_wrap_ColourValue_DarkOrchid), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkRed", VALUEFUNC(_wrap_ColourValue_DarkRed), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkSalmon", VALUEFUNC(_wrap_ColourValue_DarkSalmon), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkSeaGreen", VALUEFUNC(_wrap_ColourValue_DarkSeaGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkSlateBlue", VALUEFUNC(_wrap_ColourValue_DarkSlateBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkSlateGray", VALUEFUNC(_wrap_ColourValue_DarkSlateGray), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkTurquoise", VALUEFUNC(_wrap_ColourValue_DarkTurquoise), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DarkViolet", VALUEFUNC(_wrap_ColourValue_DarkViolet), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DeepPink", VALUEFUNC(_wrap_ColourValue_DeepPink), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DeepSkyBlue", VALUEFUNC(_wrap_ColourValue_DeepSkyBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DimGray", VALUEFUNC(_wrap_ColourValue_DimGray), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "DodgerBlue", VALUEFUNC(_wrap_ColourValue_DodgerBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "FireBrick", VALUEFUNC(_wrap_ColourValue_FireBrick), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "FloralWhite", VALUEFUNC(_wrap_ColourValue_FloralWhite), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "ForestGreen", VALUEFUNC(_wrap_ColourValue_ForestGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Fuchsia", VALUEFUNC(_wrap_ColourValue_Fuchsia), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Gainsboro", VALUEFUNC(_wrap_ColourValue_Gainsboro), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "GhostWhite", VALUEFUNC(_wrap_ColourValue_GhostWhite), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Gold", VALUEFUNC(_wrap_ColourValue_Gold), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "GoldenRod", VALUEFUNC(_wrap_ColourValue_GoldenRod), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Gray", VALUEFUNC(_wrap_ColourValue_Gray), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Green", VALUEFUNC(_wrap_ColourValue_Green), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "GreenYellow", VALUEFUNC(_wrap_ColourValue_GreenYellow), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "HoneyDew", VALUEFUNC(_wrap_ColourValue_HoneyDew), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "HotPink", VALUEFUNC(_wrap_ColourValue_HotPink), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "IndianRed", VALUEFUNC(_wrap_ColourValue_IndianRed), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Indigo", VALUEFUNC(_wrap_ColourValue_Indigo), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Ivory", VALUEFUNC(_wrap_ColourValue_Ivory), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Khaki", VALUEFUNC(_wrap_ColourValue_Khaki), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Lavender", VALUEFUNC(_wrap_ColourValue_Lavender), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LavenderBlush", VALUEFUNC(_wrap_ColourValue_LavenderBlush), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LawnGreen", VALUEFUNC(_wrap_ColourValue_LawnGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LemonChiffon", VALUEFUNC(_wrap_ColourValue_LemonChiffon), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightBlue", VALUEFUNC(_wrap_ColourValue_LightBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightCoral", VALUEFUNC(_wrap_ColourValue_LightCoral), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightCyan", VALUEFUNC(_wrap_ColourValue_LightCyan), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightGoldenRodYellow", VALUEFUNC(_wrap_ColourValue_LightGoldenRodYellow), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightGray", VALUEFUNC(_wrap_ColourValue_LightGray), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightGreen", VALUEFUNC(_wrap_ColourValue_LightGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightPink", VALUEFUNC(_wrap_ColourValue_LightPink), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightSalmon", VALUEFUNC(_wrap_ColourValue_LightSalmon), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightSeaGreen", VALUEFUNC(_wrap_ColourValue_LightSeaGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightSkyBlue", VALUEFUNC(_wrap_ColourValue_LightSkyBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightSlateGray", VALUEFUNC(_wrap_ColourValue_LightSlateGray), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightSteelBlue", VALUEFUNC(_wrap_ColourValue_LightSteelBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LightYellow", VALUEFUNC(_wrap_ColourValue_LightYellow), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Lime", VALUEFUNC(_wrap_ColourValue_Lime), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "LimeGreen", VALUEFUNC(_wrap_ColourValue_LimeGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Linen", VALUEFUNC(_wrap_ColourValue_Linen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Magenta", VALUEFUNC(_wrap_ColourValue_Magenta), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Maroon", VALUEFUNC(_wrap_ColourValue_Maroon), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MediumAquamarine", VALUEFUNC(_wrap_ColourValue_MediumAquamarine), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MediumBlue", VALUEFUNC(_wrap_ColourValue_MediumBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MediumOrchid", VALUEFUNC(_wrap_ColourValue_MediumOrchid), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MediumPurple", VALUEFUNC(_wrap_ColourValue_MediumPurple), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MediumSeaGreen", VALUEFUNC(_wrap_ColourValue_MediumSeaGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MediumSlateBlue", VALUEFUNC(_wrap_ColourValue_MediumSlateBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MediumSpringGreen", VALUEFUNC(_wrap_ColourValue_MediumSpringGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MediumTurquoise", VALUEFUNC(_wrap_ColourValue_MediumTurquoise), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MediumVioletRed", VALUEFUNC(_wrap_ColourValue_MediumVioletRed), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MidnightBlue", VALUEFUNC(_wrap_ColourValue_MidnightBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MintCream", VALUEFUNC(_wrap_ColourValue_MintCream), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "MistyRose", VALUEFUNC(_wrap_ColourValue_MistyRose), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Moccasin", VALUEFUNC(_wrap_ColourValue_Moccasin), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "NavajoWhite", VALUEFUNC(_wrap_ColourValue_NavajoWhite), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Navy", VALUEFUNC(_wrap_ColourValue_Navy), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "OldLace", VALUEFUNC(_wrap_ColourValue_OldLace), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Olive", VALUEFUNC(_wrap_ColourValue_Olive), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "OliveDrab", VALUEFUNC(_wrap_ColourValue_OliveDrab), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Orange", VALUEFUNC(_wrap_ColourValue_Orange), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "OrangeRed", VALUEFUNC(_wrap_ColourValue_OrangeRed), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Orchid", VALUEFUNC(_wrap_ColourValue_Orchid), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "PaleGoldenRod", VALUEFUNC(_wrap_ColourValue_PaleGoldenRod), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "PaleGreen", VALUEFUNC(_wrap_ColourValue_PaleGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "PaleTurquoise", VALUEFUNC(_wrap_ColourValue_PaleTurquoise), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "PaleVioletRed", VALUEFUNC(_wrap_ColourValue_PaleVioletRed), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "PapayaWhip", VALUEFUNC(_wrap_ColourValue_PapayaWhip), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "PeachPuff", VALUEFUNC(_wrap_ColourValue_PeachPuff), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Peru", VALUEFUNC(_wrap_ColourValue_Peru), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Pink", VALUEFUNC(_wrap_ColourValue_Pink), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Plum", VALUEFUNC(_wrap_ColourValue_Plum), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "PowderBlue", VALUEFUNC(_wrap_ColourValue_PowderBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Purple", VALUEFUNC(_wrap_ColourValue_Purple), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Red", VALUEFUNC(_wrap_ColourValue_Red), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "RosyBrown", VALUEFUNC(_wrap_ColourValue_RosyBrown), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "RoyalBlue", VALUEFUNC(_wrap_ColourValue_RoyalBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "SaddleBrown", VALUEFUNC(_wrap_ColourValue_SaddleBrown), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Salmon", VALUEFUNC(_wrap_ColourValue_Salmon), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "SandyBrown", VALUEFUNC(_wrap_ColourValue_SandyBrown), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "SeaGreen", VALUEFUNC(_wrap_ColourValue_SeaGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "SeaShell", VALUEFUNC(_wrap_ColourValue_SeaShell), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Sienna", VALUEFUNC(_wrap_ColourValue_Sienna), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Silver", VALUEFUNC(_wrap_ColourValue_Silver), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "SkyBlue", VALUEFUNC(_wrap_ColourValue_SkyBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "SlateBlue", VALUEFUNC(_wrap_ColourValue_SlateBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "SlateGray", VALUEFUNC(_wrap_ColourValue_SlateGray), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Snow", VALUEFUNC(_wrap_ColourValue_Snow), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "SpringGreen", VALUEFUNC(_wrap_ColourValue_SpringGreen), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "SteelBlue", VALUEFUNC(_wrap_ColourValue_SteelBlue), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Tan", VALUEFUNC(_wrap_ColourValue_Tan), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Teal", VALUEFUNC(_wrap_ColourValue_Teal), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Thistle", VALUEFUNC(_wrap_ColourValue_Thistle), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Tomato", VALUEFUNC(_wrap_ColourValue_Tomato), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Turquoise", VALUEFUNC(_wrap_ColourValue_Turquoise), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Violet", VALUEFUNC(_wrap_ColourValue_Violet), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Wheat", VALUEFUNC(_wrap_ColourValue_Wheat), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "White", VALUEFUNC(_wrap_ColourValue_White), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "WhiteSmoke", VALUEFUNC(_wrap_ColourValue_WhiteSmoke), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "Yellow", VALUEFUNC(_wrap_ColourValue_Yellow), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "YellowGreen", VALUEFUNC(_wrap_ColourValue_YellowGreen), -1);
-  rb_define_method(SwigClassColourValue.klass, "ProtoSerialize", VALUEFUNC(_wrap_ColourValue_ProtoSerialize), -1);
-  rb_define_method(SwigClassColourValue.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_ColourValue_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassColourValue.klass, "SerializableName", VALUEFUNC(_wrap_ColourValue_SerializableName), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "transparent", VALUEFUNC(_wrap_ColourValue_transparent), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "alice_blue", VALUEFUNC(_wrap_ColourValue_alice_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "antique_white", VALUEFUNC(_wrap_ColourValue_antique_white), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "aqua", VALUEFUNC(_wrap_ColourValue_aqua), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "aquamarine", VALUEFUNC(_wrap_ColourValue_aquamarine), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "azure", VALUEFUNC(_wrap_ColourValue_azure), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "beige", VALUEFUNC(_wrap_ColourValue_beige), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "bisque", VALUEFUNC(_wrap_ColourValue_bisque), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "black", VALUEFUNC(_wrap_ColourValue_black), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "blanchedalmond", VALUEFUNC(_wrap_ColourValue_blanchedalmond), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "blue", VALUEFUNC(_wrap_ColourValue_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "blue_violet", VALUEFUNC(_wrap_ColourValue_blue_violet), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "brown", VALUEFUNC(_wrap_ColourValue_brown), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "burly_wood", VALUEFUNC(_wrap_ColourValue_burly_wood), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "cadet_blue", VALUEFUNC(_wrap_ColourValue_cadet_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "chartreuse", VALUEFUNC(_wrap_ColourValue_chartreuse), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "chocolate", VALUEFUNC(_wrap_ColourValue_chocolate), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "coral", VALUEFUNC(_wrap_ColourValue_coral), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "corn_flower_blue", VALUEFUNC(_wrap_ColourValue_corn_flower_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "corn_silk", VALUEFUNC(_wrap_ColourValue_corn_silk), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "crimson", VALUEFUNC(_wrap_ColourValue_crimson), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "cyan", VALUEFUNC(_wrap_ColourValue_cyan), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_blue", VALUEFUNC(_wrap_ColourValue_dark_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_cyan", VALUEFUNC(_wrap_ColourValue_dark_cyan), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_golden_rod", VALUEFUNC(_wrap_ColourValue_dark_golden_rod), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_gray", VALUEFUNC(_wrap_ColourValue_dark_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_green", VALUEFUNC(_wrap_ColourValue_dark_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_khaki", VALUEFUNC(_wrap_ColourValue_dark_khaki), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_magenta", VALUEFUNC(_wrap_ColourValue_dark_magenta), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_olive_green", VALUEFUNC(_wrap_ColourValue_dark_olive_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_orange", VALUEFUNC(_wrap_ColourValue_dark_orange), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_orchid", VALUEFUNC(_wrap_ColourValue_dark_orchid), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_red", VALUEFUNC(_wrap_ColourValue_dark_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_salmon", VALUEFUNC(_wrap_ColourValue_dark_salmon), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_sea_green", VALUEFUNC(_wrap_ColourValue_dark_sea_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_slate_blue", VALUEFUNC(_wrap_ColourValue_dark_slate_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_slate_gray", VALUEFUNC(_wrap_ColourValue_dark_slate_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_turquoise", VALUEFUNC(_wrap_ColourValue_dark_turquoise), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_violet", VALUEFUNC(_wrap_ColourValue_dark_violet), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "deep_pink", VALUEFUNC(_wrap_ColourValue_deep_pink), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "deep_sky_blue", VALUEFUNC(_wrap_ColourValue_deep_sky_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dim_gray", VALUEFUNC(_wrap_ColourValue_dim_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dodger_blue", VALUEFUNC(_wrap_ColourValue_dodger_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "fire_brick", VALUEFUNC(_wrap_ColourValue_fire_brick), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "floral_white", VALUEFUNC(_wrap_ColourValue_floral_white), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "forest_green", VALUEFUNC(_wrap_ColourValue_forest_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "fuchsia", VALUEFUNC(_wrap_ColourValue_fuchsia), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "gainsboro", VALUEFUNC(_wrap_ColourValue_gainsboro), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "ghost_white", VALUEFUNC(_wrap_ColourValue_ghost_white), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "gold", VALUEFUNC(_wrap_ColourValue_gold), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "golden_rod", VALUEFUNC(_wrap_ColourValue_golden_rod), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "gray", VALUEFUNC(_wrap_ColourValue_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "green", VALUEFUNC(_wrap_ColourValue_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "green_yellow", VALUEFUNC(_wrap_ColourValue_green_yellow), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "honey_dew", VALUEFUNC(_wrap_ColourValue_honey_dew), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "hot_pink", VALUEFUNC(_wrap_ColourValue_hot_pink), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "indian_red", VALUEFUNC(_wrap_ColourValue_indian_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "indigo", VALUEFUNC(_wrap_ColourValue_indigo), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "ivory", VALUEFUNC(_wrap_ColourValue_ivory), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "khaki", VALUEFUNC(_wrap_ColourValue_khaki), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lavender", VALUEFUNC(_wrap_ColourValue_lavender), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lavender_blush", VALUEFUNC(_wrap_ColourValue_lavender_blush), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lawn_green", VALUEFUNC(_wrap_ColourValue_lawn_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lemon_chiffon", VALUEFUNC(_wrap_ColourValue_lemon_chiffon), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_blue", VALUEFUNC(_wrap_ColourValue_light_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_coral", VALUEFUNC(_wrap_ColourValue_light_coral), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_cyan", VALUEFUNC(_wrap_ColourValue_light_cyan), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_golden_rod_yellow", VALUEFUNC(_wrap_ColourValue_light_golden_rod_yellow), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_gray", VALUEFUNC(_wrap_ColourValue_light_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_green", VALUEFUNC(_wrap_ColourValue_light_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_pink", VALUEFUNC(_wrap_ColourValue_light_pink), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_salmon", VALUEFUNC(_wrap_ColourValue_light_salmon), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_sea_green", VALUEFUNC(_wrap_ColourValue_light_sea_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_sky_blue", VALUEFUNC(_wrap_ColourValue_light_sky_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_slate_gray", VALUEFUNC(_wrap_ColourValue_light_slate_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_steel_blue", VALUEFUNC(_wrap_ColourValue_light_steel_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_yellow", VALUEFUNC(_wrap_ColourValue_light_yellow), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lime", VALUEFUNC(_wrap_ColourValue_lime), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lime_green", VALUEFUNC(_wrap_ColourValue_lime_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "linen", VALUEFUNC(_wrap_ColourValue_linen), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "magenta", VALUEFUNC(_wrap_ColourValue_magenta), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "maroon", VALUEFUNC(_wrap_ColourValue_maroon), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_aquamarine", VALUEFUNC(_wrap_ColourValue_medium_aquamarine), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_blue", VALUEFUNC(_wrap_ColourValue_medium_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_orchid", VALUEFUNC(_wrap_ColourValue_medium_orchid), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_purple", VALUEFUNC(_wrap_ColourValue_medium_purple), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_sea_green", VALUEFUNC(_wrap_ColourValue_medium_sea_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_slate_blue", VALUEFUNC(_wrap_ColourValue_medium_slate_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_spring_green", VALUEFUNC(_wrap_ColourValue_medium_spring_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_turquoise", VALUEFUNC(_wrap_ColourValue_medium_turquoise), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_violet_red", VALUEFUNC(_wrap_ColourValue_medium_violet_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "midnight_blue", VALUEFUNC(_wrap_ColourValue_midnight_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "mint_cream", VALUEFUNC(_wrap_ColourValue_mint_cream), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "misty_rose", VALUEFUNC(_wrap_ColourValue_misty_rose), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "moccasin", VALUEFUNC(_wrap_ColourValue_moccasin), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "navajo_white", VALUEFUNC(_wrap_ColourValue_navajo_white), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "navy", VALUEFUNC(_wrap_ColourValue_navy), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "old_lace", VALUEFUNC(_wrap_ColourValue_old_lace), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "olive", VALUEFUNC(_wrap_ColourValue_olive), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "olive_drab", VALUEFUNC(_wrap_ColourValue_olive_drab), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "orange", VALUEFUNC(_wrap_ColourValue_orange), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "orange_red", VALUEFUNC(_wrap_ColourValue_orange_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "orchid", VALUEFUNC(_wrap_ColourValue_orchid), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "pale_golden_rod", VALUEFUNC(_wrap_ColourValue_pale_golden_rod), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "pale_green", VALUEFUNC(_wrap_ColourValue_pale_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "pale_turquoise", VALUEFUNC(_wrap_ColourValue_pale_turquoise), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "pale_violet_red", VALUEFUNC(_wrap_ColourValue_pale_violet_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "papaya_whip", VALUEFUNC(_wrap_ColourValue_papaya_whip), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "peach_puff", VALUEFUNC(_wrap_ColourValue_peach_puff), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "peru", VALUEFUNC(_wrap_ColourValue_peru), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "pink", VALUEFUNC(_wrap_ColourValue_pink), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "plum", VALUEFUNC(_wrap_ColourValue_plum), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "powder_blue", VALUEFUNC(_wrap_ColourValue_powder_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "purple", VALUEFUNC(_wrap_ColourValue_purple), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "red", VALUEFUNC(_wrap_ColourValue_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "rosy_brown", VALUEFUNC(_wrap_ColourValue_rosy_brown), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "royal_blue", VALUEFUNC(_wrap_ColourValue_royal_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "saddle_brown", VALUEFUNC(_wrap_ColourValue_saddle_brown), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "salmon", VALUEFUNC(_wrap_ColourValue_salmon), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "sandy_brown", VALUEFUNC(_wrap_ColourValue_sandy_brown), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "sea_green", VALUEFUNC(_wrap_ColourValue_sea_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "sea_shell", VALUEFUNC(_wrap_ColourValue_sea_shell), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "sienna", VALUEFUNC(_wrap_ColourValue_sienna), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "silver", VALUEFUNC(_wrap_ColourValue_silver), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "sky_blue", VALUEFUNC(_wrap_ColourValue_sky_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "slate_blue", VALUEFUNC(_wrap_ColourValue_slate_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "slate_gray", VALUEFUNC(_wrap_ColourValue_slate_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "snow", VALUEFUNC(_wrap_ColourValue_snow), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "spring_green", VALUEFUNC(_wrap_ColourValue_spring_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "steel_blue", VALUEFUNC(_wrap_ColourValue_steel_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "tan", VALUEFUNC(_wrap_ColourValue_tan), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "teal", VALUEFUNC(_wrap_ColourValue_teal), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "thistle", VALUEFUNC(_wrap_ColourValue_thistle), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "tomato", VALUEFUNC(_wrap_ColourValue_tomato), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "turquoise", VALUEFUNC(_wrap_ColourValue_turquoise), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "violet", VALUEFUNC(_wrap_ColourValue_violet), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "wheat", VALUEFUNC(_wrap_ColourValue_wheat), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "white", VALUEFUNC(_wrap_ColourValue_white), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "white_smoke", VALUEFUNC(_wrap_ColourValue_white_smoke), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "yellow", VALUEFUNC(_wrap_ColourValue_yellow), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "yellow_green", VALUEFUNC(_wrap_ColourValue_yellow_green), -1);
+  rb_define_method(SwigClassColourValue.klass, "proto_serialize", VALUEFUNC(_wrap_ColourValue_proto_serialize), -1);
+  rb_define_method(SwigClassColourValue.klass, "proto_de_serialize", VALUEFUNC(_wrap_ColourValue_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "serializable_name", VALUEFUNC(_wrap_ColourValue_serializable_name), -1);
   SwigClassColourValue.mark = 0;
   SwigClassColourValue.destroy = (void (*)(void *)) free_Mezzanine_ColourValue;
   SwigClassColourValue.trackObjects = 0;
@@ -23358,22 +23789,22 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__WorldObjectGraphicsSettings, (void *) &SwigClassWorldObjectGraphicsSettings);
   rb_define_alloc_func(SwigClassWorldObjectGraphicsSettings.klass, _wrap_WorldObjectGraphicsSettings_allocate);
   rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "initialize", VALUEFUNC(_wrap_new_WorldObjectGraphicsSettings), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "SetMesh", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_SetMesh), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "GetMesh", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_GetMesh), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "SetMaterial", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_SetMaterial), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "GetMaterialName", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_GetMaterialName), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "HasMaterialSet", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_HasMaterialSet), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "GetNumSubmeshes", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_GetNumSubmeshes), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "CloneMaterial", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_CloneMaterial), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "SetMaterialAmbient", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_SetMaterialAmbient), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "SetMaterialSpecular", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_SetMaterialSpecular), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "SetMaterialDiffuse", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_SetMaterialDiffuse), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "GetMaterialAmbient", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_GetMaterialAmbient), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "GetMaterialSpecular", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_GetMaterialSpecular), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "GetMaterialDiffuse", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_GetMaterialDiffuse), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "ProtoSerialize", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_ProtoSerialize), -1);
-  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassWorldObjectGraphicsSettings.klass, "SerializableName", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_SerializableName), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "set_mesh", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_set_mesh), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "get_mesh", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_get_mesh), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "set_material", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_set_material), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "get_material_name", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_get_material_name), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "has_material_set", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_has_material_set), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "get_num_submeshes", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_get_num_submeshes), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "clone_material", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_clone_material), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "set_material_ambient", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_set_material_ambient), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "set_material_specular", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_set_material_specular), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "set_material_diffuse", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_set_material_diffuse), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "get_material_ambient", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_get_material_ambient), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "get_material_specular", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_get_material_specular), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "get_material_diffuse", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_get_material_diffuse), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "proto_serialize", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_proto_serialize), -1);
+  rb_define_method(SwigClassWorldObjectGraphicsSettings.klass, "proto_de_serialize", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassWorldObjectGraphicsSettings.klass, "serializable_name", VALUEFUNC(_wrap_WorldObjectGraphicsSettings_serializable_name), -1);
   SwigClassWorldObjectGraphicsSettings.mark = 0;
   SwigClassWorldObjectGraphicsSettings.destroy = (void (*)(void *)) free_Mezzanine_WorldObjectGraphicsSettings;
   SwigClassWorldObjectGraphicsSettings.trackObjects = 0;
@@ -23381,26 +23812,26 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassWorldObject.klass = rb_define_class_under(mMezzanine, "WorldObject", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__WorldObject, (void *) &SwigClassWorldObject);
   rb_undef_alloc_func(SwigClassWorldObject.klass);
-  rb_define_method(SwigClassWorldObject.klass, "SetLocation", VALUEFUNC(_wrap_WorldObject_SetLocation), -1);
-  rb_define_method(SwigClassWorldObject.klass, "GetLocation", VALUEFUNC(_wrap_WorldObject_GetLocation), -1);
-  rb_define_method(SwigClassWorldObject.klass, "SetScaling", VALUEFUNC(_wrap_WorldObject_SetScaling), -1);
-  rb_define_method(SwigClassWorldObject.klass, "GetScaling", VALUEFUNC(_wrap_WorldObject_GetScaling), -1);
-  rb_define_method(SwigClassWorldObject.klass, "GetName", VALUEFUNC(_wrap_WorldObject_GetName), -1);
-  rb_define_method(SwigClassWorldObject.klass, "GetType", VALUEFUNC(_wrap_WorldObject_GetType), -1);
-  rb_define_method(SwigClassWorldObject.klass, "IsStaticOrKinematic", VALUEFUNC(_wrap_WorldObject_IsStaticOrKinematic), -1);
-  rb_define_method(SwigClassWorldObject.klass, "IsInWorld", VALUEFUNC(_wrap_WorldObject_IsInWorld), -1);
-  rb_define_method(SwigClassWorldObject.klass, "GetWorld", VALUEFUNC(_wrap_WorldObject_GetWorld), -1);
-  rb_define_method(SwigClassWorldObject.klass, "GetGraphicsSettings", VALUEFUNC(_wrap_WorldObject_GetGraphicsSettings), -1);
-  rb_define_method(SwigClassWorldObject.klass, "GetPhysicsSettings", VALUEFUNC(_wrap_WorldObject_GetPhysicsSettings), -1);
-  rb_define_method(SwigClassWorldObject.klass, "AddToWorld", VALUEFUNC(_wrap_WorldObject_AddToWorld), -1);
-  rb_define_method(SwigClassWorldObject.klass, "RemoveFromWorld", VALUEFUNC(_wrap_WorldObject_RemoveFromWorld), -1);
-  rb_define_method(SwigClassWorldObject.klass, "_Update", VALUEFUNC(_wrap_WorldObject__Update), -1);
-  rb_define_method(SwigClassWorldObject.klass, "_NotifyCollisionState", VALUEFUNC(_wrap_WorldObject__NotifyCollisionState), -1);
-  rb_define_method(SwigClassWorldObject.klass, "_NotifyProxyDestroyed", VALUEFUNC(_wrap_WorldObject__NotifyProxyDestroyed), -1);
-  rb_define_method(SwigClassWorldObject.klass, "_GetBasePhysicsObject", VALUEFUNC(_wrap_WorldObject__GetBasePhysicsObject), -1);
-  rb_define_method(SwigClassWorldObject.klass, "_GetGraphicsObject", VALUEFUNC(_wrap_WorldObject__GetGraphicsObject), -1);
-  rb_define_method(SwigClassWorldObject.klass, "_GetGraphicsNode", VALUEFUNC(_wrap_WorldObject__GetGraphicsNode), -1);
-  rb_define_singleton_method(SwigClassWorldObject.klass, "SerializableName", VALUEFUNC(_wrap_WorldObject_SerializableName), -1);
+  rb_define_method(SwigClassWorldObject.klass, "set_location", VALUEFUNC(_wrap_WorldObject_set_location), -1);
+  rb_define_method(SwigClassWorldObject.klass, "get_location", VALUEFUNC(_wrap_WorldObject_get_location), -1);
+  rb_define_method(SwigClassWorldObject.klass, "set_scaling", VALUEFUNC(_wrap_WorldObject_set_scaling), -1);
+  rb_define_method(SwigClassWorldObject.klass, "get_scaling", VALUEFUNC(_wrap_WorldObject_get_scaling), -1);
+  rb_define_method(SwigClassWorldObject.klass, "get_name", VALUEFUNC(_wrap_WorldObject_get_name), -1);
+  rb_define_method(SwigClassWorldObject.klass, "get_type", VALUEFUNC(_wrap_WorldObject_get_type), -1);
+  rb_define_method(SwigClassWorldObject.klass, "is_static_or_kinematic", VALUEFUNC(_wrap_WorldObject_is_static_or_kinematic), -1);
+  rb_define_method(SwigClassWorldObject.klass, "is_in_world", VALUEFUNC(_wrap_WorldObject_is_in_world), -1);
+  rb_define_method(SwigClassWorldObject.klass, "get_world", VALUEFUNC(_wrap_WorldObject_get_world), -1);
+  rb_define_method(SwigClassWorldObject.klass, "get_graphics_settings", VALUEFUNC(_wrap_WorldObject_get_graphics_settings), -1);
+  rb_define_method(SwigClassWorldObject.klass, "get_physics_settings", VALUEFUNC(_wrap_WorldObject_get_physics_settings), -1);
+  rb_define_method(SwigClassWorldObject.klass, "add_to_world", VALUEFUNC(_wrap_WorldObject_add_to_world), -1);
+  rb_define_method(SwigClassWorldObject.klass, "remove_from_world", VALUEFUNC(_wrap_WorldObject_remove_from_world), -1);
+  rb_define_method(SwigClassWorldObject.klass, "_update", VALUEFUNC(_wrap_WorldObject__update), -1);
+  rb_define_method(SwigClassWorldObject.klass, "_notify_collision_state", VALUEFUNC(_wrap_WorldObject__notify_collision_state), -1);
+  rb_define_method(SwigClassWorldObject.klass, "_notify_proxy_destroyed", VALUEFUNC(_wrap_WorldObject__notify_proxy_destroyed), -1);
+  rb_define_method(SwigClassWorldObject.klass, "_get_base_physics_object", VALUEFUNC(_wrap_WorldObject__get_base_physics_object), -1);
+  rb_define_method(SwigClassWorldObject.klass, "_get_graphics_object", VALUEFUNC(_wrap_WorldObject__get_graphics_object), -1);
+  rb_define_method(SwigClassWorldObject.klass, "_get_graphics_node", VALUEFUNC(_wrap_WorldObject__get_graphics_node), -1);
+  rb_define_singleton_method(SwigClassWorldObject.klass, "serializable_name", VALUEFUNC(_wrap_WorldObject_serializable_name), -1);
   SwigClassWorldObject.mark = 0;
   SwigClassWorldObject.destroy = (void (*)(void *)) free_Mezzanine_WorldObject;
   SwigClassWorldObject.trackObjects = 0;
@@ -23408,14 +23839,14 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassNonStaticWorldObject.klass = rb_define_class_under(mMezzanine, "NonStaticWorldObject", ((swig_class *) SWIGTYPE_p_Mezzanine__WorldObject->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__NonStaticWorldObject, (void *) &SwigClassNonStaticWorldObject);
   rb_undef_alloc_func(SwigClassNonStaticWorldObject.klass);
-  rb_define_method(SwigClassNonStaticWorldObject.klass, "SetLocation", VALUEFUNC(_wrap_NonStaticWorldObject_SetLocation), -1);
-  rb_define_method(SwigClassNonStaticWorldObject.klass, "GetLocation", VALUEFUNC(_wrap_NonStaticWorldObject_GetLocation), -1);
-  rb_define_method(SwigClassNonStaticWorldObject.klass, "SetOrientation", VALUEFUNC(_wrap_NonStaticWorldObject_SetOrientation), -1);
-  rb_define_method(SwigClassNonStaticWorldObject.klass, "GetOrientation", VALUEFUNC(_wrap_NonStaticWorldObject_GetOrientation), -1);
-  rb_define_method(SwigClassNonStaticWorldObject.klass, "SetScaling", VALUEFUNC(_wrap_NonStaticWorldObject_SetScaling), -1);
-  rb_define_method(SwigClassNonStaticWorldObject.klass, "GetScaling", VALUEFUNC(_wrap_NonStaticWorldObject_GetScaling), -1);
-  rb_define_method(SwigClassNonStaticWorldObject.klass, "GetName", VALUEFUNC(_wrap_NonStaticWorldObject_GetName), -1);
-  rb_define_singleton_method(SwigClassNonStaticWorldObject.klass, "SerializableName", VALUEFUNC(_wrap_NonStaticWorldObject_SerializableName), -1);
+  rb_define_method(SwigClassNonStaticWorldObject.klass, "set_location", VALUEFUNC(_wrap_NonStaticWorldObject_set_location), -1);
+  rb_define_method(SwigClassNonStaticWorldObject.klass, "get_location", VALUEFUNC(_wrap_NonStaticWorldObject_get_location), -1);
+  rb_define_method(SwigClassNonStaticWorldObject.klass, "set_orientation", VALUEFUNC(_wrap_NonStaticWorldObject_set_orientation), -1);
+  rb_define_method(SwigClassNonStaticWorldObject.klass, "get_orientation", VALUEFUNC(_wrap_NonStaticWorldObject_get_orientation), -1);
+  rb_define_method(SwigClassNonStaticWorldObject.klass, "set_scaling", VALUEFUNC(_wrap_NonStaticWorldObject_set_scaling), -1);
+  rb_define_method(SwigClassNonStaticWorldObject.klass, "get_scaling", VALUEFUNC(_wrap_NonStaticWorldObject_get_scaling), -1);
+  rb_define_method(SwigClassNonStaticWorldObject.klass, "get_name", VALUEFUNC(_wrap_NonStaticWorldObject_get_name), -1);
+  rb_define_singleton_method(SwigClassNonStaticWorldObject.klass, "serializable_name", VALUEFUNC(_wrap_NonStaticWorldObject_serializable_name), -1);
   SwigClassNonStaticWorldObject.mark = 0;
   SwigClassNonStaticWorldObject.destroy = (void (*)(void *)) free_Mezzanine_NonStaticWorldObject;
   SwigClassNonStaticWorldObject.trackObjects = 0;
@@ -23470,21 +23901,21 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__WorldObjectPhysicsSettings, (void *) &SwigClassWorldObjectPhysicsSettings);
   rb_define_alloc_func(SwigClassWorldObjectPhysicsSettings.klass, _wrap_WorldObjectPhysicsSettings_allocate);
   rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "initialize", VALUEFUNC(_wrap_new_WorldObjectPhysicsSettings), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "SetCollisionShape", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_SetCollisionShape), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "GetCollisionShape", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_GetCollisionShape), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "SetCollisionGroupAndMask", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_SetCollisionGroupAndMask), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "GetCollisionGroup", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_GetCollisionGroup), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "GetCollisionMask", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_GetCollisionMask), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "IsKinematic", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_IsKinematic), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "IsStatic", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_IsStatic), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "IsStaticOrKinematic", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_IsStaticOrKinematic), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "GetCollisionResponse", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_GetCollisionResponse), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "IsActive", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_IsActive), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "SetActivationState", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_SetActivationState), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "GetActivationState", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_GetActivationState), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "ProtoSerialize", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_ProtoSerialize), -1);
-  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassWorldObjectPhysicsSettings.klass, "SerializableName", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_SerializableName), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "set_collision_shape", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_set_collision_shape), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "get_collision_shape", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_get_collision_shape), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "set_collision_group_and_mask", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_set_collision_group_and_mask), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "get_collision_group", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_get_collision_group), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "get_collision_mask", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_get_collision_mask), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "is_kinematic", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_is_kinematic), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "is_static", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_is_static), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "is_static_or_kinematic", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_is_static_or_kinematic), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "get_collision_response", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_get_collision_response), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "is_active", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_is_active), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "set_activation_state", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_set_activation_state), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "get_activation_state", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_get_activation_state), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "proto_serialize", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_proto_serialize), -1);
+  rb_define_method(SwigClassWorldObjectPhysicsSettings.klass, "proto_de_serialize", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassWorldObjectPhysicsSettings.klass, "serializable_name", VALUEFUNC(_wrap_WorldObjectPhysicsSettings_serializable_name), -1);
   SwigClassWorldObjectPhysicsSettings.mark = 0;
   SwigClassWorldObjectPhysicsSettings.destroy = (void (*)(void *)) free_Mezzanine_WorldObjectPhysicsSettings;
   SwigClassWorldObjectPhysicsSettings.trackObjects = 0;
@@ -23493,14 +23924,14 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__NonTriggerPhysicsSettings, (void *) &SwigClassNonTriggerPhysicsSettings);
   rb_define_alloc_func(SwigClassNonTriggerPhysicsSettings.klass, _wrap_NonTriggerPhysicsSettings_allocate);
   rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "initialize", VALUEFUNC(_wrap_new_NonTriggerPhysicsSettings), -1);
-  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "SetCollisionResponse", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_SetCollisionResponse), -1);
-  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "SetFriction", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_SetFriction), -1);
-  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "GetFriction", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_GetFriction), -1);
-  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "SetRestitution", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_SetRestitution), -1);
-  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "GetRestitution", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_GetRestitution), -1);
-  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "ProtoSerialize", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_ProtoSerialize), -1);
-  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "ProtoDeSerialize", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_ProtoDeSerialize), -1);
-  rb_define_singleton_method(SwigClassNonTriggerPhysicsSettings.klass, "SerializableName", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_SerializableName), -1);
+  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "set_collision_response", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_set_collision_response), -1);
+  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "set_friction", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_set_friction), -1);
+  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "get_friction", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_get_friction), -1);
+  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "set_restitution", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_set_restitution), -1);
+  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "get_restitution", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_get_restitution), -1);
+  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "proto_serialize", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_proto_serialize), -1);
+  rb_define_method(SwigClassNonTriggerPhysicsSettings.klass, "proto_de_serialize", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassNonTriggerPhysicsSettings.klass, "serializable_name", VALUEFUNC(_wrap_NonTriggerPhysicsSettings_serializable_name), -1);
   SwigClassNonTriggerPhysicsSettings.mark = 0;
   SwigClassNonTriggerPhysicsSettings.destroy = (void (*)(void *)) free_Mezzanine_NonTriggerPhysicsSettings;
   SwigClassNonTriggerPhysicsSettings.trackObjects = 0;

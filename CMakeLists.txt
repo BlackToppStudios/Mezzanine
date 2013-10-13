@@ -54,7 +54,8 @@
 #        Mezz_BuildTypeDebug                - False - The Engine will be compiled with debug symbols by setting CMAKE_BUILD_TYPE. MEZZDEBUG will be passed as a preprocessor macro causing more logging messages to be included. All libraries will also include debug symbols.
 #        Mezz_BuildTypeRelease              - False - The Engine will be compiled with optimizations by setting CMAKE_BUILD_TYPE. MEZZRELEASE will be passed into the source via a preprocessor macro.
 #        Mezz_BuildTypeSmall                - False - The Engine will be optimizing for minimum size by setting CMAKE_BUILD_TYPE, MEZZSMALL is passed into the source when compiling as a preprocessor macro.
-#        Mezz_Lua51                         - True if lua is to be included and link against. False if lua was not selected to be compiled in.
+#        Mezz_Lua51                         - True if Lua is to be included and link against. False if Lua was not selected to be compiled in.
+#        Mezz_Ruby                          - True if Ruby is to be included and link against. False if Ruby was not selected to be compiled in.
 #        Mezz_SWIG                          - Rebuild Scripting interfaces with SWIG each build
 #        Mezz_Network                       - Enable or disable networking support
 #        Mezz_AllWarnings                   - Enable all compiler warnings
@@ -299,6 +300,19 @@ else(${Mezz_Lua51})
 endif(${Mezz_Lua51})
 
 ###############################################################################
+# Ruby Library
+option(Mezz_Ruby "Include Support for Ruby Scripting Language" OFF)
+if(${Mezz_Ruby})
+    set(RubyProject "Ruby")
+    set(RubyLinkName "ruby")
+    message ( STATUS "${PROJECT_NAME} - Enabling Support for Ruby Scripting Language, and setting MEZZRRUBY")
+    set(Mezz_Ruby_Arguments "${D}MEZZRUBY")
+else(${Mezz_Ruby})
+    message ( STATUS "${PROJECT_NAME} - Disabling Support for Ruby Scripting Language, and unsetting MEZZRUBY")
+    set(Mezz_Ruby_Arguments "${D}MEZZRUBY_undefined")
+endif(${Mezz_Ruby})
+
+###############################################################################
 # Build Swig Library
 option(Mezz_SWIG "Rerun swig/Rebuild script bindings before each build." OFF)
 if(${Mezz_SWIG})
@@ -330,12 +344,11 @@ if (Mezz_DecacheWorkUnits)
 endif (Mezz_DecacheWorkUnits)
 
 add_definitions(
-    -D_MEZZ_STATIC_BUILD_                   # Trailing slash indicates that compiler header should massage this before the library consumes
-    -D_MEZZ_${MinimizeThreads}_
-    -D_MEZZ_${DecacheWork}_
-    -D_MEZZ_FRAMESTOTRACK_=${Mezz_FramesToTrack}
+    ${D}_MEZZ_STATIC_BUILD_                   # Trailing slash indicates that compiler header should massage this before the library consumes
+    ${D}_MEZZ_${MinimizeThreads}_
+    ${D}_MEZZ_${DecacheWork}_
+    ${D}_MEZZ_FRAMESTOTRACK_=${Mezz_FramesToTrack}
 )
-
 
 ###############################################################################
 # Misc simple defines
@@ -539,7 +552,7 @@ endif(OPENMP_FOUND)
 ###############################################################################
 # Perform Common Tasks for build options and configuration.
 
-set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Ogre_Arguments} ${FPIC}")
+set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Ogre_Arguments} ${FPIC}")
 #message(FATAL_ERROR ${CommonBuildFlags})
 
 ###############################################################################

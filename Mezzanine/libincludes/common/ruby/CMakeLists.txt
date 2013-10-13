@@ -38,13 +38,13 @@
 #   John Blackwood - makoenergy02@gmail.com
 
 cmake_minimum_required(VERSION 2.8)
-project (Lua)
-message ("${PROJECT_NAME} - Begin")
-
+project (${RubyProject})
+message ("${RubyProject} - Begin")
+message(zzzzzzzzzzzzzZZZZZ)
 #check for new builds at: https://www.ruby-lang.org/en/downloads/
 include(ExternalProject)
 set(RubyDir "ruby-2.0.0-p247")
-ExternalProject_Add(Ruby
+ExternalProject_Add(${RubyProject}
   PREFIX ${RubyDir}
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/${RubyDir}
   CONFIGURE_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${RubyDir}/configure --disable-install-doc --disable-rubygems --prefix=<INSTALL_DIR>
@@ -54,5 +54,5 @@ include_directories(
 	"${${PROJECT_NAME}_BINARY_DIR}/${RubyDir}/include"
 )
 
-message ("${PROJECT_NAME} - End")
+message ("${RubyProject} - End")
 

@@ -168,7 +168,7 @@ namespace Mezzanine
             /// @return False if object is empty or there is not enough memory.
             bool Set(const Char8* rhs);
 
-            #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
             /// @brief Set text by lexigraphically converting rhs.
             /// @param rhs The value to store in this text.
             /// @return False if object is empty or there is not enough memory.
@@ -188,7 +188,7 @@ namespace Mezzanine
             /// @param rhs The value to store in this text.
             /// @return False if object is empty or there is not enough memory.
             bool Set(bool rhs);
-            #endif
+#endif
 
             /// @brief Set text (equivalent to set without error checking)
             /// @param rhs The value to store in this text.

@@ -44,10 +44,6 @@
 /// @file
 /// @brief This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage
 
-#ifndef SWIG
-    #include <vector>
-#endif
-
 #include "datatypes.h"
 
 namespace Mezzanine
