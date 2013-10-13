@@ -68,7 +68,7 @@ namespace Mezzanine
         { return this->ObjectName; }
 
     World* WorldObject::GetWorld() const
-        { return this->ParentWorld(); }
+        { return this->ParentWorld; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Working with the World

@@ -42,7 +42,6 @@
 
 #include "attachable.h"
 #include "exception.h"
-#include "worldnode.h"
 
 #include <Ogre.h>
 

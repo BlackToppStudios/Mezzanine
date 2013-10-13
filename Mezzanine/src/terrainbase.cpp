@@ -46,7 +46,8 @@ namespace Mezzanine
 {
     ///////////////////////////////////
     // TerrainBase class fuctions
-    TerrainBase::TerrainBase()
+    TerrainBase::TerrainBase() :
+        WorldObject(NULL)
     {
 
     }

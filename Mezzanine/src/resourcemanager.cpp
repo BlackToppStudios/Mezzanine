@@ -46,7 +46,6 @@
 
 #include "resourcemanager.h"
 #include "Graphics/meshmanager.h"
-#include "actorbase.h"
 #include "stringtool.h"
 #include "Resource/filestream.h"
 #include "Resource/memorystream.h"
