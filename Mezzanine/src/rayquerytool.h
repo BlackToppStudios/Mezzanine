@@ -56,7 +56,7 @@ namespace Mezzanine
 {
     class Plane;
     class Ray;
-    class ActorBase;
+    class WorldObject;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class RayQueryTool
     /// @headerfile rayquerytool.h
@@ -71,9 +71,9 @@ namespace Mezzanine
             bool ValidResult;
             /// @brief An Offset or location from something meaningful to the last query.
             Vector3 Offset;
-            /// @brief If there is an Actor result to a query the result will be stored in this.
+            /// @brief If there is an WorldObject result to a query the result will be stored in this.
             /// @warning This is weak reference, Some other system could delete out from under us and we cannot delete this.
-            ActorBase* IntersectedActor;
+            WorldObject* IntersectedObject;
 
         public:
 
@@ -92,10 +92,10 @@ namespace Mezzanine
             /// @brief Get an offset from the last query. Depending on the last query, this could be an Offset from a variety of things.
             /// @return A Vector3 if the last query worked and returns an Offset, A empty vector otherwise. Use LastQueryResultsValid() Prior to this.
             Vector3 LastQueryResultsOffset() const;
-            /// @brief It is common to ray query for actors, if so the results can be retrieved with this.
-            /// @return A pointer to an actor if the last query returns an actor and worked, a Null pointer otherwise. Use LastQueryResultsValid() Prior to this.
-            /// @warning Does not confer ownership of actor, do not delete pointers returned by this unless you have taken special steps.
-            ActorBase* LastQueryResultsActorPtr() const;
+            /// @brief It is common to ray query for WorldObjects, if so the results can be retrieved with this.
+            /// @return A pointer to an WorldObject if the last query returns a WorldObject and worked, a Null pointer otherwise. Use LastQueryResultsValid() Prior to this.
+            /// @warning Does not confer ownership of WorldObject, do not delete pointers returned by this unless you have taken special steps.
+            WorldObject* LastQueryResultsObjectPtr() const;
 
         protected:
             ///////////////////////////////////////////////////////////////////////////////
@@ -107,7 +107,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Ray Queries
             ///////////////////////////////////////
-            /// @brief This will find the first Actor to intesect the Given ray.
+            /// @brief This will find the first Object to intesect the Given ray.
             /// @details This use the graphics subsystem to cast a ray in the world. If the ray passes through any the triangles in an actor
             /// This will return that actor. This function runs in linear time relative to the amount of triangles in 3d meshes near the the
             /// ray being cast. This will start at ray.from and go to ray.to .
@@ -115,9 +115,9 @@ namespace Mezzanine
             /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
             /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
             /// @return True if something is found, false otherwise. Use LastQueryResultsOffset() and LastQueryResultsActorPtr() for more details.
-            Bool GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags);
+            Bool GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags);
 
-            /// @brief Partially implemented. This should find the first Actor that is on or almost on the a given Ray.
+            /// @brief Partially implemented. This should find the first Object that is on or almost on the a given Ray.
             /// @details This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned.
             /// Presently this is untested and does not return the Offset of the intersection. This should perform faster than WorldQueryTool::GetFirstActorOnRayByPolygon
             /// but not by a known amount.
@@ -125,14 +125,14 @@ namespace Mezzanine
             /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
             /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
             /// @return True if something is found, false otherwise. Use LastQueryResultsActorPtr() for more details. Any return Offset is empty
-            Bool GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags);
+            Bool GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags);
 
             /// @brief Where does this Ray Meet this Plane?
             /// @details This does some fancy math to return the point where the ray and the plane intersent.
             /// @param QueryRay This is the Ray that could intersent the plane
             /// @param QueryPlane This is the plane to be interesected.
             /// @return True if something is found, false otherwise. Use LastQueryResultsOffset() for more details. Any return Actor Pointer is NULL;
-            Bool RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane);
+            Bool RayPlaneIntersection(const Ray& QueryRay, const Plane& QueryPlane);
 
             /// @brief Get a Ray from the current viewport, following the mouse
             /// @details This calls on the graphics subsystem to get a ray from the location of the current camera
@@ -152,10 +152,7 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Vector3"
             static String SerializableName();
-
-    };
-}
-
-
+    };//RayQueryTool
+}//Mezzanine
 
 #endif

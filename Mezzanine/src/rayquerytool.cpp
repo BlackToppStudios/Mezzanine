@@ -43,23 +43,32 @@
 using namespace std;
 
 #include "rayquerytool.h"
-#include "actorbase.h"
+#include "actor.h"
 #include "actormanager.h"
+#include "areaeffect.h"
+#include "areaeffectmanager.h"
+#include "debris.h"
+#include "debrismanager.h"
+#include "eventmanager.h"
+#include "worldobject.h"
+#include "plane.h"
+#include "ray.h"
+#include "managedptr.h"
+#include "serialization.h"
+#include "entresol.h"
+
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/scenemanager.h"
-#include "eventmanager.h"
-#include "entresol.h"
 #include "Graphics/cameramanager.h"
-#include "Input/inputmanager.h"
 #include "Graphics/cameraproxy.h"
 #include "Graphics/gamewindow.h"
 #include "Graphics/viewport.h"
-#include "plane.h"
-#include "ray.h"
+#include "Graphics/renderableproxy.h"
+
 #include "Input/mouse.h"
-#include "managedptr.h"
+#include "Input/inputmanager.h"
+
 #include "Internal/meshtools.h.cpp"
-#include "serialization.h"
 
 #include <Ogre.h>
 
@@ -132,7 +141,7 @@ namespace Mezzanine
     }
 
     RayQueryTool::RayQueryTool()
-        : ValidResult(false), IntersectedActor(NULL)
+        : ValidResult(false), IntersectedObject(NULL)
         { ClearReturns(); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -143,7 +152,7 @@ namespace Mezzanine
     {
         ValidResult = false;
         Offset = Vector3();
-        IntersectedActor = NULL;
+        IntersectedObject = NULL;
         return ValidResult;
     }
 
@@ -153,8 +162,8 @@ namespace Mezzanine
     Vector3 RayQueryTool::LastQueryResultsOffset() const
         { return Offset; }
 
-    ActorBase* RayQueryTool::LastQueryResultsActorPtr() const
-        { return IntersectedActor; }
+    WorldObject* RayQueryTool::LastQueryResultsObjectPtr() const
+        { return IntersectedObject; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Query Helpers
@@ -164,10 +173,10 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Ray Queries
     ///////////////////////////////////////
-    Bool RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
+    Bool RayQueryTool::GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
-        Ogre::Ray Ooray = ActorRay.GetOgreRay();
+        Ogre::Ray Ooray = ObjectRay.GetOgreRay();
 
         if(!ExecuteQuery(RayQuery, Ooray))
             { return ClearReturns(); }
@@ -179,7 +188,7 @@ namespace Mezzanine
         // we need to test every triangle of every object.
         Ogre::Real closest_distance = -1.0f;
         Vector3 closest_result;
-        IntersectedActor=NULL;
+        IntersectedObject=NULL;
         Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
         for (size_t qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
         {
@@ -195,7 +204,7 @@ namespace Mezzanine
 
                 try
                 {
-                    WorldObject* HitMetaInfo = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
+                    WorldObject* HitMetaInfo = Ogre::any_cast<Graphics::RenderableProxy*>(pentity->getUserAny())->GetParentObject();
                     if(HitMetaInfo->GetType() & ObjectFlags)
                     {
                         // mesh data to retrieve
@@ -233,8 +242,7 @@ namespace Mezzanine
                         if (new_closest_found)
                         {
                             closest_result = Ooray.getPoint(closest_distance);
-                            WorldObject* WO = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
-                            IntersectedActor = static_cast<ActorBase*>( WO );
+                            IntersectedObject = Ogre::any_cast<Graphics::RenderableProxy*>(pentity->getUserAny())->GetParentObject();
                         }
 
                     } // \if WSO_ActorRigid
@@ -246,9 +254,9 @@ namespace Mezzanine
         } // \if qr_idx
 
         //Change the closest point into a point relative to the Actor
-        if (IntersectedActor)
+        if (IntersectedObject)
         {
-            Offset = IntersectedActor->GetOrientation() * ((closest_result - IntersectedActor->GetLocation()) * IntersectedActor->GetScaling());
+            Offset = IntersectedObject->GetOrientation() * ((closest_result - IntersectedObject->GetLocation()) * IntersectedObject->GetScale());
             ValidResult=true;
             return ValidResult;
         }else{
@@ -256,10 +264,10 @@ namespace Mezzanine
         }
     }
 
-    Bool RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
+    Bool RayQueryTool::GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
-        Ogre::Ray Ooray = ActorRay.GetOgreRay();
+        Ogre::Ray Ooray = ObjectRay.GetOgreRay();
         if(!ExecuteQuery(RayQuery, Ooray))
             { return ClearReturns(); }
 
@@ -268,9 +276,8 @@ namespace Mezzanine
         if (0 < query_result.size())
         {
             Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[0].movable);
-            WorldObject* WO = Ogre::any_cast<WorldObject*>(pentity->getUserAny());
+            IntersectedObject = Ogre::any_cast<Graphics::RenderableProxy*>(pentity->getUserAny())->GetParentObject();
             Offset = Vector3();
-            IntersectedActor = static_cast<ActorBase*>( WO );
             ValidResult = true;
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
@@ -281,7 +288,7 @@ namespace Mezzanine
         }
     }
 
-    Bool RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
+    Bool RayQueryTool::RayPlaneIntersection(const Ray& QueryRay, const Plane& QueryPlane)
     {
         try{
             Vector3 u = QueryRay.Destination - QueryRay.Origin;
@@ -311,7 +318,7 @@ namespace Mezzanine
                 if(N == 0)
                 {
                     Offset=QueryRay.Origin;
-                    IntersectedActor=NULL;
+                    IntersectedObject=NULL;
                     ValidResult=true;
                     return ValidResult;
                 }
@@ -332,7 +339,7 @@ namespace Mezzanine
                 { return ClearReturns(); }
 
             Offset=return_vector;
-            IntersectedActor=NULL;
+            IntersectedObject=NULL;
             ValidResult=true;
             return ValidResult;
         } catch(exception e) {
@@ -378,12 +385,12 @@ namespace Mezzanine
             else
                 { SerializeError("Create XML Node for Offset", SerializableName(), true); }
 
-            Mezzanine::XML::Attribute ActorAttr = RayQueryToolNode.AppendAttribute("Actor");
-            if( ActorAttr )
+            Mezzanine::XML::Attribute WorldObjectAttr = RayQueryToolNode.AppendAttribute("WorldObject");
+            if( WorldObjectAttr )
             {
-                if( IntersectedActor )
+                if( IntersectedObject )
                 {
-                    if(ActorAttr.SetValue(IntersectedActor->GetName().c_str()))
+                    if(WorldObjectAttr.SetValue(IntersectedObject->GetName().c_str()))
                         {}
                     else
                         { SerializeError("Create XML Node for Offset", SerializableName(),true); }
@@ -409,11 +416,19 @@ namespace Mezzanine
                     { DeSerializeError("Could not Deserialize Offset",SerializableName()); }
                 Offset.ProtoDeSerialize(VecNode);
 
-                String ActorName(OneNode.GetAttribute("Actor").AsString());
-                if (ActorName.size())
-                    { IntersectedActor = Entresol::GetSingletonPtr()->GetActorManager()->GetActor(ActorName); }
-                else
-                    { IntersectedActor = NULL; }
+                String WorldObjectName(OneNode.GetAttribute("WorldObject").AsString());
+                if (WorldObjectName.size()) {
+                    /// @todo This is temporary code that should be replaced with something more robust to find the proper world object.
+                    IntersectedObject = Entresol::GetSingletonPtr()->GetDebrisManager()->GetDebris(WorldObjectName);
+                    if( IntersectedObject == NULL ) {
+                        IntersectedObject = Entresol::GetSingletonPtr()->GetActorManager()->GetActor(WorldObjectName);
+                    }
+                    if( IntersectedObject == NULL ) {
+                        IntersectedObject = Entresol::GetSingletonPtr()->GetAreaEffectManager()->GetAreaEffect(WorldObjectName);
+                    }
+                }else{
+                    IntersectedObject = NULL;
+                }
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
             }
@@ -424,9 +439,6 @@ namespace Mezzanine
 
     Mezzanine::String Mezzanine::RayQueryTool::SerializableName()
         { return "RayQueryTool"; }
-
-
 }
-
 
 #endif
