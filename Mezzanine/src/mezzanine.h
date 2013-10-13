@@ -66,12 +66,8 @@
 
                                         // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
 #ifndef SWIG
-#include "actorbase.h"                  // serializes
-#include "actorcharacter.h"
+#include "actor.h"                  // serializes
 #include "actormanager.h"
-#include "actorphysicssettings.h"       // done
-#include "actorrigid.h"                 // Serializes
-#include "actorserializer.h"            // nothing to do
 #include "areaeffect.h"
 #include "areaeffectmanager.h"
 #endif
@@ -89,6 +85,8 @@
 #include "crossplatform.h"              // nothing to do
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
+#include "debris.h"
+#include "debrismanager.h"
 #include "entresol.h"
 #include "enumerations.h"               // nothing to do
 #include "eventbase.h"                  // done/serializes
@@ -97,6 +95,9 @@
 #include "eventquit.h"                  // done
 #include "eventuserinput.h"             // done
 #include "exception.h"
+#include "fieldofforce.h"
+#include "gravityfield.h"
+#include "gravitywell.h"
 #include "linegroup.h"
 #include "macros.h"
 #include "managedptr.h"
@@ -105,7 +106,7 @@
 #include "meshterrain.h"
 #include "network.h"
 #include "networkmanager.h"
-#include "objectpair.h"
+#include "objectsettings.h"
 #endif
 
 #include "plane.h"                      // done
@@ -116,9 +117,11 @@
 #ifndef SWIG
 #include "resource.h"
 #include "resourcemanager.h"
+#include "rigiddebris.h"
 #include "scripting.h"
 #include "serialization.h"              // nothing to do
 #include "singleton.h"                  // nothing to do
+#include "softdebris.h"
 #include "sphere.h"
 #include "stringtool.h"
 #include "terrainbase.h"
@@ -134,10 +137,7 @@
 #include "entresol.h"
 #endif
 
-#include "worldnode.h"                  // done
-#include "worldobjectgraphicssettings.h"// done
 #include "worldobject.h"
-#include "worldobjectphysicssettings.h"
 
 #ifndef SWIG
 #include "worldtrigger.h"
