@@ -1,0 +1,39 @@
+rules for wrapping swig
+  Primary Tools:
+
+    For excluding one language
+    #if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
+
+  Block out swig completely
+    #ifndef SWIG
+        const static POD in a namespace breaks SWIG
+        operator << and >> for streaming should be excluded.
+        blck constructors of abstract classes, these make no sense to scripting languages
+         
+	Threading/workunit.h:158: Warning 403: Class 'Mezzanine::Threading::DefaultWorkUnit' might be abstract, no constructors generated,
+Threading/workunit.h:149: Warning 403: Method Mezzanine::Threading::iWorkUnit::DoWork(Mezzanine::Threading::DefaultThreadSpecificStorage::Type &) might not be implemented.
+        Useless casting tricks should be excluded completely from SWIG	
+          typedef void (*unspecified_bool_type)(Attribute***);
+          operator unspecified_bool_type() const;
+    Exclude headers for major namespaces
+    Exclude const char* 
+      const char* error;
+      for that matter just exclude char*
+  Lua Can't
+    bool operator==(const Node& r) const;
+    handle overloaded functions
+      Node GetChild(const Char8* Name) const;
+      Node GetChild(const String& Name) const
+
+  Ruby Can't
+
+  each major namespace gets its own module
+  actively exclude the std headers
+	swig blows up on them
+	most are centrally included.
+  never exclude datatypes.h
+	causes odd problems
+	Be careful about what it includes.
+
+
+

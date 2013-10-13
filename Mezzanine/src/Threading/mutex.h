@@ -70,8 +70,6 @@ freely, subject to the following restrictions:
 
 #include "atomicoperations.h"
 
-#include <string>
-
 /// @file
 /// @brief Declares a Mutex, Mutex tools, and at least one MutexLike object.
 

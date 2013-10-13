@@ -97,7 +97,7 @@ namespace Mezzanine
         /// @param aHandle An OS specific handle that will be used to lookup the thread::id
         /// @return The Corresponding thread::id
         /// @todo Investigate if this is a point of contention in the algorithm and try to remove it if possible
-        static Thread::id _pthread_t_to_ID(const pthread_t &aHandle)
+        static ThreadId _pthread_t_to_ID(const pthread_t &aHandle)
         {
           static Mutex idMapLock;
           static std::map<pthread_t, unsigned long int> idMap;
@@ -106,7 +106,7 @@ namespace Mezzanine
           lock_guard<Mutex> guard(idMapLock);
           if(idMap.find(aHandle) == idMap.end())
             idMap[aHandle] = idCount ++;
-          return Thread::id(idMap[aHandle]);
+          return ThreadId(idMap[aHandle]);
         }
         #endif // _MEZZ_POSIX_
         /// @endcond
@@ -259,10 +259,10 @@ namespace Mezzanine
           mDataMutex.Unlock();
         }
 
-        Thread::id Thread::get_id() const
+        ThreadId Thread::get_id() const
         {
           if(!joinable())
-            return id();
+            return ThreadId();
         #if defined(_MEZZ_THREAD_WIN32_)
           return id((unsigned long int) mWin32ThreadID);
         #elif defined(_MEZZ_THREAD_POSIX_)
@@ -292,7 +292,7 @@ namespace Mezzanine
         // this_thread
         //------------------------------------------------------------------------------
 
-        Thread::id this_thread::get_id()
+        ThreadId this_thread::get_id()
         {
         #if defined(_MEZZ_THREAD_WIN32_)
           return Thread::id((unsigned long int) GetCurrentThreadId());

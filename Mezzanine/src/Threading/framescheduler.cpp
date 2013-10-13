@@ -168,7 +168,7 @@ namespace Mezzanine
             PauseTimeLog(MEZZ_FRAMESTOTRACK),
             CurrentFrameStart(GetTimeStamp()),
             CurrentPauseStart(GetTimeStamp()),
-            LogDestination(_LogDestination),
+            LogDestination(_LogDestination ? _LogDestination : new std::fstream("Mezzanine.log", std::ios::out | std::ios::trunc)),
             Sorter(0),
             #ifdef MEZZ_USEBARRIERSEACHFRAME
             StartFrameSync(StartingThreadCount),
@@ -646,7 +646,7 @@ namespace Mezzanine
         ////////////////////////////////////////////////////////////////////////////////
         // Other Utility Features
 
-        FrameScheduler::Resource* FrameScheduler::GetThreadResource(Thread::id ID)
+        FrameScheduler::Resource* FrameScheduler::GetThreadResource(ThreadId ID)
         {
             std::vector<Resource*>::iterator Results = Resources.begin();
             if(ID == MainThreadID)
@@ -661,7 +661,7 @@ namespace Mezzanine
             return NULL;
         }
 
-        Logger* FrameScheduler::GetThreadUsableLogger(Thread::id ID)
+        Logger* FrameScheduler::GetThreadUsableLogger(ThreadId ID)
         {
             Resource* AlmostResults = GetThreadResource(ID);
             if(AlmostResults)

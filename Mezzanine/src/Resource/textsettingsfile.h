@@ -42,10 +42,6 @@
 
 #include "datatypes.h"
 
-#ifndef SWIG
-#include <map>
-#endif
-
 namespace Mezzanine
 {
     namespace Resource

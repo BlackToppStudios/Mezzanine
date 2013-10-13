@@ -53,7 +53,7 @@ using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
 
 /// @brief Used in testing Basic Mutex
-static Mezzanine::Threading::Thread::id ThreadIDTest=0;
+static Mezzanine::Threading::ThreadId ThreadIDTest=0;
 
 /// @brief Used in testing Basic Mutex
 static Mezzanine::Threading::Mutex ThreadIDLock;
@@ -142,7 +142,7 @@ class mutextests : public UnitTestGroup
 
                 cout << "Storing T2's id: " << T2.get_id() << endl;
                 cout << "Unlocking ThreadIDLock from main and sleeping for 300 ms." << endl;
-                Mezzanine::Threading::Thread::id T2id = T2.get_id();
+                Mezzanine::Threading::ThreadId T2id = T2.get_id();
                 ThreadIDLock.Unlock();
                 Mezzanine::Threading::this_thread::sleep_for(300000);
 
@@ -165,7 +165,7 @@ class mutextests : public UnitTestGroup
 
                 cout << "Storing T2's id: " << T2.get_id() << endl;
                 cout << "Unlocking ThreadIDSpinLock from main and sleeping for 300 ms." << endl;
-                Mezzanine::Threading::Thread::id T2id = T2.get_id();
+                Mezzanine::Threading::ThreadId T2id = T2.get_id();
                 ThreadIDSpinLock.Unlock();
                 Mezzanine::Threading::this_thread::sleep_for(300000);
 
@@ -177,7 +177,6 @@ class mutextests : public UnitTestGroup
                 cout << "Joining T2" << endl;
                 T2.join();
             } // \ SpinLock.Lock
-
 
 
             { // Trylock

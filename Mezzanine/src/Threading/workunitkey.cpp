@@ -51,6 +51,10 @@ namespace Mezzanine
 {
     namespace Threading
     {
+        WorkUnitKey::WorkUnitKey()
+            : Unit(0), Dependers(0), Time(0)
+            {}
+
         WorkUnitKey::WorkUnitKey(const Whole& Dependers_, const Whole& Time_, iWorkUnit* WorkUnit_)
             : Unit(WorkUnit_), Dependers(Dependers_), Time(Time_)
             {}
@@ -70,15 +74,6 @@ namespace Mezzanine
                     { return this->Unit < rhs.Unit; }
             }
             return false;
-
-            /*
-            if (this->Dependers == rhs.Dependers)
-            {
-                return this->Time < rhs.Time;
-            }else{
-                return this->Dependers < rhs.Dependers ;
-            }
-            */
         }
 
         bool WorkUnitKey::operator ==(const WorkUnitKey &rhs) const

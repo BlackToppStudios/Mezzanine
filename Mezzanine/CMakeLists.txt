@@ -789,6 +789,11 @@ if(${Mezz_Lua51})
         include_directories( libincludes/common/lua51/lua5.1/src )
 endif(${Mezz_Lua51})
 
+if(${Mezz_Ruby})
+message(xxxxxxxxxxxxxxxxxxxxxxx)
+        include_directories( libincludes/common/ruby/src )
+endif(${Mezz_Ruby})
+
 link_directories(
         "${ProjectBinaryDir}Mezzanine/bin"
 )
@@ -858,15 +863,15 @@ if(${Mezz_SWIG})
             TARGET ${SWIG_PROJECT}
             PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Main library for Lua."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_MAIN -o Scripting/Lua51/scriptbindingmainlua51.cpp mezzanine.h
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MAIN -o Scripting/Lua51/scriptbindingmainlua51.cpp mezzanine.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         add_custom_command(
             TARGET ${SWIG_PROJECT}
             PRE_BUILD
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unsafe Mezzanine Main library for Lua."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmainlua51unsafe.cpp mezzanine.h
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Main library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingmainlua51unsafe.cpp mezzanine.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
@@ -875,15 +880,15 @@ if(${Mezz_SWIG})
             TARGET ${SWIG_PROJECT}
             PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine XML library for Lua."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_XML -o Scripting/Lua51/scriptbindingxmllua51.cpp XML/xml.h
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_XML -o Scripting/Lua51/scriptbindingxmllua51.cpp XML/xml.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         add_custom_command(
             TARGET ${SWIG_PROJECT}
             PRE_BUILD
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unsafe Mezzanine XML library for Lua."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine XML library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingxmllua51unsafe.cpp XML/xml.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
@@ -892,19 +897,49 @@ if(${Mezz_SWIG})
             TARGET ${SWIG_PROJECT}
             PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Threading library for Lua."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_THREADING -o Scripting/Lua51/scriptbindingthreadinglua51.cpp Threading/dagframescheduler.h
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_THREADING -o Scripting/Lua51/scriptbindingthreadinglua51.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
         add_custom_command(
             TARGET ${SWIG_PROJECT}
             PRE_BUILD
-            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unsafe Mezzanine Threading library for Lua."
-            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp Threading/dagframescheduler.h
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Threading library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp Threading/dagframescheduler.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
     endif(${Mezz_Lua51})
+
+    if(${Mezz_Ruby})
+        # mezzanine.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Main library for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_MAIN -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingmainrubyunsafe.cpp mezzanine.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        # XML/xml.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine XML library for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_XML -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingxmlrubyunsafe.cpp XML/xml.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        # Threading/dagframescheduler.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Threading library for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingthreadingrubyunsafe.cpp Threading/dagframescheduler.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+    endif(${Mezz_Ruby})
     # Add support for other languagews here
 endif(${Mezz_SWIG})
 

@@ -45,6 +45,7 @@
 #include "atomicoperations.h"
 
 
+
 /// @file
 /// @brief The declaration of the @ref Mezzanine::Threading::Barrier Barrier synchronization primitive
 

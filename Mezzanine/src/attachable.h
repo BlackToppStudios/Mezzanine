@@ -149,8 +149,11 @@ namespace Mezzanine
         protected:
             AttachableContainer Attached;
         public:
+            #ifndef SWIG
             /// @brief Class constructor.
             AttachableParent();
+            #endif
+
             /// @brief Class destructor.
             virtual ~AttachableParent();
 
@@ -181,14 +184,14 @@ namespace Mezzanine
             /// @return An Iterator to one past the last object.
             AttachableIterator EndChild();
 
-            #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
             /// @brief Get a ConstAttachableIterator to the first object.
             /// @return An Iterator to the first object.
             ConstAttachableIterator BeginChild() const;
             /// @brief Get a ConstAttachableIterator to one past the last object.
             /// @return An Iterator to one past the last object.
             ConstAttachableIterator EndChild() const;
-            #endif
+#endif
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

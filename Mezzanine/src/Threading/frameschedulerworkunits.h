@@ -46,8 +46,6 @@
 #include "workunit.h"
 #include "workunitkey.h"
 
-#include <vector>
-
 /// @file
 /// @brief This defines a number of workunits that are required for doing some tasks that the Framescheduler requires.
 

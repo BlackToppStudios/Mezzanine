@@ -135,13 +135,13 @@ namespace Mezzanine
                 /// @param Name The name of the XPathVariable you want.
                 XPathVariable* Get(const Char8* Name);
 
-                #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
                 /// @brief Get the named XPathVariable.
                 /// @param Name The name of the XPathVariable you want.
                 /// @return A pointer to the specified XPathVariable.
                 /// @note The non-const version is available to scripting languages.
                 const XPathVariable* Get(const Char8* Name) const;
-                #endif
+#endif
         };
     }
 } // /namespace Mezzanine

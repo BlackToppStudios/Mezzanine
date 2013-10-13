@@ -86,25 +86,25 @@ namespace Mezzanine
         /// @brief Coordinate on the Z vector.
         Real Z;
 
-        #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
         /// @brief Get The value associate with a certain Axis.
         /// @param Axis Which axis to retrieve.
         /// @note Despite the multiple scripting overloads of this Method, only Real GetAxisValue(const Whole& Axis) const; exists in the scripting interface
         /// @return Either X, Y or Z as indicated by the value passed in.
         Real GetAxisValue(const StandardAxis& Axis) const;
-        #endif // \SWIG
+#endif // \SWIG
 
         /// @copydoc GetAxisValue(StandardAxis Axis) const
         Real GetAxisValue(const Whole& Axis) const;
 
-        #ifndef SWIG
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
         /// @brief Get The value associate with a certain Axis in such a way that it can readily be assigned in this Vector3.
         /// @param Axis Which axis to retrieve.
         /// @return Either X, Y or Z as indicated by the value passed in.
         Real& GetAxisValue(const StandardAxis& Axis);
         /// @copydoc GetAxisValue(StandardAxis Axis)
         Real& GetAxisValue(const Whole& Axis);
-        #endif // \SWIG
+#endif // \SWIG
 
         /// @copydoc GetAxisValue(StandardAxis Axis) const
         Real operator[] (const StandardAxis& Axis) const;

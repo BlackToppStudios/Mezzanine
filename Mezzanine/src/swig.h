@@ -66,6 +66,7 @@
         #endif
 
         using namespace Mezzanine;
+        using namespace Mezzanine::Threading;
     %}
 
     %include stl.i

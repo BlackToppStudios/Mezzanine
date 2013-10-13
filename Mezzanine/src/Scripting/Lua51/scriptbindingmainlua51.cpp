@@ -1976,6 +1976,7 @@ typedef struct{} LANGUAGE_OBJ;
         #endif
 
         using namespace Mezzanine;
+        using namespace Mezzanine::Threading;
     
 
 #include <stdexcept>

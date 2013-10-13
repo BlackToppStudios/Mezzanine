@@ -53,7 +53,7 @@ using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
 
 /// @brief used in some basic threading tests
-Thread::id HelloID;
+ThreadId HelloID;
 /// @brief Used to test the thread class in some Basic Threading test
 void PrintHello(void*)
 {
@@ -93,7 +93,7 @@ class threadtests : public UnitTestGroup
         {
             { // Basic Thread
                 HelloID = 0;
-                Thread::id ActualID = 0;
+                ThreadId ActualID = 0;
 
                 cout << "Testing Basic Thread functionality." << endl;
                 cout << "This Threads id: " <<  Mezzanine::Threading::this_thread::get_id() << endl;

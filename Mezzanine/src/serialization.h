@@ -49,12 +49,6 @@
         #include "XML/xml.h"
     #endif
 
-    // Standard Headers are not included in SWIG preprocessing
-    #ifndef SWIG
-        #include <ostream>
-        #include <memory>
-    #endif
-
 namespace Mezzanine
 {
     /// @page Serialization

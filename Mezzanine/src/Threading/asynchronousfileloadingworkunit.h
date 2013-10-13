@@ -49,6 +49,7 @@ namespace Mezzanine
 {
     namespace Threading
     {
+#ifndef SWIG
         /// @brief An Internal helper function for the @ref AsynchronousFileLoadWorkUnit. This is the function that AsynchronousFileLoadWorkUnit instances will use to load data.
         /// @details There is a 1 to 1 relationship between this function and its associated @ref Mezzanine::Threading::AsynchronousFileLoadWorkUnit "AsynchronousFileLoadWorkUnit".
         /// This is the function run in another thread to allow loading asynchrously.
@@ -88,6 +89,7 @@ namespace Mezzanine
                 /// @return Returns *this.
                 RawFile& operator=(RawFile& Unused) { return Unused; }
         };//RawFile
+#endif
 
         /// @brief This is intended to load files asynchronously and continue doing so whether or not other the @ref FrameScheduler is running or paused.
         /// @details The goal is to trigger lower level mechanisms to use DMA to load directly without CPU intervention. In some operating systems this
@@ -95,11 +97,12 @@ namespace Mezzanine
         /// testing to determine how good automatic mechanisms work.
         class MEZZ_LIB AsynchronousFileLoadWorkUnit : public iAsynchronousWorkUnit
         {
+#ifndef SWIG
             /// @cond false
             // If only there was a way to pass member function to the thread constructor.
             friend void ThreadLoading(void* WU);
             /// @endcond
-
+#endif
             protected:
                 /// @brief The names of the files this batch of loading will retrieve.
                 std::vector<String> Filenames;

@@ -517,7 +517,7 @@ namespace Mezzanine
             /// @return A Logger that can be used by the thread with given ID or outside of Framescheduling in a non-threadsafe way.
             /// @throws A ParametersRangeException if the thread is not managed by the frame scheduler or it Threading::FrameScheduler::CreateThreads() has not
             /// been called (It creates the ThreadSpecific resources that contain the Loggers).
-            Logger& GetLogStream(Threading::Thread::id ID = Threading::this_thread::get_id());
+            Logger& GetLogStream(Threading::ThreadId ID = Threading::this_thread::get_id());
 
             /// @internal
             /// @brief This is used to asynchronously handle log messages.

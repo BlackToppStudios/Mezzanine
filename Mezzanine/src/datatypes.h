@@ -60,7 +60,6 @@
 // are not included here are in places that they are required and conditionally may not be compiled in. For example,
 
 #ifndef SWIG
-    //Dunno if SWIG needs the header, I hope not!
     #if defined( _MSC_VER )
         #include "pstdint.h"
     #else
@@ -75,6 +74,7 @@
     #include <map>
     #include <string>
     #include <sstream>
+    #include <fstream>
     #include <set>
     #include <vector>
     #include <utility>
@@ -324,9 +324,5 @@ namespace Mezzanine
     template<class T> double Todouble( const T& Datum )
         { return ConvertTo<double>(Datum); }
 }//Mezzanine
-
-#ifndef MEZZLUA51
-#define MEZZLUA51
-#endif
 
 #endif

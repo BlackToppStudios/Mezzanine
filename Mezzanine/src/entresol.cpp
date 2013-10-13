@@ -546,7 +546,7 @@ namespace Mezzanine
             { this->GetLogStream() << Message; }
     }
 
-    Logger& Entresol::GetLogStream(Threading::Thread::id ID)
+    Logger& Entresol::GetLogStream(Threading::ThreadId ID)
     {
         Threading::FrameScheduler::Resource* AlmostResults = this->WorkScheduler.GetThreadResource(ID);
         if(AlmostResults)

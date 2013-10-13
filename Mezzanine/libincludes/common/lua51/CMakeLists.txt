@@ -34,12 +34,13 @@
 #   them, so it is best to simply contact us or the Free Software Foundation, if
 #   you have any questions.
 #
-#   Joseph Toppi - toppij@gmail.c"om
-#   John Blackwood - makoenergy02@gmail.c"om
+#   Joseph Toppi - toppij@gmail.com
+#   John Blackwood - makoenergy02@gmail.com
 
 
 ###############################################################################
-# The build script for one piece of the Mezzanine enginecmake_minimum_required (VERSION 2.8)
+# The build script for one piece of the Mezzanine engine
+cmake_minimum_required (VERSION 2.8)
 project (Lua)
 
 add_definitions( ${CommonBuildFlags} )

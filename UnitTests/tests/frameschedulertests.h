@@ -169,7 +169,7 @@ class LoggerCheckWorkUnit : public DefaultWorkUnit
         Logger* LogFromGet;
         Logger* LogFromArgs;
 
-        Thread::id InThread;
+        ThreadId InThread;
 
         virtual void DoWork(DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
         {

@@ -116,7 +116,7 @@ namespace Mezzanine
                         MezzThreadingLib       = 4096,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
                         MezzThreadingSafeLib   = 8192,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
 
-                        DefaultLibs = BaseLib | StringLib | TableLib | MathLib | MezzSafeLib | MezzXMLSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        DefaultLibs = BaseLib | StringLib | TableLib | MathLib | MezzSafeLib | MezzXMLSafeLib | MezzThreadingSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
                         AllLibs     = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib | MezzXMLLib | MezzThreadingLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
                     };
                 ///////////////////////////////////////////////////////////////////////////////////////

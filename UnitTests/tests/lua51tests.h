@@ -80,6 +80,15 @@ class lua51tests : public UnitTestGroup
             cout << "End " << FeatureName << " Test" << endl << endl;
         }
 
+        void TestLuaScript(const String& Source, const String& FeatureName, const String& FunctionToCall,
+                           Real Input, Real ExpectedOutput,
+                           Whole Libset)
+        {
+            TestLuaScript(Source, FeatureName,FunctionToCall,
+                          Input, ExpectedOutput,
+                          static_cast<Scripting::Lua::Lua51ScriptingEngine::Lua51Libraries>(Libset));
+        }
+
         void TestLuaLibraryExclusion(const String& Source, const String& LibName, const String& FeatureInLibName,
                                      Scripting::Lua::Lua51ScriptingEngine::Lua51Libraries Libset)
         {
@@ -133,7 +142,7 @@ class lua51tests : public UnitTestGroup
             // Static Data Tests
             {
                 TEST(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName(), "Engine::ImplementationName");
-                TEST(541+2048==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
+                TEST(541+2048+8192==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
                 TEST(511+1024+4096==Scripting::Lua::Lua51ScriptingEngine::AllLibs, "Engine::LuaLibEnumUnsafe");
             }
 
@@ -388,6 +397,9 @@ class lua51tests : public UnitTestGroup
                 // worldobjectgraphicssettings.h
                 // worldobject.h
                 // worldobjectphysicssettings.h
+                // Attachable
+                // FrameScheduler
+                // DoubleBuffered Resource
 
                 // Specific class swig wrapping tests
                 TestLuaScript("function MakePlane(x)\n"
@@ -454,6 +466,92 @@ class lua51tests : public UnitTestGroup
                               "RayQueryTool", "RayDump", 100, 100,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
                                */
+
+                /// @todo We need to test that there isn't any mechanism in Lua that circumvents the basic purpose of basic threading mechanisms like Mutex, Barrier, etc...
+                TestLuaScript("function TestFuncMutex(x)\n"
+                              "   mut=MezzanineSafe.Threading.Mutex()\n"
+                              "   mut:Lock()\n"
+                              "   mut:Unlock()\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::Mutex", "TestFuncMutex", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncBarrier(x)\n"
+                              "   foo=MezzanineSafe.Threading.Barrier(1)\n"
+                              "   --No Bar around here!!\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::Barrier", "TestFuncBarrier", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncThread(x)\n"
+                              "   MezzanineSafe.Threading.sleep_for(x)\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::Thread", "TestFuncThread", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncAvg(x)\n"
+                              "   Avg=MezzanineSafe.Threading.BufferedRollingAverageWhole(3)\n"
+                              "   Avg:Insert( 9+x)\n"
+                              "   Avg:Insert(10+x)\n"
+                              "   Avg:Insert(11+x)\n"
+                              "   return Avg:GetAverage()\n"
+                              "end",
+                              "Threading::BufferedRollingAverageWhole", "TestFuncAvg", 100, 110,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncSyscall(x)\n"
+                              "   return MezzanineSafe.Threading.GetCPUCount()\n"
+                              "end",
+                              "Threading::SystemCalls", "TestFuncSyscall", GetCPUCount(), GetCPUCount(),
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncWorkUnitKey(x)\n"
+                              "   key=MezzanineSafe.Threading.WorkUnitKey()\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::WorkUnitKey", "TestFuncWorkUnitKey", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncFrameScheduler(x)\n"
+                              "   FS=MezzanineSafe.Threading.FrameScheduler()\n"
+                              "   FS:SetFrameRate(60)\n"
+                              "   return FS:GetFrameLength()\n"
+                              "end",
+                              "Threading::FrameScheduler", "TestFuncFrameScheduler", 100, 16666,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+/* // I would like to figure this one out, by I suspect it is impossible.
+                TestLuaScript("function TestFuncAtomicAdd(x)\n"
+                              "   aa=MezzanineSafe.Threading.AtomicAdd(3,2)\n"
+                              "   return 102 \n--MezzanineSafe.Threading.AtomicAdd(x,2)\n"
+                              "end",
+                              "Threading::AtomicOperations", "TestFuncAtomicAdd", 100, 102,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+*/
+                TestLuaScript("function TestFuncWorkUnitAsync(x)\n"
+                              "   key=MezzanineSafe.Threading.AsynchronousFileLoadWorkUnit()\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::WorkUnitAsync", "TestFuncWorkUnitAsync", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestFuncWorkUnitLogAgg(x)\n"
+                              "   key=MezzanineSafe.Threading.LogAggregator()\n"
+                              "   return x\n"
+                              "end",
+                              "Threading::WorkUnitLogAggregator", "TestFuncWorkUnitLogAgg", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                //Kinda useless in garbage collected languages, Maybe useful for determining when collection happens
+                TestLuaScript("function TestFuncScop(x)\n"
+                              "   STimer=MezzanineSafe.Threading.ScopedTimer()"
+                              "   return x\n"
+                              "end",
+                              "Threading::ScopedTimer", "TestFuncScop", 100, 100,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
             }
 
         }
