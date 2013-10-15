@@ -119,7 +119,7 @@
 
 /// @def MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION
 /// @brief The revision version number of the library. (This right/back number)
-#define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 0
+#define MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION 1
 
 
 
@@ -244,7 +244,7 @@
 /// as dependent on another allows the reordering of @ref Mezzanine::Threading::iWorkUnit "iWorkUnits" so that
 /// some @ref Mezzanine::Threading::iWorkUnit "iWorkUnit" can be executed with no thread waiting or blocking.
 /// @n @n
-/// @subsubsubsection broken_TaskPerThread One Task Per Thread
+/// @subsubsection broken_TaskPerThread One Task Per Thread
 /// A common example of poor planning is the creation of one thread for each task in a game. Despite
 /// being conceptually simple, performance of systems designed this way is poor due to synchronization
 /// and complexities that synchronization requires.
