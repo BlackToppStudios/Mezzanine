@@ -97,6 +97,7 @@ namespace Mezzanine
 
     void SoftDebris::DestroySoftDebris()
     {
+        this->RemoveFromWorld();
         if( this->EntProx ) {
             Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
             if( SceneMan ) {
