@@ -235,6 +235,25 @@ namespace Mezzanine
             virtual StickyData* GetStickyData() const;//*/
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Proxy Syncronization
+
+            /// @brief Adds a WorldProxy that will force it's transform to sync with this RigidProxy.
+            /// @param ToBeAdded A pointer to the WorldObject being added.
+            virtual void AddSyncProxy(WorldProxy* ToBeAdded);
+            /// @brief Gets a WorldProxy being sync'd to this RigidProxy by it's index.
+            /// @param Index The index of the sync object to retrieve.
+            /// @return Returns a pointer to the WorldProxy at the specified Index.
+            virtual WorldProxy* GetSyncProxy(const UInt32 Index) const;
+            /// @brief Gets the number of WorldProxies being sync'd to this RigidProxy.
+            /// @return Returns a UInt32 representing the number of WorldProxies being sync'd with this RigidProxy.
+            virtual UInt32 GetNumSyncProxies() const;
+            /// @brief Removes a proxy being sync'd, so it will no longer match it's transform with this RigidProxy.
+            /// @param ToBeRemoved A pointer to the WorldProxy to be removed.
+            virtual void RemoveSyncProxy(WorldProxy* ToBeRemoved);
+            /// @brief Removes all WorldProxies being sync'd to this RigidProxy.
+            virtual void RemoveAllSyncProxies();
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
             /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const

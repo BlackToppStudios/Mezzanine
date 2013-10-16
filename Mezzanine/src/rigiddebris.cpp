@@ -93,6 +93,10 @@ namespace Mezzanine
         if( PhysMan ) {
             this->RigProx = PhysMan->CreateRigidProxy(Mass);
         }
+
+        if( this->EntProx && this->RigProx ) {
+            this->RigProx->AddSyncProxy( this->EntProx );
+        }
     }
 
     void RigidDebris::DestroyRigidDebris()
@@ -340,6 +344,10 @@ namespace Mezzanine
                         this->RigProx = PhysMan->CreateRigidProxy(RigProxNode);
                     }
                 }
+
+                if( this->EntProx && this->RigProx ) {
+                    this->RigProx->AddSyncProxy( this->EntProx );
+                }
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RigidDebris::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
             }
@@ -370,6 +378,10 @@ namespace Mezzanine
         if( this->EntProx == ToBeDestroyed ) {
             Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
             if( SceneMan != NULL ) {
+                if( this->RigProx ) {
+                    this->RigProx->RemoveSyncProxy( this->EntProx );
+                }
+
                 SceneMan->DestroyProxy( this->EntProx );
                 this->EntProx = NULL;
             }

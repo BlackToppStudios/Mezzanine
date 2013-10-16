@@ -77,12 +77,14 @@ namespace Mezzanine
             if( this->IsInWorld() )
                 this->RemoveFromWorld();
 
+            delete this->PhysicsRigidBody->getMotionState();
             delete this->PhysicsRigidBody;
         }
 
         void RigidProxy::CreateRigidObject(const Real Mass)
         {
             this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
+            this->PhysicsRigidBody->setMotionState( new Internal::MultiProxyMotionState() );
             this->PhysicsRigidBody->setUserPointer( this );
             if(0.0 == Mass) {
                 this->PhysicsRigidBody->setCollisionFlags( btCollisionObject::CF_STATIC_OBJECT );
@@ -243,6 +245,24 @@ namespace Mezzanine
         StickyData* RigidProxy::GetStickyData() const
             { return StickyContacts; }
 		*/
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Proxy Syncronization
+
+        void RigidProxy::AddSyncProxy(WorldProxy* ToBeAdded)
+            { static_cast<Internal::MultiProxyMotionState*>( this->PhysicsRigidBody->getMotionState() )->AddSyncProxy(ToBeAdded); }
+
+        WorldProxy* RigidProxy::GetSyncProxy(const UInt32 Index) const
+            { return static_cast<Internal::MultiProxyMotionState*>( this->PhysicsRigidBody->getMotionState() )->GetSyncProxy(Index); }
+
+        UInt32 RigidProxy::GetNumSyncProxies() const
+            { return static_cast<Internal::MultiProxyMotionState*>( this->PhysicsRigidBody->getMotionState() )->GetNumSyncProxies(); }
+
+        void RigidProxy::RemoveSyncProxy(WorldProxy* ToBeRemoved)
+            { static_cast<Internal::MultiProxyMotionState*>( this->PhysicsRigidBody->getMotionState() )->RemoveSyncProxy(ToBeRemoved); }
+
+        void RigidProxy::RemoveAllSyncProxies()
+            { static_cast<Internal::MultiProxyMotionState*>( this->PhysicsRigidBody->getMotionState() )->RemoveAllSyncProxies(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
