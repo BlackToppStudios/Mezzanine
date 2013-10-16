@@ -149,31 +149,31 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // RenderableProxy Properties
 
-            /// @copydoc RenderableProxy::SetVisible(const Bool Visible)
+            /// @copydoc RenderableProxy::SetVisible(const Bool)
             virtual void SetVisible(const Bool Visible);
             /// @copydoc RenderableProxy::GetVisible() const
             virtual Bool GetVisible() const;
-            /// @copydoc RenderableProxy::SetCastShadows(const Bool CastShadows)
+            /// @copydoc RenderableProxy::SetCastShadows(const Bool)
             virtual void SetCastShadows(const Bool CastShadows);
             /// @copydoc RenderableProxy::GetCastShadows() const
             virtual Bool GetCastShadows() const;
             /// @copydoc RenderableProxy::GetReceiveShadows() const
             virtual Bool GetReceiveShadows() const;
 
-            /// @copydoc RenderableProxy::SetLightMask(const UInt32 Mask)
+            /// @copydoc RenderableProxy::SetLightMask(const UInt32)
             virtual void SetLightMask(const UInt32 Mask);
             /// @copydoc RenderableProxy::GetLightMask() const
             virtual UInt32 GetLightMask() const;
-            /// @copydoc RenderableProxy::SetVisibilityMask(const UInt32 Mask)
+            /// @copydoc RenderableProxy::SetVisibilityMask(const UInt32)
             virtual void SetVisibilityMask(const UInt32 Mask);
             /// @copydoc RenderableProxy::GetVisibilityMask() const
             virtual UInt32 GetVisibilityMask() const;
-            /// @copydoc RenderableProxy::SetQueryMask(const UInt32 Mask)
+            /// @copydoc RenderableProxy::SetQueryMask(const UInt32)
             virtual void SetQueryMask(const UInt32 Mask);
             /// @copydoc RenderableProxy::GetQueryMask() const
             virtual UInt32 GetQueryMask() const;
 
-            /// @copydoc RenderableProxy::SetRenderDistance(const Real Distance)
+            /// @copydoc RenderableProxy::SetRenderDistance(const Real)
             virtual void SetRenderDistance(const Real Distance);
             /// @copydoc RenderableProxy::GetRenderDistance() const
             virtual Real GetRenderDistance() const;
