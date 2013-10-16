@@ -104,7 +104,7 @@ namespace Mezzanine
             { return this->Manager; }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Graphics Properties
+        // RenderableProxy Properties
 
         void RenderableProxy::SetVisible(const Bool Visible)
             { this->_GetBaseGraphicsObject()->setVisible(Visible); }

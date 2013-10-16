@@ -105,7 +105,7 @@ namespace Mezzanine
             virtual WorldManager* GetCreator() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Graphics Properties
+            // RenderableProxy Properties
 
             /// @brief Sets whether or not this proxy is visible.
             /// @param Visible True to allow this proxy to render, false otherwise.
@@ -147,6 +147,7 @@ namespace Mezzanine
             virtual UInt32 GetQueryMask() const;
 
             /// @brief Sets the distance at which the proxy will stop rendering.
+            /// @note Passing in zero will remove distance checking for this object when rendering.
             /// @param Distance The distance in world units from the camera when the proxy will stop being rendered.
             virtual void SetRenderDistance(const Real Distance);
             /// @brief Gets the distance at which the proxy will stop rendering.
