@@ -75,10 +75,13 @@ namespace Mezzanine
 
     String ManagerBase::GetTypeAsString(const ManagerBase::ManagerType& ManagerType)
     {
-        switch (ManagerType)
+        switch( ManagerType )
         {
             case ManagerBase::MT_ActorManager:
                 return "ActorManager";
+                break;
+            case ManagerBase::MT_AnimationManager:
+                return "AnimationManager";
                 break;
             case ManagerBase::MT_AreaEffectManager:
                 return "AreaEffectManager";
@@ -91,6 +94,12 @@ namespace Mezzanine
                 break;
             case ManagerBase::MT_CollisionShapeManager:
                 return "CollisionShapeManager";
+                break;
+            case ManagerBase::MT_CompositorManager:
+                return "CompositorManager";
+                break;
+            case ManagerBase::MT_DebrisManager:
+                return "DebrisManager";
                 break;
             case ManagerBase::MT_EventManager:
                 return "EventManager";
@@ -155,14 +164,24 @@ namespace Mezzanine
             case 'a':
             {
                 if( 'c' == Lower.at(1) ) return ManagerBase::MT_ActorManager;
+                else if( 'n' == Lower.at(1) ) return ManagerBase::MT_AnimationManager;
                 else if( 'r' == Lower.at(1) ) return ManagerBase::MT_AreaEffectManager;
                 else if( 'u' == Lower.at(1) ) return ManagerBase::MT_AudioManager;
                 break;
             }
             case 'c':
             {
-                if( 'a' == Lower.at(1) ) return ManagerBase::MT_CameraManager;
-                else if( 'o' == Lower.at(1) ) return ManagerBase::MT_CollisionShapeManager;
+                if( 'a' == Lower.at(1) ) {
+                    return ManagerBase::MT_CameraManager;
+                }else if( 'o' == Lower.at(1) ) {
+                    if( 'l' == Lower.at(2) ) return ManagerBase::MT_CollisionShapeManager;
+                    else if( 'm' == Lower.at(2) ) return ManagerBase::MT_CompositorManager;
+                }
+                break;
+            }
+            case 'd':
+            {
+                return ManagerBase::MT_DebrisManager;
                 break;
             }
             case 'e':
