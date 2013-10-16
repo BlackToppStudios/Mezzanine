@@ -37,180 +37,180 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _lua51scriptargument_h
-#define _lua51scriptargument_h
+#ifndef _rubyscriptargument_h
+#define _rubyscriptargument_h
 
 /// @file
-/// @brief This file has the definition of the Script Arguments for Lua 51
+/// @brief This file has the definition of the Script Arguments for Ruby
 
 #include "datatypes.h"
 
-#ifdef MEZZLUA51
+#ifdef MEZZRUBY
 
 #include "Scripting/scriptargument.h"
 #include "Scripting/script.h"
 #include "Scripting/scriptingmanager.h"
 
 /// @brief Forward declaration to enable pointer parameters
-class lua_State;
+class ruby_State;
 
 namespace Mezzanine
 {
     namespace Scripting
     {
-        namespace Lua
+        namespace Ruby
         {
-            /// @brief Lua51IntegerArgument returns this value when checking GetTypeData() const.
-            const Integer LuaInteger = GenericInteger;
-            /// @brief Lua51RealArgument returns this value when checking GetTypeData() const.
-            const Integer LuaReal = GenericReal;
-            /// @brief Lua51WholeArgument returns this value when checking GetTypeData() const.
-            const Integer LuaWhole = GenericWhole;
-            /// @brief Lua51StringArgument returns this value when checking GetTypeData() const.
-            const Integer LuaString = GenericString;
-            /// @brief Lua51BoolArgument returns this value when checking GetTypeData() const.
-            const Integer LuaBool = GenericBool;
-            /// @brief Lua51NilArgument returns this value when checking GetTypeData() const.
-            const Integer LuaNil = GenericMax+1;
+            /// @brief RubyIntegerArgument returns this value when checking GetTypeData() const.
+            const Integer RubyInteger = GenericInteger;
+            /// @brief RubyRealArgument returns this value when checking GetTypeData() const.
+            const Integer RubyReal = GenericReal;
+            /// @brief RubyWholeArgument returns this value when checking GetTypeData() const.
+            const Integer RubyWhole = GenericWhole;
+            /// @brief RubyStringArgument returns this value when checking GetTypeData() const.
+            const Integer RubyString = GenericString;
+            /// @brief RubyBoolArgument returns this value when checking GetTypeData() const.
+            const Integer RubyBool = GenericBool;
+            /// @brief RubyNilArgument returns this value when checking GetTypeData() const.
+            const Integer RubyNil = GenericMax+1;
 
-            /// @brief The ScriptArgumentGeneric<T> does a good enough job for actually passing data, but it needs just a bit of Lua specific functionality
-            class MEZZ_LIB LuaArgument
+            /// @brief The ScriptArgumentGeneric<T> does a good enough job for actually passing data, but it needs just a bit of Ruby specific functionality
+            class MEZZ_LIB RubyArgument
             {
                 public:
-                    /// @brief Handle the details of putting this data onto Lua's Stack.
+                    /// @brief Handle the details of putting this data onto Ruby's Stack.
                     /// @param TargetState The state with the stack to push the data onto.
-                    /// @return Whatever the Lua return code of the first failing lua call, or the last successful call.
-                    virtual void Push(lua_State* TargetState) const = 0;
+                    /// @return Whatever the Ruby return code of the first failing ruby call, or the last successful call.
+                    virtual void Push(ruby_State* TargetState) const = 0;
 
-                    /// @brief Handle the details of pulling data from Lua's Stack into this.
+                    /// @brief Handle the details of pulling data from Ruby's Stack into this.
                     /// @param TargetState The state with the stack to pull the data from.
-                    /// @return Whatever the Lua return code of the first failing lua call, or the last successful call.
-                    virtual void Pop(lua_State* TargetState) = 0;
+                    /// @return Whatever the Ruby return code of the first failing ruby call, or the last successful call.
+                    virtual void Pop(ruby_State* TargetState) = 0;
 
                     /// @brief Virtual deconstructor
-                    virtual ~LuaArgument() {}
+                    virtual ~RubyArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
-                    virtual LuaArgument* GetMostDerived()
+                    virtual RubyArgument* GetMostDerived()
                         { return this; }
             };
 
             /// @brief The implementations in the ScriptArgumentGeneric<Integer> will cover most of what this needs
-            class MEZZ_LIB Lua51IntegerArgument : public LuaArgument, public ScriptArgumentGeneric<Integer>
+            class MEZZ_LIB RubyIntegerArgument : public RubyArgument, public ScriptArgumentGeneric<Integer>
             {
                 public:
 
                     /// @brief Implicit constructor
-                    /// @param InitialValue Defaults to 0 and is the actual data to pass into Lua
+                    /// @param InitialValue Defaults to 0 and is the actual data to pass into Ruby
                     /// @note This is intentionally not explicit. This should make it easier to work with in situations where the creation of this is less important.
-                    Lua51IntegerArgument(Integer InitialValue = 0) : ScriptArgumentGeneric<Integer>(InitialValue)
+                    RubyIntegerArgument(Integer InitialValue = 0) : ScriptArgumentGeneric<Integer>(InitialValue)
                     {}
 
-                    virtual void Push(lua_State* TargetState) const;
+                    virtual void Push(ruby_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState);
+                    virtual void Pop(ruby_State* TargetState);
 
-                    virtual ~Lua51IntegerArgument() {}
+                    virtual ~RubyIntegerArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
-                    virtual Lua51IntegerArgument* GetMostDerived()
+                    virtual RubyIntegerArgument* GetMostDerived()
                         { return this; }
             };
 
-            /// @brief A Real that can readily be passed into lua scripts
-            class MEZZ_LIB Lua51RealArgument : public LuaArgument, public ScriptArgumentGeneric<Real>
+            /// @brief A Real that can readily be passed into ruby scripts
+            class MEZZ_LIB RubyRealArgument : public RubyArgument, public ScriptArgumentGeneric<Real>
             {
                 public:
-                    Lua51RealArgument(Real InitialValue = 0.0) : ScriptArgumentGeneric<Real>(InitialValue)
+                    RubyRealArgument(Real InitialValue = 0.0) : ScriptArgumentGeneric<Real>(InitialValue)
                     {}
 
-                    virtual void Push(lua_State* TargetState) const;
+                    virtual void Push(ruby_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState);
+                    virtual void Pop(ruby_State* TargetState);
 
-                    virtual ~Lua51RealArgument() {}
+                    virtual ~RubyRealArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
-                    virtual Lua51RealArgument* GetMostDerived()
+                    virtual RubyRealArgument* GetMostDerived()
                         { return this; }
             };
 
-            /// @brief No special care is required for Whole number Lua Arguments, so a simple typedef is used.
-            class MEZZ_LIB Lua51WholeArgument : public LuaArgument, public ScriptArgumentGeneric<Whole>
+            /// @brief No special care is required for Whole number Ruby Arguments, so a simple typedef is used.
+            class MEZZ_LIB RubyWholeArgument : public RubyArgument, public ScriptArgumentGeneric<Whole>
             {
                 public:
-                    Lua51WholeArgument(Whole InitialValue = 0) : ScriptArgumentGeneric<Whole>(InitialValue)
+                    RubyWholeArgument(Whole InitialValue = 0) : ScriptArgumentGeneric<Whole>(InitialValue)
                     {}
 
-                    virtual void Push(lua_State* TargetState) const;
+                    virtual void Push(ruby_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState);
+                    virtual void Pop(ruby_State* TargetState);
 
-                    virtual ~Lua51WholeArgument() {}
+                    virtual ~RubyWholeArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
-                    virtual Lua51WholeArgument* GetMostDerived()
+                    virtual RubyWholeArgument* GetMostDerived()
                         { return this; }
             };
 
-            /// @brief No special care is required for String Lua Arguments, so a simple typedef is used.
-            class MEZZ_LIB Lua51StringArgument : public LuaArgument, public ScriptArgumentGeneric<String>
+            /// @brief No special care is required for String Ruby Arguments, so a simple typedef is used.
+            class MEZZ_LIB RubyStringArgument : public RubyArgument, public ScriptArgumentGeneric<String>
             {
                 public:
-                    Lua51StringArgument(String InitialValue = String()) : ScriptArgumentGeneric<String>(InitialValue)
+                    RubyStringArgument(String InitialValue = String()) : ScriptArgumentGeneric<String>(InitialValue)
                     {}
 
-                    virtual void Push(lua_State* TargetState) const;
+                    virtual void Push(ruby_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState);
+                    virtual void Pop(ruby_State* TargetState);
 
-                    virtual ~Lua51StringArgument() {}
+                    virtual ~RubyStringArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
-                    virtual Lua51StringArgument* GetMostDerived()
+                    virtual RubyStringArgument* GetMostDerived()
                         { return this; }
             };
 
-            /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
-            class MEZZ_LIB Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Bool>
+            /// @brief No special care is required for Bool Ruby Arguments, so a simple typedef is used.
+            class MEZZ_LIB RubyBoolArgument : public RubyArgument, public ScriptArgumentGeneric<Bool>
             {
                 public:
-                    Lua51BoolArgument(Bool InitialValue = false) : ScriptArgumentGeneric<Bool>(InitialValue)
+                    RubyBoolArgument(Bool InitialValue = false) : ScriptArgumentGeneric<Bool>(InitialValue)
                     {}
 
-                    virtual void Push(lua_State* TargetState) const;
+                    virtual void Push(ruby_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState);
+                    virtual void Pop(ruby_State* TargetState);
 
-                    virtual ~Lua51BoolArgument() {}
+                    virtual ~RubyBoolArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
-                    virtual Lua51BoolArgument* GetMostDerived()
+                    virtual RubyBoolArgument* GetMostDerived()
                         { return this; }
             };
 
-            /// @brief A very simple class to allow a specialization of ScriptArgumentGeneric to correspond with Lua's Nil.
-            class MEZZ_LIB Lua51Nil {};
+            /// @brief A very simple class to allow a specialization of ScriptArgumentGeneric to correspond with Ruby's Nil.
+            class MEZZ_LIB RubyNil {};
 
-        } // Lua
+        } // Ruby
 
-        /// @brief A Lua51Nil implementation of a ScriptArgument that is suitable for only for passing Nil into Lua51 scripts
+        /// @brief A RubyNil implementation of a ScriptArgument that is suitable for only for passing Nil into Ruby scripts
         template <>
-        class MEZZ_LIB ScriptArgumentGeneric<Mezzanine::Scripting::Lua::Lua51Nil> : public iScriptArgument
+        class MEZZ_LIB ScriptArgumentGeneric<Mezzanine::Scripting::Ruby::RubyNil> : public iScriptArgument
         {
             protected:
-                /// @brief For propriety here is an actual Lua51Nil, it does nothing and will likely be optimized out by any sane compiler
-                Mezzanine::Scripting::Lua::Lua51Nil Datum;
+                /// @brief For propriety here is an actual RubyNil, it does nothing and will likely be optimized out by any sane compiler
+                Mezzanine::Scripting::Ruby::RubyNil Datum;
 
             public:
                 /// @brief To make working with this easier.
-                typedef Mezzanine::Scripting::Lua::Lua51Nil Type;
+                typedef Mezzanine::Scripting::Ruby::RubyNil Type;
 
                 /// @brief Create a Nil Argument
                 ScriptArgumentGeneric()
@@ -247,61 +247,61 @@ namespace Mezzanine
 
                 /// @brief Provide an overload point to change assignment that operators will use.
                 /// @param NewValue The new value for this.
-                virtual void SetValue(Mezzanine::Scripting::Lua::Lua51Nil NewValue)
+                virtual void SetValue(Mezzanine::Scripting::Ruby::RubyNil NewValue)
                     { Datum=NewValue; }
 
                 /// @brief Get the raw primitive to value.
                 /// @return The internal value that meaningful operations can be performed on.
-                virtual Mezzanine::Scripting::Lua::Lua51Nil GetValue() const
+                virtual Mezzanine::Scripting::Ruby::RubyNil GetValue() const
                     { return Datum; }
 
-                /// @brief Get data about this being a LuaNil
-                /// @return This will return an Integer containing LuaNil
+                /// @brief Get data about this being a RubyNil
+                /// @return This will return an Integer containing RubyNil
                 virtual Integer GetTypeData() const
-                    { return Mezzanine::Scripting::Lua::LuaNil; }
+                    { return Mezzanine::Scripting::Ruby::RubyNil; }
 
                 /// @brief Get a pointer to the most Derived type of this class
                 /// @return A pointer of the most derived pointing to this.
-                virtual ScriptArgumentGeneric<Mezzanine::Scripting::Lua::Lua51Nil>* GetMostDerived()
+                virtual ScriptArgumentGeneric<Mezzanine::Scripting::Ruby::RubyNil>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<Lua51Nil>
+        }; //ScriptArgumentSpecific<RubyNil>
 
-        namespace Lua
+        namespace Ruby
         {
-            /// @brief Represents not much of anything but will insert and retrieves Nils from Lua51.
-            class MEZZ_LIB Lua51NilArgument : public LuaArgument, public ScriptArgumentGeneric<Lua51Nil>
+            /// @brief Represents not much of anything but will insert and retrieves Nils from Ruby.
+            class MEZZ_LIB RubyNilArgument : public RubyArgument, public ScriptArgumentGeneric<RubyNil>
             {
                 public:
-                    Lua51NilArgument() : ScriptArgumentGeneric<Lua51Nil>()
+                    RubyNilArgument() : ScriptArgumentGeneric<RubyNil>()
                     {}
 
-                    virtual void Push(lua_State* TargetState) const;
+                    virtual void Push(ruby_State* TargetState) const;
 
-                    virtual void Pop(lua_State* TargetState);
+                    virtual void Pop(ruby_State* TargetState);
 
-                    virtual ~Lua51NilArgument() {}
+                    virtual ~RubyNilArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
-                    virtual Lua51NilArgument* GetMostDerived()
+                    virtual RubyNilArgument* GetMostDerived()
                         { return this; }
             };
 
-        } // Lua
+        } // Ruby
     } // Scripting
 
     //
 
-    /// @brief Marks LuaArgument for internal reference counting if a CountedPtr checks
+    /// @brief Marks RubyArgument for internal reference counting if a CountedPtr checks
     template <>
-    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::LuaArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Ruby::RubyArgument>
     {
         public:
-            /// @brief The type that maintains the Reference count for LuaArgument with be LuaArgument itself
-            typedef Scripting::Lua::LuaArgument RefCountType;
+            /// @brief The type that maintains the Reference count for RubyArgument with be RubyArgument itself
+            typedef Scripting::Ruby::RubyArgument RefCountType;
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
-            /// @param Target A pointer to a Scripting::Lua::LuaArgument that will simply be returned
+            /// @param Target A pointer to a Scripting::Ruby::RubyArgument that will simply be returned
             /// @return This returns whatever was passed into target because it already is a valid Reference Counter
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
@@ -310,16 +310,16 @@ namespace Mezzanine
             enum { IsCastable = CastDynamic };
     };
 
-    /// @brief Marks Lua51IntegerArgument for internal reference counting if a CountedPtr checks
+    /// @brief Marks RubyIntegerArgument for internal reference counting if a CountedPtr checks
     template <>
-    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51IntegerArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Ruby::RubyIntegerArgument>
     {
         public:
-            /// @brief The type that maintains the Reference count for Lua51IntegerArgument with be Lua51IntegerArgument itself
-            typedef Scripting::Lua::Lua51IntegerArgument RefCountType;
+            /// @brief The type that maintains the Reference count for RubyIntegerArgument with be RubyIntegerArgument itself
+            typedef Scripting::Ruby::RubyIntegerArgument RefCountType;
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
-            /// @param Target A pointer to a Scripting::Lua::Lua51IntegerArgument that will simply be returned
+            /// @param Target A pointer to a Scripting::Ruby::RubyIntegerArgument that will simply be returned
             /// @return This returns whatever was passed into target because it already is a valid Reference Counter
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
@@ -328,16 +328,16 @@ namespace Mezzanine
             enum { IsCastable = CastDynamic };
     };
 
-    /// @brief Marks Lua51RealArgument for internal reference counting if a CountedPtr checks
+    /// @brief Marks RubyRealArgument for internal reference counting if a CountedPtr checks
     template <>
-    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51RealArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Ruby::RubyRealArgument>
     {
         public:
-            /// @brief The type that maintains the Reference count for Lua51RealArgument with be Lua51RealArgument itself
-            typedef Scripting::Lua::Lua51RealArgument RefCountType;
+            /// @brief The type that maintains the Reference count for RubyRealArgument with be RubyRealArgument itself
+            typedef Scripting::Ruby::RubyRealArgument RefCountType;
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
-            /// @param Target A pointer to a Scripting::Lua::Lua51RealArgument that will simply be returned
+            /// @param Target A pointer to a Scripting::Ruby::RubyRealArgument that will simply be returned
             /// @return This returns whatever was passed into target because it already is a valid Reference Counter
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
@@ -346,16 +346,16 @@ namespace Mezzanine
             enum { IsCastable = CastDynamic };
     };
 
-    /// @brief Marks Lua51WholeArgument for internal reference counting if a CountedPtr checks
+    /// @brief Marks RubyWholeArgument for internal reference counting if a CountedPtr checks
     template <>
-    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51WholeArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Ruby::RubyWholeArgument>
     {
         public:
-            /// @brief The type that maintains the Reference count for Lua51WholeArgument with be Lua51WholeArgument itself
-            typedef Scripting::Lua::Lua51WholeArgument RefCountType;
+            /// @brief The type that maintains the Reference count for RubyWholeArgument with be RubyWholeArgument itself
+            typedef Scripting::Ruby::RubyWholeArgument RefCountType;
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
-            /// @param Target A pointer to a Scripting::Lua::Lua51WholeArgument that will simply be returned
+            /// @param Target A pointer to a Scripting::Ruby::RubyWholeArgument that will simply be returned
             /// @return This returns whatever was passed into target because it already is a valid Reference Counter
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
@@ -364,16 +364,16 @@ namespace Mezzanine
             enum { IsCastable = CastDynamic };
     };
 
-    /// @brief Marks Lua51StringArgument for internal reference counting if a CountedPtr checks
+    /// @brief Marks RubyStringArgument for internal reference counting if a CountedPtr checks
     template <>
-    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51StringArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Ruby::RubyStringArgument>
     {
         public:
-            /// @brief The type that Lua51StringArgument the Reference count for Lua51StringArgument with be Lua51StringArgument itself
-            typedef Scripting::Lua::Lua51StringArgument RefCountType;
+            /// @brief The type that RubyStringArgument the Reference count for RubyStringArgument with be RubyStringArgument itself
+            typedef Scripting::Ruby::RubyStringArgument RefCountType;
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
-            /// @param Target A pointer to a Scripting::Lua::Lua51StringArgument that will simply be returned
+            /// @param Target A pointer to a Scripting::Ruby::RubyStringArgument that will simply be returned
             /// @return This returns whatever was passed into target because it already is a valid Reference Counter
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
@@ -382,16 +382,16 @@ namespace Mezzanine
             enum { IsCastable = CastDynamic };
     };
 
-    /// @brief Marks Lua51BoolArgument for internal reference counting if a CountedPtr checks
+    /// @brief Marks RubyBoolArgument for internal reference counting if a CountedPtr checks
     template <>
-    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51BoolArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Ruby::RubyBoolArgument>
     {
         public:
-            /// @brief The type that maintains the Reference count for Lua51BoolArgument with be Lua51BoolArgument itself
-            typedef Scripting::Lua::Lua51BoolArgument RefCountType;
+            /// @brief The type that maintains the Reference count for RubyBoolArgument with be RubyBoolArgument itself
+            typedef Scripting::Ruby::RubyBoolArgument RefCountType;
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
-            /// @param Target A pointer to a Scripting::Lua::Lua51BoolArgument that will simply be returned
+            /// @param Target A pointer to a Scripting::Ruby::RubyBoolArgument that will simply be returned
             /// @return This returns whatever was passed into target because it already is a valid Reference Counter
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
@@ -400,16 +400,16 @@ namespace Mezzanine
             enum { IsCastable = CastDynamic };
     };
 
-    /// @brief Marks Lua51NilArgument for internal reference counting if a CountedPtr checks
+    /// @brief Marks RubyNilArgument for internal reference counting if a CountedPtr checks
     template <>
-    class MEZZ_LIB ReferenceCountTraits <Scripting::Lua::Lua51NilArgument>
+    class MEZZ_LIB ReferenceCountTraits <Scripting::Ruby::RubyNilArgument>
     {
         public:
-            /// @brief The type that maintains the Reference count for Lua51NilArgument with be Lua51NilArgument itself
-            typedef Scripting::Lua::Lua51NilArgument RefCountType;
+            /// @brief The type that maintains the Reference count for RubyNilArgument with be RubyNilArgument itself
+            typedef Scripting::Ruby::RubyNilArgument RefCountType;
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
-            /// @param Target A pointer to a Scripting::Lua::Lua51NilArgument that will simply be returned
+            /// @param Target A pointer to a Scripting::Ruby::RubyNilArgument that will simply be returned
             /// @return This returns whatever was passed into target because it already is a valid Reference Counter
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
@@ -423,5 +423,5 @@ namespace Mezzanine
 } // Mezzanine
 
 
-#endif // MEZZLUA51
-#endif // \_scriptinglua_h
+#endif // MEZZRUBY
+#endif // \_scriptingruby_h
