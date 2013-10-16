@@ -59,6 +59,16 @@ namespace Mezzanine
 {
     namespace Graphics
     {
+        EntityProxy::EntityProxy(SceneManager* Creator) :
+            RenderableProxy(Creator),
+            GraphicsEntity(NULL),
+            ProxyMesh(NULL),
+            RenderDist(0),
+            LightMask(0xFFFFFFFF),
+            SceneVisible(true),
+            CanCastShadows(true)
+            { this->CreateEntity(NULL); }
+
         EntityProxy::EntityProxy(Mesh* TheMesh, SceneManager* Creator) :
             RenderableProxy(Creator),
             GraphicsEntity(NULL),

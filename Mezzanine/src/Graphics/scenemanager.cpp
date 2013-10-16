@@ -415,6 +415,13 @@ namespace Mezzanine
             return NewProxy;
         }
 
+        EntityProxy* SceneManager::CreateEntityProxy()
+        {
+            EntityProxy* NewProxy = new EntityProxy(this);
+            this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
         EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh)
         {
             EntityProxy* NewProxy = new EntityProxy(TheMesh,this);

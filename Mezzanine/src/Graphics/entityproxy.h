@@ -98,6 +98,9 @@ namespace Mezzanine
             /// @brief Destroys the internal entity in use by this proxy.
             virtual void DestroyEntity();
         public:
+            /// @brief Blank constructor.
+            /// @param Creator A pointer to the manager that created this proxy.
+            EntityProxy(SceneManager* Creator);
             /// @brief Loaded Mesh constructor.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
             /// @param Creator A pointer to the manager that created this proxy.
