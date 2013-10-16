@@ -291,7 +291,20 @@ namespace Mezzanine
 
     void RigidDebris::ProtoSerializeProxies(XML::Node& SelfRoot) const
     {
+        // No base implementations to call
+        XML::Node ProxiesNode = SelfRoot.AppendChild( RigidDebris::GetSerializableName() + "Proxies" );
 
+        if( ProxiesNode.AppendAttribute("Version").SetValue("1") )
+        {
+            XML::Node EntProxNode = ProxiesNode.AppendChild("EntProx");
+            this->EntProx->ProtoSerialize( EntProxNode );
+            XML::Node RigProxNode = ProxiesNode.AppendChild("RigProx");
+            this->RigProx->ProtoSerialize( RigProxNode );
+
+            return;
+        }else{
+            SerializeError("Create XML Attribute Values",RigidDebris::GetSerializableName() + "Proxies",true);
+        }
     }
 
     void RigidDebris::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
@@ -301,7 +314,38 @@ namespace Mezzanine
 
     void RigidDebris::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
     {
+        this->DestroyRigidDebris();
+        // No base implementations to call
+        //XML::Attribute CurrAttrib;
+        XML::Node ProxiesNode = SelfRoot.GetChild( RigidDebris::GetSerializableName() + "Proxies" );
 
+        if( !ProxiesNode.Empty() ) {
+            if(ProxiesNode.GetAttribute("Version").AsInt() == 1) {
+                /// @todo I don't think an exception is appropriate for the failure of the worldmanager validity checks,
+                /// however a warning should be written to the log if that happens.  This should be updated to do that once
+                /// logging refactors are done.
+
+                XML::Node EntProxNode = ProxiesNode.GetChild("EntProx").GetFirstChild();
+                if( !EntProxNode.Empty() ) {
+                    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+                    if( SceneMan ) {
+                        this->EntProx = SceneMan->CreateEntityProxy( EntProxNode );
+                    }
+                }
+
+                XML::Node RigProxNode = ProxiesNode.GetChild("RigProx").GetFirstChild();
+                if( !RigProxNode.Empty() ) {
+                    Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+                    if( PhysMan ) {
+                        this->RigProx = PhysMan->CreateRigidProxy(RigProxNode);
+                    }
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RigidDebris::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,RigidDebris::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
+        }
     }
 
     String RigidDebris::GetDerivedSerializableName() const

@@ -292,7 +292,20 @@ namespace Mezzanine
 
     void SoftDebris::ProtoSerializeProxies(XML::Node& SelfRoot) const
     {
+        // No base implementations to call
+        XML::Node ProxiesNode = SelfRoot.AppendChild( SoftDebris::GetSerializableName() + "Proxies" );
 
+        if( ProxiesNode.AppendAttribute("Version").SetValue("1") )
+        {
+            XML::Node EntProxNode = ProxiesNode.AppendChild("EntProx");
+            this->EntProx->ProtoSerialize( EntProxNode );
+            XML::Node SofProxNode = ProxiesNode.AppendChild("SofProx");
+            this->SofProx->ProtoSerialize( SofProxNode );
+
+            return;
+        }else{
+            SerializeError("Create XML Attribute Values",SoftDebris::GetSerializableName() + "Proxies",true);
+        }
     }
 
     void SoftDebris::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
@@ -302,7 +315,38 @@ namespace Mezzanine
 
     void SoftDebris::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
     {
+        this->DestroySoftDebris();
+        // No base implementations to call
+        //XML::Attribute CurrAttrib;
+        XML::Node ProxiesNode = SelfRoot.GetChild( SoftDebris::GetSerializableName() + "Proxies" );
 
+        if( !ProxiesNode.Empty() ) {
+            if(ProxiesNode.GetAttribute("Version").AsInt() == 1) {
+                /// @todo I don't think an exception is appropriate for the failure of the worldmanager validity checks,
+                /// however a warning should be written to the log if that happens.  This should be updated to do that once
+                /// logging refactors are done.
+
+                XML::Node EntProxNode = ProxiesNode.GetChild("EntProx").GetFirstChild();
+                if( !EntProxNode.Empty() ) {
+                    Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+                    if( SceneMan ) {
+                        this->EntProx = SceneMan->CreateEntityProxy( EntProxNode );
+                    }
+                }
+
+                XML::Node SofProxNode = ProxiesNode.GetChild("SofProx").GetFirstChild();
+                if( !SofProxNode.Empty() ) {
+                    Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+                    if( PhysMan ) {
+                        this->SofProx = PhysMan->CreateSoftProxy(SofProxNode);
+                    }
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (SoftDebris::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,SoftDebris::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
+        }
     }
 
     String SoftDebris::GetDerivedSerializableName() const
