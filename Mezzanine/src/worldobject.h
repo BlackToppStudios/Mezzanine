@@ -142,6 +142,9 @@ namespace Mezzanine
         /// @brief Convert the properties of this class to an XML::Node ready for serialization.
         /// @param SelfRoot The root node containing all the serialized data for this instance.
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+        /// @brief Convert the proxies of this class to an XML::Node ready for serialization.
+        /// @param SelfRoot The root node containing all the serialized data for this instance.
+        virtual void ProtoSerializeProxies(XML::Node& SelfRoot) const = 0;
 
         /// @brief Take the data stored in an XML Node and overwrite this object with it.
         /// @param SelfRoot An XML::Node containing the data to populate this class with.
@@ -149,6 +152,9 @@ namespace Mezzanine
         /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
         /// @param SelfRoot An XML::Node containing the data to populate this class with.
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+        /// @brief Take the data stored in an XML Node and overwrite the proxies of this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        virtual void ProtoDeSerializeProxies(const XML::Node& SelfRoot) = 0;
 
         /// @brief Gets the most derived serializable name of this WorldObject.
         /// @note When creating a new WorldObject class verify this method has a valid return for it in order for serialization to work properly.
