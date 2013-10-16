@@ -45,6 +45,13 @@
 
 #include "rigiddebris.h"
 
+#include "Graphics/scenemanager.h"
+#include "Graphics/entityproxy.h"
+
+#include "Physics/physicsmanager.h"
+#include "Physics/rigidproxy.h"
+
+#include "entresol.h"
 #include "exception.h"
 #include "stringtool.h"
 #include "serialization.h"
@@ -55,20 +62,282 @@ namespace Mezzanine
     // RigidDebris Methods
 
     RigidDebris::RigidDebris(World* TheWorld) :
-        Debris(TheWorld)
-    {
-
-    }
+        Debris(TheWorld),
+        EntProx(NULL),
+        RigProx(NULL)
+        {  }
 
     RigidDebris::RigidDebris(const String& Name, const Real Mass, World* TheWorld) :
-        Debris(Name,TheWorld)
+        Debris(Name,TheWorld),
+        EntProx(NULL),
+        RigProx(NULL)
+        { this->CreateRigidDebris(Mass); }
+
+    RigidDebris::RigidDebris(const XML::Node& SelfRoot, World* TheWorld) :
+        Debris(TheWorld),
+        EntProx(NULL),
+        RigProx(NULL)
+        { this->ProtoDeSerialize(SelfRoot); }
+
+    RigidDebris::~RigidDebris()
+        { this->DestroyRigidDebris(); }
+
+    void RigidDebris::CreateRigidDebris(const Real Mass)
+    {
+        Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+        if( SceneMan ) {
+            this->EntProx = SceneMan->CreateEntityProxy();
+        }
+
+        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        if( PhysMan ) {
+            this->RigProx = PhysMan->CreateRigidProxy(Mass);
+        }
+    }
+
+    void RigidDebris::DestroyRigidDebris()
+    {
+        if( this->EntProx ) {
+            Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+            if( SceneMan ) {
+                SceneMan->DestroyProxy( this->EntProx );
+            }
+        }
+
+        if( this->RigProx ) {
+            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+            if( PhysMan ) {
+                PhysMan->DestroyProxy( this->RigProx );
+                this->RigProx = NULL;
+            }
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility and Configuration
+
+    WorldObjectType RigidDebris::GetType() const
+        { return Mezzanine::WO_DebrisRigid; }
+
+    Graphics::EntityProxy* RigidDebris::GetEntityProxy() const
+        { return this->EntProx; }
+
+    Physics::RigidProxy* RigidDebris::GetRigidProxy() const
+        { return this->RigProx; }
+
+    Bool RigidDebris::IsInWorld() const
+        { return this->RigProx->IsInWorld(); }
+
+    Bool RigidDebris::IsStatic() const
+        { return this->RigProx->IsStatic(); }
+
+    Bool RigidDebris::IsKinematic() const
+        { return this->RigProx->IsKinematic(); }
+
+    void RigidDebris::GetProxies(ProxyContainer& Proxies)
+    {
+        Proxies.clear();
+        Proxies.push_back( this->EntProx );
+        Proxies.push_back( this->RigProx );
+    }
+
+    void RigidDebris::GetProxies(const UInt32 Types, ProxyContainer& Proxies)
+    {
+        Proxies.clear();
+        if( Types & Mezzanine::PT_Graphics_EntityProxy ) {
+            Proxies.push_back( this->EntProx );
+        }
+        if( Types & Mezzanine::PT_Physics_RigidProxy ) {
+            Proxies.push_back( this->RigProx );
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Working with the World
+
+    void RigidDebris::AddToWorld()
+    {
+        if( this->EntProx )
+            this->EntProx->AddToWorld();
+
+        if( this->RigProx )
+            this->RigProx->AddToWorld();
+    }
+
+    void RigidDebris::RemoveFromWorld()
+    {
+        if( this->EntProx )
+            this->EntProx->RemoveFromWorld();
+
+        if( this->RigProx )
+            this->RigProx->RemoveFromWorld();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Transform Methods
+
+    void RigidDebris::SetLocation(const Vector3& Loc)
+    {
+        this->RigProx->SetLocation(Loc);
+        this->EntProx->SetLocation(Loc);
+    }
+
+    void RigidDebris::SetLocation(const Real X, const Real Y, const Real Z)
+    {
+        this->RigProx->SetLocation(X,Y,Z);
+        this->EntProx->SetLocation(X,Y,Z);
+    }
+
+    Vector3 RigidDebris::GetLocation() const
+    {
+        return this->RigProx->GetLocation();
+    }
+
+    void RigidDebris::SetOrientation(const Quaternion& Ori)
+    {
+        this->RigProx->SetOrientation(Ori);
+        this->EntProx->SetOrientation(Ori);
+    }
+
+    void RigidDebris::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
+    {
+        this->RigProx->SetOrientation(X,Y,Z,W);
+        this->EntProx->SetOrientation(X,Y,Z,W);
+    }
+
+    Quaternion RigidDebris::GetOrientation() const
+    {
+        return this->RigProx->GetOrientation();
+    }
+
+    void RigidDebris::SetScale(const Vector3& Sc)
+    {
+        this->RigProx->SetScale(Sc);
+        this->EntProx->SetScale(Sc);
+    }
+
+    void RigidDebris::SetScale(const Real X, const Real Y, const Real Z)
+    {
+        this->RigProx->SetScale(X,Y,Z);
+        this->EntProx->SetScale(X,Y,Z);
+    }
+
+    Vector3 RigidDebris::GetScale() const
+    {
+        return this->RigProx->GetScale();
+    }
+
+    void RigidDebris::Translate(const Vector3& Trans)
+    {
+        this->RigProx->Translate(Trans);
+        this->EntProx->Translate(Trans);
+    }
+
+    void RigidDebris::Translate(const Real X, const Real Y, const Real Z)
+    {
+        this->RigProx->Translate(X,Y,Z);
+        this->EntProx->Translate(X,Y,Z);
+    }
+
+    void RigidDebris::Yaw(const Real Angle)
+    {
+        this->RigProx->Yaw(Angle);
+        this->EntProx->Yaw(Angle);
+    }
+
+    void RigidDebris::Pitch(const Real Angle)
+    {
+        this->RigProx->Pitch(Angle);
+        this->EntProx->Pitch(Angle);
+    }
+
+    void RigidDebris::Roll(const Real Angle)
+    {
+        this->RigProx->Roll(Angle);
+        this->EntProx->Roll(Angle);
+    }
+
+    void RigidDebris::Rotate(const Vector3& Axis, const Real Angle)
+    {
+        this->RigProx->Rotate(Axis,Angle);
+        this->EntProx->Rotate(Axis,Angle);
+    }
+
+    void RigidDebris::Rotate(const Quaternion& Rotation)
+    {
+        this->RigProx->Rotate(Rotation);
+        this->EntProx->Rotate(Rotation);
+    }
+
+    void RigidDebris::Scale(const Vector3& Scale)
+    {
+        this->RigProx->Scale(Scale);
+        this->EntProx->Scale(Scale);
+    }
+
+    void RigidDebris::Scale(const Real X, const Real Y, const Real Z)
+    {
+        this->RigProx->Scale(X,Y,Z);
+        this->EntProx->Scale(X,Y,Z);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void RigidDebris::ProtoSerializeProperties(XML::Node& SelfRoot) const
+    {
+        this->Debris::ProtoSerializeProperties(SelfRoot);
+    }
+
+    void RigidDebris::ProtoSerializeProxies(XML::Node& SelfRoot) const
     {
 
     }
 
-    RigidDebris::~RigidDebris()
+    void RigidDebris::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    {
+        this->Debris::ProtoDeSerializeProperties(SelfRoot);
+    }
+
+    void RigidDebris::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
     {
 
+    }
+
+    String RigidDebris::GetDerivedSerializableName() const
+        { return RigidDebris::GetSerializableName(); }
+
+    String RigidDebris::GetSerializableName()
+        { return "RigidDebris"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
+
+    void RigidDebris::_Update()
+    {
+        // Do nothing
+    }
+
+    void RigidDebris::_NotifyProxyDestroyed(WorldProxy* ToBeDestroyed)
+    {
+        if( ToBeDestroyed == NULL )
+            return;
+
+        if( this->EntProx == ToBeDestroyed ) {
+            Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+            if( SceneMan != NULL ) {
+                SceneMan->DestroyProxy( this->EntProx );
+                this->EntProx = NULL;
+            }
+        }
+
+        if( this->RigProx == ToBeDestroyed ) {
+            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+            if( PhysMan != NULL ) {
+                PhysMan->DestroyProxy( this->RigProx );
+                this->RigProx = NULL;
+            }
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -84,7 +353,7 @@ namespace Mezzanine
         { return RigidDebris::GetSerializableName(); }
 
     RigidDebris* RigidDebrisFactory::CreateRigidDebris(const String& Name, const Real Mass, World* TheWorld)
-        { return NULL; }//new RigidDebris(Name,Mass,TheWorld); }
+        { return new RigidDebris(Name,Mass,TheWorld); }
 
     RigidDebris* RigidDebrisFactory::CreateRigidDebris(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<RigidDebris*>( this->CreateDebris(XMLNode,TheWorld) ); }
@@ -97,11 +366,11 @@ namespace Mezzanine
             if( (*ValIt).first == "Mass" )
                 Mass = StringTools::ConvertToReal( (*ValIt).second );
         }
-        return NULL;//new RigidDebris(Name,Mass,TheWorld);
+        return new RigidDebris(Name,Mass,TheWorld);
     }
 
     Debris* RigidDebrisFactory::CreateDebris(const XML::Node& XMLNode, World* TheWorld)
-        { return NULL; }//new RigidDebris(XMLNode,TheWorld); }
+        { return new RigidDebris(XMLNode,TheWorld); }
 
     void RigidDebrisFactory::DestroyDebris(Debris* ToBeDestroyed)
         { delete ToBeDestroyed; }

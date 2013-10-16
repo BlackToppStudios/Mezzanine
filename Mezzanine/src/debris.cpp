@@ -49,20 +49,42 @@ namespace Mezzanine
 {
     Debris::Debris(World* TheWorld) :
         WorldObject(TheWorld)
-    {
-
-    }
+        {  }
 
     Debris::Debris(const String& Name, World* TheWorld) :
         WorldObject(Name,TheWorld)
-    {
-
-    }
+        {  }
 
     Debris::~Debris()
-    {
+        {  }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility and Configuration
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Working with the World
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void Debris::ProtoSerializeProperties(XML::Node& SelfRoot) const
+    {
+        this->WorldObject::ProtoSerializeProperties(SelfRoot);
     }
+
+    void Debris::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    {
+        this->WorldObject::ProtoDeSerializeProperties(SelfRoot);
+    }
+
+    String Debris::GetDerivedSerializableName() const
+        { return Debris::GetSerializableName(); }
+
+    String Debris::GetSerializableName()
+        { return "Debris"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
 }//Mezzanine
 
 #endif
