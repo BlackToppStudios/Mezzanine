@@ -107,7 +107,7 @@ namespace Mezzanine
             GenericString       = 3,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an String
             GenericReal         = 4,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an Real
             GenericBool         = 5,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an Bool
-            GenericMax          = 5     ///< This is always equal to the maximum value in this enumeration so that other constant values can be based on this. For example Lua
+            GenericMax          = 5     ///< This is always equal to the maximum value in this enumeration so that other constant values can be based on this. For example Lua uses this +1 for its NilValue
         };
 
         /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations

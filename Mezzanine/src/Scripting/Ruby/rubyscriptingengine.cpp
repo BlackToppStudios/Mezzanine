@@ -37,378 +37,115 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _lua51scriptingengine_cpp
-#define _lua51scriptingengine_cpp
+#ifndef _rubyscriptingengine_cpp
+#define _rubyscriptingengine_cpp
 
 #include "datatypes.h"
 
-#ifdef MEZZLUA51
+#ifdef MEZZRUBY
 
-#include "lua51script.h"
-#include "lua51scriptargument.h"
-#include "lua51scriptingengine.h"
+#include "rubyscript.h"
+#include "rubyscriptargument.h"
+#include "rubyscriptingengine.h"
 #include "exception.h"
 
 #include <cstring>
 /// @file
-/// @brief This file has the implementation for the Lua based Scripting system.
+/// @brief This file has the implementation for the Ruby based Scripting system.
 
 extern "C"
 {
-    #include "lua.h"            // Lua Core
-    #include "lualib.h"         // for opening the base state
-    #include "lauxlib.h"        // Extra Lua Goodies like lua_open()
+    #include "ruby.h"            // Ruby Core
+    #include "rubylib.h"         // for opening the base state
+    #include "lauxlib.h"        // Extra Ruby Goodies like ruby_open()
 
-    int luaopen_Mezzanine(lua_State* L);
-    int luaopen_MezzanineSafe(lua_State* L);
+    int rubyopen_Mezzanine(ruby_State* L);
+    int rubyopen_MezzanineSafe(ruby_State* L);
 
-    int luaopen_MezzanineXML(lua_State* L);
-    int luaopen_MezzanineXMLSafe(lua_State* L);
+    int rubyopen_MezzanineXML(ruby_State* L);
+    int rubyopen_MezzanineXMLSafe(ruby_State* L);
 
-    int luaopen_MezzanineThreading(lua_State* L);
-    int luaopen_MezzanineThreadingSafe(lua_State* L);
+    int rubyopen_MezzanineThreading(ruby_State* L);
+    int rubyopen_MezzanineThreadingSafe(ruby_State* L);
 }
 
 namespace Mezzanine
  {
     namespace Scripting
     {
-        namespace Lua
+        namespace Ruby
         {
 
             ///////////////////////////////////////////////////////////////////////////////////////
-            // LuaScriptEngine and helpers
+            // RubyScriptEngine and helpers
             namespace
             {
-                /// @internal
-                /// @brief Used in the LuaScriptingEngine to get data from lua_dump during script compilation
-                /// @param State The Lua state as provide by lua_dump
-                /// @param Buffer A pointer to the compiled Lua chunk.
-                /// @param Size The Size of the Lua chunk in bytes
-                /// @param BinBuff A pointer to a BinaryTools::BinaryBuffer that will serve as the real output
-                /// @note This is a lua_Writer as per http://www.lua.org/manual/5.1/manual.html#lua_Writer
-                int LuaBytecodeDumper(lua_State *State, const void* Buffer, size_t Size, void* BinBuff)
-                {
-                    BinaryTools::BinaryBuffer* CompilingScript = reinterpret_cast<BinaryTools::BinaryBuffer*>(BinBuff);
-                    CompilingScript->Concatenate(
-                                    (BinaryTools::BinaryBuffer::Byte*) Buffer,
-                                    Size
-                                );
-                    return 0;
-                }
 
-                /// @internal
-                /// @param State The Lua state as provided by lua_load()
-                /// @param Buffer A BinaryBuffer containing the bytecode to load into Lua
-                /// @param Size an output parameter to convey the size of the return to Lua.
-                /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
-                /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
-                /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
-                const char* LuaBytecodeLoader(lua_State* State, void* BinBuff, size_t* Size)
-                {
-                    FlaggedBuffer* LoadingBuffer= reinterpret_cast<FlaggedBuffer*>(BinBuff);
-                    if(LoadingBuffer->Loaded)
-                    {
-                        LoadingBuffer->Loaded = false;
-                        return 0;
-                    }else{
-                        *Size = LoadingBuffer->Size;
-                        LoadingBuffer->Loaded = true;
-                        return (const char*)LoadingBuffer->Binary;
-                    }
-                }
-
-                /// @internal
-                /// @param State The Lua state as provided by lua_load()
-                /// @param Buffer A Lua51Script* containing the source to load into Lua
-                /// @param Size an output parameter to convey the size of the return to Lua.
-                /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
-                /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says unsigned int*
-                /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
-                const char* LuaSourceLoader(lua_State* State, void* BinBuff, size_t* Size)
-                {
-                    Lua51Script* LoadingScript = reinterpret_cast<Lua51Script*>(BinBuff);
-                    if(LoadingScript->GetByteCodeReference().Loaded)
-                    {
-                        LoadingScript->GetByteCodeReference().Loaded = false;
-                        return 0;
-                    }else{
-                        *Size = LoadingScript->GetSourceCode().size();
-                        LoadingScript->GetByteCodeReference().Loaded = true;
-                        return LoadingScript->GetSourceCode().c_str();
-                    }
-                }
 
             }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // Publically visible internals
-            void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
-            {
-                switch(LuaReturn)
-                {
-                    case 0:
-                        break;
-                    case LUA_YIELD:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_YIELD, "Lua returned a LUA_YIELD instead of completing.")
-                    case LUA_ERRRUN:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_RUNTIME, "There was a runtime Error handling the Lua script.")
-                    case LUA_ERRSYNTAX:
-                        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_LUA, "There was an error with the syntax of the Lua script.")
-                    case LUA_ERRERR:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_ERRERR, "There was an error when Lua attempted to handle an error.")
-                    case LUA_ERRMEM:
-                        MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Lua could not allocate memory.")
-                    case LUA_ERRFILE:
-                        MEZZ_EXCEPTION(Exception::IO_FILE_EXCEPTION, "Lua had an error with file IO.")
-                    default:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua had an error and we are not sure what it was.")
-                }
-            }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // Construction/Deconstruction
-            Lua51ScriptingEngine::Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen) : State(luaL_newstate())
+            RubyScriptingEngine::RubyScriptingEngine(RubyLibraries LibrariesToOpen) : State(rubyL_newstate())
                 { OpenLibraries(LibrariesToOpen); }
 
-            Lua51ScriptingEngine::~Lua51ScriptingEngine()
-                { lua_close(State); }
+            RubyScriptingEngine::~RubyScriptingEngine()
+                { ruby_close(State); }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // Execution
-            CountedPtr<iScript> Lua51ScriptingEngine::Execute(const String& ScriptSource)
+            CountedPtr<iScript> RubyScriptingEngine::Execute(const String& ScriptSource)
             {
-                CountedPtr<Lua51Script> Results = Compile(ScriptSource);
+                CountedPtr<RubyScript> Results = Compile(ScriptSource);
                 Execute(Results);
                 return CountedPtrCast<iScript>(Results);
             }
 
-            void Lua51ScriptingEngine::Execute(CountedPtr<iScript>& ScriptToRun)
+            void RubyScriptingEngine::Execute(CountedPtr<iScript>& ScriptToRun)
             {
-                CountedPtr<Lua51Script> ScriptToCompile = CountedPtrCast<Lua51Script>(ScriptToRun);
+                CountedPtr<RubyScript> ScriptToCompile = CountedPtrCast<RubyScript>(ScriptToRun);
                 if(ScriptToCompile)
                 {
                     Execute(ScriptToCompile);
                 }else{
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51 Engine attempted to execute a script, but it did not appear to bea Lua51 script.")
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Ruby Engine attempted to execute a script, but it did not appear to bea Ruby script.")
                 }
             }
 
-            void Lua51ScriptingEngine::Execute(CountedPtr<Lua51Script>& ScriptToRun)
+            void RubyScriptingEngine::Execute(CountedPtr<RubyScript>& ScriptToRun)
                 { Execute(ScriptToRun.Get()); }
 
-            void Lua51ScriptingEngine::Execute(Lua51Script& ScriptToRun)
+            void RubyScriptingEngine::Execute(RubyScript& ScriptToRun)
                 { Execute(&ScriptToRun); }
 
-            void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
+            void RubyScriptingEngine::Execute(RubyScript* ScriptToRun)
             {
-                if(ScriptToRun->FunctionCall)
-                {
-                    lua_getglobal(this->State,ScriptToRun->SourceCode.c_str());
-                }else{
-                    if(!ScriptToRun->IsCompiled())
-                        { Compile(ScriptToRun); }
-                    else
-                    {
-                        ThrowFromLuaErrorCode(
-                            lua_load(this->State, LuaBytecodeLoader, &ScriptToRun->GetByteCodeReference(), ScriptToRun->GetName().c_str())
-                        );
-                    }
-                    // Since Lua_Dump or lua_load will leave the function on the stack then...
-                }
-
-                // We just need to push all the arguments
-                LuaArgument* Current;
+                // We need to push all the arguments
+                RubyArgument* Current;
                 for(ArgumentGroup::const_iterator Iter = ScriptToRun->Args.begin();
                     Iter != ScriptToRun->Args.end();
                     Iter++ )
                 {
-                    Current = dynamic_cast<LuaArgument*>(Iter->Get());
-                    if(Current)
-                        { Current->Push(this->State); }
-                    else
-                        { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for parameter purposes.") }
+
                 }
 
                 // Do the actual script
-                ThrowFromLuaErrorCode(
-                    //lua_call(this->State, ScriptToRun->Args.size(), ScriptToRun->Returns.size() )
-                    lua_pcall(this->State, ScriptToRun->Args.size(), ScriptToRun->Returns.size(), 0)
-                );
 
-                // Need to get return values
-                for(ArgumentGroup::iterator Iter = ScriptToRun->Returns.begin();
-                    Iter != ScriptToRun->Returns.end();
-                    Iter++ )
-                {
-                    Current = dynamic_cast<LuaArgument*>(Iter->Get());
-                    if(Current)
-                        { Current->Pop(this->State); }
-                    else
-                        { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for return value purposes.") }
-                }
-
-            }
-
-            ///////////////////////////////////////////////////////////////////////////////////////
-            // Compilation
-            CountedPtr<iScriptCompilable> Lua51ScriptingEngine::Compile(const String& SourceToCompile)
-            {
-                CountedPtr<Lua51Script> Results(
-                                new Lua51Script(SourceToCompile,this)
-                            );
-                Compile(Results);
-                return Results;
-            }
-
-            void Lua51ScriptingEngine::Compile(CountedPtr<iScriptCompilable>& ScriptToCompile)
-            {
-                CountedPtr<Lua51Script> ConvertedScript = CountedPtrCast<Lua51Script>(ScriptToCompile);
-                if(ConvertedScript)
-                {
-                    Compile(ConvertedScript);
-                }else{
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51 Engine attempted to compile a script, but it did not appear to bea Lua51 script.")
-                }
-            }
-
-            void Lua51ScriptingEngine::Compile(CountedPtr<Lua51Script>& ScriptToCompile)
-                { Compile(ScriptToCompile.Get()); }
-
-            void Lua51ScriptingEngine::Compile(Lua51Script& ScriptToCompile)
-                { Compile(&ScriptToCompile); }
-
-            void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
-            {
-                ThrowFromLuaErrorCode(
-                            lua_load(this->State, LuaSourceLoader, ScriptToCompile, ScriptToCompile->GetName().c_str())
-                );
-
-                ThrowFromLuaErrorCode(
-                            //lua_dump(this->State, LuaBytecodeDumper, &(ScriptToCompile->CompiledByteCode) )
-                            lua_dump(this->State, LuaBytecodeDumper, &ScriptToCompile->GetByteCodeReference() )
-                );
+                // Need to get return value
             }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // For Inheritance
-            String Lua51ScriptingEngine::GetImplementationTypeName() const
-                { return String("Lua51ScriptingEngine"); }
+            String RubyScriptingEngine::GetImplementationTypeName() const
+                { return String("RubyScriptingEngine"); }
 
-            ///////////////////////////////////////////////////////////////////////////////////////
-            // Library Manipulation
-            void Lua51ScriptingEngine::OpenLibraries(int LibrariesToOpen)
-            {
-                if(LibrariesToOpen & BaseLib)
-                    { OpenBaseLibrary(); }
-                if(LibrariesToOpen & PackageLib)
-                    { OpenPackageLibrary(); }
-                if(LibrariesToOpen & StringLib)
-                    { OpenStringLibrary(); }
-                if(LibrariesToOpen & TableLib)
-                    { OpenTableLibrary(); }
-                if(LibrariesToOpen & MathLib)
-                    { OpenMathLibrary(); }
-                if(LibrariesToOpen & IOLib)
-                    { OpenIOLibrary(); }
-                if(LibrariesToOpen & OSLib)
-                    { OpenOSLibrary(); }
-                if(LibrariesToOpen & DebugLib)
-                    { OpenDebugLibrary(); }
-                if(LibrariesToOpen & MezzLib)
-                    { OpenMezzanineLibrary(); }
-                if(LibrariesToOpen & MezzSafeLib)
-                    { OpenMezzanineSafeLibrary(); }
-                if(LibrariesToOpen & MezzXMLLib)
-                    { OpenMezzanineXMLLibrary(); }
-                if(LibrariesToOpen & MezzXMLSafeLib)
-                    { OpenMezzanineXMLSafeLibrary(); }
-                if(LibrariesToOpen & MezzThreadingLib)
-                    { OpenMezzanineThreadingLibrary(); }
-                if(LibrariesToOpen & MezzThreadingSafeLib)
-                    { OpenMezzanineThreadingSafeLibrary(); }
-            }
-
-            void Lua51ScriptingEngine::AliasLibrary(const String& Base, const String& Sub, const String& Alias)
-            {
-                lua_getglobal(State, Base.c_str());
-                if (lua_istable(State, -1))
-                {
-                    lua_pushstring(State, Alias.c_str());
-                    lua_getglobal(State, Sub.c_str());
-                    lua_settable(State, -3); // Set the table a -3, Mezzanine to have the index defined by -2 "XML" set to the value at -1 "The MezzanineXML Table"
-                } //else Fail Silently
-            }
-
-            void Lua51ScriptingEngine::OpenDefaultLibraries()
-                { OpenLibraries(DefaultLibs); }
-            void Lua51ScriptingEngine::OpenAllLibraries()
-                { OpenLibraries(AllLibs); }
-
-            void Lua51ScriptingEngine::OpenBaseLibrary()
-                { luaopen_base(State); }
-            void Lua51ScriptingEngine::OpenPackageLibrary()
-                { luaopen_package(State); }
-            void Lua51ScriptingEngine::OpenStringLibrary()
-                { luaopen_string(State); }
-            void Lua51ScriptingEngine::OpenTableLibrary()
-                { luaopen_table(State); }
-            void Lua51ScriptingEngine::OpenMathLibrary()
-                { luaopen_math(State); }
-            void Lua51ScriptingEngine::OpenIOLibrary()
-                { luaopen_io(State); }
-            void Lua51ScriptingEngine::OpenOSLibrary()
-                { luaopen_os(State); }
-            void Lua51ScriptingEngine::OpenDebugLibrary()
-                { luaopen_os(State); }
-
-            void Lua51ScriptingEngine::OpenMezzanineLibrary()
-            {
-                luaopen_Mezzanine(State);
-                SetXML();
-            }
-            void Lua51ScriptingEngine::OpenMezzanineSafeLibrary()
-            {
-                luaopen_MezzanineSafe(State);
-                SetXMLSafe();
-            }
-
-            void Lua51ScriptingEngine::OpenMezzanineXMLLibrary()
-            {
-                luaopen_MezzanineXML(State);
-                SetXML();
-            }
-            void Lua51ScriptingEngine::OpenMezzanineXMLSafeLibrary()
-            {
-                luaopen_MezzanineXMLSafe(State);
-                SetXMLSafe();
-            }
-
-            void Lua51ScriptingEngine::OpenMezzanineThreadingLibrary()
-            {
-                luaopen_MezzanineThreading(State);
-                SetThreading();
-            }
-            void Lua51ScriptingEngine::OpenMezzanineThreadingSafeLibrary()
-            {
-                luaopen_MezzanineThreadingSafe(State);
-                SetThreadingSafe();
-            }
-
-            void Lua51ScriptingEngine::SetXML()
-                { AliasLibrary("Mezzanine", "MezzanineXML", "XML"); }
-            void Lua51ScriptingEngine::SetXMLSafe()
-                { AliasLibrary("MezzanineSafe", "MezzanineXMLSafe", "XML"); }
-
-            void Lua51ScriptingEngine::SetThreading()
-                { AliasLibrary("Mezzanine", "MezzanineThreading", "Threading"); }
-            void Lua51ScriptingEngine::SetThreadingSafe()
-                { AliasLibrary("MezzanineSafe", "MezzanineThreadingSafe", "Threading"); }
-
-        } // Lua
+        } // Ruby
     } // Scripting
 } // Mezzanine
 
 
-#endif //  MEZZLUA51
+#endif //  MEZZRUBY
 #endif

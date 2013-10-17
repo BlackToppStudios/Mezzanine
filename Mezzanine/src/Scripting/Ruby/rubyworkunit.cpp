@@ -37,52 +37,52 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _lua51workunit_cpp
-#define _lua51workunit_cpp
+#ifndef _rubyworkunit_cpp
+#define _rubyworkunit_cpp
 
 #include "datatypes.h"
 
-#ifdef MEZZLUA51
+#ifdef MEZZRUBY
 
-#include "lua51workunit.h"
-#include "lua51scriptingengine.h"
+#include "rubyworkunit.h"
+#include "rubyscriptingengine.h"
 
 /// @file
-/// @brief This file has the implementation a workunit that can execute lua script every frame
+/// @brief This file has the implementation a workunit that can execute ruby script every frame
 
 namespace Mezzanine
 {
     namespace Scripting
     {
-        namespace Lua
+        namespace Ruby
         {
-            Lua51WorkUnit::Lua51WorkUnit(Lua51ScriptingEngine* TargetRuntime)
-                : LuaRuntime(TargetRuntime)
+            RubyWorkUnit::RubyWorkUnit(RubyScriptingEngine* TargetRuntime)
+                : RubyRuntime(TargetRuntime)
             {}
 
-            Lua51WorkUnit::~Lua51WorkUnit()
+            RubyWorkUnit::~RubyWorkUnit()
                 {}
 
-            void Lua51WorkUnit::push_back(CountedPtr<Lua51Script> ScriptToAdd)
+            void RubyWorkUnit::push_back(CountedPtr<RubyScript> ScriptToAdd)
                 { ScriptsToRun.push_back(ScriptToAdd); }
 
-            void Lua51WorkUnit::AddScript(CountedPtr<iScript> ScriptToAdd)
+            void RubyWorkUnit::AddScript(CountedPtr<iScript> ScriptToAdd)
             {
-                CountedPtr<Lua51Script> ScriptToStow = CountedPtrCast<Lua51Script>(ScriptToAdd);
+                CountedPtr<RubyScript> ScriptToStow = CountedPtrCast<RubyScript>(ScriptToAdd);
                 if(ScriptToStow)
                 {
                     AddScript(ScriptToStow);
                 }else{
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51WorkUnit attempted to store a script, but it did not appear to bea Lua51 script.")
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "RubyWorkUnit attempted to store a script, but it did not appear to bea Ruby script.")
                 }
             }
 
-            void Lua51WorkUnit::AddScript(CountedPtr<Lua51Script> ScriptToAdd)
+            void RubyWorkUnit::AddScript(CountedPtr<RubyScript> ScriptToAdd)
                 { push_back(ScriptToAdd); }
 
-            Lua51WorkUnit::iterator Lua51WorkUnit::find(CountedPtr<Lua51Script> Target)
+            RubyWorkUnit::iterator RubyWorkUnit::find(CountedPtr<RubyScript> Target)
             {
-                for(Lua51WorkUnit::iterator Iter=this->begin(); Iter!=this->end() ; Iter++)
+                for(RubyWorkUnit::iterator Iter=this->begin(); Iter!=this->end() ; Iter++)
                 {
                     if(*Iter == Target)
                         { return Iter; }
@@ -90,9 +90,9 @@ namespace Mezzanine
                 return this->end();
             }
 
-            Lua51WorkUnit::const_iterator Lua51WorkUnit::find(CountedPtr<Lua51Script> Target) const
+            RubyWorkUnit::const_iterator RubyWorkUnit::find(CountedPtr<RubyScript> Target) const
             {
-                for(Lua51WorkUnit::const_iterator Iter=this->begin(); Iter!=this->end(); Iter++)
+                for(RubyWorkUnit::const_iterator Iter=this->begin(); Iter!=this->end(); Iter++)
                 {
                     if(*Iter == Target)
                         { return Iter; }
@@ -100,75 +100,75 @@ namespace Mezzanine
                 return this->end();
             }
 
-            void Lua51WorkUnit::erase(CountedPtr<Lua51Script> Target)
+            void RubyWorkUnit::erase(CountedPtr<RubyScript> Target)
             {
-                Lua51WorkUnit::iterator Iter = this->find(Target);
+                RubyWorkUnit::iterator Iter = this->find(Target);
                 if(Iter!=this->end())
                     { ScriptsToRun.erase(Iter); }
             }
 
-            void Lua51WorkUnit::erase(Lua51WorkUnit::iterator Target)
+            void RubyWorkUnit::erase(RubyWorkUnit::iterator Target)
             { ScriptsToRun.erase(Target); }
 
-            void Lua51WorkUnit::RemoveScript(CountedPtr<iScript> ScriptToRemove)
+            void RubyWorkUnit::RemoveScript(CountedPtr<iScript> ScriptToRemove)
             {
-                CountedPtr<Lua51Script> ScriptToBtow = CountedPtrCast<Lua51Script>(ScriptToRemove);
+                CountedPtr<RubyScript> ScriptToBtow = CountedPtrCast<RubyScript>(ScriptToRemove);
                 if(ScriptToBtow)
                 {
                     RemoveScript(ScriptToBtow);
                 }else{
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "Lua51WorkUnit attempted to removed a script, but it did not appear to bea Lua51 script.")
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "RubyWorkUnit attempted to removed a script, but it did not appear to bea Ruby script.")
                 }
             }
 
-            void Lua51WorkUnit::RemoveScript(CountedPtr<Lua51Script> ScriptToRemove)
+            void RubyWorkUnit::RemoveScript(CountedPtr<RubyScript> ScriptToRemove)
                 { erase(ScriptToRemove); }
 
-            void Lua51WorkUnit::RemoveScript(Whole Index)
+            void RubyWorkUnit::RemoveScript(Whole Index)
                 { erase(this->begin()+Index); }
 
-            Lua51WorkUnit::iterator Lua51WorkUnit::begin()
+            RubyWorkUnit::iterator RubyWorkUnit::begin()
                 { return ScriptsToRun.begin(); }
-            Lua51WorkUnit::const_iterator Lua51WorkUnit::begin() const
+            RubyWorkUnit::const_iterator RubyWorkUnit::begin() const
                 { return ScriptsToRun.begin(); }
 
-            Lua51WorkUnit::iterator Lua51WorkUnit::end()
+            RubyWorkUnit::iterator RubyWorkUnit::end()
                 { return ScriptsToRun.end(); }
-            Lua51WorkUnit::const_iterator Lua51WorkUnit::end() const
+            RubyWorkUnit::const_iterator RubyWorkUnit::end() const
                 { return ScriptsToRun.end(); }
 
-            Whole Lua51WorkUnit::GetScriptCount() const
+            Whole RubyWorkUnit::GetScriptCount() const
                 { return ScriptsToRun.size(); }
 
-            void Lua51WorkUnit::ClearScripts()
+            void RubyWorkUnit::ClearScripts()
                 { ScriptsToRun.clear(); }
 
-            CountedPtr<iScript> Lua51WorkUnit::GetScript(Whole Index)
+            CountedPtr<iScript> RubyWorkUnit::GetScript(Whole Index)
                 { return CountedPtrCast<iScript>(ScriptsToRun.at(Index)); }
 
-            CountedPtr<Lua51Script> Lua51WorkUnit::GetLua51Script(Whole Index) const
+            CountedPtr<RubyScript> RubyWorkUnit::GetRubyScript(Whole Index) const
                 { return ScriptsToRun.at(Index); }
 
-            void Lua51WorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+            void RubyWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
             {
                 Logger& Log = CurrentThreadStorage.GetUsableLogger();
-                Log << "Running Per Frame LuaScripts." << std::endl;
+                Log << "Running Per Frame RubyScripts." << std::endl;
                 for(iterator Iter = this->begin(); Iter!=this->end(); Iter++)
                 {
                     #ifdef MEZZ_DEBUG
                     Log << "Executing \"" << (*Iter)->GetName() << "\"" << std::endl;
                     #endif
-                    LuaRuntime->Execute(*Iter);
+                    RubyRuntime->Execute(*Iter);
                 }
             }
 
 
-        } // Lua
+        } // Ruby
     } // Scripting
 } // Mezzanine
 
 
 
 
-#endif //  MEZZLUA51
+#endif //  MEZZRUBY
 #endif

@@ -37,14 +37,14 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _lua51workunit_h
-#define _lua51workunit_h
+#ifndef _rubyworkunit_h
+#define _rubyworkunit_h
 
 #include "datatypes.h"
 
-#ifdef MEZZLUA51
+#ifdef MEZZRUBY
 
-#include "Scripting/Lua51/lua51script.h"
+#include "Scripting/Ruby/rubyscript.h"
 #include "Scripting/scriptworkunit.h"
 
 #include "Threading/workunit.h"
@@ -52,17 +52,18 @@
 #include <vector>
 
 /// @file
-/// @brief This file has the declaration for a workunit that can execute lua script every frame
+/// @brief This file has the declaration for a workunit that can execute ruby script every frame
 
+/// @TODO I did not need to change a line of this code. Perhaps the RubyWorkUnit should be typedef ScriptingWorkUnit<RubyScript> instead of its own class.
 
 namespace Mezzanine
 {
     namespace Scripting
     {
-        namespace Lua
+        namespace Ruby
         {
             // foraward declarations
-            class Lua51ScriptingEngine;
+            class RubyScriptingEngine;
 
             /// @brief This is a simple Container of script that will execute every script it is given in order each frame
             /// @details This WorkUnit starts with no dependencies, the developer using this must set those, (see
@@ -71,54 +72,54 @@ namespace Mezzanine
             /// Internally this uses an std::vector to store scripts and each frame it will iterate over them and execute
             /// them one at a time. This exposes iterators and a few convience fucntion to make the script manageable. @n @n
             /// All scripts are stored in CountedPtr to allow for shared ownership.
-            class MEZZ_LIB Lua51WorkUnit : public Scripting::iScriptWorkUnit
+            class MEZZ_LIB RubyWorkUnit : public Scripting::iScriptWorkUnit
             {
                 private:
                     /// @internal
                     /// @brief Stores the pointers to each script to run.
-                    std::vector<CountedPtr<Lua51Script> > ScriptsToRun;
+                    std::vector<CountedPtr<RubyScript> > ScriptsToRun;
                     /// @brief A basic iterator.
-                    typedef std::vector<CountedPtr<Lua51Script> >::iterator iterator;
+                    typedef std::vector<CountedPtr<RubyScript> >::iterator iterator;
                     /// @brief A read only iterator .
-                    typedef std::vector<CountedPtr<Lua51Script> >::const_iterator const_iterator;
+                    typedef std::vector<CountedPtr<RubyScript> >::const_iterator const_iterator;
 
                     /// @brief Used to track where to run the scripts
-                    Lua51ScriptingEngine* LuaRuntime;
+                    RubyScriptingEngine* RubyRuntime;
                 public:
 
-                    /// @brief Create a Lua51WorkUnit
-                    /// @param TargetRuntime The Lua runtime to execute Scripts against.
-                    Lua51WorkUnit(Lua51ScriptingEngine* TargetRuntime);
+                    /// @brief Create a RubyWorkUnit
+                    /// @param TargetRuntime The Ruby runtime to execute Scripts against.
+                    RubyWorkUnit(RubyScriptingEngine* TargetRuntime);
                     /// @brief Virtual deconstructor
-                    virtual ~Lua51WorkUnit();
+                    virtual ~RubyWorkUnit();
 
                     /// @brief Adds a script to be run once each frame.
                     /// @param FreshScript A CountedPtr to a script that should be run each Frame.
                     /// @note Consider this as Invalidating all iterators to this container.
-                    void push_back(CountedPtr<Lua51Script> ScriptToAdd);
+                    void push_back(CountedPtr<RubyScript> ScriptToAdd);
                     /// @brief Adds a script similar to push_back.
                     /// @param ScriptToAdd A iScript to add.
                     virtual void AddScript(CountedPtr<iScript> ScriptToAdd);
                     /// @brief Adds a script similar to push_back (Actually calls it).
-                    ////// @param ScriptToAdd A Lua51Script to add.
-                    virtual void AddScript(CountedPtr<Lua51Script> ScriptToAdd);
+                    ////// @param ScriptToAdd A RubyScript to add.
+                    virtual void AddScript(CountedPtr<RubyScript> ScriptToAdd);
 
                     /// @brief Get an Iterator to a script from the counted pointer
                     /// @param Target a CountedPtr to convert into an iterator
                     /// @return If the Script has been added this returns its iterator, otherwise it returns and end() iterator.
                     /// @note Searches in Linear time, likely useless for external use, it is used internally.
-                    iterator find(CountedPtr<Lua51Script> Target);
+                    iterator find(CountedPtr<RubyScript> Target);
                     /// @brief Get an const_iterator to a script from the counted pointer
                     /// @param Target a CountedPtr to convert into an const_iterator
                     /// @return If the Script has been added this returns its const_iterator, otherwise it returns and end() const_iterator.
                     /// @note Searches in Linear time, likely useless for external use, it is used internally.
-                    const_iterator find(CountedPtr<Lua51Script> Target) const;
+                    const_iterator find(CountedPtr<RubyScript> Target) const;
 
                     /// @brief Erase The first found Script use that pointer
                     /// @param Target A CountedPtr to a script that has already been added. If the script has not been added this fails silently.
                     /// @note Consider this as Invalidating all iterators to this container. This takes linear time to find the Pointer in the
                     /// Container, then linear time to erase the entry for each Script after the target script.
-                    void erase(CountedPtr<Lua51Script> Target);
+                    void erase(CountedPtr<RubyScript> Target);
                     /// @brief Remove the target script from the container
                     /// @param Target The script to remvoe.
                     /// @note This takes linear time to erase the entry for each Script after the target script or constant time if it is the last Script
@@ -128,7 +129,7 @@ namespace Mezzanine
                     virtual void RemoveScript(CountedPtr<iScript> ScriptToRemove);
                     /// @brief The Same as calling erase and passing a CountedPtr to a script
                     /// @param ScriptToRemove A CountedPtr to the script to remove
-                    virtual void RemoveScript(CountedPtr<Lua51Script> ScriptToRemove);
+                    virtual void RemoveScript(CountedPtr<RubyScript> ScriptToRemove);
                     /// @brief Remove a script by index.
                     /// @param Index The index of the Script to Remove.
                     virtual void RemoveScript(Whole Index);
@@ -161,17 +162,17 @@ namespace Mezzanine
                     virtual CountedPtr<iScript> GetScript(Whole Index);
                     /// @brief Retrieve a Script previously passed in.
                     /// @param Index The index of the passed parameter to retrun.
-                    /// @return A reference counted pointer to a Lua51Script.
-                    virtual CountedPtr<Lua51Script> GetLua51Script(Whole Index) const;
+                    /// @return A reference counted pointer to a RubyScript.
+                    virtual CountedPtr<RubyScript> GetRubyScript(Whole Index) const;
 
                     /// @brief Runs all scripts that have been added to this work unit
                     virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
             };
-        } // Lua
+        } // Ruby
     } // Scripting
 
 } // Mezzanine
 
 
-#endif // MEZZLUA51
+#endif // MEZZRUBY
 #endif // \ Include gaurd
