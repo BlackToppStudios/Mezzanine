@@ -45,6 +45,11 @@
 
 namespace Mezzanine
 {
+    namespace Graphics
+    {
+        class EntityProxy;
+        class ParticleSystemProxy;
+    }
     namespace Physics
     {
         class GhostProxy;
@@ -201,8 +206,13 @@ namespace Mezzanine
 
         /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node& SelfRoot) const
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+        /// @copydoc Mezzanine::WorldObject::ProtoSerializeProxies(XML::Node&) const
+        virtual void ProtoSerializeProxies(XML::Node& SelfRoot) const;
+
         /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+        /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProxies(const XML::Node&)
+        virtual void ProtoDeSerializeProxies(const XML::Node& SelfRoot);
 
         /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
         virtual String GetDerivedSerializableName() const;
