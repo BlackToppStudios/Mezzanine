@@ -49,10 +49,10 @@ namespace Mezzanine
 {
     class WorldObject;
     class CollisionShape;
-    class ActorRigid;
 
     namespace Physics
     {
+        class RigidProxy;
         class Generic6DofConstraint;
 
         // Sticky Stuff
@@ -65,20 +65,20 @@ namespace Mezzanine
         {
             Transform TransA;
             Transform TransB;
-            ActorRigid* ActA;
-            ActorRigid* ActB;
+            RigidProxy* ProxA;
+            RigidProxy* ProxB;
 
             StickyConstraintConstructionInfo()
             {
-                this->ActA = NULL;
-                this->ActB = NULL;
+                this->ProxA = NULL;
+                this->ProxB = NULL;
             }
             StickyConstraintConstructionInfo(const StickyConstraintConstructionInfo& Other)
             {
                 this->TransA = Other.TransA;
                 this->TransB = Other.TransB;
-                this->ActA = Other.ActA;
-                this->ActB = Other.ActB;
+                this->ProxA = Other.ProxA;
+                this->ProxB = Other.ProxB;
             }
         };//stickyconstraintconstructioninfo
 
